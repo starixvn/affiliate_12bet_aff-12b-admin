@@ -4,6 +4,7 @@ import { Filter } from '../Filter';
 import AutoComplete from '../../../../components/auto-complete';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
+import { DatePicker } from '@9softstudio/react-datepicker';
 import MultipleSelect from '../../../../components/multiple-select';
 
 describe('affiliate report - Filter ', () => {
@@ -279,6 +280,28 @@ describe('affiliate report - Filter ', () => {
         expect(wrapper.state('isCheckedDatePicker')).toEqual(false);
     });
 
+    it('handleChangeFromDate - should be called when From > To', () => {
+        const monthDate = { format: jest.fn(() => "6/6/2022") };
+        const wrapper = shallow(<Filter {...defaultProps} />);
+        wrapper.setState({ isCheckedDatePicker: true });
+        wrapper.setState = jest.fn(fn => (fn instanceof Function) && fn({ toDate: "12/6/2021" }));
+
+        wrapper.find(DatePicker).at(0).simulate('change', monthDate);
+
+        expect(wrapper.setState).toHaveBeenCalledWith(expect.any(Function));
+    });
+
+    it('handleChangeToDate - should be called when To < From', () => {
+        const monthDate = { format: jest.fn(() => "12/12/2020") };
+        const wrapper = shallow(<Filter {...defaultProps} />);
+        wrapper.setState({ isCheckedDatePicker: true });
+        wrapper.setState = jest.fn(fn => (fn instanceof Function) && fn({ fromDate: "12/12/2020" }));
+
+        wrapper.find(DatePicker).at(1).simulate('change', monthDate);
+
+        expect(wrapper.setState).toHaveBeenCalledWith(expect.any(Function));
+    });
+
     it('should call handleChangeGetAll when checkbox A-Z change', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
         wrapper.setState({ isSortAscending: true });
@@ -296,7 +319,7 @@ describe('affiliate report - Filter ', () => {
         const wrapper = shallow(<Filter {...props} />);
         const instance = wrapper.instance();
 
-        wrapper.setState({ selectedProductList: '' });
+        wrapper.setState({ selectedProductList: '', isCheckedDatePicker: true });
         instance._buildReportTitle = jest.fn(() => 'Handle click Search button');
 
         wrapper.find('Button').simulate('click');
@@ -457,12 +480,13 @@ describe('affiliate report - Filter ', () => {
 
         const componentInstance = new Filter(defaultProps);
         componentInstance.state.userName = '12Bet';
+        componentInstance.state.isCheckedDatePicker = true;
         componentInstance._getProductDataSource = jest.fn(() => productList);
 
         const result = componentInstance._buildMainReportTitle(!isCheckedAllProduct);
 
         expect(componentInstance._getProductDataSource).toHaveBeenCalled();
-        expect(result).toEqual("AFFILIATE REPORT - Username contains '12Bet' - All languages - Sportsbook - FROM " + now.getMonth() + '/' + now.getFullYear() + ' TO ' + now.getMonth() + '/' + now.getFullYear());
+        expect(result).toEqual("AFFILIATE REPORT - Username contains '12Bet' - All languages - Sportsbook - FROM 11/01/2018 TO 11/24/2018");
     });
 
     it('_buildMonthOnMonthReportTile - return corrected value with correct parameter', () => {

@@ -131,6 +131,16 @@ describe('players detail - components - Filter', () => {
         expect(instance.setState).toHaveBeenCalledWith({ selectedProduct: 1 });
     });
 
+    it('handleChecked - should call setState', () => {
+        const wrapper = shallow(<Filter {...defaultProps} />);
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
+
+        instance.handleChecked ({ target: { checked: true, name: "isGetAll" } });
+
+        expect(instance.setState).toHaveBeenCalledWith({ "isGetAll": true });
+    });
+
     it('handleSearch - should be called when click Search Button', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
         wrapper.setState({ productList });
@@ -140,13 +150,23 @@ describe('players detail - components - Filter', () => {
         expect(defaultProps.setParam).toHaveBeenCalledWith({ "fromDate": "06/26/2019", "toDate": "12/26/2019", productId: 0, sortById: 5, isSortAsc: false });
     });
 
+    it('handleSearch - should call setParam with isGetAll', async () => {
+        const wrapper = shallow(<Filter {...defaultProps} />);
+        wrapper.setState({ isGetAll: true });
+
+        await wrapper.instance().handleSearch();
+
+        expect(defaultProps.setParam).toHaveBeenCalledWith({ "fromDate": "12/1/2009", "toDate": "12/26/2019", "productId": 0, sortById: 5, isSortAsc: false });
+    });
+
     it('handleExportExcel - should call exportExcel', async() => {
         const props = Object.assign({}, defaultProps, { exportExcel: jest.fn() })
         const wrapper = shallow(<Filter {...props} />);
+        wrapper.setState({ isGetAll: true });
 
         await wrapper.instance().handleExportExcel();
 
-        expect(props.exportExcel).toHaveBeenCalledWith({ "IsExportExcel": true, "affId": 1271808, "fromDate": "06/26/2019", "toDate": "12/26/2019", "productId": 0, sortById: 5, isSortAsc: false });
+        expect(props.exportExcel).toHaveBeenCalledWith({ "IsExportExcel": true, "affId": 1271808, "fromDate": "12/1/2009", "toDate": "12/26/2019", "productId": 0, sortById: 5, isSortAsc: false });
     });
 
     it('handleExportExcel - should call exportExcel, _getReportTitle and ReportExcel', async() => {
@@ -171,6 +191,17 @@ describe('players detail - components - Filter', () => {
         const result = instance._getReportTitle();
 
         expect(result).toEqual("Player Detail - Sportsbook - From 06/26/2019 To 12/26/2019");
+    });
+
+    it('_getReportTitle - should call _getSelectedProductName', () => {
+        const wrapper = shallow(<Filter {...defaultProps} />);
+        const instance = wrapper.instance();
+        instance.setState({ selectedProduct: 0, isGetAll: true });
+        instance._getSelectedProductName = jest.fn(() => "Sportsbook");
+
+        const result = instance._getReportTitle();
+
+        expect(result).toEqual("Player Detail - All Products - All Dates");
     });
 
     it('_getSelectedProductName - should return correctly', () => {

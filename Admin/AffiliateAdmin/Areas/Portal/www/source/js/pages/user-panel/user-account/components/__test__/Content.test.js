@@ -77,7 +77,7 @@ describe('user account - components - Content', () => {
         expect(siteUrlList).toEqual('www.sportsbookie.com;www.gzyyy.com;www.123.com');
     });
 
-    it('handleTrimObject - should return correct data', () => {
+    it('handleTrimObject - should return correct data with Has Website', () => {
         const newUserAccountInfo = Object.assign({}, userAccountInfo, { AffName: "    12BETAFF226    " });
         const props = Object.assign({}, defaultProps, { userAccountInfo: newUserAccountInfo });
         const result = shallow(<Content {...props} />);
@@ -85,6 +85,16 @@ describe('user account - components - Content', () => {
         const objectAfterTrim = result.instance().handleTrimObject(newUserAccountInfo);
 
         expect(objectAfterTrim).toEqual(userAccountInfo);
+    });
+
+    it('handleTrimObject - should return correct data with not Has Website', () => {
+        const newUserAccountInfo = Object.assign({}, userAccountInfo, { AffName: "    12BETAFF226    ", HasWebSite: false });
+        const props = Object.assign({}, defaultProps, { userAccountInfo: newUserAccountInfo });
+        const result = shallow(<Content {...props} />);
+
+        const objectAfterTrim = result.instance().handleTrimObject(newUserAccountInfo);
+
+        expect(objectAfterTrim).toEqual({ ...userAccountInfo, HasWebSite: false, SiteUrl: '' });
     });
 
     it('handleSubmit - should update successfully', async () => {

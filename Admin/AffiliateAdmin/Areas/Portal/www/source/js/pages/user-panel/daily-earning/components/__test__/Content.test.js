@@ -6,6 +6,7 @@ describe('customer member - components - Content', () => {
     const param ={
         affId: 1271808,
         monthDate: "08 January 2019",
+        isDisplayTurnOver: true,
         productId: 0
     };
 
@@ -50,7 +51,8 @@ describe('customer member - components - Content', () => {
     });
 
     it('render correctly with have data', () => {
-        const result = shallow(<Content {...defaultProps} />);
+        const props = { ...defaultProps, isDisplayTurnOver: false }
+        const result = shallow(<Content {...props} />);
 
         result.instance().setState({ gridData, total, isSelectedAllProducts: false });
 
@@ -64,7 +66,7 @@ describe('customer member - components - Content', () => {
         const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData, 'text-right highlight')}</div>);
 
         dataRow.find('Button').at(0).simulate('click')
-        expect(props.redirectToDailyEarningDetail).toHaveBeenCalledWith({ affId: 1271808, monthDate: "06 January 2019", productId: 0 });
+        expect(props.redirectToDailyEarningDetail).toHaveBeenCalledWith({ affId: 1271808, monthDate: "06 January 2019", isDisplayTurnOver: true, productId: 0 });
     });
 
     it('componentDidUpdate - should call fetchData if param change', () => {

@@ -23,7 +23,6 @@ export const setViewLevel = (data) => {
         data
     }
 }
-
 export const setIsCheckedDatePicker = (data) => {
     return {
         type: types.SET_IS_CHECKED_DATE_PICKER,

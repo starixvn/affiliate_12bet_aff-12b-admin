@@ -1453,8 +1453,14 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                 <InputFile
                   accept="image/jpg, image/gif, image/png, image/jpeg"
                   btnName="Choose File"
-                  className="border text-danger"
-                  files={Array []}
+                  className="border text-success"
+                  files={
+                    Array [
+                      Object {
+                        "name": "abc.png",
+                      },
+                    ]
+                  }
                   handleOnChangeFiles={[Function]}
                   isMultiple={false}
                   lblText="No file choosen"

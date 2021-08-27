@@ -36,4 +36,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedUserPanel }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(AppContainer);
+export default connect(() => ({}), mapDispatchToProps)(AppContainer);

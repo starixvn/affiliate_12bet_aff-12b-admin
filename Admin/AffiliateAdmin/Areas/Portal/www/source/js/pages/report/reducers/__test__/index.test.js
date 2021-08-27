@@ -9,9 +9,10 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 }
 
 const testCaseList = [
-    { name: 'reportTitle', value: undefined, action: { type: types.SET_REPORT_TITLE, data: 'Specified Report Title' }, expectedResult: 'Specified Report Title' },
-    { name: 'param', value: { username: 'abc' }, action: { type: types.SET_PARAM, data: { email: 'abc@gmail.com' } }, expectedResult: { username: 'abc', email: 'abc@gmail.com' } },
-    { name: 'currentViewLevel', value: undefined, action: { type: types.SET_VIEW_LEVEL, data: 2 }, expectedResult: 2 }
+    { name: 'reportTitle', value: '', action: { type: types.SET_REPORT_TITLE, data: 'Specified Report Title' }, expectedResult: 'Specified Report Title' },
+    { name: 'param', value: null, action: { type: types.SET_PARAM, data: { email: 'abc@gmail.com' } }, expectedResult: { email: 'abc@gmail.com' } },
+    { name: 'isCheckedDatePicker', value: false, action: { type: types.SET_IS_CHECKED_DATE_PICKER, data: true }, expectedResult: true },
+    { name: 'currentViewLevel', value: 1, action: { type: types.SET_VIEW_LEVEL, data: 2 }, expectedResult: 2 }
 ]
 
 describe('affiliate report reducers', () => {
