@@ -7,9 +7,10 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, globalResource, statusList, colorByStatus } from '../libs/constants';
 import { setPagingOption, fetchData } from '../actions';
-import { resolveClientUrl } from '../../../../modules/utils';
-import { NotificationPopup } from '../../../common/components/NotificationPopup';
-import { claimResource } from '../../../../modules/claim';
+import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
+import { Claim, claimResource } from '../../../../modules/claim';
+import { defaultDatetimeFormat } from '../../../../modules/constants';
+import { setSelectedRequestId } from '../actions';
 
 export class GridData extends Component {
     constructor(props) {
@@ -34,6 +35,21 @@ export class GridData extends Component {
         }
     }
 
+    handleDeleteProcess = (selectedId) => {
+        this.props.setSelectedRequestId(selectedId);
+        this.props.handleDelete();
+    }
+
+    handleEditProcess = (selectedId) => {
+        this.props.setSelectedRequestId(selectedId);
+        this.props.handleEdit();
+    }
+
+    handleViewProcess = (selectedId) => {
+        this.props.setSelectedRequestId(seletedId);
+        this.props.handleView();
+    }
+
     _renderHeader() {
         return (
             <Row key="theard">
@@ -42,7 +58,7 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={100} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.CreationDate}>{headerText.CreationDate}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.LastModified}>{headerText.LastModified}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Sumitted}>{headerText.Sumitted}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.SubmittedDate}>{headerText.SubmittedDate}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Deadline}>{headerText.Deadline}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.ApprovedBy}>{headerText.ApprovedBy}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.ApprovalDate}>{headerText.ApprovalDate}</Cell>
@@ -76,14 +92,18 @@ export class GridData extends Component {
     }
 
     _buildDataRow(dataItem, index, todayTime) {
+        const { claimsPrincipal } = this.props;
         const status = dataItem.Status;
         const deadline = dataItem.Deadline;
         const deadlineDate = new Date(deadline);
         const isShowWarnning = deadlineDate.getTime() < todayTime && status === statusList.Submitted;
+        const isReadOnlyClaim = new Claim(claimResource.ProcRequest, '');
+        const isViewOnly = claimsPrincipal.hasClaim(isReadOnlyClaim)
+            || (claimsPrincipal.hasWriteClaim(claimResource.ProcRequestMarketingRole) && (!claimsPrincipal.hasWriteClaim(claimResource.ProcRequestManagementRole)) && dataItem.Status === 'Draft')
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-right" title={index}>{index}</Cell>
+                <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell title={dataItem.UserName}>
                     <a href={resolveClientUrl(`Portal/Customer?user=${dataItem.UserName}`)} target="_top">
                         {dataItem.UserName}
@@ -91,22 +111,29 @@ export class GridData extends Component {
                 </Cell>
 
                 <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
-                <Cell title={dataItem.CreationDate}>{dataItem.CreationDate}</Cell>
-                <Cell title={dataItem.LastModified}>{dataItem.LastModified}</Cell>
-                <Cell title={dataItem.Sumitted}>{dataItem.Sumitted}</Cell>
-                <Cell className={isShowWarnning ? "text-danger" : "" } title={dataItem.Deadline}>{dataItem.Deadline}</Cell>
-                <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
+                <Cell title={dataItem.CreationDate} className="text-center">{formatDateTime(dataItem.CreationDate, defaultDatetimeFormat)}</Cell>
+                <Cell title={dataItem.LastModified} className="text-center">{formatDateTime(dataItem.LastModified, defaultDatetimeFormat)}</Cell>
+                <Cell title={dataItem.SubmittedDate} className="text-center">{formatDateTime(dataItem.SubmittedDate, defaultDatetimeFormat)}</Cell>
+                <Cell className={isShowWarnning ? "text-danger text-center" : "text-center"} title={dataItem.Deadline}>{formatDateTime(dataItem.Deadline, defaultDatetimeFormat)}</Cell>
                 <Cell title={dataItem.ApprovedBy}>{dataItem.ApprovedBy}</Cell>
-                <Cell title={dataItem.ApprovalDate}>{dataItem.ApprovalDate}</Cell>
-                <Cell title={dataItem.Status} style={{ color: colorByStatus[status] }}>{status}</Cell>
-                <Cell className="text-center" title="Change Password">
-                    {
-                        isApproved && (<Button color="link" onClick={() => this.handleChangePassword(dataItem.AffId)}>
-                            <span className="oi oi-pencil text-secondary"></span>
+                <Cell title={dataItem.ApprovalDate} className="text-center">{formatDateTime(dataItem.ApprovalDate, defaultDatetimeFormat)}</Cell>
+                <Cell title={dataItem.Status} className="text-center" style={{ color: colorByStatus[status] }}>{status}</Cell>
+                <Cell className="text-center" title="Action">
+                    {isViewOnly
+                        ? (<Button color="link" onClick={() => this.handleViewProcess(dataItem.RequestId)}>
+                            <span className="oi oi-eye text-primary"></span>
                         </Button>)
+                        : (<React.Fragment>
+                            <Button color="link" onClick={() => this.handleEditProcess(dataItem.RequestId)}>
+                                <span className="oi oi-pencil text-secondary"></span>
+                            </Button>
+                            <Button color="link" onClick={() => this.handleDeleteProcess(dataItem.RequestId)}>
+                                <span className="oi oi-trash text-danger"></span>
+                            </Button>
+                        </React.Fragment>
+                        )
                     }
                 </Cell>
-                }
             </Row>
         );
     }
@@ -144,24 +171,17 @@ export class GridData extends Component {
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
-                {
-                    !!messageNotification && <NotificationPopup
-                        message={messageNotification}
-                        isConfirmPopup={false}
-                        onClose={() => this.setState({ messageNotification: '' })}
-                    />
-                }
             </React.Fragment>
         );
     }
 }
 
-function mapStateToProps({ today, gridData, pagingOption, shouldResetScrollPosition }) {
-    return { today, gridData, pagingOption, shouldResetScrollPosition };
+function mapStateToProps({ today, gridData, pagingOption, shouldResetScrollPosition, claimsPrincipal }) {
+    return { today, gridData, pagingOption, shouldResetScrollPosition, claimsPrincipal };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, fetchData }, dispatch);
+    return bindActionCreators({ setPagingOption, fetchData, setSelectedRequestId }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);

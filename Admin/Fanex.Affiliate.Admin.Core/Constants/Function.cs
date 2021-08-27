@@ -40,7 +40,7 @@
 
         public const string ViewLog = "[ViewLog]";
 
-        public const string ProcessingRequest = "[Affiliate]";
+        public const string ProcessingRequest = "[ProcessingRequest]";
 
         public const string ProcessingRequestMarketingRole = "[ProcessingRequestMarketingRole]";
 

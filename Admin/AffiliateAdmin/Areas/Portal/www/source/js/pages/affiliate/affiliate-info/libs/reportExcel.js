@@ -26,6 +26,7 @@ const fields = {
     Index: 'Index',
     UserName: 'UserName',
     Status: 'Status',
+    ProcessingStatus: 'ProcessingStatus',
     FirstName: 'FirstName',
     LastName: 'LastName',
     Language: 'Language',
@@ -192,6 +193,10 @@ export default class ReportExcel {
             width: 200
         }, {
             field: fields.Status,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 150
+        },{
+            field: fields.ProcessingStatus,
             [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 150
         }, {

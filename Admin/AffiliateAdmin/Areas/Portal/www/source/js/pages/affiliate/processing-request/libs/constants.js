@@ -22,7 +22,7 @@ export const headerText = {
     CreatedBy: 'Created By',
     CreationDate: 'Creation Date',
     LastModified: 'Last Modified',
-    Sumitted: 'Sumitted',
+    SubmittedDate: 'Sumitted',
     Deadline: 'Deadline',
     ApprovedBy: 'Approved By',
     ApprovalDate: 'Approval Date',
@@ -37,5 +37,14 @@ export const resource = {
     AllStatuses: 'All STATUSES',
     UsernameContains: 'USERNAME CONTAINS ',
     StatusCount: 'Status count',
-    Apostrophe: "'"
+    Apostrophe: "'",
+    ExceedMaxLength: 'Exceed max length',
+    FieldRequeired: 'This field is required.',
+    InsertSuccess: 'Insert successful',
+    UpdateSuccess: 'Update successfult'
 }
+
+export const playerMethod = 'Player';
+export const netellerMethod = 'Neteller';
+export const moneybookersMethod = 'Moneybookers';
+export const wireMethod = 'Wire';

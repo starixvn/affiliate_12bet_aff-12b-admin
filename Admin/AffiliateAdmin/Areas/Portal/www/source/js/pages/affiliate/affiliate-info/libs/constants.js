@@ -11,6 +11,13 @@ export const statusList = {
     Closed: "Closed"
 }
 
+export const processingStatusList = {
+    Draft: 'Draft',
+    Submitted: 'Submitted',
+    Approved: 'Approved',
+    Rejected: 'Rejected'
+}
+
 export const defaultSortBy = 1;
 
 export const defaultSelectedColumnNumber = 2;
@@ -27,6 +34,7 @@ export const headerText = {
     Index: { label: globalResource.Index },
     UserName: { label: 'Username' },
     Status: { label: 'Status', renderClaim: new Claim(claimResource.AffAccountStatus) },
+    ProcessingStatus:{label: 'Processing Status', renderClaim: new Claim(claimResource.ProcRequest)},
     FirstName: { label: 'First Name' },
     LastName: { label: 'Last Name' },
     Language: { label: 'Language', renderClaim: new Claim(claimResource.LanguageAmendment) },
@@ -51,6 +59,7 @@ export const resource = {
     AllCommGroups: 'All Comm Groups',
     AllLanguages: 'All Languages',
     AllStatuses: 'All Statuses',
+    AllProcessing: 'All Processing',
     UsernameContains: 'USERNAME CONTAINS ',
     EmailContains: 'EMAIL CONTAINS ',
     AffIdContains: 'AFFILIATE ID ',

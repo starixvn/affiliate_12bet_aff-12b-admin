@@ -26,14 +26,38 @@ export const selectedRequestId = createReducer(0, {
     }
 })
 
+export const selectedRequest = createReducer(null,{
+    [type.SET_SELECTED_PROC_REQUEST](prevState, action){
+        return action.data;
+    }
+})
+
 export const shouldResetScrollPosition = createReducer(true, {
-    [SHOULD_RESET_SCROLL_POSITION](prevState, action) {
+    [type.SET_SHOULD_RESET_SCROLL_POSITION](prevState, action) {
         return action.data;
     }
 })
 
 export const gridData = createReducer(null, {
-    [SET_GRID_DATA](prevState, action) {
+    [type.SET_GRID_DATA](prevState, action) {
+        return action.data;
+    }
+})
+
+export const isClickSearch = createReducer(false, {
+    [type.SET_IS_CLICK_SEARCH](prevState, action){
+        return action.data;
+    }
+})
+
+export const dataSummary = createReducer(null, {
+    [type.SET_PROC_REQUEST_SUMMARY](prevState, action){
+        return action.data;
+    }
+})
+
+export const languageList = createReducer(null,{
+    [type.SET_LANGUAGE_LIST](prevState, action){
         return action.data;
     }
 })
@@ -45,7 +69,11 @@ export default combineReducers({
     param,
     isShowLoader,
     selectedRequestId,
+    selectedRequest,
     gridData,
     shouldResetScrollPosition,
     claimsPrincipal,
+    isClickSearch,
+    dataSummary,
+    languageList
 });

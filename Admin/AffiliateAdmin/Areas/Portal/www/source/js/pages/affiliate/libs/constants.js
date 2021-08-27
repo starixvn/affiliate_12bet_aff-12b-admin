@@ -6,7 +6,8 @@ export const menuKey = {
     commGroup: 'commGroup',
     emailHistory: 'emailHistory',
     massAdjustment: 'massAdjustment',
-    viewLog: 'viewLog'
+    viewLog: 'viewLog',
+    procReqeust: 'procRequest'
 }
 
 export const relativePath = {
@@ -16,4 +17,5 @@ export const relativePath = {
     emailHistory: getVirtualUrl() + 'Portal/EmailHistory',
     massAdjustment: getVirtualUrl() + 'Portal/Adjustment',
     viewLog: getVirtualUrl() + 'Portal/ViewLog',
+    procRequest: getVirtualUrl() + 'Portal/ProcessingRequest'
 }

@@ -53,3 +53,5 @@ export const changePasswordMessages = {
 }
 
 export const specialCharacters = ["#", "<", "$", "+", "%", ">", "!", "`", "&", "*", "'", "|", "{", "}", "?", "\"", "=", "/", ":", "\\", "@"]
+
+export const defaultDatetimeFormat = "dd/MM/yyyy HH:mm:ss";

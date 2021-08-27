@@ -902,6 +902,7 @@
     <Content Include="Areas\Portal\www\dist\assets\template.xlsx" />
     <Content Include="Areas\Portal\Views\MediaGallery\NewsLetterPageList.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\ProcessingRequest.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1194,7 +1195,7 @@
     <Content Include="Areas\Portal\Views\Message\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ExchangeRate\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Domain\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\Affiliate\AfilliateInfo.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\AffiliateInfo.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\_MainMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\style\components\open-iconic-bootstrap.scss" />
     <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.eot" />

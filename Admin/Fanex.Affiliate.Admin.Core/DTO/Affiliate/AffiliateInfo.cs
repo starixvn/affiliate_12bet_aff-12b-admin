@@ -13,6 +13,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string Status { get; set; }
 
+        public string ProcessingStatus { get; set; }
+
         [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string FirstName { get; set; }
 

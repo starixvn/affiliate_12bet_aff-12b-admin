@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [AllowByPassFunctionAuthorize]
         public ActionResult Index()
         {
-            return View();
+            return View("~/Areas/Portal/Views/Affiliate/Index.cshtml");
         }
 
         [HttpPost]

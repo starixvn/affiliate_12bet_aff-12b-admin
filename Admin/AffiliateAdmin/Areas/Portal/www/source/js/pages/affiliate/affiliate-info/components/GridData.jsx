@@ -71,6 +71,7 @@ export class GridData extends Component {
                 {selectedColumnList['Index'] && <Cell header={true} colWidth={80} title={headerText.Index.label}>{headerText.Index.label}</Cell>}
                 <Cell header={true} colWidth={300} title={headerText.UserName.label}>{headerText.UserName.label}</Cell>
                 {selectedColumnList['Status'] && <Cell header={true} colWidth={200} title={headerText.Status.label}>{headerText.Status.label}</Cell>}
+                {selectedColumnList['ProcessingStatus'] && <Cell header={true} colWidth={300} title={headerText.ProcessingStatus.label}>{headerText.ProcessingStatus.label}</Cell>}
                 {selectedColumnList['FirstName'] && <Cell header={true} colWidth={200} title={headerText.FirstName.label}>{headerText.FirstName.label}</Cell>}
                 {selectedColumnList['LastName'] && <Cell header={true} colWidth={200} title={headerText.LastName.label}>{headerText.LastName.label}</Cell>}
                 {selectedColumnList['Language'] && <Cell header={true} colWidth={200} title={headerText.Language.label}>{headerText.Language.label}</Cell>}
@@ -155,6 +156,7 @@ export class GridData extends Component {
                 </Cell>
 
                 {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
+                {selectedColumnList['ProcessingStatus'] && <Cell title={dataItem.Status}>{dataItem.ProcessingStatus}</Cell>}
                 {selectedColumnList['FirstName'] && <Cell title={firstName}>{firstName}</Cell>}
                 {selectedColumnList['LastName'] && <Cell title={lastName}>{lastName}</Cell>}
                 {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}

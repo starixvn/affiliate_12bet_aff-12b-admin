@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import MultipleSelect from '../../../../components/multiple-select';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { statusList, sortByList, defaultSortBy, resource } from '../libs/constants';
+import { statusList, sortByList, defaultSortBy, resource, processingStatusList } from '../libs/constants';
 import { setReportTitle, setParam, setSelectedColumn, setLanguageList, setIsClickSearch } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { claimResource } from '../../../../modules/claim';
@@ -19,6 +19,7 @@ export class Filter extends PureComponent {
             selectedCommGroup: this.initialGroupId,
             selectedLanguage: '',
             selectedStatus: props.param.Status || '',
+            selectedProcessingStatus: '',
             userName: '',
             email: '',
             affId: '',
@@ -48,14 +49,15 @@ export class Filter extends PureComponent {
     }
 
     handleClickSearch = () => {
-        const { selectedCommGroup, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending, affId } = this.state;
+        const { selectedCommGroup, selectedLanguage, selectedStatus, selectedProcessingStatus, userName, email, selectedSortBy, isSortAscending, affId } = this.state;
 
         const affIdInput = affId.trim();
-        this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email, affIdInput));
+        this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, selectedProcessingStatus, userName, email, affIdInput));
         const param = {
             GroupId: selectedCommGroup,
             Language: selectedLanguage,
             Status: selectedStatus,
+            ProcessingStatus: selectedProcessingStatus,
             UserName: userName,
             Email: email,
             SortBy: selectedSortBy,
@@ -85,19 +87,21 @@ export class Filter extends PureComponent {
         this.props.setSelectedColumn(newColumnList);
     }
 
-    _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email, affId) {
-        const { commGroupList, languageList, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter } = this.props;
+    _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, selectedProcessingStatus, userName, email, affId) {
+        const { commGroupList, languageList, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter, isShowProcessingStatusFilter } = this.props;
 
         const space = resource.Space;
         const apostrophe = resource.Apostrophe;
         const commGroupTitle = commGroupList[selectedCommGroup] || resource.AllCommGroups;
         const languageTitle = languageList[selectedLanguage] || resource.AllLanguages;
         const statusTitle = statusList[selectedStatus] || resource.AllStatuses;
+        const processingStatusTitle = processingStatusList[selectedProcessingStatus] || resource.AllProcessing;
 
         const titles = [resource.ReportName];
         isShowCommFilter && titles.push(commGroupTitle.toUpperCase());
         isShowLangFilter && titles.push(languageTitle.toUpperCase());
         isShowAccStatusFilter && titles.push(statusTitle.toUpperCase());
+        isShowProcessingStatusFilter && titles.push(processingStatusTitle.toUpperCase())
         userName && titles.push(resource.UsernameContains + apostrophe + userName + apostrophe);
         email && titles.push(resource.EmailContains + apostrophe + email + apostrophe);
         affId && titles.push(resource.AffIdContains + apostrophe + affId + apostrophe);
@@ -106,8 +110,8 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending } = this.state;
-        const { columnList, languageList, commGroupList, isShowEmailFilter, sortKeys, isShowAccStatusFilter, isShowCommFilter, isShowLangFilter } = this.props;
+        const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending, selectedProcessingStatus } = this.state;
+        const { columnList, languageList, commGroupList, isShowEmailFilter, sortKeys, isShowAccStatusFilter, isShowCommFilter, isShowLangFilter, isShowProcessingStatusFilter } = this.props;
 
         return (
             <div className="filter-container">
@@ -149,6 +153,21 @@ export class Filter extends PureComponent {
                                     {
                                         Object.keys(statusList).map(status => {
                                             return (<option key={'status-' + status} value={status}>{statusList[status]}</option>)
+                                        })
+                                    }
+                                </Input>
+                            }
+                        </FormGroup>
+                    }
+
+                    {isShowProcessingStatusFilter &&
+                        <FormGroup className="my-2 mr-sm-2">
+                            {
+                                <Input type="select" name="selectedProcessingStatus" id="ProcessingStatus" value={selectedProcessingStatus} onChange={this.handleChange}>
+                                    <option key="processing-status-all" value="">{resource.AllProcessing}</option>
+                                    {
+                                        Object.keys(processingStatusList).map(status => {
+                                            return (<option key={'processing-status-' + status} value={status}>{processingStatusList[status]}</option>)
                                         })
                                     }
                                 </Input>
@@ -220,13 +239,14 @@ function mapStateToProps({ languageList, commGroupList, param, groupId, columnLi
     const isShowAccStatusFilter = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
     const isShowCommFilter = claimsPrincipal.hasReadClaim(claimResource.AssignCommGroup);
     const isShowLangFilter = claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment);
+    const isShowProcessingStatusFilter = claimsPrincipal.hasReadClaim(claimResource.ProcRequest);
     const sortKeys = Object.keys(sortByList)
         .filter(key => {
             const item = sortByList[key];
             return !item.renderClaim || claimsPrincipal.hasClaim(item.renderClaim);
         })
         .map(key => { return { key: key, value: sortByList[key].value } });
-    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter });
+    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter, isShowProcessingStatusFilter });
 }
 
 function mapDispatchToProps(dispatch) {

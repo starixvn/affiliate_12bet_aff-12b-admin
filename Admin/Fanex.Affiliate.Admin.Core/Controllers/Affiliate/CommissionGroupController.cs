@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 DeductionList = _commGroupCommonService.GetDeductionList(),
             };
 
-            return View(viewModel);
+            return View("~/Areas/Portal/Views/Affiliate/Index.cshtml", viewModel);
         }
 
         [HttpPost]
