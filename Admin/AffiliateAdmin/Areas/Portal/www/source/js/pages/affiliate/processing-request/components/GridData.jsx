@@ -42,12 +42,12 @@ export class GridData extends Component {
 
     handleEditProcess = (selectedId) => {
         this.props.setSelectedRequestId(selectedId);
-        this.props.handleEdit();
+        this.props.handleEdit(selectedId);
     }
 
     handleViewProcess = (selectedId) => {
-        this.props.setSelectedRequestId(seletedId);
-        this.props.handleView();
+        this.props.setSelectedRequestId(selectedId);
+        this.props.handleView(selectedId);
     }
 
     _renderHeader() {

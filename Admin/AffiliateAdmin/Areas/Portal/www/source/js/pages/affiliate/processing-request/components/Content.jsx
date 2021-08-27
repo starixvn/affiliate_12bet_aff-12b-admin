@@ -34,16 +34,16 @@ export class Content extends PureComponent {
         });
     }
 
-    handleEditRequest = async () => {
-        await this.props.getProcessingRequestDetail(this.props.selectedRequestId);
+    handleEditRequest = async (selectedRequestId) => {
+        await this.props.getProcessingRequestDetail(selectedRequestId);
         this.setState({
             Popup: (<EditRequest onClose={this.handleHide}/>),
             popupTitle: 'Edit Processing Request'
         });
     }
 
-    handleViewRequest = async () => {
-        await this.props.getProcessingRequestDetail(this.props.selectedRequestId);
+    handleViewRequest = async (selectedRequestId) => {
+        await this.props.getProcessingRequestDetail(selectedRequestId);
         this.setState({
             Popup : (<EditRequest onClose={this.handleHide} isReadOnly={true} />),
             popupTitle: 'Processing Request Detail'

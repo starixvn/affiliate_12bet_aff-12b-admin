@@ -27,8 +27,7 @@ export class EditRequest extends React.PureComponent {
 
 
     componentDidMount() {
-        if(!this.props.selectedRequestId)
-        {
+        if (!this.props.selectedRequestId) {
             const selectedRequest = Object.assign({}, this.props.selectedRequest, { ['Status']: "Draft" })
             this.props.setSelectedRequest(selectedRequest);
         }
@@ -152,10 +151,11 @@ export class EditRequest extends React.PureComponent {
     }
 
     render() {
-        const { selectedRequest, isReadOnly, languageList, originalStatus } = this.props;
+        const { selectedRequest, isReadOnly, languageList, originalStatus, selectedRequestId } = this.props;
         const { isShowMessage, isSuccess, message } = this.state;
         const renderFormByMethod = this._renderFormByMethod(selectedRequest);
         const deadline = formatDateTime(trimText(selectedRequest && selectedRequest.Deadline), 'yyyy-MM-dd');
+        const isUpdateForm = !!selectedRequestId;
 
         return (
             <div className='request-container'>
@@ -166,11 +166,18 @@ export class EditRequest extends React.PureComponent {
                     <FormGroup row>
                         <Label for="UserName" className='required pt-0' sm={2}>Affiliate </Label>
                         <Col sm={4}>
-                            <Input type="text" name="UserName" id="UserName" value={htmlDecode(trimText(selectedRequest && selectedRequest.UserName))}
-                                onChange={this.handleChange}
-                                invalid={this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) || this.validateRequire(selectedRequest && selectedRequest.UserName)} />
-                            {this.validateRequire(selectedRequest && selectedRequest.UserName) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
-                            {this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) && <FormFeedback>{resource.ExceedMaxLength + ' 30'}</FormFeedback>}
+                            {isUpdateForm
+                                ? (<b>{selectedRequest.UserName}</b>)
+                                : (<React.Fragment>
+                                    <Input type="text" name="UserName" id="UserName" value={htmlDecode(trimText(selectedRequest && selectedRequest.UserName))}
+                                        onChange={this.handleChange}
+                                        invalid={this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) || this.validateRequire(selectedRequest && selectedRequest.UserName)} />
+                                    {this.validateRequire(selectedRequest && selectedRequest.UserName) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
+                                    {this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) && <FormFeedback>{resource.ExceedMaxLength + ' 30'}</FormFeedback>}
+                                </React.Fragment>
+                                )
+                            }
+
                         </Col>
                     </FormGroup>
                     <fieldset>

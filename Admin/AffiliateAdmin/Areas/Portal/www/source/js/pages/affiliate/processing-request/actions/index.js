@@ -83,10 +83,10 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const getProcessingRequestDetail = (param) => async (dispatch) => {
+export const getProcessingRequestDetail = (selectedRequestId) => async (dispatch) => {
     dispatch(toggleLoader(true));
     const url = 'Portal/ProcessingRequest/GetProcessingRequestDetail';
-    const response = await post(url, param);
+    const response = await post(url, {processId: selectedRequestId});
 
     const data = response && response.status === 200 ? response.data : null;
     dispatch(setSelectedRequest(data));
