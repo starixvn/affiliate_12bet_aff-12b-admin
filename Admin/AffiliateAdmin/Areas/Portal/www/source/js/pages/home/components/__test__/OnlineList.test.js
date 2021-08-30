@@ -24,7 +24,7 @@ describe('home - components - OnlineList', () => {
                 LastRequestDateText: "11/15/2019 04:04:00",
                 LoggedInDate: "2019-11-14T23:36:00",
                 LoggedInDateText: "11/14/2019 23:36:00",
-                Role: "Aff",
+                Role: "Affiliate",
                 UserName: "12BETAFF226"
             }
         ],

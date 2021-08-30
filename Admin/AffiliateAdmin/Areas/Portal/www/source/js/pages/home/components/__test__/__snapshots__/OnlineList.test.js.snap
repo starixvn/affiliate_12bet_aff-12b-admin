@@ -113,7 +113,11 @@ exports[`home - components - OnlineList render correctly 1`] = `
               sorting={false}
               title="12BETAFF226"
             >
-              12BETAFF226
+              <a
+                href="/Portal/Customer?user=12BETAFF226"
+              >
+                12BETAFF226
+              </a>
             </t>
             <t
               asc={true}
@@ -160,9 +164,9 @@ exports[`home - components - OnlineList render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Aff"
+              title="Affiliate"
             >
-              Aff
+              Affiliate
             </t>
           </t>,
         ]

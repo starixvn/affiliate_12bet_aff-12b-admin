@@ -32,10 +32,19 @@ describe('home - components - BannerStatistics', () => {
             PendingAffiliateMonthNumber: 0,
             PendingAffiliateNumber: 1024,
             TextBannerNumber: 13
-        }
+        },
+        isShowBannerLink: false
     }
+
     it('render correctly', () => {
         const result = shallow(<BannerStatistics {...defaultProps} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly with permissions', () => {
+        const props = { ...defaultProps, isShowBannerLink: true };
+        const result = shallow(<BannerStatistics {...props} />);
 
         expect(result).toMatchSnapshot();
     });

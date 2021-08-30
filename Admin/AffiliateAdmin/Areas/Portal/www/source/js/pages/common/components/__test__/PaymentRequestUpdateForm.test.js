@@ -22,14 +22,16 @@ describe('common - components - PaymentRequestUpdateForm', () => {
     };
 
     it('render correctly', () => {
-        const result = shallow(<PaymentRequestUpdateForm />);
+        const props = { isUpdatable: true, isShowEmail: true, isShowPaymentInfo: true }
+        const result = shallow(<PaymentRequestUpdateForm {...props} />);
         result.setState({ paymentRequestInfo, originalStatus: 'pending' });
 
         expect(result).toMatchSnapshot();
     });
 
     it('render correctly with not pending', () => {
-        const result = shallow(<PaymentRequestUpdateForm />);
+        const props = { isUpdatable: false, isShowEmail: false, isShowPaymentInfo: false }
+        const result = shallow(<PaymentRequestUpdateForm {...props} />);
         result.setState({ paymentRequestInfo, originalStatus: 'approved', isSuccess: false });
 
         expect(result).toMatchSnapshot();

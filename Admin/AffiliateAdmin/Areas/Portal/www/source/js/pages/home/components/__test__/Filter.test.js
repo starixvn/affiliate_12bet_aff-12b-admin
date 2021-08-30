@@ -23,6 +23,15 @@ describe('home - components - Filter', () => {
         expect(result).toMatchSnapshot();
     });
 
+    it('componentWillUnmount - should call clearInterval', () => {
+        window.clearInterval = jest.fn();
+        const result = shallow(<Filter {...defaultProps} />);
+
+        result.instance().componentWillUnmount();
+
+        expect(window.clearInterval).toHaveBeenCalled();
+    });
+
     it('_handleCountDown - Should only call setState', async () => {
         const result = shallow(<Filter {...defaultProps} />);
         const instance = result.instance();
