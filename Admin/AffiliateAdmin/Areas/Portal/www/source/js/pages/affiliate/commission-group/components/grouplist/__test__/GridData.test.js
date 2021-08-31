@@ -145,7 +145,8 @@ describe('commission group - GridData ', () => {
     });
 
     it('_renderGroupData - render correctly', () => {
-        const componentInstance = new GridData(defaultProps);
+        const props = { ...defaultProps, isShowAffTab: false, gridData: [{ ...dataItem, ExchangeWinLossShare: { DeductedPercentage: 0.1 }, ExchangeCommissionShare: { DeductedPercentage: 0.2 } }] }
+        const componentInstance = new GridData(props);
 
         const renderGroupData = shallow(<div>{componentInstance._renderGroupData()}</div>);
 
@@ -188,6 +189,7 @@ describe('commission group - GridData ', () => {
 
     it('Should render correctly', () => {
         const wrapper = shallow(<GridData {...defaultProps} />);
+        wrapper.setState({ messageNotification: 'abc' })
 
         expect(wrapper).toMatchSnapshot();
     });

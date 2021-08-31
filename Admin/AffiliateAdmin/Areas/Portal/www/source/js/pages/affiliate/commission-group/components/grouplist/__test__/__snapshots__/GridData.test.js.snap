@@ -38,12 +38,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       sortable={false}
       sorting={false}
     >
-      <a
-        href="/Portal/Affiliate?groupId=153"
-        target="_top"
-      >
-        2
-      </a>
+      2
     </t>
     <t
       asc={true}
@@ -152,11 +147,11 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
     >
       <p>
         WL: 
-        0
+        0.10
       </p>
       <p>
         Comm: 
-        0
+        0.20
       </p>
     </t>
     <t
@@ -1162,6 +1157,11 @@ exports[`commission group - GridData  Should render correctly 1`] = `
       width={0}
     />
   </div>
+  <NotificationPopup
+    isConfirmPopup={true}
+    message="abc"
+    onClose={[Function]}
+  />
 </Fragment>
 `;
 

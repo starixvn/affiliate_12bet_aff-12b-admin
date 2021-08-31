@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`common - Checkbox Select All component -  render correctly 1`] = `
+<input
+  checked={false}
+  onChange={[Function]}
+  type="checkbox"
+/>
+`;

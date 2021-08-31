@@ -17,6 +17,7 @@ describe('email history - components - Content ', () => {
         },
         checkedEmails: {},
         isModifiable: true,
+        isShowSender: true,
         shouldResetScrollPosition: true,
         gridData: null
     }
@@ -55,8 +56,22 @@ describe('email history - components - Content ', () => {
         expect(result).toMatchSnapshot();
     });
 
+    it('render correctly with have gridData but can not modify', () => {
+        const props = Object.assign({}, defaultProps, { gridData, isModifiable: false });
+        const result = shallow(<Content {...props} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
     it('render correctly with have gridData is empty', () => {
         const props = Object.assign({}, defaultProps, { gridData: [] });
+        const result = shallow(<Content {...props} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly with have gridData is empty but not show Sender ', () => {
+        const props = Object.assign({}, defaultProps, { gridData: [], isShowSender: false });
         const result = shallow(<Content {...props} />);
 
         expect(result).toMatchSnapshot();

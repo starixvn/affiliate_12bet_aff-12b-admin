@@ -13,4 +13,13 @@ describe('payment request - App', () => {
 
         expect(wrapper).toMatchSnapshot();
     });
+
+    it('Should render correctly with IsFromHome', () => {
+        window.globalVariables = {};
+        window.initialState = { param: { IsFromHome: true } };
+
+        const wrapper = shallow(<App />);
+
+        expect(wrapper).toMatchSnapshot();
+    });
 })

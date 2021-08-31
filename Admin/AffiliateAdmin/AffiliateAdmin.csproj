@@ -381,8 +381,14 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\libs\__test__\reportExcel.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\libs\__test__\utils.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\reducers\__tests__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\addgroup\__test__\redux\AddGroup.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\assign-private-group\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\assign-private-group\__test__\redux\AssignPrivateGroup.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\deduction\__test__\redux\DeductionSetting.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\mass-adjustment\actions\__test__\index.test.js" />
@@ -408,6 +414,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\components\__test__\redux\DetailContent.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\payment-request\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\actions\types.js" />
@@ -428,7 +435,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\InputPopUp.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\InputFile.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\CheckboxSelectAll.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\MenuList.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ContactNumber.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\ApprovedStatus.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\ContactNumber.redux.test.js" />

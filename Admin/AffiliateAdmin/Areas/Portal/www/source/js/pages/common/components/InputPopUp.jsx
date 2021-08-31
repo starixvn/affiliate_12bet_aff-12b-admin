@@ -18,7 +18,7 @@ export const InputPopUp = (props) => {
         }
     }
 
-    const handleChangeText = (value) => setText(value);
+    const handleChangeText = (event) => setText(event.target.value);
 
     const handleConfirm = (isConfirm) => {
         toggleNested();
