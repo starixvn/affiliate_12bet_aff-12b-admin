@@ -9,7 +9,7 @@ import { headerText, globalResource, statusList, colorByStatus } from '../libs/c
 import { setPagingOption, fetchData } from '../actions';
 import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
 import { Claim, claimResource } from '../../../../modules/claim';
-import { defaultDatetimeFormat } from '../../../../modules/constants';
+import { defaultDatetimeFormat, defaultDateFormat } from '../../../../modules/constants';
 import { setSelectedRequestId } from '../actions';
 
 export class GridData extends Component {
@@ -112,12 +112,12 @@ export class GridData extends Component {
                 </Cell>
 
                 <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
-                <Cell title={dataItem.CreationDate} className="text-center">{formatDateTime(dataItem.CreationDate, defaultDatetimeFormat)}</Cell>
-                <Cell title={dataItem.LastModified} className="text-center">{formatDateTime(dataItem.LastModified, defaultDatetimeFormat)}</Cell>
-                <Cell title={dataItem.SubmittedDate} className="text-center">{formatDateTime(dataItem.SubmittedDate, defaultDatetimeFormat)}</Cell>
-                <Cell className={isShowWarnning ? "text-danger text-center" : "text-center"} title={dataItem.Deadline}>{formatDateTime(dataItem.Deadline, defaultDatetimeFormat)}</Cell>
+                <Cell title={dataItem.CreationDate} className="text-center">{dataItem.CreationDate && formatDateTime(dataItem.CreationDate, defaultDatetimeFormat)}</Cell>
+                <Cell title={dataItem.LastModified} className="text-center">{dataItem.LastModified && formatDateTime(dataItem.LastModified, defaultDatetimeFormat)}</Cell>
+                <Cell title={dataItem.SubmittedDate} className="text-center">{dataItem.SubmittedDate && formatDateTime(dataItem.SubmittedDate, defaultDatetimeFormat)}</Cell>
+                <Cell className={isShowWarnning ? "text-danger text-center" : "text-center"} title={dataItem.Deadline}>{dataItem.Deadline && formatDateTime(dataItem.Deadline, defaultDateFormat)}</Cell>
                 <Cell title={dataItem.ApprovedBy}>{dataItem.ApprovedBy}</Cell>
-                <Cell title={dataItem.ApprovalDate} className="text-center">{formatDateTime(dataItem.ApprovalDate, defaultDatetimeFormat)}</Cell>
+                <Cell title={dataItem.ApprovalDate} className="text-center">{dataItem.ApprovalDate && formatDateTime(dataItem.ApprovalDate, defaultDatetimeFormat)}</Cell>
                 <Cell title={dataItem.Status} className="text-center" style={{ color: colorByStatus[status] }}>{status}</Cell>
                 <Cell className="text-center" title="Action">
                     {isViewOnly

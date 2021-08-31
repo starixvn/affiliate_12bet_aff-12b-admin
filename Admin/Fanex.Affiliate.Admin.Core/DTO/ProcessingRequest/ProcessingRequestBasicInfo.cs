@@ -17,17 +17,17 @@ namespace Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest
 
         public string CreatedBy { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
-        public DateTime LastModified { get; set; }
+        public DateTime? LastModified { get; set; }
 
-        public DateTime SubmittedDate { get; set; }
+        public DateTime? SubmittedDate { get; set; }
 
         public DateTime Deadline { get; set; }
 
         public string ApprovedBy { get; set; }
 
-        public DateTime ApprovalDate { get; set; }
+        public DateTime? ApprovalDate { get; set; }
 
         public string Status { get; set; }
     }
