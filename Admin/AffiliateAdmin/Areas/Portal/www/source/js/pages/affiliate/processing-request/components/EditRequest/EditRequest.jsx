@@ -73,7 +73,7 @@ export class EditRequest extends React.PureComponent {
             this.setState({
                 isShowMessage: true,
                 isSuccess: result.IsSuccessful,
-                message: [result.IsSuccessful ? successMsg : result.Message]
+                message: [result.IsSuccessful ? [successMsg] : result.Message]
             });
 
             this.props.toggleLoader(false);
@@ -185,7 +185,7 @@ export class EditRequest extends React.PureComponent {
                         <FormGroup row>
                             <Label sm={3}>Language</Label>
                             <Col sm={5}>
-                                <Input type="select" name="MarketId" id="MarketId" value={selectedRequest && selectedRequest.MarketId} onChange={this.handleChange} >
+                                <Input type="select" name="MarketId" id="MarketId" value={selectedRequest && selectedRequest.MarketId} onChange={this.handleChange} disabled={isReadOnly}>
                                     <option key={'status-all'} value=''>No change</option>
                                     {
                                         languageList.map(item => {
@@ -199,7 +199,9 @@ export class EditRequest extends React.PureComponent {
                         <FormGroup row>
                             <Label sm={3}>Payment Method</Label>
                             <Col sm={5}>
-                                <Input type='select' name='PreferredPayment' id='preferredPayment' value={selectedRequest && selectedRequest.PreferredPayment} sm={6} onChange={this.handleChangePaymentMethod}>
+                                <Input type='select' name='PreferredPayment' id='preferredPayment'
+                                    value={selectedRequest && selectedRequest.PreferredPayment} sm={6}
+                                    onChange={this.handleChangePaymentMethod} disabled={isReadOnly}>
                                     <option key='no-change' value=''>No change</option>
                                     {paymentMethodList.map(item => {
                                         return (<option key={item.key} value={item.key}>{item.value}</option>)
@@ -228,7 +230,7 @@ export class EditRequest extends React.PureComponent {
                         <FormGroup row>
                             <Label sm={3} for='Status'>Status</Label>
                             <Col sm={9}>
-                                <Input sm={9} type='select' id="Status" name="Status" onChange={this.handleChange} value={selectedRequest && selectedRequest.Status}>
+                                <Input sm={9} type='select' id="Status" name="Status" onChange={this.handleChange} value={selectedRequest && selectedRequest.Status} disabled={isReadOnly}>
                                     {Object.keys(statusList).map(key => {
                                         return statusList[key].shouldShow(originalStatus)
                                             ? <option key={key} value={key}>{key}</option>
@@ -240,7 +242,7 @@ export class EditRequest extends React.PureComponent {
                         <FormGroup row>
                             <Label sm={3} className='required pt-0' for="Deadline">Deadline</Label>
                             <Col sm={4}>
-                                <Input type='date' id='Deadline' name='Deadline' value={deadline} required={true} onChange={this.handleChange}></Input>
+                                <Input type='date' id='Deadline' name='Deadline' value={deadline} required={true} onChange={this.handleChange} disabled={isReadOnly}></Input>
                             </Col>
                         </FormGroup>
                         {this.renderTextArea('Remark', 'Remark', selectedRequest && selectedRequest.Remark, isReadOnly)}
@@ -252,8 +254,8 @@ export class EditRequest extends React.PureComponent {
     }
 }
 
-function mapStateToProp({ selectedRequest, selectedRequestId, languageList, originalStatus }) {
-    return { selectedRequest, selectedRequestId, languageList, originalStatus };
+function mapStateToProp({ selectedRequest, selectedRequestId, languageList, originalStatus, pagingOption }) {
+    return { selectedRequest, selectedRequestId, languageList, originalStatus, pagingOption };
 }
 
 function mapDispatchToProps(dispatch) {

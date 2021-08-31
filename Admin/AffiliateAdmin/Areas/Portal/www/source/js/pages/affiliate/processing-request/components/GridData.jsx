@@ -99,7 +99,7 @@ export class GridData extends Component {
         const isShowWarnning = deadlineDate.getTime() < todayTime && status === statusList.Submitted;
         const isReadOnlyClaim = new Claim(claimResource.ProcRequest, '');
         const isViewOnly = claimsPrincipal.hasClaim(isReadOnlyClaim)
-            || (claimsPrincipal.hasWriteClaim(claimResource.ProcRequestMarketingRole) && (!claimsPrincipal.hasWriteClaim(claimResource.ProcRequestManagementRole)) && dataItem.Status === 'Draft')
+            || (claimsPrincipal.hasWriteClaim(claimResource.ProcRequestMarketingRole) && (!claimsPrincipal.hasWriteClaim(claimResource.ProcRequestManagementRole)) && dataItem.Status !== 'Draft')
 
         return (
             <Row key={`dataRow-${index}`}>

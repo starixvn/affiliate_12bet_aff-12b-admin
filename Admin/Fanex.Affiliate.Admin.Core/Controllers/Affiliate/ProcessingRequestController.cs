@@ -1,11 +1,13 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.ProcessingRequest;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -36,6 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.ProcessingRequest)]
         public ActionResult GetProcessingRequestList(ProcessingRequestSelParam param)
         {
             if (ModelState.IsValid)
@@ -51,6 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.ProcessingRequest)]
         public ActionResult GetProcessingRequestDetail(int processId)
         {
             var result = new JsonNetResult
@@ -62,6 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.ProcessingRequest, IsHost = true)]
         public ActionResult DeleteProcessingRequest(ProcessingRequestDelParam param)
         {
             return new JsonNetResult
@@ -72,6 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.ProcessingRequest, IsHost = true)]
         public ActionResult InsertProcessingRequest(ProcessingRequestInsParam param)
         {
             if (ModelState.IsValid)
@@ -95,14 +101,30 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.ProcessingRequest, IsHost = true)]
         public ActionResult UpdateProcessingRequest(ProcessingRequestUpdParam param)
         {
             if (ModelState.IsValid)
             {
-                return new JsonNetResult
+                var currentRequestDetail = _processingRequestService.GetProcessingRequestDetail(param.RequestId);
+                if (CheckHasUpdatePermission(currentRequestDetail))
                 {
-                    Data = _processingRequestService.UpdateProcessingRequest(param)
-                };
+                    return new JsonNetResult
+                    {
+                        Data = _processingRequestService.UpdateProcessingRequest(param)
+                    };
+                }
+                else
+                {
+                    return new JsonNetResult
+                    {
+                        Data = new ResultInfo
+                        {
+                            Code = 403,
+                            Message = "Not have permission"
+                        }
+                    };
+                }
             }
             var msg = ModelState.Values.SelectMany(e => e.Errors)
                 .Select(e => e.ErrorMessage);
@@ -114,6 +136,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     Message = string.Join("---", msg)
                 }
             };
+        }
+
+        private bool CheckHasUpdatePermission(ProcessingRequestDetailInfo currentRequestDetail)
+        {
+            var claims = SessionService.UserClaim;
+            var hasManagerRole = claims.HasClaim(Function.ProcessingRequestManagementRole, Function.WritePermission);
+            var hasMarketingRole = claims.HasClaim(Function.ProcessingRequestMarketingRole, Function.WritePermission);
+            return hasManagerRole || (hasMarketingRole && string.Equals(currentRequestDetail.Status, ProcessingRequestStatus.DRAFT));
         }
     }
 }

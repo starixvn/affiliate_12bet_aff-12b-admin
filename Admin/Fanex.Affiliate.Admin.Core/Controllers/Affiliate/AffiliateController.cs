@@ -149,7 +149,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 SortDirectionType = viewModel.SortDirectionType,
                 Status = viewModel.Status,
                 UserId = viewModel.UserId,
-                UserName = viewModel.UserName
+                UserName = viewModel.UserName,
+                ProcessingStatus = viewModel.ProcessingStatus,                
             };
         }
     }

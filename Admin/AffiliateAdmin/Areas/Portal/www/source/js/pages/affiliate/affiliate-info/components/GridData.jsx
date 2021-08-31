@@ -144,6 +144,7 @@ export class GridData extends Component {
         const isFavorite = dataItem.IsFavorite
         const checkFavorite = isFavorite ? "favor-check" : "favor-uncheck";
         const classNameFavorite = (isApproved || status == "closed") ? checkFavorite : "";
+        const processingStatus = dataItem.ProcessingStatus.split('/')
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -156,7 +157,9 @@ export class GridData extends Component {
                 </Cell>
 
                 {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
-                {selectedColumnList['ProcessingStatus'] && <Cell title={dataItem.Status}>{dataItem.ProcessingStatus}</Cell>}
+                {selectedColumnList['ProcessingStatus'] && <Cell className='text-center' title={dataItem.Status}>
+                    <span>{processingStatus[0]}</span>/<span className='text-primary'>{processingStatus[1]}</span>/<span className='text-success'>{processingStatus[2]}</span>/<span className='text-danger'>{processingStatus[3]}</span>
+                </Cell>}
                 {selectedColumnList['FirstName'] && <Cell title={firstName}>{firstName}</Cell>}
                 {selectedColumnList['LastName'] && <Cell title={lastName}>{lastName}</Cell>}
                 {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}
@@ -171,7 +174,7 @@ export class GridData extends Component {
                 {selectedColumnList['PlayerUserName'] && <Cell title={playerUserName}>{playerUserName}</Cell>}
                 {selectedColumnList['PlayerCurrency'] && <Cell title={dataItem.PlayerCurrency}>{dataItem.PlayerCurrency}</Cell>}
                 {selectedColumnList['Member'] && <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>}
-                { isPwdChangeable && <Cell className="text-center" title="Change Password">
+                {isPwdChangeable && <Cell className="text-center" title="Change Password">
                     {
                         isApproved && (<Button color="link" onClick={() => this.handleChangePassword(dataItem.AffId)}>
                             <span className="oi oi-pencil text-secondary"></span>

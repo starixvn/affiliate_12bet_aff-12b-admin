@@ -126,11 +126,11 @@ export class Content extends PureComponent {
 
         return (
             <div className="data-content my-2">
-                {isModifiable && isClickSearch && dataSummary &&
+                { isClickSearch && dataSummary &&
                 <FormGroup row>
-                    <Col className="mt-0" sm={1}>
+                    {isModifiable && <Col className="mt-0" sm={1}>
                         <Button outline type="button" className='text-secondary' onClick={this.handleAddNewRequest}>Add <span className='oi oi-plus'></span></Button>
-                    </Col>
+                    </Col>}
                     <Col sm={11} className='text-right'>                        
                             <span>Status count:</span>
                             <span className='pl-3'>{dataSummary.Draft + ' Draft'}</span>
