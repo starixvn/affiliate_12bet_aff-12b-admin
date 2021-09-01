@@ -11,7 +11,8 @@ describe('commission group - AssignPrivateGroup - connect', () => {
 
     beforeEach(() => {
         const initialState = {
-            selectedGroup: {}
+            selectedGroup: {},
+            claimsPrincipal: { hasWriteClaim: jest.fn(() => true)}
         }
 
         store = mockStore(initialState)
@@ -24,7 +25,6 @@ describe('commission group - AssignPrivateGroup - connect', () => {
 
     it('should call correct action', () => {
         wrapper.props().setSelectedGroup({ Abc: 123 })
-
         const actions = store.getActions();
         expect(actions).toEqual([{ type: SET_SELECTED_GROUP, data: { Abc: 123 } }])
     })

@@ -10,6 +10,8 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
+    { name: 'setLanguageList', type: types.SET_LANGUAGE_LIST, data: {} },
+    { name: 'setCommGroupList', type: types.SET_COMM_GROUP_LIST, data: {} },
     { name: 'setReportTitle', type: types.SET_REPORT_TITLE, data: 'Affiliate Info Title' },
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
     { name: 'setShowPopupCommGroup', type: types.SET_SHOW_POPUP_COMMGROUP, data: true },

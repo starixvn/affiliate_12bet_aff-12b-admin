@@ -35,6 +35,9 @@ describe('news letter list - components - InsertUpdateForm ', () => {
 
     it('render correctly with insert', () => {
         const result = shallow(<InsertUpdateForm {...defaultProps} />);
+        result.instance().setState({
+            fromDate: new Date(2021, 8, 1), lastDate: new Date(2021, 9, 0)
+        });
 
         expect(result).toMatchSnapshot();
     });
@@ -43,7 +46,8 @@ describe('news letter list - components - InsertUpdateForm ', () => {
         const props = Object.assign({}, defaultProps, { selectedNewsLetterPageId: 2485, getNewsLetterPageDetail: jest.fn() });
         const result = shallow(<InsertUpdateForm {...props} />);
         result.instance().setState({
-            isInsert: false, messageNotificationPopup: 'abc'
+            isInsert: false, messageNotificationPopup: 'abc',
+            fromDate: new Date(2021, 8, 1), lastDate: new Date(2021, 9, 0)
         });
 
         expect(result).toMatchSnapshot();
@@ -52,7 +56,7 @@ describe('news letter list - components - InsertUpdateForm ', () => {
     it('render correctly with not show popup', () => {
         const props = Object.assign({}, defaultProps, { selectedNewsLetterPageId: null, languageList: [{ LanguageCode: "vi-VN", LanguageName: "Vietnamese" }] });
         const result = shallow(<InsertUpdateForm {...props} />);
-        result.setState({ category: "", isSuccess: false })
+        result.setState({ category: "", isSuccess: false, fromDate: new Date(2021, 8, 1), lastDate: new Date(2021, 9, 0) })
 
         expect(result).toMatchSnapshot();
     });

@@ -2,6 +2,7 @@
 import { shallow } from 'enzyme';
 import { GridData } from '../GridData';
 import * as ajaxRequest from '../../../../../modules/ajaxRequest';
+import { NotificationPopup } from '../../../../common/components/NotificationPopup';
 
 describe('affiliate info - GridData ', () => {
     const dataItem = {
@@ -25,7 +26,7 @@ describe('affiliate info - GridData ', () => {
         CasinoDateText: "05/23/2014"
     };
     const index = 1;
-    const dataList = [dataItem];
+    const dataList = [dataItem, { ...dataItem, CommissionGroup: 'test' }];
     const mockColumnList = [
         { columnKey: "Index", columnName: "#", checked: true },
         { columnKey: "Status", columnName: "Status", checked: true },
@@ -273,7 +274,6 @@ describe('affiliate info - GridData ', () => {
     it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {
         const mockSetPagingOption = jest.fn();
 
-        const index = 1;
         const size = 20;
         const newPaging = {
             PageIndex: index,
@@ -316,7 +316,7 @@ describe('affiliate info - GridData ', () => {
     });
 
     it("_buildDataRow - should render correctly with dataItem's fields are null", () => {
-        const dataItem = {
+        const item = {
             AffId: 927841,
             UserName: "12BETAFF001",
             Status: "Favorite",
@@ -339,7 +339,7 @@ describe('affiliate info - GridData ', () => {
 
         const componentInstance = new GridData(defaultProps);
 
-        const buildDataRow = shallow(<div>{componentInstance._buildDataRow(dataItem, index, selectedColumnList)}</div>);
+        const buildDataRow = shallow(<div>{componentInstance._buildDataRow(item, index, selectedColumnList)}</div>);
 
         expect(buildDataRow).toMatchSnapshot();
     });
@@ -380,8 +380,24 @@ describe('affiliate info - GridData ', () => {
 
     it('should render correctly', () => {
         const wrapper = shallow(<GridData {...defaultProps} />);
-        wrapper.instance().setState({ gridData: dataList });
+        wrapper.instance().setState({ gridData: dataList, messageNotification: "123" });
 
         expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should render correctly with no data', () => {
+        const wrapper = shallow(<GridData {...defaultProps} />);
+        wrapper.instance().setState({ gridData: [] });
+
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("setState - should be called when click close in NotificationPopup", () => {
+        const wrapper = shallow(<GridData {...defaultProps} />);
+        wrapper.setState({ messageNotification: "123", gridData: [] });
+        wrapper.setState = jest.fn();
+
+        wrapper.find(NotificationPopup).props().onClose();
+        expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: '' });
     });
 })
