@@ -53,7 +53,7 @@ const validateDeadline = (selectedRequest) => {
     let isValid = true;
     const messageList = [];
     const now = new Date();
-    const today = new Date()
+    now.setDate(now.getDate() - 1)
     const deadline = selectedRequest && selectedRequest.Deadline;
     if (!deadline)
     {
@@ -61,7 +61,6 @@ const validateDeadline = (selectedRequest) => {
     }
     else{
         let date = new Date(deadline);
-        date.setDate(date.getDate() + 1);
         if (date < now)
         {
             messageList.push('Invalid deadline')

@@ -164,7 +164,7 @@ export class EditRequest extends React.PureComponent {
                 </Alert>
                 <Form>
                     <FormGroup row>
-                        <Label for="UserName" className='required pt-0' sm={2}>Affiliate </Label>
+                        <Label for="UserName" className={isUpdateForm ? 'pt-0' : 'required pt-0'} sm={2}>Affiliate </Label>
                         <Col sm={4}>
                             {isUpdateForm
                                 ? (<b>{selectedRequest.UserName}</b>)

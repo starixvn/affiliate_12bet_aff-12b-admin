@@ -102,6 +102,12 @@ export class GridData extends Component {
         const isViewOnly = claimsPrincipal.hasClaim(isReadOnlyClaim)
             || (claimsPrincipal.hasWriteClaim(claimResource.ProcRequestMarketingRole) && (!claimsPrincipal.hasWriteClaim(claimResource.ProcRequestManagementRole)) && dataItem.Status !== 'Draft')
 
+        const creationDate = dataItem.CreationDate && formatDateTime(dataItem.CreationDate, defaultDatetimeFormat);
+        const lastModifiedDate = dataItem.LastModified && formatDateTime(dataItem.LastModified, defaultDatetimeFormat);
+        const submittedDate = dataItem.SubmittedDate && formatDateTime(dataItem.SubmittedDate, defaultDatetimeFormat);
+        const deadlineFormatedDate = dataItem.Deadline && formatDateTime(dataItem.Deadline, defaultDateFormat);
+        const approvalDate = dataItem.ApprovalDate && formatDateTime(dataItem.ApprovalDate, defaultDatetimeFormat);
+
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
@@ -112,12 +118,12 @@ export class GridData extends Component {
                 </Cell>
 
                 <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
-                <Cell title={dataItem.CreationDate} className="text-center">{dataItem.CreationDate && formatDateTime(dataItem.CreationDate, defaultDatetimeFormat)}</Cell>
-                <Cell title={dataItem.LastModified} className="text-center">{dataItem.LastModified && formatDateTime(dataItem.LastModified, defaultDatetimeFormat)}</Cell>
-                <Cell title={dataItem.SubmittedDate} className="text-center">{dataItem.SubmittedDate && formatDateTime(dataItem.SubmittedDate, defaultDatetimeFormat)}</Cell>
-                <Cell className={isShowWarnning ? "text-danger text-center" : "text-center"} title={dataItem.Deadline}>{dataItem.Deadline && formatDateTime(dataItem.Deadline, defaultDateFormat)}</Cell>
+                <Cell title={creationDate} className="text-center">{creationDate}</Cell>
+                <Cell title={lastModifiedDate} className="text-center">{lastModifiedDate}</Cell>
+                <Cell title={submittedDate} className="text-center">{submittedDate}</Cell>
+                <Cell className={isShowWarnning ? "text-danger text-center" : "text-center"} title={deadlineFormatedDate}>{deadlineFormatedDate}</Cell>
                 <Cell title={dataItem.ApprovedBy}>{dataItem.ApprovedBy}</Cell>
-                <Cell title={dataItem.ApprovalDate} className="text-center">{dataItem.ApprovalDate && formatDateTime(dataItem.ApprovalDate, defaultDatetimeFormat)}</Cell>
+                <Cell title={approvalDate} className="text-center">{approvalDate}</Cell>
                 <Cell title={dataItem.Status} className="text-center" style={{ color: colorByStatus[status] }}>{status}</Cell>
                 <Cell className="text-center" title="Action">
                     {isViewOnly

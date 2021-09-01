@@ -157,7 +157,7 @@ export class GridData extends Component {
                 </Cell>
 
                 {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
-                {selectedColumnList['ProcessingStatus'] && <Cell className='text-center' title={dataItem.Status}>
+                {selectedColumnList['ProcessingStatus'] && <Cell className='text-center' title={dataItem.ProcessingStatus}>
                     <span>{processingStatus[0]}</span>/<span className='text-primary'>{processingStatus[1]}</span>/<span className='text-success'>{processingStatus[2]}</span>/<span className='text-danger'>{processingStatus[3]}</span>
                 </Cell>}
                 {selectedColumnList['FirstName'] && <Cell title={firstName}>{firstName}</Cell>}

@@ -13,8 +13,11 @@ import {
 } from './constants';
 import {
     format,
-    formatDecimal
+    formatDecimal,
 } from '../../../../modules/numberFormat';
+import { formatDateTime } from '../../../../modules/utils';
+
+import { defaultDatetimeFormat, defaultDateFormat } from '../../../../modules/constants';
 
 const REPORT_TITLE_ROW_INDEX = 0;
 const HEADER_ROW_INDEX = 1;
@@ -126,7 +129,13 @@ export default class ReportExcel {
     _buildDataRow(item, sectionStyleName, columnConfig, rowIndex) {
         const fieldName = columnConfig.field;
         let value = fieldName === fields.Index ? rowIndex + 1 : item[fieldName];
-
+        if (fieldName === fields.ApprovalDate || fieldName === fields.CreationDate || fieldName === fields.LastModified || fieldName === fields.Submitted)
+        {
+            value = formatDateTime(value, defaultDatetimeFormat);
+        }
+        if (fieldName === fields.Deadline){
+            value = formatDateTime(value, defaultDateFormat);
+        }
         return {
             t: Excel.getCellType(value),
             v: htmlDecode(value),

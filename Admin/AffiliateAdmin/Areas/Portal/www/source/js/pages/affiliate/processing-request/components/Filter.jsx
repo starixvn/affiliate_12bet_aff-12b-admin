@@ -40,11 +40,11 @@ export class Filter extends PureComponent {
     _buildReportTitle(selectedStatus, userName) {
         const space = resource.Space;
         const apostrophe = resource.Apostrophe;
-        const statusTitle = statusList[selectedStatus] || resource.AllStatuses;
+        const statusTitle = !!statusList[selectedStatus] ? selectedStatus : resource.AllStatuses;
 
         const titles = [resource.ReportName];
         userName && titles.push(resource.UsernameContains + apostrophe + userName + apostrophe);
-        titles.push(statusTitle);
+        titles.push(statusTitle.toUpperCase());
 
         return titles.join(space);
     }
@@ -65,7 +65,7 @@ export class Filter extends PureComponent {
                     <FormGroup className="my-2 mr-sm-2">
                         <Label for="selectedStatus" className="mr-sm-2">{resource.SortBy}</Label>
                         <Input type="select" name="selectedStatus" id="selectedStatus" value={selectedStatus} onChange={this.handleChange} >
-                            <option key={'status-all'} value=''>All Status</option>
+                            <option key={'status-all'} value=''>All Statuses</option>
                             {
                                 Object.keys(statusList).map(key => {
                                     return (<option key={'sortBy-' + key} value={key}>{key}</option>)

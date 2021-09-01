@@ -40,8 +40,8 @@ export const resource = {
     Apostrophe: "'",
     ExceedMaxLength: 'Exceed max length',
     FieldRequeired: 'This field is required.',
-    InsertSuccess: 'Insert successful',
-    UpdateSuccess: 'Update successfult'
+    InsertSuccess: 'The processing request has been saved.',
+    UpdateSuccess: 'The processing request has been saved.'
 }
 
 export const playerMethod = 'Player';
