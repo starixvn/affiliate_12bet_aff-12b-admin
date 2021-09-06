@@ -71,7 +71,7 @@ export default class ReportExcel {
             },
             e: {
                 r: REPORT_TITLE_ROW_INDEX,
-                c: 10
+                c: 9
             }
         });
         const address = Excel.getCellAddress({
@@ -136,9 +136,10 @@ export default class ReportExcel {
         if (fieldName === fields.Deadline){
             value = formatDateTime(value, defaultDateFormat);
         }
+        
         return {
             t: Excel.getCellType(value),
-            v: htmlDecode(value),
+            v: value,
             s: columnConfig[sectionStyleName]
         }
     }

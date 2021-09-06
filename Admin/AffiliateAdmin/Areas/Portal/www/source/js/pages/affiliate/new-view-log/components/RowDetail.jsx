@@ -1,5 +1,6 @@
 ﻿import React, { Fragment } from 'react';
 import { handleParseToObject, removeFirstCharacter, mergeToNonDuplicateArray } from '../libs/utils';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export const RowDetail = (props) => {
     const { oldData, newData } = props;
@@ -21,10 +22,10 @@ export const RowDetail = (props) => {
         ) : (
                 <Fragment>
                     {
-                        !!newValue && <p className="text-primary mb-0">{`${newValue}`}</p>
+                        !!newValue && <p className="text-primary mb-0">{`${htmlDecode(newValue)}`}</p>
                     }
                     {
-                        !!oldValue && <span className="text-secondary">{`${oldValue}`}</span>
+                        !!oldValue && <span className="text-secondary">{`${htmlDecode(oldValue)}`}</span>
                     }
                 </Fragment>
             )

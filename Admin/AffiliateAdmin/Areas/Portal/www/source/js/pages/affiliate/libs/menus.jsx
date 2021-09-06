@@ -17,5 +17,5 @@ export const menus = [
     { key: menuKey.emailHistory, label: 'Email History', href: relativePath.emailHistory, component: EmailHistory, renderClaim: new Claim(claimResource.EmailHistory) },
     { key: menuKey.massAdjustment, label: 'Adjustment', href: relativePath.massAdjustment, component: MassAdjustment, renderClaim: new Claim(claimResource.AffAdjustment, claimResource.WritePermission) },
     { key: menuKey.viewLog, label: 'View Log', href: relativePath.viewLog, component: AllAffViewLog, renderClaim: new Claim(claimResource.ViewLog) },
-    { key: menuKey.procReqeust, label: 'Processing Request', href: relativePath.procRequest, component: ProcRequest }
+    { key: menuKey.procReqeust, label: 'Processing Request', href: relativePath.procRequest, component: ProcRequest, renderClaim: new Claim(claimResource.ProcRequest) }
 ]

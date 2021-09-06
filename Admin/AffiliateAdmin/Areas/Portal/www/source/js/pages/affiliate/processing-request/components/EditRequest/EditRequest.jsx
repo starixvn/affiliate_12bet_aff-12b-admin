@@ -23,6 +23,7 @@ export class EditRequest extends React.PureComponent {
             isSuccess: true,
             message: [],
         }
+        this.refAlert = React.createRef();
     }
 
 
@@ -39,17 +40,23 @@ export class EditRequest extends React.PureComponent {
         this.props.setOriginalStatus("Draft");
     }
 
+    hideMessage = () => {
+        this.refAlert.current.scrollIntoView(false);
+        window.setTimeout( () => this.setState({isShowMessage: false}), 3000);
+    }
+
     handleSave = async () => {
         const { selectedRequest, selectedRequestId } = this.props;
         const validationResult = validate(selectedRequest);
         const isInsertedForm = !selectedRequestId;
+
 
         if (!validationResult.isValid) {
             this.setState({
                 isShowMessage: !validationResult.isValid,
                 isSuccess: validationResult.isValid,
                 message: validationResult.messageList
-            });
+            }, () => this.hideMessage());
         }
         else {
             this.props.toggleLoader(true);
@@ -74,7 +81,7 @@ export class EditRequest extends React.PureComponent {
                 isShowMessage: true,
                 isSuccess: result.IsSuccessful,
                 message: [result.IsSuccessful ? [successMsg] : result.Message]
-            });
+            }, () => this.hideMessage());
 
             this.props.toggleLoader(false);
         }
@@ -159,8 +166,8 @@ export class EditRequest extends React.PureComponent {
 
         return (
             <div className='request-container'>
-                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
-                    <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
+                <Alert color={isSuccess ? 'success' : 'danger'}  isOpen={isShowMessage}>
+                    <div ref={this.refAlert} dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
                 <Form>
                     <FormGroup row>

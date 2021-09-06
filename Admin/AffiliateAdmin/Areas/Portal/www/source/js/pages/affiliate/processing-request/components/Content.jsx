@@ -130,14 +130,16 @@ export class Content extends PureComponent {
                     <div className="my-2">
                         <FormGroup row>
                             {isModifiable && <Col className="mt-0" sm={1}>
-                                <Button outline type="button" className='text-secondary' onClick={this.handleAddNewRequest}>Add <span className='oi oi-plus'></span></Button>
+                                <Button outline type="button" onClick={this.handleAddNewRequest} title='Add'>Add <span className='oi oi-plus'></span></Button>
                             </Col>}
                             <Col sm={11} className='text-right'>
-                                <span>Status count:</span>
-                                <span className='pl-3'>{dataSummary.Draft + ' Draft'}</span>
-                                <span className='text-primary pl-3'>{dataSummary.Submitted + ' Submitted'}</span>
-                                <span className='text-success pl-3'>{dataSummary.Approved + ' Approved'}</span>
-                                <span className='text-danger pl-3'>{dataSummary.Rejected + ' Rejected'}</span>
+                                <b>
+                                    <span>Status count:</span>
+                                    <span className='pl-3'>{dataSummary.Draft + ' Draft'}</span>
+                                    <span className='text-primary pl-3'>{dataSummary.Submitted + ' Submitted'}</span>
+                                    <span className='text-success pl-3'>{dataSummary.Approved + ' Approved'}</span>
+                                    <span className='text-danger pl-3'>{dataSummary.Rejected + ' Rejected'}</span>
+                                </b>
                             </Col>
                         </FormGroup>
                     </div>
@@ -145,8 +147,6 @@ export class Content extends PureComponent {
                 }
                 {reportTitle && <ReportTitle content={this._buildReportTitle(reportTitle)} />}
                 <GridData handleView={this.handleViewRequest} handleEdit={this.handleEditRequest} handleDelete={this.handleDeleteRequest} />
-
-
 
                 <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop='static'>
                     <ModalHeader toggle={this.handleHide}><span className="iconpopup"></span>{popupTitle}</ModalHeader>
@@ -169,7 +169,7 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ reportTitle, param, claimsPrincipal, isClickSearch, dataSummary, selectedRequestId }) {
-    const isModifiable = claimsPrincipal.hasClaim(claimResource.ProcRequestMarketingRole) || claimsPrincipal.hasClaim(claimResource.ProcRequestManagementRole);
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.ProcRequest);
     const isDisplayExportExcelBtn = claimsPrincipal.hasClaim(claimResource.ExportAffInfoExcel);
     return Object.assign({}, { reportTitle, param, isDisplayExportExcelBtn, isModifiable, isClickSearch, dataSummary, selectedRequestId });
 }

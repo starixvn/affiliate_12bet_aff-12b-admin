@@ -98,8 +98,7 @@ export class GridData extends Component {
         const deadline = dataItem.Deadline;
         const deadlineDate = new Date(deadline);
         const isShowWarnning = deadlineDate.getTime() < todayTime
-        const isReadOnlyClaim = new Claim(claimResource.ProcRequest, '');
-        const isViewOnly = claimsPrincipal.hasClaim(isReadOnlyClaim)
+        const isViewOnly = !claimsPrincipal.hasWriteClaim(claimResource.ProcRequest)
             || (claimsPrincipal.hasWriteClaim(claimResource.ProcRequestMarketingRole) && (!claimsPrincipal.hasWriteClaim(claimResource.ProcRequestManagementRole)) && dataItem.Status !== 'Draft')
 
         const creationDate = dataItem.CreationDate && formatDateTime(dataItem.CreationDate, defaultDatetimeFormat);
@@ -127,14 +126,14 @@ export class GridData extends Component {
                 <Cell title={dataItem.Status} className="text-center" style={{ color: colorByStatus[status] }}>{status}</Cell>
                 <Cell className="text-center" title="Action">
                     {isViewOnly
-                        ? (<Button color="link" onClick={() => this.handleViewProcess(dataItem.RequestId)}>
+                        ? (<Button color="link" title='View' onClick={() => this.handleViewProcess(dataItem.RequestId)}>
                             <span className="oi oi-eye text-primary"></span>
                         </Button>)
                         : (<React.Fragment>
-                            <Button color="link" onClick={() => this.handleEditProcess(dataItem.RequestId)}>
+                            <Button color="link" title='Edit' onClick={() => this.handleEditProcess(dataItem.RequestId)}>
                                 <span className="oi oi-pencil text-secondary"></span>
                             </Button>
-                            <Button color="link" onClick={() => this.handleDeleteProcess(dataItem.RequestId)}>
+                            <Button color="link" title='Delete' onClick={() => this.handleDeleteProcess(dataItem.RequestId)}>
                                 <span className="oi oi-trash text-danger"></span>
                             </Button>
                         </React.Fragment>
