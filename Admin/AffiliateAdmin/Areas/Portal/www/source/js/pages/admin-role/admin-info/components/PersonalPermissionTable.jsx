@@ -79,9 +79,9 @@ export class PersonalPermissionTable extends PureComponent {
     _updatePermissionListByRole = () => {
         const { permissionListByRole } = this.props;
 
-        const newPermissionListByRole = permissionListByRole.map(item => {
+        const newPermissionListByRole = permissionListByRole ? permissionListByRole.map(item => {
             return Object.assign({}, item, { IsRead: item.IsRoleRead, IsHost: item.IsRoleHost });
-        });
+        }) : null;
 
         this.props.setPermissionListByRole(newPermissionListByRole);
     }
@@ -101,7 +101,7 @@ export class PersonalPermissionTable extends PureComponent {
         }
         else {
             dataRows.push(<tr key="no-info">
-                <td className="text-center" colSpan="6">{messages.NoInfo}</td>
+                <td className="text-center" colSpan="8">{messages.NoInfo}</td>
             </tr>);
         }
 
