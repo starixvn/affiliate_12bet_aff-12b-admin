@@ -44,10 +44,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest
 
         public string BankAddress { get; set; }
 
-        public string SwiftCode { get; set; }
+        public string BankSwiftCode { get; set; }
 
-        public string AccountName { get; set; }
+        public string BankAccountName { get; set; }
 
-        public string AccountNo { get; set; }
+        public string BankAccountNo { get; set; }
     }
 }

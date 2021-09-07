@@ -7,7 +7,7 @@ import { playerMethod, wireMethod, resource, statusList } from '../../libs/const
 import { htmlDecode, trimText } from '../../../../../modules/htmlHelper';
 import { formatDateTime } from '../../../../../modules/utils';
 import { selectedRequestId } from '../../reducers';
-import { validate } from '../../libs/service';
+import { validate, validateDeadline } from '../../libs/service';
 
 const paymentMethodList = [
     { key: playerMethod, value: '12BET player account' },
@@ -46,6 +46,7 @@ export class EditRequest extends React.PureComponent {
     }
 
     handleSave = async () => {
+        this.props.toggleLoader(true);
         const { selectedRequest, selectedRequestId } = this.props;
         const validationResult = validate(selectedRequest);
         const isInsertedForm = !selectedRequestId;
@@ -59,8 +60,6 @@ export class EditRequest extends React.PureComponent {
             }, () => this.hideMessage());
         }
         else {
-            this.props.toggleLoader(true);
-
             const param = selectedRequest;
 
             const result = isInsertedForm
@@ -82,9 +81,8 @@ export class EditRequest extends React.PureComponent {
                 isSuccess: result.IsSuccessful,
                 message: [result.IsSuccessful ? [successMsg] : result.Message]
             }, () => this.hideMessage());
-
-            this.props.toggleLoader(false);
         }
+        this.props.toggleLoader(false);
     }
 
     handleChangePaymentMethod = (event) => {
@@ -107,6 +105,11 @@ export class EditRequest extends React.PureComponent {
 
     validateRequire = (text) => !text;
 
+    validateDeadline = (selectedRequest) => {
+        var result = validateDeadline(selectedRequest);
+        return result.isValid;
+    }
+
     renderTextArea = (fieldName, labelName, value, isReadOnly, isRequired) => {
         var text = trimText(value);
         const classRequired = isRequired && "required";
@@ -127,7 +130,7 @@ export class EditRequest extends React.PureComponent {
 
     _renderFormByMethod(selectedRequest) {
         return {
-            [playerMethod]: this._renderPaymentForm('Player_UserName', '12BET User Name', selectedRequest && selectedRequest.Player_UserName, false, this.handleChange),
+            [playerMethod]: this._renderPaymentForm('Player_UserName', '12BET Username', selectedRequest && selectedRequest.Player_UserName, false, this.handleChange),
             [wireMethod]: this._renderWireForm(selectedRequest)
         }
     }
@@ -150,9 +153,9 @@ export class EditRequest extends React.PureComponent {
             <React.Fragment>
                 {this._renderPaymentForm('BankName', 'Bank Name', trimText(selectedRequest && selectedRequest.BankName), false, this.handleChange)}
                 {this._renderPaymentForm('BankAddress', 'Bank Address', trimText(selectedRequest && selectedRequest.BankAddress), false, this.handleChange)}
-                {this._renderPaymentForm('SwiftCode', 'Bank ABA/Swift/Sort Code', trimText(selectedRequest && selectedRequest.SwiftCode), false, this.handleChange)}
-                {this._renderPaymentForm('AccountName', 'Bank Account Name', trimText(selectedRequest && selectedRequest.AccountName), false, this.handleChange)}
-                {this._renderPaymentForm('AccountNo', 'Bank Account Number', trimText(selectedRequest && selectedRequest.AccountNo), false, this.handleChange)}
+                {this._renderPaymentForm('BankSwiftCode', 'Bank ABA/Swift/Sort Code', trimText(selectedRequest && selectedRequest.BankSwiftCode), false, this.handleChange)}
+                {this._renderPaymentForm('BankAccountName', 'Bank Account Name', trimText(selectedRequest && selectedRequest.BankAccountName), false, this.handleChange)}
+                {this._renderPaymentForm('BankAccountNo', 'Bank Account Number', trimText(selectedRequest && selectedRequest.BankAccountNo), false, this.handleChange)}
             </React.Fragment>
         )
     }
@@ -176,7 +179,7 @@ export class EditRequest extends React.PureComponent {
                             {isUpdateForm
                                 ? (<b>{selectedRequest.UserName}</b>)
                                 : (<React.Fragment>
-                                    <Input type="text" name="UserName" id="UserName" value={htmlDecode(trimText(selectedRequest && selectedRequest.UserName))}
+                                    <Input type="text" name="UserName" id="UserName" className='remove-background' value={trimText(selectedRequest && selectedRequest.UserName)}
                                         onChange={this.handleChange}
                                         invalid={this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) || this.validateRequire(selectedRequest && selectedRequest.UserName)} />
                                     {this.validateRequire(selectedRequest && selectedRequest.UserName) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
@@ -188,7 +191,7 @@ export class EditRequest extends React.PureComponent {
                         </Col>
                     </FormGroup>
                     <fieldset>
-                        <legend><h6>Player's Details Amendent</h6></legend>
+                        <legend><h6>Player's Details Amendment</h6></legend>
                         <FormGroup row>
                             <Label sm={3}>Language</Label>
                             <Col sm={5}>
@@ -221,13 +224,13 @@ export class EditRequest extends React.PureComponent {
                     <fieldset>
                         <length><h6>Affiliate Promotion Method & Detail</h6></length>
                         {this.renderTextArea('PromotionMethod', 'Promotion Method', selectedRequest && selectedRequest.PromotionMethod, isReadOnly)}
-                        {this.renderTextArea('WebRank', 'Web Rank', selectedRequest && selectedRequest.WebRank, isReadOnly)}
-                        {this.renderTextArea('WebRegDate', 'Web Register Date', selectedRequest && selectedRequest.WebRegDate, isReadOnly)}
-                        {this.renderTextArea('WebSMLanguage', 'Web/SM Language', selectedRequest && selectedRequest.WebSMLanguage, isReadOnly)}
+                        {this.renderTextArea('WebRank', 'Website Rank', selectedRequest && selectedRequest.WebRank, isReadOnly)}
+                        {this.renderTextArea('WebRegDate', 'Website Register Date', selectedRequest && selectedRequest.WebRegDate, isReadOnly)}
+                        {this.renderTextArea('WebSMLanguage', 'Website/SM Language', selectedRequest && selectedRequest.WebSMLanguage, isReadOnly)}
                         {this.renderTextArea('ServerCountry', 'Country (Server)', selectedRequest && selectedRequest.ServerCountry, isReadOnly)}
                         {this.renderTextArea('WebSMQuality', 'Quality of Website/SM', selectedRequest && selectedRequest.WebSMQuality, isReadOnly)}
                         {this.renderTextArea('WebSMType', 'Type of Website/SM', selectedRequest && selectedRequest.WebSMType, isReadOnly)}
-                        {this.renderTextArea('WebAdvAff', 'Adv/Aff on Website/SM', selectedRequest && selectedRequest.WebAdvAff, isReadOnly)}
+                        {this.renderTextArea('WebAdvAff', 'Adv/Aff on the Website/SM', selectedRequest && selectedRequest.WebAdvAff, isReadOnly)}
                         {this.renderTextArea('TargetMarket', 'Target Market', selectedRequest && selectedRequest.TargetMarket, isReadOnly)}
                     </fieldset>
                     <fieldset>
@@ -249,7 +252,11 @@ export class EditRequest extends React.PureComponent {
                         <FormGroup row>
                             <Label sm={3} className='required pt-0' for="Deadline">Deadline</Label>
                             <Col sm={4}>
-                                <Input type='date' id='Deadline' name='Deadline' value={deadline} required={true} onChange={this.handleChange} disabled={isReadOnly}></Input>
+                                <Input type='date' id='Deadline' name='Deadline' value={deadline} className='remove-background'
+                                    invalid={this.validateRequire(selectedRequest && selectedRequest.Deadline) || !this.validateDeadline(selectedRequest)} 
+                                    onChange={this.handleChange} disabled={isReadOnly}></Input>
+                                {this.validateRequire(selectedRequest && selectedRequest.Deadline) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
+                                {!this.validateDeadline(selectedRequest) && <FormFeedback>{resource.InvalidDeadline}</FormFeedback>}
                             </Col>
                         </FormGroup>
                         {this.renderTextArea('Remark', 'Remark', selectedRequest && selectedRequest.Remark, isReadOnly)}

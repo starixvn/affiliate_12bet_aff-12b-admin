@@ -22,7 +22,7 @@ export const headerText = {
     CreatedBy: 'Created By',
     CreationDate: 'Creation Date',
     LastModified: 'Last Modified',
-    SubmittedDate: 'Sumitted',
+    SubmittedDate: 'Submitted',
     Deadline: 'Deadline',
     ApprovedBy: 'Approved By',
     ApprovalDate: 'Approval Date',
@@ -41,10 +41,9 @@ export const resource = {
     ExceedMaxLength: 'Exceed max length',
     FieldRequeired: 'This field is required.',
     InsertSuccess: 'The processing request has been saved.',
-    UpdateSuccess: 'The processing request has been saved.'
+    UpdateSuccess: 'The processing request has been saved.',
+    InvalidDeadline: 'Invalid Deadline'
 }
 
-export const playerMethod = 'Player';
-export const netellerMethod = 'Neteller';
-export const moneybookersMethod = 'Moneybookers';
-export const wireMethod = 'Wire';
+export const playerMethod = 'PlayerAccount';
+export const wireMethod = 'BankTranfer';

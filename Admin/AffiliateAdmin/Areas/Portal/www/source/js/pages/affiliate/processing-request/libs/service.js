@@ -49,7 +49,7 @@ const validateMaxLength = (selectedRequest) => {
     return {isValid, messageList};
 }
 
-const validateDeadline = (selectedRequest) => {
+export const validateDeadline = (selectedRequest) => {
     let isValid = true;
     const messageList = [];
     const now = new Date();

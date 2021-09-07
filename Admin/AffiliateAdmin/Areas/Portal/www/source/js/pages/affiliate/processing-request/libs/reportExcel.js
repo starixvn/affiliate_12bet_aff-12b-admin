@@ -137,6 +137,8 @@ export default class ReportExcel {
             value = formatDateTime(value, defaultDateFormat);
         }
         
+        value = !value ? '' : value;
+
         return {
             t: Excel.getCellType(value),
             v: value,
