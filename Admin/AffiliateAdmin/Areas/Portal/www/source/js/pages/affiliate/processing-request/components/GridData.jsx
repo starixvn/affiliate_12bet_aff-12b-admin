@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
+import { Pager } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, globalResource, statusList, colorByStatus } from '../libs/constants';
 import { setPagingOption, fetchData } from '../actions';
@@ -170,13 +171,12 @@ export class GridData extends Component {
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
+                        adjustedHeight = {50}
                         containerPadding={20}
-                        isPaging={true}
-                        pageOption={this.props.pagingOption}
-                        onPaging={this.handlePaging}
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
+                <Pager pageOption={this.props.pagingOption} onPaging={this.handlePaging} />
             </React.Fragment>
         );
     }

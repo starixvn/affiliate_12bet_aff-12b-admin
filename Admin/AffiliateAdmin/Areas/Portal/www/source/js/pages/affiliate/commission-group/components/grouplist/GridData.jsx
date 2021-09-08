@@ -209,7 +209,7 @@ export class GridData extends Component {
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderGroupData()}
-                        containerPadding={20}
+                        containerPadding={70}
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>

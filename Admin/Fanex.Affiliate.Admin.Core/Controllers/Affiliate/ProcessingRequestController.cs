@@ -107,16 +107,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             if (ModelState.IsValid)
             {
                 var currentRequestDetail = _processingRequestService.GetProcessingRequestDetail(param.RequestId);
-                if (CheckHasUpdatePermission(currentRequestDetail))
-                {
-                    return new JsonNetResult
+                return CheckHasUpdatePermission(currentRequestDetail)
+                    ? new JsonNetResult
                     {
                         Data = _processingRequestService.UpdateProcessingRequest(param)
-                    };
-                }
-                else
-                {
-                    return new JsonNetResult
+                    }
+                    : new JsonNetResult
                     {
                         Data = new ResultInfo
                         {
@@ -124,7 +120,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                             Message = "Not have permission"
                         }
                     };
-                }
             }
             var msg = ModelState.Values.SelectMany(e => e.Errors)
                 .Select(e => e.ErrorMessage);

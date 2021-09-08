@@ -20,7 +20,8 @@ export class EditRequest extends React.PureComponent {
 
         this.state = {
             isShowMessage: false,
-            isSuccess: true,
+            isSuccess: false,
+            isSubmit: false,
             message: [],
         }
         this.refAlert = React.createRef();
@@ -47,6 +48,9 @@ export class EditRequest extends React.PureComponent {
 
     handleSave = async () => {
         this.props.toggleLoader(true);
+        this.setState({
+            isSubmit : true
+        });
         const { selectedRequest, selectedRequestId } = this.props;
         const validationResult = validate(selectedRequest);
         const isInsertedForm = !selectedRequestId;
@@ -111,6 +115,7 @@ export class EditRequest extends React.PureComponent {
     }
 
     renderTextArea = (fieldName, labelName, value, isReadOnly, isRequired) => {
+        const {isSubmit } = this.state;
         var text = trimText(value);
         const classRequired = isRequired && "required";
         return (
@@ -120,8 +125,10 @@ export class EditRequest extends React.PureComponent {
                     <Input type='textarea' id={fieldName} name={fieldName} value={text} onChange={this.handleChange}
                         invalid={this.validateMaxLength(text, 1000) || (isRequired && this.validateRequire(text))}
                         required={isRequired}
-                        disabled={isReadOnly}></Input>
-                    {isRequired && this.validateRequire(text) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
+                        disabled={isReadOnly}>
+                            
+                        </Input>
+                    {isRequired && isSubmit && this.validateRequire(text) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
                     {this.validateMaxLength(text, 1000) && <FormFeedback>{resource.ExceedMaxLength + ' 1000'}</FormFeedback>}
                 </Col>
             </FormGroup>
@@ -162,7 +169,7 @@ export class EditRequest extends React.PureComponent {
 
     render() {
         const { selectedRequest, isReadOnly, languageList, originalStatus, selectedRequestId } = this.props;
-        const { isShowMessage, isSuccess, message } = this.state;
+        const { isShowMessage, isSuccess, message, isSubmit } = this.state;
         const renderFormByMethod = this._renderFormByMethod(selectedRequest);
         const deadline = formatDateTime(trimText(selectedRequest && selectedRequest.Deadline), 'yyyy-MM-dd');
         const isUpdateForm = !!selectedRequestId;
@@ -182,8 +189,8 @@ export class EditRequest extends React.PureComponent {
                                     <Input type="text" name="UserName" id="UserName" className='remove-background' value={trimText(selectedRequest && selectedRequest.UserName)}
                                         onChange={this.handleChange}
                                         invalid={this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) || this.validateRequire(selectedRequest && selectedRequest.UserName)} />
-                                    {this.validateRequire(selectedRequest && selectedRequest.UserName) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
-                                    {this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) && <FormFeedback>{resource.ExceedMaxLength + ' 30'}</FormFeedback>}
+                                    {isSubmit && this.validateRequire(selectedRequest && selectedRequest.UserName) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
+                                    {isSubmit && this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) && <FormFeedback>{resource.ExceedMaxLength + ' 30'}</FormFeedback>}
                                 </React.Fragment>
                                 )
                             }
@@ -222,7 +229,7 @@ export class EditRequest extends React.PureComponent {
                         {selectedRequest && selectedRequest.PreferredPayment && renderFormByMethod[selectedRequest.PreferredPayment]}
                     </fieldset>
                     <fieldset>
-                        <length><h6>Affiliate Promotion Method & Detail</h6></length>
+                        <length><h6>Affiliate Promotion Method & Details</h6></length>
                         {this.renderTextArea('PromotionMethod', 'Promotion Method', selectedRequest && selectedRequest.PromotionMethod, isReadOnly)}
                         {this.renderTextArea('WebRank', 'Website Rank', selectedRequest && selectedRequest.WebRank, isReadOnly)}
                         {this.renderTextArea('WebRegDate', 'Website Register Date', selectedRequest && selectedRequest.WebRegDate, isReadOnly)}
@@ -255,13 +262,13 @@ export class EditRequest extends React.PureComponent {
                                 <Input type='date' id='Deadline' name='Deadline' value={deadline} className='remove-background'
                                     invalid={this.validateRequire(selectedRequest && selectedRequest.Deadline) || !this.validateDeadline(selectedRequest)} 
                                     onChange={this.handleChange} disabled={isReadOnly}></Input>
-                                {this.validateRequire(selectedRequest && selectedRequest.Deadline) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
-                                {!this.validateDeadline(selectedRequest) && <FormFeedback>{resource.InvalidDeadline}</FormFeedback>}
+                                {isSubmit && this.validateRequire(selectedRequest && selectedRequest.Deadline) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
+                                {isSubmit && !this.validateRequire(selectedRequest && selectedRequest.Deadline) && !this.validateDeadline(selectedRequest) && <FormFeedback>{resource.InvalidDeadline}</FormFeedback>}
                             </Col>
                         </FormGroup>
                         {this.renderTextArea('Remark', 'Remark', selectedRequest && selectedRequest.Remark, isReadOnly)}
                     </fieldset>
-                    <button type="button" className="my-2 btn btn-success btn-save" onClick={this.handleSave} disabled={isReadOnly}>SAVE</button>
+                    <button type="button" className="my-2 btn btn-success btn-save" onClick={this.handleSave} disabled={isReadOnly || isSuccess}>SAVE</button>
                 </Form>
             </div>
         );

@@ -4,10 +4,14 @@ export const validate = (selectedRequest) => {
     const valRequireFieldResult = validateRequireField(selectedRequest);
     const valMaxLengthResult = validateMaxLength(selectedRequest);
     const valDeadlineResult = validateDeadline(selectedRequest);
-    const messageList = [...valRequireFieldResult.messageList, ...valMaxLengthResult.messageList,
+    let messageList = [...valRequireFieldResult.messageList, ...valMaxLengthResult.messageList,
         ...valDeadlineResult.messageList
         ];
     const isValid = messageList.length === 0;
+    if (messageList.length > 0)
+    {
+        messageList = ['Please check the error on the following field(s)', ...messageList];
+    }
     return {isValid, messageList};
 }
 
@@ -17,12 +21,16 @@ const validateRequireField = (selectedRequest) => {
 
     let isValid = true;
     const messageList = [];
-    if (userName.length === 0 || agentName.length === 0)
+    if (userName.length === 0)
     {
         isValid = false;
-        messageList.push("Not fill all require field")
+        messageList.push("- Affiliate")
     }
-
+    if (agentName.length === 0)
+    {
+        isValid = false;
+        messageList.push("- Agent Name")
+    }
     return {isValid, messageList}
 }
 
@@ -34,13 +42,13 @@ const validateMaxLength = (selectedRequest) => {
     let isExceed = checkExceedMaxLength(userName, 30);
     if (isExceed)
     {
-        messageList.push("Affiliate name exceed max charaters length (30)");
+        messageList.push("- Affiliate");
     }
 
     textAreaNames.forEach(name => {
         let text = trimText(selectedRequest && selectedRequest[name]);
         if (checkExceedMaxLength(text, 1000))
-            messageList.push(`Field ${name} exceed max length (1000)`);
+            messageList.push(`- ${name}`);
     })
     if (messageList.length > 0)
     {
@@ -57,13 +65,13 @@ export const validateDeadline = (selectedRequest) => {
     const deadline = selectedRequest && selectedRequest.Deadline;
     if (!deadline)
     {
-        messageList.push('Require Deadline');
+        messageList.push('- Deadline');
     }
     else{
         let date = new Date(deadline);
         if (date < now)
         {
-            messageList.push('Invalid deadline')
+            messageList.push('- Deadline')
         }
     }
 
