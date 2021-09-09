@@ -1,9 +1,10 @@
 import { trimText } from "../../../../modules/htmlHelper";
+import{field} from './constants';
 
-export const validate = (selectedRequest) => {
+export const validate = (selectedRequest, originalData) => {
     const valRequireFieldResult = validateRequireField(selectedRequest);
     const valMaxLengthResult = validateMaxLength(selectedRequest);
-    const valDeadlineResult = validateDeadline(selectedRequest);
+    const valDeadlineResult = validateDeadline(selectedRequest, originalData && originalData.Deadline);
     let messageList = [...valRequireFieldResult.messageList, ...valMaxLengthResult.messageList,
         ...valDeadlineResult.messageList
         ];
@@ -36,7 +37,7 @@ const validateRequireField = (selectedRequest) => {
 
 const validateMaxLength = (selectedRequest) => {
     const messageList = [];
-    const isValid = true;
+    let isValid = true;
     const textAreaNames =['AgentName', 'PromotionMethod', 'Remark', 'ServerCountry', 'TargetMarket', 'WebAdvAff', 'WebRank', 'WebRegDate', 'WebSMLanguage', 'WebSMQuality', 'WebSMType'];
     const userName = trimText(selectedRequest && selectedRequest.UserName);
     let isExceed = checkExceedMaxLength(userName, 30);
@@ -48,7 +49,7 @@ const validateMaxLength = (selectedRequest) => {
     textAreaNames.forEach(name => {
         let text = trimText(selectedRequest && selectedRequest[name]);
         if (checkExceedMaxLength(text, 1000))
-            messageList.push(`- ${name}`);
+            messageList.push(`- ${field[name]}`);
     })
     if (messageList.length > 0)
     {
@@ -57,7 +58,8 @@ const validateMaxLength = (selectedRequest) => {
     return {isValid, messageList};
 }
 
-export const validateDeadline = (selectedRequest) => {
+export const validateDeadline = (selectedRequest, currentDate) => {
+    let isHasDeadLine = !!currentDate;
     let isValid = true;
     const messageList = [];
     const now = new Date();
@@ -69,7 +71,8 @@ export const validateDeadline = (selectedRequest) => {
     }
     else{
         let date = new Date(deadline);
-        if (date < now)
+        let compareDate = new Date(currentDate);
+        if (date < now && (!isHasDeadLine || !equalDate(date, compareDate)))
         {
             messageList.push('- Deadline')
         }
@@ -80,6 +83,10 @@ export const validateDeadline = (selectedRequest) => {
         isValid = false;
     }
     return {isValid, messageList};
+}
+
+const equalDate = (firstDate, secondDate) => {
+    return firstDate.getFullYear() === secondDate.getFullYear() && firstDate.getMonth() === secondDate.getMonth() && firstDate.getDate() === secondDate.getDate();
 }
 
 const checkExceedMaxLength = (text, maxLength) => text.length > maxLength;

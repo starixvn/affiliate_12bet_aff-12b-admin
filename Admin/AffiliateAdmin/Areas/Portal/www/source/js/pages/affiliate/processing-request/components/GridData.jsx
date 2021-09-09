@@ -150,7 +150,6 @@ export class GridData extends Component {
             PageIndex: index,
             PageSize: size
         });
-
         this.props.fetchData(newParam);
     }
 
@@ -182,8 +181,8 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ today, gridData, pagingOption, shouldResetScrollPosition, claimsPrincipal }) {
-    return { today, gridData, pagingOption, shouldResetScrollPosition, claimsPrincipal };
+function mapStateToProps({ today, gridData, pagingOption, shouldResetScrollPosition, claimsPrincipal, param }) {
+    return { today, gridData, pagingOption, shouldResetScrollPosition, claimsPrincipal, param };
 }
 
 function mapDispatchToProps(dispatch) {

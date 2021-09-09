@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert, Col, Form, FormFeedback, FormGroup, Input, Label } from 'reactstrap';
-import { setSelectedRequest, setSelectedRequestId, getProcessingRequestDetail, fetchData, toggleLoader, updateProcessingRequest, insertProcessingRequest, setOriginalStatus } from '../../actions';
+import { setSelectedRequest, setSelectedRequestId, getProcessingRequestDetail, fetchData, toggleLoader, updateProcessingRequest, insertProcessingRequest, setOriginalData } from '../../actions';
 import { playerMethod, wireMethod, resource, statusList } from '../../libs/constants';
-import { htmlDecode, trimText } from '../../../../../modules/htmlHelper';
+import { trimText } from '../../../../../modules/htmlHelper';
 import { formatDateTime } from '../../../../../modules/utils';
 import { selectedRequestId } from '../../reducers';
 import { validate, validateDeadline } from '../../libs/service';
@@ -38,7 +38,7 @@ export class EditRequest extends React.PureComponent {
     componentWillUnmount() {
         this.props.setSelectedRequest(null);
         this.props.setSelectedRequestId(null);
-        this.props.setOriginalStatus("Draft");
+        this.props.setOriginalData(null);
     }
 
     hideMessage = () => {
@@ -51,8 +51,8 @@ export class EditRequest extends React.PureComponent {
         this.setState({
             isSubmit : true
         });
-        const { selectedRequest, selectedRequestId } = this.props;
-        const validationResult = validate(selectedRequest);
+        const { selectedRequest, selectedRequestId, originalData } = this.props;
+        const validationResult = validate(selectedRequest, originalData);
         const isInsertedForm = !selectedRequestId;
 
 
@@ -64,18 +64,18 @@ export class EditRequest extends React.PureComponent {
             }, () => this.hideMessage());
         }
         else {
-            const param = selectedRequest;
+            const saveParam = selectedRequest;
 
             const result = isInsertedForm
-                ? await this.props.insertProcessingRequest(param)
-                : await this.props.updateProcessingRequest(param);
+                ? await this.props.insertProcessingRequest(saveParam)
+                : await this.props.updateProcessingRequest(saveParam);
 
             const successMsg = isInsertedForm ? resource.InsertSuccess : resource.UpdateSuccess;
 
             if (result.IsSuccessful) {
                 window.setTimeout(this.props.onClose, 3000);
-                const { pagingOption } = this.props;
-                const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
+                const { pagingOption, param } = this.props;
+                const gettingParam = Object.assign({}, param, pagingOption);
                 this.props.fetchData(gettingParam);
             }
 
@@ -109,8 +109,8 @@ export class EditRequest extends React.PureComponent {
 
     validateRequire = (text) => !text;
 
-    validateDeadline = (selectedRequest) => {
-        var result = validateDeadline(selectedRequest);
+    validateDeadline = (selectedRequest, currentDate) => {
+        var result = validateDeadline(selectedRequest, currentDate);
         return result.isValid;
     }
 
@@ -123,7 +123,7 @@ export class EditRequest extends React.PureComponent {
                 <Label sm={3} for={fieldName} className={classRequired}>{labelName}</Label>
                 <Col sm={9}>
                     <Input type='textarea' id={fieldName} name={fieldName} value={text} onChange={this.handleChange}
-                        invalid={this.validateMaxLength(text, 1000) || (isRequired && this.validateRequire(text))}
+                        invalid={isSubmit && (this.validateMaxLength(text, 1000) || (isRequired && this.validateRequire(text)))}
                         required={isRequired}
                         disabled={isReadOnly}>
                             
@@ -168,11 +168,13 @@ export class EditRequest extends React.PureComponent {
     }
 
     render() {
-        const { selectedRequest, isReadOnly, languageList, originalStatus, selectedRequestId } = this.props;
+        const { selectedRequest, isReadOnly, languageList, originalData, selectedRequestId } = this.props;
         const { isShowMessage, isSuccess, message, isSubmit } = this.state;
         const renderFormByMethod = this._renderFormByMethod(selectedRequest);
         const deadline = formatDateTime(trimText(selectedRequest && selectedRequest.Deadline), 'yyyy-MM-dd');
         const isUpdateForm = !!selectedRequestId;
+        const originalStatus = (originalData && originalData.Status) ?? "Draft";
+        const currentDeadline = originalData && originalData.Deadline;
 
         return (
             <div className='request-container'>
@@ -188,7 +190,7 @@ export class EditRequest extends React.PureComponent {
                                 : (<React.Fragment>
                                     <Input type="text" name="UserName" id="UserName" className='remove-background' value={trimText(selectedRequest && selectedRequest.UserName)}
                                         onChange={this.handleChange}
-                                        invalid={this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) || this.validateRequire(selectedRequest && selectedRequest.UserName)} />
+                                        invalid={isSubmit && (this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) || this.validateRequire(selectedRequest && selectedRequest.UserName))} />
                                     {isSubmit && this.validateRequire(selectedRequest && selectedRequest.UserName) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
                                     {isSubmit && this.validateMaxLength(selectedRequest && selectedRequest.UserName, 30) && <FormFeedback>{resource.ExceedMaxLength + ' 30'}</FormFeedback>}
                                 </React.Fragment>
@@ -229,7 +231,7 @@ export class EditRequest extends React.PureComponent {
                         {selectedRequest && selectedRequest.PreferredPayment && renderFormByMethod[selectedRequest.PreferredPayment]}
                     </fieldset>
                     <fieldset>
-                        <length><h6>Affiliate Promotion Method & Details</h6></length>
+                        <legend><h6>Affiliate Promotion Method & Details</h6></legend>
                         {this.renderTextArea('PromotionMethod', 'Promotion Method', selectedRequest && selectedRequest.PromotionMethod, isReadOnly)}
                         {this.renderTextArea('WebRank', 'Website Rank', selectedRequest && selectedRequest.WebRank, isReadOnly)}
                         {this.renderTextArea('WebRegDate', 'Website Register Date', selectedRequest && selectedRequest.WebRegDate, isReadOnly)}
@@ -241,7 +243,7 @@ export class EditRequest extends React.PureComponent {
                         {this.renderTextArea('TargetMarket', 'Target Market', selectedRequest && selectedRequest.TargetMarket, isReadOnly)}
                     </fieldset>
                     <fieldset>
-                        <legend>Final Verdict by Agent</legend>
+                        <legend><h6>Final Verdict by Agent</h6></legend>
                         {this.renderTextArea('AgentName', 'Agent Name', selectedRequest && selectedRequest.AgentName, isReadOnly, true)}
                         {this.renderTextArea('ContactModeTime', 'Contactable Mode & Time', selectedRequest && selectedRequest.ContactModeTime, isReadOnly, false)}
                         <FormGroup row>
@@ -258,12 +260,12 @@ export class EditRequest extends React.PureComponent {
                         </FormGroup>
                         <FormGroup row>
                             <Label sm={3} className='required pt-0' for="Deadline">Deadline</Label>
-                            <Col sm={4}>
+                            <Col sm={3}>
                                 <Input type='date' id='Deadline' name='Deadline' value={deadline} className='remove-background'
-                                    invalid={this.validateRequire(selectedRequest && selectedRequest.Deadline) || !this.validateDeadline(selectedRequest)} 
+                                    invalid={isSubmit && (this.validateRequire(selectedRequest && selectedRequest.Deadline) || !this.validateDeadline(selectedRequest, currentDeadline))} 
                                     onChange={this.handleChange} disabled={isReadOnly}></Input>
                                 {isSubmit && this.validateRequire(selectedRequest && selectedRequest.Deadline) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
-                                {isSubmit && !this.validateRequire(selectedRequest && selectedRequest.Deadline) && !this.validateDeadline(selectedRequest) && <FormFeedback>{resource.InvalidDeadline}</FormFeedback>}
+                                {isSubmit && !this.validateRequire(selectedRequest && selectedRequest.Deadline) && !this.validateDeadline(selectedRequest, currentDeadline) && <FormFeedback>{resource.InvalidDeadline}</FormFeedback>}
                             </Col>
                         </FormGroup>
                         {this.renderTextArea('Remark', 'Remark', selectedRequest && selectedRequest.Remark, isReadOnly)}
@@ -275,12 +277,12 @@ export class EditRequest extends React.PureComponent {
     }
 }
 
-function mapStateToProp({ selectedRequest, selectedRequestId, languageList, originalStatus, pagingOption }) {
-    return { selectedRequest, selectedRequestId, languageList, originalStatus, pagingOption };
+function mapStateToProp({ selectedRequest, selectedRequestId, languageList, originalData, pagingOption, param }) {
+    return { selectedRequest, selectedRequestId, languageList, originalData, pagingOption, param };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedRequest, setSelectedRequestId, getProcessingRequestDetail, fetchData, toggleLoader, updateProcessingRequest, insertProcessingRequest, setOriginalStatus }, dispatch);
+    return bindActionCreators({ setSelectedRequest, setSelectedRequestId, getProcessingRequestDetail, fetchData, toggleLoader, updateProcessingRequest, insertProcessingRequest, setOriginalData }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(EditRequest);

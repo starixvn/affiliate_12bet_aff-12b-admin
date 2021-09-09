@@ -45,5 +45,19 @@ export const resource = {
     InvalidDeadline: 'Invalid Deadline'
 }
 
+export const field = {
+    'AgentName': 'Agent Name', 
+    'PromotionMethod': 'Promotion Method', 
+    'Remark': 'Remark', 
+    'ServerCountry': 'Country (Server)', 
+    'TargetMarket' : 'Target Market', 
+    'WebAdvAff' : 'Adv/Aff on the Website/SM', 
+    'WebRank': 'Website Rank', 
+    'WebRegDate': 'Website Register Date', 
+    'WebSMLanguage': 'Website/SM Language', 
+    'WebSMQuality': 'Quality of Website/SM', 
+    'WebSMType': 'Type of Website/SM'
+}
+
 export const playerMethod = 'PlayerAccount';
 export const wireMethod = 'BankTranfer';

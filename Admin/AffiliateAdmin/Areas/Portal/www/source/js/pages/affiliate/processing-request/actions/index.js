@@ -61,10 +61,10 @@ export const setProcRequestSummary = (data) => {
     }
 }
 
-export const setOriginalStatus = (data) => {
+export const setOriginalData = (data) => {
     return{
-        type: type.SET_ORGINAL_STATUS,
-        data
+        type: type.SET_ORGINAL_REQUEST,
+        data: Object.assign({}, data)
     }
 }
 
@@ -90,7 +90,7 @@ export const getProcessingRequestDetail = (selectedRequestId) => async (dispatch
 
     const data = response && response.status === 200 ? response.data : null;
     dispatch(setSelectedRequest(data));
-    dispatch(setOriginalStatus(data.Status));
+    dispatch(setOriginalData(data));
     dispatch(toggleLoader(false));
     return data;
 }

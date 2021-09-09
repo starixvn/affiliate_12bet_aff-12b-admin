@@ -62,8 +62,8 @@ export const languageList = createReducer(null,{
     }
 })
 
-export const originalStatus = createReducer("Draft",{
-    [type.SET_ORGINAL_STATUS](prev, action){
+export const originalData = createReducer(null,{
+    [type.SET_ORGINAL_REQUEST](prev, action){
         return action.data
     }
 })
@@ -82,5 +82,5 @@ export default combineReducers({
     isClickSearch,
     dataSummary,
     languageList,
-    originalStatus
+    originalData
 });
