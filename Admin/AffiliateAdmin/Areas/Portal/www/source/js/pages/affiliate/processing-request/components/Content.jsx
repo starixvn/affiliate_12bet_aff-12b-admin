@@ -73,8 +73,9 @@ export class Content extends PureComponent {
         if (result) {
             if (result.IsSuccessful) {
                 this.setState({ confirmMsg: 'The processing request has been deleted successfully.', isConfirmPopup: false });
-
-                this.props.fetchData(this.props.param);
+                const { pagingOption, param } = this.props;
+                const gettingParam = Object.assign({}, param, pagingOption);
+                this.props.fetchData(gettingParam);
             }
             else {
                 this.setState({ confirmMsg: result.Message, isConfirmPopup: false });
@@ -168,10 +169,10 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ reportTitle, param, claimsPrincipal, isClickSearch, dataSummary, selectedRequestId }) {
+function mapStateToProps({ reportTitle, param, claimsPrincipal, isClickSearch, dataSummary, selectedRequestId, pagingOption }) {
     const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.ProcRequest);
     const isDisplayExportExcelBtn = claimsPrincipal.hasClaim(claimResource.ExportAffInfoExcel);
-    return Object.assign({}, { reportTitle, param, isDisplayExportExcelBtn, isModifiable, isClickSearch, dataSummary, selectedRequestId });
+    return Object.assign({}, { reportTitle, param, isDisplayExportExcelBtn, isModifiable, isClickSearch, dataSummary, selectedRequestId, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {

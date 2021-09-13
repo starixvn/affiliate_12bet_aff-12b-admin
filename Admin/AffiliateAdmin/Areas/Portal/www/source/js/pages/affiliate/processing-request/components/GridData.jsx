@@ -7,7 +7,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Pager } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, globalResource, statusList, colorByStatus } from '../libs/constants';
-import { setPagingOption, fetchData } from '../actions';
+import { setPagingOption, fetchData, setParam } from '../actions';
 import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
 import { Claim, claimResource } from '../../../../modules/claim';
 import { defaultDatetimeFormat, defaultDateFormat } from '../../../../modules/constants';
@@ -31,7 +31,6 @@ export class GridData extends Component {
         if (param && param !== prevProps.param) {
             const { pagingOption } = this.props;
             const updateParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
-
             this.props.fetchData(updateParam);
         }
     }
@@ -77,7 +76,6 @@ export class GridData extends Component {
             const { pagingOption } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
             const today = new Date(todayTime)
-            console.log(today);
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
 
@@ -186,7 +184,7 @@ function mapStateToProps({ today, gridData, pagingOption, shouldResetScrollPosit
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, fetchData, setSelectedRequestId }, dispatch);
+    return bindActionCreators({ setPagingOption, fetchData, setSelectedRequestId, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);
