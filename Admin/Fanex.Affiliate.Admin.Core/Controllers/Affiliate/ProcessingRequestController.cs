@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.ProcessingRequest;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -43,6 +44,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         {
             if (ModelState.IsValid)
             {
+                var supportLanguages = _languageService.GetInChangeMarkets();
+                var queryLangs = LanguageHelper.BuildAllowQueryLanguages(null, supportLanguages);
+                param.PreferredLanguages = queryLangs;
                 return new JsonNetResult
                 {
                     Data = _processingRequestService.GetProcessingRequestList(param)

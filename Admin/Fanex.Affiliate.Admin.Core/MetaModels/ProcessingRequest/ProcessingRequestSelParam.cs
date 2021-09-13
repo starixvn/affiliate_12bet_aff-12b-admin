@@ -14,6 +14,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest
 
         public int PageSize { get; set; }
 
+        public string PreferredLanguages { get; set; }
+
         public int PageIndex { get; set; }
 
         public bool IsExportExcel { get; set; }
