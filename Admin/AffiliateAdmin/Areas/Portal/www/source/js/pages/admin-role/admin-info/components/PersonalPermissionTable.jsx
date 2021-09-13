@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Form, FormGroup, Label } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { messages } from '../libs/constants';
+import { messages, defaultHeight, headerHeight } from '../libs/constants';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
 import { setPermissionListByRole } from '../actions';
 import { renderHeader, renderColumns } from '../../common/libs/render';
@@ -196,7 +196,7 @@ export class PersonalPermissionTable extends PureComponent {
                         </Form>
                     )
                 }
-                <div className="table-responsive table-striped my-3">
+                <div className="table-responsive table-striped my-3 permission-data" style={{ maxHeight: ((window.innerHeight || defaultHeight) - headerHeight) }}>
                     <Table className="permission-popup-data-table">
                         {renderHeader()}
                         <tbody>

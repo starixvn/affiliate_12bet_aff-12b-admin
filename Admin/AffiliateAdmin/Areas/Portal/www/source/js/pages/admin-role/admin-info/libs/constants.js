@@ -1,5 +1,9 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
 
+export const defaultHeight = 600;
+export const headerHeight = 275;
+
+
 export const messages = {
     RequiredRole: "Role is required!",
     AnError: globalResource.AnError,
