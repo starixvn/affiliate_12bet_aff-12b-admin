@@ -31,10 +31,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpGet]
         [AllowByPassFunctionAuthorize]
-        public ActionResult Index()
+        public ActionResult Index(string userName)
         {
             var languageList = _languageService.GetLanguageList();
-            return View("~/Areas/Portal/Views/Affiliate/ProcessingRequest.cshtml", languageList);
+            ViewBag.Languages = languageList;
+            ViewBag.UserName = userName;
+            return View("~/Areas/Portal/Views/Affiliate/ProcessingRequest.cshtml");
         }
 
         [HttpPost]

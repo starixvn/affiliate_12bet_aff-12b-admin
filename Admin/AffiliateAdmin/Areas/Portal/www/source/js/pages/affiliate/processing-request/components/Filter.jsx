@@ -11,8 +11,14 @@ export class Filter extends PureComponent {
         super(props);
 
         this.state = {
-            userName: '',
+            userName: props.param.UserName,
             selectedStatus: '',
+        }
+    }
+
+    componentDidMount = () => {
+        if ( this.props.param.IsNeedInitSearch) {
+            this.handleClickSearch();
         }
     }
 
@@ -31,7 +37,7 @@ export class Filter extends PureComponent {
         const { selectedStatus, userName } = this.state;
 
         this.props.setReportTitle(this._buildReportTitle(selectedStatus, userName));
-        const param = Object.assign({},{ UserName: userName, Status: selectedStatus}, { PageIndex: 1, PageSize: pagingOption.PageSize })
+        const param = Object.assign({},{ UserName: userName, Status: selectedStatus, IsNeedInitSearch: false}, { PageIndex: 1, PageSize: pagingOption.PageSize })
         this.props.setParam(param);
         this.props.setIsClickSearch(true);
         this.props.fetchData(param);
@@ -50,13 +56,13 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { selectedStatus } = this.state;
+        const { selectedStatus, userName } = this.state;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="my-2 mr-sm-2">
-                        <Input type="text" name="userName" id="Username" placeholder="Username"
+                        <Input type="text" name="userName" id="Username" placeholder="Username" value={userName}
                             onKeyPress={this.handlePressEnter}
                             onChange={this.handleChange} />
                     </FormGroup>

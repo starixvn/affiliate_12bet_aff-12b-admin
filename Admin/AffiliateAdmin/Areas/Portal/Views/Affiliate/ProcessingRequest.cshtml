@@ -12,7 +12,8 @@
     <script type="text/javascript">
         window.initialState = {
             today: '@DateTime.Now.ToString("MM/dd/yyyy")',
-            languageList: @Html.Raw(Json.Encode(Model)),
+            languageList: @Html.Raw(Json.Encode(ViewBag.Languages)),
+            userName: '@ViewBag.UserName'
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/affiliate/affiliate.js")"></script>
