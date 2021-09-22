@@ -158,8 +158,8 @@ export class GridData extends Component {
 
                 {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
                 {selectedColumnList['ProcessingStatus'] && <Cell className='text-center' title={dataItem.ProcessingStatus}>
-                    <a href={resolveClientUrl(`Portal/ProcessingRequest/Index?userName=${dataItem.UserName}`)} target="_top">
-                        <span>{processingStatus[0]}</span>/<span className='text-primary'>{processingStatus[1]}</span>/<span className='text-success'>{processingStatus[2]}</span>/<span className='text-danger'>{processingStatus[3]}</span>
+                    <a href={resolveClientUrl(`Portal/ProcessingRequest/Index?userName=${dataItem.UserName}`)} target="_blank">
+                        <span className='text-secondary'>{processingStatus[0]}</span>/<span className='text-primary'>{processingStatus[1]}</span>/<span className='text-success'>{processingStatus[2]}</span>/<span className='text-danger'>{processingStatus[3]}</span>
                     </a>
                 </Cell>}
                 {selectedColumnList['FirstName'] && <Cell title={firstName}>{firstName}</Cell>}

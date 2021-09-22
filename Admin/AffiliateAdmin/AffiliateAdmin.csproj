@@ -442,6 +442,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\new-view-log\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\processing-request\components\EditRequest\EditRequest.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\processing-request\libs\header.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\processing-request\libs\reportExcel.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\processing-request\libs\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\InputPopUp.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\InputFile.test.js" />
