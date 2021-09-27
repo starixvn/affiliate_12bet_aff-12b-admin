@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.DataService.Importer.Skywind
     public class SkywindService : XmlImporterlServiceBase
     {
         protected readonly IApiClientFactory _apiClientFactory;
-        protected override int ProductId => Products.Skywind;
+        protected override int ProductId => Products.SkywindId;
 
         public SkywindService(IApiClientFactory apiClientFactory = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
             : base(appSetting, thirdPartyProductRepository)
