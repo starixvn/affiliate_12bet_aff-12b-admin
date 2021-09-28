@@ -12,6 +12,7 @@ const runTestAction = ({ name, type, data }) => {
 const actionList = [
     { name: 'setReportTitle', type: types.SET_REPORT_TITLE, data: 'Affiliate Report Title' },
     { name: 'setParam', type: types.SET_PARAM, data: 'setParam' },
+    { name: 'setIsCheckedDatePicker', type: types.SET_IS_CHECKED_DATE_PICKER, data: false },
     { name: 'setViewLevel', type: types.SET_VIEW_LEVEL, data: 'setViewLevel' }
 ]
 

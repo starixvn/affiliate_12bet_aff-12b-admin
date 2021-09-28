@@ -335,7 +335,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
     tag="div"
   >
     <Label
-      className=""
+      className="required"
       for="MSN/YM/QQ"
       sm={3}
       tag="label"

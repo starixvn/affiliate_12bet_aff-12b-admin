@@ -12,7 +12,7 @@ describe('banner list - components - Content ', () => {
             Categories: ["Casino"],
             SubCategories: ["Baccarat"],
             Currencies: ["EURO"],
-            DeviceTypes: ["1"],
+            DeviceTypes: ["0"],
             FileName: "CategoryMedia/giphy.gif",
             ImageType: "Image",
             Language: "Chinese Simplified",

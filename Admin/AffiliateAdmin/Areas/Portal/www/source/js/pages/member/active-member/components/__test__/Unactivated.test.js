@@ -19,7 +19,7 @@ describe('active member - components - Unactivated ', () => {
     };
 
     const errorResult = { IsSuccessful: false, Message: "An error occurred while processing your request, please try again later!" };
-
+    const expectResult = { IsSuccessful: true };
 
     it('render correctly', () => {
         const result = shallow(<Unactivated {...defaultProps} />);
@@ -49,14 +49,14 @@ describe('active member - components - Unactivated ', () => {
     });
 
     it('_handleActive - should be called when click Active button', async () => {
-        const props = Object.assign({}, defaultProps, { activeMember: jest.fn(() => errorResult), setMessage: jest.fn() });
+        const props = Object.assign({}, defaultProps, { activeMember: jest.fn(() => expectResult), setMessage: jest.fn(), fetchData: jest.fn() });
 
         const wrapper = mount(<Unactivated {...props} />);
 
         await wrapper.find('Button').at(1).simulate('click');
 
         expect(props.activeMember).toHaveBeenCalledWith({ userNames: 'xyl157' });
-        expect(props.setMessage).toHaveBeenCalledWith(errorResult.Message);
+        expect(props.setMessage).toHaveBeenCalledWith("xyl157 has been activated successfully!");
     });
 
     it('_handleActive - should be called when click Active All button', async () => {
@@ -71,7 +71,6 @@ describe('active member - components - Unactivated ', () => {
     });
 
     it('_handleActive - should be called when click Active All button is successful', async () => {
-        const expectResult = { IsSuccessful: true };
         const props = Object.assign({}, defaultProps, { activeMember: jest.fn(() => expectResult), setMessage: jest.fn(), fetchData: jest.fn() });
 
         const wrapper = mount(<Unactivated {...props} />);
@@ -80,17 +79,5 @@ describe('active member - components - Unactivated ', () => {
 
         expect(props.activeMember).toHaveBeenCalledWith({ userNames: 'xyl157' });
         expect(props.setMessage).toHaveBeenCalledWith("All members have been activated successfully!");
-    });
-
-    it('_handleActive - should be called when click Active All button is failed', async () => {
-        const expectResult = { IsSuccessful: false, Message: 'Failed' };
-        const props = Object.assign({}, defaultProps, { activeMember: jest.fn(() => expectResult), setMessage: jest.fn() });
-
-        const wrapper = mount(<Unactivated {...props} />);
-
-        await wrapper.find('Button').at(0).simulate('click');
-
-        expect(props.activeMember).toHaveBeenCalledWith({ userNames: 'xyl157' });
-        expect(props.setMessage).toHaveBeenCalledWith("Failed");
     });
 })

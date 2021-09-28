@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`affiliate - index Should render correctly 1`] = `
+<BrowserRouter>
+  <Memo(MenuList)
+    img="Areas/Portal/www/dist/imgs/i_affiliateslist.png"
+    menus={
+      Array [
+        Object {
+          "href": "/Portal/Affiliate",
+          "label": "Affiliate Info",
+        },
+        Object {
+          "href": "/Portal/PaymentRequest",
+          "label": "Payment Request",
+        },
+        Object {
+          "href": "/Portal/CommissionGroup",
+          "label": "Comm Group",
+        },
+        Object {
+          "href": "/Portal/EmailHistory",
+          "label": "Email History",
+        },
+        Object {
+          "href": "/Portal/Adjustment",
+          "label": "Adjustment",
+        },
+        Object {
+          "href": "/Portal/ViewLog",
+          "label": "View Log",
+        },
+      ]
+    }
+  />
+  <Suspense
+    fallback={null}
+  >
+    <Switch>
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_0"
+        path="/Portal/Affiliate"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_1"
+        path="/Portal/PaymentRequest"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_2"
+        path="/Portal/CommissionGroup"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_3"
+        path="/Portal/EmailHistory"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_4"
+        path="/Portal/Adjustment"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_5"
+        path="/Portal/ViewLog"
+      />
+      <Redirect
+        from="/"
+        to="/Portal/Affiliate"
+      />
+    </Switch>
+  </Suspense>
+</BrowserRouter>
+`;

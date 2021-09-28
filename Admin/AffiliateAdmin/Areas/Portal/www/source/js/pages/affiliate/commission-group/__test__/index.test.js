@@ -52,4 +52,14 @@ describe('commission group - App', () => {
 
         expect(wrapper).toMatchSnapshot();
     });
+
+    it('Should render correctly with error responde', () => {
+        window.globalVariables = {};
+        window.initialState = {};
+        ajaxRequest.post = jest.fn();
+
+        const wrapper = shallow(<App />);
+
+        expect(wrapper).toMatchSnapshot();
+    });
 })

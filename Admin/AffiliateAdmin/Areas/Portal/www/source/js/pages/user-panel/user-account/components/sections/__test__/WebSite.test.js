@@ -106,11 +106,42 @@ describe('user account - components - sections - WebSite', () => {
         expect(defaultProps.setMoreSiteUrlsList).toHaveBeenCalledWith([ "www.abc.com", "www.gzyyy.com", "www.123.com", "" ]);
     });
 
+    it('handleAddUrl - when SiteUrl is empty', () => {
+        const item = { ...userAccountInfo, SiteUrl: '' }
+        const props = { ...defaultProps, userAccountInfo: item }
+        const result = shallow(<WebSite {...props} />);
+        result.setState = jest.fn();
+
+        result.instance().handleAddUrl();
+
+        expect(result.setState).toHaveBeenCalledWith({ messageNotification: `Please input Website URL` });
+    });
+
     it('handleDeleteUrl - should be called when click Del button', () => {
         const result = shallow(<WebSite {...defaultProps} />);
 
         result.find('Button[color="danger"]').at(0).simulate('click');
 
         expect(defaultProps.setMoreSiteUrlsList).toHaveBeenCalledWith([ "www.gzyyy.com", "www.123.com", "" ]);
+    });
+
+    it('handleChangeHasWebSite - should be called when click Have Website input', () => {
+        const item = { ...userAccountInfo, HasWebSite: false }
+        const props = { ...defaultProps, userAccountInfo: item, setUserAccountInfo: jest.fn() }
+        const result = shallow(<WebSite {...props} />);
+
+        result.find('Input[type="radio"]').at(0).simulate('change');
+
+        expect(props.setUserAccountInfo).toHaveBeenCalledWith(userAccountInfo);
+    });
+
+    it('handleChangeHasWebSite - should be called when click Do Not Have Website input', () => {
+        const expectedResult = { ...userAccountInfo, HasWebSite: false }
+        const props = { ...defaultProps, setUserAccountInfo: jest.fn() }
+        const result = shallow(<WebSite {...props} />);
+
+        result.find('Input[type="radio"]').at(1).simulate('change');
+
+        expect(props.setUserAccountInfo).toHaveBeenCalledWith(expectedResult);
     });
 });

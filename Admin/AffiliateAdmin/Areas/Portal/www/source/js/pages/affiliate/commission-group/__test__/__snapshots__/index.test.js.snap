@@ -15,3 +15,19 @@ exports[`commission group - App Should render correctly 1`] = `
   <Connect(AppContainer) />
 </Provider>
 `;
+
+exports[`commission group - App Should render correctly with error responde 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(AppContainer) />
+</Provider>
+`;

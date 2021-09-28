@@ -25,7 +25,7 @@ export class Filter extends PureComponent {
     }
 
     componentWillUnmount() {
-        clearInterval(this.interval);
+        window.clearInterval(this.interval);
     }
 
     _handleCountDown = () => {

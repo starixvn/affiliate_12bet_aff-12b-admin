@@ -3,7 +3,21 @@
 exports[`affiliate info - components - AppContainer render correctly 1`] = `
 <AppLayout>
   <Loader
-    show={true}
+    show={false}
+  />
+  <Connect(Filter) />
+  <Connect(Content) />
+  <CommissionGroupPopup
+    isPrivateGroup={true}
+  />
+  <Connect(ChangePasswordForm) />
+</AppLayout>
+`;
+
+exports[`affiliate info - components - AppContainer render correctly with response error 1`] = `
+<AppLayout>
+  <Loader
+    show={false}
   />
   <Connect(Filter) />
   <Connect(Content) />

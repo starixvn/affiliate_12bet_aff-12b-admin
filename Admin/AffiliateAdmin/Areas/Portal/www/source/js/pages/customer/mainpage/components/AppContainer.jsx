@@ -51,7 +51,9 @@ export const AppContainer = (props) => {
 }
 
 function mapStateToProps({ selectedUserPanel, affCommonInfo }) {
-    return Object.assign({}, { selectedUserPanel, affId: affCommonInfo ? affCommonInfo.affId : null, status: affCommonInfo ? affCommonInfo.status : null });
+    const { affId, status } = affCommonInfo || { affId: null, status: null }
+
+    return Object.assign({}, { selectedUserPanel, affId, status });
 }
 
 function mapDispatchToProps(dispatch) {

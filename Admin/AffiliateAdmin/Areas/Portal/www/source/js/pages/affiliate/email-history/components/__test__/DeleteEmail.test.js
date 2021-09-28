@@ -18,6 +18,7 @@ describe('email history - components - DeleteEmail ', () => {
 
     it('render correctly', () => {
         const result = shallow(<DeleteEmail {...defaultProps} />);
+        result.setState({ messageNotification: 'abc' })
 
         expect(result).toMatchSnapshot();
     });

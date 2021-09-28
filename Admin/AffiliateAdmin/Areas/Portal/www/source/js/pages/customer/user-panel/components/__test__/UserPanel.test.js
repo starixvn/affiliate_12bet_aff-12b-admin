@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { UserPanel } from '../UserPanel';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 describe('customer - user-panel - components - UserPanel', () => {
     afterAll(() => {
@@ -25,5 +25,12 @@ describe('customer - user-panel - components - UserPanel', () => {
         const wrapper = shallow(<UserPanel {...props}/>);
 
         expect(wrapper).toMatchSnapshot();
+    });
+
+    it('useEffect - should call onClickMenu', () => {
+        const props = Object.assign({}, defaultProps, { isPending: true });
+        mount(<UserPanel {...props} />);
+
+        expect(props.onClickMenu).toHaveBeenCalledWith('edit');
     });
 })

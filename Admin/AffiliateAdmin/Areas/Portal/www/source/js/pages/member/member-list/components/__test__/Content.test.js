@@ -81,6 +81,14 @@ describe('member list - components - Content ', () => {
         expect(result).toMatchSnapshot();
     });
 
+    it('render correctly with gridData is empty and not isShowMemberName', () => {
+        const props = Object.assign({}, defaultProps, { gridData: [] })
+        const result = shallow(<Content {...props} />);
+        result.setState({ isShowMemberName: false });
+
+        expect(result).toMatchSnapshot();
+    });
+
     it('componentDidUpdate - should call fetchData', () => {
         const result = shallow(<Content {...defaultProps} />);
 
@@ -145,7 +153,7 @@ describe('member list - components - Content ', () => {
         expect(wrapper.instance()._updateMemberStatus).not.toHaveBeenCalled();
     });
 
-    it('_updateMemberStatus - should call updateMemberStatus with delete successfully', async () => {
+    it('_updateMemberStatus - should call updateMemberStatus with reinstated successfully', async () => {
         const expectedResult = { IsSuccessful: true, Message: "" };
         const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), updateMemberStatus: jest.fn(() => expectedResult) });
         const wrapper = shallow(<Content {...props} />);
@@ -156,8 +164,23 @@ describe('member list - components - Content ', () => {
         expect(props.fetchData).toHaveBeenCalledWith(param);
     });
 
-    it('_updateMemberStatus - should call updateMemberStatus with delete is failed', async () => {
-        const expectedResult = { IsSuccessful: false, Message: "Delete is failed!" };
+    it('_updateMemberStatus - should call updateMemberStatus with removed successfully', async () => {
+        const expectedResult = { IsSuccessful: true, Message: "" };
+        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), updateMemberStatus: jest.fn(() => expectedResult) });
+        const wrapper = shallow(<Content {...props} />);
+        const instance = wrapper.instance();
+        instance.setState({ isRemoved: true })
+        instance.setState = jest.fn();
+
+        await instance._updateMemberStatus(26522982);
+
+        expect(props.updateMemberStatus).toHaveBeenCalledWith(26522982, true);
+        expect(props.fetchData).toHaveBeenCalledWith(param);
+        expect(instance.setState).toHaveBeenCalledWith({ message: 'The selected member has been removed successfully!', isConfirmPopup: false });
+    });
+
+    it('_updateMemberStatus - should call updateMemberStatus with reinstated is failed', async () => {
+        const expectedResult = { IsSuccessful: false, Message: "Reinstated is failed!" };
         const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), updateMemberStatus: jest.fn(() => expectedResult) });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState = jest.fn();
@@ -165,7 +188,7 @@ describe('member list - components - Content ', () => {
         await wrapper.instance()._updateMemberStatus(26522982);
 
         expect(props.updateMemberStatus).toHaveBeenCalledWith(26522982, false);
-        expect(wrapper.setState).toHaveBeenCalledWith({ message: "Delete is failed!", isConfirmPopup: false });
+        expect(wrapper.setState).toHaveBeenCalledWith({ message: "Reinstated is failed!", isConfirmPopup: false });
     });
 
     it('_updateMemberStatus - should call updateMemberStatus with error', async () => {

@@ -3,24 +3,31 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { resetReducer } from '../actions';
 
-export const resetAllProps = (PageComponent, name) => {
-    const Item = class extends PureComponent {
-        constructor(props) {
-            super(props);
-        }
-
-        componentWillUnmount() {
-            this.props.resetReducer(name);
-        }
-
-        render() {
-            return (<PageComponent {...this.props} />);
-        }
+export class Item extends PureComponent {
+    constructor(props) {
+        super(props);
     }
 
-    return connect(null, mapDispatchToProps)(Item);
+    componentWillUnmount() {
+        this.props.resetReducer(this.props.name);
+    }
+
+    render() {
+        const { PageComponent, name, ...maintainProps } = this.props;
+
+        return (<PageComponent {...maintainProps} />);
+    }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ resetReducer }, dispatch);
+export const resetAllProps = (PageComponent, name) => {
+
+    function mapStateToProps(state) {
+        return { PageComponent, name }
+    }
+
+    function mapDispatchToProps(dispatch) {
+        return bindActionCreators({ resetReducer }, dispatch);
+    }
+
+    return connect(mapStateToProps, mapDispatchToProps)(Item);
 }

@@ -87,8 +87,10 @@ describe('banner list - components - EditBannerForm ', () => {
     it('render correctly with update', () => {
         const props = Object.assign({}, defaultProps, { selectedBannerId: 2485, getBannerDetail: jest.fn() });
         const result = shallow(<EditBannerForm {...props} />);
-        result.setState({ isInsert: false, messageNotificationPopup: 'abc', categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }],
-            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false }], isSuccess: false, inputFileNames: ["test.gif"] });
+        result.setState({
+            isInsert: false, messageNotificationPopup: 'abc', categoryList: [{ categoryName: "Casino", key: "Casino", name: "Casino", checked: true }], files: [{ name: "abc.png"}],
+            subCategoryList: [{ parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false }], isSuccess: false, inputFileNames: ["test.gif"], isDisabled: false
+        });
 
         expect(result).toMatchSnapshot();
     });
@@ -1037,6 +1039,17 @@ describe('banner list - components - EditBannerForm ', () => {
         expect(value).toBeFalsy;
     });
 
+    it('_handleRemoveImageAt - insert - should call when click remove', () => {
+        const result = shallow(<EditBannerForm {...defaultProps} />);
+        const instance = result.instance();
+        instance.setState({ inputFileNames: ["abc.png"] });
+        instance._handleRemoveImageAt = jest.fn();
+
+        result.find('Button[type="button"][color="danger"]').simulate('click');
+
+        expect(instance._handleRemoveImageAt).toHaveBeenCalledWith(0);
+    });
+
     it('_handleRemoveImageAt - should return when file is empty', () => {
         const result = shallow(<EditBannerForm {...defaultProps} />);
         result.setState = jest.fn();
@@ -1049,7 +1062,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
     it('_handleRemoveImageAt - should call setState when has one file', () => {
         const result = shallow(<EditBannerForm {...defaultProps} />);
-    result.setState({ files: [{name : "file1.png"}], inputFileNames: ["file1.png"] });
+        result.setState({ files: [{name : "file1.png"}], inputFileNames: ["file1.png"] });
         result.setState = jest.fn();
 
         result.instance()._handleRemoveImageAt(0);

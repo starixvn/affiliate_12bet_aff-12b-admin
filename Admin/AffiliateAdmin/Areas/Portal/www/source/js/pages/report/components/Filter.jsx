@@ -13,7 +13,6 @@ import { formatUnit, resolveClientUrl, handleAfterChangeFromDate, handleAfterCha
 import { minMonthDate, minDate, sixMonth } from '../../../modules/constants';
 import { globalResource } from '../../../modules/globalResource';
 import { claimResource } from '../../../modules/claim';
-
 export class Filter extends PureComponent {
     constructor(props) {
         super(props);

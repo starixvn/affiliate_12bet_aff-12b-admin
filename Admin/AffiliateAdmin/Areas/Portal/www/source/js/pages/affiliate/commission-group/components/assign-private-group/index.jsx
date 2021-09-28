@@ -7,19 +7,19 @@ import AssignPrivateGroup from './AssignPrivateGroup';
 
 import reducer from './reducer';
 
-const { productList, deductionList, affInfo, claims } = window.initialState;
-const claimsPrincipal = new ClaimPrincipal(claims);
-const initState = Object.assign({}, {productList, deductionList, affInfo, claimsPrincipal })
-const store = configureStore(initState, reducer);
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
+    const { productList, deductionList, affInfo, claims } = window.initialState;
+    const claimsPrincipal = new ClaimPrincipal(claims);
+    const initState = Object.assign({}, { productList, deductionList, affInfo, claimsPrincipal })
+    this.store = configureStore(initState, reducer);
   }
 
   render() {
     return (
-      <Provider store={store}>
+      <Provider store={this.store}>
         <AssignPrivateGroup />
       </Provider>
     );

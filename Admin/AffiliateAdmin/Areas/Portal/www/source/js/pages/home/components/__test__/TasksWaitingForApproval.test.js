@@ -33,10 +33,20 @@ describe('home - components - TasksWaitingForApproval', () => {
             PendingAffiliateNumber: 1024,
             TextBannerNumber: 13
         },
+        isShowAffLink: false,
+        isShowPaymentLink: false,
         getGeneralInfo: jest.fn()
     }
+
     it('render correctly', () => {
         const result = shallow(<TasksWaitingForApproval {...defaultProps} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly with permissions', () => {
+        const props = { ...defaultProps, isShowAffLink: true, isShowPaymentLink: true };
+        const result = shallow(<TasksWaitingForApproval {...props} />);
 
         expect(result).toMatchSnapshot();
     });

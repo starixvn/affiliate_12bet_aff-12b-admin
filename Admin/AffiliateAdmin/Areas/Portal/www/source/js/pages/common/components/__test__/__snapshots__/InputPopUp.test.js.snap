@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`common - Checkbox Select All component -  render correctly 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop="static"
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  container="body"
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[MockFunction]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[MockFunction]}
+    wrapTag="div"
+  >
+    <div
+      className="text-truncate"
+      style={
+        Object {
+          "width": 450,
+        }
+      }
+    >
+      <span
+        className="iconpopup"
+      />
+      test
+    </div>
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <div
+      className="modal-body-wrapper"
+    >
+      <div
+        className="notification-popup-container"
+        style={
+          Object {
+            "fontSize": 14,
+          }
+        }
+      >
+        <Input
+          onChange={[Function]}
+          style={
+            Object {
+              "fontSize": 14,
+            }
+          }
+          type="text"
+          value="test"
+        />
+        <div
+          className="mt-3"
+        >
+          <Button
+            color="success mr-3"
+            onClick={[Function]}
+            style={
+              Object {
+                "height": 30,
+                "width": 70,
+              }
+            }
+            tag="button"
+          >
+            <strong>
+              OK
+            </strong>
+          </Button>
+          <Button
+            color="info"
+            onClick={[MockFunction]}
+            style={
+              Object {
+                "height": 30,
+                "width": 70,
+              }
+            }
+            tag="button"
+          >
+            <strong>
+              Cancel
+            </strong>
+          </Button>
+        </div>
+      </div>
+    </div>
+    <NotificationPopup
+      isConfirmPopup={true}
+      message=""
+      onClose={[Function]}
+    />
+  </ModalBody>
+</Modal>
+`;

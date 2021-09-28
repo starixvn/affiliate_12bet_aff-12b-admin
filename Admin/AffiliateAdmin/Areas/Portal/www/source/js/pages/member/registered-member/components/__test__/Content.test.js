@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { Content } from '../Content';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Table } from '@9softstudio/react-fixed-table-header';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
@@ -65,6 +65,13 @@ describe('registerd member list - components - Content ', () => {
         expect(result).toMatchSnapshot();
     });
 
+    it('render correctly with gridData is empty and not isShowMemberName', () => {
+        const props = Object.assign({}, defaultProps, { gridData: [], isShowMemberName: false })
+        const result = shallow(<Content {...props} />);
+
+        expect(result).toMatchSnapshot();
+    });
+
     it('_handlePaging - should be called when onPaging in Table', () => {
         const props = Object.assign({}, defaultProps, { setParam: jest.fn() })
         const result = shallow(<Content {...props} />);
@@ -72,5 +79,12 @@ describe('registerd member list - components - Content ', () => {
         result.find(Table).props().onPaging(50, 50);
 
         expect(props.setParam).toHaveBeenCalledWith({ PageIndex: 50, PageSize: 50, AffName: '', UserName: '' });
+    });
+
+    it('useEffect - should call fetchData', () => {
+        const props = Object.assign({}, defaultProps, { fetchData: jest.fn() })
+        mount(<Content {...props} />);
+
+        expect(props.fetchData).toHaveBeenCalledWith(param);
     });
 })

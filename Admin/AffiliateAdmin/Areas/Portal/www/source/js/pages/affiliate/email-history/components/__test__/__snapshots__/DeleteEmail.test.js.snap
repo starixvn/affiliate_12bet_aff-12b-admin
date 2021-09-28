@@ -16,5 +16,10 @@ exports[`email history - components - DeleteEmail  render correctly 1`] = `
       className="oi oi-trash ml-2"
     />
   </Button>
+  <NotificationPopup
+    isConfirmPopup={true}
+    message="abc"
+    onClose={[Function]}
+  />
 </div>
 `;

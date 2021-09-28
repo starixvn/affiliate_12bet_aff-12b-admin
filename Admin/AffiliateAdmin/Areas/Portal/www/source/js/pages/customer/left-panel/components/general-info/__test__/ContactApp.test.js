@@ -14,7 +14,7 @@ describe('left panel - components - general-info - ContactApp', () => {
         AffType: 2,
         BalanceBf: 9802280.5446,
         CommGroupName: "NoCommission",
-        ContactApps: '[{"Name":"MSN/YM/QQ","Value":"@123","Order":0}]',
+        ContactAppList: [{"Name":"MSN/YM/QQ","Value":"@123","Order":0}],
         FirstName: "bb",
         Gender: true,
         GroupId: 102,

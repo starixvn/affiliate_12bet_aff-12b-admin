@@ -7,16 +7,17 @@ import { configureStore } from '../../../modules/store';
 import AppContainer from '../core/components/AppContainer';
 import { hasWriteAdminRoleClaim } from '../common/libs/utils';
 
-const store = configureStore({ hasWriteAdminRoleClaim }, reducer);
-
 export default class App extends Component {
     constructor(props) {
         super(props);
+
+        this.store = configureStore({ hasWriteAdminRoleClaim: hasWriteAdminRoleClaim() }, reducer);
     }
 
     render() {
+
         return (
-            <Provider store={store}>
+            <Provider store={this.store}>
                 <AppContainer />
             </Provider>
         );

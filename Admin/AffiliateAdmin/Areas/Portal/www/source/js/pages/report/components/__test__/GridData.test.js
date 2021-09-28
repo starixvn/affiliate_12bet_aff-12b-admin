@@ -578,4 +578,11 @@ describe('affiliate report - GridData ', () => {
 
         expect(wrapper).toMatchSnapshot();
     });
+
+    it('should render correctly with empty data', () => {
+        const wrapper = shallow(<GridData {...defaultProps} />);
+        wrapper.instance().setState({ gridData: [], total: 0 });
+
+        expect(wrapper).toMatchSnapshot();
+    });
 });
