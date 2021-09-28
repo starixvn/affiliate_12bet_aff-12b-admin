@@ -45,23 +45,26 @@
             this.btnKYGaming = new System.Windows.Forms.Button();
             this.btnBTi = new System.Windows.Forms.Button();
             this.btnIMEsport = new System.Windows.Forms.Button();
+            this.btnSkywind = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 27);
+            this.label1.Location = new System.Drawing.Point(16, 33);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 13);
+            this.label1.Size = new System.Drawing.Size(229, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select service that you want to run:";
             // 
             // btnCasino
             // 
-            this.btnCasino.Location = new System.Drawing.Point(15, 66);
+            this.btnCasino.Location = new System.Drawing.Point(20, 81);
+            this.btnCasino.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCasino.Name = "btnCasino";
-            this.btnCasino.Size = new System.Drawing.Size(110, 23);
+            this.btnCasino.Size = new System.Drawing.Size(147, 28);
             this.btnCasino.TabIndex = 1;
             this.btnCasino.Text = "Casino";
             this.btnCasino.UseVisualStyleBackColor = true;
@@ -69,9 +72,10 @@
             // 
             // btnBetsoft
             // 
-            this.btnBetsoft.Location = new System.Drawing.Point(153, 66);
+            this.btnBetsoft.Location = new System.Drawing.Point(204, 81);
+            this.btnBetsoft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBetsoft.Name = "btnBetsoft";
-            this.btnBetsoft.Size = new System.Drawing.Size(110, 23);
+            this.btnBetsoft.Size = new System.Drawing.Size(147, 28);
             this.btnBetsoft.TabIndex = 2;
             this.btnBetsoft.Text = "12Amber - Betsoft";
             this.btnBetsoft.UseVisualStyleBackColor = true;
@@ -79,9 +83,10 @@
             // 
             // btnEbet
             // 
-            this.btnEbet.Location = new System.Drawing.Point(15, 112);
+            this.btnEbet.Location = new System.Drawing.Point(20, 138);
+            this.btnEbet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEbet.Name = "btnEbet";
-            this.btnEbet.Size = new System.Drawing.Size(110, 23);
+            this.btnEbet.Size = new System.Drawing.Size(147, 28);
             this.btnEbet.TabIndex = 3;
             this.btnEbet.Text = "12Opal - EBet";
             this.btnEbet.UseVisualStyleBackColor = true;
@@ -89,9 +94,10 @@
             // 
             // btnCrystal
             // 
-            this.btnCrystal.Location = new System.Drawing.Point(153, 112);
+            this.btnCrystal.Location = new System.Drawing.Point(204, 138);
+            this.btnCrystal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCrystal.Name = "btnCrystal";
-            this.btnCrystal.Size = new System.Drawing.Size(110, 23);
+            this.btnCrystal.Size = new System.Drawing.Size(147, 28);
             this.btnCrystal.TabIndex = 4;
             this.btnCrystal.Text = "12Crystal - GPI";
             this.btnCrystal.UseVisualStyleBackColor = true;
@@ -99,9 +105,10 @@
             // 
             // btnQuartz
             // 
-            this.btnQuartz.Location = new System.Drawing.Point(15, 155);
+            this.btnQuartz.Location = new System.Drawing.Point(20, 191);
+            this.btnQuartz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnQuartz.Name = "btnQuartz";
-            this.btnQuartz.Size = new System.Drawing.Size(110, 23);
+            this.btnQuartz.Size = new System.Drawing.Size(147, 28);
             this.btnQuartz.TabIndex = 5;
             this.btnQuartz.Text = "12Quartz - iSoftbet";
             this.btnQuartz.UseVisualStyleBackColor = true;
@@ -109,9 +116,10 @@
             // 
             // btnOpus
             // 
-            this.btnOpus.Location = new System.Drawing.Point(153, 155);
+            this.btnOpus.Location = new System.Drawing.Point(204, 191);
+            this.btnOpus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOpus.Name = "btnOpus";
-            this.btnOpus.Size = new System.Drawing.Size(110, 23);
+            this.btnOpus.Size = new System.Drawing.Size(147, 28);
             this.btnOpus.TabIndex = 6;
             this.btnOpus.Text = "12Diamond - OPUS";
             this.btnOpus.UseVisualStyleBackColor = true;
@@ -119,9 +127,10 @@
             // 
             // btnGpiLottery
             // 
-            this.btnGpiLottery.Location = new System.Drawing.Point(153, 195);
+            this.btnGpiLottery.Location = new System.Drawing.Point(204, 240);
+            this.btnGpiLottery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGpiLottery.Name = "btnGpiLottery";
-            this.btnGpiLottery.Size = new System.Drawing.Size(110, 23);
+            this.btnGpiLottery.Size = new System.Drawing.Size(147, 28);
             this.btnGpiLottery.TabIndex = 7;
             this.btnGpiLottery.Text = "Lottery - GPI";
             this.btnGpiLottery.UseVisualStyleBackColor = true;
@@ -129,9 +138,10 @@
             // 
             // btnTopaz
             // 
-            this.btnTopaz.Location = new System.Drawing.Point(15, 195);
+            this.btnTopaz.Location = new System.Drawing.Point(20, 240);
+            this.btnTopaz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTopaz.Name = "btnTopaz";
-            this.btnTopaz.Size = new System.Drawing.Size(110, 23);
+            this.btnTopaz.Size = new System.Drawing.Size(147, 28);
             this.btnTopaz.TabIndex = 8;
             this.btnTopaz.Text = "12Topaz";
             this.btnTopaz.UseVisualStyleBackColor = true;
@@ -139,9 +149,10 @@
             // 
             // btLBKeno
             // 
-            this.btLBKeno.Location = new System.Drawing.Point(153, 236);
+            this.btLBKeno.Location = new System.Drawing.Point(204, 290);
+            this.btLBKeno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btLBKeno.Name = "btLBKeno";
-            this.btLBKeno.Size = new System.Drawing.Size(110, 23);
+            this.btLBKeno.Size = new System.Drawing.Size(147, 28);
             this.btLBKeno.TabIndex = 9;
             this.btLBKeno.Text = "LB Keno";
             this.btLBKeno.UseVisualStyleBackColor = true;
@@ -149,9 +160,10 @@
             // 
             // btnVrLottery
             // 
-            this.btnVrLottery.Location = new System.Drawing.Point(15, 236);
+            this.btnVrLottery.Location = new System.Drawing.Point(20, 290);
+            this.btnVrLottery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnVrLottery.Name = "btnVrLottery";
-            this.btnVrLottery.Size = new System.Drawing.Size(110, 23);
+            this.btnVrLottery.Size = new System.Drawing.Size(147, 28);
             this.btnVrLottery.TabIndex = 10;
             this.btnVrLottery.Text = "VR Lottery - IMOne";
             this.btnVrLottery.UseVisualStyleBackColor = true;
@@ -164,8 +176,8 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(284, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(379, 28);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -174,21 +186,22 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importFromFileToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // importFromFileToolStripMenuItem
             // 
             this.importFromFileToolStripMenuItem.Name = "importFromFileToolStripMenuItem";
-            this.importFromFileToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.importFromFileToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.importFromFileToolStripMenuItem.Text = "Import from file";
             this.importFromFileToolStripMenuItem.Click += new System.EventHandler(this.importFromFileToolStripMenuItem_Click);
             // 
             // btnKYGaming
             // 
-            this.btnKYGaming.Location = new System.Drawing.Point(15, 278);
+            this.btnKYGaming.Location = new System.Drawing.Point(20, 342);
+            this.btnKYGaming.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnKYGaming.Name = "btnKYGaming";
-            this.btnKYGaming.Size = new System.Drawing.Size(110, 23);
+            this.btnKYGaming.Size = new System.Drawing.Size(147, 28);
             this.btnKYGaming.TabIndex = 12;
             this.btnKYGaming.Text = "KY Gaming";
             this.btnKYGaming.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -197,9 +210,10 @@
             // 
             // btnBTi
             // 
-            this.btnBTi.Location = new System.Drawing.Point(153, 278);
+            this.btnBTi.Location = new System.Drawing.Point(204, 342);
+            this.btnBTi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBTi.Name = "btnBTi";
-            this.btnBTi.Size = new System.Drawing.Size(110, 23);
+            this.btnBTi.Size = new System.Drawing.Size(147, 28);
             this.btnBTi.TabIndex = 13;
             this.btnBTi.Text = "BTi";
             this.btnBTi.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -208,20 +222,34 @@
             // 
             // btnIMEsport
             // 
-            this.btnIMEsport.Location = new System.Drawing.Point(15, 314);
+            this.btnIMEsport.Location = new System.Drawing.Point(20, 386);
+            this.btnIMEsport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnIMEsport.Name = "btnIMEsport";
-            this.btnIMEsport.Size = new System.Drawing.Size(110, 23);
+            this.btnIMEsport.Size = new System.Drawing.Size(147, 28);
             this.btnIMEsport.TabIndex = 14;
             this.btnIMEsport.Text = "IMEsport";
             this.btnIMEsport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnIMEsport.UseVisualStyleBackColor = true;
             this.btnIMEsport.Click += new System.EventHandler(this.btnIMEsport_Click);
             // 
+            // btnSkywind
+            // 
+            this.btnSkywind.Location = new System.Drawing.Point(204, 386);
+            this.btnSkywind.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSkywind.Name = "btnSkywind";
+            this.btnSkywind.Size = new System.Drawing.Size(147, 28);
+            this.btnSkywind.TabIndex = 15;
+            this.btnSkywind.Text = "Skywind";
+            this.btnSkywind.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnSkywind.UseVisualStyleBackColor = true;
+            this.btnSkywind.Click += new System.EventHandler(this.btnSkywind_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 349);
+            this.ClientSize = new System.Drawing.Size(379, 430);
+            this.Controls.Add(this.btnSkywind);
             this.Controls.Add(this.btnIMEsport);
             this.Controls.Add(this.btnBTi);
             this.Controls.Add(this.btnKYGaming);
@@ -238,6 +266,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
@@ -267,5 +296,6 @@
         private System.Windows.Forms.Button btnKYGaming;
         private System.Windows.Forms.Button btnBTi;
         private System.Windows.Forms.Button btnIMEsport;
+        private System.Windows.Forms.Button btnSkywind;
     }
 }

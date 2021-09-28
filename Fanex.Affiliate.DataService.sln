@@ -60,6 +60,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.ThirdPartyP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.DataService.Importer.BTi", "Fanex.Affiliate.DataService.Importer.BTi\Fanex.Affiliate.DataService.Importer.BTi.csproj", "{E962C537-380B-439B-B66F-6E3FD8FBDBF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.DataService.Importer.Skywind", "Fanex.Affiliate.DataService.Importer.Skywind\Fanex.Affiliate.DataService.Importer.Skywind.csproj", "{527093AF-0E41-4FE9-ADC6-BE897B8BB9A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +152,10 @@ Global
 		{E962C537-380B-439B-B66F-6E3FD8FBDBF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E962C537-380B-439B-B66F-6E3FD8FBDBF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E962C537-380B-439B-B66F-6E3FD8FBDBF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{527093AF-0E41-4FE9-ADC6-BE897B8BB9A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527093AF-0E41-4FE9-ADC6-BE897B8BB9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527093AF-0E41-4FE9-ADC6-BE897B8BB9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527093AF-0E41-4FE9-ADC6-BE897B8BB9A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,6 +179,7 @@ Global
 		{B5F45C51-B07A-45F7-9277-F341D6DAB5D5} = {906CE15E-CB42-4100-B6C1-02022F73E93B}
 		{118A9AA1-C33A-413A-A685-3495CF30C15F} = {906CE15E-CB42-4100-B6C1-02022F73E93B}
 		{E962C537-380B-439B-B66F-6E3FD8FBDBF6} = {9A885C97-C89D-4F5B-B219-D4C9C24EDFC9}
+		{527093AF-0E41-4FE9-ADC6-BE897B8BB9A1} = {9A885C97-C89D-4F5B-B219-D4C9C24EDFC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D9EEF46-8ABD-4627-9647-B9B7D64DD5B9}

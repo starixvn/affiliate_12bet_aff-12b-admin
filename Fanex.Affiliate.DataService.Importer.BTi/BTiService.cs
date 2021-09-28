@@ -89,7 +89,7 @@ namespace Fanex.Affiliate.DataService.Importer.BTi
             var xml = XmlHelper.ParseToXDocumentFromJson(formatedJson);
             if (xml == null)
             {
-                throw new ThirdPartyProductException($"BTi Product - Cant convert json response to xml - {raw}");
+                throw new ThirdPartyProductException($"BTi Product - Can't convert json response to xml - {raw}");
             }
             return Task.FromResult(xml);
         }

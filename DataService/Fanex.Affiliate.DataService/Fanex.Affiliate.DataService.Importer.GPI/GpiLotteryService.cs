@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.DataService.Importer
         private readonly IApiClientFactory _clientFactory;
 
         protected override int ProductId => Products.GPILotteryId;
-        public GpiLotteryService(IApiClientFactory clientFactory = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null) 
+        public GpiLotteryService(IApiClientFactory clientFactory = null,IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProdutRespository = null)
             :base(appSetting, thirdPartyProdutRespository)
         {
             _clientFactory = clientFactory ?? new ApiClientFactory();
@@ -113,7 +113,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private async Task<string> GetDataStringAsync(NameValueCollection query)
             => await _client.GetResponseAsync(query);
-        
+
 
         private NameValueCollection BuildApiQuery(GpiParam param)
         {

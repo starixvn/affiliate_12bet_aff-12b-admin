@@ -25,6 +25,8 @@
         public const int BTiId = 25;
 
         public const int IMEsport = 31;
+
+        public const int SkywindId = 32;
     }
 
     public static class RespositoryResponse
