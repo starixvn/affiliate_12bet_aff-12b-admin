@@ -22,8 +22,10 @@ module.exports = {
     [`${jsDist}/pages/commission/assign-group`]: clientRoot + "/js/pages/affiliate/commission-group/components/assign-group/index.jsx",
     [`${jsDist}/pages/commission/assign-private-group`]: clientRoot + "/js/pages/affiliate/commission-group/components/assign-private-group/index.jsx",
 
+
     [`${styleDist}/pages/affiliate`]: clientRoot + "/style/pages/affiliate/affiliate.scss",
     [`${styleDist}/pages/commission-group`]: clientRoot + "/style/pages/affiliate/commission-group.scss",
+    
 
     //Member
     [`${jsDist}/pages/member/member`]: clientRoot + "/js/pages/member/index.jsx",

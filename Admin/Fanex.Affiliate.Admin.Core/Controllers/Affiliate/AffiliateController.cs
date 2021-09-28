@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 Param = param
             };
 
-            return View(viewModel);
+            return View("~/Areas/Portal/Views/Affiliate/AffiliateInfo.cshtml", viewModel);
         }
 
         [HttpPost]
@@ -149,7 +149,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 SortDirectionType = viewModel.SortDirectionType,
                 Status = viewModel.Status,
                 UserId = viewModel.UserId,
-                UserName = viewModel.UserName
+                UserName = viewModel.UserName,
+                ProcessingStatus = viewModel.ProcessingStatus,                
             };
         }
     }

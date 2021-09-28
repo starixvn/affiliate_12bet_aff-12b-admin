@@ -11,7 +11,7 @@ import Loader from '../../../../components/Loader';
 import { setShowPopupPassword, setShowPopupCommGroup, setLanguageList, setCommGroupList } from '../actions'
 
 import { convertArrayToObjectProps } from '../../../../modules/utils';
-import { post } from '../../../../modules/ajaxRequest'
+import { post } from '../../../../modules/ajaxRequest';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -80,4 +80,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setShowPopupPassword, setShowPopupCommGroup, setLanguageList, setCommGroupList }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)

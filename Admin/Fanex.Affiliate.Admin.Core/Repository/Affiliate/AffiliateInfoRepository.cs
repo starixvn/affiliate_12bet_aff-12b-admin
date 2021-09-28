@@ -71,6 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             objectDb.AddInParameter("GroupID", DbType.Int32, param.GroupId);
             objectDb.AddInParameter("PreferredLanguages", DbType.String, param.PreferenceLanguages);
             objectDb.AddInParameter("Status", DbType.String, param.Status);
+            objectDb.AddInParameter("ProcessingStatus", DbType.String, param.ProcessingStatus);
             objectDb.AddInParameter("UserName", DbType.String, param.UserName);
             objectDb.AddInParameter("Email", DbType.String, param.Email);
             objectDb.AddInParameter("SortType", DbType.Byte, param.SortBy);
@@ -104,7 +105,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 Currency = Convert.ToString(reader["Currency"]),
                 PlayerCurrency = Convert.ToString(reader["PlayerCurrency"]),
                 Phone = HttpUtility.HtmlDecode(Convert.ToString(reader["Phone"])),
-                PlayerUserName = Convert.ToString(reader["Player_Username"])
+                PlayerUserName = Convert.ToString(reader["Player_Username"]),
+                ProcessingStatus = Convert.ToString(reader["ProcessingStatus"])
             };
         }
 

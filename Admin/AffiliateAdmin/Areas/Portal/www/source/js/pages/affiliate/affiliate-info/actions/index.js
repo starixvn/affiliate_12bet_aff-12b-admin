@@ -1,8 +1,9 @@
 ﻿import * as type from './types';
+import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
 import { setShowPopupPassword } from '../../../common/actions/changePassword';
 
-export { setPagingOption, setShowPopupPassword };
+export { toggleLoader, setPagingOption, setShowPopupPassword };
 
 export const setLanguageList = (data) => {
     return{

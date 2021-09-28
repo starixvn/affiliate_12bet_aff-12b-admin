@@ -1,0 +1,15 @@
+.invalid-feedback{
+    font-size: 100%;
+}
+
+.form-control.is-invalid.remove-background{
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: 0px;
+    background-size: 0px;
+    padding-right: 0px;
+}
+
+input.form-control[type="date"]{
+    font-size: 100%;
+}

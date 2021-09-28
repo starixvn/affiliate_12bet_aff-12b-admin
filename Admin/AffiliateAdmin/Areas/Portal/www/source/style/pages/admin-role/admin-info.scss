@@ -42,4 +42,22 @@
     .select-role.form-control.is-invalid {
         background-image: none;
     }
+
+    .permission-data {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border: 1px solid #ced4da;
+
+        .permission-table-header {
+            top: -0.5px;
+            z-index: 9;
+            position: sticky;
+
+            th {
+                border: 0.5px solid #ced4da;
+                outline: 0.5px solid #ced4da;
+                outline-offset: -1px;
+            }
+        }
+    }
 }

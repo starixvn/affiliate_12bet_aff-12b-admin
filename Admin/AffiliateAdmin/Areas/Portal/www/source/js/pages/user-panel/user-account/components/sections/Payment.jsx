@@ -79,7 +79,6 @@ export class Payment extends PureComponent {
                             return (<option key={item.key} value={item.key}>{item.value}</option>)
                         })}
                     </Input>
-
                 </Col>
                 <p>{minimumPayment}</p>
             </FormGroup>

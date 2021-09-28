@@ -6,8 +6,7 @@ import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, resource, regExp, defaultSelectedColumnNumber, globalResource } from '../libs/constants';
-import { setPagingOption, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup, setIsClickSearch } from '../actions';
-import { toggleLoader } from '../../../../actions/loaderAction';
+import { toggleLoader, setPagingOption, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup, setIsClickSearch } from '../actions';
 import { post } from '../../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../../modules/numberFormat';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
@@ -72,6 +71,7 @@ export class GridData extends Component {
                 {selectedColumnList['Index'] && <Cell header={true} colWidth={80} title={headerText.Index.label}>{headerText.Index.label}</Cell>}
                 <Cell header={true} colWidth={300} title={headerText.UserName.label}>{headerText.UserName.label}</Cell>
                 {selectedColumnList['Status'] && <Cell header={true} colWidth={200} title={headerText.Status.label}>{headerText.Status.label}</Cell>}
+                {selectedColumnList['ProcessingStatus'] && <Cell header={true} colWidth={300} title={headerText.ProcessingStatus.label}>{headerText.ProcessingStatus.label}</Cell>}
                 {selectedColumnList['FirstName'] && <Cell header={true} colWidth={200} title={headerText.FirstName.label}>{headerText.FirstName.label}</Cell>}
                 {selectedColumnList['LastName'] && <Cell header={true} colWidth={200} title={headerText.LastName.label}>{headerText.LastName.label}</Cell>}
                 {selectedColumnList['Language'] && <Cell header={true} colWidth={200} title={headerText.Language.label}>{headerText.Language.label}</Cell>}
@@ -144,6 +144,7 @@ export class GridData extends Component {
         const isFavorite = dataItem.IsFavorite
         const checkFavorite = isFavorite ? "favor-check" : "favor-uncheck";
         const classNameFavorite = (isApproved || status == "closed") ? checkFavorite : "";
+        const processingStatus = dataItem.ProcessingStatus.split('/')
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -156,6 +157,11 @@ export class GridData extends Component {
                 </Cell>
 
                 {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
+                {selectedColumnList['ProcessingStatus'] && <Cell className='text-center' title={dataItem.ProcessingStatus}>
+                    <a href={resolveClientUrl(`Portal/ProcessingRequest/Index?userName=${dataItem.UserName}`)} target="_blank">
+                        <span className='text-secondary'>{processingStatus[0]}</span>/<span className='text-primary'>{processingStatus[1]}</span>/<span className='text-success'>{processingStatus[2]}</span>/<span className='text-danger'>{processingStatus[3]}</span>
+                    </a>
+                </Cell>}
                 {selectedColumnList['FirstName'] && <Cell title={firstName}>{firstName}</Cell>}
                 {selectedColumnList['LastName'] && <Cell title={lastName}>{lastName}</Cell>}
                 {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}
@@ -170,7 +176,7 @@ export class GridData extends Component {
                 {selectedColumnList['PlayerUserName'] && <Cell title={playerUserName}>{playerUserName}</Cell>}
                 {selectedColumnList['PlayerCurrency'] && <Cell title={dataItem.PlayerCurrency}>{dataItem.PlayerCurrency}</Cell>}
                 {selectedColumnList['Member'] && <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>}
-                { isPwdChangeable && <Cell className="text-center" title="Change Password">
+                {isPwdChangeable && <Cell className="text-center" title="Change Password">
                     {
                         isApproved && (<Button color="link" onClick={() => this.handleChangePassword(dataItem.AffId)}>
                             <span className="oi oi-pencil text-secondary"></span>

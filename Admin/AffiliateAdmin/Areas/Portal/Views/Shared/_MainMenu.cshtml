@@ -79,22 +79,32 @@
     let element;
 
     switch('@controllerName') {
-        case 'PaymentRequest': case 'CommissionGroup': case 'EmailHistory': case 'Adjustment': case 'ViewLog':
+        case 'PaymentRequest':
+        case 'CommissionGroup':
+        case 'EmailHistory':
+        case 'Adjustment':
+        case 'ViewLog':
+        case 'ProcessingRequest':
             element = document.getElementById('Affiliate');
             break;
-        case 'ActiveMember': case 'Registered':
+        case 'ActiveMember':
+        case 'Registered':
             element = document.getElementById('Member');
             break;
-        case 'TextList': case 'LandingPageList': case 'NewsLetter':
+        case 'TextList':
+        case 'LandingPageList':
+        case 'NewsLetter':
             element = document.getElementById('MediaGallery');
             break;
         case 'Department':
             element = document.getElementById('Administrator');
             break;
-        case 'Domain': case 'DomainControl':
+        case 'Domain':
+        case 'DomainControl':
             element = document.getElementById('Domain');
             break;
-        case 'AdminRole': case 'RolePermission':
+        case 'AdminRole':
+        case 'RolePermission':
             element = document.getElementById('AdminRole');
             break;
     }

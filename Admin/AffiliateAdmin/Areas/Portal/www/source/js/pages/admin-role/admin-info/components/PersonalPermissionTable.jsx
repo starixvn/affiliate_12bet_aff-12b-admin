@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Form, FormGroup, Label } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { messages } from '../libs/constants';
+import { messages, defaultHeight, headerHeight } from '../libs/constants';
 import { updateObjectInArray } from '../../../../modules/dataHandler';
 import { setPermissionListByRole } from '../actions';
 import { renderHeader, renderColumns } from '../../common/libs/render';
@@ -79,9 +79,9 @@ export class PersonalPermissionTable extends PureComponent {
     _updatePermissionListByRole = () => {
         const { permissionListByRole } = this.props;
 
-        const newPermissionListByRole = permissionListByRole.map(item => {
+        const newPermissionListByRole = permissionListByRole ? permissionListByRole.map(item => {
             return Object.assign({}, item, { IsRead: item.IsRoleRead, IsHost: item.IsRoleHost });
-        });
+        }) : null;
 
         this.props.setPermissionListByRole(newPermissionListByRole);
     }
@@ -101,7 +101,7 @@ export class PersonalPermissionTable extends PureComponent {
         }
         else {
             dataRows.push(<tr key="no-info">
-                <td className="text-center" colSpan="6">{messages.NoInfo}</td>
+                <td className="text-center" colSpan="8">{messages.NoInfo}</td>
             </tr>);
         }
 
@@ -196,7 +196,7 @@ export class PersonalPermissionTable extends PureComponent {
                         </Form>
                     )
                 }
-                <div className="table-responsive table-striped my-3">
+                <div className="table-responsive table-striped my-3 permission-data" style={{ maxHeight: ((window.innerHeight || defaultHeight) - headerHeight) }}>
                     <Table className="permission-popup-data-table">
                         {renderHeader()}
                         <tbody>

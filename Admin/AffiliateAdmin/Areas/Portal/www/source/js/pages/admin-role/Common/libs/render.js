@@ -2,7 +2,7 @@
 
 export const renderHeader = () => {
     return (
-        <thead key="thead">
+        <thead key="thead" className="permission-table-header">
             <tr>
                 <th rowSpan="2" colSpan="4">Function</th>
                 <th colSpan="2">Individual Permission</th>
