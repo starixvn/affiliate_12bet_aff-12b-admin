@@ -4212,7 +4212,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can only request payout from 8th to 15th of the month..
+        ///   Looks up a localized string similar to You can only request payout from 10th to 15th of the month..
         /// </summary>
         public static string PayoutTime {
             get {
