@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Fanex.Affiliate.DataService.WinFormApp.Converter;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,6 +14,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
     public partial class ImporterFormBase : Form
     {
         protected IImporterService Service;
+        private readonly IDataSpliter Spliter;
+
         protected Logger Logger;
         protected List<string> RawDatas { get; set; }
         protected List<XDocument> XmlDatas { get; set; } = new List<XDocument>();
@@ -21,7 +24,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         protected virtual TimeSpan _serverTimeOffset => new TimeSpan(8, 0, 0);
         protected virtual TimeSpan _pullRange => new TimeSpan(0, 1, 0, 0);
 
-        public ImporterFormBase()
+        public ImporterFormBase(IDataSpliter spliter = null)
         {
             InitializeComponent();
             this.Logger = new Logger(this.richTextLog);
@@ -30,6 +33,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             lbServiceTime.Text =_serverTimeOffset.Hours >= 0 ? $"Server Time Zone: GMT+{_serverTimeOffset.Hours}" : $"Server Time Zone: GMT{_serverTimeOffset.Hours}";
             startTimePicker.Value = DateTimeOffset.Now.ToOffset(_serverTimeOffset).DateTime;
             endTimePicker.Value = DateTimeOffset.Now.ToOffset(_serverTimeOffset).DateTime;
+
+            Spliter = spliter ?? new WebApiSpliter();
         }
 
         protected virtual async void btnGetRawData_Click(object sender, EventArgs e)
@@ -70,7 +75,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 if (chkBoxConvertDirectFromTxtField.Checked)
                 {
                     var xml = await GetXmlFromTextFieldAsync();
-                    XmlDatas.Add(xml);
+                    XmlDatas.AddRange(xml);
                 }
                 else
                 {
@@ -91,10 +96,20 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             ToggleButton(true);
         }
 
-        private async Task<XDocument> GetXmlFromTextFieldAsync()
+        private async Task<IEnumerable<XDocument>> GetXmlFromTextFieldAsync()
         {
             var data = richTextRawData.Text;
-            return await Service.ConvertRawDataToXmlAsync(data);
+            var rawDatas = Spliter.Split(data);
+            var xmls = new List<XDocument>();
+            foreach (var raw in rawDatas)
+            {
+                if (!String.IsNullOrWhiteSpace(raw))
+                {
+                    var xml = await Service.ConvertRawDataToXmlAsync(raw);
+                    xmls.Add(xml);
+                }
+            }
+            return xmls;
         }
 
         protected virtual async void btnImport_Click(object sender, EventArgs e)
