@@ -142,7 +142,7 @@
     <value>Rất tiếc! Thanh toán qua {0} không hoạt động. Hiện tại, chỉ phương thức 'Tài khoản người chơi 12BET' được hỗ trợ. Vui lòng &lt;a href='{1}'&gt;nhấp vào đây&lt;/a&gt; để thực hiện thay đổi.</value>
   </data>
   <data name="PaymentPayoutTimeInvalid" xml:space="preserve">
-    <value>Bạn có thể yêu cầu rút tiền từ ngày 8 đến 15 vào mỗi tháng.</value>
+    <value>Bạn có thể yêu cầu rút tiền từ ngày 10 đến 15 vào mỗi tháng.</value>
   </data>
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>Địa chỉ bạn đã sử dụng để yêu cầu mật khẩu mới không hợp lệ.</value>
