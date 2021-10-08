@@ -211,7 +211,12 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             foreach (var data in datas)
             {
                 richTextRawData.AppendText($"{data}\n");
+                AppendSpilter();
             }
+        }
+
+        protected virtual void AppendSpilter()
+        {
         }
 
         private void ToggleButton(bool toggle)
