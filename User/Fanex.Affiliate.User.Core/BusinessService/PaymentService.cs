@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class PaymentService : IPaymentService
     {
-        private const int BeginDay = 10;
+        private const int BeginDay = 8;
         private const int EndDay = 15;
 
         private readonly IAccountRepository _accountRepository;

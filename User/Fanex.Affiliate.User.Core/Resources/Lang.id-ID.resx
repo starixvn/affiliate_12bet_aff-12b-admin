@@ -1225,7 +1225,7 @@
     <value>Permintaan pembayaran Anda sudah berhasil diajukan!</value>
   </data>
   <data name="PayoutTime" xml:space="preserve">
-    <value>Anda hanya bisa meminta pembayaran dari tanggal 10 - 15 dalam bulan.</value>
+    <value>Anda hanya bisa meminta pembayaran dari tanggal 8 - 15 dalam bulan.</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Tertunda</value>
@@ -2233,5 +2233,4 @@
   </data>
   <data name="BeOurAffThisMonth" xml:space="preserve">
     <value>Jadilah  Afiliasi 12BET bulan ini &amp; nikmati komisi hingga 40% + ekstra 12%! Klik selengkapnya!</value>
-  </data>
-</root>
+  </data></root>

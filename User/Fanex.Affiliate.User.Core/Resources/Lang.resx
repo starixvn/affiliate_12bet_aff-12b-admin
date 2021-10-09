@@ -1312,7 +1312,7 @@
     <value>Your payment request has been submitted successfully!</value>
   </data>
   <data name="PayoutTime" xml:space="preserve">
-    <value>You can only request payout from 10th to 15th of the month.</value>
+    <value>You can only request payout from 8th to 15th of the month.</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Pending</value>
@@ -2393,5 +2393,4 @@
   </data>
   <data name="BeOurAffThisMonth" xml:space="preserve">
     <value>Be Our Affiliate partner this month &amp; Enjoy commissions up to 40% + Extra 12%! Click for more details!</value>
-  </data>
-</root>
+  </data></root>

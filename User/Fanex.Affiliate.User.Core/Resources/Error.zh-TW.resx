@@ -142,7 +142,7 @@
     <value>非常抱歉，{0}支付方式暫不可用。&lt;a href='{1}'&gt;請點擊這裡&lt;/a&gt;改選“12BET玩家帳戶”支付。</value>
   </data>
   <data name="PaymentPayoutTimeInvalid" xml:space="preserve">
-    <value>每月10號至15號為申請提款時間.</value>
+    <value>每月8號至15號為申請提款時間.</value>
   </data>
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>您用於申請新密碼的地址無效</value>

@@ -1225,7 +1225,7 @@
     <value>Yêu cầu thanh toán của bạn đã được gửi thành công!</value>
   </data>
   <data name="PayoutTime" xml:space="preserve">
-    <value>Bạn có thể yêu cầu rút tiền từ ngày 10 đến 15 vào mỗi tháng.</value>
+    <value>Bạn có thể yêu cầu rút tiền từ ngày 8 đến 15 vào mỗi tháng.</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Đang chờ</value>
@@ -2221,8 +2221,7 @@
   </data>
   <data name="Product12JASPER" xml:space="preserve">
     <value>12JASPER (N2 LIVE)</value>
-  </data>
-  <data name="Promotion" xml:space="preserve">
+  </data>  <data name="Promotion" xml:space="preserve">
     <value>KHUYẾN MÃI</value>
   </data>
   <data name="ExtraCommission" xml:space="preserve">
@@ -2230,5 +2229,4 @@
   </data>
   <data name="BeOurAffThisMonth" xml:space="preserve">
     <value>Hãy trở thành Đại lý của chúng tôi trong tháng này &amp; Hưởng hoa hồng lên đến 40% + thêm 12%! Chi Tiết!</value>
-  </data>
-</root>
+  </data></root>

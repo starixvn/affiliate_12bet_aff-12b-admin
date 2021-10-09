@@ -1223,7 +1223,7 @@
     <value>การขอถอนเงินของคุณได้ทำการเสนอเสร็จสมบูรณ์แล้ว</value>
   </data>
   <data name="PayoutTime" xml:space="preserve">
-    <value>คุณจะสามารถถอนเงินได้ระหว่างวันที่ 10 ถึงวันที่ 15 ของเดือนเท่านั้น</value>
+    <value>คุณจะสามารถถอนเงินได้ระหว่างวันที่ 8 ถึงวันที่ 15 ของเดือนเท่านั้น</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>รายการที่ได้รับแจ้ง</value>
@@ -2228,5 +2228,4 @@
   </data>
   <data name="BeOurAffThisMonth" xml:space="preserve">
     <value>ร่วมเป็นพันธมิตรกับบริษัทของเราในเดือนนี้เพื่อรับค่าคอมมิชชั่นสูงถึง 40% + พิเศษเพิ่มให้อีก 12%! คลิกเพื่อดูรายละเอียดเพิ่มเติม!</value>
-  </data>
-</root>
+  </data></root>

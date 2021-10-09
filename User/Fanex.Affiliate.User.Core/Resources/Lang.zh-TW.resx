@@ -1222,7 +1222,7 @@
     <value>您的支付申請已經成功提交！</value>
   </data>
   <data name="PayoutTime" xml:space="preserve">
-    <value>每月10號至15號為申請提款時間.</value>
+    <value>每月8號至15號為申請提款時間.</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>等待</value>
