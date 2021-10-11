@@ -85,7 +85,7 @@ namespace Fanex.Affiliate.DataService.Importer.Skywind
         {
             return new NameValueCollection(5)
             {
-                { "offset", (offset * 2000).ToString() },
+                { "offset", (offset * 100).ToString() },
                 { "limit", param.Limit },
                 { "sortBy", param.SortBy },
                 { "ts__gte", param.FromDate },
