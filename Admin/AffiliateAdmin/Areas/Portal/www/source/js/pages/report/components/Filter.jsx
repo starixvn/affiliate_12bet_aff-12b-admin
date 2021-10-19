@@ -286,7 +286,7 @@ export class Filter extends PureComponent {
         const nowMonth = this.now.getMonth() + 1;
         const nowYear = this.now.getFullYear();
 
-        if (maxToYear > nowYear || actualMaxMonth > nowMonth && maxToYear === nowYear) {
+        if (maxToYear > nowYear || (maxToMonth > nowMonth && maxToYear === nowYear)) {
             actualMaxMonth = nowMonth;
             maxToYear = nowYear;
         }
