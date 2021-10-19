@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest
 {
-    public class ProcessingRequestBaseParam
+    public class ProcessingRequestBaseParam : UserInfoParam
     {
-        public int UserId { get; set; }
-
         public DateTime DeadLine { get; set; }
 
         public string Status { get; set; }
@@ -53,8 +47,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest
         public string BankAccountName { get; set; }
 
         public string BankAccountNo { get; set; }
-
-        public string Ip { get; set; }
 
         public string Language { get; set; }
     }

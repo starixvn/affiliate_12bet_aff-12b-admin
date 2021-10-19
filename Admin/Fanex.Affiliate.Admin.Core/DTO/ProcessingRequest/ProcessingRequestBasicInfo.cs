@@ -1,9 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest
 {
