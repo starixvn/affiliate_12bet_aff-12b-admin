@@ -20,7 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         {
             PermissionName = permissionName;
         }
-
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             var context = filterContext.HttpContext;

@@ -10,7 +10,12 @@ exports[`admin info - components - PersonalPermissionTable render correctly 1`] 
     Personal Permission
   </strong>
   <div
-    className="table-responsive table-striped my-3"
+    className="table-responsive table-striped my-3 permission-data"
+    style={
+      Object {
+        "maxHeight": 493,
+      }
+    }
   >
     <Table
       className="permission-popup-data-table"
@@ -18,6 +23,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly 1`] 
       tag="table"
     >
       <thead
+        className="permission-table-header"
         key="thead"
       >
         <tr>
@@ -248,7 +254,12 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
     </FormGroup>
   </Form>
   <div
-    className="table-responsive table-striped my-3"
+    className="table-responsive table-striped my-3 permission-data"
+    style={
+      Object {
+        "maxHeight": 493,
+      }
+    }
   >
     <Table
       className="permission-popup-data-table"
@@ -256,6 +267,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
       tag="table"
     >
       <thead
+        className="permission-table-header"
         key="thead"
       >
         <tr>
@@ -553,7 +565,12 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
     Personal Permission
   </strong>
   <div
-    className="table-responsive table-striped my-3"
+    className="table-responsive table-striped my-3 permission-data"
+    style={
+      Object {
+        "maxHeight": 493,
+      }
+    }
   >
     <Table
       className="permission-popup-data-table"
@@ -561,6 +578,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
       tag="table"
     >
       <thead
+        className="permission-table-header"
         key="thead"
       >
         <tr>
@@ -602,7 +620,7 @@ exports[`admin info - components - PersonalPermissionTable render correctly with
         >
           <td
             className="text-center"
-            colSpan="6"
+            colSpan="8"
           >
             There is no information available
           </td>

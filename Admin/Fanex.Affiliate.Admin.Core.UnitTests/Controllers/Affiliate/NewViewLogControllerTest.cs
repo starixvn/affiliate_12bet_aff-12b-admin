@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var viewName = viewResult.ViewName;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/Affiliate/NewViewLog.cshtml", viewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/Index.cshtml", viewName);
         }
 
         [Fact]

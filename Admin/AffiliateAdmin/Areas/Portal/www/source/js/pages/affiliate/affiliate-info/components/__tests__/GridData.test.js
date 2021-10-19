@@ -21,6 +21,7 @@ describe('affiliate info - GridData ', () => {
         Member: 6,
         IsFavorite: false,
         IsClosed: false,
+        ProcessingStatus: '0/0/0/0',
         RegistrationDateText: "05/22/2008 06:49:00",
         ApprovalDateText: "05/22/2008 06:50:00",
         CasinoDateText: "05/23/2014"
@@ -332,6 +333,7 @@ describe('affiliate info - GridData ', () => {
             Member: null,
             IsFavorite: true,
             IsClosed: false,
+            ProcessingStatus: '0/0/0/0',
             RegistrationDateText: "05/22/2008 06:49:00",
             ApprovalDateText: "05/22/2008 06:50:00",
             CasinoDateText: "05/23/2014"

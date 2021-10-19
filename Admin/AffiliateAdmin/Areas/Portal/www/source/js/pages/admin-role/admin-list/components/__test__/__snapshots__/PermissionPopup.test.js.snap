@@ -68,6 +68,7 @@ exports[`admin list - components - PermissionPopup render correctly 1`] = `
             tag="table"
           >
             <thead
+              className="permission-table-header"
               key="thead"
             >
               <tr>
@@ -336,6 +337,7 @@ exports[`admin list - components - PermissionPopup render correctly with data em
             tag="table"
           >
             <thead
+              className="permission-table-header"
               key="thead"
             >
               <tr>
@@ -467,6 +469,7 @@ exports[`admin list - components - PermissionPopup render correctly with data ha
             tag="table"
           >
             <thead
+              className="permission-table-header"
               key="thead"
             >
               <tr>

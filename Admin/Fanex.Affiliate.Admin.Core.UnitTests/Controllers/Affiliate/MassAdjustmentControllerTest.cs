@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var viewName = viewResult.ViewName;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/Affiliate/MassAdjustment.cshtml", viewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/Index.cshtml", viewName);
         }
 
         [Fact]

@@ -120,23 +120,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void UpdateUserAccount_WhenCallWithValidParam_ExcuteSuccessfullyWithContactAppListIsNull()
+        public void UpdateUserAccount_WhenCallWithValidParam_ReturnErrorWhenContactAppListIsNull()
         {
             // Arrange
             var param = GetUserAccountParam();
             param.ContactAppList = null;
-            UserAccountParam passedParam = null;
-            var userAccountService = new Mock<IUserAccountService>();
-            userAccountService.Setup(s => s.UpdateUserAccount(It.IsAny<UserAccountParam>())).Returns(new ResultInfo()).Callback<UserAccountParam>(p => passedParam = p);
-            var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
+            var controller = CreateUserAccountController();
 
             // Action
             var result = controller.UpdateUserAccount(param) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert
-            Assert.True(data.IsSuccessful);
-            Assert.Equal(param.AffId, passedParam.AffId);
+            Assert.False(data.IsSuccessful);
+            Assert.Equal("At least one IM account is required!", data.Message);
         }
 
         [Fact]

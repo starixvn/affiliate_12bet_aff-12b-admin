@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`affiliate - index Should render correctly 1`] = `
-<BrowserRouter>
+<BrowserRouter
+  forceRefresh={true}
+>
   <Memo(MenuList)
     img="Areas/Portal/www/dist/imgs/i_affiliateslist.png"
     menus={
@@ -29,6 +31,10 @@ exports[`affiliate - index Should render correctly 1`] = `
         Object {
           "href": "/Portal/ViewLog",
           "label": "View Log",
+        },
+        Object {
+          "href": "/Portal/ProcessingRequest",
+          "label": "Processing Request",
         },
       ]
     }
@@ -108,6 +114,18 @@ exports[`affiliate - index Should render correctly 1`] = `
         }
         key="route_5"
         path="/Portal/ViewLog"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_6"
+        path="/Portal/ProcessingRequest"
       />
       <Redirect
         from="/"

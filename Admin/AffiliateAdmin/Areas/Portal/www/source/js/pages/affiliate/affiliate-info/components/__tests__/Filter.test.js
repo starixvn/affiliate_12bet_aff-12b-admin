@@ -164,6 +164,7 @@ describe('affiliate info - Filter ', () => {
             Status: '',
             UserName: '',
             Email: '',
+            ProcessingStatus: '',
             SortBy: 1,
             IsFromHome: false,
             SortDirectionType: false
@@ -204,7 +205,7 @@ describe('affiliate info - Filter ', () => {
 
     it('buildReportTitle - should return correct string with correct parameter', () => {
         const componentInstance = new Filter(defaultProps);
-        const result = componentInstance._buildReportTitle('', '', '', '12BETAFF001', 'walter.tran1@starixsoft.com', 927841);
+        const result = componentInstance._buildReportTitle('', '', '', '', '12BETAFF001', 'walter.tran1@starixsoft.com', 927841);
 
         expect(result).toEqual(`AFFILIATE REPORT - ALL COMM GROUPS - ALL LANGUAGES - ALL STATUSES - USERNAME CONTAINS '12BETAFF001' - EMAIL CONTAINS 'walter.tran1@starixsoft.com' - AFFILIATE ID '927841'`);
     });

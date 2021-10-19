@@ -12,7 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 using Xunit;
 
-namespace Fanex.EmailHistory.Admin.Core.UnitTests.Controllers.EmailHistory
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {
     public class EmailHistoryControllerTest
     {
@@ -27,7 +27,7 @@ namespace Fanex.EmailHistory.Admin.Core.UnitTests.Controllers.EmailHistory
             var viewName = viewResult.ViewName;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/Affiliate/EmailHistory.cshtml", viewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/Index.cshtml", viewName);
         }
 
         [Fact]
