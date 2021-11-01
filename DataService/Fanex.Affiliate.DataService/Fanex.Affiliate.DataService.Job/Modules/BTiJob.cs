@@ -60,8 +60,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
         protected override async Task ImportDataAndTrackImportTime(DateTime startTime, DateTime endTime)
         {
-            var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GMT);
-            var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GMT);
+            var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
+            var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
 
             Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
             await _service.ImportAsync(startTimeServer, endTimeServer);
