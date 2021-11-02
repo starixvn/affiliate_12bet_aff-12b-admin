@@ -46,6 +46,7 @@ describe('affiliate info - Filter - connect', () => {
             groupId: 123,
             isShowEmailFilter: true,
             isShowAccStatusFilter: true,
+            isShowProcessingStatusFilter: true,
             isShowCommFilter: true,
             isShowLangFilter: true,
             columnList: [1, 2, 3]
@@ -57,6 +58,7 @@ describe('affiliate info - Filter - connect', () => {
             param: { abc: 123 },
             groupId: 123,
             columnList: [1, 2, 3],
+            isShowProcessingStatusFilter: true,
             claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };

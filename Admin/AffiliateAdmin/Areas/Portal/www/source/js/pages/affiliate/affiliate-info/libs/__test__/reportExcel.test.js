@@ -38,6 +38,7 @@ describe('affiliate info - Report Excel ', () => {
         Member: 6,
         IsFavorite: true,
         IsClosed: false,
+        ProccessingStatus: '0/0/0/0',
         RegistrationDateText: "05/22/2008 06:49:00",
         ApprovalDateText: "05/22/2008 06:50:00",
         CasinoDateText: "05/23/2014"
@@ -58,6 +59,7 @@ describe('affiliate info - Report Excel ', () => {
         Member: null,
         IsFavorite: true,
         IsClosed: false,
+        ProccessingStatus: '0/0/0/0',
         RegistrationDateText: "05/22/2008 06:49:00",
         ApprovalDateText: "05/22/2008 06:50:00",
         CasinoDateText: "05/23/2014"
@@ -113,7 +115,7 @@ describe('affiliate info - Report Excel ', () => {
 
         instance._createHeader();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(17);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(16);
 
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": HEADER_ROW_INDEX });
@@ -131,7 +133,6 @@ describe('affiliate info - Report Excel ', () => {
         expect(Excel.getCellAddress.mock.calls[13][0]).toEqual({ "c": 13, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[14][0]).toEqual({ "c": 14, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[15][0]).toEqual({ "c": 15, "r": HEADER_ROW_INDEX });
-        expect(Excel.getCellAddress.mock.calls[16][0]).toEqual({ "c": 16, "r": HEADER_ROW_INDEX });
     });
 
     it('_createHeader - not call Excel.getCellAddress', () => {
@@ -152,16 +153,16 @@ describe('affiliate info - Report Excel ', () => {
 
         instance._createBodyData();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(17);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(16);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": 0, "r": 2 });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": 1, "r": 2 });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": 2, "r": 2 });
         expect(Excel.getCellAddress.mock.calls[3][0]).toEqual({ "c": 3, "r": 2 });
         expect(Excel.getCellAddress.mock.calls[4][0]).toEqual({ "c": 4, "r": 2 });
         expect(Excel.getCellAddress.mock.calls[5][0]).toEqual({ "c": 5, "r": 2 });
-        expect(Excel.getCellAddress.mock.calls[16][0]).toEqual({ "c": 16, "r": 2 });
+        expect(Excel.getCellAddress.mock.calls[15][0]).toEqual({ "c": 15, "r": 2 });
 
-        expect(instance._buildDataRow).toHaveBeenCalledTimes(17);
+        expect(instance._buildDataRow).toHaveBeenCalledTimes(16);
         expect(instance._buildDataRow.mock.calls[0][0]).toBe(item);
         expect(instance._buildDataRow.mock.calls[0][1]).toBe(MAIN_SECTION_STYLE);
         expect(instance._buildDataRow.mock.calls[0][2]).toEqual({ field: "Index", mainSectionStyle: { alignment: { horizontal: "right", vertical: "center" }}, width: 70});
@@ -172,10 +173,10 @@ describe('affiliate info - Report Excel ', () => {
         expect(instance._buildDataRow.mock.calls[1][2]).toEqual({ field: "UserName", mainSectionStyle: { alignment: { horizontal: "left", vertical: "center" }}, width: 200});
         expect(instance._buildDataRow.mock.calls[1][3]).toBe(0);
 
-        expect(instance._buildDataRow.mock.calls[16][0]).toBe(item);
-        expect(instance._buildDataRow.mock.calls[16][1]).toBe(MAIN_SECTION_STYLE);
-        expect(instance._buildDataRow.mock.calls[16][2]).toEqual({ field: "Member", mainSectionStyle: { alignment: { horizontal: "right", vertical: "center" }}, width: 150});
-        expect(instance._buildDataRow.mock.calls[16][3]).toBe(0);
+        expect(instance._buildDataRow.mock.calls[15][0]).toBe(item);
+        expect(instance._buildDataRow.mock.calls[15][1]).toBe(MAIN_SECTION_STYLE);
+        expect(instance._buildDataRow.mock.calls[15][2]).toEqual({ field: "PlayerCurrency", mainSectionStyle: { alignment: { horizontal: "left", vertical: "center" }}, width: 140});
+        expect(instance._buildDataRow.mock.calls[15][3]).toBe(0);
     });
 
     it('_createBodyData - should call _buildDataRow, Excel.getCellAddress', () => {

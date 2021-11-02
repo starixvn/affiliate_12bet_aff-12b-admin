@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest
 {
-    public class ProcessingRequestDelParam
+    public class ProcessingRequestDelParam : UserInfoParam
     {
         public int RequestId { get; set; }
-
-        public int UserId { get; set; }
-
-        public string Ip { get; set; }
 
         public string Language { get; set; }
     }

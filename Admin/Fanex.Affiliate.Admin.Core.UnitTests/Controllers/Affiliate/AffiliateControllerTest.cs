@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var viewName = viewResult.ViewName;
 
             // Assert
-            Assert.Equal("", viewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/AffiliateInfo.cshtml", viewName);
         }
 
         [Fact]

@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 Data = new ResultInfo
                 {
-                    Code = 500,
+                    Code = Code.GeneralErrorCode,
                     Message = string.Join("---", msg)
                 }
             };
@@ -122,7 +122,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     {
                         Data = new ResultInfo
                         {
-                            Code = 403,
+                            Code = Code.ErrCodeAccessDenied,
                             Message = "Not have permission"
                         }
                     };
@@ -133,7 +133,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 Data = new ResultInfo
                 {
-                    Code = 500,
+                    Code = Code.GeneralErrorCode,
                     Message = string.Join("---", msg)
                 }
             };

@@ -955,7 +955,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
         ]
       }
       bodyHeight={300}
-      containerPadding={20}
+      containerPadding={70}
       header={
         Array [
           <t>
@@ -1192,7 +1192,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
         ]
       }
       bodyHeight={300}
-      containerPadding={20}
+      containerPadding={70}
       header={
         Array [
           <t>
@@ -1658,7 +1658,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
         ]
       }
       bodyHeight={300}
-      containerPadding={20}
+      containerPadding={70}
       header={
         Array [
           <t>

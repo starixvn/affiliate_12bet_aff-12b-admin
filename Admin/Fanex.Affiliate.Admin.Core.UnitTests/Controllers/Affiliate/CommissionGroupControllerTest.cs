@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var model = viewResult.Model as CommissionGroupViewModel;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/Affiliate/CommissionGroup.cshtml", viewName);
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/Index.cshtml", viewName);
             Assert.Single(model.ProductList);
             Assert.Single(model.DeductionList);
         }
