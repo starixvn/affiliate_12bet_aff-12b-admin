@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 
         IList<string> ProductListHaveDailyJob { get; }
 
+        IList<string> ProductListHaveMonthlyJob { get; }
+
         string GetValue(string key);
     }
 }

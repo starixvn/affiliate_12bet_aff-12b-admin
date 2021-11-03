@@ -12,6 +12,8 @@
 
         public IList<string> ProductListHaveDailyJob => GetValue("ProductListHaveDailyJob").Split(new [] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
+        public IList<string> ProductListHaveMonthlyJob => GetValue("ProductListHaveMonthlyJob").Split(new [] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }
