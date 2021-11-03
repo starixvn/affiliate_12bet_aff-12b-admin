@@ -3,6 +3,7 @@ using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.Services;
 using Quartz;
 using System;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
@@ -32,6 +33,13 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var endTime = new DateTime(now.Year, now.Month, 1, 0, 0, 0);
 
             return endTime;
+        }
+
+        protected override async Task ImportDataAndTrackImportTime(DateTime startTime, DateTime endTime)
+        {
+            Logger.Info($"{ServiceName} - Get data from {startTime} to {endTime}");
+            await _service.ImportAsync(startTime, endTime);
+            Logger.Info($"{ServiceName} - Finished get data");
         }
     }
 }

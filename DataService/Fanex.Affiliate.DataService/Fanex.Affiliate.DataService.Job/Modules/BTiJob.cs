@@ -16,8 +16,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
     public class BTiJob : NewApiJobBase
     {
         private readonly IAppSettings _appSetting;
-        private readonly IImporterService _service;
-        private readonly ITimeTracker _timeTracker;
+        protected readonly IImporterService _service;
+        protected readonly ITimeTracker _timeTracker;
 
         public BTiJob() : this(null, null, null)
         { }
