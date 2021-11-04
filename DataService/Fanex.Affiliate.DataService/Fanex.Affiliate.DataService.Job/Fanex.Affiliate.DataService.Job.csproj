@@ -94,18 +94,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\DateTimeConfig.cs" />
     <Compile Include="Constants\JobSystem.cs" />
     <Compile Include="Constants\ServiceMapping.cs" />
     <Compile Include="Log\ILogWrapper.cs" />
     <Compile Include="Log\LoggerFactory.cs" />
     <Compile Include="Log\LogLevel.cs" />
     <Compile Include="Log\LogWrapperManager.cs" />
-    <Compile Include="Modules\BTiMonthlyJob.cs" />
-    <Compile Include="Modules\BTiMonthlyScheduler.cs" />
-    <Compile Include="Modules\SkywindMonthlyJob.cs" />
+    <Compile Include="Modules\BTiDailyJob.cs" />
+    <Compile Include="Modules\BTiDailyScheduler.cs" />
+    <Compile Include="Modules\SkywindDailyJob.cs" />
     <Compile Include="Modules\SkywindJob.cs" />
     <Compile Include="Modules\BTiJob.cs" />
-    <Compile Include="Modules\SkywindMonthlyScheduler.cs" />
+    <Compile Include="Modules\SkywindDailyScheduler.cs" />
     <Compile Include="Modules\SkywindScheduler.cs" />
     <Compile Include="Modules\BTiScheduler.cs" />
     <Compile Include="Modules\IMEsportJob.cs" />

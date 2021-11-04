@@ -43,12 +43,6 @@ namespace Fanex.Affiliate.DataService.Job
                     {
                         _jobSchedulerList.Add(JobSystem.JobHandlerList[dailyJobKey].Value);
                     }
-
-                    var monthlyJobKey = $"{product}Monthly";
-                    if (appSetting.ProductListHaveMonthlyJob.Contains(product) && JobSystem.JobHandlerList.ContainsKey(monthlyJobKey))
-                    {
-                        _jobSchedulerList.Add(JobSystem.JobHandlerList[monthlyJobKey].Value);
-                    }
                 }
             }
         }
