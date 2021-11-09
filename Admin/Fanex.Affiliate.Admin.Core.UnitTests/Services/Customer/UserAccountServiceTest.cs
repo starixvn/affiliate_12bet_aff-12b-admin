@@ -109,8 +109,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             Assert.Equal("Please describe how you would like to promote 12Bet if you don't have the URL is required", result.Message);
         }
 
-        [Fact]
-        public void UpdateUserAccount_WhenCallWithInvalidPaymentMethod_ReturnError()
+        [Theory]
+        [InlineData("")]
+        [InlineData("abc")]
+        public void UpdateUserAccount_WhenCallWithInvalidPaymentMethod_ReturnError(string bankName)
         {
             // Arrange
             var param = new UserAccountParam
@@ -134,7 +136,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
                 NoSiteDescription = "test",
                 NetellerAccountId = "1",
                 MoneybookersEmail = "abc@gmail.com",
-                BankName = "",
+                BankName = bankName,
                 BankAddress = "",
                 BankCode = "",
                 BankAccountName = "",
@@ -203,8 +205,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
                 Country = "Viet Nam",
                 MoreSiteUrls = "www.sportsbookie.com",
                 SiteUrl = "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
-                PreferredPayment = "Wire",
-                PlayerUsername = PaymentMethod.Wire,
+                PreferredPayment = PaymentMethod.Player,
+                PlayerUsername = "bettingexp",
                 NoSiteDescription = "test",
                 NetellerAccountId = "1",
                 MoneybookersEmail = "abc@gmail.com",

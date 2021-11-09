@@ -36,6 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Assert
             Assert.Equal("12BETAFF226", item.AffName);
+            Assert.Null(item.ContactAppList);
         }
 
         [Fact]
@@ -53,6 +54,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Assert
             Assert.Equal("12BETAFF226", item.AffName);
             Assert.Single(item.ContactAppList);
+        }
+
+        [Fact]
+        public void GetAffiliateInfo_WhenCallWithValidParam_ReturnNull()
+        {
+            // Arrange
+            var controller = CreateCustomerLeftPanelController();
+
+            // Action
+            var result = controller.GetAffiliateInfo("12BETAFF226") as JsonNetResult;
+
+            // Assert
+            Assert.Null(result.Data);
         }
 
         [Fact]
