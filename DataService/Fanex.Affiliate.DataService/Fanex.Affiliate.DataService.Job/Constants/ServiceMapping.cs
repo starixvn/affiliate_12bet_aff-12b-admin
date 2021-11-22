@@ -18,7 +18,9 @@ namespace Fanex.Affiliate.DataService.Job.Constants
             {"LBKeno", "Fanex.Affiliate.DataService.Job.Modules.LBKenoJob" },
             {"KYGaming", "Fanex.Affiliate.DataService.Job.Modules.KYGamingJob" },
             {"BTi", "Fanex.Affiliate.DataService.Job.Modules.BTiJob" },
-            {"Skywind", "Fanex.Affiliate.DataService.Job.Modules.Skywind" },
+            {"Skywind", "Fanex.Affiliate.DataService.Job.Modules.SkywindJob" },
+            {"BTiDaily", "Fanex.Affiliate.DataService.Job.Modules.BTiDailyJob" },
+            {"SkywindDaily", "Fanex.Affiliate.DataService.Job.Modules.SkywindDailyJob" },
             {"CrystalGpiDaily", "Fanex.Affiliate.DataService.Job.Modules.CrystalGpiDailyJob" },
             {"ISoftbetDaily", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetDailyJob" },
         };

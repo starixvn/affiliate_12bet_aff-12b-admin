@@ -26,8 +26,10 @@ namespace Fanex.Affiliate.DataService.Job.Constants
                     { "LBKeno", new Lazy<IJobScheduler>(() => new LBKenoScheduler()) },
                     { "KYGaming", new Lazy<IJobScheduler>(() => new KYGamingScheduler()) },
                     { "BTi", new Lazy<IJobScheduler>(() => new BTiScheduler()) },
+                    { "BTiDaily", new Lazy<IJobScheduler>(() => new BTiDailyScheduler()) },
                     { "IMEsport", new Lazy<IJobScheduler>(() => new IMEsportScheduler()) },
-                    { "Skywind", new Lazy<IJobScheduler>(() => new SkywindScheduler()) }
+                    { "Skywind", new Lazy<IJobScheduler>(() => new SkywindScheduler()) },
+                    { "SkywindDaily", new Lazy<IJobScheduler>(() => new SkywindDailyScheduler()) }
                 };
             }
         }

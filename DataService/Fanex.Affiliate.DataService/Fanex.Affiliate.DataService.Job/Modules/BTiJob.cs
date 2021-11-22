@@ -16,8 +16,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
     public class BTiJob : NewApiJobBase
     {
         private readonly IAppSettings _appSetting;
-        private readonly IImporterService _service;
-        private readonly ITimeTracker _timeTracker;
+        protected readonly IImporterService _service;
+        protected readonly ITimeTracker _timeTracker;
 
         public BTiJob() : this(null, null, null)
         { }
@@ -60,8 +60,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
         protected override async Task ImportDataAndTrackImportTime(DateTime startTime, DateTime endTime)
         {
-            var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GMT);
-            var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GMT);
+            var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
+            var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
 
             Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
             await _service.ImportAsync(startTimeServer, endTimeServer);
