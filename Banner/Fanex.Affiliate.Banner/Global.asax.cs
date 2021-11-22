@@ -1,17 +1,14 @@
 ﻿namespace Affiliate.Banner
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
     using App_Start;
     using Fanex.Data.Configuration;
-    using Fanex.Logging;
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Reviewed. Suppression is OK here.")]
         protected void Application_Start()
         {
             DbSettingProviderManager.Current.Start();
@@ -19,6 +16,7 @@
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            LoggingConfig.RegisterSentry();
         }
 
         /// <summary>
@@ -34,8 +32,8 @@
                 return;
             }
 
-            var message = exception.Message + Environment.NewLine + exception.StackTrace;
-            LogService.Error("Affiliate Media Error!" + Environment.NewLine + message + Environment.NewLine + Request.Url);
+            //var message = exception.Message + Environment.NewLine + exception.StackTrace;
+            //LogService.Error("Affiliate Media Error!" + Environment.NewLine + message + Environment.NewLine + Request.Url);
         }
     }
 }
