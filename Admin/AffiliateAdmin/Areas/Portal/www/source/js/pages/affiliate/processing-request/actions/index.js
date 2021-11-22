@@ -74,11 +74,11 @@ export const fetchData = (param) => async (dispatch) => {
     const url = 'Portal/ProcessingRequest/GetProcessingRequestList';
     const response = await post(url, param);
 
-    const data = response && response.status === 200 ? response.data : null;
+    const data = response && response.status === 200 ? response.data : { MainData: [], TotalItem: 0, Summary: null };
 
-    dispatch(setGridData(data ? data.MainData : []));
-    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
-    dispatch(setProcRequestSummary(data ? data.Summary : null));
+    dispatch(setGridData(data.MainData));
+    dispatch(setPagingOption({ TotalItem: data.TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize }));
+    dispatch(setProcRequestSummary(data.Summary));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
 }

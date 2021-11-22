@@ -58,11 +58,11 @@ const validateMaxLength = (selectedRequest) => {
     return {isValid, messageList};
 }
 
-export const validateDeadline = (selectedRequest, currentDate) => {
+export const validateDeadline = (selectedRequest, currentDate, today) => {
     let isHasDeadLine = !!currentDate;
     let isValid = true;
     const messageList = [];
-    const now = new Date();
+    const now = new Date(today);
     now.setDate(now.getDate() - 1)
     const deadline = selectedRequest && selectedRequest.Deadline;
     if (!deadline)

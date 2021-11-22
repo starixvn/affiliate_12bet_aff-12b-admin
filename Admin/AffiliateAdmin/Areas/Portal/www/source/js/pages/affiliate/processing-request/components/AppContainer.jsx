@@ -6,9 +6,6 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
-// import { setShowPopupPassword } from '../actions'
-
-import { convertArrayToObjectProps } from '../../../../modules/utils';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -27,8 +24,8 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ isShowLoader, affId }) {
-    return Object.assign({}, { isShowLoader, affId });
+function mapStateToProps({ isShowLoader }) {
+    return Object.assign({}, { isShowLoader });
 }
 
 function mapDispatchToProps(dispatch) {

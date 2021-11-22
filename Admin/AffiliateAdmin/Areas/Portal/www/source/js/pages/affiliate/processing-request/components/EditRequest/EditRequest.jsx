@@ -6,7 +6,6 @@ import { setSelectedRequest, setSelectedRequestId, getProcessingRequestDetail, f
 import { playerMethod, wireMethod, resource, statusList } from '../../libs/constants';
 import { trimText } from '../../../../../modules/htmlHelper';
 import { formatDateTime } from '../../../../../modules/utils';
-import { selectedRequestId } from '../../reducers';
 import { validate, validateDeadline } from '../../libs/service';
 
 const paymentMethodList = [
@@ -110,14 +109,16 @@ export class EditRequest extends React.PureComponent {
     validateRequire = (text) => !text;
 
     validateDeadline = (selectedRequest, currentDate) => {
-        var result = validateDeadline(selectedRequest, currentDate);
+        const { today } = this.props;
+        const result = validateDeadline(selectedRequest, currentDate, today);
+
         return result.isValid;
     }
 
     renderTextArea = (fieldName, labelName, value, isReadOnly, isRequired) => {
         const {isSubmit } = this.state;
         var text = trimText(value);
-        const classRequired = isRequired && "required";
+        const classRequired = isRequired ? "required" : "";
         return (
             <FormGroup row>
                 <Label sm={3} for={fieldName} className={classRequired}>{labelName}</Label>
@@ -126,7 +127,7 @@ export class EditRequest extends React.PureComponent {
                         invalid={isSubmit && (this.validateMaxLength(text, 1000) || (isRequired && this.validateRequire(text)))}
                         required={isRequired}
                         disabled={isReadOnly}>
-                            
+
                         </Input>
                     {isRequired && isSubmit && this.validateRequire(text) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
                     {this.validateMaxLength(text, 1000) && <FormFeedback>{resource.ExceedMaxLength + ' 1000'}</FormFeedback>}
@@ -262,7 +263,7 @@ export class EditRequest extends React.PureComponent {
                             <Label sm={3} className='required pt-0' for="Deadline">Deadline</Label>
                             <Col sm={3}>
                                 <Input type='date' id='Deadline' name='Deadline' value={deadline} className='remove-background'
-                                    invalid={isSubmit && (this.validateRequire(selectedRequest && selectedRequest.Deadline) || !this.validateDeadline(selectedRequest, currentDeadline))} 
+                                    invalid={isSubmit && (this.validateRequire(selectedRequest && selectedRequest.Deadline) || !this.validateDeadline(selectedRequest, currentDeadline))}
                                     onChange={this.handleChange} disabled={isReadOnly}></Input>
                                 {isSubmit && this.validateRequire(selectedRequest && selectedRequest.Deadline) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
                                 {isSubmit && !this.validateRequire(selectedRequest && selectedRequest.Deadline) && !this.validateDeadline(selectedRequest, currentDeadline) && <FormFeedback>{resource.InvalidDeadline}</FormFeedback>}
@@ -277,8 +278,8 @@ export class EditRequest extends React.PureComponent {
     }
 }
 
-function mapStateToProp({ selectedRequest, selectedRequestId, languageList, originalData, pagingOption, param }) {
-    return { selectedRequest, selectedRequestId, languageList, originalData, pagingOption, param };
+function mapStateToProp({ today, selectedRequest, selectedRequestId, languageList, originalData, pagingOption, param }) {
+    return { today, selectedRequest, selectedRequestId, languageList, originalData, pagingOption, param };
 }
 
 function mapDispatchToProps(dispatch) {

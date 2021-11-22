@@ -1,0 +1,2771 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`processing request - components - EditRequest -  _renderPaymentForm - shoud render correctly when required 1`] = `
+<FormGroup
+  row={true}
+  tag="div"
+>
+  <Label
+    className="required"
+    for="Bank"
+    sm={3}
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Bank
+  </Label>
+  <Col
+    sm={5}
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Input
+      id="Bank"
+      name="Bank"
+      onChange={[MockFunction]}
+      type="text"
+      value="test"
+    />
+  </Col>
+</FormGroup>
+`;
+
+exports[`processing request - components - EditRequest -  render correctly 1`] = `
+<div
+  className="request-container"
+>
+  <Alert
+    closeAriaLabel="Close"
+    color="danger"
+    fade={true}
+    isOpen={false}
+    tag="div"
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }
+  >
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "",
+        }
+      }
+    />
+  </Alert>
+  <Form
+    tag="form"
+  >
+    <FormGroup
+      row={true}
+      tag="div"
+    >
+      <Label
+        className="pt-0"
+        for="UserName"
+        sm={2}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Affiliate 
+      </Label>
+      <Col
+        sm={4}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <b>
+          12BETAFF7451
+        </b>
+      </Col>
+    </FormGroup>
+    <fieldset>
+      <legend>
+        <h6>
+          Player's Details Amendment
+        </h6>
+      </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Language
+        </Label>
+        <Col
+          sm={5}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="MarketId"
+            name="MarketId"
+            onChange={[Function]}
+            type="select"
+            value=""
+          >
+            <option
+              key="status-all"
+              value=""
+            >
+              No change
+            </option>
+            <option
+              key="sortBy-vi-VN"
+              value="vi-VN"
+            >
+              Vietnamese
+            </option>
+            <option
+              key="sortBy-en-GB"
+              value="en-GB"
+            >
+              English (Europe)
+            </option>
+          </Input>
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Payment Method
+        </Label>
+        <Col
+          sm={5}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="preferredPayment"
+            name="PreferredPayment"
+            onChange={[Function]}
+            sm={6}
+            type="select"
+            value=""
+          >
+            <option
+              key="no-change"
+              value=""
+            >
+              No change
+            </option>
+            <option
+              key="PlayerAccount"
+              value="PlayerAccount"
+            >
+              12BET player account
+            </option>
+            <option
+              key="BankTranfer"
+              value="BankTranfer"
+            >
+              Bank Transfer
+            </option>
+          </Input>
+        </Col>
+      </FormGroup>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <h6>
+          Affiliate Promotion Method & Details
+        </h6>
+      </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="PromotionMethod"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Promotion Method
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="PromotionMethod"
+            invalid={false}
+            name="PromotionMethod"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebRank"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Website Rank
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebRank"
+            invalid={false}
+            name="WebRank"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebRegDate"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Website Register Date
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebRegDate"
+            invalid={false}
+            name="WebRegDate"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebSMLanguage"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Website/SM Language
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebSMLanguage"
+            invalid={false}
+            name="WebSMLanguage"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ServerCountry"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Country (Server)
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ServerCountry"
+            invalid={false}
+            name="ServerCountry"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebSMQuality"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Quality of Website/SM
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebSMQuality"
+            invalid={false}
+            name="WebSMQuality"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebSMType"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Type of Website/SM
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebSMType"
+            invalid={false}
+            name="WebSMType"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebAdvAff"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Adv/Aff on the Website/SM
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebAdvAff"
+            invalid={false}
+            name="WebAdvAff"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="TargetMarket"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Target Market
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="TargetMarket"
+            invalid={false}
+            name="TargetMarket"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <h6>
+          Final Verdict by Agent
+        </h6>
+      </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className="required"
+          for="AgentName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Agent Name
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="AgentName"
+            invalid={false}
+            name="AgentName"
+            onChange={[Function]}
+            required={true}
+            type="textarea"
+            value="ss"
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ContactModeTime"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Contactable Mode & Time
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ContactModeTime"
+            invalid={false}
+            name="ContactModeTime"
+            onChange={[Function]}
+            required={false}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          for="Status"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Status
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="Status"
+            name="Status"
+            onChange={[Function]}
+            sm={9}
+            type="select"
+            value="Draft"
+          >
+            <option
+              key="Draft"
+              value="Draft"
+            >
+              Draft
+            </option>
+            <option
+              key="Submitted"
+              value="Submitted"
+            >
+              Submitted
+            </option>
+          </Input>
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className="required pt-0"
+          for="Deadline"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Deadline
+        </Label>
+        <Col
+          sm={3}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            className="remove-background"
+            id="Deadline"
+            invalid={false}
+            name="Deadline"
+            onChange={[Function]}
+            type="date"
+            value="2021-09-23"
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="Remark"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Remark
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="Remark"
+            invalid={false}
+            name="Remark"
+            onChange={[Function]}
+            type="textarea"
+            value="s"
+          />
+        </Col>
+      </FormGroup>
+    </fieldset>
+    <button
+      className="my-2 btn btn-success btn-save"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      SAVE
+    </button>
+  </Form>
+</div>
+`;
+
+exports[`processing request - components - EditRequest -  render correctly when insert and clicked submit and deadline is required 1`] = `
+<div
+  className="request-container"
+>
+  <Alert
+    closeAriaLabel="Close"
+    color="success"
+    fade={true}
+    isOpen={false}
+    tag="div"
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }
+  >
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "",
+        }
+      }
+    />
+  </Alert>
+  <Form
+    tag="form"
+  >
+    <FormGroup
+      row={true}
+      tag="div"
+    >
+      <Label
+        className="required pt-0"
+        for="UserName"
+        sm={2}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Affiliate 
+      </Label>
+      <Col
+        sm={4}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          className="remove-background"
+          id="UserName"
+          invalid={true}
+          name="UserName"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+        <FormFeedback
+          tag="div"
+        >
+          This field is required.
+        </FormFeedback>
+      </Col>
+    </FormGroup>
+    <fieldset>
+      <legend>
+        <h6>
+          Player's Details Amendment
+        </h6>
+      </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Language
+        </Label>
+        <Col
+          sm={5}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="MarketId"
+            name="MarketId"
+            onChange={[Function]}
+            type="select"
+            value=""
+          >
+            <option
+              key="status-all"
+              value=""
+            >
+              No change
+            </option>
+            <option
+              key="sortBy-vi-VN"
+              value="vi-VN"
+            >
+              Vietnamese
+            </option>
+            <option
+              key="sortBy-en-GB"
+              value="en-GB"
+            >
+              English (Europe)
+            </option>
+          </Input>
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Payment Method
+        </Label>
+        <Col
+          sm={5}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="preferredPayment"
+            name="PreferredPayment"
+            onChange={[Function]}
+            sm={6}
+            type="select"
+            value=""
+          >
+            <option
+              key="no-change"
+              value=""
+            >
+              No change
+            </option>
+            <option
+              key="PlayerAccount"
+              value="PlayerAccount"
+            >
+              12BET player account
+            </option>
+            <option
+              key="BankTranfer"
+              value="BankTranfer"
+            >
+              Bank Transfer
+            </option>
+          </Input>
+        </Col>
+      </FormGroup>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <h6>
+          Affiliate Promotion Method & Details
+        </h6>
+      </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="PromotionMethod"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Promotion Method
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="PromotionMethod"
+            name="PromotionMethod"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebRank"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Website Rank
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebRank"
+            name="WebRank"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebRegDate"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Website Register Date
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebRegDate"
+            name="WebRegDate"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebSMLanguage"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Website/SM Language
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebSMLanguage"
+            name="WebSMLanguage"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ServerCountry"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Country (Server)
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ServerCountry"
+            name="ServerCountry"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebSMQuality"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Quality of Website/SM
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebSMQuality"
+            name="WebSMQuality"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebSMType"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Type of Website/SM
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebSMType"
+            name="WebSMType"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebAdvAff"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Adv/Aff on the Website/SM
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebAdvAff"
+            name="WebAdvAff"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="TargetMarket"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Target Market
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="TargetMarket"
+            name="TargetMarket"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <h6>
+          Final Verdict by Agent
+        </h6>
+      </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className="required"
+          for="AgentName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Agent Name
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="AgentName"
+            invalid={false}
+            name="AgentName"
+            onChange={[Function]}
+            required={true}
+            type="textarea"
+            value="ss"
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ContactModeTime"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Contactable Mode & Time
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ContactModeTime"
+            invalid={false}
+            name="ContactModeTime"
+            onChange={[Function]}
+            required={false}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          for="Status"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Status
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="Status"
+            name="Status"
+            onChange={[Function]}
+            sm={9}
+            type="select"
+            value="Draft"
+          >
+            <option
+              key="Draft"
+              value="Draft"
+            >
+              Draft
+            </option>
+            <option
+              key="Submitted"
+              value="Submitted"
+            >
+              Submitted
+            </option>
+          </Input>
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className="required pt-0"
+          for="Deadline"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Deadline
+        </Label>
+        <Col
+          sm={3}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            className="remove-background"
+            id="Deadline"
+            invalid={true}
+            name="Deadline"
+            onChange={[Function]}
+            type="date"
+            value=""
+          />
+          <FormFeedback
+            tag="div"
+          >
+            This field is required.
+          </FormFeedback>
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="Remark"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Remark
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="Remark"
+            name="Remark"
+            onChange={[Function]}
+            type="textarea"
+            value="s"
+          />
+        </Col>
+      </FormGroup>
+    </fieldset>
+    <button
+      className="my-2 btn btn-success btn-save"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      SAVE
+    </button>
+  </Form>
+</div>
+`;
+
+exports[`processing request - components - EditRequest -  render correctly when insert and clicked submit and invalid deadline 1`] = `
+<div
+  className="request-container"
+>
+  <Alert
+    closeAriaLabel="Close"
+    color="success"
+    fade={true}
+    isOpen={false}
+    tag="div"
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }
+  >
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "",
+        }
+      }
+    />
+  </Alert>
+  <Form
+    tag="form"
+  >
+    <FormGroup
+      row={true}
+      tag="div"
+    >
+      <Label
+        className="required pt-0"
+        for="UserName"
+        sm={2}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Affiliate 
+      </Label>
+      <Col
+        sm={4}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          className="remove-background"
+          id="UserName"
+          invalid={true}
+          name="UserName"
+          onChange={[Function]}
+          type="text"
+          value="0123456789012345678901234567890"
+        />
+        <FormFeedback
+          tag="div"
+        >
+          Exceed max length 30
+        </FormFeedback>
+      </Col>
+    </FormGroup>
+    <fieldset>
+      <legend>
+        <h6>
+          Player's Details Amendment
+        </h6>
+      </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Language
+        </Label>
+        <Col
+          sm={5}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="MarketId"
+            name="MarketId"
+            onChange={[Function]}
+            type="select"
+            value=""
+          >
+            <option
+              key="status-all"
+              value=""
+            >
+              No change
+            </option>
+            <option
+              key="sortBy-vi-VN"
+              value="vi-VN"
+            >
+              Vietnamese
+            </option>
+            <option
+              key="sortBy-en-GB"
+              value="en-GB"
+            >
+              English (Europe)
+            </option>
+          </Input>
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Payment Method
+        </Label>
+        <Col
+          sm={5}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="preferredPayment"
+            name="PreferredPayment"
+            onChange={[Function]}
+            sm={6}
+            type="select"
+            value=""
+          >
+            <option
+              key="no-change"
+              value=""
+            >
+              No change
+            </option>
+            <option
+              key="PlayerAccount"
+              value="PlayerAccount"
+            >
+              12BET player account
+            </option>
+            <option
+              key="BankTranfer"
+              value="BankTranfer"
+            >
+              Bank Transfer
+            </option>
+          </Input>
+        </Col>
+      </FormGroup>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <h6>
+          Affiliate Promotion Method & Details
+        </h6>
+      </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="PromotionMethod"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Promotion Method
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="PromotionMethod"
+            name="PromotionMethod"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebRank"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Website Rank
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebRank"
+            name="WebRank"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebRegDate"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Website Register Date
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebRegDate"
+            name="WebRegDate"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebSMLanguage"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Website/SM Language
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebSMLanguage"
+            name="WebSMLanguage"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ServerCountry"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Country (Server)
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ServerCountry"
+            name="ServerCountry"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebSMQuality"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Quality of Website/SM
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebSMQuality"
+            name="WebSMQuality"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebSMType"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Type of Website/SM
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebSMType"
+            name="WebSMType"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="WebAdvAff"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Adv/Aff on the Website/SM
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="WebAdvAff"
+            name="WebAdvAff"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="TargetMarket"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Target Market
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="TargetMarket"
+            name="TargetMarket"
+            onChange={[Function]}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+    </fieldset>
+    <fieldset>
+      <legend>
+        <h6>
+          Final Verdict by Agent
+        </h6>
+      </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className="required"
+          for="AgentName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Agent Name
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="AgentName"
+            invalid={false}
+            name="AgentName"
+            onChange={[Function]}
+            required={true}
+            type="textarea"
+            value="ss"
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ContactModeTime"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Contactable Mode & Time
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ContactModeTime"
+            invalid={false}
+            name="ContactModeTime"
+            onChange={[Function]}
+            required={false}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          for="Status"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Status
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="Status"
+            name="Status"
+            onChange={[Function]}
+            sm={9}
+            type="select"
+            value="Draft"
+          >
+            <option
+              key="Submitted"
+              value="Submitted"
+            >
+              Submitted
+            </option>
+            <option
+              key="Approved"
+              value="Approved"
+            >
+              Approved
+            </option>
+            <option
+              key="Rejected"
+              value="Rejected"
+            >
+              Rejected
+            </option>
+          </Input>
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className="required pt-0"
+          for="Deadline"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Deadline
+        </Label>
+        <Col
+          sm={3}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            className="remove-background"
+            id="Deadline"
+            invalid={true}
+            name="Deadline"
+            onChange={[Function]}
+            type="date"
+            value="2021-09-23"
+          />
+          <FormFeedback
+            tag="div"
+          >
+            Invalid Deadline
+          </FormFeedback>
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="Remark"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Remark
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="Remark"
+            name="Remark"
+            onChange={[Function]}
+            type="textarea"
+            value="s"
+          />
+        </Col>
+      </FormGroup>
+    </fieldset>
+    <button
+      className="my-2 btn btn-success btn-save"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      SAVE
+    </button>
+  </Form>
+</div>
+`;
+
+exports[`processing request - components - EditRequest -  renderTextArea - shoud render correctly when invalid length 1`] = `
+<FormGroup
+  row={true}
+  tag="div"
+>
+  <Label
+    className="required"
+    for="PromotionMethod"
+    sm={3}
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Promotion Method
+  </Label>
+  <Col
+    sm={9}
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Input
+      disabled={true}
+      id="PromotionMethod"
+      invalid={true}
+      name="PromotionMethod"
+      onChange={[Function]}
+      required={true}
+      type="textarea"
+      value="abc"
+    />
+    <FormFeedback
+      tag="div"
+    >
+      Exceed max length 1000
+    </FormFeedback>
+  </Col>
+</FormGroup>
+`;
+
+exports[`processing request - components - EditRequest -  renderTextArea - shoud render correctly when required 1`] = `
+<FormGroup
+  row={true}
+  tag="div"
+>
+  <Label
+    className="required"
+    for="PromotionMethod"
+    sm={3}
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Promotion Method
+  </Label>
+  <Col
+    sm={9}
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Input
+      disabled={true}
+      id="PromotionMethod"
+      invalid={true}
+      name="PromotionMethod"
+      onChange={[Function]}
+      required={true}
+      type="textarea"
+      value=""
+    />
+    <FormFeedback
+      tag="div"
+    >
+      This field is required.
+    </FormFeedback>
+  </Col>
+</FormGroup>
+`;

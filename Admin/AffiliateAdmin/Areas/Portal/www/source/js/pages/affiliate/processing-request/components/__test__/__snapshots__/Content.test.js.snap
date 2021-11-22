@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`processing request - components - Content -  should render correctly 1`] = `
+<div
+  className="data-content"
+>
+  <Col
+    className="my-2"
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Row
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        className="mt-0 pl-0"
+        sm={1}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Button
+          color="secondary"
+          onClick={[Function]}
+          outline={true}
+          tag="button"
+          title="Add"
+          type="button"
+        >
+          Add 
+          <span
+            className="oi oi-plus"
+          />
+        </Button>
+      </Col>
+      <Col
+        className="text-right pr-0"
+        sm={11}
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <b>
+          <span>
+            Status count:
+          </span>
+          <span
+            className="pl-3"
+          >
+            2 Draft
+          </span>
+          <span
+            className="text-primary pl-3"
+          >
+            0 Submitted
+          </span>
+          <span
+            className="text-success pl-3"
+          >
+            0 Approved
+          </span>
+          <span
+            className="text-danger pl-3"
+          >
+            0 Rejected
+          </span>
+        </b>
+      </Col>
+    </Row>
+  </Col>
+  <ReportTitle
+    content={
+      <div
+        className="d-flex align-items-center"
+      >
+        test
+        <button
+          className="ml-auto btn btn-link btn-excel"
+          onClick={[Function]}
+          title="Export Excel"
+          type="button"
+        >
+          <span
+            className="oi icon-excel"
+          />
+        </button>
+      </div>
+    }
+  />
+  <Connect(GridData)
+    handleDelete={[Function]}
+    handleEdit={[Function]}
+    handleView={[Function]}
+  />
+  <Modal
+    autoFocus={true}
+    backdrop="static"
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
+    }
+    centered={false}
+    container="body"
+    fade={true}
+    isOpen={false}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    size="lg"
+    toggle={[Function]}
+    unmountOnClose={true}
+    zIndex={1050}
+  >
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      <span
+        className="iconpopup"
+      />
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <div
+        className="modal-body-wrapper"
+      />
+    </ModalBody>
+  </Modal>
+  <NotificationPopup
+    isConfirmPopup={false}
+    message="test"
+    onClose={[Function]}
+  />
+</div>
+`;
