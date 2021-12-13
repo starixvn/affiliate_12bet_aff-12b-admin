@@ -46,16 +46,16 @@ export const resource = {
 }
 
 export const field = {
-    'AgentName': 'Agent Name', 
-    'PromotionMethod': 'Promotion Method', 
-    'Remark': 'Remark', 
-    'ServerCountry': 'Country (Server)', 
-    'TargetMarket' : 'Target Market', 
-    'WebAdvAff' : 'Adv/Aff on the Website/SM', 
-    'WebRank': 'Website Rank', 
-    'WebRegDate': 'Website Register Date', 
-    'WebSMLanguage': 'Website/SM Language', 
-    'WebSMQuality': 'Quality of Website/SM', 
+    'AgentName': 'Agent Name',
+    'PromotionMethod': 'Promotion Method',
+    'Remark': 'Remark',
+    'ServerCountry': 'Country (Server)',
+    'TargetMarket' : 'Target Market',
+    'WebAdvAff' : 'Adv/Aff on the Website/SM',
+    'WebRank': 'Website Rank',
+    'WebRegDate': 'Website Register Date',
+    'WebSMLanguage': 'Website/SM Language',
+    'WebSMQuality': 'Quality of Website/SM',
     'WebSMType': 'Type of Website/SM'
 }
 

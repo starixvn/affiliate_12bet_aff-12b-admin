@@ -1,4 +1,4 @@
-﻿import React, { Component, PureComponent } from 'react';
+﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -6,7 +6,7 @@ import { toggleLoader } from '../../../../actions/loaderAction';
 import ReportTitle from '../../../../components/ReportTitle';
 import GridData from './GridData';
 
-import { Button, ModalHeader, Modal, ModalBody, FormGroup, Col } from 'reactstrap';
+import { Button, ModalHeader, Modal, ModalBody, Row, Col } from 'reactstrap';
 
 import ReportExcel from '../libs/reportExcel';
 import { post } from '../../../../modules/ajaxRequest';
@@ -14,17 +14,18 @@ import { claimResource } from '../../../../modules/claim';
 import EditRequest from './EditRequest/EditRequest';
 import { NotificationPopup } from '../../../common/components/NotificationPopup';
 import { deleteProcessingRequest, fetchData, setSelectedRequestId, getProcessingRequestDetail } from '../actions/index';
+import { globalResource } from '../libs/constants';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
+
         this.state = {
             Popup: null,
             popupTitle: '',
             confirmMsg: null,
             isConfirmPopup: false
         }
-
     }
 
     handleAddNewRequest = () => {
@@ -51,19 +52,17 @@ export class Content extends PureComponent {
     }
 
     handleDeleteRequest = () => {
-        this.setState({
-            confirmMsg: 'Are you sure to delete this request?',
-            isConfirmPopup: true
-        });
+        this.handleShowNotificationPopup('Are you sure to delete this request?', true);
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
+        const { selectedRequestId } = this.props;
         this.setState({ confirmMsg: '' });
 
-        const { selectedRequestId } = this.props;
         if (confirmResult && selectedRequestId) {
             this._deleteRequest(selectedRequestId);
         }
+
         this.props.setSelectedRequestId(null);
     }
 
@@ -72,21 +71,26 @@ export class Content extends PureComponent {
 
         if (result) {
             if (result.IsSuccessful) {
-                this.setState({ confirmMsg: 'The processing request has been deleted successfully.', isConfirmPopup: false });
+                this.handleShowNotificationPopup('The processing request has been deleted successfully.');
+
                 const { pagingOption, param } = this.props;
-                const gettingParam = Object.assign({}, param, pagingOption);
+                const gettingParam = Object.assign({}, param, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
                 this.props.fetchData(gettingParam);
             }
             else {
-                this.setState({ confirmMsg: result.Message, isConfirmPopup: false });
+                this.handleShowNotificationPopup(result.Message);
             }
         } else {
-            this.setState({ confirmMsg: messages.AnError, isConfirmPopup: false });
+            this.handleShowNotificationPopup(globalResource.AnError);
         }
     }
 
     handleHide = () => {
         this.setState({ Popup: null });
+    }
+
+    handleShowNotificationPopup = (confirmMsg, isConfirmPopup = false) => {
+        this.setState({ confirmMsg, isConfirmPopup });
     }
 
     handleExportExcel = async () => {
@@ -128,12 +132,12 @@ export class Content extends PureComponent {
         return (
             <div className='data-content'>
                 {isClickSearch && dataSummary &&
-                    <div className="my-2">
-                        <FormGroup row>
-                            {isModifiable && <Col className="mt-0" sm={1}>
+                    <Col className="my-2">
+                        <Row>
+                            {isModifiable && <Col className="mt-0 pl-0" sm={1}>
                                 <Button outline type="button" onClick={this.handleAddNewRequest} title='Add'>Add <span className='oi oi-plus'></span></Button>
                             </Col>}
-                            <Col sm={11} className='text-right'>
+                            <Col sm={11} className='text-right pr-0'>
                                 <b>
                                     <span>Status count:</span>
                                     <span className='pl-3'>{dataSummary.Draft + ' Draft'}</span>
@@ -142,8 +146,8 @@ export class Content extends PureComponent {
                                     <span className='text-danger pl-3'>{dataSummary.Rejected + ' Rejected'}</span>
                                 </b>
                             </Col>
-                        </FormGroup>
-                    </div>
+                    </Row>
+                </Col>
 
                 }
                 {reportTitle && <ReportTitle content={this._buildReportTitle(reportTitle)} />}

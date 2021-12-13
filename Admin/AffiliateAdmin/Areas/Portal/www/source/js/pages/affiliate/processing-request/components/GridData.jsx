@@ -6,10 +6,10 @@ import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Pager } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, globalResource, statusList, colorByStatus } from '../libs/constants';
+import { headerText, globalResource, colorByStatus } from '../libs/constants';
 import { setPagingOption, fetchData, setParam } from '../actions';
 import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
-import { Claim, claimResource } from '../../../../modules/claim';
+import { claimResource } from '../../../../modules/claim';
 import { defaultDatetimeFormat, defaultDateFormat } from '../../../../modules/constants';
 import { setSelectedRequestId } from '../actions';
 
@@ -20,8 +20,7 @@ export class GridData extends Component {
         const today = new Date(this.props.today)
 
         this.state = {
-            todayTime: today.getTime(),
-            messageNotification: ''
+            todayTime: today.getTime()
         }
     }
 
@@ -71,7 +70,7 @@ export class GridData extends Component {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             const { todayTime } = this.state;
             const { pagingOption } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
@@ -133,7 +132,7 @@ export class GridData extends Component {
                                 <span className="oi oi-pencil text-secondary"></span>
                             </Button>
                             <Button color="link" title='Delete' onClick={() => this.handleDeleteProcess(dataItem.RequestId)}>
-                                <span className="oi oi-trash text-danger"></span>
+                                <span className="oi oi-trash text-danger ml-2"></span>
                             </Button>
                         </React.Fragment>
                         )
@@ -152,14 +151,9 @@ export class GridData extends Component {
     }
 
     render() {
-        const { messageNotification } = this.state;
         const { gridData, shouldResetScrollPosition } = this.props;
 
-        if (!gridData) {
-            return null;
-        }
-
-        return (
+        return gridData && (
             <React.Fragment>
                 <div className="table-responsive table-striped">
                     <Table

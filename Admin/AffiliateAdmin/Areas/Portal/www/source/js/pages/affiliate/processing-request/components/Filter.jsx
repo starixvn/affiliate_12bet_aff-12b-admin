@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { statusList, resource } from '../libs/constants';
-import { setReportTitle, setParam, setIsClickSearch, fetchData } from '../actions';
+import { setReportTitle, setParam, setIsClickSearch } from '../actions';
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -33,14 +33,12 @@ export class Filter extends PureComponent {
     }
 
     handleClickSearch = () => {
-        const { pagingOption } = this.props;
         const { selectedStatus, userName } = this.state;
 
         this.props.setReportTitle(this._buildReportTitle(selectedStatus, userName));
-        const param = Object.assign({},{ UserName: userName, Status: selectedStatus, IsNeedInitSearch: false}, { PageIndex: 1, PageSize: pagingOption.PageSize })
+        const param = Object.assign({},{ UserName: userName, Status: selectedStatus, IsNeedInitSearch: false})
         this.props.setParam(param);
         this.props.setIsClickSearch(true);
-        this.props.fetchData(param);
     }
 
     _buildReportTitle(selectedStatus, userName) {
@@ -94,7 +92,7 @@ function mapStateToProps({ param, pagingOption }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setReportTitle, setParam, setIsClickSearch, fetchData }, dispatch);
+    return bindActionCreators({ setReportTitle, setParam, setIsClickSearch }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

@@ -46,11 +46,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false).Returns(true);
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
-            dataReader.Setup(d => d.FieldCount).Returns(4);
+            dataReader.Setup(d => d.FieldCount).Returns(5);
             dataReader.Setup(d => d.GetName(0)).Returns("AffId");
             dataReader.Setup(d => d.GetName(1)).Returns("Username");
             dataReader.Setup(d => d.GetName(2)).Returns("MonthDate");
             dataReader.Setup(d => d.GetName(3)).Returns("Description");
+            dataReader.Setup(d => d.GetName(4)).Returns("Language");
 
             ReaderHelper.MapReaderData(dataReader, GetReportDataFullColumn());
             objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
@@ -203,7 +204,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
                 ["AffWithdrawal"] = 123,
                 ["AffAdjustment"] = 123,
                 ["BFF"] = 123,
-                ["PreferredLanguage"] = "en-US"
+                ["Language"] = "en-US"
             };
         }
 

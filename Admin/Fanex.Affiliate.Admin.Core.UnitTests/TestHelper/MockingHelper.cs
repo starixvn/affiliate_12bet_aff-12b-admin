@@ -12,12 +12,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
     {
         public static ISessionService GetSessionService(string claim = null, bool hasClaim = false, bool isHost = false)
         {
+            var claimsIdentities = new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(hasClaim ? claim : string.Empty, isHost ? "Write" : "Read") }) };
             return Mock.Of<ISessionService>(ss =>
                 ss.AffId == Constant.AffId &&
                 ss.AffName == Constant.AffName &&
                 ss.OnUserId == Constant.OnUserId &&
                 ss.UserId == Constant.UserId &&
-                ss.ClaimIdentities == new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(hasClaim ? claim : string.Empty, isHost ? "Write" : "Read") }) }
+                ss.RequestIp == Constant.UserHostAddress &&
+                ss.ClaimIdentities == claimsIdentities &&
+                ss.UserClaim == new ClaimsPrincipal(claimsIdentities)
             );
         }
 

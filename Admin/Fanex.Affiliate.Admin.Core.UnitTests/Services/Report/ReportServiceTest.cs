@@ -12,11 +12,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
 {
     public class ReportServiceTest
     {
-        [Fact]
-        public void GetMainReportData_WhenCall_ReturnCorrectData()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void GetMainReportData_WhenCall_ReturnCorrectData(bool isGetMonthly)
         {
             // Arrange
-            var param = new AffiliateReportMainParam { ProductIds = "123", FromDate = new DateTime(2019, 10, 24), ToDate = new DateTime(2019, 11, 24) };
+            var param = new AffiliateReportMainParam { ProductIds = "123", FromDate = new DateTime(2019, 10, 24), ToDate = new DateTime(2019, 11, 24), IsGetMonthly = isGetMonthly };
             AffiliateReportMainParam passedParam = null;
             var repository = new Mock<IAffiliateReportRepository>();
             repository.Setup(re => re.GetMainReportData(param)).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 }).Callback<AffiliateReportMainParam>(p => passedParam = p);
