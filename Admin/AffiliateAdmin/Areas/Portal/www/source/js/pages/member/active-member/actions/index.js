@@ -1,6 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { globalResource } from '../../../../modules/globalResource';
+import { submitIsFailed } from '../../../../modules/constants';
 import * as types from './types';
 
 export { toggleLoader };
@@ -72,8 +72,6 @@ export const activeMember = (param) => async (dispatch) => {
     const response = await post(url, param);
 
     dispatch(toggleLoader(false));
-    return response && response.status === 200 ? response.data : {
-        IsSuccessful: false,
-        Message: globalResource.AnError
-    };
+
+    return response && response.status === 200 ? response.data : submitIsFailed;
 }

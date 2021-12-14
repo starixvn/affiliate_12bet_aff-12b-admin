@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             ViewBag.PreviewUrl = $"{AppSetting.AsianAffSiteUrl}/UserPanel/NewsLetter/Preview";
             ViewBag.Languages = LanguageService.GetInChangeMarkets();
-            return View("~/Areas/Portal/Views/MediaGallery/NewsLetterPageList.cshtml");
+            return View("~/Areas/Portal/Views/MediaGallery/Common.cshtml");
         }
 
         [HttpPost]

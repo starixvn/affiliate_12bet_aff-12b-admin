@@ -1,5 +1,5 @@
 ﻿import { post } from '../../../modules/ajaxRequest';
-import { submitFail } from "../../../modules/constants";
+import { submitIsFailed } from "../../../modules/constants";
 import { toggleLoader } from '../../../actions/loaderAction';
 import { SET_DATE, SET_GRID_DATA, SET_TOGGLE_POPUP, SET_SELECTED_EXCHANGE_RATE, SHOULD_RESET_SCROLL_POSITION } from './types';
 
@@ -57,5 +57,5 @@ export const updateExchangeRate = (selectedExchangeRate) => async () => {
     const url = 'Portal/ExchangeRate/UpdateExchangeRate';
     const response = await post(url, selectedExchangeRate);
 
-    return response && response.status === 200 ? response.data : submitFail;
+    return response && response.status === 200 ? response.data : submitIsFailed;
 }

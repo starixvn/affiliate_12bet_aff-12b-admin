@@ -28,11 +28,6 @@ export const spinnerLoaderUserPanelHeight = (maxUserPanelHeight / 2) - 32
 export const minDate = new Date(2009, 11, 1);
 export const sixMonth = 6;
 
-export const submitFail = {
-    IsSuccessful: false,
-    Message: 'Update Failed!'
-}
-
 export const pcLaptop = 'PC / Laptop';
 export const mobile = 'Mobile';
 
@@ -56,3 +51,8 @@ export const specialCharacters = ["#", "<", "$", "+", "%", ">", "!", "`", "&", "
 
 export const defaultDatetimeFormat = "dd/MM/yyyy HH:mm:ss";
 export const defaultDateFormat = "dd/MM/yyyy";
+
+export const submitIsFailed = {
+    IsSuccessful: false,
+    Message: 'An error occurred while processing your request, please try again later!'
+}

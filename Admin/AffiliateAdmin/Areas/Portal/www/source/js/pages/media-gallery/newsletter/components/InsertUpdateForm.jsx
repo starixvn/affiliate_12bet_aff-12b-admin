@@ -235,7 +235,7 @@ export class InsertUpdateForm extends PureComponent {
                                 <div><Label>[Maximum files: 1]</Label></div>
 
 
-                                <Form tag="form" className="mb-5" autoComplete="off">
+                                <Form tag="form" className="mb-4" autoComplete="off">
                                     <FormGroup row className="mb-2 align-items-center" >
                                         <Label for="file" className="required" sm={4}>File</Label>
                                         <Col sm={6}>

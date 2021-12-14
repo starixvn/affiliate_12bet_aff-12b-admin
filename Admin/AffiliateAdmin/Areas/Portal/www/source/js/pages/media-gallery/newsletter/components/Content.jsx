@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource, displayDateFormat } from '../libs/constants';
-import { setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData } from '../actions';
+import { setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 import { formatDateTime } from '../../../../modules/utils';
 
@@ -133,7 +133,7 @@ function mapStateToProps({ param, previewLink, pagingOption, checkedNewsLetterPa
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData }, dispatch);
+    return bindActionCreators({ setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
