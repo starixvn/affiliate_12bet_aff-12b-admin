@@ -251,7 +251,7 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
                                         <Col sm={6}>
                                             <Input type="select" name="language" className="input-required mt-2" value={language} onChange={this._handleChange}>
                                                 {languageList.map(lang =>
-                                                    <option key={lang.LanguageCode} value={lang.LanguageCode}>{lang.LanguageName}</option>
+                                                    <option key={lang.LanguageName} value={lang.LanguageName}>{lang.LanguageName}</option>
                                                 )}
                                             </Input>
                                         </Col>

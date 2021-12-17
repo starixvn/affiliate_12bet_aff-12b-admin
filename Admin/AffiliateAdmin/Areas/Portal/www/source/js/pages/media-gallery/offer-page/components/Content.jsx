@@ -63,6 +63,7 @@ export class Content extends PureComponent {
 
     buildDataRow(dataItem, index) {
         const fileName = htmlDecode(dataItem.FileName);
+        const language = htmlDecode(dataItem.Language);
         const displayFileSize = Math.round((dataItem.FileSize / 1024) * 100) / 100;
         const assignedAffNumber = dataItem.Affiliate;
 
@@ -75,7 +76,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
                 <Cell className="text-center" title={dataItem.FileSize}>{displayFileSize}</Cell>
-                <Cell className="text-center" title={dataItem.LanguageName}>{dataItem.LanguageName}</Cell>
+                <Cell className="text-center" title={language}>{language}</Cell>
                 <Cell className="text-center" title={dataItem.UploadDate}>{formatDateTime(dataItem.UploadDate, displayDateFormat)}</Cell>
                 <Cell className="text-center" title={dataItem.EffectiveFromDate}>{formatDateTime(dataItem.EffectiveFromDate, displayDateFormat)}</Cell>
                 <Cell className="text-center" title={dataItem.EffectiveToDate}>{formatDateTime(dataItem.EffectiveToDate, displayDateFormat)}</Cell>

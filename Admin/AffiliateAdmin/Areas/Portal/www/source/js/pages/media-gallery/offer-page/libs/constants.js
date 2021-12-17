@@ -23,7 +23,7 @@ export const defaultState = {
     fileName: '',
     fromDate: firstDate,
     toDate: lastDate,
-    language:'en-US',
+    language:'English',
     fileSize:0,
     selectedFile: null,
     isClickedSubmit: false,

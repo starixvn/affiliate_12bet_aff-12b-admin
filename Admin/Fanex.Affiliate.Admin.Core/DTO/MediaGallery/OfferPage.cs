@@ -18,8 +18,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 
         public string Language { get; set; }
 
-        public string LanguageName { get; set; }
-
         public int Affiliate { get; set; }
     }
 }
