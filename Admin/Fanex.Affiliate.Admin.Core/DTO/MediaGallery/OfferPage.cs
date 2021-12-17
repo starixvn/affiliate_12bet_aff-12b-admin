@@ -2,12 +2,8 @@
 
 namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 {
-    public class OfferPage
+    public class OfferPage : OfferPageBasicInfo
     {
-        public int PageId { get; set; }
-
-        public string FileName { get; set; }
-
         public int FileSize { get; set; }
 
         public DateTime UploadDate { get; set; }

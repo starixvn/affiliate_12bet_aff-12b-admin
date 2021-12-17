@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public Offer GetOfferById(int pageId)
         {
-            const string spKey = "Aff_Admin_ExclusivePage_Sel";
+            const string spKey = "Aff_Admin_OfferPage_Sel";
             using (var objectDb = _builder.Build(spKey))
             {
                 return objectDb.QueryEntity<Offer>(new { pageId });

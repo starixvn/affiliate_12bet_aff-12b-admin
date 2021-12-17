@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         public async Task<ActionResult> Index()
         {
-            ViewBag.Content = await _offerService.GetOfferById(SessionService.UserSession.ExclusivePageId);
+            ViewBag.Content = await _offerService.GetOfferById(SessionService.UserSession.OfferPageId);
             return View("~/Views/UserPanel/OffersForMe/Index.cshtml");
         }
 

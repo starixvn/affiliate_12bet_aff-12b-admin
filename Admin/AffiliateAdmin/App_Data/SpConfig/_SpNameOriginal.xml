@@ -179,12 +179,12 @@
   </Function>
 
   <Function Name="Offer">
-    <Setting Key="Aff_Admin_ExclusivePage_Ins" SpName="Aff_Admin_ExclusivePage_Ins" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_ExclusivePage_Sel" SpName="Aff_Admin_ExclusivePage_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_ExclusivePage_Upd" SpName="Aff_Admin_ExclusivePage_Upd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_ExclusivePage_Del" SpName="Aff_Admin_ExclusivePage_Del" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_ExclusiveAffiliate_Ins" SpName="Aff_Admin_ExclusiveAffiliate_Ins" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_ExclusiveAffiliate_Sel" SpName="Aff_Admin_ExclusiveAffiliate_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_ExclusiveAffiliate_Del" SpName="Aff_Admin_ExclusiveAffiliate_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferPage_Ins" SpName="Aff_Admin_OfferPage_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferPage_Sel" SpName="Aff_Admin_OfferPage_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferPage_Upd" SpName="Aff_Admin_OfferPage_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferPage_Del" SpName="Aff_Admin_OfferPage_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferAffiliate_Ins" SpName="Aff_Admin_OfferAffiliate_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferAffiliate_Sel" SpName="Aff_Admin_OfferAffiliate_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferAffiliate_Del" SpName="Aff_Admin_OfferAffiliate_Del" DbName="affiliate_12bet" />
   </Function>
 </Functions>

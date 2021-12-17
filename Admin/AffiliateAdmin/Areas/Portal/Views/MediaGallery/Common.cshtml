@@ -3,8 +3,6 @@
     Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
 }
 
-@model string
-
 @section pagecss{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/news-letter.css")" rel="stylesheet" />
 }
@@ -13,7 +11,6 @@
         window.initialState = {
             languageList: @Html.Raw(Json.Encode(ViewBag.Languages)),
             previewLink: '@Html.Raw(ViewBag.PreviewUrl)',
-            offerFile: '@Model',
         }
 </script>
 

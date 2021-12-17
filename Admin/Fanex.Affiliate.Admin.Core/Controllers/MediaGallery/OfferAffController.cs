@@ -16,17 +16,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
     public class OfferAffController : ReadOnlySessionBaseController
     {
-        private readonly ILanguageService _languageService;
+        private readonly IOfferPageService _offerPageService;
         private readonly IOfferAffService _offerAffService;
         private readonly IAppSetting _appSetting;
 
         public OfferAffController(
             IOfferAffService offerAffService,
             ISessionService sessionService,
-            ILanguageService languageService,
+            IOfferPageService offerPageService,
             IAppSetting appSetting) : base(sessionService)
         {
-            _languageService = languageService;
+            _offerPageService = offerPageService;
             _offerAffService = offerAffService;
             _appSetting = appSetting;
         }
@@ -34,8 +34,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         public ActionResult Index(string offerFile)
         {
             ViewBag.PreviewUrl = $"{_appSetting.AsianAffSiteUrl}/UserPanel/OffersForMe/Preview";
-            ViewBag.Languages = _languageService.GetInChangeMarkets();
-            return View("~/Areas/Portal/Views/MediaGallery/Common.cshtml", model: offerFile);
+            ViewBag.OfferPages = _offerPageService.GetValidEndDateOfferPages();
+            return View("~/Areas/Portal/Views/MediaGallery/OfferAff.cshtml", model: offerFile);
         }
 
         [HttpPost]
@@ -100,6 +100,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 Data = _offerAffService.DeleteOfferAff(param)
             };
+        }
+
+        private void HandleEncodeParam(InsertOfferAffParam param)
+        {
+            param.UserId = SessionService.UserId;
+            param.Ip = SessionService.RequestIp;
+            param.AffNameList = Server.HtmlEncode(param.AffNameList);
         }
     }
 }

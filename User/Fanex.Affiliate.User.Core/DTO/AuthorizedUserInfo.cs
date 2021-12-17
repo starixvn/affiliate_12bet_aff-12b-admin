@@ -22,6 +22,6 @@
 
         public string GroupName { get; set; }
 
-        public int ExclusivePageId { get; set; }
+        public int OfferPageId { get; set; }
     }
 }

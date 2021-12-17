@@ -206,6 +206,7 @@
     <Compile Include="DTO\MediaGallery\OfferAff.cs" />
     <Compile Include="DTO\MediaGallery\OfferPage.cs" />
     <Compile Include="DTO\MediaGallery\NewsLetter.cs" />
+    <Compile Include="DTO\MediaGallery\OfferPageBasicInfo.cs" />
     <Compile Include="DTO\Member\RegisteredMemberInfo.cs" />
     <Compile Include="DTO\NewViewLog\NewViewLogInfo.cs" />
     <Compile Include="DTO\NewViewLog\NewViewLogDetailInfo.cs" />

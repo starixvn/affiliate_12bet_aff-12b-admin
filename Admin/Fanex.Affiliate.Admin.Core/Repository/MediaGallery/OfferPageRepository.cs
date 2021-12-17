@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
     {
         public ResultInfo DeleteOfferPage(DeleteOfferPageParam param)
         {
-            const string spKey = "Aff_Admin_ExclusivePage_Del";
+            const string spKey = "Aff_Admin_OfferPage_Del";
             using (var objectDb = GetObjectDb(spKey))
             {
                 AssignResultOutputParam(objectDb);
@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public OfferPage GetOfferPageById(int pageId)
         {
-            const string spKey = "Aff_Admin_ExclusivePage_Sel";
+            const string spKey = "Aff_Admin_OfferPage_Sel";
             using (var objectDb = GetObjectDb(spKey))
             {
                 return objectDb.QueryEntity<OfferPage>(new { pageId });
@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public EntityResult<OfferPage> GetOfferPageList(SelectOfferPageParam param)
         {
-            const string spKey = "Aff_Admin_ExclusivePage_Sel";
+            const string spKey = "Aff_Admin_OfferPage_Sel";
             using (var objectDb = GetObjectDb(spKey))
             {
                 objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public ResultInfo InsertOfferPage(InsertOfferPageParam param)
         {
-            const string spKey = "Aff_Admin_ExclusivePage_Ins";
+            const string spKey = "Aff_Admin_OfferPage_Ins";
             using (var objectDb = GetObjectDb(spKey))
             {
                 AssignResultOutputParam(objectDb);
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public ResultInfo UpdateOfferPage(UpdateOfferPageParam param)
         {
-            const string spKey = "Aff_Admin_ExclusivePage_Upd";
+            const string spKey = "Aff_Admin_OfferPage_Upd";
             using (var objectDb = GetObjectDb(spKey))
             {
                 AssignResultOutputParam(objectDb);

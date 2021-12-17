@@ -138,7 +138,7 @@ export class InsertForm extends PureComponent {
                                             <Input type="select" name="offerPage" className="input-required mt-2" value={offerPage} onChange={this._handleChange}>
                                                 <option value="">Please select</option>
                                                 {offerPageList && offerPageList.map(lang =>
-                                                    <option key={lang.PageId} value={lang.PageId}>{lang.PageName}</option>
+                                                    <option key={lang.PageId} value={lang.PageId}>{lang.FileName}</option>
                                                 )}
                                             </Input>
                                         </Col>

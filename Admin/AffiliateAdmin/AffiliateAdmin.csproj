@@ -937,6 +937,7 @@
     <Content Include="Areas\Portal\Views\MediaGallery\Common.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\ProcessingRequest.cshtml" />
+    <Content Include="Areas\Portal\Views\MediaGallery\OfferAff.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

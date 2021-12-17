@@ -31,6 +31,19 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public EntityResult<OfferPage> GetOfferPageList(SelectOfferPageParam param) => _offerPageRepository.GetOfferPageList(param);
 
+        public IEnumerable<OfferPageBasicInfo> GetValidEndDateOfferPages()
+        {
+            var offerPages = _offerPageRepository.GetOfferPageList(new SelectOfferPageParam()).MainData;
+            var now = DateTime.Now;
+
+            return offerPages.Where(o => DateTime.Compare(o.EffectiveToDate, now) > 0)
+                .Select(o => new OfferPageBasicInfo
+                {
+                    PageId = o.PageId,
+                    FileName = o.FileName
+                });
+        }
+
         public ResultInfo DeleteOfferPage(DeleteOfferPageParam param)
         {
             var fileNames = GetFileNamesFromIds(param.PageIds);

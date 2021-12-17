@@ -95,7 +95,7 @@ export class Content extends PureComponent {
                     </Button>
                 </Cell>
                 { this.props.isModifiable &&
-                    <Cell className="text-center" title="Edit Newsletter">
+                    <Cell className="text-center" title="Edit Offer Page">
                         <Button color="link" onClick={() => this.props.setSelectedId(dataItem.PageId)}>
                             <span className="oi oi-pencil text-secondary"></span>
                         </Button>

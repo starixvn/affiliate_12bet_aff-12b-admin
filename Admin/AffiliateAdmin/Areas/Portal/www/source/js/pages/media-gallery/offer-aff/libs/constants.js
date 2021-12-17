@@ -25,6 +25,7 @@ export const defaultState = {
 }
 
 export const restrictedCharactersPattern = /[;\/\?:@=&"<>#%{}\|\\^~\[\]`\s+]/;
+export const validCharactersPattern = /[0-9a-zA-Z\n\s]/;
 
 export const messages = {
     PleaseSelect: 'Please select offer - affiliate assignment(s) to delete',

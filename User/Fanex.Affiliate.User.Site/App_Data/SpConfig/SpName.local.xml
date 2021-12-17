@@ -154,7 +154,7 @@
   </Function>
 
   <Function Name="Offer">
-    <Setting Key="Aff_Admin_ExclusivePage_Sel" SpName="Aff_Admin_ExclusivePage_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferPage_Sel" SpName="Aff_Admin_OfferPage_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
 
 </Functions>

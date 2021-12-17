@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
     {
         public ResultInfo DeleteOfferAff(DeleteOfferAffParam param)
         {
-            const string spKey = "Aff_Admin_ExclusiveAffiliate_Del";
+            const string spKey = "Aff_Admin_OfferAffiliate_Del";
             using (var objectDb = GetObjectDb(spKey))
             {
                 AssignResultOutputParam(objectDb);
@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public EntityResult<OfferAff> GetOfferAffs(SelectOfferAffParam param)
         {
-            const string spKey = "Aff_Admin_ExclusiveAffiliate_Sel";
+            const string spKey = "Aff_Admin_OfferAffiliate_Sel";
             using (var objectDb = GetObjectDb(spKey))
             {
                 objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public ResultInfo InsertOfferAff(InsertOfferAffParam param)
         {
-            const string spKey = "Aff_Admin_ExclusiveAffiliate_Ins";
+            const string spKey = "Aff_Admin_OfferAffiliate_Ins";
             using (var objectDb = GetObjectDb(spKey))
             {
                 AssignResultOutputParam(objectDb);

@@ -12,8 +12,8 @@ export default class App extends React.PureComponent {
     }
 
     render() {
-        const { languageList, previewLink, offerFile } = window.initialState;
-        const store = configureStore({ claimsPrincipal: ClaimPrincipal.currentClaimPrincipal, languageList, previewLink, isFromAnotherPage: !!offerFile, offerFile }, reducer);
+        const { offerPageList, previewLink, offerFile } = window.initialState;
+        const store = configureStore({ claimsPrincipal: ClaimPrincipal.currentClaimPrincipal, offerPageList, previewLink, isFromAnotherPage: !!offerFile, offerFile }, reducer);
 
         return (
             <Provider store={store}>
