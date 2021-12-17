@@ -2,8 +2,8 @@
 <Functions SiteId="32" SiteName="12Bet">
   <Function Name="Authorization">
     <Setting Key="Aff_SessionIdSel" SpName="Aff_SessionIdSel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel_xtest" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_Login_ResultUpd_view" SpName="Aff_User_Login_ResultUpd" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
@@ -152,5 +152,9 @@
   <Function Name="NewsLetter">
     <Setting Key="Aff_Admin_Newsletter_Sel" SpName="Aff_Admin_Newsletter_Sel" DbName="affiliate_12bet" />
   </Function>
- 
+
+  <Function Name="Offer">
+    <Setting Key="Aff_Admin_ExclusivePage_Sel" SpName="Aff_Admin_ExclusivePage_Sel_xtest" DbName="affiliate_12bet" />
+  </Function>
+
 </Functions>

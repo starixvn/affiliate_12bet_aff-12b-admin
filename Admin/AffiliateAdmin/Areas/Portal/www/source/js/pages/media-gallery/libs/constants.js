@@ -5,8 +5,8 @@ export const menuKey = {
     textList: 'textList',
     landingPageList: 'landingPageList',
     newsLetterList: 'newsLetterList',
-    exclusivePage: 'exclusivePage',
-    exclusiveAff: 'exclusiveAff',
+    offerPage: 'offerPage',
+    offerAff: 'offerAff',
 }
 
 export const relativePath = {
@@ -14,6 +14,6 @@ export const relativePath = {
     textList: getVirtualUrl() + 'Portal/TextList',
     landingPageList: getVirtualUrl() + 'Portal/LandingPageList',
     newsLetterList: getVirtualUrl() + 'Portal/NewsLetter',
-    exclusivePage: getVirtualUrl() + 'Portal/ExclusivePage',
-    exclusiveAff: getVirtualUrl() + 'Portal/ExclusiveAff',
+    offerPage: getVirtualUrl() + 'Portal/OfferPage',
+    offerAff: getVirtualUrl() + 'Portal/OfferAff',
 }

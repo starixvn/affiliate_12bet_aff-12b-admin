@@ -1671,4 +1671,7 @@
     <value>12BET EXCHANGE &lt;br /&gt;
 (FOR INR &amp; IN.USD MEMBERS ONLY)</value>
   </data>
+  <data name="OffersForMe" xml:space="preserve">
+    <value>Offers for me</value>
+  </data>
 </root>

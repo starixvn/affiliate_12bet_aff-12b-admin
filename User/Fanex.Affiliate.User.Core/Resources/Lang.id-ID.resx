@@ -2233,4 +2233,8 @@
   </data>
   <data name="BeOurAffThisMonth" xml:space="preserve">
     <value>Jadilah  Afiliasi 12BET bulan ini &amp; nikmati komisi hingga 40% + ekstra 12%! Klik selengkapnya!</value>
-  </data></root>
+  </data>
+  <data name="OffersForMe" xml:space="preserve">
+    <value>Penawaran untuk saya</value>
+  </data>
+</root>

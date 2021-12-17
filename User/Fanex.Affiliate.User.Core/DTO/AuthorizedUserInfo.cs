@@ -21,5 +21,7 @@
         public int OnUserId { get; set; }
 
         public string GroupName { get; set; }
+
+        public int ExclusivePageId { get; set; }
     }
 }

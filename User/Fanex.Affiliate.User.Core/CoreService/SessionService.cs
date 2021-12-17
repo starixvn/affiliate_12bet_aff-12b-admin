@@ -81,7 +81,8 @@ namespace Fanex.Affiliate.User.Core.CoreService
                 OnUserId = authorizedUser.OnUserId,
                 AffType = authorizedUser.AffType,
                 GroupName = authorizedUser.GroupName,
-                UserId = authorizedUser.UserId
+                UserId = authorizedUser.UserId,
+                ExclusivePageId = authorizedUser.ExclusivePageId
             };
 
             HttpContext.Current.Session[UserSessionKey] = userSession;

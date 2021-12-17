@@ -13,6 +13,7 @@
     var hasCommissionReportPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.CommissionReport);
     var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, sessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !sessionService.IsInternal;
     var isShowNewsLetterTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && newsLetterService.HasNewCurrentTime();
+    var isShowOfferTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && sessionService.UserSession.ExclusivePageId != 0;
 }
 
 @section styles{
@@ -59,6 +60,10 @@
             @if (isShowNewsLetterTab)
             {
                 <li><a class="menu-item" id="menuNewsLetter" href="@Url.Content("~/UserPanel/Main/#NewsLetter")">@Lang.WhatNewThisMonth</a></li>
+            }
+            @if (isShowOfferTab)
+            {
+                <li><a class="menu-item" id="menuOffersForMe" href="@Url.Content("~/UserPanel/Main/#OffersForMe")">@Lang.OffersForMe</a></li>
             }
         </ul>
     </div>

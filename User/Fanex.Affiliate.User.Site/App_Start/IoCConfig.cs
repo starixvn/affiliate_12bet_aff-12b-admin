@@ -108,8 +108,8 @@ namespace Fanex.Affiliate.User.Site
 
             builder.RegisterType<NewsLetterRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<NewsLetterService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<ExclusiveService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<ExclusiveRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<OfferService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<OfferRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

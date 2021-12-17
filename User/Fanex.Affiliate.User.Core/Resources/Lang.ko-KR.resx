@@ -2225,4 +2225,7 @@
   <data name="BeOurAffThisMonth" xml:space="preserve">
     <value>최대 40% +12% 추가 커미션을 보장해드립니다! 자세한 내용 클릭!</value>
   </data>
+  <data name="OffersForMe" xml:space="preserve">
+    <value>독점 제공</value>
+  </data>
 </root>

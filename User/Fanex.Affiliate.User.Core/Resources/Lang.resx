@@ -2393,4 +2393,8 @@
   </data>
   <data name="BeOurAffThisMonth" xml:space="preserve">
     <value>Be Our Affiliate partner this month &amp; Enjoy commissions up to 40% + Extra 12%! Click for more details!</value>
-  </data></root>
+  </data>
+  <data name="OffersForMe" xml:space="preserve">
+    <value>Offers for me</value>
+  </data>
+</root>

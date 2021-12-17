@@ -210,10 +210,10 @@
     <Compile Include="BusinessService\CaptchaService.cs" />
     <Compile Include="BusinessService\CommissionReportService.cs" />
     <Compile Include="BusinessService\ContactService.cs" />
-    <Compile Include="BusinessService\ExclusiveService.cs" />
+    <Compile Include="BusinessService\OfferService.cs" />
     <Compile Include="BusinessService\ICaptchaService.cs" />
     <Compile Include="BusinessService\ICommissionReportService.cs" />
-    <Compile Include="BusinessService\IExclusiveService.cs" />
+    <Compile Include="BusinessService\IOfferService.cs" />
     <Compile Include="BusinessService\INewsLetterService.cs" />
     <Compile Include="BusinessService\IQrCodeGeneratorService.cs" />
     <Compile Include="BusinessService\ISecurityQuestionService.cs" />
@@ -258,7 +258,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
-    <Compile Include="Controllers\UserPanel\ExclusiveController.cs" />
+    <Compile Include="Controllers\UserPanel\OffersForMeController.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionController.cs" />
     <Compile Include="Controllers\UserPanel\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -316,7 +316,7 @@
     <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\SecurityQuestion.cs" />
     <Compile Include="DTO\InternalLoginInfo.cs" />
-    <Compile Include="DTO\UserPanel\Exclusive.cs" />
+    <Compile Include="DTO\UserPanel\Offer.cs" />
     <Compile Include="DTO\UserPanel\HtmlFileInfo.cs" />
     <Compile Include="DTO\UserPanel\LastLoginInfo.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\CategoryType.cs" />
@@ -333,8 +333,8 @@
     <Compile Include="Infrastructure\IHttpRequestParserHandler.cs" />
     <Compile Include="Repository\ILanguageRepository.cs" />
     <Compile Include="Repository\LanguageRepository.cs" />
-    <Compile Include="Repository\UserPanel\ExclusiveRepository.cs" />
-    <Compile Include="Repository\UserPanel\IExclusiveRepository.cs" />
+    <Compile Include="Repository\UserPanel\OfferRepository.cs" />
+    <Compile Include="Repository\UserPanel\IOfferRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsLetterRepository.cs" />
     <Compile Include="Repository\UserPanel\NewsLetterRepository.cs" />
     <Compile Include="Utilities\ClaimUtitlity.cs" />

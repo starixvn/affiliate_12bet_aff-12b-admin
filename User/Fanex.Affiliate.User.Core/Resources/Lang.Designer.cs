@@ -3924,6 +3924,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offers for me.
+        /// </summary>
+        public static string OffersForMe {
+            get {
+                return ResourceManager.GetString("OffersForMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Old Password.
         /// </summary>
         public static string OldPass {

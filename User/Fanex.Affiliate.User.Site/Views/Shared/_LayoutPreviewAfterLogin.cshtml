@@ -1,12 +1,7 @@
-﻿@using Fanex.Affiliate.User.Core.Utilities
-@using Fanex.Affiliate.User.Core.CoreService
-@using Fanex.Affiliate.User.Core.BusinessService
-@using Fanex.Affiliate.User.Core.Constants
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var newsLetterService = DependencyResolver.Current.GetService<INewsLetterService>();
+    var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
 }
 
 @section styles{
@@ -14,11 +9,6 @@
 }
 
 @section scripts{
-    <script>
-        window.Permission = {
-            HasTurnOverPermission: true
-        }
-    </script>
     @RenderSection("scripts", required: false)
 }
 
@@ -40,7 +30,8 @@
                     <li><a class="menu-item" id="menuLandingPageStatistics" href="javascript:void(0)">@Lang.LandingPages</a></li>
                 </ul>
             </li>
-            <li><a class="menu-item" id="menuCommissionReport" href="javascript:void(0)">@Lang.WhatNewThisMonth</a></li>
+            <li><a class="menu-item @(controllerName == "NewsLetter" ? "active" : string.Empty)" id="menuNewsLetter" href="javascript:void(0)">@Lang.WhatNewThisMonth</a></li>
+            <li><a class="menu-item @(controllerName == "OffersForMe" ? "active" : string.Empty)" id="menuOffersForMe" href="javascript:void(0)">@Lang.OffersForMe</a></li>
         </ul>
     </div>
 
