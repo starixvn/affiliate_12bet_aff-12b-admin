@@ -66,6 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [ValidateAntiForgeryHeader]
         public ActionResult GetOfferAffList(SelectOfferAffParam param)
         {
+            param.UserId = SessionService.UserId;
             var data = _offerAffService.GetOfferAffs(param);
 
             return new JsonNetResult

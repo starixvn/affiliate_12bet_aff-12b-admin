@@ -10,5 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string FileName { get; set; }
+
+        public int UserId { get; set; }
     }
 }
