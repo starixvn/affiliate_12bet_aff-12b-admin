@@ -24,11 +24,13 @@ export class AppContainer extends PureComponent {
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
+                <Filter />
                 { isModifiable &&
                     <ControlButtons
                         messages={messages}
                         gridData={gridData}
                         param={param}
+                        isAssign={true}
                         fetchData={this.props.fetchData}
                         checkedItems={checkedIds}
                         setCheckedItems={this.props.setCheckedIds}
@@ -38,7 +40,6 @@ export class AppContainer extends PureComponent {
                         deleteItems={this.props.deleteOfferAffs}
                     />
                 }
-                <Filter />
                 <Content />
                 <InsertForm />
             </AppLayout>

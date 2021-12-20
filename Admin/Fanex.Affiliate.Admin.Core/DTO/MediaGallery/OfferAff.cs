@@ -6,6 +6,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
     {
         public int AffId { get; set; }
 
+        public string UserName { get; set; }
+
         public string FileName { get; set; }
 
         public DateTime EffectiveFromDate { get; set; }

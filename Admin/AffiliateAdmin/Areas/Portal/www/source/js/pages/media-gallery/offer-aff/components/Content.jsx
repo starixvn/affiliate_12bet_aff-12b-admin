@@ -39,11 +39,11 @@ export class Content extends PureComponent {
             <Row key="thead">
                 <Cell header={true} colWidth={20}></Cell>
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={250} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
-                <Cell header={true} colWidth={150} title={headerText.OfferPageHtmlFile}>{headerText.OfferPageHtmlFile}</Cell>
+                <Cell header={true} colWidth={150} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
+                <Cell header={true} colWidth={250} title={headerText.OfferPageHtmlFile}>{headerText.OfferPageHtmlFile}</Cell>
                 <Cell header={true} colWidth={150} title={headerText.FromDate}>{headerText.FromDate}</Cell>
                 <Cell header={true} colWidth={150} title={headerText.ToDate}>{headerText.ToDate}</Cell>
-                <Cell header={true} colWidth={30} title={headerText.Preview}>{headerText.Preview}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.Preview}>{headerText.Preview}</Cell>
             </Row>
         );
     }
@@ -76,9 +76,10 @@ export class Content extends PureComponent {
                         onChange={(e) => this.onCheckItem(e.target.checked, dataItem.AffId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
+                <Cell className="text-left" title={dataItem.UserName}>{dataItem.UserName}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
-                <Cell className="text-center" title={dataItem.FromDate}>{formatDateTime(dataItem.FromDate, displayDateFormat)}</Cell>
-                <Cell className="text-center" title={dataItem.ToDate}>{formatDateTime(dataItem.ToDate, displayDateFormat)}</Cell>
+                <Cell className="text-center" title={dataItem.FromDate}>{formatDateTime(dataItem.EffectiveFromDate, displayDateFormat)}</Cell>
+                <Cell className="text-center" title={dataItem.ToDate}>{formatDateTime(dataItem.EffectiveToDate, displayDateFormat)}</Cell>
                 <Cell className="text-center" title={headerText.Preview}>
                     <Button color="link" onClick={() => this.handlePreview(dataItem.AffId)}>
                         <span className="oi oi-eye text-primary"></span>

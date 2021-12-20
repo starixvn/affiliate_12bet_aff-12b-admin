@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedId, fetchData, insertOfferAff, toggleLoader } from '../actions/index';
-import { defaultState, globalResource, maxLength, maxFileSize } from '../libs/constants';
-import { defaultInsertId } from '../../common/libs/constants';
+import { defaultState, globalResource, maxAffiliates, restrictedCharactersPattern } from '../libs/constants';
 import { formatDateTime } from '../../../../modules/utils';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
@@ -25,20 +24,38 @@ export class InsertForm extends PureComponent {
         this.setState({ [name]: value });
     }
 
+    _handleChangeAffNames = (event) => {
+        event.preventDefault();
+        const value = event.target.value;
+
+        if (restrictedCharactersPattern.test(value)) {
+            return;
+        }
+
+        this.setState({ affNames: value });
+    }
+
+    _handleBlurAffNames = () => {
+        this.setState(({ affNames }) => {
+            const newAffNames = affNames.replace(/\n+|\s+/g, ',').replace(/,+/g, ',').replace(/(^,)|(,$)/g, '');
+
+            return { affNames: newAffNames };
+        });
+    }
+
     _validateInputs = () => {
         const { affNames, offerPage } = this.state;
         return this._validateAffNames(affNames) && this._validateOfferPage(offerPage);
     }
 
     _validateAffNames = (affNames) => {
-        const rg1 = /^[^\\/$:\*\?"<>\|]+(.html)$/; // forbidden characters \ / : * ? $ " < > |
         if (!affNames) {
-            this._handleShowAlert(false, "Please enter file name!");
+            this._handleShowAlert(false, "Please enter Affiliate(s)!");
             return false;
         }
 
-        if (affNames && !(rg1.test(affNames))) {
-            this._handleShowAlert(false, "File name must not have characters \\ / : * ? $ \" < > | and extension is html!");
+        if (restrictedCharactersPattern.test(affNames)) {
+            this._handleShowAlert(false, "Affiliate(s) must be letters and digits, separated by [Comma], [Tab] or [Enter]");
             return false;
         }
 
@@ -47,7 +64,7 @@ export class InsertForm extends PureComponent {
 
     _validateOfferPage = (offerPage) => {
         if (!offerPage) {
-            this._handleShowAlert(false, "Please select Offer Page")
+            this._handleShowAlert(false, "Please select Offer Page HTML File!")
             return false
         }
         return true;
@@ -63,14 +80,13 @@ export class InsertForm extends PureComponent {
     }
 
     _getParam = () => {
-        const formatISO = "yyyy-MM-ddTHH:mm:ss.SSS"
-        const { selectedFile, fileName, fileSize, fromDate, toDate, language } = this.state;
-        const { selectedId } = this.props;
-        return Object.assign({}, { offerAffId: selectedId, file: selectedFile, fileName, fileSize, fromDate: formatDateTime(fromDate, formatISO), toDate: formatDateTime(toDate, formatISO), language });
+        const { affNames, offerPage } = this.state;
+
+        return Object.assign({}, { pageId: offerPage, affNameList: affNames });
     }
 
     _handleAfterUpload = (result) => {
-        this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? "The Offer page has been assigned to the selected affiliate(s)" : result.Message);
+        this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? "The offer page has been assigned to the selected affiliate(s)" : result.Message);
     }
 
     _handleSubmit = () => {
@@ -128,7 +144,8 @@ export class InsertForm extends PureComponent {
                                     <FormGroup row>
                                         <Label className="required" sm={3}>Affiliate(s)</Label>
                                         <Col sm={9}>
-                                            <Input type="textarea" rows="8" name="affNames" className="input-required mt-2" value={affNames} onChange={this._handleChange} />
+                                            <Input type="textarea" rows="6" name="affNames" className="input-required mt-2 mb-1" style={{ fontSize: 14, lineHeight: '18px' }}
+                                                value={affNames} onChange={this._handleChangeAffNames} onBlur={this._handleBlurAffNames} />
                                             <div><Label>Max 500 affiliates, separated by [Comma], [Tab] or [Enter]</Label></div>
                                         </Col>
                                     </FormGroup>

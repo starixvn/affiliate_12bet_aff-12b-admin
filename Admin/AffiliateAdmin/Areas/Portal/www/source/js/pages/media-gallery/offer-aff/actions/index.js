@@ -74,7 +74,7 @@ export const fetchData = (param) => async (dispatch) => {
 function _convertCheckedIds(dataList) {
     const checkedIds = {};
     for (let item of dataList) {
-        checkedIds[item.OfferAffId] = false;
+        checkedIds[item.AffId] = false;
     }
 
     return checkedIds;

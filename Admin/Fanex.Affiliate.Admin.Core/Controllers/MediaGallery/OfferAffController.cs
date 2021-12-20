@@ -5,10 +5,9 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
@@ -41,15 +40,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
-        public ActionResult InsertOfferAff(InsertOfferAffParam model)
+        public ActionResult InsertOfferAff(InsertOfferAffParam param)
         {
             if (ModelState.IsValid)
             {
-                var param = new InsertOfferAffParam
-                {
-                    UserId = SessionService.UserId,
-                    Ip = SessionService.RequestIp
-                };
+                EncodeParam(param);
 
                 return new JsonNetResult
                 {
@@ -62,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileBrowser
+                    Message = string.Join("<br />", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage))
                 }
             };
         }
@@ -102,7 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             };
         }
 
-        private void HandleEncodeParam(InsertOfferAffParam param)
+        private void EncodeParam(InsertOfferAffParam param)
         {
             param.UserId = SessionService.UserId;
             param.Ip = SessionService.RequestIp;

@@ -1,12 +1,15 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
+using System.Text.RegularExpressions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public class OfferAffService : IOfferAffService
     {
+        private const int MaxAffiliates = 501;
         private readonly IOfferAffRepository _OfferAffiliateRepository;
 
         public OfferAffService(IOfferAffRepository OfferAffiliateRepository)
@@ -20,7 +23,38 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo InsertOfferAff(InsertOfferAffParam param)
         {
+            var result = ValidateAffNames(param.AffNameList);
+
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
             return _OfferAffiliateRepository.InsertOfferAff(param);
+        }
+
+        private ResultInfo ValidateAffNames(string affNames)
+        {
+            var regex = new Regex("[^0-9a-zA-Z,]");
+            if(regex.IsMatch(affNames))
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Affiliate(s) must be letters and digits, separated by [Comma]"
+                };
+            }
+
+            if(affNames.Split(',').Length > MaxAffiliates)
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "The function can only copy up to 500 accounts per request."
+                };
+            }
+
+            return ResultInfo.Success;
         }
     }
 }

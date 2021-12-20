@@ -21,10 +21,10 @@ export const Filter = (props) => {
 
     const _handleSearch = () => {
         const newParam = Object.assign({}, {
-            AffName: affName,
-            OfferFile: offerFile,
-            PageIndex: 1,
-            PageSize: pagingOption.PageSize,
+            affName: affName,
+            fileName: offerFile,
+            pageIndex: 1,
+            pageSize: pagingOption.PageSize,
         });
 
         props.setParam(newParam);
