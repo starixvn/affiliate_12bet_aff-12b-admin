@@ -123,13 +123,21 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
     }
 
     _insertNewItem = async (param) => {
+        this.props.toggleLoader(true);
+
         const result = await this.props.insertOfferPage(param);
         this._handleAfterUpload(result);
+
+        this.props.toggleLoader(false);
     }
 
     _updateItem = async (param) => {
+        this.props.toggleLoader(true);
+
         const result = await this.props.updateOfferPage(param);
         this._handleAfterUpload(result);
+
+        this.props.toggleLoader(false);
     }
 
     _save = async (param) => {
@@ -161,14 +169,10 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
     }
 
     _handleSubmit = () => {
-        this.props.toggleLoader(true);
-
         if (this._validateInputs()) {
             const param = this._getParam();
             this._save(param);
         }
-
-        this.props.toggleLoader(false);
     }
 
     _handleKeyPress = (event) => {

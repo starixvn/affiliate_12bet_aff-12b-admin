@@ -88,7 +88,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                     Message = ex.Message
                 };
             }
-
         }
 
         public ResultInfo CreateFolder(string serverPath, string folder)
@@ -132,7 +131,5 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             return Path.GetExtension(fileName);
         }
-
-
     }
 }

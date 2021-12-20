@@ -71,8 +71,12 @@ export class InsertForm extends PureComponent {
     }
 
     _insertOfferAff = async (param) => {
+        this.props.toggleLoader(true);
+
         const result = await this.props.insertOfferAff(param);
         this._handleAfterUpload(result);
+
+        this.props.toggleLoader(false);
     }
 
     _save = async (param) => {
@@ -90,14 +94,10 @@ export class InsertForm extends PureComponent {
     }
 
     _handleSubmit = () => {
-        this.props.toggleLoader(true);
-
         if (this._validateInputs()) {
             const param = this._getParam();
             this._save(param);
         }
-
-        this.props.toggleLoader(false);
     }
 
     _handleShowAlert = (isSuccess, message) => {

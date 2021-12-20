@@ -81,7 +81,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={dataItem.FromDate}>{formatDateTime(dataItem.EffectiveFromDate, displayDateFormat)}</Cell>
                 <Cell className="text-center" title={dataItem.ToDate}>{formatDateTime(dataItem.EffectiveToDate, displayDateFormat)}</Cell>
                 <Cell className="text-center" title={headerText.Preview}>
-                    <Button color="link" onClick={() => this.handlePreview(dataItem.AffId)}>
+                    <Button color="link" onClick={() => this.handlePreview(dataItem.PageId)}>
                         <span className="oi oi-eye text-primary"></span>
                     </Button>
                 </Cell>
