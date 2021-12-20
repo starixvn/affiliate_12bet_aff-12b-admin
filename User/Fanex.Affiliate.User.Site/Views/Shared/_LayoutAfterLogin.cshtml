@@ -13,7 +13,7 @@
     var hasCommissionReportPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.CommissionReport);
     var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, sessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !sessionService.IsInternal;
     var isShowNewsLetterTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && newsLetterService.HasNewCurrentTime();
-    var isShowOfferTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && sessionService.UserSession.ExclusivePageId != 0;
+    var isShowOfferTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && sessionService.UserSession.OfferPageId != 0;
 }
 
 @section styles{

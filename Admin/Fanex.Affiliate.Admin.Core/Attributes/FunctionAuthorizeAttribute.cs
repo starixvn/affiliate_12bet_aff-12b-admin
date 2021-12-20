@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             if (!(string.IsNullOrEmpty(FunctionName) || skipCheckAuthorization))
             {
                 var claims = filterContext.HttpContext.User as ClaimsPrincipal;
-                var claimValue = IsHost ? Function.WritePermission : String.Empty;
+                var claimValue = IsHost ? Function.WritePermission : string.Empty;
                 var hasPerimission = false;
                 if (claims != null)
                 {
