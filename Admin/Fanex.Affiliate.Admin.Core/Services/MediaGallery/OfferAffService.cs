@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 return new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "The function can only copy up to 500 accounts per request."
+                    Message = "The function can only create assignment for up to 500 affiliates per request."
                 };
             }
 

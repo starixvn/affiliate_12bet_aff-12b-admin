@@ -15,7 +15,7 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
     constructor(props) {
         super(props)
 
-        const language = props.languageList.find(l => l.LanguageCode === defaultState.language) ? defaultState.language : props.languageList[0].LanguageCode;
+        const language = props.languageList.find(l => l.LanguageName === defaultState.language) ? defaultState.language : props.languageList[0].LanguageName;
         const initState = Object.assign({}, { ...defaultState }, { language })
         this.state = {
             ...initState

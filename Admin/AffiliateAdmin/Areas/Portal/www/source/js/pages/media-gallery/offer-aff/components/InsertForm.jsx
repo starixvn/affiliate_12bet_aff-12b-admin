@@ -5,8 +5,6 @@ import { bindActionCreators } from 'redux';
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedId, fetchData, insertOfferAff, toggleLoader } from '../actions/index';
 import { defaultState, globalResource, maxAffiliates, restrictedCharactersPattern } from '../libs/constants';
-import { formatDateTime } from '../../../../modules/utils';
-import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class InsertForm extends PureComponent {
     constructor(props) {
@@ -57,6 +55,11 @@ export class InsertForm extends PureComponent {
         if (restrictedCharactersPattern.test(affNames)) {
             this._handleShowAlert(false, "Affiliate(s) must be letters and digits, separated by [Comma], [Tab] or [Enter]");
             return false;
+        }
+
+        if (affNames.split(',').length > maxAffiliates) {
+            this._handleShowAlert(false, 'The function can only create assignment for up to 500 affiliates per request.');
+            return false
         }
 
         return true;
