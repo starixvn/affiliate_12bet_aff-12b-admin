@@ -37,7 +37,7 @@ export class Content extends PureComponent {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20}></Cell>
+                {this.props.isModifiable && <Cell header={true} colWidth={20}></Cell>}
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={150} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.OfferPageHtmlFile}>{headerText.OfferPageHtmlFile}</Cell>
@@ -71,10 +71,11 @@ export class Content extends PureComponent {
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={!!this.props.checkedIds[dataItem.AffId]}
-                        onChange={(e) => this.onCheckItem(e.target.checked, dataItem.AffId)} />
-                </Cell>
+                { this.props.isModifiable && <Cell className="text-center">
+                        <input type="checkbox" checked={!!this.props.checkedIds[dataItem.AffId]}
+                            onChange={(e) => this.onCheckItem(e.target.checked, dataItem.AffId)} />
+                    </Cell>
+                }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={dataItem.UserName}>{dataItem.UserName}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>

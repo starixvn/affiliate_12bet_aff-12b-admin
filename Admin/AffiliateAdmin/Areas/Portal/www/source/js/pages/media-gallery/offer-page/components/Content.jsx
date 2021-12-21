@@ -26,7 +26,7 @@ export class Content extends PureComponent {
         const { isModifiable } = this.props;
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20}></Cell>
+                {isModifiable && <Cell header={true} colWidth={20}></Cell>}
                 <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.FileName}>{headerText.FileName}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.FileSize}>{headerText.FileSize}</Cell>
@@ -51,10 +51,8 @@ export class Content extends PureComponent {
             }
         }
         else {
-            const { isModifiable } = this.props;
-
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={11 + isModifiable}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="11">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -62,6 +60,7 @@ export class Content extends PureComponent {
     }
 
     buildDataRow(dataItem, index) {
+        const { isModifiable } = this.props;
         const fileName = htmlDecode(dataItem.FileName);
         const language = htmlDecode(dataItem.Language);
         const displayFileSize = Math.round((dataItem.FileSize / 1024) * 100) / 100;
@@ -69,10 +68,14 @@ export class Content extends PureComponent {
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={!!this.props.checkedIds[dataItem.PageId]}
-                        onChange={(e) => this.onCheckItem(e.target.checked, dataItem.PageId)} />
-                </Cell>
+                {
+                    isModifiable && (
+                        <Cell className="text-center">
+                            <input type="checkbox" checked={!!this.props.checkedIds[dataItem.PageId]}
+                                onChange={(e) => this.onCheckItem(e.target.checked, dataItem.PageId)} />
+                        </Cell>
+                    )
+                }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
                 <Cell className="text-center" title={dataItem.FileSize}>{displayFileSize}</Cell>
@@ -94,7 +97,7 @@ export class Content extends PureComponent {
                         <span className="oi oi-eye text-primary"></span>
                     </Button>
                 </Cell>
-                { this.props.isModifiable &&
+                { isModifiable &&
                     <Cell className="text-center" title="Edit Offer Page">
                         <Button color="link" onClick={() => this.props.setSelectedId(dataItem.PageId)}>
                             <span className="oi oi-pencil text-secondary"></span>

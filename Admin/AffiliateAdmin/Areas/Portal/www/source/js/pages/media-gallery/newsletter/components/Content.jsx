@@ -26,7 +26,7 @@ export class Content extends PureComponent {
         const { isModifiable } = this.props;
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20}></Cell>
+                {isModifiable && <Cell header={true} colWidth={20}></Cell>}
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.FileName}>{headerText.FileName}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.FileSize}>{headerText.FileSize}</Cell>
@@ -51,7 +51,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="11">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="10">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -59,15 +59,20 @@ export class Content extends PureComponent {
     }
 
     buildDataRow(dataItem, index) {
+        const { isModifiable } = this.props;
         const fileName = htmlDecode(dataItem.FileName);
         const displayFileSize = Math.round((dataItem.FileSize / 1024) * 100) / 100;
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={!!this.props.checkedNewsLetterPages[dataItem.NewsLetterId]}
-                        onChange={(e) => this.onCheckItem(e.target.checked, dataItem.NewsLetterId)} />
-                </Cell>
+                {
+                    isModifiable && (
+                        <Cell className="text-center">
+                            <input type="checkbox" checked={!!this.props.checkedNewsLetterPages[dataItem.NewsLetterId]}
+                                onChange={(e) => this.onCheckItem(e.target.checked, dataItem.NewsLetterId)} />
+                        </Cell>
+                    )
+                }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
                 <Cell className="text-center" title={dataItem.FileSize}>{displayFileSize}</Cell>
@@ -80,7 +85,7 @@ export class Content extends PureComponent {
                         <span className="oi oi-eye text-primary"></span>
                     </Button>
                 </Cell>
-                { this.props.isModifiable &&
+                { isModifiable &&
                     <Cell className="text-center" title="Edit Newsletter">
                         <Button color="link" onClick={() => this.props.setSelectedNewsLetterPageId(dataItem.NewsLetterId)}>
                             <span className="oi oi-pencil text-secondary"></span>
