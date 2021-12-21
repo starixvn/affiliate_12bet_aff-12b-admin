@@ -15,18 +15,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class NewsLetterService : INewsLetterService
     {
         private const string NEWSLETTER_CONTENT_PATH = "newsletter/getcontent";
-
-        private static readonly Lazy<HttpClient> LazyHttpClient = new Lazy<HttpClient>();
-        private static HttpClient HttpClient => LazyHttpClient.Value;
         private INewsLetterRepository Repository { get; }
         private ISessionService SessionService { get; }
-        private IAppSetting AppSetting { get; }
+        private IHttpClientUtility HttpClientUtility { get; }
 
-        public NewsLetterService(INewsLetterRepository repository, ISessionService sessionService, IAppSetting appSetting)
+        public NewsLetterService(INewsLetterRepository repository, ISessionService sessionService, IHttpClientUtility httpClientUtility)
         {
             Repository = repository;
             SessionService = sessionService;
-            AppSetting = appSetting;
+            HttpClientUtility = httpClientUtility;
         }
 
         public async Task<string> GetContentById(int id)
@@ -34,7 +31,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var item = Repository.GetNewsLetterById(id);
             if (item != null)
             {
-                return await GetContent(item.FileName);
+                return await HttpClientUtility.GetContent(NEWSLETTER_CONTENT_PATH, item.FileName);
             }
             return string.Empty;
         }
@@ -52,28 +49,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 return string.Empty;
             }
 
-            return await GetContent(item.FileName);
+            return await HttpClientUtility.GetContent(NEWSLETTER_CONTENT_PATH, item.FileName);
         }
 
         public bool HasNewCurrentTime()
         {
             var items = Repository.GetNewsLettersByDate(DateTime.Now);
             return items.Any();
-        }
-
-        private async Task<string> GetContent(string fileName)
-        {
-            var url = new Uri($"{AppSetting.ResourceDomain}{NEWSLETTER_CONTENT_PATH}?fileName={fileName}");
-            var content = await HttpClient.GetAsync(url);
-            if (content.IsSuccessStatusCode)
-            {
-                return await content.Content.ReadAsStringAsync();
-            }
-            else
-            {
-                await Logger.Log.ErrorAsync($"Request to take Newsletters {fileName} content fail");
-            }
-            return string.Empty;
         }
     }
 }

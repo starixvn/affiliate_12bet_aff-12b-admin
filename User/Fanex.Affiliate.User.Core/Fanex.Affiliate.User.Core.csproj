@@ -339,6 +339,8 @@
     <Compile Include="Repository\UserPanel\NewsLetterRepository.cs" />
     <Compile Include="Utilities\ClaimUtitlity.cs" />
     <Compile Include="Utilities\Helper.cs" />
+    <Compile Include="Utilities\HttpClientUtility.cs" />
+    <Compile Include="Utilities\IHttpClientUtility.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />

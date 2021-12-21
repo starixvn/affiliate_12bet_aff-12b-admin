@@ -1,8 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
-using Fanex.Logging;
-using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
@@ -10,15 +7,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class OfferService : IOfferService
     {
         private const string OFFER_CONTENT_PATH = "offerpage/getcontent";
-        private static readonly Lazy<HttpClient> LazyHttpClient = new Lazy<HttpClient>();
-        private static readonly HttpClient httpClient = LazyHttpClient.Value;
 
         private readonly IOfferRepository _offerRepository;
-        private readonly IAppSetting _appSetting;
+        private readonly IHttpClientUtility _httpClientUtility;
 
-        public OfferService(IAppSetting appSetting, IOfferRepository offerRepository)
+        public OfferService(IHttpClientUtility httpClientUtility, IOfferRepository offerRepository)
         {
-            _appSetting = appSetting;
+            _httpClientUtility = httpClientUtility;
             _offerRepository = offerRepository;
         }
 
@@ -28,24 +23,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (item != null)
             {
-                return await GetContent(item.FileName);
+                return await _httpClientUtility.GetContent(OFFER_CONTENT_PATH, item.FileName);
             }
 
-            return string.Empty;
-        }
-
-        private async Task<string> GetContent(string fileName)
-        {
-            var url = new Uri($"{_appSetting.ResourceDomain}{OFFER_CONTENT_PATH}?fileName={fileName}");
-            var content = await httpClient.GetAsync(url);
-            if (content.IsSuccessStatusCode)
-            {
-                return await content.Content.ReadAsStringAsync();
-            }
-            else
-            {
-                await Logger.Log.ErrorAsync($"Request to take Offer {fileName} content is failed!");
-            }
             return string.Empty;
         }
     }
