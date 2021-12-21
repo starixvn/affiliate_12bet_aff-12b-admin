@@ -344,4 +344,7 @@
   <data name="InvalidId" xml:space="preserve">
     <value>Invalid Id</value>
   </data>
+  <data name="FileNameMustNotContain" xml:space="preserve">
+    <value>File name must not contain \ / : * ? $ \" &lt; &gt; | characters</value>
+  </data>
 </root>

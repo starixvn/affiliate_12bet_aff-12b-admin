@@ -232,6 +232,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File name must not contain \ / : * ? $ \&quot; &lt; &gt; | characters.
+        /// </summary>
+        public static string FileNameMustNotContain {
+            get {
+                return ResourceManager.GetString("FileNameMustNotContain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;div&gt;
         ///            &lt;p&gt;The upload file is not correct format, error shall be one of following list:&lt;/p&gt;
         ///            &lt;ol&gt;

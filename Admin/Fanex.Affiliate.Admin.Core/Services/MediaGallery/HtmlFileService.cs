@@ -69,10 +69,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo ValidateFileName(string fileName)
         {
-            var regex = new Regex("[\\\\/:*?\"<>#%&+]");
+            var regex = new Regex("[\\\\/:*?$\"<>]");
             if (regex.IsMatch(fileName))
             {
-                return ResultInfo.GenerateErr(Lang.FileNameCanNotContain);
+                return ResultInfo.GenerateErr(Lang.FileNameMustNotContain);
             }
 
             if (Path.GetExtension(fileName) != ACCEPT_FILE_EXTENSION)
