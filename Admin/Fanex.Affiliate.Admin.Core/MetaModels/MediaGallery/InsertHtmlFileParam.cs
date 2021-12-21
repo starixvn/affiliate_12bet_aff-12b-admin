@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
-    public class InsertNewsLetterParam : UserInfoParam
+    public class InsertHtmlFileParam : UserInfoParam
     {
         [Required]
         public string FileName { get; set; }

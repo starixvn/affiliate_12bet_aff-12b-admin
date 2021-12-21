@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -68,21 +67,34 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
         }
 
-        private ResultInfo UploadFile(HttpPostedFileBase file, string fileName, string folder)
+        public ResultInfo ValidateFileName(string fileName)
         {
-            foreach (var serverPath in _appSetting.BannerFolders)
+            var regex = new Regex("[\\\\/:*?\"<>#%&+]");
+            if (regex.IsMatch(fileName))
             {
-                var filePath = Path.Combine(serverPath, folder, fileName);
-                var result = _systemFile.UploadFile(file.InputStream, filePath);
-                if (!result.IsSuccessful)
-                {
-                    return result;
-                }
+                return ResultInfo.GenerateErr(Lang.FileNameCanNotContain);
             }
+
+            if (Path.GetExtension(fileName) != ACCEPT_FILE_EXTENSION)
+            {
+                return ResultInfo.GenerateErr(Lang.InvalidFileType);
+            }
+
+            if (fileName.Length > MAX_LENGTH)
+            {
+                return ResultInfo.GenerateErr(Lang.MaxLenghtOfFileName);
+            }
+
             return ResultInfo.Success;
         }
 
-        public ResultInfo HandleReplaceFileByNewFile(HttpPostedFileBase file, string oldFileName, string newFileName, string folder)
+        public ResultInfo HandleUpdateFile(HttpPostedFileBase file, string oldFileName, string newFileName, string folder)
+        {
+            return file == null ? HandleRenameOldFile(oldFileName, newFileName, folder) :
+                HandleReplaceFileByNewFile(file, oldFileName, newFileName, folder);
+        }
+
+        private ResultInfo HandleReplaceFileByNewFile(HttpPostedFileBase file, string oldFileName, string newFileName, string folder)
         {
             var result = ValidateFile(file);
             if (!result.IsSuccessful)
@@ -110,7 +122,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return ResultInfo.Success;
         }
 
-        public ResultInfo HandleRenameOldFile(string oldFileName, string newFileName, string folder)
+        private ResultInfo HandleRenameOldFile(string oldFileName, string newFileName, string folder)
         {
             var result = CheckFileExistInFolder(newFileName, folder);
             if (!result.IsSuccessful && oldFileName != newFileName)
@@ -123,6 +135,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 MoveFile(newFileName, oldFileName, folder);
             }
 
+            return ResultInfo.Success;
+        }
+
+        private ResultInfo UploadFile(HttpPostedFileBase file, string fileName, string folder)
+        {
+            foreach (var serverPath in _appSetting.BannerFolders)
+            {
+                var filePath = Path.Combine(serverPath, folder, fileName);
+                var result = _systemFile.UploadFile(file.InputStream, filePath);
+                if (!result.IsSuccessful)
+                {
+                    return result;
+                }
+            }
             return ResultInfo.Success;
         }
 
@@ -155,57 +181,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return ResultInfo.Success;
         }
 
-        public ResultInfo ValidateFileName(string fileName)
-        {
-            var regex = new Regex("[\\\\/:*?\"<>#%&+]");
-            if (regex.IsMatch(fileName))
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.FileNameCanNotContain
-                };
-            }
-
-            if (Path.GetExtension(fileName) != ACCEPT_FILE_EXTENSION)
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileType
-                };
-            }
-
-            if (fileName.Length > MAX_LENGTH)
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.MaxLenghtOfFileName
-                };
-            }
-
-            return ResultInfo.Success;
-        }
-
-        private ResultInfo ValidateFile(HttpPostedFileBase file)
+        private static ResultInfo ValidateFile(HttpPostedFileBase file)
         {
             if (file.ContentType != ACCEPT_FILE_MIME)
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileType
-                };
+                return ResultInfo.GenerateErr(Lang.InvalidFileType);
             }
 
             if (file.ContentLength > MAX_FILE_SIZE)
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileSize
-                };
+                return ResultInfo.GenerateErr(Lang.InvalidFileSize);
             }
             return ResultInfo.Success;
         }

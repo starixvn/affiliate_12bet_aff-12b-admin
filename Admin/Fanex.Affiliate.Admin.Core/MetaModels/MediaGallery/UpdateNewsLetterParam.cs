@@ -1,7 +1,7 @@
 ﻿
 namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
-    public class UpdateNewsLetterParam : InsertNewsLetterParam
+    public class UpdateNewsLetterParam : InsertHtmlFileParam
     {
         public int NewsLetterId { get; set; }
     }

@@ -223,14 +223,12 @@
     <Compile Include="MetaModels\MediaGallery\DeleteOfferPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteNewsLetterParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertOfferAffParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\InsertOfferPageParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\InsertNewsLetterParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\InsertHtmlFileParam.cs" />
     <Compile Include="MetaModels\MediaGallery\SelectOfferAffParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\SelectOfferPageParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\SelectNewsLetterParam.cs" />
     <Compile Include="MetaModels\MediaGallery\UpdateOfferPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\UpdateNewsLetterParam.cs" />
     <Compile Include="MetaModels\NewViewLog\NewViewLogParam.cs" />
+    <Compile Include="MetaModels\PagingParam.cs" />
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestBaseParam.cs" />
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestDelParam.cs" />
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestInsParam.cs" />

@@ -136,7 +136,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
           </div>
           <Form
             autoComplete="off"
-            className="mb-5"
+            className="mb-4"
             tag="form"
           >
             <FormGroup
@@ -440,7 +440,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2021-12-30T17:00:00.000Z}
+                  selected={2022-01-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
@@ -622,7 +622,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
           </div>
           <Form
             autoComplete="off"
-            className="mb-5"
+            className="mb-4"
             tag="form"
           >
             <FormGroup
@@ -920,7 +920,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2021-12-30T17:00:00.000Z}
+                  selected={2022-01-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
@@ -1107,7 +1107,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
           </div>
           <Form
             autoComplete="off"
-            className="mb-5"
+            className="mb-4"
             tag="form"
           >
             <FormGroup
@@ -1411,7 +1411,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2021-12-30T17:00:00.000Z}
+                  selected={2022-01-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}

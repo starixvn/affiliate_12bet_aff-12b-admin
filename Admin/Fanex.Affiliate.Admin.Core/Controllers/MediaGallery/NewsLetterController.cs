@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
@@ -43,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             if (ModelState.IsValid && file != null)
             {
-                var param = new InsertNewsLetterParam
+                var param = new InsertHtmlFileParam
                 {
                     UserId = SessionService.UserId,
                     Ip = SessionService.RequestIp,
@@ -62,11 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileBrowser
-                }
+                Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
             };
         }
 
@@ -97,17 +94,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileBrowser
-                }
+                Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetNewsLetterList(SelectNewsLetterParam param)
+        public ActionResult GetNewsLetterList(PagingParam param)
         {
             var data = NewsLetterService.GetNewsLetters(param);
             var models = data.MainData.Select(i => new NewsLetterViewModel

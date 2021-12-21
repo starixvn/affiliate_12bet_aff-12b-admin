@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
@@ -41,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
-        public ActionResult InsertOfferPage(HttpPostedFileBase file, InsertOfferPageParam param)
+        public ActionResult InsertOfferPage(HttpPostedFileBase file, InsertHtmlFileParam param)
         {
             if (ModelState.IsValid && file != null)
             {
@@ -56,11 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileBrowser
-                }
+                Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
             };
         }
 
@@ -82,17 +79,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileBrowser
-                }
+                Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetOfferPageList(SelectOfferPageParam param)
+        public ActionResult GetOfferPageList(PagingParam param)
         {
             var data = _offerPageService.GetOfferPageList(param);
 
@@ -121,7 +114,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = _offerPageService.DeleteOfferPage(param)
+                Data = _offerPageService.DeleteOfferPages(param)
             };
         }
 
@@ -137,7 +130,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             };
         }
 
-        private void EncodeParam(InsertOfferPageParam param)
+        private void EncodeParam(InsertHtmlFileParam param)
         {
             param.UserId = SessionService.UserId;
             param.Ip = SessionService.RequestIp;

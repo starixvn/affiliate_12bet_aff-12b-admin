@@ -42,7 +42,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Action
             var result = controller.GetReferrersList(new ReferrersParam()) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<Referrers>;
 
             // Assert
             Assert.Null(result.Data);
@@ -77,7 +76,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Action
             var result = controller.GetReferrersDetailList(new ReferrersDetailParam()) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<Referrers>;
 
             // Assert
             Assert.Null(result.Data);

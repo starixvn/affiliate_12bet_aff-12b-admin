@@ -107,7 +107,7 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
             return false;
         }
         if (!(rg1.test(fileName))) {
-            this._handleShowAlert(false, "File name must not have characters \\ / : * ? $ \" < > | and extension is html!");
+            this._handleShowAlert(false, "File name must not contain \\ / : * ? $ \" < > | characters and extension must be html.");
             return false;
         }
 

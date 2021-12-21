@@ -1,15 +1,14 @@
-﻿using Fanex.Affiliate.Admin.Core.Resources;
-
+﻿
 namespace Fanex.Affiliate.Admin.Core.DTO
 {
     public class ResultInfo
     {
         public static ResultInfo Success => new ResultInfo { Code = 0 };
 
-        public static ResultInfo ErrGeneral => new ResultInfo
+        public static ResultInfo GenerateErr(string message = "") => new ResultInfo
         {
             Code = Constants.Code.GeneralErrorCode,
-            Message = Lang.ErrGeneral,
+            Message = message,
         };
 
         public int Code { get; set; }

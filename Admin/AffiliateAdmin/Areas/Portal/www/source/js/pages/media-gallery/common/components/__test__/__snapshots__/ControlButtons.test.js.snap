@@ -9,6 +9,7 @@ exports[`media gallery - components - ControlButtons  render correctly 1`] = `
       fetchData={[Function]}
       hasIcon={true}
       isOpenNotification={true}
+      label="Delete"
     />
     <Button
       className="mx-2"

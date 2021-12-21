@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using System.Data;
 
@@ -28,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             }
         }
 
-        public EntityResult<OfferPage> GetOfferPageList(SelectOfferPageParam param)
+        public EntityResult<OfferPage> GetOfferPageList(PagingParam param)
         {
             const string spKey = "Aff_Admin_OfferPage_Sel";
             using (var objectDb = GetObjectDb(spKey))
@@ -44,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             }
         }
 
-        public ResultInfo InsertOfferPage(InsertOfferPageParam param)
+        public ResultInfo InsertOfferPage(InsertHtmlFileParam param)
         {
             const string spKey = "Aff_Admin_OfferPage_Ins";
             using (var objectDb = GetObjectDb(spKey))

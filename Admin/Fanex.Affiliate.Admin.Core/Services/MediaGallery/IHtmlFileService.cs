@@ -14,8 +14,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         ResultInfo HandleUploadFile(HttpPostedFileBase file, string fileName, string folder);
 
-        ResultInfo HandleRenameOldFile(string oldFileName, string newFileName, string folder);
-
-        ResultInfo HandleReplaceFileByNewFile(HttpPostedFileBase file, string oldFileName, string newFileName, string folder);
+        ResultInfo HandleUpdateFile(HttpPostedFileBase file, string oldFileName, string newFileName, string folder);
     }
 }

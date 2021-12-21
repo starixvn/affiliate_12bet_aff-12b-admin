@@ -6,7 +6,7 @@ namespace Affiliate.Infrastructure.Helpers
 {
     public static class ConnectionStringHelper
     {
-        private static ConcurrentDictionary<string, string> connectionStringList = new ConcurrentDictionary<string, string>();
+        private static readonly ConcurrentDictionary<string, string> connectionStringList = new ConcurrentDictionary<string, string>();
 
         public static string GetConnectionString(string connectionStringName, bool isEncryptedConnection = true)
         {

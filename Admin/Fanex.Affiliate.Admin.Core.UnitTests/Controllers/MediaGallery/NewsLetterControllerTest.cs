@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Controllers.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -36,14 +37,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var viewName = viewResult.ViewName;
 
             // Assert
-            Assert.Equal("~/Areas/Portal/Views/MediaGallery/NewsLetterPageList.cshtml", viewName);
+            Assert.Equal("~/Areas/Portal/Views/MediaGallery/Common.cshtml", viewName);
         }
 
         [Fact]
         public void GetNewsLetterList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new SelectNewsLetterParam();
+            var param = new PagingParam();
 
             var newsLetterService = new Mock<INewsLetterService>();
             newsLetterService.Setup(t => t.GetNewsLetters(param)).Returns(new EntityResult<NewsLetter> { MainData = new List<NewsLetter> { new NewsLetter() }, TotalItem = 1 });
@@ -82,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var newsLetterService = new Mock<INewsLetterService>();
-            newsLetterService.Setup(s => s.AddNewsLetter(It.IsAny<HttpPostedFileBase>(), It.IsAny<InsertNewsLetterParam>())).Returns(new ResultInfo());
+            newsLetterService.Setup(s => s.AddNewsLetter(It.IsAny<HttpPostedFileBase>(), It.IsAny<InsertHtmlFileParam>())).Returns(new ResultInfo());
             var controller = CreateNewsLetterController(newsLetterService: newsLetterService.Object);
 
             // Action

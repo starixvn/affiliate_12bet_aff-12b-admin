@@ -102,6 +102,6 @@ describe('exchange rate actions', () => {
         const result = await actions['updateExchangeRate'](selectedExchangeRate)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/ExchangeRate/UpdateExchangeRate', selectedExchangeRate);
-        expect(result).toEqual({ IsSuccessful: false, Message: 'Update Failed!' });
+        expect(result).toEqual({ IsSuccessful: false, Message: 'An error occurred while processing your request, please try again later!' });
     })
 })

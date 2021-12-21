@@ -1,6 +1,6 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
@@ -29,11 +29,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public OfferPage GetOfferPageById(int pageId) => _offerPageRepository.GetOfferPageById(pageId);
 
-        public EntityResult<OfferPage> GetOfferPageList(SelectOfferPageParam param) => _offerPageRepository.GetOfferPageList(param);
+        public EntityResult<OfferPage> GetOfferPageList(PagingParam param) => _offerPageRepository.GetOfferPageList(param);
 
         public IEnumerable<OfferPageBasicInfo> GetValidEndDateOfferPages()
         {
-            var offerPages = _offerPageRepository.GetOfferPageList(new SelectOfferPageParam()).MainData;
+            var offerPages = _offerPageRepository.GetOfferPageList(new PagingParam()).MainData;
             var now = DateTime.Now;
 
             return offerPages.Where(o => DateTime.Compare(o.EffectiveToDate, now) > 0)
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 });
         }
 
-        public ResultInfo DeleteOfferPage(DeleteOfferPageParam param)
+        public ResultInfo DeleteOfferPages(DeleteOfferPageParam param)
         {
             var fileNames = GetFileNamesFromIds(param.PageIds);
             var result = _offerPageRepository.DeleteOfferPage(param);
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return result;
         }
 
-        public ResultInfo InsertOfferPage(HttpPostedFileBase file, InsertOfferPageParam param)
+        public ResultInfo InsertOfferPage(HttpPostedFileBase file, InsertHtmlFileParam param)
         {
             var result = _htmlFileService.HandleUploadFile(file, param.FileName, UPLOAD_FOLDER);
             if (!result.IsSuccessful)
@@ -86,15 +86,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             var oldOfferPage = _offerPageRepository.GetOfferPageById(param.PageId);
             if (oldOfferPage == null)
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidId
-                };
+                return ResultInfo.GenerateErr(Lang.InvalidId);
             }
 
-            result = file == null ? _htmlFileService.HandleRenameOldFile(oldOfferPage.FileName, param.FileName, UPLOAD_FOLDER) :
-                    _htmlFileService.HandleReplaceFileByNewFile(file, oldOfferPage.FileName, param.FileName, UPLOAD_FOLDER);
+            result = _htmlFileService.HandleUpdateFile(file, oldOfferPage.FileName, param.FileName, UPLOAD_FOLDER);
 
             if (!result.IsSuccessful)
             {
@@ -104,7 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return _offerPageRepository.UpdateOfferPage(param);
         }
 
-        private ResultInfo InsertToDB(InsertOfferPageParam param)
+        private ResultInfo InsertToDB(InsertHtmlFileParam param)
         {
             try
             {
@@ -113,7 +108,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             catch (Exception ex)
             {
                 Logger.Log.Error(ex.Message, ex);
-                return ResultInfo.ErrGeneral;
+                return ResultInfo.GenerateErr(Lang.ErrGeneral);
             }
         }
 

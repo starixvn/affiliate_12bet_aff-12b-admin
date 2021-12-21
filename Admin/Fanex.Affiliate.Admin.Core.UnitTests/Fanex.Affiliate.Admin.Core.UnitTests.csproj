@@ -274,6 +274,7 @@
     <Compile Include="Services\Home\HomeServiceTest.cs" />
     <Compile Include="Services\LanguageServiceTest.cs" />
     <Compile Include="Services\ExchangeRate\ExchangeRateServiceTest.cs" />
+    <Compile Include="Services\MediaGallery\HtmlFileServiceTest.cs" />
     <Compile Include="Services\MediaGallery\NewsLetterServiceTest.cs" />
     <Compile Include="Services\Member\RegisteredMemberServiceTest.cs" />
     <Compile Include="Utilities\MassAdjustmentHelperTest.cs" />
