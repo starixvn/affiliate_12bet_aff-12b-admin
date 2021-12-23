@@ -86,7 +86,7 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={assignedAffNumber}>
                     {
                         assignedAffNumber === 0 ? (<span>{assignedAffNumber}</span>) : (
-                            <a href={resolveClientUrl(`Portal/OfferAff?OfferFile=${fileName}`)} target="_top">
+                            <a href={resolveClientUrl(`Portal/OfferAff?OfferFile=${fileName}`)} target="_blank">
                                 {assignedAffNumber}
                             </a>
                         )
