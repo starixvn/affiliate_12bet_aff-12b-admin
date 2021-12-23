@@ -23,6 +23,14 @@ export class AppContainer extends PureComponent {
         !gridData && this.handleFetchData();
     };
 
+    componentDidUpdate(prevProps) {
+        const { param } = this.props;
+
+        if (param !== prevProps.param) {
+            this.handleFetchData();
+        }
+    };
+
     handleFetchData = async () => {
         await this.props.fetchData(this.props.param);
     }
