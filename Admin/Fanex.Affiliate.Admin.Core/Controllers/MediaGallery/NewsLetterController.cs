@@ -42,7 +42,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult InsertNewsLetter(HttpPostedFileBase file, NewsLetterViewModel model)
         {
-            if (ModelState.IsValid && file != null)
+            if (file == null)
+            {
+                return new JsonNetResult
+                {
+                    Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
+                };
+            }
+
+            if (ModelState.IsValid)
             {
                 var param = new InsertHtmlFileParam
                 {
@@ -63,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))
             };
         }
 
@@ -94,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))
             };
         }
 

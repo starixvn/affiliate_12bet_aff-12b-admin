@@ -10,6 +10,7 @@ using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -44,7 +45,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult InsertOfferPage(HttpPostedFileBase file, InsertHtmlFileParam param)
         {
-            if (ModelState.IsValid && file != null)
+            if(file == null)
+            {
+                return new JsonNetResult
+                {
+                    Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
+                };
+            }
+
+            if (ModelState.IsValid)
             {
                 EncodeParam(param);
                 param.FileSize = file.ContentLength;
@@ -57,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))
             };
         }
 
@@ -79,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))
             };
         }
 
