@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return newsLetterIds.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(i => Convert.ToInt32(i))
                 .Select(i => GetNewsLetterById(i))
-                .Select(item => item.FileName)
+                .Select(item => item?.FileName)
                 .ToList();
         }
 

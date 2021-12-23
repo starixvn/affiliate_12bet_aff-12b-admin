@@ -117,7 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return pageIds.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(i => Convert.ToInt32(i))
                 .Select(i => GetOfferPageById(i))
-                .Select(item => item.FileName)
+                .Select(item => item?.FileName)
                 .ToList();
         }
     }

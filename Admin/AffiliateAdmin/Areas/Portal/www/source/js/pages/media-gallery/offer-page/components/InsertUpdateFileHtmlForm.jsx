@@ -123,34 +123,22 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
     }
 
     _insertNewItem = async (param) => {
-        this.props.toggleLoader(true);
-
         const result = await this.props.insertOfferPage(param);
         this._handleAfterUpload(result);
-
-        this.props.toggleLoader(false);
     }
 
     _updateItem = async (param) => {
-        this.props.toggleLoader(true);
-
         const result = await this.props.updateOfferPage(param);
         this._handleAfterUpload(result);
-
-        this.props.toggleLoader(false);
     }
 
     _save = async (param) => {
-        const { fileName, initialFileName, isInsert } = this.state;
+        const { isInsert } = this.state;
         if (isInsert) {
             await this._insertNewItem(param);
         }
         else {
-            if (fileName === initialFileName) {
-                this.setState({ messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' });
-            } else {
-                await this._updateItem(param);
-            }
+            await this._updateItem(param);
         }
     }
 
@@ -169,10 +157,14 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
     }
 
     _handleSubmit = () => {
+        this.props.toggleLoader(true);
+
         if (this._validateInputs()) {
             const param = this._getParam();
             this._save(param);
         }
+
+        this.props.toggleLoader(false);
     }
 
     _handleKeyPress = (event) => {
@@ -251,7 +243,7 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label className="required" sm={4}>Language</Label>
+                                        <Label sm={4}>Language</Label>
                                         <Col sm={6}>
                                             <Input type="select" name="language" className="input-required mt-2" value={language} onChange={this._handleChange}>
                                                 {languageList.map(lang =>
