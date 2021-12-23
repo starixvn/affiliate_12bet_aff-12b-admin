@@ -114,12 +114,12 @@ export class InsertUpdateForm extends PureComponent {
 
     _validateDateRange = (fromDate, toDate) => {
         if (!fromDate || !toDate) {
-            this._handleShowAlert(false, "Effectective From and To are required")
+            this._handleShowAlert(false, "Effective From and To are required")
             return false
         }
 
         if (toDate <= fromDate) {
-            this._handleShowAlert(false, "Effectective To Date must be greater than Effective From Date")
+            this._handleShowAlert(false, "Effective To Date must be greater than Effective From Date")
             return false
         }
         return true;
