@@ -9,7 +9,7 @@ export const headerText = {
     Language: 'Language',
     UploadDate: 'Upload Date',
     FromDate: 'Effective From',
-    ToDate: 'To',
+    ToDate: 'Effective To',
     Preview: 'Preview',
     Edit: 'Edit'
 }

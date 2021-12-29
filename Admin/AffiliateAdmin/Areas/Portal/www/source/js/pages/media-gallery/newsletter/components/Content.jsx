@@ -62,6 +62,9 @@ export class Content extends PureComponent {
         const { isModifiable } = this.props;
         const fileName = htmlDecode(dataItem.FileName);
         const displayFileSize = Math.round((dataItem.FileSize / 1024) * 100) / 100;
+        const uploadDate = formatDateTime(dataItem.UploadDate, displayDateFormat);
+        const fromDate = formatDateTime(dataItem.FromDate, displayDateFormat);
+        const toDate = formatDateTime(dataItem.ToDate, displayDateFormat);
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -75,11 +78,11 @@ export class Content extends PureComponent {
                 }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
-                <Cell className="text-center" title={dataItem.FileSize}>{displayFileSize}</Cell>
+                <Cell className="text-center" title={displayFileSize}>{displayFileSize}</Cell>
                 <Cell className="text-center" title={dataItem.LanguageName}>{dataItem.LanguageName}</Cell>
-                <Cell className="text-center" title={dataItem.UploadDate}>{formatDateTime(dataItem.UploadDate, displayDateFormat)}</Cell>
-                <Cell className="text-center" title={dataItem.FromDate}>{formatDateTime(dataItem.FromDate, displayDateFormat)}</Cell>
-                <Cell className="text-center" title={dataItem.ToDate}>{formatDateTime(dataItem.ToDate, displayDateFormat)}</Cell>
+                <Cell className="text-center" title={uploadDate}>{uploadDate}</Cell>
+                <Cell className="text-center" title={fromDate}>{fromDate}</Cell>
+                <Cell className="text-center" title={toDate}>{toDate}</Cell>
                 <Cell className="text-center" title={headerText.Preview}>
                     <Button color="link" onClick={() => this.handlePreview(dataItem.NewsLetterId)}>
                         <span className="oi oi-eye text-primary"></span>

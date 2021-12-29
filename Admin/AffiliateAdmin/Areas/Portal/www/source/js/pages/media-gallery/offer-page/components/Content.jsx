@@ -65,6 +65,9 @@ export class Content extends PureComponent {
         const language = htmlDecode(dataItem.Language);
         const displayFileSize = Math.round((dataItem.FileSize / 1024) * 100) / 100;
         const assignedAffNumber = dataItem.Affiliate;
+        const uploadDate = formatDateTime(dataItem.UploadDate, displayDateFormat);
+        const effectiveFromDate = formatDateTime(dataItem.EffectiveFromDate, displayDateFormat);
+        const effectiveToDate = formatDateTime(dataItem.EffectiveToDate, displayDateFormat);
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -78,11 +81,11 @@ export class Content extends PureComponent {
                 }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
-                <Cell className="text-center" title={dataItem.FileSize}>{displayFileSize}</Cell>
+                <Cell className="text-center" title={displayFileSize}>{displayFileSize}</Cell>
                 <Cell className="text-center" title={language}>{language}</Cell>
-                <Cell className="text-center" title={dataItem.UploadDate}>{formatDateTime(dataItem.UploadDate, displayDateFormat)}</Cell>
-                <Cell className="text-center" title={dataItem.EffectiveFromDate}>{formatDateTime(dataItem.EffectiveFromDate, displayDateFormat)}</Cell>
-                <Cell className="text-center" title={dataItem.EffectiveToDate}>{formatDateTime(dataItem.EffectiveToDate, displayDateFormat)}</Cell>
+                <Cell className="text-center" title={uploadDate}>{uploadDate}</Cell>
+                <Cell className="text-center" title={effectiveFromDate}>{effectiveFromDate}</Cell>
+                <Cell className="text-center" title={effectiveToDate}>{effectiveToDate}</Cell>
                 <Cell className="text-center" title={assignedAffNumber}>
                     {
                         assignedAffNumber === 0 ? (<span>{assignedAffNumber}</span>) : (
