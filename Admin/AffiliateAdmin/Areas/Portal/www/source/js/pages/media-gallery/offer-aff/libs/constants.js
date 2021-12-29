@@ -8,7 +8,7 @@ export const headerText = {
     FileName: 'HTML File',
     FileSize: 'File Size (KB)',
     FromDate: 'Effective From',
-    ToDate: 'To',
+    ToDate: 'Effective To',
     Affiliate: 'Affiliate',
     OfferPageHtmlFile: 'Offer Page HTML File',
     Preview: 'Preview',

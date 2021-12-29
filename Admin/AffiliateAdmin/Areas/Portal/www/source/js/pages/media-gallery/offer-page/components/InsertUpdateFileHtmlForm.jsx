@@ -264,7 +264,7 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2 align-items-center">
-                                        <Label for="toDate" sm={4} className="required">To (GMT-4)</Label>
+                                        <Label for="toDate" sm={4} className="required">Effective To (GMT-4)</Label>
                                         <Col sm={6}>
                                             <DatePicker name="toDate" showTimeInput dateFormat={displayDateFormat} selected={toDate} className='form-control' onChange={(value) => this._handleChangeDatePicker("toDate", value)} />
                                         </Col>

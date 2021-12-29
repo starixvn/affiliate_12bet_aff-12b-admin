@@ -68,6 +68,8 @@ export class Content extends PureComponent {
 
     buildDataRow(dataItem, index) {
         const fileName = htmlDecode(dataItem.FileName);
+        const effectiveFromDate = formatDateTime(dataItem.EffectiveFromDate, displayDateFormat);
+        const effectiveToDate = formatDateTime(dataItem.EffectiveToDate, displayDateFormat);
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -79,8 +81,8 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={dataItem.UserName}>{dataItem.UserName}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
-                <Cell className="text-center" title={dataItem.FromDate}>{formatDateTime(dataItem.EffectiveFromDate, displayDateFormat)}</Cell>
-                <Cell className="text-center" title={dataItem.ToDate}>{formatDateTime(dataItem.EffectiveToDate, displayDateFormat)}</Cell>
+                <Cell className="text-center" title={effectiveFromDate}>{effectiveFromDate}</Cell>
+                <Cell className="text-center" title={effectiveToDate}>{effectiveToDate}</Cell>
                 <Cell className="text-center" title={headerText.Preview}>
                     <Button color="link" onClick={() => this.handlePreview(dataItem.PageId)}>
                         <span className="oi oi-eye text-primary"></span>
