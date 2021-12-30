@@ -19,17 +19,17 @@ namespace Fanex.Affiliate.DataService.Job.Constants
                     { "CrystalGpiDaily", new Lazy<IJobScheduler>(() => new CrystalGpiDailyScheduler()) },
                     { "ISoftbet", new Lazy<IJobScheduler>(() => new ISoftbetScheduler()) },
                     { "ISoftbetDaily", new Lazy<IJobScheduler>(() => new ISoftbetDailyScheduler()) },
-                    { "Opus", new Lazy<IJobScheduler>(() => new OpusScheduler()) },
+                    //{ "Opus", new Lazy<IJobScheduler>(() => new OpusScheduler()) },
                     { "Topaz", new Lazy<IJobScheduler>(() => new TopazScheduler()) },
                     { "VrLottery", new Lazy<IJobScheduler>(() => new ImOneVrLotteryScheduler()) },
                     { "GpiLottery", new Lazy<IJobScheduler>(() => new GpiLotteryScheduler()) },
                     { "LBKeno", new Lazy<IJobScheduler>(() => new LBKenoScheduler()) },
                     { "KYGaming", new Lazy<IJobScheduler>(() => new KYGamingScheduler()) },
                     { "BTi", new Lazy<IJobScheduler>(() => new BTiScheduler()) },
-                    { "BTiDaily", new Lazy<IJobScheduler>(() => new BTiDailyScheduler()) },
+                    //{ "BTiDaily", new Lazy<IJobScheduler>(() => new BTiDailyScheduler()) },
                     { "IMEsport", new Lazy<IJobScheduler>(() => new IMEsportScheduler()) },
                     { "Skywind", new Lazy<IJobScheduler>(() => new SkywindScheduler()) },
-                    { "SkywindDaily", new Lazy<IJobScheduler>(() => new SkywindDailyScheduler()) }
+                    //{ "SkywindDaily", new Lazy<IJobScheduler>(() => new SkywindDailyScheduler()) }
                 };
             }
         }

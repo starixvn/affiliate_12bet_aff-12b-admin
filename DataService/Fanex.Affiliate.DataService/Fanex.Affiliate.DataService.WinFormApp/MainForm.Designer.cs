@@ -34,7 +34,7 @@
             this.btnEbet = new System.Windows.Forms.Button();
             this.btnCrystal = new System.Windows.Forms.Button();
             this.btnQuartz = new System.Windows.Forms.Button();
-            this.btnOpus = new System.Windows.Forms.Button();
+            //this.btnOpus = new System.Windows.Forms.Button();
             this.btnGpiLottery = new System.Windows.Forms.Button();
             this.btnTopaz = new System.Windows.Forms.Button();
             this.btLBKeno = new System.Windows.Forms.Button();
@@ -116,14 +116,14 @@
             // 
             // btnOpus
             // 
-            this.btnOpus.Location = new System.Drawing.Point(204, 191);
-            this.btnOpus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnOpus.Name = "btnOpus";
-            this.btnOpus.Size = new System.Drawing.Size(147, 28);
-            this.btnOpus.TabIndex = 6;
-            this.btnOpus.Text = "12Diamond - OPUS";
-            this.btnOpus.UseVisualStyleBackColor = true;
-            this.btnOpus.Click += new System.EventHandler(this.btnOpus_Click);
+            //this.btnOpus.Location = new System.Drawing.Point(204, 191);
+            //this.btnOpus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            //this.btnOpus.Name = "btnOpus";
+            //this.btnOpus.Size = new System.Drawing.Size(147, 28);
+            //this.btnOpus.TabIndex = 6;
+            //this.btnOpus.Text = "12Diamond - OPUS";
+            //this.btnOpus.UseVisualStyleBackColor = true;
+            //this.btnOpus.Click += new System.EventHandler(this.btnOpus_Click);
             // 
             // btnGpiLottery
             // 
@@ -257,7 +257,7 @@
             this.Controls.Add(this.btLBKeno);
             this.Controls.Add(this.btnTopaz);
             this.Controls.Add(this.btnGpiLottery);
-            this.Controls.Add(this.btnOpus);
+            //this.Controls.Add(this.btnOpus);
             this.Controls.Add(this.btnQuartz);
             this.Controls.Add(this.btnCrystal);
             this.Controls.Add(this.btnEbet);
@@ -285,7 +285,7 @@
         private System.Windows.Forms.Button btnEbet;
         private System.Windows.Forms.Button btnCrystal;
         private System.Windows.Forms.Button btnQuartz;
-        private System.Windows.Forms.Button btnOpus;
+        //private System.Windows.Forms.Button btnOpus;
         private System.Windows.Forms.Button btnGpiLottery;
         private System.Windows.Forms.Button btnTopaz;
         private System.Windows.Forms.Button btLBKeno;
