@@ -40,19 +40,8 @@ export class InsertUpdateForm extends PureComponent {
             fileSize: item.FileSize,
             fromDate: new Date(item.FromDate),
             toDate: new Date(item.ToDate),
-            language: item.Language,
-            initialFileName: fileName
+            language: item.Language
         });
-    }
-
-    _handleCloseNotificationPopup = (confirmResult) => {
-        this.setState({ messageNotificationPopup: '' });
-
-        if (confirmResult) {
-            const newsLetterInfo = this._getParam();
-
-            this._updateNewsLetter(newsLetterInfo);
-        }
     }
 
     _handleChange = (event) => {
@@ -207,7 +196,7 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     render() {
-        const { fromDate, toDate, fileName, language, isShowMessage, isSuccess, message, isInsert, messageNotificationPopup } = this.state;
+        const { fromDate, toDate, fileName, language, isShowMessage, isSuccess, message, isInsert } = this.state;
         const { languageList } = this.props;
         const isShowPopup = this.props.selectedNewsLetterPageId !== null;
         const title = isInsert ? "Add Newsletter" : "Edit Newsletter";
@@ -216,13 +205,6 @@ export class InsertUpdateForm extends PureComponent {
 
         return (
             <React.Fragment>
-                {
-                    !!messageNotificationPopup && <NotificationPopup
-                        message={messageNotificationPopup}
-                        isConfirmPopup={true}
-                        onClose={this._handleCloseNotificationPopup}
-                    />
-                }
                 <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>

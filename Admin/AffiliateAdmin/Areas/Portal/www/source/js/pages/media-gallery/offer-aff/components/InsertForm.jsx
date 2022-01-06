@@ -73,17 +73,13 @@ export class InsertForm extends PureComponent {
         return true;
     }
 
-    _insertOfferAff = async (param) => {
+    _save = async (param) => {
         this.props.toggleLoader(true);
 
         const result = await this.props.insertOfferAff(param);
         this._handleAfterUpload(result);
 
         this.props.toggleLoader(false);
-    }
-
-    _save = async (param) => {
-        await this._insertOfferAff(param);
     }
 
     _getParam = () => {

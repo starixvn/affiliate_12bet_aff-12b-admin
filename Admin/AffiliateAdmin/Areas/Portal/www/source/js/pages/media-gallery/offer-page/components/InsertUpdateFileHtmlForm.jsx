@@ -9,7 +9,6 @@ import { defaultInsertId } from '../../common/libs/constants';
 import { formatDateTime } from '../../../../modules/utils';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import DatePicker from 'react-datepicker';
-import NotificationPopup from '../../../common/components/NotificationPopup';
 
 export class InsertUpdateFileHtmlForm extends PureComponent {
     constructor(props) {
@@ -40,19 +39,8 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
             fileSize: item.FileSize,
             fromDate: new Date(item.EffectiveFromDate),
             toDate: new Date(item.EffectiveToDate),
-            language: item.Language,
-            initialFileName: fileName
+            language: item.Language
         });
-    }
-
-    _handleCloseNotificationPopup = (confirmResult) => {
-        this.setState({ messageNotificationPopup: '' });
-
-        if (confirmResult) {
-            const param = this._getParam();
-
-            this._updateItem(param);
-        }
     }
 
     _handleChange = (event) => {
@@ -205,7 +193,7 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
     }
 
     render() {
-        const { fromDate, toDate, fileName, language, isShowMessage, isSuccess, message, isInsert, messageNotificationPopup, selectedFile } = this.state;
+        const { fromDate, toDate, fileName, language, isShowMessage, isSuccess, message, isInsert, selectedFile } = this.state;
         const { languageList } = this.props;
         const isShowPopup = this.props.selectedId !== null;
         const title = isInsert ? "Add Offer Page" : "Edit Offer Page";
@@ -214,13 +202,6 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
 
         return (
             <React.Fragment>
-                {
-                    !!messageNotificationPopup && <NotificationPopup
-                        message={messageNotificationPopup}
-                        isConfirmPopup={true}
-                        onClose={this._handleCloseNotificationPopup}
-                    />
-                }
                 <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>
@@ -237,7 +218,7 @@ export class InsertUpdateFileHtmlForm extends PureComponent {
                                     <FormGroup row className="mb-2 align-items-center" >
                                         <Label for="file" className="required" sm={4}>File</Label>
                                         <Col sm={6}>
-                                            <Input className={isInsert && isUnselectFile && "text-danger"} type="file" name="file" id="file" accept=".html" onChange={this._handFileSelect} />
+                                            <Input className={isInsert && isUnselectFile ? "text-danger" : ""} type="file" name="file" id="file" accept=".html" onChange={this._handFileSelect} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">

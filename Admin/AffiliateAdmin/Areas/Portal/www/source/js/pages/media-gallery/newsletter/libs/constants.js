@@ -28,7 +28,6 @@ export const defaultState = {
     isClickedSubmit: false,
     isInsert: true,
     isShowMessage: false,
-    iniatalFileName: "",
     messageNotificationPopup:"",
     isSuccess: true,
     message: ''
