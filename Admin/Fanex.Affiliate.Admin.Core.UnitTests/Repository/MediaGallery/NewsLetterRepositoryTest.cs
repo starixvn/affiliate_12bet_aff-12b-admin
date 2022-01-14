@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Data;
@@ -14,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
         public void GetNewsLetters_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new SelectNewsLetterParam();
+            var param = new PagingParam();
             var repository = new Mock<NewsLetterRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
@@ -32,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
         public void GetNewsLetters_WhenCall_ReturnNullData()
         {
             // Arrange
-            var param = new SelectNewsLetterParam();
+            var param = new PagingParam();
             var repository = new Mock<NewsLetterRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
@@ -74,7 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Newsletter_Ins", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.InsertNewsLetter(new InsertNewsLetterParam());
+            var result = repository.Object.InsertNewsLetter(new InsertHtmlFileParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -93,7 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Newsletter_Ins", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.InsertNewsLetter(new InsertNewsLetterParam());
+            var result = repository.Object.InsertNewsLetter(new InsertHtmlFileParam());
 
             // Assert
             Assert.False(result.IsSuccessful);

@@ -52,7 +52,8 @@ namespace Fanex.Affiliate.User.Core.Repository
                         AffType = reader.ToString("AffType"),
                         IsClosed = reader.ToBool("IsClosed"),
                         Status = reader.ToString("Status"),
-                        PreferredLanguage = reader.ToString("PreferredLanguage")
+                        PreferredLanguage = reader.ToString("PreferredLanguage"),
+                        OfferPageId = reader.ToInt("OfferPageId")
                     } : null;
                 }
             }

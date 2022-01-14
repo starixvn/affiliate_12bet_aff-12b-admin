@@ -3,13 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels
 {
-    public class AffiliateBasicInfoParam
+    public class AffiliateBasicInfoParam : UserInfoParam
     {
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "AffId not exists!")]
         public int AffId { get; set; }
-
-        public int UserId { get; set; }
-
-        public string Ip { get; set; }
     }
 }

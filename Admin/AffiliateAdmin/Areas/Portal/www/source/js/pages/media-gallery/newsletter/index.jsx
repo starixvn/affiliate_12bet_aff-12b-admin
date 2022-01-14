@@ -13,11 +13,7 @@ export default class App extends React.PureComponent {
 
     render() {
         const { languageList, previewLink } = window.initialState;
-        const param = {
-            pageIndex: 1,
-            pageSize: 50
-        }
-        const store = configureStore({ claimsPrincipal: ClaimPrincipal.currentClaimPrincipal, languageList, param, previewLink }, reducer);
+        const store = configureStore({ claimsPrincipal: ClaimPrincipal.currentClaimPrincipal, languageList, previewLink }, reducer);
 
         return (
             <Provider store={store}>

@@ -2228,4 +2228,8 @@
   </data>
   <data name="BeOurAffThisMonth" xml:space="preserve">
     <value>ร่วมเป็นพันธมิตรกับบริษัทของเราในเดือนนี้เพื่อรับค่าคอมมิชชั่นสูงถึง 40% + พิเศษเพิ่มให้อีก 12%! คลิกเพื่อดูรายละเอียดเพิ่มเติม!</value>
-  </data></root>
+  </data>
+  <data name="OffersForMe" xml:space="preserve">
+    <value>ข้อเสนอสำหรับฉัน</value>
+  </data>
+</root>

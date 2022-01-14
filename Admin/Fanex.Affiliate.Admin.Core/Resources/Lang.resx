@@ -316,7 +316,7 @@
     <value>You must either enter a file name for banner or browse other banner.</value>
   </data>
   <data name="FileNameCanNotContain" xml:space="preserve">
-    <value>A File Name can't contain any of the following characters: \/:*?"&lt;&gt;|#%&amp;+</value>
+    <value>File name must not contain \/:*?"&lt;&gt;|#%&amp;+ characters</value>
   </data>
   <data name="InvalidAdjustmentFile" xml:space="preserve">
     <value>&lt;div&gt;
@@ -343,5 +343,8 @@
   </data>
   <data name="InvalidId" xml:space="preserve">
     <value>Invalid Id</value>
+  </data>
+  <data name="FileNameMustNotContain" xml:space="preserve">
+    <value>File name must not contain \ / : * ? $ \" &lt; &gt; | characters</value>
   </data>
 </root>

@@ -35,16 +35,17 @@ export const Content = (props) => {
     };
 
     function _renderHeader() {
+        const { isModifiable } = props;
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={50}></Cell>
+                {isModifiable && <Cell header={true} colWidth={50}></Cell>}
                 <Cell header={true} colWidth={50} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={550} title={headerText.Content}>{headerText.Content}</Cell>
                 <Cell header={true} colWidth={125} title={headerText.Category}>{headerText.Category}</Cell>
                 <Cell header={true} colWidth={150} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={125} title={headerText.Currency}>{headerText.Currency}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Device}>{headerText.Device}</Cell>
-                { props.isModifiable && <Cell header={true} colWidth={50} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
+                { isModifiable && <Cell header={true} colWidth={50} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
             </Row>
         );
     }
@@ -62,10 +63,8 @@ export const Content = (props) => {
             }
         }
         else {
-            const header = _renderHeader();
-            const colmCount = header.props.children.length;
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={colmCount}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="8">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -73,22 +72,27 @@ export const Content = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
+        const { isModifiable } = props;
         const content = htmlDecode(dataItem.TextContent);
         const deviceType = dataItem.DeviceType == 0 ? defaultDevice : mobile;
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={!!props.checkedTexts[dataItem.TextId]}
-                        onChange={(e) => _onCheckItem(e.target.checked, dataItem.TextId)} />
-                </Cell>
+                {
+                    isModifiable && (
+                        <Cell className="text-center">
+                            <input type="checkbox" checked={!!props.checkedTexts[dataItem.TextId]}
+                                onChange={(e) => _onCheckItem(e.target.checked, dataItem.TextId)} />
+                        </Cell>
+                    )
+                }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-content" title={content}>{content}</Cell>
                 <Cell className="text-center" title={dataItem.Category}>{dataItem.Category}</Cell>
                 <Cell className="text-center" title={dataItem.Language}>{dataItem.Language}</Cell>
                 <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>
                 <Cell className="text-center" title={deviceType}>{deviceType}</Cell>
-                {props.isModifiable && <Cell className="text-center" title="Edit Text">
+                {isModifiable && <Cell className="text-center" title="Edit Text">
                     <Button color="link" onClick={() => props.setSelectedTextId(dataItem.TextId)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>

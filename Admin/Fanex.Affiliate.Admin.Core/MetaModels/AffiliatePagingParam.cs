@@ -3,17 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels
 {
-    public class AffiliatePagingParam
+    public class AffiliatePagingParam : PagingParam
     {
         [Range(Validation.MinId, Validation.MaxId)]
         public int AffId { get; set; }
 
         public int UserId { get; set; }
-
-        [Range(Validation.MinPageIndex, Validation.MaxPageIndex)]
-        public int PageIndex { get; set; }
-
-        [Range(Validation.MinPageSize, Validation.MaxPageSize)]
-        public int PageSize { get; set; }
     }
 }

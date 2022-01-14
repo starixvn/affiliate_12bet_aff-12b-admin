@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
 
 namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {
-    public class NewsLetter
+    public class NewsLetter : HtmlFileInfo
     {
         public int NewsLetterId { get; set; }
-
-        public string FileName { get; set; }
 
         public DateTime EffectiveFrom { get; set; }
 
         public DateTime EffectiveTo { get; set; }
-
-        public string Language { get; set; }
-
-        public DateTime UploadDate { get; set; }
     }
 }

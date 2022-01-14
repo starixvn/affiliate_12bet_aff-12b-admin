@@ -18,5 +18,7 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
         public string AffType { get; set; }
 
         public string GroupName { get; set; }
+
+        public int OfferPageId { get; set; }
     }
 }

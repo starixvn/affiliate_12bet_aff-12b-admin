@@ -10,6 +10,7 @@ export const globalResource = {
     Add: 'Add',
     Edit: 'Edit',
     Save: 'Save',
+    Submit: 'Submit',
     Update: 'Update',
     Delete: 'Delete',
     Cancel: 'Cancel',

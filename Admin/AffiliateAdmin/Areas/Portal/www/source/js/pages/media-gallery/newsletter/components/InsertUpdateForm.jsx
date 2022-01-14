@@ -40,19 +40,8 @@ export class InsertUpdateForm extends PureComponent {
             fileSize: item.FileSize,
             fromDate: new Date(item.FromDate),
             toDate: new Date(item.ToDate),
-            language: item.Language,
-            initialFileName: fileName
+            language: item.Language
         });
-    }
-
-    _handleCloseNotificationPopup = (confirmResult) => {
-        this.setState({ messageNotificationPopup: '' });
-
-        if (confirmResult) {
-            const newsLetterInfo = this._getParam();
-
-            this._updateNewsLetter(newsLetterInfo);
-        }
     }
 
     _handleChange = (event) => {
@@ -102,7 +91,7 @@ export class InsertUpdateForm extends PureComponent {
             return false;
         }
         if (fileName && !(rg1.test(fileName))) {
-            this._handleShowAlert(false, "File name must not have characters \\ / : * ? $ \" < > | and extension is html!");
+            this._handleShowAlert(false, "File name must not contain \\ / : * ? $ \" < > | characters and extension must be html.");
             return false;
         }
         if (!fileName) {
@@ -113,8 +102,13 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     _validateDateRange = (fromDate, toDate) => {
+        if (!fromDate || !toDate) {
+            this._handleShowAlert(false, "Effective From and To are required")
+            return false
+        }
+
         if (toDate <= fromDate) {
-            this._handleShowAlert(false, "Effectective To Date must be greater than Effective From Date")
+            this._handleShowAlert(false, "Effective To Date must be greater than Effective From Date")
             return false
         }
         return true;
@@ -131,16 +125,12 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     _save = async (param) => {
-        const { fileName, initialFileName, isInsert } = this.state;
+        const { isInsert } = this.state;
         if (isInsert) {
             await this._insertNewsLetter(param);
         }
         else {
-            if (fileName === initialFileName) {
-                this.setState({ messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' });
-            } else {
-                await this._updateNewsLetter(param);
-            }
+            await this._updateNewsLetter(param);
         }
     }
 
@@ -206,7 +196,7 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     render() {
-        const { fromDate, toDate, fileName, language, isShowMessage, isSuccess, message, isInsert, messageNotificationPopup } = this.state;
+        const { fromDate, toDate, fileName, language, isShowMessage, isSuccess, message, isInsert } = this.state;
         const { languageList } = this.props;
         const isShowPopup = this.props.selectedNewsLetterPageId !== null;
         const title = isInsert ? "Add Newsletter" : "Edit Newsletter";
@@ -215,13 +205,6 @@ export class InsertUpdateForm extends PureComponent {
 
         return (
             <React.Fragment>
-                {
-                    !!messageNotificationPopup && <NotificationPopup
-                        message={messageNotificationPopup}
-                        isConfirmPopup={true}
-                        onClose={this._handleCloseNotificationPopup}
-                    />
-                }
                 <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>
@@ -235,7 +218,7 @@ export class InsertUpdateForm extends PureComponent {
                                 <div><Label>[Maximum files: 1]</Label></div>
 
 
-                                <Form tag="form" className="mb-5" autoComplete="off">
+                                <Form tag="form" className="mb-4" autoComplete="off">
                                     <FormGroup row className="mb-2 align-items-center" >
                                         <Label for="file" className="required" sm={4}>File</Label>
                                         <Col sm={6}>
@@ -250,7 +233,7 @@ export class InsertUpdateForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label className="required" sm={4}>Language</Label>
+                                        <Label sm={4}>Language</Label>
                                         <Col sm={6}>
                                             <Input type="select" name="language" className="input-required mt-2" value={language} onChange={this._handleChange}>
                                                 {languageList.map(lang =>
@@ -266,7 +249,7 @@ export class InsertUpdateForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2 align-items-center">
-                                        <Label for="toDate" sm={4} className="required">To (GMT-4)</Label>
+                                        <Label for="toDate" sm={4} className="required">Effective To (GMT-4)</Label>
                                         <Col sm={6}>
                                             <DatePicker name="toDate" showTimeInput dateFormat={displayDateFormat} selected={toDate} className='form-control' onChange={(value) => this._handleChangeDatePicker("toDate", value)} />
                                         </Col>

@@ -1,0 +1,512 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`offer aff - components - Content  render correctly 1`] = `
+<div
+  className="data-content"
+>
+  <div
+    className="landing-page-content table-responsive table-striped my-2"
+  >
+    <t
+      adjustedHeight={0}
+      autoHeight={true}
+      autoWidth={true}
+      body={
+        Array [
+          <t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+              />
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title={1}
+            >
+              1
+            </t>
+            <t
+              asc={true}
+              className="text-left"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="AFF003"
+            >
+              AFF003
+            </t>
+            <t
+              asc={true}
+              className="text-left"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="test.html"
+            >
+              test.html
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="04/01/2021 00:00:00"
+            >
+              04/01/2021 00:00:00
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="04/30/2021 00:00:00"
+            >
+              04/30/2021 00:00:00
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Preview"
+            >
+              <Button
+                color="link"
+                onClick={[Function]}
+                tag="button"
+              >
+                <span
+                  className="oi oi-eye text-primary"
+                />
+              </Button>
+            </t>
+          </t>,
+          <t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox"
+              />
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title={2}
+            >
+              2
+            </t>
+            <t
+              asc={true}
+              className="text-left"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="AFF002"
+            >
+              AFF002
+            </t>
+            <t
+              asc={true}
+              className="text-left"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="test2.html"
+            >
+              test2.html
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="02/28/2021 13:00:00"
+            >
+              02/28/2021 13:00:00
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="04/29/2021 13:00:00"
+            >
+              04/29/2021 13:00:00
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Preview"
+            >
+              <Button
+                color="link"
+                onClick={[Function]}
+                tag="button"
+              >
+                <span
+                  className="oi oi-eye text-primary"
+                />
+              </Button>
+            </t>
+          </t>,
+          <t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              <input
+                checked={true}
+                onChange={[Function]}
+                type="checkbox"
+              />
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title={3}
+            >
+              3
+            </t>
+            <t
+              asc={true}
+              className="text-left"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="AFF001"
+            >
+              AFF001
+            </t>
+            <t
+              asc={true}
+              className="text-left"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="test1.html"
+            >
+              test1.html
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="03/30/2021 02:00:00"
+            >
+              03/30/2021 02:00:00
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="04/28/2021 00:00:01"
+            >
+              04/28/2021 00:00:01
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Preview"
+            >
+              <Button
+                color="link"
+                onClick={[Function]}
+                tag="button"
+              >
+                <span
+                  className="oi oi-eye text-primary"
+                />
+              </Button>
+            </t>
+          </t>,
+        ]
+      }
+      bodyHeight={300}
+      containerPadding={20}
+      header={
+        <t>
+          <t
+            asc={true}
+            colWidth={20}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            colWidth={20}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="#"
+          >
+            #
+          </t>
+          <t
+            asc={true}
+            colWidth={150}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Affiliate"
+          >
+            Affiliate
+          </t>
+          <t
+            asc={true}
+            colWidth={250}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Offer Page HTML File"
+          >
+            Offer Page HTML File
+          </t>
+          <t
+            asc={true}
+            colWidth={150}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Effective From"
+          >
+            Effective From
+          </t>
+          <t
+            asc={true}
+            colWidth={150}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Effective To"
+          >
+            Effective To
+          </t>
+          <t
+            asc={true}
+            colWidth={50}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Preview"
+          >
+            Preview
+          </t>
+        </t>
+      }
+      isPaging={true}
+      maxWidth={0}
+      minWidth={1000}
+      onPaging={[Function]}
+      pageOption={
+        Object {
+          "PageIndex": 1,
+          "PageSize": 20,
+          "Total": 0,
+        }
+      }
+      shouldResetScrollPosition={true}
+      width={0}
+    />
+  </div>
+</div>
+`;
+
+exports[`offer aff - components - Content  render correctly with gridData is empty 1`] = `
+<div
+  className="data-content"
+>
+  <div
+    className="landing-page-content table-responsive table-striped my-2"
+  >
+    <t
+      adjustedHeight={0}
+      autoHeight={true}
+      autoWidth={true}
+      body={
+        Array [
+          <t>
+            <t
+              asc={true}
+              className="text-center"
+              colSpan="7"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              There is no information available
+            </t>
+          </t>,
+        ]
+      }
+      bodyHeight={300}
+      containerPadding={20}
+      header={
+        <t>
+          <t
+            asc={true}
+            colWidth={20}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            colWidth={20}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="#"
+          >
+            #
+          </t>
+          <t
+            asc={true}
+            colWidth={150}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Affiliate"
+          >
+            Affiliate
+          </t>
+          <t
+            asc={true}
+            colWidth={250}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Offer Page HTML File"
+          >
+            Offer Page HTML File
+          </t>
+          <t
+            asc={true}
+            colWidth={150}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Effective From"
+          >
+            Effective From
+          </t>
+          <t
+            asc={true}
+            colWidth={150}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Effective To"
+          >
+            Effective To
+          </t>
+          <t
+            asc={true}
+            colWidth={50}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Preview"
+          >
+            Preview
+          </t>
+        </t>
+      }
+      isPaging={true}
+      maxWidth={0}
+      minWidth={1000}
+      onPaging={[Function]}
+      pageOption={
+        Object {
+          "PageIndex": 1,
+          "PageSize": 20,
+          "Total": 0,
+        }
+      }
+      shouldResetScrollPosition={true}
+      width={0}
+    />
+  </div>
+</div>
+`;
+
+exports[`offer aff - components - Content  render correctly with gridData is null 1`] = `""`;

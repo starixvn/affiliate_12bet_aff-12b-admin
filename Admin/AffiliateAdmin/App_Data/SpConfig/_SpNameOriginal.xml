@@ -177,4 +177,14 @@
     <Setting Key="Aff_Admin_ProcessingRequest_Del" SpName="Aff_Admin_ProcessingRequest_Del" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_ProcessingRequestDetail_Sel" SpName="Aff_Admin_ProcessingRequestDetail_Sel" DbName="affiliate_12bet" />
   </Function>
+
+  <Function Name="Offer">
+    <Setting Key="Aff_Admin_OfferPage_Ins" SpName="Aff_Admin_OfferPage_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferPage_Sel" SpName="Aff_Admin_OfferPage_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferPage_Upd" SpName="Aff_Admin_OfferPage_Upd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferPage_Del" SpName="Aff_Admin_OfferPage_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferAffiliate_Ins" SpName="Aff_Admin_OfferAffiliate_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferAffiliate_Sel" SpName="Aff_Admin_OfferAffiliate_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferAffiliate_Del" SpName="Aff_Admin_OfferAffiliate_Del" DbName="affiliate_12bet" />
+  </Function>
 </Functions>

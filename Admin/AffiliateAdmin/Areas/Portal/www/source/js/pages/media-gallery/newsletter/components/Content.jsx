@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource, displayDateFormat } from '../libs/constants';
-import { setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData } from '../actions';
+import { setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 import { formatDateTime } from '../../../../modules/utils';
 
@@ -26,7 +26,7 @@ export class Content extends PureComponent {
         const { isModifiable } = this.props;
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20}></Cell>
+                {isModifiable && <Cell header={true} colWidth={20}></Cell>}
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.FileName}>{headerText.FileName}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.FileSize}>{headerText.FileSize}</Cell>
@@ -51,7 +51,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="11">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="10">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -59,28 +59,36 @@ export class Content extends PureComponent {
     }
 
     buildDataRow(dataItem, index) {
+        const { isModifiable } = this.props;
         const fileName = htmlDecode(dataItem.FileName);
         const displayFileSize = Math.round((dataItem.FileSize / 1024) * 100) / 100;
+        const uploadDate = formatDateTime(dataItem.UploadDate, displayDateFormat);
+        const fromDate = formatDateTime(dataItem.FromDate, displayDateFormat);
+        const toDate = formatDateTime(dataItem.ToDate, displayDateFormat);
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={!!this.props.checkedNewsLetterPages[dataItem.NewsLetterId]}
-                        onChange={(e) => this.onCheckItem(e.target.checked, dataItem.NewsLetterId)} />
-                </Cell>
+                {
+                    isModifiable && (
+                        <Cell className="text-center">
+                            <input type="checkbox" checked={!!this.props.checkedNewsLetterPages[dataItem.NewsLetterId]}
+                                onChange={(e) => this.onCheckItem(e.target.checked, dataItem.NewsLetterId)} />
+                        </Cell>
+                    )
+                }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={fileName}>{fileName}</Cell>
-                <Cell className="text-center" title={dataItem.FileSize}>{displayFileSize}</Cell>
+                <Cell className="text-center" title={displayFileSize}>{displayFileSize}</Cell>
                 <Cell className="text-center" title={dataItem.LanguageName}>{dataItem.LanguageName}</Cell>
-                <Cell className="text-center" title={dataItem.UploadDate}>{formatDateTime(dataItem.UploadDate, displayDateFormat)}</Cell>
-                <Cell className="text-center" title={dataItem.FromDate}>{formatDateTime(dataItem.FromDate, displayDateFormat)}</Cell>
-                <Cell className="text-center" title={dataItem.ToDate}>{formatDateTime(dataItem.ToDate, displayDateFormat)}</Cell>
+                <Cell className="text-center" title={uploadDate}>{uploadDate}</Cell>
+                <Cell className="text-center" title={fromDate}>{fromDate}</Cell>
+                <Cell className="text-center" title={toDate}>{toDate}</Cell>
                 <Cell className="text-center" title={headerText.Preview}>
                     <Button color="link" onClick={() => this.handlePreview(dataItem.NewsLetterId)}>
                         <span className="oi oi-eye text-primary"></span>
                     </Button>
                 </Cell>
-                { this.props.isModifiable &&
+                { isModifiable &&
                     <Cell className="text-center" title="Edit Newsletter">
                         <Button color="link" onClick={() => this.props.setSelectedNewsLetterPageId(dataItem.NewsLetterId)}>
                             <span className="oi oi-pencil text-secondary"></span>
@@ -133,7 +141,7 @@ function mapStateToProps({ param, previewLink, pagingOption, checkedNewsLetterPa
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition, fetchData }, dispatch);
+    return bindActionCreators({ setParam, setSelectedNewsLetterPageId, setCheckedNewsLetterPages, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

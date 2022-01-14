@@ -35,6 +35,17 @@ describe('news letter - components - AppContainer', () => {
         expect(instance.handleFetchData).toHaveBeenCalled();
     });
 
+    it('componentDidUpdate - should call handleFetchData when param updated', async () => {
+        const props = Object.assign({}, defaultProps, { gridData: null, fetchData: jest.fn(), param: {} })
+        const result = shallow(<AppContainer {...props} />);
+        const instance = result.instance();
+        instance.handleFetchData = jest.fn();
+
+        instance.componentDidUpdate({});
+
+        expect(instance.handleFetchData).toHaveBeenCalled();
+    });
+
     it('handleFetchData - should call fetchData', async () => {
         const props = Object.assign({}, defaultProps, { fetchData: jest.fn() })
         const result = shallow(<AppContainer {...props} />);

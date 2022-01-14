@@ -87,7 +87,6 @@ export const insertNewsLetterPage = (param) => async () => {
 export const updateNewsLetterPage = (param) => async () => {
     const url = 'Portal/NewsLetter/UpdateNewsLetter';
     return handleExcute(url, param);
-
 }
 
 export const deleteNewsLetterPages = (newsLetterPageIds) => async () => {

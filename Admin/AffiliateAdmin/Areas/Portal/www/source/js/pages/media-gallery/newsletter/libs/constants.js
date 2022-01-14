@@ -9,7 +9,7 @@ export const headerText = {
     Language: 'Language',
     UploadDate: 'Upload Date',
     FromDate: 'Effective From',
-    ToDate: 'To',
+    ToDate: 'Effective To',
     Preview: 'Preview',
     Edit: 'Edit'
 }
@@ -28,7 +28,6 @@ export const defaultState = {
     isClickedSubmit: false,
     isInsert: true,
     isShowMessage: false,
-    iniatalFileName: "",
     messageNotificationPopup:"",
     isSuccess: true,
     message: ''
@@ -38,8 +37,6 @@ export const restrictedCharactersPattern = /[;\/\?:@=&"<>#%{}\|\\^~\[\]`\s+]/;
 export const maxLength = 50;
 
 export const messages = {
-    requiredErrorMessage: 'This field is required',
-    maxLengthErrorMessage: 'This field must not exceed 50 characters',
     PleaseSelect: 'Please select newsletter(s) to delete',
     AreYouSureDeleteItems: 'Are you sure to delete the selected newsletter(s)?',
     DeleteItemsSuccessfully: 'Delete newsletter(s) Successfully'

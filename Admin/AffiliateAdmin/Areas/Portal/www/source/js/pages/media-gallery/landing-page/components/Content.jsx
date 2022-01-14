@@ -22,7 +22,7 @@ export const Content = (props) => {
         const { isModifiable } = props;
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20}></Cell>
+                {isModifiable && <Cell header={true} colWidth={20}></Cell>}
                 <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
@@ -56,10 +56,14 @@ export const Content = (props) => {
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={!!props.checkedLandingPages[dataItem.PageId]}
-                        onChange={(e) => _onCheckItem(e.target.checked, dataItem.PageId)} />
-                </Cell>
+                {
+                    isModifiable && (
+                        <Cell className="text-center">
+                            <input type="checkbox" checked={!!props.checkedLandingPages[dataItem.PageId]}
+                                onChange={(e) => _onCheckItem(e.target.checked, dataItem.PageId)} />
+                        </Cell>
+                    )
+                }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>

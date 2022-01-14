@@ -1,8 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using System;
 using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             }
         }
 
-        public EntityResult<NewsLetter> GetNewsLetters(SelectNewsLetterParam param)
+        public EntityResult<NewsLetter> GetNewsLetters(PagingParam param)
         {
             const string spKey = "Aff_Admin_Newsletter_Sel";
             using (var objectDb = GetObjectDb(spKey))
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             }
         }
 
-        public ResultInfo InsertNewsLetter(InsertNewsLetterParam param)
+        public ResultInfo InsertNewsLetter(InsertHtmlFileParam param)
         {
 
             const string spKey = "Aff_Admin_Newsletter_Ins";

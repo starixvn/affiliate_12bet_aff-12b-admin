@@ -1,5 +1,5 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
-import { submitFail } from "../../../../modules/constants";
+import { submitIsFailed } from "../../../../modules/constants";
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
 
@@ -16,5 +16,5 @@ export const handleSubmit = (param) => async () => {
     const url = 'Portal/UserPanel/Adjustment/InsertAdjustment';
     const response = await post(url, param);
 
-    return response && response.status === 200 ? response.data : submitFail;
+    return response && response.status === 200 ? response.data : submitIsFailed;
 }

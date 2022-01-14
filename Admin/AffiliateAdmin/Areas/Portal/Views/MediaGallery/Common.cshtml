@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
+}
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/news-letter.css")" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+        window.initialState = {
+            languageList: @Html.Raw(Json.Encode(ViewBag.Languages)),
+            previewLink: '@Html.Raw(ViewBag.PreviewUrl)',
+        }
+</script>
+
+@section pagejs{
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/media-gallery.js")"></script>
+}

@@ -43,7 +43,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Action
             var result = controller.GetCustomerMember(new CustomerMemberParam()) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<CustomerMember>;
 
             // Assert
             Assert.Null(result.Data);

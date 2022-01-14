@@ -1143,6 +1143,8 @@
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.vi-VN.webp" />
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.zh-CN.webp" />
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.zh-TW.webp" />
+    <Content Include="Views\UserPanel\OffersForMe\Index.cshtml" />
+    <Content Include="Views\UserPanel\OffersForMe\Preview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,65 +1,39 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Logging;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public class NewsLetterService : INewsLetterService
     {
-        private const string ACCEPT_FILE_MIME = "text/html";
-        private const string ACCEPT_FILE_EXTENSION = ".html";
-        private const int MAX_FILE_SIZE = 3 * 1024 * 1024;
-        private const int MAX_LENGTH = 50;
-
         private const string UPLOAD_FOLDER = "CategoryMedia\\NewsLetter";
 
         private INewsLetterRepository Repo { get; }
-        private ISystemFile SystemFile { get; }
-        private IAppSetting AppSetting { get; }
+        private readonly IHtmlFileService _htmlFileService;
 
-        public NewsLetterService(INewsLetterRepository repo, ISystemFile systemFile, IAppSetting appSetting)
+        public NewsLetterService(INewsLetterRepository repo, IHtmlFileService htmlFileService)
         {
             Repo = repo;
-            SystemFile = systemFile;
-            AppSetting = appSetting;
+            _htmlFileService = htmlFileService;
         }
 
-        public EntityResult<NewsLetter> GetNewsLetters(SelectNewsLetterParam param)
+        public EntityResult<NewsLetter> GetNewsLetters(PagingParam param)
             => Repo.GetNewsLetters(param);
 
-        public ResultInfo AddNewsLetter(HttpPostedFileBase file, InsertNewsLetterParam param)
+        public NewsLetter GetNewsLetterById(int id)
+            => Repo.GetNewsLetterById(id);
+
+        public ResultInfo AddNewsLetter(HttpPostedFileBase file, InsertHtmlFileParam param)
         {
-            var result = ValidateFile(file);
-            if (!result.IsSuccessful)
-            {
-                return result;
-            }
-
-            result = ValidateFileName(param.FileName);
-            if (!result.IsSuccessful)
-            {
-                return result;
-            }
-
-            result = CheckFileExistInFolder(param.FileName);
-            if (!result.IsSuccessful)
-            {
-                return result;
-            }
-
-            result = UploadFile(file, param.FileName);
+            var result = _htmlFileService.HandleUploadFile(file, param.FileName, UPLOAD_FOLDER);
             if (!result.IsSuccessful)
             {
                 return result;
@@ -69,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             if (!result.IsSuccessful)
             {
-                Delete(param.FileName);
+                _htmlFileService.DeleteFile(param.FileName, UPLOAD_FOLDER);
             }
 
             return result;
@@ -77,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo UpdateNewsLetter(HttpPostedFileBase file, UpdateNewsLetterParam param)
         {
-            var result = ValidateFileName(param.FileName);
+            var result = _htmlFileService.ValidateFileName(param.FileName);
             if (!result.IsSuccessful)
             {
                 return result;
@@ -86,15 +60,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             var oldNewsLetter = Repo.GetNewsLetterById(param.NewsLetterId);
             if (oldNewsLetter == null)
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidId
-                };
+                return ResultInfo.GenerateErr(Lang.InvalidId);
             }
 
-            return file != null ? UpdateNewsLetterWithANewFile(file, param, oldNewsLetter) : UpdateOldNewsLetter(param, oldNewsLetter);
+            result = _htmlFileService.HandleUpdateFile(file, oldNewsLetter.FileName, param.FileName, UPLOAD_FOLDER);
 
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
+            return Repo.UpdateNewsLetter(param);
         }
 
         public ResultInfo DeleteNewsLetters(DeleteNewsLetterParam param)
@@ -104,59 +80,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             if (result.IsSuccessful)
             {
-                foreach (var fileName in fileNames)
-                {
-                    Delete(fileName);
-                }
+                _htmlFileService.DeleteFiles(fileNames, UPLOAD_FOLDER);
             }
             return result;
-        }
-
-        public NewsLetter GetNewsLetterById(int id)
-            => Repo.GetNewsLetterById(id);
-
-        private ResultInfo UpdateNewsLetterWithANewFile(HttpPostedFileBase file, UpdateNewsLetterParam param, NewsLetter oldNewsLetter)
-        {
-            var result = ValidateFile(file);
-            if (!result.IsSuccessful)
-            {
-                return result;
-            }
-
-            result = CheckFileExistInFolder(param.FileName);
-            if (!result.IsSuccessful && oldNewsLetter.FileName != param.FileName)
-            {
-                return result;
-            }
-
-            result = UploadFile(file, param.FileName);
-            if (!result.IsSuccessful)
-            {
-                return result;
-            }
-
-            if (!string.Equals(oldNewsLetter.FileName, param.FileName, StringComparison.OrdinalIgnoreCase))
-            {
-                Delete(oldNewsLetter.FileName);
-            }
-
-            return Repo.UpdateNewsLetter(param);
-        }
-
-        private ResultInfo UpdateOldNewsLetter(UpdateNewsLetterParam param, NewsLetter oldNewsLetter)
-        {
-            var result = CheckFileExistInFolder(param.FileName);
-            if (!result.IsSuccessful && oldNewsLetter.FileName != param.FileName)
-            {
-                return result;
-            }
-
-            if (!string.Equals(oldNewsLetter.FileName, param.FileName, StringComparison.OrdinalIgnoreCase))
-            {
-                MoveFile(param.FileName, oldNewsLetter.FileName);
-            }
-
-            return Repo.UpdateNewsLetter(param);
         }
 
         private IEnumerable<string> GetFileNamesFromIds(string newsLetterIds)
@@ -164,20 +90,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return newsLetterIds.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(i => Convert.ToInt32(i))
                 .Select(i => GetNewsLetterById(i))
-                .Select(item => item.FileName)
+                .Select(item => item?.FileName)
                 .ToList();
         }
 
-        private void MoveFile(string newFileName, string oldFileName)
-        {
-            foreach (var serverPath in AppSetting.BannerFolders)
-            {
-                var folder = Path.Combine(serverPath, UPLOAD_FOLDER);
-                SystemFile.MoveFile(folder, newFileName, oldFileName);
-            }
-        }
-
-        private ResultInfo InsertToDB(InsertNewsLetterParam param)
+        private ResultInfo InsertToDB(InsertHtmlFileParam param)
         {
             try
             {
@@ -186,110 +103,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             catch (Exception ex)
             {
                 Logger.Log.Error(ex.Message, ex);
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.ErrGeneral,
-                };
+                return ResultInfo.GenerateErr(Lang.ErrGeneral);
             }
-        }
-
-        private void Delete(string fileName)
-        {
-            foreach (var serverPath in AppSetting.BannerFolders)
-            {
-                var folder = Path.Combine(serverPath, UPLOAD_FOLDER);
-                SystemFile.DeleteFile(folder, fileName);
-            }
-        }
-
-        private ResultInfo UploadFile(HttpPostedFileBase file, string fileName)
-        {
-            foreach (var serverPath in AppSetting.BannerFolders)
-            {
-                var filePath = Path.Combine(serverPath, UPLOAD_FOLDER, fileName);
-                var result = SystemFile.UploadFile(file.InputStream, filePath);
-                if (!result.IsSuccessful)
-                {
-                    return result;
-                }
-            }
-            return ResultInfo.Success;
-        }
-
-        private ResultInfo CheckFileExistInFolder(string fileName)
-        {
-            foreach (var serverPath in AppSetting.BannerFolders)
-            {
-                var result = SystemFile.CreateFolder(serverPath, UPLOAD_FOLDER);
-                if (!result.IsSuccessful)
-                {
-                    return result;
-                }
-                var folderPath = Path.Combine(serverPath, UPLOAD_FOLDER);
-                result = SystemFile.CheckExistedFile(folderPath, fileName);
-                if (!result.IsSuccessful)
-                {
-                    result.Message = "The html file name exist already, please choose another name.";
-                    return result;
-                }
-            }
-            return ResultInfo.Success;
-        }
-
-        private ResultInfo ValidateFileName(string fileName)
-        {
-            var regex = new Regex("[\\\\/:*?\"<>#%&+]");
-            if (regex.IsMatch(fileName))
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.FileNameCanNotContain
-                };
-            }
-
-            if (Path.GetExtension(fileName) != ACCEPT_FILE_EXTENSION)
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileType
-                };
-            }
-
-            if (fileName.Length > MAX_LENGTH)
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.MaxLenghtOfFileName
-                };
-            }
-
-            return ResultInfo.Success;
-        }
-
-        private ResultInfo ValidateFile(HttpPostedFileBase file)
-        {
-            if (file.ContentType != ACCEPT_FILE_MIME)
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileType
-                };
-            }
-
-            if (file.ContentLength > MAX_FILE_SIZE)
-            {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileSize
-                };
-            }
-            return ResultInfo.Success;
         }
     }
 }

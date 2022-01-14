@@ -13,7 +13,7 @@ describe('adjustment actions', () => {
         const param = {
             affId: 1271808
         }
-        
+
         const result = await getBalanceBroughtForward(param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Adjustment/GetBalanceBroughtForward', param);
@@ -46,7 +46,7 @@ describe('adjustment actions', () => {
             amount: 100,
             content: ''
         }
-        
+
         const result = await handleSubmit(param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Adjustment/InsertAdjustment', param);
@@ -57,7 +57,7 @@ describe('adjustment actions', () => {
         ajaxRequest.post = jest.fn();
         const expectedData = {
             IsSuccessful: false,
-            Message: 'Update Failed!'
+            Message: 'An error occurred while processing your request, please try again later!'
         }
 
         const param = {

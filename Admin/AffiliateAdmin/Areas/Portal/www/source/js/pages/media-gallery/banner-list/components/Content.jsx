@@ -40,7 +40,7 @@ export const Content = (props) => {
         const { isModifiable } = props;
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20}></Cell>
+                {isModifiable && <Cell header={true} colWidth={20}></Cell>}
                 <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={415} title={headerText.Images}>{headerText.Images}</Cell>
                 <Cell header={true} colWidth={190} title={headerText.FileName}>{headerText.FileName}</Cell>
@@ -69,10 +69,8 @@ export const Content = (props) => {
             }
         }
         else {
-            const header = _renderHeader();
-            const colmCount = header.props.children.length;
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={colmCount}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="12">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -93,10 +91,14 @@ export const Content = (props) => {
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={!!props.checkedBanners[bannerId]}
-                        onChange={(e) => _onCheckItem(e.target.checked, bannerId)} />
-                </Cell>
+                {
+                    isModifiable && (
+                        <Cell className="text-center">
+                            <input type="checkbox" checked={!!props.checkedBanners[bannerId]}
+                                onChange={(e) => _onCheckItem(e.target.checked, bannerId)} />
+                        </Cell>
+                    )
+                }
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center">
                     {

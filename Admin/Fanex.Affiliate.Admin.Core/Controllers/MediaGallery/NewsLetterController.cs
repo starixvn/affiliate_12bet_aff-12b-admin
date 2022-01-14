@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
@@ -33,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             ViewBag.PreviewUrl = $"{AppSetting.AsianAffSiteUrl}/UserPanel/NewsLetter/Preview";
             ViewBag.Languages = LanguageService.GetInChangeMarkets();
-            return View("~/Areas/Portal/Views/MediaGallery/NewsLetterPageList.cshtml");
+            return View("~/Areas/Portal/Views/MediaGallery/Common.cshtml");
         }
 
         [HttpPost]
@@ -41,9 +42,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult InsertNewsLetter(HttpPostedFileBase file, NewsLetterViewModel model)
         {
-            if (ModelState.IsValid && file != null)
+            if (file == null)
             {
-                var param = new InsertNewsLetterParam
+                return new JsonNetResult
+                {
+                    Data = ResultInfo.GenerateErr(Lang.InvalidFileBrowser)
+                };
+            }
+
+            if (ModelState.IsValid)
+            {
+                var param = new InsertHtmlFileParam
                 {
                     UserId = SessionService.UserId,
                     Ip = SessionService.RequestIp,
@@ -62,11 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileBrowser
-                }
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))
             };
         }
 
@@ -97,17 +102,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidFileBrowser
-                }
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetNewsLetterList(SelectNewsLetterParam param)
+        public ActionResult GetNewsLetterList(PagingParam param)
         {
             var data = NewsLetterService.GetNewsLetters(param);
             var models = data.MainData.Select(i => new NewsLetterViewModel

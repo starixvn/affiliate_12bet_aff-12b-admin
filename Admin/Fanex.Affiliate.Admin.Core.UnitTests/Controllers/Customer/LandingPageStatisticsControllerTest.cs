@@ -42,7 +42,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Action
             var result = controller.GetLandingPageStatisticsList(new LandingPageStatisticsParam()) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<LandingPageStatistics>;
 
             // Assert
             Assert.Null(result.Data);
@@ -77,7 +76,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Action
             var result = controller.GetLandingPageStatisticsDetailList(new LandingPageStatisticsDetailParam()) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<LandingPageStatistics>;
 
             // Assert
             Assert.Null(result.Data);

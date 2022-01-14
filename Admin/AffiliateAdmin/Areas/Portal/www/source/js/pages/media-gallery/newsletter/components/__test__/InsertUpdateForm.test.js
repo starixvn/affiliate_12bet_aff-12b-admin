@@ -46,17 +46,9 @@ describe('news letter list - components - InsertUpdateForm ', () => {
         const props = Object.assign({}, defaultProps, { selectedNewsLetterPageId: 2485, getNewsLetterPageDetail: jest.fn() });
         const result = shallow(<InsertUpdateForm {...props} />);
         result.instance().setState({
-            isInsert: false, messageNotificationPopup: 'abc',
+            isInsert: false, isSuccess: false,
             fromDate: new Date(2021, 8, 1), lastDate: new Date(2021, 9, 0)
         });
-
-        expect(result).toMatchSnapshot();
-    });
-
-    it('render correctly with not show popup', () => {
-        const props = Object.assign({}, defaultProps, { selectedNewsLetterPageId: null, languageList: [{ LanguageCode: "vi-VN", LanguageName: "Vietnamese" }] });
-        const result = shallow(<InsertUpdateForm {...props} />);
-        result.setState({ category: "", isSuccess: false, fromDate: new Date(2021, 8, 1), lastDate: new Date(2021, 9, 0) })
 
         expect(result).toMatchSnapshot();
     });
@@ -123,39 +115,9 @@ describe('news letter list - components - InsertUpdateForm ', () => {
             fileName: "banner.html",
             fileSize: 7344,
             fromDate: new Date(newsLetterInfo.FromDate),
-            initialFileName: "banner.html",
             language: "en-US",
             toDate: new Date(newsLetterInfo.ToDate)
         });
-    });
-
-    it('_handleCloseNotificationPopup - should call setState, _getParam and _updateNewsLetter', () => {
-        const newsLetterInfo = { newsLetterId: 25 };
-        const result = shallow(<InsertUpdateForm {...defaultProps} />);
-        const instance = result.instance();
-        instance.setState = jest.fn();
-        instance._getParam = jest.fn(() => newsLetterInfo);
-        instance._updateNewsLetter = jest.fn();
-
-        instance._handleCloseNotificationPopup(true)
-
-        expect(instance.setState).toHaveBeenCalledWith({ messageNotificationPopup: '' });
-        expect(instance._getParam).toHaveBeenCalled();
-        expect(instance._updateNewsLetter).toHaveBeenCalledWith(newsLetterInfo);
-    });
-
-    it('_handleCloseNotificationPopup - - should call setState and not call _getParam and _updateNewsLetter', () => {
-        const result = shallow(<InsertUpdateForm {...defaultProps} />);
-        const instance = result.instance();
-        instance.setState = jest.fn();
-        instance._getParam = jest.fn();
-        instance._updateNewsLetter = jest.fn();
-
-        instance._handleCloseNotificationPopup(false)
-
-        expect(instance.setState).toHaveBeenCalledWith({ messageNotificationPopup: '' });
-        expect(instance._getParam).not.toHaveBeenCalled();
-        expect(instance._updateNewsLetter).not.toHaveBeenCalled();
     });
 
     it('_handleChange - should call setState', () => {
@@ -279,7 +241,7 @@ describe('news letter list - components - InsertUpdateForm ', () => {
         const value = instance._validateFileName("test*%$.html");
 
         expect(value).toBeFalsy();
-        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "File name must not have characters \\ / : * ? $ \" < > | and extension is html!");
+        expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "File name must not contain \\ / : * ? $ \" < > | characters and extension must be html.");
     });
 
     it('_validateFileName - should return false when file name is empty', () => {
@@ -340,18 +302,6 @@ describe('news letter list - components - InsertUpdateForm ', () => {
         await instance._save(param);
 
         expect(instance._updateNewsLetter).toHaveBeenCalledWith(param);
-    });
-
-    it('_save - should call setState', async () => {
-        const param = { name: "text.html" };
-        const result = shallow(<InsertUpdateForm {...defaultProps} />);
-        const instance = result.instance();
-        instance.setState({ isInsert: false, initialFileName: "text.html", fileName: "text.html" });
-        instance.setState = jest.fn();
-
-        await instance._save(param);
-
-        expect(instance.setState).toHaveBeenCalledWith({ messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' });
     });
 
     it('_getParam - should return correct param', () => {

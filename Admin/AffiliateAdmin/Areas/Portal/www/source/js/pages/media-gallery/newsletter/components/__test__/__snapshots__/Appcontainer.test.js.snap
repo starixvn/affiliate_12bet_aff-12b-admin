@@ -13,8 +13,6 @@ exports[`news letter - components - AppContainer render correctly 1`] = `
         "AreYouSureDeleteItems": "Are you sure to delete the selected newsletter(s)?",
         "DeleteItemsSuccessfully": "Delete newsletter(s) Successfully",
         "PleaseSelect": "Please select newsletter(s) to delete",
-        "maxLengthErrorMessage": "This field must not exceed 50 characters",
-        "requiredErrorMessage": "This field is required",
       }
     }
     param={
