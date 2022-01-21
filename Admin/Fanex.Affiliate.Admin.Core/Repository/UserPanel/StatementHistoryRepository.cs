@@ -20,14 +20,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("FDate", DbType.DateTime, param.FromDate);
-                objectDb.AddInParameter("TDate", DbType.DateTime, param.ToDate);
-                objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
-                objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.SetParameterValue("AffId", param.AffId);
+                objectDb.SetParameterValue("FDate", param.FromDate);
+                objectDb.SetParameterValue("TDate", param.ToDate);
+                objectDb.SetParameterValue("PageIndex", param.PageIndex);
+                objectDb.SetParameterValue("PageSize", param.PageSize);
+                objectDb.SetParameterValue("UserId", param.UserId);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("NRows", DefaultValue.Int);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -62,9 +62,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(uSpKey))
             {
-                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("ProductId", DbType.Int16, param.ProductId);
-                objectDb.AddInParameter("MonthDate", DbType.DateTime, param.MonthDate);
+                objectDb.SetParameterValue("AffId", param.AffId);
+                objectDb.SetParameterValue("ProductId", param.ProductId);
+                objectDb.SetParameterValue("MonthDate", param.MonthDate);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -91,9 +91,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("ProductId", DbType.Int16, param.ProductId);
-                objectDb.AddInParameter("MonthDate", DbType.DateTime, param.MonthDate);
+                objectDb.SetParameterValue("AffId", param.AffId);
+                objectDb.SetParameterValue("ProductId", param.ProductId);
+                objectDb.SetParameterValue("MonthDate", param.MonthDate);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

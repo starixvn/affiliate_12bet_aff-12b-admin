@@ -10,7 +10,7 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Newtonsoft.Json;
-using ONEbook.UM.Filters;
+using ONEbook.UM.AspNetMVC.Filters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;

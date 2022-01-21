@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             const string spKey = "Aff_Admin_Newsletter_Sel";
             using (var objectDb = GetObjectDb(spKey))
             {
-                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("NRows", DefaultValue.Int);
                 var items = objectDb.Query<NewsLetter>(param);
 
                 return new EntityResult<NewsLetter>

@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetStatementHistoryList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             repository.Setup(r => r.GetObjectDb("Aff_Admin_StatementHistory_Sel", 120)).Returns(objectDb.Object);
 
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetStatementHistoryListIsTransaction());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             repository.Setup(r => r.GetObjectDb("Aff_Admin_StatementHistory_Sel", 120)).Returns(objectDb.Object);
 
@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
             repository.Setup(r => r.GetObjectDb("Aff_Admin_StatementHistory_Sel", 120)).Returns(objectDb.Object);
 
@@ -93,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetDailyEarningList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Aff_DailyEarning_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             dataReader.Setup(d => d.GetName(0)).Returns("WinlostDate");
 
             ReaderHelper.MapReaderData(dataReader, GetDailyEarningListHasWinlostDate());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Aff_DailyEarning_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -139,7 +139,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Aff_DailyEarning_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -159,7 +159,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetDailyEarningDetailList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Aff_DailyEarning_Detail_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -178,7 +178,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.Setup(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Aff_DailyEarning_Detail_Sel", 120)).Returns(objectDb.Object);
 
             // Action

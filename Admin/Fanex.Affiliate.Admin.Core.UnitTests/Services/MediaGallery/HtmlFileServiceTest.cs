@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal(Lang.FileNameCanNotContain, result.Message);
+            Assert.Equal(Lang.FileNameMustNotContain, result.Message);
         }
 
         [Fact]

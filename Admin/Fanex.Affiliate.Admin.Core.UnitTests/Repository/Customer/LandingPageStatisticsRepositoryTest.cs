@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedLandingPageList());
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_ClickStatisticsSelByPage", 120)).Returns(objectDb.Object);
 
             // Action
@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedLandingPageListHasNull());
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_ClickStatisticsSelByPage", 120)).Returns(objectDb.Object);
 
             // Action
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_ClickStatisticsSelByPage", 120)).Returns(objectDb.Object);
 
             // Action
@@ -82,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedLandingPageList());
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_ClickStatisticsDetailBySite", 120)).Returns(objectDb.Object);
 
             // Action
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_ClickStatisticsDetailBySite", 120)).Returns(objectDb.Object);
 
             // Action

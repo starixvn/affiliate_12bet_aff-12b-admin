@@ -19,16 +19,16 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("SearchById", DbType.Int32, param.SearchBy);
-                objectDb.AddInParameter("Username", DbType.String, param.Username);
-                objectDb.AddInParameter(Field.Status, DbType.String, param.Status);
-                objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
-                objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
-                objectDb.AddInParameter("IsGetAll", DbType.Boolean, param.IsGetAll);
-                objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
-                objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
+                objectDb.SetParameterValue("SearchById", param.SearchBy);
+                objectDb.SetParameterValue("Username", param.Username);
+                objectDb.SetParameterValue(Field.Status, param.Status);
+                objectDb.SetParameterValue("FromDate", param.FromDate);
+                objectDb.SetParameterValue("ToDate", param.ToDate);
+                objectDb.SetParameterValue("IsGetAll", param.IsGetAll);
+                objectDb.SetParameterValue("PageIndex", param.PageIndex);
+                objectDb.SetParameterValue("PageSize", param.PageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("NRows", DefaultValue.Int);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("TransID", DbType.Int32, transId);
+                objectDb.SetParameterValue("TransID", transId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -98,12 +98,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.Status, DbType.String, param.Status);
-                objectDb.AddInParameter("TransID", DbType.Int64, param.TransId);
-                objectDb.AddInParameter("AdminDesc", DbType.String, param.AdminDesc);
-                objectDb.AddInParameter("AffDesc", DbType.String, param.AffDesc);
-                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.SetParameterValue(Field.Status, param.Status);
+                objectDb.SetParameterValue("TransID", param.TransId);
+                objectDb.SetParameterValue("AdminDesc", param.AdminDesc);
+                objectDb.SetParameterValue("AffDesc", param.AffDesc);
+                objectDb.SetParameterValue("UserID", param.UserId);
+                objectDb.SetParameterValue("IP", param.Ip);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();

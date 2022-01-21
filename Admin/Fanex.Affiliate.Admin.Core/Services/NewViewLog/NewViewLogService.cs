@@ -44,8 +44,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.NewViewLog
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("AffName", DbType.String, param.AffName);
+                objectDb.SetParameterValue("UserId", param.UserId);
+                objectDb.SetParameterValue("AffName", param.AffName);
                 AssignParam(objectDb, param);
 
                 return new EntityResult<NewViewLogInfo>
@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.NewViewLog
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
+                objectDb.SetParameterValue("AffID", param.AffId);
                 AssignParam(objectDb, param);
 
                 using (var reader = objectDb.ExecuteReader())
@@ -93,12 +93,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.NewViewLog
 
         private static void AssignParam(IObjectDb objectDb, NewViewLogParam param)
         {
-            objectDb.AddInParameter("LogActionIds", DbType.String, param.LogActionIds);
-            objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
-            objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
-            objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
-            objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
-            objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+            objectDb.SetParameterValue("LogActionIds", param.LogActionIds);
+            objectDb.SetParameterValue("FromDate", param.FromDate);
+            objectDb.SetParameterValue("ToDate", param.ToDate);
+            objectDb.SetParameterValue("PageIndex", param.PageIndex);
+            objectDb.SetParameterValue("PageSize", param.PageSize);
+            objectDb.SetParameterValue("NRows", DefaultValue.Int);
         }
 
         private static string ParseXmlToJson(string xmlString)

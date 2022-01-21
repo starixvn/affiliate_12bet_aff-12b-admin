@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var result = repository.Object.GetNewsLetters(param);
 
             // Assert
-            objectDb.Verify(obj => obj.Query<NewsLetter>(param, null, true, 120), Times.Once);
+            objectDb.Verify(obj => obj.Query<NewsLetter>(param, null), Times.Once);
             Assert.Equal(1, result.TotalItem);
         }
 
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var result = repository.Object.GetNewsLetters(param);
 
             // Assert
-            objectDb.Verify(obj => obj.Query<NewsLetter>(param, null, true, 120), Times.Once);
+            objectDb.Verify(obj => obj.Query<NewsLetter>(param, null), Times.Once);
             Assert.Equal(0, result.TotalItem);
         }
 
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Object.GetNewsLetterById(123);
 
             // Assert
-            objectDb.Verify(obj => obj.QueryEntity<NewsLetter>(It.IsAny<object>(), null, 120), Times.Once);
+            objectDb.Verify(obj => obj.QueryEntity<NewsLetter>(It.IsAny<object>(), null), Times.Once);
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             // Arrange
             var repository = new Mock<NewsLetterRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Newsletter_Ins", 120)).Returns(objectDb.Object);
@@ -88,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var message = "Insert the news letter is failed.";
             var repository = new Mock<NewsLetterRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Newsletter_Ins", 120)).Returns(objectDb.Object);
@@ -107,7 +107,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             // Arrange
             var repository = new Mock<NewsLetterRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Newsletter_Upd", 120)).Returns(objectDb.Object);
@@ -126,7 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var message = "Update the news letter is failed.";
             var repository = new Mock<NewsLetterRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Newsletter_Upd", 120)).Returns(objectDb.Object);
@@ -145,7 +145,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             // Arrange
             var repository = new Mock<NewsLetterRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Newsletter_Del", 120)).Returns(objectDb.Object);
@@ -164,7 +164,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var message = "Delete news letter(s) is failed.";
             var repository = new Mock<NewsLetterRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Newsletter_Del", 120)).Returns(objectDb.Object);

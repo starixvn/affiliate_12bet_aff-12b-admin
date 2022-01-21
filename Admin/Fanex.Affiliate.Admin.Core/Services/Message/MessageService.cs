@@ -20,14 +20,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("SearchById", DbType.Int32, param.SearchById);
-                objectDb.AddInParameter("IsGetAll", DbType.Boolean, param.IsGetAll);
-                objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
-                objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
-                objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
-                objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
+                objectDb.SetParameterValue("SearchById", param.SearchById);
+                objectDb.SetParameterValue("IsGetAll", param.IsGetAll);
+                objectDb.SetParameterValue("FromDate", param.FromDate);
+                objectDb.SetParameterValue("ToDate", param.ToDate);
+                objectDb.SetParameterValue("PageIndex", param.PageIndex);
+                objectDb.SetParameterValue("PageSize", param.PageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("NRows", DefaultValue.Int);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.MessageId, DbType.Int32, selectedMessageId);
+                objectDb.SetParameterValue(Field.MessageId, selectedMessageId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -107,7 +107,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.MessageId, DbType.Int32, param.MessageId);
+                objectDb.SetParameterValue(Field.MessageId, param.MessageId);
                 AssignParam(objectDb, param);
 
                 objectDb.ExecuteNonQuery();
@@ -122,9 +122,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("MessageIds", DbType.String, param.MessageIdList);
-                objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("ip", DbType.String, param.Ip);
+                objectDb.SetParameterValue("MessageIds", param.MessageIdList);
+                objectDb.SetParameterValue("userid", param.UserId);
+                objectDb.SetParameterValue("ip", param.Ip);
 
                 AssignResultOutputParam(objectDb);
 
@@ -136,18 +136,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
 
         private static void AssignParam(IObjectDb objectDb, InsertUpdateMessageParam param)
         {
-            objectDb.AddInParameter("IsImportant", DbType.Boolean, param.Important);
-            objectDb.AddInParameter("msgen", DbType.String, param.MessageContentEn);
-            objectDb.AddInParameter("msgcn", DbType.String, param.MessageContentCn);
-            objectDb.AddInParameter("msgtw", DbType.String, param.MessageContentTw);
-            objectDb.AddInParameter("msges", DbType.String, param.MessageContentEs);
-            objectDb.AddInParameter("msgth", DbType.String, param.MessageContentTh);
-            objectDb.AddInParameter("msgvi", DbType.String, param.MessageContentVi);
-            objectDb.AddInParameter("msgid", DbType.String, param.MessageContentId);
-            objectDb.AddInParameter("msgkr", DbType.String, param.MessageContentKr);
-            objectDb.AddInParameter("msgjp", DbType.String, param.MessageContentJp);
-            objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            objectDb.SetParameterValue("IsImportant", param.Important);
+            objectDb.SetParameterValue("msgen", param.MessageContentEn);
+            objectDb.SetParameterValue("msgcn", param.MessageContentCn);
+            objectDb.SetParameterValue("msgtw", param.MessageContentTw);
+            objectDb.SetParameterValue("msges", param.MessageContentEs);
+            objectDb.SetParameterValue("msgth", param.MessageContentTh);
+            objectDb.SetParameterValue("msgvi", param.MessageContentVi);
+            objectDb.SetParameterValue("msgid", param.MessageContentId);
+            objectDb.SetParameterValue("msgkr", param.MessageContentKr);
+            objectDb.SetParameterValue("msgjp", param.MessageContentJp);
+            objectDb.SetParameterValue("UserID", param.UserId);
+            objectDb.SetParameterValue("IP", param.Ip);
 
             AssignResultOutputParam(objectDb);
         }

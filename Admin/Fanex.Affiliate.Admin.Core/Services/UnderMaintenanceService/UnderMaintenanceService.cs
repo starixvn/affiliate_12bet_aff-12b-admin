@@ -1,14 +1,14 @@
 ﻿using ONEbook.UM.Models;
-using ONEbook.UM.Services.Impl;
+using ONEbook.UM.Services;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UnderMaintenanceService
 {
     public class UnderMaintenanceService : IUnderMaintenanceService
     {
-        private readonly MaintenanceService _maintenaceService;
-        public UnderMaintenanceService()
+        private readonly IMaintenanceService _maintenaceService;
+        public UnderMaintenanceService(IMaintenanceService maintenaceService)
         {
-            _maintenaceService = new MaintenanceService();
+            _maintenaceService = maintenaceService;
         }
 
         public UnderMaintenanceTime GetUnderMaintenanceTime()

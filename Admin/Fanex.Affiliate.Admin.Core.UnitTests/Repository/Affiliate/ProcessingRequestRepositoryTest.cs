@@ -7,6 +7,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
@@ -18,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
         {
             //Arrange
             var (objectDb, repository) = GetObjectDbAndRepository();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(It.IsAny<object>())).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(It.IsAny<object>(), null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_ProcessingRequest_Ins", 120)).Returns(objectDb.Object);
@@ -35,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
         {
             //Arrange
             var (objectDb, repository) = GetObjectDbAndRepository();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(It.IsAny<object>())).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(It.IsAny<object>(), null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(r => r.GetObjectDb("Aff_Admin_ProcessingRequest_Del", 120)).Returns(objectDb.Object);
@@ -52,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
         {
             //Arrange
             var (objectDb, repository) = GetObjectDbAndRepository();
-            objectDb.Setup(obj => obj.QueryEntity<ProcessingRequestDetailInfo>(It.IsAny<object>(), It.IsAny<IDbTransaction>(), 120)).Returns(new ProcessingRequestDetailInfo());
+            objectDb.Setup(obj => obj.QueryEntity<ProcessingRequestDetailInfo>(It.IsAny<object>(), It.IsAny<DbTransaction>())).Returns(new ProcessingRequestDetailInfo());
             repository.Setup(r => r.GetObjectDb("Aff_Admin_ProcessingRequestDetail_Sel", 120)).Returns(objectDb.Object);
 
             //Action
@@ -89,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
         {
             //Arrange
             var (objectDb, repository) = GetObjectDbAndRepository();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(It.IsAny<object>())).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(It.IsAny<object>(), null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(r => r.GetObjectDb("Aff_Admin_ProcessingRequest_Upd", 120)).Returns(objectDb.Object);

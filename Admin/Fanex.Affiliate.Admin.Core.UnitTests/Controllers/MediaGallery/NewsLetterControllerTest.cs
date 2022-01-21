@@ -101,8 +101,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void InsertNewsLetter_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
+            var expectedMessage = "You must browse file before upload";
             var controller = CreateNewsLetterController();
-            controller.ModelState.AddModelError("Error01", string.Empty);
+            controller.ModelState.AddModelError("Error01", expectedMessage);
 
             // Action
             var result = controller.InsertNewsLetter(new MockFile(), new NewsLetterViewModel()) as JsonNetResult;
@@ -110,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
             // Assert
             Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("You must browse file before upload", resultInfo.Message);
+            Assert.Equal(expectedMessage, resultInfo.Message);
         }
 
         [Fact]
@@ -169,9 +170,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void UpdateNewsLetter_WhenCallWithInValidParam_ReturnError()
         {
             // Arrange
+            var expectedMessage = "You must browse file before upload";
             var param = new NewsLetterViewModel { NewsLetterId = 123, FileName = "abc.html" };
             var controller = CreateNewsLetterController();
-            controller.ModelState.AddModelError("Error01", string.Empty);
+            controller.ModelState.AddModelError("Error01", expectedMessage);
 
             // Action
             var result = controller.UpdateNewsLetter(null, param) as JsonNetResult;
@@ -179,7 +181,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
             // Assert
             Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("You must browse file before upload", resultInfo.Message);
+            Assert.Equal(expectedMessage, resultInfo.Message);
         }
 
         [Fact]

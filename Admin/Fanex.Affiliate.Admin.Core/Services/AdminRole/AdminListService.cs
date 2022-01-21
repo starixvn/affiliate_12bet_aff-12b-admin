@@ -17,9 +17,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("CustIds", DbType.String, param.UserIds);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.ByUserId);
-                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+                objectDb.SetParameterValue("CustIds", param.UserIds);
+                objectDb.SetParameterValue("UserId", param.ByUserId);
+                objectDb.SetParameterValue("Ip", param.Ip);
 
                 AssignResultOutputParam(objectDb);
 
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserName", DbType.String, userName);
+                objectDb.SetParameterValue("UserName", userName);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

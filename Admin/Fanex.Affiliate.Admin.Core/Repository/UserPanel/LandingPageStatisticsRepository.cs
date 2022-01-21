@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
-                objectDb.AddInParameter("LanguageCodes", DbType.String, param.LanguageCode);
+                objectDb.SetParameterValue("LanguageCodes", param.LanguageCode);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -43,11 +43,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 AssignCommonParam(objectDb, param);
 
-                objectDb.AddInParameter("LanguageCode", DbType.String, param.LanguageCode);
-                objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
-                objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
+                objectDb.SetParameterValue("LanguageCode", param.LanguageCode);
+                objectDb.SetParameterValue("PageIndex", param.PageIndex);
+                objectDb.SetParameterValue("PageSize", param.PageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("NRows", DefaultValue.Int);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -65,11 +65,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
         private static void AssignCommonParam(IObjectDb objectDb, LandingPageStatisticsParam param)
         {
-            objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-            objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
-            objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
-            objectDb.AddInParameter("SportCode", DbType.String, param.SelectedPage);
-            objectDb.AddInParameter("DeviceType", DbType.Int16, param.DeviceType);
+            objectDb.SetParameterValue("AffID", param.AffId);
+            objectDb.SetParameterValue("FromDate", param.FromDate);
+            objectDb.SetParameterValue("ToDate", param.ToDate);
+            objectDb.SetParameterValue("SportCode", param.SelectedPage);
+            objectDb.SetParameterValue("DeviceType", param.DeviceType);
         }
 
         private static LandingPageStatistics BuildLandingPageStatisticsItem(IDataReader reader, bool isGetLandingPageStatisticsList)

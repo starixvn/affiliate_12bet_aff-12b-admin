@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Username", DbType.String, affUserName);
+                objectDb.SetParameterValue("Username", affUserName);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Username", DbType.String, affUserName);
+                objectDb.SetParameterValue("Username", affUserName);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -84,12 +84,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
-                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
-                objectDb.AddInParameter("AffType", DbType.Byte, param.AffType);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.SetParameterValue(Field.AffId, param.AffId);
+                objectDb.SetParameterValue(Field.UserId, param.UserId);
+                objectDb.SetParameterValue("AffType", param.AffType);
+                objectDb.SetParameterValue("IP", param.Ip);
 
-                objectDb.AddOutParameter("ErrCode", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("ErrCode", DefaultValue.Int);
 
                 objectDb.ExecuteNonQuery();
 
@@ -108,10 +108,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
-                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IsClosed", DbType.Boolean, param.IsClosed);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.SetParameterValue(Field.AffId, param.AffId);
+                objectDb.SetParameterValue(Field.UserId, param.UserId);
+                objectDb.SetParameterValue("IsClosed", param.IsClosed);
+                objectDb.SetParameterValue("IP", param.Ip);
 
                 AssignResultOutputParam(objectDb);
 
@@ -127,10 +127,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
-                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
-                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
-                objectDb.AddInParameter("PreferredLanguage", DbType.String, param.PreferredLanguage);
+                objectDb.SetParameterValue(Field.AffId, param.AffId);
+                objectDb.SetParameterValue(Field.UserId, param.UserId);
+                objectDb.SetParameterValue("Ip", param.Ip);
+                objectDb.SetParameterValue("PreferredLanguage", param.PreferredLanguage);
 
                 AssignResultOutputParam(objectDb);
 
@@ -161,10 +161,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
-                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
-                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
-                objectDb.AddInParameter("Status", DbType.String, param.Status);
+                objectDb.SetParameterValue(Field.AffId, param.AffId);
+                objectDb.SetParameterValue(Field.UserId, param.UserId);
+                objectDb.SetParameterValue("Ip", param.Ip);
+                objectDb.SetParameterValue("Status", param.Status);
 
                 AssignResultOutputParam(objectDb);
 

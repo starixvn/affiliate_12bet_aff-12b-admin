@@ -78,9 +78,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
-                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.SetParameterValue(Field.UserId, param.UserId);
+                objectDb.SetParameterValue(Field.GroupId, param.GroupId);
+                objectDb.SetParameterValue("IP", param.Ip);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
@@ -112,8 +112,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddOutParameter(Field.GroupId, DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("AffId", param.AffId);
+                objectDb.SetParameterValue(Field.GroupId, DefaultValue.Int);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -139,10 +139,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
-                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
-                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+                objectDb.SetParameterValue(Field.UserId, param.UserId);
+                objectDb.SetParameterValue("AffId", param.AffId);
+                objectDb.SetParameterValue(Field.GroupId, param.GroupId);
+                objectDb.SetParameterValue("Ip", param.Ip);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
@@ -215,8 +215,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                         DeductionId = Convert.ToInt32(reader["DeductionId"]),
                         DeductionName = reader["DeductionName"].ToString(),
                         ProductIds = reader["ProductIds"].ToString(),
-                        DeductedPercentage = reader["DeductedPercentage"] == DBNull.Value ? default(decimal) : Convert.ToDecimal(reader["DeductedPercentage"]),
-                        NextDeductedPercentage = reader["NextDeductedPercentage"] == DBNull.Value ? default(decimal) : Convert.ToDecimal(reader["NextDeductedPercentage"])
+                        DeductedPercentage = reader["DeductedPercentage"] == DBNull.Value ? DefaultValue.Decimal : Convert.ToDecimal(reader["DeductedPercentage"]),
+                        NextDeductedPercentage = reader["NextDeductedPercentage"] == DBNull.Value ? DefaultValue.Decimal : Convert.ToDecimal(reader["NextDeductedPercentage"])
                     });
                 }
             }
@@ -226,14 +226,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         private static void AssignCreateUpdateCommissionGroupParam(IObjectDb objectDb, CreateUpdateCommissionGroupParam param)
         {
-            objectDb.AddInParameter(Field.UserId, DbType.Int32, param.UserId);
-            objectDb.AddInParameter(Field.GroupId, DbType.Int32, param.GroupId);
-            objectDb.AddInParameter(Field.GroupName, DbType.String, param.GroupName);
-            objectDb.AddInParameter("Description", DbType.String, param.Description);
-            objectDb.AddInParameter("DeductionList", DbType.Xml, param.DeductionList);
-            objectDb.AddInParameter("TierList", DbType.Xml, param.TierList);
-            objectDb.AddInParameter("QMTurnover", DbType.Decimal, param.QmTurnover);
-            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            objectDb.SetParameterValue(Field.UserId, param.UserId);
+            objectDb.SetParameterValue(Field.GroupId, param.GroupId);
+            objectDb.SetParameterValue(Field.GroupName, param.GroupName);
+            objectDb.SetParameterValue("Description", param.Description);
+            objectDb.SetParameterValue("DeductionList", param.DeductionList);
+            objectDb.SetParameterValue("TierList", param.TierList);
+            objectDb.SetParameterValue("QMTurnover", param.QmTurnover);
+            objectDb.SetParameterValue("IP", param.Ip);
 
             AssignResultOutputParam(objectDb);
         }

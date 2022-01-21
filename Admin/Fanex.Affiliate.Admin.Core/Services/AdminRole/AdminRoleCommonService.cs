@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("CustId", DbType.String, userId);
+                objectDb.SetParameterValue("CustId", userId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("RoleId", DbType.String, roleId);
+                objectDb.SetParameterValue("RoleId", roleId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

@@ -66,21 +66,21 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         private static void AssignAffiliateInfoParam(IObjectDb objectDb, AffiliateInfoParam param)
         {
-            objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffIdNumber);
-            objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-            objectDb.AddInParameter("GroupID", DbType.Int32, param.GroupId);
-            objectDb.AddInParameter("PreferredLanguages", DbType.String, param.PreferenceLanguages);
-            objectDb.AddInParameter("Status", DbType.String, param.Status);
-            objectDb.AddInParameter("ProcessingStatus", DbType.String, param.ProcessingStatus);
-            objectDb.AddInParameter("UserName", DbType.String, param.UserName);
-            objectDb.AddInParameter("Email", DbType.String, param.Email);
-            objectDb.AddInParameter("SortType", DbType.Byte, param.SortBy);
-            objectDb.AddInParameter("SortDirectionType", DbType.Boolean, param.SortDirectionType);
-            objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
-            objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
-            objectDb.AddInParameter("IsExportExcel", DbType.Boolean, param.IsExportExcel);
+            objectDb.SetParameterValue(Field.AffId, param.AffIdNumber);
+            objectDb.SetParameterValue("UserId", param.UserId);
+            objectDb.SetParameterValue("GroupID", param.GroupId);
+            objectDb.SetParameterValue("PreferredLanguages", param.PreferenceLanguages);
+            objectDb.SetParameterValue("Status", param.Status);
+            objectDb.SetParameterValue("ProcessingStatus", param.ProcessingStatus);
+            objectDb.SetParameterValue("UserName", param.UserName);
+            objectDb.SetParameterValue("Email", param.Email);
+            objectDb.SetParameterValue("SortType", param.SortBy);
+            objectDb.SetParameterValue("SortDirectionType", param.SortDirectionType);
+            objectDb.SetParameterValue("PageIndex", param.PageIndex);
+            objectDb.SetParameterValue("PageSize", param.PageSize);
+            objectDb.SetParameterValue("IsExportExcel", param.IsExportExcel);
 
-            objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+            objectDb.SetParameterValue("NRows", DefaultValue.Int);
         }
 
         private static AffiliateInfo BuildAffiliateInfoItem(IDataReader reader)
@@ -112,18 +112,18 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         private static void AssignFavoriteParam(IObjectDb objectDb, FavoriteParam param)
         {
-            objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-            objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
-            objectDb.AddInParameter("IsFavorite", DbType.Boolean, param.IsFavorite);
-            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            objectDb.SetParameterValue("UserId", param.UserId);
+            objectDb.SetParameterValue(Field.AffId, param.AffId);
+            objectDb.SetParameterValue("IsFavorite", param.IsFavorite);
+            objectDb.SetParameterValue("IP", param.Ip);
         }
 
         private static void AssignPasswordParam(IObjectDb objectDb, PasswordParam param)
         {
-            objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-            objectDb.AddInParameter(Field.AffId, DbType.Int32, param.AffId);
-            objectDb.AddInParameter("Password", DbType.String, param.Password);
-            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            objectDb.SetParameterValue("UserId", param.UserId);
+            objectDb.SetParameterValue(Field.AffId, param.AffId);
+            objectDb.SetParameterValue("Password", param.Password);
+            objectDb.SetParameterValue("IP", param.Ip);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetTrackingCodeList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_AffiliateSelTrackingCode", 120)).Returns(objectDb.Object);
 
             // Action
@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_AffiliateSelTrackingCode", 120)).Returns(objectDb.Object);
 
             // Action
@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetTrackingStatisticsList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_AffiliateSelClickStatisticsAllMonths", 120)).Returns(objectDb.Object);
 
             // Action
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetTrackingStatisticsList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_AffiliateSelClickStatisticsAllMonths", 120)).Returns(objectDb.Object);
 
             // Action
@@ -108,7 +108,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_AffiliateSelClickStatisticsAllMonths", 120)).Returns(objectDb.Object);
 
             // Action
@@ -128,7 +128,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetTrackingStatisticsListHasNull());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_AffiliateSelClickStatisticsMonthDetail", 120)).Returns(objectDb.Object);
 
             // Action
@@ -150,7 +150,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_AffiliateSelClickStatisticsMonthDetail", 120)).Returns(objectDb.Object);
 
             // Action

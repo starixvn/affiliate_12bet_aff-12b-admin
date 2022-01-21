@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffId", DbType.Int32, affId);
+                objectDb.SetParameterValue("AffId", affId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -68,39 +68,39 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             const string SpKey = "Aff_Admin_AffiliateInfo_Upd";
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("FirstName", DbType.String, param.FirstName);
-                objectDb.AddInParameter("LastName", DbType.String, param.LastName);
-                objectDb.AddInParameter("Gender", DbType.Boolean, param.Gender);
-                objectDb.AddInParameter("Email", DbType.String, param.Email);
-                objectDb.AddInParameter("Phone", DbType.String, param.Phone);
+                objectDb.SetParameterValue("AffId", param.AffId);
+                objectDb.SetParameterValue("UserId", param.UserId);
+                objectDb.SetParameterValue("FirstName", param.FirstName);
+                objectDb.SetParameterValue("LastName", param.LastName);
+                objectDb.SetParameterValue("Gender", param.Gender);
+                objectDb.SetParameterValue("Email", param.Email);
+                objectDb.SetParameterValue("Phone", param.Phone);
 
-                objectDb.AddInParameter("ContactApps", DbType.String, param.ContactApps);
-                objectDb.AddInParameter("Address", DbType.String, param.Address);
-                objectDb.AddInParameter("City", DbType.String, param.City);
-                objectDb.AddInParameter("State", DbType.String, param.State);
-                objectDb.AddInParameter("Postal", DbType.String, param.Postcode);
-                objectDb.AddInParameter("Country", DbType.String, param.Country);
+                objectDb.SetParameterValue("ContactApps", param.ContactApps);
+                objectDb.SetParameterValue("Address", param.Address);
+                objectDb.SetParameterValue("City", param.City);
+                objectDb.SetParameterValue("State", param.State);
+                objectDb.SetParameterValue("Postal", param.Postcode);
+                objectDb.SetParameterValue("Country", param.Country);
 
-                objectDb.AddInParameter("MailOption", DbType.Boolean, param.MailOption);
+                objectDb.SetParameterValue("MailOption", param.MailOption);
 
-                objectDb.AddInParameter("SiteURL", DbType.String, param.SiteUrl);
-                objectDb.AddInParameter("MoreSiteURLs", DbType.String, param.MoreSiteUrls);
-                objectDb.AddInParameter("NoSiteDesc", DbType.String, param.NoSiteDescription);
+                objectDb.SetParameterValue("SiteURL", param.SiteUrl);
+                objectDb.SetParameterValue("MoreSiteURLs", param.MoreSiteUrls);
+                objectDb.SetParameterValue("NoSiteDesc", param.NoSiteDescription);
 
-                objectDb.AddInParameter("PreferredPayment", DbType.String, param.PreferredPayment);
-                objectDb.AddInParameter("PlayerUsername", DbType.String, param.PlayerUsername);
-                objectDb.AddInParameter("NetellerAccountId", DbType.String, param.NetellerAccountId);
-                objectDb.AddInParameter("MoneybookersEmail", DbType.String, param.MoneybookersEmail);
-                objectDb.AddInParameter("BankName", DbType.String, param.BankName);
-                objectDb.AddInParameter("BankAddress", DbType.String, param.BankAddress);
-                objectDb.AddInParameter("BankSwiftCode", DbType.String, param.BankCode);
-                objectDb.AddInParameter("BankAccountName", DbType.String, param.BankAccountName);
-                objectDb.AddInParameter("BankAccountNo", DbType.String, param.BankAccountNumber);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddInParameter("QuestionId", DbType.Int32, param.QuestionId);
-                objectDb.AddInParameter("Answer", DbType.String, param.Answer);
+                objectDb.SetParameterValue("PreferredPayment", param.PreferredPayment);
+                objectDb.SetParameterValue("PlayerUsername", param.PlayerUsername);
+                objectDb.SetParameterValue("NetellerAccountId", param.NetellerAccountId);
+                objectDb.SetParameterValue("MoneybookersEmail", param.MoneybookersEmail);
+                objectDb.SetParameterValue("BankName", param.BankName);
+                objectDb.SetParameterValue("BankAddress", param.BankAddress);
+                objectDb.SetParameterValue("BankSwiftCode", param.BankCode);
+                objectDb.SetParameterValue("BankAccountName", param.BankAccountName);
+                objectDb.SetParameterValue("BankAccountNo", param.BankAccountNumber);
+                objectDb.SetParameterValue("IP", param.Ip);
+                objectDb.SetParameterValue("QuestionId", param.QuestionId);
+                objectDb.SetParameterValue("Answer", param.Answer);
 
                 AssignResultOutputParam(objectDb);
 
@@ -118,8 +118,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(spKey))
             {
-                objectDb.AddInParameter("IsIncludedOldData", DbType.Boolean, isIncludeOldData);
-                objectDb.AddInParameter("Language", DbType.String, language);
+                objectDb.SetParameterValue("IsIncludedOldData", isIncludeOldData);
+                objectDb.SetParameterValue("Language", language);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

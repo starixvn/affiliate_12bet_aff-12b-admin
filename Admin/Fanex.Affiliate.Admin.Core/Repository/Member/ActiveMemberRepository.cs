@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.UserName, DbType.String, userNames);
+                objectDb.SetParameterValue(Field.UserName, userNames);
                 AssignResultOutputParam(objectDb);
 
                 using (var reader = objectDb.ExecuteReader())
@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(Spkey))
             {
-                objectDb.AddInParameter("deposit_usernames", DbType.String, userNames);
+                objectDb.SetParameterValue("deposit_usernames", userNames);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -114,20 +114,20 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter(Field.FirstName, DbType.String, param.FirstName);
-                objectDb.AddInParameter(Field.LastName, DbType.String, param.LastName);
-                objectDb.AddInParameter("email", DbType.String, param.Email);
-                objectDb.AddInParameter("depositusername", DbType.String, param.DepositUserName);
-                objectDb.AddInParameter("deposituserid", DbType.String, param.DepositUserId);
-                objectDb.AddInParameter("password", DbType.String, param.Password);
-                objectDb.AddInParameter("oddstype", DbType.String, param.OddsType);
-                objectDb.AddInParameter("agentid", DbType.String, param.AgentId);
-                objectDb.AddInParameter("affiliateid", DbType.String, param.AffiliateId);
-                objectDb.AddInParameter("bonuscode", DbType.String, param.BonusCode);
-                objectDb.AddInParameter("Country", DbType.String, param.Country);
+                objectDb.SetParameterValue(Field.FirstName, param.FirstName);
+                objectDb.SetParameterValue(Field.LastName, param.LastName);
+                objectDb.SetParameterValue("email", param.Email);
+                objectDb.SetParameterValue("depositusername", param.DepositUserName);
+                objectDb.SetParameterValue("deposituserid", param.DepositUserId);
+                objectDb.SetParameterValue("password", param.Password);
+                objectDb.SetParameterValue("oddstype", param.OddsType);
+                objectDb.SetParameterValue("agentid", param.AgentId);
+                objectDb.SetParameterValue("affiliateid", param.AffiliateId);
+                objectDb.SetParameterValue("bonuscode", param.BonusCode);
+                objectDb.SetParameterValue("Country", param.Country);
 
-                objectDb.AddOutParameter("custid", DbType.Int32, Size.SizeOfInt);
-                objectDb.AddOutParameter(Field.UserName, DbType.String, Size.SizeOfString);
+                objectDb.SetParameterValue("custid", DefaultValue.Int);
+                objectDb.SetParameterValue(Field.UserName, DefaultValue.String);
 
                 AssignResultOutputParam(objectDb);
 
@@ -148,14 +148,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffID", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("Creator", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddInParameter("Typename", DbType.String, "Member");
-                objectDb.AddInParameter("SPName", DbType.String, "Dot_Dep_CustomerInsMember_Ag_Cust");
-                objectDb.AddInParameter("Details", DbType.String, $"Add 12Bet player account to IBC DepositCustID={depositUserId}");
+                objectDb.SetParameterValue("AffID", param.UserId);
+                objectDb.SetParameterValue("Creator", param.UserId);
+                objectDb.SetParameterValue("IP", param.Ip);
+                objectDb.SetParameterValue("Typename", "Member");
+                objectDb.SetParameterValue("SPName", "Dot_Dep_CustomerInsMember_Ag_Cust");
+                objectDb.SetParameterValue("Details", $"Add 12Bet player account to IBC DepositCustID={depositUserId}");
 
-                objectDb.AddOutParameter("RefNo", DbType.Int64, Size.SizeOfInt);
+                objectDb.SetParameterValue("RefNo", DefaultValue.Int);
 
                 objectDb.ExecuteNonQuery();
             }
@@ -167,12 +167,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("depusername", DbType.String, depositUserName);
-                objectDb.AddInParameter("ibccustid", DbType.String, ibcCustid);
-                objectDb.AddInParameter("ibcusername", DbType.String, ibcUserName);
+                objectDb.SetParameterValue("depusername", depositUserName);
+                objectDb.SetParameterValue("ibccustid", ibcCustid);
+                objectDb.SetParameterValue("ibcusername", ibcUserName);
 
-                objectDb.AddOutParameter("ErrorCode", DbType.Int32, Size.SizeOfInt);
-                objectDb.AddOutParameter("ErrorMsg", DbType.String, Size.SizeOfString);
+                objectDb.SetParameterValue("ErrorCode", DefaultValue.Int);
+                objectDb.SetParameterValue("ErrorMsg", DefaultValue.String);
 
                 objectDb.ExecuteNonQuery();
 
@@ -181,7 +181,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 return new ResultInfo
                 {
                     Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
-                    Message = objectDb.GetParameterValue("ErrorMsg").ToString()
+                    Message = objectDb.GetParameterValue("ErrorMsg")?.ToString()
                 };
             }
         }
@@ -192,14 +192,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffID", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("Creator", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddInParameter("Typename", DbType.String, "Member");
-                objectDb.AddInParameter("SPName", DbType.String, "Deposit_MemberIBCDetail");
-                objectDb.AddInParameter("Details", DbType.String, $"Update 12Bet player status to deposit DepositCustID={ibcCustId}");
+                objectDb.SetParameterValue("AffID", param.UserId);
+                objectDb.SetParameterValue("Creator", param.UserId);
+                objectDb.SetParameterValue("IP", param.Ip);
+                objectDb.SetParameterValue("Typename", "Member");
+                objectDb.SetParameterValue("SPName", "Deposit_MemberIBCDetail");
+                objectDb.SetParameterValue("Details", $"Update 12Bet player status to deposit DepositCustID={ibcCustId}");
 
-                objectDb.AddOutParameter("RefNo", DbType.Int64, Size.SizeOfInt);
+                objectDb.SetParameterValue("RefNo", DefaultValue.Int);
 
                 objectDb.ExecuteNonQuery();
             }

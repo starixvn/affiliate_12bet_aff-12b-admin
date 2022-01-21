@@ -1,8 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Data;
+using Fanex.Data.SqlServer;
 using System;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
@@ -10,13 +10,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository
     {
         protected internal virtual IObjectDb GetObjectDb(string spName, int timeout = 120)
         {
-            return new ObjectDb(spName, timeout);
+            return new SqlObjectDb(spName, timeout);
         }
 
         protected static void AssignResultOutputParam(IObjectDb objectDb)
         {
-            objectDb.AddOutParameter("ErrCode", DbType.Int32, Size.SizeOfInt);
-            objectDb.AddOutParameter("ErrMsg", DbType.String, Size.SizeOfString);
+            objectDb.SetParameterValue("ErrCode", DefaultValue.Int);
+            objectDb.SetParameterValue("ErrMsg", DefaultValue.String);
         }
 
         protected static ResultInfo GetResultInfo(IObjectDb objectDb)
@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             return new ResultInfo
             {
                 Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
-                Message = objectDb.GetParameterValue("ErrMsg").ToString()
+                Message = objectDb.GetParameterValue("ErrMsg")?.ToString()
             };
         }
 

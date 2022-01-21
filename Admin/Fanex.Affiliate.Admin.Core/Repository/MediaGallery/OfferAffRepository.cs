@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             const string spKey = "Aff_Admin_OfferAffiliate_Sel";
             using (var objectDb = GetObjectDb(spKey))
             {
-                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("NRows", DefaultValue.Int);
                 var items = objectDb.Query<OfferAff>(param);
 
                 return new EntityResult<OfferAff>

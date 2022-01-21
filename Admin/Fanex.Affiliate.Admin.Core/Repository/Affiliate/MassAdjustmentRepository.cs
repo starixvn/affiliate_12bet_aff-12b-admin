@@ -16,9 +16,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("XmlData", DbType.String, param.XmlData);
-                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+                objectDb.SetParameterValue("XmlData", param.XmlData);
+                objectDb.SetParameterValue("UserID", param.UserId);
+                objectDb.SetParameterValue("Ip", param.Ip);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();

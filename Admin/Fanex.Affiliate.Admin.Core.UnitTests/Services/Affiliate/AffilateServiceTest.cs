@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedAffiliateInfo());
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(re => re.GetObjectDb("Aff_Admin_AffiliateInfo_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(re => re.GetObjectDb("Aff_Admin_AffiliateInfo_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var service = new Mock<AffiliateService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
 
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             service.Setup(re => re.GetObjectDb("Aff_Admin_Affiliate_Approved", 120)).Returns(objectDb.Object);

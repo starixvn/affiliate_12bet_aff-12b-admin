@@ -19,13 +19,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(Spkey))
             {
-                objectDb.AddInParameter("AffUsername", DbType.String, param.AffName);
-                objectDb.AddInParameter("UserName", DbType.String, param.UserName);
-                objectDb.AddInParameter("IBCUserName", DbType.String, param.IbcUserName);
-                objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
-                objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
+                objectDb.SetParameterValue("AffUsername", param.AffName);
+                objectDb.SetParameterValue("UserName", param.UserName);
+                objectDb.SetParameterValue("IBCUserName", param.IbcUserName);
+                objectDb.SetParameterValue("PageIndex", param.PageIndex);
+                objectDb.SetParameterValue("PageSize", param.PageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("NRows", DefaultValue.Int);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -59,10 +59,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("IsRemoved", DbType.Int32, param.IsRemoved);
-                objectDb.AddInParameter("ibccustid", DbType.Int32, param.MemberId);
-                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.SetParameterValue("IsRemoved", param.IsRemoved);
+                objectDb.SetParameterValue("ibccustid", param.MemberId);
+                objectDb.SetParameterValue("UserID", param.UserId);
+                objectDb.SetParameterValue("IP", param.Ip);
 
                 AssignResultOutputParam(objectDb);
 

@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var service = new Mock<AdjustmentService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             service.Setup(re => re.GetObjectDb("Aff_Admin_AffiliateAdjustment_Ins", 120)).Returns(objectDb.Object);
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var message = "Insert Adjustment is failed.";
             var service = new Mock<AdjustmentService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             service.Setup(re => re.GetObjectDb("Aff_Admin_AffiliateAdjustment_Ins", 120)).Returns(objectDb.Object);
