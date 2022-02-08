@@ -13,7 +13,7 @@ using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using System.Globalization;
 using System.Net.Http;
 
-namespace Fanex.Affiliate.DataService.Importer 
+namespace Fanex.Affiliate.DataService.Importer
 {
     public class VrLotteryService : XmlImporterlServiceBase, IDataRequestByCurrency
     {
@@ -30,8 +30,7 @@ namespace Fanex.Affiliate.DataService.Importer
         public int TimeRangeLimitInMinForEachRequest { get; set; } = MINUTE_TIME_RANGE_LIMIT;
 
 
-
-        public VrLotteryService(IApiClientFactory apiClientFactory = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null) 
+        public VrLotteryService(IApiClientFactory apiClientFactory = null, IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
             : base(appSetting, thirdPartyProductRepository)
         {
             var factory = apiClientFactory ?? new ApiClientFactory();

@@ -62,9 +62,9 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
             return builder.ToString();
         }
 
-        public static IApiClient GetStubApi()
+        public static IApiClientFactory GetStubApi()
         {
-            var client = NSubstitute.Substitute.For<IApiClient>();
+            var client = Substitute.For<IApiClientFactory>();
             return client;
         }
 

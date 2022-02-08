@@ -1,4 +1,6 @@
 ﻿using Fanex.Affiliate.ThirdPartyProduct.Site;
+using Fanex.Data;
+using Fanex.Data.SqlServer;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -13,10 +15,10 @@ namespace Affiliate.ThirdPartyProduct.TestRequest
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+            DbSettingProviderManager.StartNewSession()
+                 .WithSqlServer("~/App_Data")
+                 .Run();
             LoggingConfig.RegisterSentry();
         }
-
-
     }
 }

@@ -14,13 +14,13 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
 {
     public class TopazTestHelper
     {
-        public static string RESPONSE_SUCCESS =>  @"{'status':'SUCCESS'}";
+        public static string RESPONSE_SUCCESS => @"{'status':'SUCCESS', 'access_token': 'test'}";
 
-        public static string RESPONSE_EXCESS_LIMIT_CALL => @"{'status':'FAIL','message':'CALL_LIMIT_EXCEEDED','errors':[]}";
-        
-        public static string RESPONSE_INVALID_VALUE => @"{'status':'FAIL','message':null,'errors':[{'field':'brandId','error':'INVALID_VALUE'}]}";
+        public static string RESPONSE_EXCESS_LIMIT_CALL => @"{'status':'FAIL','message':'CALL_LIMIT_EXCEEDED','errors':[], 'access_token': 'test'}";
 
-        public static string RESPONSE_BRAND_NOT_CONFIG => @"{'status':'FAIL','message':null,'errors':[{'field':'brandId','error':'NOT_ENABLED'}]}";
+        public static string RESPONSE_INVALID_VALUE => @"{'status':'FAIL','message':null,'errors':[{'field':'brandId','error':'INVALID_VALUE'}], 'access_token': 'test'}";
+
+        public static string RESPONSE_BRAND_NOT_CONFIG => @"{'status':'FAIL','message':null,'errors':[{'field':'brandId','error':'NOT_ENABLED'}], 'access_token': 'test'}";
 
         public static NameValueCollection GenerateConfig()
         {
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
         }
         public static IAppSettings GetStubAppSetting()
         {
-            var stubSetting = NSubstitute.Substitute.For<IAppSettings>();
+            var stubSetting = Substitute.For<IAppSettings>();
             var config = GenerateConfig();
             foreach (var key in config.AllKeys)
             {
@@ -43,15 +43,15 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
             return stubSetting;
         }
 
-        public static IApiClient GetApiClient()
+        public static IApiClientFactory GetApiClient()
         {
-            var stubClient = NSubstitute.Substitute.For<IApiClient>();
+            var stubClient = Substitute.For<IApiClientFactory>();
             return stubClient;
         }
 
         public static IThirdPartyProductRepository GetStubRepo()
         {
-            var stubRepo = NSubstitute.Substitute.For<IThirdPartyProductRepository>();
+            var stubRepo = Substitute.For<IThirdPartyProductRepository>();
             return stubRepo;
         }
     }

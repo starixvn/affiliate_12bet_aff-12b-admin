@@ -1,10 +1,9 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -17,9 +16,10 @@ namespace Fanex.Affiliate.DataService.Importer.IntegrateTest
         {
             var startTime = new DateTime(2019, 1, 1, 12, 0, 0);
             var endTime = new DateTime(2019, 1, 1, 13, 0, 0);
-            var stubApiClient = NSubstitute.Substitute.For<IApiClient>();
-            stubApiClient.GetResponseAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
-                .Returns("");
+            var successResponse = @"{ 'Code': 0, 'Pagination': { 'CurrentPage': 1, 'TotalPage': 1 } }";
+            var stubApiClient = Substitute.For<IApiClientFactory>();
+            stubApiClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(Arg.Compat.Any<NameValueCollection>(), Arg.Compat.Any<CancellationToken>())
+                .Returns(successResponse);
             var service = new VrLotteryService(stubApiClient);
 
             await service.GetRawDataListAsync(startTime, endTime);

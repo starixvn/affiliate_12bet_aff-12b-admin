@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -39,7 +41,8 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
         [Fact]
         public async Task ConvertRawDataToXmlAsync_WhenCallWithNotCorrectFormat_ThrowException()
         {
-            var service = CreateGpiLotteryService();
+            var stubClientFactory = GpiTestHelper.GetApiClientFactory(GpiTestHelper.GenerateResponse(0));
+            var service = CreateGpiLotteryService(stubClientFactory);
             var response = "some input not array json";
             await Assert.ThrowsAsync<ThirdPartyProductException>(() =>  service.ConvertRawDataToXmlAsync(response));
         }
@@ -47,7 +50,8 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
         [Fact]
         public async Task ConvertRawDataToXmlAsync_WhenCallWithCorrectJsonFormat_NotThrowException()
         {
-            var service = CreateGpiLotteryService();
+            var stubClientFactory = GpiTestHelper.GetApiClientFactory(GpiTestHelper.GenerateResponse(0));
+            var service = CreateGpiLotteryService(stubClientFactory);
             var response = GpiTestHelper.GenerateResponse(0);
             await service.ConvertRawDataToXmlAsync(response);
             Assert.True(true);
@@ -57,10 +61,11 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
         public async Task GetRawDataByGameTypeAsync_WhenCall_CallApiClient()
         {
             var config = GpiTestHelper.GenerateConfig();
-            var stubClient = GpiTestHelper.GetApiClient(GpiTestHelper.GenerateResponse(0));
+            var stubClientFactory = GpiTestHelper.GetApiClientFactory(GpiTestHelper.GenerateResponse(0));
+            var stubClient = stubClientFactory.CreateApiClient(config["GpiLotterApiUrl"], Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>());
             var stubSetting = GpiTestHelper.GetSetting(config);
             var stubRepo = GpiTestHelper.GetRespository();
-            var service = CreateGpiLotteryService(stubClient, stubSetting, stubRepo);
+            var service = CreateGpiLotteryService(stubClientFactory, stubSetting, stubRepo);
             var startTime = new DateTime(2019, 10, 10, 11, 0, 0);
             var endTime = new DateTime(2019, 10, 10, 12, 0, 0);
 
@@ -68,8 +73,8 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
 
             await stubClient
                 .Received()
-                .GetAsync(config["GpiLotterApiUrl"], Arg.Compat
-                    .Is<NameValueCollection>(v => v["game"].Contains(GpiHelper.GetGameTypeName(GameType.RockPaperScissors))));
+                .GetResponseAsync(Arg.Compat
+                    .Is<NameValueCollection>(v => v["game"].Contains(GpiHelper.GetGameTypeName(GameType.RockPaperScissors))), default(CancellationToken));
         }
 
         [Fact]
@@ -77,16 +82,17 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
         {
             var config = GpiTestHelper.GenerateConfig();
             //set up so that number transaction in json equal to config page size (default is 2 generate by GenerateConfg())
-            var stubClient = GpiTestHelper.GetApiClient(GpiTestHelper.GenerateResponse(2),GpiTestHelper.GenerateResponse(0));
+            var stubClientFactory = GpiTestHelper.GetApiClientFactory(GpiTestHelper.GenerateResponse(2),GpiTestHelper.GenerateResponse(0));
+            var stubClient = stubClientFactory.CreateApiClient(config["GpiLotterApiUrl"], Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>());
             var stubSetting = GpiTestHelper.GetSetting(config);
             var stubRepo = GpiTestHelper.GetRespository();
-            var service = CreateGpiLotteryService(stubClient, stubSetting, stubRepo);
+            var service = CreateGpiLotteryService(stubClientFactory, stubSetting, stubRepo);
             var startTime = new DateTime(2019, 10, 10, 11, 0, 0);
             var endTime = new DateTime(2019, 10, 10, 12, 0, 0);
 
             await service.GetRawDataByGameTypeAsync(startTime, endTime, GameType.RockPaperScissors);
 
-            await stubClient.ReceivedWithAnyArgs(2).GetAsync(default(string) , default(NameValueCollection));
+            await stubClient.ReceivedWithAnyArgs(2).GetResponseAsync(default(NameValueCollection) , default(CancellationToken));
         }
 
         [Fact]
@@ -95,10 +101,11 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
             var config = GpiTestHelper.GenerateConfig();
             config["GpiLotteryGameType"] = "pk10,ladder";
             //set up so that number transaction in json equal to config page size (default is 2 generate by GenerateConfg())
-            var stubClient = GpiTestHelper.GetApiClient(GpiTestHelper.GenerateResponse(2), GpiTestHelper.GenerateResponse(1));
+            var stubClientFactory = GpiTestHelper.GetApiClientFactory(GpiTestHelper.GenerateResponse(2), GpiTestHelper.GenerateResponse(1));
+            var stubClient = stubClientFactory.CreateApiClient(config["GpiLotterApiUrl"], Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>());
             var stubSetting = GpiTestHelper.GetSetting(config);
             var stubRepo = GpiTestHelper.GetRespository();
-            var service = CreateGpiLotteryService(stubClient, stubSetting, stubRepo);
+            var service = CreateGpiLotteryService(stubClientFactory, stubSetting, stubRepo);
             var startTime = new DateTime(2019, 10, 10, 11, 0, 0);
             var endTime = new DateTime(2019, 10, 10, 12, 0, 0);
             var numberOfGame = stubSetting.GetGpiLotteryGame().Count();
@@ -106,7 +113,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
 
             await service.GetRawDataListAsync(startTime, endTime);
 
-            await stubClient.ReceivedWithAnyArgs(totalCall).GetAsync(default(string), default(NameValueCollection));
+            await stubClient.ReceivedWithAnyArgs(totalCall).GetResponseAsync(default(NameValueCollection), default(CancellationToken));
         }
 
         [Fact]
@@ -114,10 +121,11 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
         {
             var config = GpiTestHelper.GenerateConfig();
             //set up so that number transaction in json equal to config page size (default is 2 generate by GenerateConfg())
-            var stubClient = GpiTestHelper.GetApiClient(GpiTestHelper.GenerateResponse(2), GpiTestHelper.GenerateResponse(1));
+            var stubClientFactory = GpiTestHelper.GetApiClientFactory(GpiTestHelper.GenerateResponse(2), GpiTestHelper.GenerateResponse(1));
+            var stubClient = stubClientFactory.CreateApiClient(config["GpiLotterApiUrl"], Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>());
             var stubSetting = GpiTestHelper.GetSetting(config);
             var stubRepo = GpiTestHelper.GetRespository();
-            var service = CreateGpiLotteryService(stubClient, stubSetting, stubRepo);
+            var service = CreateGpiLotteryService(stubClientFactory, stubSetting, stubRepo);
             var startTime = new DateTime(2019, 10, 10, 11, 0, 0);
             var endTime = new DateTime(2019, 10, 10, 12, 0, 0);
             var numberOfGame = stubSetting.GetGpiLotteryGame().Count();
@@ -133,10 +141,11 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
         public async Task ImportAsync_WhenCall_DidNotCallThirdPartyWithEmptyArrayResponse()
         {
             var config = GpiTestHelper.GenerateConfig();
-            var stubClient = GpiTestHelper.GetApiClient(GpiTestHelper.GenerateResponse(0));
+            var stubClientFactory = GpiTestHelper.GetApiClientFactory(GpiTestHelper.GenerateResponse(0));
+            var stubClient = stubClientFactory.CreateApiClient(config["GpiLotterApiUrl"], Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>());
             var stubSetting = GpiTestHelper.GetSetting(config);
             var stubRepo = GpiTestHelper.GetRespository();
-            var service = CreateGpiLotteryService(stubClient, stubSetting, stubRepo);
+            var service = CreateGpiLotteryService(stubClientFactory, stubSetting, stubRepo);
             var startTime = new DateTime(2019, 10, 10, 11, 0, 0);
             var endTime = new DateTime(2019, 10, 10, 12, 0, 0);
 

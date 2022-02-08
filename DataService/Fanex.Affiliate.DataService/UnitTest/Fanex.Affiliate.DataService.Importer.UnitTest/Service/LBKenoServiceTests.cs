@@ -8,7 +8,6 @@ using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -16,7 +15,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
 {
     public class LBKenoServiceTests
     {
-        public LBKenoService CreateService(IApiClient client = null, IAppSettings setting = null, IThirdPartyProductRepository repo = null)
+        public LBKenoService CreateService(IApiClientFactory client = null, IAppSettings setting = null, IThirdPartyProductRepository repo = null)
         {
             return new LBKenoService(client, setting, repo);
         }
@@ -24,7 +23,8 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
         [Fact]
         public async Task ImportAsync_WhenCallWithSameDay_ThrowException()
         {
-            var service = CreateService();
+            var stubClientFactory = LBKenoTestHelper.GetSuccessResponseClient();
+            var service = CreateService(stubClientFactory);
             var startTime = new DateTime(2019, 10, 10, 11, 0, 0);
             var endTime = new DateTime(2019, 10, 10, 14, 0, 0);
 
@@ -35,7 +35,8 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
         public async Task ConverRawDataToXmlAsync_WhenCallWithNotXmlFormat_ThrowException()
         {
             var raw = "{aaa : \"some strings are not format in xml\"}";
-            var service = CreateService();
+            var stubClientFactory = LBKenoTestHelper.GetSuccessResponseClient();
+            var service = CreateService(stubClientFactory);
 
             await Assert.ThrowsAsync<ThirdPartyProductException>(() => service.ConvertRawDataToXmlAsync(raw));
         }
@@ -44,7 +45,8 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest
         public async Task ConverRawDataToXmlAsync_WhenCallWithXmlFormat_NotThrowException()
         {
             var successResponse = "<game_transaction_detail>  <status_code>00</status_code> </game_transaction_detail>"; ;
-            var service = CreateService();
+            var stubClientFactory = LBKenoTestHelper.GetSuccessResponseClient();
+            var service = CreateService(stubClientFactory);
 
             await service.ConvertRawDataToXmlAsync(successResponse);
             Assert.True(true);
