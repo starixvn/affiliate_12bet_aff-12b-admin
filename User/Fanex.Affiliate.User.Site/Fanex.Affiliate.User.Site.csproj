@@ -665,6 +665,8 @@
     <Content Include="www\build\styles\Images\account-overview\icon-zalo.png" />
     <Content Include="www\build\styles\Images\account-overview\new-sign-up.png" />
     <Content Include="www\build\styles\Images\account-overview\total-deposit.png" />
+    <Content Include="www\build\styles\Images\left-main-banner.jpeg" />
+    <Content Include="www\build\styles\Images\right-main-banner.jpeg" />
     <Content Include="www\build\styles\Images\contact-us\telegram-icon.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.png" />
     <Content Include="www\build\styles\Images\home-banners\Home-Banner.en-US.jpg" />
@@ -676,7 +678,6 @@
     <Content Include="www\build\styles\Images\home-banners\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\Home-Banner.zh-TW.jpg" />
-    <Content Include="www\build\styles\Images\left-main-banner.jpeg" />
     <Content Include="www\build\styles\Images\promotion\promotion.jpg" />
     <Content Include="www\build\styles\Images\apply12bet\3step.en-US.png" />
     <Content Include="www\build\styles\Images\apply12bet\3step.hi-IN.png" />
@@ -727,7 +728,6 @@
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\build\styles\Images\products\bg-casino_affiliate.jpg" />
     <Content Include="www\build\styles\Images\products\bg-sports_affiliate.jpg" />
-    <Content Include="www\build\styles\Images\right-main-banner.jpeg" />
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.en-US.jpg" />
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.hi-IN.jpg" />
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.id-ID.jpg" />
@@ -921,6 +921,7 @@
     <Content Include="www\source\styles\Images\email\header.png" />
     <Content Include="www\source\styles\Images\email\note.png" />
     <Content Include="www\source\styles\Images\header-bg.png" />
+    <Content Include="www\source\styles\Images\left-main-banner.jpeg" />
     <Content Include="www\source\styles\Images\left-main-banner.png" />
     <Content Include="www\source\styles\Images\notify\bgMain.jpg" />
     <Content Include="www\source\styles\Images\notify\icon.png" />
@@ -929,6 +930,7 @@
     <Content Include="www\source\styles\Images\notify\note_icon.gif" />
     <Content Include="www\source\styles\Images\notify\sry.png" />
     <Content Include="www\source\styles\Images\notify\srynf.png" />
+    <Content Include="www\source\styles\Images\right-main-banner.jpeg" />
     <Content Include="www\source\styles\Images\right-main-banner.png" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.min.css" />
@@ -1123,8 +1125,6 @@
     <Content Include="Views\Promotion\_Content.vi-VN.cshtml" />
     <Content Include="Views\Promotion\_Content.zh-CN.cshtml" />
     <Content Include="www\source\styles\pages\promotion.scss" />
-    <Content Include="www\build\styles\Images\right-main-banner.webp" />
-    <Content Include="www\build\styles\Images\left-main-banner.webp" />
     <Content Include="www\build\styles\Images\home-banners\Home-Banner.en-US.webp" />
     <Content Include="www\build\styles\Images\home-banners\Home-Banner.hi-IN.webp" />
     <Content Include="www\build\styles\Images\home-banners\Home-Banner.id-ID.webp" />
@@ -1145,6 +1145,10 @@
     <Content Include="www\build\styles\Images\sports-banners\Sports-Banner.zh-TW.webp" />
     <Content Include="Views\UserPanel\OffersForMe\Index.cshtml" />
     <Content Include="Views\UserPanel\OffersForMe\Preview.cshtml" />
+    <Content Include="www\build\styles\Images\left-main-banner.webp" />
+    <Content Include="www\build\styles\Images\right-main-banner.webp" />
+    <Content Include="www\source\styles\Images\left-main-banner.webp" />
+    <Content Include="www\source\styles\Images\right-main-banner.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
