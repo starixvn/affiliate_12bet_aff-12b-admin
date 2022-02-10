@@ -2,6 +2,7 @@
 using Fanex.Affiliate.User.Site.App_Start;
 using Fanex.Data;
 using Fanex.Data.OldConnectionStringProvider;
+using Fanex.Data.SqlServer;
 using System;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
@@ -21,6 +22,7 @@ namespace Fanex.Affiliate.User.Site
             IoCConfig.Register();
             AreaRegistration.RegisterAllAreas();
 
+            UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             if (env != "LOCAL")
             {
                 FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -34,10 +36,7 @@ namespace Fanex.Affiliate.User.Site
 
             DbSettingProviderManager
               .StartNewSession()
-              .Use(new OldConnectionStringProvider())
-              .UseDefaultDbSettingProvider(
-                resourcePath: @"~\App_Data\SpConfig\SpName.xml",
-                enableWatching: true)
+              .WithSqlServer("~/App_Data/SpConfig/SpName.xml")
               .Run();
 
             LoggingConfig.RegisterSentry();

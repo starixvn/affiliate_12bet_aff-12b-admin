@@ -1,5 +1,6 @@
 ﻿using Fanex.Caching;
 using Newtonsoft.Json;
+using System;
 
 namespace Fanex.Affiliate.User.Core.CoreService
 {
@@ -16,22 +17,20 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         public bool Contains(string key)
         {
-            return _cache.Contains(key);
+            return _cache.Contain(key);
         }
 
         public T Get<T>(string key)
         {
-            return DeepClone(_cache.Get<T>(key));
+            _cache.TryGet<T>(key, out T value);
+
+            return DeepClone(value);
         }
 
         public void Set<T>(string key, T value, int seconds = TIMEOUT)
         {
-            _cache.Set(key, DeepClone(value), seconds);
-        }
-
-        public void Clear()
-        {
-            _cache.Clear();
+            var cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(seconds));
+            _cache.Set(key, DeepClone(value), cachePolicy);
         }
 
         public void Delete(string key)

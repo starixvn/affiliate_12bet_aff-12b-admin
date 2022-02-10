@@ -31,9 +31,9 @@ namespace Fanex.Affiliate.User.Core.Repository
 
             using (var db = _builder.Build(SpKey))
             {
-                db.AddInParameter("AffId", SqlDbType.Int, affId);
-                db.AddInParameter("IpAddress", SqlDbType.NVarChar, ipAddress);
-                db.AddInParameter("DeviceInfo", SqlDbType.NVarChar, deviceInfo);
+                db.SetParameterValue("AffId", affId);
+                db.SetParameterValue("IpAddress", ipAddress);
+                db.SetParameterValue("DeviceInfo", deviceInfo);
 
                 using (var reader = db.ExecuteReader())
                 {
@@ -77,13 +77,13 @@ namespace Fanex.Affiliate.User.Core.Repository
 
         private static void AssignUpdateLoginResultParam(IObjectDb objectDb, AuthResultBaseParam param)
         {
-            objectDb.AddInParameter("AffId", SqlDbType.Int, param.AffId);
-            objectDb.AddInParameter("IpAddress", SqlDbType.NVarChar, param.IpAddress);
-            objectDb.AddInParameter("DeviceInfo", SqlDbType.NVarChar, param.DeviceInfo);
-            objectDb.AddInParameter("Language", SqlDbType.VarChar, param.Language);
+            objectDb.SetParameterValue("AffId", param.AffId);
+            objectDb.SetParameterValue("IpAddress", param.IpAddress);
+            objectDb.SetParameterValue("DeviceInfo", param.DeviceInfo);
+            objectDb.SetParameterValue("Language", param.Language);
 
-            objectDb.AddOutParameter("ErrCode", SqlDbType.Int, DbParam.ErrCodeSize);
-            objectDb.AddOutParameter("ErrMsg", SqlDbType.NVarChar, DbParam.ErrMsgSize);
+            objectDb.SetParameterValue("ErrCode", DbParam.ErrCodeSize);
+            objectDb.SetParameterValue("ErrMsg", DbParam.ErrMsgSize);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
-using ONEbook.UM.Filters;
+using ONEbook.UM.AspNetMVC.Filters;
 using System.Web.Mvc;
 using System.Web.Routing;
 

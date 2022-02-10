@@ -1,10 +1,11 @@
 ﻿namespace Fanex.Affiliate.Link
 {
+    using Fanex.Data;
+    using Fanex.Data.SqlServer;
     using System;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Data.Configuration;
 
     /// <summary>
     /// Global for Affiliate link.
@@ -13,7 +14,10 @@
     {
         protected void Application_Start()
         {
-            DbSettingProviderManager.Current.Start();
+            DbSettingProviderManager
+                .StartNewSession()
+                .WithSqlServer("~/App_Data/SpNames.xml")
+                .Run();
 
             AreaRegistration.RegisterAllAreas();
 

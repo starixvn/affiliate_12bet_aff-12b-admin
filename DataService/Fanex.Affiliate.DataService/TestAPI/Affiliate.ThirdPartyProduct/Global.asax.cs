@@ -16,7 +16,7 @@ namespace Affiliate.ThirdPartyProduct.TestRequest
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DbSettingProviderManager.StartNewSession()
-                 .WithSqlServer("~/App_Data")
+                 .WithSqlServer("~/App_Data/SpConfig/SpName.xml")
                  .Run();
             LoggingConfig.RegisterSentry();
         }

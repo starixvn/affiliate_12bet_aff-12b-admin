@@ -103,13 +103,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 
         private static void AssertDbReceiveParam(IObjectDb db, AuthResultBaseParam param)
         {
-            db.Received().AddInParameter("AffId", SqlDbType.Int, param.AffId);
-            db.Received().AddInParameter("IpAddress", SqlDbType.NVarChar, param.IpAddress);
-            db.Received().AddInParameter("DeviceInfo", SqlDbType.NVarChar, param.DeviceInfo);
-            db.Received().AddInParameter("Language", SqlDbType.VarChar, param.Language);
+            db.Received().SetParameterValue("AffId", param.AffId);
+            db.Received().SetParameterValue("IpAddress", param.IpAddress);
+            db.Received().SetParameterValue("DeviceInfo", param.DeviceInfo);
+            db.Received().SetParameterValue("Language", param.Language);
 
-            db.Received().AddOutParameter("ErrCode", SqlDbType.Int, DbParam.ErrCodeSize);
-            db.Received().AddOutParameter("ErrMsg", SqlDbType.NVarChar, DbParam.ErrMsgSize);
+            db.Received().SetParameterValue("ErrCode", DbParam.ErrCodeSize);
+            db.Received().SetParameterValue("ErrMsg", DbParam.ErrMsgSize);
         }
 
         private AuthResultBaseParam CreateAuthResultParam()

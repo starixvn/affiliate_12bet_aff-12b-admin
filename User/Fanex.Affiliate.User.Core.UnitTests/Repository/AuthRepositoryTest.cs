@@ -128,7 +128,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 
             Assert.Equal(spKey, db.SettingKey);
             Assert.Equal(sessionId, result.SesionId);
-            db.Received().AddInParameter("OnUserId", SqlDbType.Int, onUserId);
+            db.Received().SetParameterValue("OnUserId", onUserId);
         }
 
         [Fact]
@@ -184,19 +184,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 
             Assert.Equal(spKey, db.SettingKey);
             Assert.NotEmpty(result);
-            db.Received().AddInParameter("UserId", SqlDbType.Int, internalLoginUserId);
+            db.Received().SetParameterValue("UserId", internalLoginUserId);
         }
 
         private static void AssertDbReciveParam(IObjectDb db, LoginResultParam param)
         {
-            db.Received().AddInParameter("AffId", SqlDbType.Int, param.AffId);
-            db.Received().AddInParameter("IpAddress", SqlDbType.NVarChar, param.IpAddress);
-            db.Received().AddInParameter("DeviceInfo", SqlDbType.NVarChar, param.DeviceInfo);
-            db.Received().AddInParameter("Language", SqlDbType.VarChar, param.Language);
-            db.Received().AddInParameter("IsSuccessful", SqlDbType.Bit, param.IsSuccessful);
+            db.Received().SetParameterValue("AffId", param.AffId);
+            db.Received().SetParameterValue("IpAddress", param.IpAddress);
+            db.Received().SetParameterValue("DeviceInfo", param.DeviceInfo);
+            db.Received().SetParameterValue("Language", param.Language);
+            db.Received().SetParameterValue("IsSuccessful", param.IsSuccessful);
 
-            db.Received().AddOutParameter("ErrCode", SqlDbType.Int, DbParam.ErrCodeSize);
-            db.Received().AddOutParameter("ErrMsg", SqlDbType.NVarChar, DbParam.ErrMsgSize);
+            db.Received().SetParameterValue("ErrCode", DbParam.ErrCodeSize);
+            db.Received().SetParameterValue("ErrMsg", DbParam.ErrMsgSize);
         }
     }
 }

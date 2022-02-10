@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var db = _builder.Build(uSpKey, mode))
             {
-                db.AddInParameter("AffId", System.Data.SqlDbType.Int, affId);
+                db.SetParameterValue("AffId", affId);
                 result = db.QueryEntity<ExtraUserInfo>() ?? result;
             }
 
