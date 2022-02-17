@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Site.App_Start;
 using Fanex.Data;
-using Fanex.Data.OldConnectionStringProvider;
 using Fanex.Data.SqlServer;
 using System;
 using System.Configuration;

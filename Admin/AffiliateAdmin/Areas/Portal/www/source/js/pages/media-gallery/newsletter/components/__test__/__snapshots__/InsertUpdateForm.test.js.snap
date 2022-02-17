@@ -439,7 +439,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2022-02-27T17:00:00.000Z}
+                  selected={2022-03-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
@@ -924,7 +924,7 @@ exports[`news letter list - components - InsertUpdateForm  render correctly with
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2022-02-27T17:00:00.000Z}
+                  selected={2022-03-30T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
