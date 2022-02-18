@@ -20,8 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                    .AppendLine("TARGETSITE: " + exception.TargetSite)
                    .AppendLine("STACKTRACE: " + exception.StackTrace);
 
-            var sqlException = exception as SqlException;
-            if (sqlException != null)
+            if (exception is SqlException sqlException)
             {
                 content.AppendLine("Procedure: " + sqlException.Procedure)
                     .AppendLine("Line Number: " + sqlException.LineNumber)
