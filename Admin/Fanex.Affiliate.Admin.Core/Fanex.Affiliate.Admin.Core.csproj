@@ -299,6 +299,8 @@
     <Compile Include="Services\NewViewLog\NewViewLogService.cs" />
     <Compile Include="Services\ProcessingRequest\IProcessingRequestService.cs" />
     <Compile Include="Services\ProcessingRequest\ProcessingRequestService.cs" />
+    <Compile Include="Utilities\DateTimeHelper.cs" />
+    <Compile Include="Utilities\IDateTimeHelper.cs" />
     <Compile Include="Utilities\MassAdjustment\MassAdjustmentHelper.cs" />
     <Compile Include="Utilities\Result.cs" />
     <Compile Include="Constants\Money.cs" />

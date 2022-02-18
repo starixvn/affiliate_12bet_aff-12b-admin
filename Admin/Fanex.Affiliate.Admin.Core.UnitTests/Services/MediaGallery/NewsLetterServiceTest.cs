@@ -1,6 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
@@ -8,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.UnitTests.Common;
-using Fanex.Affiliate.Admin.Core.Utilities;
 using Moq;
 using System;
 using System.Collections.Generic;

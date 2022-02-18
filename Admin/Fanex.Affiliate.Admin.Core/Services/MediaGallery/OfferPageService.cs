@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Logging;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         private readonly IHtmlFileService _htmlFileService;
         private readonly IOfferPageRepository _offerPageRepository;
+        private readonly IDateTimeHelper _dateTimeHelper;
 
         public OfferPageService(
             IHtmlFileService htmlFileService,
-            IOfferPageRepository offerPageRepository)
+            IOfferPageRepository offerPageRepository,
+            IDateTimeHelper dateTimeHelper)
         {
             _htmlFileService = htmlFileService;
             _offerPageRepository = offerPageRepository;
+            _dateTimeHelper = dateTimeHelper;
         }
 
         public OfferPage GetOfferPageById(int pageId) => _offerPageRepository.GetOfferPageById(pageId);
@@ -34,9 +38,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         public IEnumerable<OfferPageBasicInfo> GetValidEndDateOfferPages()
         {
             var offerPages = _offerPageRepository.GetOfferPageList(new PagingParam()).MainData;
-            var now = DateTime.Now;
 
-            return offerPages.Where(o => DateTime.Compare(o.EffectiveToDate, now) > 0)
+            return offerPages.Where(o => DateTime.Compare(o.EffectiveToDate, _dateTimeHelper.GetNowDateTime()) > 0)
                 .Select(o => new OfferPageBasicInfo
                 {
                     PageId = o.PageId,
