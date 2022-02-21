@@ -10,7 +10,6 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.UnitTests.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
 using Moq;
 using System.Collections.Generic;
 using System.IO;

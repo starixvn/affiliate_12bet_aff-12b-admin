@@ -63,26 +63,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             Assert.NotNull(result);
         }
 
-        //[Fact]
-        //public void GetProcessingRequestList_WhenCall_ReturnCorrectData()
-        //{
-        //    //Arrange
-        //    var reader = new Mock<GridReader>();
-        //    reader.Setup(r => r.Read<ProcessingRequestBasicInfo>(It.IsAny<bool>())).Returns(new List<ProcessingRequestBasicInfo> { new ProcessingRequestBasicInfo() });
-        //    reader.Setup(r => r.Read<ProcessingRequestSummaryInfo>(true)).Returns(new List<ProcessingRequestSummaryInfo> { new ProcessingRequestSummaryInfo() });
-        //    var (objectDb, repository) = GetObjectDbAndRepository();
-        //    objectDb.Setup(obj => obj.QueryMultiple(It.IsAny<object>(), It.IsAny<IDbTransaction>(), 120)).Returns(reader.Object);
-        //    objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns("1");
-        //    repository.Setup(r => r.GetObjectDb("Aff_Admin_ProcessingRequest_Sel", 120)).Returns(objectDb.Object);
+        [Fact]
+        public void GetProcessingRequestList_WhenCall_ReturnCorrectData()
+        {
+            //Arrange
+            var reader = new Mock<IMultiResultReader>();
+            reader.Setup(r => r.Read<ProcessingRequestBasicInfo>()).Returns(new List<ProcessingRequestBasicInfo> { new ProcessingRequestBasicInfo() });
+            reader.Setup(r => r.Read<ProcessingRequestSummaryInfo>()).Returns(new List<ProcessingRequestSummaryInfo> { new ProcessingRequestSummaryInfo() });
+            var (objectDb, repository) = GetObjectDbAndRepository();
+            objectDb.Setup(obj => obj.QueryMultiple(It.IsAny<object>(), It.IsAny<DbTransaction>())).Returns(reader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns("1");
+            repository.Setup(r => r.GetObjectDb("Aff_Admin_ProcessingRequest_Sel", 120)).Returns(objectDb.Object);
 
-        //    //Action
-        //    var result = repository.Object.GetProcessingRequestList(new ProcessingRequestSelParam());
+            //Action
+            var result = repository.Object.GetProcessingRequestList(new ProcessingRequestSelParam());
 
-        //    //Assert
-        //    Assert.Single(result.MainData);
-        //    Assert.NotNull(result.Summary);
-        //    Assert.Equal(1, result.TotalItem);
-        //}
+            //Assert
+            Assert.Single(result.MainData);
+            Assert.NotNull(result.Summary);
+            Assert.Equal(1, result.TotalItem);
+        }
 
 
         [Fact]

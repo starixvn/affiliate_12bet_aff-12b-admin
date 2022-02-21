@@ -17,9 +17,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             _OfferAffiliateRepository = OfferAffiliateRepository;
         }
 
-        public ResultInfo DeleteOfferAff(DeleteOfferAffParam param) => _OfferAffiliateRepository.DeleteOfferAff(param);
+        public ResultInfo DeleteOfferAffs(DeleteOfferAffParam param) => _OfferAffiliateRepository.DeleteOfferAffs(param);
 
-        public EntityResult<OfferAff> GetOfferAffs(SelectOfferAffParam param) => _OfferAffiliateRepository.GetOfferAffs(param);
+        public EntityResult<OfferAff> GetOfferAffList(SelectOfferAffParam param) => _OfferAffiliateRepository.GetOfferAffList(param);
 
         public ResultInfo InsertOfferAff(InsertOfferAffParam param)
         {

@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {

@@ -178,6 +178,7 @@
     <Compile Include="Controllers\Affiliate\MassAdjustmentControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\NewViewLogControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\ProcessingRequestControllerTest.cs" />
+    <Compile Include="Controllers\MediaGallery\OfferAffControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\OfferPageControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\NewsLetterControllerTest.cs" />
     <Compile Include="Controllers\Member\RegisteredMemberControllerTest.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Repository\AdminRole\RolePermissionRepositoryTest.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepositoryTest.cs" />
     <Compile Include="Repository\Affiliate\ProcessingRequestRepositoryTest.cs" />
+    <Compile Include="Repository\MediaGallery\OfferAffRepositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\OfferPageRepositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\NewsLetterRepositoryTest.cs" />
     <Compile Include="Services\AdminRole\AdminInfoServiceTest.cs" />
@@ -280,6 +282,7 @@
     <Compile Include="Services\LanguageServiceTest.cs" />
     <Compile Include="Services\ExchangeRate\ExchangeRateServiceTest.cs" />
     <Compile Include="Services\MediaGallery\HtmlFileServiceTest.cs" />
+    <Compile Include="Services\MediaGallery\OfferAffServiceTest.cs" />
     <Compile Include="Services\MediaGallery\OfferPageServiceTest.cs" />
     <Compile Include="Services\MediaGallery\NewsLetterServiceTest.cs" />
     <Compile Include="Services\Member\RegisteredMemberServiceTest.cs" />

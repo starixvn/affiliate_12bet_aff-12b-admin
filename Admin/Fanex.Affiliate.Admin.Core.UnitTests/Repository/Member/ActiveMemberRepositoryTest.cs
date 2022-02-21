@@ -169,7 +169,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrorCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrorMsg")).Returns(string.Empty);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrorMsg")).Returns(null);
             repository.Setup(re => re.GetObjectDb("Deposit_MemberIBCDetail", 120)).Returns(objectDb.Object);
 
             // Action

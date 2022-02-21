@@ -2,13 +2,12 @@
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
     public class OfferAffRepository : BaseRepository, IOfferAffRepository
     {
-        public ResultInfo DeleteOfferAff(DeleteOfferAffParam param)
+        public ResultInfo DeleteOfferAffs(DeleteOfferAffParam param)
         {
             const string spKey = "Aff_Admin_OfferAffiliate_Del";
             using (var objectDb = GetObjectDb(spKey))
@@ -19,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             }
         }
 
-        public EntityResult<OfferAff> GetOfferAffs(SelectOfferAffParam param)
+        public EntityResult<OfferAff> GetOfferAffList(SelectOfferAffParam param)
         {
             const string spKey = "Aff_Admin_OfferAffiliate_Sel";
             using (var objectDb = GetObjectDb(spKey))

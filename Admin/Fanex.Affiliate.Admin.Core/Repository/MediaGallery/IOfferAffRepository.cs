@@ -8,8 +8,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
     {
         ResultInfo InsertOfferAff(InsertOfferAffParam param);
 
-        ResultInfo DeleteOfferAff(DeleteOfferAffParam param);
+        ResultInfo DeleteOfferAffs(DeleteOfferAffParam param);
 
-        EntityResult<OfferAff> GetOfferAffs(SelectOfferAffParam param);
+        EntityResult<OfferAff> GetOfferAffList(SelectOfferAffParam param);
     }
 }

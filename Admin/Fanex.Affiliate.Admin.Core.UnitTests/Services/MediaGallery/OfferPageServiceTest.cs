@@ -253,9 +253,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         public void DeleteOfferPages_WhenCall_DeleteIsFailed()
         {
             // Arrange
-            var param = new DeleteOfferPageParam { PageIds = "123" };
+            var param = new DeleteOfferPageParam { PageIds = "123,234" };
             var OfferPageRepository = new Mock<IOfferPageRepository>();
-            OfferPageRepository.Setup(s => s.GetOfferPageById(It.IsAny<int>())).Returns(new OfferPage { FileName = "abc.html" });
+            OfferPageRepository.Setup(s => s.GetOfferPageById(123)).Returns(
+                new OfferPage
+                {
+                    FileName = "abc.html",
+                    FileSize = 123,
+                    UploadDate = new DateTime(2022, 01, 01),
+                    EffectiveFromDate = new DateTime(2022, 02, 01),
+                    EffectiveToDate = new DateTime(2022, 03, 01),
+                    Language = "en-US",
+                    Affiliate = 234
+                });
             OfferPageRepository.Setup(s => s.DeleteOfferPage(param)).Returns(new ResultInfo { Code = 999, Message = "Delete is failed" });
             var service = CreateOfferPageService(OfferPageRepository.Object);
 

@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         public ActionResult GetOfferAffList(SelectOfferAffParam param)
         {
             param.UserId = SessionService.UserId;
-            var data = _offerAffService.GetOfferAffs(param);
+            var data = _offerAffService.GetOfferAffList(param);
 
             return new JsonNetResult
             {
@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = _offerAffService.DeleteOfferAff(param)
+                Data = _offerAffService.DeleteOfferAffs(param)
             };
         }
 
