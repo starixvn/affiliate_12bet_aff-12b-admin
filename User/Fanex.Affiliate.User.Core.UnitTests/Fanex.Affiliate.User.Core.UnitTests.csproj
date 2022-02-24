@@ -176,6 +176,7 @@
     <Compile Include="BusinessService\TwoFactorAuthServiceTest.cs" />
     <Compile Include="BusinessService\VerificationServiceTest.cs" />
     <Compile Include="Constants\SystemLanguageTest.cs" />
+    <Compile Include="Controllers\PromotionControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MainControllerTest.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapperTest.cs" />
     <Compile Include="BusinessService\MemberTransactionServiceTest.cs" />
@@ -211,13 +212,14 @@
     <Compile Include="Controllers\VerificationAccountControllerTest.cs" />
     <Compile Include="CoreService\MemoryCacheServiceTest.cs" />
     <Compile Include="CoreService\SessionServiceTest.cs" />
+    <Compile Include="Extensions\EnumerableExtensionsTest.cs" />
+    <Compile Include="Extensions\NumberFormatterTest.cs" />
     <Compile Include="Infrastructure\EncryptedHandlerTest.cs" />
     <Compile Include="Infrastructure\HttpRequestParserHandlerTest.cs" />
     <Compile Include="Repository\AuthRepositoryTest.cs" />
     <Compile Include="Repository\EmailHistoryRepositoryTest.cs" />
     <Compile Include="Repository\GetSecurityQuestionsTest.cs" />
     <Compile Include="Repository\LanguageRepositoryTest.cs" />
-    <Compile Include="Repository\ObjectDBBuilderTest.cs" />
     <Compile Include="Repository\RepositoryTestBase.cs" />
     <Compile Include="Repository\UserPanel\AccountOverviewRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\AccountRepositoryTest.cs" />
