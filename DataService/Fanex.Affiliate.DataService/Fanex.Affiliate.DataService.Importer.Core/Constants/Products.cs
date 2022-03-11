@@ -27,6 +27,8 @@
         public const int IMEsport = 31;
 
         public const int SkywindId = 32;
+
+        public const int PlaytechId = 9;
     }
 
     public static class RespositoryResponse

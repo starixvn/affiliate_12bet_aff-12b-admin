@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.WinFormApp.Forms;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
+using Fanex.Logging;
+using Fanex.Logging.Sentry.RavenClient;
+using SharpRaven;
 
 namespace Fanex.Affiliate.DataService.WinFormApp
 {
@@ -14,7 +19,41 @@ namespace Fanex.Affiliate.DataService.WinFormApp
                 .StartNewSession()
                 .WithSqlServer("~/App_Data")
                 .Run();
+            InitLogging();
             InitializeComponent();
+        }
+
+        private static void InitLogging()
+        {
+            try
+            {
+                SetupFanexLogging();
+            }
+            catch (Exception ex)
+            {
+                LogService.Error("Error when innit logger", ex);
+            }
+
+        }
+
+        private static void SetupFanexLogging()
+        {
+            var env = ConfigurationManager.AppSettings["Environment"];
+            var dsn = ConfigurationManager.AppSettings["SentryDsn"];
+            var category = ConfigurationManager.AppSettings["LoggingCategory"];
+            if (!string.IsNullOrEmpty(dsn))
+            {
+                LogManager.SetDefaultLogCategory(category)
+                    .Use(new List<ILogEngine>
+                    {
+                        new SentryLogging(new SentryEngineOptions
+                        {
+                            Dsn = new Dsn(dsn),
+                            Environment = env
+                        })
+
+                    });
+            }
         }
 
         private void btnCasino_Click(object sender, EventArgs e)
@@ -128,6 +167,18 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         private void btnSkywind_Click(object sender, EventArgs e)
         {
             var form = new SkywindForm();
+            SetUpServiceForm(form);
+        }
+
+        private void toolStripPingUrl_Click(object sender, EventArgs e)
+        {
+            var form = new PingUrlForm();
+            SetUpServiceForm(form);
+        }
+
+        private void btnPlaytech_Click(object sender, EventArgs e)
+        {
+            var form = new PlaytechForm();
             SetUpServiceForm(form);
         }
     }

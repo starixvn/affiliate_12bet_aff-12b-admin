@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         protected TimeSpan _localTimeOffset => TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
         protected virtual TimeSpan _serverTimeOffset => new TimeSpan(8, 0, 0);
-        protected virtual TimeSpan _pullRange => new TimeSpan(0, 1, 0, 0);
+        protected virtual TimeSpan _pullRange => new TimeSpan(1, 0, 0, 0);
 
         public ImporterFormBase(IDataSpliter spliter = null)
         {

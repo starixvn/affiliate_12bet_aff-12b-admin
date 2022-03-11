@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.DataService.LocalAPI.Controllers
             return "HelloWord";
         }
 
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage Download()
         {
             var path = HttpContext.Current.Server.MapPath($"~/App_Data/SampleData/CasinoData.csv");
@@ -64,6 +64,6 @@ namespace Fanex.Affiliate.DataService.LocalAPI.Controllers
             }
 
             return Json(array);
-        }      
+        }
     }
 }

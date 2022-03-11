@@ -69,12 +69,21 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
         private async Task<string> GetDataAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             SetUpRequestHeaders(requestMessage, Headers);
-            using (var response = await HttpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false))
+            try
             {
-                response.EnsureSuccessStatusCode();
-                var bytesData = await response.Content.ReadAsByteArrayAsync();
-                var data = Encoding.UTF8.GetString(bytesData);
-                return data;
+                using (var response = await HttpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false))
+                {
+                    response.EnsureSuccessStatusCode();
+                    var bytesData = await response.Content.ReadAsByteArrayAsync();
+                    var data = Encoding.UTF8.GetString(bytesData);
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+
+                return string.Empty;
             }
         }
 

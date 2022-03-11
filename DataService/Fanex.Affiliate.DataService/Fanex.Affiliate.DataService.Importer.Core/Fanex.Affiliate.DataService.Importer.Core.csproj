@@ -110,6 +110,7 @@
     <Compile Include="Utilities\HttpClientPooling.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Utilities\IDataSimulator.cs" />
+    <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="Utilities\RsaHelper.cs" />
     <Compile Include="Utilities\XmlHelper.cs" />
     <Compile Include="Infrastructure\XmlImpoterlServiceBase.cs" />
