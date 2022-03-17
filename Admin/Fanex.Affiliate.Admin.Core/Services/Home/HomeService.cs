@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
                 objectDb.ExecuteNonQuery();
 
                 var psp = objectDb.GetParameterValue("PSP");
-                return Convert.ToDecimal(psp);
+                return psp == DBNull.Value ? 0 :  Convert.ToDecimal(psp);
             }
         }
 

@@ -226,6 +226,7 @@
     <Compile Include="BusinessService\CaptchaService.cs" />
     <Compile Include="BusinessService\CommissionReportService.cs" />
     <Compile Include="BusinessService\ContactService.cs" />
+    <Compile Include="BusinessService\IUnderMaintenanceService.cs" />
     <Compile Include="BusinessService\OfferService.cs" />
     <Compile Include="BusinessService\ICaptchaService.cs" />
     <Compile Include="BusinessService\ICommissionReportService.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="BusinessService\SecurityQuestionService.cs" />
     <Compile Include="BusinessService\StatisticsService.cs" />
     <Compile Include="BusinessService\TwoFactorAuthService.cs" />
+    <Compile Include="BusinessService\UnderMaintenanceService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
     <Compile Include="Constants\ActionName.cs" />
     <Compile Include="Constants\CacheKey.cs" />
@@ -357,6 +359,7 @@
     <Compile Include="Utilities\Helper.cs" />
     <Compile Include="Utilities\HttpClientUtility.cs" />
     <Compile Include="Utilities\IHttpClientUtility.cs" />
+    <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />

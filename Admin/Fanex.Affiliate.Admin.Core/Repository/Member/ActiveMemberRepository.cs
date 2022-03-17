@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                     result.InactiveMemberList = GetInactivatedMemberList(reader);
                 }
 
-                result.MemberNotExist = objectDb.GetParameterValue("ErrMsg").ToString();
+                result.MemberNotExist = Convert.ToString(objectDb.GetParameterValue("ErrMsg"));
             }
 
             return result;
@@ -181,7 +181,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 return new ResultInfo
                 {
                     Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
-                    Message = objectDb.GetParameterValue("ErrorMsg")?.ToString()
+                    Message = Convert.ToString(objectDb.GetParameterValue("ErrorMsg"))
                 };
             }
         }

@@ -1,10 +1,10 @@
 ﻿using Fanex.Affiliate.User.Core.Filters;
+using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Site.App_Start;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
 using System;
 using System.Configuration;
-using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.User.Site
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        [SuppressMessage("Sonar Code Smell", "S2325:Methods and properties should be static", Justification = "Reviewed.")]
+
         protected void Application_Start()
         {
             var env = ConfigurationManager.AppSettings["Environment"];
@@ -41,7 +41,6 @@ namespace Fanex.Affiliate.User.Site
             LoggingConfig.RegisterSentry();
         }
 
-        [SuppressMessage("Sonar Code Smell", "S2325:Methods and properties should be static", Justification = "Reviewed.")]
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             var application = sender as HttpApplication;
@@ -51,5 +50,17 @@ namespace Fanex.Affiliate.User.Site
             }
         }
 
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            // Code that runs when an unhandled error occurs
+            Exception ex = Server.GetLastError().GetBaseException();
+
+            if (ex is HttpException)
+            {
+                return;
+            }
+
+            LogHelper.WriteError(ex);
+        }
     }
 }

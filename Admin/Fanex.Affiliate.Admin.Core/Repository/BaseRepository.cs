@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             return new ResultInfo
             {
                 Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
-                Message = objectDb.GetParameterValue("ErrMsg")?.ToString()
+                Message = Convert.ToString(objectDb.GetParameterValue("ErrMsg"))
             };
         }
 
