@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
@@ -92,6 +93,16 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
             if (exception.InnerException != null && limitedInnerException > 0)
             {
                 AddExceptionInfo(builder, exception.InnerException, --limitedInnerException);
+            }
+
+            if(exception is SocketException)
+            {
+                var socketEx = exception as SocketException;
+                builder.AppendLine();
+                builder.AppendLine($"SOCKET EXCEPTION INFO");
+                builder.AppendLine($"Sockets Error Codes: {socketEx.SocketErrorCode}");
+                builder.AppendLine($"Native Error Codes: {socketEx.NativeErrorCode}");
+                builder.AppendLine($"Error Codes: {socketEx.ErrorCode}");
             }
         }
     }
