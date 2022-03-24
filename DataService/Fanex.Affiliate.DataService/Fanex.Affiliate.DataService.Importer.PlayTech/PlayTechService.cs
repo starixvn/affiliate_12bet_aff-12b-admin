@@ -54,7 +54,10 @@ namespace Fanex.Affiliate.DataService.Importer.Playtech
         private IApiClient GetClient()
         {
             var url = $"{_appSetting.GetValue("PlaytechDailyDataURL")}";
-            return _apiClientFactory.CreateApiClient(url, HttpMethod.Post);
+            var client = _apiClientFactory.CreateApiClient(url, HttpMethod.Post);
+            client.ContentProvider = new FormUrlEncodedContentProvider();
+
+            return client;
         }
 
         private PlaytechParam BuildPlaytechParam(DateTimeOffset startTime, DateTimeOffset endTime)
