@@ -83,7 +83,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             {
                 LogHelper.WriteError(ex);
 
-                return string.Empty;
+                return $"Error message: {ex.Message}";
             }
         }
 

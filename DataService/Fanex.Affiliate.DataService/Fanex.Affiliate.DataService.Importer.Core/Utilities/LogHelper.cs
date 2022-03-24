@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 {
     public static class LogHelper
     {
-        private const int LimitedLevelOfInnerException = 3;
+        private const int LimitedLevelOfInnerException = 5;
         public static void WriteError(Exception exception)
         {
             var content = new StringBuilder().AppendLine($"Error Message: {exception.Message}");
