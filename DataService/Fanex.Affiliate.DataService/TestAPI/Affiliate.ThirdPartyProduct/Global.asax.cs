@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.ThirdPartyProduct.Site;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
+using System.Net;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -11,6 +12,7 @@ namespace Affiliate.ThirdPartyProduct.TestRequest
     {
         protected void Application_Start()
         {
+            RegisterHttpSecurityProtocol();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -20,5 +22,11 @@ namespace Affiliate.ThirdPartyProduct.TestRequest
                  .Run();
             LoggingConfig.RegisterSentry();
         }
+
+        private void RegisterHttpSecurityProtocol()
+            => ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+              | SecurityProtocolType.Tls11
+              | SecurityProtocolType.Tls12
+              | SecurityProtocolType.Ssl3;
     }
 }
