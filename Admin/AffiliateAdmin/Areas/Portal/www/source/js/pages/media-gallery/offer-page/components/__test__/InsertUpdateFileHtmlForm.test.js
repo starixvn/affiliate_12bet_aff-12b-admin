@@ -35,7 +35,7 @@ describe('offer page - components - InsertUpdateFileHtmlForm ', () => {
     it('render correctly with insert', () => {
         const result = shallow(<InsertUpdateFileHtmlForm {...defaultProps} />);
         result.instance().setState({
-            fromDate: new Date(2021, 8, 1), lastDate: new Date(2021, 9, 0)
+            fromDate: new Date(2021, 8, 1), toDate: new Date(2021, 9, 0)
         });
 
         expect(result).toMatchSnapshot();
@@ -46,7 +46,7 @@ describe('offer page - components - InsertUpdateFileHtmlForm ', () => {
         const result = shallow(<InsertUpdateFileHtmlForm {...props} />);
         result.instance().setState({
             isInsert: false, isSuccess: false,
-            fromDate: new Date(2021, 8, 1), lastDate: new Date(2021, 9, 0)
+            fromDate: new Date(2021, 8, 1), toDate: new Date(2021, 9, 0)
         });
 
         expect(result).toMatchSnapshot();

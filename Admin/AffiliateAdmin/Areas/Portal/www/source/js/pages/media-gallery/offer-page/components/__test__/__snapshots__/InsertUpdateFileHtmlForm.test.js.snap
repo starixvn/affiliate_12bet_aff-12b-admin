@@ -440,7 +440,7 @@ exports[`offer page - components - InsertUpdateFileHtmlForm  render correctly wi
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2022-03-30T17:00:00.000Z}
+                  selected={2021-09-29T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
@@ -927,7 +927,7 @@ exports[`offer page - components - InsertUpdateFileHtmlForm  render correctly wi
                   previousYearButtonLabel="Previous Year"
                   readOnly={false}
                   renderDayContents={[Function]}
-                  selected={2022-03-30T17:00:00.000Z}
+                  selected={2021-09-29T17:00:00.000Z}
                   shouldCloseOnSelect={true}
                   showFourColumnMonthYearPicker={false}
                   showFullMonthYearPicker={false}
