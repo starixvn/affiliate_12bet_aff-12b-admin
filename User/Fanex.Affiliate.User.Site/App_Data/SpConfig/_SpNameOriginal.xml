@@ -1,160 +1,158 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet">
   <Function Name="Authorization">
-    <Setting Key="Aff_SessionIdSel" SpName="Aff_SessionIdSel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Login_ResultUpd_view" SpName="Aff_User_Login_ResultUpd" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
-    <Setting Key="Aff_CheckIn_view" SpName="Aff_CheckIn" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Recheckin_view" SpName="Aff_Recheckin" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_VerificationInfoSel" SpName="Aff_User_VerificationInfoSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_VerificationUpd" SpName="Aff_User_VerificationUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_VerificationSuccessIns" SpName="Aff_User_VerificationSuccessIns" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_SessionIdSel" SpName="Aff_SessionIdSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_Login_ResultUpd_view" SpName="Aff_User_Login_ResultUpd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_CheckIn_view" SpName="Aff_CheckIn" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Recheckin_view" SpName="Aff_Recheckin" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_User_VerificationInfoSel" SpName="Aff_User_VerificationInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_VerificationUpd" SpName="Aff_User_VerificationUpd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_VerificationSuccessIns" SpName="Aff_User_VerificationSuccessIns" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="AccountInformation">
-    <Setting Key="Aff_User_UserInfoSel" SpName="Aff_User_UserInfoSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_UserInfoSel_view" SpName="Aff_User_UserInfoSel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateUpdPwd" SpName="Aff_AffiliateUpdPwd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_SecretKeyIns" SpName="Aff_User_SecretKeyIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_UserInfoSel" SpName="Aff_User_UserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_UserInfoSel_view" SpName="Aff_User_UserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_AffiliateUpdPwd" SpName="Aff_AffiliateUpdPwd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_SecretKeyIns" SpName="Aff_User_SecretKeyIns" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
 
-    <Setting Key="Aff_User_GeneralInfo_Sel" SpName="Aff_User_GeneralInfo_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_GeneralInfo_Sel_view" SpName="Aff_User_GeneralInfo_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_GeneralInfo_Sel" SpName="Aff_User_GeneralInfo_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_GeneralInfo_Sel_view" SpName="Aff_User_GeneralInfo_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_CustomerCheck12BetPlayerAccountActivated" SpName="Aff_CustomerCheck12BetPlayerAccountActivated" DbName="affiliate_12bet" />
-    <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="main" />
+    <Setting Key="Aff_CustomerCheck12BetPlayerAccountActivated" SpName="Aff_CustomerCheck12BetPlayerAccountActivated" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="DBCUST_CustDB_bodbDownlineNet" />
   </Function>
 
   <Function Name="DepositInformation">
-    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit" />
-    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName_view" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit_view" />
-
-    <Setting Key="Deposit_MemberIBCDetail" SpName="Deposit_MemberIBCDetail" DbName="deposit" />
+    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="DBDEPOSIT_Deposit_DB_bodbAffiliateNet" />
+    <Setting Key="Deposit_MemberIBCDetail" SpName="Deposit_MemberIBCDetail" DbName="DBDEPOSIT_Deposit_DB_bodbAffiliateNet" />
   </Function>
 
   <Function Name="Statistics">
-    <Setting Key="Aff_AffiliateSelTrackingCode" SpName="Aff_AffiliateSelTrackingCode" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateSelTrackingCode_view" SpName="Aff_AffiliateSelTrackingCode" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateSelTrackingCode" SpName="Aff_AffiliateSelTrackingCode" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_AffiliateSelTrackingCode_view" SpName="Aff_AffiliateSelTrackingCode" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_AffiliateSelClickStatisticsAllMonths" SpName="Aff_AffiliateSelClickStatisticsAllMonths" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateSelClickStatisticsAllMonths_view" SpName="Aff_AffiliateSelClickStatisticsAllMonths" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateSelClickStatisticsAllMonths" SpName="Aff_AffiliateSelClickStatisticsAllMonths" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_AffiliateSelClickStatisticsAllMonths_view" SpName="Aff_AffiliateSelClickStatisticsAllMonths" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_AffiliateSelClickStatisticsMonthDetail" SpName="Aff_AffiliateSelClickStatisticsMonthDetail" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateSelClickStatisticsMonthDetail_view" SpName="Aff_AffiliateSelClickStatisticsMonthDetail" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateSelClickStatisticsMonthDetail" SpName="Aff_AffiliateSelClickStatisticsMonthDetail" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_AffiliateSelClickStatisticsMonthDetail_view" SpName="Aff_AffiliateSelClickStatisticsMonthDetail" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="affiliate_12bet" />
-    <Setting Key="Aff_ClickStatisticsSelBySite_view" SpName="Aff_ClickStatisticsSelBySite" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_ClickStatisticsSelBySite_view" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="affiliate_12bet" />
-    <Setting Key="Aff_ClickStatisticsDetailBySite_view" SpName="Aff_ClickStatisticsDetailBySite" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_ClickStatisticsDetailBySite_view" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet" />
-    <Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_User_StatisticsSel" SpName="Aff_User_StatisticsSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_StatisticsSel_view" SpName="Aff_User_StatisticsSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_StatisticsSel" SpName="Aff_User_StatisticsSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_StatisticsSel_view" SpName="Aff_User_StatisticsSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="HotNews">
-    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail" DbName="affiliate_12bet" />
-    <Setting Key="Aff_HotNewsDetail_view" SpName="Aff_HotNewsDetail" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_HotNewsDetail_view" SpName="Aff_HotNewsDetail" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_HotNewsSel_view" SpName="Aff_HotNewsSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_HotNewsSel_view" SpName="Aff_HotNewsSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="Password">
-    <Setting Key="Aff_User_ForgotPassword" SpName="Aff_User_ForgotPassword" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_RecoverPassWord" SpName="Aff_User_RecoverPassWord" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_ForgotPassword" SpName="Aff_User_ForgotPassword" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_RecoverPassWord" SpName="Aff_User_RecoverPassWord" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
 
   <Function Name="Statement History">
-    <Setting Key="Aff_User_StatementHistory_Sel" SpName="Aff_User_StatementHistory_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_StatementHistory_Sel_view" SpName="Aff_User_StatementHistory_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_ProductList_Sel_view" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DailyEarning_Sel_view" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel_view" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_StatementHistory_Sel" SpName="Aff_User_StatementHistory_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_StatementHistory_Sel_view" SpName="Aff_User_StatementHistory_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_ProductList_Sel_view" SpName="Aff_ProductList_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_DailyEarning_Sel_view" SpName="Aff_DailyEarning_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel_view" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DailyEarning_Detail_Sel_view" SpName="Aff_DailyEarning_Detail_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_DailyEarning_Detail_Sel_view" SpName="Aff_DailyEarning_Detail_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="Commission">
-    <Setting Key="Aff_User_CommSetting_Sel" SpName="Aff_User_CommSetting_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_CommSetting_Sel_view" SpName="Aff_User_CommSetting_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_CommSetting_Sel" SpName="Aff_User_CommSetting_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_CommSetting_Sel_view" SpName="Aff_User_CommSetting_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="BetList">
-    <Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="affiliate_12bet" />
-    <Setting Key="Aff_BetList_CheckBelonging_view" SpName="Aff_BetList_CheckBelonging" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_BetList_CheckBelonging_view" SpName="Aff_BetList_CheckBelonging" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="Payment">
-    <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_PaymentRequestIns" SpName="Aff_PaymentRequestIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_PaymentRequestIns" SpName="Aff_PaymentRequestIns" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
 
   <Function Name="SignUp">
-    <Setting Key="Aff_User_Affiliate_Ins" SpName="Aff_User_Affiliate_Ins" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Affiliate_Ins" SpName="Aff_User_Affiliate_Ins" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
 
   <Function Name="Member">
-    <Setting Key="Aff_MemberList_Sel" SpName="Aff_MemberList_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_MemberList_Sel_view" SpName="Aff_MemberList_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_MemberList_Sel" SpName="Aff_MemberList_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_MemberList_Sel_view" SpName="Aff_MemberList_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="ContactUs">
-    <Setting Key="Aff_EmailHistoryIns" SpName="Aff_EmailHistoryIns" DbName="affiliate_12bet" />
+    <Setting Key="Aff_EmailHistoryIns" SpName="Aff_EmailHistoryIns" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
   <Function Name="CommissionReport">
-    <Setting Key="Aff_User_Rpt_Commission" SpName="Aff_User_Rpt_Commission" DbName="affiliate_12bet"></Setting>
+    <Setting Key="Aff_User_Rpt_Commission" SpName="Aff_User_Rpt_Commission" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
   <Function Name="SecurityQuestion">
-    <Setting Key="Aff_User_SecurityQuestions_Sel" SpName="Aff_User_SecurityQuestions_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_SecurityQuestions_Sel" SpName="Aff_User_SecurityQuestions_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
   <Function Name="AccountOverview">
-    <Setting Key="Aff_User_Overview_PlayersDetail_Sel" SpName="Aff_User_Overview_PlayersDetail_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Overview_Detail_Sel" SpName="Aff_User_Overview_Detail_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Overview_Summary_Sel" SpName="Aff_User_Overview_Summary_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_LoginInfo_Sel" SpName="Aff_User_LoginInfo_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Overview_PlayersDetail_Sel" SpName="Aff_User_Overview_PlayersDetail_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_Overview_Detail_Sel" SpName="Aff_User_Overview_Detail_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_Overview_Summary_Sel" SpName="Aff_User_Overview_Summary_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_LoginInfo_Sel" SpName="Aff_User_LoginInfo_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
 
-    <Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AdminUser_Market_Sel" SpName="Aff_Admin_AdminUser_Market_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_MediaCurrency_Sel" SpName="Aff_Admin_MediaCurrency_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_MediaType_Sel" SpName="Aff_Admin_MediaType_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Domain_Sel" SpName="Aff_User_Domain_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Admin_AdminUser_Market_Sel" SpName="Aff_Admin_AdminUser_Market_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Admin_MediaCurrency_Sel" SpName="Aff_Admin_MediaCurrency_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Admin_MediaType_Sel" SpName="Aff_Admin_MediaType_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_Domain_Sel" SpName="Aff_User_Domain_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
 
-    <Setting Key="Aff_Admin_MediaCategory_Sel_view" SpName="Aff_Admin_MediaCategory_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Admin_AdminUser_Market_Sel_view" SpName="Aff_Admin_AdminUser_Market_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Admin_MediaCurrency_Sel_view" SpName="Aff_Admin_MediaCurrency_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Admin_MediaType_Sel_view" SpName="Aff_Admin_MediaType_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Admin_MediaSize_Sel_view" SpName="Aff_Admin_MediaSize_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_Domain_Sel_view" SpName="Aff_User_Domain_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Admin_LandingPage_Sel_view" SpName="Aff_Admin_LandingPage_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Admin_Text_Sel_view" SpName="Aff_Admin_Text_Sel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_Admin_Banner_Sel_view" SpName="Aff_Admin_Banner_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_Admin_MediaCategory_Sel_view" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_Admin_AdminUser_Market_Sel_view" SpName="Aff_Admin_AdminUser_Market_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_Admin_MediaCurrency_Sel_view" SpName="Aff_Admin_MediaCurrency_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_Admin_MediaType_Sel_view" SpName="Aff_Admin_MediaType_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_Admin_MediaSize_Sel_view" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_User_Domain_Sel_view" SpName="Aff_User_Domain_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_Admin_LandingPage_Sel_view" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_Admin_Text_Sel_view" SpName="Aff_Admin_Text_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_Admin_Banner_Sel_view" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="NewsLetter">
-    <Setting Key="Aff_Admin_Newsletter_Sel" SpName="Aff_Admin_Newsletter_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Newsletter_Sel" SpName="Aff_Admin_Newsletter_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
 
   <Function Name="Offer">
-    <Setting Key="Aff_Admin_OfferPage_Sel" SpName="Aff_Admin_OfferPage_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_OfferPage_Sel" SpName="Aff_Admin_OfferPage_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
 
 </Functions>
