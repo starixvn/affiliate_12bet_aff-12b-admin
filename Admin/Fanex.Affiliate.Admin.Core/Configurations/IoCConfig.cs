@@ -1,11 +1,9 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Caching;
-using ONEbook.UM;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.NETFramework;
-using ONEbook.UM.Services;
 using ONEbook.UM.Transport;
 using System;
 using System.Linq;
@@ -61,11 +59,11 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         {
             builder.RegisterInstance(new UMClientConfiguration().Initialize());
             builder.RegisterInstance<ICacheService>(new CacheService());
+
             builder.RegisterType<UMCacheService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<IPHelperImpl>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UMRestClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<HttpContextHelper>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<MaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

@@ -295,7 +295,6 @@
     <Compile Include="Services\Affiliate\PaymentRequestServiceTest.cs" />
     <Compile Include="Services\Report\ReportServiceTest.cs" />
     <Compile Include="Services\SignInServiceTest.cs" />
-    <Compile Include="Services\UnderMaintenance\UnderMaintenanceServiceTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />
     <Compile Include="TestHelper\ReaderHelper.cs" />

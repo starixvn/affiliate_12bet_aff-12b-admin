@@ -7,9 +7,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class UnderMaintenanceService : IUnderMaintenanceService
     {
         private readonly IMaintenanceService _maintenaceService;
-        public UnderMaintenanceService(IMaintenanceService maintenaceService)
+        public UnderMaintenanceService()
         {
-            _maintenaceService = maintenaceService;
+            _maintenaceService = new MaintenanceService(
+                                  UMClientManager.RestClient,
+                                  UMClientManager.CacheService,
+                                  UMClientManager.UMClientConfigs,
+                                  UMClientManager.HttpContext);
         }
 
         public UnderMaintenanceTime GetUnderMaintenanceTime()
