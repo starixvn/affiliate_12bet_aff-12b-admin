@@ -19,7 +19,7 @@
     <table class="has-total" id="overview-table">
         <thead>
             <tr class="overview-table-header" id="overview-table-header">
-                <th width="10%">Date</th>
+                <th width="10%">@Lang.Date</th>
                 <th width="10%">New Sign Up</th>
                 <th width="12%">Deposited Members</th>
                 @if (hasActivePlayerDetailPermission)
@@ -27,12 +27,12 @@
                     <th width="12%">Active Members</th>
                     <th width="16%">Qualified Active Members</th>
                 }
-                <th width="10%">Deposits</th>
+                <th width="10%">@Lang.Deposit</th>
                 @if (hasTurnOverPermission)
                 {
-                    <th width="10%">Turnover</th>
+                    <th width="10%">@Lang.Turnover</th>
                 }
-                <th width="10%">Withdrawal</th>
+                <th width="10%">@Lang.Withdrawal</th>
                 @if (!isIndiaAffiliate)
                 {
                     <th width="10%">Win/Loss</th>
@@ -42,7 +42,7 @@
                 if (hasData)
                 {
                     <tr class="overview-table-total" id="overview-table-total">
-                        <th class="text-center">Total</th>
+                        <th class="text-center">@Lang.Total</th>
                         <th class="text-center">@itemTotal.Signups</th>
                         <th class="text-center">@itemTotal.DepositedMembers</th>
                         @if (hasActivePlayerDetailPermission)

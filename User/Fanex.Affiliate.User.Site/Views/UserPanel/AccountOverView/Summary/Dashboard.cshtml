@@ -7,7 +7,7 @@
     var hasActivePlayerDetailPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.ActivePlayerDetailType);
 }
 
-<span class="my-account">My Account</span>
+<span class="my-account">@Lang.MyAccount</span>
 <div class="group group-one">
     <div class="img-icon">
         <img class="img-responsive" src="~/www/build/styles/Images/account-overview/new-sign-up.png" alt="New Signup icon" />
@@ -30,7 +30,7 @@
         <img class="img-responsive" src="~/www/build/styles/Images/account-overview/commission.png" alt="Commission icon" />
     </div>
     <div class="info-panel">
-        <span class="info-panel-title">Commission</span>
+        <span class="info-panel-title">@Lang.Comm</span>
         <span class="info-panel-content">@Model.Commission.ToStringMoneyWithSymbol()</span>
     </div>
     <div class="info-panel">
@@ -43,7 +43,7 @@
         <img class="img-responsive" src="~/www/build/styles/Images/account-overview/total-deposit.png" alt="Total Deposit icon" />
     </div>
     <div class="info-panel @(hasTurnOverPermission ? "" : "w-100")">
-        <span class="info-panel-title">Total Deposits</span>
+        <span class="info-panel-title">@Lang.TotalDeposit</span>
         <span class="info-panel-content">@Model.Deposit.ToStringMoneyWithSymbol()</span>
     </div>
 
