@@ -5,11 +5,10 @@ using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : BaseRepository, IAccountRepository
     {
         private readonly IObjectDBBuilder _builder;
 
@@ -228,8 +227,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             {
                 db.SetParameterValue("AffId", affId);
                 db.SetParameterValue("SecretKey", secretKey);
-                db.SetParameterValue("ErrCode", DbParam.ErrCodeSize);
-                db.SetParameterValue("ErrMsg", DbParam.ErrMsgSize);
+                AssignResultOutputParam(db);
 
                 db.ExecuteNonQuery();
 

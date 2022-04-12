@@ -1,14 +1,12 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Data;
 using System;
-using System.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
-    public class VerificationRepository : IVerificationRepository
+    public class VerificationRepository : BaseRepository, IVerificationRepository
     {
         private readonly IObjectDBBuilder _builder;
 
@@ -65,13 +63,7 @@ namespace Fanex.Affiliate.User.Core.Repository
                 AssignUpdateLoginResultParam(db, param);
                 db.ExecuteNonQuery();
 
-                var code = db.GetParameterValue("ErrCode");
-
-                return new ResultInfo
-                {
-                    IsOk = code == null || Convert.ToInt32(code) == 0,
-                    Message = Convert.ToString(db.GetParameterValue("ErrMsg"))
-                };
+                return GetResultInfo(db);
             }
         }
 
@@ -82,8 +74,7 @@ namespace Fanex.Affiliate.User.Core.Repository
             objectDb.SetParameterValue("DeviceInfo", param.DeviceInfo);
             objectDb.SetParameterValue("Language", param.Language);
 
-            objectDb.SetParameterValue("ErrCode", DbParam.ErrCodeSize);
-            objectDb.SetParameterValue("ErrMsg", DbParam.ErrMsgSize);
+            AssignResultOutputParam(objectDb);
         }
     }
 }

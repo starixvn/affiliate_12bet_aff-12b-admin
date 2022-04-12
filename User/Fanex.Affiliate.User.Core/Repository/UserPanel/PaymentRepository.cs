@@ -85,9 +85,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             db.SetParameterValue("AffID", param.AffId);
             db.SetParameterValue("Year", param.Year);
 
-            db.SetParameterValue("PreferredPayment", DbParam.PreferPaymentSize);
-            db.SetParameterValue("BalBroughtForward", DbParam.MoneySize);
-            db.SetParameterValue("MinAmount", DbParam.MoneySize);
+            db.SetParameterValue("PreferredPayment", DefaultValue.String);
+            db.SetParameterValue("BalBroughtForward", DefaultValue.Decimal);
+            db.SetParameterValue("MinAmount", DefaultValue.Decimal);
         }
 
         private static Payment BuildPaymentItem(IDataReader reader)
