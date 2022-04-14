@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.Link.DataAccess.Interface
 {
-    using Fanex.Affiliate.Link.Criterias;
+    using Fanex.Affiliate.Link.Commands;
 
     public interface ITrackingSystemDataAccess
     {
@@ -9,6 +9,6 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Success or fail.</returns>
-        string InsertStatistic(TrackingSystemCriteria criteria);
+        string InsertStatistic(TrackingSystemCommand command);
     }
 }

@@ -1,11 +1,11 @@
-﻿namespace Fanex.Affiliate.Link.Criterias
+﻿namespace Fanex.Affiliate.Link.Commands
 {
     using Data.Repository;
 
     /// <summary>
     /// Tracking System Criteria.
     /// </summary>
-    public class TrackingSystemCriteria : CriteriaBase
+    public class TrackingSystemCommand : NonQueryCommand
     {
         public int AffiliateID { get; set; }
 
