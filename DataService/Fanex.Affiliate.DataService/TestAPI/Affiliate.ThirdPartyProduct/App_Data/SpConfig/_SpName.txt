@@ -2,9 +2,9 @@
 
 // Generated helper templates
 // Generated items
-// D:\Work\Affiliate 12bet\Admin\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.production.xml
-// D:\Work\Affiliate 12bet\Admin\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.uat.xml
-// D:\Work\Affiliate 12bet\Admin\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.sit.xml
-// D:\Work\Affiliate 12bet\Admin\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.local.xml
-// D:\Work\Affiliate 12bet\Admin\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.master.xml
-// D:\Work\Affiliate 12bet\Admin\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.xml
+// Fanex.Affiliate.DataService\TestAPI\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.production.xml
+// Fanex.Affiliate.DataService\TestAPI\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.uat.xml
+// Fanex.Affiliate.DataService\TestAPI\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.sit.xml
+// Fanex.Affiliate.DataService\TestAPI\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.local.xml
+// Fanex.Affiliate.DataService\TestAPI\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.master.xml
+// Fanex.Affiliate.DataService\TestAPI\Affiliate.ThirdPartyProduct\App_Data\SpConfig\SpName.xml

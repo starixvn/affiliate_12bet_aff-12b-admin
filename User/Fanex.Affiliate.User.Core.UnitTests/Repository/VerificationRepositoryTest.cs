@@ -108,8 +108,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
             db.Received().SetParameterValue("DeviceInfo", param.DeviceInfo);
             db.Received().SetParameterValue("Language", param.Language);
 
-            db.Received().SetParameterValue("ErrCode", DbParam.ErrCodeSize);
-            db.Received().SetParameterValue("ErrMsg", DbParam.ErrMsgSize);
+            db.Received().SetParameterValue("ErrCode", DefaultValue.Int);
+            db.Received().SetParameterValue("ErrMsg", DefaultValue.String);
         }
 
         private AuthResultBaseParam CreateAuthResultParam()

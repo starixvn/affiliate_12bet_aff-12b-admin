@@ -6,11 +6,10 @@ using Fanex.Common.Extensions;
 using Fanex.Data;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
-    public class AuthRepository : IAuthRepository
+    public class AuthRepository : BaseRepository, IAuthRepository
     {
         private readonly IObjectDBBuilder _builder;
 
@@ -68,12 +67,12 @@ namespace Fanex.Affiliate.User.Core.Repository
                 AssignUpdateLoginResultParam(db, loginResultParam);
                 db.ExecuteNonQuery();
 
-                var code = db.GetParameterValue("ErrCode");
+                var result = GetResultInfo(db);
 
                 return new LoginResultInfo
                 {
-                    IsOk = code == null || Convert.ToInt32(code) == 0,
-                    Message = Convert.ToString(db.GetParameterValue("ErrMsg"))
+                    IsOk = result.IsOk,
+                    Message = result.Message
                 };
             }
         }
@@ -145,8 +144,7 @@ namespace Fanex.Affiliate.User.Core.Repository
             objectDb.SetParameterValue("Language", param.Language);
             objectDb.SetParameterValue("IsSuccessful", param.IsSuccessful);
 
-            objectDb.SetParameterValue("ErrCode", DbParam.ErrCodeSize);
-            objectDb.SetParameterValue("ErrMsg", DbParam.ErrMsgSize);
+            AssignResultOutputParam(objectDb);
         }
     }
 }
