@@ -1,6 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using ONEbook.UM.Filters;
+using ONEbook.UM.AspNetMVC.Filters;
 using System.Web.Mvc;
 using System.Web.SessionState;
 

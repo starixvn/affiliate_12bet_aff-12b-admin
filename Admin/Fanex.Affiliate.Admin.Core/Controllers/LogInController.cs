@@ -1,4 +1,4 @@
-﻿using ONEbook.UM.Filters;
+﻿using ONEbook.UM.AspNetMVC.Filters;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers

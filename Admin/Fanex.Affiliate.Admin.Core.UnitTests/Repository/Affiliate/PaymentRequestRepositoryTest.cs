@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedPaymentRequestList());
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePaymentRequest_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePaymentRequest_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedPaymentRequestDetail());
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePaymentRequest_Detail_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -88,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePaymentRequest_Detail_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -105,7 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             var repository = new Mock<PaymentRequestRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
 
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePaymentRequest_Upd", 120)).Returns(objectDb.Object);

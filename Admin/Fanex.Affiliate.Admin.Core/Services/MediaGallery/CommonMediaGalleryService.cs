@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("TypeId", DbType.String, typeId);
+                objectDb.SetParameterValue("TypeId", typeId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

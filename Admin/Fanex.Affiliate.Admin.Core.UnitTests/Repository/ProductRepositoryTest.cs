@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             repository.Object.GetProductList();
 
             // Assert
-            objectDb.Verify(obj => obj.Query<Product>(null, null, true, 120), Times.Once);
+            objectDb.Verify(obj => obj.Query<Product>(null, null), Times.Once);
         }
     }
 }

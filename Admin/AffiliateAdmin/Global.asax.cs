@@ -1,20 +1,27 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Data;
+using Fanex.Data.SqlServer;
 using System;
 using System.Web;
 using System.Web.Mvc;
 
 namespace AffiliateAdmin
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
         {
             MvcHandler.DisableMvcResponseHeader = true;
 
             IoCConfig.Register();
+            UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
-            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+            DbSettingProviderManager
+              .StartNewSession()
+              .WithSqlServer("~/App_Data/SpConfig/SpName.xml")
+              .Run();
+
 
             AreaRegistration.RegisterAllAreas();
             LoggingConfig.RegisterSentry();

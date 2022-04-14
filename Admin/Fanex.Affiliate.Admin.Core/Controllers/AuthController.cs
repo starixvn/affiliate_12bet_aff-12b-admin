@@ -5,7 +5,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Login;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using ONEbook.UM.Filters;
+using ONEbook.UM.AspNetMVC.Filters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;

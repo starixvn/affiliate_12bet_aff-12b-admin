@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Banner.Controllers
 {
     public class NewsLetterController : Controller
     {
-        // GET: NewsLetterController
+        [HttpGet]
         public ActionResult Index()
         {
             return Content("NewsLetter");

@@ -22,8 +22,8 @@ namespace Fanex.Affiliate.User.Core.Repository
 
             using (var db = _builder.Build(spKey))
             {
-                db.AddInParameter("IsIncludedOldData", SqlDbType.Bit, isIncludeOldData);
-                db.AddInParameter("Language", SqlDbType.VarChar, language);
+                db.SetParameterValue("IsIncludedOldData", isIncludeOldData);
+                db.SetParameterValue("Language", language);
 
                 using (var reader = db.ExecuteReader())
                 {

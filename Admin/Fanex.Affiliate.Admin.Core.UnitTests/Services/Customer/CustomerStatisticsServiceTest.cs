@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dataReader.Setup(d => d.Read()).Returns(true);
 
             ReaderHelper.MapReaderData(dataReader, GetCustomerStatistics());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_Admin_Statistics_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var dataReader = new Mock<IDataReader>();
             dataReader.Setup(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_Admin_Statistics_Sel", 120)).Returns(objectDb.Object);
 
             // Action

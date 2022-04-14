@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetCategoryList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb(SpKeyBannerSelType, 120)).Returns(objectDb.Object);
 
             // Action
@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb(SpKeyBannerSelType, 120)).Returns(objectDb.Object);
 
             // Action
@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetCurrencyList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_Admin_MediaCurrency_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_Admin_MediaCurrency_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -101,7 +101,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetImageTypeList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_Admin_MediaType_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -120,7 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_Admin_MediaType_Sel", 120)).Returns(objectDb.Object);
 
             // Action

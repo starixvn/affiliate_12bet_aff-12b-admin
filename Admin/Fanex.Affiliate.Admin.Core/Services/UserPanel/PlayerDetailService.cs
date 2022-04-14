@@ -54,17 +54,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         private static void AssignParam(PlayerDetailParam param, IObjectDb objectDb)
         {
-            objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-            objectDb.AddInParameter("ProductId", DbType.Byte, param.ProductId);
-            objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
-            objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
-            objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
-            objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
-            objectDb.AddInParameter("IsExportExcel", DbType.Boolean, param.IsExportExcel);
-            objectDb.AddInParameter("IsSortAsc", DbType.Boolean, param.IsSortAsc);
-            objectDb.AddInParameter("SortById", DbType.Int32, param.SortById);
+            objectDb.SetParameterValue("AffId", param.AffId);
+            objectDb.SetParameterValue("ProductId", param.ProductId);
+            objectDb.SetParameterValue("FromDate", param.FromDate);
+            objectDb.SetParameterValue("ToDate", param.ToDate);
+            objectDb.SetParameterValue("PageIndex", param.PageIndex);
+            objectDb.SetParameterValue("PageSize", param.PageSize);
+            objectDb.SetParameterValue("IsExportExcel", param.IsExportExcel);
+            objectDb.SetParameterValue("IsSortAsc", param.IsSortAsc);
+            objectDb.SetParameterValue("SortById", param.SortById);
 
-            objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+            objectDb.SetParameterValue("NRows", DefaultValue.Int);
         }
     }
 }

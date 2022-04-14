@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
@@ -29,7 +31,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
 
         public static IAppSettings GetSetting(NameValueCollection config)
         {
-            var stubSetting = NSubstitute.Substitute.For<IAppSettings>();
+            var stubSetting = Substitute.For<IAppSettings>();
             foreach (var key in config.AllKeys)
             {
                 stubSetting.GetValue(key).Returns(config[key]);
@@ -37,17 +39,17 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
             return stubSetting;
         }
 
-        public static IApiClient GetApiClient(string value, params string[] values)
+        public static IApiClientFactory GetApiClientFactory(string value, params string[] values)
         {
-            var client = NSubstitute.Substitute.For<IApiClient>();
-            client.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            var client = Substitute.For<IApiClientFactory>();
+            client.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(Arg.Compat.Any<NameValueCollection>(), Arg.Compat.Any<CancellationToken>())
                 .Returns(value, values);
             return client;
         }
 
         public static IThirdPartyProductRepository GetRespository()
         {
-            var repo = NSubstitute.Substitute.For<IThirdPartyProductRepository>();
+            var repo = Substitute.For<IThirdPartyProductRepository>();
             return repo;
         }
 

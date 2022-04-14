@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetLandingPageList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             dataReader.Setup(d => d.Read()).Returns(true);
 
             ReaderHelper.MapReaderData(dataReader, GetLandingPageList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var dataReader = new Mock<IDataReader>();
             dataReader.Setup(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             // Arrange
             var repository = new Mock<LandingPageRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_LandingPage_Ins", 120)).Returns(objectDb.Object);
@@ -115,7 +115,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var message = "Insert landing page is failed.";
             var repository = new Mock<LandingPageRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_LandingPage_Ins", 120)).Returns(objectDb.Object);
@@ -134,7 +134,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             // Arrange
             var repository = new Mock<LandingPageRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_LandingPage_Upd", 120)).Returns(objectDb.Object);
@@ -153,7 +153,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var message = "Update landing page is failed.";
             var repository = new Mock<LandingPageRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_LandingPage_Upd", 120)).Returns(objectDb.Object);
@@ -172,7 +172,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             // Arrange
             var repository = new Mock<LandingPageRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_LandingPage_Del", 120)).Returns(objectDb.Object);
@@ -191,7 +191,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             var message = "Delete Landing Page(s) is failed.";
             var repository = new Mock<LandingPageRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_LandingPage_Del", 120)).Returns(objectDb.Object);

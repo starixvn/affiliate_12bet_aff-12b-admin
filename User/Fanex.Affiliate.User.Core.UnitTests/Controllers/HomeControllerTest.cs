@@ -81,9 +81,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         [Fact]
         public void Excute_WhenRequestChangeLang_SetForNewLang()
         {
-            var languageService = NSubstitute.Substitute.For<ILanguageService>();
+            var languageService = Substitute.For<ILanguageService>();
             var sessionService = NSubtituteMockingHelper.FakeSessionService();
-            var appSetting = NSubstitute.Substitute.For<IAppSetting>();
+            var appSetting = Substitute.For<IAppSetting>();
             var controller = new HomeController(sessionService, appSetting, languageService);
             NSubtituteMockingHelper.FakeController(controller);
             var requestContext = new RequestContext(controller.HttpContext, controller.RouteData);

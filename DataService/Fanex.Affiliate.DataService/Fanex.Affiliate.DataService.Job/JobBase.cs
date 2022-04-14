@@ -1,5 +1,11 @@
 ﻿using Fanex.Affiliate.DataService.Job.Log;
-using ONEbook.UM.NonWebApp;
+using Fanex.Caching;
+using ONEbook.UM;
+using ONEbook.UM.Configurations;
+using ONEbook.UM.Helpers;
+using ONEbook.UM.NETFramework;
+using ONEbook.UM.Services;
+using ONEbook.UM.Transport;
 using Quartz;
 using System;
 using System.Text;
@@ -24,7 +30,23 @@ namespace Fanex.Affiliate.DataService.Job
             try
             {
                 Logger.Info($"{ServiceName} - Start at {DateTime.Now}");
-                var isUm = UMDefaultInstances.MaintenanceService.IsUnderMaintenance();
+
+                var umConfig = new UMClientConfiguration().Initialize();
+
+                UMClientManager
+                   .UseConfig(umConfig)
+                   .UseCacheService(new UMCacheService(new CacheService()))
+                   .UseRestClient(new UMRestClient(umConfig))
+                   .UseHttpContext(new EmptyHttpContextHelper());
+
+                var maintenanceService = new MaintenanceService(
+                                      UMClientManager.RestClient,
+                                      UMClientManager.CacheService,
+                                      UMClientManager.UMClientConfigs,
+                                      UMClientManager.HttpContext);
+
+                var isUm = maintenanceService.IsUnderMaintenance();
+
                 if (isUm)
                 {
                     Logger.Info($"{ServiceName} - System is under maintained");

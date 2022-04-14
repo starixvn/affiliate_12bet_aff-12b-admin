@@ -8,7 +8,11 @@ using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Caching;
-using ONEbook.UM.Services.Impl;
+using Fanex.Caching.Memory;
+using ONEbook.UM.Configurations;
+using ONEbook.UM.Helpers;
+using ONEbook.UM.NETFramework;
+using ONEbook.UM.Transport;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -60,8 +64,14 @@ namespace Fanex.Affiliate.User.Site
 
         private static void RegisterDependencies(ContainerBuilder builder)
         {
-            builder.RegisterType<MaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterInstance(CacheService.CreateInstance(CacheType.MemoryCache)).As<ICache>();
+            builder.RegisterInstance(new UMClientConfiguration().Initialize());
+            builder.RegisterInstance<ICache>(new MemoryCache(new MemoryCacheOptions()));
+            builder.RegisterInstance<ICacheService>(new CacheService());
+
+            builder.RegisterType<UMCacheService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<IPHelperImpl>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UMRestClient>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<HttpContextHelper>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -99,6 +109,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountOverviewRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatisticsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<UnderMaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterType<QrCodeGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
 

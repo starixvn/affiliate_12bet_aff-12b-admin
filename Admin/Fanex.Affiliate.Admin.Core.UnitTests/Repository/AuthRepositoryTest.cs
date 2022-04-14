@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetPermissionList());
-            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<object>())).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<object>(), null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_Admin_PolicySel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             // Arrange
             var repository = new Mock<AuthRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery());
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null));
             objectDb.Setup(obj => obj.GetParameterValue("iskickedout")).Returns(true);
             repository.Setup(re => re.GetObjectDb("Aff_Recheckin", 120)).Returns(objectDb.Object);
 
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             // Arrange
             var repository = new Mock<AuthRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery());
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null));
             objectDb.Setup(obj => obj.GetParameterValue("iskickedout")).Returns(DBNull.Value);
             repository.Setup(re => re.GetObjectDb("Aff_Recheckin", 120)).Returns(objectDb.Object);
 
@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             var param = new LoginParam { Password = "123" };
             var repository = new Mock<AuthRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery());
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null));
             objectDb.Setup(obj => obj.GetParameterValue("UserId")).Returns(1234);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("");
             repository.Setup(re => re.GetObjectDb("Aff_Admin_Login", 120)).Returns(objectDb.Object);
@@ -93,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             var param = new LoginParam { Password = "123" };
             var repository = new Mock<AuthRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery());
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null));
             objectDb.Setup(obj => obj.GetParameterValue("UserId")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("Error");
@@ -114,7 +114,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             var param = new LoginParam { Password = "123" };
             var repository = new Mock<AuthRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery());
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null));
             objectDb.Setup(obj => obj.GetParameterValue("on_userid")).Returns(1234);
             repository.Setup(re => re.GetObjectDb("Aff_CheckIn", 120)).Returns(objectDb.Object);
 
@@ -132,7 +132,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             var param = new LoginParam { Password = "123" };
             var repository = new Mock<AuthRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery());
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null));
             objectDb.Setup(obj => obj.GetParameterValue("on_userid")).Returns(DBNull.Value);
             repository.Setup(re => re.GetObjectDb("Aff_CheckIn", 120)).Returns(objectDb.Object);
 
@@ -149,7 +149,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             // Arrange
             var repository = new Mock<AuthRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery());
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null));
             repository.Setup(re => re.GetObjectDb("Aff_Logout", 120)).Returns(objectDb.Object);
 
             // Action
@@ -165,7 +165,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             // Arrange
             var repository = new Mock<AuthRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(It.IsAny<object>()));
+            objectDb.Setup(obj => obj.ExecuteNonQuery(It.IsAny<object>(), null));
             repository.Setup(re => re.GetObjectDb("Aff_Check_AffBelongToUser", 120)).Returns(objectDb.Object);
 
             // Action

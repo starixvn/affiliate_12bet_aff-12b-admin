@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
@@ -12,15 +11,16 @@ using System.Collections.Specialized;
 using Xunit;
 using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using System.Threading;
+using System.Net.Http;
 
 namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
 {
     public class TopazServiceTest
     {
-        private TopazService CreateService(IApiClient stubClient, IAppSettings stubSetting, IThirdPartyProductRepository repo = null)
+        private TopazService CreateService(IApiClientFactory stubClient, IAppSettings stubSetting, IThirdPartyProductRepository repo = null)
         {
             var service = new TopazService(stubClient, stubSetting, repo);
-            service.IsTestMode = true;
             return service;
         }
 
@@ -29,12 +29,12 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetAsync(default(string), default(NameValueCollection))
+            stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting);
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
-            var endTime = startTime.AddMinutes(15);
+            var endTime = startTime.AddMinutes(60);
 
             await service.GetRawDataListAsync(startTime, endTime);
 
@@ -46,16 +46,16 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetAsync(default(string), default(NameValueCollection))
+            stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL, TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting);
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
-            var endTime = startTime.AddMinutes(15);
+            var endTime = startTime.AddMinutes(60);
 
             await service.GetRawDataListAsync(startTime, endTime);
 
-            await stubClient.ReceivedWithAnyArgs(2).GetAsync(default(string), default(NameValueCollection));
+            await stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).ReceivedWithAnyArgs(2).GetResponseAsync(default(NameValueCollection), default(CancellationToken));
         }
 
         [Fact]
@@ -63,16 +63,16 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetAsync(default(string), default(NameValueCollection))
+            stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting);
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
-            var endTime = startTime.AddMinutes(30);
+            var endTime = startTime.AddMinutes(120);
 
             await service.GetRawDataListAsync(startTime, endTime);
 
-            await stubClient.ReceivedWithAnyArgs(2).GetAsync(default(string), default(NameValueCollection));
+            stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).ReceivedWithAnyArgs(2);
         }
 
         [Fact]
@@ -80,12 +80,12 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetAsync(default(string), default(NameValueCollection))
+            stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL, TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting);
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
-            var endTime = startTime.AddMinutes(15);
+            var endTime = startTime.AddMinutes(60);
 
             var list = await service.GetRawDataListAsync(startTime, endTime);
 
@@ -97,7 +97,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
         {
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
-            stubClient.GetAsync(default(string), default(NameValueCollection))
+            stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL
                 , TopazTestHelper.RESPONSE_SUCCESS
                 , TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL
@@ -105,7 +105,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
 
             var service = CreateService(stubClient, stubSetting);
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
-            var endTime = startTime.AddMinutes(30);
+            var endTime = startTime.AddMinutes(120);
 
             var list = await service.GetRawDataListAsync(startTime, endTime);
 
@@ -118,12 +118,12 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
             var stubRepo = TopazTestHelper.GetStubRepo();
-            stubClient.GetAsync(default(string), default(NameValueCollection))
-                .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_INVALID_VALUE);
+            stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
+                .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_INVALID_VALUE, string.Empty);
 
             var service = CreateService(stubClient, stubSetting, stubRepo);
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
-            var endTime = startTime.AddMinutes(15);
+            var endTime = startTime.AddMinutes(60);
 
             await Assert.ThrowsAnyAsync<ThirdPartyProductException>(() => service.ImportAsync(startTime, endTime));
         }
@@ -134,12 +134,12 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
             var stubRepo = TopazTestHelper.GetStubRepo();
-            stubClient.GetAsync(default(string), default(NameValueCollection))
+            stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL, TopazTestHelper.RESPONSE_SUCCESS);
 
             var service = CreateService(stubClient, stubSetting, stubRepo);
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
-            var endTime = startTime.AddMinutes(15);
+            var endTime = startTime.AddMinutes(60);
 
             await service.ImportAsync(startTime, endTime);
 
@@ -152,12 +152,12 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Service
             var stubClient = TopazTestHelper.GetApiClient();
             var stubSetting = TopazTestHelper.GetStubAppSetting();
             var stubRepo = TopazTestHelper.GetStubRepo();
-            stubClient.GetAsync(default(string), default(NameValueCollection))
-                .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL, TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL);
+            stubClient.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
+                .ReturnsForAnyArgs(TopazTestHelper.RESPONSE_EXCESS_LIMIT_CALL, string.Empty);
 
             var service = CreateService(stubClient, stubSetting, stubRepo);
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
-            var endTime = startTime.AddMinutes(15);
+            var endTime = startTime.AddMinutes(60);
 
             await Assert.ThrowsAnyAsync<ThirdPartyProductException>(() => service.ImportAsync(startTime, endTime));
         }

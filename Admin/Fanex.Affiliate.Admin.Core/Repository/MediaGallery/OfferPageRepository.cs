@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
@@ -34,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             const string spKey = "Aff_Admin_OfferPage_Sel";
             using (var objectDb = GetObjectDb(spKey))
             {
-                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("NRows", DefaultValue.Int);
                 var items = objectDb.Query<OfferPage>(param);
 
                 return new EntityResult<OfferPage>

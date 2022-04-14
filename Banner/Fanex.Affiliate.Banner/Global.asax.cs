@@ -5,13 +5,17 @@
     using System.Web.Mvc;
     using System.Web.Routing;
     using App_Start;
-    using Fanex.Data.Configuration;
+    using Fanex.Data;
+    using Fanex.Data.SqlServer;
 
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
-            DbSettingProviderManager.Current.Start();
+            DbSettingProviderManager
+                .StartNewSession()
+                .WithSqlServer("~/App_Data/SpNames.xml")
+                .Run();
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

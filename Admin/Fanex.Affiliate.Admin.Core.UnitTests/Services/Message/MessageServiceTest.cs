@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetMessageList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetMessageList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
             service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             dataReader.Setup(d => d.Read()).Returns(true);
 
             ReaderHelper.MapReaderData(dataReader, GetMessageList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
             // Action
@@ -121,7 +121,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             var dataReader = new Mock<IDataReader>();
             dataReader.Setup(d => d.Read()).Returns(false);
 
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb(SpKeyHotNewsSel, 120)).Returns(objectDb.Object);
 
             // Action
@@ -137,7 +137,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             // Arrange
             var service = new Mock<MessageService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             service.Setup(re => re.GetObjectDb(SpKeyHotNewsIns, 120)).Returns(objectDb.Object);
@@ -156,7 +156,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             var message = "Insert Message is failed.";
             var service = new Mock<MessageService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             service.Setup(re => re.GetObjectDb(SpKeyHotNewsIns, 120)).Returns(objectDb.Object);
@@ -175,7 +175,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             // Arrange
             var service = new Mock<MessageService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             service.Setup(re => re.GetObjectDb(SpKeyHotNewsUpd, 120)).Returns(objectDb.Object);
@@ -194,7 +194,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             var message = "Update Message is failed.";
             var service = new Mock<MessageService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             service.Setup(re => re.GetObjectDb(SpKeyHotNewsUpd, 120)).Returns(objectDb.Object);
@@ -213,7 +213,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             // Arrange
             var service = new Mock<MessageService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             service.Setup(re => re.GetObjectDb(SpKeyHotNewsDel, 120)).Returns(objectDb.Object);
@@ -232,7 +232,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
             var message = "Delete Message(s) is failed.";
             var service = new Mock<MessageService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
             service.Setup(re => re.GetObjectDb(SpKeyHotNewsDel, 120)).Returns(objectDb.Object);

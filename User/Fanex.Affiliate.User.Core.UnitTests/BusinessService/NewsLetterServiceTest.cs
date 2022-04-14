@@ -37,7 +37,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             var newsLetterId = 123;
             var content = "test";
-            NewsLetter newsLetter = new NewsLetter { FileName = "abc.html" };
+            NewsLetter newsLetter = new NewsLetter {
+                FileName = "abc.html",
+                EffectiveFrom = DateTime.Now,
+                EffectiveTo = DateTime.Now,
+                Language = Constant.DefaultLanguage,
+                NewsLetterId = 1,
+                UploadDate = DateTime.Now
+            };
             var newsLetterRepository = new Mock<INewsLetterRepository>();
             newsLetterRepository.Setup(p => p.GetNewsLetterById(newsLetterId)).Returns(newsLetter);
             var httpClientUtility = new Mock<IHttpClientUtility>();

@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetLogActionList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             service.Setup(r => r.GetObjectDb("Aff_LogAction_Sel", 120)).Returns(objectDb.Object);
 
             // Action
@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             service.Object.GetNewViewLogList(param);
 
             // Assert
-            objectDb.Verify(obj => obj.Query<NewViewLogInfo>(null, null, true, 120), Times.Once);
+            objectDb.Verify(obj => obj.Query<NewViewLogInfo>(null, null), Times.Once);
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetNewViewLogDetailList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateLog_Sel", 120)).Returns(objectDb.Object);
 
@@ -85,7 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetNewErroredViewLogDetailList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateLog_Sel", 120)).Returns(objectDb.Object);
 

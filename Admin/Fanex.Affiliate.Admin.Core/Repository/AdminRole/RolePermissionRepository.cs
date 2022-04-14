@@ -44,9 +44,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Permission", DbType.Xml, param.PermissionInfoXml);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.SetParameterValue("Permission", param.PermissionInfoXml);
+                objectDb.SetParameterValue("UserId", param.UserId);
+                objectDb.SetParameterValue("IP", param.Ip);
 
                 AssignResultOutputParam(objectDb);
 
@@ -63,9 +63,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Market", DbType.Xml, param.MarketInfoXml);
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.SetParameterValue("Market", param.MarketInfoXml);
+                objectDb.SetParameterValue("UserId", param.UserId);
+                objectDb.SetParameterValue("IP", param.Ip);
 
                 AssignResultOutputParam(objectDb);
 

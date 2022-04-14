@@ -20,11 +20,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("LanguageCodes", DbType.String, languageCodes);
-                objectDb.AddInParameter("PageIndex", DbType.Int32, pageIndex);
-                objectDb.AddInParameter("PageSize", DbType.Int32, pageSize);
+                objectDb.SetParameterValue("LanguageCodes", languageCodes);
+                objectDb.SetParameterValue("PageIndex", pageIndex);
+                objectDb.SetParameterValue("PageSize", pageSize);
 
-                objectDb.AddOutParameter("NRows", DbType.Int32, Size.SizeOfInt);
+                objectDb.SetParameterValue("NRows", DefaultValue.Int);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -54,12 +54,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddOutParameter("PSP", DbType.Int32, Size.SizeOfCurrency);
+                objectDb.SetParameterValue("PSP", DefaultValue.Decimal);
 
                 objectDb.ExecuteNonQuery();
 
                 var psp = objectDb.GetParameterValue("PSP");
-                return Convert.ToDecimal(psp);
+                return psp == DBNull.Value ? 0 :  Convert.ToDecimal(psp);
             }
         }
 
@@ -93,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Languages", DbType.String, marketIds);
+                objectDb.SetParameterValue("Languages", marketIds);
                 using (var reader = objectDb.ExecuteReader())
                 {
                     if (reader.Read())

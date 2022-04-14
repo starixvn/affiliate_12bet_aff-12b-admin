@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("CustId", DbType.Int32, userId);
+                objectDb.SetParameterValue("CustId", userId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("CustId", DbType.Int32, param.UserId);
+                objectDb.SetParameterValue("CustId", param.UserId);
                 AssignParam(param, objectDb);
 
                 objectDb.ExecuteNonQuery();
@@ -72,7 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("RoleId", DbType.Int32, roleId);
+                objectDb.SetParameterValue("RoleId", roleId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -91,18 +91,18 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 
         private static void AssignParam(AdminInfoParam param, IObjectDb objectDb)
         {
-            objectDb.AddInParameter("UserName", DbType.String, string.IsNullOrEmpty(param.UserName) ? null : "AA" + param.UserName);
-            objectDb.AddInParameter("UserPwd", DbType.String, param.Password);
-            objectDb.AddInParameter("FirstName", DbType.String, param.FirstName);
-            objectDb.AddInParameter("LastName", DbType.String, param.LastName);
-            objectDb.AddInParameter("RoleId", DbType.Int32, param.Role);
-            objectDb.AddInParameter("Closed", DbType.Boolean, param.IsClosed);
-            objectDb.AddInParameter("IsRoleMarketDefault", DbType.Boolean, param.IsRoleMarketDefault);
-            objectDb.AddInParameter("IsRoleFunctionDefault", DbType.Boolean, param.IsRoleFunctionDefault);
-            objectDb.AddInParameter(Field.UserId, DbType.Int32, param.ByUserId);
-            objectDb.AddInParameter("Ip", DbType.String, param.Ip);
-            objectDb.AddInParameter("Function", DbType.Xml, param.PermissionInfoXml);
-            objectDb.AddInParameter("Market", DbType.Xml, param.MarketListXml);
+            objectDb.SetParameterValue("UserName", string.IsNullOrEmpty(param.UserName) ? null : "AA" + param.UserName);
+            objectDb.SetParameterValue("UserPwd", param.Password);
+            objectDb.SetParameterValue("FirstName", param.FirstName);
+            objectDb.SetParameterValue("LastName", param.LastName);
+            objectDb.SetParameterValue("RoleId", param.Role);
+            objectDb.SetParameterValue("Closed", param.IsClosed);
+            objectDb.SetParameterValue("IsRoleMarketDefault", param.IsRoleMarketDefault);
+            objectDb.SetParameterValue("IsRoleFunctionDefault", param.IsRoleFunctionDefault);
+            objectDb.SetParameterValue(Field.UserId, param.ByUserId);
+            objectDb.SetParameterValue("Ip", param.Ip);
+            objectDb.SetParameterValue("Function", param.PermissionInfoXml);
+            objectDb.SetParameterValue("Market", param.MarketListXml);
 
             AssignResultOutputParam(objectDb);
         }

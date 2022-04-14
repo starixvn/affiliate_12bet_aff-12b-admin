@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedLanguageList());
-            objectDb.Setup(obj => obj.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb("Aff_Market_Sel", 120)).Returns(objectDb.Object);
 
             // Action

@@ -62,8 +62,8 @@ namespace Fanex.Affiliate.Link.Controllers
             if (Request.Url != null)
             {
                 var affDomain = GetFullAffDomain(Request.Url.ToString(), affId);
-                var urlReferrer = Request.UrlReferrer != null ? Request.UrlReferrer.AbsoluteUri : null;
-                var domainReferrer = Request.UrlReferrer != null ? Request.UrlReferrer.Host : null;
+                var urlReferrer = Request.UrlReferrer?.AbsoluteUri;
+                var domainReferrer = Request.UrlReferrer?.Host;
 
                 if (string.IsNullOrEmpty(urlReferrer) && !string.IsNullOrEmpty(Request["ref"]))
                 {
@@ -94,7 +94,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     Country = Common.ResolveCountry() != null
                                       ? Common.ResolveCountry().EnglishName
                                       : CultureInfo.CurrentCulture.ToString(),
-                        
+
                 };
 
                 var redirectUrl = _trackingSystemService.InsertStatistic(criteria);

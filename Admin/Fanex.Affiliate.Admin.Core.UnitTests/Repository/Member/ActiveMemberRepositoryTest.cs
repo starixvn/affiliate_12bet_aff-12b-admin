@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetInactivatedMemberList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("abc");
             repository.Setup(r => r.GetObjectDb("Aff_Admin_ActiveMember_CheckStatus", 120)).Returns(objectDb.Object);
 
@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetActivatedMemberList());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("abc");
             repository.Setup(r => r.GetObjectDb("Aff_Admin_ActiveMember_CheckStatus", 120)).Returns(objectDb.Object);
 
@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetActivatedMemberListHasCreatedDateIsNull());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("abc");
             repository.Setup(r => r.GetObjectDb("Aff_Admin_ActiveMember_CheckStatus", 120)).Returns(objectDb.Object);
 
@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, Get12BetPlayersDepositInfo());
-            objectDb.Setup(o => o.ExecuteReader()).Returns(dataReader.Object);
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             repository.Setup(r => r.GetObjectDb("Deposit_GetCustDataForCreateIBCACByUserNames", 120)).Returns(objectDb.Object);
 
             // Action
@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             // Arrange
             var repository = new Mock<ActiveMemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
             objectDb.Setup(obj => obj.GetParameterValue("custid")).Returns(123);
@@ -131,7 +131,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             // Arrange
             var repository = new Mock<ActiveMemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("Add is failed");
             objectDb.Setup(obj => obj.GetParameterValue("custid")).Returns(DBNull.Value);
@@ -152,7 +152,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             // Arrange
             var repository = new Mock<ActiveMemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             repository.Setup(re => re.GetObjectDb("Aff_WriteLog", 120)).Returns(objectDb.Object);
 
             // Action
@@ -167,9 +167,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             // Arrange
             var repository = new Mock<ActiveMemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrorCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrorMsg")).Returns(string.Empty);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrorMsg")).Returns(null);
             repository.Setup(re => re.GetObjectDb("Deposit_MemberIBCDetail", 120)).Returns(objectDb.Object);
 
             // Action
@@ -185,7 +185,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             // Arrange
             var repository = new Mock<ActiveMemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrorCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrorMsg")).Returns("Update is failed");
             repository.Setup(re => re.GetObjectDb("Deposit_MemberIBCDetail", 120)).Returns(objectDb.Object);
@@ -204,7 +204,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             // Arrange
             var repository = new Mock<ActiveMemberRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery()).Returns(0);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             repository.Setup(re => re.GetObjectDb("Aff_WriteLog", 120)).Returns(objectDb.Object);
 
             // Action

@@ -14,6 +14,11 @@ exports[`under maintenance - components - AppContainer render correctly 1`] = `
     </font>
   </div>
   <div
+    className="gmt_english"
+  >
+    (HK Time GMT+8)
+  </div>
+  <div
     className="text_time text_button"
   >
     <font
@@ -21,6 +26,11 @@ exports[`under maintenance - components - AppContainer render correctly 1`] = `
     >
        至 
     </font>
+  </div>
+  <div
+    className="gmt_chinese"
+  >
+    (香港时间GMT+8)
   </div>
 </div>
 `;

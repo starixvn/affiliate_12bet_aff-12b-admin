@@ -11,17 +11,19 @@ using Xunit;
 using Fanex.Affiliate.DataService.Importer.UnitTest.Helper;
 using System.Linq;
 using Fanex.Affiliate.DataService.Importer.Core.Constants;
+using System.Threading;
+using System.Net.Http;
 
 namespace Fanex.Affiliate.DataService.Importer.IMOneTests
 {
     public class VrLotteryServiceTests
     {
-        private VrLotteryService CreateService(IApiClient client = null, IAppSettings appSetting = null, IThirdPartyProductRepository repo = null)
+        private VrLotteryService CreateService(IApiClientFactory client = null, IAppSettings appSetting = null, IThirdPartyProductRepository repo = null)
         {
             return new VrLotteryService(client, appSetting, repo);
         }
 
-        private int SetUpResponse(IApiClient stubApi, IEnumerable<Tuple<DateTime, DateTime>> ranges, int[] pagesForEachRequest)
+        private int SetUpResponse(IApiClientFactory stubApi, IEnumerable<Tuple<DateTime, DateTime>> ranges, int[] pagesForEachRequest)
         {
             var lstResponse = new List<string>();
             for (int i = 0; i < ranges.Count(); i++)
@@ -31,7 +33,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
                     numberOfPage = pagesForEachRequest[i];
                 lstResponse.AddRange(VrLotteryTestHelper.GenerateSuccessResponse(numberOfPage));
             }
-            stubApi.GetAsync(default(string), default(NameValueCollection))
+            stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(lstResponse.First(), lstResponse.Skip(1).ToArray());
             return lstResponse.Count;
         }
@@ -41,7 +43,8 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
         {
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
             var endTime = startTime;
-            var service = CreateService();
+            var stubClientFactory = VrLotteryTestHelper.GetStubApi();
+            var service = CreateService(stubClientFactory);
             await Assert.ThrowsAsync<ArgumentException>(() => service.GetRawDataListByCurrencyAsync(startTime, endTime, "CNY"));
         }
 
@@ -52,7 +55,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var endTime = startTime.Add(new TimeSpan(0, 10, 0));
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubAppSetting = VrLotteryTestHelper.GetStubSetting();
-            stubApi.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(Arg.Compat.Any<NameValueCollection>(), Arg.Compat.Any<CancellationToken>())
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.SUCCESS));
             var service = CreateService(stubApi, stubAppSetting);
 
@@ -68,7 +71,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var endTime = startTime.Add(new TimeSpan(0, 10, 0));
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubAppSetting = VrLotteryTestHelper.GetStubSetting();
-            stubApi.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(Arg.Compat.Any<NameValueCollection>(), Arg.Compat.Any<CancellationToken>())
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.INVALID_CODEWALLET));
 
             var service = CreateService(stubApi, stubAppSetting);
@@ -84,7 +87,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubAppSetting = VrLotteryTestHelper.GetStubSetting();
 
-            stubApi.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(Arg.Compat.Any<NameValueCollection>(), Arg.Compat.Any<CancellationToken>())
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.SUCCESS));
             var service = CreateService(stubApi, stubAppSetting);
 
@@ -102,14 +105,15 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var endTime = startTime.Add(new TimeSpan(0,minute,0));
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubSetting = VrLotteryTestHelper.GetStubSetting();
-            var service = CreateService(stubApi, stubSetting);
-            var ranges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, new TimeSpan(0, service.TimeRangeLimitInMinForEachRequest, 0));
+            var ranges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, new TimeSpan(0, 10, 0));
             int numberOfReponse = SetUpResponse(stubApi, ranges, pagesForEachRequest);
+
+            var service = CreateService(stubApi, stubSetting);
 
 
             await service.GetRawDataListByCurrencyAsync(startTime, endTime, "CNY");
 
-            await stubApi.ReceivedWithAnyArgs(numberOfReponse).GetAsync(default(string), default(NameValueCollection));
+            await stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).ReceivedWithAnyArgs(numberOfReponse).GetResponseAsync(default(NameValueCollection), default(CancellationToken));
         }
 
         [Fact]
@@ -119,7 +123,7 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var endTime = startTime.Add(new TimeSpan(0, 10, 0));
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubSetting = VrLotteryTestHelper.GetStubSetting();
-            stubApi.GetAsync(default(string), default(NameValueCollection))
+            stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.INVALID_CODEWALLET));
             var service = CreateService(stubApi, stubSetting);
 
@@ -136,25 +140,28 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var startTime = new DateTime(2019, 10, 10, 10, 0, 0);
             var endTime = startTime.Add(new TimeSpan(0, 10, 0));
 
-            var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubSetting = VrLotteryTestHelper.GetStubSetting();
-            var service = CreateService(stubApi, stubSetting);
-            var query = new NameValueCollection();
-            query.Add("MerchantCode", stubSetting.GetValue("VrLotteryMerchantCode"));
-            query.Add("StartDate", startTime.ToString(IMOne.Constants.IMOneDateTimeFormat));
-            query.Add("EndDate", endTime.ToString(IMOne.Constants.IMOneDateTimeFormat));
-            query.Add("ProductWallet", stubSetting.GetValue("VrLotteryProductWallet"));
-            query.Add("PageSize", VrLotteryService.MAX_PAGE_SIZE.ToString());
-            query.Add("Currency", currency);
-            query.Add("Page", "1");
             var url = stubSetting.GetValue("VrLotteryApiUrl");
-
-            stubApi.GetAsync(default(string), default(NameValueCollection))
+            var stubApi = VrLotteryTestHelper.GetStubApi();
+            stubApi.CreateApiClient(url, Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.SUCCESS));
+
+            var service = CreateService(stubApi, stubSetting);
+            var query = new NameValueCollection
+            {
+                { "MerchantCode", stubSetting.GetValue("VrLotteryMerchantCode") },
+                { "StartDate", startTime.ToString(IMOne.Constants.IMOneDateTimeFormat) },
+                { "EndDate", endTime.ToString(IMOne.Constants.IMOneDateTimeFormat) },
+                { "ProductWallet", stubSetting.GetValue("VrLotteryProductWallet") },
+                { "PageSize", VrLotteryService.MAX_PAGE_SIZE.ToString() },
+                { "Currency", currency },
+                { "Page", "1" }
+            };
 
             await service.GetRawDataListByCurrencyAsync(startTime, endTime, currency);
 
-            await stubApi.Received().GetAsync(url, Arg.Compat.Is<NameValueCollection>(q => q.HasAllValue(query)));
+            stubApi.Received().CreateApiClient(url, Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>());
+            await stubApi.CreateApiClient(url, Arg.Compat.Any<HttpMethod>()).Received().GetResponseAsync(Arg.Compat.Is<NameValueCollection>(q => q.HasAllValue(query)), default(CancellationToken));
         }
 
         [Fact]
@@ -164,14 +171,14 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var endTime = startTime.Add(new TimeSpan(0, 10, 0));
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubSetting = VrLotteryTestHelper.GetStubSetting();
+            stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
+                .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.SUCCESS));
             var service = CreateService(stubApi, stubSetting);
             var currencies = new List<string> { "CNY", "ABC" };
-            stubApi.GetAsync(default(string), default(NameValueCollection))
-                .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.SUCCESS));
 
             await service.GetRawDataListByCurrenciesAsync(startTime, endTime, currencies);
 
-            await stubApi.ReceivedWithAnyArgs(2).GetAsync(default(string), default(NameValueCollection));
+            await stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).ReceivedWithAnyArgs(2).GetResponseAsync(default(NameValueCollection), default(CancellationToken));
         }
 
         [Theory]
@@ -184,9 +191,10 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubSetting = VrLotteryTestHelper.GetStubSetting();
             var stubRepo = VrLotteryTestHelper.GetStubRepo();
-            var service = CreateService(stubApi, stubSetting, stubRepo);
-            var ranges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, new TimeSpan(0, service.TimeRangeLimitInMinForEachRequest, 0));
+            var ranges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, new TimeSpan(0, 10, 0));
             int numberOfReponse = SetUpResponse(stubApi, ranges, pagesForEachRequest);
+
+            var service = CreateService(stubApi, stubSetting, stubRepo);
 
             await service.ImportAsync(startTime, endTime);
 
@@ -201,10 +209,9 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubSetting = VrLotteryTestHelper.GetStubSetting();
             var stubRepo = VrLotteryTestHelper.GetStubRepo();
-            var service = CreateService(stubApi, stubSetting, stubRepo);
-
-            stubApi.GetAsync(default(string), default(NameValueCollection))
+            stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.NO_DATA_FOUND));
+            var service = CreateService(stubApi, stubSetting, stubRepo);
 
             await  service.ImportAsync(startTime, endTime);
 
@@ -219,10 +226,9 @@ namespace Fanex.Affiliate.DataService.Importer.IMOneTests
             var stubApi = VrLotteryTestHelper.GetStubApi();
             var stubSetting = VrLotteryTestHelper.GetStubSetting();
             var stubRepo = VrLotteryTestHelper.GetStubRepo();
-            var service = CreateService(stubApi, stubSetting, stubRepo);
-
-            stubApi.GetAsync(default(string), default(NameValueCollection))
+            stubApi.CreateApiClient(Arg.Compat.Any<string>(), Arg.Compat.Any<HttpMethod>(), Arg.Compat.Any<HttpClientHeaderOption>()).GetResponseAsync(default(NameValueCollection), default(CancellationToken))
                 .ReturnsForAnyArgs(VrLotteryTestHelper.GenerateResponse(IMOne.IMoneResponseStatus.INVALID_CODEWALLET));
+            var service = CreateService(stubApi, stubSetting, stubRepo);
 
             await Assert.ThrowsAsync<ThirdPartyProductException>(() => service.ImportAsync(startTime,endTime));
         }

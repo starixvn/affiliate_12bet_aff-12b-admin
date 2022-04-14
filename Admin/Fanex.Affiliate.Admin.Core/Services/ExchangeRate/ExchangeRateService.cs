@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("Date", DbType.DateTime, date);
+                objectDb.SetParameterValue("Date", date);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -45,11 +45,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.ExchangeRate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("ExchangeId", DbType.Int32, param.ExchangeId);
-                objectDb.AddInParameter("Rate", DbType.Decimal, param.Rate);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
-                objectDb.AddInParameter("RateType", DbType.Byte, param.RateType);
+                objectDb.SetParameterValue("UserId", param.UserId);
+                objectDb.SetParameterValue("ExchangeId", param.ExchangeId);
+                objectDb.SetParameterValue("Rate", param.Rate);
+                objectDb.SetParameterValue("IP", param.Ip);
+                objectDb.SetParameterValue("RateType", param.RateType);
 
                 AssignResultOutputParam(objectDb);
 

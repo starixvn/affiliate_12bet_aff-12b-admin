@@ -2,12 +2,8 @@
 using Fanex.Affiliate.DataService.Importer.Core.Repository;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
 {
@@ -29,7 +25,7 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
 
         public static IAppSettings GetAppSetting()
         {
-            var setting = NSubstitute.Substitute.For<IAppSettings>();
+            var setting = Substitute.For<IAppSettings>();
             var config = GenerateConfig();
             foreach (var key in config.AllKeys)
             {
@@ -38,34 +34,34 @@ namespace Fanex.Affiliate.DataService.Importer.UnitTest.Helper
             return setting;
         }
 
-        public static IApiClient GetSuccessResponseClient()
+        public static IApiClientFactory GetSuccessResponseClient()
         {
             var successResponse = @"<game_transaction_detail>
                                       <status_code>00</status_code>
                                       <status_text>OK</status_text>
                                       <bet>
-                                        <item  bet_time=""2019-11-06 22:47:05"" trans_time=""2019-11-06 22:47:00""/>                                      
+                                        <item  bet_time=""2019-11-06 22:47:05"" trans_time=""2019-11-06 22:47:00""/>
                                       </bet >
                                    </game_transaction_detail>";
-            var client = NSubstitute.Substitute.For<IApiClient>();
-            client.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            var client = Substitute.For<IApiClientFactory>();
+            client.CreateApiClient(Arg.Compat.Any<string>()).GetResponseAsync(Arg.Compat.Any<NameValueCollection>(), Arg.Compat.Any<CancellationToken>())
                 .Returns(successResponse);
             return client;
 
         }
 
-        public static IApiClient GetFailResponseClient()
+        public static IApiClientFactory GetFailResponseClient()
         {
             var successResponse = "<game_transaction_detail>  <status_code>40.01</status_code> </game_transaction_detail>";
-            var client = NSubstitute.Substitute.For<IApiClient>();
-            client.GetAsync(Arg.Compat.Any<string>(), Arg.Compat.Any<NameValueCollection>())
+            var client = Substitute.For<IApiClientFactory>();
+            client.CreateApiClient(Arg.Compat.Any<string>()).GetResponseAsync(Arg.Compat.Any<NameValueCollection>(), Arg.Compat.Any<CancellationToken>())
                 .Returns(successResponse);
             return client;
         }
 
         public static IThirdPartyProductRepository GetRepository()
         {
-            return NSubstitute.Substitute.For<IThirdPartyProductRepository>();
+            return Substitute.For<IThirdPartyProductRepository>();
         }
     }
 }

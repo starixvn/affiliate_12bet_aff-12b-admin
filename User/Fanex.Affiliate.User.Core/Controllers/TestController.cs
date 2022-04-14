@@ -9,7 +9,7 @@
     using Fanex.Affiliate.User.Core.Resources;
     using Filters;
     using MetalModels.Email;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM.AspNetMVC.Filters;
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;

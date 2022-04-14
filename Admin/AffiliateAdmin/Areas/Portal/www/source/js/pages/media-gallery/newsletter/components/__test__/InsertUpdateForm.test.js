@@ -36,7 +36,7 @@ describe('news letter list - components - InsertUpdateForm ', () => {
     it('render correctly with insert', () => {
         const result = shallow(<InsertUpdateForm {...defaultProps} />);
         result.instance().setState({
-            fromDate: new Date(2021, 8, 1), lastDate: new Date(2021, 9, 0)
+            fromDate: new Date(2021, 8, 1), toDate: new Date(2021, 9, 0)
         });
 
         expect(result).toMatchSnapshot();
@@ -47,7 +47,7 @@ describe('news letter list - components - InsertUpdateForm ', () => {
         const result = shallow(<InsertUpdateForm {...props} />);
         result.instance().setState({
             isInsert: false, isSuccess: false,
-            fromDate: new Date(2021, 8, 1), lastDate: new Date(2021, 9, 0)
+            fromDate: new Date(2021, 8, 1), toDate: new Date(2021, 9, 0)
         });
 
         expect(result).toMatchSnapshot();

@@ -9,17 +9,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public class AdjustmentService : BaseRepository, IAdjustmentService
     {
-
-
         public decimal GetBalanceBroughtForward(int affId)
         {
             const string SpKey = "Aff_CustomerSelBalBF";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffID", DbType.Int32, affId);
+                objectDb.SetParameterValue("AffID", affId);
 
-                objectDb.AddOutParameter("BalBroughtForward", DbType.Currency, Size.SizeOfCurrency);
+                objectDb.SetParameterValue("BalBroughtForward", DefaultValue.Decimal);
 
                 objectDb.ExecuteNonQuery();
 
@@ -34,11 +32,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             const string SpKey = "Aff_Admin_AffiliateAdjustment_Ins";
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("Amount", DbType.Decimal, param.Amount);
-                objectDb.AddInParameter("transdesc", DbType.String, param.Description);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.SetParameterValue("AffID", param.AffId);
+                objectDb.SetParameterValue("UserID", param.UserId);
+                objectDb.SetParameterValue("Amount", param.Amount);
+                objectDb.SetParameterValue("transdesc", param.Description);
+                objectDb.SetParameterValue("IP", param.Ip);
 
                 AssignResultOutputParam(objectDb);
 

@@ -1,8 +1,10 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
+using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Moq;
+using System;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -33,7 +35,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             var offerId = 123;
             var content = "test";
-            Offer offer = new Offer { FileName = "abc.html" };
+            Offer offer = new Offer {
+                FileName = "abc.html",
+                EffectiveFromDate = DateTime.Now,
+                EffectiveToDate = DateTime.Now,
+                Language = Constant.DefaultLanguage,
+                PageId = 1,
+                UploadDate = DateTime.Now
+            };
             var offerRepository = new Mock<IOfferRepository>();
             offerRepository.Setup(p => p.GetOfferById(offerId)).Returns(offer);
             var httpClientUtility = new Mock<IHttpClientUtility>();

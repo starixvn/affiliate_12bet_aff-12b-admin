@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ChangeAdminPassword
         {
             // Arrange
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery());
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null));
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("");
 
@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ChangeAdminPassword
         {
             // Arrange
             var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery());
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null));
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("Old password is incorrect.");
 

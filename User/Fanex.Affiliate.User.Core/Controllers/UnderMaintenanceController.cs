@@ -11,13 +11,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
     {
         private readonly ISessionService _sessionService;
         protected readonly ILanguageService _languageService;
-        private readonly IMaintenanceService _maintenanceService;
+        private readonly IUnderMaintenanceService _underMaintenanceService;
         public UnderMaintenanceController(ISessionService sessionService,
-            ILanguageService languageService, IMaintenanceService maintenanceService)
+            ILanguageService languageService, IUnderMaintenanceService underMaintenanceService)
         {
             _sessionService = sessionService;
             _languageService = languageService;
-            _maintenanceService = maintenanceService;
+            _underMaintenanceService = underMaintenanceService;
         }
 
         protected override void Initialize(RequestContext requestContext)
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var maintenanceInfo = _maintenanceService.GetUnderMaintenanceTime();
+            var maintenanceInfo = _underMaintenanceService.GetUnderMaintenanceTime();
 
             if (!maintenanceInfo.IsUnderMaintenanceTime)
             {

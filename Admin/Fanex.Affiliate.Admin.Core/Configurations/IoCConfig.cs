@@ -1,5 +1,10 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Fanex.Caching;
+using ONEbook.UM.Configurations;
+using ONEbook.UM.Helpers;
+using ONEbook.UM.NETFramework;
+using ONEbook.UM.Transport;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -18,6 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
             builder.RegisterAssemblyTypes(asselmblyList).AsImplementedInterfaces();
 
+            builder.RegisterDependencies();
             // Register your MVC controllers. (MvcApplication is the name of
             // the class in Global.asax.)
             builder.RegisterControllers(asselmblyList);
@@ -49,5 +55,15 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             return assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate", StringComparison.InvariantCulture)).ToArray();
         }
 
+        private static void RegisterDependencies(this ContainerBuilder builder)
+        {
+            builder.RegisterInstance(new UMClientConfiguration().Initialize());
+            builder.RegisterInstance<ICacheService>(new CacheService());
+
+            builder.RegisterType<UMCacheService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<IPHelperImpl>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<UMRestClient>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<HttpContextHelper>().AsImplementedInterfaces().SingleInstance();
+        }
     }
 }

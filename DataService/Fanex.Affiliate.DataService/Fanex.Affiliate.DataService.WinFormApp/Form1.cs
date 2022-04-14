@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Data;
+using Fanex.Data.SqlServer;
 
 namespace Fanex.Affiliate.DataService.WinFormApp
 {
@@ -20,13 +21,9 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         {
             InitializeComponent();
             DbSettingProviderManager
-                .StartNewSession()
-                .UseDefaultConnectionStringProvider()
-                .UseDefaultDbSettingProvider(
-                    resourcePath: "~/App_Data/SpName.xml",
-                    ignoreRedundantParameters: false
-                )
-                .Run();
+                 .StartNewSession()
+                 .WithSqlServer("~/App_Data")
+                 .Run();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)

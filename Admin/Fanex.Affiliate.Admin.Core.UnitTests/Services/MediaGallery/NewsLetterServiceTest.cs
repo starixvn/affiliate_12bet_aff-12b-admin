@@ -1,6 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
@@ -8,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.UnitTests.Common;
-using Fanex.Affiliate.Admin.Core.Utilities;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -238,9 +235,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         public void DeleteNewsLetters_WhenCall_DeleteIsFailed()
         {
             // Arrange
-            var param = new DeleteNewsLetterParam { NewsLetterIds = "123" };
+            var param = new DeleteNewsLetterParam { NewsLetterIds = "123,234" };
             var newsLetterRepository = new Mock<INewsLetterRepository>();
-            newsLetterRepository.Setup(s => s.GetNewsLetterById(It.IsAny<int>())).Returns(new NewsLetter { FileName = "abc.html" });
+            newsLetterRepository.Setup(s => s.GetNewsLetterById(234)).Returns(new NewsLetter { FileName = "abc.html" });
             newsLetterRepository.Setup(s => s.DeleteNewsLetter(param)).Returns(new ResultInfo { Code = 999, Message = "Delete is failed" });
             var service = CreateNewsLetterService(newsLetterRepository.Object);
 

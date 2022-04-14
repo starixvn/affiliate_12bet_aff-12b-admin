@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("MarketId", DbType.String, market);
+                objectDb.SetParameterValue("MarketId", market);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -66,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("DomainControlId", DbType.Int32, param.DomainId);
+                objectDb.SetParameterValue("DomainControlId", param.DomainId);
 
                 AssignParam(objectDb, param);
 
@@ -82,9 +82,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("DomainControlId", DbType.Int32, param.DomainId);
-                objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("ip", DbType.String, param.Ip);
+                objectDb.SetParameterValue("DomainControlId", param.DomainId);
+                objectDb.SetParameterValue("userid", param.UserId);
+                objectDb.SetParameterValue("ip", param.Ip);
 
                 AssignResultOutputParam(objectDb);
 
@@ -96,12 +96,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         private static void AssignParam(IObjectDb objectDb, InsertUpdateDomainControlParam param)
         {
-            objectDb.AddInParameter("AffDomainID", DbType.Int32, param.AffDomainId);
-            objectDb.AddInParameter("12BetDomainID", DbType.Int32, param.RedirectDomainId);
-            objectDb.AddInParameter("MarketID", DbType.String, param.MarketId);
-            objectDb.AddInParameter("Status", DbType.Int32, param.IsUsed);
-            objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            objectDb.SetParameterValue("AffDomainID", param.AffDomainId);
+            objectDb.SetParameterValue("12BetDomainID", param.RedirectDomainId);
+            objectDb.SetParameterValue("MarketID", param.MarketId);
+            objectDb.SetParameterValue("Status", param.IsUsed);
+            objectDb.SetParameterValue("UserID", param.UserId);
+            objectDb.SetParameterValue("IP", param.Ip);
 
             AssignResultOutputParam(objectDb);
         }

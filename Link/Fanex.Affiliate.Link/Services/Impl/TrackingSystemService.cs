@@ -4,6 +4,7 @@
     using Fanex.Affiliate.Link.DataAccess.Impl;
     using Fanex.Affiliate.Link.DataAccess.Interface;
     using Fanex.Affiliate.Link.Services.Interface;
+    using Fanex.Data.Repository;
 
     /// <summary>
     /// Tracking system statistics.
@@ -35,7 +36,7 @@
         /// <param name="trackingSystemDataAccess">Account data access.</param>
         private TrackingSystemService(ITrackingSystemDataAccess trackingSystemDataAccess)
         {
-            _trackingSystemDataAccess = trackingSystemDataAccess ?? new TrackingSystemDataAccess();
+            _trackingSystemDataAccess = trackingSystemDataAccess ?? new TrackingSystemDataAccess(new DynamicRepository());
         }
 
         #endregion Constructor

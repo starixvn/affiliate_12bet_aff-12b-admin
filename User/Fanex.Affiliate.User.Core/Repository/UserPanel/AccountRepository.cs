@@ -226,10 +226,10 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var db = _builder.Build(uSpKey))
             {
-                db.AddInParameter("AffId", SqlDbType.Int, affId);
-                db.AddInParameter("SecretKey", SqlDbType.VarChar, secretKey);
-                db.AddOutParameter("ErrCode", SqlDbType.Int, DbParam.ErrCodeSize);
-                db.AddOutParameter("ErrMsg", SqlDbType.NVarChar, DbParam.ErrMsgSize);
+                db.SetParameterValue("AffId", affId);
+                db.SetParameterValue("SecretKey", secretKey);
+                db.SetParameterValue("ErrCode", DbParam.ErrCodeSize);
+                db.SetParameterValue("ErrMsg", DbParam.ErrMsgSize);
 
                 db.ExecuteNonQuery();
 
