@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.Link.DataAccess.Impl
 {
-    using Fanex.Affiliate.Link.Criterias;
+    using Fanex.Affiliate.Link.Commands;
     using Fanex.Affiliate.Link.DataAccess.Interface;
     using Fanex.Data.Repository;
 
@@ -21,9 +21,11 @@
             _dynamicRepository = dynamicRepository;
         }
 
-        public string InsertStatistic(TrackingSystemCriteria criteria)
+        public string InsertStatistic(TrackingSystemCommand command)
         {
-            return _dynamicRepository.Get<string>(criteria);
+            _dynamicRepository.Execute(command);
+
+            return command.RedirectPage;
         }
     }
 }

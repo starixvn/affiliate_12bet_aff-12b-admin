@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Link.Controllers
     using System;
     using System.Globalization;
     using System.Web.Mvc;
-    using Criterias;
+    using Commands;
     using Helpers;
     using Services.Impl;
     using Services.Interface;
@@ -72,7 +72,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     domainReferrer = string.IsNullOrEmpty(referrerUri.Host) ? null : referrerUri.Host;
                 }
 
-                var criteria = new TrackingSystemCriteria
+                var command = new TrackingSystemCommand
                 {
                     AffDomain = affDomain,
                     AffiliateID = affId,
@@ -97,7 +97,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
                 };
 
-                var redirectUrl = _trackingSystemService.InsertStatistic(criteria);
+                var redirectUrl = _trackingSystemService.InsertStatistic(command);
 
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {

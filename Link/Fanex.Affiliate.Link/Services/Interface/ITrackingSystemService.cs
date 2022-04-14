@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Interface
 {
-    using Fanex.Affiliate.Link.Criterias;
+    using Fanex.Affiliate.Link.Commands;
 
     /// <summary>
     /// Tracking system statistics.
@@ -12,6 +12,6 @@
         /// </summary>
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Success or fail.</returns>
-        string InsertStatistic(TrackingSystemCriteria criteria);
+        string InsertStatistic(TrackingSystemCommand command);
     }
 }
