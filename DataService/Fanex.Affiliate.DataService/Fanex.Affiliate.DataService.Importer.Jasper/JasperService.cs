@@ -138,7 +138,7 @@ namespace Fanex.Affiliate.DataService.Importer.Jasper
 
             var url = $"{_appSetting.GetValue("JasperApiUrl")}";
             var client = _apiClientFactory.CreateApiClient(url, HttpMethod.Post);
-            client.ContentProvider = new XmlContentProvider(requestXml);
+            client.ContentProvider = new XmlContentProvider(HttpUtility.HtmlEncode(requestXml));
 
             return client;
         }
