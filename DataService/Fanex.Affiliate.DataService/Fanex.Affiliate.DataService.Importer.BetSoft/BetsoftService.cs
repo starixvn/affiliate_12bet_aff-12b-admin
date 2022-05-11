@@ -158,7 +158,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var response = xdoc.Root.Element("RESPONSE");
             if (!string.Equals("ok", response.Element("RESULT").Value, StringComparison.InvariantCultureIgnoreCase))
             {
-                LogService.Error($"Betsoft Error:\n{rawData}");
+                LogHelper.WriteError($"Betsoft Error:\n{rawData}");
             }
         }
     }

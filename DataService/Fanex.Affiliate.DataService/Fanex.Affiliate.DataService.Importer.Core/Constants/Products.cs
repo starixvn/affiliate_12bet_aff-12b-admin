@@ -28,6 +28,10 @@
 
         public const int SkywindId = 32;
 
+        public const int JasperId = 34;
+
+        public const int SunstoneId = 35;
+
         public const int PlaytechId = 9;
     }
 

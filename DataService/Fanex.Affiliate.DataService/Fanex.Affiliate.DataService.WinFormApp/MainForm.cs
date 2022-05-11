@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Windows.Forms;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.WinFormApp.Forms;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
@@ -31,7 +32,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             }
             catch (Exception ex)
             {
-                LogService.Error("Error when innit logger", ex);
+                LogHelper.WriteError(ex);
             }
 
         }
@@ -170,15 +171,21 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             SetUpServiceForm(form);
         }
 
-        private void toolStripPingUrl_Click(object sender, EventArgs e)
-        {
-            var form = new PingUrlForm();
-            SetUpServiceForm(form);
-        }
-
         private void btnPlaytech_Click(object sender, EventArgs e)
         {
             var form = new PlaytechForm();
+            SetUpServiceForm(form);
+        }
+
+        private void btnJasper_Click(object sender, EventArgs e)
+        {
+            var form = new JasperForm();
+            SetUpServiceForm(form);
+        }
+
+        private void btnSunstone_Click(object sender, EventArgs e)
+        {
+            var form = new SunstoneForm();
             SetUpServiceForm(form);
         }
     }

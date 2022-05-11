@@ -4,7 +4,6 @@ using Fanex.Affiliate.DataService.Job.Constants;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Logging;
-
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -22,11 +21,11 @@ namespace Fanex.Affiliate.DataService.Job
         private void Init()
         {
 
-            Quartz.Logging.LogProvider.IsDisabled = true;
+            LogProvider.IsDisabled = true;
 
 #if DEBUG
-            Quartz.Logging.LogProvider.IsDisabled = false;
-            Quartz.Logging.LogProvider.SetCurrentLogProvider(new QuartzLogProvider());
+            LogProvider.IsDisabled = false;
+            LogProvider.SetCurrentLogProvider(new QuartzLogProvider());
 #endif
 
             var appSetting = new AppSettings();
@@ -80,7 +79,5 @@ namespace Fanex.Affiliate.DataService.Job
             var scheduler = await GetSchedulerAsync();
             await scheduler.ResumeAll();
         }
-
-
     }
 }

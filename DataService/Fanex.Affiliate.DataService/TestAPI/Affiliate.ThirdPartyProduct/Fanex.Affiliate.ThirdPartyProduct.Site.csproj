@@ -269,6 +269,8 @@
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\betsoft.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\playtech.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\sunstone.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\jasper.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\skywind.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\crystal-gpi.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ebet.js" />
@@ -483,6 +485,8 @@
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\BTi\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Skywind\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Playtech\index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Jasper\index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Sunstone\index.cshtml" />
     <None Include="Properties\PublishProfiles\ThirdPartyApi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

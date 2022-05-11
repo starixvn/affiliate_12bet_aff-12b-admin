@@ -260,6 +260,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
+      <Project>{410276e1-1e99-4662-809c-25f0f1777c08}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Job\Fanex.Affiliate.DataService.Job.csproj">
       <Project>{8df4e9c0-19e3-4722-9cb1-252c087270fb}</Project>
       <Name>Fanex.Affiliate.DataService.Job</Name>

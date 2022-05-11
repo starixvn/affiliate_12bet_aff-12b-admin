@@ -2,6 +2,7 @@
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
 using System.Collections.Specialized;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -76,6 +77,10 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
                     response.EnsureSuccessStatusCode();
                     var bytesData = await response.Content.ReadAsByteArrayAsync();
                     var data = Encoding.UTF8.GetString(bytesData);
+
+                    LogHelper.WriteError(Encoding.Unicode.GetString(bytesData));
+                    LogHelper.WriteError(data);
+
                     return data;
                 }
             }

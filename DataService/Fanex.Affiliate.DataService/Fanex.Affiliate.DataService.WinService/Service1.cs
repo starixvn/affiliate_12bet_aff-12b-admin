@@ -11,6 +11,7 @@ using Fanex.Data;
 using Fanex.Data.SqlServer;
 using Fanex.Affiliate.DataService.Job.Log;
 using Fanex.Affiliate.DataService.Job.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
@@ -39,7 +40,7 @@ namespace Fanex.Affiliate.DataService.WinService
             }
             catch (Exception ex)
             {
-                LogService.Error($"Connect db error {ex.Message}", ex.InnerException);
+                LogHelper.WriteError(ex);
             }
 
         }
@@ -53,7 +54,7 @@ namespace Fanex.Affiliate.DataService.WinService
             }
             catch (Exception ex)
             {
-                LogService.Error("Error when innit logger", ex);
+                LogHelper.WriteError(ex);
             }
 
         }
@@ -98,12 +99,12 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             try
             {
-                LogService.Info("Start 12bet AFF service");
+                LogHelper.WriteInfo("Start 12bet AFF service");
                 _schedulerFactory.SetUpAsync();
             }
             catch (Exception exception)
             {
-                LogService.Error(exception.Message, exception.InnerException);
+                LogHelper.WriteError(exception);
             }
         }
 
@@ -111,12 +112,12 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             try
             {
-                LogService.Info("Stop 12bet AFF service");
+                LogHelper.WriteInfo("Stop 12bet AFF service");
                 _schedulerFactory.ShutdownAsync();
             }
             catch (Exception exception)
             {
-                LogService.Error(exception.Message, exception.InnerException);
+                LogHelper.WriteError(exception);
             }
         }
 
@@ -124,20 +125,20 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             base.OnPause();
 
-            this._schedulerFactory.PauseAsync();
+            _schedulerFactory.PauseAsync();
         }
 
         protected override void OnContinue()
         {
             base.OnContinue();
 
-            this._schedulerFactory.ResumeAsync();
+            _schedulerFactory.ResumeAsync();
         }
 
         protected override void OnShutdown()
         {
             base.OnShutdown();
-            this._schedulerFactory.ShutdownAsync();
+            _schedulerFactory.ShutdownAsync();
         }
     }
 }

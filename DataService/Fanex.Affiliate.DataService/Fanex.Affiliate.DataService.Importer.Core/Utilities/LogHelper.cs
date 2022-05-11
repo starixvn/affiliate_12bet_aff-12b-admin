@@ -12,6 +12,12 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
     public static class LogHelper
     {
         private const int LimitedLevelOfInnerException = 5;
+
+        public static void WriteError(string msg)
+        {
+            LogService.Error(msg);
+        }
+
         public static void WriteError(Exception exception)
         {
             var content = new StringBuilder().AppendLine($"Error Message: {exception.Message}");
@@ -25,6 +31,25 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
         public static void WriteInfo(string msg)
         {
             LogService.Info(msg);
+        }
+
+        public static void Info(string format, params object[] args)
+        {
+            LogService.Info(format, args);
+        }
+
+        public static void Warn(string format, params object[] args)
+        {
+            LogService.Warn(format, args);
+        }
+        public static void Debug(string format, params object[] args)
+        {
+            LogService.Debug(format, args);
+        }
+
+        public static void Critical(string format, params object[] args)
+        {
+            LogService.Critical(format, args);
         }
 
         private static void AddDatabaseInfo(StringBuilder builder, Exception exception)
