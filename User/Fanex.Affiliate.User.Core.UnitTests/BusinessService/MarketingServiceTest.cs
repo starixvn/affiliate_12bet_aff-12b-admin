@@ -101,7 +101,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             service.GetCurrencyList(false);
 
             Repo.DidNotReceive().GetCurrencyList(false);
-            CacheService.Received().Set(CacheKey.CurrencyList, Arg.Compat.Any<IEnumerable<CurrencyType>>());
+            CacheService.DidNotReceive().Set(CacheKey.CurrencyList, Arg.Compat.Any<IEnumerable<CurrencyType>>());
         }
 
         [Fact]
@@ -148,7 +148,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var result = service.GetBannerTypeList(false);
 
             Repo.Received().GetBannerTypeList(false);
-            CacheService.DidNotReceiveWithAnyArgs().Set(CacheKey.BannerTypeList, Arg.Compat.Any<IEnumerable<BannerType>>());
+            CacheService.Received().Set(CacheKey.BannerTypeList, Arg.Compat.Any<IEnumerable<BannerType>>());
             Assert.Empty(result);
 
         }
@@ -162,7 +162,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var result = service.GetBannerTypeList(false);
 
             Repo.DidNotReceive().GetBannerTypeList(false);
-            CacheService.Received().Set(CacheKey.BannerTypeList, Arg.Compat.Any<IEnumerable<BannerType>>());
+            CacheService.DidNotReceive().Set(CacheKey.BannerTypeList, Arg.Compat.Any<IEnumerable<BannerType>>());
             Assert.NotEmpty(result);
         }
 
@@ -190,7 +190,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var result = service.GetDomainList(0, false);
 
             Repo.Received().GetDomainList(0, false);
-            CacheService.DidNotReceiveWithAnyArgs().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
+            CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
             Assert.Empty(result);
         }
 
@@ -203,7 +203,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var result = service.GetDomainList(0, false);
 
             Repo.DidNotReceive().GetDomainList(0, false);
-            CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
+            CacheService.DidNotReceive().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
             Assert.NotEmpty(result);
         }
 
