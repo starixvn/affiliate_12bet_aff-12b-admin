@@ -45,10 +45,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var cacheKey = isAfterLogin && isInternal ? CacheKey.InternalLanguageList : CacheKey.LanguageList;
 
             var languageList = _cacheService.Get<IEnumerable<Language>>(cacheKey);
-            languageList = languageList ?? _languageRepository.GetLanguageList(isInternal, _sessionService.UserSession?.UserId);
 
-            if (languageList != null)
+            if (languageList == null)
             {
+                languageList = _languageRepository.GetLanguageList(isInternal, _sessionService.UserSession?.UserId);
                 _cacheService.Set(cacheKey, languageList);
             }
 
