@@ -23,7 +23,7 @@ describe('left panel - components - Content', () => {
             NoSiteDescription: "",
             Phone: "abc",
             PreferredLanguage: "vi-VN",
-            SiteUrl: "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+            SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
             Status: "Approved"
         }
         const result = shallow(<GeneralInfo affiliateInfo={affiliateInfo} claimsPrincipal={{ hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) }} />);

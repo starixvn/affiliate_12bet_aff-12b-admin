@@ -76,7 +76,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
             name="siteUrl"
             onChange={[Function]}
             type="text"
-            value="https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount"
+            value="https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount"
           />
         </Col>
         <Button
@@ -437,7 +437,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
             name="siteUrl"
             onChange={[Function]}
             type="text"
-            value="https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount"
+            value="https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount"
           />
         </Col>
         <Button

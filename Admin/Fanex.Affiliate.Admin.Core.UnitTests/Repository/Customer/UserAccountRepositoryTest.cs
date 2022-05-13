@@ -127,7 +127,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
                 ["Postal"] = "700000",
                 ["Country"] = "Viet Nam",
                 ["MoreSiteUrls"] = "www.sportsbookie.com",
-                ["SiteUrl"] = "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+                ["SiteUrl"] = "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
                 ["PreferredPayment"] = "Player",
                 ["PlayerUsername"] = "bettingexp",
                 ["NoSiteDesc"] = "test",

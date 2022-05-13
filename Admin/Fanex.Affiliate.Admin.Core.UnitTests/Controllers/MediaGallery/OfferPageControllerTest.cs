@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var languageService = new Mock<ILanguageService>();
             languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://ha.nexdev.net:7613/12BetUserAsianNew");
+            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12bet.nexdev.net/12BetUserAsianNew");
             var controller = CreateOfferPageController(languageService: languageService.Object, appSetting: appSetting.Object);
 
             // Action

@@ -37,7 +37,7 @@ describe('offer page - components - Content ', () => {
         checkedIds: { 25: false, 23: false, 22: true },
         param: { pageIndex: 1, pageSize: 20 },
         pagingOption: { PageIndex: 1, PageSize: 20, Total: 0 },
-        previewLink: 'https://ha.nexdev.net:7613/12BetUserAsianNew/',
+        previewLink: 'https://aff-12bet.nexdev.net/12BetUserAsianNew/',
         shouldResetScrollPosition: true,
         isModifiable: true,
         gridData
@@ -127,6 +127,6 @@ describe('offer page - components - Content ', () => {
 
         instance.handlePreview(25);
 
-        expect(window.open).toHaveBeenCalledWith("https://ha.nexdev.net:7613/12BetUserAsianNew/?id=25");
+        expect(window.open).toHaveBeenCalledWith("https://aff-12bet.nexdev.net/12BetUserAsianNew/?id=25");
     });
 })

@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var offerPageService = new Mock<IOfferPageService>();
             offerPageService.Setup(l => l.GetValidEndDateOfferPages()).Returns(new List<OfferPageBasicInfo> { new OfferPageBasicInfo() });
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://ha.nexdev.net:7613/12BetUserAsianNew");
+            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12bet.nexdev.net/12BetUserAsianNew");
             var controller = CreateOfferAffController(offerPageService: offerPageService.Object, appSetting: appSetting.Object);
 
             // Action

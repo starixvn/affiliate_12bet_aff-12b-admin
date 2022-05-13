@@ -28,7 +28,7 @@ describe('left panel - components - panel - SettingPanel', () => {
         NoSiteDescription: "",
         Phone: "abc",
         PreferredLanguage: "vi-VN",
-        SiteUrl: "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+        SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
         Status: "Approved"
     };
 

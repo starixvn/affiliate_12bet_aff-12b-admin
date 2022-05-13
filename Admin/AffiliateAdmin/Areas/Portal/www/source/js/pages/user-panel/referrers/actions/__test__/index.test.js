@@ -91,7 +91,7 @@ describe('referrers actions', () => {
                         SiteUrl: "",
                         TotalClick: 4,
                         UniqueClick: 3,
-                        WebsiteUrl: "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/#MediaGallery"
+                        WebsiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/#MediaGallery"
                     }
                 ],
                 TotalItem: 2
