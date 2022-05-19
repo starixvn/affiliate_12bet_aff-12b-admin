@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.DataService.Importer.Sunstone
             if (Validations.IsRequestSuccess(status))
             {
                 var games = element.Element("result").Elements("game");
-                if(games.Count() != 0)
+                if(games.Any())
                 {
                     var newGames = new List<XElement>();
 
@@ -89,7 +89,7 @@ namespace Fanex.Affiliate.DataService.Importer.Sunstone
 
             var newDeals = new List<XElement>();
 
-            if (deals.Count() != 0)
+            if (deals.Any())
             {
                 foreach(var deal in deals)
                 {
@@ -126,14 +126,6 @@ namespace Fanex.Affiliate.DataService.Importer.Sunstone
 
         private IApiClient GetClient(string requestXml)
         {
-            //var header = new HttpClientHeaderOption
-            //{
-            //    AcceptContent = "*/*",
-            //    Headers = new List<NameValueHeaderValue> {
-            //            new NameValueHeaderValue("Accept-Encoding", "deflate")
-            //        }
-            //};
-
             var url = $"{_appSetting.GetValue("SunstoneApiUrl")}";
             var client = _apiClientFactory.CreateApiClient(url, HttpMethod.Post);
             client.ContentProvider = new XmlContentProvider(requestXml);
@@ -149,13 +141,12 @@ namespace Fanex.Affiliate.DataService.Importer.Sunstone
 
         private string BuildApiRequestXml(SunstoneParam param)
         {
-            return "<?xml version=\"1.0\" encoding=\"utf-16\"?>"
-                + $"<request action=\"${param.Action}\">"
-                + $"<element id=\"${param.ElementId}\">"
-                + $"<properties name=\"vendorid\">${param.VendorId}</properties>"
-                + $"<properties name=\"timezone\">${param.TimeZone}</properties>"
-                + $"<properties name=\"startdate\">${param.StartDate}</properties>"
-                + $"<properties name=\"enddate\">${param.EndDate}</properties>"
+            return $"<request action=\"{param.Action}\">"
+                + $"<element id=\"{param.ElementId}\">"
+                + $"<properties name=\"vendorid\">{param.VendorId}</properties>"
+                + $"<properties name=\"timezone\">{param.TimeZone}</properties>"
+                + $"<properties name=\"startdate\">{param.StartDate}</properties>"
+                + $"<properties name=\"enddate\">{param.EndDate}</properties>"
                 + "</element>"
                 + "</request>";
         }

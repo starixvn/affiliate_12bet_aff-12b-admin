@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
         }
         public HttpContent GetHttpContent(NameValueCollection param)
         {
-            var content = new StringContent(EncodedXml, Encoding.Unicode, "application/xml");
+            var content = new StringContent(EncodedXml, Encoding.UTF8, "application/xml");
             return content;
         }
     }

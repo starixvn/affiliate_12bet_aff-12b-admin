@@ -3,6 +3,8 @@ using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
 using System.Collections.Specialized;
 using System.IO;
+using System.IO.Compression;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -76,10 +78,16 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
                 {
                     response.EnsureSuccessStatusCode();
                     var bytesData = await response.Content.ReadAsByteArrayAsync();
-                    var data = Encoding.UTF8.GetString(bytesData);
-
-                    LogHelper.WriteError(Encoding.Unicode.GetString(bytesData));
-                    LogHelper.WriteError(data);
+                    var data = string.Empty;
+                    if (response.Content.Headers.ContentEncoding.Any(c => string.Equals(c, "gzip", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        var decodeBytes = Decompress(bytesData);
+                        data = Encoding.UTF8.GetString(decodeBytes, 0, decodeBytes.Length);
+                    }
+                    else
+                    {
+                        data = Encoding.UTF8.GetString(bytesData);
+                    }
 
                     return data;
                 }
@@ -87,7 +95,6 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
-
                 return $"Error message: {ex.Message}";
             }
         }
@@ -109,6 +116,18 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             foreach (var header in headers.Headers)
             {
                 defaultHeaders.Add(header.Name, header.Value);
+            }
+        }
+
+        protected static byte[] Decompress(byte[] gzip)
+        {
+            using (GZipStream stream = new GZipStream(new MemoryStream(gzip), CompressionMode.Decompress))
+            {
+                using (MemoryStream memory = new MemoryStream())
+                {
+                    stream.CopyTo(memory);
+                    return memory.ToArray();
+                }
             }
         }
     }

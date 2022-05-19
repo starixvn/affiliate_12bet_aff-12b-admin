@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.DataService.Importer.Jasper
             if (Validations.IsRequestSuccess(status))
             {
                 var games = root.Element("result").Element("gameinfo").Elements("game");
-                if(games.Count() != 0)
+                if(games.Any())
                 {
                     var newGames = new List<XElement>();
 
@@ -91,7 +91,7 @@ namespace Fanex.Affiliate.DataService.Importer.Jasper
 
             var newDeals = new List<XElement>();
 
-            if (deals.Count() != 0)
+            if (deals.Any())
             {
                 foreach(var deal in deals)
                 {
@@ -128,17 +128,9 @@ namespace Fanex.Affiliate.DataService.Importer.Jasper
 
         private IApiClient GetClient(string requestXml)
         {
-            //var header = new HttpClientHeaderOption
-            //{
-            //    AcceptContent = "*/*",
-            //    Headers = new List<NameValueHeaderValue> {
-            //            new NameValueHeaderValue("Accept-Encoding", "gzip")
-            //        }
-            //};
-
             var url = $"{_appSetting.GetValue("JasperApiUrl")}";
             var client = _apiClientFactory.CreateApiClient(url, HttpMethod.Post);
-            client.ContentProvider = new XmlContentProvider(HttpUtility.HtmlEncode(requestXml));
+            client.ContentProvider = new XmlContentProvider(requestXml);
 
             return client;
         }
@@ -151,14 +143,13 @@ namespace Fanex.Affiliate.DataService.Importer.Jasper
 
         private string BuildApiRequestXml(JasperParam param)
         {
-            return "<?xml version=\"1.0\" encoding=\"utf-16\"?>"
-                + $"<request action=\"${param.Action}\">"
+            return $"<request action=\"{param.Action}\">"
                 + "<element>"
-                + $"<properties name=\"vendorid\">${param.VendorId}</properties>"
-                + $"<properties name=\"merchantpasscode\">${param.MerchantPassCode}</properties>"
-                + $"<properties name=\"timezone\">${param.TimeZone}</properties>"
-                + $"<properties name=\"startdate\">${param.StartDate}</properties>"
-                + $"<properties name=\"enddate\">${param.EndDate}</properties>"
+                + $"<properties name=\"vendorid\">{param.VendorId}</properties>"
+                + $"<properties name=\"merchantpasscode\">{param.MerchantPassCode}</properties>"
+                + $"<properties name=\"timezone\">{param.TimeZone}</properties>"
+                + $"<properties name=\"startdate\">{param.StartDate}</properties>"
+                + $"<properties name=\"enddate\">{param.EndDate}</properties>"
                 + "</element>"
                 + "</request>";
         }
