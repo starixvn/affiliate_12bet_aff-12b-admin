@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Importer.Jasper;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.Constants;
@@ -19,6 +20,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
     public class JasperController : Controller
     {
         private readonly IImporterService _service;
+        protected static TimeSpan PullRange => new TimeSpan(1, 0, 0, 0);
 
         public JasperController()
         {
@@ -41,16 +43,20 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             {
                 var startTime = DateTime.ParseExact(param.StartTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
                 var endTime = DateTime.ParseExact(param.EndTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
+                var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, PullRange);
 
-                var rawDataList = await _service.GetRawDataListAsync(startTime, endTime);
-
-                if (rawDataList.Any())
+                foreach (var range in timeRanges)
                 {
-                    foreach (var item in rawDataList)
+                    var rawDataList = await _service.GetRawDataListAsync(range.Item1, range.Item2);
+
+                    if (rawDataList.Any())
                     {
-                        rawDataBuilder.AppendLine(item);
-                        rawDataBuilder.AppendLine("-----------------------------------------");
-                        rawDataBuilder.AppendLine();
+                        foreach (var item in rawDataList)
+                        {
+                            rawDataBuilder.AppendLine(item);
+                            rawDataBuilder.AppendLine("-----------------------------------------");
+                            rawDataBuilder.AppendLine();
+                        }
                     }
                 }
             }
