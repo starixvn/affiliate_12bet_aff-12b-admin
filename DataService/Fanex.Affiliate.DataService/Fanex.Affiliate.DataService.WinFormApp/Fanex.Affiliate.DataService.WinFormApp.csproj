@@ -87,6 +87,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\JasperFileImporter.cs" />
+    <Compile Include="Converter\SunstoneFileImporter.cs" />
     <Compile Include="Converter\SkywindFileImporter.cs" />
     <Compile Include="Converter\IFileImporter.cs" />
     <Compile Include="Converter\BTiFileImporter.cs" />

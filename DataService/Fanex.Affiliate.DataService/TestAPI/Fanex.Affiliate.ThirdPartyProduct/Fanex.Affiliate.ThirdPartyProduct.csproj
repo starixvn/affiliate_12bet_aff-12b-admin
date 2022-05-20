@@ -145,6 +145,7 @@
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Constants\Format.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BetsoftController.cs" />
     <Compile Include="Controllers\BTiController.cs" />
     <Compile Include="Controllers\CrystalGpiController.cs" />

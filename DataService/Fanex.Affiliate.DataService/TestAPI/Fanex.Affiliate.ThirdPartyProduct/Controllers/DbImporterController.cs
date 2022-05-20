@@ -3,6 +3,8 @@ using Fanex.Affiliate.DataService.Importer.Core.Constants;
 using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Importer.Jasper;
+using Fanex.Affiliate.DataService.Importer.Playtech;
+using Fanex.Affiliate.DataService.Importer.Skywind;
 using Fanex.Affiliate.DataService.Importer.Sunstone;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.DTO;
@@ -69,15 +71,19 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         {
             switch (productId)
             {
-                case Products.PlaytechId:
+                case Products.BTiId:
                     return new BTiService();
+                case Products.SkywindId:
+                    return new SkywindService();
                 case Products.JasperId:
                     return new JasperService();
                 case Products.SunstoneId:
                     return new SunstoneService();
+                case Products.PlaytechId:
+                    return new PlaytechService();
 
                 default:
-                    return new JasperService();
+                    return new BTiService();
             }
         }
 
