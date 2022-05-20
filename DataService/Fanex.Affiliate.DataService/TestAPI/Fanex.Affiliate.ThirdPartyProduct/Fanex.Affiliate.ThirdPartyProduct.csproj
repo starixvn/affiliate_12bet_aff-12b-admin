@@ -148,6 +148,7 @@
     <Compile Include="Controllers\BetsoftController.cs" />
     <Compile Include="Controllers\BTiController.cs" />
     <Compile Include="Controllers\CrystalGpiController.cs" />
+    <Compile Include="Controllers\DbImporterController.cs" />
     <Compile Include="Controllers\EbetController.cs" />
     <Compile Include="Controllers\ExchangeSummaryTransctionController.cs" />
     <Compile Include="Controllers\GpiLotteryController.cs" />

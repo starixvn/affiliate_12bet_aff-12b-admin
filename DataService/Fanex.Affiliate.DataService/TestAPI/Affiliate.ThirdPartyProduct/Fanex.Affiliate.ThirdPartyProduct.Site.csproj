@@ -283,6 +283,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\lb-keno.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\db-importer.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ky-gaming.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\topaz-rawdata.js" />
@@ -487,6 +488,7 @@
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Playtech\index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Jasper\index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Sunstone\index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\DbImporter\Index.cshtml" />
     <None Include="Properties\PublishProfiles\ThirdPartyApi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -5,4 +5,8 @@
     <Setting Key="Aff_3rdProduct_XmlDataByQueueIdSel" SpName="Aff_3rdProduct_XmlDataByQueueIdSel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_3rdProduct_TimeTrackerSel" SpName="Aff_3rdProduct_TimeTrackerSel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
+
+  <Function Name="Affiliate - Data Services - Import 12Bet Special Product">
+    <Setting Key="Task_APIProduct_ImportQueue" SpName="Task_APIProduct_ImportQueue" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+  </Function>
 </Functions>
