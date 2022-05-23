@@ -42,14 +42,6 @@ namespace Fanex.Affiliate.DataService.Importer.Jasper
             return datas;
         }
 
-        private async Task<string> GetXmlAsync()
-        {
-            using (var stream = new StreamReader("../../App_Data/JasperData/Jasper.xml"))
-            {
-                return await stream.ReadToEndAsync();
-            }
-        }
-
         public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
             var dataXml = XmlHelper.ParseToXDocument(raw);

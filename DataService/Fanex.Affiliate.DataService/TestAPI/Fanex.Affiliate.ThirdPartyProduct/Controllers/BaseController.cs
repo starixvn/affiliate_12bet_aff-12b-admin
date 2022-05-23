@@ -34,6 +34,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 var endTime = DateTime.ParseExact(param.EndTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
                 var timeRanges = DateTimeHelper.GetProportionTimeRange(startTime, endTime, PullRange);
 
+                LogHelper.WriteInfo("Start get raw data from UAT web " + _service.GetType().Name);
                 foreach (var range in timeRanges)
                 {
                     var rawDataList = await _service.GetRawDataListAsync(range.Item1, range.Item2);
@@ -47,12 +48,15 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                         }
                     }
                 }
+                LogHelper.WriteInfo("Finished get raw data from UAT web");
             }
             catch (Exception ex)
             {
                 logBuilder.AppendLine(ex.Message);
                 logBuilder.AppendLine(ex.StackTrace);
                 logBuilder.AppendLine(ex.Source);
+
+                LogHelper.WriteError(ex);
             }
 
             return Content(JsonConvert.SerializeObject(new ThirdPartyProductViewModel

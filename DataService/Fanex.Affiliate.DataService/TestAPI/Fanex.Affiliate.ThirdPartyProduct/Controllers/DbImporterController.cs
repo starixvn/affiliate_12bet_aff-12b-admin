@@ -40,13 +40,13 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         [HttpPost]
         public async Task<ActionResult> Index(TimeTrackerParam param)
         {
-            LogHelper.WriteInfo("Start import data from UAT web");
             var result = new List<TimeTracker>();
             var timeTracker = new TimeTracker { Currency = 111, CallTime = DateTime.Now };
 
             try
             {
                 _service = GetImporterService(param.ProductId);
+                LogHelper.WriteInfo("Start import data from UAT web " + _service.GetType().Name);
                 var timeRanges = DateTimeHelper.GetProportionTimeRange(param.FromDate, param.ToDate, PullRange);
                 foreach (var range in timeRanges)
                 {
@@ -55,12 +55,12 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     var xmlDatas = await ConvertToXmlAsync(rawDatas);
                     await _service.ImportAsync(xmlDatas.Select(xml => xml.ToString()));
                 }
-                LogHelper.WriteInfo("Finished import from UAT web");
+                LogHelper.WriteInfo("Finished import data from UAT web");
             }
             catch (Exception ex)
             {
                 timeTracker.Currency = -999;
-                LogHelper.WriteInfo($"Exception when get raw data from UAT web - {ex.Message}\n{ex.StackTrace}");
+                LogHelper.WriteError(ex);
             }
 
             result.Add(timeTracker);

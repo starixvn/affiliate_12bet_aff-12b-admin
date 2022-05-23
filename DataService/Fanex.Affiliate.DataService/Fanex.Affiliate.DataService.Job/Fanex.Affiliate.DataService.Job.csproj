@@ -129,10 +129,14 @@
     <Compile Include="Log\LogWrapperManager.cs" />
     <Compile Include="Modules\BTiDailyJob.cs" />
     <Compile Include="Modules\BTiDailyScheduler.cs" />
+    <Compile Include="Modules\SunstoneJob.cs" />
+    <Compile Include="Modules\SunstoneScheduler.cs" />
     <Compile Include="Modules\SkywindDailyJob.cs" />
+    <Compile Include="Modules\JasperJob.cs" />
     <Compile Include="Modules\SkywindJob.cs" />
     <Compile Include="Modules\BTiJob.cs" />
     <Compile Include="Modules\SkywindDailyScheduler.cs" />
+    <Compile Include="Modules\JasperScheduler.cs" />
     <Compile Include="Modules\SkywindScheduler.cs" />
     <Compile Include="Modules\BTiScheduler.cs" />
     <Compile Include="Modules\IMEsportJob.cs" />
@@ -212,6 +216,10 @@
       <Project>{1ff263f2-9c86-416d-af14-699a28beaca6}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.ISoftbet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Jasper\Fanex.Affiliate.DataService.Importer.Jasper.csproj">
+      <Project>{c4bebc98-7eea-4744-b907-7d5f7dc05121}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Jasper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.KY\Fanex.Affiliate.DataService.Importer.KYGaming.csproj">
       <Project>{83A4F55D-1521-4BC3-8A1E-AE9AE607B41C}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.KYGaming</Name>
@@ -227,6 +235,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Skywind\Fanex.Affiliate.DataService.Importer.Skywind.csproj">
       <Project>{527093af-0e41-4fe9-adc6-be897b8bb9a1}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Skywind</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Sunstone\Fanex.Affiliate.DataService.Importer.Sunstone.csproj">
+      <Project>{086f753e-5abf-42e7-a0e5-d6c59224c4a2}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Sunstone</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.FlowGaming.csproj">
       <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>

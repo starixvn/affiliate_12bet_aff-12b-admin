@@ -40,14 +40,6 @@ namespace Fanex.Affiliate.DataService.Importer.Sunstone
             return datas;
         }
 
-        private async Task<string> GetXmlAsync()
-        {
-            using (var stream = new StreamReader("../../App_Data/SunstoneData/sunstone.xml"))
-            {
-                return await stream.ReadToEndAsync();
-            }
-        }
-
         public override Task<XDocument> ConvertRawDataToXmlAsync(string raw)
         {
             var dataXml = XmlHelper.ParseToXDocument(raw);
