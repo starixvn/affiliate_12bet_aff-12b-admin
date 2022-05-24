@@ -72,30 +72,23 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
         private async Task<string> GetDataAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             SetUpRequestHeaders(requestMessage, Headers);
-            try
-            {
-                using (var response = await HttpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false))
-                {
-                    response.EnsureSuccessStatusCode();
-                    var bytesData = await response.Content.ReadAsByteArrayAsync();
-                    var data = string.Empty;
-                    if (response.Content.Headers.ContentEncoding.Any(c => string.Equals(c, "gzip", StringComparison.OrdinalIgnoreCase)))
-                    {
-                        var decodeBytes = Decompress(bytesData);
-                        data = Encoding.UTF8.GetString(decodeBytes, 0, decodeBytes.Length);
-                    }
-                    else
-                    {
-                        data = Encoding.UTF8.GetString(bytesData);
-                    }
 
-                    return data;
-                }
-            }
-            catch (Exception ex)
+            using (var response = await HttpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false))
             {
-                LogHelper.WriteError(ex);
-                return $"Error message: {ex.Message}";
+                response.EnsureSuccessStatusCode();
+                var bytesData = await response.Content.ReadAsByteArrayAsync();
+                var data = string.Empty;
+                if (response.Content.Headers.ContentEncoding.Any(c => string.Equals(c, "gzip", StringComparison.OrdinalIgnoreCase)))
+                {
+                    var decodeBytes = Decompress(bytesData);
+                    data = Encoding.UTF8.GetString(decodeBytes, 0, decodeBytes.Length);
+                }
+                else
+                {
+                    data = Encoding.UTF8.GetString(bytesData);
+                }
+
+                return data;
             }
         }
 

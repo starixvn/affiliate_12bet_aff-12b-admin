@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.DataService.Importer.Jasper
         {
             var deals = gameXml.Elements("deal");
 
-            var newDeals = new List<XElement>();
+            var newDealList = new List<XElement>();
 
             if (deals.Any())
             {
@@ -91,14 +91,23 @@ namespace Fanex.Affiliate.DataService.Importer.Jasper
                     newDeal.SetElementValue("dealid", deal.Attribute("id").Value);
                     SetElementToXElement(newDeal, deal, GetDealFieldNames());
 
-                    var clientbet = deal.Element("betinfo").Element("clientbet");
-                    SetElementToXElement(newDeal, clientbet, GetClientBetFieldNames());
+                    var clientBets = deal.Element("betinfo").Elements("clientbet");
+                    var newClientBetList = new List<XElement>();
 
-                    newDeals.Add(newDeal);
+                    foreach (var clientBet in clientBets)
+                    {
+                        var newClientBet = new XElement("clientbet");
+                        SetElementToXElement(newClientBet, clientBet, GetClientBetFieldNames());
+
+                        newClientBetList.Add(newClientBet);
+                    }
+
+                    newDeal.Add(newClientBetList);
+                    newDealList.Add(newDeal);
                 }
             }
 
-            return newDeals;
+            return newDealList;
         }
 
         private static void SetElementToXElement(XElement newXElement, XElement oldXElement, IEnumerable<string> fieldNames)
