@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             var result = service.GetLatestHotNews(false);
 
-            CacheService.DidNotReceiveWithAnyArgs().Set(CacheKey.LatestHotNews, Arg.Compat.Any<LatestHotNews>());
+            CacheService.Received().Set(CacheKey.LatestHotNews, Arg.Compat.Any<LatestHotNews>());
             Assert.Empty(result.HotNewsList);
         }
 

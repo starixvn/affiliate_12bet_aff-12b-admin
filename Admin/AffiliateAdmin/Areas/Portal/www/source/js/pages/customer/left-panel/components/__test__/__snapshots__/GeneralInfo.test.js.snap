@@ -317,11 +317,11 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
       }
     >
       <a
-        href="http://anonym.to/?http://https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount"
+        href="http://anonym.to/?http://https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount"
         target="_blank"
-        title="http://https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount"
+        title="http://https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount"
       >
-        https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MyAccount
+        https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount
       </a>
     </Col>
   </Row>

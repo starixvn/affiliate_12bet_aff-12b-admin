@@ -98,7 +98,7 @@ describe('landing page actions', () => {
                         Signups: 0,
                         TotalClick: 8,
                         UniqueClick: 4,
-                        WebsiteUrl: "https://ha.nexdev.net:7613/12BetUserAsianNew/UserPanel/Main/#MediaGallery"
+                        WebsiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MediaGallery"
                     },
                     {
                         Fdm: 0,
