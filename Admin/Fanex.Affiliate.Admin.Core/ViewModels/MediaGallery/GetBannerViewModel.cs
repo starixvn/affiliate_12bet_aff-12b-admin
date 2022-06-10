@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery
+﻿using System;
+
+namespace Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery
 {
     public class GetBannerViewModel
     {
@@ -13,6 +15,10 @@
         public string ImageType { get; set; }
 
         public string Size { get; set; }
+
+        public DateTime FromDate { get; set; }
+
+        public DateTime ToDate { get; set; }
 
         public byte AffType { get; set; }
 

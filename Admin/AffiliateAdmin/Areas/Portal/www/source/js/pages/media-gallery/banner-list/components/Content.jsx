@@ -9,6 +9,7 @@ import { resizeWidthHeight } from '../libs/utils';
 import { headerText, globalResource, maxWidthHeight, pcLaptop, mobile } from '../libs/constants';
 import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl } from '../actions';
 import { claimResource } from '../../../../modules/claim';
+import { format } from '../../../../modules/numberFormat';
 
 export const Content = (props) => {
 
@@ -51,7 +52,8 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={50} title={headerText.Device}>{headerText.Device}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.ImageType}>{headerText.ImageType}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Size}>{headerText.Size}</Cell>
-                { isModifiable && <Cell header={true} colWidth={25} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
+                <Cell header={true} colWidth={60} title={headerText.NumberOfCopies}>{headerText.NumberOfCopies}</Cell>
+                { isModifiable && <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
             </Row>
         );
     }
@@ -83,6 +85,7 @@ export const Content = (props) => {
         const fileName = dataItem.FileName;
         const src = `${props.bannerRootUrl}/${fileName}?id=${dataItem.LastUpdateText}`;
         const size = dataItem.Size;
+        const numberOfCopies = format(dataItem.NumberOfCopies);
         const strSize = size.split('x');
         const realWidth = strSize[0];
         const realHeight = strSize[1];
@@ -143,6 +146,7 @@ export const Content = (props) => {
                 </Cell>
                 <Cell className="text-center text-break" title={dataItem.ImageType}>{dataItem.ImageType}</Cell>
                 <Cell className="text-center text-break" title={size}>{size}</Cell>
+                <Cell className="text-center text-break" title={numberOfCopies}>{numberOfCopies}</Cell>
                 {isModifiable &&
                     <Cell className="text-center" title="Edit Banner">
                         <Button color="link" onClick={() => props.setSelectedBannerId(bannerId)}>

@@ -13,7 +13,7 @@ export default class App extends React.PureComponent {
         super(props);
 
         const { categoryList, subCategoryList, languageList, currencyList, imageTypeList, sizeList, affTypeList,
-            paramFromHome, subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl } = window.initialState;
+            paramFromHome, subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl, today } = window.initialState;
 
         const newCategoryList = categoryList.map(item => {
             return {
@@ -48,7 +48,7 @@ export default class App extends React.PureComponent {
         this.store = configureStore({
             languageList, paramFromHome, categoryList: newCategoryList, subCategoryList: newSubCategoryList,
             currencyList: newCurrencyList, imageTypeList, sizeList: newSizeList, affTypeList: newAffTypeList,
-            subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl, claimsPrincipal
+            subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl, claimsPrincipal, today
         }, reducer);
     }
 

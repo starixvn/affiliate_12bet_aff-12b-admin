@@ -22,7 +22,8 @@
             bannerRootUrl: @Html.Raw(Json.Encode(Model.BannerRootUrl)),
             sizeList: @Html.Raw(Json.Encode(Model.SizeList)),
             affTypeList: @Html.Raw(Json.Encode(Model.AffTypeList)),
-            paramFromHome: @Html.Raw(Json.Encode(Model.Param))
+            paramFromHome: @Html.Raw(Json.Encode(Model.Param)),
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/media-gallery.js")"></script>
