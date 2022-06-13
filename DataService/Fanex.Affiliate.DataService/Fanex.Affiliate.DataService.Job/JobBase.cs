@@ -1,12 +1,7 @@
 ﻿using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.Job.Log;
-using Fanex.Caching;
 using ONEbook.UM;
-using ONEbook.UM.Configurations;
-using ONEbook.UM.Helpers;
-using ONEbook.UM.NETFramework;
 using ONEbook.UM.Services;
-using ONEbook.UM.Transport;
 using Quartz;
 using System;
 using System.Threading.Tasks;
@@ -19,7 +14,6 @@ namespace Fanex.Affiliate.DataService.Job
         {
             var type = this.GetType();
             Logger = LoggerFactory.CreateLogger(type.FullName);
-            SetUpUMEnviroment();
         }
 
         protected ILogWrapper Logger { get; set; }
@@ -57,16 +51,5 @@ namespace Fanex.Affiliate.DataService.Job
         }
 
         protected abstract Task ImportDataToSystem(IJobExecutionContext context = null);
-
-        private static void SetUpUMEnviroment()
-        {
-            var umConfig = new UMClientConfiguration().Initialize();
-
-            UMClientManager
-               .UseConfig(umConfig)
-               .UseCacheService(new UMCacheService(new CacheService()))
-               .UseRestClient(new UMRestClient(umConfig))
-               .UseHttpContext(new EmptyHttpContextHelper());
-        }
     }
 }

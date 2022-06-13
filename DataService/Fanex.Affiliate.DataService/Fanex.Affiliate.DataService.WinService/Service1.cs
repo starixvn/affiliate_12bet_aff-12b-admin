@@ -12,6 +12,12 @@ using Fanex.Data.SqlServer;
 using Fanex.Affiliate.DataService.Job.Log;
 using Fanex.Affiliate.DataService.Job.Constants;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using ONEbook.UM.Configurations;
+using ONEbook.UM;
+using ONEbook.UM.Transport;
+using Fanex.Caching;
+using ONEbook.UM.Helpers;
+using ONEbook.UM.NETFramework;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
@@ -25,6 +31,7 @@ namespace Fanex.Affiliate.DataService.WinService
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             InitLogging();
             InitDbConnect();
+            SetUpUMEnviroment();
             _schedulerFactory = new JobSchedulerFactory();
 
         }
@@ -95,6 +102,17 @@ namespace Fanex.Affiliate.DataService.WinService
             }
         }
 
+        private static void SetUpUMEnviroment()
+        {
+            var umConfig = new UMClientConfiguration().Initialize();
+
+            UMClientManager
+               .UseConfig(umConfig)
+               .UseCacheService(new UMCacheService(new CacheService()))
+               .UseRestClient(new UMRestClient(umConfig))
+               .UseHttpContext(new EmptyHttpContextHelper());
+        }
+
         protected override void OnStart(string[] args)
         {
             try
@@ -125,6 +143,7 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             base.OnPause();
 
+            LogHelper.WriteInfo("Pause 12bet AFF service");
             _schedulerFactory.PauseAsync();
         }
 
@@ -132,12 +151,15 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             base.OnContinue();
 
+            LogHelper.WriteInfo("Resume 12bet AFF service");
             _schedulerFactory.ResumeAsync();
         }
 
         protected override void OnShutdown()
         {
             base.OnShutdown();
+
+            LogHelper.WriteInfo("Shutdown 12bet AFF service");
             _schedulerFactory.ShutdownAsync();
         }
     }
