@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     while (reader.Read())
                     {
                         var bannerInfo = BuildBannerInfoItem(reader);
-                        bannerInfo.NumberOfCopies = 1000;
+                        bannerInfo.NumberOfCopies = Convert.ToInt32(reader["NumberOfCopies"]);
                         bannerInfo.LastUpdate = reader["UpdatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["UpdatedDate"]);
 
                         dataList.Add(bannerInfo);
