@@ -241,6 +241,9 @@ var MediaGallery = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
 
+    let isCountDown = false;
+    let preBannerId = 0;
+
     function initPager() {
         $("#marketingPager").pager({
             totalItems: parseInt($("#TotalItem").val()),
@@ -317,7 +320,12 @@ var MediaGallery = (function ($) {
                 MarketingBase.generateTextLink();
             });
 
-            new ClipboardJS('.copy-banner-code');
+            var clipboard = new ClipboardJS('.copy-banner-code');
+
+            clipboard.on('success', function (e) {
+                var data = e.trigger.dataset;
+                data && _me.countNumberOfCopies(data.original);
+            })
         },
 
         togglePager: function () {
@@ -349,6 +357,33 @@ var MediaGallery = (function ($) {
                     Site.hideLoader();
                 }
             });
+        },
+
+        countNumberOfCopies: function (bannerId) {
+            if (!isCountDown || bannerId != preBannerId) {
+                $("#alert-block").show();
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    cache: false,
+                    data: { bannerId },
+                    url: Site.resolveRelativeUrl("UserPanel/MediaGallery/CountNumberOfCopies"),
+                    success: function (response) {
+                    },
+                    beforeSend: function () {
+                        isCountDown = true;
+                        preBannerId = bannerId;
+                    }
+                });
+
+                window.setTimeout(_me.hideAlert, 3000);
+            }
+        },
+
+        hideAlert: function () {
+            isCountDown = false;
+            $("#alert-block").hide();
         },
 
         getSize: function () {

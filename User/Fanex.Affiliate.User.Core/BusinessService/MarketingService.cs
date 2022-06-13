@@ -185,6 +185,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _marketingRepository.GetLandingPageList(isInternal);
         }
 
+        public ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param)
+        {
+            return _marketingRepository.CountNumberOfCopies(param);
+        }
+
         private static string GenerateLink(LinkBaseParam linkParam, string shortedLanguageCode)
         {
             var selectedDomain = linkParam.SelectedDomain;

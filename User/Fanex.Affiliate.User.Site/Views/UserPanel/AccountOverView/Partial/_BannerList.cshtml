@@ -6,6 +6,14 @@
 @model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.MarketingItem>
 
 <div class="list-container">
+    <div class="alert-block" id="alert-block" style="display: none;">
+        <div class="alert-block-group">
+            <div class="alert-block-group-circle">
+                <i class="glyphicon glyphicon-ok"></i>
+            </div>
+            <strong>Copied</strong>
+        </div>
+    </div>
     <ul class="list-unstyled list-content">
         @if (totalItem < 1)
         {
@@ -17,12 +25,12 @@
             {
                 <li class="banner-control">
                     <a class="banner-link padding" onclick='window.open("@(banner.RedirectLink + "?ref=")" + encodeURIComponent(window.location.href),"_blank"); return false;' href="javascript:;">
-                        <img class="banner-link-img"  src="@banner.FileName" alt="Affiliate 12Bet Banner" />
+                        <img class="banner-link-img" src="@banner.FileName" alt="Affiliate 12Bet Banner" />
                     </a>
                     <div class="banner-control-button">
                         <div class="banner-code padding">
                             <p>Dimension: <strong class="banner-size">@banner.Size</strong></p>
-                            <a href="javascript:;" class="copy-banner-code" data-clipboard-text="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@banner.Width' height='@banner.Height' alt='A banner' /></a>">
+                            <a href="javascript:;" class="copy-banner-code" data-original="@banner.BannerId" data-clipboard-text="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@banner.Width' height='@banner.Height' alt='A banner' /></a>">
                                 <img src="~/www/build/styles/Images/account-overview/icon-copy.png" alt="Copy icon" /> Copy Banner Code
                             </a>
                         </div>
