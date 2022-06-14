@@ -9,6 +9,7 @@
 
     let isCountDown = false;
     let preBannerId = 0;
+    let myTimeout = null;
 
     function initPager() {
         $("#marketingPager").pager({
@@ -129,6 +130,9 @@
             if (!isCountDown || bannerId != preBannerId) {
                 $("#alert-block").show();
 
+                myTimeout && window.clearTimeout(myTimeout);
+                myTimeout = window.setTimeout(_me.hideAlert, 3000);
+
                 $.ajax({
                     type: "POST",
                     dataType: "json",
@@ -142,8 +146,6 @@
                         preBannerId = bannerId;
                     }
                 });
-
-                window.setTimeout(_me.hideAlert, 3000);
             }
         },
 

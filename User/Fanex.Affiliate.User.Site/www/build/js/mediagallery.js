@@ -243,6 +243,7 @@ var MediaGallery = (function ($) {
 
     let isCountDown = false;
     let preBannerId = 0;
+    let myTimeout = null;
 
     function initPager() {
         $("#marketingPager").pager({
@@ -363,6 +364,9 @@ var MediaGallery = (function ($) {
             if (!isCountDown || bannerId != preBannerId) {
                 $("#alert-block").show();
 
+                myTimeout && window.clearTimeout(myTimeout);
+                myTimeout = window.setTimeout(_me.hideAlert, 3000);
+
                 $.ajax({
                     type: "POST",
                     dataType: "json",
@@ -376,8 +380,6 @@ var MediaGallery = (function ($) {
                         preBannerId = bannerId;
                     }
                 });
-
-                window.setTimeout(_me.hideAlert, 3000);
             }
         },
 
