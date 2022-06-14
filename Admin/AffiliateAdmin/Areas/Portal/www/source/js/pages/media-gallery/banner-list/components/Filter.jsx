@@ -18,7 +18,6 @@ export class Filter extends PureComponent {
         const now = new Date(today);
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-        console.log(today);
 
         this.state = {
             category: '',
