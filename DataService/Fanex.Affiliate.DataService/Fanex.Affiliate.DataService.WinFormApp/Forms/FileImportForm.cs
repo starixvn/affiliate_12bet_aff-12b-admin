@@ -38,7 +38,9 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 {"Topaz", new TopazFileImporter() },
                 {"BTi", new BTiFileImporter() },
                 {"IMEsport", new IMEsportImporter() },
-                {"Skywind", new SkywindImporter() }
+                {"Skywind", new SkywindImporter() },
+                {"Jasper", new JasperImporter() },
+                {"Sunstone", new SunstoneImporter() },
             };
             return dic;
         }

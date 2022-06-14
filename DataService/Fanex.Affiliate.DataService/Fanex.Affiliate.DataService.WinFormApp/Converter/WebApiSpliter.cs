@@ -1,8 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Converter
 {
@@ -10,7 +7,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Converter
     {
         public IEnumerable<string> Split(string data)
         {
-            var rawDatas = data.Split(new[] { "-----------------------------------------" }, StringSplitOptions.RemoveEmptyEntries);
+            var rawDatas = data.Split(new[] { "\r\n-----------------------------------------\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             return rawDatas;
         }
     }

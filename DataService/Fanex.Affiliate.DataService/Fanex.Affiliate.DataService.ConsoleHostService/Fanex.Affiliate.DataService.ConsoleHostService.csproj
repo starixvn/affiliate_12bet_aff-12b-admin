@@ -217,6 +217,10 @@
       <Project>{bffceb05-ad21-4881-b38c-612996966c0d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.BetSoft</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.BTi\Fanex.Affiliate.DataService.Importer.BTi.csproj">
+      <Project>{e962c537-380b-439b-b66f-6e3fd8fbdbf6}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.BTi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
       <Project>{410276e1-1e99-4662-809c-25f0f1777c08}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Core</Name>
@@ -237,6 +241,10 @@
       <Project>{1ff263f2-9c86-416d-af14-699a28beaca6}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.ISoftbet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Jasper\Fanex.Affiliate.DataService.Importer.Jasper.csproj">
+      <Project>{c4bebc98-7eea-4744-b907-7d5f7dc05121}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Jasper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.KY\Fanex.Affiliate.DataService.Importer.KYGaming.csproj">
       <Project>{83a4f55d-1521-4bc3-8a1e-ae9ae607b41c}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.KYGaming</Name>
@@ -248,6 +256,14 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Opus\Fanex.Affiliate.DataService.Importer.Opus.csproj">
       <Project>{07b4e979-023d-4b6f-8caf-ce6919ade584}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Opus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Skywind\Fanex.Affiliate.DataService.Importer.Skywind.csproj">
+      <Project>{527093af-0e41-4fe9-adc6-be897b8bb9a1}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Skywind</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Sunstone\Fanex.Affiliate.DataService.Importer.Sunstone.csproj">
+      <Project>{086f753e-5abf-42e7-a0e5-d6c59224c4a2}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Sunstone</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.FlowGaming.csproj">
       <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>

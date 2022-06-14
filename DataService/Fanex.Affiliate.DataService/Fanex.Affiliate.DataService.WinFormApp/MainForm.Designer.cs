@@ -34,7 +34,6 @@
             this.btnEbet = new System.Windows.Forms.Button();
             this.btnCrystal = new System.Windows.Forms.Button();
             this.btnQuartz = new System.Windows.Forms.Button();
-            //this.btnOpus = new System.Windows.Forms.Button();
             this.btnGpiLottery = new System.Windows.Forms.Button();
             this.btnTopaz = new System.Windows.Forms.Button();
             this.btLBKeno = new System.Windows.Forms.Button();
@@ -46,6 +45,9 @@
             this.btnBTi = new System.Windows.Forms.Button();
             this.btnIMEsport = new System.Windows.Forms.Button();
             this.btnSkywind = new System.Windows.Forms.Button();
+            this.btnPlaytech = new System.Windows.Forms.Button();
+            this.btnJasper = new System.Windows.Forms.Button();
+            this.btnSunstone = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +64,7 @@
             // btnCasino
             // 
             this.btnCasino.Location = new System.Drawing.Point(20, 81);
-            this.btnCasino.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCasino.Margin = new System.Windows.Forms.Padding(4);
             this.btnCasino.Name = "btnCasino";
             this.btnCasino.Size = new System.Drawing.Size(147, 28);
             this.btnCasino.TabIndex = 1;
@@ -73,7 +75,7 @@
             // btnBetsoft
             // 
             this.btnBetsoft.Location = new System.Drawing.Point(204, 81);
-            this.btnBetsoft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBetsoft.Margin = new System.Windows.Forms.Padding(4);
             this.btnBetsoft.Name = "btnBetsoft";
             this.btnBetsoft.Size = new System.Drawing.Size(147, 28);
             this.btnBetsoft.TabIndex = 2;
@@ -83,8 +85,8 @@
             // 
             // btnEbet
             // 
-            this.btnEbet.Location = new System.Drawing.Point(20, 138);
-            this.btnEbet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEbet.Location = new System.Drawing.Point(20, 127);
+            this.btnEbet.Margin = new System.Windows.Forms.Padding(4);
             this.btnEbet.Name = "btnEbet";
             this.btnEbet.Size = new System.Drawing.Size(147, 28);
             this.btnEbet.TabIndex = 3;
@@ -94,8 +96,8 @@
             // 
             // btnCrystal
             // 
-            this.btnCrystal.Location = new System.Drawing.Point(204, 138);
-            this.btnCrystal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCrystal.Location = new System.Drawing.Point(204, 127);
+            this.btnCrystal.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrystal.Name = "btnCrystal";
             this.btnCrystal.Size = new System.Drawing.Size(147, 28);
             this.btnCrystal.TabIndex = 4;
@@ -105,8 +107,8 @@
             // 
             // btnQuartz
             // 
-            this.btnQuartz.Location = new System.Drawing.Point(20, 191);
-            this.btnQuartz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuartz.Location = new System.Drawing.Point(20, 173);
+            this.btnQuartz.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuartz.Name = "btnQuartz";
             this.btnQuartz.Size = new System.Drawing.Size(147, 28);
             this.btnQuartz.TabIndex = 5;
@@ -114,21 +116,10 @@
             this.btnQuartz.UseVisualStyleBackColor = true;
             this.btnQuartz.Click += new System.EventHandler(this.btnQuartz_Click);
             // 
-            // btnOpus
-            // 
-            //this.btnOpus.Location = new System.Drawing.Point(204, 191);
-            //this.btnOpus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            //this.btnOpus.Name = "btnOpus";
-            //this.btnOpus.Size = new System.Drawing.Size(147, 28);
-            //this.btnOpus.TabIndex = 6;
-            //this.btnOpus.Text = "12Diamond - OPUS";
-            //this.btnOpus.UseVisualStyleBackColor = true;
-            //this.btnOpus.Click += new System.EventHandler(this.btnOpus_Click);
-            // 
             // btnGpiLottery
             // 
-            this.btnGpiLottery.Location = new System.Drawing.Point(204, 240);
-            this.btnGpiLottery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGpiLottery.Location = new System.Drawing.Point(204, 220);
+            this.btnGpiLottery.Margin = new System.Windows.Forms.Padding(4);
             this.btnGpiLottery.Name = "btnGpiLottery";
             this.btnGpiLottery.Size = new System.Drawing.Size(147, 28);
             this.btnGpiLottery.TabIndex = 7;
@@ -138,8 +129,8 @@
             // 
             // btnTopaz
             // 
-            this.btnTopaz.Location = new System.Drawing.Point(20, 240);
-            this.btnTopaz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTopaz.Location = new System.Drawing.Point(20, 220);
+            this.btnTopaz.Margin = new System.Windows.Forms.Padding(4);
             this.btnTopaz.Name = "btnTopaz";
             this.btnTopaz.Size = new System.Drawing.Size(147, 28);
             this.btnTopaz.TabIndex = 8;
@@ -149,8 +140,8 @@
             // 
             // btLBKeno
             // 
-            this.btLBKeno.Location = new System.Drawing.Point(204, 290);
-            this.btLBKeno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btLBKeno.Location = new System.Drawing.Point(204, 269);
+            this.btLBKeno.Margin = new System.Windows.Forms.Padding(4);
             this.btLBKeno.Name = "btLBKeno";
             this.btLBKeno.Size = new System.Drawing.Size(147, 28);
             this.btLBKeno.TabIndex = 9;
@@ -160,8 +151,8 @@
             // 
             // btnVrLottery
             // 
-            this.btnVrLottery.Location = new System.Drawing.Point(20, 290);
-            this.btnVrLottery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVrLottery.Location = new System.Drawing.Point(20, 269);
+            this.btnVrLottery.Margin = new System.Windows.Forms.Padding(4);
             this.btnVrLottery.Name = "btnVrLottery";
             this.btnVrLottery.Size = new System.Drawing.Size(147, 28);
             this.btnVrLottery.TabIndex = 10;
@@ -198,8 +189,8 @@
             // 
             // btnKYGaming
             // 
-            this.btnKYGaming.Location = new System.Drawing.Point(20, 342);
-            this.btnKYGaming.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnKYGaming.Location = new System.Drawing.Point(20, 319);
+            this.btnKYGaming.Margin = new System.Windows.Forms.Padding(4);
             this.btnKYGaming.Name = "btnKYGaming";
             this.btnKYGaming.Size = new System.Drawing.Size(147, 28);
             this.btnKYGaming.TabIndex = 12;
@@ -210,8 +201,8 @@
             // 
             // btnBTi
             // 
-            this.btnBTi.Location = new System.Drawing.Point(204, 342);
-            this.btnBTi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBTi.Location = new System.Drawing.Point(204, 319);
+            this.btnBTi.Margin = new System.Windows.Forms.Padding(4);
             this.btnBTi.Name = "btnBTi";
             this.btnBTi.Size = new System.Drawing.Size(147, 28);
             this.btnBTi.TabIndex = 13;
@@ -222,8 +213,8 @@
             // 
             // btnIMEsport
             // 
-            this.btnIMEsport.Location = new System.Drawing.Point(20, 386);
-            this.btnIMEsport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIMEsport.Location = new System.Drawing.Point(20, 369);
+            this.btnIMEsport.Margin = new System.Windows.Forms.Padding(4);
             this.btnIMEsport.Name = "btnIMEsport";
             this.btnIMEsport.Size = new System.Drawing.Size(147, 28);
             this.btnIMEsport.TabIndex = 14;
@@ -234,7 +225,7 @@
             // 
             // btnSkywind
             // 
-            this.btnSkywind.Location = new System.Drawing.Point(204, 386);
+            this.btnSkywind.Location = new System.Drawing.Point(204, 369);
             this.btnSkywind.Margin = new System.Windows.Forms.Padding(4);
             this.btnSkywind.Name = "btnSkywind";
             this.btnSkywind.Size = new System.Drawing.Size(147, 28);
@@ -244,11 +235,49 @@
             this.btnSkywind.UseVisualStyleBackColor = true;
             this.btnSkywind.Click += new System.EventHandler(this.btnSkywind_Click);
             // 
+            // btnPlaytech
+            // 
+            this.btnPlaytech.Location = new System.Drawing.Point(204, 173);
+            this.btnPlaytech.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPlaytech.Name = "btnPlaytech";
+            this.btnPlaytech.Size = new System.Drawing.Size(147, 28);
+            this.btnPlaytech.TabIndex = 16;
+            this.btnPlaytech.Text = "Playtech";
+            this.btnPlaytech.UseVisualStyleBackColor = true;
+            this.btnPlaytech.Click += new System.EventHandler(this.btnPlaytech_Click);
+            // 
+            // btnJasper
+            // 
+            this.btnJasper.Location = new System.Drawing.Point(20, 417);
+            this.btnJasper.Margin = new System.Windows.Forms.Padding(4);
+            this.btnJasper.Name = "btnJasper";
+            this.btnJasper.Size = new System.Drawing.Size(147, 28);
+            this.btnJasper.TabIndex = 17;
+            this.btnJasper.Text = "Jasper";
+            this.btnJasper.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnJasper.UseVisualStyleBackColor = true;
+            this.btnJasper.Click += new System.EventHandler(this.btnJasper_Click);
+            // 
+            // btnSunstone
+            // 
+            this.btnSunstone.Location = new System.Drawing.Point(204, 417);
+            this.btnSunstone.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSunstone.Name = "btnSunstone";
+            this.btnSunstone.Size = new System.Drawing.Size(147, 28);
+            this.btnSunstone.TabIndex = 18;
+            this.btnSunstone.Text = "Sunstone";
+            this.btnSunstone.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnSunstone.UseVisualStyleBackColor = true;
+            this.btnSunstone.Click += new System.EventHandler(this.btnSunstone_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 430);
+            this.ClientSize = new System.Drawing.Size(379, 470);
+            this.Controls.Add(this.btnSunstone);
+            this.Controls.Add(this.btnJasper);
+            this.Controls.Add(this.btnPlaytech);
             this.Controls.Add(this.btnSkywind);
             this.Controls.Add(this.btnIMEsport);
             this.Controls.Add(this.btnBTi);
@@ -257,7 +286,6 @@
             this.Controls.Add(this.btLBKeno);
             this.Controls.Add(this.btnTopaz);
             this.Controls.Add(this.btnGpiLottery);
-            //this.Controls.Add(this.btnOpus);
             this.Controls.Add(this.btnQuartz);
             this.Controls.Add(this.btnCrystal);
             this.Controls.Add(this.btnEbet);
@@ -266,7 +294,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
@@ -297,5 +325,8 @@
         private System.Windows.Forms.Button btnBTi;
         private System.Windows.Forms.Button btnIMEsport;
         private System.Windows.Forms.Button btnSkywind;
+        private System.Windows.Forms.Button btnPlaytech;
+        private System.Windows.Forms.Button btnJasper;
+        private System.Windows.Forms.Button btnSunstone;
     }
 }

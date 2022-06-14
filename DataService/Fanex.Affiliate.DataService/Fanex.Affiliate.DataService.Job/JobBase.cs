@@ -1,14 +1,9 @@
-﻿using Fanex.Affiliate.DataService.Job.Log;
-using Fanex.Caching;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using Fanex.Affiliate.DataService.Job.Log;
 using ONEbook.UM;
-using ONEbook.UM.Configurations;
-using ONEbook.UM.Helpers;
-using ONEbook.UM.NETFramework;
 using ONEbook.UM.Services;
-using ONEbook.UM.Transport;
 using Quartz;
 using System;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.DataService.Job
@@ -29,15 +24,7 @@ namespace Fanex.Affiliate.DataService.Job
         {
             try
             {
-                Logger.Info($"{ServiceName} - Start at {DateTime.Now}");
-
-                var umConfig = new UMClientConfiguration().Initialize();
-
-                UMClientManager
-                   .UseConfig(umConfig)
-                   .UseCacheService(new UMCacheService(new CacheService()))
-                   .UseRestClient(new UMRestClient(umConfig))
-                   .UseHttpContext(new EmptyHttpContextHelper());
+                LogHelper.WriteInfo($"{ServiceName} - Start at {DateTime.Now}");
 
                 var maintenanceService = new MaintenanceService(
                                       UMClientManager.RestClient,
@@ -49,7 +36,7 @@ namespace Fanex.Affiliate.DataService.Job
 
                 if (isUm)
                 {
-                    Logger.Info($"{ServiceName} - System is under maintained");
+                    LogHelper.WriteInfo($"{ServiceName} - System is under maintained");
                 }
                 else
                 {
@@ -57,31 +44,12 @@ namespace Fanex.Affiliate.DataService.Job
                 }
 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                var builder = new StringBuilder();
-                AddExceptionInfo(builder, ex, 3);
-                Logger.Error(builder.ToString(), ex);
+                LogHelper.WriteError(ex);
             }
         }
 
         protected abstract Task ImportDataToSystem(IJobExecutionContext context = null);
-
-        private void AddExceptionInfo(StringBuilder builder, Exception exception,
-                  int limitedInnerException)
-        {
-            builder.AppendLine();
-            builder.AppendLine($"{ServiceName} - EXCEPTION INFO");
-            builder.AppendLine($"Message: {exception.Message}");
-            builder.AppendLine($"Source: {exception.Source}");
-            builder.AppendLine($"TargetSite: {exception.TargetSite}");
-            builder.AppendLine($"StackTrace: {exception.StackTrace}");
-            if (exception.InnerException != null && limitedInnerException > 0)
-            {
-                limitedInnerException--;
-                builder.AppendLine("INNER EXCEPTION");
-                AddExceptionInfo(builder, exception.InnerException, limitedInnerException);
-            }
-        }
     }
 }

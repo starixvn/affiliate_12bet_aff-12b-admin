@@ -11,6 +11,13 @@ using Fanex.Data;
 using Fanex.Data.SqlServer;
 using Fanex.Affiliate.DataService.Job.Log;
 using Fanex.Affiliate.DataService.Job.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
+using ONEbook.UM.Configurations;
+using ONEbook.UM;
+using ONEbook.UM.Transport;
+using Fanex.Caching;
+using ONEbook.UM.Helpers;
+using ONEbook.UM.NETFramework;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
@@ -24,6 +31,7 @@ namespace Fanex.Affiliate.DataService.WinService
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             InitLogging();
             InitDbConnect();
+            SetUpUMEnviroment();
             _schedulerFactory = new JobSchedulerFactory();
 
         }
@@ -39,7 +47,7 @@ namespace Fanex.Affiliate.DataService.WinService
             }
             catch (Exception ex)
             {
-                LogService.Error($"Connect db error {ex.Message}", ex.InnerException);
+                LogHelper.WriteError(ex);
             }
 
         }
@@ -53,7 +61,7 @@ namespace Fanex.Affiliate.DataService.WinService
             }
             catch (Exception ex)
             {
-                LogService.Error("Error when innit logger", ex);
+                LogHelper.WriteError(ex);
             }
 
         }
@@ -94,16 +102,27 @@ namespace Fanex.Affiliate.DataService.WinService
             }
         }
 
+        private static void SetUpUMEnviroment()
+        {
+            var umConfig = new UMClientConfiguration().Initialize();
+
+            UMClientManager
+               .UseConfig(umConfig)
+               .UseCacheService(new UMCacheService(new CacheService()))
+               .UseRestClient(new UMRestClient(umConfig))
+               .UseHttpContext(new EmptyHttpContextHelper());
+        }
+
         protected override void OnStart(string[] args)
         {
             try
             {
-                LogService.Info("Start 12bet AFF service");
+                LogHelper.WriteInfo("Start 12bet AFF service");
                 _schedulerFactory.SetUpAsync();
             }
             catch (Exception exception)
             {
-                LogService.Error(exception.Message, exception.InnerException);
+                LogHelper.WriteError(exception);
             }
         }
 
@@ -111,12 +130,12 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             try
             {
-                LogService.Info("Stop 12bet AFF service");
+                LogHelper.WriteInfo("Stop 12bet AFF service");
                 _schedulerFactory.ShutdownAsync();
             }
             catch (Exception exception)
             {
-                LogService.Error(exception.Message, exception.InnerException);
+                LogHelper.WriteError(exception);
             }
         }
 
@@ -124,20 +143,24 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             base.OnPause();
 
-            this._schedulerFactory.PauseAsync();
+            LogHelper.WriteInfo("Pause 12bet AFF service");
+            _schedulerFactory.PauseAsync();
         }
 
         protected override void OnContinue()
         {
             base.OnContinue();
 
-            this._schedulerFactory.ResumeAsync();
+            LogHelper.WriteInfo("Resume 12bet AFF service");
+            _schedulerFactory.ResumeAsync();
         }
 
         protected override void OnShutdown()
         {
             base.OnShutdown();
-            this._schedulerFactory.ShutdownAsync();
+
+            LogHelper.WriteInfo("Shutdown 12bet AFF service");
+            _schedulerFactory.ShutdownAsync();
         }
     }
 }

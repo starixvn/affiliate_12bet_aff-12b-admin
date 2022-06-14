@@ -268,6 +268,9 @@
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\betsoft.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\playtech.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\sunstone.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\jasper.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\skywind.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\crystal-gpi.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ebet.js" />
@@ -280,6 +283,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\lb-keno.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\db-importer.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ky-gaming.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\topaz-rawdata.js" />
@@ -481,6 +485,10 @@
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\IMEsport\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\BTi\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Skywind\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Playtech\index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Jasper\index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Sunstone\index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\DbImporter\Index.cshtml" />
     <None Include="Properties\PublishProfiles\ThirdPartyApi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

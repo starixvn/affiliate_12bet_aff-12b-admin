@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
             }
             catch (CryptographicException ex)
             {
-                LogService.Error(ex.Message, ex);
+                LogHelper.WriteError(ex);
                 return false;
             }
         }

@@ -48,35 +48,39 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 146);
+            this.label1.Location = new System.Drawing.Point(81, 180);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(74, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "From Date";
             // 
             // fromDatePicker
             // 
-            this.fromDatePicker.Location = new System.Drawing.Point(123, 140);
+            this.fromDatePicker.Location = new System.Drawing.Point(164, 172);
+            this.fromDatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.fromDatePicker.Name = "fromDatePicker";
-            this.fromDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.fromDatePicker.Size = new System.Drawing.Size(265, 22);
             this.fromDatePicker.TabIndex = 1;
             // 
             // txtFileName
             // 
             this.txtFileName.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtFileName.Enabled = false;
-            this.txtFileName.Location = new System.Drawing.Point(64, 190);
+            this.txtFileName.Location = new System.Drawing.Point(85, 234);
+            this.txtFileName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.ReadOnly = true;
-            this.txtFileName.Size = new System.Drawing.Size(493, 20);
+            this.txtFileName.Size = new System.Drawing.Size(656, 22);
             this.txtFileName.TabIndex = 4;
             // 
             // btnBrowse
             // 
             this.btnBrowse.Enabled = false;
-            this.btnBrowse.Location = new System.Drawing.Point(563, 187);
+            this.btnBrowse.Location = new System.Drawing.Point(751, 230);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowse.Size = new System.Drawing.Size(100, 28);
             this.btnBrowse.TabIndex = 5;
             this.btnBrowse.Text = "Chose File";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -84,9 +88,10 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(64, 229);
+            this.btnImport.Location = new System.Drawing.Point(85, 282);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(75, 23);
+            this.btnImport.Size = new System.Drawing.Size(100, 28);
             this.btnImport.TabIndex = 6;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -95,33 +100,37 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 10);
+            this.label3.Location = new System.Drawing.Point(13, 12);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 7;
             this.label3.Text = "Status: ";
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(59, 10);
+            this.lblStatus.Location = new System.Drawing.Point(79, 12);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 13);
+            this.lblStatus.Size = new System.Drawing.Size(0, 17);
             this.lblStatus.TabIndex = 8;
             // 
             // toDatePicker
             // 
-            this.toDatePicker.Location = new System.Drawing.Point(438, 140);
+            this.toDatePicker.Location = new System.Drawing.Point(584, 172);
+            this.toDatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.toDatePicker.Name = "toDatePicker";
-            this.toDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.toDatePicker.Size = new System.Drawing.Size(265, 22);
             this.toDatePicker.TabIndex = 10;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(376, 146);
+            this.label2.Location = new System.Drawing.Point(501, 180);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.Size = new System.Drawing.Size(59, 17);
             this.label2.TabIndex = 9;
             this.label2.Text = "To Date";
             // 
@@ -129,9 +138,11 @@
             // 
             this.groupBox1.Controls.Add(this.rdImportByFiles);
             this.groupBox1.Controls.Add(this.rdImportByDate);
-            this.groupBox1.Location = new System.Drawing.Point(64, 22);
+            this.groupBox1.Location = new System.Drawing.Point(85, 27);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(574, 100);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(765, 123);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select Mode";
@@ -139,9 +150,10 @@
             // rdImportByFiles
             // 
             this.rdImportByFiles.AutoSize = true;
-            this.rdImportByFiles.Location = new System.Drawing.Point(59, 67);
+            this.rdImportByFiles.Location = new System.Drawing.Point(79, 82);
+            this.rdImportByFiles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdImportByFiles.Name = "rdImportByFiles";
-            this.rdImportByFiles.Size = new System.Drawing.Size(93, 17);
+            this.rdImportByFiles.Size = new System.Drawing.Size(121, 21);
             this.rdImportByFiles.TabIndex = 1;
             this.rdImportByFiles.TabStop = true;
             this.rdImportByFiles.Text = "Import By Files";
@@ -152,9 +164,10 @@
             // 
             this.rdImportByDate.AutoSize = true;
             this.rdImportByDate.Checked = true;
-            this.rdImportByDate.Location = new System.Drawing.Point(59, 33);
+            this.rdImportByDate.Location = new System.Drawing.Point(79, 41);
+            this.rdImportByDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdImportByDate.Name = "rdImportByDate";
-            this.rdImportByDate.Size = new System.Drawing.Size(95, 17);
+            this.rdImportByDate.Size = new System.Drawing.Size(122, 21);
             this.rdImportByDate.TabIndex = 0;
             this.rdImportByDate.TabStop = true;
             this.rdImportByDate.Text = "Import By Date";
@@ -167,16 +180,17 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.lblStatus);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 260);
+            this.panel1.Location = new System.Drawing.Point(0, 320);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(701, 88);
+            this.panel1.Size = new System.Drawing.Size(935, 108);
             this.panel1.TabIndex = 12;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 348);
+            this.ClientSize = new System.Drawing.Size(935, 428);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toDatePicker);
@@ -186,6 +200,7 @@
             this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.fromDatePicker);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Data Importing Service";

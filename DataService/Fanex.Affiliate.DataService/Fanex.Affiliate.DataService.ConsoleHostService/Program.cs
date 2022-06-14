@@ -10,6 +10,7 @@ using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
 using Fanex.Affiliate.DataService.Job.Log;
 using Fanex.Affiliate.DataService.Job.Constants;
+using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 
 namespace Fanex.Affiliate.DataService.ConsoleHostService
 {
@@ -25,7 +26,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
 
             InitLogging();
             RunJobs().GetAwaiter().GetResult();
-            LogService.Info("Done");
+            LogHelper.WriteInfo("Done");
 
             Console.ReadLine();
         }
@@ -34,7 +35,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         {
             var schedulerFactory = new JobSchedulerFactory();
             await schedulerFactory.SetUpAsync();
-            LogService.Info("StartService!!!");
+            LogHelper.WriteInfo("StartService!!!");
             await schedulerFactory.PauseAsync();
             await schedulerFactory.ResumeAsync();
         }
@@ -48,7 +49,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
             }
             catch (Exception ex)
             {
-                LogService.Error("Error when innit logger", ex);
+                LogHelper.WriteError(ex);
             }
 
         }

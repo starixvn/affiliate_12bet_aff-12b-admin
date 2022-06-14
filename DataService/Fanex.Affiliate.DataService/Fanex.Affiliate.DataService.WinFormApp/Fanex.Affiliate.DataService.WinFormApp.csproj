@@ -51,6 +51,9 @@
       <HintPath>..\..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Logging.Sentry.RavenClient, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Logging.Sentry.RavenClient.1.0.1\lib\net461\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -58,9 +61,15 @@
       <HintPath>..\..\..\packages\Polly.7.2.0\lib\net461\Polly.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SharpRaven, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -78,6 +87,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\JasperFileImporter.cs" />
+    <Compile Include="Converter\SunstoneFileImporter.cs" />
     <Compile Include="Converter\SkywindFileImporter.cs" />
     <Compile Include="Converter\IFileImporter.cs" />
     <Compile Include="Converter\BTiFileImporter.cs" />
@@ -97,6 +108,24 @@
     </Compile>
     <Compile Include="Forms\BetsoftForm.Designer.cs">
       <DependentUpon>BetsoftForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SunstoneForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SunstoneForm.Designer.cs">
+      <DependentUpon>SunstoneForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PlaytechForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PlaytechForm.Designer.cs">
+      <DependentUpon>PlaytechForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\JasperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\JasperForm.Designer.cs">
+      <DependentUpon>JasperForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SkywindForm.cs">
       <SubType>Form</SubType>
@@ -197,6 +226,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BetsoftForm.resx">
       <DependentUpon>BetsoftForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SunstoneForm.resx">
+      <DependentUpon>SunstoneForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PlaytechForm.resx">
+      <DependentUpon>PlaytechForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\JasperForm.resx">
+      <DependentUpon>JasperForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SkywindForm.resx">
       <DependentUpon>SkywindForm.cs</DependentUpon>
@@ -398,14 +436,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Fanex.Affiliate.DataService.Importer.BTi\Fanex.Affiliate.DataService.Importer.BTi.csproj">
-      <Project>{e962c537-380b-439b-b66f-6e3fd8fbdbf6}</Project>
-      <Name>Fanex.Affiliate.DataService.Importer.BTi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Fanex.Affiliate.DataService.Importer.Skywind\Fanex.Affiliate.DataService.Importer.Skywind.csproj">
-      <Project>{527093af-0e41-4fe9-adc6-be897b8bb9a1}</Project>
-      <Name>Fanex.Affiliate.DataService.Importer.Skywind</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.AgCasino\Fanex.Affiliate.DataService.Importer.AgCasino.csproj">
       <Project>{e1fea403-e07c-4d0b-8d9c-4a79ff356b18}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.AgCasino</Name>
@@ -413,6 +443,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.BetSoft\Fanex.Affiliate.DataService.Importer.BetSoft.csproj">
       <Project>{bffceb05-ad21-4881-b38c-612996966c0d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.BetSoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.BTi\Fanex.Affiliate.DataService.Importer.BTi.csproj">
+      <Project>{e962c537-380b-439b-b66f-6e3fd8fbdbf6}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.BTi</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Core\Fanex.Affiliate.DataService.Importer.Core.csproj">
       <Project>{410276E1-1E99-4662-809C-25F0F1777C08}</Project>
@@ -434,6 +468,10 @@
       <Project>{1ff263f2-9c86-416d-af14-699a28beaca6}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.ISoftbet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Jasper\Fanex.Affiliate.DataService.Importer.Jasper.csproj">
+      <Project>{c4bebc98-7eea-4744-b907-7d5f7dc05121}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Jasper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.KY\Fanex.Affiliate.DataService.Importer.KYGaming.csproj">
       <Project>{83A4F55D-1521-4BC3-8A1E-AE9AE607B41C}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.KYGaming</Name>
@@ -445,6 +483,18 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Opus\Fanex.Affiliate.DataService.Importer.Opus.csproj">
       <Project>{07b4e979-023d-4b6f-8caf-ce6919ade584}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.Opus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.PlayTech\Fanex.Affiliate.DataService.Importer.Playtech.csproj">
+      <Project>{c6477239-7648-447b-8166-d8bd6ad23bf6}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Playtech</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Skywind\Fanex.Affiliate.DataService.Importer.Skywind.csproj">
+      <Project>{527093af-0e41-4fe9-adc6-be897b8bb9a1}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Skywind</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Sunstone\Fanex.Affiliate.DataService.Importer.Sunstone.csproj">
+      <Project>{086f753e-5abf-42e7-a0e5-d6c59224c4a2}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.Sunstone</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.Topaz\Fanex.Affiliate.DataService.Importer.FlowGaming.csproj">
       <Project>{95eaaaf6-df49-4ffb-a67b-23ffb195cd9d}</Project>
