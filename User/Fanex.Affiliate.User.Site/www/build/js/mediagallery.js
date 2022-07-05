@@ -323,7 +323,6 @@ var MediaGallery = (function ($) {
 
             $("#alertMediaBlockRemove").on("click", function () {
                 _me.hideAlert();
-
                 myTimeout && window.clearTimeout(myTimeout);
             });
 
@@ -391,6 +390,7 @@ var MediaGallery = (function ($) {
 
         hideAlert: function () {
             isCountDown = false;
+
             $("#alertMediaBlock").hide();
         },
 

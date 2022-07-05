@@ -89,7 +89,6 @@
 
             $("#alertMediaBlockRemove").on("click", function () {
                 _me.hideAlert();
-
                 myTimeout && window.clearTimeout(myTimeout);
             });
 
@@ -157,6 +156,7 @@
 
         hideAlert: function () {
             isCountDown = false;
+
             $("#alertMediaBlock").hide();
         },
 

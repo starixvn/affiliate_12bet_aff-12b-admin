@@ -26,7 +26,21 @@
         <div class="title">
             <span class="text">@Lang.Banner</span>
         </div>
-
+        <div class="alert-media" id="alertMediaBlock" style="display: none;">
+            <div class="alert-media-block">
+                <div class="alert-media-block-remove">
+                    <div class="alert-glyphicon-remove" id="alertMediaBlockRemove">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </div>
+                </div>
+                <div class="alert-media-block-group">
+                    <div class="alert-media-block-group-circle">
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </div>
+                    <strong>Copied</strong>
+                </div>
+            </div>
+        </div>
         <div id="marketingDataList">
             @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_BannerList.cshtml", Model.MarketingDataList); }
         </div>
