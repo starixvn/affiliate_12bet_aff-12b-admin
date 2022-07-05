@@ -6,12 +6,19 @@
 @model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.MarketingItem>
 
 <div class="list-container">
-    <div class="alert-block" id="alert-block" style="display: none;">
-        <div class="alert-block-group">
-            <div class="alert-block-group-circle">
-                <i class="glyphicon glyphicon-ok"></i>
+    <div class="alert-media" id="alertMediaBlock" style="display: none;">
+        <div class="alert-media-block">
+            <div class="alert-media-block-remove">
+                <div class="alert-glyphicon-remove" id="alertMediaBlockRemove">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </div>
             </div>
-            <strong>Copied</strong>
+            <div class="alert-media-block-group">
+                <div class="alert-media-block-group-circle">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </div>
+                <strong>Copied</strong>
+            </div>
         </div>
     </div>
     <ul class="list-unstyled list-content">

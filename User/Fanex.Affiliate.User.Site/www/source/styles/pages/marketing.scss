@@ -1,33 +1,66 @@
 ﻿@import "../scss/components/pager";
 
-.alert-block {
+.alert-media {
+    display: block;
     position: fixed;
-    bottom: calc(50% - 80px);
-    right: calc(50% - 80px);
-    width: 150px;
-    height: 150px;
-    background-color: #E8F8F2;
-    z-index: 1;
-    border-radius: 25px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 
-    &-group {
-        font-size: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+    &-block {
+        position: fixed;
+        bottom: calc(50% - 80px);
+        right: calc(50% - 80px);
+        width: 150px;
+        height: 150px;
+        background-color: #E8F8F2;
+        z-index: 1;
+        border-radius: 25px;
 
-        &-circle {
-            width: 50px;
-            height: 50px;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            color: #FFF;
-            border-radius: 50%;
+        &-group {
+            font-size: 2rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #4CAF50;
+            flex-direction: column;
+
+            &-circle {
+                width: 50px;
+                height: 50px;
+                margin-top: 30px;
+                margin-bottom: 20px;
+                color: #FFF;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #4CAF50;
+            }
+        }
+
+        &-remove {
+            position: relative;
+
+            .alert-glyphicon-remove {
+                width: 40px;
+                height: 40px;
+                color: #f00;
+                border-radius: 50%;
+                position: fixed;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #faebd7;
+                top: calc(50% - 85px);
+                right: calc(50% - 95px);
+                font-size: 30px;
+                cursor: pointer;
+            }
         }
     }
 }

@@ -321,6 +321,12 @@ var MediaGallery = (function ($) {
                 MarketingBase.generateTextLink();
             });
 
+            $("#alertMediaBlockRemove").on("click", function () {
+                _me.hideAlert();
+
+                myTimeout && window.clearTimeout(myTimeout);
+            });
+
             var clipboard = new ClipboardJS('.copy-banner-code');
 
             clipboard.on('success', function (e) {
@@ -362,7 +368,7 @@ var MediaGallery = (function ($) {
 
         countNumberOfCopies: function (bannerId) {
             if (!isCountDown || bannerId != preBannerId) {
-                $("#alert-block").show();
+                $("#alertMediaBlock").show();
 
                 myTimeout && window.clearTimeout(myTimeout);
                 myTimeout = window.setTimeout(_me.hideAlert, 3000);
@@ -385,7 +391,7 @@ var MediaGallery = (function ($) {
 
         hideAlert: function () {
             isCountDown = false;
-            $("#alert-block").hide();
+            $("#alertMediaBlock").hide();
         },
 
         getSize: function () {

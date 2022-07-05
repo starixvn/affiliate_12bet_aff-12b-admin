@@ -87,6 +87,12 @@
                 MarketingBase.generateTextLink();
             });
 
+            $("#alertMediaBlockRemove").on("click", function () {
+                _me.hideAlert();
+
+                myTimeout && window.clearTimeout(myTimeout);
+            });
+
             var clipboard = new ClipboardJS('.copy-banner-code');
 
             clipboard.on('success', function (e) {
@@ -128,7 +134,7 @@
 
         countNumberOfCopies: function (bannerId) {
             if (!isCountDown || bannerId != preBannerId) {
-                $("#alert-block").show();
+                $("#alertMediaBlock").show();
 
                 myTimeout && window.clearTimeout(myTimeout);
                 myTimeout = window.setTimeout(_me.hideAlert, 3000);
@@ -151,7 +157,7 @@
 
         hideAlert: function () {
             isCountDown = false;
-            $("#alert-block").hide();
+            $("#alertMediaBlock").hide();
         },
 
         getSize: function () {
