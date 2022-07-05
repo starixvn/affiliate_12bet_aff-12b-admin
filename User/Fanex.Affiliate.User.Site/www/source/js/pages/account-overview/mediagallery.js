@@ -135,6 +135,7 @@
             if (!isCountDown || bannerId != preBannerId) {
                 $("#alertMediaBlock").show();
 
+                $(document.body).css('overflow', 'hidden');
                 myTimeout && window.clearTimeout(myTimeout);
                 myTimeout = window.setTimeout(_me.hideAlert, 3000);
 
@@ -156,7 +157,7 @@
 
         hideAlert: function () {
             isCountDown = false;
-
+            $(document.body).css('overflow', 'auto');
             $("#alertMediaBlock").hide();
         },
 

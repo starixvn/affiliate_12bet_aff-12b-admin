@@ -103,16 +103,14 @@
 .alert-media-block-remove .alert-glyphicon-remove {
   width: 40px;
   height: 40px;
-  color: #f00;
-  border-radius: 50%;
+  color: gray;
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #faebd7;
-  top: calc(50% - 85px);
-  right: calc(50% - 95px);
-  font-size: 30px;
+  top: calc(50% - 70px);
+  right: calc(50% - 80px);
+  font-size: 20px;
   cursor: pointer;
 }
 
