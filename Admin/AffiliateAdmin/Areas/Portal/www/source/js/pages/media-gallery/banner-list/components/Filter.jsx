@@ -8,7 +8,7 @@ import { setParam, setParamFromHome, getSizeList } from '../actions';
 import { headerText, globalResource, deviceTypes, pcLaptop, Asian, Casino, Sportsbook } from '../libs/constants';
 import { handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
 
-const minDate = '6/1/2022';
+const minDate = '7/1/2022';
 
 export class Filter extends PureComponent {
     constructor(props) {
