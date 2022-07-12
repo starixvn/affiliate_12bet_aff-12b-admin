@@ -25,6 +25,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 
         public string Size { get; set; }
 
+        public int NumberOfCopies { get; set; }
+
         [JsonIgnore]
         public DateTime? LastUpdate { get; set; }
 

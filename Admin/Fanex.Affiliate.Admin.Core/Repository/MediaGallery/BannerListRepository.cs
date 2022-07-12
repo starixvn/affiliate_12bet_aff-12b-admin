@@ -28,6 +28,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 objectDb.SetParameterValue("Size", param.Size);
                 objectDb.SetParameterValue("AffType", param.AffType);
                 objectDb.SetParameterValue("devicetype", param.DeviceType);
+                objectDb.SetParameterValue("CopiedFrom", param.FromDate);
+                objectDb.SetParameterValue("CopiedTo", param.ToDate);
                 objectDb.SetParameterValue("PageIndex", param.PageIndex);
                 objectDb.SetParameterValue("PageSize", param.PageSize);
 
@@ -38,6 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     while (reader.Read())
                     {
                         var bannerInfo = BuildBannerInfoItem(reader);
+                        bannerInfo.NumberOfCopies = Convert.ToInt32(reader["NumberOfCopies"]);
                         bannerInfo.LastUpdate = reader["UpdatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["UpdatedDate"]);
 
                         dataList.Add(bannerInfo);

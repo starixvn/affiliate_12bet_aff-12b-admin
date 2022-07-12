@@ -3,6 +3,8 @@
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.DTO;
+    using Fanex.Affiliate.User.Core.Resources;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
@@ -51,6 +53,21 @@
             ViewBag.TotalItem = bannerParam.Nrows;
 
             return View("~/Views/UserPanel/AccountOverview/MediaGallery/Index.cshtml", viewModel);
+        }
+
+        [HttpPost]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
+        public ActionResult CountNumberOfCopies(CopiedBannerCounterParam param)
+        {
+            if(SessionService.IsInternal)
+            {
+                return Json(new ResultInfo { Message = Lang.ErrAuthorized});
+            }
+
+            param.AffId = SessionService.UserSession.AffId;
+            var result = MarketingService.CountNumberOfCopies(param);
+
+            return Json(result);
         }
     }
 }

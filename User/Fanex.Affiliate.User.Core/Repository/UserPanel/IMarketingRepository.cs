@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
+﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System.Collections.Generic;
@@ -22,5 +23,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
 
         IEnumerable<LandingPage> GetLandingPageList(bool isInternal);
+
+        ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param);
     }
 }

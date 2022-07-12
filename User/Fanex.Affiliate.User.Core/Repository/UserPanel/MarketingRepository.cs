@@ -107,5 +107,21 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 return db.Query<LandingPage>();
             }
         }
+
+        public ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param)
+        {
+            const string uSpKey = "Aff_User_BannerStatistics_Ins";
+
+            using (var db = _builder.Build(uSpKey))
+            {
+                db.ExecuteNonQuery(param);
+            }
+
+            return new ResultInfo
+            {
+                IsOk = param.ErrCode == 0,
+                Message = param.ErrMsg
+            };
+        }
     }
 }

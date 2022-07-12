@@ -1,7 +1,7 @@
 ﻿
 namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
-    public class BannerParam
+    public class BannerParam : AffiliatePagingByDateParam
     {
         public string Category { get; set; }
 
@@ -18,9 +18,5 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
         public byte AffType { get; set; }
 
         public byte DeviceType { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int PageSize { get; set; }
     }
 }

@@ -151,6 +151,17 @@ exports[`banner list - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
+              className="text-center text-break"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
               className="text-center"
               header={false}
               onClick={[Function]}
@@ -312,6 +323,17 @@ exports[`banner list - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
+              className="text-center text-break"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
               className="text-center"
               header={false}
               onClick={[Function]}
@@ -456,7 +478,18 @@ exports[`banner list - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={25}
+            colWidth={60}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Number Of Copies"
+          >
+            Number Of Copies
+          </t>
+          <t
+            asc={true}
+            colWidth={30}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -645,7 +678,18 @@ exports[`banner list - components - Content  render correctly with gridData is e
           </t>
           <t
             asc={true}
-            colWidth={25}
+            colWidth={60}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Number Of Copies"
+          >
+            Number Of Copies
+          </t>
+          <t
+            asc={true}
+            colWidth={30}
             header={true}
             onClick={[Function]}
             sortable={false}

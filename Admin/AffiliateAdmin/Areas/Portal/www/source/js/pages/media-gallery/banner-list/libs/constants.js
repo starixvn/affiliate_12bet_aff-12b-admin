@@ -23,6 +23,8 @@ export const headerText = {
     Currency: 'Currency',
     Type: 'Type',
     Size: 'Size',
+    CopiedFrom: 'Copied From',
+    NumberOfCopies: 'Number Of Copies',
     AffType: 'Affiliate Type',
     Device: 'Device',
     ImageType: 'Image Type'

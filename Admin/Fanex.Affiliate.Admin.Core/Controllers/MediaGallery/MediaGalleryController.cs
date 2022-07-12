@@ -111,6 +111,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 PageIndex = model.PageIndex,
                 PageSize = model.PageSize,
                 Size = model.Size,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
                 SubCategory = model.SubCategory
             };
 

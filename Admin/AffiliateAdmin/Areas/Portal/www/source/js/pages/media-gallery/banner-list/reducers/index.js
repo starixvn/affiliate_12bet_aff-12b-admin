@@ -15,6 +15,7 @@ export const languageList = createReducer(null, {});
 export const currencyList = createReducer(null, {});
 export const imageTypeList = createReducer(null, {});
 export const affTypeList = createReducer(null, {});
+export const today = createReducer(null, {});
 export const deviceTypeList = createReducer([
     {
         key: 0, name: "PC / Laptop", checked: false
@@ -90,6 +91,7 @@ export default combineReducers({
     affTypeList,
     deviceTypeList,
     bannerRootUrl,
+    today,
     param,
     paramFromHome,
     gridData,

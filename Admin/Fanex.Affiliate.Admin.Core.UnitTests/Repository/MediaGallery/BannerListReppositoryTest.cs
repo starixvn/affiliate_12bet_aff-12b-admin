@@ -290,6 +290,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
                 ["AffTypes"] = "2",
                 ["Size"] = "320x250",
                 ["DeviceTypes"] = "1",
+                ["NumberOfCopies"] = "1",
                 ["UpdatedDate"] = new DateTime(2020, 01, 20)
             };
         }
@@ -308,6 +309,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
                 ["AffTypes"] = "2",
                 ["Size"] = "320x250",
                 ["DeviceTypes"] = "1",
+                ["NumberOfCopies"] = "1",
                 ["UpdatedDate"] = DBNull.Value
             };
         }

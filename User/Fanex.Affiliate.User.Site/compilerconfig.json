@@ -30,7 +30,7 @@
   //{
   //  "outputFile": "www/build/styles/css/marketing.css",
   //  "inputFile": "www/source/styles/pages/marketing.scss"
-  //},
+  //}
   //{
   //  "outputFile": "www/build/styles/css/products.css",
   //  "inputFile": "www/source/styles/pages/products.scss"
@@ -147,12 +147,12 @@
   //  "outputFile": "www/build/styles/css/verification-account.css",
   //  "inputFile": "www/source/styles/pages/verification-account.scss"
   //},
-  {
-    "outputFile": "www/build/styles/css/news-letter.css",
-    "inputFile": "www/source/styles/pages/news-letter.scss"
-  },
-  {
-    "outputFile": "www/build/styles/css/promotion.css",
-    "inputFile": "www/source/styles/pages/promotion.scss"
-  }
+  //{
+  //  "outputFile": "www/build/styles/css/news-letter.css",
+  //  "inputFile": "www/source/styles/pages/news-letter.scss"
+  //},
+  //{
+  //  "outputFile": "www/build/styles/css/promotion.css",
+  //  "inputFile": "www/source/styles/pages/promotion.scss"
+  //}
 ]

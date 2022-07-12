@@ -325,6 +325,72 @@ exports[`banner list - components - Filter  render correctly 1`] = `
         </option>
       </Input>
     </FormGroup>
+    <FormGroup
+      className="mr-sm-2 pb-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Copied From
+      </Label>
+      <t
+        date="6/1/2022"
+        format="MM/DD/YYYY"
+        iconElement={
+          <span
+            className="oi oi-calendar icon-calendar ml-1"
+          />
+        }
+        isEnable={true}
+        maxDate="6/14/2022"
+        minDate="6/1/2022"
+        onChange={[Function]}
+      />
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-2 pb-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        To
+      </Label>
+      <t
+        date="6/14/2022"
+        format="MM/DD/YYYY"
+        iconElement={
+          <span
+            className="oi oi-calendar icon-calendar ml-1"
+          />
+        }
+        isEnable={true}
+        maxDate="6/14/2022"
+        minDate="6/1/2022"
+        onChange={[Function]}
+      />
+    </FormGroup>
     <Button
       className="mb-2"
       color="primary"
@@ -709,6 +775,72 @@ exports[`banner list - components - Filter  render correctly with Casino's subca
         </option>
       </Input>
     </FormGroup>
+    <FormGroup
+      className="mr-sm-2 pb-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Copied From
+      </Label>
+      <t
+        date="6/1/2022"
+        format="MM/DD/YYYY"
+        iconElement={
+          <span
+            className="oi oi-calendar icon-calendar ml-1"
+          />
+        }
+        isEnable={true}
+        maxDate="6/14/2022"
+        minDate="6/1/2022"
+        onChange={[Function]}
+      />
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-2 pb-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        To
+      </Label>
+      <t
+        date="6/14/2022"
+        format="MM/DD/YYYY"
+        iconElement={
+          <span
+            className="oi oi-calendar icon-calendar ml-1"
+          />
+        }
+        isEnable={true}
+        maxDate="6/14/2022"
+        minDate="6/1/2022"
+        onChange={[Function]}
+      />
+    </FormGroup>
     <Button
       className="mb-2"
       color="primary"
@@ -1092,6 +1224,72 @@ exports[`banner list - components - Filter  render correctly with Sportbook's su
           500x350
         </option>
       </Input>
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-2 pb-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Copied From
+      </Label>
+      <t
+        date="6/1/2022"
+        format="MM/DD/YYYY"
+        iconElement={
+          <span
+            className="oi oi-calendar icon-calendar ml-1"
+          />
+        }
+        isEnable={true}
+        maxDate="6/14/2022"
+        minDate="6/1/2022"
+        onChange={[Function]}
+      />
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-2 pb-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        To
+      </Label>
+      <t
+        date="6/14/2022"
+        format="MM/DD/YYYY"
+        iconElement={
+          <span
+            className="oi oi-calendar icon-calendar ml-1"
+          />
+        }
+        isEnable={true}
+        maxDate="6/14/2022"
+        minDate="6/1/2022"
+        onChange={[Function]}
+      />
     </FormGroup>
     <Button
       className="mb-2"

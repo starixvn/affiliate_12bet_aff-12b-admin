@@ -2,15 +2,22 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { setParam, setParamFromHome, getSizeList } from '../actions';
 import { headerText, globalResource, deviceTypes, pcLaptop, Asian, Casino, Sportsbook } from '../libs/constants';
+import { handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
+
+const minDate = '7/1/2022';
 
 export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { paramFromHome } = this.props;
+        const { paramFromHome, today } = this.props;
+        const now = new Date(today);
+
+        this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
         this.state = {
             category: '',
@@ -20,6 +27,8 @@ export class Filter extends PureComponent {
             imageType: paramFromHome && paramFromHome.ImageType ? paramFromHome.ImageType : '',
             affType: Asian,
             deviceType: deviceTypes[pcLaptop],
+            fromDate: `${now.getMonth() + 1}/${1}/${now.getFullYear()}`,
+            toDate: this.nowString,
             size: ''
         }
     }
@@ -52,6 +61,14 @@ export class Filter extends PureComponent {
         this.setState({ [name]: value });
     }
 
+    _handleChangeFromDate = (momentDate) => {
+        this.setState(prevState => handleAfterChangeFromDate(momentDate, prevState.toDate));
+    }
+
+    _handleChangeToDate = (momentDate) => {
+        this.setState(prevState => handleAfterChangeToDate(momentDate, prevState.fromDate));
+    }
+
     _handleSearch = () => {
         const { pagingOption } = this.props;
 
@@ -62,7 +79,7 @@ export class Filter extends PureComponent {
 
     render() {
         const { categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList } = this.props;
-        const { category, subCategory, language, currency, imageType, affType, deviceType, size } = this.state;
+        const { category, subCategory, language, currency, imageType, affType, deviceType, size, fromDate, toDate } = this.state;
         const isCategoryCasino = category === Casino;
         const hasSubCategory = isCategoryCasino || category === Sportsbook;
         const subCategoryList = hasSubCategory ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
@@ -164,6 +181,18 @@ export class Filter extends PureComponent {
                             }
                         </Input>
                     </FormGroup>
+                    <FormGroup className="mr-sm-2 pb-2">
+                        <Label className="mr-sm-2">{headerText.CopiedFrom}</Label>
+                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate}
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            onChange={this._handleChangeFromDate} />
+                    </FormGroup>
+                    <FormGroup className="mr-sm-2 pb-2">
+                        <Label className="mr-sm-2">{globalResource.To}</Label>
+                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate}
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            onChange={this._handleChangeToDate} />
+                    </FormGroup>
                     <Button outline color="primary" type="button" className="mb-2" onClick={this._handleSearch}>
                         <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                     </Button>
@@ -173,8 +202,13 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, pagingOption, paramFromHome }) {
-    return Object.assign({}, { categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList, pagingOption, paramFromHome });
+function mapStateToProps({ categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList,
+    currencyList, imageTypeList, sizeList, affTypeList, pagingOption, paramFromHome, today }) {
+
+    return Object.assign({}, {
+        categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList,
+        currencyList, imageTypeList, sizeList, affTypeList, pagingOption, paramFromHome, today
+    });
 }
 
 function mapDispatchToProps(dispatch) {
