@@ -269,6 +269,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\betsoft.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\playtech.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\bg-live-casino.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\sunstone.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\jasper.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\skywind.js" />
@@ -489,6 +490,7 @@
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Jasper\index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Sunstone\index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\DbImporter\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\BgLiveCasino\index.cshtml" />
     <None Include="Properties\PublishProfiles\ThirdPartyApi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -565,7 +567,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63172</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62172/</IISUrl>
+          <IISUrl>http://localhost:62100/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

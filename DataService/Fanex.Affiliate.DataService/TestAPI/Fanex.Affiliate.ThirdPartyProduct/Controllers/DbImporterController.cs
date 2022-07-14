@@ -7,6 +7,7 @@ using Fanex.Affiliate.DataService.Importer.Playtech;
 using Fanex.Affiliate.DataService.Importer.Skywind;
 using Fanex.Affiliate.DataService.Importer.Sunstone;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
+using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.DTO;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
 using Newtonsoft.Json;
@@ -69,22 +70,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 
         private IImporterService GetImporterService(int productId)
         {
-            switch (productId)
-            {
-                case Products.BTiId:
-                    return new BTiService();
-                case Products.SkywindId:
-                    return new SkywindService();
-                case Products.JasperId:
-                    return new JasperService();
-                case Products.SunstoneId:
-                    return new SunstoneService();
-                case Products.PlaytechId:
-                    return new PlaytechService();
-
-                default:
-                    return new BTiService();
-            }
+            return SeviceSystem.ServiceList[productId].Value;
         }
 
         private async Task<IEnumerable<XDocument>> ConvertToXmlAsync(IEnumerable<string> rawDatas)

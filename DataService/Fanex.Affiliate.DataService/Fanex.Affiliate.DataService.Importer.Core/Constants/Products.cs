@@ -32,6 +32,10 @@
 
         public const int SunstoneId = 35;
 
+        public const int BgLiveCasino = 37;
+
+        public const int BgFish = 38;
+
         public const int PlaytechId = 9;
     }
 
