@@ -226,6 +226,8 @@
     <Compile Include="BusinessService\CaptchaService.cs" />
     <Compile Include="BusinessService\CommissionReportService.cs" />
     <Compile Include="BusinessService\ContactService.cs" />
+    <Compile Include="BusinessService\IIpAddressService.cs" />
+    <Compile Include="BusinessService\IpAddressService.cs" />
     <Compile Include="BusinessService\IUnderMaintenanceService.cs" />
     <Compile Include="BusinessService\OfferService.cs" />
     <Compile Include="BusinessService\ICaptchaService.cs" />
@@ -352,7 +354,9 @@
     <Compile Include="Infrastructure\IHttpRequestParserHandler.cs" />
     <Compile Include="MetalModels\UserPanel\CopiedBannerCounterParam.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\IIpAddressRepository.cs" />
     <Compile Include="Repository\ILanguageRepository.cs" />
+    <Compile Include="Repository\IpAddressRepository.cs" />
     <Compile Include="Repository\LanguageRepository.cs" />
     <Compile Include="Repository\UserPanel\OfferRepository.cs" />
     <Compile Include="Repository\UserPanel\IOfferRepository.cs" />

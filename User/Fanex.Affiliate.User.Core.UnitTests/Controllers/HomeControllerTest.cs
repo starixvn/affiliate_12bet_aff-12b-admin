@@ -84,7 +84,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var languageService = Substitute.For<ILanguageService>();
             var sessionService = NSubtituteMockingHelper.FakeSessionService();
             var appSetting = Substitute.For<IAppSetting>();
-            var controller = new HomeController(sessionService, appSetting, languageService);
+            var ipAddressService = Substitute.For<IIpAddressService>();
+            var controller = new HomeController(sessionService, appSetting, languageService, ipAddressService);
             NSubtituteMockingHelper.FakeController(controller);
             var requestContext = new RequestContext(controller.HttpContext, controller.RouteData);
             requestContext.HttpContext.Response.Cookies.Returns(new HttpCookieCollection());
@@ -113,7 +114,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 !ap.IsEuroSite &&
                 ap.Promotion12BetLink == PromotionTemplate);
 
-            var controller = new HomeController(sessionService, appSetting, languageService);
+            var ipAddressService = Substitute.For<IIpAddressService>();
+            var controller = new HomeController(sessionService, appSetting, languageService, ipAddressService);
             var request = MockingHelper.GetHttpRequest();
             var mockRequest = Mock.Get(request);
             mockRequest.Setup(r => r.IsAuthenticated).Returns(isAuthenticated);

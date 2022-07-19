@@ -9,13 +9,17 @@ namespace Fanex.Affiliate.User.Core.Controllers
     public class HomeController : BaseController
     {
         private readonly IAppSetting _appSetting;
+        private readonly IIpAddressService _ipAddressService;
+
         public HomeController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService) : base(sessionService, languageService)
+            ILanguageService languageService,
+            IIpAddressService ipAddressService) : base(sessionService, languageService)
 
         {
             _appSetting = appSetting;
+            _ipAddressService = ipAddressService;
         }
 
         [HttpGet]
@@ -26,7 +30,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var viewModel = new HomeViewModel
             {
                 IsAuthenticated = isAuthenticated,
-                IsThaiIp = true,
+                IsThaiIp = _appSetting.IsLocal || _ipAddressService.IsThaiLandIpAddress(RequestHelper.GetClientIPAddress(Request)),
                 Language = SessionService.CurrentLanguage,
                 SignUpLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/SignUp"),
                 BannerLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#MediaGallery") : "javascript:;",
