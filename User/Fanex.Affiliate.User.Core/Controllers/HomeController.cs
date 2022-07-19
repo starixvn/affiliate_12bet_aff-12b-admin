@@ -26,6 +26,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var viewModel = new HomeViewModel
             {
                 IsAuthenticated = isAuthenticated,
+                IsThaiIp = true,
                 Language = SessionService.CurrentLanguage,
                 SignUpLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/SignUp"),
                 BannerLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#MediaGallery") : "javascript:;",

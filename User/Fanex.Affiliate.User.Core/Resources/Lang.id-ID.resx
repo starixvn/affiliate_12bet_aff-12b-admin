@@ -2234,4 +2234,7 @@
   <data name="OffersForMe" xml:space="preserve">
     <value>Penawaran untuk saya</value>
   </data>
+  <data name="KoreaSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Korea</value>
+  </data>
 </root>

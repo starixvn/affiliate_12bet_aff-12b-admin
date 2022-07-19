@@ -1,7 +1,12 @@
 ﻿var Home = (function ($) {
+    var alertHomeBlockRemoveHeight = 15;
+
     var _me = {
         initialize: function () {
             _me.initEvent();
+            _me.adjustAlertHomeBlockRemovePosition();
+            $(document.body).css('overflow', 'hidden');
+            window.addEventListener("resize", _me.adjustAlertHomeBlockRemovePosition);
         },
         initEvent: function () {
             $('#euroBanner').on('click', function (event) {
@@ -37,6 +42,30 @@
                     }, 10);
                 }
             })
+
+            $('#alertHomeBlockRemove').on('click', function (event) {
+                event.preventDefault();
+                $("#alertHome").hide();
+                $(document.body).css('overflow', 'auto');
+                window.removeEventListener("resize", _me.adjustAlertHomeBlockRemovePosition);
+            })
+        },
+        adjustAlertHomeBlockRemovePosition: function () {
+            var alertHomeBlockHeight = $('#alertHomeBlock').outerHeight();
+            var alertHomeBlockWidth = $('#alertHomeBlock').outerWidth();
+            $('#alertHomeBlock').css({
+                top: `calc(50% - ${alertHomeBlockHeight / 2}px)`,
+                right: `calc(50% - ${alertHomeBlockWidth / 2}px)`
+            });
+
+            var alertHomeBlockOffset = $('#alertHomeBlock').offset();
+            var alertHomeBlockTop = alertHomeBlockOffset.top;
+            var alertHomeBlockLeft = alertHomeBlockOffset.left;
+
+            $('#alertHomeBlockRemove').css({
+                top: (alertHomeBlockTop - alertHomeBlockRemoveHeight) + 'px',
+                right: `calc(100% - ${alertHomeBlockLeft + alertHomeBlockWidth + alertHomeBlockRemoveHeight}px)`
+            });
         }
     };
 

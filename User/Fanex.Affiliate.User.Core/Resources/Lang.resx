@@ -2393,4 +2393,10 @@
   <data name="OffersForMe" xml:space="preserve">
     <value>Offers for me</value>
   </data>
+  <data name="KoreaSupport" xml:space="preserve">
+    <value>Korea Support</value>
+  </data>
+  <data name="OurOfficialSkype" xml:space="preserve">
+    <value>Important! Our official skype account has been updated.&lt;br&gt;Add our new skype to stay updated for all payouts &amp; promotions</value>
+  </data>
 </root>

@@ -3017,6 +3017,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Korea Support.
+        /// </summary>
+        public static string KoreaSupport {
+            get {
+                return ResourceManager.GetString("KoreaSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kuwait .
         /// </summary>
         public static string Kuwait {
@@ -4019,6 +4028,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Original {
             get {
                 return ResourceManager.GetString("Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Important! Our official skype account has been updated.&lt;br&gt;Add our new skype to stay updated for all payouts &amp; promotions.
+        /// </summary>
+        public static string OurOfficialSkype {
+            get {
+                return ResourceManager.GetString("OurOfficialSkype", resourceCulture);
             }
         }
         
