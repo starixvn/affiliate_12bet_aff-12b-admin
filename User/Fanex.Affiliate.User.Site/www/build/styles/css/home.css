@@ -15,8 +15,8 @@
     text-transform: uppercase;
     top: 40%;
     right: 22.5%;
-    width: 55%;
-    max-width: 1000px;
+    width: 60%;
+    max-width: 1024px;
     background-color: #D9D9D9;
     z-index: 1;
     padding: 25px;
@@ -56,6 +56,18 @@
       right: 21.5%;
       font-size: 20px;
       cursor: pointer; }
+    .alert-home-block .add-now {
+      margin-top: 30px;
+      margin-bottom: 10px; }
+      .alert-home-block .add-now-btn {
+        color: red;
+        background: #E8C6A2;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid #000; }
+        .alert-home-block .add-now-btn:hover {
+          text-decoration: none;
+          background: beige; }
 
 .main .home-page {
   padding-left: 0;

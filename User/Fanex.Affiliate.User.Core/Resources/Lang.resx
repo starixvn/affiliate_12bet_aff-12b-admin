@@ -2399,4 +2399,7 @@
   <data name="OurOfficialSkype" xml:space="preserve">
     <value>Important! Our official skype account has been updated.&lt;br&gt;Add our new skype to stay updated for all payouts &amp; promotions</value>
   </data>
+  <data name="AddNow" xml:space="preserve">
+    <value>Add now!</value>
+  </data>
 </root>

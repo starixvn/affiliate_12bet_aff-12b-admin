@@ -2235,4 +2235,7 @@
   <data name="OurOfficialSkype" xml:space="preserve">
     <value>ประกาศสำคัญ! บัญชีทางการ Skype และ Line ของเราได้มีการอัปเดตใหม่แล้ว&lt;br&gt;เพิ่ม skype และ Line ID ใหม่ของเราตอนนี้เพื่อติดตามธุรกรรมทางการเงินและโปรโมชั่นข่าวสารต่างๆ</value>
   </data>
+  <data name="AddNow" xml:space="preserve">
+    <value>แอดเลยตอนนี้!</value>
+  </data>
 </root>

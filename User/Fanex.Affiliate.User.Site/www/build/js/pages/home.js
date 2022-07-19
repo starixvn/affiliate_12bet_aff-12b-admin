@@ -6,8 +6,8 @@ var Home = (function ($) {
     var _me = {
         initialize: function initialize() {
             _me.initEvent();
-            _me.adjustAlertHomeBlockRemovePosition();
             $(document.body).css('overflow', 'hidden');
+            _me.adjustAlertHomeBlockRemovePosition();
             window.addEventListener("resize", _me.adjustAlertHomeBlockRemovePosition);
         },
         initEvent: function initEvent() {
