@@ -2225,4 +2225,7 @@
   <data name="OffersForMe" xml:space="preserve">
     <value>독점 제공</value>
   </data>
+  <data name="KoreaSupport" xml:space="preserve">
+    <value>한국어 지원</value>
+  </data>
 </root>

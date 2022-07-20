@@ -6,7 +6,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 {
     public static class RequestHelper
     {
-        [SuppressMessage("Sonar Code Smell", "S1313:MakeIpAddressConfigurable", Justification = "Reviewed. Suppression is OK here.")]
         public static string GetClientIPAddress(HttpRequestBase httpRequest = null)
         {
             var request = httpRequest ?? new HttpRequestWrapper(HttpContext.Current.Request);

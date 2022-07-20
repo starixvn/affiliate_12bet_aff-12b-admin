@@ -680,6 +680,7 @@
     <Content Include="www\build\styles\Images\account-overview\icon-zalo.png" />
     <Content Include="www\build\styles\Images\account-overview\new-sign-up.png" />
     <Content Include="www\build\styles\Images\account-overview\total-deposit.png" />
+    <Content Include="www\build\styles\Images\contact-us\korea_lang.png" />
     <Content Include="www\build\styles\Images\left-main-banner.jpeg" />
     <Content Include="www\build\styles\Images\right-main-banner.jpeg" />
     <Content Include="www\build\styles\Images\contact-us\telegram-icon.png" />
@@ -716,7 +717,7 @@
     <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\casino-banners\Casino-Banner.zh-TW.jpg" />
-    <Content Include="www\build\styles\Images\contact-us\China_lang.png" />
+    <Content Include="www\build\styles\Images\contact-us\china_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\english_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\india_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\indonesian_lang.png" />
@@ -985,12 +986,9 @@
     <Content Include="www\source\styles\pages\dailyearning.scss" />
     <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_DailyEarningDetailContent.cshtml" />
     <Content Include="www\source\styles\pages\dailyearning-detail.scss" />
-    <Content Include="Views\UserPanel\BetList\Index.cshtml" />
     <Content Include="www\source\styles\pages\betlist.scss" />
     <Content Include="www\source\styles\scss\components\_monthpicker.scss" />
     <Content Include="www\source\styles\pages\account-overview.scss" />
-    <Content Include="Views\UserPanel\BetList\Result.cshtml" />
-    <Content Include="Views\UserPanel\BetList\ParlayDetail.cshtml" />
     <Content Include="Views\News\MessageHistory.cshtml" />
     <Content Include="Views\News\_MessageContent.cshtml" />
     <Content Include="www\source\styles\pages\messagehistory.scss" />
@@ -1164,6 +1162,9 @@
     <Content Include="www\build\styles\Images\right-main-banner.webp" />
     <Content Include="www\source\styles\Images\left-main-banner.webp" />
     <Content Include="www\source\styles\Images\right-main-banner.webp" />
+    <Content Include="Views\UserPanel\BetList\Index.cshtml" />
+    <Content Include="Views\UserPanel\BetList\ParlayDetail.cshtml" />
+    <Content Include="Views\UserPanel\BetList\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

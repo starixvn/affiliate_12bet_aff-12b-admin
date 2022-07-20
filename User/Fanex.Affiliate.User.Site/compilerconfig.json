@@ -15,10 +15,10 @@
   //  "outputFile": "www/build/styles/css/my-account.css",
   //  "inputFile": "www/source/styles/pages/my-account.scss"
   //},
-  //{
-  //  "outputFile": "www/build/styles/css/home.css",
-  //  "inputFile": "www/source/styles/pages/home.scss"
-  //},
+  {
+    "outputFile": "www/build/styles/css/home.css",
+    "inputFile": "www/source/styles/pages/home.scss"
+  },
   //{
   //  "outputFile": "www/build/styles/css/faq.css",
   //  "inputFile": "www/source/styles/pages/faq.scss"
@@ -135,10 +135,10 @@
   //  "outputFile": "www/build/js/lib/modernizr-webp.js",
   //  "inputFile": "www/source/js/lib/modernizr-webp.js"
   //},
-  //{
-  //  "outputFile": "www/build/js/pages/home.js",
-  //  "inputFile": "www/source/js/pages/home.js"
-  //},
+  {
+    "outputFile": "www/build/js/pages/home.js",
+    "inputFile": "www/source/js/pages/home.js"
+  }
   //{
   //  "outputFile": "www/build/js/pagetracking.js",
   //  "inputFile": "www/source/js/components/pagetracking.js"

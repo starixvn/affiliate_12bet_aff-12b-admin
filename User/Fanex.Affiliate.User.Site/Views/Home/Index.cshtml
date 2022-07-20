@@ -15,6 +15,7 @@
     var casinoBannerFileName = Url.Content("~/www/build/styles/Images/casino-banners/Casino-Banner." + Model.Language);
     var homeBannerFileName = Url.Content("~/www/build/styles/Images/home-banners/Home-Banner." + Model.Language);
     var advFileName = Url.Content("~/www/build/styles/Images/apply12bet/3step." + Model.Language);
+    var displayAlert = Model.IsThaiIp ? "block" : "none";
 }
 
 @section styles{
@@ -26,6 +27,23 @@
 }
 
 <div class="content home-page">
+    <div class="alert-home" id="alertHome" style="display: @displayAlert;">
+        <div class="alert-home-block" id="alertHomeBlock">
+            <div class="alert-home-block-remove">
+                <div class="alert-glyphicon-remove" id="alertHomeBlockRemove">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </div>
+            </div>
+            <div class="alert-home-block-group">
+                <div class="alert-home-block-group-text">
+                    <span>@Html.Raw(Lang.OurOfficialSkype)</span>
+                </div>
+                <div class="add-now">
+                    <a class="add-now-btn" href="@Url.Content("~/ContactUs")">@Lang.AddNow</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
