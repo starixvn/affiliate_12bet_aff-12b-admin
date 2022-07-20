@@ -1,11 +1,5 @@
-﻿using Fanex.Affiliate.DataService.Importer.BTi;
-using Fanex.Affiliate.DataService.Importer.Core.Constants;
-using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Infrastructure;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Fanex.Affiliate.DataService.Importer.Jasper;
-using Fanex.Affiliate.DataService.Importer.Playtech;
-using Fanex.Affiliate.DataService.Importer.Skywind;
-using Fanex.Affiliate.DataService.Importer.Sunstone;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.DTO;

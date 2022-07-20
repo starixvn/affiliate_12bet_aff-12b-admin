@@ -48,6 +48,8 @@
             this.btnPlaytech = new System.Windows.Forms.Button();
             this.btnJasper = new System.Windows.Forms.Button();
             this.btnSunstone = new System.Windows.Forms.Button();
+            this.btnBgLiveCasino = new System.Windows.Forms.Button();
+            this.btnBgFish = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -270,11 +272,37 @@
             this.btnSunstone.UseVisualStyleBackColor = true;
             this.btnSunstone.Click += new System.EventHandler(this.btnSunstone_Click);
             // 
+            // btnBgLiveCasino
+            // 
+            this.btnBgLiveCasino.Location = new System.Drawing.Point(204, 467);
+            this.btnBgLiveCasino.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBgLiveCasino.Name = "btnBgLiveCasino";
+            this.btnBgLiveCasino.Size = new System.Drawing.Size(147, 28);
+            this.btnBgLiveCasino.TabIndex = 19;
+            this.btnBgLiveCasino.Text = "Bg Live Casino";
+            this.btnBgLiveCasino.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnBgLiveCasino.UseVisualStyleBackColor = true;
+            this.btnBgLiveCasino.Click += new System.EventHandler(this.btnBgLiveCasino_Click);
+            // 
+            // btnBgFish
+            // 
+            this.btnBgFish.Location = new System.Drawing.Point(20, 467);
+            this.btnBgFish.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBgFish.Name = "btnBgFish";
+            this.btnBgFish.Size = new System.Drawing.Size(147, 28);
+            this.btnBgFish.TabIndex = 20;
+            this.btnBgFish.Text = "Bg Fish";
+            this.btnBgFish.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnBgFish.UseVisualStyleBackColor = true;
+            this.btnBgFish.Click += new System.EventHandler(this.btnBgFish_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 470);
+            this.ClientSize = new System.Drawing.Size(379, 522);
+            this.Controls.Add(this.btnBgFish);
+            this.Controls.Add(this.btnBgLiveCasino);
             this.Controls.Add(this.btnSunstone);
             this.Controls.Add(this.btnJasper);
             this.Controls.Add(this.btnPlaytech);
@@ -328,5 +356,7 @@
         private System.Windows.Forms.Button btnPlaytech;
         private System.Windows.Forms.Button btnJasper;
         private System.Windows.Forms.Button btnSunstone;
+        private System.Windows.Forms.Button btnBgLiveCasino;
+        private System.Windows.Forms.Button btnBgFish;
     }
 }

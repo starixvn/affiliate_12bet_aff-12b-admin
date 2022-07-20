@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.DataService.WinFormApp.Converter;
+﻿using Fanex.Affiliate.DataService.Importer.BigGaming;
+using Fanex.Affiliate.DataService.WinFormApp.Converter;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,6 +42,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 {"Skywind", new SkywindImporter() },
                 {"Jasper", new JasperImporter() },
                 {"Sunstone", new SunstoneImporter() },
+                {"Bg Fish", new BigGamingImporter(new BgFishService()) },
+                {"Bg Live Casino", new BigGamingImporter(new BgLiveCasinoService()) },
             };
             return dic;
         }

@@ -38,5 +38,19 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Infrastructure
             }
             return ret.ToString();
         }
+
+        public static string MD5(string str)
+        {
+            var md5 = new MD5CryptoServiceProvider();
+            var data = Encoding.UTF8.GetBytes(str);
+            var result = md5.ComputeHash(data);
+
+            StringBuilder ret = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                ret.Append(result[i]);
+            }
+            return ret.ToString();
+        }
     }
 }

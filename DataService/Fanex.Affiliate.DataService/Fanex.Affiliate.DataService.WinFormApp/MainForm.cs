@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Windows.Forms;
+using Fanex.Affiliate.DataService.Importer.BigGaming;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using Fanex.Affiliate.DataService.WinFormApp.Forms;
 using Fanex.Data;
@@ -186,6 +187,18 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         private void btnSunstone_Click(object sender, EventArgs e)
         {
             var form = new SunstoneForm();
+            SetUpServiceForm(form);
+        }
+
+        private void btnBgLiveCasino_Click(object sender, EventArgs e)
+        {
+            var form = new BigGamingForm(new BgLiveCasinoService());
+            SetUpServiceForm(form);
+        }
+
+        private void btnBgFish_Click(object sender, EventArgs e)
+        {
+            var form = new BigGamingForm(new BgFishService());
             SetUpServiceForm(form);
         }
     }
