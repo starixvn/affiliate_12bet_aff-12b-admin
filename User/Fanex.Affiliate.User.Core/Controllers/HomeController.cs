@@ -2,12 +2,15 @@
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
+using System;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class HomeController : BaseController
     {
+        private static readonly DateTime LimitedDate = new DateTime(2022, 08, 20);
+
         private readonly IAppSetting _appSetting;
         private readonly IIpAddressService _ipAddressService;
 
@@ -26,11 +29,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult Index()
         {
             var isAuthenticated = Request.IsAuthenticated && SessionService.UserSession != null;
+            var today = DateTime.Now;
+            var isValidDate = DateTime.Compare(today, LimitedDate) < 0;
 
             var viewModel = new HomeViewModel
             {
                 IsAuthenticated = isAuthenticated,
-                IsThaiIp = _appSetting.IsLocal || _ipAddressService.IsThaiLandIpAddress(RequestHelper.GetClientIPAddress(Request)),
+                IsThaiIp = isValidDate && (_appSetting.IsLocal || _ipAddressService.IsThaiLandIpAddress(RequestHelper.GetClientIPAddress(Request))),
                 Language = SessionService.CurrentLanguage,
                 SignUpLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/SignUp"),
                 BannerLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#MediaGallery") : "javascript:;",
