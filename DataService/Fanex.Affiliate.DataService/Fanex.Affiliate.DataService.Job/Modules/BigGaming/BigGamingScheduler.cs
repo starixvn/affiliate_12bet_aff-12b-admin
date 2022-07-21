@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules.BigGaming
         private readonly IAppSettings _appSetting;
 
         protected abstract string JobName { get; }
-        protected abstract NewApiJobBase ProductJob { get; }
+        protected abstract IJobDetail JobDetail { get; }
 
         protected BigGamingScheduler(IAppSettings appSetting = null)
         {
@@ -19,13 +19,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules.BigGaming
 
         public ScheduleInfo BuildSchedule()
         {
-            string groupName = $"{JobName}Group";
-            var job = JobBuilder.Create<BigGamingJob>()
-               .WithIdentity(JobName, groupName)
-               .Build();
-
             var trigger = TriggerBuilder.Create()
-              .WithIdentity(JobName + "Trigger", groupName)
+              .WithIdentity(JobName + "Trigger", $"{JobName}Group")
               .StartNow()
               .WithSimpleSchedule(x => x
                   .WithIntervalInMinutes(Convert.ToInt32(_appSetting.GetValue("BigGamingIntervalTime")))
@@ -34,7 +29,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules.BigGaming
 
             return new ScheduleInfo
             {
-                Job = job,
+                Job = JobDetail,
                 Trigger = trigger
             };
         }
