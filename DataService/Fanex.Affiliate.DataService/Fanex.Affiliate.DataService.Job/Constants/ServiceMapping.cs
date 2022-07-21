@@ -20,6 +20,8 @@ namespace Fanex.Affiliate.DataService.Job.Constants
             {"Skywind", "Fanex.Affiliate.DataService.Job.Modules.SkywindJob" },
             {"Sunstone", "Fanex.Affiliate.DataService.Job.Modules.SunstoneJob" },
             {"Jasper", "Fanex.Affiliate.DataService.Job.Modules.JasperJob" },
+            {"BgFish", "Fanex.Affiliate.DataService.Job.Modules.BigGaming.BgFishJob" },
+            {"BgLiveCasino", "Fanex.Affiliate.DataService.Job.Modules.BigGaming.BgLiveCasinoJob" },
             //{"Opus", "Fanex.Affiliate.DataService.Job.Modules.OpusJob" },
             //{"BTiDaily", "Fanex.Affiliate.DataService.Job.Modules.BTiDailyJob" },
             //{"SkywindDaily", "Fanex.Affiliate.DataService.Job.Modules.SkywindDailyJob" },

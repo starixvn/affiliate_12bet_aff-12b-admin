@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.DataService.Importer.BigGaming
 {
     public class BgFishService : BigGamingService
     {
-        protected override int ProductId => Products.BgFish;
+        protected override int ProductId => Products.BgFishId;
         protected override string ProductName => "BG Fish";
         protected override string ProductMethod => _appSetting.GetValue("BgFishMethod");
         protected override string[] DataFieldNames

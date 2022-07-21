@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fanex.Affiliate.DataService.Job.Modules;
+using Fanex.Affiliate.DataService.Job.Modules.BigGaming;
 
 namespace Fanex.Affiliate.DataService.Job.Constants
 {
@@ -29,6 +30,8 @@ namespace Fanex.Affiliate.DataService.Job.Constants
                     { "Skywind", new Lazy<IJobScheduler>(() => new SkywindScheduler()) },
                     { "Sunstone", new Lazy<IJobScheduler>(() => new SunstoneScheduler()) },
                     { "Jasper", new Lazy<IJobScheduler>(() => new JasperScheduler()) },
+                    { "BgFish", new Lazy<IJobScheduler>(() => new BgFishScheduler()) },
+                    { "BgLiveCasino", new Lazy<IJobScheduler>(() => new BgLiveCasinoScheduler()) },
                     //{ "Opus", new Lazy<IJobScheduler>(() => new OpusScheduler()) },
                     //{ "BTiDaily", new Lazy<IJobScheduler>(() => new BTiDailyScheduler()) },
                     //{ "SkywindDaily", new Lazy<IJobScheduler>(() => new SkywindDailyScheduler()) },

@@ -24,8 +24,8 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Constants
                     { Products.SunstoneId, new Lazy<IImporterService>(() => new SunstoneService()) },
                     { Products.JasperId, new Lazy<IImporterService>(() => new JasperService()) },
                     { Products.PlaytechId, new Lazy<IImporterService>(() => new PlaytechService()) },
-                    { Products.BgLiveCasino, new Lazy<IImporterService>(() => new BgLiveCasinoService()) },
-                    { Products.BgFish, new Lazy<IImporterService>(() => new BgFishService()) },
+                    { Products.BgFishId, new Lazy<IImporterService>(() => new BgFishService()) },
+                    { Products.BgLiveCasinoId, new Lazy<IImporterService>(() => new BgLiveCasinoService()) },
                 };
             }
         }
