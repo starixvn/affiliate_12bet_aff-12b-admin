@@ -4,7 +4,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Logging;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
             catch (Exception ex)
             {
-                Logger.Log.Error(ex.Message, ex);
+                LogHelper.WriteError(ex);
                 return ResultInfo.GenerateErr(Lang.ErrGeneral);
             }
         }

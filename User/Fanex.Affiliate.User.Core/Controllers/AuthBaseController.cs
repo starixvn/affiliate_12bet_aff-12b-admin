@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return GetErrorResult(string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)));
             }
 
-            if (!_captchaService.IsValid(inputCaptcha, sessionCaptcha, Request.UserHostAddress))
+            if (!_captchaService.IsValid(inputCaptcha, sessionCaptcha, RequestHelper.GetClientIPAddress(Request)))
             {
                 return GetErrorResult(Lang.ValidationCode);
             }

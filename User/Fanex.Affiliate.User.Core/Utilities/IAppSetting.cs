@@ -45,6 +45,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         DateTime StatementAvailableFrom { get; }
 
+        DateTime ShowingNoticeEndDate { get; }
+
         string SymmetricPassword { get; }
 
         string SymmetricSalt { get; }

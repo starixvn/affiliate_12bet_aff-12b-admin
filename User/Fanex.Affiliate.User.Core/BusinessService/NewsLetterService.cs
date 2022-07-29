@@ -2,12 +2,8 @@
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
-using Fanex.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.User.Core.BusinessService

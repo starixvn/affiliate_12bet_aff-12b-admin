@@ -9,8 +9,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class HomeController : BaseController
     {
-        private static readonly DateTime LimitedDate = new DateTime(2022, 08, 20);
-
         private readonly IAppSetting _appSetting;
         private readonly IIpAddressService _ipAddressService;
 
@@ -30,12 +28,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             var isAuthenticated = Request.IsAuthenticated && SessionService.UserSession != null;
             var today = DateTime.Now;
-            var isValidDate = DateTime.Compare(today, LimitedDate) < 0;
+            var isValidDate = DateTime.Compare(today, _appSetting.ShowingNoticeEndDate) < 0;
 
             var viewModel = new HomeViewModel
             {
                 IsAuthenticated = isAuthenticated,
-                IsThaiIp = isValidDate && (_appSetting.IsLocal || _ipAddressService.IsThaiLandIpAddress(RequestHelper.GetClientIPAddress(Request))),
+                IsThaiIp = isValidDate && (_appSetting.IsLocal || _ipAddressService.IsThaiLandIpAddress(RequestHelper.GetValidOrEmptyClientIPAddress(Request))),
                 Language = SessionService.CurrentLanguage,
                 SignUpLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/SignUp"),
                 BannerLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#MediaGallery") : "javascript:;",
