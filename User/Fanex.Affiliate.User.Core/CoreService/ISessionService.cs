@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -24,5 +25,9 @@ namespace Fanex.Affiliate.User.Core.CoreService
         VerificationSession VerificationSession { get; set; }
 
         IEnumerable<ClaimsIdentity> ClaimsIdentities { get; set; }
+
+        DateTime LastestRequestTime { get; set; }
+
+        bool IsDisabledFeedback { get; set; }
     }
 }

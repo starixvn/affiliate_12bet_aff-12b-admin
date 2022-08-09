@@ -2237,4 +2237,19 @@
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
   </data>
+  <data name="AffFeedback" xml:space="preserve">
+    <value>Phản Hồi Từ Đại Lý</value>
+  </data>
+  <data name="WeWouldLove" xml:space="preserve">
+    <value>Chúng tôi rất biết ơn phản hồi của bạn để cải thiện chất lượng dịch vụ của chúng tôi.</value>
+  </data>
+  <data name="PleaseLeaveYourFeedback" xml:space="preserve">
+    <value>Vui lòng để lại phản hồi của bạn dưới đây:</value>
+  </data>
+  <data name="WhatIsYourOpinion" xml:space="preserve">
+    <value>Bạn nghĩ gì về chương trình đại lý của chúng tôi?</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>Xin cảm ơn đã để lại phản hồi quý giá của bạn.</value>
+  </data>
 </root>

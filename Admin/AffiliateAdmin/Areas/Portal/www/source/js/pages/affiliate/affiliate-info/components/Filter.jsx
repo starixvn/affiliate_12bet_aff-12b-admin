@@ -214,7 +214,7 @@ export class Filter extends PureComponent {
                     </FormGroup>
 
                     <FormGroup className="my-2 mr-sm-2">
-                        <Label for="SortBy" className="mr-sm-2">{resource.DisplayedColumns}</Label>
+                        <Label className="mr-sm-2">{resource.DisplayedColumns}</Label>
                         <MultipleSelect
                             dataSource={columnList}
                             keyField="columnKey"

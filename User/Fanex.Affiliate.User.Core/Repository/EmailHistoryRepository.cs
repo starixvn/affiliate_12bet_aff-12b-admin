@@ -3,7 +3,7 @@ using Fanex.Affiliate.User.Core.MetalModels;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
-    public class EmailHistoryRepository : IEmailHistoryRepository
+    public class EmailHistoryRepository : BaseRepository, IEmailHistoryRepository
     {
         private readonly IObjectDBBuilder _builder;
 

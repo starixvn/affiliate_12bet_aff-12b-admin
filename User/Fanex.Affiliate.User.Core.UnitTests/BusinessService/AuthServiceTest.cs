@@ -4,6 +4,7 @@ using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
+using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
@@ -19,6 +20,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         private readonly IAuthRepository AuthRepo;
         private readonly ICryptographyService CryptographyService;
         private readonly IAppSetting AppSetting;
+        private readonly IFeedbackRepository FeedbackRepo;
         private readonly IVerificationRepository VerificationRepo;
 
         const string Password = "Password";
@@ -31,6 +33,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             AuthRepo = Substitute.For<IAuthRepository>();
             CryptographyService = Substitute.For<ICryptographyService>();
             AppSetting = Substitute.For<IAppSetting>();
+            FeedbackRepo = Substitute.For<IFeedbackRepository>();
             VerificationRepo = Substitute.For<IVerificationRepository>();
         }
 
@@ -257,7 +260,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             AppSetting.LoginTimeout.Returns(30);
             AuthRepo.GetUserInfo(null, false).ReturnsForAnyArgs(CreateAutherizedUserInfo());
             CryptographyService.EncryptPassword(null).ReturnsForAnyArgs("password");
-            AuthRepo.UpdateLoginResult(null).ReturnsForAnyArgs(new DTO.LoginResultInfo
+            AuthRepo.UpdateLoginResult(null).ReturnsForAnyArgs(new LoginResultInfo
             {
                 IsOk = true
             });
@@ -305,6 +308,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
 
         private AuthService CreateService()
-            => new AuthService(AuthRepo, CryptographyService, AppSetting, VerificationRepo);
+            => new AuthService(AuthRepo, CryptographyService, AppSetting, FeedbackRepo, VerificationRepo);
     }
 }

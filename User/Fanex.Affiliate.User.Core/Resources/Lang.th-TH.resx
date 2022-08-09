@@ -2241,4 +2241,19 @@
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
   </data>
+  <data name="AffFeedback" xml:space="preserve">
+    <value>ข้อเสนอแนะจากพันธมิตร</value>
+  </data>
+  <data name="WeWouldLove" xml:space="preserve">
+    <value>เรายินดีรับฟังความคิดเห็นของคุณเพื่อปรับปรุงบริการของเรา</value>
+  </data>
+  <data name="PleaseLeaveYourFeedback" xml:space="preserve">
+    <value>กรุณาแสดงความคิดเห็นของคุณด้านล่าง:</value>
+  </data>
+  <data name="WhatIsYourOpinion" xml:space="preserve">
+    <value>คุณมีความคิดเห็นอย่างไรเกี่ยวกับโปรแกรมพันธมิตรของเรา?</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>ขอขอบคุณสำหรับทุกคำแนะนำของคุณ</value>
+  </data>
 </root>

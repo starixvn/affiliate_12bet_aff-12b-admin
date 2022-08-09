@@ -158,6 +158,7 @@ export class Filter extends PureComponent {
     }
 
     handleChangeProduct = (item, selectedProductList) => {
+        console.log(selectedProductList);
         this.setState({ selectedProductList: selectedProductList });
     }
 

@@ -206,6 +206,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Affiliate Feedback.
+        /// </summary>
+        public static string AffFeedback {
+            get {
+                return ResourceManager.GetString("AffFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate.
         /// </summary>
         public static string Affiliate {
@@ -4365,6 +4374,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please leave your feedback below:.
+        /// </summary>
+        public static string PleaseLeaveYourFeedback {
+            get {
+                return ResourceManager.GetString("PleaseLeaveYourFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Poker.
         /// </summary>
         public static string Poker {
@@ -5823,6 +5841,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thank you for your valuable feedback..
+        /// </summary>
+        public static string ThankYou {
+            get {
+                return ResourceManager.GetString("ThankYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to THB (Thai Baht).
         /// </summary>
         public static string THB {
@@ -6378,6 +6405,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string WesternSamoa {
             get {
                 return ResourceManager.GetString("WesternSamoa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We would love to have your feedback to improve our services..
+        /// </summary>
+        public static string WeWouldLove {
+            get {
+                return ResourceManager.GetString("WeWouldLove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is your opinion about our affiliate program?.
+        /// </summary>
+        public static string WhatIsYourOpinion {
+            get {
+                return ResourceManager.GetString("WhatIsYourOpinion", resourceCulture);
             }
         }
         

@@ -232,6 +232,7 @@
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\Menu.cs" />
     <Compile Include="Constants\ProcessingRequestStatus.cs" />
+    <Compile Include="Controllers\Affiliate\FeedbackReportController.cs" />
     <Compile Include="Controllers\Affiliate\MassAdjustmentController.cs" />
     <Compile Include="Controllers\Affiliate\NewViewLogController.cs" />
     <Compile Include="Controllers\Affiliate\ProcessingRequestController.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Controllers\MediaGallery\OfferPageController.cs" />
     <Compile Include="Controllers\MediaGallery\NewsLetterController.cs" />
     <Compile Include="Controllers\Member\RegisteredMemberController.cs" />
+    <Compile Include="DTO\FeedbackReport\FeedbackReportInfo.cs" />
     <Compile Include="DTO\MassAdjustment\AdjustmentResultInfo.cs" />
     <Compile Include="DTO\MassAdjustment\ErroredAdjustmentInfo.cs" />
     <Compile Include="DTO\MediaGallery\OfferAff.cs" />

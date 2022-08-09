@@ -5,6 +5,7 @@ export const menuKey = {
     paymentRequest: 'paymentRequest',
     commGroup: 'commGroup',
     emailHistory: 'emailHistory',
+    feedbackReport: 'feedbackReport',
     massAdjustment: 'massAdjustment',
     viewLog: 'viewLog',
     procReqeust: 'procRequest'
@@ -15,6 +16,7 @@ export const relativePath = {
     paymentRequest: getVirtualUrl() + 'Portal/PaymentRequest',
     commGroup: getVirtualUrl() + 'Portal/CommissionGroup',
     emailHistory: getVirtualUrl() + 'Portal/EmailHistory',
+    feedbackReport: getVirtualUrl() + 'Portal/FeedbackReport',
     massAdjustment: getVirtualUrl() + 'Portal/Adjustment',
     viewLog: getVirtualUrl() + 'Portal/ViewLog',
     procRequest: getVirtualUrl() + 'Portal/ProcessingRequest'

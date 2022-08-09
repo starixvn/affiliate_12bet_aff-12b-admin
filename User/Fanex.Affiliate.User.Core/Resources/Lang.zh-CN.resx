@@ -2245,4 +2245,19 @@
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
   </data>
+  <data name="AffFeedback" xml:space="preserve">
+    <value>合作伙伴意见反馈</value>
+  </data>
+  <data name="WeWouldLove" xml:space="preserve">
+    <value>期待您反馈的意见，以改善我们的服务。</value>
+  </data>
+  <data name="PleaseLeaveYourFeedback" xml:space="preserve">
+    <value>请在下面留下您的意见反馈：</value>
+  </data>
+  <data name="WhatIsYourOpinion" xml:space="preserve">
+    <value>您对12BET的合作伙伴有何看法？</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>非常感谢您提供的宝贵意见。</value>
+  </data>
 </root>

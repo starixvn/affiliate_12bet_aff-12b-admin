@@ -9,14 +9,11 @@ import ClaimPrincipal from '../../../modules/claim';
 export default class App extends PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            today: new Date().toLocaleDateString('en-US'),
-        }
     }
-
     render() {
-        const state = Object.assign({}, this.state, window.initialState, {claimsPrincipal: ClaimPrincipal.currentClaimPrincipal});
-        const store = configureStore(state, reducer);
+        console.log(window.initialState);
+        const storeState = Object.assign({}, window.initialState, {claimsPrincipal: ClaimPrincipal.currentClaimPrincipal});
+        const store = configureStore(storeState, reducer);
         return (
             <Provider store={store}>
                 <AppContainer />

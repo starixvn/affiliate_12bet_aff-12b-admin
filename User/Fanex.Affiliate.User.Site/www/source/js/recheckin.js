@@ -5,7 +5,7 @@
 
     var _me = {
         initialize: function () {
-            _handler = setTimeout(_me.reCheckin, _timeInterval);
+            _handler = setInterval(_me.reCheckin, _timeInterval);
         },
 
         reCheckin: function () {
@@ -19,12 +19,9 @@
                     if (result.IsKickOut) {
                         _me.kickout(result.Message);
                     }
-                    if (result.ErrCode > 0) {
-                        window.location.href = Site.resolveRelativeUrl("");
+                    if (result.IsShowFeedback) {
+                        _me.handleShowFeedback();
                     }
-
-                    clearTimeout(_handler);
-                    _handler = setTimeout(_me.reCheckin, _timeInterval);
                 }
             });
         },
@@ -36,6 +33,18 @@
             setTimeout(function () {
                 window.location.href = Site.resolveRelativeUrl("");
             }, 500);
+        },
+
+        handleShowFeedback: function () {
+            $.ajax({
+                url: Site.resolveRelativeUrl("UserPanel/Feedback/Index"),
+                type: "GET",
+                dataType: "html",
+                cache: false,
+                success: function (result) {
+                    $("#loginAfter").append(`<div id="affFeedback">${result}</div>`);
+                }
+            });
         }
     };
 

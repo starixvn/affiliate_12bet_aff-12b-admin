@@ -48,6 +48,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public int LoginTimeout => Convert.ToInt32(GetValue("LoginTimeout"));
 
+        public int ValidIdleTime => Convert.ToInt32(GetValue("ValidIdleTime"));
+
         public string SymmetricPassword => GetValue("SymmetricPassword");
 
         public string SymmetricSalt => GetValue("SymmetricSalt");

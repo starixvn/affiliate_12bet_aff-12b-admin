@@ -1680,4 +1680,13 @@
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
   </data>
+  <data name="WeWouldLove" xml:space="preserve">
+    <value>We would love to have your feedback to improve our services.</value>
+  </data>
+  <data name="PleaseLeaveYourFeedback" xml:space="preserve">
+    <value>Please leave your feedback below:</value>
+  </data>
+  <data name="WhatIsYourOpinion" xml:space="preserve">
+    <value>What is your opinion about our affiliate program?</value>
+  </data>
 </root>

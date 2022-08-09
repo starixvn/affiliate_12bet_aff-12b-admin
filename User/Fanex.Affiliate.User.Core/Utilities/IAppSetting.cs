@@ -43,6 +43,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         int LoginTimeout { get; }
 
+        int ValidIdleTime { get; }
+
         DateTime StatementAvailableFrom { get; }
 
         DateTime ShowingNoticeEndDate { get; }

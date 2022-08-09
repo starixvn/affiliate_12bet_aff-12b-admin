@@ -11,7 +11,6 @@
     using System.Web.Mvc;
     using Utilities;
 
-
     public class ContactUsController : BaseController
     {
         private readonly IContactService _contactService;
