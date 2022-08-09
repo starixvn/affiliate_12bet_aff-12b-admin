@@ -33,7 +33,6 @@
             this.btnBetsoft = new System.Windows.Forms.Button();
             this.btnEbet = new System.Windows.Forms.Button();
             this.btnCrystal = new System.Windows.Forms.Button();
-            this.btnQuartz = new System.Windows.Forms.Button();
             this.btnGpiLottery = new System.Windows.Forms.Button();
             this.btnTopaz = new System.Windows.Forms.Button();
             this.btLBKeno = new System.Windows.Forms.Button();
@@ -106,17 +105,6 @@
             this.btnCrystal.Text = "12Crystal - GPI";
             this.btnCrystal.UseVisualStyleBackColor = true;
             this.btnCrystal.Click += new System.EventHandler(this.btnCrystal_Click);
-            // 
-            // btnQuartz
-            // 
-            this.btnQuartz.Location = new System.Drawing.Point(20, 173);
-            this.btnQuartz.Margin = new System.Windows.Forms.Padding(4);
-            this.btnQuartz.Name = "btnQuartz";
-            this.btnQuartz.Size = new System.Drawing.Size(147, 28);
-            this.btnQuartz.TabIndex = 5;
-            this.btnQuartz.Text = "12Quartz - iSoftbet";
-            this.btnQuartz.UseVisualStyleBackColor = true;
-            this.btnQuartz.Click += new System.EventHandler(this.btnQuartz_Click);
             // 
             // btnGpiLottery
             // 
@@ -314,7 +302,6 @@
             this.Controls.Add(this.btLBKeno);
             this.Controls.Add(this.btnTopaz);
             this.Controls.Add(this.btnGpiLottery);
-            this.Controls.Add(this.btnQuartz);
             this.Controls.Add(this.btnCrystal);
             this.Controls.Add(this.btnEbet);
             this.Controls.Add(this.btnBetsoft);
@@ -340,7 +327,6 @@
         private System.Windows.Forms.Button btnBetsoft;
         private System.Windows.Forms.Button btnEbet;
         private System.Windows.Forms.Button btnCrystal;
-        private System.Windows.Forms.Button btnQuartz;
         //private System.Windows.Forms.Button btnOpus;
         private System.Windows.Forms.Button btnGpiLottery;
         private System.Windows.Forms.Button btnTopaz;

@@ -95,13 +95,13 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             this.Hide();
         }
 
-        private void btnQuartz_Click(object sender, EventArgs e)
-        {
-            var quartzForm = new ISoftbetForm();
-            quartzForm.FormClosing += FormClosingHandler;
-            quartzForm.Show();
-            this.Hide();
-        }
+        //private void btnQuartz_Click(object sender, EventArgs e)
+        //{
+        //    var quartzForm = new ISoftbetForm();
+        //    quartzForm.FormClosing += FormClosingHandler;
+        //    quartzForm.Show();
+        //    this.Hide();
+        //}
 
         //private void btnOpus_Click(object sender, EventArgs e)
         //{
