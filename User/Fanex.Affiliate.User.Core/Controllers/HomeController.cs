@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var viewModel = new HomeViewModel
             {
                 IsAuthenticated = isAuthenticated,
-                IsThaiIp = isValidDate && (_appSetting.IsLocal || _ipAddressService.IsThaiLandIpAddress(RequestHelper.GetValidOrEmptyClientIPAddress(Request))),
+                IsShowAlert = isValidDate && (_appSetting.IsLocal || _ipAddressService.IsThaiLandIpAddress(RequestHelper.GetValidOrEmptyClientIPAddress(Request))),
                 Language = SessionService.CurrentLanguage,
                 SignUpLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/SignUp"),
                 BannerLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#MediaGallery") : "javascript:;",
