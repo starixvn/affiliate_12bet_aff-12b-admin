@@ -2234,4 +2234,7 @@
   <data name="KoreaSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Hàn</value>
   </data>
+  <data name="Cambodian" xml:space="preserve">
+    <value>ខ្មែរ</value>
+  </data>
 </root>

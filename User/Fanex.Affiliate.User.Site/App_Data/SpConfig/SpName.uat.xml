@@ -59,11 +59,11 @@
   </Function>
 
   <Function Name="HotNews">
-    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_HotNewsDetail_view" SpName="Aff_HotNewsDetail" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_HotNewsDetail_view" SpName="Aff_HotNewsDetail_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_HotNewsSel_view" SpName="Aff_HotNewsSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_HotNewsSel_view" SpName="Aff_HotNewsSel_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="Password">

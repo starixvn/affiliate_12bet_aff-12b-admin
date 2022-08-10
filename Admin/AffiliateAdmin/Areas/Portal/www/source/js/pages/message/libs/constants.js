@@ -18,6 +18,7 @@ const vietNamese = 'MessageContentVi';
 const indonesian = 'MessageContentId';
 const korean = 'MessageContentKr';
 const japanese = 'MessageContentJp';
+const cambodian = 'MessageContentKh';
 
 export const defaultMessageContentList =
 {
@@ -29,6 +30,7 @@ export const defaultMessageContentList =
     [thai]: '',
     [vietNamese]: '',
     [indonesian]: '',
+    [cambodian]: '',
     [korean]: '',
     [japanese]: ''
 };
@@ -41,6 +43,7 @@ export const languages = {
     [thai]: 'Thai',
     [vietNamese]: 'VietNamese',
     [indonesian]: 'Indonesian',
+    [cambodian]: 'Cambodian',
     [korean]: 'Korean',
     [japanese]: 'Japanese'
 }

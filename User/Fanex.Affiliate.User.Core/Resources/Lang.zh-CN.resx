@@ -2242,4 +2242,7 @@
   <data name="KoreaSupport" xml:space="preserve">
     <value>韓語</value>
   </data>
+  <data name="Cambodian" xml:space="preserve">
+    <value>ខ្មែរ</value>
+  </data>
 </root>

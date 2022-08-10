@@ -1677,4 +1677,7 @@
   <data name="KoreaSupport" xml:space="preserve">
     <value>Korea Support</value>
   </data>
+  <data name="Cambodian" xml:space="preserve">
+    <value>ខ្មែរ</value>
+  </data>
 </root>

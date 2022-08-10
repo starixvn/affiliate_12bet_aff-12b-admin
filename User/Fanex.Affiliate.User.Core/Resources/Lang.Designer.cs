@@ -854,6 +854,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ខ្មែរ.
+        /// </summary>
+        public static string Cambodian {
+            get {
+                return ResourceManager.GetString("Cambodian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cameroon .
         /// </summary>
         public static string Cameroon {
