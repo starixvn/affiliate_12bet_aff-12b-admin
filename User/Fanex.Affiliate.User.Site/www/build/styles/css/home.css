@@ -26,22 +26,7 @@
       .alert-home-block {
         width: 90%; } }
     .alert-home-block-group {
-      font-size: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column; }
-      .alert-home-block-group-circle {
-        width: 50px;
-        height: 50px;
-        margin-top: 30px;
-        margin-bottom: 20px;
-        color: #FFF;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #4CAF50; }
+      font-size: 2rem; }
     .alert-home-block-remove .alert-glyphicon-remove {
       width: 40px;
       height: 40px;

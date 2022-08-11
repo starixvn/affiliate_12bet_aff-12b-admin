@@ -110,7 +110,7 @@
                 AffId = uid,
                 ValidCode = vid,
                 NewPassword = CryptographyHelper.Encrypt(newPassword),
-                Ip = Request.UserHostAddress,
+                Ip = RequestHelper.GetClientIPAddress(Request),
                 Language = SessionService.CurrentLanguage
             };
 

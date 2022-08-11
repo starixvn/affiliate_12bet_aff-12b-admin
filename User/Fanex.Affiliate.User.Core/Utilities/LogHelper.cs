@@ -1,12 +1,15 @@
-﻿using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Data;
 using Fanex.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -15,7 +18,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         private const int LimitedLevelOfInnerException = 3;
         public static void WriteError(Exception exception, string additionalMessage = null)
         {
-            var content = BuildMessage(exception.Message);
+            var content = BuildMessage(exception);
             if (!string.IsNullOrWhiteSpace(additionalMessage))
             {
                 content.AppendLine(additionalMessage);
@@ -27,30 +30,51 @@ namespace Fanex.Affiliate.User.Core.Utilities
             LogService.Error(content.ToString(), exception);
         }
 
+        public static void WriteError(string msg)
+        {
+            LogService.Error(msg);
+        }
+
+        public static async Task WriteErrorAsync(string msg)
+        {
+            await LogService.ErrorAsync(msg);
+        }
+
         public static void WriteInfo(string msg)
         {
             LogService.Info(msg);
         }
 
-        private static StringBuilder BuildMessage(string message)
+        private static StringBuilder BuildMessage(Exception exception)
         {
             var request = HttpContext.Current.Request;
-            var builder = new StringBuilder().AppendLine($"Error Message: {message}").AppendLine();
+            var builder = new StringBuilder().AppendLine($"Error Message: {exception.Message}").AppendLine();
 
 
             builder.AppendLine("REQUEST INFO")
                    .AppendLine("Domain: " + request.Headers["Host"])
                    .AppendLine("Form: " + string.Join("~", request.Form))
                    .AppendLine("Url: " + request.RawUrl)
-                   .AppendLine("Referrer: " + request.UrlReferrer)
+                   .AppendLine("Url Referrer: " + request.UrlReferrer)
                    .AppendLine("Query String: " + string.Join("~", request.QueryString))
                    .AppendLine("Browser: " + request.Browser.Type)
                    .AppendLine("BrowserVer: " + request.Browser.Version)
                    .AppendLine("Agent: " + request.UserAgent)
-                   .AppendLine("IP Address: " + request.UserHostAddress);
+                   .AppendLine("IP Address: " + request.UserHostAddress)
+                   .AppendLine($"Source:{exception.Source}")
+                   .AppendLine($"TargetSite:{exception.TargetSite}");
 
-            var userSession = HttpContext.Current.Session["Affiliate12Bet.UserSessionKey"] as UserSession;
-            builder.AppendLine("UserName: " + userSession?.UserName);
+            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+            if (sessionService != null)
+            {
+                builder.AppendLine($"Current Language: {sessionService.CurrentLanguage}");
+                builder.AppendLine($"IsInternal: {sessionService.IsInternal}");
+
+                if (sessionService.UserSession != null)
+                {
+                    builder.AppendLine($"User Info: {JsonConvert.SerializeObject(sessionService.UserSession)}");
+                }
+            }
 
             return builder;
         }

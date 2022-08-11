@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
@@ -14,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         private const int LimitedLevelOfInnerException = 3;
         public static void WriteError(Exception exception, string additionalMessage = null)
         {
-            var content = BuildMessage(exception.Message);
+            var content = BuildMessage(exception);
             if (!string.IsNullOrWhiteSpace(additionalMessage))
             {
                 content.AppendLine(additionalMessage);
@@ -25,16 +26,25 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
             LogService.Error(content.ToString(), exception);
         }
+        public static void WriteError(string msg)
+        {
+            LogService.Error(msg);
+        }
+
+        public static async Task WriteErrorAsync(string msg)
+        {
+            await LogService.ErrorAsync(msg);
+        }
 
         public static void WriteInfo(string msg)
         {
             LogService.Info(msg);
         }
 
-        private static StringBuilder BuildMessage(string message)
+        private static StringBuilder BuildMessage(Exception exception)
         {
             var request = HttpContext.Current.Request;
-            var builder = new StringBuilder().AppendLine($"Error Message: {message}").AppendLine();
+            var builder = new StringBuilder().AppendLine($"Error Message: {exception.Message}").AppendLine();
             builder.AppendLine("REQUEST INFO")
                    .AppendLine("Domain: " + request.Headers["Host"])
                    .AppendLine("Form: " + string.Join("~", request.Form))
@@ -44,7 +54,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                    .AppendLine("Browser: " + request.Browser.Type)
                    .AppendLine("BrowserVer: " + request.Browser.Version)
                    .AppendLine("Agent: " + request.UserAgent)
-                   .AppendLine("IP Address: " + request.UserHostAddress);
+                   .AppendLine("IP Address: " + request.UserHostAddress)
+                   .AppendLine($"Source:{exception.Source}")
+                   .AppendLine($"TargetSite:{exception.TargetSite}");
 
             builder.AppendLine("UserName: " + HttpContext.Current.Session["UserName"]);
 

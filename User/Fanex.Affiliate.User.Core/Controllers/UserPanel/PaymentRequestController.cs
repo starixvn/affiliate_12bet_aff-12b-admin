@@ -66,7 +66,7 @@
             {
                 paymentCreationParam.AffId = SessionService.UserSession.AffId;
                 paymentCreationParam.Language = SessionService.CurrentLanguage;
-                paymentCreationParam.Ip = Request.UserHostAddress;
+                paymentCreationParam.Ip = RequestHelper.GetClientIPAddress(Request);
                 paymentCreationParam.IsInternal = SessionService.IsInternal;
                 paymentCreationParam.IsLocalTest = !_appSetting.IsProduction;
 
@@ -104,7 +104,7 @@
             {
                 cancelParam.UserId = SessionService.UserSession.AffId;
                 cancelParam.Language = SessionService.CurrentLanguage;
-                cancelParam.Ip = Request.UserHostAddress;
+                cancelParam.Ip = RequestHelper.GetClientIPAddress(Request);
 
                 var emailParam = new PaymentEmailParam
                 {

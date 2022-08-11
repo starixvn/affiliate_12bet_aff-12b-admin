@@ -70,7 +70,7 @@
             {
                 result.Message = Lang.ErrAuthorized;
             }
-            else if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.UserHostAddress))
+            else if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, RequestHelper.GetClientIPAddress(Request)))
             {
                 result.Message = Lang.ValidationCode;
             }
@@ -82,7 +82,7 @@
                 param.Subject = Server.HtmlEncode(param.Subject);
                 param.Content = Server.HtmlEncode(param.Content);
                 param.Creator = SessionService.UserSession == null ? -1 : SessionService.UserSession.AffId;
-                param.Ip = Request.UserHostAddress;
+                param.Ip = RequestHelper.GetClientIPAddress(Request);
                 param.SessionId = Session.SessionID;
                 param.Browser = Request.Browser.Browser;
 

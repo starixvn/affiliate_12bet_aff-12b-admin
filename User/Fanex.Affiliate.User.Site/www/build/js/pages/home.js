@@ -6,9 +6,7 @@ var Home = (function ($) {
     var _me = {
         initialize: function initialize() {
             _me.initEvent();
-            $(document.body).css('overflow', 'hidden');
-            _me.adjustAlertHomeBlockRemovePosition();
-            window.addEventListener("resize", _me.adjustAlertHomeBlockRemovePosition);
+            _me.handleShowAlert();
         },
         initEvent: function initEvent() {
             $('#euroBanner').on('click', function (event) {
@@ -52,6 +50,13 @@ var Home = (function ($) {
                 window.removeEventListener("resize", _me.adjustAlertHomeBlockRemovePosition);
             });
         },
+        handleShowAlert: function handleShowAlert() {
+            if ($("#alertHome").css("display") === "block") {
+                $(document.body).css('overflow', 'hidden');
+                _me.adjustAlertHomeBlockRemovePosition();
+                window.addEventListener("resize", _me.adjustAlertHomeBlockRemovePosition);
+            }
+        },
         adjustAlertHomeBlockRemovePosition: function adjustAlertHomeBlockRemovePosition() {
             var alertHomeBlockHeight = $('#alertHomeBlock').outerHeight();
             var alertHomeBlockWidth = $('#alertHomeBlock').outerWidth();
@@ -60,7 +65,7 @@ var Home = (function ($) {
                 right: 'calc(50% - ' + alertHomeBlockWidth / 2 + 'px)'
             });
 
-            var alertHomeBlockOffset = $('#alertHomeBlock').offset();
+            var alertHomeBlockOffset = $('#alertHomeBlock').position();
             var alertHomeBlockTop = alertHomeBlockOffset.top;
             var alertHomeBlockLeft = alertHomeBlockOffset.left;
 

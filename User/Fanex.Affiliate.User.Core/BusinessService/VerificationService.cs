@@ -121,7 +121,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 var updateResult = _verificationRepository.UpdateVerificationInfo(verificationParam);
                 if (!updateResult.IsOk)
                 {
-                    _wrapperUtility.GetLogger().Error(updateResult.Message);
+                    LogHelper.WriteError(updateResult.Message);
                 }
             }
             else
@@ -131,7 +131,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     var insertResult = _verificationRepository.InsertUserDeviceInfo(verificationParam);
                     if (!insertResult.IsOk)
                     {
-                        _wrapperUtility.GetLogger().Error(insertResult.Message);
+                        LogHelper.WriteError(insertResult.Message);
                     }
                 }
             }

@@ -1,5 +1,4 @@
-﻿using Fanex.Logging;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -27,7 +26,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
             }
             else
             {
-                await Logger.Log.ErrorAsync($"Request to take {path}?fileName={fileName} content is failed!");
+                await LogHelper.WriteErrorAsync($"Request to take {path}?fileName={fileName} content is failed!");
             }
             return string.Empty;
         }

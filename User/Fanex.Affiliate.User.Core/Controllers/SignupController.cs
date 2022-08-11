@@ -53,7 +53,7 @@
         public ActionResult Index(UserSignUpParam param)
         {
             var result = new ResultInfo { IsOk = false };
-            if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.UserHostAddress))
+            if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, RequestHelper.GetClientIPAddress(Request)))
             {
                 result.Message = Lang.ValidationCode;
             }
@@ -90,7 +90,7 @@
                     State = Server.HtmlEncode(param.State),
                     Language = SessionService.CurrentLanguage,
                     AffType = _appSetting.AllowedAffiliateTypes.FirstOrDefault(),
-                    Ip = Request.UserHostAddress,
+                    Ip = RequestHelper.GetClientIPAddress(Request),
                     IsLocal = _appSetting.IsLocal
                 };
 

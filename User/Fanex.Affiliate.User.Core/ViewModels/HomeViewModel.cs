@@ -4,7 +4,7 @@
     {
         public bool IsAuthenticated { get; set; }
 
-        public bool IsThaiIp { get; set; }
+        public bool IsShowAlert { get; set; }
 
         public string SignUpLink { get; set; }
 

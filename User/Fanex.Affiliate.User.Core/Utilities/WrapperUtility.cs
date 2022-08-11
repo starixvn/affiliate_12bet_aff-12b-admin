@@ -1,5 +1,4 @@
-﻿using Fanex.Logging;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -13,11 +12,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
         public Random GetRandomGenerator()
         {
             return new Random();
-        }
-
-        public ILogger GetLogger()
-        {
-            return Logger.Log;
         }
     }
 }

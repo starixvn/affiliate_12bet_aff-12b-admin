@@ -1,11 +1,7 @@
-﻿using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Logging;
-using Newtonsoft.Json;
+﻿using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Affiliate.User.Core.Utilities;
 using System;
-using System.Data.SqlClient;
 using System.Net;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -28,8 +24,7 @@ namespace Fanex.Affiliate.User.Core.Filters
 
             if (!(exception is HttpAntiForgeryException))
             {
-                var message = BuildErrorMessage(exception, httpContext);
-                LogService.Error(message.ToString());
+                LogHelper.WriteError(exception);
             }
 
             if (httpContext.Request.IsAjaxRequest())
@@ -56,48 +51,6 @@ namespace Fanex.Affiliate.User.Core.Filters
             }
 
             filterContext.ExceptionHandled = true;
-        }
-
-        private static StringBuilder BuildErrorMessage(Exception exception, HttpContextBase httpContext)
-        {
-
-            var httpRequest = httpContext.Request;
-            var message = new StringBuilder()
-                            .AppendLine($"Error:{exception.Message}")
-                            .AppendLine($"Url: { httpRequest.RawUrl}")
-                            .AppendLine($"UrlReferrer: {httpRequest.UrlReferrer} ")
-                            .AppendLine($"QUERYSTRING: {httpRequest.QueryString}")
-                            .AppendLine($"FORM: {string.Join("~", httpRequest.Form)}")
-                            .AppendLine($"Browser:{httpRequest.Browser.Type}")
-                            .AppendLine($"BrowserVer:{httpRequest.Browser.Version}")
-                            .AppendLine($"Agent:{httpRequest.UserAgent}")
-                            .AppendLine($"Source:{exception.Source}")
-                            .AppendLine($"TargetSite:{exception.TargetSite}");
-
-            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-            if (sessionService != null)
-            {
-                message.AppendLine($"Current Language: {sessionService.CurrentLanguage}");
-                message.AppendLine($"IsInternal: {sessionService.IsInternal}");
-
-                if (sessionService.UserSession != null)
-                {
-                    message.AppendLine($"User Info: {JsonConvert.SerializeObject(sessionService.UserSession)}");
-                }
-            }
-
-            var sqlException = exception as SqlException;
-            if (sqlException != null)
-            {
-                message.AppendLine($"Procedure: { sqlException.Procedure}")
-                    .AppendLine($"Line Number: {sqlException.LineNumber}")
-                    .AppendLine($"Server: {sqlException.Server}");
-            }
-
-            message.AppendLine($"StackTrace: {exception.StackTrace}");
-            message.AppendLine($"InnerException: {exception.InnerException}");
-
-            return message;
         }
     }
 }
