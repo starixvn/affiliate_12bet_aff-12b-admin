@@ -54,7 +54,7 @@ describe('banner list - components - Filter ', () => {
             { key: "Media", name: "Media", checked: false }
         ],
         deviceTypeList,
-        today: "6/14/2022",
+        today: "7/11/2022",
         paramFromHome: {
             IsFromHome: false
         }
@@ -87,7 +87,7 @@ describe('banner list - components - Filter ', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "fromDate": "6/1/2022", "toDate": "6/14/2022", "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "fromDate": "7/1/2022", "toDate": "7/11/2022", "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
     it('_handleChangeCategory - should change category when change category select', () => {
@@ -100,7 +100,7 @@ describe('banner list - components - Filter ', () => {
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Casino');
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "6/1/2022", "toDate": "6/14/2022", "category": "Casino", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "7/1/2022", "toDate": "7/11/2022", "category": "Casino", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
     it('_handleChangeCategory - should change category when change category select', () => {
@@ -113,7 +113,7 @@ describe('banner list - components - Filter ', () => {
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Sportsbook');
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "6/1/2022", "toDate": "6/14/2022", "category": "Sportsbook", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "7/1/2022", "toDate": "7/11/2022", "category": "Sportsbook", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
     it("_handleChange - should call getSizeList and setState", () => {
@@ -126,11 +126,11 @@ describe('banner list - components - Filter ', () => {
 
         wrapper.instance()._handleChange(event)
         expect(wrapper.setState).toHaveBeenCalledWith({"currency": "USD"});
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "6/1/2022", "toDate": "6/14/2022", "category": "", "currency": "USD", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "7/1/2022", "toDate": "7/11/2022", "category": "", "currency": "USD", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
     });
 
     it('handleChangeFromDate - should be called when From > To', () => {
-        const monthDate = { format: jest.fn(() => "6/6/2022") };
+        const monthDate = { format: jest.fn(() => "7/6/2022") };
         const wrapper = shallow(<Filter {...defaultProps} />);
 
         wrapper.setState = jest.fn(fn => (fn instanceof Function) && fn({ toDate: "12/6/2021" }));
@@ -171,7 +171,7 @@ describe('banner list - components - Filter ', () => {
         instance.componentDidMount();
 
         expect(props.setParamFromHome).toHaveBeenCalledWith({ IsFromHome: false });
-        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "fromDate": "6/1/2022", "toDate": "6/14/2022", "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "Flash", "language": "", "size": "", "subCategory": ""});
+        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "fromDate": "7/1/2022", "toDate": "7/11/2022", "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "Flash", "language": "", "size": "", "subCategory": ""});
     });
 
     it('componentDidMount - should not call setParamFromHome and _handleSearch', () => {

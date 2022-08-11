@@ -12,6 +12,7 @@ describe('message - components - MessageDetailForm ', () => {
         MessageContentEn: "test",
         MessageContentEs: "",
         MessageContentId: "",
+        MessageContentKh: "",
         MessageContentJp: "",
         MessageContentKr: "",
         MessageContentTh: "",

@@ -290,7 +290,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
             param.Browser = Constant.Browser;
             param.Creator = Constant.DefaultAffId;
-            param.Ip = "::1";
+            param.Ip = "127.0.0.1";
             param.SessionId = "SessionId";
 
             return param;
