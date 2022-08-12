@@ -203,7 +203,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 var controller = CreateMarketingController();
                 controller = NSubtituteMockingHelper.FakeController(controller) as MarketingController;
                 controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
-                var result = controller.GenerateLink(selectedLanguage, default(int), default(string)) as ViewResult;
+                var result = controller.GenerateLink(selectedLanguage, default(string), default(int)) as ViewResult;
 
                 Assert.Equal("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", result.ViewName);
             }

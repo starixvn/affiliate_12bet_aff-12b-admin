@@ -26,8 +26,8 @@ var MarketingBase = (function ($) {
 
         getLinkGenerationParam: function () {
             return {
-                selectedLanguage: $("#Language").val(),
                 selectedDomainId: $("#Domain").val(),
+                selectedLanguage: $("#Language").val(),
                 selectedPage: $("#MemberSitePage").val()
             }
         },
