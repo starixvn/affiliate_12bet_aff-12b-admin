@@ -107,10 +107,10 @@
     <Setting Key="Aff_Admin_Exchange_Upd" SpName="Aff_Admin_Exchange_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="Message">
-    <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_Message_Ins" SpName="Aff_Admin_Message_Ins_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_Message_Upd" SpName="Aff_Admin_Message_Upd_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_Message_Ins" SpName="Aff_Admin_Message_Ins" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_Message_Upd" SpName="Aff_Admin_Message_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="Member">
     <Setting Key="Aff_Admin_MemberList_Sel" SpName="Aff_Admin_MemberList_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
