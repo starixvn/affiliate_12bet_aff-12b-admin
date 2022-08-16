@@ -2237,4 +2237,7 @@
   <data name="KoreaSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Korea</value>
   </data>
+  <data name="Cambodian" xml:space="preserve">
+    <value>ខ្មែរ</value>
+  </data>
 </root>

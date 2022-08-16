@@ -7,7 +7,7 @@
     var settingService = DependencyResolver.Current.GetService<IAppSetting>();
     var languageService = DependencyResolver.Current.GetService<ILanguageService>();
     var userSession = sessionService.UserSession;
-    var languageList = languageService.GetSystemLanguages(false).Where(l => !l.MarketId.Equals("en-GB") && !l.MarketId.Equals("es-ES"));
+    var languageList = languageService.GetSystemLanguages(false).Where(l => !l.MarketId.Equals("en-GB") && !l.MarketId.Equals("es-ES") && !l.MarketId.Equals("km-KH"));
     var currentLanguage = languageList.FirstOrDefault(l => l.MarketId.Equals(sessionService.CurrentLanguage))?.MarketNativeName;
 }
 

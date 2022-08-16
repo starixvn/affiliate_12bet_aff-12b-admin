@@ -305,7 +305,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 State = "EncodedState",
                 Language = Constant.DefaultLanguage,
                 AffType = Constant.AffTypeAsian,
-                Ip = "::1",
+                Ip = "127.0.0.1",
                 IsLocal = true,
                 ContactApps = JsonConvert.SerializeObject(appContactList)
             };

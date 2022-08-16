@@ -56,14 +56,15 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             return new Dictionary<string, string>
             {
-                ["en-US"] = reader[MessagePrefix + "en"]?.ToString(),
-                ["zh-CN"] = reader[MessagePrefix + "cn"]?.ToString(),
-                ["zh-TW"] = reader[MessagePrefix + "tw"]?.ToString(),
-                ["es-ES"] = reader[MessagePrefix + "es"]?.ToString(),
-                ["th-TH"] = reader[MessagePrefix + "th"]?.ToString(),
-                ["vi-VN"] = reader[MessagePrefix + "vi"]?.ToString(),
-                ["id-ID"] = reader[MessagePrefix + "id"]?.ToString(),
-                ["ko-KR"] = reader[MessagePrefix + "kr"]?.ToString()
+                ["en-US"] = Convert.ToString(reader[MessagePrefix + "en"]),
+                ["zh-CN"] = Convert.ToString(reader[MessagePrefix + "cn"]),
+                ["zh-TW"] = Convert.ToString(reader[MessagePrefix + "tw"]),
+                ["es-ES"] = Convert.ToString(reader[MessagePrefix + "es"]),
+                ["th-TH"] = Convert.ToString(reader[MessagePrefix + "th"]),
+                ["vi-VN"] = Convert.ToString(reader[MessagePrefix + "vi"]),
+                ["id-ID"] = Convert.ToString(reader[MessagePrefix + "id"]),
+                ["km-KH"] = Convert.ToString(reader[MessagePrefix + "kh"]),
+                ["ko-KR"] = Convert.ToString(reader[MessagePrefix + "kr"])
             };
         }
     }

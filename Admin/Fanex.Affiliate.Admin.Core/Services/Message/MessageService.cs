@@ -77,6 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                             MessageContentTh = Convert.ToString(reader["message_th"]),
                             MessageContentVi = Convert.ToString(reader["message_vi"]),
                             MessageContentId = Convert.ToString(reader["message_id"]),
+                            MessageContentKh = Convert.ToString(reader["message_kh"]),
                             MessageContentKr = Convert.ToString(reader["message_kr"]),
                             MessageContentJp = Convert.ToString(reader["message_jp"])
                         };
@@ -144,6 +145,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
             objectDb.SetParameterValue("msgth", param.MessageContentTh);
             objectDb.SetParameterValue("msgvi", param.MessageContentVi);
             objectDb.SetParameterValue("msgid", param.MessageContentId);
+            objectDb.SetParameterValue("msgkh", param.MessageContentKh);
             objectDb.SetParameterValue("msgkr", param.MessageContentKr);
             objectDb.SetParameterValue("msgjp", param.MessageContentJp);
             objectDb.SetParameterValue("UserID", param.UserId);

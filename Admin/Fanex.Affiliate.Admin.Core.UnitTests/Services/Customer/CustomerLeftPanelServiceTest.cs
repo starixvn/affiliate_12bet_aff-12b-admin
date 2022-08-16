@@ -89,6 +89,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var repository = new Mock<ICustomerLeftPanelRepository>();
             repository.Setup(comm => comm.GetAffiliateInfoOnLeftPanel(It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226", AffType = 4 });
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object, authService: authService.Object);
+            MockingHelper.SetUpEnviroment();
 
             // Action
             var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234");

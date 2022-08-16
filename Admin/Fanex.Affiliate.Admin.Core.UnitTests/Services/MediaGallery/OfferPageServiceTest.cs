@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.UnitTests.Common;
+using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Moq;
 using System;
@@ -119,6 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var OfferPageRepository = new Mock<IOfferPageRepository>();
             OfferPageRepository.Setup(s => s.InsertOfferPage(It.IsAny<InsertHtmlFileParam>())).Throws(new Exception());
             var controller = CreateOfferPageService(OfferPageRepository.Object, htmlFileService.Object);
+            MockingHelper.SetUpEnviroment();
 
             // Action
             using (var memoryStream = new MemoryStream(new byte[3] { 1, 2, 3 }))

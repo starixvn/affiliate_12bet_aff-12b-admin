@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.UnitTests.Common;
+using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -101,6 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var newsLetterRepository = new Mock<INewsLetterRepository>();
             newsLetterRepository.Setup(s => s.InsertNewsLetter(It.IsAny<InsertHtmlFileParam>())).Throws(new Exception());
             var controller = CreateNewsLetterService(newsLetterRepository.Object, htmlFileService.Object);
+            MockingHelper.SetUpEnviroment();
 
             // Action
             using (var memoryStream = new MemoryStream(new byte[3] { 1, 2, 3 }))

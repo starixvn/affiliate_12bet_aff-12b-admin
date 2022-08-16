@@ -35,6 +35,9 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Message
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string MessageContentJp { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string MessageContentKh { get; set; }
+
         public bool IsValid()
         {
             if (!(string.IsNullOrEmpty(MessageContentEn) && string.IsNullOrEmpty(MessageContentCn) && string.IsNullOrEmpty(MessageContentTw) && string.IsNullOrEmpty(MessageContentEs)))
@@ -47,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Message
                 return true;
             }
 
-            return !string.IsNullOrEmpty(MessageContentJp);
+            return !(string.IsNullOrEmpty(MessageContentJp) && string.IsNullOrEmpty(MessageContentKh));
         }
     }
 }

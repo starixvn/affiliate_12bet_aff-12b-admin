@@ -1,10 +1,13 @@
 ﻿using Fanex.Affiliate.Admin.Core.Services.Common;
 using Moq;
+using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Security.Claims;
 using System.Web;
+using System.Web.SessionState;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
 {
@@ -35,6 +38,24 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
             mockHttpRequest.Setup(p => p.UserHostName).Returns("123");
 
             return mockHttpRequest.Object;
+        }
+
+        public static void SetUpEnviroment()
+        {
+            var request = new HttpRequest("111", "http://127.0.0.1:8080/controller/action", string.Empty);
+            var test = Substitute.For<HttpBrowserCapabilities>();
+            test.Type.Returns("");
+            test.Version.Returns("");
+            request.Browser = test;
+
+            var response = new HttpResponse(new StringWriter());
+            HttpContext.Current = new HttpContext(request, response);
+
+            var sessionContainer = new HttpSessionStateContainer("id", new SessionStateItemCollection(),
+                 new HttpStaticObjectsCollection(), 10, true,
+                 HttpCookieMode.AutoDetect,
+                 SessionStateMode.InProc, false);
+            SessionStateUtility.AddHttpSessionStateToContext(HttpContext.Current, sessionContainer);
         }
     }
 }

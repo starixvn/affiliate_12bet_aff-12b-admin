@@ -2402,4 +2402,7 @@
   <data name="AddNow" xml:space="preserve">
     <value>Add now!</value>
   </data>
+  <data name="Cambodian" xml:space="preserve">
+    <value>ខ្មែរ</value>
+  </data>
 </root>
