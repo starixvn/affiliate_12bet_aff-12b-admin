@@ -11,6 +11,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules.BigGaming
         public override string ServiceName => "Bg Fish Service";
 
         protected override int ProductId => Products.BgFishId;
+        protected override string StartTime => _appSetting.GetValue("BgFishStartTime");
 
         public BgFishJob() : this(new BgFishService())
         { }

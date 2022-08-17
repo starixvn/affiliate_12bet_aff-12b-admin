@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.DataService.Importer.BigGaming
     {
         protected abstract string ProductMethod { get; }
         protected abstract string ProductName { get; }
-        protected abstract string[] DataFieldNames { get; }
+        protected abstract IDictionary<string, string> DataFieldNames { get; }
 
         protected readonly IApiClientFactory _apiClientFactory;
 
@@ -172,9 +172,9 @@ namespace Fanex.Affiliate.DataService.Importer.BigGaming
         {
             foreach (var pro in DataFieldNames)
             {
-                var data = betItem.SelectToken($"$.{pro}");
+                var data = betItem.SelectToken($"$.{pro.Key}");
 
-                item.Add(pro, data);
+                item.Add(pro.Value, data);
             }
         }
 

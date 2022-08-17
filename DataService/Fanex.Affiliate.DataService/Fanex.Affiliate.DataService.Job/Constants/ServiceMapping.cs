@@ -25,8 +25,8 @@ namespace Fanex.Affiliate.DataService.Job.Constants
             //{"ISoftbet", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetJob" },
             //{"BTiDaily", "Fanex.Affiliate.DataService.Job.Modules.BTiDailyJob" },
             //{"SkywindDaily", "Fanex.Affiliate.DataService.Job.Modules.SkywindDailyJob" },
+            //{"ISoftbetDaily", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetDailyJob" },
             {"CrystalGpiDaily", "Fanex.Affiliate.DataService.Job.Modules.CrystalGpiDailyJob" },
-            {"ISoftbetDaily", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetDailyJob" },
         };
     }
 }

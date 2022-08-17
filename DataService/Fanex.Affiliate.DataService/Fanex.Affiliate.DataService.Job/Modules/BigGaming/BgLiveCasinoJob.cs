@@ -11,6 +11,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules.BigGaming
         public override string ServiceName => "Bg Live Casino Service";
 
         protected override int ProductId => Products.BgLiveCasinoId;
+        protected override string StartTime => _appSetting.GetValue("BgLiveCasinoStartTime");
 
         public BgLiveCasinoJob() : this(new BgLiveCasinoService())
         { }

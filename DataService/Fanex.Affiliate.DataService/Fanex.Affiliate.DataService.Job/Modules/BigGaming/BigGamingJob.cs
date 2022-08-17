@@ -14,10 +14,11 @@ namespace Fanex.Affiliate.DataService.Job.Modules.BigGaming
     [DisallowConcurrentExecution]
     public abstract class BigGamingJob : NewApiJobBase
     {
-        private readonly IAppSettings _appSetting;
+        protected readonly IAppSettings _appSetting;
         protected readonly IImporterService _service;
         protected readonly ITimeTracker _timeTracker;
 
+        protected abstract string StartTime { get; }
         protected abstract int ProductId { get; }
 
         protected BigGamingJob(IImporterService importerService) : this(null, importerService, null)
@@ -32,7 +33,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules.BigGaming
 
         protected override DateTime GetStartTimeRequest()
         {
-            var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("BigGamingStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+            var defaultStartTime = DateTime.ParseExact(StartTime, "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
             var param = new TimeTrackerBaseParam { ProductId = this.ProductId };
 
             var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
