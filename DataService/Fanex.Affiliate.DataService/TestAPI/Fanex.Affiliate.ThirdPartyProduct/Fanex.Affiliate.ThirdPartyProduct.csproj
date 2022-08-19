@@ -144,9 +144,11 @@
   <ItemGroup>
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Constants\Format.cs" />
+    <Compile Include="Constants\SeviceSystem.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BetsoftController.cs" />
+    <Compile Include="Controllers\BgFishController.cs" />
     <Compile Include="Controllers\BTiController.cs" />
     <Compile Include="Controllers\CrystalGpiController.cs" />
     <Compile Include="Controllers\DbImporterController.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Controllers\KyGamingController.cs" />
     <Compile Include="Controllers\OpusController.cs" />
     <Compile Include="Controllers\PlaytechController.cs" />
+    <Compile Include="Controllers\BgLiveCasinoController.cs" />
     <Compile Include="Controllers\SunstoneController.cs" />
     <Compile Include="Controllers\JasperController.cs" />
     <Compile Include="Controllers\SkywindController.cs" />
@@ -219,6 +222,10 @@
     <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.BetSoft\Fanex.Affiliate.DataService.Importer.BetSoft.csproj">
       <Project>{bffceb05-ad21-4881-b38c-612996966c0d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.BetSoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.BigGaming\Fanex.Affiliate.DataService.Importer.BigGaming.csproj">
+      <Project>{351260ea-e56a-4eb5-a08b-c98a4a353dc4}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.BigGaming</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Fanex.Affiliate.DataService.Importer.BTi\Fanex.Affiliate.DataService.Importer.BTi.csproj">
       <Project>{e962c537-380b-439b-b66f-6e3fd8fbdbf6}</Project>

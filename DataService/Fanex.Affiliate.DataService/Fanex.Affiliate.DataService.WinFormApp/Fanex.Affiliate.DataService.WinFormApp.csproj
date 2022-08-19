@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\JasperFileImporter.cs" />
+    <Compile Include="Converter\BigGamingFileImporter.cs" />
     <Compile Include="Converter\SunstoneFileImporter.cs" />
     <Compile Include="Converter\SkywindFileImporter.cs" />
     <Compile Include="Converter\IFileImporter.cs" />
@@ -108,6 +109,12 @@
     </Compile>
     <Compile Include="Forms\BetsoftForm.Designer.cs">
       <DependentUpon>BetsoftForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BigGamingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BigGamingForm.Designer.cs">
+      <DependentUpon>BigGamingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SunstoneForm.cs">
       <SubType>Form</SubType>
@@ -226,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BetsoftForm.resx">
       <DependentUpon>BetsoftForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BigGamingForm.resx">
+      <DependentUpon>BigGamingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SunstoneForm.resx">
       <DependentUpon>SunstoneForm.cs</DependentUpon>
@@ -395,6 +405,7 @@
     <Content Include="App_Data\ISoftbetData\isoftbet_25.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="App_Data\BGLiveReal.json" />
     <None Include="Fanex.Affiliate.DataService.WinFormApp.exe.PRO.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -443,6 +454,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.BetSoft\Fanex.Affiliate.DataService.Importer.BetSoft.csproj">
       <Project>{bffceb05-ad21-4881-b38c-612996966c0d}</Project>
       <Name>Fanex.Affiliate.DataService.Importer.BetSoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.BigGaming\Fanex.Affiliate.DataService.Importer.BigGaming.csproj">
+      <Project>{351260ea-e56a-4eb5-a08b-c98a4a353dc4}</Project>
+      <Name>Fanex.Affiliate.DataService.Importer.BigGaming</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.Importer.BTi\Fanex.Affiliate.DataService.Importer.BTi.csproj">
       <Project>{e962c537-380b-439b-b66f-6e3fd8fbdbf6}</Project>

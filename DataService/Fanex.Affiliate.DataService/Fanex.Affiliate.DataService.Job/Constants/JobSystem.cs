@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fanex.Affiliate.DataService.Job.Modules;
+using Fanex.Affiliate.DataService.Job.Modules.BigGaming;
 
 namespace Fanex.Affiliate.DataService.Job.Constants
 {
@@ -17,8 +18,6 @@ namespace Fanex.Affiliate.DataService.Job.Constants
                     { "Ebet", new Lazy<IJobScheduler>(() => new EbetScheduler()) },
                     { "CrystalGpi", new Lazy<IJobScheduler>(() => new CrystalGpiScheduler()) },
                     { "CrystalGpiDaily", new Lazy<IJobScheduler>(() => new CrystalGpiDailyScheduler()) },
-                    { "ISoftbet", new Lazy<IJobScheduler>(() => new ISoftbetScheduler()) },
-                    { "ISoftbetDaily", new Lazy<IJobScheduler>(() => new ISoftbetDailyScheduler()) },
                     { "Topaz", new Lazy<IJobScheduler>(() => new TopazScheduler()) },
                     { "VrLottery", new Lazy<IJobScheduler>(() => new ImOneVrLotteryScheduler()) },
                     { "GpiLottery", new Lazy<IJobScheduler>(() => new GpiLotteryScheduler()) },
@@ -29,7 +28,11 @@ namespace Fanex.Affiliate.DataService.Job.Constants
                     { "Skywind", new Lazy<IJobScheduler>(() => new SkywindScheduler()) },
                     { "Sunstone", new Lazy<IJobScheduler>(() => new SunstoneScheduler()) },
                     { "Jasper", new Lazy<IJobScheduler>(() => new JasperScheduler()) },
+                    { "BgFish", new Lazy<IJobScheduler>(() => new BgFishScheduler()) },
+                    { "BgLiveCasino", new Lazy<IJobScheduler>(() => new BgLiveCasinoScheduler()) },
                     //{ "Opus", new Lazy<IJobScheduler>(() => new OpusScheduler()) },
+                    //{ "ISoftbet", new Lazy<IJobScheduler>(() => new ISoftbetScheduler()) },
+                    //{ "ISoftbetDaily", new Lazy<IJobScheduler>(() => new ISoftbetDailyScheduler()) },
                     //{ "BTiDaily", new Lazy<IJobScheduler>(() => new BTiDailyScheduler()) },
                     //{ "SkywindDaily", new Lazy<IJobScheduler>(() => new SkywindDailyScheduler()) },
                 };

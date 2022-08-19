@@ -33,7 +33,6 @@
             this.btnBetsoft = new System.Windows.Forms.Button();
             this.btnEbet = new System.Windows.Forms.Button();
             this.btnCrystal = new System.Windows.Forms.Button();
-            this.btnQuartz = new System.Windows.Forms.Button();
             this.btnGpiLottery = new System.Windows.Forms.Button();
             this.btnTopaz = new System.Windows.Forms.Button();
             this.btLBKeno = new System.Windows.Forms.Button();
@@ -48,6 +47,8 @@
             this.btnPlaytech = new System.Windows.Forms.Button();
             this.btnJasper = new System.Windows.Forms.Button();
             this.btnSunstone = new System.Windows.Forms.Button();
+            this.btnBgLiveCasino = new System.Windows.Forms.Button();
+            this.btnBgFish = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,17 +105,6 @@
             this.btnCrystal.Text = "12Crystal - GPI";
             this.btnCrystal.UseVisualStyleBackColor = true;
             this.btnCrystal.Click += new System.EventHandler(this.btnCrystal_Click);
-            // 
-            // btnQuartz
-            // 
-            this.btnQuartz.Location = new System.Drawing.Point(20, 173);
-            this.btnQuartz.Margin = new System.Windows.Forms.Padding(4);
-            this.btnQuartz.Name = "btnQuartz";
-            this.btnQuartz.Size = new System.Drawing.Size(147, 28);
-            this.btnQuartz.TabIndex = 5;
-            this.btnQuartz.Text = "12Quartz - iSoftbet";
-            this.btnQuartz.UseVisualStyleBackColor = true;
-            this.btnQuartz.Click += new System.EventHandler(this.btnQuartz_Click);
             // 
             // btnGpiLottery
             // 
@@ -270,11 +260,37 @@
             this.btnSunstone.UseVisualStyleBackColor = true;
             this.btnSunstone.Click += new System.EventHandler(this.btnSunstone_Click);
             // 
+            // btnBgLiveCasino
+            // 
+            this.btnBgLiveCasino.Location = new System.Drawing.Point(204, 467);
+            this.btnBgLiveCasino.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBgLiveCasino.Name = "btnBgLiveCasino";
+            this.btnBgLiveCasino.Size = new System.Drawing.Size(147, 28);
+            this.btnBgLiveCasino.TabIndex = 19;
+            this.btnBgLiveCasino.Text = "Bg Live Casino";
+            this.btnBgLiveCasino.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnBgLiveCasino.UseVisualStyleBackColor = true;
+            this.btnBgLiveCasino.Click += new System.EventHandler(this.btnBgLiveCasino_Click);
+            // 
+            // btnBgFish
+            // 
+            this.btnBgFish.Location = new System.Drawing.Point(20, 467);
+            this.btnBgFish.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBgFish.Name = "btnBgFish";
+            this.btnBgFish.Size = new System.Drawing.Size(147, 28);
+            this.btnBgFish.TabIndex = 20;
+            this.btnBgFish.Text = "Bg Fish";
+            this.btnBgFish.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnBgFish.UseVisualStyleBackColor = true;
+            this.btnBgFish.Click += new System.EventHandler(this.btnBgFish_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 470);
+            this.ClientSize = new System.Drawing.Size(379, 522);
+            this.Controls.Add(this.btnBgFish);
+            this.Controls.Add(this.btnBgLiveCasino);
             this.Controls.Add(this.btnSunstone);
             this.Controls.Add(this.btnJasper);
             this.Controls.Add(this.btnPlaytech);
@@ -286,7 +302,6 @@
             this.Controls.Add(this.btLBKeno);
             this.Controls.Add(this.btnTopaz);
             this.Controls.Add(this.btnGpiLottery);
-            this.Controls.Add(this.btnQuartz);
             this.Controls.Add(this.btnCrystal);
             this.Controls.Add(this.btnEbet);
             this.Controls.Add(this.btnBetsoft);
@@ -312,7 +327,6 @@
         private System.Windows.Forms.Button btnBetsoft;
         private System.Windows.Forms.Button btnEbet;
         private System.Windows.Forms.Button btnCrystal;
-        private System.Windows.Forms.Button btnQuartz;
         //private System.Windows.Forms.Button btnOpus;
         private System.Windows.Forms.Button btnGpiLottery;
         private System.Windows.Forms.Button btnTopaz;
@@ -328,5 +342,7 @@
         private System.Windows.Forms.Button btnPlaytech;
         private System.Windows.Forms.Button btnJasper;
         private System.Windows.Forms.Button btnSunstone;
+        private System.Windows.Forms.Button btnBgLiveCasino;
+        private System.Windows.Forms.Button btnBgFish;
     }
 }

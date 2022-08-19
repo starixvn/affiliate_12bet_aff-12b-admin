@@ -11,7 +11,6 @@ namespace Fanex.Affiliate.DataService.Job.Constants
             {"Betsoft", "Fanex.Affiliate.DataService.Job.Modules.BetsoftJob" },
             {"Ebet", "Fanex.Affiliate.DataService.Job.Modules.EbetJob" },
             {"CrystalGpi", "Fanex.Affiliate.DataService.Job.Modules.CrystalGpiJob" },
-            {"ISoftbet", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetJob" },
             {"VrLottery", "Fanex.Affiliate.DataService.Job.Modules.ImOneVrLotteryJob" },
             {"GpiLottery", "Fanex.Affiliate.DataService.Job.Modules.GpiLotteryJob" },
             {"LBKeno", "Fanex.Affiliate.DataService.Job.Modules.LBKenoJob" },
@@ -20,11 +19,14 @@ namespace Fanex.Affiliate.DataService.Job.Constants
             {"Skywind", "Fanex.Affiliate.DataService.Job.Modules.SkywindJob" },
             {"Sunstone", "Fanex.Affiliate.DataService.Job.Modules.SunstoneJob" },
             {"Jasper", "Fanex.Affiliate.DataService.Job.Modules.JasperJob" },
+            {"BgFish", "Fanex.Affiliate.DataService.Job.Modules.BigGaming.BgFishJob" },
+            {"BgLiveCasino", "Fanex.Affiliate.DataService.Job.Modules.BigGaming.BgLiveCasinoJob" },
             //{"Opus", "Fanex.Affiliate.DataService.Job.Modules.OpusJob" },
+            //{"ISoftbet", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetJob" },
             //{"BTiDaily", "Fanex.Affiliate.DataService.Job.Modules.BTiDailyJob" },
             //{"SkywindDaily", "Fanex.Affiliate.DataService.Job.Modules.SkywindDailyJob" },
+            //{"ISoftbetDaily", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetDailyJob" },
             {"CrystalGpiDaily", "Fanex.Affiliate.DataService.Job.Modules.CrystalGpiDailyJob" },
-            {"ISoftbetDaily", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetDailyJob" },
         };
     }
 }
