@@ -215,15 +215,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private bool IsValidAffToShowFeedback()
         {
-            if(SessionService.IsDisabledFeedback || SessionService.IsInternal)
-            {
-                return false;
-            }
-
-            var isValid = AuthService.IsShowFeedback(SessionService.UserSession.AffId, SessionService.LastestRequestTime);
-            SessionService.IsDisabledFeedback = isValid;
-
-            return isValid;
+            return !SessionService.IsOpenedFeedback && AuthService.IsValidAffToShowFeedback(SessionService.UserSession.AffId, SessionService.LastestRequestTime);
         }
     }
 }

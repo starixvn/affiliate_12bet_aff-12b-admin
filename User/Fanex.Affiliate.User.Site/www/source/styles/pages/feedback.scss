@@ -120,7 +120,7 @@
                         width: 40px;
                     }
 
-                    .dissatisfaction-icon {
+                    .icon-1 {
                         .checkmark {
                             background: url("../../../build/styles/Images/feedback/dissatisfaction.png");
                         }
@@ -130,7 +130,7 @@
                         }
                     }
 
-                    .unsatisfied-icon {
+                    .icon-2 {
                         .checkmark {
                             background: url("../../../build/styles/Images/feedback/unsatisfied.png");
                         }
@@ -140,7 +140,7 @@
                         }
                     }
 
-                    .neutral-icon {
+                    .icon-3 {
                         .checkmark {
                             background: url("../../../build/styles/Images/feedback/neutral.png");
                         }
@@ -150,7 +150,7 @@
                         }
                     }
 
-                    .satisfied-icon {
+                    .icon-4 {
                         .checkmark {
                             background: url("../../../build/styles/Images/feedback/satisfied.png");
                         }
@@ -160,7 +160,7 @@
                         }
                     }
 
-                    .very-please-icon {
+                    .icon-5 {
                         .checkmark {
                             background: url("../../../build/styles/Images/feedback/very-please.png");
                         }
@@ -203,8 +203,7 @@
                         text-transform: uppercase;
                         padding: 4px 16px;
                         border-radius: 4px;
-
-/*                        &:hover {
+                        /*                        &:hover {
                             background: #E8C6A2;
                         }*/
 

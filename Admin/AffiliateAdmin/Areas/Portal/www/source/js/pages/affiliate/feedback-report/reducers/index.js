@@ -6,6 +6,13 @@ import { isShowLoader } from '../../../../reducers/loaderReducer';
 import * as types from '../actions/types';
 
 export const today = createReducer(null, {});
+export const rateList = createReducer(null, {});
+
+export const reportTitle = createReducer('', {
+    [types.SET_REPORT_TITLE](prevState, action) {
+        return action.data;
+    }
+})
 
 export const param = createReducer(null, {
     [types.SET_PARAM](prevState, action) {
@@ -28,7 +35,9 @@ export const shouldResetScrollPosition = createReducer(true, {
 export default combineReducers({
     today,
     param,
+    rateList,
     gridData,
+    reportTitle,
     pagingOption,
     isShowLoader,
     shouldResetScrollPosition

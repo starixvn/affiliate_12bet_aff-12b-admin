@@ -5,31 +5,35 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import MultipleSelect from '../../../../components/multiple-select';
 
-import { minDate, resource, rateList, allRates } from '../libs/constants';
-import { handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
-import { setParam } from '../actions';
+import { minDate, resource } from '../libs/constants';
+import { formatUnit, handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
+import { setParam, setReportTitle } from '../actions';
 
 export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { today } = this.props;
+        const { today, rateList } = this.props;
         const now = new Date(today);
 
-        this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+        this.nowString = `${formatUnit(now.getMonth() + 1)}/${formatUnit(now.getDate())}/${now.getFullYear()}`;
+
+        const initialRates = rateList.filter(r => r.Checked).map(r => r.RateId).join(',');
 
         this.state = {
             affName: '',
-            fromDate: `${now.getMonth() + 1}/${1}/${now.getFullYear()}`,
+            fromDate: `${formatUnit(now.getMonth() + 1)}/01/${now.getFullYear()}`,
             toDate: this.nowString,
-            selectedRates: allRates
+            selectedRates: initialRates
         }
+
+        this.allRates = initialRates;
     }
 
     handleChange = (event) => {
         const target = event.target;
 
-        this.setState({ [target.name]: value });
+        this.setState({ [target.name]: target.value });
     }
 
     handleChangeFromDate = (momentDate) => {
@@ -41,9 +45,6 @@ export class Filter extends PureComponent {
     }
 
     handleChangeRate = (item, selectedRates) => {
-
-        console.log(selectedRates);
-
         this.setState({ selectedRates });
     }
 
@@ -58,9 +59,10 @@ export class Filter extends PureComponent {
         const { affName, fromDate, toDate, selectedRates } = this.state;
         const { pagingOption } = this.props;
 
+        this.props.setReportTitle(this._buildReportTitle(affName, selectedRates, fromDate, toDate));
         const param = Object.assign({}, {
             AffName: affName,
-            RateIds: this._isCheckedAllRates() ? allRates : selectedRates,
+            RateIds: selectedRates,
             FromDate: fromDate,
             ToDate: toDate,
             PageIndex: 1,
@@ -70,15 +72,25 @@ export class Filter extends PureComponent {
         this.props.setParam(param);
     }
 
-    _isCheckedAllRates = () => {
-        const { selectedRates } = this.state;
+    _buildReportTitle(affName, selectedRates, fromDate, toDate) {
+        const userNameTitle = `${affName && '- Affiliate contains \'' + affName + '\''}`;
+        const rate = selectedRates == this.allRates ? 'All Rates' : this._handleGetRateName(selectedRates);
 
-        return selectedRates === allRates || selectedRates.split(',').length === rateList.length;
+        const fromToTitle = `FROM ${fromDate} TO ${toDate}`;
+        const reportName = 'FEEDBACK REPORT ';
+
+        return `${reportName}${userNameTitle} ${'- ' + rate} - ${fromToTitle}`;
+    }
+
+    _handleGetRateName(selectedRates) {
+        return this.props.rateList.filter(r => selectedRates.includes(r.RateId)).map(r => r.RateName).join(', ');
     }
 
     getRateList = () => {
         const { selectedRates } = this.state;
-        if (selectedRates === allRates) {
+        const { rateList } = this.props;
+
+        if (selectedRates === this.allRates) {
             return rateList.slice();
         }
 
@@ -123,21 +135,26 @@ export class Filter extends PureComponent {
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeToDate} />
                     </FormGroup>
-                    <Button outline color="primary" type="button" onClick={this.handleSearch}>
-                        <span className="oi oi-magnifying-glass"></span> {resource.Search}
-                    </Button>
+                    <FormGroup className="my-2 mr-sm-2">
+                        <Button outline color="primary" type="button" onClick={this.handleSearch}>
+                            <span className="oi oi-magnifying-glass"></span> {resource.Search}
+                        </Button>
+                    </FormGroup>
+                    <FormGroup className="my-2 mr-sm-2 feedback-note">
+                        <Label>'None' when the user only sends a message and does not choose an emoji.</Label>
+                    </FormGroup>
                 </Form>
             </div>
         )
     }
 }
 
-function mapStateToProps({ today, pagingOption }) {
-    return Object.assign({}, { today, pagingOption });
+function mapStateToProps({ today, rateList, pagingOption }) {
+    return Object.assign({}, { today, rateList, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ setParam, setReportTitle }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

@@ -187,4 +187,9 @@
     <Setting Key="Aff_Admin_OfferAffiliate_Sel" SpName="Aff_Admin_OfferAffiliate_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_OfferAffiliate_Del" SpName="Aff_Admin_OfferAffiliate_Del" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
+
+  <Function Name="FeedbackReport">
+    <Setting Key="Aff_RateSel" SpName="Aff_RateSel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_Feedback_Sel" SpName="Aff_Admin_Feedback_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+  </Function>
 </Functions>

@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             var action = values["action"].ToString();
 
-            if(!SessionService.IsDisabledFeedback && SessionService.UserSession != null && !string.Equals("ReCheckin", action, StringComparison.CurrentCultureIgnoreCase))
+            if(!string.Equals("ReCheckin", action, StringComparison.CurrentCultureIgnoreCase) && !SessionService.IsOpenedFeedback)
             {
                 SessionService.LastestRequestTime = DateTime.Now;
             }    

@@ -12,20 +12,21 @@ var Logout = (function ($) {
         },
 
         handleShowFeedback: function handleShowFeedback() {
-            window.location.href = Site.resolveRelativeUrl("Auth/SignOut");
-
-            //$.ajax({
-            //    url: Site.resolveRelativeUrl("UserPanel/Feedback/Index?isClickLogout=true"),
-            //    type: "GET",
-            //    dataType: "html",
-            //    cache: false,
-            //    success: function (result) {
-            //        $("#loginAfter").append(`<div id="affFeedback">${result}</div>`);
-            //    },
-            //    error: function (jqXHR, textStatus, errorThrown) {
-            //        window.location.href = Site.resolveRelativeUrl("Auth/SignOut");
-            //    }
-            //});
+            $.ajax({
+                url: Site.resolveRelativeUrl("UserPanel/Feedback/Index?isClickLogout=true"),
+                type: "GET",
+                dataType: "html",
+                cache: false,
+                success: function success(result) {
+                    $("#loginAfter").append('<div id="affFeedback">' + result + '</div>');
+                },
+                complete: function complete(jqXHR, textStatus) {
+                    if (!$("#affFeedbackContainer").length) {
+                        $("#affFeedback").remove();
+                        window.location.href = Site.resolveRelativeUrl("Auth/SignOut");
+                    }
+                }
+            });
         }
     };
 

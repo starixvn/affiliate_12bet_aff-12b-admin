@@ -91,25 +91,25 @@
           cursor: pointer;
           height: 40px;
           width: 40px; }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .dissatisfaction-icon .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-1 .checkmark {
           background: url("../Images/feedback/dissatisfaction.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .dissatisfaction-icon:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .dissatisfaction-icon .feedback-checkbox:checked ~ .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-1:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-1 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/dissatisfaction-active.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .unsatisfied-icon .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-2 .checkmark {
           background: url("../Images/feedback/unsatisfied.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .unsatisfied-icon:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .unsatisfied-icon .feedback-checkbox:checked ~ .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-2:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-2 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/unsatisfied-active.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .neutral-icon .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-3 .checkmark {
           background: url("../Images/feedback/neutral.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .neutral-icon:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .neutral-icon .feedback-checkbox:checked ~ .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-3:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-3 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/neutral-active.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .satisfied-icon .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-4 .checkmark {
           background: url("../Images/feedback/satisfied.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .satisfied-icon:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .satisfied-icon .feedback-checkbox:checked ~ .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-4:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-4 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/satisfied-active.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .very-please-icon .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-5 .checkmark {
           background: url("../Images/feedback/very-please.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .very-please-icon:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .very-please-icon .feedback-checkbox:checked ~ .checkmark {
+        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-5:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-5 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/very-please-active.png"); }
     .login-after .aff-feedback-content .feedback-message {
       margin: auto;

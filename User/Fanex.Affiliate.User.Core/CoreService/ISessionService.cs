@@ -26,8 +26,8 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         IEnumerable<ClaimsIdentity> ClaimsIdentities { get; set; }
 
-        DateTime LastestRequestTime { get; set; }
+        DateTime? LastestRequestTime { get; set; }
 
-        bool IsDisabledFeedback { get; set; }
+        bool IsOpenedFeedback { get; set; }
     }
 }

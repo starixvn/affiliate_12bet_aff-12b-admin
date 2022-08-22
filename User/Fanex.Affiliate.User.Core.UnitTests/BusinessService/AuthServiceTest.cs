@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         private readonly IAuthRepository AuthRepo;
         private readonly ICryptographyService CryptographyService;
         private readonly IAppSetting AppSetting;
-        private readonly IFeedbackRepository FeedbackRepo;
+        private readonly IFeedbackService FeedbackService;
         private readonly IVerificationRepository VerificationRepo;
 
         const string Password = "Password";
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             AuthRepo = Substitute.For<IAuthRepository>();
             CryptographyService = Substitute.For<ICryptographyService>();
             AppSetting = Substitute.For<IAppSetting>();
-            FeedbackRepo = Substitute.For<IFeedbackRepository>();
+            FeedbackService = Substitute.For<IFeedbackService>();
             VerificationRepo = Substitute.For<IVerificationRepository>();
         }
 
@@ -308,6 +308,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
 
         private AuthService CreateService()
-            => new AuthService(AuthRepo, CryptographyService, AppSetting, FeedbackRepo, VerificationRepo);
+            => new AuthService(AuthRepo, CryptographyService, AppSetting, FeedbackService, VerificationRepo);
     }
 }

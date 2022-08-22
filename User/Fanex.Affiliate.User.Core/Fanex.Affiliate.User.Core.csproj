@@ -350,6 +350,7 @@
     <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
     <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
+    <Compile Include="DTO\UserPanel\RateInfo.cs" />
     <Compile Include="Filters\AddOnClaimAuthFilter.cs" />
     <Compile Include="Infrastructure\DateTimeProvider.cs" />
     <Compile Include="Infrastructure\HttpRequestParserHandler.cs" />

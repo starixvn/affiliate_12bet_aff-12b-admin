@@ -696,7 +696,7 @@
     <Content Include="www\build\styles\Images\contact-us\korea_lang.png" />
     <Content Include="www\build\styles\Images\feedback\dissatisfaction-active.png" />
     <Content Include="www\build\styles\Images\feedback\dissatisfaction.png" />
-    <Content Include="www\build\styles\Images\feedback\icon.png" />
+    <Content Include="www\build\styles\Images\feedback\letter-icon.png" />
     <Content Include="www\build\styles\Images\feedback\neutral-active.png" />
     <Content Include="www\build\styles\Images\feedback\neutral.png" />
     <Content Include="www\build\styles\Images\feedback\satisfied-active.png" />
@@ -1192,6 +1192,7 @@
     <Content Include="Views\UserPanel\BetList\ParlayDetail.cshtml" />
     <Content Include="Views\UserPanel\BetList\Result.cshtml" />
     <Content Include="www\source\styles\pages\feedback.scss" />
+    <Content Include="www\build\styles\Images\feedback\letter-icon.webp" />
     <Content Include="Views\Shared\Email\NewPassword\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.km-KH.cshtml" />

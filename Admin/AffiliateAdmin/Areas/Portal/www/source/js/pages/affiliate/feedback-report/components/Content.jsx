@@ -1,116 +1,56 @@
-﻿import React, { PureComponent } from 'react';
+﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Button } from 'reactstrap';
 
-import { htmlDecode } from '../../../../modules/htmlHelper';
-import { resource, globalResource } from '../libs/constants';
-import { setPagingOption, fetchData, setShouldResetScrollPosition, setParam } from '../actions';
-import { claimResource } from '../../../../modules/claim';
+import { toggleLoader } from '../../../../actions/loaderAction';
+import ReportTitle from '../../../../components/ReportTitle';
+import GridData from './GridData';
 
-export class Content extends PureComponent {
+export class Content extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidUpdate(prevProps) {
-        const { param } = this.props;
+    shouldComponentUpdate(nextprops) {
+        const { reportTitle } = this.props;
 
-        if (param !== prevProps.param) {
-            this.props.fetchData(param);
-        }
+        return nextprops.reportTitle !== reportTitle;
     }
 
-    handlePaging = (pageIndex, pageSize) => {
-        const newPaging = {
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        };
-        const newParam = Object.assign({}, this.props.param, newPaging);
+    handleExportExcel = async () => {
+        this.props.toggleLoader(true);
+        this.props.toggleLoader(false);
+    }
 
-        this.props.setPagingOption(newPaging);
-        this.props.setParam(newParam);
-    };
-
-    _renderHeader() {
+    _buildReportTitle(reportTitle) {
         return (
-            <Row key="thead">
-                <Cell header={true} colWidth={35} title={resource.Index}>{resource.Index}</Cell>
-                <Cell header={true} colWidth={125} title={resource.Affiliate}>{resource.Affiliate}</Cell>
-                <Cell header={true} colWidth={150} title={resource.SentDate}>{resource.SentDate}</Cell>
-                <Cell header={true} colWidth={100} title={resource.Rate}>{resource.Rate}</Cell>
-                <Cell header={true} colWidth={600} title={resource.Message}>{resource.Message}</Cell>
-            </Row>
+            <div className="d-flex align-items-center">
+                {reportTitle}
+                <button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
+                    <span className="oi icon-excel"></span>
+                </button>
+            </div>
         );
     }
 
-    _renderDataSection(dataList) {
-        const dataRows = [];
-
-        if (dataList.length) {
-            const { pagingOption } = this.props;
-            const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
-
-            for (let i = 0; i < dataList.length; i++) {
-                const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex));
-            }
-        }
-        else {
-            dataRows.push(<Row>
-                <Cell className="text-center" colSpan="5">{globalResource.NoInfo}</Cell>
-            </Row>);
-        }
-
-        return dataRows;
-    }
-
-    _buildDataRow(dataItem, index) {
-        const message = htmlDecode(dataItem.Message);
-        const affName = htmlDecode(dataItem.AffName);
-        return (
-            <Row key={`dataRow-${index}`}>
-                <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={affName}>{affName}</Cell>
-                <Cell title={dataItem.SentDate} className="text-center">{dataItem.SentDate}</Cell>
-                <Cell title={dataItem.Rate} className="text-center">{dataItem.Rate}</Cell>
-                <Cell title={message} className="text-center">{message}</Cell>
-            </Row>
-        )
-    }
-
     render() {
-        const { gridData } = this.props;
+        const { reportTitle } = this.props;
 
-        return gridData && (
-            <div className="data-content">
-                <div className="table-responsive table-striped">
-                    <Table
-                        minWidth={1000}
-                        autoWidth={true}
-                        bodyHeight={300}
-                        header={this._renderHeader()}
-                        body={this._renderDataSection(gridData)}
-                        containerPadding={20}
-                        isPaging={true}
-                        pageOption={this.props.pagingOption}
-                        onPaging={this.handlePaging}
-                        shouldResetScrollPosition={this.props.shouldResetScrollPosition}
-                    />
-                </div>
+        return (
+            <div className="data-content my-2">
+                {reportTitle && <ReportTitle content={this._buildReportTitle(reportTitle)} />}
+                <GridData />
             </div>
         );
     }
 }
 
-
-function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData });
+function mapStateToProps({ reportTitle, param }) {
+    return Object.assign({}, { reportTitle, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, setPagingOption, setShouldResetScrollPosition, setParam }, dispatch);
+    return bindActionCreators({ toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private readonly IAuthRepository _authRepository;
         private readonly IVerificationRepository _verificationRepository;
-        private readonly IFeedbackRepository _feedbackRepository;
+        private readonly IFeedbackService _feedbackService;
         private readonly ICryptographyService _cryptographyService;
         private readonly IAppSetting _appSetting;
 
@@ -33,13 +33,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             IAuthRepository authRepository,
             ICryptographyService cryptographyService,
             IAppSetting appSetting,
-            IFeedbackRepository feedbackRepository,
+            IFeedbackService feedbackService,
             IVerificationRepository verificationRepository)
         {
             _authRepository = authRepository;
             _cryptographyService = cryptographyService;
             _appSetting = appSetting;
-            _feedbackRepository = feedbackRepository;
+            _feedbackService = feedbackService;
             _verificationRepository = verificationRepository;
         }
 
@@ -74,16 +74,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _authRepository.Recheckin(onUserId, isInternal);
         }
 
-        public bool IsShowFeedback(int affId, DateTime lastestRequestTime)
+        public bool IsValidAffToShowFeedback(int affId, DateTime? lastestRequestTime = null)
         {
-            var isValidIdleTime = DateTime.Compare(lastestRequestTime.AddMinutes(_appSetting.ValidIdleTime), DateTime.Now) > 0;
-
-            return !isValidIdleTime && _feedbackRepository.IsShowFeedback(affId);
-        }
-
-        public bool IsDisabledFeedback(int affId)
-        {
-            return !_feedbackRepository.IsShowFeedback(affId);
+            return _feedbackService.IsValidAffToShowFeedback(affId, lastestRequestTime);
         }
 
         public void SignIn(string userName, bool createPersistentCookie)

@@ -43,6 +43,11 @@
                 cache: false,
                 success: function (result) {
                     $("#loginAfter").append(`<div id="affFeedback">${result}</div>`);
+                },
+                complete: function (jqXHR, textStatus) {
+                    if (!($("#affFeedbackContainer").length)) {
+                        $("#affFeedback").remove();
+                    }
                 }
             });
         }

@@ -27,6 +27,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string AffPersonalInfo = "[AffPersonalInfo]";
 
+        public const string FeedbackReport = "[FeedbackReport]";
+
         public const string WriteClaimValue = "Write";
     }
 }

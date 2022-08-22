@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,19 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             _builder = builder;
         }
 
+        public IEnumerable<RateInfo> GetRateList()
+        {
+            const string uSpKey = "Aff_RateSel";
+
+            using (var db = _builder.Build(uSpKey))
+            {
+                return db.Query<RateInfo>();
+            }
+        }
+
         public ResultInfo Insert(FeedbackParam param)
         {
-            const string uSpKey = "";
+            const string uSpKey = "Aff_FeedbackIns";
 
             using (var db = _builder.Build(uSpKey))
             {
@@ -47,16 +58,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 db.ExecuteNonQuery(parameterSet);
 
                 return parameterSet.IsShowPopup;
-            }
-        }
-
-        public void CloseFeedback(int affId)
-        {
-            const string SpKey = "";
-
-            using (var db = _builder.Build(SpKey))
-            {
-                db.ExecuteNonQuery(new { affId });
             }
         }
     }

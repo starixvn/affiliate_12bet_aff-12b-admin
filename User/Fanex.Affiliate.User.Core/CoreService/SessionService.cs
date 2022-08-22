@@ -17,20 +17,20 @@ namespace Fanex.Affiliate.User.Core.CoreService
             set { HttpContext.Current.Session[CaptchaCodeKey] = value; }
         }
 
-        public DateTime LastestRequestTime
+        public DateTime? LastestRequestTime
         {
             get
             {
                 var time = HttpContext.Current.Session[LastestRequestTimeKey];
-                return time != null ? Convert.ToDateTime(time) : DateTime.Now;
+                return (DateTime?)time;
             }
             set { HttpContext.Current.Session[LastestRequestTimeKey] = value; }
         }
 
-        public bool IsDisabledFeedback
+        public bool IsOpenedFeedback
         {
-            get { return (bool)(HttpContext.Current.Session[IsDisabledFeedbackKey] ?? false); }
-            set { HttpContext.Current.Session[IsDisabledFeedbackKey] = value; }
+            get { return (bool)(HttpContext.Current.Session[IsOpenedFeedbackKey] ?? false); }
+            set { HttpContext.Current.Session[IsOpenedFeedbackKey] = value; }
         }
 
         public UserSession UserSession

@@ -45,6 +45,11 @@ var ReCheckIn = (function ($) {
                 cache: false,
                 success: function success(result) {
                     $("#loginAfter").append("<div id=\"affFeedback\">" + result + "</div>");
+                },
+                complete: function complete(jqXHR, textStatus) {
+                    if (!$("#affFeedbackContainer").length) {
+                        $("#affFeedback").remove();
+                    }
                 }
             });
         }

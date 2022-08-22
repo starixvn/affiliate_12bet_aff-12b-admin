@@ -1,5 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
@@ -9,6 +11,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         bool IsShowFeedback(int affId);
 
-        void CloseFeedback(int affId);
+        IEnumerable<RateInfo> GetRateList();
     }
 }

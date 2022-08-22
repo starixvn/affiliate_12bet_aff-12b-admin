@@ -6,7 +6,7 @@
         internal const string CaptchaCodeKey = "Affiliate12Bet.CaptchaCodeKey";
         internal const string SingUpCaptchaCodeKey = "Affiliate12Bet.SingUpCaptchaCodeKey";
         internal const string LastestRequestTimeKey = "Affiliate12Bet.LastestRequestTimeKey";
-        internal const string IsDisabledFeedbackKey = "Affiliate12Bet.IsDisabledFeedbackKey";
+        internal const string IsOpenedFeedbackKey = "Affiliate12Bet.IsOpenedFeedbackKey";
 
         internal const string CurrentLanguageKey = "Affiliate12Bet.CurrentLanguageKey";
         internal const string IsInternalKey = "Affiliate12Bet.IsInternalKey";

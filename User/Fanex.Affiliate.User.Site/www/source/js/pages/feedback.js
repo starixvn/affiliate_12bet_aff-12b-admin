@@ -1,13 +1,6 @@
 ﻿var Feedback = (function ($) {
     const affFeedbackRemoveHeight = 10;
     const none = 0;
-    const rateList = {
-        "dissatisfaction": 1,
-        "unsatisfied": 2,
-        "neutral": 3,
-        "satisfied": 4,
-        "veryPlease": 5
-    };
 
     let _me = {
         initialize: function () {
@@ -18,9 +11,7 @@
         },
         initEvent: function () {
             $('#affFeedbackRemove').on('click', function (event) {
-                _me.handleSubmitFeedback(none);
-
-                _me.handleHideFeedback();
+                _me.handleCloseFeedback();
             })
 
             $('.feedback-checkbox').on('click', function (event) {
@@ -35,17 +26,8 @@
             })
 
             $('#submitFeedbackBtn').on('click', function (event) {
-                //$(".aff-feedback-remove").remove();
-                //$("#affFeedbackContent").html(`<p class="title-text">${window.feedback.thankYou}</p>`);
-                //$("#affFeedbackContainer").css({
-                //    top: `30%`
-                //});
-
-                //window.setTimeout(_me.handleHideFeedback, 2000);
-
-                if ($('input[class="feedback-checkbox"]:checked').length) {
-                    let rateName = $('input[class="feedback-checkbox"]:checked').val();
-                    let rate = rateList[rateName] || none;
+                if (_me.isValidToSubmit()) {
+                    let rate = $('input[class="feedback-checkbox"]:checked').val() || none;
 
                     _me.handleSubmitFeedback(rate);
                 }
@@ -59,35 +41,61 @@
         handleShowFeedback: function () {
             $(document.body).css('overflow', 'hidden');
             $("#submitFeedbackBtn").prop('disabled', true);
-            _me.adjustAffFeedbackRemovePosition;
+            _me.adjustAffFeedbackRemovePosition();
             window.addEventListener("resize", _me.adjustAffFeedbackRemovePosition);
         },
 
         handleDisabledSubmitBtn: function () {
-            $("#submitFeedbackBtn").prop('disabled', !($('input[class="feedback-checkbox"]:checked').length || $('#feedbackMessage').val().trim()));
+            $("#submitFeedbackBtn").prop('disabled', !_me.isValidToSubmit());
+        },
+
+        isValidToSubmit: function () {
+            return $('input[class="feedback-checkbox"]:checked').length || $('#feedbackMessage').val().trim();
+        },
+
+        handleCloseFeedback: function () {
+            $.ajax({
+                url: Site.resolveRelativeUrl("UserPanel/Feedback/CloseFeedback"),
+                type: "POST",
+                dataType: "json",
+                cache: false,
+                complete: function (jqXHR, textStatus) {
+                    _me.handleHideFeedback();
+                }
+            });
         },
 
         handleSubmitFeedback: function (rate) {
-            if (_me.isValidData) {
-                $.ajax({
-                    url: Site.resolveRelativeUrl("UserPanel/Feedback/Insert"),
-                    type: "POST",
-                    dataType: "json",
-                    cache: false,
-                    success: function (result) {
-                        $("#loginAfter").append(`<div id="affFeedback">${result}</div>`);
-                    },
-                    beforeSend: function () {
-                        Site.showLoader();
-                    },
-                    complete: function (jqXHR, textStatus) {
-                        Site.hideLoader();
-                        if (textStatus === 'error') {
-
-                        }
-                    }
-                });
+            const data = {
+                RateId: rate,
+                Message: $('#feedbackMessage').val().trim()
             }
+            $.ajax({
+                url: Site.resolveRelativeUrl("UserPanel/Feedback/Insert"),
+                type: "POST",
+                dataType: "json",
+                cache: false,
+                data,
+                success: function (response) {
+                    if (response.IsOk) {
+                        $(".aff-feedback-remove").remove();
+                        $("#affFeedbackContent").html(`<p class="title-text">${window.feedback.thankYou}</p>`);
+                        $("#affFeedbackContainer").css({
+                            top: `30%`
+                        });
+
+                        window.setTimeout(_me.handleHideFeedback, 2000);
+                    } else {
+                        alert(response.Message);
+                    }
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function (jqXHR, textStatus) {
+                    Site.hideLoader();
+                }
+            });
         },
 
         handleHideFeedback: function () {
@@ -105,8 +113,8 @@
         },
 
         adjustAffFeedbackRemovePosition: function () {
-            let affFeedbackContainerHeight = $('#affFeedbackContainer').outerHeight(true);
-            let affFeedbackContainerWidth = $('#affFeedbackContainer').outerWidth(true);
+            let affFeedbackContainerHeight = $('#affFeedbackContainer').outerHeight();
+            let affFeedbackContainerWidth = $('#affFeedbackContainer').outerWidth();
 
             $('#affFeedbackContainer').css({
                 top: `calc(50% - ${affFeedbackContainerHeight / 2}px)`,

@@ -19,6 +19,13 @@ export const setGridData = (data) => {
     }
 }
 
+export const setReportTitle = (data) => {
+    return {
+        type: types.SET_REPORT_TITLE,
+        data
+    }
+}
+
 export const setShouldResetScrollPosition = (data) => {
     return {
         type: types.SHOULD_RESET_SCROLL_POSITION,
@@ -29,7 +36,7 @@ export const setShouldResetScrollPosition = (data) => {
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = 'Portal/EmailHistory/GetEmailHistoryList';
+    const url = 'Portal/FeedbackReport/GetFeedbackReportList';
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -38,27 +45,4 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
-}
-
-function _convertCheckedEmails(dataList) {
-    const checkedEmails = {};
-    for (let item of dataList) {
-        checkedEmails[item.EmailId] = false;
-    }
-
-    return checkedEmails;
-}
-
-export const getEmailHistoryDetail = (selectedEmailId) => async () => {
-    const url = 'Portal/EmailHistory/GetEmailHistoryDetail';
-    const response = await post(url, { selectedEmailId });
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const deleteEmailHistory = (param) => async () => {
-    const url = 'Portal/EmailHistory/DeleteEmailHistory';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
 }

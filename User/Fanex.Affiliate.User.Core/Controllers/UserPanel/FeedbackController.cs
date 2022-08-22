@@ -1,7 +1,12 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Filters;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
@@ -9,21 +14,74 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
     [CustomAuthorize]
     public class FeedbackController : BaseController
     {
-        public FeedbackController(ISessionService sessionService,
-            ILanguageService languageService) : base(sessionService, languageService)
-        { }
+        private const int ClosedFeedback = -1;
+        private readonly IFeedbackService _feedbackService;
+        public FeedbackController(
+            ISessionService sessionService,
+            ILanguageService languageService,
+            IFeedbackService feedbackService) : base(sessionService, languageService)
+        {
+            _feedbackService = feedbackService;
+        }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index(bool isClickLogout = false)
         {
-            var model = new FeedbackViewModel
+            if (!SessionService.IsOpenedFeedback && _feedbackService.IsValidAffToShowFeedback(SessionService.UserSession.AffId, SessionService.LastestRequestTime))
             {
-                UserName = SessionService.UserSession.UserName,
-                IsClickLogout = isClickLogout
-            };
+                SessionService.IsOpenedFeedback = true;
+                var model = new FeedbackViewModel
+                {
+                    RateList = _feedbackService.GetRateList().Where(r => r.RateId != 0),
+                    UserName = SessionService.UserSession.UserName,
+                    IsClickLogout = isClickLogout
+                };
 
-            return View("~/Views/UserPanel/Feedback/Index.cshtml", model);
+                return View("~/Views/UserPanel/Feedback/Index.cshtml", model);
+            }
+
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult Insert(FeedbackParam param)
+        {
+            if (param.IsValid && IsValidAff())
+            {
+                param.AffId = SessionService.UserSession.AffId;
+                param.Message = string.IsNullOrEmpty(param.Message) ? string.Empty : Server.HtmlEncode(param.Message.Trim());
+                param.Ip = RequestHelper.GetClientIPAddress(Request);
+
+                return Json(_feedbackService.Insert(param));
+            }
+
+            return Json(new ResultInfo { Message = Lang.ErrAuthorized });
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult CloseFeedback()
+        {
+            if (IsValidAff())
+            {
+                var param = new FeedbackParam
+                {
+                    RateId = ClosedFeedback,
+                    AffId = SessionService.UserSession.AffId,
+                    Ip = RequestHelper.GetClientIPAddress(Request)
+                };
+
+                return Json(_feedbackService.Insert(param));
+            }
+
+            return Json(new ResultInfo { Message = Lang.ErrAuthorized });
+        }
+
+        private bool IsValidAff()
+        {
+            return SessionService.IsOpenedFeedback && _feedbackService.IsValidAffToShowFeedback(SessionService.UserSession.AffId, SessionService.LastestRequestTime);
         }
     }
 }
