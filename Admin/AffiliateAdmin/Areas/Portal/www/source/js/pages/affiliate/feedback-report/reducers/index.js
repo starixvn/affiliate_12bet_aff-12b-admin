@@ -20,25 +20,11 @@ export const param = createReducer(null, {
     }
 })
 
-export const gridData = createReducer(null, {
-    [types.SET_GRID_DATA](prevState, action) {
-        return action.data;
-    }
-})
-
-export const shouldResetScrollPosition = createReducer(true, {
-    [types.SHOULD_RESET_SCROLL_POSITION](prevState, action) {
-        return action.data;
-    }
-})
-
 export default combineReducers({
     today,
     param,
     rateList,
-    gridData,
     reportTitle,
     pagingOption,
-    isShowLoader,
-    shouldResetScrollPosition
+    isShowLoader
 });

@@ -109,7 +109,7 @@ export class Filter extends PureComponent {
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-3 my-2">
-                        <Label className="mr-sm-2">{resource.Affiliate}</Label>
+                        <Label className="mr-sm-2">{resource.AffName}</Label>
                         <Input type="text" name="affName" value={affName} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup className="my-2 mr-sm-2">

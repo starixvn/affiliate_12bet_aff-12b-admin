@@ -24,7 +24,7 @@
             <div class="feedback-title">
                 <p class="title-text">@Lang.AffFeedback</p>
                 <p class="text-bold">@Lang.WeWouldLove</p>
-                <input class="aff-name" type="text" value="12BetAff226" disabled />
+                <input class="aff-name" type="text" value="@Model.UserName" disabled />
             </div>
             <div class="feedback-rate">
                 <p class="text-bold">@Lang.WhatIsYourOpinion</p>
@@ -41,7 +41,7 @@
             </div>
             <div class="feedback-message">
                 <span class="text-bold">@Lang.PleaseLeaveYourFeedback</span>
-                <textarea class="message" id="feedbackMessage" rows="5"></textarea>
+                <textarea class="message" id="feedbackMessage" rows="5" maxlength="400"></textarea>
                 <div class="submit-feedback">
                     <button class="btn btn-submit" id="submitFeedbackBtn">@Lang.Submit</button>
                 </div>
@@ -53,7 +53,7 @@
 <script type="text/javascript">
     window.feedback = {
         thankYou: '@Lang.ThankYou',
-        isClickLogout: false //'@Model.IsClickLogout'.toLowerCase() === 'true',
+        isClickLogout: '@Model.IsClickLogout'.toLowerCase() === 'true',
     }
 </script>
 <script src="@Url.RenderLink("~/www/build/js/pages/feedback.js")"></script>

@@ -416,6 +416,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\libs\reportExcel.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\__test__\index.test.js" />

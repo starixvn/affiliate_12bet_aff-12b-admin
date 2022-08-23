@@ -2882,6 +2882,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data is invalid, please check!.
+        /// </summary>
+        public static string InvalidFeedback {
+            get {
+                return ResourceManager.GetString("InvalidFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message no more than 300 characters..
+        /// </summary>
+        public static string InvalidMessageLength {
+            get {
+                return ResourceManager.GetString("InvalidMessageLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate is invalid!.
+        /// </summary>
+        public static string InvalidRate {
+            get {
+                return ResourceManager.GetString("InvalidRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IP.
         /// </summary>
         public static string IP {

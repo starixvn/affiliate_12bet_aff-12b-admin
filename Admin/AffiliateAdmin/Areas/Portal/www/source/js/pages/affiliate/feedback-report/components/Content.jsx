@@ -2,8 +2,9 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { toggleLoader } from '../../../../actions/loaderAction';
+import { toggleLoader, fetchData } from '../actions';
 import ReportTitle from '../../../../components/ReportTitle';
+import ReportExcel from '../libs/reportExcel';
 import GridData from './GridData';
 
 export class Content extends Component {
@@ -19,6 +20,15 @@ export class Content extends Component {
 
     handleExportExcel = async () => {
         this.props.toggleLoader(true);
+        const { param, reportTitle } = this.props;
+        const newParam = Object.assign({}, param, { IsExportExcel: true });
+
+        const data = await this.props.fetchData(newParam);
+
+        if (data) {
+            const reportExcel = new ReportExcel(data, reportTitle);
+            reportExcel.export();
+        }
         this.props.toggleLoader(false);
     }
 
@@ -50,7 +60,7 @@ function mapStateToProps({ reportTitle, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

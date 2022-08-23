@@ -2420,4 +2420,13 @@
   <data name="ThankYou" xml:space="preserve">
     <value>Thank you for your valuable feedback.</value>
   </data>
+  <data name="InvalidRate" xml:space="preserve">
+    <value>Rate is invalid!</value>
+  </data>
+  <data name="InvalidMessageLength" xml:space="preserve">
+    <value>Message no more than 300 characters.</value>
+  </data>
+  <data name="InvalidFeedback" xml:space="preserve">
+    <value>Data is invalid, please check!</value>
+  </data>
 </root>
