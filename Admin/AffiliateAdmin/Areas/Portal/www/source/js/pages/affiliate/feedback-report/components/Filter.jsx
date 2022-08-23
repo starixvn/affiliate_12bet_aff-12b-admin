@@ -103,7 +103,7 @@ export class Filter extends PureComponent {
 
     render() {
         const rates = this.getRateList();
-        const { affName, fromDate, toDate} = this.state;
+        const { affName, fromDate, toDate, selectedRates } = this.state;
 
         return (
             <div className="filter-container">
@@ -113,15 +113,17 @@ export class Filter extends PureComponent {
                         <Input type="text" name="affName" value={affName} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup className="my-2 mr-sm-2">
-                        <Label className="mr-sm-2">{resource.Rate}</Label>
-                        <MultipleSelect
-                            dataSource={rates}
-                            keyField="RateId"
-                            valueField="RateName"
-                            statusField="Checked"
-                            maxDisplayItemCount={1}
-                            noneSelectedLabel="Please Select"
-                            onChange={this.handleChangeRate} />
+                        <Label className="mr-sm-2">{resource.RateName}</Label>
+                        <div className={!selectedRates && "multiple-select-wrapper is-invalid"}>
+                            <MultipleSelect
+                                dataSource={rates}
+                                keyField="RateId"
+                                valueField="RateName"
+                                statusField="Checked"
+                                maxDisplayItemCount={1}
+                                noneSelectedLabel="Please Select"
+                                onChange={this.handleChangeRate} />
+                        </div>
                     </FormGroup>
                     <FormGroup className="mr-sm-3 my-2">
                         <Label className="mr-sm-2">{resource.From}</Label>
