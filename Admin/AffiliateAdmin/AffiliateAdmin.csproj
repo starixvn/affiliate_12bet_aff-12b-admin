@@ -963,6 +963,12 @@
     <Content Include="Areas\Portal\Views\Affiliate\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\ProcessingRequest.cshtml" />
     <Content Include="Areas\Portal\Views\MediaGallery\OfferAff.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.km-KH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.km-KH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.km-KH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.km-KH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.km-KH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.km-KH.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
