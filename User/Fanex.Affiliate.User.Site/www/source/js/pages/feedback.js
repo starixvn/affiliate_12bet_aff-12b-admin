@@ -54,11 +54,16 @@
         },
 
         handleCloseFeedback: function () {
+            const data = {
+                IsClickLogout: window.feedback.isClickLogout
+            }
+
             $.ajax({
                 url: Site.resolveRelativeUrl("UserPanel/Feedback/CloseFeedback"),
                 type: "POST",
                 dataType: "json",
                 cache: false,
+                data,
                 complete: function (jqXHR, textStatus) {
                     _me.handleHideFeedback();
                 }
@@ -68,6 +73,7 @@
         handleSubmitFeedback: function (rate) {
             const data = {
                 RateId: rate,
+                IsClickLogout: window.feedback.isClickLogout,
                 Message: $('#feedbackMessage').val().trim()
             }
             $.ajax({

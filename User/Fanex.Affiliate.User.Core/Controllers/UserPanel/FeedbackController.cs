@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly]
         public ActionResult Index(bool isClickLogout = false)
         {
-            if (!SessionService.IsOpenedFeedback && _feedbackService.IsValidAffToShowFeedback(SessionService.UserSession.AffId, SessionService.LastestRequestTime))
+            if (!SessionService.IsOpenedFeedback && IsValidAffToShowFeedback(isClickLogout))
             {
                 SessionService.IsOpenedFeedback = true;
                 var model = new FeedbackViewModel
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly]
         public ActionResult Insert(FeedbackParam param)
         {
-            if (IsValidAff())
+            if (IsValidAff(param.IsClickLogout))
             {
                 if(ModelState.IsValid && param.IsValid)
                 {
@@ -68,9 +68,9 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult CloseFeedback()
+        public ActionResult CloseFeedback(bool isClickLogout = false)
         {
-            if (IsValidAff())
+            if (IsValidAff(isClickLogout))
             {
                 var param = new FeedbackParam
                 {
@@ -85,9 +85,14 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             return Json(new ResultInfo { Message = Lang.ErrAuthorized });
         }
 
-        private bool IsValidAff()
+        private bool IsValidAff(bool isClickLogout)
         {
-            return SessionService.IsOpenedFeedback && _feedbackService.IsValidAffToShowFeedback(SessionService.UserSession.AffId, SessionService.LastestRequestTime);
+            return SessionService.IsOpenedFeedback && IsValidAffToShowFeedback(isClickLogout);
+        }
+
+        private bool IsValidAffToShowFeedback(bool isClickLogout)
+        {
+            return _feedbackService.IsValidAffToShowFeedback(SessionService.UserSession.AffId, isClickLogout ? null : SessionService.LastestRequestTime);
         }
     }
 }

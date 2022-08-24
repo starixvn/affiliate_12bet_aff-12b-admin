@@ -25,6 +25,9 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public string ErrMsg { get; set; }
 
         [SpParam(Ignored = true)]
+        public bool IsClickLogout { get; set; }
+
+        [SpParam(Ignored = true)]
         public bool IsValid => (RateId >= Dissatisfaction && RateId <= VeryPlease) || !string.IsNullOrEmpty(Message);
     }
 }
