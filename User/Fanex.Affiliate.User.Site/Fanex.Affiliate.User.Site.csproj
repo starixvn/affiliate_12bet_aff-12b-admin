@@ -1165,6 +1165,12 @@
     <Content Include="Views\UserPanel\BetList\Index.cshtml" />
     <Content Include="Views\UserPanel\BetList\ParlayDetail.cshtml" />
     <Content Include="Views\UserPanel\BetList\Result.cshtml" />
+    <Content Include="Views\Shared\Email\NewPassword\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentRequest\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\Signup\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.km-KH.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
