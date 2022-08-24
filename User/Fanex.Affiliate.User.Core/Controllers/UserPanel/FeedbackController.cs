@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly]
         public ActionResult Insert(FeedbackParam param)
         {
-            if (IsValidAff(param.IsClickLogout))
+            if (IsValidAffToAddFeedback(param.IsClickLogout))
             {
                 if(ModelState.IsValid && param.IsValid)
                 {
@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly]
         public ActionResult CloseFeedback(bool isClickLogout = false)
         {
-            if (IsValidAff(isClickLogout))
+            if (IsValidAffToAddFeedback(isClickLogout))
             {
                 var param = new FeedbackParam
                 {
@@ -85,14 +85,16 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             return Json(new ResultInfo { Message = Lang.ErrAuthorized });
         }
 
-        private bool IsValidAff(bool isClickLogout)
+        private bool IsValidAffToAddFeedback(bool isClickLogout)
         {
             return SessionService.IsOpenedFeedback && IsValidAffToShowFeedback(isClickLogout);
         }
 
         private bool IsValidAffToShowFeedback(bool isClickLogout)
         {
-            return _feedbackService.IsValidAffToShowFeedback(SessionService.UserSession.AffId, isClickLogout ? null : SessionService.LastestRequestTime);
+            var isInvalidIdleTime = isClickLogout || !_feedbackService.IsValidIdleTime(SessionService.LastestRequestTime);
+
+            return _feedbackService.IsValidAff(SessionService.UserSession.AffId) && isInvalidIdleTime;
         }
     }
 }

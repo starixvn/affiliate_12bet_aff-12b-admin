@@ -51,9 +51,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private void DetectUserIdle(RouteValueDictionary values)
         {
+            var controller = values["controller"].ToString();
             var action = values["action"].ToString();
 
-            if(!string.Equals("ReCheckin", action, StringComparison.CurrentCultureIgnoreCase) && !SessionService.IsOpenedFeedback)
+            if (!(SessionService.IsOpenedFeedback
+                || string.Equals("ReCheckin", action, StringComparison.CurrentCultureIgnoreCase)
+                || string.Equals("Feedback", controller, StringComparison.CurrentCultureIgnoreCase)))
             {
                 SessionService.LastestRequestTime = DateTime.Now;
             }    

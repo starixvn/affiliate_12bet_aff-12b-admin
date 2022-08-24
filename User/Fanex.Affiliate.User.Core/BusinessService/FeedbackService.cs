@@ -31,16 +31,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _feedbackRepository.Insert(param);
         }
 
-        public bool IsValidAffToShowFeedback(int affId, DateTime? lastestRequestTime = null)
+        public bool IsValidIdleTime(DateTime? lastestRequestTime)
         {
-            if(lastestRequestTime is null)
-            {
-                return _feedbackRepository.IsShowFeedback(affId);
-            }
+            return lastestRequestTime != null && DateTime.Compare(lastestRequestTime.Value.AddMinutes(_appSetting.ValidIdleTime), DateTime.Now) > 0;
+        }
 
-            var isValidIdleTime = DateTime.Compare(lastestRequestTime.Value.AddMinutes(_appSetting.ValidIdleTime), DateTime.Now) > 0;
-
-            return isValidIdleTime && _feedbackRepository.IsShowFeedback(affId);
+        public bool IsValidAff(int affId)
+        {
+            return _feedbackRepository.IsShowFeedback(affId);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         void SignOut();
 
-        bool IsValidAffToShowFeedback(int affId, DateTime? lastestRequestTime = null);
+        bool IsValidAff(int affId);
+
+        bool IsValidIdleTime(DateTime? lastestRequestTime);
     }
 }

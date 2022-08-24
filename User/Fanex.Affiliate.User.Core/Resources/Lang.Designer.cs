@@ -2891,7 +2891,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Message no more than 300 characters..
+        ///   Looks up a localized string similar to Message no more than 4000 characters..
         /// </summary>
         public static string InvalidMessageLength {
             get {

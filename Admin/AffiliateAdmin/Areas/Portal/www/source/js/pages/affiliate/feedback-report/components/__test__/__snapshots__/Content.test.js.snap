@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`email history - components - Content  render correctly 1`] = `
+<div
+  className="data-content my-2"
+>
+  <Connect(Content) />
+</div>
+`;
+
+exports[`email history - components - Content  render correctly with have gridData 1`] = `
+<div
+  className="data-content my-2"
+>
+  <Connect(Content) />
+</div>
+`;
+
+exports[`email history - components - Content  render correctly with have gridData but can not modify 1`] = `
+<div
+  className="data-content my-2"
+>
+  <Connect(Content) />
+</div>
+`;
+
+exports[`email history - components - Content  render correctly with have gridData is empty 1`] = `
+<div
+  className="data-content my-2"
+>
+  <Connect(Content) />
+</div>
+`;
+
+exports[`email history - components - Content  render correctly with have gridData is empty but not show Sender  1`] = `
+<div
+  className="data-content my-2"
+>
+  <Connect(Content) />
+</div>
+`;

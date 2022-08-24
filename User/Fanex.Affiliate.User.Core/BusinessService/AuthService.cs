@@ -74,9 +74,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _authRepository.Recheckin(onUserId, isInternal);
         }
 
-        public bool IsValidAffToShowFeedback(int affId, DateTime? lastestRequestTime = null)
+        public bool IsValidIdleTime(DateTime? lastestRequestTime)
         {
-            return _feedbackService.IsValidAffToShowFeedback(affId, lastestRequestTime);
+            return _feedbackService.IsValidIdleTime(lastestRequestTime);
+        }
+
+        public bool IsValidAff(int affId)
+        {
+            return _feedbackService.IsValidAff(affId);
         }
 
         public void SignIn(string userName, bool createPersistentCookie)

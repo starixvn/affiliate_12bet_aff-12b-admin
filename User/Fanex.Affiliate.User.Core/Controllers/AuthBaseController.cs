@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
             SessionService.LastestRequestTime = System.DateTime.Now;
-            SessionService.IsOpenedFeedback = SessionService.IsInternal || !AuthService.IsValidAffToShowFeedback(user.AffId);
+            SessionService.IsOpenedFeedback = SessionService.IsInternal || !AuthService.IsValidAff(user.AffId);
             SessionService.AssignSessions(user);
             AuthService.SignIn(user.UserName, false);
         }

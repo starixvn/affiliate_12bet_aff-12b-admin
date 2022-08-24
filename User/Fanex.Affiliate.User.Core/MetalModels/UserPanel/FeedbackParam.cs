@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         private const int None = 0;
         private const int Dissatisfaction = 1;
         private const int VeryPlease = 5;
-        private const int MaxLength = 400;
+        private const int MaxLength = 4000;
 
         public int AffId { get; set; }
 

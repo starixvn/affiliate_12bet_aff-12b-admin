@@ -12,6 +12,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         ResultInfo Insert(FeedbackParam param);
 
-        bool IsValidAffToShowFeedback(int affId, DateTime? lastestRequestTime = null);
+        bool IsValidAff(int affId);
+
+        bool IsValidIdleTime(DateTime? lastestRequestTime);
     }
 }

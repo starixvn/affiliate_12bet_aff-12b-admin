@@ -2,7 +2,7 @@
 
 export { globalResource }
 
-export const minDate = new Date(2022, 8, 1);
+export const minDate = new Date(2022, 6, 1);
 
 export const resource = {
     Index: globalResource.Index,
