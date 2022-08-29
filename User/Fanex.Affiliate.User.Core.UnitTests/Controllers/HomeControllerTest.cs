@@ -78,22 +78,28 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(expectedResult, result.Promotion12BetLink);
         }
 
-        [Fact]
-        public void Excute_WhenRequestChangeLang_SetForNewLang()
+        [Theory]
+        [InlineData("Home", "Index")]
+        [InlineData("Auth", "ReCheckin")]
+        [InlineData("Feedback", "Index")]
+        public void Excute_WhenRequestChangeLang_SetForNewLang(string controller, string action)
         {
             var languageService = Substitute.For<ILanguageService>();
             var sessionService = NSubtituteMockingHelper.FakeSessionService();
             var appSetting = Substitute.For<IAppSetting>();
             var ipAddressService = Substitute.For<IIpAddressService>();
-            var controller = new HomeController(sessionService, appSetting, languageService, ipAddressService);
-            NSubtituteMockingHelper.FakeController(controller);
-            var requestContext = new RequestContext(controller.HttpContext, controller.RouteData);
+            var homeController = new HomeController(sessionService, appSetting, languageService, ipAddressService);
+            var routeData = new RouteData();
+            routeData.Values.Add(nameof(controller), controller);
+            routeData.Values.Add(nameof(action), action);
+            NSubtituteMockingHelper.FakeController(homeController, routeData);
+            var requestContext = new RequestContext(homeController.HttpContext, homeController.RouteData);
             requestContext.HttpContext.Response.Cookies.Returns(new HttpCookieCollection());
             languageService.GetFavoriteLanguage().Returns("vn-vi");
 
             try
             {
-                (controller as IController).Execute(requestContext);
+                (homeController as IController).Execute(requestContext);
             }
             catch { }
 

@@ -4,95 +4,79 @@ import { shallow } from 'enzyme';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
-describe('email history - components - Filter ', () => {
+describe('feedback report - components - Filter ', () => {
+    const rateList = [
+        {
+            RateId: 1,
+            Checked: true,
+            RateName: 'None'
+        },
+        {
+            RateId: 2,
+            Checked: true,
+            RateName: 'Very Please'
+        }
+    ]
     const defaultProps = {
+        rateList,
         today: "6/28/2019",
         pagingOption: defaultPagingOption
     }
 
-    it('render correctly with SearchBy All', () => {
+    it('render correctly', () => {
         const result = shallow(<Filter {...defaultProps} />);
 
         expect(result).toMatchSnapshot();
     });
 
-    it('render correctly with SearchBy Sender', () => {
-        const event = { target: { name: 'searchBy', value: 1 } }
+    it('render correctly with selectedRates is empty', () => {
         const result = shallow(<Filter {...defaultProps} />);
-        result.setState({ SearchById: 1 });
-
-        result.find('Input[type="select"][name="searchBy"]').simulate('change', event);
+        result.setState({ selectedRates: '' });
 
         expect(result).toMatchSnapshot();
     });
 
-    it('handleSearch - should be called when click Search Button', () => {
-        const setParam = jest.fn();
-        const props = Object.assign({}, defaultProps, { setParam });
-        const wrapper = shallow(<Filter {...props} />);
-
-        wrapper.find('Button').simulate('click');
-
-        expect(props.setParam).toHaveBeenCalledWith({ FromDate: "6/28/2019", IsGetAll: true, PageIndex: 1, PageSize: 20, SearchById: 0, SearchText: "", ToDate: "6/28/2019" });
-    });
-
-    it("should call handleChange when change Search By's value", () => {
-        const mockedEvent = { target: { name: 'searchBy', value: 1 } }
+    it("should call handleChange when change affiliate", () => {
+        const mockedEvent = { target: { name: 'affName', value: "abc" } }
         const wrapper = shallow(<Filter {...defaultProps} />);
 
-        wrapper.find('Input[type="select"][name="searchBy"]').simulate('change', mockedEvent);
+        wrapper.find('Input[type="text"][name="affName"]').simulate('change', mockedEvent);
 
-        expect(wrapper.state('searchBy')).toBe(1);
+        expect(wrapper.state('affName')).toEqual("abc");
     });
 
-    it("should call handleChange when change Search Text's value", () => {
-        const eventSearchBy = { target: { name: 'searchBy', value: 1 } }
-        const eventSearchText = { target: { name: 'searchText', value: 'abc' } }
+    it('handleChangeRate - should call setState', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
+        const instance = wrapper.instance();
+        instance.setState = jest.fn();
 
+        instance.handleChangeRate(null, '1,2,3')
 
-        wrapper.find('Input[type="select"][name="searchBy"]').simulate('change', eventSearchBy);
-        wrapper.find('Input[type="text"][name="searchText"]').simulate('change', eventSearchText);
-
-        expect(wrapper.state('searchText')).toEqual('abc');
+        expect(instance.setState).toHaveBeenCalledWith({ selectedRates: '1,2,3' });
     });
 
     it('handlePressEnter - should call hanldeSearch when press Enter', () => {
-        const eventSearchBy = { target: { name: 'searchBy', value: 1 } }
-        const eventSearchText = { charCode: 13, preventDefault: jest.fn() };
+        const eventAffName = { charCode: 13, preventDefault: jest.fn() };
 
         const wrapper = shallow(<Filter {...defaultProps} />);
         const instance = wrapper.instance();
         instance.handleSearch = jest.fn();
 
-        wrapper.find('Input[type="select"][name="searchBy"]').simulate('change', eventSearchBy);
-        wrapper.find('Input[type="text"][name="searchText"]').simulate('keyPress', eventSearchText);
+        wrapper.find('Input[type="text"][name="affName"]').simulate('keyPress', eventAffName);
 
         expect(instance.handleSearch).toHaveBeenCalled();
     });
 
     it('handlePressEnter - should not call hanldeSearch when press other keyboards', () => {
-        const eventSearchBy = { target: { name: 'searchBy', value: 1 } }
-        const eventSearchText = { charCode: 123 };
+        const eventAffName = { charCode: 123 };
 
         const wrapper = shallow(<Filter {...defaultProps} />);
         const instance = wrapper.instance();
         instance.handleSearch = jest.fn();
 
-        wrapper.find('Input[type="select"][name="searchBy"]').simulate('change', eventSearchBy);
-        wrapper.find('Input[type="text"][name="searchText"]').simulate('keyPress', eventSearchText);
+        wrapper.find('Input[type="text"][name="affName"]').simulate('keyPress', eventAffName);
 
         expect(instance.handleSearch).not.toHaveBeenCalled();
-    });
-
-    it('should call handleChange when click checkbox All Date', () => {
-        const event = { target: { type: 'checkbox', name: 'isGetAll', checked: true }}
-        const wrapper = shallow(<Filter {...defaultProps} />);
-        wrapper.setState = jest.fn();
-
-        wrapper.find('Input[type="checkbox"]').simulate('change', event);
-
-        expect(wrapper.setState).toHaveBeenCalledWith({ isGetAll: true });
     });
 
     it('should call handleChangeFromDate when From change', () => {
@@ -107,13 +91,31 @@ describe('email history - components - Filter ', () => {
     });
 
     it('should call handleChangeToDate when To change', () => {
-        const monthDate = { format: jest.fn(() => "6/26/2019")};
+        const monthDate = { format: jest.fn(() => "06/26/2019")};
         const wrapper = shallow(<Filter {...defaultProps} />);
 
-        wrapper.setState = jest.fn();
+        wrapper.setState = jest.fn(fn => fn({ fromDate: "06/01/2019" }));
 
         wrapper.find(DatePicker).at(1).simulate('change', monthDate);
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ toDate: "6/26/2019" });
+        expect(wrapper.setState).toHaveBeenCalledWith(expect.any(Function));
+    });
+
+    it('handleSearch - should be called when click Search Button', () => {
+        const props = Object.assign({}, defaultProps, { setParam: jest.fn(), setReportTitle: jest.fn() });
+        const wrapper = shallow(<Filter {...props} />);
+
+        wrapper.find('Button').simulate('click');
+
+        expect(props.setParam).toHaveBeenCalledWith({ AffName: "", FromDate: "06/01/2019", PageIndex: 1, PageSize: 20, RateIds: "1,2", ToDate: "06/28/2019" });
+    });
+
+    it('_buildReportTitle - should return correct title', () => {
+        const wrapper = shallow(<Filter {...defaultProps} />);
+        wrapper.setState({ affName: 'abc', selectedRates: '1' })
+
+        const title = wrapper.instance()._buildReportTitle('abc', '1', "06/01/2019", "06/28/2019")
+
+        expect(title).toEqual("FEEDBACK REPORT - Affiliate contains 'abc' - None - FROM 06/01/2019 TO 06/28/2019");
     });
 })

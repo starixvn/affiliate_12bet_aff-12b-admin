@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`email history - App Should render correctly 1`] = `
+exports[`feedback report - App Should render correctly 1`] = `
 <Provider
   store={
     Object {

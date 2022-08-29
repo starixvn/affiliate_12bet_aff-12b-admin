@@ -1,11 +1,10 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
 
-describe('email history - Filter - connect', () => {
+describe('feedback report - Filter - connect', () => {
     let mapStateToProps, mapDispatchToProps;
     const connectMock = jest.fn();
 
@@ -21,11 +20,13 @@ describe('email history - Filter - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             today: '09/25/2019',
+            rateList: [],
             pagingOption: { PageIndex: 1 }
         };
 
         const state = {
             today: '09/25/2019',
+            rateList: [],
             pagingOption: { PageIndex: 1 },
             anotherProp: "Not included"
         };
@@ -40,6 +41,7 @@ describe('email history - Filter - connect', () => {
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
             setParam: actions['setParam'],
+            setReportTitle: actions['setReportTitle'],
         }
 
         const dispatch = {};

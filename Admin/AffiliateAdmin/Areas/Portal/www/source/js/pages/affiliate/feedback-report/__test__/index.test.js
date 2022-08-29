@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 
 jest.mock('react-dom', ()=> ({render: jest.fn()}))
 
-describe('email history - App', () => {
+describe('feedback report - App', () => {
     it('Should render correctly', () => {
         window.globalVariables = {};
         window.initialState = {};

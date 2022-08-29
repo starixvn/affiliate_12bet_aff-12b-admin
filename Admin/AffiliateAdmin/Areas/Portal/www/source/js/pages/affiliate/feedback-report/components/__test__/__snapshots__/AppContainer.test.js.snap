@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`email history - components - AppContainer render correctly 1`] = `
+exports[`feedback report - components - AppContainer render correctly 1`] = `
 <AppLayout>
   <Loader
     show={true}

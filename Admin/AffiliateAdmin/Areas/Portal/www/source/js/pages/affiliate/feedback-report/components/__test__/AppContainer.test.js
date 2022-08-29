@@ -2,7 +2,7 @@
 import { AppContainer } from '../AppContainer';
 import { shallow } from 'enzyme';
 
-describe('email history - components - AppContainer', () => {
+describe('feedback report - components - AppContainer', () => {
     it('render correctly', () => {
         const result = shallow(<AppContainer isShowLoader={true} />);
 

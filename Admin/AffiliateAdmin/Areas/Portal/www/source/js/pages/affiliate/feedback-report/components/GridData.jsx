@@ -9,7 +9,7 @@ import { defaultDatetimeFormat } from '../../../../modules/constants';
 import { resource, globalResource } from '../libs/constants';
 import { setPagingOption, fetchData, setParam, toggleLoader } from '../actions';
 
-export class Content extends PureComponent {
+export class GridData extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -130,4 +130,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ fetchData, setPagingOption, setParam, toggleLoader }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Content);
+export default connect(mapStateToProps, mapDispatchToProps)(GridData);

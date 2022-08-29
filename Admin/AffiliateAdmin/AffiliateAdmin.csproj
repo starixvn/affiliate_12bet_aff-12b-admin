@@ -409,10 +409,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\__test__\GridData.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\__test__\redux\GridData.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\libs\constants.js" />

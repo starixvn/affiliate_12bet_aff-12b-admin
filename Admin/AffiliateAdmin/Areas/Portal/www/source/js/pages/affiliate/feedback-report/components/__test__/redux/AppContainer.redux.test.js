@@ -5,7 +5,7 @@ import configureMockStore from 'redux-mock-store';
 
 const mockStore = configureMockStore();
 
-describe('Email History - components - AppContainer - connect', () => {
+describe('feedback report - components - AppContainer - connect', () => {
     let wrapper;
     let store;
 
