@@ -165,6 +165,7 @@
     <Compile Include="BusinessService\ContactServiceTest.cs" />
     <Compile Include="BusinessService\CryptographyServiceTest.cs" />
     <Compile Include="BusinessService\EmailServiceTest.cs" />
+    <Compile Include="BusinessService\IpAddressServiceTest.cs" />
     <Compile Include="BusinessService\LanguageServiceTest.cs" />
     <Compile Include="BusinessService\MarketingServiceTest.cs" />
     <Compile Include="BusinessService\NewsLetterServiceTest.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Repository\UserPanel\AccountOverviewRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\AccountRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\CommissionReportRepositoryTest.cs" />
+    <Compile Include="Repository\UserPanel\IpAddressRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\MarketingRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\MemberRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\NewsLetterRepositoryTest.cs" />

@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Fact]
         public void Insert_WhenCall_ExcuteSuccess()
         {
-            const string uSpKey = "Aff_FeedbackIns";
+            const string uSpKey = "Aff_User_FeedbackIns";
             var param = new FeedbackParam { };
             var db = Builder.Build(uSpKey);
             db.When(d => d.ExecuteNonQuery(param)).Do(c => (c.Args()[0] as FeedbackParam).ErrCode = 0);
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Fact]
         public void IsShowFeedback_WhenCall_ReturnCorrectData()
         {
-            const string uSpKey = "Aff_FeedbackPopup_Check";
+            const string uSpKey = "Aff_User_FeedbackPopup_Check";
             var db = Builder.Build(uSpKey);
             db.When(d => d.ExecuteNonQuery(Arg.Compat.Any<object>()))
                 .Do(c => SetObjectPropetyValue(c.Args()[0], "IsShowPopup", true));

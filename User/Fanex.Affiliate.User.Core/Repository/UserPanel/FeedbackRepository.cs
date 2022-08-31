@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public ResultInfo Insert(FeedbackParam param)
         {
-            const string uSpKey = "Aff_FeedbackIns";
+            const string uSpKey = "Aff_User_FeedbackIns";
 
             using (var db = _builder.Build(uSpKey))
             {
@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public bool IsShowFeedback(int affId)
         {
-            const string SpKey = "Aff_FeedbackPopup_Check";
+            const string SpKey = "Aff_User_FeedbackPopup_Check";
             var parameterSet = new
             {
                 affId,

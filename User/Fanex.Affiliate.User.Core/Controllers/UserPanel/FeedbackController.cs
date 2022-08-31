@@ -59,8 +59,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                     return Json(_feedbackService.Insert(param));
                 }
 
-                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-                return Json(new ResultInfo { Message = errors != null ? string.Join("<br>", errors) : Lang.InvalidFeedback });
+                return Json(new ResultInfo { Message = ModelState.IsValid ? Lang.InvalidFeedback : string.Join("<br>", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)) });
             }
 
             return Json(new ResultInfo { Message = Lang.ErrAuthorized });

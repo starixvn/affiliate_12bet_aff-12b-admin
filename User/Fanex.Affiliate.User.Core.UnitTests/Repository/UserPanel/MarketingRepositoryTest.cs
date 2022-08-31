@@ -164,5 +164,20 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result);
         }
+
+        [Fact]
+        public void CountNumberOfCopies_WhenCall_ReturnCorrectData()
+        {
+            const string SpKey = "Aff_User_BannerStatistics_Ins";
+            var param = new CopiedBannerCounterParam();
+            var repo = CreateRepo();
+            var db = Builder.Build(SpKey);
+            db.ExecuteNonQuery(Arg.Compat.Is<CopiedBannerCounterParam>(p => CheckPropertyValue(p, "ErrCode", 0)));
+
+            var result = repo.CountNumberOfCopies(param);
+
+            Assert.Equal(SpKey, db.SettingKey);
+            Assert.True(result.IsOk);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers.UserPanel;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
@@ -52,6 +53,22 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var result = controller.Index() as ViewResult;
 
             Assert.Contains("MediaGallery/Index.cshtml", result.ViewName);
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void CountNumberOfCopies_WhenCall_ReturnCorrectData(bool isInternal)
+        {
+            SessionService.IsInternal.ReturnsForAnyArgs(isInternal);
+            var marketingService = Substitute.For<IMarketingService>();
+            marketingService.CountNumberOfCopies(Arg.Compat.Any<CopiedBannerCounterParam>()).Returns(new ResultInfo { IsOk = true });
+            var controller = new MediaGalleryController(SessionService, AppSetting, LanguageService, marketingService);
+
+            var result = controller.CountNumberOfCopies(new CopiedBannerCounterParam { BannerId = 123 }) as JsonResult;
+            var data = result.Data as ResultInfo;
+
+            Assert.Equal(!isInternal, data.IsOk);
         }
     }
 }

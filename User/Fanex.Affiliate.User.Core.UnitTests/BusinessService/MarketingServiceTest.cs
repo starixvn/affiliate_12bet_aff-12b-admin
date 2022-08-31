@@ -292,6 +292,17 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Repo.Received().GetLandingPageList(false);
         }
 
+        [Fact]
+        public void CountNumberOfCopies_WhenCall_RepoCall()
+        {
+            var param = new CopiedBannerCounterParam();
+            var servcice = CreateService();
+
+            servcice.CountNumberOfCopies(param);
+
+            Repo.Received().CountNumberOfCopies(param);
+        }
+
         private MarketingTextParam CreateMarketingTextParam()
             => new MarketingTextParam
             {

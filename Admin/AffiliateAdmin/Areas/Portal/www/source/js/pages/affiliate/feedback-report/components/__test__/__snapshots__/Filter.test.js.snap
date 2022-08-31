@@ -113,7 +113,7 @@ exports[`feedback report - components - Filter  render correctly 1`] = `
         }
         isEnable={true}
         maxDate="06/28/2019"
-        minDate={2022-06-30T17:00:00.000Z}
+        minDate={2022-07-31T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>
@@ -304,7 +304,7 @@ exports[`feedback report - components - Filter  render correctly with selectedRa
         }
         isEnable={true}
         maxDate="06/28/2019"
-        minDate={2022-06-30T17:00:00.000Z}
+        minDate={2022-07-31T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>

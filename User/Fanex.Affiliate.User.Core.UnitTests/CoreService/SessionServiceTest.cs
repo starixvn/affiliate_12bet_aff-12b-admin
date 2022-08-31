@@ -3,6 +3,7 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
@@ -28,6 +29,41 @@ namespace Fanex.Affiliate.User.Core.UnitTests.CoreService
             service.CaptchaCode = captchaCode;
 
             Assert.Equal(captchaCode, service.CaptchaCode);
+        }
+
+        [Fact]
+        public void PropertyLastestRequestTime_WhenCall_PropertyStoreCorrectly()
+        {
+            SetUpHttpContextSession();
+            var service = CreateService();
+            var lastestRequestTime = new DateTime(2022, 08, 31);
+
+            service.LastestRequestTime = lastestRequestTime;
+
+            Assert.Equal(lastestRequestTime, service.LastestRequestTime);
+        }
+
+        [Fact]
+        public void PropertyIsOpenedFeedback_WhenSessionNotExistKey_ReturnFalse()
+        {
+            SetUpHttpContextSession();
+            var service = CreateService();
+
+            var result = service.IsOpenedFeedback;
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void PropertyIsOpenedFeedback_WhenCall_PropertyStoreCorrectly()
+        {
+            SetUpHttpContextSession();
+            var service = CreateService();
+            var isOpenedFeedback = true;
+
+            service.IsOpenedFeedback = isOpenedFeedback;
+
+            Assert.Equal(isOpenedFeedback, service.IsOpenedFeedback);
         }
 
         [Fact]
