@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
 
                     if (reader.NextResult() && reader.Read())
                     {
-                        result.Total = BuildDataItem(reader);
+                        result.Total = BuildDataItem(reader, true);
                     }
                 }
 
@@ -63,12 +63,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildDataItem(reader));
+                        dataList.Add(BuildDataItem(reader, isDetail: true));
                     }
 
                     if (reader.NextResult() && reader.Read())
                     {
-                        result.Total = BuildDataItem(reader);
+                        result.Total = BuildDataItem(reader, true, true);
                     }
                 }
 
@@ -115,14 +115,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
             objectDb.SetParameterValue("NRows", DefaultValue.Int);
         }
 
-        private static AffiliateReport BuildDataItem(IDataReader reader)
+        private static AffiliateReport BuildDataItem(IDataReader reader, bool isTotal = false, bool isDetail = false)
         {
-            return new AffiliateReport
+            var affReport = new AffiliateReport
             {
-                AffId = reader.HasColumn("AffId") ? Convert.ToInt32(reader["AffId"]) : 0,
-                UserName = reader.HasColumn("Username") ? Convert.ToString(reader["Username"]) : string.Empty,
-                MonthDate = reader.HasColumn("MonthDate") ? Convert.ToDateTime(reader["MonthDate"]) : (DateTime?)null,
-                Description = reader.HasColumn("Description") ? Convert.ToString(reader["Description"]) : string.Empty,
                 TotalClick = Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = Convert.ToInt32(reader["UniqueClick"]),
                 Signup = Convert.ToInt32(reader["Signup"]),
@@ -142,9 +138,30 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
                 Earning = Convert.ToDecimal(reader["Earning"]),
                 AffWithdrawal = Convert.ToDecimal(reader["AffWithdrawal"]),
                 AffAdjustment = Convert.ToDecimal(reader["AffAdjustment"]),
-                BalanceBf = Convert.ToDecimal(reader["BFF"]),
-                PreferredLanguage = reader.HasColumn("Language") ? Convert.ToString(reader["Language"]) : string.Empty
+                BalanceBf = Convert.ToDecimal(reader["BFF"])
             };
+
+            if (isDetail)
+            {
+                affReport.PreviousBalanceBf = reader.HasColumn("PrevBFF") ? Convert.ToDecimal(reader["PrevBFF"]) : DefaultValue.Decimal;
+
+                if(!isTotal)
+                {
+                    affReport.MonthDate = Convert.ToDateTime(reader["MonthDate"]);
+                    affReport.Description = Convert.ToString(reader["Description"]);
+                }    
+            }
+            else
+            {
+                if (!isTotal)
+                {
+                    affReport.AffId = Convert.ToInt32(reader["AffId"]);
+                    affReport.UserName = Convert.ToString(reader["Username"]);
+                    affReport.PreferredLanguage = Convert.ToString(reader["Language"]);
+                }
+            }
+
+            return affReport;
         }
     }
 }

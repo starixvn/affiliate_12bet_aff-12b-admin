@@ -15,6 +15,7 @@ const aggregateHeaderChildrenOfMemberStatistics = [
 
 const aggregateHeaderChildrenOfAffiliateStatistics = [
     new SingleHeader(reportKey.CommissionRate, headerText[reportKey.CommissionRate], true),
+    new SingleHeader(reportKey.PreviousBalanceBf, headerText[reportKey.PreviousBalanceBf], true),
     new SingleHeader(reportKey.Earning, headerText[reportKey.Earning], true),
     new SingleHeader(reportKey.AffWithdrawal, headerText[reportKey.AffWithdrawal], true),
     new SingleHeader(reportKey.AffAdjustment, headerText[reportKey.AffAdjustment], true),

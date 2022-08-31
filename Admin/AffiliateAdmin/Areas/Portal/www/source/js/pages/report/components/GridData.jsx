@@ -111,6 +111,7 @@ export class GridData extends PureComponent {
                 {h2[reportKey.BankingFee].isVisable && <Cell header={true} colWidth={70} title={headerText.BankingFee}>{headerText.BankingFee}</Cell>}
                 {h2[reportKey.TotalFee].isVisable && <Cell header={true} colWidth={70} title={headerText.TotalFee}>{headerText.TotalFee}</Cell>}
                 {h2[reportKey.CommissionRate].isVisable && <Cell header={true} colWidth={60} title={headerText.CommissionRate}>{headerText.CommissionRate}</Cell>}
+                {h2[reportKey.PreviousBalanceBf].isVisable && <Cell header={true} colWidth={100} title={headerText.PreviousBalanceBf}>{headerText.PreviousBalanceBf}</Cell>}
                 {h2[reportKey.Earning].isVisable && <Cell header={true} colWidth={80} title={headerText.Earning}>{headerText.Earning}</Cell>}
                 {h2[reportKey.AffWithdrawal].isVisable && <Cell header={true} colWidth={80} title={headerText.AffWithdrawal}>{headerText.AffWithdrawal}</Cell>}
                 {h2[reportKey.AffAdjustment].isVisable && <Cell header={true} colWidth={70} title={headerText.AffAdjustment}>{headerText.AffAdjustment}</Cell>}
@@ -148,7 +149,7 @@ export class GridData extends PureComponent {
 
     _buildDataRow(dataItem, productColumnClassName, index) {
         const isMainView = this._isMainView();
-        const isTotalRow = isMainView ? (dataItem.AffId === 0 && dataItem.UserName === "") : (dataItem.MonthDate === null);
+        const isTotalRow = isMainView ? (!dataItem.AffId && !dataItem.UserName) : !dataItem.MonthDateString;
         const firstColValue = isTotalRow ?
             totalText :
             (isMainView ? dataItem.UserName : this._buildMonthCell(dataItem.MonthDateString, dataItem.Description));
@@ -196,6 +197,7 @@ export class GridData extends PureComponent {
         const affWithdrawal = formatDecimal(dataItem.AffWithdrawal);
         const affAdjustment = formatDecimal(dataItem.AffAdjustment);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
+        const prevBalanceBf = formatDecimal(dataItem.PreviousBalanceBf);
         const commRate = isMainView && isTotalRow ? 'N/A' : formatDecimal(dataItem.CommissionRate) + '%';
         const language = isMainView ? languageList[dataItem.PreferredLanguage] : "";
 
@@ -218,6 +220,7 @@ export class GridData extends PureComponent {
                 { header[reportKey.BankingFee].isVisable && <Cell className="text-right" title={bankingFee}>{bankingFee}</Cell>}
                 { header[reportKey.TotalFee].isVisable && <Cell className="text-right" title={totalFee}>{totalFee}</Cell>}
                 { header[reportKey.CommissionRate].isVisable && <Cell className="text-right" title={commRate}>{commRate}</Cell>}
+                { header[reportKey.PreviousBalanceBf].isVisable && <Cell className="text-right" title={prevBalanceBf}>{prevBalanceBf}</Cell>}
                 { header[reportKey.Earning].isVisable && <Cell className="text-right" title={earning}>{earning}</Cell>}
                 { header[reportKey.AffWithdrawal].isVisable && <Cell className="text-right" title={affWithdrawal}>{affWithdrawal}</Cell>}
                 { header[reportKey.AffAdjustment].isVisable &&  (<Cell className="text-right" title={affAdjustment}>{affAdjustment}</Cell>)}

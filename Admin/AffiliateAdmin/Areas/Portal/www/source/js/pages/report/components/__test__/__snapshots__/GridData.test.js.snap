@@ -194,6 +194,15 @@ exports[`affiliate report - GridData  _buildCommonCell - should return correctly
     onClick={[Function]}
     sortable={false}
     sorting={false}
+    title=""
+  />
+  <t
+    asc={true}
+    className="text-right"
+    header={false}
+    onClick={[Function]}
+    sortable={false}
+    sorting={false}
     title="0.00"
   >
     0.00
@@ -440,6 +449,15 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       onClick={[Function]}
       sortable={false}
       sorting={false}
+      title=""
+    />
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
       title="0.00"
     >
       0.00
@@ -500,8 +518,10 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       onClick={[Function]}
       sortable={false}
       sorting={false}
-      title=""
-    />
+      title="Total (all pages)"
+    >
+      Total (all pages)
+    </t>
     <t
       asc={true}
       className="text-left"
@@ -687,6 +707,15 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
     >
       0.00%
     </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title=""
+    />
     <t
       asc={true}
       className="text-right"
@@ -942,6 +971,15 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
       onClick={[Function]}
       sortable={false}
       sorting={false}
+      title=""
+    />
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
       title="0.00"
     >
       0.00
@@ -1183,6 +1221,15 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
     >
       0.00%
     </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title=""
+    />
     <t
       asc={true}
       className="text-right"
@@ -1439,6 +1486,17 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
               title="0.00%"
             >
               0.00%
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
             </t>
             <t
               asc={true}
@@ -1706,6 +1764,17 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
               title="0.00"
             >
               0.00
@@ -1775,7 +1844,10 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-          />
+            title="Total (all pages)"
+          >
+            Total (all pages)
+          </t>
           <React.Fragment>
             <t
               asc={true}
@@ -1957,9 +2029,20 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="%"
+              title="N/A"
             >
-              %
+              N/A
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
             </t>
             <t
               asc={true}
@@ -2131,7 +2214,7 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colSpan={5}
+            colSpan={6}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -2263,6 +2346,17 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             title="Comm%"
           >
             Comm%
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Previous Month's Balance B/F"
+          >
+            Previous Month's Balance B/F
           </t>
           <t
             asc={true}
@@ -2551,6 +2645,17 @@ exports[`affiliate report - GridData  should render correctly when have not turn
               onClick={[Function]}
               sortable={false}
               sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
               title="0.00"
             >
               0.00
@@ -2810,6 +2915,17 @@ exports[`affiliate report - GridData  should render correctly when have not turn
               onClick={[Function]}
               sortable={false}
               sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
               title="0.00"
             >
               0.00
@@ -2879,7 +2995,10 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             onClick={[Function]}
             sortable={false}
             sorting={false}
-          />
+            title="Total (all pages)"
+          >
+            Total (all pages)
+          </t>
           <React.Fragment>
             <t
               asc={true}
@@ -3061,9 +3180,20 @@ exports[`affiliate report - GridData  should render correctly when have not turn
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="%"
+              title="N/A"
             >
-              %
+              N/A
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
             </t>
             <t
               asc={true}
@@ -3235,7 +3365,7 @@ exports[`affiliate report - GridData  should render correctly when have not turn
           </t>
           <t
             asc={true}
-            colSpan={5}
+            colSpan={6}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -3367,6 +3497,17 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             title="Comm%"
           >
             Comm%
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Previous Month's Balance B/F"
+          >
+            Previous Month's Balance B/F
           </t>
           <t
             asc={true}
@@ -3553,7 +3694,7 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </t>
     <t
       asc={true}
-      colSpan={5}
+      colSpan={6}
       header={true}
       onClick={[Function]}
       sortable={false}
@@ -3687,6 +3828,17 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       title="Comm%"
     >
       Comm%
+    </t>
+    <t
+      asc={true}
+      colWidth={100}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="Previous Month's Balance B/F"
+    >
+      Previous Month's Balance B/F
     </t>
     <t
       asc={true}
@@ -3850,7 +4002,7 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </t>
     <t
       asc={true}
-      colSpan={5}
+      colSpan={6}
       header={true}
       onClick={[Function]}
       sortable={false}
@@ -3975,6 +4127,17 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </t>
     <t
       asc={true}
+      colWidth={100}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="Previous Month's Balance B/F"
+    >
+      Previous Month's Balance B/F
+    </t>
+    <t
+      asc={true}
       colWidth={80}
       header={true}
       onClick={[Function]}
@@ -4035,7 +4198,7 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
           <t
             asc={true}
             className="text-center"
-            colSpan={23}
+            colSpan={24}
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -4161,7 +4324,7 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
           </t>
           <t
             asc={true}
-            colSpan={5}
+            colSpan={6}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -4293,6 +4456,17 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
             title="Comm%"
           >
             Comm%
+          </t>
+          <t
+            asc={true}
+            colWidth={100}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Previous Month's Balance B/F"
+          >
+            Previous Month's Balance B/F
           </t>
           <t
             asc={true}
