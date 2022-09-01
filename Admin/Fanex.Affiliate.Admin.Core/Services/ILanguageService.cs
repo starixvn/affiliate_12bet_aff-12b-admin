@@ -7,8 +7,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
     {
         void SetCulture(string languageCode);
 
-        IEnumerable<Language> GetLanguageList();
-
         IEnumerable<Language> GetInChangeMarkets();
     }
 }

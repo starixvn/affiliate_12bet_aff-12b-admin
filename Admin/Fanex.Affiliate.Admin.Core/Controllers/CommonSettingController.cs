@@ -56,5 +56,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 Data = _trackingStatisticsService.GetTrackingCodeList(affId)
             };
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetCountryList()
+        {
+            return new JsonNetResult
+            {
+                Data = _landingPageRepository.GetCountryList()
+            };
+        }
     }
 }

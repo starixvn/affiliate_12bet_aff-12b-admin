@@ -72,45 +72,39 @@
 
 <script type="text/javascript">
     window.globalVariables = {
-        claims: @Html.Raw(permissions.ToJson())
+        claims: @Html.Raw(permissions.ToJson()),
     };
     window.virtualUrl = '@Url.Content("~")';
 
-    let element;
+    const mappingControllers = {
+        PaymentRequest: 'Affiliate',
+        CommissionGroup: 'Affiliate',
+        EmailHistory: 'Affiliate',
+        FeedbackReport: 'Affiliate',
+        Adjustment: 'Affiliate',
+        ViewLog: 'Affiliate',
+        ProcessingRequest: 'Affiliate',
 
-    switch('@controllerName') {
-        case 'PaymentRequest':
-        case 'CommissionGroup':
-        case 'EmailHistory':
-        case 'FeedbackReport':
-        case 'Adjustment':
-        case 'ViewLog':
-        case 'ProcessingRequest':
-            element = document.getElementById('Affiliate');
-            break;
-        case 'ActiveMember':
-        case 'Registered':
-            element = document.getElementById('Member');
-            break;
-        case 'TextList':
-        case 'LandingPageList':
-        case 'NewsLetter':
-        case 'OfferPage':
-        case 'OfferAff':
-            element = document.getElementById('MediaGallery');
-            break;
-        case 'Department':
-            element = document.getElementById('Administrator');
-            break;
-        case 'Domain':
-        case 'DomainControl':
-            element = document.getElementById('Domain');
-            break;
-        case 'AdminRole':
-        case 'RolePermission':
-            element = document.getElementById('AdminRole');
-            break;
+        ActiveMember: 'Member',
+        Registered: 'Member',
+
+        TextList: 'MediaGallery',
+        LandingPageList: 'MediaGallery',
+        NewsLetter: 'MediaGallery',
+        OfferPage: 'MediaGallery',
+        OfferAff: 'MediaGallery',
+
+        Department: 'Administrator',
+
+        Domain: 'Domain',
+        DomainControl: 'Domain',
+
+        AdminRole: 'AdminRole',
+        RolePermission: 'AdminRole',
     }
+
+    const mappingName = mappingControllers['@controllerName'];
+    const element = document.getElementById(mappingName);
 
     element && element.classList.add("active");
 </script>

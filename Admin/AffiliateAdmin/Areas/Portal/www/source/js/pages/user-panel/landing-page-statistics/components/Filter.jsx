@@ -3,26 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import MultipleSelect from '../../../../components/multiple-select';
 
 import { getDateRange } from '../../../../modules/utils';
-import { headerTitle, deviceTypes, globalResource, minDate } from '../libs/constants';
-import { setSelectedPage, setParam, setShortCodeLanguageList, getPageList } from '../actions';
+import { headerTitle, deviceTypes, globalResource, minDate, groupByCountry, groupByList } from '../libs/constants';
+import { setSelectedPageDetailFilter, setParam, setShortCodeLanguageList, getPageList, getCountryList, setIsGroupByCountry } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-
-const shortCodeLanguageList = {};
-const shortCodeList = {
-    'en-GB': 'eneuro',
-    'en-US': 'en',
-    'es-ES': 'es',
-    'hi-IN': 'hien',
-    'id-ID': 'id',
-    'ja-JP': 'jp',
-    'ko-KR': 'ko',
-    'th-TH': 'th',
-    'vi-VN': 'vn',
-    'zh-CN': 'cs',
-    'zh-TW': 'ch',
-};
 
 export class Filter extends React.Component {
     constructor(props) {
@@ -33,19 +19,24 @@ export class Filter extends React.Component {
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
+        const shortCodeLanguageList = {};
         for (let languageItem of languageList) {
-            const shortCode = shortCodeList[languageItem.LanguageCode] || languageItem.LanguageCode;
+            const shortCode = languageItem.ShortedCode;
             shortCodeLanguageList[shortCode] = languageItem.LanguageName;
         }
         this.props.setShortCodeLanguageList(shortCodeLanguageList);
 
         this.state = {
-            selectedPage: '',
+            groupBy: groupByCountry,
+            initialCountries: '',
+            selectedCountries: '',
             languageCode: '',
+            selectedPage: '',
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
             toDate: this.nowString,
             deviceType: 0,
-            pageList: null
+            pageList: null,
+            countryList: null
         };
     }
 
@@ -53,12 +44,29 @@ export class Filter extends React.Component {
         if (!this.state.pageList) {
             this.handleGetPageList();
         }
+
+        if (!this.state.countryList) {
+            this.handleCountryList();
+        }
     }
 
     handleGetPageList = async () => {
         const pageList = await this.props.getPageList();
 
         this.setState({ pageList });
+    }
+
+    handleCountryList = async () => {
+        const countryList = await this.props.getCountryList();
+        const initialCountries = countryList.filter(r => r.Checked).map(r => r.RateId).join(',');
+
+        this.setState({ initialCountries, selectedCountries: initialCountries, countryList });
+    }
+
+    handleChangeCountry = (item, selectedCountries) => {
+        const countryList = this.getCountryList(selectedCountries);
+
+        this.setState({ selectedCountries, countryList });
     }
 
     handleChange = (event) => {
@@ -74,19 +82,65 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        const { selectedPage, languageCode, fromDate, toDate, deviceType } = this.state;
-        const param = Object.assign({}, { selectedPage, languageCode, fromDate, toDate, deviceType, affId: this.props.affId });
+        const { groupBy, selectedPage, fromDate, toDate, deviceType } = this.state;
+        const isGroupByCountry = groupBy === groupByCountry;
+        const optionName = isGroupByCountry ? "selectedCountries" : "languageCode";
+        const param = Object.assign({}, { selectedPage, [optionName]: this.state[optionName], fromDate, toDate, deviceType, affId: this.props.affId });
 
         this.props.setParam(param);
-        this.props.setSelectedPage(null);
+        this.props.setIsGroupByCountry(isGroupByCountry);
+        this.props.setSelectedPageDetailFilter(null);
+    }
+
+    getCountryList = (selectedCountries) => {
+        const { initialCountries, countryList } = this.state;
+
+        if (selectedCountries === initialCountries) {
+            return countryList ? countryList.slice() : [];
+        }
+
+        const selectedCountryIds = selectedCountries.split(',');
+
+        return countryList.map(r => {
+            return Object.assign({}, r, { Checked: selectedCountryIds.indexOf(r.CountryId.toString()) !== -1 })
+        })
     }
 
     render() {
-        const { selectedPage, languageCode, deviceType, fromDate, toDate, pageList } = this.state;
+        const { shortCodeLanguageList } = this.props;
+        const { groupBy, selectedCountries, selectedPage, languageCode, deviceType, fromDate, toDate, pageList, countryList } = this.state;
+        const isGroupByCountry = groupBy === groupByCountry;
 
         return pageList && (
             <div className="filter-container py-0">
                 <Form inline tag="div">
+                    <FormGroup className="mr-sm-3 my-2">
+                        <Label className="mr-sm-2">{headerTitle.GroupBy}</Label>
+                        <Input type="select" name="groupBy" value={groupBy} onChange={this.handleChange}>
+                            {
+                                groupByList.map((value, index) => {
+                                    return (<option key={'groupBy-' + index} value={index + 1}>{value}</option>)
+                                })
+                            }
+                        </Input>
+                    </FormGroup>
+                    {
+                        isGroupByCountry && (
+                            <FormGroup className="my-2 mr-sm-2">
+                                <Label className="mr-sm-2">{headerTitle.Country}</Label>
+                                <div className={!selectedCountries && "multiple-select-wrapper is-invalid"}>
+                                    <MultipleSelect
+                                        dataSource={countryList}
+                                        keyField="CountryId"
+                                        valueField="CountryName"
+                                        statusField="Checked"
+                                        maxDisplayItemCount={1}
+                                        noneSelectedLabel="Please Select"
+                                        onChange={this.handleChangeCountry} />
+                                </div>
+                            </FormGroup>
+                        )
+                    }
                     <FormGroup className="mr-sm-2 my-2">
                         <Label for="selectedPage" className="mr-sm-2">{headerTitle.Page}</Label>
                         <Input type="select" name="selectedPage" id="selectedPage" value={selectedPage} onChange={this.handleChange}>
@@ -98,17 +152,21 @@ export class Filter extends React.Component {
                             }
                         </Input>
                     </FormGroup>
-                    <FormGroup className="mr-sm-2 my-2">
-                        <Label for="languageCode" className="mr-sm-2">{headerTitle.Language}</Label>
-                        <Input type="select" name="languageCode" id="languageCode" value={languageCode} onChange={this.handleChange}>
-                            <option value="">{globalResource.All}</option>
-                            {
-                                Object.keys(shortCodeLanguageList).map(key => {
-                                    return (<option key={`language-${key}`} value={key}>{shortCodeLanguageList[key]}</option>)
-                                })
-                            }
-                        </Input>
-                    </FormGroup>
+                    {
+                        !isGroupByCountry && (
+                            <FormGroup className="mr-sm-2 my-2">
+                                <Label for="languageCode" className="mr-sm-2">{headerTitle.Language}</Label>
+                                <Input type="select" name="languageCode" id="languageCode" value={languageCode} onChange={this.handleChange}>
+                                    <option value="">{globalResource.All}</option>
+                                    {
+                                        Object.keys(shortCodeLanguageList).map(key => {
+                                            return (<option key={`language-${key}`} value={key}>{shortCodeLanguageList[key]}</option>)
+                                        })
+                                    }
+                                </Input>
+                            </FormGroup>
+                        )
+                    }
                     <FormGroup className="mr-sm-2 my-2">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
                         <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate}
@@ -140,17 +198,20 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, languageList }) {
+function mapStateToProps({ today, affCommonInfo, languageList, countryList, landingPageStatistics }) {
     const { affId } = affCommonInfo;
+    const { shortCodeLanguageList } = landingPageStatistics;
     return Object.assign({}, {
         today,
         affId,
-        languageList
+        countryList,
+        languageList,
+        shortCodeLanguageList
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedPage, setParam, setShortCodeLanguageList, getPageList }, dispatch);
+    return bindActionCreators({ setSelectedPageDetailFilter, setParam, setShortCodeLanguageList, getPageList, getCountryList, setIsGroupByCountry }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

@@ -8,7 +8,6 @@ using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -33,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [AllowByPassFunctionAuthorize]
         public ActionResult Index(string userName)
         {
-            var languageList = _languageService.GetLanguageList();
+            var languageList = _languageService.GetInChangeMarkets();
             ViewBag.Languages = languageList;
             ViewBag.UserName = userName;
             return View("~/Areas/Portal/Views/Affiliate/ProcessingRequest.cshtml");

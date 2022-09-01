@@ -20,11 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
             _sessionService = sessionService;
         }
 
-        public IEnumerable<Language> GetLanguageList()
-        {
-            return _languageRepository.GetLanguageList();
-        }
-
         public IEnumerable<Language> GetInChangeMarkets()
         {
             var languages = _languageRepository.GetLanguageList();

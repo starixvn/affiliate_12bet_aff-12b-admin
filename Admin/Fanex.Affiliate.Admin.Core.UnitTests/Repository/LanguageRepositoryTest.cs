@@ -36,7 +36,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
                 ["MarketId"] = "en-US",
-                ["MarketName"] = "English"
+                ["MarketName"] = "English",
+                ["ShortedCode"] = "en",
             };
         }
     }

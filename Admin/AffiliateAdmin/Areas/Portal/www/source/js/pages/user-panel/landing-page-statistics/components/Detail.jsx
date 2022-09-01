@@ -17,10 +17,10 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { pagingOption, selectedPage } = this.props;
+        const { pagingOption, selectedPageDetailFilter } = this.props;
 
-        if (selectedPage !== prevProps.selectedPage) {
-            const param = Object.assign({}, this.props.param, { pageIndex: 1, pageSize: pagingOption.PageSize, ...selectedPage });
+        if (selectedPageDetailFilter !== prevProps.selectedPageDetailFilter) {
+            const param = Object.assign({}, this.props.param, { pageIndex: 1, pageSize: pagingOption.PageSize, ...selectedPageDetailFilter });
 
             this.fetchData(param);
         }
@@ -82,14 +82,14 @@ export class Detail extends Component {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const newParam = Object.assign({}, this.props.param, { ...this.props.selectedPage, pageIndex, pageSize });
+        const newParam = Object.assign({}, this.props.param, { ...this.props.selectedPageDetailFilter, pageIndex, pageSize });
         this.fetchData(newParam);
     }
 
     render() {
         const { gridData } = this.state;
 
-        return this.props.selectedPage && gridData && (
+        return this.props.selectedPageDetailFilter && gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     maxWidth={maxWidth}
@@ -109,8 +109,8 @@ export class Detail extends Component {
 
 
 function mapStateToProps({ landingPageStatistics }) {
-    const { pagingOption, param, selectedPage } = landingPageStatistics;
-    return Object.assign({}, { pagingOption, param, selectedPage });
+    const { pagingOption, param, selectedPageDetailFilter } = landingPageStatistics;
+    return Object.assign({}, { pagingOption, param, selectedPageDetailFilter });
 }
 
 function mapDispatchToProps(dispatch) {

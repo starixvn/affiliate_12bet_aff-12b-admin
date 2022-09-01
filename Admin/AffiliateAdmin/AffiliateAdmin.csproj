@@ -1538,6 +1538,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\new-view-log.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\processing-request.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\feedback-report.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer\user-panel\click-statistics.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

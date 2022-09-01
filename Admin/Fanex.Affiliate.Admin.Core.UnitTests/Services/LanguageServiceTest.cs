@@ -16,27 +16,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
     public class LanguageServiceTest
     {
         [Fact]
-        public void GetLanguageList_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var languageRepository = new Mock<ILanguageRepository>();
-            languageRepository.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
-
-            var service = CreateLanguageService(languageRepository.Object);
-
-            // Action
-            var result = service.GetLanguageList();
-
-            // Assert
-            Assert.Single(result);
-        }
-
-        [Fact]
         public void GetInChangeMarkets_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var languageRepository = new Mock<ILanguageRepository>();
-            languageRepository.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en-US", LanguageName = "English" } });
+            languageRepository.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en-US", LanguageName = "English", ShortedCode = "en" } });
 
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> {

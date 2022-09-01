@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         {
             //Arrange
             var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
             var controller = CreateProcessingRequestController(languageService: languageService.Object);
 

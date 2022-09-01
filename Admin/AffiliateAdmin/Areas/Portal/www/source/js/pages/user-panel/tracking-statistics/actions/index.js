@@ -1,9 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
-import { getTrackingCodeList as trackingCodeList } from '../../../customer/user-panel/libs/service';
+import { getTrackingCodeList } from '../../../customer/user-panel/libs/service';
 import { SET_PARAM, SET_SELECTED_MONTH } from './types';
 
-export { toggleLoaderUserPanel }
+export { toggleLoaderUserPanel, getTrackingCodeList }
 
 export const setParam = (data) => {
     return {
@@ -17,10 +17,6 @@ export const setSelectedMonth = (data) => {
         type: SET_SELECTED_MONTH,
         data
     }
-}
-
-export const getTrackingCodeList = (affId, func = trackingCodeList) => async () => {
-    return await func(affId);
 }
 
 export const fetchData = (param) => async () => {

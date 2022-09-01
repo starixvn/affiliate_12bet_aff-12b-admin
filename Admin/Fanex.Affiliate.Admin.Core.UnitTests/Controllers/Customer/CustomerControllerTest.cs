@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         {
             // Arrange
             var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
             var controller = CreateCustomerController(languageService: languageService.Object);
 
@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.AffName).Returns("12BETAFF226");
             var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
+            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
             var controller = CreateCustomerController(languageService: languageService.Object);
 

@@ -20,7 +20,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                         result.Add(new Language
                         {
                             LanguageCode = Convert.ToString(reader["MarketId"]),
-                            LanguageName = Convert.ToString(reader["MarketName"])
+                            LanguageName = Convert.ToString(reader["MarketName"]),
+                            ShortedCode = Convert.ToString(reader["ShortedCode"])
                         });
                     }
                 }

@@ -17,10 +17,10 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { pagingOption, selectedSiteUrl, param } = this.props;
+        const { pagingOption, selectedSiteDetailFilter, param } = this.props;
 
-        if (selectedSiteUrl && selectedSiteUrl !== prevProps.selectedSiteUrl) {
-            const postParam = { ...param, selectedSiteUrl, pageIndex: 1, pageSize: pagingOption.PageSize };
+        if (selectedSiteDetailFilter && selectedSiteDetailFilter != prevProps.selectedSiteDetailFilter) {
+            const postParam = { ...param, ...selectedSiteDetailFilter, pageIndex: 1, pageSize: pagingOption.PageSize };
             this.fetchData(postParam);
         }
     }
@@ -85,15 +85,17 @@ export class Detail extends Component {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const { param, selectedSiteUrl } = this.props;
-        const newParam = { ...param, selectedSiteUrl, pageIndex, pageSize };
+        const { param, selectedSiteDetailFilter } = this.props;
+        const newParam = { ...param, ...selectedSiteDetailFilter, pageIndex, pageSize };
         this.fetchData(newParam);
     }
 
     render() {
         const { gridData } = this.state;
 
-        return this.props.selectedSiteUrl && (
+        console.log(this.props.selectedSiteDetailFilter);
+
+        return this.props.selectedSiteDetailFilter && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1010}
@@ -113,13 +115,13 @@ export class Detail extends Component {
 }
 
 function mapStateToProps({ affCommonInfo, clickStatistics }) {
-    const { pagingOption, param, selectedSiteUrl } = clickStatistics;
+    const { pagingOption, param, selectedSiteDetailFilter } = clickStatistics;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {
         affId,
         pagingOption,
-        selectedSiteUrl,
+        selectedSiteDetailFilter,
         param
     });
 }

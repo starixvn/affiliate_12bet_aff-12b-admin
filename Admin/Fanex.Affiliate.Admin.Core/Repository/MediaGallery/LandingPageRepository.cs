@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Data;
 using System;
@@ -106,6 +107,16 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 objectDb.ExecuteNonQuery();
 
                 return GetResultInfo(objectDb);
+            }
+        }
+
+        public IEnumerable<Country> GetCountryList()
+        {
+            const string SpKey = "";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                return objectDb.Query<Country>();
             }
         }
 

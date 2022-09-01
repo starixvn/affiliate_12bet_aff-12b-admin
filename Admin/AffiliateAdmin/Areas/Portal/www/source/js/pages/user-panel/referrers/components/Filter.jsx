@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
+import MultipleSelect from '../../../../components/multiple-select';
 
-import { setSelectedSiteUrl, setParam } from '../actions';
+import { setSelectedSiteDetailFilter, setParam, getCountryList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 import { headerText, globalResource, deviceTypes, pcLaptop, minDate } from '../libs/constants';
 
@@ -20,6 +21,9 @@ export class Filter extends PureComponent {
         const firstDayOfCurrentMonth = `${now.getMonth() + 1}/01/${now.getFullYear()}`;
 
         this.state = {
+            initialCountries: '',
+            selectedCountries: '',
+            countryList: null,
             deviceType: param.isClickLink ? deviceType : deviceTypes[pcLaptop],
             fromDate: param.isClickLink ? fromDate : firstDayOfCurrentMonth,
             toDate: param.isClickLink ? toDate : this.nowString
@@ -27,6 +31,10 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
+        if (!this.state.countryList) {
+            this.handleCountryList();
+        }
+
         if (this.props.param.isClickLink) {
             this.handleSearch(this.state);
         }
@@ -39,12 +47,25 @@ export class Filter extends PureComponent {
             const newState = Object.assign({}, { deviceType: param.deviceType, fromDate: param.fromDate, toDate: param.toDate });
 
             this.setState(newState);
-            this.props.setSelectedSiteUrl(null);
+            this.props.setSelectedSiteDetailFilter(null);
 
             if (param.isClickLink) {
                 this.handleSearch(newState);
             }
         }
+    }
+
+    handleCountryList = async () => {
+        const countryList = await this.props.getCountryList();
+        const initialCountries = countryList.filter(r => r.Checked).map(r => r.RateId).join(',');
+
+        this.setState({ initialCountries, selectedCountries: initialCountries, countryList });
+    }
+
+    handleChangeCountry = (item, selectedCountries) => {
+        const countryList = this.getCountryList(selectedCountries);
+
+        this.setState({ selectedCountries, countryList });
     }
 
     handleChange = (event) => {
@@ -61,15 +82,41 @@ export class Filter extends PureComponent {
 
     handleSearch = (state) => {
         this.props.setParam(state);
-        this.props.setSelectedSiteUrl(null);
+    }
+
+    getCountryList = (selectedCountries) => {
+        const { initialCountries, countryList } = this.state;
+
+        if (selectedCountries === initialCountries) {
+            return countryList ? countryList.slice() : [];
+        }
+
+        const selectedCountryIds = selectedCountries.split(',');
+
+        return countryList.map(r => {
+            return Object.assign({}, r, { Checked: selectedCountryIds.indexOf(r.CountryId.toString()) !== -1 })
+        })
     }
 
     render() {
-        const { deviceType, fromDate, toDate } = this.state;
+        const { deviceType, fromDate, toDate, countryList, selectedCountries } = this.state;
 
-        return (
+        return countryList && (
             <div className="filter-container">
                 <Form inline tag="div">
+                    <FormGroup className="mr-sm-2">
+                        <Label className="mr-sm-2">{headerText.Country}</Label>
+                        <div className={!selectedCountries && "multiple-select-wrapper is-invalid"}>
+                            <MultipleSelect
+                                dataSource={countryList}
+                                keyField="CountryId"
+                                valueField="CountryName"
+                                statusField="Checked"
+                                maxDisplayItemCount={1}
+                                noneSelectedLabel="Please Select"
+                                onChange={this.handleChangeCountry} />
+                        </div>
+                    </FormGroup>
                     <FormGroup className="mr-sm-2">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
                         <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate}
@@ -111,7 +158,7 @@ function mapStateToProps({ today, clickStatistics }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedSiteUrl, setParam }, dispatch);
+    return bindActionCreators({ setSelectedSiteDetailFilter, setParam, getCountryList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

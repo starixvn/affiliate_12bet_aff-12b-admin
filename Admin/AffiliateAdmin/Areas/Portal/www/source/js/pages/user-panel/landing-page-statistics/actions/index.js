@@ -1,34 +1,38 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { getPageList as pageList } from '../../../customer/user-panel/libs/service';
-import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
-import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
-import { SET_SELECTED_PAGE, SET_PARAM, SET_SHORT_CODE_LANGUAGE_LIST } from '../actions/types';
+import { getPageList, getCountryList } from '../../../customer/user-panel/libs/service';
+import { setSelectedUserPanel, toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
+import * as types from '../actions/types';
 
-export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel };
+export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel, getPageList, getCountryList };
 
-export const setSelectedPage = (data) => {
+export const setSelectedPageDetailFilter = (data) => {
     return {
-        type: SET_SELECTED_PAGE,
+        type: types.SET_SELECTED_PAGE_DETAIL_FILTER,
         data
     }
 }
 
 export const setParam = (data) => {
     return {
-        type: SET_PARAM,
+        type: types.SET_PARAM,
         data
     }
 }
 
 export const setShortCodeLanguageList = (data) => {
     return {
-        type: SET_SHORT_CODE_LANGUAGE_LIST,
+        type: types.SET_SHORT_CODE_LANGUAGE_LIST,
         data
     }
 }
 
-export const getPageList = () => pageList;
+export const setIsGroupByCountry = (data) => {
+    return {
+        type: types.SET_IS_GROUP_BY_COUNTRY,
+        data
+    }
+}
 
 export const fetchData = (param, shortCodeLanguageList) => async () => {
     const url = 'Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList';

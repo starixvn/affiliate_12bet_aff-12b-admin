@@ -256,6 +256,7 @@
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestBasicInfo.cs" />
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestSummaryInfo.cs" />
     <Compile Include="DTO\UserPanel\CensoredContactApp.cs" />
+    <Compile Include="DTO\UserPanel\Country.cs" />
     <Compile Include="DTO\UserPanel\LogAction.cs" />
     <Compile Include="Enum\ProcessingRequestStatus.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
