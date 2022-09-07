@@ -189,7 +189,7 @@
   </Function>
 
   <Function Name="FeedbackReport">
-    <Setting Key="Aff_RateSel" SpName="Aff_RateSel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_Feedback_Sel" SpName="Aff_Admin_Feedback_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_RateSel" SpName="Aff_RateSel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_Feedback_Sel" SpName="Aff_Admin_Feedback_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
 </Functions>
