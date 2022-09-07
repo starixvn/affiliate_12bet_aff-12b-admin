@@ -143,7 +143,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
 
             if (isDetail)
             {
-                affReport.PreviousBalanceBf = reader.HasColumn("PrevBFF") ? Convert.ToDecimal(reader["PrevBFF"]) : DefaultValue.Decimal;
+                affReport.PreviousBalanceBf = Convert.ToDecimal(reader["PreviousBFF"]);
 
                 if(!isTotal)
                 {
