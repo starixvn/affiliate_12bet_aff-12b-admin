@@ -51,8 +51,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private void DetectUserIdle(RouteValueDictionary values)
         {
-            var controller = values["controller"].ToString();
-            var action = values["action"].ToString();
+            var controller = values["controller"]?.ToString();
+            var action = values["action"]?.ToString();
 
             if (!(SessionService.IsOpenedFeedback
                 || string.Equals("ReCheckin", action, StringComparison.CurrentCultureIgnoreCase)
