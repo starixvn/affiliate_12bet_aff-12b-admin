@@ -135,7 +135,7 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
               SingleHeader {
                 "key": "PreviousBalanceBf",
                 "text": "Previous Month's Balance B/F",
-                "visable": true,
+                "visable": false,
               },
               SingleHeader {
                 "key": "Earning",

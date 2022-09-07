@@ -111,7 +111,7 @@ export const headerConfig = {
         label: headerText.AffiliateStatistics,
         cols: {
             [reportKey.CommissionRate]: { label: headerText[reportKey.CommissionRate], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
-            [reportKey.PreviousBalanceBf]: { label: headerText[reportKey.PreviousBalanceBf], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
+            [reportKey.PreviousBalanceBf]: { label: headerText[reportKey.PreviousBalanceBf], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker && !isMainView },
             [reportKey.Earning]: { label: headerText[reportKey.Earning], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
             [reportKey.AffWithdrawal]: { label: headerText[reportKey.AffWithdrawal] },
             [reportKey.AffAdjustment]: { label: headerText[reportKey.AffAdjustment], isVisable: (claimPrincipal, isMainView) => claimPrincipal.hasReadClaim(claimResource.AffAdjustment) && isMainView },

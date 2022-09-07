@@ -119,7 +119,7 @@ const colConfig = {
     [fields.PreviousBalanceBf]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
         [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
-        [COL_WIDTH]: 150
+        [COL_WIDTH]: 225
     },
     [fields.Earning]:{
         [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
