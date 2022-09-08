@@ -253,7 +253,6 @@ exports[`affiliate info - Filter  should render correctly 1`] = `
     >
       <Label
         className="mr-sm-2"
-        for="SortBy"
         tag="label"
         widths={
           Array [

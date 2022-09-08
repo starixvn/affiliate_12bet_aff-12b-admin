@@ -4,6 +4,7 @@ using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
+using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
@@ -24,6 +25,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private readonly IAuthRepository _authRepository;
         private readonly IVerificationRepository _verificationRepository;
+        private readonly IFeedbackService _feedbackService;
         private readonly ICryptographyService _cryptographyService;
         private readonly IAppSetting _appSetting;
 
@@ -31,11 +33,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             IAuthRepository authRepository,
             ICryptographyService cryptographyService,
             IAppSetting appSetting,
+            IFeedbackService feedbackService,
             IVerificationRepository verificationRepository)
         {
             _authRepository = authRepository;
             _cryptographyService = cryptographyService;
             _appSetting = appSetting;
+            _feedbackService = feedbackService;
             _verificationRepository = verificationRepository;
         }
 
@@ -68,6 +72,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public bool Recheckin(int onUserId, bool isInternal)
         {
             return _authRepository.Recheckin(onUserId, isInternal);
+        }
+
+        public bool IsValidIdleTime(DateTime? lastestRequestTime)
+        {
+            return _feedbackService.IsValidIdleTime(lastestRequestTime);
+        }
+
+        public bool IsValidAff(int affId)
+        {
+            return _feedbackService.IsValidAff(affId);
         }
 
         public void SignIn(string userName, bool createPersistentCookie)

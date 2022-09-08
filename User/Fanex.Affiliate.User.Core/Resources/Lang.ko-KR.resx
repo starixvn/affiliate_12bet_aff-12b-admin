@@ -2231,4 +2231,19 @@
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
   </data>
+  <data name="AffFeedback" xml:space="preserve">
+    <value>제휴사 피드백</value>
+  </data>
+  <data name="WeWouldLove" xml:space="preserve">
+    <value>보다 나은 서비스를 위해 제휴사의 의견을 수렴합니다</value>
+  </data>
+  <data name="PleaseLeaveYourFeedback" xml:space="preserve">
+    <value>아래의 빈칸에 피드백을 남겨주세요.</value>
+  </data>
+  <data name="WhatIsYourOpinion" xml:space="preserve">
+    <value>제휴 프로그램에 대한 의견을 보내주시기 바랍니다.</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>피드백주셔서 대단히 감사합니다. </value>
+  </data>
 </root>

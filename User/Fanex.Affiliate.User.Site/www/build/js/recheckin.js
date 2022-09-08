@@ -7,7 +7,7 @@ var ReCheckIn = (function ($) {
 
     var _me = {
         initialize: function initialize() {
-            _handler = setTimeout(_me.reCheckin, _timeInterval);
+            _handler = setInterval(_me.reCheckin, _timeInterval);
         },
 
         reCheckin: function reCheckin() {
@@ -21,12 +21,9 @@ var ReCheckIn = (function ($) {
                     if (result.IsKickOut) {
                         _me.kickout(result.Message);
                     }
-                    if (result.ErrCode > 0) {
-                        window.location.href = Site.resolveRelativeUrl("");
+                    if (result.IsShowFeedback) {
+                        _me.handleShowFeedback();
                     }
-
-                    clearTimeout(_handler);
-                    _handler = setTimeout(_me.reCheckin, _timeInterval);
                 }
             });
         },
@@ -38,6 +35,23 @@ var ReCheckIn = (function ($) {
             setTimeout(function () {
                 window.location.href = Site.resolveRelativeUrl("");
             }, 500);
+        },
+
+        handleShowFeedback: function handleShowFeedback() {
+            $.ajax({
+                url: Site.resolveRelativeUrl("UserPanel/Feedback/Index"),
+                type: "GET",
+                dataType: "html",
+                cache: false,
+                success: function success(result) {
+                    $("#loginAfter").append("<div id=\"affFeedback\">" + result + "</div>");
+                },
+                complete: function complete(jqXHR, textStatus) {
+                    if (!$("#affFeedbackContainer").length) {
+                        $("#affFeedback").remove();
+                    }
+                }
+            });
         }
     };
 

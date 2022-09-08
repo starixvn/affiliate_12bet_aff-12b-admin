@@ -21,7 +21,7 @@ export const GeneralInfo = (props) => {
                 <Col sm={5}>{resource.Affiliate}</Col>
                 <Col sm={7} className='text-right d-inline-block'>
                     {
-                        isApproved && !affiliateInfo.IsClosed ?
+                       isApproved && !affiliateInfo.IsClosed ?
                             (<a href={affiliateInfo.AffLink} target='_blank'>{affiliateInfo.AffName}</a>) :
                             (<span>{affiliateInfo.AffName}</span>)
                     }{' '}

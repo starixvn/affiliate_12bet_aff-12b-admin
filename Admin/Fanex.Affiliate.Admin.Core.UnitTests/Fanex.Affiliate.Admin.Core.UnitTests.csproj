@@ -172,6 +172,7 @@
   <ItemGroup>
     <Compile Include="Attributes\UpdateUnauthorizedPropertyAttributeTest.cs" />
     <Compile Include="Common\MockFile.cs" />
+    <Compile Include="Controllers\Affiliate\FeedbackReportControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\MassAdjustmentControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\NewViewLogControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\ProcessingRequestControllerTest.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Services\AdminRole\AdminInfoServiceTest.cs" />
     <Compile Include="Services\AdminRole\AdminRoleCommonServiceTest.cs" />
     <Compile Include="Services\AdminRole\RolePermissionServiceTest.cs" />
+    <Compile Include="Services\Affiliate\FeedbackReportServiceTest.cs" />
     <Compile Include="Services\Affiliate\MassAdjustmentServiceTest.cs" />
     <Compile Include="Services\Affiliate\NewViewLogServiceTest.cs" />
     <Compile Include="Services\Affiliate\ProcessingRequestServiceTest.cs" />

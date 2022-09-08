@@ -11,6 +11,7 @@ export const claimResource = {
     AffiliateInfo: '[Affiliate]',
     PaymentRequest: '[Payment]',
     EmailHistory: '[EmailHistory]',
+    FeedbackReport: '[Feedback]',
     ViewLog: '[ViewLog]',
     CommissionGroup: '[CommissionGroup]',
     AssignCommGroup: '[AssignCommGroup]',

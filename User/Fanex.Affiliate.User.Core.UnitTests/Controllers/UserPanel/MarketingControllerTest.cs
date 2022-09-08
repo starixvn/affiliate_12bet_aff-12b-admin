@@ -190,9 +190,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         }
 
         [Theory]
-        [InlineData(default(string))]
-        [InlineData("en-US")]
-        public void GenerateLink_WhenCall_ReturnCorrectView(string selectedLanguage)
+        [InlineData(default(string), 123)]
+        [InlineData("en-US", 123)]
+        [InlineData("", null)]
+        public void GenerateLink_WhenCall_ReturnCorrectView(string selectedLanguage, int? selectedDomainId)
         {
             using (var image = Image)
             {
@@ -203,7 +204,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 var controller = CreateMarketingController();
                 controller = NSubtituteMockingHelper.FakeController(controller) as MarketingController;
                 controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
-                var result = controller.GenerateLink(selectedLanguage, default(string), default(int)) as ViewResult;
+                var result = controller.GenerateLink(selectedLanguage, default(string), selectedDomainId) as ViewResult;
 
                 Assert.Equal("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", result.ViewName);
             }

@@ -164,12 +164,19 @@ namespace Fanex.Affiliate.User.Core.Controllers
             if (isKickOut)
             {
                 DoSignOut();
+
+                return Json(new
+                {
+                    IsKickOut = true,
+                    Message = Lang.Msgkickout
+                }, JsonRequestBehavior.AllowGet);
             }
 
             return Json(new
             {
-                IsKickOut = isKickOut,
-                Message = isKickOut ? Lang.Msgkickout : string.Empty
+                IsKickOut = false,
+                IsShowFeedback = IsValidAffToShowFeedback(),
+                Message = string.Empty
             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -204,6 +211,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
             };
 
             SessionService.ClaimsIdentities = claimIdentites;
+        }
+
+        private bool IsValidAffToShowFeedback()
+        {
+            return !SessionService.IsOpenedFeedback && !AuthService.IsValidIdleTime(SessionService.LastestRequestTime) && AuthService.IsValidAff(SessionService.UserSession.AffId);
         }
     }
 }

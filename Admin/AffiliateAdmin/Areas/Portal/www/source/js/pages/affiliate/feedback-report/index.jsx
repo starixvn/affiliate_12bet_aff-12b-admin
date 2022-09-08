@@ -1,0 +1,22 @@
+﻿import React, { PureComponent } from 'react';
+import { Provider } from 'react-redux';
+
+import reducer from './reducers';
+import AppContainer from './components/AppContainer';
+import { configureStore } from '../../../modules/store';
+
+export default class App extends PureComponent {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const storeState = Object.assign({}, window.initialState);
+        const store = configureStore(storeState, reducer);
+        return (
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        );
+    }
+}

@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_ReactPageLayout.cshtml";
+}
+
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.FeedbackReport.RateInfo>
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/affiliate.css")" rel="stylesheet">
+}
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
+            rateList: @Html.Raw(Json.Encode(Model)),
+        }
+    </script>
+
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/affiliate/affiliate.js")"></script>
+}

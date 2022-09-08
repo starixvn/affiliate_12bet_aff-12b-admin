@@ -2240,4 +2240,19 @@
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
   </data>
+  <data name="AffFeedback" xml:space="preserve">
+    <value>Saran Afiliasi</value>
+  </data>
+  <data name="WeWouldLove" xml:space="preserve">
+    <value>Kami senang menerima saran Anda untuk meningkatkan pelayanan kami. </value>
+  </data>
+  <data name="PleaseLeaveYourFeedback" xml:space="preserve">
+    <value>Silakan isi saran Anda disini:</value>
+  </data>
+  <data name="WhatIsYourOpinion" xml:space="preserve">
+    <value>Berikan pendapat Anda tentang Program Afiliasi kami.</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>Terimakasih untuk saran Anda yang berharga. </value>
+  </data>
 </root>

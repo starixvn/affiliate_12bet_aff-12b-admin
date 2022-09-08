@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+    var iconFileName = Url.Content("~/www/build/styles/Images/feedback/letter-icon");
+}
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.FeedbackViewModel
+
+<div class="aff-feedback">
+    <div class="aff-feedback-container" id="affFeedbackContainer">
+        <div class="aff-feedback-remove">
+            <div class="alert-glyphicon-remove" id="affFeedbackRemove">
+                <i class="glyphicon glyphicon-remove"></i>
+            </div>
+        </div>
+        <div class="aff-feedback-header">
+            <picture>
+                <source srcset="@(iconFileName + ".webp?v=175628")" type="image/webp" />
+                <source srcset="@(iconFileName + ".png?v=175628")" type="image/png" />
+                <img class="letter-icon" src="@iconFileName" alt="icon" />
+            </picture>
+        </div>
+        <div class="aff-feedback-content" id="affFeedbackContent">
+            <div class="feedback-title">
+                <p class="title-text">@Lang.AffFeedback</p>
+                <p class="text-bold">@Lang.WeWouldLove</p>
+                <input class="aff-name" type="text" value="@Model.UserName" disabled />
+            </div>
+            <div class="feedback-rate">
+                <p class="text-bold">@Lang.WhatIsYourOpinion</p>
+                <div class="group-icons">
+
+                    @foreach (var rate in Model.RateList)
+                    {
+                        <label class="flex icon-@(rate.RateId)">
+                            <input type="checkbox" value="@(rate.RateId)" class="feedback-checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    }
+                </div>
+            </div>
+            <div class="feedback-message">
+                <span class="text-bold">@Lang.PleaseLeaveYourFeedback</span>
+                <textarea class="message" id="feedbackMessage" rows="5" maxlength="4000"></textarea>
+                <div class="submit-feedback">
+                    <button class="btn btn-submit" id="submitFeedbackBtn">@Lang.Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.feedback = {
+        thankYou: '@Lang.ThankYou',
+        isClickLogout: '@Model.IsClickLogout'.toLowerCase() === 'true',
+    }
+</script>
+<script src="@Url.RenderLink("~/www/build/js/pages/feedback.js")"></script>

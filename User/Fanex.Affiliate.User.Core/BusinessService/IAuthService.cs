@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -21,5 +22,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         void SignIn(string userName, bool createPersistentCookie);
 
         void SignOut();
+
+        bool IsValidAff(int affId);
+
+        bool IsValidIdleTime(DateTime? lastestRequestTime);
     }
 }

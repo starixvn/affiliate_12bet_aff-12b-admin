@@ -93,8 +93,28 @@
 }
 
 .text-link {
-    color: #0b6da5;
-    font-weight: bold;
+    width: 100%;
+    padding: 6px 5px 5px;
+    background: #EDF2F8;
+    border: 1px solid #4274AF;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.group-copy-btns {
+    @media (max-width: 1199px) {
+        padding-top: 8px;
+    }
+
+    @media (min-width: 1200px) {
+        padding-top: 0px;
+    }
+
+    @media (min-width: 1318px) {
+        padding-top: 8px;
+    }
 }
 
 .marketing-text {
@@ -135,11 +155,9 @@ img.qr-code{
 }
 
 #textLinkList {
-    padding-top: 7px;
+    padding-top: 10px;
 
     .control-group {
-        padding-top: 5px;
-
         a {
             text-decoration: none;
 
@@ -160,12 +178,12 @@ img.qr-code{
         background-color: transparent;
         border: none;
         color: #2268D1;
-        margin-bottom: 15px;
+        //margin-bottom: 15px;
     }
     .marketing-qrcode{
         label{
             text-align: right;
-            margin-right: 5px;
+            //margin-right: 5px;
         }
     }
 }

@@ -160,4 +160,10 @@
     <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBCUST_IPDB_bodbDownlineNet" />
   </Function>
 
+  <Function Name="Feedback">
+    <Setting Key="Aff_RateSel" SpName="Aff_RateSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_FeedbackIns" SpName="Aff_User_FeedbackIns" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_FeedbackPopup_Check" SpName="Aff_User_FeedbackPopup_Check" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+  </Function>
+
 </Functions>

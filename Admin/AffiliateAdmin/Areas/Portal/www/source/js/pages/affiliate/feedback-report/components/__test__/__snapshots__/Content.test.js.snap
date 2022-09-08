@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`feedback report - components - Content  render correctly 1`] = `
+<div
+  className="data-content my-2"
+>
+  <Connect(GridData) />
+</div>
+`;
+
+exports[`feedback report - components - Content  render correctly with have reportTitle 1`] = `
+<div
+  className="data-content my-2"
+>
+  <ReportTitle
+    content={
+      <div
+        className="d-flex align-items-center"
+      >
+        Report Title
+        <button
+          className="ml-auto btn btn-link btn-excel"
+          onClick={[Function]}
+          title="Export Excel"
+          type="button"
+        >
+          <span
+            className="oi icon-excel"
+          />
+        </button>
+      </div>
+    }
+  />
+  <Connect(GridData) />
+</div>
+`;

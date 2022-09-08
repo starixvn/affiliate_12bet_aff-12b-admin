@@ -226,6 +226,8 @@
     <Compile Include="BusinessService\CaptchaService.cs" />
     <Compile Include="BusinessService\CommissionReportService.cs" />
     <Compile Include="BusinessService\ContactService.cs" />
+    <Compile Include="BusinessService\FeedbackService.cs" />
+    <Compile Include="BusinessService\IFeedbackService.cs" />
     <Compile Include="BusinessService\IIpAddressService.cs" />
     <Compile Include="BusinessService\IpAddressService.cs" />
     <Compile Include="BusinessService\IUnderMaintenanceService.cs" />
@@ -279,6 +281,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
+    <Compile Include="Controllers\UserPanel\FeedbackController.cs" />
     <Compile Include="Controllers\UserPanel\OffersForMeController.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionController.cs" />
     <Compile Include="Controllers\UserPanel\MemberController.cs" />
@@ -347,17 +350,21 @@
     <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
     <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
+    <Compile Include="DTO\UserPanel\RateInfo.cs" />
     <Compile Include="Filters\AddOnClaimAuthFilter.cs" />
     <Compile Include="Infrastructure\DateTimeProvider.cs" />
     <Compile Include="Infrastructure\HttpRequestParserHandler.cs" />
     <Compile Include="Infrastructure\IDateTimeProvider.cs" />
     <Compile Include="Infrastructure\IHttpRequestParserHandler.cs" />
     <Compile Include="MetalModels\UserPanel\CopiedBannerCounterParam.cs" />
+    <Compile Include="MetalModels\UserPanel\FeedbackParam.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IIpAddressRepository.cs" />
     <Compile Include="Repository\ILanguageRepository.cs" />
     <Compile Include="Repository\IpAddressRepository.cs" />
     <Compile Include="Repository\LanguageRepository.cs" />
+    <Compile Include="Repository\UserPanel\FeedbackRepository.cs" />
+    <Compile Include="Repository\UserPanel\IFeedbackRepository.cs" />
     <Compile Include="Repository\UserPanel\OfferRepository.cs" />
     <Compile Include="Repository\UserPanel\IOfferRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsLetterRepository.cs" />
@@ -367,6 +374,7 @@
     <Compile Include="Utilities\HttpClientUtility.cs" />
     <Compile Include="Utilities\IHttpClientUtility.cs" />
     <Compile Include="Utilities\LogHelper.cs" />
+    <Compile Include="ViewModels\UserPanel\FeedbackViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />

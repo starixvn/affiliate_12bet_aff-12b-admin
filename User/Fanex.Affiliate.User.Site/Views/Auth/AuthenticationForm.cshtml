@@ -4,13 +4,14 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.AuthenticationFormViewModel
 
+<link href="@Url.RenderLink("~/www/build/styles/css/feedback.css")" rel="stylesheet" />
 <div id="userLogin">
     @if (Model.IsAuthenticated)
     {
-        <div class="login-after user-login">
-            <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @Model.UserName</a>
-                            <a href="@Url.Content("~/Auth/SignOut/")" class="btn btn-login">@Lang.Logout</a>
-        </div>
+    <div class="login-after user-login" id="loginAfter">
+        <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @Model.UserName</a>
+        <button class="btn btn-login" id="btnLogout">@Lang.Logout</button>
+    </div>
         
     }
     else

@@ -38,6 +38,8 @@
 
         public const string EmailHistory = "[EmailHistory]";
 
+        public const string FeedbackReport = "[Feedback]";
+
         public const string ViewLog = "[ViewLog]";
 
         public const string ProcessingRequest = "[ProcessingRequest]";
