@@ -38,6 +38,7 @@
             var viewModel = new ReferrerStatisticsViewModel
             {
                 DataList = _statisticsService.GetReferrerStatistics(referrerStatisticsParam),
+                CountryList = _statisticsService.GetCountryList(),
                 FromDate = referrerStatisticsParam.FromDate,
                 ToDate = referrerStatisticsParam.ToDate
             };

@@ -12,6 +12,7 @@
 
 <div class="info-group">
     <form class="form-inline form-filter">
+        @RazorHelper.RenderMultipleSelect("country", $"{Lang.Country}:", Model.CountryList)
         <div class="form-group">
             <label class="w150">@Lang.TrackingCode:</label>
             <select class="form-control" id="TrackingCode">

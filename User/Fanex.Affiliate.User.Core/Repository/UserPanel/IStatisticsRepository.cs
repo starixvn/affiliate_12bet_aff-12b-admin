@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System.Collections.Generic;
 
@@ -6,6 +6,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public interface IStatisticsRepository
     {
+        IEnumerable<Country> GetCountryList();
+
         IEnumerable<string> GetTrackingCode(int affId, bool isInternal);
 
         IEnumerable<TrackingStatistics> GetTrackingStatistics(int affId, string trackingCode, bool isInternal);
@@ -17,7 +19,5 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         IEnumerable<ReferrerStatistics> GetStatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam);
 
         IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam);
-
-        AccountOverviewStatistics GetStatisticsOverview(StatisticsOverviewParam overviewParam);
     }
 }

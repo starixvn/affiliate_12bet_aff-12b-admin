@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System;
 using System.Collections.Generic;

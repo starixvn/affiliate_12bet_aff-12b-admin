@@ -1,8 +1,8 @@
 ﻿[
-  {
-    "outputFile": "www/build/styles/css/main.css",
-    "inputFile": "www/source/styles/scss/main.scss"
-  },
+  //{
+  //  "outputFile": "www/build/styles/css/main.css",
+  //  "inputFile": "www/source/styles/scss/main.scss"
+  //},
   //{
   //  "outputFile": "www/build/styles/css/bootstrap.css",
   //  "inputFile": "www/source/styles/scss/vendors/_bootstrap.scss"
@@ -67,14 +67,14 @@
   //  "outputFile": "www/build/js/pages/logout.js",
   //  "inputFile": "www/source/js/pages/logout.js"
   //},
-  //{
-  //  "outputFile": "www/build/js/trackingstatistics.js",
-  //  "inputFile": "www/source/js/pages/statistics/trackingstatistics.js"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/statistics.css",
-  //  "inputFile": "www/source/styles/pages/statistics.scss"
-  //},
+  {
+    "outputFile": "www/build/js/trackingstatistics.js",
+    "inputFile": "www/source/js/pages/statistics/trackingstatistics.js"
+  },
+  {
+    "outputFile": "www/build/styles/css/statistics.css",
+    "inputFile": "www/source/styles/pages/statistics.scss"
+  },
   //{
   //  "outputFile": "www/build/styles/css/statement-history.css",
   //  "inputFile": "www/source/styles/pages/statement-history.scss"

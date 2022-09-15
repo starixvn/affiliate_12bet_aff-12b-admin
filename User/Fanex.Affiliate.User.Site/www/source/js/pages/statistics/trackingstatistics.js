@@ -2,6 +2,7 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
+            document.addEventListener('click', _me.handleDocumentClick)
         },
 
         initEvent: function () {
@@ -21,8 +22,49 @@
                 };
                 _me.getDetailView(params);
             });
+
+            $(`#country-multiple-select-label`).on('click', function () {
+                $(`#country-multiple-select-options-container`).toggle();
+            });
+
+            $(`#country-option-all`).on('change', function (event) {
+                $(".country-option-checkbox").prop("checked", $(this).is(":checked"));
+            });
+
+            $(`.country-option-checkbox`).on('change', function (event) {
+                if (!$(this).is(":checked")) {
+                    $("#country-option-all").prop("checked", false);
+                } else {
+                    let isCheckAll = $(".country-option-checkbox:checked").length == $(".country-option-checkbox").length
+
+                    $("#country-option-all").prop("checked", isCheckAll);
+                }
+            });
+
+            //$('#country').on('click', function (event) {
+            //    console.log(event);
+
+            //    if ($('.multiple-select-options-container').is(":hidden")) {
+            //        $('.multiple-select-options-container').show();
+            //    } else {
+            //        $('.multiple-select-options-container').hide();
+            //    }
+
+            //    //_selectedDomain = $(this).data('domain');
+            //    //_pageIndex = 0;
+            //    //var params = _me.getDetailParam();
+
+            //    //$('#statisticsDetailPager').show();
+            //    //_me.getDetailView(params, initPager);
+            //});
         },
 
+        handleDocumentClick: function (event) {
+            console.log(event);
+            //if ($(`#country`).) {
+            //    $(`#country-multiple-select-options-container`).toggle();
+            //}
+        },
         getMainView: function (params) {
             $.ajax({
                 type: "POST",

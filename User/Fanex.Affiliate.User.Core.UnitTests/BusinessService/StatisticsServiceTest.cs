@@ -88,17 +88,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetStatisticsOverview_WhenCall_CallStatisticsRepository()
-        {
-            var param = new StatisticsOverviewParam();
-            var service = CreateService();
-
-            service.GetStatisticsOverview(param);
-
-            Repo.Received().GetStatisticsOverview(param);
-        }
-
-        [Fact]
         public void GetTrackingCode_WhenCall_CallStatisticsRepository()
         {
             var service = CreateService();

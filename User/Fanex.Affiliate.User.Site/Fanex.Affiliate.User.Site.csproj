@@ -866,6 +866,7 @@
     <Content Include="www\source\js\components\clipboard.js" />
     <Content Include="www\source\js\components\clipboard.min.js" />
     <Content Include="www\source\js\components\jquery.extension.js" />
+    <Content Include="www\source\js\components\multiple-select.js" />
     <Content Include="www\source\js\components\pagetracking.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
@@ -1285,6 +1286,7 @@
     <Content Include="Views\Shared\Email\RecoverPassword\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.km-KH.cshtml" />
+    <Content Include="www\source\styles\scss\components\_multiple-select.scss" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.zh-TW.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.zh-CN.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.en-US.webp" />

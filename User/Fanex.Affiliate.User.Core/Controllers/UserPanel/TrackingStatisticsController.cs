@@ -32,6 +32,7 @@
             {
                 TrackingCodeList = _statisticsService.GetTrackingCode(affId, isInternal).Where(c => !c.MatchWith("[None]")),
                 TrackingStatisticsList = _statisticsService.GetTrackingStatistics(affId, null, isInternal),
+                CountryList = _statisticsService.GetCountryList(),
                 IsDetail = false,
                 CurrentLanguage = SessionService.CurrentLanguage
             };

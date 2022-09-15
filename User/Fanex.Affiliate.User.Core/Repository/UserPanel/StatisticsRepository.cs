@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System;
 using System.Collections.Generic;
@@ -109,15 +109,28 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public AccountOverviewStatistics GetStatisticsOverview(StatisticsOverviewParam overviewParam)
+        public IEnumerable<Country> GetCountryList()
         {
-            const string uSpKey = "Aff_User_StatisticsSel";
-            var dbMode = overviewParam.IsInternal ? DBMode.View : DBMode.Main;
+            //const string uSpKey = "";
 
-            using (var db = _builder.Build(uSpKey, dbMode))
+            //using (var db = _builder.Build(uSpKey))
+            //{
+            //    return db.Query<Country>();
+            //}
+
+            return new List<Country>
             {
-                return db.QueryEntity<AccountOverviewStatistics>(overviewParam);
-            }
+                new Country { CountryId = "cn", CountryName = "China"},
+                new Country { CountryId = "vn", CountryName = "Viet Nam"},
+                new Country { CountryId = "cn1", CountryName = "China1"},
+                new Country { CountryId = "vn1", CountryName = "Viet Nam1"},
+                new Country { CountryId = "cn2", CountryName = "China2"},
+                new Country { CountryId = "vn2", CountryName = "Viet Nam2"},
+                new Country { CountryId = "cn3", CountryName = "China3"},
+                new Country { CountryId = "vn3", CountryName = "Viet Nam3"},
+                new Country { CountryId = "cn4", CountryName = "China4"},
+                new Country { CountryId = "vn4", CountryName = "Viet Nam4"}
+            };
         }
     }
 }

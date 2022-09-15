@@ -1,11 +1,14 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
+using Fanex.Affiliate.User.Core.Utilities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -19,6 +22,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             _statisticsRepository = statisticsRepository;
             _languageService = languageService;
+        }
+
+        public IEnumerable<SelectListItem> GetCountryList()
+        {
+            var countryList = _statisticsRepository.GetCountryList();
+
+            return StatisticsHelper.GetCountryList(countryList);
         }
 
         public IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam)
@@ -37,11 +47,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<ReferrerStatistics> GetStatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam)
         {
             return _statisticsRepository.GetStatisticsDetailBySite(statisticsDetailParam);
-        }
-
-        public AccountOverviewStatistics GetStatisticsOverview(StatisticsOverviewParam overviewParam)
-        {
-            return _statisticsRepository.GetStatisticsOverview(overviewParam);
         }
 
         public IEnumerable<string> GetTrackingCode(int affId, bool isInternal)

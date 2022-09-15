@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using NSubstitute;
@@ -171,41 +171,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
 
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result);
-        }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetSStatisticsOverview_WhenCall_QueryStatisticsOverview(bool isInternal)
-        {
-            const string uSpkey = "Aff_User_StatisticsSel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var key = uSpkey + dbMode;
-            var param = new StatisticsOverviewParam
-            {
-                AffId = 1,
-                IsInternal = isInternal,
-                MonthDate = DateTime.Now
-            };
-            var db = Builder.Build(uSpkey, dbMode);
-            db.QueryEntity<AccountOverviewStatistics>(param).Returns(new AccountOverviewStatistics
-            {
-                ActivePlayers = 1,
-                BalanceBroughtForward = 100,
-                Deposit = 100,
-                DepositUp = 100,
-                NewSignups = 2,
-                QualifiedMembers = 1,
-                TotalPlayers = 10,
-                Turnover = 100,
-                TurnoverUp = 100
-            });
-            var repo = CreateRepo();
-
-            var result = repo.GetStatisticsOverview(param);
-
-            Assert.Equal(key, db.SettingKey);
-            Assert.NotNull(result);
         }
     }
 }

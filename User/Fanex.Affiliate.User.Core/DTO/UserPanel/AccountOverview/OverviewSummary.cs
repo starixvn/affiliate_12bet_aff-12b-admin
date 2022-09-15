@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.User.Core.DTO.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview
 {
     public class OverviewSummary
     {

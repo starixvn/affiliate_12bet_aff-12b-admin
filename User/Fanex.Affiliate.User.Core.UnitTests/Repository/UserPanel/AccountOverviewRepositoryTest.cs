@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using NSubstitute;
 using System;
