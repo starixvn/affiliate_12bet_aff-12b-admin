@@ -11,9 +11,10 @@
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(sessionService.CurrentLanguage);
-    var sportBannerFileName = Url.Content("~/www/build/styles/Images/sports-banners/Sports-Banner." + Model.Language);
-    var casinoBannerFileName = Url.Content("~/www/build/styles/Images/casino-banners/Casino-Banner." + Model.Language);
-    var homeBannerFileName = Url.Content("~/www/build/styles/Images/home-banners/Home-Banner." + Model.Language);
+    var activedBanner = Url.Content("~/www/build/styles/Images/home-banners/active/Home-Banner." + Model.Language);
+    var bannerPriority1 = Url.Content("~/www/build/styles/Images/home-banners/priority-1/Home-Banner." + Model.Language);
+    var bannerPriority2 = Url.Content("~/www/build/styles/Images/home-banners/priority-2/Home-Banner." + Model.Language);
+    var bannerPriority3 = Url.Content("~/www/build/styles/Images/home-banners/priority-3/Home-Banner." + Model.Language);
     var advFileName = Url.Content("~/www/build/styles/Images/apply12bet/3step." + Model.Language);
     var displayAlert = Model.IsShowAlert ? "block" : "none";
 }
@@ -47,29 +48,38 @@
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <a id="euroBanner" class="nounderline" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
+                <a id="activedBanner" class="nounderline homeBanner" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
                     <picture>
-                        <source srcset="@(homeBannerFileName + ".webp?v=162411")" type="image/webp" />
-                        <source srcset="@(homeBannerFileName + ".jpg?v=162411")" type="image/jpeg" />
-                        <img class="img-item img-responsive" src="@(homeBannerFileName + ".jpg?v=162411")" alt="Home Banner" />
+                        <source srcset="@(activedBanner + ".webp?v=178029")" type="image/webp" />
+                        <source srcset="@(activedBanner + ".jpg?v=178029")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(activedBanner + ".jpg?v=178029")" alt="Home Banner" />
                     </picture>
                 </a>
             </div>
             <div class="item">
-                <a id="sportBanner" class="nounderline" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
+                <a id="bannerPriority1" class="nounderline homeBanner" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
                     <picture>
-                        <source srcset="@(sportBannerFileName + ".webp?v=162411")" type="image/webp" />
-                        <source srcset="@(sportBannerFileName + ".jpg?v=162411")" type="image/jpeg" />
-                        <img class="img-item img-responsive" src="@(sportBannerFileName + ".jpg?v=162411")" alt="Sport Banner" />
+                        <source srcset="@(bannerPriority1 + ".webp?v=178029")" type="image/webp" />
+                        <source srcset="@(bannerPriority1 + ".jpg?v=178029")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(bannerPriority1 + ".jpg?v=178029")" alt="Home Banner" />
                     </picture>
                 </a>
             </div>
             <div class="item">
-                <a id="casinoBanner" class="nounderline" href="@Url.Content("~/Product/Index")">
+                <a id="bannerPriority2" class="nounderline homeBanner" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
                     <picture>
-                        <source srcset="@(casinoBannerFileName + ".webp?v=159285")" type="image/webp" />
-                        <source srcset="@(casinoBannerFileName + ".jpg?v=159285")" type="image/jpeg" />
-                        <img class="img-item img-responsive" src="@(casinoBannerFileName + ".jpg?v=159285")" alt="Casino Banner" />
+                        <source srcset="@(bannerPriority2 + ".webp?v=178029")" type="image/webp" />
+                        <source srcset="@(bannerPriority2 + ".jpg?v=178029")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(bannerPriority2 + ".jpg?v=178029")" alt="Home Banner" />
+                    </picture>
+                </a>
+            </div>
+            <div class="item">
+                <a id="bannerPriority3" class="nounderline homeBanner" href="@(Model.IsAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/Signup/Index"))">
+                    <picture>
+                        <source srcset="@(bannerPriority3 + ".webp?v=178029")" type="image/webp" />
+                        <source srcset="@(bannerPriority3 + ".jpg?v=178029")" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(bannerPriority3 + ".jpg?v=178029")" alt="Home Banner" />
                     </picture>
                 </a>
             </div>

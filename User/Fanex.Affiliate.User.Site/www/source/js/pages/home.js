@@ -7,7 +7,7 @@
             _me.handleShowAlert();
         },
         initEvent: function () {
-            $('#euroBanner').on('click', function (event) {
+            $('.homeBanner').on('click', function (event) {
                 event.preventDefault();
                 var redirectLink = $(this).attr('href');
                 PageTracking.addTrackingForSignUpPage();
@@ -17,17 +17,7 @@
                 }, 10);
             })
 
-            $('#sportBanner').on('click', function (event) {
-                event.preventDefault();
-                var redirectLink = $(this).attr('href');
-                PageTracking.addTrackingForSignUpPage();
-
-                setTimeout(function () {
-                    Site.redirect(redirectLink);
-                }, 10);
-            })
-
-            $('#casinoBanner').on('click', function (event) {
+            $('.mediaLink').on('click', function (event) {
                 event.preventDefault();
                 var $this = $(this);
                 var isLoggedIn = !$this.hasClass('mediaLoginLink');
