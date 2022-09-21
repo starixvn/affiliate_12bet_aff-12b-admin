@@ -707,6 +707,7 @@
     <Content Include="www\build\styles\Images\feedback\very-please.png" />
     <Content Include="www\build\styles\Images\contact-us\telegram-icon.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.png" />
+    <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.en-US.jpg" />
@@ -1215,6 +1216,7 @@
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.ko-KR.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.th-TH.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.vi-VN.webp" />
+    <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.ja-JP.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
