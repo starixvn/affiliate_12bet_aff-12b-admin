@@ -286,8 +286,13 @@ export class Filter extends PureComponent {
         const nowMonth = this.now.getMonth() + 1;
         const nowYear = this.now.getFullYear();
 
-        if (maxToYear > nowYear || (maxToMonth > nowMonth && maxToYear === nowYear)) {
+        if (maxToYear > nowYear) {
             actualMaxMonth = nowMonth;
+            maxToYear = nowYear;
+        }
+
+        if (maxToMonth > nowMonth && maxToYear === nowYear) {
+            actualMaxMonth = min.year < nowYear ? actualMaxMonth : nowMonth;
             maxToYear = nowYear;
         }
 

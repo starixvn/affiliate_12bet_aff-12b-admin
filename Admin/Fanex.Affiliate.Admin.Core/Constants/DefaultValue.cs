@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Constants
+﻿using System;
+
+namespace Fanex.Affiliate.Admin.Core.Constants
 {
     public static class DefaultValue
     {
@@ -6,5 +8,6 @@
         public const string String = default(string);
         public const decimal Decimal = default(decimal);
         public const bool Bool = default(bool);
+        public static readonly DateTime? DateTimeNullable = null;
     }
 }

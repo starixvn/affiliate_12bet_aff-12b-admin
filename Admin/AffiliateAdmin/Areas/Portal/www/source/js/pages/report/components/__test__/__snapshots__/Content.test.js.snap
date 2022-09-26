@@ -133,6 +133,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
                 "visable": true,
               },
               SingleHeader {
+                "key": "PreviousBalanceBf",
+                "text": "Previous Month's Balance B/F",
+                "visable": false,
+              },
+              SingleHeader {
                 "key": "Earning",
                 "text": "Earning",
                 "visable": true,
@@ -307,6 +312,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
               SingleHeader {
                 "key": "CommissionRate",
                 "text": "Comm%",
+                "visable": true,
+              },
+              SingleHeader {
+                "key": "PreviousBalanceBf",
+                "text": "Previous Month's Balance B/F",
                 "visable": true,
               },
               SingleHeader {

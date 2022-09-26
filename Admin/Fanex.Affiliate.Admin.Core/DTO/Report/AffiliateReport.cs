@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public string Description { get; set; }
 
-        public string MonthDateString => MonthDate.HasValue ? MonthDate.Value.ToString("MM/yyyy") : string.Empty;
+        public string MonthDateString => MonthDate.HasValue ? MonthDate.Value.ToString("MM/yyyy") : DefaultValue.String;
 
         public int TotalClick { get; set; }
 
@@ -58,6 +58,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
         public decimal AffAdjustment { get; set; }
 
         public decimal BalanceBf { get; set; }
+
+        public decimal PreviousBalanceBf { get; set; }
 
         public string PreferredLanguage { get; set; }
     }

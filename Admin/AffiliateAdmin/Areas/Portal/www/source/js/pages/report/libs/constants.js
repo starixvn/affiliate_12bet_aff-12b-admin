@@ -43,6 +43,7 @@ export const reportKey = {
     BankingFee: 'BankingFee',
     TotalFee: 'TotalFee',
     CommissionRate: 'CommissionRate',
+    PreviousBalanceBf: 'PreviousBalanceBf',
     Earning: 'Earning',
     AffWithdrawal: 'AffWithdrawal',
     AffAdjustment: 'AffAdjustment',
@@ -72,6 +73,7 @@ export const headerText = {
     [reportKey.BankingFee]: 'Banking Fees',
     [reportKey.TotalFee]: 'Total Fee',
     [reportKey.CommissionRate]: 'Comm%',
+    [reportKey.PreviousBalanceBf]: "Previous Month's Balance B/F",
     [reportKey.Earning]: 'Earning',
     [reportKey.AffWithdrawal]: 'Withdrawal',
     [reportKey.AffAdjustment]: 'Adjustment',
@@ -109,6 +111,7 @@ export const headerConfig = {
         label: headerText.AffiliateStatistics,
         cols: {
             [reportKey.CommissionRate]: { label: headerText[reportKey.CommissionRate], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
+            [reportKey.PreviousBalanceBf]: { label: headerText[reportKey.PreviousBalanceBf], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker && !isMainView },
             [reportKey.Earning]: { label: headerText[reportKey.Earning], isVisable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
             [reportKey.AffWithdrawal]: { label: headerText[reportKey.AffWithdrawal] },
             [reportKey.AffAdjustment]: { label: headerText[reportKey.AffAdjustment], isVisable: (claimPrincipal, isMainView) => claimPrincipal.hasReadClaim(claimResource.AffAdjustment) && isMainView },
