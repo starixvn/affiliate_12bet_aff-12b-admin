@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
@@ -19,13 +18,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
     public class NewsLetterController : ReadOnlySessionBaseController
     {
-        private ILanguageService LanguageService { get; }
+        private ICommonSettingService CommonSettingService { get; }
         private INewsLetterService NewsLetterService { get; }
         private IAppSetting AppSetting { get; }
 
-        public NewsLetterController(INewsLetterService newsLetterService, ISessionService sessionService, ILanguageService languageService, IAppSetting appSetting) : base(sessionService)
+        public NewsLetterController(INewsLetterService newsLetterService, ISessionService sessionService, ICommonSettingService commonSettingService, IAppSetting appSetting) : base(sessionService)
         {
-            LanguageService = languageService;
+            CommonSettingService = commonSettingService;
             NewsLetterService = newsLetterService;
             AppSetting = appSetting;
         }
@@ -33,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         public ActionResult Index()
         {
             ViewBag.PreviewUrl = $"{AppSetting.AsianAffSiteUrl}/UserPanel/NewsLetter/Preview";
-            ViewBag.Languages = LanguageService.GetInChangeMarkets();
+            ViewBag.Languages = CommonSettingService.GetInChangeMarkets();
             return View("~/Areas/Portal/Views/MediaGallery/Common.cshtml");
         }
 

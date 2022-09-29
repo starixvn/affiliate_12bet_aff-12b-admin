@@ -1,9 +1,9 @@
 ﻿
-namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
+namespace Fanex.Affiliate.Admin.Core.DTO.Common
 {
     public class Country
     {
-        public int CountryId { get; set; }
+        public int CountryCode { get; set; }
 
         public string CountryName { get; set; }
     }

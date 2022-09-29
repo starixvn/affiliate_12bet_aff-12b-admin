@@ -99,10 +99,10 @@ export class Filter extends React.Component {
             return countryList ? countryList.slice() : [];
         }
 
-        const selectedCountryIds = selectedCountries.split(',');
+        const selectedCountryCodes = selectedCountries.split(',');
 
         return countryList.map(r => {
-            return Object.assign({}, r, { Checked: selectedCountryIds.indexOf(r.CountryId.toString()) !== -1 })
+            return Object.assign({}, r, { Checked: selectedCountryCodes.indexOf(r.CountryId.toString()) !== -1 })
         })
     }
 
@@ -131,7 +131,7 @@ export class Filter extends React.Component {
                                 <div className={!selectedCountries && "multiple-select-wrapper is-invalid"}>
                                     <MultipleSelect
                                         dataSource={countryList}
-                                        keyField="CountryId"
+                                        keyField="CountryCode"
                                         valueField="CountryName"
                                         statusField="Checked"
                                         maxDisplayItemCount={1}

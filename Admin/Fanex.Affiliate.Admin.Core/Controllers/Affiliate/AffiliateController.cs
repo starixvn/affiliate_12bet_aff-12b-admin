@@ -23,17 +23,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private readonly ICommissionGroupRepository _commissionGroupRepository;
 
-        private readonly ILanguageService _languageService;
+        private readonly ICommonSettingService _commonSettingService;
 
         public AffiliateController(
             ISessionService sessionService,
             IAffiliateInfoRepository affiliateInfoRepository,
             ICommissionGroupRepository commissionGroupRepository,
-            ILanguageService languageService) : base(sessionService)
+            ICommonSettingService commonSettingService) : base(sessionService)
         {
             _commissionGroupRepository = commissionGroupRepository;
             _affiliateInfoRepository = affiliateInfoRepository;
-            _languageService = languageService;
+            _commonSettingService = commonSettingService;
         }
 
         [HttpGet]
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = new AffiliateFilterViewModel
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
-                LanguageList = _languageService.GetInChangeMarkets(),
+                LanguageList = _commonSettingService.GetInChangeMarkets(),
             };
 
             return new JsonNetResult(viewModel);
@@ -133,7 +133,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private AffiliateInfoParam BuildGetModelToParam(GetAffiliateViewModel viewModel)
         {
-            var supportLanguages = _languageService.GetInChangeMarkets();
+            var supportLanguages = _commonSettingService.GetInChangeMarkets();
             var queryLangs = LanguageHelper.BuildAllowQueryLanguages(viewModel.Language, supportLanguages);
             return new AffiliateInfoParam
             {

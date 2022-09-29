@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Controllers.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest;
@@ -22,10 +23,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void Index_WhenCall_ReturnCorrectView()
         {
             //Arrange
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateProcessingRequestController(languageService: languageService.Object);
+            var controller = CreateProcessingRequestController(commonSettingService: commonSettingService.Object);
 
             //Action
             var result = controller.Index("Test") as ViewResult;
@@ -40,12 +41,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void GetProcessingRequestList_WhenCallValidParam_ReturnCorrectData()
         {
             //Arrange
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
             var processingRequestService = new Mock<IProcessingRequestService>();
             processingRequestService.Setup(l => l.GetProcessingRequestList(It.IsAny<ProcessingRequestSelParam>())).Returns(new ProcessingRequestEntity { TotalItem = 0 });
 
-            var controller = CreateProcessingRequestController(processingRequestService.Object, languageService.Object);
+            var controller = CreateProcessingRequestController(processingRequestService.Object, commonSettingService.Object);
 
             //Action
             var result = controller.GetProcessingRequestList(new ProcessingRequestSelParam()) as JsonNetResult;
@@ -191,15 +192,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private ProcessingRequestController CreateProcessingRequestController(
             IProcessingRequestService processingRequestService = null,
- 			ILanguageService languageService = null,
+ 			ICommonSettingService commonSettingService = null,
             ISessionService sessionService = null
             )
         {
             var fakeProcessingRequestService = processingRequestService ?? Mock.Of<IProcessingRequestService>();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
 
-            return new ProcessingRequestController(fakeProcessingRequestService, fakeLanguageService, fakeSessionService);
+            return new ProcessingRequestController(fakeProcessingRequestService, fakecommonSettingService, fakeSessionService);
         }
     }
 }

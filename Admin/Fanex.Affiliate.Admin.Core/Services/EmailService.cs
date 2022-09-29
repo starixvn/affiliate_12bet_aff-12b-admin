@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 using System.Web;
@@ -14,22 +15,22 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ILanguageService _languageService;
+        private readonly ICommonSettingService _commonSettingService;
 
-        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ILanguageService languageService)
+        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ICommonSettingService commonSettingService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;
-            _languageService = languageService;
+            _commonSettingService = commonSettingService;
         }
 
         public void SendApprovedEmail(AffInformationEmail emailParam)
         {
-            _languageService.SetCulture(emailParam.Language);
+            _commonSettingService.SetCulture(emailParam.Language);
             SendApprovedAffEmail(emailParam);
             SendAffInforEmail(emailParam);
             SendWithdrawalGuidanceEmail(emailParam);
-            _languageService.SetCulture(LanguageSystem.DefaultLanguage);
+            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguage);
         }
 
         private void SendApprovedAffEmail(AffInformationEmail emailParam)
@@ -116,7 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public void SendPaymentRequestUpdateEmail(PaymentRequestUpdateEmail emailParam)
         {
-            _languageService.SetCulture(emailParam.Language);
+            _commonSettingService.SetCulture(emailParam.Language);
             emailParam.MailContact = _appSetting.MailContact;
 
             var TemplateName = emailParam.IsApproved ? "PaymentRequest/Approved" : "PaymentRequest/Rejected";
@@ -132,14 +133,14 @@ namespace Fanex.Affiliate.Admin.Core.Services
                 content;
 
             _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
-            _languageService.SetCulture(LanguageSystem.DefaultLanguage);
+            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguage);
         }
 
         public void SendDisapprovedEmail(AffInformationEmail emailParam)
         {
-            _languageService.SetCulture(emailParam.Language);
+            _commonSettingService.SetCulture(emailParam.Language);
             SendDisapprovedAffiliateEmail(emailParam);
-            _languageService.SetCulture(LanguageSystem.DefaultLanguage);
+            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguage);
         }
 
         private void SendDisapprovedAffiliateEmail(AffInformationEmail emailParam)

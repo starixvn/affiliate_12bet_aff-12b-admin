@@ -21,17 +21,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     public class TextListController : ReadOnlySessionBaseController
     {
         private const int TextListCategory = 2;
-        private readonly ILanguageService _languageService;
+        private readonly ICommonSettingService _commonSettingService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
         private readonly ITextListService _textListService;
 
         public TextListController(
             ISessionService sessionService,
-            ILanguageService languageService,
+            ICommonSettingService commonSettingService,
             ICommonMediaGalleryService commonMediaGalleryService,
             ITextListService textListService) : base(sessionService)
         {
-            _languageService = languageService;
+            _commonSettingService = commonSettingService;
             _commonMediaGalleryService = commonMediaGalleryService;
             _textListService = textListService;
         }
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             var model = new TextListViewModel
             {
                 CategoryList = _commonMediaGalleryService.GetCategoryList(TextListCategory),
-                LanguageList = _languageService.GetInChangeMarkets(),
+                LanguageList = _commonSettingService.GetInChangeMarkets(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
             };
 
@@ -185,7 +185,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         private string BuildQueryLanguages(string lang = null)
         {
-            var langs = _languageService.GetInChangeMarkets();
+            var langs = _commonSettingService.GetInChangeMarkets();
             if (!String.IsNullOrWhiteSpace(lang))
             {
                 langs = langs.Where(l => l.LanguageName.Equals(lang, StringComparison.OrdinalIgnoreCase));

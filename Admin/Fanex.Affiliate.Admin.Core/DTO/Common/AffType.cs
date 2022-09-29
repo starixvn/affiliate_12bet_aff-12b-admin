@@ -1,6 +1,6 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.Common
 {
-    public class AffTypeInfo
+    public class AffType
     {
         public int AffTypeId { get; set; }
 

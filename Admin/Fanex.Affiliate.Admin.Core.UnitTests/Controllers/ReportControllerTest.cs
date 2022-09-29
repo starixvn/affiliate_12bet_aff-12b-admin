@@ -1,9 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
@@ -22,11 +22,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var productRepository = new Mock<IProductRepository>();
-            productRepository.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(s => s.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
-            var controller = CreateReportController(productRepository: productRepository.Object, languageService: languageService.Object);
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
+            commonSettingService.Setup(s => s.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var controller = CreateReportController(commonSettingService: commonSettingService.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -44,10 +43,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Arrange
             var affiliateReportService = new Mock<IAffiliateReportService>();
             affiliateReportService.Setup(s => s.GetMainReportData(It.IsAny<AffiliateReportMainParam>())).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 });
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
-            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, languageService: languageService.Object);
+            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, commonSettingService: commonSettingService.Object);
 
             // Action
             var result = controller.GetMainData(new GetReportMainDataViewModel { UserName = "test"}) as JsonNetResult;
@@ -63,10 +62,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Arrange
             var affiliateReportService = new Mock<IAffiliateReportService>();
             affiliateReportService.Setup(s => s.GetDetailReportData(It.IsAny<AffiliateReportMainParam>())).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 });
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
-            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, languageService: languageService.Object);
+            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, commonSettingService: commonSettingService.Object);
 
             // Action
             var result = controller.GetDetailData(new GetReportMainDataViewModel()) as JsonNetResult;
@@ -97,17 +96,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
         private ReportController CreateReportController(
             ISessionService sessionService = null,
-            IProductRepository productRepository = null,
-            ILanguageService languageService = null,
+            ICommonSettingService commonSettingService = null,
             IAffiliateReportService affiliateReportService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeAffiliateReportService = affiliateReportService ?? Mock.Of<IAffiliateReportService>();
 
-            return new ReportController(fakeSessionService, fakeProductRepository, fakeLanguageService, fakeAffiliateReportService);
+            return new ReportController(fakeSessionService, fakeCommonService, fakeAffiliateReportService);
         }
     }
 }

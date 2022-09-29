@@ -24,24 +24,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         private const int BannerListCategory = 1;
         private const string CasinoCategory = "Casino";
         private const string SportsbookCategory = "Sportsbook";
-        private readonly ILanguageService _languageService;
+        private readonly ICommonSettingService _commonSettingService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
         private readonly IBannerListService _bannerListService;
-        private readonly IAffTypeService _affTypeService;
         private readonly IAppSetting _appSetting;
 
         public MediaGalleryController(
             ISessionService sessionService,
-            ILanguageService languageService,
+            ICommonSettingService commonSettingService,
             ICommonMediaGalleryService commonMediaGalleryService,
             IBannerListService bannerListService,
-            IAffTypeService affTypeService,
             IAppSetting appSetting) : base(sessionService)
         {
-            _languageService = languageService;
+            _commonSettingService = commonSettingService;
             _commonMediaGalleryService = commonMediaGalleryService;
             _bannerListService = bannerListService;
-            _affTypeService = affTypeService;
             _appSetting = appSetting;
         }
 
@@ -64,11 +61,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 SubCategorySportsbookList = bannerListCategory.Where(c => string.Equals(c.CategoryName, SportsbookCategory, StringComparison.CurrentCultureIgnoreCase)
                                         && !string.IsNullOrEmpty(c.SubCategoryName)),
                 BannerRootUrl = _appSetting.BannerRootUrl,
-                LanguageList = _languageService.GetInChangeMarkets(),
+                LanguageList = _commonSettingService.GetInChangeMarkets(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
                 ImageTypeList = _commonMediaGalleryService.GetImageTypeList(),
                 SizeList = _bannerListService.GetSizeList(sizeParam),
-                AffTypeList = _affTypeService.GetAffTypeList(),
+                AffTypeList = _commonSettingService.GetAffTypeList(),
                 Param = param
             };
 
@@ -212,7 +209,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         private string BuildQueryLanguages(string lang = null)
         {
-            var langs = _languageService.GetInChangeMarkets();
+            var langs = _commonSettingService.GetInChangeMarkets();
             if (!string.IsNullOrWhiteSpace(lang))
             {
                 langs = langs.Where(l => l.LanguageName.Equals(lang, StringComparison.OrdinalIgnoreCase));

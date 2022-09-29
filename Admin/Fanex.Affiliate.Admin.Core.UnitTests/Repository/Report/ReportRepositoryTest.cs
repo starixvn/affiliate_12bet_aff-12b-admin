@@ -121,34 +121,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
             Assert.Single(result);
         }
 
-        //private IDictionary<string, object> GetReportData()
-        //{
-        //    return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-        //    {
-        //        ["TotalClick"] = 123,
-        //        ["UniqueClick"] = 123,
-        //        ["Signup"] = 123,
-        //        ["FDM"] = 123,
-        //        ["ActiveMember"] = 123,
-        //        ["QualifiedMember"] = 123,
-        //        ["Deposit"] = 123,
-        //        ["Withdrawal"] = 123,
-        //        ["Turnover"] = 123,
-        //        ["Winlost"] = 123,
-        //        ["Bonus"] = 123,
-        //        ["PlatformFee"] = 123,
-        //        ["OperationalFee"] = 123,
-        //        ["BankingFee"] = 123,
-        //        ["TotalFee"] = 123,
-        //        ["CommissionRate"] = 123,
-        //        ["Earning"] = 123,
-        //        ["AffWithdrawal"] = 123,
-        //        ["AffAdjustment"] = 123,
-        //        ["BFF"] = 123,
-        //        ["PrevBFF"] = 123,
-        //    };
-        //}
-
         private IDictionary<string, object> GetReportData()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
@@ -177,7 +149,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
                 ["AffWithdrawal"] = 123,
                 ["AffAdjustment"] = 123,
                 ["BFF"] = 123,
-                ["PrevBFF"] = 123,
+                ["PreviousBFF"] = 123,
                 ["Language"] = "en-US"
             };
         }

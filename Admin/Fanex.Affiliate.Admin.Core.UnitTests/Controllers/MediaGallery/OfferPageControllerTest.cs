@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Controllers.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
@@ -25,11 +26,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12bet.nexdev.net/12BetUserAsianNew");
-            var controller = CreateOfferPageController(languageService: languageService.Object, appSetting: appSetting.Object);
+            var controller = CreateOfferPageController(commonSettingService: commonSettingService.Object, appSetting: appSetting.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -204,17 +205,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private OfferPageController CreateOfferPageController(
             ISessionService sessionService = null,
-            ILanguageService languageService = null,
+            ICommonSettingService commonSettingService = null,
             IOfferPageService OfferPageService = null,
             IAppSetting appSetting = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeOfferPageService = OfferPageService ?? Mock.Of<IOfferPageService>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
 
-            var controller = new OfferPageController(fakeOfferPageService, fakeSessionService, fakeLanguageService, fakeAppSetting);
+            var controller = new OfferPageController(fakeOfferPageService, fakeSessionService, fakecommonSettingService, fakeAppSetting);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

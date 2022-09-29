@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
     public static class CommGroupValidationHelper
     {
         private const string brElementHtml = "<br />";
-        public static ResultInfo ValidatePlatformFeeList(IProductRepository productRepository, IEnumerable<DeductionSetting> platformFeeList)
+        public static ResultInfo ValidatePlatformFeeList(ICommonSettingService commonSettingService, IEnumerable<DeductionSetting> platformFeeList)
         {
             var result = new ResultInfo
             {
@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
                 return result;
             }
 
-            var productIdOfDB = productRepository.GetProductList().Select(p => p.ProductId.ToString());
+            var productIdOfDB = commonSettingService.GetProductList().Select(p => p.ProductId.ToString());
             var productIdOfPlatform = string.Join(",", platformFeeList.Select(p => p.ProductIds.Replace(" ", "")))
                                         .Split(new[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
 

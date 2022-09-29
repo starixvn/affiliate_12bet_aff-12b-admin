@@ -23,18 +23,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ILanguageService _languageService;
+        private readonly ICommonSettingService _commonSettingService;
 
         public EmailTestingController(
             ISessionService sessionService,
             IMailProcessor mailProcessor,
             IAppSetting appSetting,
-            ILanguageService languageService
+            ICommonSettingService commonSettingService
             ) : base(sessionService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;
-            _languageService = languageService;
+            _commonSettingService = commonSettingService;
         }
 
         [HttpGet]
@@ -49,12 +49,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             string result;
             try
             {
-                _languageService.SetCulture(language);
+                _commonSettingService.SetCulture(language);
 
                 (var subject, var title) = GetSubjectAndTitle(function);
                 result = GetEmailContent(language, function, format, title);
 
-                _languageService.SetCulture("en-US");
+                _commonSettingService.SetCulture("en-US");
             }
             catch (Exception ex)
             {
@@ -72,12 +72,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             try
             {
-                _languageService.SetCulture(language);
+                _commonSettingService.SetCulture(language);
                 (var subject, var title) = GetSubjectAndTitle(function);
                 var content = GetEmailContent(language, function, format, title);
 
                 _mailProcessor.Send(content, emailAddress, subject);
-                _languageService.SetCulture("en-US");
+                _commonSettingService.SetCulture("en-US");
             }
             catch (Exception ex)
             {

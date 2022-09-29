@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
@@ -22,9 +23,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
-            var controller = CreateDomainControlController(languageService: languageService.Object);
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var controller = CreateDomainControlController(commonSettingService: commonSettingService.Object);
 
             var urlHelperMock = new Mock<UrlHelper>();
             urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/DomainControl");
@@ -185,14 +186,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         private DomainControlController CreateDomainControlController(
         ISessionService sessionService = null,
         IDomainControlService domainControlService = null,
-        ILanguageService languageService = null
+        ICommonSettingService commonSettingService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeDomainControlService = domainControlService ?? Mock.Of<IDomainControlService>();
-            var fakelanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
 
-            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService, fakelanguageService);
+            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService, fakecommonSettingService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

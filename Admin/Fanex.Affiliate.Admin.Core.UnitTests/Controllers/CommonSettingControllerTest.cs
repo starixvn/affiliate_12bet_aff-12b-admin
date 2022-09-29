@@ -1,8 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
-using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Moq;
@@ -17,9 +17,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetProductList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var productRepository = new Mock<IProductRepository>();
-            productRepository.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
-            var controller = CreateCommonSettingController(productRepository: productRepository.Object);
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
+            var controller = CreateCommonSettingController(commonSettingService: commonSettingService.Object);
 
             // Action
             var result = controller.GetProductList() as JsonNetResult;
@@ -65,16 +65,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         private CommonSettingController CreateCommonSettingController(
-            IProductRepository productRepository = null,
+            ICommonSettingService commonSettingService = null,
             ILandingPageRepository landingPageRepository = null,
             ITrackingStatisticsService trackingStatisticsService = null
             )
         {
-            var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
+            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
             var faketrackingStatisticsService = trackingStatisticsService ?? Mock.Of<ITrackingStatisticsService>();
 
-            return new CommonSettingController(fakeProductRepository, fakeLandingPageRepository, faketrackingStatisticsService);
+            return new CommonSettingController(fakeCommonService, fakeLandingPageRepository, faketrackingStatisticsService);
         }
     }
 }

@@ -3,6 +3,7 @@ using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Moq;
@@ -19,13 +20,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         private ILifetimeScopeProvider ScopeProvider;
         private readonly IMailProcessor MailProcessor;
         private readonly IAppSetting AppSetting;
-        private readonly ILanguageService LanguageService;
+        private readonly ICommonSettingService commonSettingService;
 
         public EmailServiceTest()
         {
             MailProcessor = Substitute.For<IMailProcessor>();
             AppSetting = Substitute.For<IAppSetting>();
-            LanguageService = Substitute.For<ILanguageService>();
+            commonSettingService = Substitute.For<ICommonSettingService>();
         }
 
         [Fact]
@@ -185,7 +186,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             var response = new HttpResponse(new StringWriter());
             HttpContext.Current = new HttpContext(request, response);
 
-            return new EmailService(MailProcessor, AppSetting, LanguageService);
+            return new EmailService(MailProcessor, AppSetting, commonSettingService);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Controllers.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
@@ -29,15 +31,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             commonMediaGalleryService.Setup(c => c.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryName = "Category" } });
             commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
             commonMediaGalleryService.Setup(c => c.GetImageTypeList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 345, Name = "Image" } });
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
-            var affTypeService = new Mock<IAffTypeService>();
-            affTypeService.Setup(a => a.GetAffTypeList()).Returns(new List<AffTypeInfo> { new AffTypeInfo { AffTypeId = 2, AffTypeName = "Asian" } });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            commonSettingService.Setup(a => a.GetAffTypeList()).Returns(new List<AffType> { new AffType { AffTypeId = 2, AffTypeName = "Asian" } });
 
             SizeParam passedSizeParam = null;
             var bannerListService = new Mock<IBannerListService>();
             bannerListService.Setup(t => t.GetSizeList(It.IsAny<SizeParam>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } }).Callback<SizeParam>(p => passedSizeParam = p);
-            var controller = CreateMediaGalleryController(languageService: languageService.Object, commonMediaGalleryService: commonMediaGalleryService.Object, bannerListService: bannerListService.Object, affTypeService: affTypeService.Object);
+            var controller = CreateMediaGalleryController(commonSettingService: commonSettingService.Object, commonMediaGalleryService: commonMediaGalleryService.Object, bannerListService: bannerListService.Object);
 
             var urlHelperMock = new Mock<UrlHelper>();
             urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/MediaGallery");
@@ -65,12 +66,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var model = new ImageSizeViewModel { Language = "English" };
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
             var bannerListService = new Mock<IBannerListService>();
             bannerListService.Setup(t => t.GetSizeList(It.IsAny<SizeParam>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
-            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, languageService: languageService.Object);
+            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, commonSettingService: commonSettingService.Object);
 
             // Action
             var result = controller.GetSizeList(model) as JsonNetResult;
@@ -84,12 +85,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var model = new GetBannerViewModel();
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
             var bannerListService = new Mock<IBannerListService>();
             bannerListService.Setup(t => t.GetBannerList(It.IsAny<BannerParam>())).Returns(new EntityResult<BannerInfo> { MainData = new List<BannerInfo> { new BannerInfo() }, TotalItem = 1 });
-            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, languageService: languageService.Object);
+            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, commonSettingService: commonSettingService.Object);
 
             // Action
             var result = controller.GetBannerList(model) as JsonNetResult;
@@ -269,21 +270,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private MediaGalleryController CreateMediaGalleryController(
         ISessionService sessionService = null,
-        ILanguageService languageService = null,
+        ICommonSettingService commonSettingService = null,
         ICommonMediaGalleryService commonMediaGalleryService = null,
         IBannerListService bannerListService = null,
-        IAffTypeService affTypeService = null,
         IAppSetting appSetting = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeCommonMediaGalleryService = commonMediaGalleryService ?? Mock.Of<ICommonMediaGalleryService>();
             var fakeBannerListService = bannerListService ?? Mock.Of<IBannerListService>();
-            var fakeAffTypeService = affTypeService ?? Mock.Of<IAffTypeService>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
 
-            var controller = new MediaGalleryController(fakeSessionService, fakeLanguageService, fakeCommonMediaGalleryService, fakeBannerListService, fakeAffTypeService, fakeAppSetting);
+            var controller = new MediaGalleryController(fakeSessionService, fakeCommonService, fakeCommonMediaGalleryService, fakeBannerListService, fakeAppSetting);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

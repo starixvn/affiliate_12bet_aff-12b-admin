@@ -1,6 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using ONEbook.UM.AspNetMVC.Filters;
@@ -12,17 +12,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [CheckUMFilter]
     public class CommonSettingController : Controller
     {
-        private readonly IProductRepository _productRepository;
+        private readonly ICommonSettingService _commonSettingService;
         private readonly ILandingPageRepository _landingPageRepository;
         private readonly ITrackingStatisticsService _trackingStatisticsService;
 
         public CommonSettingController(
-            IProductRepository productRepository,
+            ICommonSettingService commonSettingService,
             ILandingPageRepository landingPageRepository,
             ITrackingStatisticsService trackingStatisticsService
             )
         {
-            _productRepository = productRepository;
+            _commonSettingService = commonSettingService;
             _landingPageRepository = landingPageRepository;
             _trackingStatisticsService = trackingStatisticsService;
         }
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return new JsonNetResult
             {
-                Data = _productRepository.GetProductList()
+                Data = _commonSettingService.GetProductList()
             };
         }
 
@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return new JsonNetResult
             {
-                Data = _landingPageRepository.GetCountryList()
+                Data = _commonSettingService.GetCountryList()
             };
         }
     }

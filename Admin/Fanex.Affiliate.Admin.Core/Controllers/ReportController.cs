@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
@@ -15,20 +14,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.ReportMenu)]
     public class ReportController : ReadOnlySessionBaseController
     {
-        private readonly IProductRepository _productRepository;
-
-        private readonly ILanguageService _languageService;
+        private readonly ICommonSettingService _commonSettingService;
 
         private readonly IAffiliateReportService _affiliateReportService;
 
         public ReportController(
             ISessionService sessionService,
-            IProductRepository productRepository,
-            ILanguageService languageService,
+            ICommonSettingService commonSettingService,
             IAffiliateReportService affiliateReportService) : base(sessionService)
         {
-            _productRepository = productRepository;
-            _languageService = languageService;
+            _commonSettingService = commonSettingService;
             _affiliateReportService = affiliateReportService;
         }
 
@@ -38,8 +33,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var viewModel = new AffiliateReportViewModel
             {
-                ProductList = _productRepository.GetProductList(),
-                LanguageList = _languageService.GetInChangeMarkets()
+                ProductList = _commonSettingService.GetProductList(),
+                LanguageList = _commonSettingService.GetInChangeMarkets()
             };
 
             return View(viewModel);
@@ -85,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 IsGetMonthly = model.IsGetMonthly,
                 PageIndex = model.PageIndex,
                 PageSize = model.PageSize,
-                PreferredLanguages = LanguageHelper.BuildAllowQueryLanguages(model.PreferredLanguage, _languageService.GetInChangeMarkets()),
+                PreferredLanguages = LanguageHelper.BuildAllowQueryLanguages(model.PreferredLanguage, _commonSettingService.GetInChangeMarkets()),
                 ProductIds = model.ProductIds,
                 SortDirectionType = model.SortDirectionType,
                 SortType = model.SortType,

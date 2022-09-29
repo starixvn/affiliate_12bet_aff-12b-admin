@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
@@ -25,10 +26,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
             commonMediaGalleryService.Setup(c => c.GetCategoryList(2)).Returns(new List<Category> { new Category { CategoryName = "Category" } });
             commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
-            var controller = CreateTextListController(commonMediaGalleryService: commonMediaGalleryService.Object, languageService: languageService.Object);
+            var controller = CreateTextListController(commonMediaGalleryService: commonMediaGalleryService.Object, commonSettingService: commonSettingService.Object);
 
             var urlHelperMock = new Mock<UrlHelper>();
             urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/TextList");
@@ -51,12 +52,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var model = new GetTextLinkViewModel { Language = "English" };
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
             var textListService = new Mock<ITextListService>();
             textListService.Setup(t => t.GetTextList(It.IsAny<TextParam>())).Returns(new EntityResult<TextInfo> { MainData = new List<TextInfo> { new TextInfo() }, TotalItem = 1 });
-            var controller = CreateTextListController(textListService: textListService.Object, languageService: languageService.Object);
+            var controller = CreateTextListController(textListService: textListService.Object, commonSettingService: commonSettingService.Object);
 
             // Action
             var result = controller.GetTextList(model) as JsonNetResult;
@@ -245,17 +246,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private TextListController CreateTextListController(
             ISessionService sessionService = null,
-            ILanguageService languageService = null,
+            ICommonSettingService commonSettingService = null,
             ICommonMediaGalleryService commonMediaGalleryService = null,
             ITextListService textListService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeCommonMediaGalleryService = commonMediaGalleryService ?? Mock.Of<ICommonMediaGalleryService>();
             var fakeTextListService = textListService ?? Mock.Of<ITextListService>();
 
-            var controller = new TextListController(fakeSessionService, fakeLanguageService, fakeCommonMediaGalleryService, fakeTextListService);
+            var controller = new TextListController(fakeSessionService, fakecommonSettingService, fakeCommonMediaGalleryService, fakeTextListService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

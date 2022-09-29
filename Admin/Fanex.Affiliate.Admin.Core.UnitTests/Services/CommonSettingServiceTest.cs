@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -13,21 +13,21 @@ using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 {
-    public class LanguageServiceTest
+    public class commonSettingServiceTest
     {
         [Fact]
         public void GetInChangeMarkets_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var languageRepository = new Mock<ILanguageRepository>();
-            languageRepository.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en-US", LanguageName = "English", ShortedCode = "en" } });
+            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            commonSettingRepository.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en-US", LanguageName = "English", ShortedCode = "en" } });
 
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> {
                 new Claim(Function.InChargeMarket, "en-US")
             }) }));
 
-            var service = CreateLanguageService(languageRepository.Object, sessionService.Object);
+            var service = CreateCommonService(commonSettingRepository.Object, sessionService.Object);
 
             // Action
             var result = service.GetInChangeMarkets();
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             var currentUICulture = new CultureInfo(languageCode);
             var currentCulture = CultureInfo.CreateSpecificCulture(languageCode);
 
-            var service = CreateLanguageService();
+            var service = CreateCommonService();
 
             // Action
             service.SetCulture("en-US");
@@ -54,12 +54,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             Assert.Equal(Thread.CurrentThread.CurrentCulture, currentCulture);
         }
 
-        private static LanguageService CreateLanguageService(ILanguageRepository languageRepository = null, ISessionService sessionService = null)
+        private static CommonSettingService CreateCommonService(ICommonSettingRepository commonSettingRepository = null, ISessionService sessionService = null)
         {
-            var fakeLanguageRepository = languageRepository ?? Mock.Of<ILanguageRepository>();
+            var fakecommonSettingRepository = commonSettingRepository ?? Mock.Of<ICommonSettingRepository>();
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
 
-            return new LanguageService(fakeLanguageRepository, fakeSessionService);
+            return new CommonSettingService(fakecommonSettingRepository, fakeSessionService);
         }
     }
 }

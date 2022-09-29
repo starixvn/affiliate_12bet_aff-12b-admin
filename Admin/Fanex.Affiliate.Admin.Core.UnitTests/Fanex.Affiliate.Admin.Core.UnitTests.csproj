@@ -252,15 +252,13 @@
     <Compile Include="Repository\Customer\ReferrersRepositoryTest.cs" />
     <Compile Include="Repository\Customer\StatementHistoryRepositoryTest.cs" />
     <Compile Include="Repository\Customer\UserAccountRepositoryTest.cs" />
-    <Compile Include="Repository\LanguageRepositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\BannerListReppositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepositoryTest.cs" />
     <Compile Include="Repository\Member\ActiveMemberRepositoryTest.cs" />
     <Compile Include="Repository\Member\MemberRepositoryTest.cs" />
-    <Compile Include="Repository\ProductRepositoryTest.cs" />
+    <Compile Include="Repository\CommonSettingRepositoryTest.cs" />
     <Compile Include="Repository\Report\ReportRepositoryTest.cs" />
     <Compile Include="Services\Affiliate\AffilateServiceTest.cs" />
-    <Compile Include="Services\AffTypeServiceTest.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordServiceTest.cs" />
     <Compile Include="Services\Affiliate\CommGroupAssignmentServiceTest.cs" />
     <Compile Include="Services\Affiliate\CommGroupCommonServiceTest.cs" />
@@ -278,7 +276,7 @@
     <Compile Include="Services\Domain\DomainServiceTest.cs" />
     <Compile Include="Services\EmailServiceTest.cs" />
     <Compile Include="Services\Home\HomeServiceTest.cs" />
-    <Compile Include="Services\LanguageServiceTest.cs" />
+    <Compile Include="Services\CommonSettingServiceTest.cs" />
     <Compile Include="Services\ExchangeRate\ExchangeRateServiceTest.cs" />
     <Compile Include="Services\MediaGallery\HtmlFileServiceTest.cs" />
     <Compile Include="Services\MediaGallery\OfferAffServiceTest.cs" />

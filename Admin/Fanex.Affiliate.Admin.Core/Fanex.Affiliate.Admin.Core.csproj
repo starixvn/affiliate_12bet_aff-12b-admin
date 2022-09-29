@@ -256,7 +256,7 @@
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestBasicInfo.cs" />
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestSummaryInfo.cs" />
     <Compile Include="DTO\UserPanel\CensoredContactApp.cs" />
-    <Compile Include="DTO\UserPanel\Country.cs" />
+    <Compile Include="DTO\Common\Country.cs" />
     <Compile Include="DTO\UserPanel\LogAction.cs" />
     <Compile Include="Enum\ProcessingRequestStatus.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
@@ -279,6 +279,7 @@
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestUpdParam.cs" />
     <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
+    <Compile Include="Repository\ICommonSettingRepository.cs" />
     <Compile Include="Repository\MediaGallery\OfferAffRepository.cs" />
     <Compile Include="Repository\MediaGallery\OfferPageRepository.cs" />
     <Compile Include="Repository\MediaGallery\IOfferAffRepository.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Repository\MediaGallery\NewsLetterRepository.cs" />
     <Compile Include="Repository\ProcessingRequest\IProcessingRequestRepository.cs" />
     <Compile Include="Repository\ProcessingRequest\ProcessingRequestRepository.cs" />
+    <Compile Include="Repository\CommonSettingRepository.cs" />
     <Compile Include="Services\FeedbackReport\FeedbackReportService.cs" />
     <Compile Include="Services\FeedbackReport\IFeedbackReportService.cs" />
     <Compile Include="Services\MassAdjustment\IMassAdjustmentService.cs" />
@@ -367,7 +369,7 @@
     <Compile Include="DTO\AdminRole\RoleInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
-    <Compile Include="DTO\AffTypeInfo.cs" />
+    <Compile Include="DTO\Common\AffType.cs" />
     <Compile Include="DTO\Domain\DomainControlInfo.cs" />
     <Compile Include="DTO\Domain\DomainInfo.cs" />
     <Compile Include="DTO\Home\DepositInfo.cs" />
@@ -391,7 +393,7 @@
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
     <Compile Include="DTO\EntityResult.cs" />
     <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
-    <Compile Include="DTO\Language.cs" />
+    <Compile Include="DTO\Common\Language.cs" />
     <Compile Include="DTO\MediaGallery\Category.cs" />
     <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
     <Compile Include="DTO\Member\ActiveMemberInfo.cs" />
@@ -427,11 +429,11 @@
     <Compile Include="DTO\Message\MessageInfo.cs" />
     <Compile Include="DTO\Payment\PaymentRequest.cs" />
     <Compile Include="DTO\Payment\PaymentRequestDetail.cs" />
-    <Compile Include="DTO\Product.cs" />
+    <Compile Include="DTO\Common\Product.cs" />
     <Compile Include="DTO\Report\AffiliateReport.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
-    <Compile Include="DTO\SelectItem.cs" />
-    <Compile Include="DTO\SubMenu.cs" />
+    <Compile Include="DTO\Common\SelectItem.cs" />
+    <Compile Include="DTO\Common\SubMenu.cs" />
     <Compile Include="DTO\UserPanel\ContactApp.cs" />
     <Compile Include="DTO\UserPanel\CustomerMember.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
@@ -530,12 +532,8 @@
     <Compile Include="Repository\IAuthRepository.cs" />
     <Compile Include="Repository\Affiliate\ICommissionGroupRepository.cs" />
     <Compile Include="Configurations\IoCConfig.cs" />
-    <Compile Include="Repository\ILanguageRepository.cs" />
-    <Compile Include="Repository\IProductRepository.cs" />
-    <Compile Include="Repository\LanguageRepository.cs" />
     <Compile Include="Repository\MediaGallery\ILandingPageRepository.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepository.cs" />
-    <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\UserPanel\ILandingPageStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\IReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
@@ -603,7 +601,6 @@
     <Compile Include="Services\AdminRole\IAdminListService.cs" />
     <Compile Include="Services\AdminRole\IRolePermissionService.cs" />
     <Compile Include="Services\AffiliateService.cs" />
-    <Compile Include="Services\AffTypeService.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordService.cs" />
@@ -632,13 +629,12 @@
     <Compile Include="Services\Home\HomeService.cs" />
     <Compile Include="Services\Home\IHomeService.cs" />
     <Compile Include="Services\IAffiliateService.cs" />
-    <Compile Include="Services\IAffTypeService.cs" />
     <Compile Include="Services\IAuthService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
     <Compile Include="Services\IEmailService.cs" />
-    <Compile Include="Services\ILanguageService.cs" />
+    <Compile Include="Services\Common\ICommonSettingService.cs" />
     <Compile Include="Services\ISignInService.cs" />
-    <Compile Include="Services\LanguageService.cs" />
+    <Compile Include="Services\Common\CommonSettingService.cs" />
     <Compile Include="Services\MediaGallery\BannerListService.cs" />
     <Compile Include="Services\MediaGallery\BannerValidationService.cs" />
     <Compile Include="Services\MediaGallery\CommonMediaGalleryService.cs" />

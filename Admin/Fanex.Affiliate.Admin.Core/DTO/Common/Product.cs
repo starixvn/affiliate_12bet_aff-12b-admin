@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.Common
 {
     public class Product
     {
