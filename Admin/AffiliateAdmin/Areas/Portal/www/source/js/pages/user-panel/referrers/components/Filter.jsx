@@ -57,7 +57,7 @@ export class Filter extends PureComponent {
 
     handleCountryList = async () => {
         const countryList = await this.props.getCountryList();
-        const initialCountries = countryList.filter(r => r.Checked).map(r => r.RateId).join(',');
+        const initialCountries = countryList.filter(r => r.Checked).map(r => r.CountryCode).join(',');
 
         this.setState({ initialCountries, selectedCountries: initialCountries, countryList });
     }
@@ -94,7 +94,7 @@ export class Filter extends PureComponent {
         const selectedCountryCodes = selectedCountries.split(',');
 
         return countryList.map(r => {
-            return Object.assign({}, r, { Checked: selectedCountryCodes.indexOf(r.CountryId.toString()) !== -1 })
+            return Object.assign({}, r, { Checked: selectedCountryCodes.indexOf(r.CountryCode.toString()) !== -1 })
         })
     }
 

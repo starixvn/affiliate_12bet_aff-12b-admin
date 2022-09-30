@@ -93,12 +93,9 @@ export class Detail extends Component {
     render() {
         const { gridData } = this.state;
 
-        console.log(this.props.selectedSiteDetailFilter);
-
         return this.props.selectedSiteDetailFilter && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1010}
                     maxWidth={maxWidth}
                     autoHeight={false}
                     bodyHeight={300}

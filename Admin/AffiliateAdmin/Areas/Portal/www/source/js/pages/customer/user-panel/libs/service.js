@@ -1,4 +1,5 @@
 import { post } from '../../../../modules/ajaxRequest';
+import { Item } from '../../../admin-role/core/libs/resetAllProps';
 
 export const isActiveMenu = (selectedMenu, menuItem) => {
     return selectedMenu && (selectedMenu.key === menuItem.key || selectedMenu.parent === menuItem.key);
@@ -21,39 +22,9 @@ export const getTrackingCodeList = (affId) => async() => {
 
 export const getCountryList = () => async () => {
     const response = await post('Portal/CommonSetting/GetCountryList');
-    return response && response.status === 200 ? response.data : [];
-
-    return countryList;
+    return response && response.status === 200 ? convertCountryList(response.data) : [];
 }
 
-export const countryList = [
-    {
-        CountryCode: 0,
-        CountryName: 'Unknown',
-        Checked: true
-    },
-    {
-        CountryCode: 1,
-        CountryName: 'Country 1',
-        Checked: true
-    },
-    {
-        CountryCode: 2,
-        CountryName: 'Country 2',
-        Checked: true
-    }, {
-        CountryCode: 3,
-        CountryName: 'Country 3',
-        Checked: true
-    },
-    {
-        CountryCode: 4,
-        CountryName: 'Country 4',
-        Checked: true
-    },
-    {
-        CountryCode: 5,
-        CountryName: 'Country 5',
-        Checked: true
-    }
-]
+const convertCountryList = (data) => {
+    return data.map(item => ({ ...item, Checked: true }));
+}

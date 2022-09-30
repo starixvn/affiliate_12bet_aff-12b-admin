@@ -81,10 +81,10 @@ export class Content extends Component {
     }
 
     _buildDataRow(dataItem, index, isGroupByCountry) {
-        const language = this.props.shortCodeLanguageList[dataItem.LanguageCode] || dataItem.LanguageCode;
+        const language = dataItem.Language;
         const country = dataItem.Country;
         const page = htmlDecode(dataItem.Page);
-        const isShowLink = page && (page.toLowerCase() === "old url" || page.toLowerCase() === "none");
+        const isShowLink = page && !(page.toLowerCase() == "old url" || page.toLowerCase() == "none");
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -92,7 +92,7 @@ export class Content extends Component {
                     isGroupByCountry ? (
                         <Fragment>
                             <Cell title={country}>
-                                {isShowLink ? (<Button color="link" className="p-0" onClick={() => this.handleSelectedPageDetailFilter(dataItem.Page, country, isGroupByCountry)}>
+                                {isShowLink ? (<Button color="link" className="p-0" onClick={() => this.handleSelectedPageDetailFilter(dataItem.Page, dataItem.CountryCode, isGroupByCountry)}>
                                     {country}
                                 </Button>) : country}
                             </Cell>

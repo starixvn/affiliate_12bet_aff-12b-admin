@@ -30,7 +30,7 @@ export class Filter extends React.Component {
             groupBy: groupByCountry,
             initialCountries: '',
             selectedCountries: '',
-            languageCode: '',
+            languageCode: Object.keys(shortCodeLanguageList).map(key => key).join(','),
             selectedPage: '',
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
             toDate: this.nowString,
@@ -58,7 +58,7 @@ export class Filter extends React.Component {
 
     handleCountryList = async () => {
         const countryList = await this.props.getCountryList();
-        const initialCountries = countryList.filter(r => r.Checked).map(r => r.RateId).join(',');
+        const initialCountries = countryList.filter(r => r.Checked).map(r => r.CountryCode).join(',');
 
         this.setState({ initialCountries, selectedCountries: initialCountries, countryList });
     }
@@ -85,7 +85,7 @@ export class Filter extends React.Component {
         const { groupBy, selectedPage, fromDate, toDate, deviceType } = this.state;
         const isGroupByCountry = groupBy === groupByCountry;
         const optionName = isGroupByCountry ? "selectedCountries" : "languageCode";
-        const param = Object.assign({}, { selectedPage, [optionName]: this.state[optionName], fromDate, toDate, deviceType, affId: this.props.affId });
+        const param = Object.assign({}, { selectedPage, groupBy, [optionName]: this.state[optionName], fromDate, toDate, deviceType, affId: this.props.affId });
 
         this.props.setParam(param);
         this.props.setIsGroupByCountry(isGroupByCountry);
@@ -102,7 +102,7 @@ export class Filter extends React.Component {
         const selectedCountryCodes = selectedCountries.split(',');
 
         return countryList.map(r => {
-            return Object.assign({}, r, { Checked: selectedCountryCodes.indexOf(r.CountryId.toString()) !== -1 })
+            return Object.assign({}, r, { Checked: selectedCountryCodes.indexOf(r.CountryCode.toString()) !== -1 })
         })
     }
 
@@ -111,15 +111,15 @@ export class Filter extends React.Component {
         const { groupBy, selectedCountries, selectedPage, languageCode, deviceType, fromDate, toDate, pageList, countryList } = this.state;
         const isGroupByCountry = groupBy === groupByCountry;
 
-        return pageList && (
+        return countryList && (
             <div className="filter-container py-0">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-3 my-2">
                         <Label className="mr-sm-2">{headerTitle.GroupBy}</Label>
                         <Input type="select" name="groupBy" value={groupBy} onChange={this.handleChange}>
                             {
-                                groupByList.map((value, index) => {
-                                    return (<option key={'groupBy-' + index} value={index + 1}>{value}</option>)
+                                groupByList.map((value) => {
+                                    return (<option key={'groupBy-' + value} value={value}>{value}</option>)
                                 })
                             }
                         </Input>
@@ -146,7 +146,7 @@ export class Filter extends React.Component {
                         <Input type="select" name="selectedPage" id="selectedPage" value={selectedPage} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
                             {
-                                pageList.map(page => {
+                                pageList && pageList.map(page => {
                                     return (<option key={`page-${page.PageCode}`} value={page.PageCode}>{htmlDecode(page.PageName)}</option>)
                                 })
                             }

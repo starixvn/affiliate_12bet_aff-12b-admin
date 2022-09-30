@@ -34,17 +34,10 @@ export const setIsGroupByCountry = (data) => {
     }
 }
 
-export const fetchData = (param, shortCodeLanguageList) => async () => {
+export const fetchData = (param) => async () => {
     const url = 'Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList';
-    let languageCode = param.languageCode;
 
-    if (!languageCode) {
-        var allShortCode = Object.keys(shortCodeLanguageList).map(key => key).join(',');
-
-        languageCode = allShortCode;
-    }
-
-    const response = await post(url, Object.assign({}, param, { languageCode }));
+    const response = await post(url, Object.assign({}, param));
 
     return response && response.status === 200 ? response.data : null;
 }

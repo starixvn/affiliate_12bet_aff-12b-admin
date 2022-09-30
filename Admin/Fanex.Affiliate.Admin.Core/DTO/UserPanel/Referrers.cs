@@ -5,6 +5,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
     {
         public string SiteUrl { get; set; }
 
+        public string Country { get; set; }
+
+        public string CountryCode { get; set; }
+
         public string WebsiteUrl { get; set; }
 
         public int TotalClick { get; set; }

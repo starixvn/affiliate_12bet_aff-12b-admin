@@ -74,7 +74,7 @@ export class Content extends Component {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={siteUrl}>
-                    {(siteUrl == "Old URL" || siteUrl == "none") ? siteUrl : (<Button color="link" className="p-0" onClick={() => this.handleSelectedSiteDetailFilter(dataItem.SiteUrl, dataItem.Country)}>
+                    {(siteUrl.toLowerCase() == "old url" || siteUrl.toLowerCase() == "none") ? siteUrl : (<Button color="link" className="p-0" onClick={() => this.handleSelectedSiteDetailFilter(dataItem.SiteUrl, dataItem.CountryCode)}>
                         {siteUrl}
                     </Button>)}
                 </Cell>

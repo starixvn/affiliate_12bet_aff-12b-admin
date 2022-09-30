@@ -11,6 +11,6 @@ export const headerTitle = {
     ...headerText
 }
 
-export const groupByCountry = '1';
+export const groupByCountry = 'Country';
 
-export const groupByList = ['Country', 'Language']
+export const groupByList = [groupByCountry, 'Language']
