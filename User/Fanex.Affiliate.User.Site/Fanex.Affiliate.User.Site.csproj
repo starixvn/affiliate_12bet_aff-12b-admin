@@ -1217,6 +1217,7 @@
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.vi-VN.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.ja-JP.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.th-TH.webp" />
+    <Content Include="Views\CommissionStructure\_NewRevenueShareTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

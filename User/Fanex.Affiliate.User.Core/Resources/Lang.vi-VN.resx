@@ -2252,4 +2252,7 @@
   <data name="ThankYou" xml:space="preserve">
     <value>Xin cảm ơn đã để lại phản hồi quý giá của bạn.</value>
   </data>
+  <data name="OneUsdAndAbove" xml:space="preserve">
+    <value>$1 &amp; hơn</value>
+  </data>
 </root>

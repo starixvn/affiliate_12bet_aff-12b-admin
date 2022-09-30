@@ -2255,4 +2255,7 @@
   <data name="ThankYou" xml:space="preserve">
     <value>Terimakasih untuk saran Anda yang berharga. </value>
   </data>
+  <data name="OneUsdAndAbove" xml:space="preserve">
+    <value>$1 &amp; Keatas</value>
+  </data>
 </root>

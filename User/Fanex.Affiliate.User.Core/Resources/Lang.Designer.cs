@@ -4050,6 +4050,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to $1&amp;Above.
+        /// </summary>
+        public static string OneUsdAndAbove {
+            get {
+                return ResourceManager.GetString("OneUsdAndAbove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;p class=&quot;text-white&quot;&gt;ON &lt;span class=&quot;text-red&quot;&gt;SPORTS &lt;/span&gt;&amp; &lt;span class=&quot;text-red&quot;&gt;CASINO&lt;/span&gt; REVENUE&lt;/p&gt;.
         /// </summary>
         public static string OnSportandCasino {

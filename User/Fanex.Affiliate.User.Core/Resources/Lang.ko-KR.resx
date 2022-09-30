@@ -2246,4 +2246,7 @@
   <data name="ThankYou" xml:space="preserve">
     <value>피드백주셔서 대단히 감사합니다. </value>
   </data>
+  <data name="OneUsdAndAbove" xml:space="preserve">
+    <value>$1 이상</value>
+  </data>
 </root>

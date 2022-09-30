@@ -1689,4 +1689,7 @@
   <data name="WhatIsYourOpinion" xml:space="preserve">
     <value>What is your opinion about our affiliate program?</value>
   </data>
+  <data name="OneUsdAndAbove" xml:space="preserve">
+    <value>$1 &amp; Above</value>
+  </data>
 </root>

@@ -2429,4 +2429,7 @@
   <data name="InvalidFeedback" xml:space="preserve">
     <value>Data is invalid, please check!</value>
   </data>
+  <data name="OneUsdAndAbove" xml:space="preserve">
+    <value>$1 &amp; Above</value>
+  </data>
 </root>

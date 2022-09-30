@@ -2257,4 +2257,7 @@
   <data name="ThankYou" xml:space="preserve">
     <value>非常感謝您提供的寶貴意見。</value>
   </data>
+  <data name="OneUsdAndAbove" xml:space="preserve">
+    <value>$1及以上</value>
+  </data>
 </root>
