@@ -34,10 +34,10 @@ var PageTracking = (function ($) {
             //});
             if (window.gtag) {
                 var shortedLangCode = $('#shortedLangCode').val();
-                var actionName = 'PreAFFSignUpNewPage-' + shortedLangCode;
+                var actionName = 'PreAFFSignUpNewPage' + shortedLangCode.toUpperCase();
 
                 window.gtag('event', actionName, {
-                    'event_category': 'LandingPage',
+                    'event_category': 'AFFiliatePage',
                     'event_label': 'NavigationButton'
                 });
             }
