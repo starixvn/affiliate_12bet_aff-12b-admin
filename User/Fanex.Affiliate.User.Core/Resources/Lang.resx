@@ -2432,4 +2432,10 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Above</value>
   </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>New Affiliate Promotion</value>
+  </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>Existing Affiliate Promotion</value>
+  </data>
 </root>

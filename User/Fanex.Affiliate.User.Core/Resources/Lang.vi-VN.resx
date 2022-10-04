@@ -2255,4 +2255,10 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; hơn</value>
   </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>Khuyến mãi hiện có</value>
+  </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>Chương trình khuyến mãi đại lý mới</value>
+  </data>
 </root>

@@ -2249,4 +2249,11 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 이상</value>
   </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>신규 제휴사 프로모션
+</value>
+  </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>활동중인 제휴사 프로모션</value>
+  </data>
 </root>

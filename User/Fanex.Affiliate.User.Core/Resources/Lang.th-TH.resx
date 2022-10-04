@@ -2259,4 +2259,10 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; ขึ้นไป</value>
   </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>โปรโมชั่นพันธมิตรเก่า</value>
+  </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>โปรโมชั่นพันธมิตรใหม่</value>
+  </data>
 </root>

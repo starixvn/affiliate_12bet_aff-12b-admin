@@ -2258,4 +2258,10 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Keatas</value>
   </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>Promosi afiliasi lama</value>
+  </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>Promosi afiliasi baru</value>
+  </data>
 </root>

@@ -1,0 +1,26 @@
+﻿@model bool
+@{
+    var promotionBannerUrl = Url.Content("~/www/build/styles/Images/promotion/existing/promotion.id-ID");
+}
+<div class="banner-promotion">
+    <picture>
+        <source srcset="@(promotionBannerUrl + ".webp?v=178482v01")" type="image/webp" />
+        <source srcset="@(promotionBannerUrl + ".jpg?v=178482v01")" type="image/jpeg" />
+        <img class="img-item img-responsive" src="@(promotionBannerUrl + ".jpg?v=178482v01")" alt="@Lang.ExistingPromotion" />
+    </picture>
+</div>
+
+<div class="info-group">
+    @if (Model)
+    {
+        <p class="text-center">
+            Periksa “Bonus Spesial untuk Saya” untuk info promosi lebih lanjut.
+        </p>
+    }
+    else
+    {
+        <p class="text-center">
+            Silakan <a class="text-red" href="@Url.Content("~/ContactUs")">masuk</a> dan periksa tab "Bonus Spesial untuk Saya" untuk mengetahui promosi eksklusif ini.
+        </p>
+    }
+</div>

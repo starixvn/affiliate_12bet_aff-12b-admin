@@ -2263,4 +2263,10 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1及以上</value>
   </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>新注册合作伙伴优惠活动</value>
+  </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>现有合作伙伴优惠活动</value>
+  </data>
 </root>

@@ -2260,4 +2260,10 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1及以上</value>
   </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>現有合作夥伴優惠活動</value>
+  </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>新註冊合作夥伴優惠活動</value>
+  </data>
 </root>

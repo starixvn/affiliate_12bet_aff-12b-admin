@@ -2378,6 +2378,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existing Affiliate Promotion.
+        /// </summary>
+        public static string ExistingPromotion {
+            get {
+                return ResourceManager.GetString("ExistingPromotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EXTRA COMMISSION UP TO 12%!.
         /// </summary>
         public static string ExtraCommission {
@@ -3789,6 +3798,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Affiliate Promotion.
+        /// </summary>
+        public static string NewPromotion {
+            get {
+                return ResourceManager.GetString("NewPromotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Signups.
         /// </summary>
         public static string NewSignup {
@@ -4050,7 +4068,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $1&amp;Above.
+        ///   Looks up a localized string similar to $1 &amp; Above.
         /// </summary>
         public static string OneUsdAndAbove {
             get {

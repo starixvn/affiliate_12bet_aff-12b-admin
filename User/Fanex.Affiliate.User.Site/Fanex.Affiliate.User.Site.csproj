@@ -500,10 +500,6 @@
     <Content Include="www\build\js\betlist.min.js">
       <DependentUpon>betlist.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\changepassword.js" />
-    <Content Include="www\build\js\changepassword.min.js">
-      <DependentUpon>changepassword.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\contactus.js" />
     <Content Include="www\build\js\contactus.min.js">
       <DependentUpon>contactus.js</DependentUpon>
@@ -590,6 +586,8 @@
     <Content Include="www\build\js\pages\logout.min.js">
       <DependentUpon>logout.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\pages\promotion.js" />
+    <Content Include="www\build\js\pages\promotion.min.js" />
     <Content Include="www\build\js\pages\verification-account.js" />
     <Content Include="www\build\js\pages\verification-account.min.js">
       <DependentUpon>verification-account.js</DependentUpon>
@@ -726,6 +724,24 @@
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\left-main-banner.jpeg" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.en-US.jpg" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.hi-IN.jpg" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.id-ID.jpg" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.ja-JP.jpg" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.ko-KR.jpg" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.th-TH.jpg" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.vi-VN.jpg" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.zh-CN.jpg" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.zh-TW.jpg" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.en-US.jpg" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.hi-IN.jpg" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.id-ID.jpg" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.ja-JP.jpg" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.ko-KR.jpg" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.th-TH.jpg" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.vi-VN.jpg" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.zh-CN.jpg" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion.jpg" />
     <Content Include="www\build\styles\Images\apply12bet\3step.en-US.png" />
     <Content Include="www\build\styles\Images\apply12bet\3step.hi-IN.png" />
@@ -937,6 +953,7 @@
     <Content Include="www\source\js\pages\account-overview\marketingbase.js" />
     <Content Include="www\source\js\pages\account-overview\mediagallery.js" />
     <Content Include="www\source\js\pages\myaccount.js" />
+    <Content Include="www\source\js\pages\promotion.js" />
     <Content Include="www\source\js\pages\signup.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\statistics\landingpagestatistics.js" />
@@ -1163,15 +1180,15 @@
     <Content Include="Views\UserPanel\NewsLetter\Preview.cshtml" />
     <Content Include="Views\Shared\_LayoutPreviewAfterLogin.cshtml" />
     <Content Include="www\source\styles\pages\news-letter.scss" />
-    <Content Include="Views\Promotion\_Content.zh-TW.cshtml" />
-    <Content Include="Views\Promotion\_Content.en-US.cshtml" />
-    <Content Include="Views\Promotion\_Content.hi-IN.cshtml" />
-    <Content Include="Views\Promotion\_Content.id-ID.cshtml" />
-    <Content Include="Views\Promotion\_Content.ja-JP.cshtml" />
-    <Content Include="Views\Promotion\_Content.ko-KR.cshtml" />
-    <Content Include="Views\Promotion\_Content.th-TH.cshtml" />
-    <Content Include="Views\Promotion\_Content.vi-VN.cshtml" />
-    <Content Include="Views\Promotion\_Content.zh-CN.cshtml" />
+    <Content Include="Views\Promotion\Existing\_Content.zh-TW.cshtml" />
+    <Content Include="Views\Promotion\Existing\_Content.en-US.cshtml" />
+    <Content Include="Views\Promotion\Existing\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Promotion\Existing\_Content.id-ID.cshtml" />
+    <Content Include="Views\Promotion\Existing\_Content.ja-JP.cshtml" />
+    <Content Include="Views\Promotion\Existing\_Content.ko-KR.cshtml" />
+    <Content Include="Views\Promotion\Existing\_Content.th-TH.cshtml" />
+    <Content Include="Views\Promotion\Existing\_Content.vi-VN.cshtml" />
+    <Content Include="Views\Promotion\Existing\_Content.zh-CN.cshtml" />
     <Content Include="www\source\styles\pages\promotion.scss" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.en-US.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.hi-IN.webp" />
@@ -1218,6 +1235,33 @@
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.ja-JP.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.th-TH.webp" />
     <Content Include="Views\CommissionStructure\_NewRevenueShareTable.cshtml" />
+    <Content Include="Views\Promotion\New\_Content.en-US.cshtml" />
+    <Content Include="Views\Promotion\New\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Promotion\New\_Content.id-ID.cshtml" />
+    <Content Include="Views\Promotion\New\_Content.ja-JP.cshtml" />
+    <Content Include="Views\Promotion\New\_Content.ko-KR.cshtml" />
+    <Content Include="Views\Promotion\New\_Content.th-TH.cshtml" />
+    <Content Include="Views\Promotion\New\_Content.vi-VN.cshtml" />
+    <Content Include="Views\Promotion\New\_Content.zh-CN.cshtml" />
+    <Content Include="Views\Promotion\New\_Content.zh-TW.cshtml" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.en-US.webp" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.hi-IN.webp" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.id-ID.webp" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.ja-JP.webp" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.ko-KR.webp" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.th-TH.webp" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.vi-VN.webp" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.zh-CN.webp" />
+    <Content Include="www\build\styles\Images\promotion\existing\promotion.zh-TW.webp" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.en-US.webp" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.hi-IN.webp" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.id-ID.webp" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.ja-JP.webp" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.ko-KR.webp" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.th-TH.webp" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.vi-VN.webp" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.zh-CN.webp" />
+    <Content Include="www\build\styles\Images\promotion\new\promotion.zh-TW.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
