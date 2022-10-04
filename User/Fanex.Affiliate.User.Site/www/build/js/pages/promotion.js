@@ -13,14 +13,17 @@ var Promotion = (function ($) {
             _me.renderView(actionUrl);
         },
         initEvent: function initEvent() {
-            $('.btn-join-affiliate').on('click', function (event) {
+            $("#promotionLoginLink").on("click", function () {
+                console.log("#promotionLoginLink");
+                $("#loginDialog").modal({ backdrop: "static" });
+            }), $('.btn-join-affiliate').on('click', function (event) {
                 event.preventDefault();
-
+                console.log(".btn-join-affiliate");
                 PageTracking.addTrackingForSignUpFromPromotion();
 
-                setTimeout(function () {
-                    Site.redirect($(this).attr('href'));
-                }, 10);
+                //setTimeout(function () {
+                //    Site.redirect($(this).attr('href'));
+                //}, 10);
             }), $('#promotion-menu').on('click', '.promotion-menu-item', function () {
                 var name = $(this).data('name');
                 history.pushState({

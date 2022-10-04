@@ -20,7 +20,9 @@
     else
     {
         <p class="text-center">
-            请<a class="text-red" href="@Url.Content("~/ContactUs")">登入</a>及点击【专属优惠】以了解活动详情！
+            请<a class="text-red promotion-login-link" href="javascript:;">登入</a>及点击【专属优惠】以了解活动详情！
         </p>
     }
 </div>
+
+<script src="@Url.RenderLink("~/www/build/js/pages/promotion/existing-promotion.js")"></script>

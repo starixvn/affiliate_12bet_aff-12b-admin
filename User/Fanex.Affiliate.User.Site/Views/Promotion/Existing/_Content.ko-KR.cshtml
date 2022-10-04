@@ -20,7 +20,9 @@
     else
     {
         <p class="text-center">
-            자세한 이벤트 내용을 보시려면 <a class="text-red" href="@Url.Content("~/ContactUs")">로그인</a>하시고 "나를 위한 제안"을 탭하세요.
+            자세한 이벤트 내용을 보시려면 <a class="text-red promotion-login-link" href="javascript:;">로그인</a>하시고 "나를 위한 제안"을 탭하세요.
         </p>
     }
 </div>
+
+<script src="@Url.RenderLink("~/www/build/js/pages/promotion/existing-promotion.js")"></script>

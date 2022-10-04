@@ -11,15 +11,6 @@
             _me.renderView(actionUrl);
         },
         initEvent: function () {
-            $('.btn-join-affiliate').on('click', function (event) {
-                event.preventDefault();
-
-                PageTracking.addTrackingForSignUpFromPromotion();
-
-                setTimeout(function () {
-                    Site.redirect($(this).attr('href'));
-                }, 10);
-            }),
             $('#promotion-menu').on('click', '.promotion-menu-item', function () {
                 var name = $(this).data('name');
                 history.pushState({

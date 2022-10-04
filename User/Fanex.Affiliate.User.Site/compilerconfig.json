@@ -55,18 +55,18 @@
   //  "outputFile": "www/build/js/test.js",
   //  "inputFile": "www/source/js/pages/test.js"
   //},
-  {
-    "outputFile": "www/build/js/site.js",
-    "inputFile": "www/source/js/site.js"
-  },
-  {
-    "outputFile": "www/build/js/recheckin.js",
-    "inputFile": "www/source/js/recheckin.js"
-  },
-  {
-    "outputFile": "www/build/js/pages/logout.js",
-    "inputFile": "www/source/js/pages/logout.js"
-  },
+  //{
+  //  "outputFile": "www/build/js/site.js",
+  //  "inputFile": "www/source/js/site.js"
+  //},
+  //{
+  //  "outputFile": "www/build/js/recheckin.js",
+  //  "inputFile": "www/source/js/recheckin.js"
+  //},
+  //{
+  //  "outputFile": "www/build/js/pages/logout.js",
+  //  "inputFile": "www/source/js/pages/logout.js"
+  //},
   //{
   //  "outputFile": "www/build/js/trackingstatistics.js",
   //  "inputFile": "www/source/js/pages/statistics/trackingstatistics.js"
@@ -151,10 +151,10 @@
   //  "outputFile": "www/build/js/pages/feedback.js",
   //  "inputFile": "www/source/js/pages/feedback.js"
   //},
-  //{
-  //  "outputFile": "www/build/js/pagetracking.js",
-  //  "inputFile": "www/source/js/components/pagetracking.js"
-  //},
+  {
+    "outputFile": "www/build/js/pagetracking.js",
+    "inputFile": "www/source/js/components/pagetracking.js"
+  },
   //{
   //  "outputFile": "www/build/styles/css/verification-account.css",
   //  "inputFile": "www/source/styles/pages/verification-account.scss"
@@ -168,7 +168,15 @@
     "inputFile": "www/source/styles/pages/promotion.scss"
   },
   {
-    "outputFile": "www/build/js/pages/promotion.js",
-    "inputFile": "www/source/js/pages/promotion.js"
+    "outputFile": "www/build/js/pages/promotion/promotion.js",
+    "inputFile": "www/source/js/pages/promotion/promotion.js"
+  },
+  {
+    "outputFile": "www/build/js/pages/promotion/new-promotion.js",
+    "inputFile": "www/source/js/pages/promotion/new-promotion.js"
+  },
+  {
+    "outputFile": "www/build/js/pages/promotion/existing-promotion.js",
+    "inputFile": "www/source/js/pages/promotion/existing-promotion.js"
   }
 ]

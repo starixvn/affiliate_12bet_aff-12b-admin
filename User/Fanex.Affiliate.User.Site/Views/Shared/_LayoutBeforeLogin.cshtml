@@ -18,7 +18,7 @@
 @section scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
 
-    @if (settingService.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase) || settingService.IsProduction)
+    @if (!settingService.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase) || settingService.IsProduction)
     {
         <!-- Google Analytics -->
         <!-- Global site tag (gtag.js) - Google Analytics -->
