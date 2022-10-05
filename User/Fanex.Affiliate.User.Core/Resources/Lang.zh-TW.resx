@@ -1768,7 +1768,7 @@
     <value>所有產品</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>更多有關12BET產品訊息</value>
+    <value>更多有關12BET產品信息</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
     <value>週一至週六上午9點至下午6點(GMT +8)</value>
@@ -2265,5 +2265,8 @@
   </data>
   <data name="NewPromotion" xml:space="preserve">
     <value>新註冊合作夥伴優惠活動</value>
+  </data>
+  <data name="RevenueShareTitle" xml:space="preserve">
+    <value>佣金分成</value>
   </data>
 </root>

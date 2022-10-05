@@ -2438,4 +2438,7 @@
   <data name="ExistingPromotion" xml:space="preserve">
     <value>Existing Affiliate Promotion</value>
   </data>
+  <data name="RevenueShareTitle" xml:space="preserve">
+    <value>Revenue Share</value>
+  </data>
 </root>

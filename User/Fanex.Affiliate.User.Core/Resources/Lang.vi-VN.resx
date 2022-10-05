@@ -1093,7 +1093,7 @@
     <value>Hà Lan </value>
   </data>
   <data name="NetWinLoss" xml:space="preserve">
-    <value>Lợi Nhuận Ròng Mỗi Tháng (CNW)($)</value>
+    <value>Lợi nhuận ròng trong tháng (CNW)($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>New Caledonia </value>
@@ -1291,7 +1291,7 @@
     <value>Qatar </value>
   </data>
   <data name="QualifyingMem" xml:space="preserve">
-    <value>Thành Viên Hợp Lệ Mỗi Tháng / Sản Phẩm</value>
+    <value>Thành viên đăng ký</value>
   </data>
   <data name="Racebook" xml:space="preserve">
     <value>Đua Ngựa</value>
@@ -1763,7 +1763,7 @@
     <value>Tất Cả Sản Phẩm</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>Xem Danh Sách Sản Phẩm 12BET</value>
+    <value>Chi tiết các sản phẩm 12BET</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
     <value>09:00 - 18:00 (GMT+8)&lt;br&gt;Thứ Hai - Thứ Bảy</value>
@@ -2260,5 +2260,8 @@
   </data>
   <data name="NewPromotion" xml:space="preserve">
     <value>Chương trình khuyến mãi đại lý mới</value>
+  </data>
+  <data name="RevenueShareTitle" xml:space="preserve">
+    <value>Chia sẻ lợi nhuận</value>
   </data>
 </root>

@@ -1093,7 +1093,7 @@
     <value>Belanda </value>
   </data>
   <data name="NetWinLoss" xml:space="preserve">
-    <value>Pendapatan Bersih Dalam Sebulan (Company Net Win For The Month) dalam USD</value>
+    <value>Pendapatan Bersih Dalam Sebulan (CNW)($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>Kaledonia Baru </value>
@@ -1760,7 +1760,7 @@
     <value>Pembagian Hasil</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>Semua Produk/Permainan</value>
+    <value>Semua Produk</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
     <value>Info Lengkap Mengenai Produk 12BET</value>
@@ -2263,5 +2263,8 @@
   </data>
   <data name="NewPromotion" xml:space="preserve">
     <value>Promosi afiliasi baru</value>
+  </data>
+  <data name="RevenueShareTitle" xml:space="preserve">
+    <value>Pembagian Hasil</value>
   </data>
 </root>

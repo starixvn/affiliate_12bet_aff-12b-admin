@@ -421,7 +421,7 @@
     <value>콜롬비아</value>
   </data>
   <data name="Comm" xml:space="preserve">
-    <value>커미션</value>
+    <value>수수료</value>
   </data>
   <data name="Comment" xml:space="preserve">
     <value>문의사항</value>
@@ -1103,7 +1103,7 @@
     <value>네덜렌드</value>
   </data>
   <data name="NetWinLoss" xml:space="preserve">
-    <value>이달 회사의 넷 이익 (CNW)($)</value>
+    <value>이달의 회사 NET WIN (CNW)($)</value>
   </data>
   <data name="NewWithExclamationPoint" xml:space="preserve">
     <value>NEW!</value>
@@ -1310,7 +1310,7 @@
     <value>카타르</value>
   </data>
   <data name="QualifyingMem" xml:space="preserve">
-    <value>공인회원</value>
+    <value>자격을 갖춘 회원</value>
   </data>
   <data name="Racebook" xml:space="preserve">
     <value>레이스북</value>
@@ -1799,10 +1799,10 @@
     <value>Tier</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>제공중인 게임사</value>
+    <value>모든 제품</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>12BET 제공사 더보기</value>
+    <value>자세한 12BET 제품 대하여</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
     <value>업무시간: 월요일~ 토요일 08:00~ 17:00 (한국시간기준)</value>
@@ -2018,7 +2018,7 @@
     <value>아이디</value>
   </data>
   <data name="QualifyingMembers" xml:space="preserve">
-    <value>5&lt;br /&gt;명 또는 그 이상</value>
+    <value>≥5</value>
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>게임제품 선택</value>
@@ -2255,5 +2255,8 @@
   </data>
   <data name="ExistingPromotion" xml:space="preserve">
     <value>활동중인 제휴사 프로모션</value>
+  </data>
+  <data name="RevenueShareTitle" xml:space="preserve">
+    <value>수익 공유</value>
   </data>
 </root>

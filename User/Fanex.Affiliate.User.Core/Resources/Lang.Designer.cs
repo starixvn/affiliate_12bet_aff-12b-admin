@@ -5049,6 +5049,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revenue Share.
+        /// </summary>
+        public static string RevenueShareTitle {
+            get {
+                return ResourceManager.GetString("RevenueShareTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RMB (Ren Min Bi).
         /// </summary>
         public static string RMB {
