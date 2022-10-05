@@ -21,6 +21,14 @@
     <p class="text">
         저희 12BET은 스포츠북을 위한 수익분배를 제공해드리고 있습니다. 이 구조는 매 달 마다 스포츠북에 참여하고 있는 플레이어들의 수만큼 누적되는 구조 입니다.
     </p>
+    <br />
+    <p class="text text-bold">
+        [기간 한정] 2022년 10월 1일 ~ 12월 31일까지 진행됩니다. 자세한 내용을 보시려면 <a class="text-red" href="@Url.Content("~/Promotion")">여기를 클릭</a>하세요.
+    </p>
+    @{ Html.RenderPartial("~/Views/CommissionStructure/_NewRevenueShareTable.cshtml"); }
+    <p class="text text-bold">
+        기본 커미션 구조
+    </p>
     @{ Html.RenderPartial("~/Views/CommissionStructure/_RevenueShareTable.cshtml"); }
     <p class="text" style="margin-top: 15px;">
         위에 표기되었는 표들로서, “ 넷 수익”의 의미로는 매 달 이내의 관련된 플레이어들의 투자금액을 말합니다: (I) 승리 배당 (ii) 지급된 보너스 금액 (iii) 반환된 금액 (iv) 플레이어에게 제공된 다른 수익 잔액, 신용, 보상 등

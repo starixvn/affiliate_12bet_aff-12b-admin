@@ -1,0 +1,28 @@
+﻿@model bool
+@{
+    var promotionBannerUrl = Url.Content("~/www/build/styles/Images/promotion/existing/promotion.ko-KR");
+}
+<div class="banner-promotion">
+    <picture>
+        <source srcset="@(promotionBannerUrl + ".webp?v=178482v01")" type="image/webp" />
+        <source srcset="@(promotionBannerUrl + ".jpg?v=178482v01")" type="image/jpeg" />
+        <img class="img-item img-responsive" src="@(promotionBannerUrl + ".jpg?v=178482v01")" alt="@Lang.ExistingPromotion" />
+    </picture>
+</div>
+
+<div class="info-group">
+    @if (Model)
+    {
+        <p>
+            이번 독점 프로모션에 대한 자세한 내용은 "나를 위한 제안" 탭하여 확인하세요.
+        </p>
+    }
+    else
+    {
+        <p>
+            자세한 이벤트 내용을 보시려면 <a class="promotion-login-link" href="javascript:;">로그인</a>하시고 "나를 위한 제안"을 탭하세요.
+        </p>
+    }
+</div>
+
+<script src="@Url.RenderLink("~/www/build/js/pages/promotion/existing-promotion.js")"></script>

@@ -5,12 +5,10 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.HomeViewModel
 
-@using Fanex.Affiliate.User.Core.CoreService
 @using Fanex.Affiliate.User.Core.Constants
 
 @{
-    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(sessionService.CurrentLanguage);
+    var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(Model.Language);
     var activedBanner = Url.Content("~/www/build/styles/Images/home-banners/active/Home-Banner." + Model.Language);
     var bannerPriority1 = Url.Content("~/www/build/styles/Images/home-banners/priority-1/Home-Banner." + Model.Language);
     var bannerPriority2 = Url.Content("~/www/build/styles/Images/home-banners/priority-2/Home-Banner." + Model.Language);

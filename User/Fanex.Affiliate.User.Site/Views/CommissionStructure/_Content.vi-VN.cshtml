@@ -21,6 +21,14 @@
     <p class="text">
         12Bet cung cấp một mô hình chia sẻ doanh thu của tất cả sản phẩm. Đây là một mô hình tích lũy dựa trên số lượng các thành viên hoạt động mỗi tháng, mang đến doanh thu cược của từng loại sản phẩm.
     </p>
+    <br />
+    <p class="text text-bold">
+        Ưu đãi có thời hạn từ ngày 1/10/2022 - 31/12/2022, <a class="text-red" href="@Url.Content("~/Promotion")">Nhấp vào đây</a> để biết thêm chi tiết.
+    </p>
+    @{ Html.RenderPartial("~/Views/CommissionStructure/_NewRevenueShareTable.cshtml"); }
+    <p class="text text-bold">
+        Cơ cấu hoa hồng thông thường
+    </p>
     @{ Html.RenderPartial("~/Views/CommissionStructure/_RevenueShareTable.cshtml"); }
     <p class="text" style="margin-top: 15px;">
         Theo mục đích của bảng trên, “Doanh Thu Thuần" có nghĩa là tổng tiền cược của các thành viên trong tháng trừ : (i) phần tiền thanh toán các cược thắng, (ii) bất kỳ tiền thưởng khuyến mãi; (iii) Khoản bồi hoàn; và (iv) bất kỳ lợi nhuận  khác, các khoản tín dụng, tiền bồi thường hoặc tiền hoàn lại cho thành viên.

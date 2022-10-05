@@ -1,27 +1,38 @@
-﻿.banner-promotion {
-  display: block;
-  max-width: 600px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 90px 30px;
-  background-repeat: no-repeat;
-  text-align: left;
-  background-image: url("../Images/promotion/promotion.jpg");
-  background-size: cover;
-  color: white;
-  font-weight: bold;
-  background-position: center; }
-  .banner-promotion .text-content {
-    text-align: left; }
-  .banner-promotion .text-warning {
-    color: #FFF500; }
+﻿.promotion .menu {
+  display: flex;
+  white-space: nowrap;
+  overflow: auto; }
+  .promotion .menu-item {
+    display: block;
+    font-weight: 400;
+    text-decoration: none; }
+    .promotion .menu-item:focus {
+      outline: none; }
 
-.header-underline {
-  text-decoration: underline; }
+.promotion #promotion-menu .menu {
+  margin: 0 !important;
+  border-bottom: 1px solid #e04f29; }
+  .promotion #promotion-menu .menu li:not(:last-child) {
+    border-right: 1px solid #f9f9f9; }
+  .promotion #promotion-menu .menu-item {
+    color: #6E6E6E;
+    border-radius: 5px 5px 0px 0px;
+    padding: 0 20px; }
+    .promotion #promotion-menu .menu-item.active, .promotion #promotion-menu .menu-item:hover {
+      color: #FFF;
+      background: -ms-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+      background: -webkit-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+      background: -moz-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+      background: -o-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+      background: linear-gradient(180deg, #FA6A00 0%, #E15F00 100%); }
 
-.btn-join-affiliate {
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin: 10px 0px;
-  display: inline-block; }
+.promotion #promotion-content {
+  background: #ffffff;
+  padding: 1.2rem; }
+  .promotion #promotion-content .header-underline {
+    text-decoration: underline; }
+  .promotion #promotion-content .btn-join-affiliate {
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block; }

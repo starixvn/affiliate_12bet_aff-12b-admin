@@ -1,32 +1,59 @@
-﻿.banner-promotion {
-    display: block;
-    max-width: 600px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 90px 30px;
-    background-repeat: no-repeat;
-    text-align: left;
-    background-image: url("../../../build/styles/Images/promotion/promotion.jpg");
-    background-size: cover;
-    color: white;
-    font-weight: bold;
-    background-position: center;
+﻿.promotion {
+    .menu {
+        display: flex;
+        white-space: nowrap;
+        overflow: auto;
 
-    .text-content {
-        text-align: left;
+        &-item {
+            display: block;
+            font-weight: 400;
+            text-decoration: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
     }
 
-    .text-warning {
-        color: #FFF500;
+    #promotion-menu {
+        .menu {
+            margin: 0 !important;
+            border-bottom: 1px solid #e04f29;
+
+            li:not(:last-child) {
+                border-right: 1px solid #f9f9f9;
+            }
+
+            &-item {
+                color: #6E6E6E;
+                border-radius: 5px 5px 0px 0px;
+                padding: 0 20px;
+
+                &.active, &:hover {
+                    color: #FFF;
+                    background: -ms-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+                    background: -webkit-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+                    background: -moz-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+                    background: -o-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+                    background: linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
+                }
+            }
+        }
     }
-}
-.header-underline{
-    text-decoration: underline;
-}
-.btn-join-affiliate {
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 10px 0px;
-    display: inline-block;
+
+    #promotion-content {
+        background: #ffffff;
+        padding: 1.2rem;
+
+        .header-underline {
+            text-decoration: underline;
+        }
+
+        .btn-join-affiliate {
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    }
 }

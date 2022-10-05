@@ -2260,4 +2260,16 @@
   <data name="ThankYou" xml:space="preserve">
     <value>非常感谢您提供的宝贵意见。</value>
   </data>
+  <data name="OneUsdAndAbove" xml:space="preserve">
+    <value>$1及以上</value>
+  </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>新注册合作伙伴优惠活动</value>
+  </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>现有合作伙伴优惠活动</value>
+  </data>
+  <data name="RevenueShareTitle" xml:space="preserve">
+    <value>佣金分成</value>
+  </data>
 </root>

@@ -1091,7 +1091,7 @@
     <value>เนเธอแลนด์</value>
   </data>
   <data name="NetWinLoss" xml:space="preserve">
-    <value>ยอดเล่นสียสุทธิ/เดือน (ดอลล่าร์ฯ)</value>
+    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลล่าร์ฯ)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>คาเลโดเนีย ใหม่</value>
@@ -2028,7 +2028,7 @@
     <value>ยูสเซอร์เนมรับค่าคอมมิชชั่น</value>
   </data>
   <data name="QualifyingMembers" xml:space="preserve">
-    <value>มากกว่าหรือเท่ากับ&lt;br /&gt;5</value>
+    <value>≥5</value>
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>ประเภทการเดิมพัน</value>
@@ -2255,5 +2255,17 @@
   </data>
   <data name="ThankYou" xml:space="preserve">
     <value>ขอขอบคุณสำหรับทุกคำแนะนำของคุณ</value>
+  </data>
+  <data name="OneUsdAndAbove" xml:space="preserve">
+    <value>$1 &amp; ขึ้นไป</value>
+  </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>โปรโมชั่นพันธมิตรเก่า</value>
+  </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>โปรโมชั่นพันธมิตรใหม่</value>
+  </data>
+  <data name="RevenueShareTitle" xml:space="preserve">
+    <value>ส่วนแบ่งรายได้</value>
   </data>
 </root>
