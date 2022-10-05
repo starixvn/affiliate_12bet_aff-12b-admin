@@ -10,11 +10,13 @@
       outline: none; }
 
 .promotion #promotion-menu .menu {
-  margin: 0 !important; }
+  margin: 0 !important;
+  border-bottom: 1px solid #e04f29; }
   .promotion #promotion-menu .menu li:not(:last-child) {
     border-right: 1px solid #f9f9f9; }
   .promotion #promotion-menu .menu-item {
     color: #6E6E6E;
+    border-radius: 5px 5px 0px 0px;
     padding: 0 20px; }
     .promotion #promotion-menu .menu-item.active, .promotion #promotion-menu .menu-item:hover {
       color: #FFF;
@@ -24,25 +26,13 @@
       background: -o-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
       background: linear-gradient(180deg, #FA6A00 0%, #E15F00 100%); }
 
-.promotion .bg-orange {
-  background: #E15F00;
-  color: #FFF;
-  line-height: 2.5rem;
-  white-space: nowrap;
-  overflow: auto; }
-  .promotion .bg-orange .text {
-    padding-left: 10px;
-    padding-right: 50px; }
-
-.banner-promotion .img-item {
-  margin: auto; }
-
-.header-underline {
-  text-decoration: underline; }
-
-.btn-join-affiliate {
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin: 10px 0px;
-  display: inline-block; }
+.promotion #promotion-content {
+  background: #ffffff;
+  padding: 1.2rem; }
+  .promotion #promotion-content .header-underline {
+    text-decoration: underline; }
+  .promotion #promotion-content .btn-join-affiliate {
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block; }

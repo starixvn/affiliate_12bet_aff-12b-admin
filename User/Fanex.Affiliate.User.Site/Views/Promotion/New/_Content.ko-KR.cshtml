@@ -11,7 +11,7 @@
 </div>
 
 <div class="info-group">
-    <p class="text-bold">50% 수수료 받는 간단한 3단계</p>
+    <p>50% 수수료 받는 간단한 3단계</p>
     <ol>
         <li class="text">지금 "제휴사 등록"을 누르시고 12BET 제휴 프로그램에 가입하세요</li>
         <li class="text">가능한 한 많은 플레이어를 초대하고 아래 표와 같이 목표 요구 사항을 달성하세요.</li>
@@ -22,15 +22,15 @@
 @{ Html.RenderPartial("~/Views/CommissionStructure/_NewRevenueShareTable.cshtml"); }
 @if (!Model)
 {
-    <div class="text-center"><a class='btn-danger btn-join-affiliate' href='@Url.Content("~/Signup")'>지금 가입하세요!</a></div>
+    <a class='btn-danger btn-join-affiliate' href='@Url.Content("~/Signup")'>지금 가입하세요!</a>
 }
 <div class="info-group">
     <p class="text">
-        문의사항이 있으신가요? 지금 12BET 제휴팀에 <a class="text-red" href="@Url.Content("~/ContactUs")">문의</a>하세요!
+        문의사항이 있으신가요? 지금 12BET 제휴팀에 <a href="@Url.Content("~/ContactUs")">문의</a>하세요!
     </p>
 </div>
 
-<h2 class="header-underline text-red">이용약관</h2>
+<h2 class="header-underline text-danger">이용약관</h2>
 <div class="info-group">
     <p class="text">
         <ol>
@@ -40,8 +40,8 @@
             <li>제휴자는 위의 표에 표시된 요구 사항을 충족할 수 있는 경우 50% 커미션을 받을 수 있습니다.</li>
             <li>신규 제휴자는 2022년 10월 1일~12월 31일까지 3개월간 최대 50% 수수료를 받을 수 있습니다.</li>
             <li>50% 수수료는 매월 8일~15일 사이에 지급됩니다.</li>
-            <li>이벤트 기간 후 제휴사는 <a class="text-red" href="@Url.Content("~/CommissionStructure")">표준 수수료 구조를</a> 받을 수 있습니다.</li>
-            <li>12BET은 모든 계열사 또는 개별,12BET 제휴사에 대하여 <a class="text-red" href="@Url.Content("~/TermAndCondition")">12BET 표준 이용약관 및 이용규정</a>의 적용을 받으며 이벤트를 취소할 수 있는 권리를 보유합니다.</li>
+            <li>이벤트 기간 후 제휴사는 <a href="@Url.Content("~/CommissionStructure")">표준 수수료 구조를</a> 받을 수 있습니다.</li>
+            <li>12BET은 모든 계열사 또는 개별,12BET 제휴사에 대하여 <a href="@Url.Content("~/TermAndCondition")">12BET 표준 이용약관 및 이용규정</a>의 적용을 받으며 이벤트를 취소할 수 있는 권리를 보유합니다.</li>
         </ol>
     </p>
 </div>

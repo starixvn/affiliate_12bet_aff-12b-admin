@@ -11,7 +11,7 @@
 </div>
 
 <div class="info-group">
-    <p class="text-bold">NHẬN 50% HOA HỒNG CHỈ VỚI 3 BƯỚC:</p>
+    <p>NHẬN 50% HOA HỒNG CHỈ VỚI 3 BƯỚC:</p>
     <ol>
         <li class="text">Chỉ cần nhấp vào nút "TRỞ THÀNH ĐẠI LÝ" và tận hưởng Chương trình đại lý 12BET.</li>
         <li class="text">Thúc đẩy thành viên của bạn tham gia chơi và đạt yêu cầu nhiều nhất có thể như bảng dưới. </li>
@@ -22,15 +22,15 @@
 @{ Html.RenderPartial("~/Views/CommissionStructure/_NewRevenueShareTable.cshtml"); }
 @if (!Model)
 {
-    <div class="text-center"><a class='btn-danger btn-join-affiliate' href='@Url.Content("~/Signup")'>TRỞ THÀNH ĐẠI LÝ!</a></div>
+    <a class='btn-danger btn-join-affiliate' href='@Url.Content("~/Signup")'>TRỞ THÀNH ĐẠI LÝ!</a>
 }
 <div class="info-group">
     <p class="text">
-        Bạn có câu hỏi? Vui lòng <a class="text-red" href="@Url.Content("~/ContactUs")">liên hệ</a> đội ngũ chúng tôi!
+        Bạn có câu hỏi? Vui lòng <a href="@Url.Content("~/ContactUs")">liên hệ</a> đội ngũ chúng tôi!
     </p>
 </div>
 
-<h2 class="header-underline text-red">ĐIỀU KHOẢN & ĐIỀU KIỆN</h2>
+<h2 class="header-underline text-danger">ĐIỀU KHOẢN & ĐIỀU KIỆN</h2>
 <div class="info-group">
     <p class="text">
         <ol>
@@ -40,8 +40,8 @@
             <li>Các Đại lý sẽ đủ điều kiện nhận 50% hoa hồng theo tiêu chí yêu cầu được chỉ định trong bảng trên.</li>
             <li>Các Đại lý mới có thể nhận được 50% hoa hồng 3 lần trong khoảng thời gian từ 1/10 - 31/12/2022.</li>
             <li>Toàn bộ tiền hoa hồng sẽ được cập nhật trong khoảng từ ngày 08 - 15 của tháng tiếp theo.</li>
-            <li>Sau thời gian khuyến mãi, quý đại lý sẽ được hưởng <a class="text-red" href="@Url.Content("~/CommissionStructure")">cơ cấu hoa hồng tiêu chuẩn.</a></li>
-            <li>12BET có quyền hủy chương trình khuyến mãi này bất kỳ lúc nào, đối với tất cả các đại lý hoặc đơn vị liên kết riêng lẻ và nó phải tuân theo <a href="@Url.Content("~/TermAndCondition")" class="text-red">Điều khoản và Điều kiện dành cho Đại lý của 12BET.</a></li>
+            <li>Sau thời gian khuyến mãi, quý đại lý sẽ được hưởng <a href="@Url.Content("~/CommissionStructure")">cơ cấu hoa hồng tiêu chuẩn.</a></li>
+            <li>12BET có quyền hủy chương trình khuyến mãi này bất kỳ lúc nào, đối với tất cả các đại lý hoặc đơn vị liên kết riêng lẻ và nó phải tuân theo <a href="@Url.Content("~/TermAndCondition")">Điều khoản và Điều kiện dành cho Đại lý của 12BET.</a></li>
         </ol>
     </p>
 </div>

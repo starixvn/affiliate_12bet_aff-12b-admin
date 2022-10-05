@@ -2,6 +2,7 @@
 {
     using CoreService;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.Filters;
     using System.Web.Mvc;
 
@@ -16,7 +17,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            return View("~/Views/Promotion/Index.cshtml");
+            return View("~/Views/Promotion/Index.cshtml", model: SystemLanguage.GetShortedCodeForTracking(SessionService.CurrentLanguage));
         }
 
         [HttpPost]

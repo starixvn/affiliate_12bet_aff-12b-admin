@@ -2,27 +2,28 @@
     ViewBag.Title = Lang.Promotion;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
-
+@model string
 @section styles{
     @Html.InlineStyles("~/www/build/styles/css/promotion.css")
 }
 
 <div class="promotion">
-    <div class="tab-menu" id="promotion-menu">
-        <ul class="menu list-unstyled">
-            <li><a href="javascript:;" data-name="New" class="menu-item promotion-menu-item" id="menuNew">@Lang.NewPromotion</a></li>
-            <li><a href="javascript:;" data-name="Existing" class="menu-item promotion-menu-item" id="menuExisting">@Lang.ExistingPromotion</a></li>
-        </ul>
-    </div>
     <div class="content">
         <div class="page-title">
-            @*<span class="text">@Lang.Promotion</span>*@
+            <span class="text">@Lang.Promotion</span>
+        </div>
+        <div class="tab-menu" id="promotion-menu">
+            <ul class="menu list-unstyled">
+                <li><a href="javascript:;" data-name="New" class="menu-item promotion-menu-item" id="menuNew">@Lang.NewPromotion</a></li>
+                <li><a href="javascript:;" data-name="Existing" class="menu-item promotion-menu-item" id="menuExisting">@Lang.ExistingPromotion</a></li>
+            </ul>
         </div>
         <div id="promotion-content"></div>
 
         @RazorHelper.RenderMovingTopButton()
     </div>
 </div>
+<input type="hidden" id="shortedLangCode" value="@Model" />
 
 @section scripts{
     @Html.InlineScripts("~/www/build/js/pages/promotion/promotion.js")

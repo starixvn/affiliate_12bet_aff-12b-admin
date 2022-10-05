@@ -1,6 +1,4 @@
-﻿@import "../scss/abstracts/variables";
-
-.promotion {
+﻿.promotion {
     .menu {
         display: flex;
         white-space: nowrap;
@@ -18,10 +16,9 @@
     }
 
     #promotion-menu {
-        //background: $bg-main-color;
-
         .menu {
             margin: 0 !important;
+            border-bottom: 1px solid #e04f29;
 
             li:not(:last-child) {
                 border-right: 1px solid #f9f9f9;
@@ -29,7 +26,7 @@
 
             &-item {
                 color: #6E6E6E;
-                //border-radius: 5px 5px 0px 0px;
+                border-radius: 5px 5px 0px 0px;
                 padding: 0 20px;
 
                 &.active, &:hover {
@@ -44,32 +41,19 @@
         }
     }
 
-    .bg-orange {
-        background: #E15F00;
-        color: #FFF;
-        line-height: 2.5rem;
-        white-space: nowrap;
-        overflow: auto;
+    #promotion-content {
+        background: #ffffff;
+        padding: 1.2rem;
 
-        .text {
-            padding-left: 10px;
-            padding-right: 50px;
+        .header-underline {
+            text-decoration: underline;
+        }
+
+        .btn-join-affiliate {
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
         }
     }
-}
-
-.banner-promotion {
-    .img-item {
-        margin: auto;
-    }
-}
-.header-underline{
-    text-decoration: underline;
-}
-.btn-join-affiliate {
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 10px 0px;
-    display: inline-block;
 }

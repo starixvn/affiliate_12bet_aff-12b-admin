@@ -32,7 +32,7 @@
             //});
             if (window.gtag) {
                 var shortedLangCode = $('#shortedLangCode').val();
-                var actionName = 'PreAFFSignUpNewPage' + shortedLangCode.toUpperCase();
+                var actionName = 'PreAFFSignUpNewPage' + shortedLangCode;
 
                 window.gtag('event', actionName, {
                     'event_category': 'AFFiliatePage',
