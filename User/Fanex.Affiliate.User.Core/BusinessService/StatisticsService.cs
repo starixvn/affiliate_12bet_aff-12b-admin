@@ -6,6 +6,7 @@ using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -24,17 +25,28 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _languageService = languageService;
         }
 
-        public IEnumerable<SelectListItem> GetCountryList()
+        public IEnumerable<SelectListItem> GetCountryList(bool isInternal)
         {
-            var countryList = _statisticsRepository.GetCountryList();
+            var countryList = _statisticsRepository.GetCountryList(isInternal);
 
             return StatisticsHelper.GetCountryList(countryList);
         }
 
+        public string GetCountryCodes(bool isInternal)
+        {
+            var countryList = _statisticsRepository.GetCountryList(isInternal);
+
+            return string.Join(",", countryList.Select(c => c.CountryCode));
+        }
+
         public IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam)
         {
-            var languageList = _languageService.GetSystemLanguages();
-            landingPageStatisticsParam.LanguageCodes = GetShortedCode(languageList, landingPageStatisticsParam.LanguageCode);
+            if (!string.Equals(Statistics.ReportByCountry, landingPageStatisticsParam.ReportBy, StringComparison.InvariantCultureIgnoreCase))
+            {
+                var languageList = _languageService.GetSystemLanguages();
+                landingPageStatisticsParam.LanguageCodes = GetShortedCode(languageList, landingPageStatisticsParam.LanguageCode);
+                landingPageStatisticsParam.CountryCodes = string.Empty;
+            }
 
             return _statisticsRepository.GetLandingPageStatistics(landingPageStatisticsParam);
         }

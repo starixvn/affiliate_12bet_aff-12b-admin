@@ -4369,6 +4369,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report By.
+        /// </summary>
+        public static string ReportBy {
+            get {
+                return ResourceManager.GetString("ReportBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Request Amount.
         /// </summary>
         public static string RequestAmount {

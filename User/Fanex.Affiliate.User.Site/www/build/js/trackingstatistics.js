@@ -4,7 +4,6 @@ var TrackingStatistics = (function ($) {
     var _me = {
         initialize: function initialize() {
             _me.initEvent();
-            document.addEventListener('click', _me.handleDocumentClick);
         },
 
         initEvent: function initEvent() {
@@ -12,7 +11,8 @@ var TrackingStatistics = (function ($) {
                 $("#statisticsDetailTable").html('');
 
                 var params = {
-                    trackingCode: $('#TrackingCode').val()
+                    trackingCode: $('#TrackingCode').val(),
+                    countryCodes: countrySelector.getSelectedValues()
                 };
                 _me.getMainView(params);
             });
@@ -24,49 +24,8 @@ var TrackingStatistics = (function ($) {
                 };
                 _me.getDetailView(params);
             });
-
-            $('#country-multiple-select-label').on('click', function () {
-                $('#country-multiple-select-options-container').toggle();
-            });
-
-            $('#country-option-all').on('change', function (event) {
-                $(".country-option-checkbox").prop("checked", $(this).is(":checked"));
-            });
-
-            $('.country-option-checkbox').on('change', function (event) {
-                if (!$(this).is(":checked")) {
-                    $("#country-option-all").prop("checked", false);
-                } else {
-                    var isCheckAll = $(".country-option-checkbox:checked").length == $(".country-option-checkbox").length;
-
-                    $("#country-option-all").prop("checked", isCheckAll);
-                }
-            });
-
-            //$('#country').on('click', function (event) {
-            //    console.log(event);
-
-            //    if ($('.multiple-select-options-container').is(":hidden")) {
-            //        $('.multiple-select-options-container').show();
-            //    } else {
-            //        $('.multiple-select-options-container').hide();
-            //    }
-
-            //    //_selectedDomain = $(this).data('domain');
-            //    //_pageIndex = 0;
-            //    //var params = _me.getDetailParam();
-
-            //    //$('#statisticsDetailPager').show();
-            //    //_me.getDetailView(params, initPager);
-            //});
         },
 
-        handleDocumentClick: function handleDocumentClick(event) {
-            console.log(event);
-            //if ($(`#country`).) {
-            //    $(`#country-multiple-select-options-container`).toggle();
-            //}
-        },
         getMainView: function getMainView(params) {
             $.ajax({
                 type: "POST",

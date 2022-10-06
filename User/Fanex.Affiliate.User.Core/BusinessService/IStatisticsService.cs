@@ -7,7 +7,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public interface IStatisticsService
     {
-        IEnumerable<SelectListItem> GetCountryList();
+        IEnumerable<SelectListItem> GetCountryList(bool isInternal);
+
+        string GetCountryCodes(bool isInternal);
 
         IEnumerable<string> GetTrackingCode(int affId, bool isInternal);
 

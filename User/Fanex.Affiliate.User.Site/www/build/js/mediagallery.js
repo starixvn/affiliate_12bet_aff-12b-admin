@@ -231,7 +231,7 @@
             $.error('Method ' + methodOrOptions + ' does not exist on jQuery.pager');
         }
     };
-})(jQuery)
+})(jQuery);
 var MediaGallery = (function ($) {
     var CATEGORY_CASINO = "casino";
     var CATEGORY_SPORTSBOOK = "sportsbook";

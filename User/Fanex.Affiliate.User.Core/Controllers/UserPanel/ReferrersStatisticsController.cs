@@ -26,19 +26,22 @@
         public ActionResult Index()
         {
             var now = DateTime.Now;
+            var isInternal = SessionService.IsInternal;
+
             var referrerStatisticsParam = new ReferrerStatisticsParam
             {
                 AffId = SessionService.UserSession.AffId,
-                IsInternal = SessionService.IsInternal,
+                IsInternal = isInternal,
                 FromDate = new DateTime(now.Year, now.Month, 1),
                 ToDate = now,
+                CountryCodes = _statisticsService.GetCountryCodes(isInternal),
                 DeviceType = (byte)DeviceType.PCDevice
             };
 
             var viewModel = new ReferrerStatisticsViewModel
             {
                 DataList = _statisticsService.GetReferrerStatistics(referrerStatisticsParam),
-                CountryList = _statisticsService.GetCountryList(),
+                CountryList = _statisticsService.GetCountryList(isInternal),
                 FromDate = referrerStatisticsParam.FromDate,
                 ToDate = referrerStatisticsParam.ToDate
             };

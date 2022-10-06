@@ -231,7 +231,7 @@
             $.error('Method ' + methodOrOptions + ' does not exist on jQuery.pager');
         }
     };
-})(jQuery)
+})(jQuery);
 var AffiliateLink = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;

@@ -98,7 +98,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var db = Builder.Build(uSpkey, dbMode);
             db.Query<ReferrerStatistics>(param).Returns(new List<ReferrerStatistics>
             {
-                new ReferrerStatistics { DomainReferrer = "", Fdm = 1, SignUps = 1, TotalClick = 1, UniqueClick = 1}
+                new ReferrerStatistics { SiteUrls = "", Fdm = 1, SignUps = 1, TotalClick = 1, UniqueClick = 1}
             });
             var repo = CreateRepo();
 
@@ -128,6 +128,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
                 PageIndex = 1,
                 PageSize = 1,
                 SportCode = "",
+                CountryCode = "",
                 ToDate = DateTime.Now,
                 TotalPages = 1,
             };
@@ -163,7 +164,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var db = Builder.Build(uSpkey, dbMode);
             db.Query<LandingPageStatistics>(param).Returns(new List<LandingPageStatistics>
             {
-                new LandingPageStatistics { Fdm = 1, LanguageCode = "", LanguageName = "", SignUps = 1, SportCode = "", TotalClick = 1, UniqueClick = 1 }
+                new LandingPageStatistics { Fdm = 1, LanguageCode = "", Language = "", SignUps = 1, Page = "", TotalClick = 1, UniqueClick = 1 }
             });
             var repo = CreateRepo();
 

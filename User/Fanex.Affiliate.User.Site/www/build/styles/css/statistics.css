@@ -341,12 +341,13 @@ http://nicolasgallagher.com/micro-clearfix-hack/
   padding: 3px;
   text-indent: 4px;
   user-select: none; }
+  .multiple-select-item input[type=checkbox] {
+    cursor: pointer; }
   .multiple-select-item input[type=checkbox] + label {
+    margin-bottom: 0;
     cursor: pointer;
     width: calc(100% - 15px);
     font-weight: normal; }
-  .multiple-select-item label {
-    margin-bottom: 0; }
 
 /*.multiple-select {
     &-options-container {

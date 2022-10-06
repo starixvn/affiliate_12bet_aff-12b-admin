@@ -2,10 +2,14 @@
 {
     public class LandingPageStatistics : StatisticsBase
     {
-        public string SportCode { get; set; }
+        public string Page { get; set; }
 
         public string LanguageCode { get; set; }
 
-        public string LanguageName { get; set; }
+        public string Language { get; set; }
+
+        public string CountryCode { get; set; }
+
+        public string Country { get; set; }
     }
 }

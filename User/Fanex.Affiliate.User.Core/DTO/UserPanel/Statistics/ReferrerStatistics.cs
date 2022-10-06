@@ -2,6 +2,10 @@
 {
     public class ReferrerStatistics : StatisticsBase
     {
-        public string DomainReferrer { get; set; }
+        public string SiteUrls { get; set; }
+
+        public string Country { get; set; }
+
+        public string CountryCode { get; set; }
     }
 }

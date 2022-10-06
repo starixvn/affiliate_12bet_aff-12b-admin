@@ -1477,12 +1477,89 @@
             $.error('Method ' + methodOrOptions + ' does not exist on jQuery.pager');
         }
     };
-})(jQuery)
+})(jQuery);
+(function ($) {
+    let _id = null;
+    let _class = null;
+
+    var _me = {
+        initEvent: function (idName) {
+            _id = `#${idName}-multiple-select`;
+            _class = `.${idName}-multiple-select`;
+
+            $(`${_id}-label`).on('click', function () {
+                $(`${_id}-options-container`).toggle();
+
+                document.addEventListener('click', _me.handleDocumentClick);
+            });
+
+            $(`${_id}-option-all`).on('change', function (event) {
+                $(`${_class}-option-checkbox`).prop("checked", $(this).is(":checked"));
+
+                _me.handleUpdateLabel();
+            });
+
+            $(`${_class}-option-checkbox`).on('change', function (event) {
+                if (!$(this).is(":checked")) {
+                    $(`${_id}-option-all`).prop("checked", false);
+                } else {
+                    let isCheckAll = $(`${_class}-option-checkbox:checked`).length == $(`${_class}-option-checkbox`).length
+
+                    $(`${_id}-option-all`).prop("checked", isCheckAll);
+                }
+
+                _me.handleUpdateLabel();
+            });
+        },
+        handleDocumentClick: function (event) {
+            if (!$(`${_id}`).length) {
+                _me.removeEventListener();
+            } else {
+                if (!$(`${_id}`).find(event.target).length) {
+                    _me.removeEventListener();
+                    $(`${_id}-options-container`).toggle();
+                }
+            }
+        },
+        removeEventListener: function () {
+            document.removeEventListener('click', _me.handleDocumentClick)
+        },
+        handleUpdateLabel: function () {
+            var selectedItems = $(`${_class}-option-checkbox:checked`).length;
+
+            if (!selectedItems) {
+                $(`${_id}`).addClass("multiple-select-wrapper is-invalid");
+                $(`${_id}-text-display`).html("Please Select");
+            } else {
+                $(`${_id}`).removeClass("multiple-select-wrapper is-invalid");
+                $(`${_id}-text-display`).html(`${selectedItems} selected`);
+            }
+        },
+        getSelectedValues: function () {
+            return $(`${_class}-option-checkbox`).map((index, el) => el.value).get().join(',');
+        }
+    };
+
+    $.fn.multipleSelector = function () {
+        _me.initEvent(this.prop('id'));
+
+        return {
+            getSelectedValues: _me.getSelectedValues
+        }
+    };
+})(jQuery);
 var LandingPageStatistics = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
     var _selectedPage;
-    var _selectedLanguage;
+    var _isReportByCountry;
+    var _selectedReportByValue;
+    const ReportByCountry = "Country";
+    let countrySelector = null;
+
+    function initCountrySelector() {
+        countrySelector = $('#country').multipleSelector();
+    }
 
     function initPager() {
         $("#statisticsDetailPager").pager({
@@ -1522,6 +1599,7 @@ var LandingPageStatistics = (function ($) {
         initialize: function () {
             initDatePicker('FromDate', 'fromPicker');
             initDatePicker('ToDate', 'toPicker');
+            initCountrySelector();
             _me.initEvent();
         },
 
@@ -1534,7 +1612,9 @@ var LandingPageStatistics = (function ($) {
                     fromDate: $('#FromDate').val(),
                     toDate: $('#ToDate').val(),
                     deviceType: $('#DeviceType').val(),
+                    reportBy: $('#ReportBy').val(),
                     sportCode: $('#SportCode').val(),
+                    countryCodes: countrySelector.getSelectedValues(),
                     languageCode: $('#Language').val()
                 };
                 _me.getMainView(params);
@@ -1542,12 +1622,23 @@ var LandingPageStatistics = (function ($) {
 
             $('#statisticsTable').on('click', '.statisticsItem', function () {
                 _selectedPage = $(this).data('page');
-                _selectedLanguage = $(this).data('language');
+                _isReportByCountry = ($(this).data('isreportbycountry')).toLowerCase() == 'true';
+                _selectedReportByValue = $(this).data('reportbyvalue');
                 _pageIndex = 0;
                 var params = _me.getDetailParam();
 
                 $('#statisticsDetailPager').show();
                 _me.getDetailView(params, initPager);
+            });
+
+            $('#ReportBy').on('change', function () {
+                if ($(this).val() == ReportByCountry) {
+                    $('.country-filter').show();
+                    $('.language-filter').hide();
+                } else {
+                    $('.country-filter').hide();
+                    $('.language-filter').show();
+                }
             });
         },
 
@@ -1572,9 +1663,12 @@ var LandingPageStatistics = (function ($) {
         },
 
         getDetailView: function (params, onSuccess) {
-            if (!params.sportCode || !params.languageCode) {
+            if (!params.sportCode || !(params.languageCode || params.countryCode)) {
                 return;
             }
+
+            console.log(params);
+            console.log(!params.sportCode || !(params.languageCode || params.countryCode));
 
             $.ajax({
                 type: "POST",
@@ -1600,7 +1694,8 @@ var LandingPageStatistics = (function ($) {
         getDetailParam: function () {
             return {
                 sportCode: _selectedPage,
-                languageCode: _selectedLanguage,
+                countryCode: _isReportByCountry ? _selectedReportByValue : "",
+                languageCode: _isReportByCountry ? "" : _selectedReportByValue,
                 fromDate: $('#FromDate').val(),
                 toDate: $('#ToDate').val(),
                 deviceType: $('#DeviceType').val(),

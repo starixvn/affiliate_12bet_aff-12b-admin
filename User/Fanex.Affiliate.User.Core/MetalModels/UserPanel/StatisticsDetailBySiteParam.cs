@@ -4,6 +4,8 @@
     {
         public string Domain { get; set; }
 
+        public string CountryCode { get; set; }
+
         public string SportCode { get; set; }
 
         public string LanguageCode { get; set; }

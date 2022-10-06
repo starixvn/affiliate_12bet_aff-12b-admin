@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public interface IStatisticsRepository
     {
-        IEnumerable<Country> GetCountryList();
+        IEnumerable<Country> GetCountryList(bool isInternal);
 
         IEnumerable<string> GetTrackingCode(int affId, bool isInternal);
 

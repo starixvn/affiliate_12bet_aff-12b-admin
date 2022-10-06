@@ -85,7 +85,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                     {
                         dataList.Add(new ReferrerStatistics
                         {
-                            DomainReferrer = Convert.ToString(reader["UrlReferrer"]),
+                            SiteUrls = Convert.ToString(reader["UrlReferrer"]),
                             TotalClick = reader[TotalClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[TotalClickColumn]),
                             UniqueClick = reader[UniqueClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[UniqueClickColumn]),
                             SignUps = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),
@@ -109,28 +109,15 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public IEnumerable<Country> GetCountryList()
+        public IEnumerable<Country> GetCountryList(bool isInternal)
         {
-            //const string uSpKey = "";
+            const string uSpKey = "Aff_Country_Sel";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            //using (var db = _builder.Build(uSpKey))
-            //{
-            //    return db.Query<Country>();
-            //}
-
-            return new List<Country>
+            using (var db = _builder.Build(uSpKey, dbMode))
             {
-                new Country { CountryId = "cn", CountryName = "China"},
-                new Country { CountryId = "vn", CountryName = "Viet Nam"},
-                new Country { CountryId = "cn1", CountryName = "China1"},
-                new Country { CountryId = "vn1", CountryName = "Viet Nam1"},
-                new Country { CountryId = "cn2", CountryName = "China2"},
-                new Country { CountryId = "vn2", CountryName = "Viet Nam2"},
-                new Country { CountryId = "cn3", CountryName = "China3"},
-                new Country { CountryId = "vn3", CountryName = "Viet Nam3"},
-                new Country { CountryId = "cn4", CountryName = "China4"},
-                new Country { CountryId = "vn4", CountryName = "Viet Nam4"}
-            };
+                return db.Query<Country>();
+            }
         }
     }
 }

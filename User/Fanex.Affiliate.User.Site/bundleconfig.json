@@ -63,6 +63,7 @@
     "inputFiles": [
       "www/source/js/lib/pikaday.js",
       "www/source/js/components/pager.js",
+      "www/source/js/components/multiple-select.js",
       "www/source/js/pages/statistics/referrerstatistics.js"
     ]
   },
@@ -71,6 +72,7 @@
     "inputFiles": [
       "www/source/js/lib/pikaday.js",
       "www/source/js/components/pager.js",
+      "www/source/js/components/multiple-select.js",
       "www/source/js/pages/statistics/landingpagestatistics.js"
     ]
   },

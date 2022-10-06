@@ -2116,6 +2116,9 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="CopyBannerCode" xml:space="preserve">
     <value>Copy Banner Code</value>
   </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>Report By</value>
+  </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>This promotion is Expired. Please stay tune for new exciting promotion.</value>
   </data>

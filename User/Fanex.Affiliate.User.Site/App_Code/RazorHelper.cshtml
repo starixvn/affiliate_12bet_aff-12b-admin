@@ -37,7 +37,7 @@
     </div>
 }
 
-@helper RenderMultipleSelect(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true, System.Web.Mvc.SelectListItem itemDefaultOption = null)
+@helper RenderMultipleSelect(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true, System.Web.Mvc.SelectListItem itemDefaultOption = null, string className = null)
 {
     var displayText = "Please select";
     var selectedValues = dataList.Where(d => d.Selected).Select(d => d.Value);
@@ -48,11 +48,11 @@
     {
         displayText = $"{selectedItemCount} selected";
     }
-    <div class="form-group">
+    <div class="form-group @className" id="@($"{id}")">
         <label>@label</label>
-        <div id="@id" class="multiple-select-container @(hasSelectedItem ? "" : "multiple-select-wrapper is-invalid")">
+        <div id="@($"{id}-multiple-select")" class="multiple-select-container @(hasSelectedItem ? "" : "multiple-select-wrapper is-invalid")">
             <button id="@($"{id}-multiple-select-label")" type="button" class="form-control multiple-select-default multiple-select-label">
-                <span class="text-display" title="@displayText">@displayText</span>
+                <span id="@($"{id}-multiple-select-text-display")" class="text-display">@displayText</span>
                 <b class="caret"></b>
             </button>
             <div id="@($"{id}-multiple-select-options-container")" class="multiple-select-default multiple-select-options-container" style="display:none;">
@@ -79,7 +79,7 @@
                 var checkedAll = checkedItemCount == dataList.Count();
 
                 <li class="multiple-select-item">
-                    <input id="@(id)-option-all"
+                    <input id="@(id)-multiple-select-option-all"
                            type="checkbox"
                            class="option-checkbox"
                            checked="@checkedAll" />
@@ -91,7 +91,7 @@
             else
             {
                 <li class="multiple-select-item">
-                    <input id="@(id)-option-all"
+                    <input id="@(id)-multiple-select-option-all"
                            type="checkbox"
                            class="option-checkbox"
                            checked="@itemDefaultOption.Selected" />
@@ -109,7 +109,8 @@
     <li class="multiple-select-item">
         <input id="@($"{id}-{item.Value}")"
                type="checkbox"
-               class="option-checkbox @($"{id}-option-checkbox")"
+               class="option-checkbox @($"{id}-multiple-select-option-checkbox")"
+               value="@item.Value"
                checked="@item.Selected" />
         <label class="option-label" for="@($"{id}-{item.Value}")">
             @item.Text

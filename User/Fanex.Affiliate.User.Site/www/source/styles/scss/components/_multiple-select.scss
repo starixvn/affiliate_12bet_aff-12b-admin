@@ -79,14 +79,15 @@ $indexNormal: 1;
         text-indent: 4px;
         user-select: none;
 
+        input[type=checkbox] {
+            cursor: pointer;
+        }
+
         input[type=checkbox] + label {
+            margin-bottom: 0;
             cursor: pointer;
             width: calc(100% - 15px);
             font-weight: normal;
-        }
-
-        label {
-            margin-bottom: 0;
         }
     }
 }

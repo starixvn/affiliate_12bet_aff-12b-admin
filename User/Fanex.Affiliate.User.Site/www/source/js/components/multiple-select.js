@@ -1,65 +1,70 @@
-﻿var MultipleSelect = (function ($) {
+﻿(function ($) {
     let _id = null;
-    let _dataSource = null;
+    let _class = null;
 
     var _me = {
-        initialize: function (id, dataSource) {
-            _id = id;
-            _dataSource = dataSource;
-        },
-        initEvent: function () {
-            $(`${_id}-multiple-select-label`).on('click', function () {
-                $(`${_id}-multiple-select-options-container`).toggle();
+        initEvent: function (idName) {
+            _id = `#${idName}-multiple-select`;
+            _class = `.${idName}-multiple-select`;
+
+            $(`${_id}-label`).on('click', function () {
+                $(`${_id}-options-container`).toggle();
+
+                document.addEventListener('click', _me.handleDocumentClick);
             });
 
             $(`${_id}-option-all`).on('change', function (event) {
-                $(`${_id}-option-checkbox`).prop("checked", $(this).is(":checked"));
+                $(`${_class}-option-checkbox`).prop("checked", $(this).is(":checked"));
+
+                _me.handleUpdateLabel();
             });
 
-            $(`${_id}-option-checkbox`).on('change', function (event) {
+            $(`${_class}-option-checkbox`).on('change', function (event) {
                 if (!$(this).is(":checked")) {
                     $(`${_id}-option-all`).prop("checked", false);
                 } else {
-                    let isCheckAll = $(`${_id}-option-checkbox:checked`).length == $(`${_id}-option-checkbox`).length
+                    let isCheckAll = $(`${_class}-option-checkbox:checked`).length == $(`${_class}-option-checkbox`).length
 
                     $(`${_id}-option-all`).prop("checked", isCheckAll);
                 }
+
+                _me.handleUpdateLabel();
             });
         },
-        resolveRelativeUrl: function (url) {
-            return _rootUrl + url;
+        handleDocumentClick: function (event) {
+            if (!$(`${_id}`).length) {
+                _me.removeEventListener();
+            } else {
+                if (!$(`${_id}`).find(event.target).length) {
+                    _me.removeEventListener();
+                    $(`${_id}-options-container`).toggle();
+                }
+            }
         },
-        getCurrentLanguage: function () {
-            return _language;
+        removeEventListener: function () {
+            document.removeEventListener('click', _me.handleDocumentClick)
         },
-        escapeHtml: function (inputString) {
-            var div = document.createElement('div');
-            div.appendChild(document.createTextNode(inputString));
-            return div.innerHTML;
+        handleUpdateLabel: function () {
+            var selectedItems = $(`${_class}-option-checkbox:checked`).length;
+
+            if (!selectedItems) {
+                $(`${_id}`).addClass("multiple-select-wrapper is-invalid");
+                $(`${_id}-text-display`).html("Please Select");
+            } else {
+                $(`${_id}`).removeClass("multiple-select-wrapper is-invalid");
+                $(`${_id}-text-display`).html(`${selectedItems} selected`);
+            }
         },
-        showLoader: function () {
-            $("#blocker").show();
-        },
-        hideLoader: function () {
-            $("#blocker").hide();
-        },
-        redirect: function (url) {
-            window.location.href = url;
-        },
-        reload: function () {
-            window.location.reload(true);
-        },
-        displayResult: function (isSuccess, message, selector) {
-            selector = selector || "#messageResult";
-            var $result = $(selector);
-            $result.toggleClass("alert-success", isSuccess);
-            $result.toggleClass("alert-danger", !isSuccess);
-            $result.html(message);
-            $result.show();
+        getSelectedValues: function () {
+            return $(`${_class}-option-checkbox`).map((index, el) => el.value).get().join(',');
         }
     };
 
-    return _me;
-})(jQuery);
+    $.fn.multipleSelector = function () {
+        _me.initEvent(this.prop('id'));
 
-MultipleSelect.initialize();
+        return {
+            getSelectedValues: _me.getSelectedValues
+        }
+    };
+})(jQuery);

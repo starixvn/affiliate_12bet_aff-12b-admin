@@ -4,11 +4,15 @@
 <table style="table-layout: fixed; width: 100%">
     <thead>
         <tr>
-            <th width="40%">@Lang.WebsiteURL</th>
-            <th width="15%">@Lang.TotalClick</th>
-            <th width="15%">@Lang.UniqueClick</th>
-            <th width="15%">@Lang.SignUp</th>
-            <th width="15%">@Lang.FDM</th>
+            <th width="@(Model.IsDetail ? 52 : 37 )%">@Lang.WebsiteURL</th>
+            @if (!Model.IsDetail)
+            {
+                <th width="15%">@Lang.Country</th>
+            }
+            <th width="12%">@Lang.TotalClick</th>
+            <th width="12%">@Lang.UniqueClick</th>
+            <th width="12%">@Lang.SignUp</th>
+            <th width="12%">@Lang.FDM</th>
         </tr>
     </thead>
     <tbody>
@@ -16,15 +20,19 @@
         {
             <tr>
                 <td>
-                    @if (Model.IsDetail || item.DomainReferrer.MatchWith("none") || item.DomainReferrer.MatchWith("old url"))
+                    @if (Model.IsDetail || item.SiteUrls.MatchWith("none") || item.SiteUrls.MatchWith("old url"))
                     {
-                        @item.DomainReferrer
+                        @item.SiteUrls
                     }
                     else
                     {
-                        <a href="javascript:;" class="statisticsItem" data-domain="@item.DomainReferrer">@item.DomainReferrer</a>
+                        <a href="javascript:;" class="statisticsItem" data-domain="@item.SiteUrls" data-country-code="@item.CountryCode">@item.SiteUrls</a>
                     }                  
                 </td>
+                @if(!Model.IsDetail)
+                {
+                    <td class="text-right">@item.Country</td>
+                }    
                 <td class="text-right">@item.TotalClick</td>
                 <td class="text-right">@item.UniqueClick</td>
                 <td class="text-right">@item.SignUps</td>
