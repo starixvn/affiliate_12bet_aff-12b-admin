@@ -4,7 +4,7 @@
             _me.initEvent();
         },
         initEvent: function () {
-            $(".promotion-login-link").on("click", function () {
+            $(".promotion-login-link").on("click", function (event) {
                 event.preventDefault();
                 $("#loginDialog").modal({ backdrop: "static" });
             })

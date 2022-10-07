@@ -1,28 +1,33 @@
 ﻿@model bool
 @{
-    var promotionBannerUrl = Url.Content("~/www/build/styles/Images/promotion/existing/promotion.id-ID");
+    var orgBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/existing/promotion.id-ID.jpg");
+    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/existing/promotion-mobile.id-ID.jpg");
+    var laptopBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/existing/promotion-laptop.id-ID.jpg");
 }
 <div class="banner-promotion">
     <picture>
-        <source srcset="@(promotionBannerUrl + ".webp?v=178482v01")" type="image/webp" />
-        <source srcset="@(promotionBannerUrl + ".jpg?v=178482v01")" type="image/jpeg" />
-        <img class="img-item img-responsive" src="@(promotionBannerUrl + ".jpg?v=178482v01")" alt="@Lang.ExistingPromotion" />
+        <source media="(max-width:600px)" srcset="@(mobileBannerSrc)" type="image/jpeg" />
+        <source media="(max-width:1120px)" srcset="@(laptopBannerSrc)" type="image/jpeg" />
+        <source srcset="@(orgBannerSrc)" type="image/jpeg" />
+        <img class="img-item img-responsive" src="@orgBannerSrc" alt="@Lang.ExistingPromotion" />
     </picture>
 </div>
 
-<div class="info-group">
-    @if (Model)
-    {
-        <p>
-            Periksa “Bonus Spesial untuk Saya” untuk info promosi lebih lanjut.
-        </p>
-    }
-    else
-    {
-        <p>
-            Silakan <a class="promotion-login-link" href="javascript:;">masuk</a> dan periksa tab "Bonus Spesial untuk Saya" untuk mengetahui promosi eksklusif ini.
-        </p>
-    }
+<div class="promotion-content-text">
+    <div class="info-group text-center">
+        @if (Model)
+        {
+            <p>
+                Periksa “Bonus Spesial untuk Saya” untuk info promosi lebih lanjut.
+            </p>
+        }
+        else
+        {
+            <p>
+                Silakan <a class="promotion-login-link" href="javascript:;">masuk</a> dan periksa tab "Bonus Spesial untuk Saya" untuk mengetahui promosi eksklusif ini.
+            </p>
+        }
+    </div>
 </div>
 
 <script src="@Url.RenderLink("~/www/build/js/pages/promotion/existing-promotion.js")"></script>

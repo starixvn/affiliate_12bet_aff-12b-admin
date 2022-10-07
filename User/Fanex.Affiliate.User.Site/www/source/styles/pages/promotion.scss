@@ -1,8 +1,12 @@
 ﻿.promotion {
+    .page-title {
+        margin: 0 0 1rem;
+    }
+
     .menu {
         display: flex;
         white-space: nowrap;
-        overflow: auto;
+        overflow: auto hidden;
 
         &-item {
             display: block;
@@ -17,7 +21,6 @@
 
     #promotion-menu {
         .menu {
-            margin: 0 !important;
             border-bottom: 1px solid #e04f29;
 
             li:not(:last-child) {
@@ -26,8 +29,9 @@
 
             &-item {
                 color: #6E6E6E;
-                border-radius: 5px 5px 0px 0px;
+                //border-radius: 5px 5px 0px 0px;
                 padding: 0 20px;
+                margin-bottom: -1px;
 
                 &.active, &:hover {
                     color: #FFF;
@@ -42,18 +46,30 @@
     }
 
     #promotion-content {
-        background: #ffffff;
-        padding: 1.2rem;
-
-        .header-underline {
-            text-decoration: underline;
+        .banner-promotion {
+            .img-item {
+                margin: auto;
+            }
         }
 
-        .btn-join-affiliate {
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: inline-block;
+        .promotion-content-text {
+            padding: 0 10px;
+
+            .header-underline {
+                text-decoration: underline;
+            }
+
+            .btn-join-affiliate {
+                font-weight: bold;
+                padding: 10px 20px;
+                border-radius: 5px;
+                display: inline-block;
+            }
+
+            .promotion-login-link {
+                color: #cb0e1a;
+                font-weight: bold;
+            }
         }
     }
 }

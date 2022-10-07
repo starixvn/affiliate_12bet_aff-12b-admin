@@ -1,49 +1,54 @@
 ﻿@model bool
 @{
-    var promotionBannerUrl = Url.Content("~/www/build/styles/Images/promotion/new/promotion.ko-KR");
+    var orgBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/new/promotion.ko-KR.jpg");
+    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/new/promotion-mobile.ko-KR.jpg");
+    var laptopBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/new/promotion-laptop.ko-KR.jpg");
 }
 <div class="banner-promotion">
     <picture>
-        <source srcset="@(promotionBannerUrl + ".webp?v=178482v01")" type="image/webp" />
-        <source srcset="@(promotionBannerUrl + ".jpg?v=178482v01")" type="image/jpeg" />
-        <img class="img-item img-responsive" src="@(promotionBannerUrl + ".jpg?v=178482v01")" alt="@Lang.NewPromotion" />
+        <source media="(max-width:600px)" srcset="@(mobileBannerSrc)" type="image/jpeg" />
+        <source media="(max-width:1120px)" srcset="@(laptopBannerSrc)" type="image/jpeg" />
+        <source srcset="@(orgBannerSrc)" type="image/jpeg" />
+        <img class="img-item img-responsive" src="@orgBannerSrc" alt="@Lang.NewPromotion" />
     </picture>
 </div>
 
-<div class="info-group">
-    <p>50% 수수료 받는 간단한 3단계</p>
-    <ol>
-        <li class="text">지금 "제휴사 등록"을 누르시고 12BET 제휴 프로그램에 가입하세요</li>
-        <li class="text">가능한 한 많은 플레이어를 초대하고 아래 표와 같이 목표 요구 사항을 달성하세요.</li>
-        <li class="text">회사 순손실의 50%를 제한 없이 받으세요.</li>
-    </ol>
-</div>
-
-@{ Html.RenderPartial("~/Views/CommissionStructure/_NewRevenueShareTable.cshtml"); }
-@if (!Model)
-{
-    <a class='btn-danger btn-join-affiliate' href='@Url.Content("~/Signup")'>지금 가입하세요!</a>
-}
-<div class="info-group">
-    <p class="text">
-        문의사항이 있으신가요? 지금 12BET 제휴팀에 <a href="@Url.Content("~/ContactUs")">문의</a>하세요!
-    </p>
-</div>
-
-<h2 class="header-underline text-danger">이용약관</h2>
-<div class="info-group">
-    <p class="text">
+<div class="promotion-content-text">
+    <div class="info-group">
+        <p class="text-bold">50% 수수료 받는 간단한 3단계</p>
         <ol>
-            <li>
-                본 이벤트는 2022년 10월 1일부터 12월 31일까지 등록하는 모든 제휴사에 한하여 적용됩니다.
-            </li>
-            <li>제휴자는 위의 표에 표시된 요구 사항을 충족할 수 있는 경우 50% 커미션을 받을 수 있습니다.</li>
-            <li>신규 제휴자는 2022년 10월 1일~12월 31일까지 3개월간 최대 50% 수수료를 받을 수 있습니다.</li>
-            <li>50% 수수료는 매월 8일~15일 사이에 지급됩니다.</li>
-            <li>이벤트 기간 후 제휴사는 <a href="@Url.Content("~/CommissionStructure")">표준 수수료 구조를</a> 받을 수 있습니다.</li>
-            <li>12BET은 모든 계열사 또는 개별,12BET 제휴사에 대하여 <a href="@Url.Content("~/TermAndCondition")">12BET 표준 이용약관 및 이용규정</a>의 적용을 받으며 이벤트를 취소할 수 있는 권리를 보유합니다.</li>
+            <li class="text">지금 "제휴사 등록"을 누르시고 12BET 제휴 프로그램에 가입하세요</li>
+            <li class="text">가능한 한 많은 플레이어를 초대하고 아래 표와 같이 목표 요구 사항을 달성하세요.</li>
+            <li class="text">회사 순손실의 50%를 제한 없이 받으세요.</li>
         </ol>
-    </p>
+    </div>
+
+    @{ Html.RenderPartial("~/Views/CommissionStructure/_NewRevenueShareTable.cshtml"); }
+    @if (!Model)
+    {
+        <div class="text-center"><a class='btn-danger btn-join-affiliate' href='@Url.Content("~/Signup")'>지금 가입하세요!</a></div>
+    }
+    <div class="info-group">
+        <p class="text">
+            문의사항이 있으신가요? 지금 12BET 제휴팀에 <a href="@Url.Content("~/ContactUs")">문의</a>하세요!
+        </p>
+    </div>
+
+    <h2 class="header-underline text-danger">이용약관</h2>
+    <div class="info-group">
+        <p class="text">
+            <ol>
+                <li>
+                    본 이벤트는 2022년 10월 1일부터 12월 31일까지 등록하는 모든 제휴사에 한하여 적용됩니다.
+                </li>
+                <li>제휴자는 위의 표에 표시된 요구 사항을 충족할 수 있는 경우 50% 커미션을 받을 수 있습니다.</li>
+                <li>신규 제휴자는 2022년 10월 1일~12월 31일까지 3개월간 최대 50% 수수료를 받을 수 있습니다.</li>
+                <li>50% 수수료는 매월 8일~15일 사이에 지급됩니다.</li>
+                <li>이벤트 기간 후 제휴사는 <a href="@Url.Content("~/CommissionStructure")">표준 수수료 구조를</a> 받을 수 있습니다.</li>
+                <li>12BET은 모든 계열사 또는 개별,12BET 제휴사에 대하여 <a href="@Url.Content("~/TermAndCondition")">12BET 표준 이용약관 및 이용규정</a>의 적용을 받으며 이벤트를 취소할 수 있는 권리를 보유합니다.</li>
+            </ol>
+        </p>
+    </div>
 </div>
 
 <script src="@Url.RenderLink("~/www/build/js/pages/promotion/new-promotion.js")"></script>

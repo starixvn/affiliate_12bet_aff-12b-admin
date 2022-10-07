@@ -6,7 +6,7 @@ var ExistingPromotion = (function ($) {
             _me.initEvent();
         },
         initEvent: function initEvent() {
-            $(".promotion-login-link").on("click", function () {
+            $(".promotion-login-link").on("click", function (event) {
                 event.preventDefault();
                 $("#loginDialog").modal({ backdrop: "static" });
             });

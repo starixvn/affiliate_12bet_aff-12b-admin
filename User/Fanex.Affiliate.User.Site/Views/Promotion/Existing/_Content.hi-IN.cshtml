@@ -1,28 +1,33 @@
 ﻿@model bool
 @{
-    var promotionBannerUrl = Url.Content("~/www/build/styles/Images/promotion/existing/promotion.hi-IN");
+    var orgBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/existing/promotion.hi-IN.jpg");
+    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/existing/promotion-mobile.hi-IN.jpg");
+    var laptopBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/existing/promotion-laptop.hi-IN.jpg");
 }
 <div class="banner-promotion">
     <picture>
-        <source srcset="@(promotionBannerUrl + ".webp?v=178482v01")" type="image/webp" />
-        <source srcset="@(promotionBannerUrl + ".jpg?v=178482v01")" type="image/jpeg" />
-        <img class="img-item img-responsive" src="@(promotionBannerUrl + ".jpg?v=178482v01")" alt="@Lang.ExistingPromotion" />
+        <source media="(max-width:600px)" srcset="@(mobileBannerSrc)" type="image/jpeg" />
+        <source media="(max-width:1120px)" srcset="@(laptopBannerSrc)" type="image/jpeg" />
+        <source srcset="@(orgBannerSrc)" type="image/jpeg" />
+        <img class="img-item img-responsive" src="@orgBannerSrc" alt="@Lang.ExistingPromotion" />
     </picture>
 </div>
 
-<div class="info-group">
-    @if (Model)
-    {
-        <p>
-            Kindly check "Offer for me" tab to know more about this exclusive promotion.
-        </p>
-    }
-    else
-    {
-        <p>
-            Kindly <a class="promotion-login-link" href="javascript:;">login</a> and check "Offer for me" tab to know more about this exclusive promotion.
-        </p>
-    }
+<div class="promotion-content-text">
+    <div class="info-group text-center">
+        @if (Model)
+        {
+            <p>
+                Kindly check "Offer for me" tab to know more about this exclusive promotion.
+            </p>
+        }
+        else
+        {
+            <p>
+                Kindly <a class="promotion-login-link" href="javascript:;">login</a> and check "Offer for me" tab to know more about this exclusive promotion.
+            </p>
+        }
+    </div>
 </div>
 
 <script src="@Url.RenderLink("~/www/build/js/pages/promotion/existing-promotion.js")"></script>
