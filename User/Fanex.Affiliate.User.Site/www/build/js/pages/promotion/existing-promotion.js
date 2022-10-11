@@ -8,6 +8,8 @@ var ExistingPromotion = (function ($) {
         initEvent: function initEvent() {
             $(".promotion-login-link").on("click", function (event) {
                 event.preventDefault();
+                $("#signUpToAffiliateProgram").html(promotionResourceLanguage.signUpToAffiliateProgram);
+
                 $("#loginDialog").modal({ backdrop: "static" });
             });
         }

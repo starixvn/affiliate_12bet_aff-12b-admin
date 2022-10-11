@@ -24,5 +24,10 @@
 <input type="hidden" id="shortedLangCode" value="@Model" />
 
 @section scripts{
+    <script>
+        var promotionResourceLanguage = {
+            signUpToAffiliateProgram: '@Lang.SignUpToAffiliateProgram.Replace("40", "50")'
+        }
+    </script>
     @Html.InlineScripts("~/www/build/js/pages/promotion/promotion.js")
 }

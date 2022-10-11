@@ -6,6 +6,8 @@
         initEvent: function () {
             $(".promotion-login-link").on("click", function (event) {
                 event.preventDefault();
+                $("#signUpToAffiliateProgram").html(promotionResourceLanguage.signUpToAffiliateProgram);
+
                 $("#loginDialog").modal({ backdrop: "static" });
             })
         }
