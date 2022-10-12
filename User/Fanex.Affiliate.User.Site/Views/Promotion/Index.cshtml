@@ -8,23 +8,26 @@
 }
 
 <div class="promotion">
-    <div class="content">
-        <div class="page-title">
-            <span class="text">@Lang.Promotion</span>
-        </div>
-        <div class="tab-menu" id="promotion-menu">
-            <ul class="menu list-unstyled">
-                <li><a href="javascript:;" data-name="New" class="menu-item promotion-menu-item" id="menuNew">@Lang.NewPromotion</a></li>
-                <li><a href="javascript:;" data-name="Existing" class="menu-item promotion-menu-item" id="menuExisting">@Lang.ExistingPromotion</a></li>
-            </ul>
-        </div>
-        <div id="promotion-content"></div>
-
-        @RazorHelper.RenderMovingTopButton()
+    <div class="page-title">
+        <span class="text">@Lang.Promotion</span>
     </div>
+    <div class="tab-menu" id="promotion-menu">
+        <ul class="menu list-unstyled">
+            <li><a href="javascript:;" data-name="New" class="menu-item promotion-menu-item" id="menuNew">@Lang.NewPromotion</a></li>
+            <li><a href="javascript:;" data-name="Existing" class="menu-item promotion-menu-item" id="menuExisting">@Lang.ExistingPromotion</a></li>
+        </ul>
+    </div>
+    <div id="promotion-content"></div>
 </div>
+
+@RazorHelper.RenderMovingTopButton()
 <input type="hidden" id="shortedLangCode" value="@Model" />
 
 @section scripts{
+    <script>
+        var promotionResourceLanguage = {
+            signUpToAffiliateProgram: '@Lang.SignUpToAffiliateProgram.Replace("40", "50")'
+        }
+    </script>
     @Html.InlineScripts("~/www/build/js/pages/promotion/promotion.js")
 }

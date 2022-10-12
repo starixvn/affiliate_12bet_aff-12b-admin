@@ -1,7 +1,10 @@
-﻿.promotion .menu {
+﻿.promotion .page-title {
+  margin: 0 0 1rem; }
+
+.promotion .menu {
   display: flex;
   white-space: nowrap;
-  overflow: auto; }
+  overflow: auto hidden; }
   .promotion .menu-item {
     display: block;
     font-weight: 400;
@@ -10,14 +13,13 @@
       outline: none; }
 
 .promotion #promotion-menu .menu {
-  margin: 0 !important;
   border-bottom: 1px solid #e04f29; }
   .promotion #promotion-menu .menu li:not(:last-child) {
     border-right: 1px solid #f9f9f9; }
   .promotion #promotion-menu .menu-item {
     color: #6E6E6E;
-    border-radius: 5px 5px 0px 0px;
-    padding: 0 20px; }
+    padding: 0 20px;
+    margin-bottom: -1px; }
     .promotion #promotion-menu .menu-item.active, .promotion #promotion-menu .menu-item:hover {
       color: #FFF;
       background: -ms-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
@@ -26,13 +28,18 @@
       background: -o-linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
       background: linear-gradient(180deg, #FA6A00 0%, #E15F00 100%); }
 
-.promotion #promotion-content {
-  background: #ffffff;
-  padding: 1.2rem; }
-  .promotion #promotion-content .header-underline {
+.promotion #promotion-content .banner-promotion .img-item {
+  margin: auto; }
+
+.promotion #promotion-content .promotion-content-text {
+  padding: 0 10px; }
+  .promotion #promotion-content .promotion-content-text .header-underline {
     text-decoration: underline; }
-  .promotion #promotion-content .btn-join-affiliate {
+  .promotion #promotion-content .promotion-content-text .btn-join-affiliate {
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 5px;
     display: inline-block; }
+  .promotion #promotion-content .promotion-content-text .promotion-login-link {
+    color: #cb0e1a;
+    font-weight: bold; }

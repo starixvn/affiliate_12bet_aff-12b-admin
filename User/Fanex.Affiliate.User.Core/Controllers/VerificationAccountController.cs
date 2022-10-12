@@ -60,7 +60,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult CaptchaImage()
         {
             var captcha = Generator.GetRandomString(4);
-            SessionService.VerificationSession.Captcha = captcha;
+            if (SessionService.VerificationSession != null)
+            {
+                SessionService.VerificationSession.Captcha = captcha;
+            }
+
             return File(CaptchaService.GenerateImageBuffer(captcha, CaptchaImgWidth, CaptchaImgHeight, true), "image/png");
         }
 
