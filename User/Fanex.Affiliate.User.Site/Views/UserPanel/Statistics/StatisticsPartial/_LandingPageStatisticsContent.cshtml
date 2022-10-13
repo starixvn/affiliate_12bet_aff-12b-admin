@@ -31,11 +31,18 @@
         <tr>
             @if (isReportByCountry)
             {
-                <td>
+            <td>
+                @if (Model.IsDetail || item.Page.MatchWith("none") || item.Page.MatchWith("old url"))
+                {
+                    @item.Country
+                }
+                else
+                {
                     <a href="javascript:;" class="statisticsItem" data-page="@item.Page" data-isreportbycountry="@isReportByCountry" data-reportbyvalue="@(isReportByCountry ? item.CountryCode : item.LanguageCode)">
                         @item.Country
                     </a>
-                </td>
+                }
+            </td>
                 <td>@item.Page</td>
             }
             else

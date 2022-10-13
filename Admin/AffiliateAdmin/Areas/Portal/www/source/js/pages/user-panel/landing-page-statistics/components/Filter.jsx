@@ -29,6 +29,7 @@ export class Filter extends React.Component {
         this.state = {
             groupBy: groupByCountry,
             initialCountries: '',
+            initialCountryList: null,
             selectedCountries: '',
             languageCode: Object.keys(shortCodeLanguageList).map(key => key).join(','),
             selectedPage: '',
@@ -60,7 +61,7 @@ export class Filter extends React.Component {
         const countryList = await this.props.getCountryList();
         const initialCountries = countryList.filter(r => r.Checked).map(r => r.CountryCode).join(',');
 
-        this.setState({ initialCountries, selectedCountries: initialCountries, countryList });
+        this.setState({ initialCountries, selectedCountries: initialCountries, countryList, initialCountryList: countryList });
     }
 
     handleChangeCountry = (item, selectedCountries) => {
@@ -93,10 +94,10 @@ export class Filter extends React.Component {
     }
 
     getCountryList = (selectedCountries) => {
-        const { initialCountries, countryList } = this.state;
+        const { initialCountries, countryList, initialCountryList } = this.state;
 
         if (selectedCountries === initialCountries) {
-            return countryList ? countryList.slice() : [];
+            return initialCountryList ? initialCountryList.slice() : [];
         }
 
         const selectedCountryCodes = selectedCountries.split(',');

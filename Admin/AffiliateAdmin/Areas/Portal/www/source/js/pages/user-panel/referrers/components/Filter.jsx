@@ -22,6 +22,7 @@ export class Filter extends PureComponent {
 
         this.state = {
             initialCountries: '',
+            initialCountryList: null,
             selectedCountries: '',
             countryList: null,
             deviceType: param.isClickLink ? deviceType : deviceTypes[pcLaptop],
@@ -47,7 +48,6 @@ export class Filter extends PureComponent {
             const newState = Object.assign({}, { deviceType: param.deviceType, fromDate: param.fromDate, toDate: param.toDate });
 
             this.setState(newState);
-            this.props.setSelectedSiteDetailFilter(null);
 
             if (param.isClickLink) {
                 this.handleSearch(newState);
@@ -59,7 +59,7 @@ export class Filter extends PureComponent {
         const countryList = await this.props.getCountryList();
         const initialCountries = countryList.filter(r => r.Checked).map(r => r.CountryCode).join(',');
 
-        this.setState({ initialCountries, selectedCountries: initialCountries, countryList });
+        this.setState({ initialCountries, selectedCountries: initialCountries, countryList, initialCountryList: countryList });
     }
 
     handleChangeCountry = (item, selectedCountries) => {
@@ -81,14 +81,18 @@ export class Filter extends PureComponent {
     }
 
     handleSearch = (state) => {
-        this.props.setParam(state);
+        const { selectedCountries, deviceType, fromDate, toDate } = this.state;
+        const param = Object.assign({}, { selectedCountries, deviceType, fromDate, toDate, affId: this.props.affId });
+
+        this.props.setParam(param);
+        this.props.setSelectedSiteDetailFilter(null);
     }
 
     getCountryList = (selectedCountries) => {
-        const { initialCountries, countryList } = this.state;
+        const { initialCountries, countryList, initialCountryList } = this.state;
 
         if (selectedCountries === initialCountries) {
-            return countryList ? countryList.slice() : [];
+            return initialCountryList ? initialCountryList.slice() : [];
         }
 
         const selectedCountryCodes = selectedCountries.split(',');
@@ -148,11 +152,13 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today, clickStatistics }) {
+function mapStateToProps({ today, affCommonInfo, clickStatistics }) {
+    const { affId } = affCommonInfo;
     const { param } = clickStatistics;
 
     return Object.assign({}, {
         today,
+        affId,
         param
     });
 }

@@ -19,7 +19,7 @@ export class Detail extends Component {
     componentDidUpdate(prevProps) {
         const { pagingOption, selectedPageDetailFilter } = this.props;
 
-        if (selectedPageDetailFilter !== prevProps.selectedPageDetailFilter) {
+        if (selectedPageDetailFilter && selectedPageDetailFilter !== prevProps.selectedPageDetailFilter) {
             const param = Object.assign({}, this.props.param, { pageIndex: 1, pageSize: pagingOption.PageSize, ...selectedPageDetailFilter });
 
             this.fetchData(param);

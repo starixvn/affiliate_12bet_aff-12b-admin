@@ -28,9 +28,7 @@ export class Detail extends Component {
     async fetchData(param) {
         this.props.toggleLoaderUserPanel(true);
 
-        const { affId } = this.props;
-        const postData = { ...param, affId };
-        const data = await this.props.fetchDetailData(postData);
+        const data = await this.props.fetchDetailData(param);
 
         this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
@@ -111,12 +109,10 @@ export class Detail extends Component {
     }
 }
 
-function mapStateToProps({ affCommonInfo, clickStatistics }) {
+function mapStateToProps({ clickStatistics }) {
     const { pagingOption, param, selectedSiteDetailFilter } = clickStatistics;
-    const { affId } = affCommonInfo;
 
     return Object.assign({}, {
-        affId,
         pagingOption,
         selectedSiteDetailFilter,
         param

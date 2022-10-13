@@ -28,9 +28,7 @@ export class Content extends Component {
     async fetchData(param) {
         this.props.toggleLoaderUserPanel(true);
 
-        const { affId } = this.props;
-        const postData = { ...param, affId };
-        const data = await this.props.fetchData(postData);
+        const data = await this.props.fetchData(param);
 
         this.setState({ gridData: data });
         this.props.toggleLoaderUserPanel(false);
@@ -109,12 +107,10 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ affCommonInfo, clickStatistics }) {
+function mapStateToProps({ clickStatistics }) {
     const { param } = clickStatistics;
-    const { affId } = affCommonInfo;
 
     return Object.assign({}, {
-        affId,
         param
     });
 }

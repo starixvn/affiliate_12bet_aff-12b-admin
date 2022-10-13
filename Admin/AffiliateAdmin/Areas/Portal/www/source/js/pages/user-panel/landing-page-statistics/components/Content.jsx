@@ -28,7 +28,7 @@ export class Content extends Component {
     async fetchData(param) {
         this.props.toggleLoaderUserPanel(true);
 
-        const data = await this.props.fetchData(param, this.props.shortCodeLanguageList);
+        const data = await this.props.fetchData(param);
 
         this.setState({ gridData: data });
 

@@ -101,10 +101,27 @@ namespace Fanex.Affiliate.Link.Controllers
 
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {
-                    return Redirect(redirectUrl);
-                }
+                    var oldTrackingCommand = new OldTrackingSystemCommand
+                    {
+                        AffiliateID = affId,
+                        IP = Common.GetIPAddressOfClient(),
+                        Browser = Request.Browser.Browser,
+                        URLReferrer = Request.Url.AbsoluteUri,
+                        TrackingCode = pageId
+                    };
 
-                ViewBag.Result = "This link does not exists. Please contact administrator!";
+                    var errMsg = _trackingSystemService.InsertOldStatistic(oldTrackingCommand);
+
+                    if (!string.IsNullOrEmpty(errMsg))
+                    {
+                        ViewBag.Result = errMsg + "Error in Aff_AffiliateInsClickStatistics SP";
+                    }
+
+                    return Redirect(redirectUrl);
+                } else
+                {
+                    ViewBag.Result = "This link does not exists. Please contact administrator!";
+                }
             }
 
             return View("Link");

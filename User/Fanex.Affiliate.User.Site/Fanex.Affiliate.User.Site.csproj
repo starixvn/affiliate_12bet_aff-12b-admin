@@ -618,6 +618,10 @@
     <Content Include="www\build\js\signup.min.js">
       <DependentUpon>signup.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\statistics\trackingstatistics.js" />
+    <Content Include="www\build\js\statistics\trackingstatistics.min.js">
+      <DependentUpon>trackingstatistics.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\summary.js" />
     <Content Include="www\build\js\summary.min.js" />
     <Content Include="www\build\js\user-panel.js" />

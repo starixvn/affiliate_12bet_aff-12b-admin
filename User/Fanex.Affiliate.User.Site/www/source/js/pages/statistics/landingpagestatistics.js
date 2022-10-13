@@ -117,9 +117,6 @@
                 return;
             }
 
-            console.log(params);
-            console.log(!params.sportCode || !(params.languageCode || params.countryCode));
-
             $.ajax({
                 type: "POST",
                 dataType: "html",
