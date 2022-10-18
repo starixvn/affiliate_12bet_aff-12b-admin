@@ -21,7 +21,7 @@ export class Filter extends PureComponent {
         const firstDayOfCurrentMonth = `${now.getMonth() + 1}/01/${now.getFullYear()}`;
 
         this.state = {
-            initialCountries: '',
+            initialSelectedCountries: '',
             initialCountryList: null,
             selectedCountries: '',
             countryList: null,
@@ -35,17 +35,13 @@ export class Filter extends PureComponent {
         if (!this.state.countryList) {
             this.handleCountryList();
         }
-
-        if (this.props.param.isClickLink) {
-            this.handleSearch(this.state);
-        }
     }
 
     componentDidUpdate(prevProps) {
         const { param } = this.props;
 
         if (param !== prevProps.param) {
-            const newState = Object.assign({}, { deviceType: param.deviceType, fromDate: param.fromDate, toDate: param.toDate });
+            const newState = Object.assign(this.state, { deviceType: param.deviceType, fromDate: param.fromDate, toDate: param.toDate });
 
             this.setState(newState);
 
@@ -57,9 +53,15 @@ export class Filter extends PureComponent {
 
     handleCountryList = async () => {
         const countryList = await this.props.getCountryList();
-        const initialCountries = countryList.filter(r => r.Checked).map(r => r.CountryCode).join(',');
+        const initialSelectedCountries = countryList.filter(r => r.Checked).map(r => r.CountryCode).join(',');
 
-        this.setState({ initialCountries, selectedCountries: initialCountries, countryList, initialCountryList: countryList });
+        this.setState((prevState) => {
+            if (this.props.param.isClickLink) {
+                this.handleSearch({ ...prevState, selectedCountries: initialSelectedCountries });
+            }
+
+            return { initialSelectedCountries, selectedCountries: initialSelectedCountries, countryList, initialCountryList: countryList };
+        });
     }
 
     handleChangeCountry = (item, selectedCountries) => {
@@ -81,7 +83,7 @@ export class Filter extends PureComponent {
     }
 
     handleSearch = (state) => {
-        const { selectedCountries, deviceType, fromDate, toDate } = this.state;
+        const { selectedCountries, deviceType, fromDate, toDate } = state;
         const param = Object.assign({}, { selectedCountries, deviceType, fromDate, toDate, affId: this.props.affId });
 
         this.props.setParam(param);
@@ -89,9 +91,9 @@ export class Filter extends PureComponent {
     }
 
     getCountryList = (selectedCountries) => {
-        const { initialCountries, countryList, initialCountryList } = this.state;
+        const { initialSelectedCountries, countryList, initialCountryList } = this.state;
 
-        if (selectedCountries === initialCountries) {
+        if (selectedCountries === initialSelectedCountries) {
             return initialCountryList ? initialCountryList.slice() : [];
         }
 

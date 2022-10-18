@@ -12,6 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     public class ReferrersController : ReadOnlySessionBaseController
     {
         private readonly IReferrersRepository _referrersRepository;
+
         public ReferrersController(
             ISessionService sessionService,
             IReferrersRepository referrersRepository) : base(sessionService)
