@@ -25,7 +25,7 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
           ]
         }
       >
-        Group By
+        Report By
       </Label>
       <Input
         name="groupBy"

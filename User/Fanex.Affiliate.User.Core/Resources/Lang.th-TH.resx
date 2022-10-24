@@ -1996,6 +1996,9 @@
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>คุณไม่มีที่อยู่อีเมล โปรดติดต่อทีมงานพันธมิตร!</value>
   </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>อ้างอิงจาก</value>
+  </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>โปรโมชั่นนี้ได้สิ้นสุดลงแล้ว โปรดติดตามโปรโมชั่นใหม่ที่น่าสนใจเร็วๆนี้</value>
   </data>

@@ -65,16 +65,6 @@ describe('referrers - components - Filter', () => {
         expect(instance.handleCountryList).not.toHaveBeenCalled();
     });
 
-    it('componentDidUpdate - should call setState', () => {
-        const wrapper = shallow(<Filter {...defaultProps} />);
-        const instance = wrapper.instance();
-        instance.setState = jest.fn();
-
-        instance.componentDidUpdate({ param: {} });
-
-        expect(instance.setState).toHaveBeenCalledWith({ deviceType: 0, fromDate: "10/1/2018", toDate: "10/31/2018", countryList: null, initialSelectedCountries: "", selectedCountries: "", initialCountryList: null });
-    });
-
     it('componentDidUpdate - should call setState and handleSearch', () => {
         const newParam = Object.assign({}, param, { isClickLink: true });
         const props = Object.assign({}, defaultProps, { param: newParam, setParam, setSelectedSiteDetailFilter });
@@ -83,7 +73,7 @@ describe('referrers - components - Filter', () => {
         instance.setState = jest.fn();
         instance.handleSearch = jest.fn();
 
-        instance.componentDidUpdate({ param: {} });
+        instance.componentDidUpdate({ param: { } });
 
         expect(instance.setState).toHaveBeenCalledWith({ deviceType: 0, fromDate: "10/1/2018", toDate: "10/31/2018", countryList: null, initialSelectedCountries: "", selectedCountries: "", initialCountryList: null });
         expect(instance.handleSearch).toHaveBeenCalled();

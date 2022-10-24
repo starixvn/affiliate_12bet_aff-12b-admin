@@ -37,7 +37,8 @@
             } else {
                 if (!$(`${_id}`).find(event.target).length) {
                     _me.removeEventListener();
-                    $(`${_id}-options-container`).toggle();
+
+                    $(`${_id}-options-container`).hide();
                 }
             }
         },
@@ -56,7 +57,7 @@
             }
         },
         getSelectedValues: function () {
-            return $(`${_class}-option-checkbox`).map((index, el) => el.value).get().join(',');
+            return $(`${_class}-option-checkbox:checked`).map((index, el) => el.value).get().join(',');
         }
     };
 

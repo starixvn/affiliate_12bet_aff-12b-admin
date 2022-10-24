@@ -56,7 +56,7 @@
                 ReportBy = Statistics.ReportByCountry,
                 FromDate = landingPageParam.FromDate,
                 ToDate = landingPageParam.ToDate,
-                DataList = GetLandingPageStatisticsData(landingPageParam)
+                DataList = _statisticsService.GetLandingPageStatistics(landingPageParam)
             };
 
             return View("~/Views/UserPanel/Statistics/LandingPageStatistics/Index.cshtml", viewModel);
@@ -72,24 +72,10 @@
             var viewModel = new LandingPageStatisticsViewModel
             {
                 ReportBy = landingPageParam.ReportBy,
-                DataList = GetLandingPageStatisticsData(landingPageParam)
+                DataList = _statisticsService.GetLandingPageStatistics(landingPageParam)
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_LandingPageStatisticsContent.cshtml", viewModel);
-        }
-
-        private IEnumerable<LandingPageStatistics> GetLandingPageStatisticsData(LandingPageStatisticsParam landingPageParam)
-        {
-            var dataList = _statisticsService.GetLandingPageStatistics(landingPageParam);
-
-            foreach (var item in dataList)
-            {
-                var language = _marketingService.GetLanguageList().FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
-
-                item.Language = language == null ? item.LanguageCode : language.MarketNativeName;
-            }
-
-            return dataList;
         }
     }
 }

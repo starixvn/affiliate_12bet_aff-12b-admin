@@ -6,7 +6,7 @@ export { globalResource, deviceTypes, maxWidth, minDate }
 
 export const headerTitle = {
     Page: 'Page',
-    GroupBy: 'Group By',
+    GroupBy: 'Report By',
     Language: 'Language',
     ...headerText
 }

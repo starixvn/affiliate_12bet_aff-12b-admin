@@ -1,4 +1,5 @@
 ﻿using Fanex.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
@@ -12,6 +13,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public int TotalFdms { get; set; }
 
+        [Required]
         public string CountryCodes { get; set; }
     }
 }

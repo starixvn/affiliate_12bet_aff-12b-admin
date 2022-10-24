@@ -1995,6 +1995,9 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>Anda tidak memiliki alamat email ini. Mohon hubungi administrator.</value>
   </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value> Dibuat Oleh</value>
+  </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>Promosi ini telah berakhir. Nantikan promosi menarik terbaru kami selanjutnya.</value>
   </data>

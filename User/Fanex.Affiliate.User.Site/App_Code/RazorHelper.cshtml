@@ -53,7 +53,7 @@
         <div id="@($"{id}-multiple-select")" class="multiple-select-container @(hasSelectedItem ? "" : "multiple-select-wrapper is-invalid")">
             <button id="@($"{id}-multiple-select-label")" type="button" class="form-control multiple-select-default multiple-select-label">
                 <span id="@($"{id}-multiple-select-text-display")" class="text-display">@displayText</span>
-                <b class="caret"></b>
+                <b class="caret @($"{id}-multiple-select-caret")"></b>
             </button>
             <div id="@($"{id}-multiple-select-options-container")" class="multiple-select-default multiple-select-options-container" style="display:none;">
                 @RenderOptionAll(id, dataList, hasAllOption, itemDefaultOption)
@@ -81,9 +81,9 @@
                 <li class="multiple-select-item">
                     <input id="@(id)-multiple-select-option-all"
                            type="checkbox"
-                           class="option-checkbox"
+                           class="multiple-select-option-checkbox"
                            checked="@checkedAll" />
-                    <label class="option-label" for="@(id)-option-all">
+                    <label class="multiple-select-option-label" for="@(id)-multiple-select-option-all">
                         All
                     </label>
                 </li>
@@ -93,9 +93,9 @@
                 <li class="multiple-select-item">
                     <input id="@(id)-multiple-select-option-all"
                            type="checkbox"
-                           class="option-checkbox"
+                           class="multiple-select-option-checkbox"
                            checked="@itemDefaultOption.Selected" />
-                    <label class="option-label" for="@(id)-option-all">
+                    <label class="multiple-select-option-label" for="@(id)-multiple-select-option-all">
                         @itemDefaultOption.Text
                     </label>
                 </li>
@@ -109,10 +109,10 @@
     <li class="multiple-select-item">
         <input id="@($"{id}-{item.Value}")"
                type="checkbox"
-               class="option-checkbox @($"{id}-multiple-select-option-checkbox")"
+               class="multiple-select-option-checkbox @($"{id}-multiple-select-option-checkbox")"
                value="@item.Value"
                checked="@item.Selected" />
-        <label class="option-label" for="@($"{id}-{item.Value}")">
+        <label class="multiple-select-option-label" for="@($"{id}-{item.Value}")">
             @item.Text
         </label>
     </li>

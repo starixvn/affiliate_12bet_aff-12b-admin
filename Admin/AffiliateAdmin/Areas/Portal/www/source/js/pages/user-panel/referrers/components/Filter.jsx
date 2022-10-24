@@ -40,14 +40,12 @@ export class Filter extends PureComponent {
     componentDidUpdate(prevProps) {
         const { param } = this.props;
 
-        if (param !== prevProps.param) {
-            const newState = Object.assign(this.state, { deviceType: param.deviceType, fromDate: param.fromDate, toDate: param.toDate });
+        if (param.isClickLink && param !== prevProps.param) {
+            const { initialSelectedCountries, initialCountryList } = this.state;
+            const newState = Object.assign(this.state, { deviceType: param.deviceType, fromDate: param.fromDate, toDate: param.toDate, selectedCountries: initialSelectedCountries, countryList: initialCountryList });
 
             this.setState(newState);
-
-            if (param.isClickLink) {
-                this.handleSearch(newState);
-            }
+            this.handleSearch(newState);
         }
     }
 

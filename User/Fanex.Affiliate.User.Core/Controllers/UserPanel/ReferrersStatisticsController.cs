@@ -3,9 +3,11 @@
     using Enum;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
     using Filters;
     using MetalModels.UserPanel;
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using ViewModels.UserPanel.Statistics;
 
@@ -58,7 +60,7 @@
 
             var viewModel = new ReferrerStatisticsViewModel
             {
-                DataList = _statisticsService.GetReferrerStatistics(referrerStatisticsParam)
+                DataList = ModelState.IsValid ? _statisticsService.GetReferrerStatistics(referrerStatisticsParam) : new List<ReferrerStatistics>()
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_ReferrersStatisticsContent.cshtml", viewModel);

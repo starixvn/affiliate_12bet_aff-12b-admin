@@ -46,6 +46,17 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 var languageList = _languageService.GetSystemLanguages();
                 landingPageStatisticsParam.LanguageCodes = GetShortedCode(languageList, landingPageStatisticsParam.LanguageCode);
                 landingPageStatisticsParam.CountryCodes = null;
+
+                var dataList = _statisticsRepository.GetLandingPageStatistics(landingPageStatisticsParam);
+
+                foreach (var item in dataList)
+                {
+                    var language = languageList.FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
+
+                    item.Language = language == null ? item.LanguageCode : language.MarketNativeName;
+                }
+
+                return dataList;
             }
 
             return _statisticsRepository.GetLandingPageStatistics(landingPageStatisticsParam);
