@@ -420,9 +420,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>捷克</value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>每日收益明细</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>日收入</value>
   </data>
@@ -1610,9 +1607,6 @@
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>无存款纪录</value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>投注历史</value>
   </data>
   <data name="result" xml:space="preserve">
     <value>投注结果</value>

@@ -1376,15 +1376,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Daily Earning Detail.
-        /// </summary>
-        public static string DailyEarningDetail {
-            get {
-                return ResourceManager.GetString("DailyEarningDetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Daily Earnings.
         /// </summary>
         public static string DailyEarnings {
@@ -2605,15 +2596,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Latvia {
             get {
                 return ResourceManager.GetString("Latvia", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet List.
-        /// </summary>
-        public static string lblBetLists {
-            get {
-                return ResourceManager.GetString("lblBetLists", resourceCulture);
             }
         }
         

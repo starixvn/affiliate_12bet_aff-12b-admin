@@ -430,9 +430,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>체코 (공화국)</value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>Daily Earning Detail</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>일일 수입</value>
   </data>
@@ -1608,9 +1605,6 @@
   </data>
   <data name="PCDevice" xml:space="preserve">
     <value>PC / 랜탑</value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>베팅 내역</value>
   </data>
   <data name="result" xml:space="preserve">
     <value>결과</value>

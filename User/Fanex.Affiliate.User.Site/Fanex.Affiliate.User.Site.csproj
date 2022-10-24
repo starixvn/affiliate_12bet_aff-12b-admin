@@ -496,17 +496,9 @@
     <Content Include="www\build\js\affiliate-link.min.js">
       <DependentUpon>affiliate-link.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\betlist.js" />
-    <Content Include="www\build\js\betlist.min.js">
-      <DependentUpon>betlist.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\contactus.js" />
     <Content Include="www\build\js\contactus.min.js">
       <DependentUpon>contactus.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\daily-earning-detail.js" />
-    <Content Include="www\build\js\daily-earning-detail.min.js">
-      <DependentUpon>daily-earning-detail.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\daily-earning.js" />
     <Content Include="www\build\js\daily-earning.min.js">
@@ -523,10 +515,6 @@
     <Content Include="www\build\js\jquery.extension.js" />
     <Content Include="www\build\js\jquery.extension.min.js">
       <DependentUpon>jquery.extension.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\landingpagestatistics.js" />
-    <Content Include="www\build\js\landingpagestatistics.min.js">
-      <DependentUpon>landingpagestatistics.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\layout.js" />
     <Content Include="www\build\js\layout.min.js">
@@ -586,8 +574,6 @@
     <Content Include="www\build\js\pages\logout.min.js">
       <DependentUpon>logout.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\pages\promotion.js" />
-    <Content Include="www\build\js\pages\promotion.min.js" />
     <Content Include="www\build\js\pages\promotion\existing-promotion.js" />
     <Content Include="www\build\js\pages\promotion\existing-promotion.min.js">
       <DependentUpon>existing-promotion.js</DependentUpon>
@@ -618,6 +604,10 @@
     <Content Include="www\build\js\signup.min.js">
       <DependentUpon>signup.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\statistics\landingpagestatistics.js" />
+    <Content Include="www\build\js\statistics\landingpagestatistics.min.js" />
+    <Content Include="www\build\js\statistics\referrerstatistics.js" />
+    <Content Include="www\build\js\statistics\referrerstatistics.min.js" />
     <Content Include="www\build\js\statistics\trackingstatistics.js" />
     <Content Include="www\build\js\statistics\trackingstatistics.min.js">
       <DependentUpon>trackingstatistics.js</DependentUpon>
@@ -893,10 +883,6 @@
     <Content Include="www\build\js\recheckin.min.js">
       <DependentUpon>recheckin.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\referrerstatistics.js" />
-    <Content Include="www\build\js\referrerstatistics.min.js">
-      <DependentUpon>referrerstatistics.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\site.js" />
     <Content Include="www\build\js\site.min.js">
       <DependentUpon>site.js</DependentUpon>
@@ -909,39 +895,10 @@
     <Content Include="www\build\js\test.min.js">
       <DependentUpon>test.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\trackingstatistics.js" />
-    <Content Include="www\build\js\trackingstatistics.min.js">
-      <DependentUpon>trackingstatistics.js</DependentUpon>
-    </Content>
     <Content Include="www\build\styles\css\account-overview.css" />
     <Content Include="www\build\styles\css\account-overview.min.css">
       <DependentUpon>account-overview.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\css\betlist.css" />
-    <Content Include="www\build\styles\css\betlist.min.css">
-      <DependentUpon>betlist.css</DependentUpon>
-    </Content>
-    <Content Include="www\build\styles\css\betlist\betlist.css" />
-    <Content Include="www\build\styles\css\betlist\betlist.min.css">
-      <DependentUpon>betlist.css</DependentUpon>
-    </Content>
-    <Content Include="www\build\styles\css\betlist\images\1F.gif" />
-    <Content Include="www\build\styles\css\betlist\images\1L.gif" />
-    <Content Include="www\build\styles\css\betlist\images\bar-loader.gif" />
-    <Content Include="www\build\styles\css\betlist\images\bgHeader.jpg" />
-    <Content Include="www\build\styles\css\betlist\images\blank.gif" />
-    <Content Include="www\build\styles\css\betlist\images\firstGoal.gif" />
-    <Content Include="www\build\styles\css\betlist\images\goal-icon.png" />
-    <Content Include="www\build\styles\css\betlist\images\lastGoal.gif" />
-    <Content Include="www\build\styles\css\betlist\images\link_14x14.png" />
-    <Content Include="www\build\styles\css\betlist\images\link_16x16.png" />
-    <Content Include="www\build\styles\css\betlist\images\note.png" />
-    <Content Include="www\build\styles\css\betlist\images\plus.png" />
-    <Content Include="www\build\styles\css\betlist\images\q_Icon2_1.png" />
-    <Content Include="www\build\styles\css\betlist\images\q_Icon_2.png" />
-    <Content Include="www\build\styles\css\betlist\images\tab_topbg.gif" />
-    <Content Include="www\build\styles\css\betlist\images\undo.png" />
-    <Content Include="www\build\styles\css\betlist\images\up.png" />
     <Content Include="www\build\styles\css\bootstrap.css" />
     <Content Include="www\build\styles\css\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
@@ -1009,9 +966,7 @@
     <Content Include="www\source\js\lib\pikaday.js" />
     <Content Include="www\source\js\layout.js" />
     <Content Include="www\source\js\pages\account-overview\account-overview.js" />
-    <Content Include="www\source\js\pages\betlist.js" />
     <Content Include="www\source\js\pages\changepassword.js" />
-    <Content Include="www\source\js\pages\daily-earning-detail.js" />
     <Content Include="www\source\js\pages\daily-earning.js" />
     <Content Include="www\source\js\pages\home.js" />
     <Content Include="www\source\js\pages\login.js" />
@@ -1067,8 +1022,6 @@
     <Content Include="www\source\styles\Images\notify\srynf.png" />
     <Content Include="www\source\styles\Images\right-main-banner.jpeg" />
     <Content Include="www\source\styles\Images\right-main-banner.png" />
-    <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
-    <Content Include="www\source\styles\scss\vendors\animate\animate.min.css" />
     <Content Include="Views\Shared\Email\Signup\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.es-ES.cshtml" />
@@ -1103,9 +1056,6 @@
     <Content Include="www\source\styles\pages\statement-history.scss" />
     <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_DailyEarningContent.cshtml" />
     <Content Include="www\source\styles\pages\dailyearning.scss" />
-    <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_DailyEarningDetailContent.cshtml" />
-    <Content Include="www\source\styles\pages\dailyearning-detail.scss" />
-    <Content Include="www\source\styles\pages\betlist.scss" />
     <Content Include="www\source\styles\scss\components\_monthpicker.scss" />
     <Content Include="www\source\styles\pages\account-overview.scss" />
     <Content Include="Views\News\MessageHistory.cshtml" />
@@ -1279,9 +1229,6 @@
     <Content Include="Views\UserPanel\OffersForMe\Preview.cshtml" />
     <Content Include="www\source\styles\Images\left-main-banner.webp" />
     <Content Include="www\source\styles\Images\right-main-banner.webp" />
-    <Content Include="Views\UserPanel\BetList\Index.cshtml" />
-    <Content Include="Views\UserPanel\BetList\ParlayDetail.cshtml" />
-    <Content Include="Views\UserPanel\BetList\Result.cshtml" />
     <Content Include="www\source\styles\pages\feedback.scss" />
     <Content Include="www\build\styles\Images\feedback\letter-icon.webp" />
     <Content Include="Views\Shared\Email\NewPassword\Content.km-KH.cshtml" />
@@ -1323,84 +1270,6 @@
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.km-KH.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.km-KH.webp" />
     <Content Include="Views\CommissionStructure\_NewRevenueShareTable.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundleconfig.json" />
-    <Content Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
-    <Content Include="ConnectionString.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.backupmnl.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.master.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.production.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.sit.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.uat.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.backupmnl.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.master.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.production.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.sit.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.uat.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Fanex.Affiliate.User.Site.ruleset" />
-    <Content Include="package.json" />
-    <Content Include="www\source\styles\fonts\font_bebas\BEBAS___.TTF" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Light.ttf" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.eot" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.ttf" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.woff" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.woff2" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.eot" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.ttf" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.woff" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.woff2" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.eot" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.ttf" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.woff" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.woff2" />
-    <Content Include="www\source\styles\scss\abstracts\_mixins.scss" />
-    <Content Include="www\source\styles\scss\abstracts\_variables.scss" />
-    <Content Include="www\source\styles\scss\base\_animations.scss" />
-    <Content Include="www\source\styles\scss\base\_base.scss" />
-    <Content Include="www\source\styles\scss\base\_font.scss" />
-    <Content Include="www\source\styles\scss\base\_normalize.scss" />
-    <Content Include="www\source\styles\scss\base\_typography.scss" />
-    <Content Include="www\source\styles\scss\components\_buttons.scss" />
-    <Content Include="www\source\styles\scss\components\_table.scss" />
-    <Content Include="www\source\styles\scss\layout\_banner.scss" />
-    <Content Include="www\source\styles\scss\layout\_content.scss" />
-    <Content Include="www\source\styles\scss\layout\_header.scss" />
-    <Content Include="www\source\styles\scss\main.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.css.map" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.min.css.map" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.scss" />
@@ -1494,29 +1363,86 @@
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutLeft.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutRight.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutUp.scss" />
-    <Content Include="www\source\styles\scss\vendors\betlist\betlist.css" />
-    <Content Include="www\source\styles\scss\vendors\betlist\cashoutdetail.css" />
-    <Content Include="www\source\styles\scss\vendors\betlist\fanex.result.css" />
-    <Content Include="www\source\styles\scss\vendors\betlist\global.content.css" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\1F.gif" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\1L.gif" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\bar-loader.gif" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\bgHeader.jpg" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\blank.gif" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\firstGoal.gif" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\goal-icon.png" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\lastGoal.gif" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\link_14x14.png" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\link_16x16.png" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\note.png" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\plus.png" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\q_Icon2_1.png" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\q_Icon_2.png" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\tab_topbg.gif" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\undo.png" />
-    <Content Include="www\source\styles\scss\vendors\betlist\images\up.png" />
-    <Content Include="www\source\styles\scss\vendors\betlist\rngcasino.handhistory.css" />
-    <Content Include="www\source\styles\scss\vendors\betlist\systemparlay.detail.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bundleconfig.json" />
+    <Content Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="ConnectionString.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.backupmnl.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.local.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.master.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.production.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.sit.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.uat.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.backupmnl.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.local.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.master.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.production.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.sit.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.uat.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Fanex.Affiliate.User.Site.ruleset" />
+    <Content Include="package.json" />
+    <Content Include="www\source\styles\fonts\font_bebas\BEBAS___.TTF" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Light.ttf" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.eot" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.ttf" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.woff" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.woff2" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.eot" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.ttf" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.woff" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.woff2" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.eot" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.woff" />
+    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.woff2" />
+    <Content Include="www\source\styles\scss\abstracts\_mixins.scss" />
+    <Content Include="www\source\styles\scss\abstracts\_variables.scss" />
+    <Content Include="www\source\styles\scss\base\_animations.scss" />
+    <Content Include="www\source\styles\scss\base\_base.scss" />
+    <Content Include="www\source\styles\scss\base\_font.scss" />
+    <Content Include="www\source\styles\scss\base\_normalize.scss" />
+    <Content Include="www\source\styles\scss\base\_typography.scss" />
+    <Content Include="www\source\styles\scss\components\_buttons.scss" />
+    <Content Include="www\source\styles\scss\components\_table.scss" />
+    <Content Include="www\source\styles\scss\layout\_banner.scss" />
+    <Content Include="www\source\styles\scss\layout\_content.scss" />
+    <Content Include="www\source\styles\scss\layout\_header.scss" />
+    <Content Include="www\source\styles\scss\main.scss" />
+    <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
+    <Content Include="www\source\styles\scss\vendors\animate\animate.min.css" />
     <Content Include="www\source\styles\scss\vendors\bootstrap-3.3.7.min.css" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_alerts.scss" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_background-variant.scss" />
@@ -1636,7 +1562,6 @@
     <Content Include="www\source\styles\scss\base\_common.scss" />
     <Content Include="Views\Password\Index.cshtml" />
     <Content Include="Views\UserPanel\StatementHistory\DailyEarning.cshtml" />
-    <Content Include="Views\UserPanel\StatementHistory\DailyEarningDetail.cshtml" />
     <Content Include="Views\Test\Preview.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Shared\Email\CommonLayout.cshtml" />

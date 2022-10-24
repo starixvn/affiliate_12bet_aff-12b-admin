@@ -420,9 +420,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>Cộng hòa Séc </value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>Thu nhập chi tiết mỗi ngày</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>Thu nhập hàng ngày</value>
   </data>
@@ -1609,9 +1606,6 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Chưa Gửi Tiền</value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>Danh Sách Vé Cược</value>
   </data>
   <data name="result" xml:space="preserve">
     <value>Kết Quả</value>

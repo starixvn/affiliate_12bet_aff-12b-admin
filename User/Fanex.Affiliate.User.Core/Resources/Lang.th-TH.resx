@@ -420,9 +420,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>เช็คริพับบลิค</value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>รายละเอียดรายวัน</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>รายได้แต่ละวัน</value>
   </data>
@@ -1613,9 +1610,6 @@
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>รายการเดิมพัน</value>
   </data>
   <data name="result" xml:space="preserve">
     <value>ผลเดิมพัน</value>

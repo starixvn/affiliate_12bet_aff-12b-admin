@@ -196,7 +196,6 @@
     <Compile Include="Controllers\UserPanel\AffiliateLinkControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\CommissionReportControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\DailyEarningControllerTest.cs" />
-    <Compile Include="Controllers\UserPanel\DailyEarningDetailControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MarketingControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MediaGalleryControllerTest.cs" />

@@ -320,7 +320,6 @@
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\TermAndConditionController.cs" />
     <Compile Include="Controllers\UserPanel\MyAccountController.cs" />
-    <Compile Include="Controllers\UserPanel\DailyEarningDetailController.cs" />
     <Compile Include="Controllers\UserPanel\PaymentRequestController.cs" />
     <Compile Include="Controllers\UserPanel\MainController.cs" />
     <Compile Include="Controllers\UserPanel\StatisticsController.cs" />
@@ -328,7 +327,6 @@
     <Compile Include="CoreService\SessionService.cs" />
     <Compile Include="DTO\ContactApp.cs" />
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
-    <Compile Include="DTO\DailyEarningDetail.cs" />
     <Compile Include="DTO\DBMode.cs" />
     <Compile Include="DTO\ExtraUserInfo.cs" />
     <Compile Include="DTO\InternalPermission.cs" />
@@ -598,7 +596,6 @@
     <Compile Include="ViewModels\MemberTransactionViewModel.cs" />
     <Compile Include="ViewModels\ProductPageViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\CommissionReportDataViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\DailyEarningDetailViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\LatestHotNewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
