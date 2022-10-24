@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             var controller = new PromotionController(sessionService, null);
             var result = controller.Index() as ViewResult;
-            Assert.Equal(Constant.DefaultLanguage, result.Model as string);
+            Assert.Equal(Constant.DefaultShortedLanguageCode, result.Model as string);
             Assert.Equal("~/Views/Promotion/Index.cshtml", result.ViewName);
         }
     }

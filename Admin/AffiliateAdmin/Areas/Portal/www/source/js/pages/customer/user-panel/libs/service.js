@@ -1,5 +1,4 @@
 import { post } from '../../../../modules/ajaxRequest';
-import { Item } from '../../../admin-role/core/libs/resetAllProps';
 
 export const isActiveMenu = (selectedMenu, menuItem) => {
     return selectedMenu && (selectedMenu.key === menuItem.key || selectedMenu.parent === menuItem.key);

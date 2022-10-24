@@ -11,7 +11,7 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setSelectedSiteUrl', type: types.SET_SELECTED_SITE_URL, data: '12-bet.net' },
+    { name: 'setSelectedSiteDetailFilter', type: types.SET_SELECTED_SITE_DETAIL_FILTER, data: '12-bet.net' },
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } }
 ]
 

@@ -25,6 +25,50 @@ exports[`referrers - components - Filter render correctly 1`] = `
           ]
         }
       >
+        Country
+      </Label>
+      <div
+        className="multiple-select-wrapper is-invalid"
+      >
+        <MultipleSelect
+          dataSource={
+            Array [
+              Object {
+                "Checked": true,
+                "CountryCode": "en",
+                "CountryName": "England",
+              },
+            ]
+          }
+          hasAllOption={true}
+          isDisableOption={false}
+          itemDefaultOption={null}
+          keyField="CountryCode"
+          maxDisplayItemCount={1}
+          noneSelectedLabel="Please Select"
+          onChange={[Function]}
+          statusField="Checked"
+          valueField="CountryName"
+        />
+      </div>
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
         From
       </Label>
       <t

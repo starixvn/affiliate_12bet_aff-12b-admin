@@ -8,12 +8,12 @@ describe('landing page statistics - components - Detail', () => {
         jest.resetAllMocks();
     });
 
-    const selectedPage = {
+    const selectedPageDetailFilter = {
         languageCode: "hien",
         selectedPage: "sportsbook"
     };
     const defaultProps = {
-        selectedPage,
+        selectedPageDetailFilter,
         pagingOption: defaultPagingOption,
         param: {
             affId: 1271808,
@@ -70,12 +70,12 @@ describe('landing page statistics - components - Detail', () => {
     });
 
     it('componentDidUpdate - should call fetchData if param change', () => {
-        const props = Object.assign({}, defaultProps, { selectedPage });
+        const props = Object.assign({}, defaultProps, { selectedPageDetailFilter });
         const componentInstance = new Detail(props);
         componentInstance.fetchData = jest.fn();
         componentInstance.componentDidUpdate({ languageCode: "", selectedPage: "" });
 
-        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...defaultProps.param, ...selectedPage, pageIndex: 1, pageSize: 20 });
+        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...defaultProps.param, ...selectedPageDetailFilter, pageIndex: 1, pageSize: 20 });
     });
 
     it('fetchDetailData - should call toggleLoaderUserPanel, setState and setPagingOption with correct parameter', async () => {
@@ -86,7 +86,7 @@ describe('landing page statistics - components - Detail', () => {
         const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, setPagingOption, fetchDetailData });
         const componentInstance = new Detail(props);
         componentInstance.setState = jest.fn();
-        const param = Object.assign({}, defaultProps.param, { ...selectedPage, pageIndex: 1, pageSize: 20 });
+        const param = Object.assign({}, defaultProps.param, { ...selectedPageDetailFilter, pageIndex: 1, pageSize: 20 });
         await componentInstance.fetchData(param);
 
         expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(2);
@@ -122,7 +122,7 @@ describe('landing page statistics - components - Detail', () => {
         const setPagingOption = jest.fn();
         const pageIndex = 2;
         const pageSize = 50;
-        const paramExpect = Object.assign({}, defaultProps.param, { ...selectedPage, pageIndex, pageSize });
+        const paramExpect = Object.assign({}, defaultProps.param, { ...selectedPageDetailFilter, pageIndex, pageSize });
 
         const props = Object.assign({}, defaultProps, { setPagingOption });
         const componentInstance = new Detail(props);

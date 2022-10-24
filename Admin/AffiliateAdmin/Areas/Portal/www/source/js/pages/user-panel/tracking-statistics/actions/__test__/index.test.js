@@ -21,21 +21,6 @@ describe('landing page actions', () => {
         runTestAction(item);
     });
 
-    it('getTrackingCodeList - should return correct data', async () => {
-
-        const expectData = ["[None]", "Casino", "Sportsbook"];
-        const mockFunc = jest.fn(() => expectData);
-        const result = await actions['getTrackingCodeList'](1300390, mockFunc)();
-
-        expect(result).toEqual(expectData);
-    })
-
-    it('getTrackingCodeList - should return correct data with default func', async () => {
-        const result = await actions['getTrackingCodeList'](1300390);
-
-        expect(result).toEqual(expect.any(Function));
-    })
-
     it('should create action to fetchData with correct parameter', async () => {
         const expectedResponse = {
             data: [

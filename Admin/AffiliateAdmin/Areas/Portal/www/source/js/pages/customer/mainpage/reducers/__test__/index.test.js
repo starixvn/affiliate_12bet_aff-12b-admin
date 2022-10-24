@@ -11,7 +11,7 @@ describe('customer - mainpage reducer', () => {
         clickStatistics: {
             pagingOption: defaultPagingOption,
             param: {},
-            selectedSiteUrl: null,
+            selectedSiteDetailFilter: null,
         },
         customerStatistics: {
             monthDate: null,
@@ -34,7 +34,8 @@ describe('customer - mainpage reducer', () => {
             pageList: [],
             pagingOption: defaultPagingOption,
             param: {},
-            selectedPage: null,
+            isGroupByCountry: true,
+            selectedPageDetailFilter: null,
             shortCodeLanguageList: {},
         },
         languageList: null,

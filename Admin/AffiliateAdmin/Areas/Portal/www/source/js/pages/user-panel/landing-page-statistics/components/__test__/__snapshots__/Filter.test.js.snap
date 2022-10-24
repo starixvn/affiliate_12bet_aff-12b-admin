@@ -9,6 +9,89 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
     tag="div"
   >
     <FormGroup
+      className="mr-sm-3 my-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Group By
+      </Label>
+      <Input
+        name="groupBy"
+        onChange={[Function]}
+        type="select"
+        value="Country"
+      >
+        <option
+          key="groupBy-Country"
+          value="Country"
+        >
+          Country
+        </option>
+        <option
+          key="groupBy-Language"
+          value="Language"
+        >
+          Language
+        </option>
+      </Input>
+    </FormGroup>
+    <FormGroup
+      className="my-2 mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Country
+      </Label>
+      <div
+        className="multiple-select-wrapper is-invalid"
+      >
+        <MultipleSelect
+          dataSource={
+            Array [
+              Object {
+                "Checked": true,
+                "CountryCode": "en",
+                "CountryName": "England",
+              },
+            ]
+          }
+          hasAllOption={true}
+          isDisableOption={false}
+          itemDefaultOption={null}
+          keyField="CountryCode"
+          maxDisplayItemCount={1}
+          noneSelectedLabel="Please Select"
+          onChange={[Function]}
+          statusField="Checked"
+          valueField="CountryName"
+        />
+      </div>
+    </FormGroup>
+    <FormGroup
       className="mr-sm-2 my-2"
       tag="div"
     >
@@ -57,64 +140,6 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
           value="keno"
         >
           Keno
-        </option>
-      </Input>
-    </FormGroup>
-    <FormGroup
-      className="mr-sm-2 my-2"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
-        for="languageCode"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        Language
-      </Label>
-      <Input
-        id="languageCode"
-        name="languageCode"
-        onChange={[Function]}
-        type="select"
-        value=""
-      >
-        <option
-          value=""
-        >
-          All
-        </option>
-        <option
-          key="language-en"
-          value="en"
-        >
-          English
-        </option>
-        <option
-          key="language-vn"
-          value="vn"
-        >
-          Vietnamese
-        </option>
-        <option
-          key="language-ch"
-          value="ch"
-        >
-          Chinese Traditional
-        </option>
-        <option
-          key="language-abc"
-          value="abc"
-        >
-          ABC
         </option>
       </Input>
     </FormGroup>

@@ -199,13 +199,12 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, languageList, countryList, landingPageStatistics }) {
+function mapStateToProps({ today, affCommonInfo, languageList, landingPageStatistics }) {
     const { affId } = affCommonInfo;
     const { shortCodeLanguageList } = landingPageStatistics;
     return Object.assign({}, {
         today,
         affId,
-        countryList,
         languageList,
         shortCodeLanguageList
     });

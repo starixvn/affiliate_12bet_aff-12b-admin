@@ -75,7 +75,7 @@ describe('user panel services', () => {
 
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-        const result = await services['getProductList']();
+        const result = await services['getProductList']()();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetProductList');
         expect(result).toEqual(expectedResponse.data);
@@ -84,7 +84,7 @@ describe('user panel services', () => {
     it('getProductList - should return empty data', async () => {
         ajaxRequest.post = jest.fn();
 
-        const result = await services['getProductList']();
+        const result = await services['getProductList']()();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetProductList');
 
@@ -104,7 +104,7 @@ describe('user panel services', () => {
 
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-        const result = await services['getPageList']();
+        const result = await services['getPageList']()();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetPageList');
         expect(result).toEqual(expectedResponse.data);
@@ -113,7 +113,7 @@ describe('user panel services', () => {
     it('getPageList - should return empty data', async () => {
         ajaxRequest.post = jest.fn();
 
-        const result = await services['getPageList']();
+        const result = await services['getPageList']()();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetPageList');
 
@@ -128,7 +128,7 @@ describe('user panel services', () => {
 
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-        const result = await services['getTrackingCodeList'](1271808);
+        const result = await services['getTrackingCodeList'](1271808)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetTrackingCodeList', { affId: 1271808 });
         expect(result).toEqual(expectedResponse.data);
@@ -137,9 +137,40 @@ describe('user panel services', () => {
     it('getTrackingCodeList - should return empty data', async () => {
         ajaxRequest.post = jest.fn();
 
-        const result = await services['getTrackingCodeList'](1271808);
+        const result = await services['getTrackingCodeList'](1271808)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetTrackingCodeList', { affId: 1271808 });
+
+        expect(result).toEqual([]);
+    })
+
+    it('getCountryList - should return correct data', async () => {
+        const expectedResponse = {
+            data: [{
+                CountryCode: 'en',
+                CountryName: 'England'
+            }],
+            status: 200
+        };
+
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+
+        const result = await services['getCountryList']()();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetCountryList');
+        expect(result).toEqual([{
+            CountryCode: 'en',
+            CountryName: 'England',
+            Checked: true
+        }],);
+    })
+
+    it('getTrackingCodeList - should return empty data', async () => {
+        ajaxRequest.post = jest.fn();
+
+        const result = await services['getCountryList']()();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetCountryList');
 
         expect(result).toEqual([]);
     })
