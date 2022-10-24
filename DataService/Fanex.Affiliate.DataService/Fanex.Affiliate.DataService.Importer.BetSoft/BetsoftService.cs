@@ -9,7 +9,6 @@ using Fanex.Affiliate.DataService.Importer.Core.Exceptions;
 using Fanex.Affiliate.DataService.Importer.Betsoft.MetaModels;
 using Fanex.Affiliate.DataService.Importer.Core.Repository;
 using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Fanex.Logging;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -158,7 +157,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var response = xdoc.Root.Element("RESPONSE");
             if (!string.Equals("ok", response.Element("RESULT").Value, StringComparison.InvariantCultureIgnoreCase))
             {
-                LogHelper.WriteError($"Betsoft Error:\n{rawData}");
+                LogHelper.Error($"Betsoft Error:\n{rawData}");
             }
         }
     }

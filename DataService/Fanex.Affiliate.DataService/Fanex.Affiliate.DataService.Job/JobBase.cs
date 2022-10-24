@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.DataService.Importer.Core.Utilities;
-using Fanex.Affiliate.DataService.Job.Log;
+﻿using Fanex.Affiliate.DataService.Job.Log;
 using ONEbook.UM;
 using ONEbook.UM.Services;
 using Quartz;
@@ -24,7 +23,7 @@ namespace Fanex.Affiliate.DataService.Job
         {
             try
             {
-                LogHelper.WriteInfo($"{ServiceName} - Start at {DateTime.Now}");
+                Logger.Info($"{ServiceName} - Start at {DateTime.Now}");
 
                 var maintenanceService = new MaintenanceService(
                                       UMClientManager.RestClient,
@@ -36,7 +35,7 @@ namespace Fanex.Affiliate.DataService.Job
 
                 if (isUm)
                 {
-                    LogHelper.WriteInfo($"{ServiceName} - System is under maintained");
+                    Logger.Info($"{ServiceName} - System is under maintained");
                 }
                 else
                 {
@@ -46,9 +45,10 @@ namespace Fanex.Affiliate.DataService.Job
             }
             catch (Exception ex)
             {
-                LogHelper.WriteError(ex);
+                Logger.Error(ex.Message, ex);
             }
         }
+
 
         protected abstract Task ImportDataToSystem(IJobExecutionContext context = null);
     }

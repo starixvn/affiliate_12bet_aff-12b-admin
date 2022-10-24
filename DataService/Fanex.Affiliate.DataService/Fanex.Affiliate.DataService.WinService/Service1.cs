@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.DataService.WinService
             }
             catch (Exception ex)
             {
-                LogHelper.WriteError(ex);
+                LogHelper.Error(ex);
             }
 
         }
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.DataService.WinService
             }
             catch (Exception ex)
             {
-                LogHelper.WriteError(ex);
+                LogHelper.Error(ex);
             }
 
         }
@@ -81,12 +81,14 @@ namespace Fanex.Affiliate.DataService.WinService
                 }
             }
         }
-
         private static void SetupFanexLogging()
         {
             var env = ConfigurationManager.AppSettings["Environment"];
             var dsn = ConfigurationManager.AppSettings["SentryDsn"];
             var category = ConfigurationManager.AppSettings["LoggingCategory"];
+            var logLevel = (LogLevel)Enum.Parse(typeof(LogLevel), ConfigurationManager.AppSettings["LogLevel"]);
+            LogWrapper.Logger.SetLogLevel(logLevel);
+
             if (!string.IsNullOrEmpty(dsn))
             {
                 LogManager.SetDefaultLogCategory(category)
@@ -117,12 +119,12 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             try
             {
-                LogHelper.WriteInfo("Start 12bet AFF service");
+                LogHelper.Info("Start 12bet AFF service");
                 _schedulerFactory.SetUpAsync();
             }
             catch (Exception exception)
             {
-                LogHelper.WriteError(exception);
+                LogHelper.Error(exception);
             }
         }
 
@@ -130,12 +132,12 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             try
             {
-                LogHelper.WriteInfo("Stop 12bet AFF service");
+                LogHelper.Info("Stop 12bet AFF service");
                 _schedulerFactory.ShutdownAsync();
             }
             catch (Exception exception)
             {
-                LogHelper.WriteError(exception);
+                LogHelper.Error(exception);
             }
         }
 
@@ -143,7 +145,7 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             base.OnPause();
 
-            LogHelper.WriteInfo("Pause 12bet AFF service");
+            LogHelper.Info("Pause 12bet AFF service");
             _schedulerFactory.PauseAsync();
         }
 
@@ -151,7 +153,7 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             base.OnContinue();
 
-            LogHelper.WriteInfo("Resume 12bet AFF service");
+            LogHelper.Info("Resume 12bet AFF service");
             _schedulerFactory.ResumeAsync();
         }
 
@@ -159,7 +161,7 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             base.OnShutdown();
 
-            LogHelper.WriteInfo("Shutdown 12bet AFF service");
+            LogHelper.Info("Shutdown 12bet AFF service");
             _schedulerFactory.ShutdownAsync();
         }
     }

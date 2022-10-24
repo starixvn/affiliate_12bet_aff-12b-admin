@@ -26,7 +26,9 @@ namespace Fanex.Affiliate.DataService.Job
             }
             catch (Exception ex)
             {
-                throw new Exception($"{ex.Message} when import data at start time {startTime} and end time {endTime}", ex);
+                Logger.Error($"{ex.Message} when import data at start time {startTime} and end time {endTime}", ex);
+
+                return Task.FromException(ex);
             }
         }
 

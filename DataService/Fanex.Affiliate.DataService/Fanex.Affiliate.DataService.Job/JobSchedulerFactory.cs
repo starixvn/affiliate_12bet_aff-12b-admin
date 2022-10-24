@@ -20,14 +20,6 @@ namespace Fanex.Affiliate.DataService.Job
         }
         private void Init()
         {
-
-            LogProvider.IsDisabled = true;
-
-#if DEBUG
-            LogProvider.IsDisabled = false;
-            LogProvider.SetCurrentLogProvider(new QuartzLogProvider());
-#endif
-
             var appSetting = new AppSettings();
             _schedulerFactory = new StdSchedulerFactory();
             _jobSchedulerList = new List<IJobScheduler>();
