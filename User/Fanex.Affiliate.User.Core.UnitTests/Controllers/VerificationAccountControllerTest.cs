@@ -65,12 +65,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(email, model.Email);
         }
 
-        [Fact]
-        public void CaptchaImage_WhenCall_ReturnImageCaptchaPng()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void CaptchaImage_WhenCall_ReturnImageCaptchaPng(bool isNUll)
         {
             var controller = CreateController();
             var sessionSevice = new VerificationSession();
-            SessionService.VerificationSession.Returns(sessionSevice);
+            SessionService.VerificationSession.Returns(isNUll ? null : sessionSevice);
             var imageByte = new byte[] { 0x20, 0x20, 0x20 };
             CaptchaService.GenerateImageBuffer(null, 0, 0, false).ReturnsForAnyArgs(imageByte);
 

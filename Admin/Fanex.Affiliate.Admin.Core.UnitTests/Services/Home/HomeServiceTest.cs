@@ -80,21 +80,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             Assert.Equal(0, result.TotalItem);
         }
 
-        [Fact]
-        public void GetPSPToday_WhenCall_ReturnCorrectData()
+        [Theory]
+        [InlineData(false, 1.23)]
+        [InlineData(true, 0)]
+        public void GetPSPToday_WhenCall_ReturnCorrectData(bool isDBNull, decimal expectedResult)
         {
             // Arrange
             var service = new Mock<HomeService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
 
-            objectDb.Setup(obj => obj.GetParameterValue("PSP")).Returns(1.23m);
+            objectDb.Setup(obj => obj.GetParameterValue("PSP")).Returns(isDBNull ? DBNull.Value : (object)1.23);
             service.Setup(r => r.GetObjectDb("DEP_AffiliateGetPSP", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetPSPToday();
 
             // Assert
-            Assert.Equal(1.23m, result);
+            Assert.Equal(expectedResult, result);
         }
 
         [Fact]

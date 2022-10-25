@@ -28,6 +28,21 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         }
 
         [Fact]
+        public void GetCountryList_WhenCall_CallCorrectMethodOfObjectDb()
+        {
+            // Arrange
+            var objectDb = new Mock<IObjectDb>();
+            var repository = new Mock<CommonSettingRepository> { CallBase = true };
+            repository.Setup(r => r.GetObjectDb("Aff_Country_Sel", It.IsAny<int>())).Returns(objectDb.Object);
+
+            // Action
+            repository.Object.GetCountryList();
+
+            // Assert
+            objectDb.Verify(obj => obj.Query<Country>(null, null), Times.Once);
+        }
+
+        [Fact]
         public void GetLanguageList_WhenCall_ReturnCorrectLanguageList()
         {
             // Arrange

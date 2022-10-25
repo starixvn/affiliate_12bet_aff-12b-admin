@@ -143,12 +143,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
         private EncryptedHandler CreateHandler()
         {
             HttpRequest = NSubtituteMockingHelper.GetHttpRequest();
-            var handler = new EncryptedHandlerFake(RequestContext, HttpRequestParserHandler);
-            handler.HttpRequest = HttpRequest;
-            return handler;
+            return new EncryptedHandlerFake(RequestContext, HttpRequestParserHandler)
+            {
+                HttpRequest = HttpRequest
+            };
         }
 
-        private HttpContext CreateParam()
+        private static HttpContext CreateParam()
         {
             var request = new HttpRequest("", "http://abc.com", "");
             var response = new HttpResponse(new StringWriter());

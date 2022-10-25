@@ -1,8 +1,10 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using NSubstitute;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -19,15 +21,37 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLandingPageStatistics_WhenCallWithEmptyLanguage_CallStatisticsRepository()
+        public void GetCountryList_WhenCall_CallStatisticsRepository()
         {
-            var param = new LandingPageStatisticsParam();
+            Repo.GetCountryList(false).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
+            var service = CreateService();
+
+            service.GetCountryList(false);
+
+            Repo.Received().GetCountryList(false);
+        }
+
+        [Fact]
+        public void GetCountryCodes_WhenCall_CallStatisticsRepository()
+        {
+            Repo.GetCountryList(false).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
+            var service = CreateService();
+
+            var result = service.GetCountryCodes(false);
+
+            Repo.Received().GetCountryList(false);
+            Assert.Equal("EN", result);
+        }
+
+        [Fact]
+        public void GetLandingPageStatistics_WhenCallWithReportByCountry_CallStatisticsRepository()
+        {
+            var param = new LandingPageStatisticsParam { ReportBy = "Country"};
             var service = CreateService();
 
             service.GetLandingPageStatistics(param);
 
-            Repo.Received().GetLandingPageStatistics(Arg.Compat.Any<LandingPageStatisticsParam>());
-            Assert.Equal("en,vn,us", param.LanguageCodes);
+            Repo.Received().GetLandingPageStatistics(param);
         }
 
         [Fact]
@@ -40,6 +64,21 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             Repo.Received().GetLandingPageStatistics(Arg.Compat.Any<LandingPageStatisticsParam>());
             Assert.Equal("us", param.LanguageCodes);
+        }
+
+        [Fact]
+        public void GetLandingPageStatistics_WhenCallWithEmptyLanguage_CallStatisticsRepository()
+        {
+            var param = new LandingPageStatisticsParam();
+            Repo.GetLandingPageStatistics(Arg.Compat.Any<LandingPageStatisticsParam>()).Returns(new List<LandingPageStatistics> {
+                new LandingPageStatistics { LanguageCode = "vi" },
+                new LandingPageStatistics { LanguageCode = "en" }
+            });
+            var service = CreateService();
+
+            service.GetLandingPageStatistics(param);
+
+            Assert.Equal("en,vn,us", param.LanguageCodes);
         }
 
         [Fact]

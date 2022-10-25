@@ -37,6 +37,54 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         }
 
         [Fact]
+        public void GetProductList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            commonSettingRepository.Setup(l => l.GetProductList()).Returns(new List<Product> { new Product () });
+
+            var service = CreateCommonService(commonSettingRepository.Object);
+
+            // Action
+            var result = service.GetProductList();
+
+            // Assert
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetAffTypeList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            commonSettingRepository.Setup(l => l.GetAffTypeList()).Returns(new List<DTO.Common.AffType> { new DTO.Common.AffType() });
+
+            var service = CreateCommonService(commonSettingRepository.Object);
+
+            // Action
+            var result = service.GetAffTypeList();
+
+            // Assert
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetCountryList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            commonSettingRepository.Setup(l => l.GetCountryList()).Returns(new List<Country> { new Country() });
+
+            var service = CreateCommonService(commonSettingRepository.Object);
+
+            // Action
+            var result = service.GetCountryList();
+
+            // Assert
+            Assert.Single(result);
+        }
+
+        [Fact]
         public void SetCulture_WhenCall_Excute()
         {
             // Arrange

@@ -64,6 +64,22 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             Assert.Equal(param, passedParam);
         }
 
+        [Fact]
+        public void GetCountryList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(s => s.GetCountryList()).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
+            var controller = CreateCommonSettingController(commonSettingService.Object);
+
+            // Action
+            var result = controller.GetCountryList() as JsonNetResult;
+            var data = result.Data as List<Country>;
+
+            // Assert
+            Assert.Single(data);
+        }
+
         private CommonSettingController CreateCommonSettingController(
             ICommonSettingService commonSettingService = null,
             ILandingPageRepository landingPageRepository = null,

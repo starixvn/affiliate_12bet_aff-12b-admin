@@ -98,7 +98,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var db = Builder.Build(uSpkey, dbMode);
             db.Query<ReferrerStatistics>(param).Returns(new List<ReferrerStatistics>
             {
-                new ReferrerStatistics { SiteUrls = "", Fdm = 1, SignUps = 1, TotalClick = 1, UniqueClick = 1}
+                new ReferrerStatistics { SiteUrls = "", Fdm = 1, SignUps = 1, TotalClick = 1, UniqueClick = 1, CountryCode = "EN", Country = "England"}
             });
             var repo = CreateRepo();
 
@@ -164,11 +164,32 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var db = Builder.Build(uSpkey, dbMode);
             db.Query<LandingPageStatistics>(param).Returns(new List<LandingPageStatistics>
             {
-                new LandingPageStatistics { Fdm = 1, LanguageCode = "", Language = "", SignUps = 1, Page = "", TotalClick = 1, UniqueClick = 1 }
+                new LandingPageStatistics { Fdm = 1, LanguageCode = "", Language = "", SignUps = 1, Page = "", TotalClick = 1, UniqueClick = 1, CountryCode = "EN", Country = "England" }
             });
             var repo = CreateRepo();
 
             var result = repo.GetLandingPageStatistics(param);
+
+            Assert.Equal(key, db.SettingKey);
+            Assert.NotEmpty(result);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GetCountryList_WhenCall_QueryCountry(bool isInternal)
+        {
+            const string uSpkey = "Aff_Country_Sel";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+            var key = uSpkey + dbMode;
+            var db = Builder.Build(uSpkey, dbMode);
+            db.Query<Country>().Returns(new List<Country>
+            {
+                new Country { CountryCode = "EN", CountryName = "England" }
+            });
+            var repo = CreateRepo();
+
+            var result = repo.GetCountryList(isInternal);
 
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result);

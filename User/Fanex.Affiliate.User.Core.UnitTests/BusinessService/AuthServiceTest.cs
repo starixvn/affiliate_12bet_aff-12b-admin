@@ -231,6 +231,27 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             AuthRepo.ReceivedWithAnyArgs().Recheckin(1, false);
         }
 
+        [Fact]
+        public void IsValidIdleTime_WhenCall_RepoCalled()
+        {
+            var now = DateTime.Now;
+            var service = CreateService();
+
+            service.IsValidIdleTime(now);
+
+            FeedbackService.ReceivedWithAnyArgs().IsValidIdleTime(now);
+        }
+
+        [Fact]
+        public void IsValidAff_WhenCall_RepoCalled()
+        {
+            var service = CreateService();
+
+            service.IsValidAff(123);
+
+            FeedbackService.ReceivedWithAnyArgs().IsValidAff(123);
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
