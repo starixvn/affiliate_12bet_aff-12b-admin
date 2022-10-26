@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -181,13 +182,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
         private DomainController CreateDomainController(
         ISessionService sessionService = null,
-        IDomainService domainService = null
+        IDomainService domainService = null,
+        ILanguageRepository languageRepository = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakeLanguageRepository = languageRepository ?? Mock.Of<ILanguageRepository>();
             var fakeDomainService = domainService ?? Mock.Of<IDomainService>();
 
-            var controller = new DomainController(fakeSessionService, fakeDomainService);
+            var controller = new DomainController(fakeSessionService, fakeDomainService, fakeLanguageRepository);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

@@ -17,6 +17,7 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
+            marketList: @Html.Raw(Json.Encode(Model.MarketList)),
             isAffDomain: '@isAffDomain'.toLowerCase() === 'true',
         }
     </script>

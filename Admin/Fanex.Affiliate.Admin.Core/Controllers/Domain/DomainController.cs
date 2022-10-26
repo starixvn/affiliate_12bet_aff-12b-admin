@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
@@ -18,12 +19,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     public class DomainController : ReadOnlySessionBaseController
     {
         private readonly IDomainService _domainService;
+        private readonly ILanguageRepository _languageRepository;
 
         public DomainController(
             ISessionService sessionService,
-            IDomainService domainService) : base(sessionService)
+            IDomainService domainService,
+            ILanguageRepository languageRepository) : base(sessionService)
         {
             _domainService = domainService;
+            _languageRepository = languageRepository;
         }
 
         public ActionResult Index(bool isAffDomain = true)
@@ -38,6 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             var model = new DomainViewModel
             {
                 SubMenuList = subMenu,
+                MarketList = _languageRepository.GetLanguageList(),
                 IsAffDomain = isAffDomain
             };
 

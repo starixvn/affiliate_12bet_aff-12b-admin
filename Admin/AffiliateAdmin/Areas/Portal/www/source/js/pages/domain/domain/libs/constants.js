@@ -8,6 +8,6 @@ export const headerText = {
     SSL: 'SSL',
     Creator: 'Creator',
     CreatedDate: 'Created Date',
-    Edit: globalResource.Edit,
-    Delete: globalResource.Delete
+    BlockMarket: 'Block Market',
+    Action: globalResource.Action
 }

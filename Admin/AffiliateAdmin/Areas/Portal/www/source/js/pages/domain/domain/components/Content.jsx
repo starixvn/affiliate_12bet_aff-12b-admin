@@ -68,13 +68,13 @@ export class Content extends PureComponent {
         const { isModifiable } = this.props;
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={60} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={500} title={headerText.Domain}>{headerText.Domain}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.SSL}>{headerText.SSL}</Cell>
-                <Cell header={true} colWidth={160} title={headerText.Creator}>{headerText.Creator}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                { isModifiable && <Cell header={true} colWidth={60} title={headerText.Edit}>{headerText.Edit}</Cell>}
-                { isModifiable && <Cell header={true} colWidth={60} title={headerText.Delete}>{headerText.Delete}</Cell>}
+                <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={300} title={headerText.Domain}>{headerText.Domain}</Cell>
+                <Cell header={true} colWidth={35} title={headerText.SSL}>{headerText.SSL}</Cell>
+                <Cell header={true} colWidth={90} title={headerText.Creator}>{headerText.Creator}</Cell>
+                <Cell header={true} colWidth={90} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={200} title={headerText.BlockMarket}>{headerText.BlockMarket}</Cell>
+                { isModifiable && <Cell header={true} colWidth={50} title={headerText.Edit}>{headerText.Action}</Cell>}
             </Row>
         );
     }
@@ -110,15 +110,14 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
+                <Cell className="text-center"></Cell>
                 { isModifiable &&
                     <React.Fragment>
-                        <Cell className="text-center" title="Edit Domain">
-                            <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, domainName, dataItem.IsSSL)}>
+                        <Cell className="text-center">
+                            <Button color="link py-0" title="Edit Domain" onClick={() => this._handleEditDomain(dataItem.DomainId, domainName, dataItem.IsSSL)}>
                                 <span className="oi oi-pencil text-secondary"></span>
                             </Button>
-                        </Cell>
-                        <Cell className="text-center" title="Delete Domain">
-                            <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
+                        <Button color="link py-0" title="Delete Domain" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
                                 <span className="oi oi-trash text-danger"></span>
                             </Button>
                         </Cell>

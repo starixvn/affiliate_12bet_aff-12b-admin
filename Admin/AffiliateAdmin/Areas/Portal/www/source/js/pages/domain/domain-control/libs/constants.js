@@ -10,6 +10,5 @@ export const headerText = {
     Creator: 'Creator',
     CreatedDate: 'Created Date',
     Status: 'Status',
-    Edit: globalResource.Edit,
-    Delete: globalResource.Delete
+    Action: globalResource.Action
 }
