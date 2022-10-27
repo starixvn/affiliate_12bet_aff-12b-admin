@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cambodian" xml:space="preserve">
+    <value>ខ្មែរ</value>
+  </data>
+  <data name="Affiliate" xml:space="preserve">
+    <value>ភ្នាក់ងារ</value>
+  </data>
+  <data name="SignUpAffiliate" xml:space="preserve">
+    <value>ចុះឈ្មោះចូលជាភ្នាក់ងារ</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>ឈ្មោះ​ប្រើប្រាស់</value>
+  </data>
+  <data name="UsernameSignUp" xml:space="preserve">
+    <value>ឈ្មោះ​ប្រើប្រាស់</value>
+  </data>
+  <data name="UsernameVerification" xml:space="preserve">
+    <value>ឈ្មោះ​ប្រើប្រាស់</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>ពាក្យសម្ងាត់</value>
+  </data>
+  <data name="PasswordVerification" xml:space="preserve">
+    <value>ពាក្យសម្ងាត់</value>
+  </data>
+  <data name="Validation" xml:space="preserve">
+    <value>សុពលភាព</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ចូល</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>ទំព័រដើម</value>
+  </data>
+  <data name="CommissionStructure" xml:space="preserve">
+    <value>រចនាសម្ព័ន្ធនៃកំរៃជើងសារ</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>ផលិតផល</value>
+  </data>
+  <data name="TermAndCondition" xml:space="preserve">
+    <value>លក្ខខណ្ឌ</value>
+  </data>
+  <data name="Faqs" xml:space="preserve">
+    <value>សំណួរដែលសួរញឹកញាប់</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>ការផ្តល់ជូនពិសេស</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>ទាក់ទង​មក​ពួក​យើង</value>
+  </data>
+  <data name="HotNews" xml:space="preserve">
+    <value>ដំណឹងក្តៅៗ</value>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>ក្នុងនាមជាភ្នាក់ងារ អ្នកនឹងរកបានកម្រៃជើងសារពីអ្នកលេងទាំងអស់ដែលអ្នកបានណែនាំមក 12BET ប្រព័ន្ធអនឡាញរបស់អ្នកនឹងដំណើរការ 24/7 សម្រាប់ការប្រើប្រាស់</value>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>តើអ្វីទៅ​ដែល​ថ្មីសំរាប់ភ្នាក់ងារ</value>
+  </data>
+  <data name="CannotGetEnough" xml:space="preserve">
+    <value>មិន​អាច​ទទួល​បាន​គ្រប់គ្រាន់!</value>
+  </data>
+  <data name="YourCurrentCommision" xml:space="preserve">
+    <value>បច្ចុប្បន្នរបស់អ្នក កំរៃជើងសារ?</value>
+  </data>
+  <data name="ContactYourAffilliateSupportTeam" xml:space="preserve">
+    <value>ទំនាក់ទំនងក្រុមគាំទ្រភ្នាកើងាររបស់អ្នកដើម្បីបង្កើនអត្រាកំរៃជើងសារប្រាក់ចំណូលកាន់តែធំសំរាប់ប្រចាំខែរបស់អ្នក</value>
+  </data>
+  <data name="ContactNow" xml:space="preserve">
+    <value>ទំនាក់ទំនងឥឡូវនេះ!</value>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>ព័ត៌មានជាភ្នាក់ងារនៃ 12BET </value>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>ផ្ទាំងបដាថ្មីមានហើយ!</value>
+  </data>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>ថ្មី!</value>
+  </data>
+  <data name="NewTrackingCode" xml:space="preserve">
+    <value>ថ្មី</value>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>ឥឡូវ​នេះ អ្នក​អាច​ចូល​ក្នុង​គណនីភ្នាក់ងាររបស់​អ្នក​ដើម្បី​ទទួល​បាន​បដា​ថ្មី​ដើម្បី​ផ្សព្វផ្សាយ​ក្នុង​គេហទំព័រ​របស់​អ្នក។</value>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>តើមានអ្វីថ្មីនៅក្នុងការផ្តល់ជូនពិសេស 12BET !</value>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>មកដឹងពីប្រូម៉ូសិនក្តៅៗក្នុងខែនេះ បង្ហោះវានៅក្នុងគេហទំព័រ និងបណ្តាញសង្គមរបស់អ្នក ដើម្បីទទួលបានអតិថិជន និងកម្រៃជើងសារកាន់តែច្រើន!</value>
+  </data>
+  <data name="ExtraCommission" xml:space="preserve">
+    <value>កំរៃជើងសារបន្ថែមរហូតដល់ 12%!</value>
+  </data>
+  <data name="BeOurAffThisMonth" xml:space="preserve">
+    <value>ក្លាយជាដៃគូសហការរបស់យើងក្នុងខែនេះ &amp; រីករាយជាមួយកម្រៃជើងសាររហូតដល់ 40% + បន្ថែម 12%! ចុចទីនេះដើម្បីទទួលបានព័ត៌មានលម្អិត!</value>
+  </data>
+  <data name="AffiliateProgram" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងារ</value>
+  </data>
+  <data name="AffiliateLogin" xml:space="preserve">
+    <value>ការចូលរបស់ភ្នាក់ងារ</value>
+  </data>
+  <data name="NotAffiliateMemberYet" xml:space="preserve">
+    <value>មិន​ទាន់​ជា​សមាជិកភ្នាក់ងារនៅ​ឡើយ​ទេ?</value>
+  </data>
+  <data name="SignUpToAffiliateProgram" xml:space="preserve">
+    <value>ចុះឈ្មោះចូលរួមកម្មវិធីភ្នាក់ងារដើម្បីទទួលបានកម្រៃជើងសាររហូតដល់ 40% ជា​រៀងរាលខែ!</value>
+  </data>
+  <data name="JoinNow" xml:space="preserve">
+    <value>ចូលរួមឥឡូវនេះ!</value>
+  </data>
+  <data name="WelcomeBack" xml:space="preserve">
+    <value>ស្វា​គម​ន៏​ការ​ត្រ​ឡប់​មក​វិញ!</value>
+  </data>
+  <data name="ForgotLoginDetail" xml:space="preserve">
+    <value>ភ្លេចព័ត៌មានលំអិតនៃការចូល?</value>
+  </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>ភ្លេចពាក្យសម្ងាត់របស់អ្នក?</value>
+  </data>
+  <data name="TitelForgetPass" xml:space="preserve">
+    <value>ពាក្យសម្ងាត់ថ្មីនឹងត្រូវបានផ្ញើទៅកាន់អាស័យដ្ឋានអ៊ីមែលដែលអ្នកបានផ្តល់។&lt;br /&gt;ប្រសិន​បើ​អ្នក​ជួប​ប្រទះ​ការ​លំបាក​បន្ថែម​ទៀត​សូម&lt;a href="{0}"&gt;ទាក់​ទង​មក​យើង&lt;/a&gt;</value>
+  </data>
+  <data name="YourEmail" xml:space="preserve">
+    <value>អ៊ីមែល​របស់​អ្នក</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>បញ្ជូន</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>កំណត់ឡើងវិញ</value>
+  </data>
+  <data name="RevenueShareTitle" xml:space="preserve">
+    <value>ការចែករំលែកប្រាក់ចំណូល</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>ផលិតផលទាំងអស់</value>
+  </data>
+  <data name="MoreDetailProduct" xml:space="preserve">
+    <value>ព័ត៌មានលម្អិតបន្ថែមអំពីផលិតផល 12BET</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>ក្រុមហ៊ុនឈ្នះសុទ្ធប្រចាំខែ (CNW)($)</value>
+  </data>
+  <data name="OneUsdAndAbove" xml:space="preserve">
+    <value>$1 &amp; លើស</value>
+  </data>
+  <data name="QualifyingMem" xml:space="preserve">
+    <value>សមាជិកដែលមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>កំរៃជើងសារ</value>
+  </data>
+  <data name="_12Sports" xml:space="preserve">
+    <value>12SPORTS</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>កីឡាសិប្បនិម្មិត</value>
+  </data>
+  <data name="_12ESports" xml:space="preserve">
+    <value>12ESPORTS</value>
+  </data>
+  <data name="ImESports" xml:space="preserve">
+    <value>IM ESPORTS (ESPORTS BULL)</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>ហ្គេមលេខ</value>
+  </data>
+  <data name="RngKeno" xml:space="preserve">
+    <value>RNG គីណូ</value>
+  </data>
+  <data name="Lottery" xml:space="preserve">
+    <value>ឆ្នោត</value>
+  </data>
+  <data name="GpiLottery" xml:space="preserve">
+    <value>ឆ្នោត GPI</value>
+  </data>
+  <data name="Product12EMERALD" xml:space="preserve">
+    <value>12EMERALD (PLAYTECH)</value>
+  </data>
+  <data name="PrefixProduct12EMERALD" xml:space="preserve">
+    <value>12EMERALD</value>
+  </data>
+  <data name="SuffixProduct12EMERALD" xml:space="preserve">
+    <value>(Playtech)</value>
+  </data>
+  <data name="PrefixProduct12PEARL" xml:space="preserve">
+    <value>12PEARL</value>
+  </data>
+  <data name="SuffixProduct12PEARL" xml:space="preserve">
+    <value>(ASIA GAMING)</value>
+  </data>
+  <data name="PrefixProduct12OPAL" xml:space="preserve">
+    <value>12OPAL</value>
+  </data>
+  <data name="SuffixProduct12OPAL" xml:space="preserve">
+    <value>(EBET)</value>
+  </data>
+  <data name="Product12OPAL" xml:space="preserve">
+    <value>12OPAL (EBET)</value>
+  </data>
+  <data name="Product12PEARL" xml:space="preserve">
+    <value>12PEARL (ASIA GAMING)</value>
+  </data>
+  <data name="Product12ONYX" xml:space="preserve">
+    <value>12ONYX (ALLBET)</value>
+  </data>
+  <data name="PrefixProduct12ONYX" xml:space="preserve">
+    <value>12ONYX</value>
+  </data>
+  <data name="SuffixProduct12ONYX" xml:space="preserve">
+    <value>(ALLBET)</value>
+  </data>
+  <data name="Product12TOPAZ" xml:space="preserve">
+    <value>12TOPAZ (MICRO GAMING, NETENT, FLOW GAMING)</value>
+  </data>
+  <data name="PrefixProduct12CRYSTAL" xml:space="preserve">
+    <value>12CRYSTAL</value>
+  </data>
+  <data name="Product12CRYSTAL" xml:space="preserve">
+    <value>12CRYSTAL (GAME PLAY INTERACTIVE)</value>
+  </data>
+  <data name="SuffixProduct12CRYSTAL" xml:space="preserve">
+    <value>(GAME PLAY INTERACTIVE)</value>
+  </data>
+  <data name="Product12AMBER" xml:space="preserve">
+    <value>12AMBER (BETSOFT)</value>
+  </data>
+  <data name="PrefixProduct12AMBER" xml:space="preserve">
+    <value>12AMBER</value>
+  </data>
+  <data name="SuffixProduct12AMBER" xml:space="preserve">
+    <value>(BETSOFT)</value>
+  </data>
+  <data name="Product12GOLD" xml:space="preserve">
+    <value>12GOLD (SA GAMING)</value>
+  </data>
+  <data name="PrefixProduct12Gold" xml:space="preserve">
+    <value>12GOLD</value>
+  </data>
+  <data name="SuffixProduct12GOLD" xml:space="preserve">
+    <value>(SA GAMING)</value>
+  </data>
+  <data name="Product12JADE" xml:space="preserve">
+    <value>12JADE (AE SEXY)</value>
+  </data>
+  <data name="PrefixProduct12JADE" xml:space="preserve">
+    <value>12JADE</value>
+  </data>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE SEXY)</value>
+  </data>
+  <data name="Product12SUNSTONE" xml:space="preserve">
+    <value>12SUNSTONE (EA GAMING)</value>
+  </data>
+  <data name="PrefixProduct12SUNSTONE" xml:space="preserve">
+    <value>12SUNSTONE</value>
+  </data>
+  <data name="SuffixProduct12SUNSTONE" xml:space="preserve">
+    <value>(EA GAMING)</value>
+  </data>
+  <data name="Product12JASPER" xml:space="preserve">
+    <value>12JASPER (N2 LIVE)</value>
+  </data>
+  <data name="PrefixProduct12JASPER" xml:space="preserve">
+    <value>12JASPER</value>
+  </data>
+  <data name="SuffixProduct12JASPER" xml:space="preserve">
+    <value>(N2 LIVE)</value>
+  </data>
+  <data name="SignUpAffiliateProgramNow" xml:space="preserve">
+    <value>ចុះឈ្មោះកម្មវិធីភ្នាក់ងារ 12BET ឥឡូវនេះ!</value>
+  </data>
+  <data name="LiveCasino" xml:space="preserve">
+    <value>កាស៊ីណូផ្សាយផ្ទាល់</value>
+  </data>
+  <data name="CasinoClubs" xml:space="preserve">
+    <value>ហ្គេមកាស៊ីណូ</value>
+  </data>
+  <data name="Baccarat" xml:space="preserve">
+    <value>បាការ៉ាត់</value>
+  </data>
+  <data name="Blackjack" xml:space="preserve">
+    <value>ប្លេកជេក</value>
+  </data>
+  <data name="Roulette" xml:space="preserve">
+    <value>រ៉ូឡែត</value>
+  </data>
+  <data name="Dragon" xml:space="preserve">
+    <value>នាគ/ខ្លា</value>
+  </data>
+  <data name="Sicbo" xml:space="preserve">
+    <value>Sic Bo</value>
+  </data>
+  <data name="CasinoHold" xml:space="preserve">
+    <value>Casino Hold'em</value>
+  </data>
+  <data name="AndarBahar" xml:space="preserve">
+    <value>Andar Bahar</value>
+  </data>
+  <data name="Teenpatti" xml:space="preserve">
+    <value>Teenpatti</value>
+  </data>
+  <data name="Multiplayer" xml:space="preserve">
+    <value>អ្នកលេងជាច្រើន</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>ស្លតហ្គេម</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>Progressive Games</value>
+  </data>
+  <data name="Product12RUBY" xml:space="preserve">
+    <value>12RUBY (12BET)</value>
+  </data>
+  <data name="NewPromotion" xml:space="preserve">
+    <value>ការផ្តល់ជូនសំរាប់សមាជិកភ្នាក់ងារថ្មី</value>
+  </data>
+  <data name="ExistingPromotion" xml:space="preserve">
+    <value>ការផ្តល់ជូនសំរាប់សមាជិកភ្នាក់ងារដែលមានស្រាប់</value>
+  </data>
+  <data name="RegisForm" xml:space="preserve">
+    <value>ទម្រង់ពាក្យស្នើសុំ</value>
+  </data>
+  <data name="CompleteForm" xml:space="preserve">
+    <value>សូមបំពេញទម្រង់បែបបទនេះដើម្បីចុះឈ្មោះសម្រាប់គណនីភ្នាក់ងារ 12BET របស់អ្នក</value>
+  </data>
+  <data name="RequireInfo" xml:space="preserve">
+    <value>រាល់ &lt;font color="red"&gt;*&lt;/font&gt; ត្រូវតែបំពេញ</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>ព័ត៌មានទំនាក់ទំនង</value>
+  </data>
+  <data name="FName" xml:space="preserve">
+    <value>ឈ្មោះ</value>
+  </data>
+  <data name="LName" xml:space="preserve">
+    <value>នាមត្រកូល</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>ភេទប្រុស​ស្រី</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>ប្រុស</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>ស្រី</value>
+  </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>អាស័យ​ដ្ឋាន​អ៊ី​ម៉េ​ល</value>
+  </data>
+  <data name="ReEmail" xml:space="preserve">
+    <value>ផ្ទៀងផ្ទាត់​អាសយដ្ឋាន​អ៊ី​ម៉ែ​ល</value>
+  </data>
+  <data name="ContactNumber" xml:space="preserve">
+    <value>លេខ​ទំនាក់​ទំនង</value>
+  </data>
+  <data name="MailingInfor" xml:space="preserve">
+    <value>ព័ត៌មានតាមសំបុត្</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>អាស័យដ្ឋាន</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>ទីក្រុង</value>
+  </data>
+  <data name="PostCode" xml:space="preserve">
+    <value>លេខកូដប្រៃសណីយ៍/លេខកូដតំបន់</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>ប្រទេស</value>
+  </data>
+  <data name="SelectOne" xml:space="preserve">
+    <value>ជ្រើសរើស​មួយ</value>
+  </data>
+  <data name="WebsiteInfor" xml:space="preserve">
+    <value>ព័ត៌មានគេហទំព័រ</value>
+  </data>
+  <data name="OwnWebsite" xml:space="preserve">
+    <value>ខ្ញុំមានគេហទំព័រផ្ទាល់ខ្លួន</value>
+  </data>
+  <data name="WebsiteURL" xml:space="preserve">
+    <value>URL គេហទំព័រ</value>
+  </data>
+  <data name="NoWebsite" xml:space="preserve">
+    <value>ខ្ញុំមិនមានគេហទំព័រទេ</value>
+  </data>
+  <data name="DescWebsite" xml:space="preserve">
+    <value>សូមពណ៌នាពីរបៀបដែលអ្នកចង់ផ្សព្វផ្សាយ 12Bet ប្រសិនបើអ្នកមិនមាន URL</value>
+  </data>
+  <data name="Preference" xml:space="preserve">
+    <value>ចំណូលចិត្ត</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>ភាសា</value>
+  </data>
+  <data name="lblYourAnswer" xml:space="preserve">
+    <value>ចម្លើយ​របស់​អ្នក</value>
+  </data>
+  <data name="lblSecureQuestion" xml:space="preserve">
+    <value>សំនួរ​សុវត្ថិភាព</value>
+  </data>
+  <data name="PaymentInfor" xml:space="preserve">
+    <value>ព​ត៌​មាន​ទូទាត់ប្រាក់</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>វិធី​សា​ស្រ្ត​ទូទាត់</value>
+  </data>
+  <data name="_12BETPlayerAcc" xml:space="preserve">
+    <value>គណនី12BETរបស់អ្នកលេង</value>
+  </data>
+  <data name="NonDeposited" xml:space="preserve">
+    <value>គណនីមិនដាក់ប្រាក់តែប៉ុណ្ណោះ</value>
+  </data>
+  <data name="NonDeposit" xml:space="preserve">
+    <value>គណនីមិនដាក់ប្រាក់តែប៉ុណ្ណោះ</value>
+  </data>
+  <data name="IagreetotheTerm" xml:space="preserve">
+    <value>ខ្ញុំយល់ព្រមនឹងលក្ខខណ្ឌភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="SupportTime" xml:space="preserve">
+    <value>ច័ន្ទ - សៅរ៍&lt;br&gt;09:00 ព្រឹក - 06:00 ល្ងាច&lt;br&gt;(GMT +8)</value>
+  </data>
+  <data name="CambodiaSupport" xml:space="preserve">
+    <value>ជំនួយការ​សំរាប់ទីផ្សារកម្ពុជា</value>
+  </data>
+  <data name="PleaseDirectAnyComment" xml:space="preserve">
+    <value>សូមណែនាំមតិយោបល់ ឬសំណួរណាមួយទៅកាន់ {0} ឬដោយប្រើទម្រង់ខាងក្រោម</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>ប្រធានបទ</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>មតិយោបល់</value>
+  </data>
+  <data name="AffiliateID" xml:space="preserve">
+    <value>លេខសម្គាល់ភ្នាក់ងារ</value>
+  </data>
+  <data name="Email1" xml:space="preserve">
+    <value>អ៊ីមែល</value>
+  </data>
+  <data name="ValidationCodeLabel" xml:space="preserve">
+    <value>សុពលភាពលេខកូដ</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>ឈ្មោះ</value>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>ស្នើសុំធ្វើជាភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="SiteUrl" xml:space="preserve">
+    <value>URL គេហទំព័រ</value>
+  </data>
+</root>

@@ -378,14 +378,8 @@
   <data name="ChequeCityisreq" xml:space="preserve">
     <value>請填寫支票城市</value>
   </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>請填寫支票國家</value>
-  </data>
   <data name="ChequeFullNamei" xml:space="preserve">
     <value>請填寫支票全名</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>請填寫支票郵編</value>
   </data>
   <data name="ChequeStateisre" xml:space="preserve">
     <value>請填寫支票省/州</value>
@@ -1266,9 +1260,6 @@
   <data name="Preference" xml:space="preserve">
     <value>首選</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>首選</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>請選擇語言</value>
   </data>
@@ -1381,9 +1372,6 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
-  </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>安全問答設置成功！</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
@@ -1545,9 +1533,6 @@
   <data name="TitelForgetPass" xml:space="preserve">
     <value>新的密碼會發到您提供的註冊郵箱。&lt;br /&gt;若您遇到任何困難，請 &lt;a href="{0}"&gt;聯絡我們。&lt;/a&gt;.</value>
   </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>合作夥伴登入</value>
-  </data>
   <data name="To" xml:space="preserve">
     <value>到</value>
   </data>
@@ -1622,9 +1607,6 @@
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value> 您的帳戶資料已成功更新</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>補設安全提問</value>
   </data>
   <data name="UpToNow" xml:space="preserve">
     <value>到目前為止</value>
@@ -1892,9 +1874,6 @@
   </data>
   <data name="YouAreNotAffiliateYet" xml:space="preserve">
     <value>還不是合作夥伴？</value>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>立即註冊！</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>傭金報表</value>
@@ -2271,5 +2250,13 @@
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>柬埔寨客服</value>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE SEXY)</value>
+  </data>
+  <data name="AndarBahar" xml:space="preserve">
+    <value>Andar Bahar</value>
+  </data>
+  <data name="Teenpatti" xml:space="preserve">
+    <value>Teenpatti</value>
   </data>
 </root>

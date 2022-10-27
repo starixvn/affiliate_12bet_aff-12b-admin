@@ -381,14 +381,8 @@
   <data name="ChequeCityisreq" xml:space="preserve">
     <value>กรุณากรอก เมื่องที่ออกเชค</value>
   </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>กรุณากรอก ประเทศที่ออกเชค</value>
-  </data>
   <data name="ChequeFullNamei" xml:space="preserve">
     <value>กรุณากรอก ชื่อเต็มของเชค</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>กรุณากรอกรหัสไปรษณีย์ที่ออกเชค</value>
   </data>
   <data name="ChequeStateisre" xml:space="preserve">
     <value>กรุณากรอกชื่อพื้นที่ ที่ออกเชค</value>
@@ -1267,9 +1261,6 @@
   <data name="Preference" xml:space="preserve">
     <value>สิ่งที่ต้องการใช้</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>สิ่งที่ต้องการใช้</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>กรุณาเลือกภาษาที่คุณต้องการใช้</value>
   </data>
@@ -1377,9 +1368,6 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>ค้นหา</value>
-  </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>คำถามคำตอบเพื่อความปลอดภัยของคุณได้ถูกอัพเดทแล้ว !</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>เลือก</value>
@@ -1541,9 +1529,6 @@
   <data name="TitelForgetPass" xml:space="preserve">
     <value>พาสเวิดใหม่จะถูกส่งไปยังอีเมลล์ของคุณ.&lt;br /&gt; หากคุณไม่รับอีเมลล์ดังกล่าว กรุณา&lt;a href="{0}"&gt;ติดต่อเรา&lt;/a&gt;.</value>
   </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>ล๊อคอินเข้าระบบบัญชีพันธมิตร</value>
-  </data>
   <data name="To" xml:space="preserve">
     <value>ถึง</value>
   </data>
@@ -1618,9 +1603,6 @@
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value>รายละเอียดเกี่ยวกับบัญชีของคุณได้รับการอัพเดทสำเร็จเรียบร้อยแล้ว</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>การอัพเดทเหตุผลเกี่ยวกับความปลอดภัย</value>
   </data>
   <data name="UpToNow" xml:space="preserve">
     <value>จนกระทั่งเดี๋ยวนี้</value>
@@ -1888,9 +1870,6 @@
   </data>
   <data name="YouAreNotAffiliateYet" xml:space="preserve">
     <value>คุณยังไม่ได้ร่วมพันธมิตรหรอคะ?</value>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>สมัครได้เลยตอนนี้!</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>รายงานค่าคอมมิชชั่น</value>
@@ -2232,12 +2211,6 @@
   <data name="KoreaSupport" xml:space="preserve">
     <value>ทีมงานภาษาเกาหลี</value>
   </data>
-  <data name="OurOfficialSkype" xml:space="preserve">
-    <value>ประกาศสำคัญ! บัญชีทางการ Skype และ Line ของเราได้มีการอัปเดตใหม่แล้ว&lt;br&gt;เพิ่ม skype และ Line ID ใหม่ของเราตอนนี้เพื่อติดตามธุรกรรมทางการเงินและโปรโมชั่นข่าวสารต่างๆ</value>
-  </data>
-  <data name="AddNow" xml:space="preserve">
-    <value>แอดเลยตอนนี้!</value>
-  </data>
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
   </data>
@@ -2267,6 +2240,15 @@
   </data>
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>ส่วนแบ่งรายได้</value>
+  </data>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE SEXY)</value>
+  </data>
+  <data name="AndarBahar" xml:space="preserve">
+    <value>Andar Bahar</value>
+  </data>
+  <data name="Teenpatti" xml:space="preserve">
+    <value>Teenpatti</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>ทีมงานภาษาเขมร</value>

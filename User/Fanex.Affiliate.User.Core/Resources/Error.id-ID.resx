@@ -129,9 +129,6 @@
   <data name="LoginClosedAccount" xml:space="preserve">
     <value>Rekening Anda sudah ditutup. Harap menghubungi administrator Anda!</value>
   </data>
-  <data name="LoginLockedAccount" xml:space="preserve">
-    <value>Rekening Anda sudah ditutup. Harap menghubungi administrator Anda!</value>
-  </data>
   <data name="LoginWrongInfo" xml:space="preserve">
     <value>Salah username atau password</value>
   </data>

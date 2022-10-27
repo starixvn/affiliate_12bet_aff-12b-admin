@@ -228,8 +228,6 @@
     <Compile Include="BusinessService\ContactService.cs" />
     <Compile Include="BusinessService\FeedbackService.cs" />
     <Compile Include="BusinessService\IFeedbackService.cs" />
-    <Compile Include="BusinessService\IIpAddressService.cs" />
-    <Compile Include="BusinessService\IpAddressService.cs" />
     <Compile Include="BusinessService\IUnderMaintenanceService.cs" />
     <Compile Include="BusinessService\OfferService.cs" />
     <Compile Include="BusinessService\ICaptchaService.cs" />
@@ -508,11 +506,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Error.es-ES.Designer.cs">
-      <DependentUpon>Error.es-ES.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Resources\Error.id-ID.Designer.cs">
       <DependentUpon>Error.id-ID.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -552,11 +545,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.id-ID.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Lang.es-ES.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.es-ES.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Lang.th-TH.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -626,10 +614,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.ko-KR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Error.es-ES.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Error.es-ES.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Error.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.Designer.cs</LastGenOutput>
@@ -654,6 +638,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.zh-TW.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.km-KH.resx" />
     <EmbeddedResource Include="Resources\Lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
@@ -662,11 +647,6 @@
     <Compile Include="Controllers\UserPanel\AccountOverViewController.cs" />
     <None Include="Fanex.Affiliate.User.Core.Debug.ruleset" />
     <None Include="Fanex.Affiliate.User.Core.ruleset" />
-    <EmbeddedResource Include="Resources\Lang.es-ES.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang.es-ES.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lang.id-ID.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.id-ID.Designer.cs</LastGenOutput>

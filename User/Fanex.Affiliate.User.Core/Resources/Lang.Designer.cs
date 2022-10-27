@@ -161,15 +161,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add now!.
-        /// </summary>
-        public static string AddNow {
-            get {
-                return ResourceManager.GetString("AddNow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Address {
@@ -1133,29 +1124,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cheque Country is required.
-        /// </summary>
-        public static string ChequeCountryis {
-            get {
-                return ResourceManager.GetString("ChequeCountryis", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cheque Full Name is required.
         /// </summary>
         public static string ChequeFullNamei {
             get {
                 return ResourceManager.GetString("ChequeFullNamei", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cheque Postcode/Zip is required.
-        /// </summary>
-        public static string ChequePostcode_ {
-            get {
-                return ResourceManager.GetString("ChequePostcode_", resourceCulture);
             }
         }
         
@@ -3771,7 +3744,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New  banner is now available! .
+        ///   Looks up a localized string similar to New banner is now available! .
         /// </summary>
         public static string NewBannerIsNowAvailable {
             get {
@@ -4118,15 +4091,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Original {
             get {
                 return ResourceManager.GetString("Original", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Important! Our official skype account has been updated.&lt;br&gt;Add our new skype to stay updated for all payouts &amp; promotions.
-        /// </summary>
-        public static string OurOfficialSkype {
-            get {
-                return ResourceManager.GetString("OurOfficialSkype", resourceCulture);
             }
         }
         
@@ -4505,15 +4469,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Preference {
             get {
                 return ResourceManager.GetString("Preference", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Preference.
-        /// </summary>
-        public static string PreferLang {
-            get {
-                return ResourceManager.GetString("PreferLang", resourceCulture);
             }
         }
         
@@ -5193,15 +5148,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your security question and answer have been updated!.
-        /// </summary>
-        public static string SecurityQuestionUpdated {
-            get {
-                return ResourceManager.GetString("SecurityQuestionUpdated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select.
         /// </summary>
         public static string Select {
@@ -5315,15 +5261,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SignUpAffiliateProgramNow {
             get {
                 return ResourceManager.GetString("SignUpAffiliateProgramNow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SIGN UP AFFILIATES NOW!.
-        /// </summary>
-        public static string SignUpAffiliatesNow {
-            get {
-                return ResourceManager.GetString("SignUpAffiliatesNow", resourceCulture);
             }
         }
         
@@ -5958,21 +5895,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A new password will be sent to the email address that you provided.
-        ///                &lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href=&quot;{0}&quot;&gt;Contact us&lt;/a&gt;..
+        ///   Looks up a localized string similar to A new password will be sent to the email address that you provided.&lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href=&quot;{0}&quot;&gt;Contact us&lt;/a&gt;..
         /// </summary>
         public static string TitelForgetPass {
             get {
                 return ResourceManager.GetString("TitelForgetPass", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Affiliate Login.
-        /// </summary>
-        public static string TitleLogin {
-            get {
-                return ResourceManager.GetString("TitleLogin", resourceCulture);
             }
         }
         
@@ -6234,15 +6161,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string UpdateAccSuccess {
             get {
                 return ResourceManager.GetString("UpdateAccSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Security Question.
-        /// </summary>
-        public static string UpdateSecurityQuestion {
-            get {
-                return ResourceManager.GetString("UpdateSecurityQuestion", resourceCulture);
             }
         }
         

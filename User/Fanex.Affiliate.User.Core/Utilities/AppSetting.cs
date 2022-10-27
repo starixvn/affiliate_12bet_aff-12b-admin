@@ -40,8 +40,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public DateTime StatementAvailableFrom => Convert.ToDateTime(GetValue("StatementAvailableFrom"));
 
-        public DateTime ShowingNoticeEndDate => Convert.ToDateTime(GetValue("ShowingNoticeEndDate"));
-
         public string RsaPublicKey => GetValue("RsaPublicKey");
 
         public string RsaPrivateKey => GetValue("RsaPrivateKey");

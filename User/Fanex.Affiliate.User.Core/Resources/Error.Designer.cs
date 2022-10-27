@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Error {
@@ -115,15 +115,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account is locked temporarily due to 5 consecutive failed login attempts. Please try again after 10 minutes or contact your administrator!.
-        /// </summary>
-        public static string LoginLockedAccount {
-            get {
-                return ResourceManager.GetString("LoginLockedAccount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Wrong username or password..
         /// </summary>
         public static string LoginWrongInfo {
@@ -174,6 +165,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string RecoverPassword1001 {
             get {
                 return ResourceManager.GetString("RecoverPassword1001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recover password failed. Please try again!.
+        /// </summary>
+        public static string RecoverPassword1002 {
+            get {
+                return ResourceManager.GetString("RecoverPassword1002", resourceCulture);
             }
         }
         

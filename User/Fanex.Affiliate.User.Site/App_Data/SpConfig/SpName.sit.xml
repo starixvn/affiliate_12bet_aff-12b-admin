@@ -155,10 +155,6 @@
   <Function Name="Offer">
     <Setting Key="Aff_Admin_OfferPage_Sel" SpName="Aff_Admin_OfferPage_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
-  
-  <Function Name="IpAddress">
-    <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBCUST_IPDB_bodbDownlineNet" />
-  </Function>
 
   <Function Name="Feedback">
     <Setting Key="Aff_RateSel" SpName="Aff_RateSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />

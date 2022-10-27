@@ -129,9 +129,6 @@
   <data name="LoginClosedAccount" xml:space="preserve">
     <value>账号关闭，请联络管理员</value>
   </data>
-  <data name="LoginLockedAccount" xml:space="preserve">
-    <value>因为连续5次登陆失败，您的账户被暂时锁定。请10分钟以后再尝试登陆或者联系管理员！</value>
-  </data>
   <data name="LoginWrongInfo" xml:space="preserve">
     <value>用户名或密码错误</value>
   </data>

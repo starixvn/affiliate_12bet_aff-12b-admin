@@ -1,0 +1,33 @@
+﻿@model bool
+@{
+    var orgBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/existing/promotion.km-KH.jpg");
+    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/existing/promotion-mobile.km-KH.jpg");
+    var laptopBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/existing/promotion-laptop.km-KH.jpg");
+}
+<div class="banner-promotion">
+    <picture>
+        <source media="(max-width:600px)" srcset="@(mobileBannerSrc)" type="image/jpeg" />
+        <source media="(max-width:1120px)" srcset="@(laptopBannerSrc)" type="image/jpeg" />
+        <source srcset="@(orgBannerSrc)" type="image/jpeg" />
+        <img class="img-item img-responsive" src="@orgBannerSrc" alt="@Lang.ExistingPromotion" />
+    </picture>
+</div>
+
+<div class="promotion-content-text">
+    <div class="info-group text-center">
+        @if (Model)
+        {
+            <p>
+                Kindly check "Offer for me" tab to know more about this exclusive promotion.
+            </p>
+        }
+        else
+        {
+            <p>
+                សូម <a class="promotion-login-link" href="javascript:;">ចូល</a> ទៅគណនីនិងពិនិត្យមើលផ្ទាំង "ផ្តល់ជូនសំរាប់ខ្ញុំ" ដើម្បីទទួលបានបន្ថែមពីការផ្តល់ជូននេះ
+            </p>
+        }
+    </div>
+</div>
+
+<script src="@Url.RenderLink("~/www/build/js/pages/promotion/existing-promotion.js")"></script>

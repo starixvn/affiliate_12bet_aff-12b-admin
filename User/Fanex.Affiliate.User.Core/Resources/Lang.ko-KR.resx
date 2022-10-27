@@ -390,14 +390,8 @@
   <data name="ChequeCityisreq" xml:space="preserve">
     <value>수표지역을 기입하세요.</value>
   </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>수표국가를 기입하세요.</value>
-  </data>
   <data name="ChequeFullNamei" xml:space="preserve">
     <value>수표에 본명을 기입하세요.</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>수표우편번호를 기입하세요.</value>
   </data>
   <data name="ChequeStateisre" xml:space="preserve">
     <value>수표국가를 기입하세요.</value>
@@ -1288,9 +1282,6 @@
   <data name="Preference" xml:space="preserve">
     <value>설정</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>설정</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>원하는 언어를 선택해 주세요</value>
   </data>
@@ -1401,9 +1392,6 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>검색</value>
-  </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>보안질문 및 답변이 업데이트 되었습니다!</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>선택</value>
@@ -1564,9 +1552,6 @@
   <data name="TitelForgetPass" xml:space="preserve">
     <value>새로운 비밀번호는 고객의 이메일로 보내집니다. 문의사항 및 어려움이 있을시, 본 사로 연락 바랍니다.</value>
   </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>제휴 로그인</value>
-  </data>
   <data name="To" xml:space="preserve">
     <value>~에게</value>
   </data>
@@ -1644,9 +1629,6 @@
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value>귀하의 계좌 정보는 성공적으로 업데이트 되었습니다.</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>업데이트 보안질문</value>
   </data>
   <data name="UpToNow" xml:space="preserve">
     <value>지금까지</value>
@@ -1923,9 +1905,6 @@
   </data>
   <data name="YouAreNotAffiliateYet" xml:space="preserve">
     <value>제휴사가 아니신가요?</value>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>제휴 가입!</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>커미션 리포트</value>
@@ -2258,6 +2237,15 @@
   </data>
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>수익 공유</value>
+  </data>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE SEXY)</value>
+  </data>
+  <data name="AndarBahar" xml:space="preserve">
+    <value>Andar Bahar</value>
+  </data>
+  <data name="Teenpatti" xml:space="preserve">
+    <value>Teenpatti</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>캄보디아 지원 </value>

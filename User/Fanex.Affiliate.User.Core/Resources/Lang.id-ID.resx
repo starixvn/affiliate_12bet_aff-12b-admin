@@ -381,14 +381,8 @@
   <data name="ChequeCityisreq" xml:space="preserve">
     <value>Kota Cek diperlukan</value>
   </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>Negara Cek diperlukan</value>
-  </data>
   <data name="ChequeFullNamei" xml:space="preserve">
     <value>Nama Lengkap Cek diperlukan</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>Kode Pos/Zip Cek diperlukan</value>
   </data>
   <data name="ChequeStateisre" xml:space="preserve">
     <value>Negara Bagian Cek diperlukan</value>
@@ -1269,9 +1263,6 @@
   <data name="Preference" xml:space="preserve">
     <value>Preferensi</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>Preferensi</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>Pilih preferensi bahasa</value>
   </data>
@@ -1379,9 +1370,6 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Cari</value>
-  </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>Pertanyaan dan jawaban keamanan Anda sudah diperbarui!</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Pilih</value>
@@ -1537,11 +1525,7 @@
     <value>Level</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
-    <value>Kata sandi baru akan dikirim ke alamat email yang sudah Anda berikan.
-               &lt;br /&gt;Jika Anda mengalami kesulitan lebih jauh, silakan &lt;a href="{0}"&gt;Hubungi kami&lt;/a&gt;.</value>
-  </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>Login Afiliasi</value>
+    <value>Kata sandi baru akan dikirim ke alamat email yang sudah Anda berikan.&lt;br /&gt;Jika Anda mengalami kesulitan lebih jauh, silakan &lt;a href="{0}"&gt;Hubungi kami&lt;/a&gt;.</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>Hingga tanggal</value>
@@ -1617,9 +1601,6 @@
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value>Informasi rekening Anda sudah berhasil diperbarui.</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>Perbarui Pertanyaan Keamanan</value>
   </data>
   <data name="UpToNow" xml:space="preserve">
     <value>Hingga Sekarang</value>
@@ -1884,9 +1865,6 @@
   </data>
   <data name="YouAreNotAffiliateYet" xml:space="preserve">
     <value>BELUM MENJADI AFILIASI?</value>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>DAFTAR JADI AFILIASI SEKARANG JUGA!</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>Laporan Komisi</value>
@@ -2266,6 +2244,21 @@
   </data>
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>Pembagian Hasil</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>Virtual Sports</value>
+  </data>
+  <data name="PrefixProduct12JADE" xml:space="preserve">
+    <value>12JADE</value>
+  </data>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE SEXY)</value>
+  </data>
+  <data name="AndarBahar" xml:space="preserve">
+    <value>Andar Bahar</value>
+  </data>
+  <data name="Teenpatti" xml:space="preserve">
+    <value>Teenpatti</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Kambodia</value>

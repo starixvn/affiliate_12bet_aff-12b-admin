@@ -129,9 +129,6 @@
   <data name="LoginClosedAccount" xml:space="preserve">
     <value>บัญชีของคุณถูดปิด กรุณาติดต่อฝ่ายบริการลูกค้า!</value>
   </data>
-  <data name="LoginLockedAccount" xml:space="preserve">
-    <value>บัญชีของคุณถูดปิด กรุณาติดต่อฝ่ายบริการลูกค้า!</value>
-  </data>
   <data name="LoginWrongInfo" xml:space="preserve">
     <value>ชื่อผู้ใช้เข้าสู่ระบบ หรือ รหัสผ่านที่กรอกไม่ถูกต้องค่ะ</value>
   </data>

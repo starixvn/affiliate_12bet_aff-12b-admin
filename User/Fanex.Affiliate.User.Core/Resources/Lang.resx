@@ -396,14 +396,8 @@
   <data name="ChequeCityisreq" xml:space="preserve">
     <value>Cheque City is required</value>
   </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>Cheque Country is required</value>
-  </data>
   <data name="ChequeFullNamei" xml:space="preserve">
     <value>Cheque Full Name is required</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>Cheque Postcode/Zip is required</value>
   </data>
   <data name="ChequeStateisre" xml:space="preserve">
     <value>Cheque State is required</value>
@@ -1356,9 +1350,6 @@
   <data name="Preference" xml:space="preserve">
     <value>Preference</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>Preference</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>Please select Preferred Language</value>
   </data>
@@ -1476,9 +1467,6 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
-  </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>Your security question and answer have been updated!</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
@@ -1649,11 +1637,7 @@
     <comment>87923</comment>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
-    <value>A new password will be sent to the email address that you provided.
-                &lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href="{0}"&gt;Contact us&lt;/a&gt;.</value>
-  </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>Affiliate Login</value>
+    <value>A new password will be sent to the email address that you provided.&lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href="{0}"&gt;Contact us&lt;/a&gt;.</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>To</value>
@@ -1735,9 +1719,6 @@
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value> Your account information has been updated successfully.</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>Update Security Question</value>
   </data>
   <data name="UpToNow" xml:space="preserve">
     <value>Up To Now</value>
@@ -2042,7 +2023,7 @@
     <comment>87923</comment>
   </data>
   <data name="NewBannerIsNowAvailable" xml:space="preserve">
-    <value>New  banner is now available! </value>
+    <value>New banner is now available! </value>
     <comment>87923</comment>
   </data>
   <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
@@ -2102,10 +2083,6 @@
   </data>
   <data name="YouAreNotAffiliateYet" xml:space="preserve">
     <value>YOU'RE NOT AFFILIATE YET?</value>
-    <comment>87923</comment>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>SIGN UP AFFILIATES NOW!</value>
     <comment>87923</comment>
   </data>
   <data name="PCDevice" xml:space="preserve">
@@ -2395,12 +2372,6 @@
   </data>
   <data name="KoreaSupport" xml:space="preserve">
     <value>Korea Support</value>
-  </data>
-  <data name="OurOfficialSkype" xml:space="preserve">
-    <value>Important! Our official skype account has been updated.&lt;br&gt;Add our new skype to stay updated for all payouts &amp; promotions</value>
-  </data>
-  <data name="AddNow" xml:space="preserve">
-    <value>Add now!</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>

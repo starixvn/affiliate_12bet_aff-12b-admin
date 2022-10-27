@@ -381,14 +381,8 @@
   <data name="ChequeCityisreq" xml:space="preserve">
     <value>Thành phố trên Séc là bắt buộc</value>
   </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>Quốc gia trên Séc là bắt buộc</value>
-  </data>
   <data name="ChequeFullNamei" xml:space="preserve">
     <value>Tên Đầy đủ trên Séc là bắt buộc</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>Mã Bưu điện/Mã zip trên Séc là bắt buộc</value>
   </data>
   <data name="ChequeStateisre" xml:space="preserve">
     <value>Tiểu bang trên Séc là bắt buộc</value>
@@ -1269,9 +1263,6 @@
   <data name="Preference" xml:space="preserve">
     <value>Tham chiếu</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>Ngôn ngữ</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>Vui lòng chọn ngôn ngữ bạn thích</value>
   </data>
@@ -1379,9 +1370,6 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Tìm kiếm</value>
-  </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>Câu hỏi bảo mật và câu trả lời của bạn đã được cập nhật!</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Chọn</value>
@@ -1537,11 +1525,7 @@
     <value>Cấp Bậc</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
-    <value>Mật khẩu mới sẽ được gửi tới địa chỉ email mà bạn đã cung cấp.
-               &lt;br /&gt;Nếu bạn gặp thêm bất kỳ khó khăn nào, hãy &lt;a href="{0}"&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
-  </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>Đăng nhập hội viên</value>
+    <value>Mật khẩu mới sẽ được gửi tới địa chỉ email mà bạn đã cung cấp.&lt;br /&gt;Nếu bạn gặp thêm bất kỳ khó khăn nào, hãy &lt;a href="{0}"&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>Tới</value>
@@ -1617,9 +1601,6 @@
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value>Thông tin tài khoản của bạn đã được cập nhật thành công.</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>Cập nhật câu hỏi bảo mật</value>
   </data>
   <data name="UpToNow" xml:space="preserve">
     <value>tất cả</value>
@@ -1887,9 +1868,6 @@
   </data>
   <data name="YouAreNotAffiliateYet" xml:space="preserve">
     <value>BẠN CHƯA LÀ ĐẠI LÝ 12BET?</value>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>ĐĂNG KÝ NGAY!</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>Báo Cáo Hoa Hồng Đại Lý</value>
