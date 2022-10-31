@@ -198,9 +198,6 @@
   <data name="NewWithExclamationPoint" xml:space="preserve">
     <value>ថ្មី!</value>
   </data>
-  <data name="NewTrackingCode" xml:space="preserve">
-    <value>ថ្មី</value>
-  </data>
   <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
     <value>ឥឡូវ​នេះ អ្នក​អាច​ចូល​ក្នុង​គណនីភ្នាក់ងាររបស់​អ្នក​ដើម្បី​ទទួល​បាន​បដា​ថ្មី​ដើម្បី​ផ្សព្វផ្សាយ​ក្នុង​គេហទំព័រ​របស់​អ្នក។</value>
   </data>
@@ -534,9 +531,6 @@
   <data name="NonDeposited" xml:space="preserve">
     <value>គណនីមិនដាក់ប្រាក់តែប៉ុណ្ណោះ</value>
   </data>
-  <data name="NonDeposit" xml:space="preserve">
-    <value>គណនីមិនដាក់ប្រាក់តែប៉ុណ្ណោះ</value>
-  </data>
   <data name="IagreetotheTerm" xml:space="preserve">
     <value>ខ្ញុំយល់ព្រមនឹងលក្ខខណ្ឌភ្នាក់ងារ 12BET</value>
   </data>
@@ -570,7 +564,43 @@
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>ស្នើសុំធ្វើជាភ្នាក់ងារ 12BET</value>
   </data>
-  <data name="SiteUrl" xml:space="preserve">
-    <value>URL គេហទំព័រ</value>
+  <data name="EmailVerification" xml:space="preserve">
+    <value>អ៊ីមែល</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="ChineseTraditional" xml:space="preserve">
+    <value>繁體中文</value>
+  </data>
+  <data name="ChineseSimplified" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>日本</value>
+  </data>
+  <data name="Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="IN" xml:space="preserve">
+    <value>IN</value>
+  </data>
+  <data name="Thai" xml:space="preserve">
+    <value>ภาษาไทย</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Vietnamese" xml:space="preserve">
+    <value>Tiếng Việt</value>
+  </data>
+  <data name="MKK" xml:space="preserve">
+    <value>MMK</value>
+  </data>
+  <data name="PSP" xml:space="preserve">
+    <value>PSP</value>
+  </data>
+  <data name="Indonesian" xml:space="preserve">
+    <value>Indonesian</value>
   </data>
 </root>

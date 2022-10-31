@@ -13,14 +13,14 @@
         <img class="img-responsive" src="~/www/build/styles/Images/account-overview/new-sign-up.png" alt="New Signup icon" />
     </div>
     <div class="info-panel @(hasActivePlayerDetailPermission ? "" : "w-100")">
-        <span class="info-panel-title">New Signups / Deposited</span>
+        <span class="info-panel-title">@Lang.NewSignupAndDeposited</span>
         <span class="info-panel-content">@($"{Model.Signups}/{Model.DepositedMembers}")</span>
     </div>
 
     @if (hasActivePlayerDetailPermission)
     {
         <div class="info-panel">
-            <span class="info-panel-title">Active Players / Qualified</span>
+            <span class="info-panel-title">@Lang.ActivePlayersAndQualified</span>
             <span class="info-panel-content">@($"{Model.ActivePlayers}/{Model.QualifiedActivePlayers}")</span>
         </div>
     }
@@ -34,7 +34,7 @@
         <span class="info-panel-content">@Model.Commission.ToStringMoneyWithSymbol()</span>
     </div>
     <div class="info-panel">
-        <span class="info-panel-title">Balance Brought Forward</span>
+        <span class="info-panel-title">@Lang.BalForward</span>
         <span class="info-panel-content">@Model.BalanceBroughtForward.ToStringMoneyWithSymbol()</span>
     </div>
 </div>
@@ -50,7 +50,7 @@
     @if (hasTurnOverPermission)
     {
         <div class="info-panel">
-            <span class="info-panel-title">Total Turnover</span>
+            <span class="info-panel-title">@Lang.TotalTurnover</span>
             <span class="info-panel-content">@Model.Turnover.ToStringMoneyWithSymbol()</span>
         </div>
     }

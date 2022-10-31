@@ -663,9 +663,9 @@ input[type="checkbox"], input[type="radio"] {
 .adv-contact {
   display: block;
   max-width: 500px;
-  min-height: 250px;
+  min-height: 270px;
   margin: 0 auto;
-  padding: 5px 15px;
+  padding: 5px 25px 5px 15px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left bottom;

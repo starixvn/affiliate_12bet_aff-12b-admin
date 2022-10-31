@@ -20,12 +20,12 @@
         <thead>
             <tr class="overview-table-header" id="overview-table-header">
                 <th width="10%">@Lang.Date</th>
-                <th width="10%">New Sign Up</th>
-                <th width="12%">Deposited Members</th>
+                <th width="10%">@Lang.NewSignUp</th>
+                <th width="12%">@Lang.DepositedMembers</th>
                 @if (hasActivePlayerDetailPermission)
                 {
-                    <th width="12%">Active Members</th>
-                    <th width="16%">Qualified Active Members</th>
+                    <th width="12%">@Lang.ActiveMembers</th>
+                    <th width="16%">@Lang.QualifiedActiveMembers</th>
                 }
                 <th width="10%">@Lang.Deposit</th>
                 @if (hasTurnOverPermission)
@@ -35,7 +35,7 @@
                 <th width="10%">@Lang.Withdrawal</th>
                 @if (!isIndiaAffiliate)
                 {
-                    <th width="10%">Win/Loss</th>
+                    <th width="10%">@Lang.WinAndLoss</th>
                 }
             </tr>
             @{

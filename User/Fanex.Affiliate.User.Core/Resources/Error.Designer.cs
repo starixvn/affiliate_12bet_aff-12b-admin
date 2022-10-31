@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This email address is being used by an affliliate that&apos;s inactive or has been closed. Please try again or &lt;a href=&quot;{0}&quot; class=&apos;err-msg&apos;&gt;Contact us&lt;/a&gt;..
+        ///   Looks up a localized string similar to This email address is being used by an affiliate that&apos;s inactive or has been closed. Please try again or &lt;a href=&quot;{0}&quot; class=&apos;err-msg&apos;&gt;Contact us&lt;/a&gt;..
         /// </summary>
         public static string ForgotPassword1008 {
             get {

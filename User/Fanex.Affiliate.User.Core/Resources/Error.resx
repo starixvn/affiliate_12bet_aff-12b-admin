@@ -121,7 +121,7 @@
     <value>You have not entered an email address that we recognise. Please try again or  &lt;a href="{0}" class='err-msg'&gt;Contact us&lt;/a&gt;.</value>
   </data>
   <data name="ForgotPassword1008" xml:space="preserve">
-    <value>This email address is being used by an affliliate that's inactive or has been closed. Please try again or &lt;a href="{0}" class='err-msg'&gt;Contact us&lt;/a&gt;.</value>
+    <value>This email address is being used by an affiliate that's inactive or has been closed. Please try again or &lt;a href="{0}" class='err-msg'&gt;Contact us&lt;/a&gt;.</value>
   </data>
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>This email address is being used by an affliliate that's inactive or has not been approved. Please try again or  &lt;a href="{0}" class='err-msg'&gt;Contact us&lt;/a&gt;.</value>
