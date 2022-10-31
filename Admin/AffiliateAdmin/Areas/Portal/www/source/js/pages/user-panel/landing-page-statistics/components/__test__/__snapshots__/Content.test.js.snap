@@ -240,75 +240,7 @@ exports[`landing page statistics - components - Content render correctly with ha
             0
           </t>
         </t>,
-        <t>
-          <React.Fragment>
-            <t
-              asc={true}
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Unknown"
-            >
-              Unknown
-            </t>
-            <t
-              asc={true}
-              className="text-right"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Old URL"
-            >
-              Old URL
-            </t>
-          </React.Fragment>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-        </t>,
+        null,
       ]
     }
     bodyHeight={300}

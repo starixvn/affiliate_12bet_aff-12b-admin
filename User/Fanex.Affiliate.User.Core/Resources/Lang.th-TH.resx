@@ -1257,12 +1257,6 @@
   <data name="TotalDeposit" xml:space="preserve">
     <value>ยอดรวมของการฝากเงิน</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>รหัสที่ใช้ตรวจสอบ</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>ตรวจสอบสถิติ</value>
-  </data>
   <data name="Transaction" xml:space="preserve">
     <value>รายการ</value>
   </data>

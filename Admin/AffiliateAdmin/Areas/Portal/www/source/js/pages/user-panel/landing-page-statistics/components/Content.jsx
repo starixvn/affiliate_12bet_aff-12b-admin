@@ -84,9 +84,9 @@ export class Content extends Component {
         const language = dataItem.Language;
         const country = dataItem.Country;
         const page = htmlDecode(dataItem.Page);
-        const isShowLink = page && !(page.toLowerCase() == "old url" || page.toLowerCase() == "none");
+        const isShowLink = page && page.toLowerCase() != "none";
 
-        return (
+        return page.toLowerCase() == "old url" ? null :(
             <Row key={`dataRow-${index}`}>
                 {
                     isGroupByCountry ? (

@@ -18,48 +18,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             _builder = builder;
         }
 
-        public IEnumerable<string> GetTrackingCode(int affId, bool isInternal)
-        {
-            const string uSpkey = "Aff_AffiliateSelTrackingCode";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpkey, dbMode))
-            {
-                return db.Query<string>(new { affId });
-            }
-        }
-
-        public IEnumerable<TrackingStatistics> GetTrackingStatistics(int affId, string trackingCode, bool isInternal)
-        {
-            const string uSpkey = "Aff_AffiliateSelClickStatisticsAllMonths";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var dataList = new List<TrackingStatistics>();
-
-            using (var db = _builder.Build(uSpkey, dbMode))
-            {
-                using (var multipleReader = db.QueryMultiple(new { affId, trackingCode }))
-                {
-                    while (!multipleReader.IsEmptyOrClosed)
-                    {
-                        dataList.AddRange(multipleReader.Read<TrackingStatistics>());
-                    }
-                }
-            }
-
-            return dataList;
-        }
-
-        public IEnumerable<TrackingStatistics> GetTrackingStatisticsDetail(TrackingStatisticsDetailParam trackingStatisticsDetailParam)
-        {
-            const string uSpkey = "Aff_AffiliateSelClickStatisticsMonthDetail";
-            var dbMode = trackingStatisticsDetailParam.IsInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpkey, dbMode))
-            {
-                return db.Query<TrackingStatistics>(trackingStatisticsDetailParam);
-            }
-        }
-
         public IEnumerable<ReferrerStatistics> GetReferrerStatistics(ReferrerStatisticsParam referrerStatisticsParam)
         {
             const string uSpkey = "Aff_ClickStatisticsSelBySite";

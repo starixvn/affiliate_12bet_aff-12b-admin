@@ -1259,12 +1259,6 @@
   <data name="TotalDeposit" xml:space="preserve">
     <value>存款總額</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>追踪代码</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>追踪统计</value>
-  </data>
   <data name="Transaction" xml:space="preserve">
     <value>交易</value>
   </data>

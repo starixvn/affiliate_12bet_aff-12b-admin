@@ -14,17 +14,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     {
         private readonly ICommonSettingService _commonSettingService;
         private readonly ILandingPageRepository _landingPageRepository;
-        private readonly ITrackingStatisticsService _trackingStatisticsService;
 
         public CommonSettingController(
             ICommonSettingService commonSettingService,
-            ILandingPageRepository landingPageRepository,
-            ITrackingStatisticsService trackingStatisticsService
+            ILandingPageRepository landingPageRepository
             )
         {
             _commonSettingService = commonSettingService;
             _landingPageRepository = landingPageRepository;
-            _trackingStatisticsService = trackingStatisticsService;
         }
 
         [HttpPost]
@@ -44,16 +41,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return new JsonNetResult
             {
                 Data = _landingPageRepository.GetLandingPageList()
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetTrackingCodeList(int affId)
-        {
-            return new JsonNetResult
-            {
-                Data = _trackingStatisticsService.GetTrackingCodeList(affId)
             };
         }
 

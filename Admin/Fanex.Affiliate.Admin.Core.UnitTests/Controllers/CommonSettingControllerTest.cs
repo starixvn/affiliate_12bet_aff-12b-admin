@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -46,25 +45,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void GetTrackingCodeList_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var param = 1271808;
-            var passedParam = 0;
-            var trackingStatisticsService = new Mock<ITrackingStatisticsService>();
-            trackingStatisticsService.Setup(s => s.GetTrackingCodeList(param)).Returns(new List<string> { "Sportbook" }).Callback<int>(p => passedParam = p);
-            var controller = CreateCommonSettingController(trackingStatisticsService: trackingStatisticsService.Object);
-
-            // Action
-            var result = controller.GetTrackingCodeList(param) as JsonNetResult;
-            var data = result.Data as List<string>;
-
-            // Assert
-            Assert.Single(data);
-            Assert.Equal(param, passedParam);
-        }
-
-        [Fact]
         public void GetCountryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
@@ -82,15 +62,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
         private CommonSettingController CreateCommonSettingController(
             ICommonSettingService commonSettingService = null,
-            ILandingPageRepository landingPageRepository = null,
-            ITrackingStatisticsService trackingStatisticsService = null
+            ILandingPageRepository landingPageRepository = null
             )
         {
             var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
-            var faketrackingStatisticsService = trackingStatisticsService ?? Mock.Of<ITrackingStatisticsService>();
 
-            return new CommonSettingController(fakeCommonService, fakeLandingPageRepository, faketrackingStatisticsService);
+            return new CommonSettingController(fakeCommonService, fakeLandingPageRepository);
         }
     }
 }

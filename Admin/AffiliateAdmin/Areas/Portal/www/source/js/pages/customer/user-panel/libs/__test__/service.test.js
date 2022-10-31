@@ -120,30 +120,6 @@ describe('user panel services', () => {
         expect(result).toEqual([]);
     })
 
-    it('getTrackingCodeList - should return correct data', async () => {
-        const expectedResponse = {
-            data: ["[None]", "Casino", "Sportsbook"],
-            status: 200
-        };
-
-        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
-
-        const result = await services['getTrackingCodeList'](1271808)();
-
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetTrackingCodeList', { affId: 1271808 });
-        expect(result).toEqual(expectedResponse.data);
-    })
-
-    it('getTrackingCodeList - should return empty data', async () => {
-        ajaxRequest.post = jest.fn();
-
-        const result = await services['getTrackingCodeList'](1271808)();
-
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CommonSetting/GetTrackingCodeList', { affId: 1271808 });
-
-        expect(result).toEqual([]);
-    })
-
     it('getCountryList - should return correct data', async () => {
         const expectedResponse = {
             data: [{

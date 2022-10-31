@@ -1282,12 +1282,6 @@
   <data name="TotalDeposit" xml:space="preserve">
     <value>총 입금금액</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>트래킹 코드</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>접속 통계</value>
-  </data>
   <data name="Transaction" xml:space="preserve">
     <value>거래,이체</value>
   </data>

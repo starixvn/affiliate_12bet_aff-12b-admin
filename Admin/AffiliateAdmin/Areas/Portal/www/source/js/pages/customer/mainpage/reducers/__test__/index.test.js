@@ -71,10 +71,6 @@ describe('customer - mainpage reducer', () => {
             transactionId: null,
         },
         today: '6/27/2019',
-        trackingStatistics: {
-            param: {},
-            selectedMonth: null,
-        },
         viewLog: {
             pagingOption: defaultPagingOption,
             param: null,

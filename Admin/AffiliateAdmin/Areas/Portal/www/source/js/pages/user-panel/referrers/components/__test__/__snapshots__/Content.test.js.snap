@@ -147,70 +147,7 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
             0
           </t>
         </t>,
-        <t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Old URL"
-          >
-            Old URL
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-          />
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-        </t>,
+        null,
       ]
     }
     bodyHeight={300}

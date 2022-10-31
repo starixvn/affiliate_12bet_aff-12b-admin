@@ -72,21 +72,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _statisticsRepository.GetStatisticsDetailBySite(statisticsDetailParam);
         }
 
-        public IEnumerable<string> GetTrackingCode(int affId, bool isInternal)
-        {
-            return _statisticsRepository.GetTrackingCode(affId, isInternal);
-        }
-
-        public IEnumerable<TrackingStatistics> GetTrackingStatistics(int affId, string trackingCode, bool isInternal)
-        {
-            return _statisticsRepository.GetTrackingStatistics(affId, trackingCode, isInternal);
-        }
-
-        public IEnumerable<TrackingStatistics> GetTrackingStatisticsDetail(TrackingStatisticsDetailParam trackingStatisticsDetailParam)
-        {
-            return _statisticsRepository.GetTrackingStatisticsDetail(trackingStatisticsDetailParam);
-        }
-
         private static string GetShortedCode(IEnumerable<Language> languageList, string languageCode)
         {
             if (string.IsNullOrEmpty(languageCode))

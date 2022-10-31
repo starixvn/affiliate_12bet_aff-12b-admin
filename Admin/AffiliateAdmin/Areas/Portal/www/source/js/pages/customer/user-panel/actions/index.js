@@ -5,7 +5,6 @@ import { setParam as setDailyEarningDetailParam } from '../../../user-panel/dail
 
 import { setParam as setPlayerDetailParam } from '../../../user-panel/player-detail/actions';
 import { setParam as setReferrersParam } from '../../../user-panel/referrers/actions';
-import { setParam as setTrackingStatisticsParam } from '../../../user-panel/tracking-statistics/actions';
 
 export const setSelectedUserPanel = (data) => {
     return {
@@ -41,11 +40,6 @@ export const redirectToDailyEarningDetail = (data) => (dispatch) => {
 export const redirectToPlayerDetail = (data) => (dispatch) => {
     dispatch(setSelectedUserPanel(userPanelMenuKey.playerDetail));
     dispatch(setPlayerDetailParam(data));
-}
-
-export const redirectToTrackingStatistics = (data) => (dispatch) => {
-    dispatch(setSelectedUserPanel(userPanelMenuKey.trackingStatistics));
-    dispatch(setTrackingStatisticsParam(data));
 }
 
 export const redirectToReferrers = (data) => (dispatch) => {

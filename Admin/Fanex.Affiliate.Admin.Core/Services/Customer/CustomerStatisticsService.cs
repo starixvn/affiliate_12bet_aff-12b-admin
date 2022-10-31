@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository;
 using System;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
@@ -36,8 +35,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
                             TurnoverTotal = Convert.ToDecimal(reader["TurnoverTotal"]),
                             WinlostByMonth = Convert.ToDecimal(reader["WinlostByMonth"]),
                             WinlostTotal = Convert.ToDecimal(reader["WinlostTotal"]),
-                            TotalClickByMonth = Convert.ToInt32(reader["TotalClickByMonth"]),
-                            UniqueClickByMonth = Convert.ToInt32(reader["UniqueClickByMonth"]),
                             UniqueClickPcLaptopByMonth = Convert.ToInt32(reader["UniqueClickPCByMonth"]),
                             TotalClickPcLaptopByMonth = Convert.ToInt32(reader["TotalClickPCByMonth"]),
                             UniqueClickMobileByMonth = Convert.ToInt32(reader["UniqueClickMobileByMonth"]),

@@ -126,37 +126,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Repo.Received().GetStatisticsDetailBySite(param);
         }
 
-        [Fact]
-        public void GetTrackingCode_WhenCall_CallStatisticsRepository()
-        {
-            var service = CreateService();
-
-            service.GetTrackingCode(1, false);
-
-            Repo.Received().GetTrackingCode(1, false);
-        }
-
-        [Fact]
-        public void GetTrackingStatistics_WhenCall_CallStatisticsRepository()
-        {
-            var service = CreateService();
-
-            service.GetTrackingStatistics(1, "abc", false);
-
-            Repo.Received().GetTrackingStatistics(1, "abc", false);
-        }
-
-        [Fact]
-        public void GetTrackingStatisticsDetail_WhenCall_CallStatisticsRepository()
-        {
-            var param = new TrackingStatisticsDetailParam();
-            var service = CreateService();
-
-            service.GetTrackingStatisticsDetail(param);
-
-            Repo.Received().GetTrackingStatisticsDetail(param);
-        }
-
         private StatisticsService CreateService()
             => new StatisticsService(Repo, LanguageService);
     }

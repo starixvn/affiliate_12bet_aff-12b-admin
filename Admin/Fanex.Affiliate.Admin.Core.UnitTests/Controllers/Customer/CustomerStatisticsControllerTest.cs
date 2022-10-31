@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var param = new CustomerStatisticsParam { AffId = 1271808 };
             CustomerStatisticsParam passedParam = null;
             var customerStatisticsService = new Mock<ICustomerStatisticsService>();
-            customerStatisticsService.Setup(s => s.GetCustomerStatistics(param)).Returns(new CustomerStatistics { TotalClickByMonth = 123 }).Callback<CustomerStatisticsParam>(p => passedParam = p);
+            customerStatisticsService.Setup(s => s.GetCustomerStatistics(param)).Returns(new CustomerStatistics()).Callback<CustomerStatisticsParam>(p => passedParam = p);
             var controller = CreateCustomerStatisticsController(customerStatisticsService: customerStatisticsService.Object);
 
             // Action
@@ -27,7 +27,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var customerStatistics = result.Data as CustomerStatistics;
 
             // Assert
-            Assert.Equal(123, customerStatistics.TotalClickByMonth);
             Assert.Equal(param, passedParam);
         }
 

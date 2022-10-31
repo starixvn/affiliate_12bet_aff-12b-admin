@@ -14,11 +14,6 @@ export const getPageList = () => async() => {
     return response && response.status === 200 ? response.data : [];
 }
 
-export const getTrackingCodeList = (affId) => async() => {
-	const response = await post('Portal/CommonSetting/GetTrackingCodeList', { affId });
-	return response && response.status === 200 ? response.data : [];
-}
-
 export const getCountryList = () => async () => {
     const response = await post('Portal/CommonSetting/GetCountryList');
     return response && response.status === 200 ? convertCountryList(response.data) : [];

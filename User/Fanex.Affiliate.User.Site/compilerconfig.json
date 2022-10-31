@@ -68,10 +68,6 @@
   //  "inputFile": "www/source/js/pages/logout.js"
   //},
   {
-    "outputFile": "www/build/js/statistics/trackingstatistics.js",
-    "inputFile": "www/source/js/pages/statistics/trackingstatistics.js"
-  },
-  {
     "outputFile": "www/build/styles/css/statistics.css",
     "inputFile": "www/source/styles/pages/statistics.scss"
   },

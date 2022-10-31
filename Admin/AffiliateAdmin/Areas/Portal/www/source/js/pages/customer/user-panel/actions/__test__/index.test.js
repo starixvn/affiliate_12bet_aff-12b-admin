@@ -74,20 +74,6 @@ describe('user panel actions', () => {
         expect(store.getActions()).toEqual(expectedAction);
     })
 
-    it('should create action to redirectToTrackingStatistics', () => {
-        const param = {
-            isClickLink: true
-        }
-        const expectedAction = [
-            { type: 'USER_PANEL/SET_SELECTED_USERPANEL', data: 'trackingStatistics' },
-            { type: 'USER_PANEL/TRACKING_STATISTICS/SET_PARAM', data: param},
-        ];
-
-        const store = mockStore({ todos: [] });
-        store.dispatch(actions['redirectToTrackingStatistics'](param));
-        expect(store.getActions()).toEqual(expectedAction)
-    })
-
     it('should create action to redirectToReferrers', () => {
         const param = {
             deviceType: 0,

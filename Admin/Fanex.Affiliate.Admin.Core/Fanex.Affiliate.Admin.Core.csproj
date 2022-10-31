@@ -357,7 +357,6 @@
     <Compile Include="Controllers\UserPanel\PlayerDetailController.cs" />
     <Compile Include="Controllers\UserPanel\ReferrersController.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
-    <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\UserAccountController.cs" />
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
     <Compile Include="DTO\AdminRole\AdminInfo.cs" />
@@ -447,7 +446,6 @@
     <Compile Include="DTO\UserPanel\PlayerDetailResult.cs" />
     <Compile Include="DTO\UserPanel\Referrers.cs" />
     <Compile Include="DTO\UserPanel\StatementHistory.cs" />
-    <Compile Include="DTO\UserPanel\TrackingStatistics.cs" />
     <Compile Include="DTO\UserPanel\UserAccount.cs" />
     <Compile Include="DTO\UserPanel\ViewLog.cs" />
     <Compile Include="Extensions\DataReaderExtension.cs" />
@@ -665,13 +663,11 @@
     <Compile Include="Services\UserPanel\INoteService.cs" />
     <Compile Include="Services\UserPanel\IPlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\IStatementHistoryService.cs" />
-    <Compile Include="Services\UserPanel\ITrackingStatisticsService.cs" />
     <Compile Include="Services\UserPanel\IUserAccountService.cs" />
     <Compile Include="Services\UserPanel\IViewLogService.cs" />
     <Compile Include="Services\UserPanel\NoteService.cs" />
     <Compile Include="Services\UserPanel\PlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\StatementHistoryService.cs" />
-    <Compile Include="Services\UserPanel\TrackingStatisticsService.cs" />
     <Compile Include="Services\UserPanel\UserAccountService.cs" />
     <Compile Include="Services\UserPanel\ViewLogService.cs" />
     <Compile Include="Utilities\CommGroup\CommGroupValidationHelper.cs" />

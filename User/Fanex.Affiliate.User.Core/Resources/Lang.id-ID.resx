@@ -1253,12 +1253,6 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="TotalDeposit" xml:space="preserve">
     <value>Total Deposit</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>Kode Tracking/Pelacakan</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>Total Klik &amp; Unik Klik</value>
-  </data>
   <data name="Transaction" xml:space="preserve">
     <value>Transaksi</value>
   </data>

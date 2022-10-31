@@ -24,12 +24,10 @@ describe('customer statistics - components - Content', () => {
         NewSignUpByMonth: 0,
         NewSignUpTotal: 3742,
         QualifiedMemberByMonth: 0,
-        TotalClickByMonth: 0,
         TotalClickMobileByMonth: 0,
         TotalClickPcLaptopByMonth: 0,
         TurnoverByMonth: 0,
         TurnoverTotal: 1061706.9773,
-        UniqueClickByMonth: 0,
         UniqueClickMobileByMonth: 0,
         UniqueClickPcLaptopByMonth: 0,
         WinlostByMonth: 0,
@@ -45,12 +43,10 @@ describe('customer statistics - components - Content', () => {
         NewSignUpByMonth: 0,
         NewSignUpTotal: 3742,
         QualifiedMemberByMonth: 0,
-        TotalClickByMonth: 0,
         TotalClickMobileByMonth: 0,
         TotalClickPcLaptopByMonth: 0,
         TurnoverByMonth: 0,
         TurnoverTotal: 1061706.9773,
-        UniqueClickByMonth: 0,
         UniqueClickMobileByMonth: 0,
         UniqueClickPcLaptopByMonth: 0,
         WinlostByMonth: 0,
@@ -146,18 +142,6 @@ describe('customer statistics - components - Content', () => {
         expect(props.redirectToPlayerDetail).toHaveBeenCalledWith({ isClickLink: true, monthDate: "7/1/2019", productId: 0 });
     });
 
-    it('redirectToTrackingStatistics - should be called when click at tracking statistics link', () => {
-        const setMonthDate = jest.fn();
-        const fetchData = jest.fn(() => data);
-        const redirectToTrackingStatistics = jest.fn()
-        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData, redirectToTrackingStatistics });
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState({ data: dataHasPlayerActive });
-
-        wrapper.find(MyLink).at(1).simulate('click');
-        expect(props.redirectToTrackingStatistics).toHaveBeenCalledWith({ isClickLink: true });
-    });
-
     it('redirectToReferrers - should be called when click at referrers laptop link', () => {
         const setMonthDate = jest.fn();
         const fetchData = jest.fn(() => data);
@@ -166,7 +150,7 @@ describe('customer statistics - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
-        wrapper.find(MyLink).at(2).simulate('click');
+        wrapper.find(MyLink).at(1).simulate('click');
         expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 0, fromDate: "7/1/2019", isClickLink: true, toDate: "7/1/2019" });
     });
 
@@ -178,7 +162,7 @@ describe('customer statistics - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
-        wrapper.find(MyLink).at(3).simulate('click');
+        wrapper.find(MyLink).at(2).simulate('click');
         expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 1, fromDate: "7/1/2019", isClickLink: true, toDate: "7/1/2019" });
     });
 })

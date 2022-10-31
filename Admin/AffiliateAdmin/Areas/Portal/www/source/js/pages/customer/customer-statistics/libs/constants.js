@@ -7,7 +7,6 @@
     TotalDeposits: "Total Deposits",
     Turnover: "Turnover",
     Winlost: "Winlost",
-    TrackingRate: "Tracking Rate (Unique/Total)",
     TrackingRatePC: "Tracking Rate for PC/Laptop (Unique/Total) New!!!!!",
     TrackingRateMobile: "Tracking Rate for Mobile (Unique/Total) New!!!!!"
 }

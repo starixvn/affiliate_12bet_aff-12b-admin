@@ -5323,24 +5323,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tracking Code.
-        /// </summary>
-        public static string TrackingCode {
-            get {
-                return ResourceManager.GetString("TrackingCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tracking Statistics.
-        /// </summary>
-        public static string TrackingStatistics {
-            get {
-                return ResourceManager.GetString("TrackingStatistics", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Transaction.
         /// </summary>
         public static string Transaction {
