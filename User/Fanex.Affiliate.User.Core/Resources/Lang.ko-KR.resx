@@ -2259,4 +2259,7 @@
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>수익 공유</value>
   </data>
+  <data name="CambodiaSupport" xml:space="preserve">
+    <value>캄보디아 지원 </value>
+  </data>
 </root>

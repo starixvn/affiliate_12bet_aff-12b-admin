@@ -556,7 +556,7 @@
     <value>English_Euro</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
-    <value>英文</value>
+    <value>英文客服</value>
   </data>
   <data name="Eritrea" xml:space="preserve">
     <value>厄利垂亞</value>
@@ -1774,19 +1774,19 @@
     <value>週一至週六上午9點至下午6點(GMT +8)</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
-    <value>中文</value>
+    <value>中文客服</value>
   </data>
   <data name="IndonesiaSupport" xml:space="preserve">
-    <value>印尼文</value>
+    <value>印尼客服</value>
   </data>
   <data name="ThailandSupport" xml:space="preserve">
-    <value>泰文</value>
+    <value>泰國客服</value>
   </data>
   <data name="VietnamSupport" xml:space="preserve">
-    <value>越南文</value>
+    <value>越南客服</value>
   </data>
   <data name="IndianSupport" xml:space="preserve">
-    <value>印地語</value>
+    <value>印度客服</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
     <value>如有任何意見或問題，歡迎發郵件至{0}，或填寫以下的表格。</value>
@@ -2237,7 +2237,7 @@
     <value>專屬優惠</value>
   </data>
   <data name="KoreaSupport" xml:space="preserve">
-    <value>韩语</value>
+    <value>韓國客服</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
@@ -2268,5 +2268,8 @@
   </data>
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>佣金分成</value>
+  </data>
+  <data name="CambodiaSupport" xml:space="preserve">
+    <value>柬埔寨客服</value>
   </data>
 </root>

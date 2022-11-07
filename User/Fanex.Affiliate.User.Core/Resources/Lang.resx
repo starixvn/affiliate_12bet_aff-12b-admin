@@ -2441,4 +2441,7 @@
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>Revenue Share</value>
   </data>
+  <data name="CambodiaSupport" xml:space="preserve">
+    <value>Cambodia Support</value>
+  </data>
 </root>

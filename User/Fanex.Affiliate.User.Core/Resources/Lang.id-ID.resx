@@ -2267,4 +2267,7 @@
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>Pembagian Hasil</value>
   </data>
+  <data name="CambodiaSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Kambodia</value>
+  </data>
 </root>
