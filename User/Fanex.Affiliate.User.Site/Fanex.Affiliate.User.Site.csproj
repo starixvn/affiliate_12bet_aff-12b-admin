@@ -703,6 +703,7 @@
     <Content Include="www\build\styles\Images\account-overview\icon-zalo.png" />
     <Content Include="www\build\styles\Images\account-overview\new-sign-up.png" />
     <Content Include="www\build\styles\Images\account-overview\total-deposit.png" />
+    <Content Include="www\build\styles\Images\contact-us\cambodia_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\korea_lang.png" />
     <Content Include="www\build\styles\Images\feedback\dissatisfaction-active.png" />
     <Content Include="www\build\styles\Images\feedback\dissatisfaction.png" />

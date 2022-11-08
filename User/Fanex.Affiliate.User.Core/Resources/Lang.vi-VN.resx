@@ -2264,4 +2264,7 @@
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>Chia sẻ lợi nhuận</value>
   </data>
+  <data name="CambodiaSupport" xml:space="preserve">
+    <value>Hỗ trợ Tiếng Cambodia</value>
+  </data>
 </root>
