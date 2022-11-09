@@ -4,6 +4,7 @@ using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
+using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
 using System;
@@ -103,6 +104,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         [InlineData(true)]
         public void IsValidOtp_WhenLoginFail_UpdateVerificationInfo(bool isOK)
         {
+            MockingHelper.SetUpLogEngineEnviroment();
             var service = CreateService();
             var param = CreateVerificationOtpParam();
             var verificationInfo = new VerificationInfo

@@ -44,5 +44,9 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         public int ImageSize => Convert.ToInt32(GetValue("imagesize"));
 
         public string ServerId => GetValue("ServerID");
+
+        public string AppMailId => GetValue("app_mail_id");
+
+        public string AppMailAddress => GetValue("app_mail_address");
     }
 }

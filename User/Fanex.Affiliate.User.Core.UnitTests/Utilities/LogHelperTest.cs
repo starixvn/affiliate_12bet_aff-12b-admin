@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.Utilities;
+﻿using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
 using System;
 using System.IO;
@@ -13,6 +14,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Utilities
         [Fact]
         public void WriteInfo_WhenCall_WriteLog()
         {
+            MockingHelper.SetUpLogEngineEnviroment();
             LogHelper.WriteInfo("2");
 
             Assert.True(true);
@@ -21,6 +23,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Utilities
         [Fact]
         public void WriteError_WhenCall_WriteLog()
         {
+            MockingHelper.SetUpLogEngineEnviroment();
             SetUpEnviroment();
 
             var ex = Substitute.For<Exception>();

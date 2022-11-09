@@ -53,8 +53,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 var csdEmailParam = new NoticeEmailParam
                 {
                     MailTo = emailParam.MailContact,
-                    MailBcc = emailParam.MailBcc,
-                    MailCc = emailParam.MailCc,
                     MailContact = emailParam.MailContact,
                     FirstName = signUpParam.FirstName,
                     LastName = signUpParam.LastName,

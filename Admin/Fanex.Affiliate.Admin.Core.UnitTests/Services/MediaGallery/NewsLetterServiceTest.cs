@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
@@ -103,6 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             newsLetterRepository.Setup(s => s.InsertNewsLetter(It.IsAny<InsertHtmlFileParam>())).Throws(new Exception());
             var controller = CreateNewsLetterService(newsLetterRepository.Object, htmlFileService.Object);
             MockingHelper.SetUpEnviroment();
+            MockingHelper.SetUpLogEngineEnviroment();
 
             // Action
             using (var memoryStream = new MemoryStream(new byte[3] { 1, 2, 3 }))

@@ -13,6 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
     public static class LogHelper
     {
         private const int LimitedLevelOfInnerException = 3;
+
         public static void WriteError(Exception exception, string additionalMessage = null)
         {
             var content = BuildMessage(exception);
@@ -23,7 +24,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
             AddDatabaseInfo(content, exception);
             AddExceptionInfo(content, exception, LimitedLevelOfInnerException);
-
             LogService.Error(content.ToString(), exception);
         }
         public static void WriteError(string msg)

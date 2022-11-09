@@ -60,12 +60,14 @@ namespace Fanex.Affiliate.User.Core.Utilities
         public string ResourceDomain => GetValue("ResourceDomain");
 
         public IEnumerable<string> MarketingForCommGroups => GetValue("MarketingForCommGroups").Split(',');
+        public string CcMail => GetValue("CcMail");
 
         public IEnumerable<string> MarketingLandingPages => GetValue("MarketingLandingPages").Split(',');
+        public string BccMail => GetValue("BccMail");
 
         public IEnumerable<string> ODIWorldCupLandingPages => GetValue("ODIWorldCupLandingPages").Split(',');
 
-        public IEnumerable<string> SupportedODIWorldCupLanguages => GetValue("SupportedODIWorldCupLanguages").Split(',');
+        public string AppMailAddress => GetValue("app_mail_address");
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }

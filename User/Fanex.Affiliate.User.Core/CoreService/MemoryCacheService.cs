@@ -33,6 +33,11 @@ namespace Fanex.Affiliate.User.Core.CoreService
             _cache.Set(key, DeepClone(value), cachePolicy);
         }
 
+        public void Clear()
+        {
+            _cache.Dispose();
+        }
+
         public void Delete(string key)
         {
             _cache.Remove(key);
@@ -40,6 +45,11 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         private static T DeepClone<T>(T source)
         {
+            if (Equals(source, default(T)))
+            {
+                return source;
+            }
+
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
         }
     }

@@ -1,30 +1,36 @@
 ﻿namespace Affiliate.Infrastructure.Helpers
 {
     using Fanex.Caching;
+    using Fanex.Caching.Memory;
     using Newtonsoft.Json;
+    using System;
 
     public static class CacheHelper
     {
         private const int TIMEOUT = 120; // 2 minutes.
 
-        private static readonly ICache Cache = CacheService.CreateInstance(CacheType.MemoryCache);
+        private static readonly ICache Cache = new MemoryCache(new MemoryCacheOptions());
 
         public static T Get<T>(string key)
         {
-            return DeepClone(Cache.Get<T>(key));
+            Cache.TryGet<T>(key, out T value);
+
+            return DeepClone(value);
         }
 
         public static void Set<T>(string key, T value, int timeout = TIMEOUT)
         {
             if (!Equals(value, default(T)))
             {
-                Cache.Set(key, DeepClone(value), timeout);
+                var cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(timeout));
+
+                Cache.Set(key, DeepClone(value), cachePolicy);
             }
         }
 
         public static void Clear()
         {
-            Cache.Clear();
+            Cache.Dispose();
         }
 
         public static void Remove(string key)

@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             //Assert
             MailProcessor.Received(3).BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailBase>());
-            MailProcessor.Received(3).Send(mainContent, Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<string>());
+            MailProcessor.Received(3).Send(mainContent, Arg.Compat.Any<string>(), Arg.Compat.Any<string>());
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             //Assert
             MailProcessor.Received(3).BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailBase>());
-            MailProcessor.Received(3).Send(mainContent, Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<string>());
+            MailProcessor.Received(3).Send(mainContent, Arg.Compat.Any<string>(), Arg.Compat.Any<string>());
         }
 
         [Theory]
@@ -116,7 +116,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             //Assert
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<PaymentRequestUpdateEmail>());
-            MailProcessor.Received().Send(mainContent, emailParam.MailTo, "12Bet Affiliates - [123] - Your payment request has been processed and completed successfully", AppSetting.BccMail, AppSetting.CcMail);
+            MailProcessor.Received().Send(mainContent, emailParam.MailTo, "12Bet Affiliates - [123] - Your payment request has been processed and completed successfully");
         }
 
         [Theory]
@@ -140,7 +140,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             //Assert
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<PaymentRequestUpdateEmail>());
-            MailProcessor.Received().Send(mainContent, emailParam.MailTo, "12Bet Affiliates - [123] - Your payment request has been rejected", AppSetting.BccMail, AppSetting.CcMail);
+            MailProcessor.Received().Send(mainContent, emailParam.MailTo, "12Bet Affiliates - [123] - Your payment request has been rejected");
         }
 
         [Fact]
@@ -161,7 +161,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             //Assert
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<AffInformationEmail>());
-            MailProcessor.Received().Send(mainContent, emailParam.MailTo, "12Bet Affiliates – Your Application", AppSetting.BccMail, AppSetting.CcMail);
+            MailProcessor.Received().Send(mainContent, emailParam.MailTo, "12Bet Affiliates – Your Application");
         }
 
         [Fact]
@@ -181,7 +181,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             //Assert
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<AffInformationEmail>());
-            MailProcessor.Received().Send(mainContent, emailParam.MailTo, "12Bet Affiliates – Your Application", AppSetting.BccMail, AppSetting.CcMail);
+            MailProcessor.Received().Send(mainContent, emailParam.MailTo, "12Bet Affiliates – Your Application");
         }
 
         private EmailService CreateEmailService()

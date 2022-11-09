@@ -193,8 +193,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var expectedResult = JsonConvert.SerializeObject(new EmailSignUpParam
             {
                 MailContact = Constant.DefaultMailContact,
-                MailCc = Constant.DefaultMailCc,
-                MailBcc = string.Empty,
                 MailTo = Constant.DefaultMailContact,
                 RootDomain = Constant.DefaultRootDomain + "/",
                 CurrentLanguage = Constant.DefaultLanguage,
