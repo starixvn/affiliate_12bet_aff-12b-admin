@@ -303,9 +303,6 @@
     <Content Include="App_Data\SpConfig\SpName.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.master.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
     <Content Include="App_Data\SpConfig\SpName.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
@@ -386,14 +383,10 @@
     <Content Include="Views\Password\Update.cshtml" />
     <Content Include="Views\Auth\AuthenticationForm.cshtml" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.master.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.uat.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.sit.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.production.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.backupmnl.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.backupmnl.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.master.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.production.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.sit.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.uat.config" />
@@ -1332,13 +1325,7 @@
     <Content Include="ConnectionString.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.backupmnl.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\Web\Web.12betuser-asian.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.master.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\Web\Web.12betuser-asian.production.config">
@@ -1350,13 +1337,7 @@
     <Content Include="Configurations\Web\Web.12betuser-asian.uat.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.backupmnl.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\Web\Web.12betuser-euro.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.master.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\Web\Web.12betuser-euro.production.config">
