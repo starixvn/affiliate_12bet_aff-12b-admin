@@ -9,6 +9,7 @@ import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
 import { claimResource } from '../../../../modules/claim';
+import { formatDateTime } from '../../../../modules/utils';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -69,11 +70,11 @@ export class Content extends PureComponent {
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.Domain}>{headerText.Domain}</Cell>
+                <Cell header={true} colWidth={175} title={headerText.Domain}>{headerText.Domain}</Cell>
                 <Cell header={true} colWidth={35} title={headerText.SSL}>{headerText.SSL}</Cell>
-                <Cell header={true} colWidth={90} title={headerText.Creator}>{headerText.Creator}</Cell>
-                <Cell header={true} colWidth={90} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={200} title={headerText.BlockMarket}>{headerText.BlockMarket}</Cell>
+                <Cell header={true} colWidth={80} title={headerText.Creator}>{headerText.Creator}</Cell>
+                <Cell header={true} colWidth={80} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={320} title={headerText.BlockMarket}>{headerText.BlockMarket}</Cell>
                 { isModifiable && <Cell header={true} colWidth={50} title={headerText.Edit}>{headerText.Action}</Cell>}
             </Row>
         );
@@ -100,6 +101,8 @@ export class Content extends PureComponent {
     _buildDataRow(dataItem, index) {
         const domainName = htmlDecode(dataItem.DomainName);
         const creator = htmlDecode(dataItem.Creator);
+        const createDate = formatDateTime(dataItem.CreateDate, "MM/dd/yyyy");
+        const blockMarket = htmlDecode(dataItem.BlockMarket).split(',').join(', ');
         const { isModifiable } = this.props;
         return (
             <Row key={`dataRow-${index}`}>
@@ -109,8 +112,8 @@ export class Content extends PureComponent {
                     <input type="checkbox" disabled checked={dataItem.IsSSL} />
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
-                <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
-                <Cell className="text-center"></Cell>
+                <Cell className="text-center" title={createDate}>{createDate}</Cell>
+                <Cell>{blockMarket}</Cell>
                 { isModifiable &&
                     <React.Fragment>
                         <Cell className="text-center">

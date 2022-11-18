@@ -1,16 +1,12 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
@@ -19,42 +15,44 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     public class DomainControlController : ReadOnlySessionBaseController
     {
         private readonly IDomainControlService _domainControlService;
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly IDomainService _domainService;
 
         public DomainControlController(
             ISessionService sessionService,
             IDomainControlService domainControlService,
-            ICommonSettingService commonSettingService) : base(sessionService)
+            IDomainService domainService) : base(sessionService)
         {
             _domainControlService = domainControlService;
-            _commonSettingService = commonSettingService;
+            _domainService = domainService;
         }
 
         public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
+            var model = new DomainViewModel
             {
-                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain?isAffDomain=true") },
-                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/Domain?isAffDomain=false") },
-                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl"), IsActive = true }
+                MarketList = _domainService.GetMarketList(new MarketParam { UserId = SessionService.UserId })
             };
 
-            var model = new DomainControlViewModel
-            {
-                SubMenuList = subMenu,
-                MarketList = _commonSettingService.GetInChangeMarkets()
-            };
-
-            return View("~/Areas/Portal/Views/Domain/DomainControl.cshtml", model);
+            return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainControlList(string market)
+        public ActionResult GetDomainControlList(string marketId)
         {
             return new JsonNetResult
             {
-                Data = _domainControlService.GetDomainControlList(market)
+                Data = _domainControlService.GetDomainControlList(marketId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetDomainControlById(int domainControlId)
+        {
+            return new JsonNetResult
+            {
+                Data = _domainControlService.GetDomainControlById(domainControlId)
             };
         }
 
@@ -88,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomainControl(InsertUpdateDomainControlParam param)
         {
-            var isValidDomainId = param.DomainId >= Validation.MinId;
+            var isValidDomainId = param.DomainControlId >= Validation.MinId;
             if (ModelState.IsValid && isValidDomainId)
             {
                 GetUserInfoParam(param);

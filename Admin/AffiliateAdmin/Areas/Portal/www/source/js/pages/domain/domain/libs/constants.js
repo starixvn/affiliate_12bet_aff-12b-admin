@@ -11,3 +11,12 @@ export const headerText = {
     BlockMarket: 'Block Market',
     Action: globalResource.Action
 }
+
+export const defaultState = {
+    isInsert: true,
+    isShowMessage: false,
+    isSuccess: true,
+    message: '',
+    selectedDomain: null,
+    marketListByDomain: null
+}

@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
 {
     public class InsertUpdateDomainControlParam : UserInfoParam
     {
-        public int DomainId { get; set; }
+        public int DomainControlId { get; set; }
 
         [Required]
         public string MarketId { get; set; }
@@ -17,6 +17,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         [Range(Validation.MinId, Validation.MaxId)]
         public int RedirectDomainId { get; set; }
 
-        public bool IsUsed { get; set; }
+        public bool Status { get; set; }
     }
 }

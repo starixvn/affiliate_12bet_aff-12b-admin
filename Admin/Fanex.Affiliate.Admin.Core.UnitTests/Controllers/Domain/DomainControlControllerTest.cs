@@ -1,9 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
@@ -23,9 +23,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
-            var controller = CreateDomainControlController(commonSettingService: commonSettingService.Object);
+            var domainService = new Mock<IDomainService>();
+            domainService.Setup(l => l.GetMarketList(It.IsAny<MarketParam>())).Returns(new List<Market> { new Market() });
+            var controller = CreateDomainControlController(domainService: domainService.Object);
 
             var urlHelperMock = new Mock<UrlHelper>();
             urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/DomainControl");
@@ -100,7 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void UpdateDomainControl_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateDomainControlParam { DomainId = 123, AffDomainId = 1, RedirectDomainId = 2 };
+            var param = new InsertUpdateDomainControlParam { DomainControlId = 123, AffDomainId = 1, RedirectDomainId = 2 };
             InsertUpdateDomainControlParam passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
             domainControlService.Setup(s => s.UpdateDomainControl(It.IsAny<InsertUpdateDomainControlParam>())).Returns(new ResultInfo()).Callback<InsertUpdateDomainControlParam>(p => passedParam = p);
@@ -112,7 +112,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.True(resultInfo.IsSuccessful);
-            Assert.Equal(param.DomainId, passedParam.DomainId);
+            Assert.Equal(param.DomainControlId, passedParam.DomainControlId);
         }
 
         [Fact]
@@ -135,7 +135,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void UpdateDomainControl_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
-            var param = new InsertUpdateDomainControlParam { DomainId = 123, RedirectDomainId = 2 };
+            var param = new InsertUpdateDomainControlParam { DomainControlId = 123, RedirectDomainId = 2 };
             var controller = CreateDomainControlController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
@@ -152,7 +152,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void DeleteDomainControl_WhenCallWithValidParam_DeleteSuccessful()
         {
             // Arrange
-            var param = new DeleteDomainControlParam { DomainId = 123 };
+            var param = new DeleteDomainControlParam { DomainControlId = 123 };
             DeleteDomainControlParam passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
             domainControlService.Setup(s => s.DeleteDomainControl(It.IsAny<DeleteDomainControlParam>())).Returns(new ResultInfo()).Callback<DeleteDomainControlParam>(p => passedParam = p);
@@ -186,14 +186,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         private DomainControlController CreateDomainControlController(
         ISessionService sessionService = null,
         IDomainControlService domainControlService = null,
-        ICommonSettingService commonSettingService = null
+        IDomainService domainService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeDomainControlService = domainControlService ?? Mock.Of<IDomainControlService>();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakeDomainService = domainService ?? Mock.Of<IDomainService>();
 
-            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService, fakecommonSettingService);
+            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService, fakeDomainService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

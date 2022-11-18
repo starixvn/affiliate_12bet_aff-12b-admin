@@ -1,35 +1,32 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Data;
-using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public class DomainService : BaseRepository, IDomainService
     {
-        public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain)
+        public IEnumerable<Market> GetMarketList(MarketParam param)
+        {
+            const string SpKey = "Aff_SupportBlockMarket_Sel";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                return objectDb.Query<Market>(param);
+            }
+        }
+
+        public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain, int userId)
         {
             var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel";
 
-            var result = new List<DomainInfo>();
-
             using (var objectDb = GetObjectDb(spKey))
             {
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(BuildDomainInfoItem(reader));
-                    }
-                }
+                return objectDb.Query<DomainInfo>(new { userId });
             }
-
-            return result;
         }
 
         public ResultInfo InsertDomain(InsertUpdateDomainParam param)
@@ -87,18 +84,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             objectDb.SetParameterValue("IP", param.Ip);
 
             AssignResultOutputParam(objectDb);
-        }
-
-        private static DomainInfo BuildDomainInfoItem(IDataReader reader)
-        {
-            return new DomainInfo
-            {
-                DomainId = Convert.ToInt32(reader["DomainId"]),
-                DomainName = Convert.ToString(reader["DomainName"]),
-                IsSSL = reader.GetVal<bool>("IsSSL"),
-                Creator = Convert.ToString(reader["Creator"]),
-                CreatedDate = reader["CreateDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreateDate"])
-            };
         }
     }
 }

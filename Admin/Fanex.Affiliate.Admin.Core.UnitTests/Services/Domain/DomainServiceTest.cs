@@ -27,12 +27,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateDomain_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetDomainList(true);
+            var result = service.Object.GetDomainList(true, 123);
             var item = result.FirstOrDefault();
 
             // Assert
             Assert.Single(result);
-            Assert.Equal("10/25/2019", item.CreatedDateText);
         }
 
         [Fact]
@@ -49,12 +48,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateDomain_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetDomainList(true);
+            var result = service.Object.GetDomainList(true, 123);
             var item = result.FirstOrDefault();
 
             // Assert
             Assert.Single(result);
-            Assert.Null(item.CreatedDateText);
         }
 
         [Fact]
@@ -70,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.Setup(r => r.GetObjectDb("Aff_Admin_12BETDomain_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetDomainList(false);
+            var result = service.Object.GetDomainList(false, 123);
 
             // Assert
             Assert.Empty(result);

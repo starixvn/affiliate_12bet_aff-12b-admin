@@ -5,12 +5,9 @@ using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
@@ -18,35 +15,24 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     [FunctionAuthorize(FunctionName = Function.DomainMenu)]
     public class DomainController : ReadOnlySessionBaseController
     {
-        private readonly IDomainService _domainService;
-        private readonly ILanguageRepository _languageRepository;
+        protected readonly IDomainService _domainService;
 
         public DomainController(
             ISessionService sessionService,
-            IDomainService domainService,
-            ILanguageRepository languageRepository) : base(sessionService)
+            IDomainService domainService) : base(sessionService)
         {
             _domainService = domainService;
-            _languageRepository = languageRepository;
         }
 
-        public ActionResult Index(bool isAffDomain = true)
+        public virtual ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain?isAffDomain=true"), IsActive = isAffDomain },
-                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/Domain?isAffDomain=false"), IsActive = !isAffDomain },
-                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl") }
-            };
-
             var model = new DomainViewModel
             {
-                SubMenuList = subMenu,
-                MarketList = _languageRepository.GetLanguageList(),
-                IsAffDomain = isAffDomain
+                MarketList = _domainService.GetMarketList(new MarketParam { UserId = SessionService.UserId }),
+                IsAffDomain = true
             };
 
-            return View(model);
+            return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);
         }
 
         [HttpPost]
@@ -55,7 +41,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             return new JsonNetResult
             {
-                Data = _domainService.GetDomainList(isAffDomain)
+                Data = _domainService.GetDomainList(isAffDomain, SessionService.UserId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetMarketList(MarketParam param)
+        {
+            param.UserId = SessionService.UserId;
+
+            return new JsonNetResult
+            {
+                Data = _domainService.GetMarketList(param)
             };
         }
 

@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { setSelectedMarket, fetchData } from '../actions';
+import { setSelectedMarketId, fetchData } from '../actions';
 import { headerText, globalResource } from '../libs/constants';
 
 export const Filter = (props) => {
     const { marketList } = props;
-    const [market, setMarket] = useState('');
+    const [marketId, setMarketId] = useState('');
 
     const _handleSearch = () => {
-        props.setSelectedMarket(market);
-        props.fetchData(market);
+        props.setSelectedMarketId(marketId);
+        props.fetchData(marketId);
     }
 
     return marketList && (
@@ -20,11 +20,11 @@ export const Filter = (props) => {
             <Form inline tag="div">
                 <FormGroup className="mr-sm-3">
                     <Label for="market" className="mr-sm-2">{headerText.Market}</Label>
-                    <Input type="select" name="market" value={market} onChange={(e) => setMarket(e.target.value)}>
+                    <Input type="select" name="market" value={marketId} onChange={(e) => setMarketId(e.target.value)}>
                         <option key={'market-all'} value={''}>{globalResource.All}</option>
                         {
                             marketList.map(item => {
-                                return (<option key={`market-${item.LanguageCode}`} value={item.LanguageCode}>{item.LanguageName}</option>)
+                                return (<option key={`market-${item.MarketId}`} value={item.MarketId}>{item.MarketName}</option>)
                             })
                         }
                     </Input>
@@ -42,7 +42,7 @@ function mapStateToProps({ marketList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMarket, fetchData }, dispatch);
+    return bindActionCreators({ setSelectedMarketId, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

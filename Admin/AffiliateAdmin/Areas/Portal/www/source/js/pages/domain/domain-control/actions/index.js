@@ -1,57 +1,57 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_SELECTED_MARKET, SET_SELECTED_DOMAIN, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_AFF_DOMAIN_LIST, SET_REDIRECT_DOMAIN } from './types';
+import * as types from './types';
 import { getDomainList } from '../../domain/actions/index';
 
 export { toggleLoader };
 
-export const setSelectedDomain = (data) => {
+export const setSelectedDomainId = (data) => {
     return {
-        type: SET_SELECTED_DOMAIN,
+        type: types.SET_SELECTED_DOMAIN_ID,
         data
     }
 }
 
-export const setSelectedMarket = (data) => {
+export const setSelectedMarketId = (data) => {
     return {
-        type: SET_SELECTED_MARKET,
+        type: types.SET_SELECTED_MARKET_ID,
         data
     }
 }
 
 export const setShouldResetScrollPosition = (data) => {
     return {
-        type: SHOULD_RESET_SCROLL_POSITION,
+        type: types.SHOULD_RESET_SCROLL_POSITION,
         data
     }
 }
 
 export const setGridData = (data) => {
     return {
-        type: SET_GRID_DATA,
+        type: types.SET_GRID_DATA,
         data
     }
 }
 
 export const setAffDomainList = (data) => {
     return {
-        type: SET_AFF_DOMAIN_LIST,
+        type: types.SET_AFF_DOMAIN_LIST,
         data
     }
 }
 
 export const setRedirectDomainList = (data) => {
     return {
-        type: SET_REDIRECT_DOMAIN,
+        type: types.SET_REDIRECT_DOMAIN_LIST,
         data
     }
 }
 
-export const fetchData = (market) => async (dispatch) => {
+export const fetchData = (marketId) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
     const url = 'Portal/DomainControl/GetDomainControlList';
-    const response = await post(url, { market });
+    const response = await post(url, { marketId });
 
     const data = response && response.status === 200 ? response.data : [];
 
@@ -60,9 +60,23 @@ export const fetchData = (market) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
+export const getDomainControlById = (domainControlId) => async () => {
+    const url = 'Portal/DomainControl/GetDomainControlById';
+    const response = await post(url, { domainControlId });
+
+    return response && response.status === 200 ? response.data : null;
+}
+
 export const fetchDomain = () => async (dispatch) => {
     dispatch(setAffDomainList(await getDomainList(true)));
     dispatch(setRedirectDomainList(await getDomainList(false)));
+}
+
+export const getMarketListByDomains = (param) => async () => {
+    const url = 'Portal/Domain/GetMarketList';
+    const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
 }
 
 export const insertDomain = (param) => async () => {

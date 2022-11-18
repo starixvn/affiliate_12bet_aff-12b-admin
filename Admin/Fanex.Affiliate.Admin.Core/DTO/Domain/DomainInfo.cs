@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 {
@@ -12,8 +13,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string Creator { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
+        public string BlockMarket { get; set; }
 
-        public string CreatedDateText => CreatedDate?.ToString("MM/dd/yyyy");
+        public DateTime? CreateDate { get; set; }
     }
 }

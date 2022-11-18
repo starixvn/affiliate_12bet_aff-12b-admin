@@ -7,7 +7,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public interface IDomainService
     {
-        IEnumerable<DomainInfo> GetDomainList(bool isAffDomain);
+        IEnumerable<Market> GetMarketList(MarketParam param);
+
+        IEnumerable<DomainInfo> GetDomainList(bool isAffDomain, int userId);
 
         ResultInfo InsertDomain(InsertUpdateDomainParam param);
 

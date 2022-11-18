@@ -1,7 +1,7 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import { defaultState } from '../libs/constants';
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomain } from '../actions/index';
 
@@ -9,19 +9,27 @@ export class DomainPopup extends PureComponent {
     constructor(props) {
         super(props)
 
-        this.state = {
-            isInsert: true,
-            isShowMessage: false,
-            isSuccess: true,
-            message: ''
-        }
+        this.state = defaultState;
     }
 
     componentDidUpdate(prevProps) {
-        const { selectedDomain } = this.props;
+        const { selectedDomain, isAffDomain } = this.props;
         if (selectedDomain && prevProps.selectedDomain !== selectedDomain) {
-            this.setState({ isInsert: selectedDomain.domainId === 0 });
+            const isInsert = selectedDomain.domainId === 0;
+            this.setState({ isInsert, selectedDomain });
         }
+    }
+
+    _handleGetMarketByDomains = async (isInsert, selectedDomain) => {
+        const { affDomainId, redirectDomainId } = selectedDomain;
+        let selectedMarketByDomain = marketId;
+        const marketListByDomains = await this.props.getMarketListByDomains({ affDomainId, redirectDomainId });
+
+        if (isInsert) {
+            selectedMarketByDomain = marketListByDomains ? marketListByDomains[0].LanguageCode : "";
+        }
+
+        this.setState({ selectedDomain: { ...selectedDomain, marketId: selectedMarketByDomain }, marketListByDomains });
     }
 
     _handleChange = (event) => {

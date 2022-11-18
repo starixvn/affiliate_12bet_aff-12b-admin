@@ -42,6 +42,13 @@ export const fetchData = (isAffDomain) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
+export const getMarketListByDomain = (param) => async () => {
+    const url = 'Portal/DomainControl/GetMarketListByDomains';
+    const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
+}
+
 export const insertDomain = (param) => async () => {
     const url = 'Portal/Domain/InsertDomain';
     const response = await post(url, param);

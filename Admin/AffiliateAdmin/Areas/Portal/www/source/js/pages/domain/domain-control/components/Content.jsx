@@ -7,8 +7,9 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
+import { deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
 import { claimResource } from '../../../../modules/claim';
+import { formatDateTime } from '../../../../modules/utils';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -41,21 +42,21 @@ export class Content extends PureComponent {
         this.setState({ message: `Are you sure you want to delete this domain setting?`, isConfirmPopup: true, selectedDomainId });
     }
 
-    _handleEditDomain = (domainId, marketId, affDomainId, redirectDomainId, isUsed) => {
+    _handleEditDomain = (domainId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.props.setSelectedDomain({ domainId, marketId, affDomainId, redirectDomainId, isUsed });
+        this.props.setSelectedDomainId(domainId);
     }
 
     _deleteDomain = async (selectedDomainId) => {
         this.props.toggleLoader(true);
 
-        const result = await this.props.deleteDomain({ DomainId: selectedDomainId });
+        const result = await this.props.deleteDomain({ DomainControlId: selectedDomainId });
 
         if (result) {
             if (result.IsSuccessful) {
                 this.setState({ message: `The domain control has been removed successfully!`, isConfirmPopup: false });
 
-                this.props.fetchData(this.props.selectedMarket);
+                this.props.fetchData(this.props.selectedMarketId);
             }
             else {
                 this.setState({ message: result.Message, isConfirmPopup: false });
@@ -104,26 +105,27 @@ export class Content extends PureComponent {
         const affDomain = htmlDecode(dataItem.AffDomain);
         const redirectDomain = htmlDecode(dataItem.RedirectDomain);
         const creator = htmlDecode(dataItem.Creator);
+        const createdDate = formatDateTime(dataItem.CreatedDate, "MM/dd/yyyy");
         const { isModifiable } = this.props;
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center" title={dataItem.Market}>{dataItem.Market}</Cell>
+                <Cell className="text-center" title={dataItem.MarketName}>{dataItem.MarketName}</Cell>
                 <Cell className="text-center" title={affDomain}>{affDomain}</Cell>
                 <Cell className="text-center" title={redirectDomain}>{redirectDomain}</Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
-                <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
+                <Cell className="text-center" title={createdDate}>{createdDate}</Cell>
                 <Cell className="text-center">
-                    <input type="checkbox" disabled checked={dataItem.IsUsed} />
+                    <input type="checkbox" disabled checked={dataItem.Status} />
                 </Cell>
                 { isModifiable &&
                     <React.Fragment>
-                        <Cell className="text-center">
-                            <Button color="link py-0" title="Edit Domain" onClick={() => this._handleEditDomain(dataItem.DomainId, dataItem.MarketId, dataItem.AffDomainId, dataItem.RedirectDomainId, dataItem.IsUsed)}>
+                    <Cell className="text-center">
+                        <Button color="link py-0" title="Edit Domain" onClick={() => this._handleEditDomain(dataItem.DomainControlId)}>
                                 <span className="oi oi-pencil text-secondary"></span>
                             </Button>
-                            <Button color="link py-0" title="Delete Domain" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
+                        <Button color="link py-0" title="Delete Domain" onClick={() => this._handleDeleteDomain(dataItem.DomainControlId)}>
                                 <span className="oi oi-trash text-danger"></span>
                             </Button>
                         </Cell>
@@ -134,14 +136,14 @@ export class Content extends PureComponent {
     }
 
     render() {
-        const { gridData, shouldResetScrollPosition, selectedMarket, affDomainList, redirectDomainList, isModifiable } = this.props;
+        const { gridData, shouldResetScrollPosition, isModifiable } = this.props;
         const { message, isConfirmPopup } = this.state;
 
         return gridData && (
             <div className="data-content">
                 { isModifiable &&
                     <div className="my-2">
-                        <Button outline type="button" onClick={() => this._handleEditDomain(0, selectedMarket || 'en-GB', affDomainList[0].DomainId, redirectDomainList[0].DomainId, false)}>Add New <span className="oi oi-plus ml-2"></span></Button>
+                        <Button outline type="button" onClick={() => this._handleEditDomain(0)}>Add New <span className="oi oi-plus ml-2"></span></Button>
                     </div>
                 }
                 <div className="domain-list-content table-responsive table-striped my-2">
@@ -167,13 +169,13 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, claimsPrincipal }) {
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarketId, affDomainList, redirectDomainList, claimsPrincipal }) {
     const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.DomainMenu);
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, isModifiable });
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarketId, affDomainList, redirectDomainList, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomain, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

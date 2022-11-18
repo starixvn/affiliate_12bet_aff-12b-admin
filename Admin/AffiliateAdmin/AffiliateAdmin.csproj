@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
@@ -514,6 +514,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\libs\menus.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\OnlineList.redux.test.js" />
@@ -989,8 +991,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.km-KH.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.km-KH.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.km-KH.cshtml" />
-    <Content Include="Areas\Portal\Views\Domain\DomainControl.cshtml" />
-    <Content Include="Areas\Portal\Views\Domain\_DomainSubMenu.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
@@ -1505,8 +1505,6 @@
     <Content Include="Areas\Portal\www\source\style\pages\under-maintenance.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\change-admin-password.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\member\active-member.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\domain\domain.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
@@ -1522,6 +1520,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\processing-request.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\feedback-report.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\user-panel\click-statistics.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\domain.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1558,9 +1557,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Portal\www\source\js\pages\domain\libs\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
