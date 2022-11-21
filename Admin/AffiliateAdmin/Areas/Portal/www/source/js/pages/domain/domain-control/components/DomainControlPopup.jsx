@@ -181,7 +181,7 @@ export class DomainControlPopup extends PureComponent {
                                 <FormGroup row className="mb-2">
                                     <Label sm={4}>{headerText.Status}</Label>
                                     <Col sm={8}>
-                                        <input type="checkbox" className="mt-2" name="status" checked={selectedDomain.status} onChange={this._handleChange} />
+                                        <input type="checkbox" name="status" checked={selectedDomain.status} onChange={this._handleChange} />
                                     </Col>
                                 </FormGroup>
                             </Form>

@@ -7,6 +7,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string MarketName { get; set; }
 
-        public bool Checked { get; set; }
+        public byte Status { get; set; }
     }
 }

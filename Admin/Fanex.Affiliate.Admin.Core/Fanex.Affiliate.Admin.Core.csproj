@@ -288,6 +288,8 @@
     <Compile Include="Enum\ProcessingRequestStatus.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
     <Compile Include="MetaModels\Domain\MarketParam.cs" />
+    <Compile Include="MetaModels\Domain\UpdateDomainControlParam.cs" />
+    <Compile Include="MetaModels\Domain\UpdateDomainParam.cs" />
     <Compile Include="MetaModels\FeedbackReport\FeedbackReportParam.cs" />
     <Compile Include="MetaModels\MassAdjustment\MassAdjustmentParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteOfferAffParam.cs" />
@@ -441,8 +443,8 @@
     <Compile Include="MetaModels\Customer\UpdateContactNumberParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
-    <Compile Include="MetaModels\Domain\InsertUpdateDomainControlParam.cs" />
-    <Compile Include="MetaModels\Domain\InsertUpdateDomainParam.cs" />
+    <Compile Include="MetaModels\Domain\InsertDomainControlParam.cs" />
+    <Compile Include="MetaModels\Domain\InsertDomainParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />

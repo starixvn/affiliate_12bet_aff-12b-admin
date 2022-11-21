@@ -11,9 +11,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         DomainControlInfo GetDomainControlById(int domainControlId);
 
-        ResultInfo InsertDomainControl(InsertUpdateDomainControlParam param);
+        ResultInfo InsertDomainControl(InsertDomainControlParam param);
 
-        ResultInfo UpdateDomainControl(InsertUpdateDomainControlParam param);
+        ResultInfo UpdateDomainControl(UpdateDomainControlParam param);
 
         ResultInfo DeleteDomainControl(DeleteDomainControlParam param);
     }

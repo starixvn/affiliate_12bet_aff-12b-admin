@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
@@ -59,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
-        public ActionResult InsertDomainControl(InsertUpdateDomainControlParam param)
+        public ActionResult InsertDomainControl(InsertDomainControlParam param)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Domain's info is invalid!"
+                    Message = "The Domain Control's info is invalid!"
                 }
             };
         }
@@ -84,10 +85,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
-        public ActionResult UpdateDomainControl(InsertUpdateDomainControlParam param)
+        public ActionResult UpdateDomainControl(UpdateDomainControlParam param)
         {
-            var isValidDomainId = param.DomainControlId >= Validation.MinId;
-            if (ModelState.IsValid && isValidDomainId)
+            if (ModelState.IsValid)
             {
                 GetUserInfoParam(param);
 
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = !isValidDomainId ? "Domain Id is invalid." : "Domain's info is invalid!"
+                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
             };
         }
@@ -127,7 +127,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Domain Id is invalid."
+                    Message = "The Domain Control is invalid!"
                 }
             };
         }

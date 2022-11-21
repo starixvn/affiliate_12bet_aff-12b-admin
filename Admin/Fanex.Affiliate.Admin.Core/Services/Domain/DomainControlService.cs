@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Data;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
@@ -29,31 +28,25 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             }
         }
 
-        public ResultInfo InsertDomainControl(InsertUpdateDomainControlParam param)
+        public ResultInfo InsertDomainControl(InsertDomainControlParam param)
         {
             const string SpKey = "Aff_Admin_DomainControl_Ins";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                AssignParam(objectDb, param);
-
-                objectDb.ExecuteNonQuery();
+                objectDb.ExecuteNonQuery(param);
 
                 return GetResultInfo(objectDb);
             }
         }
 
-        public ResultInfo UpdateDomainControl(InsertUpdateDomainControlParam param)
+        public ResultInfo UpdateDomainControl(UpdateDomainControlParam param)
         {
             const string SpKey = "Aff_Admin_DomainControl_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("DomainControlId", param.DomainControlId);
-
-                AssignParam(objectDb, param);
-
-                objectDb.ExecuteNonQuery();
+                objectDb.ExecuteNonQuery(param);
 
                 return GetResultInfo(objectDb);
             }
@@ -65,28 +58,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("DomainControlId", param.DomainControlId);
-                objectDb.SetParameterValue("userid", param.UserId);
-                objectDb.SetParameterValue("ip", param.Ip);
-
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery();
+                objectDb.ExecuteNonQuery(param);
 
                 return GetResultInfo(objectDb);
             }
-        }
-
-        private static void AssignParam(IObjectDb objectDb, InsertUpdateDomainControlParam param)
-        {
-            objectDb.SetParameterValue("AffDomainID", param.AffDomainId);
-            objectDb.SetParameterValue("12BetDomainID", param.RedirectDomainId);
-            objectDb.SetParameterValue("MarketID", param.MarketId);
-            objectDb.SetParameterValue("Status", param.Status);
-            objectDb.SetParameterValue("UserID", param.UserId);
-            objectDb.SetParameterValue("IP", param.Ip);
-
-            AssignResultOutputParam(objectDb);
         }
     }
 }

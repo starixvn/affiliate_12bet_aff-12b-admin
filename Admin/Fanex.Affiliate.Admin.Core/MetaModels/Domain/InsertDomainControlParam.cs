@@ -1,13 +1,12 @@
 ﻿
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Data;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
 {
-    public class InsertUpdateDomainControlParam : UserInfoParam
+    public class InsertDomainControlParam : UserInfoParam
     {
-        public int DomainControlId { get; set; }
-
         [Required]
         public string MarketId { get; set; }
 
@@ -15,6 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         public int AffDomainId { get; set; }
 
         [Range(Validation.MinId, Validation.MaxId)]
+        [SpParam(SqlParamName = "12BetDomainID")]
         public int RedirectDomainId { get; set; }
 
         public bool Status { get; set; }

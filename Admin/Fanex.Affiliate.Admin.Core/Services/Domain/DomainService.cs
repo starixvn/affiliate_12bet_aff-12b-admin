@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Data;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
@@ -19,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             }
         }
 
-        public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain, int userId)
+        public IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true)
         {
             var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel";
 
@@ -29,30 +28,35 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             }
         }
 
-        public ResultInfo InsertDomain(InsertUpdateDomainParam param)
+        public DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true)
+        {
+            var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel";
+
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                return objectDb.QueryEntity<DomainInfo>(new { userId, domainId });
+            }
+        }
+
+        public ResultInfo InsertDomain(InsertDomainParam param)
         {
             var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Ins" : "Aff_Admin_12BETDomain_Ins";
 
             using (var objectDb = GetObjectDb(spKey))
             {
-                AssignParam(objectDb, param);
-
-                objectDb.ExecuteNonQuery();
+                objectDb.ExecuteNonQuery(param);
 
                 return GetResultInfo(objectDb);
             }
         }
 
-        public ResultInfo UpdateDomain(InsertUpdateDomainParam param)
+        public ResultInfo UpdateDomain(UpdateDomainParam param)
         {
             var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Upd" : "Aff_Admin_12BETDomain_Upd";
 
             using (var objectDb = GetObjectDb(spKey))
             {
-                objectDb.SetParameterValue("DomainId", param.DomainId);
-                AssignParam(objectDb, param);
-
-                objectDb.ExecuteNonQuery();
+                objectDb.ExecuteNonQuery(param);
 
                 return GetResultInfo(objectDb);
             }
@@ -64,26 +68,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
             using (var objectDb = GetObjectDb(spKey))
             {
-                objectDb.SetParameterValue("DomainId", param.DomainId);
-                objectDb.SetParameterValue("userid", param.UserId);
-                objectDb.SetParameterValue("ip", param.Ip);
-
                 AssignResultOutputParam(objectDb);
 
-                objectDb.ExecuteNonQuery();
+                objectDb.ExecuteNonQuery(param);
 
                 return GetResultInfo(objectDb);
             }
-        }
-
-        private static void AssignParam(IObjectDb objectDb, InsertUpdateDomainParam param)
-        {
-            objectDb.SetParameterValue("DomainName", param.DomainName);
-            objectDb.SetParameterValue("IsSSL", param.IsSSL);
-            objectDb.SetParameterValue("UserID", param.UserId);
-            objectDb.SetParameterValue("IP", param.Ip);
-
-            AssignResultOutputParam(objectDb);
         }
     }
 }

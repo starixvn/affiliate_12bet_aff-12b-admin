@@ -1,12 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
+using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
@@ -19,59 +16,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var service = new Mock<DomainControlService> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            ReaderHelper.MapReaderData(dataReader, GetDomainControlList());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_Admin_DomainControl_Sel", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetDomainControlList("en-GB");
-            var item = result.FirstOrDefault();
-
-            // Assert
-            Assert.Single(result);
-        }
-
-        [Fact]
-        public void GetDomainControlList_WhenCall_ReturnCorrectDataHasNull()
-        {
-            // Arrange
-            var service = new Mock<DomainControlService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetDomainControlListHasNull());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_Admin_DomainControl_Sel", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetDomainControlList("en-GB");
-            var item = result.FirstOrDefault();
-
-            // Assert
-            Assert.Single(result);
-        }
-
-        [Fact]
-        public void GetDomainControlList_WhenCall_ReturnNullData()
-        {
-            // Arrange
-            var service = new Mock<DomainControlService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
-
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_Admin_DomainControl_Sel", 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb("Aff_Admin_DomainControl_Sel", It.IsAny<int>())).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetDomainControlList(string.Empty);
 
             // Assert
-            Assert.Empty(result);
+            objectDb.Verify(obj => obj.Query<DomainControlInfo>(It.IsAny<object>(), null), Times.Once);
         }
 
         [Fact]
@@ -86,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Ins", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.InsertDomainControl(new InsertUpdateDomainControlParam());
+            var result = service.Object.InsertDomainControl(new InsertDomainControlParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -105,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Ins", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.InsertDomainControl(new InsertUpdateDomainControlParam());
+            var result = service.Object.InsertDomainControl(new InsertDomainControlParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -124,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Upd", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.UpdateDomainControl(new InsertUpdateDomainControlParam());
+            var result = service.Object.UpdateDomainControl(new UpdateDomainControlParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -143,7 +95,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Upd", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.UpdateDomainControl(new InsertUpdateDomainControlParam());
+            var result = service.Object.UpdateDomainControl(new UpdateDomainControlParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -186,40 +138,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Assert
             Assert.False(result.IsSuccessful);
             Assert.Equal(message, result.Message);
-        }
-
-        private IDictionary<string, object> GetDomainControlList()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["DomainControlId"] = 123,
-                ["MarketID"] = "en-GB",
-                ["MarketName"] = "English (Euro)",
-                ["AffDomainID"] = 234,
-                ["AffDomain"] = "go.test.com",
-                ["RedirectDomainId"] = 345,
-                ["RedirectDomain"] = "abc.com",
-                ["Status"] = true,
-                ["Creator"] = "sa",
-                ["CreatedDate"] = new DateTime(2019, 10, 29)
-            };
-        }
-
-        private IDictionary<string, object> GetDomainControlListHasNull()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["DomainControlId"] = 123,
-                ["MarketID"] = "en-GB",
-                ["MarketName"] = "English (Euro)",
-                ["AffDomainID"] = 234,
-                ["AffDomain"] = "go.test.com",
-                ["RedirectDomainId"] = 345,
-                ["RedirectDomain"] = "abc.com",
-                ["Status"] = true,
-                ["Creator"] = "sa",
-                ["CreatedDate"] = DBNull.Value
-            };
         }
     }
 }

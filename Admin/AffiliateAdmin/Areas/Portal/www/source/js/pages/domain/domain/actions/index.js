@@ -1,26 +1,26 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SHOULD_RESET_SCROLL_POSITION, SET_SELECTED_DOMAIN, SET_GRID_DATA } from './types';
+import * as types from './types';
 
 export { toggleLoader };
 
 export const setShouldResetScrollPosition = (data) => {
     return {
-        type: SHOULD_RESET_SCROLL_POSITION,
+        type: types.SHOULD_RESET_SCROLL_POSITION,
         data
     }
 }
 
 export const setGridData = (data) => {
     return {
-        type: SET_GRID_DATA,
+        type: types.SET_GRID_DATA,
         data
     }
 }
 
-export const setSelectedDomain = (data) => {
+export const setSelectedDomainId = (data) => {
     return {
-        type: SET_SELECTED_DOMAIN,
+        type: types.SET_SELECTED_DOMAIN_ID,
         data
     }
 }
@@ -42,8 +42,15 @@ export const fetchData = (isAffDomain) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
+export const getDomainById = (domainId, isAffDomain) => async () => {
+    const url = 'Portal/Domain/GetDomainById';
+    const response = await post(url, { domainId, isAffDomain });
+
+    return response && response.status === 200 ? response.data : null;
+}
+
 export const getMarketListByDomain = (param) => async () => {
-    const url = 'Portal/DomainControl/GetMarketListByDomains';
+    const url = 'Portal/Domain/GetMarketList';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;

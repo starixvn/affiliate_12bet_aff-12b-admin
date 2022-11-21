@@ -8,6 +8,8 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
+using Newtonsoft.Json;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
@@ -37,11 +39,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainList(bool isAffDomain)
+        public ActionResult GetDomainList(bool isAffDomain = true)
         {
             return new JsonNetResult
             {
-                Data = _domainService.GetDomainList(isAffDomain, SessionService.UserId)
+                Data = _domainService.GetDomainList(SessionService.UserId, isAffDomain)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetDomainById(int domainId, bool isAffDomain = true)
+        {
+            return new JsonNetResult
+            {
+                Data = _domainService.GetDomainById(SessionService.UserId, domainId, isAffDomain)
             };
         }
 
@@ -60,7 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
-        public ActionResult InsertDomain(InsertUpdateDomainParam param)
+        public ActionResult InsertDomain(InsertDomainParam param)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Please input Domain's name."
+                    Message = "Please input Domain's name!"
                 }
             };
         }
@@ -86,17 +98,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
-        public ActionResult UpdateDomain(InsertUpdateDomainParam param)
+        public ActionResult UpdateDomain(UpdateDomainParam param)
         {
-            var isValidDomainId = param.DomainId >= Validation.MinId;
-            if (ModelState.IsValid && isValidDomainId)
+            if (ModelState.IsValid)
             {
                 var encodeParam = EncodeParam(param);
-                GetUserInfoParam(encodeParam);
+                var serializedParent = JsonConvert.SerializeObject(encodeParam);
+                UpdateDomainParam newParam = JsonConvert.DeserializeObject<UpdateDomainParam>(serializedParent);
+                newParam.DomainId = param.DomainId;
+                GetUserInfoParam(newParam);
 
                 return new JsonNetResult
                 {
-                    Data = _domainService.UpdateDomain(encodeParam)
+                    Data = _domainService.UpdateDomain(newParam)
                 };
             }
 
@@ -105,7 +119,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = !isValidDomainId ? "Domain Id is invalid." : "Please input Domain's name."
+                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 }
             };
         }
@@ -130,17 +144,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Domain id is incorrect."
+                    Message = "Domain id is incorrect!"
                 }
             };
         }
 
-        private InsertUpdateDomainParam EncodeParam(InsertUpdateDomainParam param)
+        private InsertDomainParam EncodeParam(InsertDomainParam param)
         {
-            return new InsertUpdateDomainParam
+            return new InsertDomainParam
             {
-                DomainId = param.DomainId,
                 DomainName = Server.HtmlEncode(param.DomainName),
+                BlockMarkets = Server.HtmlEncode(param.BlockMarkets),
                 IsSSL = param.IsSSL,
                 IsAffDomain = param.IsAffDomain
             };

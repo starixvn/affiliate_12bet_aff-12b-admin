@@ -9,11 +9,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
     {
         IEnumerable<Market> GetMarketList(MarketParam param);
 
-        IEnumerable<DomainInfo> GetDomainList(bool isAffDomain, int userId);
+        DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true);
 
-        ResultInfo InsertDomain(InsertUpdateDomainParam param);
+        IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true);
 
-        ResultInfo UpdateDomain(InsertUpdateDomainParam param);
+        ResultInfo InsertDomain(InsertDomainParam param);
+
+        ResultInfo UpdateDomain(UpdateDomainParam param);
 
         ResultInfo DeleteDomain(DeleteDomainParam param);
     }

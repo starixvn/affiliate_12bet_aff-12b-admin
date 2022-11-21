@@ -7,7 +7,7 @@ import { NotificationPopup } from '../../../common/components/NotificationPopup'
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
+import { deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 import { formatDateTime } from '../../../../modules/utils';
 
@@ -40,9 +40,9 @@ export class Content extends PureComponent {
         this.setState({ message: `Are you sure you want to delete this ${this.props.isAffDomain ? 'affiliate' : '12bet'} domain?`, isConfirmPopup: true, selectedDomainId });
     }
 
-    _handleEditDomain = (domainId, domainName, isSSL) => {
+    _handleEditDomain = (domainId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.props.setSelectedDomain({ domainId, domainName, isSSL });
+        this.props.setSelectedDomainId(domainId);
     }
 
     _deleteDomain = async (selectedDomainId) => {
@@ -117,7 +117,7 @@ export class Content extends PureComponent {
                 { isModifiable &&
                     <React.Fragment>
                         <Cell className="text-center">
-                            <Button color="link py-0" title="Edit Domain" onClick={() => this._handleEditDomain(dataItem.DomainId, domainName, dataItem.IsSSL)}>
+                            <Button color="link py-0" title="Edit Domain" onClick={() => this._handleEditDomain(dataItem.DomainId)}>
                                 <span className="oi oi-pencil text-secondary"></span>
                             </Button>
                         <Button color="link py-0" title="Delete Domain" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
@@ -138,7 +138,7 @@ export class Content extends PureComponent {
             <div className="data-content">
                 { isModifiable &&
                     <div className="my-2">
-                        <Button outline type="button" onClick={() => this._handleEditDomain(0, '', false)}>{isAffDomain ? 'Add AffDomain' : 'Add 12Bet Domain'}<span className="oi oi-plus ml-2"></span></Button>
+                        <Button outline type="button" onClick={() => this._handleEditDomain(0)}>{isAffDomain ? 'Add AffDomain' : 'Add 12Bet Domain'}<span className="oi oi-plus ml-2"></span></Button>
                     </div>
                 }
                 <div className="domain-list-content table-responsive table-striped my-2">
@@ -170,7 +170,7 @@ function mapStateToProps({ shouldResetScrollPosition, gridData, isAffDomain, cla
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
