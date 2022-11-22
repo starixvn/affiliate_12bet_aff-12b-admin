@@ -35,7 +35,7 @@ export class DomainPopup extends PureComponent {
                 if (marketListByDomains) {
                     const usingMarkets = this._handleGetUsingMarkets(marketListByDomains);
                     const blockMarkets = this._handleGetBlockMarkets(marketListByDomains);
-                    const isBlockAllMarkets = (usingMarkets.length + blockMarkets.length) === marketListByDomains.length;
+                    const isBlockAllMarkets = blockMarkets.length !== 0 && (usingMarkets.length + blockMarkets.length) === marketListByDomains.length;
 
                     this.setState({ isInsert: false, usingMarkets, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockMarkets, isSSL: IsSSL }, marketListByDomains, isBlockAllMarkets });
                 } else {
@@ -185,7 +185,7 @@ export class DomainPopup extends PureComponent {
         const buttonLabel = isInsert ? "Add" : "Submit";
 
         return selectedDomain && (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 700 }}>
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 600 }}>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
@@ -193,7 +193,7 @@ export class DomainPopup extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-4" autoComplete="off">
+                            <Form tag="form" className="mb-3" autoComplete="off">
                                 <FormGroup row className="mb-2">
                                     <Label for="domainName" sm={3} className="required">Domain</Label>
                                     <Col sm={9}>
@@ -226,7 +226,7 @@ export class DomainPopup extends PureComponent {
                                                         })
                                                     }
                                                     <div className="block-market-item block-market-All">
-                                                            <input type="checkbox" className="mr-2" id="All-Markets" checked={isBlockAllMarkets} onChange={this._handleChangeAllMarkets} />
+                                                        <input type="checkbox" className="mr-2" disabled={marketListByDomains.every(i => i.Status === marketStatus.Using)} id="All-Markets" checked={isBlockAllMarkets} onChange={this._handleChangeAllMarkets} />
                                                             <Label for="All-Markets">All</Label>
                                                         </div>
                                                 </div>
