@@ -1,9 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import * as types from './types';
-import { getDomainList } from '../../domain/actions/index';
+import { getDomainList, getMarketListByDomain } from '../../domain/actions/index';
 
-export { toggleLoader };
+export { toggleLoader, getMarketListByDomain as getMarketListByDomains };
 
 export const setSelectedDomainId = (data) => {
     return {
@@ -70,13 +70,6 @@ export const getDomainControlById = (domainControlId) => async () => {
 export const fetchDomain = () => async (dispatch) => {
     dispatch(setAffDomainList(await getDomainList(true)));
     dispatch(setRedirectDomainList(await getDomainList(false)));
-}
-
-export const getMarketListByDomains = (param) => async () => {
-    const url = 'Portal/Domain/GetMarketList';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
 }
 
 export const insertDomain = (param) => async () => {

@@ -95,10 +95,7 @@ export class DomainPopup extends PureComponent {
 
     _handleChangeAllMarkets = (event) => {
         const isChecked = event.target.checked;
-
         const { selectedDomain, marketListByDomains } = this.state;
-
-        console.log(marketListByDomains);
 
         if (marketListByDomains) {
             const status = isChecked ? marketStatus.Blocked : marketStatus.Unblocked;
@@ -114,8 +111,6 @@ export class DomainPopup extends PureComponent {
 
             const blockMarkets = this._handleGetBlockMarkets(newMarketListByDomains);
             const newDomain = Object.assign({}, selectedDomain, { blockMarkets });
-
-            console.log(newMarketListByDomains);
 
             this.setState({ selectedDomain: newDomain, marketListByDomains: newMarketListByDomains, isBlockAllMarkets: isChecked });
         }

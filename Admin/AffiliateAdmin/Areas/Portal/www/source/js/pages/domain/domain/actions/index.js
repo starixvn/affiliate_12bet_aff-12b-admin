@@ -53,7 +53,13 @@ export const getMarketListByDomain = (param) => async () => {
     const url = 'Portal/Domain/GetMarketList';
     const response = await post(url, param);
 
-    return response && response.status === 200 ? response.data : null;
+    return response && response.status === 200 ? getMarketList(response) : null;
+}
+
+const getMarketList = (response) => {
+    var marketList = response.data;
+
+    return marketList && !marketList.length ? null : marketList;
 }
 
 export const insertDomain = (param) => async () => {

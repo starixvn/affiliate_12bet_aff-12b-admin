@@ -69,7 +69,7 @@ export class DomainControlPopup extends PureComponent {
         const { affDomainId, redirectDomainId } = newDomain;
 
         const marketListByDomains = await this.props.getMarketListByDomains({ affDomainId, redirectDomainId });
-        const selectedMarketIdByDomains = marketListByDomains && marketListByDomains[0]?.MarketId || "";
+        const selectedMarketIdByDomains = marketListByDomains ? marketListByDomains[0].MarketId : "";
 
         this.setState({ selectedDomain: { ...newDomain, marketId: selectedMarketIdByDomains }, marketListByDomains });
         this.props.toggleLoader(false);
