@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public interface IDomainControlService
     {
-        IEnumerable<DomainControlInfo> GetDomainControlList(string marketId);
+        IEnumerable<DomainControlInfo> GetDomainControlList(string marketIds);
 
         DomainControlInfo GetDomainControlById(int domainControlId);
 

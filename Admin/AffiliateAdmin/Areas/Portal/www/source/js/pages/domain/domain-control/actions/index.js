@@ -51,7 +51,7 @@ export const fetchData = (marketId) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
     const url = 'Portal/DomainControl/GetDomainControlList';
-    const response = await post(url, { marketId });
+    const response = await post(url, { marketIds: marketId });
 
     const data = response && response.status === 200 ? response.data : [];
 

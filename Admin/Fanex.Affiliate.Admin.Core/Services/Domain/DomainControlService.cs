@@ -8,13 +8,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public class DomainControlService : BaseRepository, IDomainControlService
     {
-        public IEnumerable<DomainControlInfo> GetDomainControlList(string marketId)
+        public IEnumerable<DomainControlInfo> GetDomainControlList(string marketIds)
         {
             const string SpKey = "Aff_Admin_DomainControl_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                return objectDb.Query<DomainControlInfo>(new { marketId });
+                return objectDb.Query<DomainControlInfo>(new { marketIds });
             }
         }
 
