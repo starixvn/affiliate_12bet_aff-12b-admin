@@ -9,6 +9,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
     {
         IEnumerable<Market> GetMarketList(MarketParam param);
 
+        IEnumerable<Market> GetVisibleMarketsByUser(int userId);
+
+        IEnumerable<Market> GetVisibleMarketsNotUsingByUser(int userId);
+
         DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true);
 
         IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true);

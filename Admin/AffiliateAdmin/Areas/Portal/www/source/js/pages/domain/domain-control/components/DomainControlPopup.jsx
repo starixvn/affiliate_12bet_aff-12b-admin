@@ -42,6 +42,8 @@ export class DomainControlPopup extends PureComponent {
                 const marketListByDomains = await this.props.getMarketListByDomains(domainIds);
 
                 this.setState({ isInsert: false, selectedDomain: { domainControlId: selectedDomainId, ...domainIds, marketId: MarketId, status: Status }, marketListByDomains });
+            } else {
+                this.props.setSelectedDomainId(null);
             }
             this.props.toggleLoader(false);
         }

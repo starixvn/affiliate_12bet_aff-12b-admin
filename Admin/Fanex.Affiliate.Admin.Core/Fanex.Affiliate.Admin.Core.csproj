@@ -310,6 +310,10 @@
     <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
     <Compile Include="Repository\ICommonSettingRepository.cs" />
+    <Compile Include="Repository\Domain\DomainControlRepository.cs" />
+    <Compile Include="Repository\Domain\DomainRepository.cs" />
+    <Compile Include="Repository\Domain\IDomainControlRepository.cs" />
+    <Compile Include="Repository\Domain\IDomainRepository.cs" />
     <Compile Include="Repository\MediaGallery\OfferAffRepository.cs" />
     <Compile Include="Repository\MediaGallery\OfferPageRepository.cs" />
     <Compile Include="Repository\MediaGallery\IOfferAffRepository.cs" />
@@ -338,6 +342,7 @@
     <Compile Include="Services\ProcessingRequest\IProcessingRequestService.cs" />
     <Compile Include="Services\ProcessingRequest\ProcessingRequestService.cs" />
     <Compile Include="Utilities\DateTimeHelper.cs" />
+    <Compile Include="Utilities\Domain\MarketHelper.cs" />
     <Compile Include="Utilities\IDateTimeHelper.cs" />
     <Compile Include="Utilities\MassAdjustment\MassAdjustmentHelper.cs" />
     <Compile Include="Utilities\Result.cs" />

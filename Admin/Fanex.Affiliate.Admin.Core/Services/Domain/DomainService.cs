@@ -1,79 +1,59 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
-    public class DomainService : BaseRepository, IDomainService
+    public class DomainService : IDomainService
     {
+        private const byte USING = 2;
+        private readonly IDomainRepository _domainRepository;
+        public DomainService(
+            IDomainRepository domainRepository)
+        {
+            _domainRepository = domainRepository;
+        }
         public IEnumerable<Market> GetMarketList(MarketParam param)
         {
-            const string SpKey = "Aff_SupportBlockMarket_Sel";
+            return _domainRepository.GetMarketList(param);
+        }
 
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                return objectDb.Query<Market>(param);
-            }
+        public IEnumerable<Market> GetVisibleMarketsByUser(int userId)
+        {
+            return GetMarketList(new MarketParam { UserId = userId });
+        }
+
+        public IEnumerable<Market> GetVisibleMarketsNotUsingByUser(int userId)
+        {
+            return GetVisibleMarketsByUser(userId).Where(m => m.Status != USING);
         }
 
         public IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true)
         {
-            var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel";
-
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                return objectDb.Query<DomainInfo>(new { userId });
-            }
+            return _domainRepository.GetDomainList(userId, isAffDomain);
         }
 
         public DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true)
         {
-            var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel";
-
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                return objectDb.QueryEntity<DomainInfo>(new { userId, domainId });
-            }
+            return _domainRepository.GetDomainById(userId, domainId, isAffDomain);
         }
 
         public ResultInfo InsertDomain(InsertDomainParam param)
         {
-            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Ins" : "Aff_Admin_12BETDomain_Ins";
-
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                objectDb.ExecuteNonQuery(param);
-
-                return GetResultInfo(objectDb);
-            }
+            return _domainRepository.InsertDomain(param);
         }
 
         public ResultInfo UpdateDomain(UpdateDomainParam param)
         {
-            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Upd" : "Aff_Admin_12BETDomain_Upd";
-
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                objectDb.ExecuteNonQuery(param);
-
-                return GetResultInfo(objectDb);
-            }
+            return _domainRepository.UpdateDomain(param);
         }
 
         public ResultInfo DeleteDomain(DeleteDomainParam param)
         {
-            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Del" : "Aff_Admin_12BETDomain_Del";
-
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery(param);
-
-                return GetResultInfo(objectDb);
-            }
+            return _domainRepository.DeleteDomain(param);
         }
     }
 }

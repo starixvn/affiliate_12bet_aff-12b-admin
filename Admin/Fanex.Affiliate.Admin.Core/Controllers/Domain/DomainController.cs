@@ -1,15 +1,16 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
+using Fanex.Affiliate.Admin.Core.Utilities.Domain;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using Newtonsoft.Json;
-using System.Linq;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
@@ -30,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             var model = new DomainViewModel
             {
-                MarketList = _domainService.GetMarketList(new MarketParam { UserId = SessionService.UserId }),
+                MarketList = _domainService.GetVisibleMarketsByUser(SessionService.UserId),
                 IsAffDomain = true
             };
 
@@ -74,7 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult InsertDomain(InsertDomainParam param)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -90,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Please input Domain's name!"
+                    Message = "The Domain' info is invalid!"
                 }
             };
         }
@@ -100,7 +101,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomain(UpdateDomainParam param)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 var serializedParent = JsonConvert.SerializeObject(encodeParam);
@@ -119,7 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+                    Message = "The Domain' info is invalid!"
                 }
             };
         }
@@ -144,7 +145,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Domain id is incorrect!"
+                    Message = "The Domain is incorrect!"
                 }
             };
         }
@@ -164,6 +165,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             param.UserId = SessionService.UserId;
             param.Ip = Request.UserHostAddress;
+        }
+
+        private IEnumerable<Market> GetVisibleMarketsNotUsingByUser()
+        {
+            return _domainService.GetVisibleMarketsNotUsingByUser(SessionService.UserId);
         }
     }
 }

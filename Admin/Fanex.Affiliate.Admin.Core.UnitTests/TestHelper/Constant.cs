@@ -12,6 +12,8 @@
 
         public const string UserHostAddress = "::1";
 
+        public const string MarketId = "en-US";
+
         public const int OnUserId = 8647;
 
         public const int UserId = 1000000026;

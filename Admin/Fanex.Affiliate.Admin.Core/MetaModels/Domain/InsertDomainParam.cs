@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
 {
     public class InsertDomainParam : UserInfoParam
     {
-        [Required(ErrorMessage = "Please input Domain's name!")]
+        [Required]
         public string DomainName { get; set; }
 
         [SpParam(SqlParamName = "BlockMarket")]

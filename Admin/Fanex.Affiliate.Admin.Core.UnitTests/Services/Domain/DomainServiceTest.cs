@@ -1,6 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Services.Domain;
+using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using Fanex.Data;
 using Moq;
 using System;
@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         public void GetDomainList_WhenCall_ReturnCorrectData(bool isAffDomain)
         {
             // Arrange
-            var service = new Mock<DomainService> { CallBase = true };
+            var service = new Mock<DomainRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
 
             service.Setup(r => r.GetObjectDb(isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel", It.IsAny<int>())).Returns(objectDb.Object);
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         public void InsertDomain_WhenCallWithValidParam_InsertSuccessfully()
         {
             // Arrange
-            var service = new Mock<DomainService> { CallBase = true };
+            var service = new Mock<DomainRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var message = "Insert Domain is failed.";
-            var service = new Mock<DomainService> { CallBase = true };
+            var service = new Mock<DomainRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         public void UpdateDomain_WhenCallWithValidParam_UpdateSuccessfully()
         {
             // Arrange
-            var service = new Mock<DomainService> { CallBase = true };
+            var service = new Mock<DomainRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var message = "Update Domain is failed.";
-            var service = new Mock<DomainService> { CallBase = true };
+            var service = new Mock<DomainRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
@@ -109,7 +109,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         public void DeleteDomain_WhenCallWithValidParam_DeleteSuccessfully()
         {
             // Arrange
-            var service = new Mock<DomainService> { CallBase = true };
+            var service = new Mock<DomainRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
@@ -128,7 +128,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var message = "Delete Domain is failed.";
-            var service = new Mock<DomainService> { CallBase = true };
+            var service = new Mock<DomainRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);

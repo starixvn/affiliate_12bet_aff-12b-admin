@@ -61,9 +61,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void InsertDomain_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertDomainParam { DomainName = "abc.com" };
+            var param = new InsertDomainParam { DomainName = "abc.com", BlockMarkets = Constant.MarketId };
             InsertDomainParam passedParam = null;
             var domainService = new Mock<IDomainService>();
+            domainService.Setup(s => s.GetVisibleMarketsNotUsingByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = Constant.MarketId } });
             domainService.Setup(s => s.InsertDomain(It.IsAny<InsertDomainParam>())).Returns(new ResultInfo()).Callback<InsertDomainParam>(p => passedParam = p);
             var controller = CreateDomainController(domainService: domainService.Object);
 
@@ -88,16 +89,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("Please input Domain's name!", resultInfo.Message);
+            Assert.Equal("The Domain' info is invalid!", resultInfo.Message);
         }
 
         [Fact]
         public void UpdateDomain_WhenCallWithValidParam_UpdateSuccessful()
         {
             // Arrange
-            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com" };
+            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com", BlockMarkets = Constant.MarketId };
             UpdateDomainParam passedParam = null;
             var domainService = new Mock<IDomainService>();
+            domainService.Setup(s => s.GetVisibleMarketsNotUsingByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = Constant.MarketId } });
             domainService.Setup(s => s.UpdateDomain(It.IsAny<UpdateDomainParam>())).Returns(new ResultInfo()).Callback<UpdateDomainParam>(p => passedParam = p);
             var controller = CreateDomainController(domainService: domainService.Object);
 
@@ -116,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             // Arrange
             var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com" };
             var controller = CreateDomainController();
-            controller.ModelState.AddModelError("Error01", "Please input Domain's name!");
+            controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
             var result = controller.UpdateDomain(param) as JsonNetResult;
@@ -124,7 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("Please input Domain's name!", resultInfo.Message);
+            Assert.Equal("The Domain' info is invalid!", resultInfo.Message);
         }
 
         [Fact]
@@ -159,7 +161,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("Domain id is incorrect!", resultInfo.Message);
+            Assert.Equal("The Domain is incorrect!", resultInfo.Message);
         }
 
         private DomainController CreateDomainController(

@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
 {
     public class UpdateDomainControlParam : InsertDomainControlParam
     {
-        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "The Domain Control is invalid!")]
+        [Range(Validation.MinId, Validation.MaxId)]
         public int DomainControlId { get; set; }
     }
 }
