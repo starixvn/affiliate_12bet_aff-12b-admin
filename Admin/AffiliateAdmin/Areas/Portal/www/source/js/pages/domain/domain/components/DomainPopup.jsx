@@ -23,7 +23,7 @@ export class DomainPopup extends PureComponent {
         if (selectedDomainId === 0) {
             const marketListByDomains = await this.props.getMarketListByDomain({ affDomainId: 0, redirectDomainId: 0 });
 
-            this.setState({ isInsert: true, selectedDomain: { domainId: selectedDomainId, domainName: '', blockMarkets: '', isSSL: false }, marketListByDomains });
+            this.setState({ isInsert: true, selectedDomain: { domainId: selectedDomainId, domainName: '', blockMarkets: [], isSSL: false }, marketListByDomains });
         } else {
             this.props.toggleLoader(true);
             const domain = await this.props.getDomainById(selectedDomainId, isAffDomain);
