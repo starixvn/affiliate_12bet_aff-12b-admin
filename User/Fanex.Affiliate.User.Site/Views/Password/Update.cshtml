@@ -4,7 +4,7 @@
 @model Fanex.Affiliate.User.Core.MetalModels.UpdatePasswordParam
 
 @section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
+    <script src="~/www/build/js/lib/jsencrypt-2.3.1.min.js"></script>
 
     <script type="text/javascript">
         var resource = {
@@ -39,9 +39,9 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label require">@Lang.NewPass</label>
                 <div class="col-sm-3">
-                    <input autocomplete="off" class="form-control" 
-                           data-val="true" 
-                           data-val-regex="@Lang.PassCheck" data-val-regex-pattern="^(?=.*\d+.*\d+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$" 
+                    <input autocomplete="off" class="form-control"
+                           data-val="true"
+                           data-val-regex="@Lang.PassCheck" data-val-regex-pattern="^(?=.*\d+.*\d+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
                            data-val-required="@Lang.NewPasswordisre" id="NewPassword" name="NewPassword" type="password" />
                 </div>
                 <div class="col-sm-offset-3 col-sm-9">

@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { headerText, defaultState } from '../libs/constants';
+import Select from '../../../../components/select';
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainControlById, getMarketListByDomains } from '../actions/index';
 
@@ -59,14 +60,19 @@ export class DomainControlPopup extends PureComponent {
         this.setState({ selectedDomain: newDomain });
     }
 
-    _handleChangeDomain = async (event) => {
+    _handleChangeAffDomain = (selectedDomainId) => {
+        this._handleChangeDomain("affDomainId", selectedDomainId);
+    }
+
+    _handleChangeRedirectDomain = (selectedDomainId) => {
+        this._handleChangeDomain("redirectDomainId", selectedDomainId);
+    }
+
+    _handleChangeDomain = async (domainType, domainId) => {
         this.props.toggleLoader(true);
 
-        const target = event.target;
-        const value = target.value;
-
         const { selectedDomain } = this.state;
-        const newDomain = Object.assign({}, selectedDomain, { [target.name]: value });
+        const newDomain = Object.assign({}, selectedDomain, { [domainType]: domainId });
 
         const { affDomainId, redirectDomainId } = newDomain;
 
@@ -137,31 +143,33 @@ export class DomainControlPopup extends PureComponent {
                             </Alert>
                             <Form tag="form" className="mb-5" autoComplete="off">
                                 <FormGroup row className="mb-2">
-                                    <Label for="affDomainId" sm={4}>{headerText.AffDomain}</Label>
+                                    <Label sm={4}>{headerText.AffDomain}</Label>
                                     <Col sm={8}>
-                                        <Input type="select" name="affDomainId" className="mt-1" value={selectedDomain.affDomainId} onChange={this._handleChangeDomain}>
-                                            {
-                                                affDomainList.map(item => {
-                                                    return (<option key={`affDomain-${item.DomainId}`} value={item.DomainId}>{item.DomainName}</option>)
-                                                })
-                                            }
-                                        </Input>
+                                        <Select
+                                            id="affDomain"
+                                            dataSource={affDomainList}
+                                            keyField="DomainId"
+                                            valueField="DomainName"
+                                            hasInputOption={true}
+                                            selectedKey={selectedDomain.affDomainId}
+                                            onChange={this._handleChangeAffDomain} />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label for="redirectDomainId" sm={4}>{headerText.RedirectDomain}</Label>
+                                    <Label sm={4}>{headerText.RedirectDomain}</Label>
                                     <Col sm={8}>
-                                        <Input type="select" name="redirectDomainId" className="mt-1" value={selectedDomain.redirectDomainId} onChange={this._handleChangeDomain}>
-                                            {
-                                                redirectDomainList.map(item => {
-                                                    return (<option key={`redirectDomain-${item.DomainId}`} value={item.DomainId}>{item.DomainName}</option>)
-                                                })
-                                            }
-                                        </Input>
+                                        <Select
+                                            id="redirectDomain"
+                                            dataSource={redirectDomainList}
+                                            keyField="DomainId"
+                                            valueField="DomainName"
+                                            hasInputOption={true}
+                                            selectedKey={selectedDomain.redirectDomainId}
+                                            onChange={this._handleChangeRedirectDomain} />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label for="marketId" sm={4}>{headerText.Market}</Label>
+                                    <Label sm={4}>{headerText.Market}</Label>
                                     <Col sm={8}>
                                         {
                                             isDisabled ? (

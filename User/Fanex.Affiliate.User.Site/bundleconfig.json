@@ -59,7 +59,7 @@
     ]
   },
   {
-    "outputFileName": "www/build/js/statistics/referrerstatistics.js",
+    "outputFileName": "www/build/js/referrerstatistics.js",
     "inputFiles": [
       "www/source/js/lib/pikaday.js",
       "www/source/js/components/pager.js",
@@ -68,7 +68,7 @@
     ]
   },
   {
-    "outputFileName": "www/build/js/statistics/landingpagestatistics.js",
+    "outputFileName": "www/build/js/landingpagestatistics.js",
     "inputFiles": [
       "www/source/js/lib/pikaday.js",
       "www/source/js/components/pager.js",
