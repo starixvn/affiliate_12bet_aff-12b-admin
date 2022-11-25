@@ -6,7 +6,7 @@ const widthHeight = { width: 70, height: 30 };
 export const NotificationPopup = (props) => {
 
     return (
-        <Modal isOpen={!!props.message} toggle={() => props.onClose(false)} backdrop='static'>
+        <Modal isOpen={!!props.message} toggle={() => props.onClose(false)} backdrop='false'>
             <ModalHeader toggle={() => props.onClose(false)}>
                 <div className="text-truncate" style={{ width: 450 }}>
                     <span className="iconpopup"></span>{props.isConfirmPopup ? 'Confirmation' : 'Notification'}

@@ -8,26 +8,37 @@ export class SelectOptionList extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { dataSource, id } = props
+        const { dataSource, id, selectedKey } = props
 
         this.optionRefs = dataSource.map(() => {
             return createRef();
         })
         this.selectOptionsRef = createRef();
 
+        const selectedIndex = dataSource.findIndex(i => i.key == selectedKey);
+
         this.state = {
-            selectedIndex: 0,
+            selectedIndex: selectedIndex < 0 ? 0 : selectedIndex,
             selectedOption: null,
             minLength: 0,
             maxLength: dataSource.length - 1,
         }
 
         this.optionId = `inputOption-${id}`;
+        this.buttonId = `button-${id}`;
     }
 
     componentDidMount() {
         document.addEventListener("keydown", this.handleKeyPress);
         document.addEventListener("mouseover", this.handleMouseOver);
+
+        const { selectedIndex } = this.state;
+        const iniatialOption = this.optionRefs[selectedIndex];
+        iniatialOption.current.classList.add("hover");
+
+        const offsetHeight = iniatialOption.current.offsetHeight;
+        this.selectOptionsRef.current.scrollTop = (selectedIndex - visibleItemsInPanelTotal) * offsetHeight;
+        this.setState({ selectedOption: iniatialOption });
     }
 
     componentWillUnmount() {
@@ -65,14 +76,17 @@ export class SelectOptionList extends PureComponent {
         selectedOption && selectedOption.current && selectedOption.current.classList.remove("hover");
         this.selectOptionsRef.current.scrollTop = 0;
 
+        const iniatialOption = this.optionRefs[0];
+        iniatialOption.current.classList.add("hover");
+
         this.setState({
             selectedIndex: 0,
-            selectedOption: null
+            selectedOption: iniatialOption
         })
     }
 
     handleKeyPress = (e) => {
-        if (e.target.id !== this.optionId) {
+        if (e.target.id !== this.optionId && e.target.id !== this.buttonId) {
             return;
         }
 
@@ -104,6 +118,7 @@ export class SelectOptionList extends PureComponent {
 
             this.props.onChange(newItemData);
 
+            e.preventDefault();
             return;
         }
 
@@ -159,8 +174,10 @@ export class SelectOptionList extends PureComponent {
 }
 
 SelectOptionList.propTypes = {
+    selectedKey: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
     id: PropTypes.string.isRequired,
+    keyField: PropTypes.string,
     onChange: PropTypes.func
 }
 

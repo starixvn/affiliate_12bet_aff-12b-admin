@@ -205,7 +205,7 @@ export class InsertUpdateForm extends PureComponent {
 
         return (
             <React.Fragment>
-                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
+                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='false'>
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">

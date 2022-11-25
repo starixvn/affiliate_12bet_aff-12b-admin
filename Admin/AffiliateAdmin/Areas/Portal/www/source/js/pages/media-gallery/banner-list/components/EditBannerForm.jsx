@@ -470,7 +470,7 @@ export class EditBannerForm extends PureComponent {
                         onClose={(confirmResult) => this.handleCloseNotificationPopup(confirmResult, hasSubCategory)}
                     />
                 }
-                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static' innerRef={this.modalRef}>
+                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='false' innerRef={this.modalRef}>
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">

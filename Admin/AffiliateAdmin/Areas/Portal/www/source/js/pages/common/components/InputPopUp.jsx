@@ -28,7 +28,7 @@ export const InputPopUp = (props) => {
     }
 
     return (
-        <Modal isOpen={isOpen} toggle={toggle} backdrop='static'>
+        <Modal isOpen={isOpen} toggle={toggle} backdrop='false'>
             <ModalHeader toggle={toggle}>
                 <div className="text-truncate" style={{ width: 450 }}>
                     <span className="iconpopup"></span>{title}
