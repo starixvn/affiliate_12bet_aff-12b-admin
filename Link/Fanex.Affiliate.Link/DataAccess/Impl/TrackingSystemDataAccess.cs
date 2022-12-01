@@ -27,12 +27,5 @@
 
             return command.RedirectPage;
         }
-
-        public string InsertOldStatistic(OldTrackingSystemCommand command)
-        {
-            _dynamicRepository.Execute(command);
-
-            return command.ErrMsg;
-        }
     }
 }

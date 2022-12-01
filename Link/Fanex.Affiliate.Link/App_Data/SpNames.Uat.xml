@@ -2,6 +2,5 @@
 <Functions>
   <Function Name="Aff-Link">
     <Setting Key="Aff_AffiliateInsClickStatistics" SpName="Aff_AffiliateInsClickStatistics_New_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" Plain="0" />
-    <Setting Key="Aff_AffiliateInsClickStatisticsOld" SpName="Aff_AffiliateInsClickStatistics_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" Plain="0" />
   </Function>
 </Functions>

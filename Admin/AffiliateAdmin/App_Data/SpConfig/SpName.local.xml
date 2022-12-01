@@ -7,7 +7,7 @@
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateOnlineList_Sel" SpName="Aff_Admin_AffiliateOnlineList_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="Commission">

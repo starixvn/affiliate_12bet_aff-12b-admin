@@ -50,10 +50,5 @@
         {
             return _trackingSystemDataAccess.InsertStatistic(command);
         }
-
-        public string InsertOldStatistic(OldTrackingSystemCommand command)
-        {
-            return _trackingSystemDataAccess.InsertOldStatistic(command);
-        }
     }
 }

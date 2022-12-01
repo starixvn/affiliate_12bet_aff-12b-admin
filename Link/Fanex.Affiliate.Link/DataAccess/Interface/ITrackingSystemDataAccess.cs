@@ -10,7 +10,5 @@
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Success or fail.</returns>
         string InsertStatistic(TrackingSystemCommand command);
-
-        string InsertOldStatistic(OldTrackingSystemCommand command);
     }
 }
