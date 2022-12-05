@@ -31,7 +31,7 @@ export class Filter extends React.Component {
             initialCountries: '',
             initialCountryList: null,
             selectedCountries: '',
-            languageCode: Object.keys(shortCodeLanguageList).map(key => key).join(','),
+            languageCode: '',
             selectedPage: '',
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
             toDate: this.nowString,
