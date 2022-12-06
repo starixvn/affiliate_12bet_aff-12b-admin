@@ -4,10 +4,10 @@
 <table style="table-layout: fixed; width: 100%">
     <thead>
         <tr>
-            <th width="@(Model.IsDetail ? 52 : 37 )%">@Lang.WebsiteURL</th>
+            <th width="@(Model.IsDetail ? 52 : 32 )%">@Lang.WebsiteURL</th>
             @if (!Model.IsDetail)
             {
-                <th width="15%">@Lang.Country</th>
+                <th width="20%">@Lang.Country</th>
             }
             <th width="12%">@Lang.TotalClick</th>
             <th width="12%">@Lang.UniqueClick</th>
@@ -31,7 +31,7 @@
                 </td>
                 @if(!Model.IsDetail)
                 {
-                    <td class="text-right">@item.Country</td>
+                    <td class="text-center">@item.Country</td>
                 }    
                 <td class="text-right">@item.TotalClick</td>
                 <td class="text-right">@item.UniqueClick</td>

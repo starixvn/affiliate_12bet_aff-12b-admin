@@ -47,9 +47,9 @@ export class Content extends Component {
 
         return (
             <Row key="thead">
-                {isGroupByCountry && <Cell header={true} colWidth={290} title={headerTitle.Country}>{headerTitle.Country}</Cell>}
-                <Cell header={true} colWidth={290} title={headerTitle.Page}>{headerTitle.Page}</Cell>
-                {!isGroupByCountry && <Cell header={true} colWidth={290} title={headerTitle.Language}>{headerTitle.Language}</Cell>}
+                {isGroupByCountry && <Cell header={true} colWidth={370} title={headerTitle.Country}>{headerTitle.Country}</Cell>}
+                <Cell header={true} colWidth={isGroupByCountry ? 210 : 370} title={headerTitle.Page}>{headerTitle.Page}</Cell>
+                {!isGroupByCountry && <Cell header={true} colWidth={210} title={headerTitle.Language}>{headerTitle.Language}</Cell>}
                 <Cell header={true} colWidth={110} title={headerTitle.TotalClick}>{headerTitle.TotalClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerTitle.UniqueClick}>{headerTitle.UniqueClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerTitle.Signups}>{headerTitle.Signups}</Cell>
@@ -96,7 +96,7 @@ export class Content extends Component {
                                     {country}
                                 </Button>) : country}
                             </Cell>
-                            <Cell title={page} className="text-right">{page}</Cell>
+                            <Cell title={page} className="text-center">{page}</Cell>
                         </Fragment>
                     ) : (
                         <Fragment>
@@ -105,7 +105,7 @@ export class Content extends Component {
                                         {page}
                                     </Button>) : page}
                                 </Cell>
-                            <Cell title={language} className="text-right">{language}</Cell>
+                                <Cell title={language} className="text-center">{language}</Cell>
                         </Fragment>
                     )
                 }

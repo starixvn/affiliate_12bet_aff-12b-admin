@@ -32,7 +32,7 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
           </t>
           <t
             asc={true}
-            className="text-right"
+            className="text-center"
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -96,7 +96,7 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
           </t>
           <t
             asc={true}
-            className="text-right"
+            className="text-center"
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -156,7 +156,7 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
       <t>
         <t
           asc={true}
-          colWidth={470}
+          colWidth={370}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -167,7 +167,7 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
         </t>
         <t
           asc={true}
-          colWidth={110}
+          colWidth={210}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -261,7 +261,7 @@ exports[`referrers - components - Content render correctly with have data is emp
       <t>
         <t
           asc={true}
-          colWidth={470}
+          colWidth={370}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -272,7 +272,7 @@ exports[`referrers - components - Content render correctly with have data is emp
         </t>
         <t
           asc={true}
-          colWidth={110}
+          colWidth={210}
           header={true}
           onClick={[Function]}
           sortable={false}

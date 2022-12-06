@@ -33,7 +33,7 @@ exports[`landing page statistics - components - Content render correctly with ha
             </t>
             <t
               asc={true}
-              className="text-right"
+              className="text-center"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -109,7 +109,7 @@ exports[`landing page statistics - components - Content render correctly with ha
             </t>
             <t
               asc={true}
-              className="text-right"
+              className="text-center"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -185,7 +185,7 @@ exports[`landing page statistics - components - Content render correctly with ha
             </t>
             <t
               asc={true}
-              className="text-right"
+              className="text-center"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -249,7 +249,7 @@ exports[`landing page statistics - components - Content render correctly with ha
       <t>
         <t
           asc={true}
-          colWidth={290}
+          colWidth={370}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -260,7 +260,7 @@ exports[`landing page statistics - components - Content render correctly with ha
         </t>
         <t
           asc={true}
-          colWidth={290}
+          colWidth={210}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -354,7 +354,7 @@ exports[`landing page statistics - components - Content render correctly with ha
       <t>
         <t
           asc={true}
-          colWidth={290}
+          colWidth={370}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -365,7 +365,7 @@ exports[`landing page statistics - components - Content render correctly with ha
         </t>
         <t
           asc={true}
-          colWidth={290}
+          colWidth={210}
           header={true}
           onClick={[Function]}
           sortable={false}

@@ -83,13 +83,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private LandingPageStatisticsController CreateLandingPageStatisticsController(
             ISessionService sessionService = null,
+            ICommonSettingService commonSettingService = null,
             ILandingPageStatisticsRepository landingPageStatisticsRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakeCommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeLandingPageStatisticsRepository = landingPageStatisticsRepository ?? Mock.Of<ILandingPageStatisticsRepository>();
 
-            return new LandingPageStatisticsController(fakeSessionService, fakeLandingPageStatisticsRepository);
+            return new LandingPageStatisticsController(fakeSessionService, fakeCommonSettingService, fakeLandingPageStatisticsRepository);
         }
     }
 }

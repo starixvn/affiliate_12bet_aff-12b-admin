@@ -11,13 +11,13 @@
         <tr>
             @if (isReportByCountry)
             {
-                <th width="26%">@Lang.Country</th>
-                <th width="26%">@Lang.Page</th>
+                <th width="32%">@Lang.Country</th>
+                <th width="20%">@Lang.Page</th>
             }
             else
             {
-                <th width="26%">@Lang.Page</th>
-                <th width="26%">@Lang.Language</th>
+                <th width="32%">@Lang.Page</th>
+                <th width="20%">@Lang.Language</th>
             }
             <th width="12%">@Lang.TotalClick</th>
             <th width="12%">@Lang.UniqueClick</th>
@@ -43,7 +43,7 @@
                     </a>
                 }
             </td>
-                <td>@item.Page</td>
+                <td class="text-center">@item.Page</td>
             }
             else
             {
@@ -59,7 +59,7 @@
                         </a>
                     }
                 </td>
-                <td>@item.Language</td>
+                <td class="text-center">@item.Language</td>
             }
             <td class="text-right">@item.TotalClick</td>
             <td class="text-right">@item.UniqueClick</td>

@@ -37,8 +37,8 @@ export class Content extends Component {
     _renderHeader() {
         return (
             <Row key='thead'>
-                <Cell header={true} colWidth={470} title={headerText.SiteUrls}>{headerText.SiteUrls}</Cell>
-                <Cell header={true} colWidth={110} title={headerText.Country}>{headerText.Country}</Cell>
+                <Cell header={true} colWidth={370} title={headerText.SiteUrls}>{headerText.SiteUrls}</Cell>
+                <Cell header={true} colWidth={210} title={headerText.Country}>{headerText.Country}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.TotalClick}>{headerText.TotalClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.UniqueClick}>{headerText.UniqueClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Signups}>{headerText.Signups}</Cell>
@@ -77,7 +77,7 @@ export class Content extends Component {
                         {siteUrl}
                     </Button>)}
                 </Cell>
-                <Cell title={dataItem.Country} className="text-right">{dataItem.Country}</Cell>
+                <Cell title={dataItem.Country} className="text-center">{dataItem.Country}</Cell>
                 <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>
                 <Cell title={dataItem.UniqueClick} className="text-right">{dataItem.UniqueClick}</Cell>
                 <Cell title={dataItem.Signups} className="text-right">{dataItem.Signups}</Cell>
