@@ -208,7 +208,7 @@
     <value>巴林</value>
   </data>
   <data name="BalForward" xml:space="preserve">
-    <value>轉入下月餘額</value>
+    <value>結轉餘額</value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
     <value>孟加拉</value>
@@ -382,7 +382,7 @@
     <value>科克群島</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>版權所有 © 2008 - 2021 | 12BET 保留所有權利 | 21+</value>
+    <value>版權所有 © 2008 - {0} | 12BET 保留所有權利 | 21+</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>哥斯達黎加</value>
@@ -811,14 +811,12 @@
     <value>最新消息</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
-    <value>
-        感謝您與我們聯繫 {br}
-        您的信息已經發送。我們將盡快答复您的申請。{br}
-        如有任何問題，歡迎隨時致電1-34354-3454 {br}{br}
-        祝您好運！ {br}{br}
-        致以敬意， {br}{br}
-        12BET合作夥伴團隊
-    </value>
+    <value>感謝您與我們聯繫 &lt;br /&gt;
+您的信息已經發送。我們將盡快答复您的申請。&lt;br /&gt;
+如有任何問題，歡迎隨時致電1-34354-3454 &lt;br /&gt;&lt;br /&gt;
+祝您好運！ &lt;br /&gt;&lt;br /&gt;
+致以敬意， &lt;br /&gt;&lt;br /&gt;
+12BET合作夥伴團隊</value>
   </data>
   <data name="Mexico" xml:space="preserve">
     <value>墨西哥</value>
@@ -1571,7 +1569,7 @@
     <value>尚未計算</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>處理您的請求時發生錯誤！ 請聯繫管理員。</value>
+    <value>在處理您的請求時發生問題，請與管理員聯繫。</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>會員存款訊息</value>
@@ -1921,5 +1919,89 @@
   </data>
   <data name="MKK" xml:space="preserve">
     <value>MMK</value>
+  </data>
+  <data name="NewSignUp" xml:space="preserve">
+    <value>新註冊會員</value>
+  </data>
+  <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
+    <value>請輸入驗證碼</value>
+  </data>
+  <data name="ErrmsgEntryCaptcha" xml:space="preserve">
+    <value>請輸入驗證碼</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>摘要</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>合作夥伴鏈接</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最後一次登錄</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>最後登錄的IP地址</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>概述</value>
+  </data>
+  <data name="PlayersDetails" xml:space="preserve">
+    <value>基本資料</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>總投注額</value>
+  </data>
+  <data name="EmailTittleVerificationAccount" xml:space="preserve">
+    <value>驗證帳戶信息</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>玩家</value>
+  </data>
+  <data name="SubjectVerificationAccount" xml:space="preserve">
+    <value>12BET合作夥伴—驗證帳戶細節</value>
+  </data>
+  <data name="NewSignupAndDeposited" xml:space="preserve">
+    <value>新註冊 / 存款 會員</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>活躍的 / 符合資格的玩家</value>
+  </data>
+  <data name="DepositedMembers" xml:space="preserve">
+    <value>已存款會員</value>
+  </data>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>活躍會員</value>
+  </data>
+  <data name="QualifiedActiveMembers" xml:space="preserve">
+    <value>符合資格活躍會員</value>
+  </data>
+  <data name="WinAndLoss" xml:space="preserve">
+    <value>輸贏</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>序號</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>規模</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>複製橫幅廣告代碼</value>
+  </data>
+  <data name="ShareBanner" xml:space="preserve">
+    <value>分享橫幅廣告給朋友</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>複製鏈接</value>
+  </data>
+  <data name="CopyQR" xml:space="preserve">
+    <value>複製二維碼</value>
+  </data>
+  <data name="SaveQR" xml:space="preserve">
+    <value>儲存二維碼</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>複製</value>
   </data>
 </root>

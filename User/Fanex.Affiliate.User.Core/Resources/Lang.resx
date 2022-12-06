@@ -413,7 +413,7 @@
     <value>Cook Islands </value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>Copyright © 2008 - 2021 | 12BET. All Rights Reserved | 21+</value>
+    <value>Copyright © 2008 - {0} | 12BET. All Rights Reserved | 21+</value>
     <comment>87923</comment>
   </data>
   <data name="CostaRica" xml:space="preserve">
@@ -871,14 +871,12 @@
     <value>Message History</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
-    <value>
-        Thank you for contacting us. {br}
-        Your message has been sent. We will respond to your request as soon as possible. {br}
-        Feel free to call us at 1-34354-3454 if you have any question. {br}{br}
-        Have a great day! {br}{br}
-        Best regards, {br}{br}
-        12Bet Affiliate Support Team
-    </value>
+    <value>Thank you for contacting us. &lt;br /&gt;
+Your message has been sent. We will respond to your request as soon as possible. &lt;br /&gt;
+Feel free to call us at 1-34354-3454 if you have any question. &lt;br /&gt;&lt;br /&gt;
+Have a great day! &lt;br /&gt;&lt;br /&gt;
+Best regards, &lt;br /&gt;&lt;br /&gt;
+12Bet Affiliate Support Team</value>
   </data>
   <data name="Mexico" xml:space="preserve">
     <value>Mexico </value>
@@ -2062,7 +2060,7 @@
     <value>Total Turnover</value>
   </data>
   <data name="PlayersDetails" xml:space="preserve">
-    <value>Players Detail</value>
+    <value>Players Details</value>
   </data>
   <data name="Overview" xml:space="preserve">
     <value>Overview</value>
@@ -2108,5 +2106,20 @@
   </data>
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>You don't have the email address. Please contact administrator!</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>Affiliate Link</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>Last Login</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>Last Login IP Address</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>Copy Banner Code</value>
   </data>
 </root>

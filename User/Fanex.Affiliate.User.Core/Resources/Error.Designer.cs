@@ -88,7 +88,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while processing your request.
+        ///   Looks up a localized string similar to An error occurred while processing your request!.
         /// </summary>
         public static string General {
             get {

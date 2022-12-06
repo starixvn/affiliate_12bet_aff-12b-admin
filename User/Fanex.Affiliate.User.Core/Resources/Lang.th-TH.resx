@@ -211,7 +211,7 @@
     <value>บาเรนทร์</value>
   </data>
   <data name="BalForward" xml:space="preserve">
-    <value>ยอดคงเหลือยกไป</value>
+    <value>ยอดคงเหลือที่ยกมา</value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
     <value>บังคลาเทศ</value>
@@ -385,7 +385,7 @@
     <value>เกาะ คุ๊ก</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>สงวนลิขสิทธิ์ © 2008 - 2021 | 12BET.com | 21+</value>
+    <value>สงวนลิขสิทธิ์ © 2008 - {0} | 12BET.com | 21+</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>คอสตาริกา</value>
@@ -814,14 +814,12 @@
     <value>ข้อความย้อนหลัง</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
-    <value>
-       ขอบคุณที่ติดต่อเรา{br}
-        ข้อความของคุณได้ถูกส่งเรียบร้อยแล้ว เราจะตอบกลับหาคุณโดยเร็วที่สุด{br}
-        กรุณาติดต่อเราได้ที่เบอร์ 1-34354-3454 ถ้าคุณมีคำถามเพิ่มเติม. {br}{br}
-        ขอให้มีวันที่ดี{br}{br}
-        ขอแสดงความนับถือ, {br}{br}
-       ทีมงานพันธมิตร 12bet
-    </value>
+    <value>ขอบคุณที่ติดต่อเรา &lt;br /&gt;
+ข้อความของคุณได้ถูกส่งเรียบร้อยแล้ว เราจะตอบกลับหาคุณโดยเร็วที่สุด &lt;br /&gt;
+กรุณาติดต่อเราได้ที่เบอร์ 1-34354-3454 ถ้าคุณมีคำถามเพิ่มเติม. &lt;br /&gt;&lt;br /&gt;
+ขอให้มีวันที่ดี &lt;br /&gt;&lt;br /&gt;
+ขอแสดงความนับถือ, &lt;br /&gt;&lt;br /&gt;
+ทีมงานพันธมิตร 12bet</value>
   </data>
   <data name="Mexico" xml:space="preserve">
     <value>เม็กซิโก</value>
@@ -1569,7 +1567,7 @@
     <value>ยังไม่สรุปยอด</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>เกิดข้อผิดพลาดขณะดำเนินการคำขอของคุณ! กรุณาติดต่อเจ้าหน้าที่พันธมิตร</value>
+    <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ!</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>ข้อมูลฝากเงินของสมาชิก</value>
@@ -1737,7 +1735,7 @@
     <value>รหัสยืนยันความปลอดภัยได้ส่งไปที่อีเมล์ของคุณแล้ว. โปรดกรอกชื่อผู้ใช้เข้าระบบ, รหัสผ่าน และรหัสยืนยันความปลอดภัยในช่องว่างด้านล่างค่ะ</value>
   </data>
   <data name="UsernameVerification" xml:space="preserve">
-    <value>ชื่อผู้ใช้เข้าสู่ระบบ</value>
+    <value>ยูสเซอร์เนม</value>
   </data>
   <data name="UsernameIsRequired" xml:space="preserve">
     <value>โปรดกรอกชื่อผู้ใช้เข้าสู่ระบบ</value>
@@ -1916,5 +1914,89 @@
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>ทีมงานภาษาเขมร</value>
+  </data>
+  <data name="NewSignUp" xml:space="preserve">
+    <value>สมาชิกใหม่</value>
+  </data>
+  <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
+    <value>กรุณากรอกรหัสยืนยัน</value>
+  </data>
+  <data name="ErrmsgEntryCaptcha" xml:space="preserve">
+    <value>กรุณาใส่รหัสแคปช่า!</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>สรุป</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>ลิงค์พันธมิตร</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>เข้าสู่ระบบล่าสุด</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>ที่อยู่ IP เข้าสู่ระบบล่าสุด</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>ภาพรวม</value>
+  </data>
+  <data name="PlayersDetails" xml:space="preserve">
+    <value>รายละเอียดผู้เล่น</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>ยอดเล่นทั้งหมด</value>
+  </data>
+  <data name="EmailTittleVerificationAccount" xml:space="preserve">
+    <value>ยืนยันรายละเอียดบัญชีของคุณ</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>ผู้เล่น</value>
+  </data>
+  <data name="SubjectVerificationAccount" xml:space="preserve">
+    <value>พันธมิตร 12Bet - ยืนยันรายละเอียดบัญชีของคุณ</value>
+  </data>
+  <data name="NewSignupAndDeposited" xml:space="preserve">
+    <value>การสมัครใหม่ / ฝาก</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>ผู้เล่นที่ใช้งาน / ที่ผ่านการรับรอง</value>
+  </data>
+  <data name="DepositedMembers" xml:space="preserve">
+    <value>สมาชิกที่ฝากเงิน</value>
+  </data>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>สมาชิกที่ใช้งานอยู่</value>
+  </data>
+  <data name="QualifiedActiveMembers" xml:space="preserve">
+    <value>สมาชิกที่ใช้งานผ่านการรับรอง</value>
+  </data>
+  <data name="WinAndLoss" xml:space="preserve">
+    <value>ชนะ/เสีย</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>คัดลอก</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>เลขที่</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>มิติ</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>คัดลอกรหัสแบนเนอร์</value>
+  </data>
+  <data name="ShareBanner" xml:space="preserve">
+    <value>แบ่งปันแบนเนอร์ให้เพื่อนของคุณ</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>คัดลอกลิงค์</value>
+  </data>
+  <data name="CopyQR" xml:space="preserve">
+    <value>คัดลอกคิวอาร์โค้ด</value>
+  </data>
+  <data name="SaveQR" xml:space="preserve">
+    <value>บันทึกคิวอาร์โค้ด</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>คัดลอก</value>
   </data>
 </root>

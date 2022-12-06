@@ -156,4 +156,16 @@
   <data name="Wait60Seconds" xml:space="preserve">
     <value>在重新發送密碼前，請先等待60秒。</value>
   </data>
+  <data name="General" xml:space="preserve">
+    <value>在處理您的請求時發生問題!</value>
+  </data>
+  <data name="YourSessionHasExpired" xml:space="preserve">
+    <value>使用期限已到期！</value>
+  </data>
+  <data name="RecoverPassword1002" xml:space="preserve">
+    <value>恢復密碼失敗，請再試一次！</value>
+  </data>
+  <data name="PaymentAmountInvalid" xml:space="preserve">
+    <value>無效的請求</value>
+  </data>
 </root>

@@ -156,4 +156,16 @@
   <data name="Wait60Seconds" xml:space="preserve">
     <value>Vui lòng đợi 60 giây trước khi gửi yêu cầu nhận mã xác nhận mới</value>
   </data>
+  <data name="General" xml:space="preserve">
+    <value>Đã xảy ra lỗi khi xử lý yêu cầu của bạn! Vui lòng liên hệ với Quản trị viên.</value>
+  </data>
+  <data name="YourSessionHasExpired" xml:space="preserve">
+    <value>Phiên của bạn đã hết hạn!</value>
+  </data>
+  <data name="RecoverPassword1002" xml:space="preserve">
+    <value>Khôi phục mật khẩu không thành công. Vui lòng thử lại!</value>
+  </data>
+  <data name="PaymentAmountInvalid" xml:space="preserve">
+    <value>Số tiền yêu cầu không hợp lệ</value>
+  </data>
 </root>

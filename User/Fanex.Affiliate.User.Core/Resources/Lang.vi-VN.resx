@@ -211,7 +211,7 @@
     <value>Bahrain </value>
   </data>
   <data name="BalForward" xml:space="preserve">
-    <value>Số dư được rút</value>
+    <value>Số dư trước</value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
     <value>Bangladesh </value>
@@ -385,7 +385,7 @@
     <value>Quần đảo Cook </value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>Bản quyền © 2008 - 2021 | Toàn bộ thuộc 12BET.com | 21+</value>
+    <value>Bản quyền © 2008 - {0} | Toàn bộ thuộc 12BET.com | 21+</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>Costa Rica </value>
@@ -814,13 +814,12 @@
     <value>Nhật ký tin nhắn</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
-    <value>       Cảm ơn bạn đã liên hệ với chúng tôi. {br}
-       Tin nhắn của bạn đã được gửi. Chúng tôi sẽ trả lời yêu cầu của bạn trong thời gian sớm nhất có thể. {br}
-       Hãy gọi ngay cho chúng tôi theo số 1-34354-3454 nếu bạn có bất kỳ câu hỏi nào. {br}{br}
-       Chúc bạn một ngày tốt lành! {br}{br}
-       Trân trọng, {br}{br}
-       Nhóm hỗ trợ hội viên 12BET
-   </value>
+    <value>Cảm ơn bạn đã liên hệ với chúng tôi. &lt;br /&gt;
+Tin nhắn của bạn đã được gửi. Chúng tôi sẽ trả lời yêu cầu của bạn trong thời gian sớm nhất có thể. &lt;br /&gt;
+Hãy gọi ngay cho chúng tôi theo số 1-34354-3454 nếu bạn có bất kỳ câu hỏi nào. &lt;br /&gt;&lt;br /&gt;
+Chúc bạn một ngày tốt lành! &lt;br /&gt;&lt;br /&gt;
+Trân trọng, &lt;br /&gt;&lt;br /&gt;
+Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="Mexico" xml:space="preserve">
     <value>Mexico </value>
@@ -1564,7 +1563,7 @@
     <value>Đang Chờ Tính</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>Lỗi xảy ra khi bạn gửi yêu cầu. Vui lòng liên hệ Bộ phận hỗ trợ.</value>
+    <value>Đã xảy ra lỗi khi xử lý yêu cầu của bạn!</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>Thông tin Gửi tiền của Thành viên</value>
@@ -1905,5 +1904,89 @@
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>Hỗ trợ Tiếng Cambodia</value>
+  </data>
+  <data name="NewSignUp" xml:space="preserve">
+    <value>Đăng ký mới</value>
+  </data>
+  <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
+    <value>Vui lòng nhập mã xác nhận.</value>
+  </data>
+  <data name="ErrmsgEntryCaptcha" xml:space="preserve">
+    <value>Vui lòng nhập mã xác thực!</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Tóm tắt</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>Liên kết dành cho đại lý</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>Đăng nhập cuối</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>Địa chỉ IP đăng nhập cuối</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Tổng quan</value>
+  </data>
+  <data name="PlayersDetails" xml:space="preserve">
+    <value>Chi tiết người chơi</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>Tổng doanh thu cược</value>
+  </data>
+  <data name="EmailTittleVerificationAccount" xml:space="preserve">
+    <value>Xác minh chi tiết tài khoản của bạn</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Người chơi</value>
+  </data>
+  <data name="SubjectVerificationAccount" xml:space="preserve">
+    <value>Đại lý 12BET - Xác minh chi tiết tài khoản của bạn</value>
+  </data>
+  <data name="NewSignupAndDeposited" xml:space="preserve">
+    <value>Đăng ký mới / Đã nạp tiền</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>Người chơi hoạt động / Đủ điều kiện</value>
+  </data>
+  <data name="DepositedMembers" xml:space="preserve">
+    <value>Đã nạp tiền</value>
+  </data>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>Người chơi hoạt động</value>
+  </data>
+  <data name="QualifiedActiveMembers" xml:space="preserve">
+    <value>Người chơi hoạt động đủ điều kiện</value>
+  </data>
+  <data name="WinAndLoss" xml:space="preserve">
+    <value>Thắng/Thua</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Đã sao chép</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>STT.</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>Kích thước</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>Sao chép mã biểu ngữ</value>
+  </data>
+  <data name="ShareBanner" xml:space="preserve">
+    <value>Giới thiệu biểu ngữ cho bạn bè của bạn</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>Sao chép liên kết</value>
+  </data>
+  <data name="CopyQR" xml:space="preserve">
+    <value>Sao chép mã QR</value>
+  </data>
+  <data name="SaveQR" xml:space="preserve">
+    <value>Lưu mã QR</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Sao chép</value>
   </data>
 </root>

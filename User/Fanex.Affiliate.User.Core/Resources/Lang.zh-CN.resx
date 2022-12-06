@@ -211,7 +211,7 @@
     <value>巴林</value>
   </data>
   <data name="BalForward" xml:space="preserve">
-    <value>转入下月余额</value>
+    <value>结转余额</value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
     <value>孟加拉</value>
@@ -385,7 +385,7 @@
     <value>库克群岛</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>版权所有 © 2008 - 2021 | 12BET 保留所有权利 | 21+</value>
+    <value>版权所有 © 2008 - {0} | 12BET 保留所有权利 | 21+</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>哥斯达黎加</value>
@@ -812,16 +812,6 @@
   </data>
   <data name="MessageHistory" xml:space="preserve">
     <value>最新消息</value>
-  </data>
-  <data name="MessageSentReview" xml:space="preserve">
-    <value>
-        感谢您与我们联系. {br}
-        您的信息已经发送。我们将尽快答复您的申请。 {br}
-        如有任何问题，欢迎随时致电1-34354-3454 {br}{br}
-        祝您好运！ {br}{br}
-        致以敬意， {br}{br}
-        12BET合作伙伴团队
-    </value>
   </data>
   <data name="Mexico" xml:space="preserve">
     <value>墨西哥</value>
@@ -1574,7 +1564,7 @@
     <value>尚未计算</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>处理您的请求是发生错误！请联系管理员。</value>
+    <value>在处理您的请求时发生问题，请与管理员联系。</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>会员存款信息</value>
@@ -1924,5 +1914,97 @@
   </data>
   <data name="MKK" xml:space="preserve">
     <value>MMK</value>
+  </data>
+  <data name="NewSignUp" xml:space="preserve">
+    <value>新注册会员</value>
+  </data>
+  <data name="MessageSentReview" xml:space="preserve">
+    <value>感谢您与我们联系. &lt;br /&gt;
+您的信息已经发送。我们将尽快答复您的申请。 &lt;br /&gt;
+如有任何问题，欢迎随时致电1-34354-3454 &lt;br /&gt;&lt;br /&gt;
+祝您好运！ &lt;br /&gt;&lt;br /&gt;
+致以敬意， &lt;br /&gt;&lt;br /&gt;
+12BET合作伙伴团队</value>
+  </data>
+  <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
+    <value>请输入验证码</value>
+  </data>
+  <data name="ErrmsgEntryCaptcha" xml:space="preserve">
+    <value>请输入验证码</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>摘要</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>合作伙伴链接</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最后一次登录</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>最后登录的IP地址</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>概述</value>
+  </data>
+  <data name="PlayersDetails" xml:space="preserve">
+    <value>基本信息</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>总投注额</value>
+  </data>
+  <data name="EmailTittleVerificationAccount" xml:space="preserve">
+    <value>核实账户信息</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>玩家</value>
+  </data>
+  <data name="SubjectVerificationAccount" xml:space="preserve">
+    <value>12BET合作伙伴—验证账户细节</value>
+  </data>
+  <data name="NewSignupAndDeposited" xml:space="preserve">
+    <value>新注册 / 存款 会员</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>活跃的 / 符合资格的玩家</value>
+  </data>
+  <data name="DepositedMembers" xml:space="preserve">
+    <value>已存款会员</value>
+  </data>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>活跃会员</value>
+  </data>
+  <data name="QualifiedActiveMembers" xml:space="preserve">
+    <value>符合资格活跃会员</value>
+  </data>
+  <data name="WinAndLoss" xml:space="preserve">
+    <value>输赢</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>规模</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>复制横幅广告代码</value>
+  </data>
+  <data name="ShareBanner" xml:space="preserve">
+    <value>分享横幅广告给朋友</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="CopyQR" xml:space="preserve">
+    <value>复制二维码</value>
+  </data>
+  <data name="SaveQR" xml:space="preserve">
+    <value>储存二维码</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>复制</value>
   </data>
 </root>

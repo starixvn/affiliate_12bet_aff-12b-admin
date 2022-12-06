@@ -610,6 +610,7 @@
     <Compile Include="ViewModels\VerificationAccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Error.km-KH.resx" />
     <EmbeddedResource Include="Resources\Error.ko-KR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.ko-KR.Designer.cs</LastGenOutput>

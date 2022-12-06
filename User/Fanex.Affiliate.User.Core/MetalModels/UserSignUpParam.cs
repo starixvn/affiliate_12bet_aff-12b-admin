@@ -4,7 +4,6 @@ using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Data;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {
@@ -40,7 +39,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string Country { get; set; }
 
         [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = true, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "WebsiteURLIsRequired")]
-        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string SiteUrl { get; set; } = string.Empty;
 
         public string MoreSiteUrls { get; set; }

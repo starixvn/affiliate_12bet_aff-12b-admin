@@ -156,4 +156,16 @@
   <data name="Wait60Seconds" xml:space="preserve">
     <value>새로운 보안코는 60초이내 표시됩니다.</value>
   </data>
+  <data name="General" xml:space="preserve">
+    <value>요청을 처리하는 동안 오류가 발생했습니다! 관리자에게 문의주시기 바랍니다.</value>
+  </data>
+  <data name="YourSessionHasExpired" xml:space="preserve">
+    <value>세션이 만료되었습니다!</value>
+  </data>
+  <data name="RecoverPassword1002" xml:space="preserve">
+    <value>비밀번호 복구에 실패했습니다. 다시 시도하십시오!</value>
+  </data>
+  <data name="PaymentAmountInvalid" xml:space="preserve">
+    <value>잘못된 요청 금액</value>
+  </data>
 </root>

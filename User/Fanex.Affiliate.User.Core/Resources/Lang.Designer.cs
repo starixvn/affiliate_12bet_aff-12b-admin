@@ -224,6 +224,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Affiliate Link.
+        /// </summary>
+        public static string AffiliateLink {
+            get {
+                return ResourceManager.GetString("AffiliateLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AFFILIATE LOGIN.
         /// </summary>
         public static string AffiliateLogin {
@@ -1232,6 +1241,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Banner Code.
+        /// </summary>
+        public static string CopyBannerCode {
+            get {
+                return ResourceManager.GetString("CopyBannerCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Link.
         /// </summary>
         public static string CopyLink {
@@ -1250,7 +1268,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright © 2008 - 2021 | 12BET. All Rights Reserved | 21+.
+        ///   Looks up a localized string similar to Copyright © 2008 - {0} | 12BET. All Rights Reserved | 21+.
         /// </summary>
         public static string Copyright {
             get {
@@ -2564,6 +2582,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Login.
+        /// </summary>
+        public static string LastLogin {
+            get {
+                return ResourceManager.GetString("LastLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Login IP Address.
+        /// </summary>
+        public static string LastLoginIpAddress {
+            get {
+                return ResourceManager.GetString("LastLoginIpAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name is required.
         /// </summary>
         public static string LastNameIsRequired {
@@ -2870,14 +2906,12 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 
-        ///        Thank you for contacting us. {br}
-        ///        Your message has been sent. We will respond to your request as soon as possible. {br}
-        ///        Feel free to call us at 1-34354-3454 if you have any question. {br}{br}
-        ///        Have a great day! {br}{br}
-        ///        Best regards, {br}{br}
-        ///        12Bet Affiliate Support Team
-        ///    .
+        ///   Looks up a localized string similar to Thank you for contacting us. &lt;br /&gt;
+        ///Your message has been sent. We will respond to your request as soon as possible. &lt;br /&gt;
+        ///Feel free to call us at 1-34354-3454 if you have any question. &lt;br /&gt;&lt;br /&gt;
+        ///Have a great day! &lt;br /&gt;&lt;br /&gt;
+        ///Best regards, &lt;br /&gt;&lt;br /&gt;
+        ///12Bet Affiliate Support Team.
         /// </summary>
         public static string MessageSentReview {
             get {
@@ -3642,7 +3676,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Players Detail.
+        ///   Looks up a localized string similar to Players Details.
         /// </summary>
         public static string PlayersDetails {
             get {
@@ -4844,6 +4878,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SuffixProduct12SUNSTONE {
             get {
                 return ResourceManager.GetString("SuffixProduct12SUNSTONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string Summary {
+            get {
+                return ResourceManager.GetString("Summary", resourceCulture);
             }
         }
         

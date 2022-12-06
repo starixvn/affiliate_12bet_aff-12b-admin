@@ -238,13 +238,13 @@
     <value>ភ្លេចពាក្យសម្ងាត់របស់អ្នក?</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
-    <value>ពាក្យសម្ងាត់ថ្មីនឹងត្រូវបានផ្ញើទៅកាន់អាស័យដ្ឋានអ៊ីមែលដែលអ្នកបានផ្តល់។&lt;br /&gt;ប្រសិន​បើ​អ្នក​ជួប​ប្រទះ​ការ​លំបាក​បន្ថែម​ទៀត​សូម&lt;a href="{0}"&gt;ទាក់​ទង​មក​យើង&lt;/a&gt;</value>
+    <value>ពាក្យ​សម្ងាត់​ថ្មី​នឹង​ត្រូវ​បាន​ផ្ញើ​ទៅ​កាន់អាសយដ្ឋាន​អ៊ីមែល​ដែល​អ្នក​បាន​ផ្ដល់ &lt;br /&gt;ប្រសិន​បើ​អ្នក​កំពុង​ជួប​ប្រទះ​ការ​លំបាក សូម &lt;a href="{0}"&gt;ទាក់ទង​មក​យើង&lt;/a&gt;។</value>
   </data>
   <data name="YourEmail" xml:space="preserve">
-    <value>អ៊ីមែល​របស់​អ្នក</value>
+    <value>អ៊ីមែល​របស់​អ្នក:</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>បញ្ជូន</value>
+    <value>ដាក់ស្នើ</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>កំណត់ឡើងវិញ</value>
@@ -505,7 +505,7 @@
     <value>ខ្ញុំមិនមានគេហទំព័រទេ</value>
   </data>
   <data name="DescWebsite" xml:space="preserve">
-    <value>សូមពណ៌នាពីរបៀបដែលអ្នកចង់ផ្សព្វផ្សាយ 12Bet ប្រសិនបើអ្នកមិនមាន URL</value>
+    <value>សូមពណ៌នាអំពីរបៀបដែលអ្នកចង់ធ្វើការផ្សព្វផ្សាយ 12Bet ប្រសិនបើអ្នកមិនមាន URL</value>
   </data>
   <data name="Preference" xml:space="preserve">
     <value>ចំណូលចិត្ត</value>
@@ -550,7 +550,7 @@
     <value>មតិយោបល់</value>
   </data>
   <data name="AffiliateID" xml:space="preserve">
-    <value>លេខសម្គាល់ភ្នាក់ងារ</value>
+    <value>IDរបស់ភ្នាក់ងារ</value>
   </data>
   <data name="Email1" xml:space="preserve">
     <value>អ៊ីមែល</value>
@@ -602,5 +602,506 @@
   </data>
   <data name="Indonesian" xml:space="preserve">
     <value>Indonesian</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>រក្សាសិទ្ធិ © 2008 - {0} | 12BET.com សូមរក្សាសិទ្ធគ្រប់យ៉ាង ។ | 21+</value>
+  </data>
+  <data name="CasinoGame" xml:space="preserve">
+    <value>ហ្គេមកាស៊ីណូ</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>ហ្គេមតុ/ហ្គេមសន្លឹកបៀរ</value>
+  </data>
+  <data name="ScratchArcadeGames" xml:space="preserve">
+    <value>Scratch/Arcade Games</value>
+  </data>
+  <data name="VideoPokerGames" xml:space="preserve">
+    <value>វីដេអូហ្គេមពុកគឺ</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>កំហុសបានកើតឡើងខណៈពេលកំពុងដំណើរការសំណើរបស់អ្នក! សូមទាក់ទងអ្នកគ្រប់គ្រង។</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>ចាក់ចេញ</value>
+  </data>
+  <data name="Msgkickout" xml:space="preserve">
+    <value>វគ្គមួយទៀតបានចូលរួចរាល់ ឬវគ្គរបស់អ្នកត្រូវបានផុតកំណត់ហើយ តម្រូវអោយចាក់ចេញ!</value>
+  </data>
+  <data name="MyAcc" xml:space="preserve">
+    <value>គណនីរបស់ខ្ញុំ</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>គណនីរបស់ខ្ញុំ</value>
+  </data>
+  <data name="ErrmsgEntryUsername" xml:space="preserve">
+    <value>សូមបញ្ចូលឈ្មោះប្រើប្រាស់</value>
+  </data>
+  <data name="ErrmsgEntryPassword" xml:space="preserve">
+    <value>សូមបញ្ចូលលេខសម្ងាត់</value>
+  </data>
+  <data name="AccOverview" xml:space="preserve">
+    <value>ទិដ្ឋភាពទូទៅនៃគណនី</value>
+  </data>
+  <data name="YourCustomers" xml:space="preserve">
+    <value>អតិថិជនរបស់អ្នក</value>
+  </data>
+  <data name="StatementHistory" xml:space="preserve">
+    <value>ប្រវត្តិសេចក្តីថ្លែងការណ៍</value>
+  </data>
+  <data name="PaymentRequest" xml:space="preserve">
+    <value>សំណើបង់ប្រាក់</value>
+  </data>
+  <data name="WhatNewThisMonth" xml:space="preserve">
+    <value>តើមានអ្វីថ្មីសំរាប់ខែនេះ</value>
+  </data>
+  <data name="OffersForMe" xml:space="preserve">
+    <value>ផ្តល់ជូនសំរាប់ខ្ញុំ</value>
+  </data>
+  <data name="CommissionReport" xml:space="preserve">
+    <value>របាយការណ៍ប្រាក់កំរៃជើងសារ</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>ស្ថិតិ</value>
+  </data>
+  <data name="Referrals" xml:space="preserve">
+    <value>ស្ថិតិយោង</value>
+  </data>
+  <data name="LandingPages" xml:space="preserve">
+    <value>ស្ថិតិទំព័រ</value>
+  </data>
+  <data name="AffFeedback" xml:space="preserve">
+    <value>មតិប្រតិកម្មរបស់ភ្នាក់ងារ</value>
+  </data>
+  <data name="WeWouldLove" xml:space="preserve">
+    <value>យើងពិតជាចង់បានមតិរបស់អ្នក ដើម្បីកែលម្អនូវសេវាកម្មរបស់យើងអោយបានកាន់តែប្រសើរឡើងជាងមុន។</value>
+  </data>
+  <data name="WhatIsYourOpinion" xml:space="preserve">
+    <value>តើអ្នកយល់ឃើញយ៉ាងដូចម្តេចអំពីកម្មវិធីភ្នាក់ងារនេះ?</value>
+  </data>
+  <data name="PleaseLeaveYourFeedback" xml:space="preserve">
+    <value>សូមផ្ញើរមតិយោបល់របស់អ្នកដូចខាងក្រោម:</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>សូមអរគុណសំរាប់មតិយោបល់ដ៏មានតំលៃរបស់អ្នក ។</value>
+  </data>
+  <data name="BTiSports" xml:space="preserve">
+    <value>BTi SPORTS</value>
+  </data>
+  <data name="_12BetExchange" xml:space="preserve">
+    <value>12BET EXCHANGE &lt;br /&gt;
+(សំរាប់ទីផ្សារសមាជិក INR &amp; IN.USD តែប៉ុណ្ណោះ)</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>បង្កើតគណនី</value>
+  </data>
+  <data name="NewSignUp" xml:space="preserve">
+    <value>ចុះឈ្មោះថ្មី</value>
+  </data>
+  <data name="AddUrl" xml:space="preserve">
+    <value>បន្ថែម Url</value>
+  </data>
+  <data name="FirstNameIsRequired" xml:space="preserve">
+    <value>ឈ្មោះដំបូងគឺចាំបាច់</value>
+  </data>
+  <data name="LastNameIsRequired" xml:space="preserve">
+    <value>នាមត្រកូលត្រូវបានទាមទារ</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>អាស័យ​ដ្ឋាន​អ៊ី​ម៉េ​ល</value>
+  </data>
+  <data name="ErrEmailRequire" xml:space="preserve">
+    <value>អាសយដ្ឋានអ៊ីមែល - ត្រូវបានទាមទារ</value>
+  </data>
+  <data name="EmailAddressIsRequired" xml:space="preserve">
+    <value>អាសយដ្ឋានអ៊ីមែលត្រូវបានទាមទារ</value>
+  </data>
+  <data name="EmailAddressIsInvalid" xml:space="preserve">
+    <value>អាសយដ្ឋានអ៊ីមែលមិនត្រឹមត្រូវទេ</value>
+  </data>
+  <data name="Emailaddressest" xml:space="preserve">
+    <value>អាសយដ្ឋានអ៊ីមែលដែលអ្នកបានបញ្ចូលមិនត្រូវគ្នាទេ</value>
+  </data>
+  <data name="errContactNumberEmpty" xml:space="preserve">
+    <value>លេខទំនាក់ទំនងត្រូវបានទាមទារ</value>
+  </data>
+  <data name="AddressIsRequired" xml:space="preserve">
+    <value>អាសយដ្ឋានត្រូវបានទាមទារ</value>
+  </data>
+  <data name="CityIsRequired" xml:space="preserve">
+    <value>ទីក្រុងត្រូវបានទាមទារ</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>រដ្ឋ</value>
+  </data>
+  <data name="StateIsRequired" xml:space="preserve">
+    <value>រដ្ឋត្រូវបានទាមទារ</value>
+  </data>
+  <data name="PostcodeZiIsRequired" xml:space="preserve">
+    <value>លេខកូដប្រៃសណីយ៍ / លេខកូដតំបន់ត្រូវបានទាមទារ</value>
+  </data>
+  <data name="CountryErr" xml:space="preserve">
+    <value>សូមជ្រើសរើសប្រទេស</value>
+  </data>
+  <data name="WebsiteURLIsRequired" xml:space="preserve">
+    <value>គេហទំព័រ URL ​ត្រូវ​បាន​ទាមទារ</value>
+  </data>
+  <data name="WebsiteUrli" xml:space="preserve">
+    <value>សូមបញ្ចូលគេហទំព័រ URL {i}</value>
+  </data>
+  <data name="Del" xml:space="preserve">
+    <value>លុប</value>
+  </data>
+  <data name="PreferLangErr" xml:space="preserve">
+    <value>សូមជ្រើសរើសភាសាដែលពេញចិត្ត</value>
+  </data>
+  <data name="errSecQuestionEmpty" xml:space="preserve">
+    <value>សូមជ្រើសរើសសំណួរសុវត្ថិភាព</value>
+  </data>
+  <data name="errYourAnswer" xml:space="preserve">
+    <value>ចម្លើយរបស់អ្នកត្រូវបានទាមទារ</value>
+  </data>
+  <data name="ErrmsgEntryValidCode" xml:space="preserve">
+    <value>សូមបញ្ចូលលេខកូដសុពលភាពអោយបានត្រឹមត្រូវ</value>
+  </data>
+  <data name="ValidationCode" xml:space="preserve">
+    <value>លេខកូដរបស់អ្នកដែលបានដាក់គឺមិនត្រឹមត្រូវឡើយ</value>
+  </data>
+  <data name="BETUserNameIsRequired" xml:space="preserve">
+    <value>ឈ្មោះអ្នកប្រើប្រាស់ 12BET ត្រូវបានទាមទារ</value>
+  </data>
+  <data name="UsernameIsRequired" xml:space="preserve">
+    <value>ឈ្មោះអ្នកប្រើត្រូវបានទាមទារ</value>
+  </data>
+  <data name="UnderReview" xml:space="preserve">
+    <value>ពាក្យស្នើសុំកំពុងថិតក្នុង​ការត្រួត​ពិនិត្យ</value>
+  </data>
+  <data name="RegisSuccess" xml:space="preserve">
+    <value>សូមអរគុណចំពោះការដាក់ពាក្យស្នើសុំរបស់អ្នក.&lt;br/&gt;&lt;br/&gt;គេហទំព័រ និងព័ត៌មានលម្អិតនៃកម្មវិធីរបស់អ្នកនឹងត្រូវបានពិនិត្យដោយក្រុមការងារភ្នាក់ងារ12Bet ដើម្បីធានាបានថាខ្លឹមសារគឺសមរម្យសំរាប់ការផ្សព្វផ្សាយផលិតផលរបស់យើង។.&lt;br/&gt;&lt;br/&gt;យើងនិងជូនដំណឹងទៅអ្នកវិញក្នុងរយះពេល5ថ្ងៃ ប្រសិនបើត្រូវបានយល់ព្រម អ្នកនិងអាចចូលទៅដំណើរការយ៉ាងពេញលេញក្នុងកម្មវិធីជាភ្នាក់ងាររបស់យើង។&lt;br /&gt;&lt;br /&gt;ដោយក្តីគោរព!&lt;br /&gt;&lt;br /&gt;ពីក្រុមភ្នាក់ងារ 12Bet&lt;br/&gt;&lt;br/&gt;សម្រាប់ហេតុផលណាមួយដែលអ្នកមិនអាចទទួលបានអ៊ីមែល សូមពិនិត្យមើលប្រអប់សារ Spam របស់អ្នក ឬ &lt;a href='{0}'&gt;ទាក់ទងយើង&lt;/a&gt; ហើយយើងនឹងរីករាយក្នុងការជួយអ្នក។</value>
+  </data>
+  <data name="EnglishSupport" xml:space="preserve">
+    <value>អ្នកផ្តល់ជំនួយភាសាអង់គ្លេស</value>
+  </data>
+  <data name="ChinaSupport" xml:space="preserve">
+    <value>អ្នកផ្តល់ជំនួយភាសាចិន</value>
+  </data>
+  <data name="VietnamSupport" xml:space="preserve">
+    <value>អ្នកផ្តល់ជំនួយភាសាវៀតណាម</value>
+  </data>
+  <data name="ThailandSupport" xml:space="preserve">
+    <value>អ្នកផ្តល់ជំនួយភាសាថៃ</value>
+  </data>
+  <data name="IndonesiaSupport" xml:space="preserve">
+    <value>អ្នកផ្តល់ជំនួយភាសាឥណ្ឌូនេស៊ី</value>
+  </data>
+  <data name="IndianSupport" xml:space="preserve">
+    <value>អ្នកផ្តល់ជំនួយភាសាឥណ្ឌា</value>
+  </data>
+  <data name="KoreaSupport" xml:space="preserve">
+    <value>អ្នកផ្តល់ជំនួយភាសាកូរ៉េ</value>
+  </data>
+  <data name="MessageSentReview" xml:space="preserve">
+    <value>សូមអរគុណសម្រាប់ការទាក់ទងមកយើងខ្ញុំ &lt;br /&gt;
+សាររបស់អ្នកត្រូវបានផ្ញើ យើងនឹងឆ្លើយតបទៅនឹងសំណើរបស់អ្នកអោយបានឆាប់តាមដែលអាចធ្វើទៅបាន &lt;br /&gt;
+សូមទាក់ទងមកយើងខ្ញុំតាមលេខ 1-34354-3454 ប្រសិនបើអ្នកមានសំណួរណាមួយ &lt;br /&gt;&lt;br /&gt;
+សូមជួបតែសំណាងល្អ! &lt;br /&gt;&lt;br /&gt;
+សូមគោរព &lt;br /&gt;&lt;br /&gt;
+ក្រុមផ្តល់ជំនួយរបស់ភ្នាក់ងារ 12Bet</value>
+  </data>
+  <data name="NameIsInvalid" xml:space="preserve">
+    <value>ឈ្មោះ​មិន​ត្រឹមត្រូវ</value>
+  </data>
+  <data name="SubjectIsInvalid" xml:space="preserve">
+    <value>ប្រធានបទមិនត្រឹមត្រូវ</value>
+  </data>
+  <data name="CommentsIsInvalid" xml:space="preserve">
+    <value>មតិ​មិន​ត្រឹមត្រូវ</value>
+  </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>អ្នកមិនមានអាសយដ្ឋានអ៊ីមែលទេ សូមទាក់ទងមកកាន់អ្នកគ្រប់គ្រង!</value>
+  </data>
+  <data name="DearCustomer" xml:space="preserve">
+    <value>អតិថិជនជាទីគោរព!</value>
+  </data>
+  <data name="DueTo" xml:space="preserve">
+    <value>ដោយ​សារ​តែ​ការ​ចូល​​ជា​ច្រើនក្នុងពេលឥឡូវនេះត្រូវបាន​បរាជ័យ​ សូម​ផ្ទៀងផ្ទាត់​ជំហាន​សុវត្ថិភាព​ម្តងទៀត ។</value>
+  </data>
+  <data name="YourRegisterEmail" xml:space="preserve">
+    <value>អ៊ីមែលដែលអ្នកបានចុះឈ្មោះគឺ &lt;strong&gt;{0}&lt;/strong&gt; សូម​បញ្ចូល​អាសយដ្ឋាន​អ៊ីមែល​ពេញ​លេញ​ក្នុង​ប្រអប់​ខាងក្រោម ហើយ​ចុច​ផ្ញើ​កូដ។</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>អ៊ីមែលត្រូវបានទាមទារ</value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>ផ្ញើលេខកូដ</value>
+  </data>
+  <data name="AVerificationCode" xml:space="preserve">
+    <value>លេខកូដផ្ទៀងផ្ទាត់ត្រូវបានផ្ញើទៅកាន់អាសយដ្ឋានអ៊ីមែលរបស់អ្នក សូមបញ្ចូលឈ្មោះប្រើប្រាស់ ពាក្យសម្ងាត់ និងលេខកូដផ្ទៀងផ្ទាត់ខាងក្រោមដើម្បីចូល។</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>កូដ​ផ្ទៀង​ផ្ទាត់</value>
+  </data>
+  <data name="VerificationCodeIsRequired" xml:space="preserve">
+    <value>លេខកូដផ្ទៀងផ្ទាត់ត្រូវបានទាមទារ</value>
+  </data>
+  <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
+    <value>សូមបញ្ចូលលេខកូដផ្ទៀងផ្ទាត់</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>កូដ</value>
+  </data>
+  <data name="CaptchaIsRequired" xml:space="preserve">
+    <value>កូដត្រូវបានទាមទារ</value>
+  </data>
+  <data name="ErrmsgEntryCaptcha" xml:space="preserve">
+    <value>សូមបញ្ចូលកូដ!</value>
+  </data>
+  <data name="ErrAuthorized" xml:space="preserve">
+    <value>អ្នកមិនត្រូវបានអនុញ្ញាតលើមុខងារនេះទេ</value>
+  </data>
+  <data name="NotAllowOnDomain" xml:space="preserve">
+    <value>សុំទោស! អ្នកមិនត្រូវបានអនុញ្ញាតអោយចូលនៅលើ domain នេះទេ</value>
+  </data>
+  <data name="ReenterNewPassw" xml:space="preserve">
+    <value>បញ្ចូលពាក្យសម្ងាត់ថ្មីម្តងទៀតមិនត្រឹមត្រូវទេ</value>
+  </data>
+  <data name="ChangePass" xml:space="preserve">
+    <value>ផ្លាស់ប្តូរពាក្យសម្ងាត់</value>
+  </data>
+  <data name="ChangePassText" xml:space="preserve">
+    <value>ប្រើទម្រង់នេះដើម្បីផ្លាស់ប្តូរពាក្យសម្ងាត់របស់អ្នក បន្ទាប់ពីបានផ្លាស់ប្តូររួចរាល់ ពាក្យសម្ងាត់ថ្មីរបស់អ្នកនឹងមានប្រសិទ្ធភាពនៅពេលដែលអ្នកចូលទៅប្រើប្រាស់លើកក្រោយ។</value>
+  </data>
+  <data name="OldPass" xml:space="preserve">
+    <value>ពាក្យសំងាត់​ចាស់</value>
+  </data>
+  <data name="OldPasswordisre" xml:space="preserve">
+    <value>ពាក្យសម្ងាត់ចាស់ត្រូវបានទាមទារ</value>
+  </data>
+  <data name="NewPass" xml:space="preserve">
+    <value>ពាក្យសម្ងាត់​ថ្មី</value>
+  </data>
+  <data name="NewPasswordisre" xml:space="preserve">
+    <value>ពាក្យសម្ងាត់ថ្មីត្រូវបានទាមទារ</value>
+  </data>
+  <data name="PassCheck" xml:space="preserve">
+    <value>ពាក្យ​សម្ងាត់​ត្រូវ​តែ​មាន​យ៉ាង​ហោច​ណាស់សរុប 6 តួអក្សរ រួមបញ្ជូលទាំងអក្សរយ៉ាង​ហោចត្រូវមាន 2 និងលេខ 2 ខ្ទង់ផងដែរ (ឧទារណ៍. Pass22)</value>
+  </data>
+  <data name="RePass" xml:space="preserve">
+    <value>បញ្ចូលពាក្យសម្ងាត់ថ្មី</value>
+  </data>
+  <data name="Yourlogindetail" xml:space="preserve">
+    <value>ព័ត៌មានលម្អិតអំពីការចូលរបស់អ្នកត្រូវបានផ្ញើ</value>
+  </data>
+  <data name="Pleasecheckyour" xml:space="preserve">
+    <value>សូមពិនិត្យមើលអាសយដ្ឋានអ៊ីមែលរបស់អ្នក ដើម្បីស្វែងរកឈ្មោះប្រើប្រាស់របស់អ្នក និងព័ត៌មានលម្អិតអំពីពាក្យសម្ងាត់របស់អ្នក</value>
+  </data>
+  <data name="ForAnyReason" xml:space="preserve">
+    <value>សម្រាប់ហេតុផលណាមួយដែលអ្នកមិនអាចទទួលបានអ៊ីមែល សូមពិនិត្យមើលប្រអប់សារ Spam របស់អ្នក ឬ &lt;a href='{0}'&gt;ទាក់ទងយើង&lt;/a&gt; ហើយយើងនឹងរីករាយក្នុងការជួយអ្នក។</value>
+  </data>
+  <data name="Passwordchanged" xml:space="preserve">
+    <value>ពាក្យសម្ងាត់ត្រូវបានផ្លាស់ប្តូរដោយជោគជ័យ</value>
+  </data>
+  <data name="MessageHistory" xml:space="preserve">
+    <value>ប្រវត្តិសារ</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>ស្វែងរក</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>ទាំងអស់</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>ធម្មតា</value>
+  </data>
+  <data name="Important" xml:space="preserve">
+    <value>សំខាន់</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>ពី</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>ទៅ</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="PostDate" xml:space="preserve">
+    <value>ថ្ងៃដែលបានបង្ហោះ</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>សារ</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>មិនមានព័ត៌មានទេ</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>ប្រអប់អត្ថបទ</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>សង្ខេប</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>តំណភ្ជាប់ភ្នាក់ងារ</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>ចូលចុងក្រោយ</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>អាសយដ្ឋាន IP ចូលចុងក្រោយ</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>Media Gallery</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>ទិដ្ឋភាពទូទៅ</value>
+  </data>
+  <data name="PlayersDetails" xml:space="preserve">
+    <value>ព័ត៌មានលម្អិតអំពីសមាជិក</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>ដាក់ប្រាក់</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>ភ្នាល់វិលជុំ</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>ភ្នាល់វិលជុំសរុប</value>
+  </data>
+  <data name="BalForward" xml:space="preserve">
+    <value>សមតុល្យ​បាន​នាំ​មក​មុខ</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>សរុប</value>
+  </data>
+  <data name="TotalDeposit" xml:space="preserve">
+    <value>ការដាក់ប្រាក់សរុប</value>
+  </data>
+  <data name="Casino" xml:space="preserve">
+    <value>កាស៊ីណូ</value>
+  </data>
+  <data name="CasinoBonus" xml:space="preserve">
+    <value>ប្រាក់រង្វាន់កាស៊ីណូ</value>
+  </data>
+  <data name="Racebook" xml:space="preserve">
+    <value>Racebook</value>
+  </data>
+  <data name="Basketball" xml:space="preserve">
+    <value>បាល់បោះ</value>
+  </data>
+  <data name="SBBonus" xml:space="preserve">
+    <value>ប្រាក់រង្វាន់ SB</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>បាល់ទាត់</value>
+  </data>
+  <data name="Tennis" xml:space="preserve">
+    <value>កីឡាវាយកូនបាល់</value>
+  </data>
+  <data name="Slot" xml:space="preserve">
+    <value>ស្លត់</value>
+  </data>
+  <data name="THB" xml:space="preserve">
+    <value>THB (ថៃបាត)</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>ដកប្រាក់</value>
+  </data>
+  <data name="RegisteredDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទចុះឈ្មោះ</value>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>ប្រាក់រង្វាន់</value>
+  </data>
+  <data name="BankingFees" xml:space="preserve">
+    <value>ថ្លៃសេវាធនាគារ</value>
+  </data>
+  <data name="AvailableDomains" xml:space="preserve">
+    <value>Domains ដែលអាចប្រើប្រាស់បាន</value>
+  </data>
+  <data name="LinkTo" xml:space="preserve">
+    <value>ភ្ជាប់ទៅ</value>
+  </data>
+  <data name="GenerateLink" xml:space="preserve">
+    <value>បង្កើតតំណ</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>ប្រភេទ</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>Sub Category</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>រូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>ឧបករណ៍</value>
+  </data>
+  <data name="PCDevice" xml:space="preserve">
+    <value>កុំព្យូទ័រ/កុំព្យូទ័រយួរដៃ</value>
+  </data>
+  <data name="MobileDevice" xml:space="preserve">
+    <value>ទូរស័ព្ទ</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>ទំហំប្រព័ន្ធផ្សព្វផ្សាយ</value>
+  </data>
+  <data name="Banner" xml:space="preserve">
+    <value>បដា</value>
+  </data>
+  <data name="EmailTittleVerificationAccount" xml:space="preserve">
+    <value>ផ្ទៀងផ្ទាត់ព័ត៌មានលម្អិតគណនីរបស់អ្នក។</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>សមាជិក</value>
+  </data>
+  <data name="SubjectVerificationAccount" xml:space="preserve">
+    <value>ភ្នាក់ងារ 12Bet - ផ្ទៀងផ្ទាត់ព័ត៌មានលម្អិតគណនីរបស់អ្នក។</value>
+  </data>
+  <data name="NewSignupAndDeposited" xml:space="preserve">
+    <value>ការចុះឈ្មោះថ្មី / ដាក់ប្រាក់</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>សមាជិកសកម្ម / មានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់</value>
+  </data>
+  <data name="DepositedMembers" xml:space="preserve">
+    <value>សមាជិកដែលបានដាក់ប្រាក់</value>
+  </data>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>សមាជិកសកម្ម</value>
+  </data>
+  <data name="QualifiedActiveMembers" xml:space="preserve">
+    <value>សមាជិកសកម្មដែលមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់</value>
+  </data>
+  <data name="WinAndLoss" xml:space="preserve">
+    <value>ឈ្នះ/ចាញ់</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>ចម្លង</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>ទេ</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>វិមាត្រ</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>ចម្លងកូដបដា</value>
+  </data>
+  <data name="ShareBanner" xml:space="preserve">
+    <value>ចែករំលែកបដាទៅកាន់មិត្តរបស់អ្នក</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>ចម្លងតំណ</value>
+  </data>
+  <data name="CopyQR" xml:space="preserve">
+    <value>ចម្លងកូដ QR</value>
+  </data>
+  <data name="SaveQR" xml:space="preserve">
+    <value>រក្សាទុកកូដ QR</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>ចម្លង</value>
   </data>
 </root>
