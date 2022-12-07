@@ -24,7 +24,11 @@
 
         public const int OneFiveZero = 150;
 
+        public const int TwoFiveZero = 250;
+
         public const int TwoDoubleFive = 255;
+
+        public const int FourThousand = 4000;
 
     }
 }

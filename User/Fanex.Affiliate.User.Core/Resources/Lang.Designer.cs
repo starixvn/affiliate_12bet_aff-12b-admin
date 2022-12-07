@@ -1331,7 +1331,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliate – New account {0} awaiting approval.
+        ///   Looks up a localized string similar to 12Bet Affiliates - New account {0} awaiting approval.
         /// </summary>
         public static string CsdSubject {
             get {
@@ -2371,15 +2371,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string IndonesiaSupport {
             get {
                 return ResourceManager.GetString("IndonesiaSupport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Data is invalid, please check!.
-        /// </summary>
-        public static string InvalidFeedback {
-            get {
-                return ResourceManager.GetString("InvalidFeedback", resourceCulture);
             }
         }
         
@@ -3604,15 +3595,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can only request payout from 8th to 15th of the month..
-        /// </summary>
-        public static string PayoutTime {
-            get {
-                return ResourceManager.GetString("PayoutTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to PC / Laptop.
         /// </summary>
         public static string PCDevice {
@@ -4153,7 +4135,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliate - Your Application.
+        ///   Looks up a localized string similar to 12Bet Affiliates - Your Application.
         /// </summary>
         public static string RegisSubject {
             get {
@@ -5314,7 +5296,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Your account information has been updated successfully..
+        ///   Looks up a localized string similar to Your account information has been updated successfully..
         /// </summary>
         public static string UpdateAccSuccess {
             get {

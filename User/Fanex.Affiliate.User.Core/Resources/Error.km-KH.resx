@@ -156,4 +156,16 @@
   <data name="PaymentAmountInvalid" xml:space="preserve">
     <value>ចំនួនទឹកប្រាក់ស្នើសុំមិនត្រឹមត្រូវ។</value>
   </data>
+  <data name="PaymentMethodInvalid" xml:space="preserve">
+    <value>សុំទោស! សំរាប់ការទូទាត់តាមរយៈ {0} ក្នុងពេលនេះគឺមិនទាន់បាននោះទេ មានតែវិធីសាស្ត្រសំរាប់គណនី12Betរបស់អ្នកលេងតែប៉ុណ្ណោះដែលអនុវត្តបាន សូម &lt;a href='{1}'&gt;ចុចទីនេះ&lt;/a&gt; ដើម្បីធ្វើការផ្លាស់ប្ដូរ។</value>
+  </data>
+  <data name="PaymentBalanceInvalid" xml:space="preserve">
+    <value>អ្នកមិនអាចស្នើសុំការទូទាត់បានទេ ដោយសារតែសមតុល្យមិនគ្រប់គ្រាន់។</value>
+  </data>
+  <data name="PaymentPayoutTimeInvalid" xml:space="preserve">
+    <value>អ្នកអាចស្នើសុំការទូទាត់បានចាប់ពីថ្ងៃទី 8 ដល់ថ្ងៃទី 15 នៃខែប៉ុណ្ណោះ។</value>
+  </data>
+  <data name="LoginClosedAccount" xml:space="preserve">
+    <value>គណនីរបស់អ្នកត្រូវបានបិទ។ សូមទាក់ទងអ្នកគ្រប់គ្រងរបស់អ្នក!</value>
+  </data>
 </root>

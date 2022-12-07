@@ -316,7 +316,7 @@
     <value>취소요청</value>
   </data>
   <data name="CancelSubject" xml:space="preserve">
-    <value>12BET제휴- 결제요청 알림</value>
+    <value>12Bet 제휴 - 결제요청 알림</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>카보베르데</value>
@@ -988,9 +988,6 @@
   <data name="PaymentRequest" xml:space="preserve">
     <value>입출금 내역</value>
   </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>제휴사는 매달 8일과 15일에만 출금출금요청을 할수 있습니다.</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>보류</value>
   </data>
@@ -1217,13 +1214,13 @@
     <value>제목</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12Bet제휴-귀하의 로그인 디테일</value>
+    <value>12Bet 제휴 - 귀하의 로그인 디테일</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>제목이 잘못되었습니다.</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12Bet제휴- 귀하의 새로운 비밀번호</value>
+    <value>12Bet 제휴 - 귀하의 새로운 비밀번호</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>발송하기</value>
@@ -1951,7 +1948,7 @@
     <value>플레이어</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>12Bet 제휴사 - 계정 세부 정보 확인</value>
+    <value>12Bet 제휴 - 계정 세부 정보 확인</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>신규 가입 / 입금</value>

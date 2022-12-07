@@ -307,7 +307,7 @@
     <value>Yêu cầu hủy</value>
   </data>
   <data name="CancelSubject" xml:space="preserve">
-    <value>12Bet Affiliate - [{transid}] - Thông báo yêu cầu thanh toán</value>
+    <value>Đại lý 12Bet - [{transid}] - Thông báo yêu cầu thanh toán</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>Cape Verde </value>
@@ -406,7 +406,7 @@
     <value>Croatia </value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>12Bet Affiliate - Tài khoản mới đang chờ chấp thuận</value>
+    <value>Đại lý 12Bet - Tài khoản mới đang chờ chấp thuận</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>Tiền tệ</value>
@@ -965,9 +965,6 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="PaymentRequest" xml:space="preserve">
     <value>Yêu cầu thanh toán</value>
   </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>Bạn có thể yêu cầu rút tiền từ ngày 8 đến 15 vào mỗi tháng.</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>Đang chờ</value>
   </data>
@@ -1041,7 +1038,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Mẫu đơn</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12Bet Affiliate - Đơn của bạn</value>
+    <value>Đại lý 12Bet - Đơn của bạn</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>Cảm ơn bạn đã gửi đơn.&lt;br/&gt;&lt;br/&gt;Các trang web và thông tin về đơn của bạn sẽ được nhóm 12Bet Affiliate xem xét để đảm bảo rằng nội dung là phù hợp để quảng cáo sản phẩm của chúng tôi.&lt;br/&gt;&lt;br/&gt;Trong vòng 5 ngày, chúng tôi sẽ có thể cung cấp cho bạn quyết định liên quan đến đơn của bạn. Nếu bạn được chấp thuận, bạn sẽ có toàn quyền truy cập vào chương trình hội viên của chúng tôi.&lt;br /&gt;&lt;br /&gt;Trân trọng!&lt;br /&gt;&lt;br /&gt;Nhóm quản lý hội viên 12BET.&lt;br/&gt;&lt;br/&gt;Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm tra hộp Thư rác của bạn hoặc &lt;a href='{0}'&gt;liên hệ với chúng tôi&lt;/a&gt; và chúng tôi sẽ sẵn sàng hỗ trợ bạn.</value>
@@ -1185,13 +1182,13 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Tiêu Đề</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>Hội viên 12BET - Chi tiết đăng nhập của bạn</value>
+    <value>Đại lý 12Bet - Chi tiết đăng nhập của bạn</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>Chủ thể không hợp lệ</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>Hội viên 12BET - Mật khẩu mới của bạn</value>
+    <value>Đại lý 12Bet - Mật khẩu mới của bạn</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Gửi</value>
@@ -1942,7 +1939,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Người chơi</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>Đại lý 12BET - Xác minh chi tiết tài khoản của bạn</value>
+    <value>Đại lý 12Bet - Xác minh chi tiết tài khoản của bạn</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>Đăng ký mới / Đã nạp tiền</value>
@@ -1988,5 +1985,17 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Sao chép</value>
+  </data>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE SEXY)</value>
+  </data>
+  <data name="PrefixProduct12JADE" xml:space="preserve">
+    <value>12JADE</value>
+  </data>
+  <data name="Teenpatti" xml:space="preserve">
+    <value>Teenpatti</value>
+  </data>
+  <data name="AndarBahar" xml:space="preserve">
+    <value>Andar Bahar</value>
   </data>
 </root>

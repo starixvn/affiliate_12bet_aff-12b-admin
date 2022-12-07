@@ -148,7 +148,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             // Assert
             Assert.False(result.IsOk);
-            Assert.Equal(Lang.PayoutTime, result.Message);
+            Assert.Equal(Error.PaymentPayoutTimeInvalid, result.Message);
         }
 
         [Fact]

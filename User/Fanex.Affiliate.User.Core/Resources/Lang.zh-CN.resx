@@ -307,7 +307,7 @@
     <value>取消申请</value>
   </data>
   <data name="CancelSubject" xml:space="preserve">
-    <value>12Bet合作伙伴 - [{transid}] - 支付申请通知</value>
+    <value>12BET合作伙伴 - [{transid}] - 支付申请通知</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>维德角岛</value>
@@ -406,7 +406,7 @@
     <value>克罗地亚</value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>12BET合作伙伴 — 新帐户等待核准</value>
+    <value>12BET合作伙伴 - 新帐户等待核准</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>外匯</value>
@@ -957,9 +957,6 @@
   <data name="PaymentRequest" xml:space="preserve">
     <value>提款要求</value>
   </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>每月8号至15号为申请提款时间.</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>等待</value>
   </data>
@@ -1033,7 +1030,7 @@
     <value>申请表格</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12BET 合作伙伴 - 您的申请</value>
+    <value>12BET合作伙伴 - 您的申请</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>感谢您提交申请。&lt;br /&gt;&lt;br /&gt;
@@ -1182,13 +1179,13 @@
     <value>主题</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12BET 合作伙伴 — 您的登录详情</value>
+    <value>12BET合作伙伴 - 您的登录详情</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>主题无效</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12BET 合作伙伴 — 您的新密码</value>
+    <value>12BET合作伙伴 - 您的新密码</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
@@ -1960,7 +1957,7 @@
     <value>玩家</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>12BET合作伙伴—验证账户细节</value>
+    <value>12BET合作伙伴 - 验证账户细节</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>新注册 / 存款 会员</value>

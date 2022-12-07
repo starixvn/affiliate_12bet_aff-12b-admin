@@ -61,6 +61,51 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address no more than 250 characters..
+        /// </summary>
+        public static string AddressMaxLength {
+            get {
+                return ResourceManager.GetString("AddressMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Answer no more than 250 characters..
+        /// </summary>
+        public static string AnswerMaxLength {
+            get {
+                return ResourceManager.GetString("AnswerMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City no more than 150 characters..
+        /// </summary>
+        public static string CityMaxLength {
+            get {
+                return ResourceManager.GetString("CityMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Address no more than 50 characters..
+        /// </summary>
+        public static string EmailMaxLength {
+            get {
+                return ResourceManager.GetString("EmailMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name no more than 50 characters..
+        /// </summary>
+        public static string FirstNameMaxLength {
+            get {
+                return ResourceManager.GetString("FirstNameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have not entered an email address that we recognise. Please try again or  &lt;a href=&quot;{0}&quot; class=&apos;err-msg&apos;&gt;Contact us&lt;/a&gt;..
         /// </summary>
         public static string ForgotPassword1001 {
@@ -106,6 +151,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Emoji is invalid..
+        /// </summary>
+        public static string InvalidEmoji {
+            get {
+                return ResourceManager.GetString("InvalidEmoji", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select emoji or input message!.
+        /// </summary>
+        public static string InvalidFeedback {
+            get {
+                return ResourceManager.GetString("InvalidFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name no more than 50 characters..
+        /// </summary>
+        public static string LastNameMaxLength {
+            get {
+                return ResourceManager.GetString("LastNameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account is closed. Please contact your administrator!.
         /// </summary>
         public static string LoginClosedAccount {
@@ -120,6 +192,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string LoginWrongInfo {
             get {
                 return ResourceManager.GetString("LoginWrongInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message no more than 4000 characters..
+        /// </summary>
+        public static string MessageMaxLength {
+            get {
+                return ResourceManager.GetString("MessageMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please describe how you would like to promote if you don’t have the URL, no more than 4000 characters..
+        /// </summary>
+        public static string NoSiteDescMaxLength {
+            get {
+                return ResourceManager.GetString("NoSiteDescMaxLength", resourceCulture);
             }
         }
         
@@ -160,6 +250,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact Number no more than 50 characters..
+        /// </summary>
+        public static string PhoneMaxLength {
+            get {
+                return ResourceManager.GetString("PhoneMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postcode/Zip no more than 50 characters..
+        /// </summary>
+        public static string PostalMaxLength {
+            get {
+                return ResourceManager.GetString("PostalMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The address that you have used to request a new password is not valid..
         /// </summary>
         public static string RecoverPassword1001 {
@@ -183,6 +291,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string RequireIMAccount {
             get {
                 return ResourceManager.GetString("RequireIMAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website URL no more than 250 characters..
+        /// </summary>
+        public static string SiteUrlMaxLength {
+            get {
+                return ResourceManager.GetString("SiteUrlMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Name no more than 50 characters..
+        /// </summary>
+        public static string UserNameMaxLength {
+            get {
+                return ResourceManager.GetString("UserNameMaxLength", resourceCulture);
             }
         }
         

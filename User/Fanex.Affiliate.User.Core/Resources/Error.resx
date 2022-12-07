@@ -168,4 +168,46 @@
   <data name="RecoverPassword1002" xml:space="preserve">
     <value>Recover password failed. Please try again!</value>
   </data>
+  <data name="InvalidFeedback" xml:space="preserve">
+    <value>Please select emoji or input message!</value>
+  </data>
+  <data name="FirstNameMaxLength" xml:space="preserve">
+    <value>First Name no more than 50 characters.</value>
+  </data>
+  <data name="LastNameMaxLength" xml:space="preserve">
+    <value>Last Name no more than 50 characters.</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>Email Address no more than 50 characters.</value>
+  </data>
+  <data name="PhoneMaxLength" xml:space="preserve">
+    <value>Contact Number no more than 50 characters.</value>
+  </data>
+  <data name="AddressMaxLength" xml:space="preserve">
+    <value>Address no more than 250 characters.</value>
+  </data>
+  <data name="CityMaxLength" xml:space="preserve">
+    <value>City no more than 150 characters.</value>
+  </data>
+  <data name="PostalMaxLength" xml:space="preserve">
+    <value>Postcode/Zip no more than 50 characters.</value>
+  </data>
+  <data name="SiteUrlMaxLength" xml:space="preserve">
+    <value>Website URL no more than 250 characters.</value>
+  </data>
+  <data name="NoSiteDescMaxLength" xml:space="preserve">
+    <value>Please describe how you would like to promote if you don’t have the URL, no more than 4000 characters.</value>
+  </data>
+  <data name="UserNameMaxLength" xml:space="preserve">
+    <value>User Name no more than 50 characters.</value>
+  </data>
+  <data name="AnswerMaxLength" xml:space="preserve">
+    <value>Your Answer no more than 250 characters.</value>
+  </data>
+  <data name="MessageMaxLength" xml:space="preserve">
+    <value>Message no more than 4000 characters.</value>
+  </data>
+  <data name="InvalidEmoji" xml:space="preserve">
+    <value>Emoji is invalid.</value>
+  </data>
 </root>

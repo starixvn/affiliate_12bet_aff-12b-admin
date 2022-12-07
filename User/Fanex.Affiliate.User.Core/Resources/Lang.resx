@@ -435,7 +435,7 @@
     <value>Croatia </value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>12Bet Affiliate – New account {0} awaiting approval</value>
+    <value>12Bet Affiliates - New account {0} awaiting approval</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>Currency</value>
@@ -1054,9 +1054,6 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="PaymentRequest" xml:space="preserve">
     <value>Payment Request</value>
   </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>You can only request payout from 8th to 15th of the month.</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>Pending</value>
   </data>
@@ -1131,7 +1128,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Application Form</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12Bet Affiliate - Your Application</value>
+    <value>12Bet Affiliates - Your Application</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>Thank you for submitting your application.&lt;br/&gt;&lt;br/&gt;Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;&lt;br/&gt;Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;Best Regards,&lt;br /&gt;&lt;br /&gt;The team at 12Bet Affiliates&lt;br/&gt;&lt;br/&gt;For any reason, you do not receive the email, please check your Spam box or &lt;a href='{0}'&gt;Contact Us&lt;/a&gt; and we will glad to assist you.</value>
@@ -1428,7 +1425,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Unknown</value>
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
-    <value> Your account information has been updated successfully.</value>
+    <value>Your account information has been updated successfully.</value>
   </data>
   <data name="Uruguay" xml:space="preserve">
     <value>Uruguay </value>
@@ -2034,9 +2031,6 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="ThankYou" xml:space="preserve">
     <value>Thank you for your valuable feedback.</value>
-  </data>
-  <data name="InvalidFeedback" xml:space="preserve">
-    <value>Data is invalid, please check!</value>
   </data>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Above</value>

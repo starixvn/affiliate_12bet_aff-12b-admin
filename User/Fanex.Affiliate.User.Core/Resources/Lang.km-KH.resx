@@ -776,7 +776,7 @@
     <value>ពាក្យស្នើសុំកំពុងថិតក្នុង​ការត្រួត​ពិនិត្យ</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>សូមអរគុណចំពោះការដាក់ពាក្យស្នើសុំរបស់អ្នក.&lt;br/&gt;&lt;br/&gt;គេហទំព័រ និងព័ត៌មានលម្អិតនៃកម្មវិធីរបស់អ្នកនឹងត្រូវបានពិនិត្យដោយក្រុមការងារភ្នាក់ងារ12Bet ដើម្បីធានាបានថាខ្លឹមសារគឺសមរម្យសំរាប់ការផ្សព្វផ្សាយផលិតផលរបស់យើង។.&lt;br/&gt;&lt;br/&gt;យើងនិងជូនដំណឹងទៅអ្នកវិញក្នុងរយះពេល5ថ្ងៃ ប្រសិនបើត្រូវបានយល់ព្រម អ្នកនិងអាចចូលទៅដំណើរការយ៉ាងពេញលេញក្នុងកម្មវិធីជាភ្នាក់ងាររបស់យើង។&lt;br /&gt;&lt;br /&gt;ដោយក្តីគោរព!&lt;br /&gt;&lt;br /&gt;ពីក្រុមភ្នាក់ងារ 12Bet&lt;br/&gt;&lt;br/&gt;សម្រាប់ហេតុផលណាមួយដែលអ្នកមិនអាចទទួលបានអ៊ីមែល សូមពិនិត្យមើលប្រអប់សារ Spam របស់អ្នក ឬ &lt;a href='{0}'&gt;ទាក់ទងយើង&lt;/a&gt; ហើយយើងនឹងរីករាយក្នុងការជួយអ្នក។</value>
+    <value>សូមអរគុណចំពោះការដាក់ពាក្យស្នើសុំរបស់អ្នក.&lt;br/&gt;&lt;br/&gt;គេហទំព័រ និងព័ត៌មានលម្អិតនៃកម្មវិធីរបស់អ្នកនឹងត្រូវបានពិនិត្យដោយក្រុមការងារភ្នាក់ងារ12Bet ដើម្បីធានាបានថាខ្លឹមសារគឺសមរម្យសំរាប់ការផ្សព្វផ្សាយផលិតផលរបស់យើង។&lt;br/&gt;&lt;br/&gt;យើងនិងជូនដំណឹងទៅអ្នកវិញក្នុងរយះពេល5ថ្ងៃ ប្រសិនបើត្រូវបានយល់ព្រម អ្នកនិងអាចចូលទៅដំណើរការយ៉ាងពេញលេញក្នុងកម្មវិធីជាភ្នាក់ងាររបស់យើង។&lt;br /&gt;&lt;br /&gt;ដោយក្តីគោរព!&lt;br /&gt;&lt;br /&gt;ពីក្រុមភ្នាក់ងារ 12Bet&lt;br/&gt;&lt;br/&gt;សម្រាប់ហេតុផលណាមួយដែលអ្នកមិនអាចទទួលបានអ៊ីមែល សូមពិនិត្យមើលប្រអប់សារ Spam របស់អ្នក ឬ &lt;a href='{0}'&gt;ទាក់ទងយើង&lt;/a&gt; ហើយយើងនឹងរីករាយក្នុងការជួយអ្នក។</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
     <value>អ្នកផ្តល់ជំនួយភាសាអង់គ្លេស</value>
@@ -1057,7 +1057,7 @@
     <value>សមាជិក</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>ភ្នាក់ងារ 12Bet - ផ្ទៀងផ្ទាត់ព័ត៌មានលម្អិតគណនីរបស់អ្នក។</value>
+    <value>ភ្នាក់ងារ12Bet - ផ្ទៀងផ្ទាត់ព័ត៌មានលម្អិតគណនីរបស់អ្នក។</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>ការចុះឈ្មោះថ្មី / ដាក់ប្រាក់</value>
@@ -1103,5 +1103,851 @@
   </data>
   <data name="Copy" xml:space="preserve">
     <value>ចម្លង</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>ឆ្នាំ</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>ខែ</value>
+  </data>
+  <data name="GrossWinLoss" xml:space="preserve">
+    <value>ចាញ់ឈ្នះសរុប</value>
+  </data>
+  <data name="NoteCommissionCalculation" xml:space="preserve">
+    <value>កំរៃជើងសារ = (ចាញ់ឈ្នះសរុប - ថ្លៃសេវាវេទិកា - ថ្លៃប្រតិបត្តិការ - ថ្លៃសេវាធនាគារ - ប្រាក់រង្វាន់) x Comm អត្រា</value>
+  </data>
+  <data name="PlatformFee" xml:space="preserve">
+    <value>ថ្លៃសេវាវេទិកា</value>
+  </data>
+  <data name="OperationalFee" xml:space="preserve">
+    <value>ថ្លៃប្រតិបត្តិការ</value>
+  </data>
+  <data name="CommRate" xml:space="preserve">
+    <value>Comm. អត្រា</value>
+  </data>
+  <data name="CommShorted" xml:space="preserve">
+    <value>Comm.</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>បណ្ដោះអាសន្ន</value>
+  </data>
+  <data name="Uncalculated" xml:space="preserve">
+    <value>មិនបានគណនា</value>
+  </data>
+  <data name="Non_Deposit" xml:space="preserve">
+    <value>មិនបានដាក់ប្រាក់</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>លេខទូរសព្ទ</value>
+  </data>
+  <data name="FirstDepositDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទដាក់ប្រាក់ដំបូង</value>
+  </data>
+  <data name="TransactionID" xml:space="preserve">
+    <value>លេខ​សម្គាល់​ប្រតិ​ប​ត្ដិ​ការ</value>
+  </data>
+  <data name="AccountNumber" xml:space="preserve">
+    <value>លេខ​គណនី</value>
+  </data>
+  <data name="BankName" xml:space="preserve">
+    <value>ឈ្មោះ​ធនាគារ</value>
+  </data>
+  <data name="BankAddress" xml:space="preserve">
+    <value>អាស័យ​ដ្ឋាន​ធនាគារ</value>
+  </data>
+  <data name="BankCountry" xml:space="preserve">
+    <value>ប្រទេសធនាគារ</value>
+  </data>
+  <data name="BankCity" xml:space="preserve">
+    <value>ទីក្រុងធនាគារ</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>ប្រភពដើម</value>
+  </data>
+  <data name="USDEqv" xml:space="preserve">
+    <value>USD Eqv</value>
+  </data>
+  <data name="AccInfo" xml:space="preserve">
+    <value>ព​ត៌​មាន​គណនី</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>បោះបង់</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>ផ្លាស់ប្តូរ</value>
+  </data>
+  <data name="RecentPayment" xml:space="preserve">
+    <value>ការទូទាត់សំរាប់ឥឡូវនេះ</value>
+  </data>
+  <data name="AmtErr" xml:space="preserve">
+    <value>ចំនួនទឹកប្រាក់ស្នើសុំមិនត្រឹមត្រូវ! ចំនួនទឹកប្រាក់ត្រូវតែចន្លោះពី</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>ទៅ</value>
+  </data>
+  <data name="BankTransfer" xml:space="preserve">
+    <value>ផ្ទេរប្រាក់តាមធនាគារ</value>
+  </data>
+  <data name="Proccessing" xml:space="preserve">
+    <value>ដំណើរការ</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>យល់ព្រម</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>បានលុបចោល</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>មិនស្គាល់</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>បដិសេធ</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>លេខ​យោង</value>
+  </data>
+  <data name="DateRequest" xml:space="preserve">
+    <value>កាលបរិច្ឆេទស្នើសុំ</value>
+  </data>
+  <data name="RequestAmount" xml:space="preserve">
+    <value>ចំនួនទឹកប្រាក់ស្នើសុំ</value>
+  </data>
+  <data name="CompletedDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទបញ្ចប់</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>ស្ថានភាព</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>ការពិពណ៌នា</value>
+  </data>
+  <data name="PendingRequest" xml:space="preserve">
+    <value>សំណើរមិនទាន់សម្រេច</value>
+  </data>
+  <data name="CancelRequest" xml:space="preserve">
+    <value>បោះបង់ការស្នើសុំ</value>
+  </data>
+  <data name="Err3001" xml:space="preserve">
+    <value>អ្នកមានសំណើដែលមិនទាន់សម្រេច ដើម្បីបង្កើតសំណើថ្មី សូមលុបចោលសំណើរដែលមិនទាន់បានសម្រេចនោះសិន ឬរង់ចាំរហូតដល់ដំណើរការត្រូវបានបញ្ចប់សិន។</value>
+  </data>
+  <data name="MinWithdraw" xml:space="preserve">
+    <value>ចំនួនទឹកប្រាក់ដកតិចបំផុត</value>
+  </data>
+  <data name="RequestAmt" xml:space="preserve">
+    <value>បញ្ចូលចំនួនទឹកប្រាក់ស្នើសុំ</value>
+  </data>
+  <data name="RequestPayout" xml:space="preserve">
+    <value>ស្នើសុំការទូទាត់</value>
+  </data>
+  <data name="RequestPayoutSucc" xml:space="preserve">
+    <value>ជោគជ័យសំរាប់ការស្នើសុំទូទាត់!</value>
+  </data>
+  <data name="AConfirmationEmail" xml:space="preserve">
+    <value>អ៊ីមែលបញ្ជាក់កំពុងផ្ញើទៅអ៊ីមែលរបស់អ្នក</value>
+  </data>
+  <data name="CancelPayoutSucc" xml:space="preserve">
+    <value>សំណើទូទាត់ប្រាក់របស់អ្នកត្រូវបានលុបចោល</value>
+  </data>
+  <data name="DailyEarnings" xml:space="preserve">
+    <value>ប្រាក់ចំណូលប្រចាំថ្ងៃ</value>
+  </data>
+  <data name="Transaction" xml:space="preserve">
+    <value>ប្រតិបត្តិការ</value>
+  </data>
+  <data name="Adjustment" xml:space="preserve">
+    <value>ការកែតម្រូវ</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>​បច្ចុប្បន្ន</value>
+  </data>
+  <data name="MonthlyWinlost" xml:space="preserve">
+    <value>ឈ្នះចាញ់ ប្រចាំខែ</value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>ប្រភេទ​ផលិតផល</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>ប្រភេទប្រព័ន្ធផ្សព្វផ្សាយ</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>ទំព័រ</value>
+  </data>
+  <data name="TotalClick" xml:space="preserve">
+    <value>ការចុចសរុប</value>
+  </data>
+  <data name="UniqueClick" xml:space="preserve">
+    <value>ការចុចតែម្តង</value>
+  </data>
+  <data name="FDM" xml:space="preserve">
+    <value>FDM</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>គ្មាន</value>
+  </data>
+  <data name="TrackingStatistics" xml:space="preserve">
+    <value>ស្ថិតិតាមដាន</value>
+  </data>
+  <data name="TrackingCode" xml:space="preserve">
+    <value>កូដតាមដាន</value>
+  </data>
+  <data name="Guinea" xml:space="preserve">
+    <value>Guinea</value>
+  </data>
+  <data name="India" xml:space="preserve">
+    <value>India</value>
+  </data>
+  <data name="Indonesia" xml:space="preserve">
+    <value>Indonesia </value>
+  </data>
+  <data name="Iran" xml:space="preserve">
+    <value>Iran </value>
+  </data>
+  <data name="Iraq" xml:space="preserve">
+    <value>Iraq </value>
+  </data>
+  <data name="Ireland" xml:space="preserve">
+    <value>Ireland </value>
+  </data>
+  <data name="Thisisasystemau" xml:space="preserve">
+    <value>នេះជាអ៊ីមែលដែលបង្កើតឡើងដោយប្រព័ន្ធស្វ័យប្រវត្តិ សូមកុំឆ្លើយតបអ៊ីមែលនេះ។</value>
+  </data>
+  <data name="EmailTitlePasswordRecovery" xml:space="preserve">
+    <value>ព័ត៌មានលម្អិតអំពីការចូលរបស់អ្នក។</value>
+  </data>
+  <data name="SubjectForgetPass" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - ព័ត៌មានលម្អិតពីការចូលរបស់អ្នក។</value>
+  </data>
+  <data name="EmailTitleNewPassword" xml:space="preserve">
+    <value>ពាក្យសម្ងាត់ថ្មីរបស់អ្នក។ឲ</value>
+  </data>
+  <data name="SubjectNewPass" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - ពាក្យសម្ងាត់ថ្មីរបស់អ្នក</value>
+  </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>សេចក្តីជូនដំណឹងអំពីការស្នើសុំ</value>
+  </data>
+  <data name="CancelSubject" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet  - [{transid}] - សេចក្តីជូនដំណឹងអំពីការស្នើសុំ</value>
+  </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>ការដាក់ពាក្យរបស់អ្នក</value>
+  </data>
+  <data name="RegisSubject" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - ការដាក់ពាក្យរបស់អ្នក</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>ខែកញ្ញា</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>មករា</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>ខែកក្កដា</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>ខែមិថុនា</value>
+  </data>
+  <data name="RMB" xml:space="preserve">
+    <value>RMB (Ren Min Bi)</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>ត្រឡប់វិញ</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>រូបភាព</value>
+  </data>
+  <data name="USD" xml:space="preserve">
+    <value>USD (ដុល្លារអាមេរិក)</value>
+  </data>
+  <data name="ESports" xml:space="preserve">
+    <value>កីឡាអេឡិចត្រូនិក</value>
+  </data>
+  <data name="EUR" xml:space="preserve">
+    <value>EUR (Euro)</value>
+  </data>
+  <data name="EnglishEU" xml:space="preserve">
+    <value>English_Euro</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>ខែកុម្ភៈ</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>ខែធ្នូ</value>
+  </data>
+  <data name="Football" xml:space="preserve">
+    <value>បាល់ទាត់</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>អ្នកបង្កើត</value>
+  </data>
+  <data name="GBP" xml:space="preserve">
+    <value>GBP (ប្រាក់ផោនចក្រភពអង់គ្លេស)</value>
+  </data>
+  <data name="Sportbook" xml:space="preserve">
+    <value>ទំព័រកីឡា</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>កីឡា</value>
+  </data>
+  <data name="Flash" xml:space="preserve">
+    <value>Flash</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>ខែមីនា</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>ទំហំទំព័រ</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>ខែវិច្ឆិកា</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>កំពុងរង់ចាំ</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>ខែឧសភា</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>ខែតុលា</value>
+  </data>
+  <data name="MYR" xml:space="preserve">
+    <value>MYR (រីងហ្គីតម៉ាឡេស៊ី)</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>ខែមេសា</value>
+  </data>
+  <data name="Poker" xml:space="preserve">
+    <value>Poker</value>
+  </data>
+  <data name="AUD" xml:space="preserve">
+    <value>AUD (ដុល្លារអូស្ត្រាលី)</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>ខែសីហា</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="TextLink" xml:space="preserve">
+    <value>តំណភ្ជាប់អត្ថបទ</value>
+  </data>
+  <data name="Tier" xml:space="preserve">
+    <value>កម្រិត</value>
+  </data>
+  <data name="Swaziland" xml:space="preserve">
+    <value>Swaziland </value>
+  </data>
+  <data name="Thailand" xml:space="preserve">
+    <value>Thailand </value>
+  </data>
+  <data name="Pakistan" xml:space="preserve">
+    <value>Pakistan</value>
+  </data>
+  <data name="Panama" xml:space="preserve">
+    <value>Panama </value>
+  </data>
+  <data name="PapuaNewGuinea" xml:space="preserve">
+    <value>Papua New Guinea </value>
+  </data>
+  <data name="Paraguay" xml:space="preserve">
+    <value>Paraguay </value>
+  </data>
+  <data name="Tanzania" xml:space="preserve">
+    <value>Tanzania </value>
+  </data>
+  <data name="Taiwan" xml:space="preserve">
+    <value>Taiwan </value>
+  </data>
+  <data name="Sweden" xml:space="preserve">
+    <value>Sweden </value>
+  </data>
+  <data name="Switzerland" xml:space="preserve">
+    <value>Switzerland </value>
+  </data>
+  <data name="Venezuela" xml:space="preserve">
+    <value>Venezuela </value>
+  </data>
+  <data name="Norway" xml:space="preserve">
+    <value>Norway </value>
+  </data>
+  <data name="Uruguay" xml:space="preserve">
+    <value>Uruguay </value>
+  </data>
+  <data name="UnitedStatesofAmerica" xml:space="preserve">
+    <value>United States of America </value>
+  </data>
+  <data name="UnitedKingdomofGreatBritainandNorthernIreland" xml:space="preserve">
+    <value>United Kingdom of Great Britain</value>
+  </data>
+  <data name="UnitedArabEmirates" xml:space="preserve">
+    <value>United Arab Emirates </value>
+  </data>
+  <data name="Oman" xml:space="preserve">
+    <value>Oman </value>
+  </data>
+  <data name="Ukraine" xml:space="preserve">
+    <value>Ukraine </value>
+  </data>
+  <data name="Uganda" xml:space="preserve">
+    <value>Uganda </value>
+  </data>
+  <data name="Turkey" xml:space="preserve">
+    <value>Turkey </value>
+  </data>
+  <data name="Tunisia" xml:space="preserve">
+    <value>Tunisia </value>
+  </data>
+  <data name="TrinidadandTobago" xml:space="preserve">
+    <value>Trinidad and Tobago </value>
+  </data>
+  <data name="Togo" xml:space="preserve">
+    <value>Togo </value>
+  </data>
+  <data name="Suriname" xml:space="preserve">
+    <value>Suriname </value>
+  </data>
+  <data name="Seychelles" xml:space="preserve">
+    <value>Seychelles </value>
+  </data>
+  <data name="Senegal" xml:space="preserve">
+    <value>Senegal </value>
+  </data>
+  <data name="SaudiArabia" xml:space="preserve">
+    <value>Saudi Arabia </value>
+  </data>
+  <data name="SaoTomeandPrincipe" xml:space="preserve">
+    <value>Sao Tome and Principe </value>
+  </data>
+  <data name="SaintVincentandtheGrenadines" xml:space="preserve">
+    <value>Saint Vincent and the Grenadines </value>
+  </data>
+  <data name="SaintLucia" xml:space="preserve">
+    <value>Saint Lucia </value>
+  </data>
+  <data name="SaintChristopherStKittsandNevis" xml:space="preserve">
+    <value>Saint Christopher (St. Kitts) and Nevis </value>
+  </data>
+  <data name="RussianFederation" xml:space="preserve">
+    <value>Russian Federation </value>
+  </data>
+  <data name="Romania" xml:space="preserve">
+    <value>Romania </value>
+  </data>
+  <data name="Rwanda" xml:space="preserve">
+    <value>Rwanda </value>
+  </data>
+  <data name="Sudan" xml:space="preserve">
+    <value>Sudan </value>
+  </data>
+  <data name="SierraLeone" xml:space="preserve">
+    <value>Sierra Leone </value>
+  </data>
+  <data name="Denmark" xml:space="preserve">
+    <value>Denmark </value>
+  </data>
+  <data name="NewCaledonia" xml:space="preserve">
+    <value>New Caledonia </value>
+  </data>
+  <data name="Estonia" xml:space="preserve">
+    <value>Estonia </value>
+  </data>
+  <data name="Ethiopia" xml:space="preserve">
+    <value>Ethiopia </value>
+  </data>
+  <data name="Fiji" xml:space="preserve">
+    <value>Fiji </value>
+  </data>
+  <data name="Netherlands" xml:space="preserve">
+    <value>Netherlands </value>
+  </data>
+  <data name="Nepal" xml:space="preserve">
+    <value>Nepal </value>
+  </data>
+  <data name="Finland" xml:space="preserve">
+    <value>Finland </value>
+  </data>
+  <data name="Namibia" xml:space="preserve">
+    <value>Namibia </value>
+  </data>
+  <data name="France" xml:space="preserve">
+    <value>France</value>
+  </data>
+  <data name="Myanmar" xml:space="preserve">
+    <value>Myanmar </value>
+  </data>
+  <data name="Nauru" xml:space="preserve">
+    <value>Nauru </value>
+  </data>
+  <data name="FrenchPolynesia" xml:space="preserve">
+    <value>French Polynesia </value>
+  </data>
+  <data name="Gabon" xml:space="preserve">
+    <value>Gabon </value>
+  </data>
+  <data name="Georgia" xml:space="preserve">
+    <value>Georgia </value>
+  </data>
+  <data name="Morocco" xml:space="preserve">
+    <value>Morocco </value>
+  </data>
+  <data name="Germany" xml:space="preserve">
+    <value>Germany </value>
+  </data>
+  <data name="Niger" xml:space="preserve">
+    <value>Niger </value>
+  </data>
+  <data name="NewZealand" xml:space="preserve">
+    <value>New Zealand </value>
+  </data>
+  <data name="Nigeria" xml:space="preserve">
+    <value>Nigeria </value>
+  </data>
+  <data name="Eritrea" xml:space="preserve">
+    <value>Eritrea </value>
+  </data>
+  <data name="CotedIvoireRep" xml:space="preserve">
+    <value>Cote d'Ivoire (Rep) </value>
+  </data>
+  <data name="PasswordIsRequired" xml:space="preserve">
+    <value>ពាក្យសម្ងាត់ត្រូវបានទាមទារ</value>
+  </data>
+  <data name="Croatia" xml:space="preserve">
+    <value>Croatia </value>
+  </data>
+  <data name="Cyprus" xml:space="preserve">
+    <value>Cyprus </value>
+  </data>
+  <data name="CzechRep" xml:space="preserve">
+    <value>Czech (Rep) </value>
+  </data>
+  <data name="Ghana" xml:space="preserve">
+    <value>Ghana </value>
+  </data>
+  <data name="DemRepofCongo" xml:space="preserve">
+    <value>Dem Rep of Congo </value>
+  </data>
+  <data name="DominicanRep" xml:space="preserve">
+    <value>Dominican Rep. </value>
+  </data>
+  <data name="DominicaCommonwealthof" xml:space="preserve">
+    <value>Dominica (Commonwealth of) </value>
+  </data>
+  <data name="Egypt" xml:space="preserve">
+    <value>Egypt </value>
+  </data>
+  <data name="Ecuador" xml:space="preserve">
+    <value>Ecuador </value>
+  </data>
+  <data name="Malaysia" xml:space="preserve">
+    <value>Malaysia </value>
+  </data>
+  <data name="QualifyingMembers" xml:space="preserve">
+    <value>≥ 5 </value>
+  </data>
+  <data name="Kuwait" xml:space="preserve">
+    <value>Kuwait </value>
+  </data>
+  <data name="Grenada" xml:space="preserve">
+    <value>Grenada </value>
+  </data>
+  <data name="Greece" xml:space="preserve">
+    <value>Greece </value>
+  </data>
+  <data name="Gibraltar" xml:space="preserve">
+    <value>Gibraltar </value>
+  </data>
+  <data name="Latvia" xml:space="preserve">
+    <value>Latvia </value>
+  </data>
+  <data name="WesternSamoa" xml:space="preserve">
+    <value>Western Samoa </value>
+  </data>
+  <data name="LaoPeoplesDemRep" xml:space="preserve">
+    <value>Lao People's Dem Rep </value>
+  </data>
+  <data name="Bangladesh" xml:space="preserve">
+    <value>Bangladesh </value>
+  </data>
+  <data name="Poland" xml:space="preserve">
+    <value>Poland </value>
+  </data>
+  <data name="Bahrain" xml:space="preserve">
+    <value>Bahrain </value>
+  </data>
+  <data name="Bahamas" xml:space="preserve">
+    <value>Bahamas </value>
+  </data>
+  <data name="Portugal" xml:space="preserve">
+    <value>Portugal </value>
+  </data>
+  <data name="Azerbaijan" xml:space="preserve">
+    <value>Azerbaijan </value>
+  </data>
+  <data name="Austria" xml:space="preserve">
+    <value>Austria </value>
+  </data>
+  <data name="CapeVerde" xml:space="preserve">
+    <value>Cape Verde </value>
+  </data>
+  <data name="Australia" xml:space="preserve">
+    <value>Australia </value>
+  </data>
+  <data name="Bolivia" xml:space="preserve">
+    <value>Bolivia </value>
+  </data>
+  <data name="Aruba" xml:space="preserve">
+    <value>Aruba </value>
+  </data>
+  <data name="Brazil" xml:space="preserve">
+    <value>Brazil </value>
+  </data>
+  <data name="Maldives" xml:space="preserve">
+    <value>Maldives </value>
+  </data>
+  <data name="Peru" xml:space="preserve">
+    <value>Peru </value>
+  </data>
+  <data name="Spain" xml:space="preserve">
+    <value>Spain </value>
+  </data>
+  <data name="_12BET" xml:space="preserve">
+    <value>12BET</value>
+  </data>
+  <data name="Jordan" xml:space="preserve">
+    <value>Jordan </value>
+  </data>
+  <data name="Yugoslavia" xml:space="preserve">
+    <value>Yugoslavia </value>
+  </data>
+  <data name="Japan" xml:space="preserve">
+    <value>Japan </value>
+  </data>
+  <data name="Zambia" xml:space="preserve">
+    <value>Zambia </value>
+  </data>
+  <data name="Jamaica" xml:space="preserve">
+    <value>Jamaica </value>
+  </data>
+  <data name="Italy" xml:space="preserve">
+    <value>Italy </value>
+  </data>
+  <data name="Israel" xml:space="preserve">
+    <value>Israel </value>
+  </data>
+  <data name="Zimbabwe" xml:space="preserve">
+    <value>Zimbabwe </value>
+  </data>
+  <data name="Iceland" xml:space="preserve">
+    <value>Iceland </value>
+  </data>
+  <data name="Kenya" xml:space="preserve">
+    <value>Kenya </value>
+  </data>
+  <data name="Mexico" xml:space="preserve">
+    <value>Mexico </value>
+  </data>
+  <data name="Hungary" xml:space="preserve">
+    <value>Hungary </value>
+  </data>
+  <data name="Moldova" xml:space="preserve">
+    <value>Moldova </value>
+  </data>
+  <data name="Canada" xml:space="preserve">
+    <value>Canada </value>
+  </data>
+  <data name="PrefixProduct12MOONSTONE" xml:space="preserve">
+    <value>12MOONSTONE</value>
+  </data>
+  <data name="Bhutan" xml:space="preserve">
+    <value>Bhutan </value>
+  </data>
+  <data name="Cambodia" xml:space="preserve">
+    <value>Cambodia </value>
+  </data>
+  <data name="Cameroon" xml:space="preserve">
+    <value>Cameroon </value>
+  </data>
+  <data name="Barbados" xml:space="preserve">
+    <value>Barbados </value>
+  </data>
+  <data name="Product12MOONSTONE" xml:space="preserve">
+    <value>12MOONSTONE (SUPER SPADE GAMES)</value>
+  </data>
+  <data name="Benin" xml:space="preserve">
+    <value>Benin </value>
+  </data>
+  <data name="BosniaandHerzegovina" xml:space="preserve">
+    <value>Bosnia and Herzegovina </value>
+  </data>
+  <data name="Bermuda" xml:space="preserve">
+    <value>Bermuda </value>
+  </data>
+  <data name="HongKong" xml:space="preserve">
+    <value>Hong Kong </value>
+  </data>
+  <data name="Honduras" xml:space="preserve">
+    <value>Honduras </value>
+  </data>
+  <data name="Mongolia" xml:space="preserve">
+    <value>Mongolia </value>
+  </data>
+  <data name="Haiti" xml:space="preserve">
+    <value>Haiti </value>
+  </data>
+  <data name="Guyana" xml:space="preserve">
+    <value>Guyana </value>
+  </data>
+  <data name="Guatemala" xml:space="preserve">
+    <value>Guatemala </value>
+  </data>
+  <data name="Yemen" xml:space="preserve">
+    <value>Yemen </value>
+  </data>
+  <data name="CostaRica" xml:space="preserve">
+    <value>Costa Rica </value>
+  </data>
+  <data name="Belize" xml:space="preserve">
+    <value>Belize </value>
+  </data>
+  <data name="Belgium" xml:space="preserve">
+    <value>Belgium </value>
+  </data>
+  <data name="BurkinaFaso" xml:space="preserve">
+    <value>Burkina Faso </value>
+  </data>
+  <data name="Belarus" xml:space="preserve">
+    <value>Belarus </value>
+  </data>
+  <data name="Bulgaria" xml:space="preserve">
+    <value>Bulgaria </value>
+  </data>
+  <data name="CookIslands" xml:space="preserve">
+    <value>Cook Islands </value>
+  </data>
+  <data name="Armenia" xml:space="preserve">
+    <value>Armenia </value>
+  </data>
+  <data name="Botswana" xml:space="preserve">
+    <value>Botswana </value>
+  </data>
+  <data name="Lithuania" xml:space="preserve">
+    <value>Lithuania</value>
+  </data>
+  <data name="Malawi" xml:space="preserve">
+    <value>Malawi </value>
+  </data>
+  <data name="Mali" xml:space="preserve">
+    <value>Mali </value>
+  </data>
+  <data name="Madagascar" xml:space="preserve">
+    <value>Madagascar </value>
+  </data>
+  <data name="Macedonia" xml:space="preserve">
+    <value>Macedonia </value>
+  </data>
+  <data name="Macao" xml:space="preserve">
+    <value>Macao </value>
+  </data>
+  <data name="Luxembourg" xml:space="preserve">
+    <value>Luxembourg </value>
+  </data>
+  <data name="Malta" xml:space="preserve">
+    <value>Malta </value>
+  </data>
+  <data name="VietNam" xml:space="preserve">
+    <value>Viet Nam </value>
+  </data>
+  <data name="BruneiDarussalam" xml:space="preserve">
+    <value>Brunei Darussalam </value>
+  </data>
+  <data name="Burundi" xml:space="preserve">
+    <value>Burundi </value>
+  </data>
+  <data name="Mauritania" xml:space="preserve">
+    <value>Mauritania </value>
+  </data>
+  <data name="Mauritius" xml:space="preserve">
+    <value>Mauritius </value>
+  </data>
+  <data name="KoreaRep" xml:space="preserve">
+    <value>Korea (Rep) </value>
+  </data>
+  <data name="Liechtenstein" xml:space="preserve">
+    <value>Liechtenstein </value>
+  </data>
+  <data name="Lesotho" xml:space="preserve">
+    <value>Lesotho </value>
+  </data>
+  <data name="ElSalvador" xml:space="preserve">
+    <value>El Salvador </value>
+  </data>
+  <data name="Chile" xml:space="preserve">
+    <value>Chile </value>
+  </data>
+  <data name="ChinaPeoplesRep" xml:space="preserve">
+    <value>China (People's Rep) </value>
+  </data>
+  <data name="Somalia" xml:space="preserve">
+    <value>Somalia </value>
+  </data>
+  <data name="Anguilla" xml:space="preserve">
+    <value>Anguilla </value>
+  </data>
+  <data name="Angola" xml:space="preserve">
+    <value>Angola </value>
+  </data>
+  <data name="SolomonIslands" xml:space="preserve">
+    <value>Solomon Islands </value>
+  </data>
+  <data name="SouthAfrica" xml:space="preserve">
+    <value>South Africa </value>
+  </data>
+  <data name="SuffixProduct12MOONSTONE" xml:space="preserve">
+    <value>(SUPER SPADE GAMES)</value>
+  </data>
+  <data name="CentralAfricanRep" xml:space="preserve">
+    <value>Central African Rep </value>
+  </data>
+  <data name="Colombia" xml:space="preserve">
+    <value>Colombia</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>ចំនួនទឹកប្រាក់</value>
+  </data>
+  <data name="Algeria" xml:space="preserve">
+    <value>Algeria </value>
+  </data>
+  <data name="Albania" xml:space="preserve">
+    <value>Albania</value>
+  </data>
+  <data name="SriLanka" xml:space="preserve">
+    <value>Sri Lanka </value>
+  </data>
+  <data name="Slovenia" xml:space="preserve">
+    <value>Slovenia </value>
+  </data>
+  <data name="Qatar" xml:space="preserve">
+    <value>Qatar </value>
+  </data>
+  <data name="Philippines" xml:space="preserve">
+    <value>Philippines </value>
+  </data>
+  <data name="Slovakia" xml:space="preserve">
+    <value>Slovakia </value>
+  </data>
+  <data name="Singapore" xml:space="preserve">
+    <value>Singapore </value>
+  </data>
+  <data name="CongoRep" xml:space="preserve">
+    <value>Congo(Rep) </value>
+  </data>
+  <data name="Chad" xml:space="preserve">
+    <value>Chad </value>
+  </data>
+  <data name="CaymanIslands" xml:space="preserve">
+    <value>Cayman Islands </value>
+  </data>
+  <data name="Argentina" xml:space="preserve">
+    <value>Argentina </value>
   </data>
 </root>

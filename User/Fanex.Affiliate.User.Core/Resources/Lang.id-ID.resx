@@ -406,7 +406,7 @@
     <value>Kroasia </value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>Rekening baru Afiliasi 12Bet ﾖ  menunggu persetujuan</value>
+    <value>Afiliasi 12Bet - Rekening baru Afiliasi 12Bet ﾖ  menunggu persetujuan</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>Mata Uang</value>
@@ -964,9 +964,6 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="PaymentRequest" xml:space="preserve">
     <value>Penarikan</value>
-  </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>Anda hanya bisa meminta pembayaran dari tanggal 8 - 15 dalam bulan.</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Tertunda</value>
@@ -1954,7 +1951,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Verifikasi detail akun Anda</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>Afiliasi 12BET - Verifikasi data akun Anda</value>
+    <value>Afiliasi 12Bet - Verifikasi data akun Anda</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>Daftar/Deposit terbaru</value>

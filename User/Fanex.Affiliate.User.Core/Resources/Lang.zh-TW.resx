@@ -304,7 +304,7 @@
     <value>取消申請</value>
   </data>
   <data name="CancelSubject" xml:space="preserve">
-    <value>12Bet合作夥伴- [{transid}] -支付申請通知</value>
+    <value>12BET合作夥伴 - [{transid}] -支付申請通知</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>維德角島</value>
@@ -403,7 +403,7 @@
     <value>克羅地亞</value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>12BET合作夥伴—新帳戶等待核准</value>
+    <value>12BET合作夥伴 - 新帳戶等待核准</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>外汇</value>
@@ -962,9 +962,6 @@
   <data name="PaymentRequest" xml:space="preserve">
     <value>提款要求</value>
   </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>每月8號至15號為申請提款時間.</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>等待</value>
   </data>
@@ -1038,7 +1035,7 @@
     <value>申請表格</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12BET合作夥伴-您的申請</value>
+    <value>12BET合作夥伴 - 您的申請</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>感謝您提交申請。&lt;br /&gt;&lt;br /&gt;
@@ -1187,13 +1184,13 @@
     <value>主旨</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12BET合作夥伴—您的登錄詳情</value>
+    <value>12BET合作夥伴 - 您的登錄詳情</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>主題無效</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12BET合作夥伴—您的新密碼</value>
+    <value>12BET合作夥伴 - 您的新密碼</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
@@ -1314,7 +1311,7 @@
     <value>未知</value>
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
-    <value> 您的帳戶資料已成功更新</value>
+    <value>您的帳戶資料已成功更新</value>
   </data>
   <data name="Uruguay" xml:space="preserve">
     <value>烏拉圭</value>
@@ -1957,7 +1954,7 @@
     <value>玩家</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>12BET合作夥伴—驗證帳戶細節</value>
+    <value>12BET合作夥伴 - 驗證帳戶細節</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>新註冊 / 存款 會員</value>
@@ -2003,5 +2000,8 @@
   </data>
   <data name="Copy" xml:space="preserve">
     <value>複製</value>
+  </data>
+  <data name="Bahamas" xml:space="preserve">
+    <value>巴哈马 </value>
   </data>
 </root>

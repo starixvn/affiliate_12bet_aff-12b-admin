@@ -307,7 +307,7 @@
     <value>การขอยกเลิก</value>
   </data>
   <data name="CancelSubject" xml:space="preserve">
-    <value>จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
+    <value>พันธมิตร 12bet - จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>เคพ เวิร์ด</value>
@@ -406,7 +406,7 @@
     <value>โครเอเชีย</value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>บัญชีพันธมิตรใหม่กำลังรอการอนุมัติ</value>
+    <value>พันธมิตร 12bet - บัญชีพันธมิตรใหม่กำลังรอการอนุมัติ</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>สกุลเงิน</value>
@@ -965,9 +965,6 @@
   <data name="PaymentRequest" xml:space="preserve">
     <value>การขอการถอนเงิน</value>
   </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>คุณจะสามารถถอนเงินได้ระหว่างวันที่ 8 ถึงวันที่ 15 ของเดือนเท่านั้น</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>รายการที่ได้รับแจ้ง</value>
   </data>
@@ -1185,7 +1182,7 @@
     <value>เรื่อง</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>บัญชีพันธมิตร 12bet รายละเอียดการล๊อคอินของคุณ</value>
+    <value>พันธมิตร 12bet - รายละเอียดการล๊อคอินของคุณ</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>เรื่องไม่ถูกต้อง</value>
@@ -1998,5 +1995,8 @@
   </data>
   <data name="Copy" xml:space="preserve">
     <value>คัดลอก</value>
+  </data>
+  <data name="PrefixProduct12JADE" xml:space="preserve">
+    <value>12JADE</value>
   </data>
 </root>
