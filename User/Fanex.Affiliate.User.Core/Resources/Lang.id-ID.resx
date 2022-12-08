@@ -1998,4 +1998,7 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="Copy" xml:space="preserve">
     <value>Salin</value>
   </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>Anda tidak memiliki alamat email ini. Mohon hubungi administrator.</value>
+  </data>
 </root>

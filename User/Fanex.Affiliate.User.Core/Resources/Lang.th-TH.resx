@@ -1999,4 +1999,7 @@
   <data name="PrefixProduct12JADE" xml:space="preserve">
     <value>12JADE</value>
   </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>คุณไม่มีที่อยู่อีเมล โปรดติดต่อทีมงานพันธมิตร!</value>
+  </data>
 </root>

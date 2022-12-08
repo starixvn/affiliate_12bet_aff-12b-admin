@@ -817,7 +817,7 @@
     <value>មតិ​មិន​ត្រឹមត្រូវ</value>
   </data>
   <data name="YouDoNotHaveEmail" xml:space="preserve">
-    <value>អ្នកមិនមានអាសយដ្ឋានអ៊ីមែលទេ សូមទាក់ទងមកកាន់អ្នកគ្រប់គ្រង!</value>
+    <value>អ្នកមិនមានអាស័យដ្ឋានអ៊ីមែលទេ សូមទាក់ទងអ្នកគ្រប់គ្រង!</value>
   </data>
   <data name="DearCustomer" xml:space="preserve">
     <value>អតិថិជនជាទីគោរព!</value>
@@ -1949,5 +1949,29 @@
   </data>
   <data name="Argentina" xml:space="preserve">
     <value>Argentina </value>
+  </data>
+  <data name="MetaDescription" xml:space="preserve">
+    <value>ក្លាយជាដៃគូសហការជាមួយ 12BET ដើម្បីផ្សព្វផ្សាយទំព័រកីឡា និងកាស៊ីណូ និងទទួលបានកម្រៃជើងសារប្រចាំខែពីអតិថិជនដែលនាំមកពីគេហទំព័ររបស់អ្នក។</value>
+  </data>
+  <data name="MetaTitle" xml:space="preserve">
+    <value>ក្លាយជាដៃគូអាជីវកម្មរបស់ 12BET | កម្មវិធីភ្នាក់ងារ - 12BET។</value>
+  </data>
+  <data name="CsdSubject" xml:space="preserve">
+    <value>ភ្នាក់ងារ​ 12Bet  – គណនីថ្មី {0} កំពុងរង់ចាំការយល់ព្រម</value>
+  </data>
+  <data name="errExistAccount" xml:space="preserve">
+    <value>អ្នកប្រើប្រាស់មានគណនី IBC រួចហើយ។</value>
+  </data>
+  <data name="errUserNotFound" xml:space="preserve">
+    <value>រកមិនឃើញអ្នកប្រើប្រាស់ទេ។</value>
+  </data>
+  <data name="UpdateAccSuccess" xml:space="preserve">
+    <value>ព័ត៌មានគណនីរបស់អ្នកត្រូវបានអាប់ដេតដោយជោគជ័យ។</value>
+  </data>
+  <data name="errDepositDBConnectFailed" xml:space="preserve">
+    <value>មានកំហុសនៅពេលទទួលបានព័ត៌មានអ្នកលេង 12Bet។ សូមទាក់ទងអ្នកគ្រប់គ្រងរបស់អ្នក!</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>លំនាំដើម</value>
   </data>
 </root>

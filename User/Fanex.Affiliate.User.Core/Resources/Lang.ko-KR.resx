@@ -1995,4 +1995,7 @@
   <data name="Copy" xml:space="preserve">
     <value>복사</value>
   </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>이메일 주소가 없습니다. 관리자에게 문의하세요!</value>
+  </data>
 </root>

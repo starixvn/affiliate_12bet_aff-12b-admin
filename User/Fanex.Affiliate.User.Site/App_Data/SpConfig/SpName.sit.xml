@@ -19,7 +19,7 @@
   <Function Name="AccountInformation">
     <Setting Key="Aff_User_UserInfoSel" SpName="Aff_User_UserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_User_UserInfoSel_view" SpName="Aff_User_UserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
-    <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_AffiliateUpdPwd" SpName="Aff_AffiliateUpdPwd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_User_SecretKeyIns" SpName="Aff_User_SecretKeyIns" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
 
@@ -59,16 +59,16 @@
   </Function>
 
   <Function Name="HotNews">
-    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_HotNewsDetail_view" SpName="Aff_HotNewsDetail" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_HotNewsDetail" SpName="Aff_HotNewsDetail_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_HotNewsDetail_view" SpName="Aff_HotNewsDetail_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_HotNewsSel_view" SpName="Aff_HotNewsSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_HotNewsSel_view" SpName="Aff_HotNewsSel_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="Password">
-    <Setting Key="Aff_User_ForgotPassword" SpName="Aff_User_ForgotPassword" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_User_RecoverPassWord" SpName="Aff_User_RecoverPassWord" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_ForgotPassword" SpName="Aff_User_ForgotPassword_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_RecoverPassWord" SpName="Aff_User_RecoverPassWord_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
 
   <Function Name="Statement History">
@@ -98,12 +98,12 @@
   <Function Name="Payment">
     <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
-    <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_PaymentRequestIns" SpName="Aff_PaymentRequestIns" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
 
   <Function Name="SignUp">
-    <Setting Key="Aff_User_Affiliate_Ins" SpName="Aff_User_Affiliate_Ins" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_Affiliate_Ins" SpName="Aff_User_Affiliate_Ins_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
 
   <Function Name="Member">
@@ -118,7 +118,7 @@
     <Setting Key="Aff_User_Rpt_Commission" SpName="Aff_User_Rpt_Commission" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
   <Function Name="SecurityQuestion">
-    <Setting Key="Aff_User_SecurityQuestions_Sel" SpName="Aff_User_SecurityQuestions_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_SecurityQuestions_Sel" SpName="Aff_User_SecurityQuestions_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
   </Function>
   <Function Name="AccountOverview">
     <Setting Key="Aff_User_Overview_PlayersDetail_Sel" SpName="Aff_User_Overview_PlayersDetail_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />

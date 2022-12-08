@@ -168,4 +168,46 @@
   <data name="PaymentAmountInvalid" xml:space="preserve">
     <value>잘못된 요청 금액</value>
   </data>
+  <data name="NoSiteDescMaxLength" xml:space="preserve">
+    <value>URL이 없는 경우 홍보 방법을 4000자 이내로 기술해주셔야합니다.</value>
+  </data>
+  <data name="PostalMaxLength" xml:space="preserve">
+    <value>우편번호는 50자 이하입니다.</value>
+  </data>
+  <data name="CityMaxLength" xml:space="preserve">
+    <value>도시는 150자 이하입니다.</value>
+  </data>
+  <data name="AddressMaxLength" xml:space="preserve">
+    <value>주소는 250자 이하입니다.</value>
+  </data>
+  <data name="PhoneMaxLength" xml:space="preserve">
+    <value>연락처 번호는 50자 이내입니다.</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>이메일 주소는 50자 이내입니다.</value>
+  </data>
+  <data name="AnswerMaxLength" xml:space="preserve">
+    <value>답변은 250자 이하입니다.</value>
+  </data>
+  <data name="UserNameMaxLength" xml:space="preserve">
+    <value>회원 아이디는 50자 이하입니다.</value>
+  </data>
+  <data name="LastNameMaxLength" xml:space="preserve">
+    <value>성은 50자 이하입니다.</value>
+  </data>
+  <data name="FirstNameMaxLength" xml:space="preserve">
+    <value>이름은 50자 이내입니다.</value>
+  </data>
+  <data name="SiteUrlMaxLength" xml:space="preserve">
+    <value>웹사이트 URL은 250자 이내입니다.</value>
+  </data>
+  <data name="InvalidFeedback" xml:space="preserve">
+    <value>이모티콘을 선택하거나 메시지를 입력해주세요!</value>
+  </data>
+  <data name="MessageMaxLength" xml:space="preserve">
+    <value>메세지는 4,000자를 넘을 수 없습니다.</value>
+  </data>
+  <data name="InvalidEmoji" xml:space="preserve">
+    <value>이모티콘이 유효하지 않습니다.</value>
+  </data>
 </root>

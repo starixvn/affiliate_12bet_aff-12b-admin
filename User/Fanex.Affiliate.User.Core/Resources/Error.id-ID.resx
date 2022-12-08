@@ -168,4 +168,46 @@
   <data name="PaymentAmountInvalid" xml:space="preserve">
     <value>Jumlah permintaan tidak sesuai.</value>
   </data>
+  <data name="NoSiteDescMaxLength" xml:space="preserve">
+    <value>Silakan beritahu kami cara Anda mempromosikan apabila Anda tidak memiliki URL, tidak lebih dari 4000 karakter.</value>
+  </data>
+  <data name="PostalMaxLength" xml:space="preserve">
+    <value>Kode pos tidak lebih dari 50 karakter.</value>
+  </data>
+  <data name="CityMaxLength" xml:space="preserve">
+    <value>Kota: tidak lebih dari 150 karakter.</value>
+  </data>
+  <data name="AddressMaxLength" xml:space="preserve">
+    <value>Alamat: tidak lebih dari 250 karakter.</value>
+  </data>
+  <data name="PhoneMaxLength" xml:space="preserve">
+    <value>No. Kontak: tidak lebih dari 50 karakter.</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>Alamat Email: tidak lebih dari 50 karakter.</value>
+  </data>
+  <data name="AnswerMaxLength" xml:space="preserve">
+    <value>Jawaban Anda: tidak lebih dari 250 karakter.</value>
+  </data>
+  <data name="UserNameMaxLength" xml:space="preserve">
+    <value>User Name (Nama Pengguna) tidak lebih dari 50 karakter.</value>
+  </data>
+  <data name="LastNameMaxLength" xml:space="preserve">
+    <value>Nama Terakhir: tidak lebih dari 50 karakter.</value>
+  </data>
+  <data name="FirstNameMaxLength" xml:space="preserve">
+    <value>Nama Pertama: tidak lebih dari 50 karakter.</value>
+  </data>
+  <data name="SiteUrlMaxLength" xml:space="preserve">
+    <value>URL Situs Web: tidak lebih dari 250 karakter.</value>
+  </data>
+  <data name="InvalidFeedback" xml:space="preserve">
+    <value>Silakan pilih emoji atau masukan pesan!</value>
+  </data>
+  <data name="MessageMaxLength" xml:space="preserve">
+    <value>Pesan: tidak lebih dari 4,000 karakter.</value>
+  </data>
+  <data name="InvalidEmoji" xml:space="preserve">
+    <value>Emoji tidak sesuai. </value>
+  </data>
 </root>

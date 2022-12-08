@@ -294,6 +294,11 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
     <Content Include="12monitor.aspx" />
+    <Content Include="App_Data\SpConfig\_SpName.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="App_Data\SpConfig\SpName.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
@@ -316,11 +321,6 @@
     <Content Include="App_Data\SpConfig\_SpName.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>_SpName.txt</LastGenOutput>
-    </Content>
-    <Content Include="App_Data\SpConfig\_SpName.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="App_Data\SpConfig\_SpNameConfig.xml">
       <SubType>Designer</SubType>

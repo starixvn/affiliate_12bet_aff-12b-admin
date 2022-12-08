@@ -2004,4 +2004,7 @@
   <data name="Bahamas" xml:space="preserve">
     <value>巴哈马 </value>
   </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>如果您沒有email，請聯繫管理員。</value>
+  </data>
 </root>

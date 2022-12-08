@@ -168,4 +168,46 @@
   <data name="LoginClosedAccount" xml:space="preserve">
     <value>គណនីរបស់អ្នកត្រូវបានបិទ។ សូមទាក់ទងអ្នកគ្រប់គ្រងរបស់អ្នក!</value>
   </data>
+  <data name="NoSiteDescMaxLength" xml:space="preserve">
+    <value>សូមពណ៌នាអំពីរបៀបដែលអ្នកចង់ផ្សព្វផ្សាយ ប្រសិនបើអ្នកមិនមាន URL ទេ, មិនលើសពី 4000 តួអក្សរ។</value>
+  </data>
+  <data name="PostalMaxLength" xml:space="preserve">
+    <value>លេខកូដប្រៃសណីយ៍/Zip មិនលើសពី 50 តួអក្សរ។</value>
+  </data>
+  <data name="CityMaxLength" xml:space="preserve">
+    <value>ទីក្រុងមិនលើសពី 150 តួអក្សរ។</value>
+  </data>
+  <data name="AddressMaxLength" xml:space="preserve">
+    <value>អាស័យដ្ឋានមិនលើសពី 250 តួអក្សរ។</value>
+  </data>
+  <data name="PhoneMaxLength" xml:space="preserve">
+    <value>លេខទំនាក់ទំនងមិនលើសពី 50 តួអក្សរ។</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>អាស័យដ្ឋានអ៊ីមែលមិនលើសពី 50 តួអក្សរ។</value>
+  </data>
+  <data name="AnswerMaxLength" xml:space="preserve">
+    <value>ចម្លើយរបស់អ្នកមិនលើសពី 250 តួអក្សរ។</value>
+  </data>
+  <data name="UserNameMaxLength" xml:space="preserve">
+    <value>ឈ្មោះអ្នកប្រើប្រាស់មិនលើសពី 50 តួអក្សរ។</value>
+  </data>
+  <data name="LastNameMaxLength" xml:space="preserve">
+    <value>នាមត្រកូលមិនលើសពី 50 តួអក្សរ។</value>
+  </data>
+  <data name="FirstNameMaxLength" xml:space="preserve">
+    <value>នាមខ្លួនមិនលើសពី 50 តួអក្សរ។</value>
+  </data>
+  <data name="SiteUrlMaxLength" xml:space="preserve">
+    <value>URL គេហទំព័រមិនលើសពី 250 តួអក្សរ។</value>
+  </data>
+  <data name="InvalidFeedback" xml:space="preserve">
+    <value>សូមជ្រើសរើស emoji ឬបញ្ចូលសារ!</value>
+  </data>
+  <data name="MessageMaxLength" xml:space="preserve">
+    <value>សារមិនលើសពី 4000 តួអក្សរ។</value>
+  </data>
+  <data name="InvalidEmoji" xml:space="preserve">
+    <value>Emoji មិនត្រឹមត្រូវទេ។</value>
+  </data>
 </root>

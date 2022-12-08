@@ -1998,4 +1998,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="AndarBahar" xml:space="preserve">
     <value>Andar Bahar</value>
   </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>Bạn không có email. Vui lòng liên hệ quản trị viên!</value>
+  </data>
 </root>

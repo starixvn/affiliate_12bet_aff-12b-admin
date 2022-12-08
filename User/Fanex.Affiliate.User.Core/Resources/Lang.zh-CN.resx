@@ -2004,4 +2004,7 @@
   <data name="Copy" xml:space="preserve">
     <value>复制</value>
   </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>如果您没有电邮，请联系管理员。</value>
+  </data>
 </root>

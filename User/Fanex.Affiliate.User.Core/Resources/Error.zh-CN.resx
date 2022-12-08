@@ -168,4 +168,46 @@
   <data name="PaymentAmountInvalid" xml:space="preserve">
     <value>无效的请求</value>
   </data>
+  <data name="NoSiteDescMaxLength" xml:space="preserve">
+    <value>如果您没有自己的网站，请描述您的推广方式，请勿超过4000字。</value>
+  </data>
+  <data name="PostalMaxLength" xml:space="preserve">
+    <value>邮编（不超过50个字符）</value>
+  </data>
+  <data name="CityMaxLength" xml:space="preserve">
+    <value>城市（不超过150个字符）</value>
+  </data>
+  <data name="AddressMaxLength" xml:space="preserve">
+    <value>地址（不超过250个字符）</value>
+  </data>
+  <data name="PhoneMaxLength" xml:space="preserve">
+    <value>联络电话（不超过50个字符）</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>电邮（不超过50个字符）</value>
+  </data>
+  <data name="AnswerMaxLength" xml:space="preserve">
+    <value>您的回答（不超过250个字符）</value>
+  </data>
+  <data name="UserNameMaxLength" xml:space="preserve">
+    <value>用户名（不超过50个字符）</value>
+  </data>
+  <data name="LastNameMaxLength" xml:space="preserve">
+    <value>姓氏（不超过50个字符）</value>
+  </data>
+  <data name="FirstNameMaxLength" xml:space="preserve">
+    <value>名字（不超过50个字符）</value>
+  </data>
+  <data name="SiteUrlMaxLength" xml:space="preserve">
+    <value>网址（不超过250个字符）</value>
+  </data>
+  <data name="InvalidFeedback" xml:space="preserve">
+    <value>请选择表情符号或输入信息。</value>
+  </data>
+  <data name="MessageMaxLength" xml:space="preserve">
+    <value>信息（不超过4000个字符）</value>
+  </data>
+  <data name="InvalidEmoji" xml:space="preserve">
+    <value>表情符号无效。</value>
+  </data>
 </root>
