@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -14,6 +15,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.AdminRoleMenu)]
     public class EmailTestingController : ReadOnlySessionBaseController
     {
+        private const int _transId = 123;
+        private const int _amount = 100;
+        private const string _firstName = "First Name";
+
         private readonly IMailProcessor _mailProcessor;
 
         private readonly IAppSetting _appSetting;
@@ -45,7 +50,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             try
             {
                 _languageService.SetCulture(language);
-                result = GetEmailContent(language, function, format);
+
+                (var subject, var title) = GetSubjectAndTitle(function);
+                result = GetEmailContent(language, function, format, title);
+
                 _languageService.SetCulture("en-US");
             }
             catch (Exception ex)
@@ -65,9 +73,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             try
             {
                 _languageService.SetCulture(language);
-                var content = GetEmailContent(language, function, format);
+                (var subject, var title) = GetSubjectAndTitle(function);
+                var content = GetEmailContent(language, function, format, title);
 
-                _mailProcessor.Send(content, emailAddress, "Affilite 12Bet testing");
+                _mailProcessor.Send(content, emailAddress, subject);
                 _languageService.SetCulture("en-US");
             }
             catch (Exception ex)
@@ -85,11 +94,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return Json(result);
         }
 
-        private string GetEmailContent(string language, string function, string format)
+        private string GetEmailContent(string language, string function, string format, string title)
         {
             var content = GetEmailTextContent(function, language);
 
-            return format == "txt" ? content : GetEmailHtmlContent(content, language);
+            return format == "txt" ? content : GetEmailHtmlContent(content, language, title);
         }
 
         private string GetEmailTextContent(string function, string language)
@@ -101,22 +110,49 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return model == null ? string.Empty : _mailProcessor.BuildTemplateContent(physicalPath, model);
         }
 
-        private string GetEmailHtmlContent(string content, string language)
+        private string GetEmailHtmlContent(string content, string language, string title)
         {
             var domain = SiteDomainHelper.GetRootUrl(this);
 
             var viewModel = new EmailTemplateViewModel
             {
                 RootUrl = domain,
-                UserSiteUrl = "https://aff-12bet.nexdev.net/12BetUserAsianNew",
+                UserSiteUrl = _appSetting.AsianAffSiteUrl,
                 ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, domain),
                 Language = language,
                 Content = content,
-                Title = "This is title"
+                Title = title
             };
             var viewPath = Server.MapPath("~/Areas/Portal/Views/Shared/Email/CommonLayout.cshtml");
 
             return _mailProcessor.BuildTemplateContent(viewPath, viewModel);
+        }
+
+        private static (string, string) GetSubjectAndTitle(string functionName)
+        {
+            switch (functionName)
+            {
+                case "AffiliateDisapproved":
+                    return (Lang.EmailSubjectAffDisapproved, Lang.EmailTitleAffDisapproved);
+
+                case "AffiliateApproved":
+                    return (Lang.EmailSubjectAffApproved, Lang.EmailTitleAffApproved);
+
+                case "WithdrawalGuidance":
+                    return (Lang.EmailSubjectWithdrawalGuidance, Lang.EmailTitleWithdrawalGuidance);
+
+                case "AffiliateInformation":
+                    return (Lang.EmailSubjectAffInfor, Lang.EmailTitleAffInfor);
+
+                case "PaymentRequest/Approved":
+                    return (string.Format(Lang.EmailSubjectPaymentRequestApproved, _transId), Lang.EmailTitlePaymentRequestApproved);
+
+                case "PaymentRequest/Rejected":
+                    return (string.Format(Lang.EmailSubjectPaymentRequestRejected, _transId), Lang.EmailTitlePaymentRequestRejected);
+
+                default:
+                    return (Lang.Affiliate, Lang.Affiliate);
+            }
         }
 
         private object GetModelByFunction(string functionName)
@@ -133,7 +169,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     {
                         MailContact = _appSetting.MailContact,
                         UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(AffType.Asian),
-                        FirstName = "First Name",
+                        FirstName = _firstName,
                         UserName = "AFF12BET00000",
                         Password = "qwrfsdg"
                     };
@@ -141,7 +177,32 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     return new WithdrawalEmail
                     {
                         MailContact = _appSetting.MailContact,
-                        FirstName = "First Name"
+                        FirstName = _firstName
+                    };
+                case "AffiliateDisapproved":
+                    return new AffInformationEmail
+                    {
+                        MailContact = _appSetting.MailContact,
+                        UserSiteUrl = _appSetting.AsianAffSiteUrl,
+                        FirstName = _firstName
+                    };
+                case "PaymentRequest/Approved":
+                    return new PaymentRequestUpdateEmail
+                    {
+                        MailContact = _appSetting.MailContact,
+                        FirstName = _firstName,
+                        TransId = _transId,
+                        TransDate = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"),
+                        Amount = _amount
+                    };
+                case "PaymentRequest/Rejected":
+                    return new PaymentRequestUpdateEmail
+                    {
+                        MailContact = _appSetting.MailContact,
+                        FirstName = _firstName,
+                        TransId = _transId,
+                        TransDate = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"),
+                        Amount = _amount
                     };
                 default:
                     return null;

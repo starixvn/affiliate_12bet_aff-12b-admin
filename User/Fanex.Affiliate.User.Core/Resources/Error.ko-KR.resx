@@ -157,7 +157,7 @@
     <value>새로운 보안코는 60초이내 표시됩니다.</value>
   </data>
   <data name="General" xml:space="preserve">
-    <value>요청을 처리하는 동안 오류가 발생했습니다! 관리자에게 문의주시기 바랍니다.</value>
+    <value>요청을 처리하는 동안 오류가 발생했습니다!</value>
   </data>
   <data name="YourSessionHasExpired" xml:space="preserve">
     <value>세션이 만료되었습니다!</value>

@@ -1564,7 +1564,7 @@
     <value>ยังไม่สรุปยอด</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ!</value>
+    <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ! โปรดติดต่อผู้ดูแลระบบ</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>ข้อมูลฝากเงินของสมาชิก</value>

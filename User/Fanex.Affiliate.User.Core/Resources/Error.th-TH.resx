@@ -157,7 +157,7 @@
     <value>คุณต้องรออีก 60 วินาทีก่อนที่จะส่งขอรหัสยืนยันอีกครั้ง</value>
   </data>
   <data name="General" xml:space="preserve">
-    <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ! โปรดติดต่อผู้ดูแลระบบ</value>
+    <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ!</value>
   </data>
   <data name="YourSessionHasExpired" xml:space="preserve">
     <value>เซสชั่นของคุณหมดอายุแล้ว!</value>

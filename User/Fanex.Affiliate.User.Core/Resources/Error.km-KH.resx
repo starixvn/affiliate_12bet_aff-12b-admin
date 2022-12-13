@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="General" xml:space="preserve">
-    <value>កំហុសបានកើតឡើងខណៈពេលកំពុងដំណើរការសំណើរបស់អ្នក។!</value>
+    <value>កំហុសបានកើតឡើងខណៈពេលកំពុងដំណើរការសំណើរបស់អ្នក!</value>
   </data>
   <data name="LoginWrongInfo" xml:space="preserve">
     <value>ខុសឈ្មោះប្រើប្រាស់ឬលេខសម្ងាត់</value>

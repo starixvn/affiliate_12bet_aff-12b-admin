@@ -1560,7 +1560,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Đang Chờ Tính</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>Đã xảy ra lỗi khi xử lý yêu cầu của bạn!</value>
+    <value>Đã xảy ra lỗi khi xử lý yêu cầu của bạn! Vui lòng liên hệ với Quản trị viên.</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>Thông tin Gửi tiền của Thành viên</value>

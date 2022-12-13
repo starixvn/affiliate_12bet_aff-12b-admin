@@ -1601,7 +1601,7 @@
     <value>미정산</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>요청을 처리하는 동안 오류가 발생했습니다!</value>
+    <value>요청을 처리하는 동안 오류가 발생했습니다! 관리자에게 문의주시기 바랍니다.</value>
   </data>
   <data name="Device" xml:space="preserve">
     <value>디바이스</value>
