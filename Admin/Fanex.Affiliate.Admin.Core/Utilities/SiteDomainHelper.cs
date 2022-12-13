@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
             var requestUrl = controller.Request.Url;
-            var isUatOrProEnv = string.Equals("UAT", appSetting.Environment, StringComparison.OrdinalIgnoreCase) || appSetting.IsProduction;
+            var isUatOrProEnv = !appSetting.IsDev;
 
             return GetScheme(controller.Request) + Uri.SchemeDelimiter + requestUrl.Host +
                 (requestUrl.IsDefaultPort || isUatOrProEnv ? string.Empty : ":" + requestUrl.Port) + controller.Url.Content("~/");

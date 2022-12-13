@@ -11,7 +11,7 @@
         public static string GetRootUrl(Controller controller, IAppSetting appSetting = null)
         {
             var setting = appSetting ?? DependencyResolver.Current.GetService<IAppSetting>();
-            var isUatOrProEnv = string.Equals("UAT", setting.Environment, StringComparison.OrdinalIgnoreCase) || setting.IsProduction;
+            var isUatOrProEnv = !setting.IsDev;
             var requestUrl = controller.Request.Url;
 
             return GetScheme(controller.Request, setting.IsProduction) + Uri.SchemeDelimiter + requestUrl.Host +

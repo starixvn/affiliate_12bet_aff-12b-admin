@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string Environment { get; }
 
+        bool IsDev { get; }
+
         bool IsLocal { get; }
 
         bool IsProduction { get; }

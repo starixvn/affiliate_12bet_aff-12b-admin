@@ -11,6 +11,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
     {
         public string Environment => GetValue("Environment");
 
+        public bool IsDev => Environment.Equals("Dev", StringComparison.OrdinalIgnoreCase);
+
         public bool IsLocal => Environment.Equals("Local", StringComparison.OrdinalIgnoreCase);
 
         public bool IsProduction => Environment.Equals("Production", StringComparison.OrdinalIgnoreCase);
