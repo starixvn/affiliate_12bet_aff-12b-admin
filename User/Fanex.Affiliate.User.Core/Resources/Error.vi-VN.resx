@@ -193,7 +193,7 @@
     <value>Tên đăng nhập không quá 50 ký tự.</value>
   </data>
   <data name="LastNameMaxLength" xml:space="preserve">
-    <value>Họ tên không quá 50 ký tự.</value>
+    <value>Họ không quá 50 ký tự.</value>
   </data>
   <data name="FirstNameMaxLength" xml:space="preserve">
     <value>Tên không quá 50 ký tự.</value>

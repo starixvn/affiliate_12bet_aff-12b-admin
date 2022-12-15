@@ -156,9 +156,6 @@
   <data name="Wait60Seconds" xml:space="preserve">
     <value>คุณต้องรออีก 60 วินาทีก่อนที่จะส่งขอรหัสยืนยันอีกครั้ง</value>
   </data>
-  <data name="General" xml:space="preserve">
-    <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ!</value>
-  </data>
   <data name="YourSessionHasExpired" xml:space="preserve">
     <value>เซสชั่นของคุณหมดอายุแล้ว!</value>
   </data>
@@ -209,5 +206,8 @@
   </data>
   <data name="InvalidEmoji" xml:space="preserve">
     <value>อีโมจิไม่ถูกต้อง</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ!</value>
   </data>
 </root>
