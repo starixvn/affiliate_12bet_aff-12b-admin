@@ -124,13 +124,13 @@
     <value>这是一封由系统自动发送的电子邮件，请勿直接回复此电子邮件。</value>
   </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
-    <value>壹贰博合作伙伴通知</value>
+    <value>12Bet 合作伙伴 - 壹贰博合作伙伴通知</value>
   </data>
   <data name="EmailSubjectAffInfor" xml:space="preserve">
-    <value>壹贰博合作伙伴通知</value>
+    <value>12Bet 合作伙伴 - 壹贰博合作伙伴通知</value>
   </data>
   <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
-    <value>壹贰博合作伙伴提款指南</value>
+    <value>12Bet 合作伙伴 - 壹贰博合作伙伴提款指南</value>
   </data>
   <data name="EmailTitleAffApproved" xml:space="preserve">
     <value>壹贰博合作伙伴通知</value>
@@ -157,6 +157,6 @@
     <value>您的加盟申请</value>
   </data>
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
-    <value>12Bet 合作伙伴 – 您的加盟申请</value>
+    <value>12Bet 合作伙伴 - 您的加盟申请</value>
   </data>
 </root>

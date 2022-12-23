@@ -58,7 +58,12 @@
             try
             {
                 LanguageService.SetCulture(criteria.Language);
+
+                var function = criteria.Function.ToLowerInvariant();
+                (var subject, var title) = GetSubjectAndTitle(function);
+                criteria.Title = title;
                 ViewBag.Data = GetEmailContent(criteria);
+
                 LanguageService.SetCulture("en-US");
             }
             catch (Exception ex)
@@ -82,13 +87,16 @@
 
             try
             {
-                var funtion = criteria.Function.ToLowerInvariant();
-                var content = GetEmailContent(criteria);
                 LanguageService.SetCulture(criteria.Language);
-                string Subject = SubjectList.ContainsKey(funtion) ? SubjectList[funtion] : Lang.AffiliateProgram;
+
+                var function = criteria.Function.ToLowerInvariant();
+                (var subject, var title) = GetSubjectAndTitle(function);
+                criteria.Title = title;
+                var content = GetEmailContent(criteria);
+
                 LanguageService.SetCulture("en-US");
 
-                _mailProcessor.Send(content, criteria.EmailAddress, Subject);
+                _mailProcessor.Send(content, criteria.EmailAddress, subject);
             }
             catch (Exception ex)
             {
@@ -105,24 +113,57 @@
             return Json(result);
         }
 
-        private static readonly IDictionary<string, string> SubjectList = new Dictionary<string, string>
+        private static readonly IDictionary<string, (string, string)> SubjectAndTitleList = new Dictionary<string, (string, string)>
         {
-            ["contactus"] = Lang.ContactUs,
-            ["csd"] = Lang.CsdSubject,
-            ["recoverpassword"] = Lang.SubjectForgetPass,
-            ["paymentcancel"] = Lang.CancelSubject.Replace("{transid}", "12345"),
-            ["paymentrequest"] = Lang.CancelSubject.Replace("{transid}", "12345"),
-            ["newpassword"] = Lang.SubjectNewPass,
-            ["signup"] = Lang.RegisSubject,
-            ["verificationaccount"] = Lang.SubjectVerificationAccount
+            ["contactus"] = (Lang.ContactUs, Lang.ContactUs),
+            ["csd"] = (Lang.CsdSubject, Lang.CsdSubject),
+            ["recoverpassword"] = (Lang.SubjectForgetPass, Lang.EmailTitlePasswordRecovery),
+            ["paymentcancel"] = (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment),
+            ["paymentrequest"] = (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment),
+            ["newpassword"] = (Lang.SubjectNewPass, Lang.EmailTitleNewPassword),
+            ["signup"] = (Lang.RegisSubject, Lang.EmailTitleSignUp),
+            ["verificationaccount"] = (Lang.SubjectVerificationAccount, Lang.EmailTittleVerificationAccount)
         };
+
+        private static (string, string) GetSubjectAndTitle(string functionName)
+        {
+            switch (functionName)
+            {
+                case "contactus":
+                    return (Lang.ContactUs, Lang.ContactUs);
+
+                case "csd":
+                    return (Lang.CsdSubject, Lang.CsdSubject);
+
+                case "recoverpassword":
+                    return (Lang.SubjectForgetPass, Lang.EmailTitlePasswordRecovery);
+
+                case "paymentcancel":
+                    return (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment);
+
+                case "paymentrequest":
+                    return (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment);
+
+                case "newpassword":
+                    return (Lang.SubjectNewPass, Lang.EmailTitleNewPassword);
+
+                case "signup":
+                    return (Lang.RegisSubject, Lang.EmailTitleSignUp);
+
+                case "verificationaccount":
+                    return (Lang.SubjectVerificationAccount, Lang.EmailTittleVerificationAccount);
+
+                default:
+                    return (Lang.AffiliateProgram, Lang.AffiliateProgram);
+            }
+        }
 
 
         private string GetEmailContent(TestCriteria criteria)
         {
             var content = GetEmailTextContent(criteria);
 
-            return criteria.Format == "txt" ? content : GetEmailHtmlContent(content, criteria.Language);
+            return criteria.Format == "txt" ? content : GetEmailHtmlContent(content, criteria.Language, criteria.Title);
         }
 
         private string GetEmailTextContent(TestCriteria criteria)
@@ -137,7 +178,7 @@
             return model == null ? string.Empty : _mailProcessor.BuildTemplateContent(physicalPath, model);
         }
 
-        private string GetEmailHtmlContent(string content, string language)
+        private string GetEmailHtmlContent(string content, string language, string title)
         {
             var domain = SiteDomainHelper.GetRootUrl(this, _appSetting);
 
@@ -147,7 +188,7 @@
                 ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, domain),
                 Language = language,
                 Content = content,
-                Title = "This is title"
+                Title = title
             };
             var viewPath = Server.MapPath("~/Views/Shared/Email/CommonLayout.cshtml");
 
@@ -297,6 +338,8 @@
     public class TestCriteria
     {
         public string Language { get; set; }
+
+        public string Title { get; set; }
 
         public string Function { get; set; }
 

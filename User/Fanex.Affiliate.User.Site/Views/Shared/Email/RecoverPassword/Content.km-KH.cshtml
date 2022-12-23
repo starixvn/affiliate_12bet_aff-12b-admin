@@ -4,22 +4,22 @@
     var recoverUrl = Model.RootDomain + "Password/RecoverPassword?uid=" + userInfo.AffId + "&vid=" + Model.Code;
 }
 <div>
-Dear @userInfo.FirstName,<br /><br />
+    សូមគោរព @userInfo.FirstName,<br /><br />
 
-You have requested to recover your username or password. If you did not request it, please ignore this email.<br />
-Otherwise please visit the following link, then your new password will be emailed to you shortly:<br />
-<a href='@recoverUrl'>@recoverUrl</a><br /><br />
+    អ្នកបានស្នើសុំការសង្គ្រោះឈ្មោះប្រើឬពាក្យសម្ងាត់របស់អ្នកមកវិញ ប្រសិនបើអ្នកមិនបានស្នើសុំទេ មិនចាំបាច់ខ្វល់ពីអ៊ីមែលនេះទេ។<br />
+    បើមិនដូច្នេះទេ សូមចូលទៅកាន់តំណភ្ជាប់ខាងក្រោម នោះពាក្យសម្ងាត់ថ្មីរបស់អ្នកនឹងត្រូវបានផ្ញើមកអ្នកក្នុងពេលឆាប់ៗនេះ៖<br />
+    <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
-Please note<br />
-* Your username is: @userInfo.UserName <br />
-* Due to security reason, we must provide you a new password (you can change this at anytime later).<br />
-* The above link will be expired and become useless in 24 hours time.<br /><br />
+    សូម​ចំណាំ<br />
+    * ឈ្មោះប្រើរបស់អ្នកគឺ: @userInfo.UserName <br />
+    * ដោយសារហេតុផលសុវត្ថិភាព យើងត្រូវផ្តល់ឱ្យអ្នកនូវពាក្យសម្ងាត់ថ្មី (អ្នកអាចផ្លាស់ប្តូរវាបានគ្រប់ពេលវេលា)<br />
+    * តំណខាងលើនឹងត្រូវផុតកំណត់ ហើយក្លាយជាគ្មានប្រយោជន៍ក្នុងរយៈពេល 24 ម៉ោង។<br /><br />
 
-Have a great day!<br /><br />
+    សូមជួបតែសំណាងល្អ!<br /><br />
 
-Best regards,<br /><br />
+    ដោយក្តីគោរព,<br /><br />
 
-The team at 12Bet Affiliates<br />
+    ពីក្រុមការងារភ្នាក់ងារ 12Bet<br />
 
-<a href="mailto:@Model.MailContact">@Model.MailContact</a>
+    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
 </div>

@@ -159,6 +159,16 @@
                     width: calc(100% - 60px);
                 }
             }
+
+            &.km-KH {
+                .group {
+                    height: 86px;
+                }
+
+                .info-panel {
+                    height: 66px;
+                }
+            }
         }
 
         .details-section {

@@ -117,17 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutUs" xml:space="preserve">
-    <value>About Us</value>
-  </data>
   <data name="AccInfo" xml:space="preserve">
     <value>ข้อมูลเกี่ยวกับบัญชี</value>
   </data>
   <data name="AccOverview" xml:space="preserve">
     <value>ข้อมูลโดยรวมเกี่ยวกับบัญชี</value>
-  </data>
-  <data name="ActivatedTrackingCode" xml:space="preserve">
-    <value>ทำให้ใช้ได้</value>
   </data>
   <data name="Address" xml:space="preserve">
     <value>ที่อยู่</value>
@@ -217,34 +211,16 @@
     <value>บาเรนทร์</value>
   </data>
   <data name="BalForward" xml:space="preserve">
-    <value>ยอดคงเหลือยกไป</value>
+    <value>ยอดคงเหลือที่ยกมา</value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
     <value>บังคลาเทศ</value>
   </data>
-  <data name="BankABA_Swift_SIsRequired" xml:space="preserve">
-    <value>ธนาคาร และ รหัสธนาคารในเครือ จำเป็นต้องมี</value>
-  </data>
-  <data name="BankAccnumber" xml:space="preserve">
-    <value>หมายเลขบัญชีธนาคาร</value>
-  </data>
-  <data name="BankAccountNameIsRequired" xml:space="preserve">
-    <value>ชื่อบัญชีธนาคารจำเป็นต้องมี</value>
-  </data>
-  <data name="BankAccountNumbIsRequired" xml:space="preserve">
-    <value>หมายเลขบัญชีธนาคารจำเป็นต้องมี</value>
-  </data>
   <data name="BankAddress" xml:space="preserve">
     <value>ที่อยู่ธนาคาร</value>
   </data>
-  <data name="BankAddressisre" xml:space="preserve">
-    <value>ที่อยู่ของธนาคารจำเป็นต้องมี</value>
-  </data>
   <data name="BankName" xml:space="preserve">
     <value>ชื่อธนาคาร</value>
-  </data>
-  <data name="BankNameisrequi" xml:space="preserve">
-    <value>จำเป็นต้องมีชื่อธนาคาร</value>
   </data>
   <data name="BankTransfer" xml:space="preserve">
     <value>โอนเงินผ่านธนาคาร</value>
@@ -272,9 +248,6 @@
   </data>
   <data name="Bermuda" xml:space="preserve">
     <value>เบอร์มิวด้า</value>
-  </data>
-  <data name="Bet12Username" xml:space="preserve">
-    <value>12BET ชื่อที่ใช้เข้าระบบ</value>
   </data>
   <data name="BETUserNameIsRequired" xml:space="preserve">
     <value>ยูสเซอร์เนม 12bet จำเป็นต้องมี</value>
@@ -334,7 +307,7 @@
     <value>การขอยกเลิก</value>
   </data>
   <data name="CancelSubject" xml:space="preserve">
-    <value>จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
+    <value>พันธมิตร 12bet - จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>เคพ เวิร์ด</value>
@@ -363,38 +336,8 @@
   <data name="ChangePass" xml:space="preserve">
     <value>เปลี่ยนรหัสผ่าน</value>
   </data>
-  <data name="ChangePassErr" xml:space="preserve">
-    <value>การเปลี่ยนรหัสผ่านมีข้อผิดพลาด</value>
-  </data>
   <data name="ChangePassText" xml:space="preserve">
     <value>ใช้แบบฟอร์มนี้เพื่อเปลี่ยนรหัสผ่านของคุณ  เมื่อคุณเปลี่ยนแล้ว พาสเวริ์ดใหม่ของคุณจะสามารถใช้ได้ในการล๊อกอินครั้งต่อไป</value>
-  </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>เปลี่ยนรหัสผ่าน</value>
-  </data>
-  <data name="Cheque" xml:space="preserve">
-    <value>เชค</value>
-  </data>
-  <data name="ChequeAddressis" xml:space="preserve">
-    <value>กรุณากรอก ที่อยู่ที่ออกเชค</value>
-  </data>
-  <data name="ChequeCityisreq" xml:space="preserve">
-    <value>กรุณากรอก เมื่องที่ออกเชค</value>
-  </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>กรุณากรอก ประเทศที่ออกเชค</value>
-  </data>
-  <data name="ChequeFullNamei" xml:space="preserve">
-    <value>กรุณากรอก ชื่อเต็มของเชค</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>กรุณากรอกรหัสไปรษณีย์ที่ออกเชค</value>
-  </data>
-  <data name="ChequeStateisre" xml:space="preserve">
-    <value>กรุณากรอกชื่อพื้นที่ ที่ออกเชค</value>
-  </data>
-  <data name="CHF" xml:space="preserve">
-    <value>CHF (Swiss Franc)</value>
   </data>
   <data name="Chile" xml:space="preserve">
     <value>ชิลี</value>
@@ -420,9 +363,6 @@
   <data name="CommentsIsInvalid" xml:space="preserve">
     <value>ความคิดเห็นไม่ถูกต้อง</value>
   </data>
-  <data name="CommPercent" xml:space="preserve">
-    <value>เปอร์เซนต์ของการรับค่าคอมมิชชั่น</value>
-  </data>
   <data name="CompletedDate" xml:space="preserve">
     <value>วันที่เสร็จสมบูรณ์</value>
   </data>
@@ -438,9 +378,6 @@
   <data name="ContactNumber" xml:space="preserve">
     <value>หมายเลขโทรศัพท์ที่ใช้ติดต่อ</value>
   </data>
-  <data name="ContactTitle" xml:space="preserve">
-    <value>กรุณาส่งความคิดเห็นหรือคำถามมาได้ที่{email} หรือใช้แบบฟอร์มทางด้านล่าง</value>
-  </data>
   <data name="ContactUs" xml:space="preserve">
     <value>ติดต่อเรา</value>
   </data>
@@ -448,7 +385,7 @@
     <value>เกาะ คุ๊ก</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>สงวนลิขสิทธิ์ © 2008 - 2021 | 12BET.com | 21+</value>
+    <value>สงวนลิขสิทธิ์ © 2008 - {0} | 12BET.com | 21+</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>คอสตาริกา</value>
@@ -469,16 +406,13 @@
     <value>โครเอเชีย</value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>บัญชีพันธมิตรใหม่กำลังรอการอนุมัติ</value>
+    <value>พันธมิตร 12bet - บัญชีพันธมิตรใหม่กำลังรอการอนุมัติ</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>สกุลเงิน</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>Current</value>
-  </data>
-  <data name="CurrentCommissiSetting" xml:space="preserve">
-    <value>จัดตั้งค่าคอมมิชชั่นปัจจุบัน</value>
   </data>
   <data name="Cyprus" xml:space="preserve">
     <value>ไซปรัส</value>
@@ -564,107 +498,8 @@
   <data name="Eritrea" xml:space="preserve">
     <value>อีรีทเทรีย</value>
   </data>
-  <data name="Err1" xml:space="preserve">
-    <value>ส่วนลดผิด</value>
-  </data>
-  <data name="Err100" xml:space="preserve">
-    <value>ขอโทษ ไม่สามารถสร้างตัวแทนได้</value>
-  </data>
-  <data name="Err1001" xml:space="preserve">
-    <value>ข้อมูลเกี่ยวกับบัญชีพันธมิตรของท่านไม่ถูกต้อง</value>
-  </data>
-  <data name="Err1002" xml:space="preserve">
-    <value>อีเมลล์แอดเดรสที่คุณได้กรอกได้ถูกใช้ในการลงทะเบียนแล้ว กรุณาเลือกอันใหม่</value>
-  </data>
-  <data name="Err1003" xml:space="preserve">
-    <value>ยูสเซอร์เนม 12bet ไม่ถูกต้อง</value>
-  </data>
-  <data name="Err1004" xml:space="preserve">
-    <value>รายละเอียดเกี่ยวกับบัญชีของคุณไม่ถูกต้อง  การอัพเดทบัญชีของคุณสำเร็จแล้ว</value>
-  </data>
-  <data name="Err1005" xml:space="preserve">
-    <value>มีข้อมูลผิดพลาดเกิดขึ้น การทำการอัพเดทข้อมูลไม่สำเร็จ</value>
-  </data>
-  <data name="Err1006" xml:space="preserve">
-    <value>มีข้อมูลผิดพลาดเกิดขึ้น การทำการอัพเดทข้อมูลไม่สำเร็จ</value>
-  </data>
-  <data name="Err101" xml:space="preserve">
-    <value>ชื่อที่ใช้เข้าระบบไม่สามารถใช้ได้</value>
-  </data>
-  <data name="Err102" xml:space="preserve">
-    <value>ผิดตำแหน่งที่จะใช้ ( จำนวนเงินสูงสุดสำหรับตัวแทนหลักที่กำหนดโดยตัวแทนสูงสุด )</value>
-  </data>
-  <data name="Err103" xml:space="preserve">
-    <value>ขออภัย จำนวนเงินขั้นต่ำที่วางเดิมพันต้องน้อยกว่าจำนวนเงินสูงุดและจำนวนเงินสูงสุดต้องน้อยกว่าจำนวนเงินสูงสุดต่อแมตซ์คะ</value>
-  </data>
-  <data name="Err104" xml:space="preserve">
-    <value>ขออภัย การอัพเดทยอดเงินล่าสุดไม่สำเร็จ   ยอดที่คุณขอได้เกินกว่าเครดิตที่ตัวแทนหลักให้</value>
-  </data>
-  <data name="Err105" xml:space="preserve">
-    <value>ขออภัย การวางเดิมพันขั้นต่ำต้องเท่ากับหรือมากกว่าจำนวนเงินการวางเดิมพันขั้นต่ำของตัวแทนหลัก</value>
-  </data>
-  <data name="Err107" xml:space="preserve">
-    <value>ขออภัย จำนวนการวางเดิมพันสูงสุดต่อแมตซ์ต้องเท่ากับหรือน้อยกว่าจำนวนการวางเดิมพันขั้นต่ำของตัวแทนหลัก</value>
-  </data>
-  <data name="Err111" xml:space="preserve">
-    <value>การสร้างบัญชีของลูกค้าล้มเหลว กรุณารองใหม่อีกครั้ง</value>
-  </data>
-  <data name="Err113" xml:space="preserve">
-    <value>การสร้างบัญชีของลูกค้าล้มเหลว กรุณารองใหม่อีกครั้ง</value>
-  </data>
-  <data name="Err114" xml:space="preserve">
-    <value>การสร้างบัญชีของลูกค้าล้มเหลว กรุณารองใหม่อีกครั้ง</value>
-  </data>
-  <data name="Err115" xml:space="preserve">
-    <value>การสร้างบัญชีของลูกค้าล้มเหลว กรุณารองใหม่อีกครั้ง</value>
-  </data>
-  <data name="Err116" xml:space="preserve">
-    <value>คุณไม่ได้รับการอนุญาติที่จะสร้างหรือแก้ไขข้อมูลนี้</value>
-  </data>
-  <data name="Err2" xml:space="preserve">
-    <value>มีข้อผิดพลาดจำนวนเงินขั้นต่ำต่อแมตซ์ที่วางเดิมพัน/จำนวนเงินขั้นสูงสุดที่วางเดิมพัน/จำนวนเงินขั้นสูงสุดต่อแมตซ์/ชื่อของตัวแทนหลัก กลุ่มบุคคลที่ใช้บัญชี</value>
-  </data>
-  <data name="Err3" xml:space="preserve">
-    <value>การใช้ผิดตำแหน่ง</value>
-  </data>
   <data name="Err3001" xml:space="preserve">
     <value>คุณมีรายการที่ร้องขอ รอดำเนินการอยู่ เพื่อที่จะร้องขอทำรายการใหม่ กรุณายกเลิกรายการร้องขออันแรกที่รอดำเนินการหรือรอจนกว่ารายการร้องขออันแรกได้รับการอนุมัติก่อน</value>
-  </data>
-  <data name="Err3002" xml:space="preserve">
-    <value>ยูสเซอร์เนมของท่านไม่ถูกต้อง</value>
-  </data>
-  <data name="Err3003" xml:space="preserve">
-    <value>ขออภัย บัญชีพันธมิตรนี้มียอดเงินไม่เพียงพอที่จะขอถอน</value>
-  </data>
-  <data name="Err3004" xml:space="preserve">
-    <value>จำนวนเงินคงเหลือในบัญชีของท่านไม่ถูกต้อง หรือ ว่าสกุลเงินที่ท่านเลือกในการถอนเงินไม่สามารถทำได้</value>
-  </data>
-  <data name="Err3006" xml:space="preserve">
-    <value>การขอทำรายการ ล้มเหลว</value>
-  </data>
-  <data name="Err4" xml:space="preserve">
-    <value>การใช้งานผิดตำแหน่ง ( ขั้นต่ำสุด/สูงสุดที่ถูกกำหนดไว้โดยบริษัท )</value>
-  </data>
-  <data name="Err4001" xml:space="preserve">
-    <value>บัญชีสมาชิกเลขที่ลูกค้าไม่ถูกต้อง</value>
-  </data>
-  <data name="Err4002" xml:space="preserve">
-    <value>รายการนี้ไม่ใช่การถอนเงิน</value>
-  </data>
-  <data name="Err4003" xml:space="preserve">
-    <value>รายการนี้ได้ถูกยกเลิกมาก่อน</value>
-  </data>
-  <data name="Err4004" xml:space="preserve">
-    <value>ยอดเงินคงเหลือในบัญชีไม่ถูกต้อง หรือสกุลเงินที่เลือกไม่สามารถทำได้.</value>
-  </data>
-  <data name="Err4005" xml:space="preserve">
-    <value>รายการนี้ได้ถูกยกเลิกมาก่อน</value>
-  </data>
-  <data name="Err5" xml:space="preserve">
-    <value>การใช้งานผิดตำแหน่ง ( ขั้นสูงสุดที่ถูกกำหนดไว้โดยบริษัท )</value>
-  </data>
-  <data name="Err999" xml:space="preserve">
-    <value>สร้างรายละเอียดเกี่ยวกับพันธมิตรล้มเหลว กรุณาลองใหม่อีกครั้ง</value>
   </data>
   <data name="ErrAuthorized" xml:space="preserve">
     <value>คุณไม่ได้รับอนุญาติให้ใช้ฟังก์ชั่นนี้</value>
@@ -672,26 +507,14 @@
   <data name="errContactNumberEmpty" xml:space="preserve">
     <value>หมายเลขที่ติดต่อวางเปล่า กรุณาตรวจสอบ</value>
   </data>
-  <data name="ErrDefault" xml:space="preserve">
-    <value>ไม่สามารถหาแหล่งที่มาได้  มีข้อผิดพลาด</value>
-  </data>
   <data name="errDepositDBConnectFailed" xml:space="preserve">
     <value>เกิดความผิดพลาดในการเข้าสู่ข้อมูลผู้เล่น 12BET แนะนำติดต่อเจ้าหน้าที่บริการคะ !</value>
-  </data>
-  <data name="ErrEmailInvalid" xml:space="preserve">
-    <value>อีเมลล์แอดเดรสไม่ถูกต้อง</value>
   </data>
   <data name="ErrEmailRequire" xml:space="preserve">
     <value>อีเมลล์แอดเดรสจำเป็นต้องมี</value>
   </data>
   <data name="errExistAccount" xml:space="preserve">
     <value>รหัสผู้ใช้ท่านนี้มีบัญชีกับเวบ IBC เรียบร้อยแล้ว</value>
-  </data>
-  <data name="ErrGender" xml:space="preserve">
-    <value>เพศ ว่างเปล่า กรุณาตรวจสอบ</value>
-  </data>
-  <data name="errMobileNumberEmpty" xml:space="preserve">
-    <value>ติดต่อทาง MSN</value>
   </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>กรุณากรอกรหัสผ่าน</value>
@@ -701,12 +524,6 @@
   </data>
   <data name="ErrmsgEntryValidCode" xml:space="preserve">
     <value>กรุณากรอกเลขรหัสเพื่อความปลอดภัย</value>
-  </data>
-  <data name="ErrMsgForgetPwFail" xml:space="preserve">
-    <value>แจ้งแก้ไขพาสเวิดไม่ถูกต้อง &lt;a href='ForgetPass.aspx'&gt;ลอง ใหม่ อีก ครั้ง&lt;/a&gt; หากพยายามอีกครั้งแล้วไม่สำเร็จ กรุณา &lt;a href='ContactUs.aspx'&gt; ติดต่อเรา&lt;/a&gt;</value>
-  </data>
-  <data name="ErrPaymentMethod" xml:space="preserve">
-    <value>ขออภัย! ธุรกรรณผ่าน {method} ไม่สามารถใช้ได้  หากต้องการทำธุรกรรมตอนนี้ต้องทำผ่าน บัญชีผู้เล่น 12BET เท่านั้นคะ  กรุณา&lt;a href='MyAccount.aspx?ispay=1#payment'&gt; คลิ๊ก &lt;/a&gt; ที่นี่เพื่อเปลี่ยนวิธีการ</value>
   </data>
   <data name="errSecQuestionEmpty" xml:space="preserve">
     <value>คำถามคำตอบเพื่อความปลอดภัยว่างเปล่ กรุณาตรวจสอบ !</value>
@@ -755,9 +572,6 @@
   </data>
   <data name="Football" xml:space="preserve">
     <value>ฟุตบอล</value>
-  </data>
-  <data name="For" xml:space="preserve">
-    <value>สำหรับ</value>
   </data>
   <data name="ForAnyReason" xml:space="preserve">
     <value>ไม่ว่ากรณีใดก็ตาม หากคุณยังไม่ได้รับอีเมลโปรดตรวจสอบที่กล่องจดหมายขยะก่อน หรือ&lt;a href='{0}'&gt;ติดต่อเจ้าหน้าที่เพื่อการช่วยเหลือ&lt;/a&gt;</value>
@@ -828,9 +642,6 @@
   <data name="HotNews" xml:space="preserve">
     <value>ข่าวด่วน</value>
   </data>
-  <data name="HtmlFormat" xml:space="preserve">
-    <value>รูปแบบ HTML</value>
-  </data>
   <data name="Hungary" xml:space="preserve">
     <value>ฮังการี</value>
   </data>
@@ -845,9 +656,6 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>ภาพลักษณ์</value>
-  </data>
-  <data name="ImageType" xml:space="preserve">
-    <value>ชนิด</value>
   </data>
   <data name="Important" xml:space="preserve">
     <value>สำคัญ</value>
@@ -875,9 +683,6 @@
   </data>
   <data name="Israel" xml:space="preserve">
     <value>อิสราเอล</value>
-  </data>
-  <data name="IsRequired" xml:space="preserve">
-    <value>จำเป็น</value>
   </data>
   <data name="Italy" xml:space="preserve">
     <value>อิตาลี่</value>
@@ -920,9 +725,6 @@
   </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>ประชาชนชาวลาว</value>
-  </data>
-  <data name="Last6Month" xml:space="preserve">
-    <value>รายได้ 6 เดือนที่ผ่านมา</value>
   </data>
   <data name="LastNameIsRequired" xml:space="preserve">
     <value>นามสกุลจำเป็น้</value>
@@ -1012,38 +814,21 @@
     <value>ข้อความย้อนหลัง</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
-    <value>
-       ขอบคุณที่ติดต่อเรา{br}
-        ข้อความของคุณได้ถูกส่งเรียบร้อยแล้ว เราจะตอบกลับหาคุณโดยเร็วที่สุด{br}
-        กรุณาติดต่อเราได้ที่เบอร์ 1-34354-3454 ถ้าคุณมีคำถามเพิ่มเติม. {br}{br}
-        ขอให้มีวันที่ดี{br}{br}
-        ขอแสดงความนับถือ, {br}{br}
-       ทีมงานพันธมิตร 12bet
-    </value>
+    <value>ขอบคุณที่ติดต่อเรา &lt;br /&gt;
+ข้อความของคุณได้ถูกส่งเรียบร้อยแล้ว เราจะตอบกลับหาคุณโดยเร็วที่สุด &lt;br /&gt;
+กรุณาติดต่อเราได้ที่เบอร์ 1-34354-3454 ถ้าคุณมีคำถามเพิ่มเติม. &lt;br /&gt;&lt;br /&gt;
+ขอให้มีวันที่ดี &lt;br /&gt;&lt;br /&gt;
+ขอแสดงความนับถือ, &lt;br /&gt;&lt;br /&gt;
+ทีมงานพันธมิตร 12bet</value>
   </data>
   <data name="Mexico" xml:space="preserve">
     <value>เม็กซิโก</value>
   </data>
-  <data name="MinAmt_explain" xml:space="preserve">
-    <value>ขั้นต่ำยอดเล่นได้เสียสุทธิของสมาชิก</value>
-  </data>
-  <data name="MinQM_explain" xml:space="preserve">
-    <value>ขั้นต่ำจำนวนผู้เล่นผ่านเกณฑ์</value>
-  </data>
   <data name="MinWithdraw" xml:space="preserve">
     <value>จำนวนเงินขั้นต่ำที่ขอถอนได้คือ</value>
   </data>
-  <data name="Mobile" xml:space="preserve">
-    <value>MSN</value>
-  </data>
   <data name="Moldova" xml:space="preserve">
     <value>มอลโดวา</value>
-  </data>
-  <data name="MoneyBooker" xml:space="preserve">
-    <value>มันนี่บุคเกอร์</value>
-  </data>
-  <data name="MoneybookersEma" xml:space="preserve">
-    <value>มันนี่บุคเกอร์ อีเมลล์ไม่ถูกต้อง</value>
   </data>
   <data name="Mongolia" xml:space="preserve">
     <value>มองโกเลีย</value>
@@ -1084,9 +869,6 @@
   <data name="Nepal" xml:space="preserve">
     <value>เนปาล</value>
   </data>
-  <data name="NetellerAccount" xml:space="preserve">
-    <value>บัญชี Neteller จำเป็นต้องมี</value>
-  </data>
   <data name="Netherlands" xml:space="preserve">
     <value>เนเธอแลนด์</value>
   </data>
@@ -1102,12 +884,6 @@
   <data name="NewPasswordisre" xml:space="preserve">
     <value>จำเป็นต้องมีรหัสผ่านใหม่</value>
   </data>
-  <data name="NewSignup" xml:space="preserve">
-    <value>สมัครสมาชิกใหม่</value>
-  </data>
-  <data name="NewTrackingCode" xml:space="preserve">
-    <value>ใหม่</value>
-  </data>
   <data name="NewZealand" xml:space="preserve">
     <value>นิวซีแลนด์</value>
   </data>
@@ -1119,9 +895,6 @@
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>ไม่มีข้อมูลในขณะนี้</value>
-  </data>
-  <data name="NonDeposit" xml:space="preserve">
-    <value>บัญชีนี้ไม่สามารถใช้ฝากเงินได้</value>
   </data>
   <data name="none" xml:space="preserve">
     <value>ไม่มี</value>
@@ -1144,17 +917,8 @@
   <data name="October" xml:space="preserve">
     <value>ตุลาคม</value>
   </data>
-  <data name="Of" xml:space="preserve">
-    <value>ของ</value>
-  </data>
   <data name="OldPass" xml:space="preserve">
     <value>พาสเวริ์ดเก่า</value>
-  </data>
-  <data name="OldPassandNewPass" xml:space="preserve">
-    <value>พาสเวริ์ดเก่าและพาสเวริ์ดใหม่จำเป็นต้องมี</value>
-  </data>
-  <data name="OldPassErr" xml:space="preserve">
-    <value>พาสเวิร์ดเก่าไม่ถูกต้อง</value>
   </data>
   <data name="OldPasswordisre" xml:space="preserve">
     <value>พาสเวริ์ดเดิมจำเป็นต้องมี</value>
@@ -1192,24 +956,6 @@
   <data name="Passwordchanged" xml:space="preserve">
     <value>การเปลี่ยนรหัสผ่านเสร็จสมบูรณ์เรียบร้อยแล้ว</value>
   </data>
-  <data name="PaymentErr1001" xml:space="preserve">
-    <value>เสียใจด้วย จำนวนไม่ถูกต้อง</value>
-  </data>
-  <data name="PaymentErr1002" xml:space="preserve">
-    <value>ยูสเซอร์เนมของท่านไม่ถูกต้อง</value>
-  </data>
-  <data name="PaymentErr1003" xml:space="preserve">
-    <value>ขออภัย บัญชีพันธมิตรนี้มียอดเงินไม่เพียงพอที่จะขอถอน</value>
-  </data>
-  <data name="PaymentErr1004" xml:space="preserve">
-    <value>ยอดเงินคงเหลือในบัญชีไม่ถูกต้อง หรือสกุลเงินที่เลือกไม่สามารถทำได้</value>
-  </data>
-  <data name="PaymentErr1006" xml:space="preserve">
-    <value>การทำรายการล้มเหลว</value>
-  </data>
-  <data name="PaymentErr1007" xml:space="preserve">
-    <value>การทำรายการล้มเหลว</value>
-  </data>
   <data name="PaymentInfor" xml:space="preserve">
     <value>รายละเอียดการถอนเงิน</value>
   </data>
@@ -1219,17 +965,8 @@
   <data name="PaymentRequest" xml:space="preserve">
     <value>การขอการถอนเงิน</value>
   </data>
-  <data name="PayoutSuccess" xml:space="preserve">
-    <value>การขอถอนเงินของคุณได้ทำการเสนอเสร็จสมบูรณ์แล้ว</value>
-  </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>คุณจะสามารถถอนเงินได้ระหว่างวันที่ 8 ถึงวันที่ 15 ของเดือนเท่านั้น</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>รายการที่ได้รับแจ้ง</value>
-  </data>
-  <data name="PendingComm" xml:space="preserve">
-    <value>ค่าคอมมิชชั่นที่ได้รับแจ้ง</value>
   </data>
   <data name="PendingRequest" xml:space="preserve">
     <value>การร้องขอของคุณอยู่ระหว่างการดำเนินการ</value>
@@ -1239,9 +976,6 @@
   </data>
   <data name="Philippines" xml:space="preserve">
     <value>ฟิลิปปินส์</value>
-  </data>
-  <data name="PlainText" xml:space="preserve">
-    <value>เฉพาะข้อความเท่านั้น</value>
   </data>
   <data name="Pleasecheckyour" xml:space="preserve">
     <value>กรุณาตรวจสอบอีเมลล์แอดเดรสของคุณเพื่อที่จะค้นหารายละเอียดเกี่ยวกับชื่อที่ใช้เข้าระบบและรหัสผ่านของคุณ</value>
@@ -1267,23 +1001,14 @@
   <data name="Preference" xml:space="preserve">
     <value>สิ่งที่ต้องการใช้</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>สิ่งที่ต้องการใช้</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>กรุณาเลือกภาษาที่คุณต้องการใช้</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>กำลังดำเนินการ</value>
   </data>
-  <data name="ProgDetails" xml:space="preserve">
-    <value>รายละเอียดโปรแกรม</value>
-  </data>
   <data name="PSP" xml:space="preserve">
     <value>PSP</value>
-  </data>
-  <data name="PwdChanged" xml:space="preserve">
-    <value>การเปลี่ยนรหัสผ่านเสร็จสมบูรณ์เรียบร้อยแล้ว</value>
   </data>
   <data name="Qatar" xml:space="preserve">
     <value>การ์ต้า</value>
@@ -1378,12 +1103,6 @@
   <data name="Search" xml:space="preserve">
     <value>ค้นหา</value>
   </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>คำถามคำตอบเพื่อความปลอดภัยของคุณได้ถูกอัพเดทแล้ว !</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>เลือก</value>
-  </data>
   <data name="SelectOne" xml:space="preserve">
     <value>เลือกอันใดอันหนึ่ง</value>
   </data>
@@ -1407,9 +1126,6 @@
   </data>
   <data name="Singapore" xml:space="preserve">
     <value>สิงคโปร์</value>
-  </data>
-  <data name="SiteUrl" xml:space="preserve">
-    <value>ลิงค์เข้าเวบไซค์</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>ขนาดแบนเนอร์</value>
@@ -1447,9 +1163,6 @@
   <data name="Sportbook" xml:space="preserve">
     <value>อัตราค่าตอบแทนจากหน้ากีฬา</value>
   </data>
-  <data name="SportType" xml:space="preserve">
-    <value>ชนิดของกีฬา</value>
-  </data>
   <data name="SriLanka" xml:space="preserve">
     <value>ศรีลังกา</value>
   </data>
@@ -1462,9 +1175,6 @@
   <data name="StatementHistory" xml:space="preserve">
     <value>ประวัติเกี่ยวกับการทำธุรกรรมทางการเงิน</value>
   </data>
-  <data name="Statistic" xml:space="preserve">
-    <value>สถิติ</value>
-  </data>
   <data name="Status" xml:space="preserve">
     <value>สถานะ</value>
   </data>
@@ -1472,7 +1182,7 @@
     <value>เรื่อง</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>บัญชีพันธมิตร 12bet รายละเอียดการล๊อคอินของคุณ</value>
+    <value>พันธมิตร 12bet - รายละเอียดการล๊อคอินของคุณ</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>เรื่องไม่ถูกต้อง</value>
@@ -1511,12 +1221,6 @@
   <data name="Tennis" xml:space="preserve">
     <value>เทนนิส</value>
   </data>
-  <data name="TermCondition" xml:space="preserve">
-    <value>กติกาและเงื่อนไข</value>
-  </data>
-  <data name="TermErr" xml:space="preserve">
-    <value>กติกา และ เงื่อนไขที่ไม่เห็นด้วย  กรุณาตรวจสอบ</value>
-  </data>
   <data name="Text" xml:space="preserve">
     <value>กล่องข้อความ</value>
   </data>
@@ -1541,9 +1245,6 @@
   <data name="TitelForgetPass" xml:space="preserve">
     <value>พาสเวิดใหม่จะถูกส่งไปยังอีเมลล์ของคุณ.&lt;br /&gt; หากคุณไม่รับอีเมลล์ดังกล่าว กรุณา&lt;a href="{0}"&gt;ติดต่อเรา&lt;/a&gt;.</value>
   </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>ล๊อคอินเข้าระบบบัญชีพันธมิตร</value>
-  </data>
   <data name="To" xml:space="preserve">
     <value>ถึง</value>
   </data>
@@ -1553,20 +1254,11 @@
   <data name="Total" xml:space="preserve">
     <value>ยอดรวม</value>
   </data>
-  <data name="TotalActive" xml:space="preserve">
-    <value>ยอดรวมของลูกค้าที่ยังคงเล่นอยู่</value>
-  </data>
   <data name="TotalClick" xml:space="preserve">
     <value>จำนวนรวมครั้งของการคลิ๊กทั้งหมด</value>
   </data>
   <data name="TotalDeposit" xml:space="preserve">
     <value>ยอดรวมของการฝากเงิน</value>
-  </data>
-  <data name="TotalPlay" xml:space="preserve">
-    <value>ยอดรวมของผู้เล่น</value>
-  </data>
-  <data name="TotalQualifiedMembers" xml:space="preserve">
-    <value>จำนวนผู้เล่นทั้งหมดที่มียอดเกินหนึ่งร้อยเหรียญ</value>
   </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>รหัสที่ใช้ตรวจสอบ</value>
@@ -1618,12 +1310,6 @@
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value>รายละเอียดเกี่ยวกับบัญชีของคุณได้รับการอัพเดทสำเร็จเรียบร้อยแล้ว</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>การอัพเดทเหตุผลเกี่ยวกับความปลอดภัย</value>
-  </data>
-  <data name="UpToNow" xml:space="preserve">
-    <value>จนกระทั่งเดี๋ยวนี้</value>
   </data>
   <data name="Uruguay" xml:space="preserve">
     <value>อูรุกกวัย</value>
@@ -1733,9 +1419,6 @@
   <data name="Product12RUBY" xml:space="preserve">
     <value>12RUBY (12BET)</value>
   </data>
-  <data name="Product12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND (OPUS)</value>
-  </data>
   <data name="Product12PEARL" xml:space="preserve">
     <value>12PEARL (ASIA GAMING) </value>
   </data>
@@ -1748,17 +1431,11 @@
   <data name="Product12OPAL" xml:space="preserve">
     <value>12OPAL (EBET)</value>
   </data>
-  <data name="Product12AMETHYST" xml:space="preserve">
-    <value>12AMETHYST (GOLD DELUXE)</value>
-  </data>
   <data name="Product12ONYX" xml:space="preserve">
     <value>12ONYX (ALLBET)</value>
   </data>
   <data name="Product12AMBER" xml:space="preserve">
     <value>12AMBER (BETSOFT)</value>
-  </data>
-  <data name="RevenueShare" xml:space="preserve">
-    <value>ส่วนแบ่งรายได้</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>ทุกผลิตภัณฑ์เดิมพัน</value>
@@ -1856,42 +1533,6 @@
   <data name="ContactNow" xml:space="preserve">
     <value>ติดต่อเราสิคะ!</value>
   </data>
-  <data name="OptimizeYourWebsite" xml:space="preserve">
-    <value>ปรับปรุงเว็บไซต์และ</value>
-  </data>
-  <data name="AndSocialChannels" xml:space="preserve">
-    <value>โปรโมทเพิ่มในโซเชียลมีเดีย</value>
-  </data>
-  <data name="ThroughSoccerSeason2018" xml:space="preserve">
-    <value>ตลอดฤดูกาลฟุตบอล 2018/2019</value>
-  </data>
-  <data name="Update12BetBannersfromYourMediaGallery" xml:space="preserve">
-    <value>โดยอัพเดทแบนเนอร์12BETจากสื่อโฆษณาเสมอ</value>
-  </data>
-  <data name="AndPostPromotionsInYourWebsite" xml:space="preserve">
-    <value>และแนะนำโปรโมชั่นใหม่ในเว็บไซต์ของคุณ</value>
-  </data>
-  <data name="ToBeatTheBestCommission" xml:space="preserve">
-    <value>แล้วคุณจะมีรายได้ค่าคอมมิชชั่นสูงขึ้นกว่าที่เคย!</value>
-  </data>
-  <data name="GetBannerNow" xml:space="preserve">
-    <value>รับแบนเนอร์โปรโมทสิคะ!</value>
-  </data>
-  <data name="UpTo" xml:space="preserve">
-    <value>&lt;span class="up-to-group"&gt;&lt;span class="up"&gt;สูง&lt;/span&gt;&lt;span class="to"&gt;ถึง&lt;/span&gt;&lt;/span&gt;</value>
-  </data>
-  <data name="MonthlyCommission" xml:space="preserve">
-    <value>&lt;p class="text-big-white"&gt;ค่าคอมมิชชั่นรายเดือน&lt;/p&gt;</value>
-  </data>
-  <data name="OnSportandCasino" xml:space="preserve">
-    <value>&lt;p class="text-white"&gt;ใน&lt;span class="text-red"&gt;กีฬา&lt;/span&gt;และ&lt;span class="text-red"&gt;คาสิโนทุกคลับ&lt;/span&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="YouAreNotAffiliateYet" xml:space="preserve">
-    <value>คุณยังไม่ได้ร่วมพันธมิตรหรอคะ?</value>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>สมัครได้เลยตอนนี้!</value>
-  </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>รายงานค่าคอมมิชชั่น</value>
   </data>
@@ -1923,7 +1564,7 @@
     <value>ยังไม่สรุปยอด</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>เกิดข้อผิดพลาดขณะดำเนินการคำขอของคุณ! กรุณาติดต่อเจ้าหน้าที่พันธมิตร</value>
+    <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ! โปรดติดต่อผู้ดูแลระบบ</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>ข้อมูลฝากเงินของสมาชิก</value>
@@ -1987,9 +1628,6 @@
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>ขออภัยค่ะ! คุณไม่สามารถเข้าสู่ระบบจากโดเมนนี้</value>
-  </data>
-  <data name="MarketingTools" xml:space="preserve">
-    <value>เครื่องมือการตลาด</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>สถิติเว็บไซต์</value>
@@ -2094,7 +1732,7 @@
     <value>รหัสยืนยันความปลอดภัยได้ส่งไปที่อีเมล์ของคุณแล้ว. โปรดกรอกชื่อผู้ใช้เข้าระบบ, รหัสผ่าน และรหัสยืนยันความปลอดภัยในช่องว่างด้านล่างค่ะ</value>
   </data>
   <data name="UsernameVerification" xml:space="preserve">
-    <value>ชื่อผู้ใช้เข้าสู่ระบบ</value>
+    <value>ยูสเซอร์เนม</value>
   </data>
   <data name="UsernameIsRequired" xml:space="preserve">
     <value>โปรดกรอกชื่อผู้ใช้เข้าสู่ระบบ</value>
@@ -2120,9 +1758,6 @@
   <data name="GpiLottery" xml:space="preserve">
     <value>GPI ล็อตเตอรี่</value>
   </data>
-  <data name="PrefixProduct12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND </value>
-  </data>
   <data name="PrefixProduct12EMERALD" xml:space="preserve">
     <value>12EMERALD</value>
   </data>
@@ -2131,9 +1766,6 @@
   </data>
   <data name="PrefixProduct12OPAL" xml:space="preserve">
     <value>12OPAL</value>
-  </data>
-  <data name="PrefixProduct12AMETHYST" xml:space="preserve">
-    <value>12AMETHYST</value>
   </data>
   <data name="PrefixProduct12ONYX" xml:space="preserve">
     <value>12ONYX</value>
@@ -2144,9 +1776,6 @@
   <data name="PrefixProduct12AMBER" xml:space="preserve">
     <value>12AMBER</value>
   </data>
-  <data name="SuffixProduct12DIAMOND" xml:space="preserve">
-    <value>(OPUS GAMING)</value>
-  </data>
   <data name="SuffixProduct12EMERALD" xml:space="preserve">
     <value>(Playtech)</value>
   </data>
@@ -2155,9 +1784,6 @@
   </data>
   <data name="SuffixProduct12OPAL" xml:space="preserve">
     <value>(EBET)</value>
-  </data>
-  <data name="SuffixProduct12AMETHYST" xml:space="preserve">
-    <value>(GOLD DELUXE)</value>
   </data>
   <data name="SuffixProduct12ONYX" xml:space="preserve">
     <value>(ALLBET)</value>
@@ -2232,12 +1858,6 @@
   <data name="KoreaSupport" xml:space="preserve">
     <value>ทีมงานภาษาเกาหลี</value>
   </data>
-  <data name="OurOfficialSkype" xml:space="preserve">
-    <value>ประกาศสำคัญ! บัญชีทางการ Skype และ Line ของเราได้มีการอัปเดตใหม่แล้ว&lt;br&gt;เพิ่ม skype และ Line ID ใหม่ของเราตอนนี้เพื่อติดตามธุรกรรมทางการเงินและโปรโมชั่นข่าวสารต่างๆ</value>
-  </data>
-  <data name="AddNow" xml:space="preserve">
-    <value>แอดเลยตอนนี้!</value>
-  </data>
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
   </data>
@@ -2268,7 +1888,118 @@
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>ส่วนแบ่งรายได้</value>
   </data>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE SEXY)</value>
+  </data>
+  <data name="AndarBahar" xml:space="preserve">
+    <value>Andar Bahar</value>
+  </data>
+  <data name="Teenpatti" xml:space="preserve">
+    <value>Teenpatti</value>
+  </data>
+  <data name="ChineseTraditional" xml:space="preserve">
+    <value>繁體中文</value>
+  </data>
+  <data name="ChineseSimplified" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="IN" xml:space="preserve">
+    <value>IN</value>
+  </data>
+  <data name="MKK" xml:space="preserve">
+    <value>MMK</value>
+  </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>ทีมงานภาษาเขมร</value>
+  </data>
+  <data name="NewSignUp" xml:space="preserve">
+    <value>สมาชิกใหม่</value>
+  </data>
+  <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
+    <value>กรุณากรอกรหัสยืนยัน</value>
+  </data>
+  <data name="ErrmsgEntryCaptcha" xml:space="preserve">
+    <value>กรุณาใส่รหัสแคปช่า!</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>สรุป</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>ลิงค์พันธมิตร</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>เข้าสู่ระบบล่าสุด</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>ที่อยู่ IP เข้าสู่ระบบล่าสุด</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>ภาพรวม</value>
+  </data>
+  <data name="PlayersDetails" xml:space="preserve">
+    <value>รายละเอียดผู้เล่น</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>ยอดเล่นทั้งหมด</value>
+  </data>
+  <data name="EmailTittleVerificationAccount" xml:space="preserve">
+    <value>ยืนยันรายละเอียดบัญชีของคุณ</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>ผู้เล่น</value>
+  </data>
+  <data name="SubjectVerificationAccount" xml:space="preserve">
+    <value>พันธมิตร 12Bet - ยืนยันรายละเอียดบัญชีของคุณ</value>
+  </data>
+  <data name="NewSignupAndDeposited" xml:space="preserve">
+    <value>การสมัครใหม่ / ฝาก</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>ผู้เล่นที่ใช้งาน / ที่ผ่านการรับรอง</value>
+  </data>
+  <data name="DepositedMembers" xml:space="preserve">
+    <value>สมาชิกที่ฝากเงิน</value>
+  </data>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>สมาชิกที่ใช้งานอยู่</value>
+  </data>
+  <data name="QualifiedActiveMembers" xml:space="preserve">
+    <value>สมาชิกที่ใช้งานผ่านการรับรอง</value>
+  </data>
+  <data name="WinAndLoss" xml:space="preserve">
+    <value>ชนะ/เสีย</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>คัดลอก</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>เลขที่</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>มิติ</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>คัดลอกรหัสแบนเนอร์</value>
+  </data>
+  <data name="ShareBanner" xml:space="preserve">
+    <value>แบ่งปันแบนเนอร์ให้เพื่อนของคุณ</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>คัดลอกลิงค์</value>
+  </data>
+  <data name="CopyQR" xml:space="preserve">
+    <value>คัดลอกคิวอาร์โค้ด</value>
+  </data>
+  <data name="SaveQR" xml:space="preserve">
+    <value>บันทึกคิวอาร์โค้ด</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>คัดลอก</value>
+  </data>
+  <data name="PrefixProduct12JADE" xml:space="preserve">
+    <value>12JADE</value>
+  </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>คุณไม่มีที่อยู่อีเมล โปรดติดต่อทีมงานพันธมิตร!</value>
   </data>
 </root>

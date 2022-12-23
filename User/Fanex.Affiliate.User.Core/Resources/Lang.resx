@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutUs" xml:space="preserve">
-    <value>About Us</value>
-  </data>
   <data name="AccInfo" xml:space="preserve">
     <value>Account Information</value>
   </data>
@@ -129,9 +126,6 @@
   </data>
   <data name="AccOverview" xml:space="preserve">
     <value>Account Overview</value>
-  </data>
-  <data name="ActivatedTrackingCode" xml:space="preserve">
-    <value>Activated</value>
   </data>
   <data name="Address" xml:space="preserve">
     <value>Address</value>
@@ -228,23 +222,8 @@
   <data name="Bangladesh" xml:space="preserve">
     <value>Bangladesh </value>
   </data>
-  <data name="BankABA_Swift_SIsRequired" xml:space="preserve">
-    <value>Bank ABA/Swift/Sort Code is required</value>
-  </data>
-  <data name="BankAccnumber" xml:space="preserve">
-    <value>Bank Account Number</value>
-  </data>
-  <data name="BankAccountNameIsRequired" xml:space="preserve">
-    <value>Bank Account Name is required</value>
-  </data>
-  <data name="BankAccountNumbIsRequired" xml:space="preserve">
-    <value>Bank Account Number is required</value>
-  </data>
   <data name="BankAddress" xml:space="preserve">
     <value>Bank Address</value>
-  </data>
-  <data name="BankAddressisre" xml:space="preserve">
-    <value>Bank Address is required</value>
   </data>
   <data name="BankCity" xml:space="preserve">
     <value>Bank City</value>
@@ -256,9 +235,6 @@
   </data>
   <data name="BankName" xml:space="preserve">
     <value>Bank Name</value>
-  </data>
-  <data name="BankNameisrequi" xml:space="preserve">
-    <value>Bank Name is required</value>
   </data>
   <data name="BankTransfer" xml:space="preserve">
     <value>Bank Transfer</value>
@@ -286,9 +262,6 @@
   </data>
   <data name="Bermuda" xml:space="preserve">
     <value>Bermuda </value>
-  </data>
-  <data name="Bet12Username" xml:space="preserve">
-    <value>12BET User Name</value>
   </data>
   <data name="BETUserNameIsRequired" xml:space="preserve">
     <value>12BET User Name is required</value>
@@ -378,38 +351,8 @@
   <data name="ChangePass" xml:space="preserve">
     <value>Change Password</value>
   </data>
-  <data name="ChangePassErr" xml:space="preserve">
-    <value>Change password error</value>
-  </data>
   <data name="ChangePassText" xml:space="preserve">
     <value>Use this form to change your password. Once changed, your new password will be in effect next time you login.</value>
-  </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>Change Password</value>
-  </data>
-  <data name="Cheque" xml:space="preserve">
-    <value>Cheque</value>
-  </data>
-  <data name="ChequeAddressis" xml:space="preserve">
-    <value>Cheque Address is required</value>
-  </data>
-  <data name="ChequeCityisreq" xml:space="preserve">
-    <value>Cheque City is required</value>
-  </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>Cheque Country is required</value>
-  </data>
-  <data name="ChequeFullNamei" xml:space="preserve">
-    <value>Cheque Full Name is required</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>Cheque Postcode/Zip is required</value>
-  </data>
-  <data name="ChequeStateisre" xml:space="preserve">
-    <value>Cheque State is required</value>
-  </data>
-  <data name="CHF" xml:space="preserve">
-    <value>CHF (Swiss Franc)</value>
   </data>
   <data name="Chile" xml:space="preserve">
     <value>Chile </value>
@@ -447,9 +390,6 @@
   <data name="CommentsIsInvalid" xml:space="preserve">
     <value>Comment is invalid</value>
   </data>
-  <data name="CommPercent" xml:space="preserve">
-    <value>Commission Percentage</value>
-  </data>
   <data name="CompletedDate" xml:space="preserve">
     <value>Completed Date</value>
   </data>
@@ -465,12 +405,6 @@
   <data name="ContactNumber" xml:space="preserve">
     <value>Contact Number</value>
   </data>
-  <data name="ContactTitle" xml:space="preserve">
-    <value>Please direct any comments or questions to 
-            {email}
-            or using the form below.                   
-    </value>
-  </data>
   <data name="ContactUs" xml:space="preserve">
     <value>Contact Us</value>
     <comment>87923</comment>
@@ -479,7 +413,7 @@
     <value>Cook Islands </value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>Copyright © 2008 - 2021 | 12BET. All Rights Reserved | 21+</value>
+    <value>Copyright © 2008 - {0} | 12BET. All Rights Reserved | 21+</value>
     <comment>87923</comment>
   </data>
   <data name="CostaRica" xml:space="preserve">
@@ -501,16 +435,13 @@
     <value>Croatia </value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>12Bet Affiliate – New account {0} awaiting approval</value>
+    <value>12Bet Affiliates - New account {0} awaiting approval</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>Current</value>
-  </data>
-  <data name="CurrentCommissiSetting" xml:space="preserve">
-    <value>Current Commission Setting</value>
   </data>
   <data name="Cyprus" xml:space="preserve">
     <value>Cyprus </value>
@@ -603,107 +534,8 @@
   <data name="Eritrea" xml:space="preserve">
     <value>Eritrea </value>
   </data>
-  <data name="Err1" xml:space="preserve">
-    <value>Wrong discount</value>
-  </data>
-  <data name="Err100" xml:space="preserve">
-    <value>Sorry, cannot create agent</value>
-  </data>
-  <data name="Err1001" xml:space="preserve">
-    <value>Invalid affiliate information</value>
-  </data>
-  <data name="Err1002" xml:space="preserve">
-    <value>The email address you've typed had been used to register account. Please choose another one!</value>
-  </data>
-  <data name="Err1003" xml:space="preserve">
-    <value>12BET User Name is invalid</value>
-  </data>
-  <data name="Err1004" xml:space="preserve">
-    <value>Invalid user information. Update process is unsuccessful</value>
-  </data>
-  <data name="Err1005" xml:space="preserve">
-    <value>Error occurs. Update process is unsuccessful</value>
-  </data>
-  <data name="Err1006" xml:space="preserve">
-    <value>Error occurs. Update process is unsuccessful</value>
-  </data>
-  <data name="Err101" xml:space="preserve">
-    <value>This username is not available</value>
-  </data>
-  <data name="Err102" xml:space="preserve">
-    <value>Wrong position taking (max for master set by super)</value>
-  </data>
-  <data name="Err103" xml:space="preserve">
-    <value>Sorry, min bet must be less than max bet and max bet must be less than max bet per match</value>
-  </data>
-  <data name="Err104" xml:space="preserve">
-    <value>Sorry, credit update is not successful, You have exceeded your master credit</value>
-  </data>
-  <data name="Err105" xml:space="preserve">
-    <value>Sorry, min bet must be equal to or greater than master agent min bet</value>
-  </data>
-  <data name="Err107" xml:space="preserve">
-    <value>Sorry, Max Per Match must be equal to or less than master agent Max Per Match</value>
-  </data>
-  <data name="Err111" xml:space="preserve">
-    <value>Create customer failed. Please try again</value>
-  </data>
-  <data name="Err113" xml:space="preserve">
-    <value>Create customer failed. Please try again</value>
-  </data>
-  <data name="Err114" xml:space="preserve">
-    <value>Create customer failed. Please try again</value>
-  </data>
-  <data name="Err115" xml:space="preserve">
-    <value>Create customer failed. Please try again</value>
-  </data>
-  <data name="Err116" xml:space="preserve">
-    <value>You are not authorized to create/edit this information</value>
-  </data>
-  <data name="Err2" xml:space="preserve">
-    <value>Wrong Min bet/ Max bet/ Max per match/ Credit/ Master Agent name/ user group</value>
-  </data>
-  <data name="Err3" xml:space="preserve">
-    <value>Wrong position taking</value>
-  </data>
   <data name="Err3001" xml:space="preserve">
     <value>You have a pending request. In order to create a new request, please cancel the pending one or wait till the processing gets completed.</value>
-  </data>
-  <data name="Err3002" xml:space="preserve">
-    <value>Invalid Role ID.</value>
-  </data>
-  <data name="Err3003" xml:space="preserve">
-    <value>Sorry, this Affiliate does not have enough money to withdraw.</value>
-  </data>
-  <data name="Err3004" xml:space="preserve">
-    <value>Invalid balance account or either the currency or payment method is not supported.</value>
-  </data>
-  <data name="Err3006" xml:space="preserve">
-    <value>Insert transaction failed.</value>
-  </data>
-  <data name="Err4" xml:space="preserve">
-    <value>Wrong position taking (min/max set by company)</value>
-  </data>
-  <data name="Err4001" xml:space="preserve">
-    <value>Invalid CustID.</value>
-  </data>
-  <data name="Err4002" xml:space="preserve">
-    <value>This transaction is not a withdrawal.</value>
-  </data>
-  <data name="Err4003" xml:space="preserve">
-    <value>This transaction has been cancelled before.</value>
-  </data>
-  <data name="Err4004" xml:space="preserve">
-    <value>Invalid balance account or the currency is not supported.</value>
-  </data>
-  <data name="Err4005" xml:space="preserve">
-    <value>This transaction has been cancelled before.</value>
-  </data>
-  <data name="Err5" xml:space="preserve">
-    <value>Wrong position taking (max set by company)</value>
-  </data>
-  <data name="Err999" xml:space="preserve">
-    <value>Create Affiliate Info failed. Please try again</value>
   </data>
   <data name="ErrAuthorized" xml:space="preserve">
     <value>You are not authorized on this function</value>
@@ -711,26 +543,14 @@
   <data name="errContactNumberEmpty" xml:space="preserve">
     <value>Contact Number is required</value>
   </data>
-  <data name="ErrDefault" xml:space="preserve">
-    <value>Unknown Error!</value>
-  </data>
   <data name="errDepositDBConnectFailed" xml:space="preserve">
     <value>There was an error when getting 12Bet player information. Please contact your administrator!</value>
-  </data>
-  <data name="ErrEmailInvalid" xml:space="preserve">
-    <value>Email address - is invalid</value>
   </data>
   <data name="ErrEmailRequire" xml:space="preserve">
     <value>Email address - is required</value>
   </data>
   <data name="errExistAccount" xml:space="preserve">
     <value>User already has IBC account</value>
-  </data>
-  <data name="ErrGender" xml:space="preserve">
-    <value>Gender is empty. Please Check !</value>
-  </data>
-  <data name="errMobileNumberEmpty" xml:space="preserve">
-    <value>MSN is required</value>
   </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>Please enter password.</value>
@@ -740,12 +560,6 @@
   </data>
   <data name="ErrmsgEntryValidCode" xml:space="preserve">
     <value>Please enter Validation code.</value>
-  </data>
-  <data name="ErrMsgForgetPwFail" xml:space="preserve">
-    <value>The information to reset password is not valid, please &lt;a href='ForgetPass.aspx'&gt;try again&lt;/a&gt;. In case you still can not reset your password, please &lt;a href='ContactUs.aspx'&gt;contact us&lt;/a&gt;</value>
-  </data>
-  <data name="ErrPaymentMethod" xml:space="preserve">
-    <value>Sorry! The payment via {method} is not available. At the moment, only '12Bet Player Account' method is supported. Please &lt;a href='MyAccount.aspx?ispay=1#payment'&gt;click here&lt;/a&gt; to make a change.</value>
   </data>
   <data name="errSecQuestionEmpty" xml:space="preserve">
     <value>Please select Security Question</value>
@@ -799,9 +613,6 @@
   </data>
   <data name="Football" xml:space="preserve">
     <value>Football</value>
-  </data>
-  <data name="For" xml:space="preserve">
-    <value>For</value>
   </data>
   <data name="ForAnyReason" xml:space="preserve">
     <value>For any reason, you do not receive the email, please check your Spam box or &lt;a href='{0}'&gt;Contact Us&lt;/a&gt; and we will glad to assist you.</value>
@@ -875,9 +686,6 @@
     <value>Hot News</value>
     <comment>87923</comment>
   </data>
-  <data name="HtmlFormat" xml:space="preserve">
-    <value>Html Format</value>
-  </data>
   <data name="Hungary" xml:space="preserve">
     <value>Hungary </value>
   </data>
@@ -892,9 +700,6 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>Image</value>
-  </data>
-  <data name="ImageType" xml:space="preserve">
-    <value>Type</value>
   </data>
   <data name="Important" xml:space="preserve">
     <value>Important</value>
@@ -922,9 +727,6 @@
   </data>
   <data name="Israel" xml:space="preserve">
     <value>Israel </value>
-  </data>
-  <data name="IsRequired" xml:space="preserve">
-    <value>is required</value>
   </data>
   <data name="Italy" xml:space="preserve">
     <value>Italy </value>
@@ -967,9 +769,6 @@
   </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>Lao People's Dem Rep </value>
-  </data>
-  <data name="Last6Month" xml:space="preserve">
-    <value>Last 6 Months Earnings</value>
   </data>
   <data name="LastNameIsRequired" xml:space="preserve">
     <value>Last Name is required</value>
@@ -1072,29 +871,18 @@
     <value>Message History</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
-    <value>
-        Thank you for contacting us. {br}
-        Your message has been sent. We will respond to your request as soon as possible. {br}
-        Feel free to call us at 1-34354-3454 if you have any question. {br}{br}
-        Have a great day! {br}{br}
-        Best regards, {br}{br}
-        12Bet Affiliate Support Team
-    </value>
+    <value>Thank you for contacting us. &lt;br /&gt;
+Your message has been sent. We will respond to your request as soon as possible. &lt;br /&gt;
+Feel free to call us at 1-34354-3454 if you have any question. &lt;br /&gt;&lt;br /&gt;
+Have a great day! &lt;br /&gt;&lt;br /&gt;
+Best regards, &lt;br /&gt;&lt;br /&gt;
+12Bet Affiliate Support Team</value>
   </data>
   <data name="Mexico" xml:space="preserve">
     <value>Mexico </value>
   </data>
-  <data name="MinAmt_explain" xml:space="preserve">
-    <value>Minimum total member's net lost</value>
-  </data>
-  <data name="MinQM_explain" xml:space="preserve">
-    <value>Minimum Qualified members</value>
-  </data>
   <data name="MinWithdraw" xml:space="preserve">
     <value>Minimum Withdrawal Amount</value>
-  </data>
-  <data name="Mobile" xml:space="preserve">
-    <value>MSN</value>
   </data>
   <data name="MobileNumber" xml:space="preserve">
     <value>Mobile Numbers</value>
@@ -1102,12 +890,6 @@
   </data>
   <data name="Moldova" xml:space="preserve">
     <value>Moldova </value>
-  </data>
-  <data name="MoneyBooker" xml:space="preserve">
-    <value>Moneybookers</value>
-  </data>
-  <data name="MoneybookersEma" xml:space="preserve">
-    <value>Moneybookers Email is invalid</value>
   </data>
   <data name="Mongolia" xml:space="preserve">
     <value>Mongolia </value>
@@ -1150,9 +932,6 @@
   <data name="Nepal" xml:space="preserve">
     <value>Nepal </value>
   </data>
-  <data name="NetellerAccount" xml:space="preserve">
-    <value>Neteller Account ID is required</value>
-  </data>
   <data name="Netherlands" xml:space="preserve">
     <value>Netherlands </value>
   </data>
@@ -1173,11 +952,8 @@
   <data name="NewPasswordisre" xml:space="preserve">
     <value>New Password is required</value>
   </data>
-  <data name="NewSignup" xml:space="preserve">
-    <value>New Signups</value>
-  </data>
-  <data name="NewTrackingCode" xml:space="preserve">
-    <value>New</value>
+  <data name="NewSignupAndDeposited" xml:space="preserve">
+    <value>New Signups / Deposited</value>
   </data>
   <data name="NewZealand" xml:space="preserve">
     <value>New Zealand </value>
@@ -1190,9 +966,6 @@
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>No information is available</value>
-  </data>
-  <data name="NonDeposit" xml:space="preserve">
-    <value>Non-deposited account only</value>
   </data>
   <data name="none" xml:space="preserve">
     <value>None</value>
@@ -1228,17 +1001,8 @@
   <data name="October" xml:space="preserve">
     <value>October</value>
   </data>
-  <data name="Of" xml:space="preserve">
-    <value>Of</value>
-  </data>
   <data name="OldPass" xml:space="preserve">
     <value>Old Password</value>
-  </data>
-  <data name="OldPassandNewPass" xml:space="preserve">
-    <value>Old password and new password are required!</value>
-  </data>
-  <data name="OldPassErr" xml:space="preserve">
-    <value>Old password is incorrect</value>
   </data>
   <data name="OldPasswordisre" xml:space="preserve">
     <value>Old Password is required</value>
@@ -1281,24 +1045,6 @@
   <data name="Passwordchanged" xml:space="preserve">
     <value>Password changed successfully</value>
   </data>
-  <data name="PaymentErr1001" xml:space="preserve">
-    <value>Sorry, amount is invalid.</value>
-  </data>
-  <data name="PaymentErr1002" xml:space="preserve">
-    <value>Invalid Role ID.</value>
-  </data>
-  <data name="PaymentErr1003" xml:space="preserve">
-    <value>Sorry, this Affiliate does not have enough money to withdraw.</value>
-  </data>
-  <data name="PaymentErr1004" xml:space="preserve">
-    <value>Invalid balance account or either the currency or payment method is not supported.</value>
-  </data>
-  <data name="PaymentErr1006" xml:space="preserve">
-    <value>Insert transaction failed.</value>
-  </data>
-  <data name="PaymentErr1007" xml:space="preserve">
-    <value>Insert transaction failed.</value>
-  </data>
   <data name="PaymentInfor" xml:space="preserve">
     <value>Payment Information</value>
   </data>
@@ -1308,17 +1054,8 @@
   <data name="PaymentRequest" xml:space="preserve">
     <value>Payment Request</value>
   </data>
-  <data name="PayoutSuccess" xml:space="preserve">
-    <value>Your payment request has been submitted successfully!</value>
-  </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>You can only request payout from 8th to 15th of the month.</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>Pending</value>
-  </data>
-  <data name="PendingComm" xml:space="preserve">
-    <value>Pending Commission</value>
   </data>
   <data name="PendingRequest" xml:space="preserve">
     <value>Pending Request</value>
@@ -1328,9 +1065,6 @@
   </data>
   <data name="Philippines" xml:space="preserve">
     <value>Philippines </value>
-  </data>
-  <data name="PlainText" xml:space="preserve">
-    <value>Plain Text</value>
   </data>
   <data name="Pleasecheckyour" xml:space="preserve">
     <value>Please check your email address to find out your username and details about your password.</value>
@@ -1356,23 +1090,14 @@
   <data name="Preference" xml:space="preserve">
     <value>Preference</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>Preference</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>Please select Preferred Language</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>Processing</value>
   </data>
-  <data name="ProgDetails" xml:space="preserve">
-    <value>Program Details</value>
-  </data>
   <data name="PSP" xml:space="preserve">
     <value>PSP</value>
-  </data>
-  <data name="PwdChanged" xml:space="preserve">
-    <value>Password changed successfully</value>
   </data>
   <data name="Qatar" xml:space="preserve">
     <value>Qatar </value>
@@ -1403,7 +1128,7 @@
     <value>Application Form</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12Bet Affiliate - Your Application</value>
+    <value>12Bet Affiliates - Your Application</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>Thank you for submitting your application.&lt;br/&gt;&lt;br/&gt;Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;&lt;br/&gt;Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;Best Regards,&lt;br /&gt;&lt;br /&gt;The team at 12Bet Affiliates&lt;br/&gt;&lt;br/&gt;For any reason, you do not receive the email, please check your Spam box or &lt;a href='{0}'&gt;Contact Us&lt;/a&gt; and we will glad to assist you.</value>
@@ -1477,12 +1202,6 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>Your security question and answer have been updated!</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Select</value>
-  </data>
   <data name="SelectDate" xml:space="preserve">
     <value>Select Date</value>
     <comment>87923</comment>
@@ -1510,9 +1229,6 @@
   </data>
   <data name="Singapore" xml:space="preserve">
     <value>Singapore </value>
-  </data>
-  <data name="SiteUrl" xml:space="preserve">
-    <value>Website URL</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Media Size</value>
@@ -1550,9 +1266,6 @@
   <data name="Sportbook" xml:space="preserve">
     <value>Sportsbook</value>
   </data>
-  <data name="SportType" xml:space="preserve">
-    <value>Sport Type</value>
-  </data>
   <data name="SriLanka" xml:space="preserve">
     <value>Sri Lanka </value>
   </data>
@@ -1564,9 +1277,6 @@
   </data>
   <data name="StatementHistory" xml:space="preserve">
     <value>Statement History</value>
-  </data>
-  <data name="Statistic" xml:space="preserve">
-    <value>Statistics</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
@@ -1620,12 +1330,6 @@
   <data name="Tennis" xml:space="preserve">
     <value>Tennis</value>
   </data>
-  <data name="TermCondition" xml:space="preserve">
-    <value>Terms &amp; Conditions</value>
-  </data>
-  <data name="TermErr" xml:space="preserve">
-    <value>Terms &amp;amp; Conditions not agree, Please check!</value>
-  </data>
   <data name="Text" xml:space="preserve">
     <value>Text Box</value>
   </data>
@@ -1649,11 +1353,7 @@
     <comment>87923</comment>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
-    <value>A new password will be sent to the email address that you provided.
-                &lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href="{0}"&gt;Contact us&lt;/a&gt;.</value>
-  </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>Affiliate Login</value>
+    <value>A new password will be sent to the email address that you provided.&lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href="{0}"&gt;Contact us&lt;/a&gt;.</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>To</value>
@@ -1665,20 +1365,11 @@
     <value>Total</value>
     <comment>87923</comment>
   </data>
-  <data name="TotalActive" xml:space="preserve">
-    <value>Total Active Players</value>
-  </data>
   <data name="TotalClick" xml:space="preserve">
     <value>Total Clicks</value>
   </data>
   <data name="TotalDeposit" xml:space="preserve">
     <value>Total Deposits</value>
-  </data>
-  <data name="TotalPlay" xml:space="preserve">
-    <value>Total Players</value>
-  </data>
-  <data name="TotalQualifiedMembers" xml:space="preserve">
-    <value>Total Qualified Active Players</value>
   </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>Tracking Code</value>
@@ -1734,13 +1425,7 @@
     <value>Unknown</value>
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
-    <value> Your account information has been updated successfully.</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>Update Security Question</value>
-  </data>
-  <data name="UpToNow" xml:space="preserve">
-    <value>Up To Now</value>
+    <value>Your account information has been updated successfully.</value>
   </data>
   <data name="Uruguay" xml:space="preserve">
     <value>Uruguay </value>
@@ -1857,10 +1542,6 @@
     <value>More details about 12BET products</value>
     <comment>87923</comment>
   </data>
-  <data name="RevenueShare" xml:space="preserve">
-    <value>Revenue Share</value>
-    <comment>87923</comment>
-  </data>
   <data name="TermAndCondition" xml:space="preserve">
     <value>Terms And Conditions</value>
     <comment>87923</comment>
@@ -1957,10 +1638,6 @@
     <value>12RUBY (12BET)</value>
     <comment>87923</comment>
   </data>
-  <data name="Product12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND (OPUS)</value>
-    <comment>87923</comment>
-  </data>
   <data name="Product12PEARL" xml:space="preserve">
     <value>12PEARL (ASIA GAMING)</value>
     <comment>87923</comment>
@@ -1975,10 +1652,6 @@
   </data>
   <data name="Product12OPAL" xml:space="preserve">
     <value>12OPAL (EBET)</value>
-    <comment>87923</comment>
-  </data>
-  <data name="Product12AMETHYST" xml:space="preserve">
-    <value>12AMETHYST (GOLD DELUXE)</value>
     <comment>87923</comment>
   </data>
   <data name="Product12ONYX" xml:space="preserve">
@@ -2042,7 +1715,7 @@
     <comment>87923</comment>
   </data>
   <data name="NewBannerIsNowAvailable" xml:space="preserve">
-    <value>New  banner is now available! </value>
+    <value>New banner is now available! </value>
     <comment>87923</comment>
   </data>
   <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
@@ -2069,55 +1742,12 @@
   <data name="ContactNow" xml:space="preserve">
     <value>CONTACT NOW!</value>
   </data>
-  <data name="OptimizeYourWebsite" xml:space="preserve">
-    <value>OPTIMIZE YOUR WEBSTIE</value>
-    <comment>87923</comment>
-  </data>
-  <data name="AndSocialChannels" xml:space="preserve">
-    <value>AND SOCIAL CHANNELS</value>
-  </data>
-  <data name="ThroughSoccerSeason2018" xml:space="preserve">
-    <value>THROUGH SOCCER SEASON 2018/2019</value>
-  </data>
-  <data name="Update12BetBannersfromYourMediaGallery" xml:space="preserve">
-    <value>Update 12BET Banners from your Media Gallery</value>
-  </data>
-  <data name="AndPostPromotionsInYourWebsite" xml:space="preserve">
-    <value>And Post Promotions in Your Websites</value>
-  </data>
-  <data name="ToBeatTheBestCommission" xml:space="preserve">
-    <value>to Beat The Best Commission!</value>
-  </data>
-  <data name="GetBannerNow" xml:space="preserve">
-    <value>GET BANNER NOW!</value>
-  </data>
-  <data name="UpTo" xml:space="preserve">
-    <value>&lt;span class="up-to-group"&gt;&lt;span class="up"&gt;Up&lt;/span&gt;&lt;span class="to"&gt;To&lt;/span&gt;&lt;/span&gt;</value>
-  </data>
-  <data name="MonthlyCommission" xml:space="preserve">
-    <value> &lt;p class="text-big-white"&gt;MONTHLY COMMISSION!&lt;/p&gt;</value>
-  </data>
-  <data name="OnSportandCasino" xml:space="preserve">
-    <value>&lt;p class="text-white"&gt;ON &lt;span class="text-red"&gt;SPORTS &lt;/span&gt;&amp; &lt;span class="text-red"&gt;CASINO&lt;/span&gt; REVENUE&lt;/p&gt;</value>
-  </data>
-  <data name="YouAreNotAffiliateYet" xml:space="preserve">
-    <value>YOU'RE NOT AFFILIATE YET?</value>
-    <comment>87923</comment>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>SIGN UP AFFILIATES NOW!</value>
-    <comment>87923</comment>
-  </data>
   <data name="PCDevice" xml:space="preserve">
     <value>PC / Laptop</value>
     <comment>87923</comment>
   </data>
   <data name="MobileDevice" xml:space="preserve">
     <value>Mobile</value>
-  </data>
-  <data name="MarketingTools" xml:space="preserve">
-    <value>Marketing Tools</value>
-    <comment>87923</comment>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>Statistics</value>
@@ -2268,9 +1898,6 @@
   <data name="GpiLottery" xml:space="preserve">
     <value>GPI LOTTERY</value>
   </data>
-  <data name="PrefixProduct12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND</value>
-  </data>
   <data name="PrefixProduct12EMERALD" xml:space="preserve">
     <value>12EMERALD</value>
   </data>
@@ -2279,9 +1906,6 @@
   </data>
   <data name="PrefixProduct12OPAL" xml:space="preserve">
     <value>12OPAL</value>
-  </data>
-  <data name="PrefixProduct12AMETHYST" xml:space="preserve">
-    <value>12AMETHYST</value>
   </data>
   <data name="PrefixProduct12ONYX" xml:space="preserve">
     <value>12ONYX</value>
@@ -2292,9 +1916,6 @@
   <data name="PrefixProduct12AMBER" xml:space="preserve">
     <value>12AMBER</value>
   </data>
-  <data name="SuffixProduct12DIAMOND" xml:space="preserve">
-    <value>(OPUS GAMING)</value>
-  </data>
   <data name="SuffixProduct12EMERALD" xml:space="preserve">
     <value>(Playtech)</value>
   </data>
@@ -2303,9 +1924,6 @@
   </data>
   <data name="SuffixProduct12OPAL" xml:space="preserve">
     <value>(EBET)</value>
-  </data>
-  <data name="SuffixProduct12AMETHYST" xml:space="preserve">
-    <value>(GOLD DELUXE)</value>
   </data>
   <data name="SuffixProduct12ONYX" xml:space="preserve">
     <value>(ALLBET)</value>
@@ -2396,12 +2014,6 @@
   <data name="KoreaSupport" xml:space="preserve">
     <value>Korea Support</value>
   </data>
-  <data name="OurOfficialSkype" xml:space="preserve">
-    <value>Important! Our official skype account has been updated.&lt;br&gt;Add our new skype to stay updated for all payouts &amp; promotions</value>
-  </data>
-  <data name="AddNow" xml:space="preserve">
-    <value>Add now!</value>
-  </data>
   <data name="Cambodian" xml:space="preserve">
     <value>ខ្មែរ</value>
   </data>
@@ -2420,15 +2032,6 @@
   <data name="ThankYou" xml:space="preserve">
     <value>Thank you for your valuable feedback.</value>
   </data>
-  <data name="InvalidRate" xml:space="preserve">
-    <value>Rate is invalid!</value>
-  </data>
-  <data name="InvalidMessageLength" xml:space="preserve">
-    <value>Message no more than 4000 characters.</value>
-  </data>
-  <data name="InvalidFeedback" xml:space="preserve">
-    <value>Data is invalid, please check!</value>
-  </data>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Above</value>
   </data>
@@ -2443,5 +2046,74 @@
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>Cambodia Support</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>Active Players / Qualified</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>Total Turnover</value>
+  </data>
+  <data name="PlayersDetails" xml:space="preserve">
+    <value>Players Details</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="NewSignUp" xml:space="preserve">
+    <value>New Sign Up</value>
+  </data>
+  <data name="DepositedMembers" xml:space="preserve">
+    <value>Deposited Members</value>
+  </data>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>Active Members</value>
+  </data>
+  <data name="QualifiedActiveMembers" xml:space="preserve">
+    <value>Qualified Active Members</value>
+  </data>
+  <data name="WinAndLoss" xml:space="preserve">
+    <value>Win/Loss</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Copied</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>Dimension</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="ShareBanner" xml:space="preserve">
+    <value>Share banner to your friends</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>Copy Link</value>
+  </data>
+  <data name="SaveQR" xml:space="preserve">
+    <value>Save QR Code</value>
+  </data>
+  <data name="CopyQR" xml:space="preserve">
+    <value>Copy QR Code</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>You don't have the email address. Please contact administrator!</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>Affiliate Link</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>Last Login</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>Last Login IP Address</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>Copy Banner Code</value>
   </data>
 </root>

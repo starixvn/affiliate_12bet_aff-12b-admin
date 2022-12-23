@@ -1,5 +1,10 @@
 ﻿@using Fanex.Affiliate.User.Core.Utilities
 @using Fanex.Affiliate.User.Core.Constants
+@using Fanex.Affiliate.User.Core.CoreService
+
+@{
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+}
 
 <div class="summary" id="summary">
     <div class="form-group">
@@ -12,15 +17,15 @@
         </div>
     </div>
     <div class="summary-content">
-        <div class="dashboard-section" id="dashboard-section"></div>
+        <div class="dashboard-section @sessionService.CurrentLanguage" id="dashboard-section"></div>
 
         <div class="details-section" id="details-section">
             <div class="tab-menu details-section-menu" id="details-section-menu">
                 <ul class="menu list-unstyled">
-                    <li><a href="javascript:;" data-name="Overview" class="menu-item details-section-menu-item" id="menuOverview">Overview</a></li>
+                    <li><a href="javascript:;" data-name="Overview" class="menu-item details-section-menu-item" id="menuOverview">@Lang.Overview</a></li>
                     @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.ActivePlayerDetailType))
                     {
-                        <li><a href="javascript:;" data-name="PlayersDetails" class="menu-item details-section-menu-item" id="menuPlayersDetails">Players Details</a></li>
+                        <li><a href="javascript:;" data-name="PlayersDetails" class="menu-item details-section-menu-item" id="menuPlayersDetails">@Lang.PlayersDetails</a></li>
                     }
                 </ul>
             </div>

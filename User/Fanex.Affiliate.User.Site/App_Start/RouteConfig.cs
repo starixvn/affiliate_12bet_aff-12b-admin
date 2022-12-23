@@ -10,7 +10,9 @@ namespace Fanex.Affiliate.User.Site
         public static void RegisterRoutes(RouteCollection routes)
         {
             const string IndexAction = "Index";
+            routes.IgnoreRoute("Base/{*pathInfo}");
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
             routes.Add(new HandleLegacyUrlRoute(new Dictionary<string, UrlSchema> {
                 {
                     @"/default.aspx",new UrlSchema{Controller="Home",Action=IndexAction }

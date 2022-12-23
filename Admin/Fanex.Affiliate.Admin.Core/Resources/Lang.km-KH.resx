@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,28 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ForgotPassword1001" xml:space="preserve">
-    <value>No se ha podido identificar la dirección de correo electrónico que ha proporcionado. Vuelva a intentarlo más tarde o &lt;a href="{0}" class='err-msg'&gt;póngase en contacto con nosotros&lt;/a&gt;.</value>
+  <data name="EmailSubjectAffApproved" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - ការជូនដំណឹងអំពីភ្នាក់ងារ</value>
   </data>
-  <data name="ForgotPassword1008" xml:space="preserve">
-    <value>La dirección de correo electrónico está utilizada por un afiliado inactivo o cuya cuenta está cerrada. Vuelva a intentarlo más tarde o &lt;a href="{0}" class='err-msg'&gt;póngase en contacto con nosotros&lt;/a&gt;.</value>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - ពាក្យស្នើសុំរបស់អ្នក</value>
   </data>
-  <data name="ForgotPassword1009" xml:space="preserve">
-    <value>La dirección de correo electrónico está utilizada por un afiliado inactivo o cuya cuenta no ha sido aprobada. Vuelva a intentarlo más tarde o &lt;a href="{0}" class='err-msg'&gt;póngase en contacto con nosotros&lt;/a&gt;.</value>
+  <data name="EmailSubjectAffInfor" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - ព័ត៌មានអំពីភ្នាក់ងាររបស់អ្នក</value>
   </data>
-  <data name="LoginClosedAccount" xml:space="preserve">
-    <value>Se ha cerrado su cuenta. Póngase en contacto con el administrador.</value>
+  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - [{0}] -សំណើទូទាត់របស់អ្នកត្រូវបានដំណើរការ និងបញ្ចប់ដោយជោគជ័យ។</value>
   </data>
-  <data name="LoginLockedAccount" xml:space="preserve">
-    <value>Se ha cerrado su cuenta. Póngase en contacto con el administrador.</value>
+  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - [{0}] - សំណើទូទាត់របស់អ្នកត្រូវបានបដិសេធ។</value>
   </data>
-  <data name="PaymentBalanceInvalid" xml:space="preserve">
-    <value>No puede solicitar el pago porque no tiene saldo suficiente.</value>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>ពាក្យស្នើសុំរបស់អ្នក</value>
   </data>
-  <data name="PaymentMethodInvalid" xml:space="preserve">
-    <value>Lo sentimos. El pago mediante {0} no está disponible. En este momento, el único método de pago válido es mediante la cuenta de jugador de 12Bet. Haga &lt;a href='{1}'&gt;clic aquí&lt;/a&gt; para realizar cambios.</value>
+  <data name="EmailTitleAffInfor" xml:space="preserve">
+    <value>ព័ត៌មានភ្នាក់ងាររបស់អ្នក</value>
   </data>
-  <data name="RecoverPassword1001" xml:space="preserve">
-    <value>La dirección que ha utilizado para solicitar una nueva contraseña no es válida.</value>
+  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
+    <value>សំណើទូទាត់របស់អ្នកត្រូវបានដំណើរការ និងបញ្ចប់ដោយជោគជ័យ</value>
+  </data>
+  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
+    <value>សំណើបង់ប្រាក់របស់អ្នកត្រូវបានបដិសេធ</value>
+  </data>
+  <data name="EmailTitleAffApproved" xml:space="preserve">
+    <value>ការជូនដំណឹងអំពីភ្នាក់ងារ</value>
+  </data>
+  <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
+    <value>ការណែនាំអំពីការដកប្រាក់របស់ភ្នាក់ងារ</value>
+  </data>
+  <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - ការណែនាំអំពីការដកប្រាក់របស់ភ្នាក់ងារ</value>
+  </data>
+  <data name="EmailAutoNotification" xml:space="preserve">
+    <value>នេះជាអ៊ីមែលដែលបង្កើតឡើងដោយប្រព័ន្ធស្វ័យប្រវត្តិ សូមកុំឆ្លើយតបអ៊ីមែលនេះ។</value>
+  </data>
+  <data name="Affiliate" xml:space="preserve">
+    <value>ភ្នាក់ងារ</value>
   </data>
 </root>

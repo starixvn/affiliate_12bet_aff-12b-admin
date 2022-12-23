@@ -208,6 +208,10 @@
       font-weight: 500; }
     .summary-content .dashboard-section .info-panel.w-100 {
       width: calc(100% - 60px); }
+  .summary-content .dashboard-section.km-KH .group {
+    height: 86px; }
+  .summary-content .dashboard-section.km-KH .info-panel {
+    height: 66px; }
   .summary-content .details-section-sticky {
     position: fixed;
     background: #f5f5f5;

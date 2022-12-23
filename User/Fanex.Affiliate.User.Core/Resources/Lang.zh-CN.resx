@@ -117,17 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutUs" xml:space="preserve">
-    <value>关于我们</value>
-  </data>
   <data name="AccInfo" xml:space="preserve">
     <value>帐户资料</value>
   </data>
   <data name="AccOverview" xml:space="preserve">
     <value>帐户概要</value>
-  </data>
-  <data name="ActivatedTrackingCode" xml:space="preserve">
-    <value>已有</value>
   </data>
   <data name="Address" xml:space="preserve">
     <value>地址</value>
@@ -217,34 +211,16 @@
     <value>巴林</value>
   </data>
   <data name="BalForward" xml:space="preserve">
-    <value>转入下月余额</value>
+    <value>结转余额</value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
     <value>孟加拉</value>
   </data>
-  <data name="BankABA_Swift_SIsRequired" xml:space="preserve">
-    <value>请填写银行ABA/Swift/Sort Code信息</value>
-  </data>
-  <data name="BankAccnumber" xml:space="preserve">
-    <value>银行帐户号码</value>
-  </data>
-  <data name="BankAccountNameIsRequired" xml:space="preserve">
-    <value>请填写银行账户姓名</value>
-  </data>
-  <data name="BankAccountNumbIsRequired" xml:space="preserve">
-    <value>请填写银行账户号码</value>
-  </data>
   <data name="BankAddress" xml:space="preserve">
     <value>银行地址</value>
   </data>
-  <data name="BankAddressisre" xml:space="preserve">
-    <value>请填写银行地址</value>
-  </data>
   <data name="BankName" xml:space="preserve">
     <value>银行名</value>
-  </data>
-  <data name="BankNameisrequi" xml:space="preserve">
-    <value>请填写银行账号姓名</value>
   </data>
   <data name="BankTransfer" xml:space="preserve">
     <value>银行转帐</value>
@@ -272,9 +248,6 @@
   </data>
   <data name="Bermuda" xml:space="preserve">
     <value>百幕大</value>
-  </data>
-  <data name="Bet12Username" xml:space="preserve">
-    <value>12BET 用户名</value>
   </data>
   <data name="BETUserNameIsRequired" xml:space="preserve">
     <value>请填写12BET用户名</value>
@@ -334,7 +307,7 @@
     <value>取消申请</value>
   </data>
   <data name="CancelSubject" xml:space="preserve">
-    <value>12Bet合作伙伴 - [{transid}] - 支付申请通知</value>
+    <value>12BET合作伙伴 - [{transid}] - 支付申请通知</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>维德角岛</value>
@@ -363,38 +336,8 @@
   <data name="ChangePass" xml:space="preserve">
     <value>更改密码</value>
   </data>
-  <data name="ChangePassErr" xml:space="preserve">
-    <value>更改密码出错</value>
-  </data>
   <data name="ChangePassText" xml:space="preserve">
     <value>使用这个表格来更改您的密码。一旦更改，您需要使用新密码来登陆您的帐户。</value>
-  </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>更改密码</value>
-  </data>
-  <data name="Cheque" xml:space="preserve">
-    <value>支票</value>
-  </data>
-  <data name="ChequeAddressis" xml:space="preserve">
-    <value>请填写支票地址</value>
-  </data>
-  <data name="ChequeCityisreq" xml:space="preserve">
-    <value>请填写支票城市</value>
-  </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>请填写支票国家</value>
-  </data>
-  <data name="ChequeFullNamei" xml:space="preserve">
-    <value>请填写支票全名</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>请填写支票邮编</value>
-  </data>
-  <data name="ChequeStateisre" xml:space="preserve">
-    <value>请填写支票省/州</value>
-  </data>
-  <data name="CHF" xml:space="preserve">
-    <value>法郎</value>
   </data>
   <data name="Chile" xml:space="preserve">
     <value>智利</value>
@@ -420,9 +363,6 @@
   <data name="CommentsIsInvalid" xml:space="preserve">
     <value>意见填写无效</value>
   </data>
-  <data name="CommPercent" xml:space="preserve">
-    <value>佣金%</value>
-  </data>
   <data name="CompletedDate" xml:space="preserve">
     <value>完成日期</value>
   </data>
@@ -438,9 +378,6 @@
   <data name="ContactNumber" xml:space="preserve">
     <value>联络电话号码</value>
   </data>
-  <data name="ContactTitle" xml:space="preserve">
-    <value>如有任何意见或问题，请直接发电邮到{email}或填写以下的表格。</value>
-  </data>
   <data name="ContactUs" xml:space="preserve">
     <value>联系我们</value>
   </data>
@@ -448,7 +385,7 @@
     <value>库克群岛</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>版权所有 © 2008 - 2021 | 12BET 保留所有权利 | 21+</value>
+    <value>版权所有 © 2008 - {0} | 12BET 保留所有权利 | 21+</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>哥斯达黎加</value>
@@ -469,16 +406,13 @@
     <value>克罗地亚</value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>12BET合作伙伴 — 新帐户等待核准</value>
+    <value>12BET合作伙伴 - 新帐户等待核准</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>外匯</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>当前的</value>
-  </data>
-  <data name="CurrentCommissiSetting" xml:space="preserve">
-    <value>目前佣金设定</value>
   </data>
   <data name="Cyprus" xml:space="preserve">
     <value>塞浦路斯</value>
@@ -564,107 +498,8 @@
   <data name="Eritrea" xml:space="preserve">
     <value>厄利垂亚</value>
   </data>
-  <data name="Err1" xml:space="preserve">
-    <value>折扣不正确.</value>
-  </data>
-  <data name="Err100" xml:space="preserve">
-    <value>非常抱歉，无法设立代理人</value>
-  </data>
-  <data name="Err1001" xml:space="preserve">
-    <value>无效合作信息</value>
-  </data>
-  <data name="Err1002" xml:space="preserve">
-    <value>您输入的电邮地址已被使用，请选择另外一个！</value>
-  </data>
-  <data name="Err1003" xml:space="preserve">
-    <value>12BET用户名无效</value>
-  </data>
-  <data name="Err1004" xml:space="preserve">
-    <value>用户信息无效。更新处理失败。</value>
-  </data>
-  <data name="Err1005" xml:space="preserve">
-    <value>出现错误。更新处理失败</value>
-  </data>
-  <data name="Err1006" xml:space="preserve">
-    <value>出现错误。更新处理失败</value>
-  </data>
-  <data name="Err101" xml:space="preserve">
-    <value>此用户名不可用</value>
-  </data>
-  <data name="Err102" xml:space="preserve">
-    <value>占成数不正确(超级总代理设定给总代理最高占成).</value>
-  </data>
-  <data name="Err103" xml:space="preserve">
-    <value>非常抱歉，最小投注额必须小于最大投注额，最大投注额必须小于单场最大投注额</value>
-  </data>
-  <data name="Err104" xml:space="preserve">
-    <value>非常抱歉，信用额度更新失败，您已经超出您的原始信用额度</value>
-  </data>
-  <data name="Err105" xml:space="preserve">
-    <value>非常抱歉，最小投注额必须等于或大于主代理的最小投注额。</value>
-  </data>
-  <data name="Err107" xml:space="preserve">
-    <value>非常抱歉，单场最大投注额必须等于或小于主代理的单场最大投注额</value>
-  </data>
-  <data name="Err111" xml:space="preserve">
-    <value>客户设立失败。请重试</value>
-  </data>
-  <data name="Err113" xml:space="preserve">
-    <value>客户设立失败。请重试</value>
-  </data>
-  <data name="Err114" xml:space="preserve">
-    <value>客户设立失败。请重试</value>
-  </data>
-  <data name="Err115" xml:space="preserve">
-    <value>客户设立失败。请重试</value>
-  </data>
-  <data name="Err116" xml:space="preserve">
-    <value>您无权建立/编辑此信息。</value>
-  </data>
-  <data name="Err2" xml:space="preserve">
-    <value>错误的最小投注/最大投注/单场最大投注/信用额度/主代理名称/用户群</value>
-  </data>
-  <data name="Err3" xml:space="preserve">
-    <value>占成数不正确.</value>
-  </data>
   <data name="Err3001" xml:space="preserve">
     <value>你有一项申请在“待处理”状态，要设置一项新要求，请先取消这暂停而未完成的操作，或等待这次操作完成为止。</value>
-  </data>
-  <data name="Err3002" xml:space="preserve">
-    <value>无效Role ID。</value>
-  </data>
-  <data name="Err3003" xml:space="preserve">
-    <value>非常抱歉，此代理人没有足够金额进行提款。</value>
-  </data>
-  <data name="Err3004" xml:space="preserve">
-    <value>账号余额无效或者不支持此币种或支付方式。</value>
-  </data>
-  <data name="Err3006" xml:space="preserve">
-    <value>插入交易失败</value>
-  </data>
-  <data name="Err4" xml:space="preserve">
-    <value>占成数不正确(公司设给最低/高占成).</value>
-  </data>
-  <data name="Err4001" xml:space="preserve">
-    <value>CustID无效。</value>
-  </data>
-  <data name="Err4002" xml:space="preserve">
-    <value>此交易非提款操作。</value>
-  </data>
-  <data name="Err4003" xml:space="preserve">
-    <value>此交易已被取消。</value>
-  </data>
-  <data name="Err4004" xml:space="preserve">
-    <value>账号余额无效或者不支持此币种。</value>
-  </data>
-  <data name="Err4005" xml:space="preserve">
-    <value>此交易已被取消。</value>
-  </data>
-  <data name="Err5" xml:space="preserve">
-    <value>占成数不正确(公司设给最高占成).</value>
-  </data>
-  <data name="Err999" xml:space="preserve">
-    <value>建立合作信息失敗，請重試。</value>
   </data>
   <data name="ErrAuthorized" xml:space="preserve">
     <value>您無權進行此操作</value>
@@ -672,26 +507,14 @@
   <data name="errContactNumberEmpty" xml:space="preserve">
     <value>聯絡電話號碼 未输入请确认!</value>
   </data>
-  <data name="ErrDefault" xml:space="preserve">
-    <value>未知错误！</value>
-  </data>
   <data name="errDepositDBConnectFailed" xml:space="preserve">
     <value>提取壹贰博玩家信息时显示错误。请联络管理员。</value>
-  </data>
-  <data name="ErrEmailInvalid" xml:space="preserve">
-    <value>电子邮件地址 - 无效</value>
   </data>
   <data name="ErrEmailRequire" xml:space="preserve">
     <value>电子邮件地址 - 必需</value>
   </data>
   <data name="errExistAccount" xml:space="preserve">
     <value>用户已经拥有IBC帐号</value>
-  </data>
-  <data name="ErrGender" xml:space="preserve">
-    <value>性別 未输入请确认!</value>
-  </data>
-  <data name="errMobileNumberEmpty" xml:space="preserve">
-    <value>请填写正确QQ号码</value>
   </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>请输入密码.</value>
@@ -701,14 +524,6 @@
   </data>
   <data name="ErrmsgEntryValidCode" xml:space="preserve">
     <value>请输入验证码.</value>
-  </data>
-  <data name="ErrMsgForgetPwFail" xml:space="preserve">
-    <value>        
-        重新设定密码信息错误，请&lt;a href='ForgetPass.aspx'&gt;重试&lt;/a&gt;。   如您仍不能重新设定您的密码，请&lt;a href='ContactUs.aspx'&gt;联系我们&lt;/a&gt;。        
-    </value>
-  </data>
-  <data name="ErrPaymentMethod" xml:space="preserve">
-    <value>非常抱歉，{method}支付方式暂不可用。&lt;a href='MyAccount.aspx?ispay=1#payment'&gt;请点击这里&lt;/a&gt;改选“12BET玩家帐户”支付。</value>
   </data>
   <data name="errSecQuestionEmpty" xml:space="preserve">
     <value>安全提问 未输入请确认!</value>
@@ -757,9 +572,6 @@
   </data>
   <data name="Football" xml:space="preserve">
     <value>足球</value>
-  </data>
-  <data name="For" xml:space="preserve">
-    <value>为了</value>
   </data>
   <data name="ForAnyReason" xml:space="preserve">
     <value>如您未收到任何邮件，请检查您的垃圾邮件或&lt;a href='{0}'&gt;联系在线客服&lt;/a&gt;寻找协助。</value>
@@ -830,9 +642,6 @@
   <data name="HotNews" xml:space="preserve">
     <value>最新消息</value>
   </data>
-  <data name="HtmlFormat" xml:space="preserve">
-    <value>Html格式</value>
-  </data>
   <data name="Hungary" xml:space="preserve">
     <value>匈牙利</value>
   </data>
@@ -847,9 +656,6 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>图像</value>
-  </data>
-  <data name="ImageType" xml:space="preserve">
-    <value>形式</value>
   </data>
   <data name="Important" xml:space="preserve">
     <value>重要</value>
@@ -877,9 +683,6 @@
   </data>
   <data name="Israel" xml:space="preserve">
     <value>以色列</value>
-  </data>
-  <data name="IsRequired" xml:space="preserve">
-    <value>被必需的</value>
   </data>
   <data name="Italy" xml:space="preserve">
     <value>意大利</value>
@@ -922,9 +725,6 @@
   </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>老挝人民民主共和国</value>
-  </data>
-  <data name="Last6Month" xml:space="preserve">
-    <value>对上六个月的收入</value>
   </data>
   <data name="LastNameIsRequired" xml:space="preserve">
     <value>请填写您的姓</value>
@@ -1013,39 +813,14 @@
   <data name="MessageHistory" xml:space="preserve">
     <value>最新消息</value>
   </data>
-  <data name="MessageSentReview" xml:space="preserve">
-    <value>
-        感谢您与我们联系. {br}
-        您的信息已经发送。我们将尽快答复您的申请。 {br}
-        如有任何问题，欢迎随时致电1-34354-3454 {br}{br}
-        祝您好运！ {br}{br}
-        致以敬意， {br}{br}
-        12BET合作伙伴团队
-    </value>
-  </data>
   <data name="Mexico" xml:space="preserve">
     <value>墨西哥</value>
-  </data>
-  <data name="MinAmt_explain" xml:space="preserve">
-    <value>最低总会员净输金额</value>
-  </data>
-  <data name="MinQM_explain" xml:space="preserve">
-    <value>最少合格会员人数</value>
   </data>
   <data name="MinWithdraw" xml:space="preserve">
     <value>最低提款金额为</value>
   </data>
-  <data name="Mobile" xml:space="preserve">
-    <value>QQ</value>
-  </data>
   <data name="Moldova" xml:space="preserve">
     <value>摩尔多瓦</value>
-  </data>
-  <data name="MoneyBooker" xml:space="preserve">
-    <value>Moneybookers</value>
-  </data>
-  <data name="MoneybookersEma" xml:space="preserve">
-    <value>Moneybookers电子邮件地址无效</value>
   </data>
   <data name="Mongolia" xml:space="preserve">
     <value>蒙古</value>
@@ -1086,9 +861,6 @@
   <data name="Nepal" xml:space="preserve">
     <value>尼泊尔</value>
   </data>
-  <data name="NetellerAccount" xml:space="preserve">
-    <value>请填写Neteller帐户号码</value>
-  </data>
   <data name="Netherlands" xml:space="preserve">
     <value>荷兰</value>
   </data>
@@ -1104,12 +876,6 @@
   <data name="NewPasswordisre" xml:space="preserve">
     <value>请填写新密码</value>
   </data>
-  <data name="NewSignup" xml:space="preserve">
-    <value>新的注册</value>
-  </data>
-  <data name="NewTrackingCode" xml:space="preserve">
-    <value>新增</value>
-  </data>
   <data name="NewZealand" xml:space="preserve">
     <value>新西兰</value>
   </data>
@@ -1121,9 +887,6 @@
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>没有任何资料</value>
-  </data>
-  <data name="NonDeposit" xml:space="preserve">
-    <value>仅未存款账户</value>
   </data>
   <data name="none" xml:space="preserve">
     <value>无</value>
@@ -1146,17 +909,8 @@
   <data name="October" xml:space="preserve">
     <value>十月</value>
   </data>
-  <data name="Of" xml:space="preserve">
-    <value>的</value>
-  </data>
   <data name="OldPass" xml:space="preserve">
     <value>旧密码</value>
-  </data>
-  <data name="OldPassandNewPass" xml:space="preserve">
-    <value>请填写旧密码和新密码</value>
-  </data>
-  <data name="OldPassErr" xml:space="preserve">
-    <value>旧密码错误</value>
   </data>
   <data name="OldPasswordisre" xml:space="preserve">
     <value>请填写旧密码</value>
@@ -1194,24 +948,6 @@
   <data name="Passwordchanged" xml:space="preserve">
     <value>更改密码成功</value>
   </data>
-  <data name="PaymentErr1001" xml:space="preserve">
-    <value>非常抱歉，数额无效。</value>
-  </data>
-  <data name="PaymentErr1002" xml:space="preserve">
-    <value>无效Role ID。</value>
-  </data>
-  <data name="PaymentErr1003" xml:space="preserve">
-    <value>非常抱歉，此代理人没有足够金额进行提款。</value>
-  </data>
-  <data name="PaymentErr1004" xml:space="preserve">
-    <value>账号余额无效或者不支持此币种或支付方式。</value>
-  </data>
-  <data name="PaymentErr1006" xml:space="preserve">
-    <value>插入交易失败。</value>
-  </data>
-  <data name="PaymentErr1007" xml:space="preserve">
-    <value>插入交易失败.</value>
-  </data>
   <data name="PaymentInfor" xml:space="preserve">
     <value>付款资料</value>
   </data>
@@ -1221,17 +957,8 @@
   <data name="PaymentRequest" xml:space="preserve">
     <value>提款要求</value>
   </data>
-  <data name="PayoutSuccess" xml:space="preserve">
-    <value>您的支付申请已经成功提交！</value>
-  </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>每月8号至15号为申请提款时间.</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>等待</value>
-  </data>
-  <data name="PendingComm" xml:space="preserve">
-    <value>等待佣金</value>
   </data>
   <data name="PendingRequest" xml:space="preserve">
     <value>待处理申请</value>
@@ -1241,9 +968,6 @@
   </data>
   <data name="Philippines" xml:space="preserve">
     <value>菲律宾</value>
-  </data>
-  <data name="PlainText" xml:space="preserve">
-    <value>纯文本</value>
   </data>
   <data name="Pleasecheckyour" xml:space="preserve">
     <value>请登录您的电子邮箱查找您的用户名以及密码等信息。</value>
@@ -1269,23 +993,14 @@
   <data name="Preference" xml:space="preserve">
     <value>首选</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>首选</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>请选择语言</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>处理中</value>
   </data>
-  <data name="ProgDetails" xml:space="preserve">
-    <value>计划详情</value>
-  </data>
   <data name="PSP" xml:space="preserve">
     <value>PSP</value>
-  </data>
-  <data name="PwdChanged" xml:space="preserve">
-    <value>更改密码成功</value>
   </data>
   <data name="Qatar" xml:space="preserve">
     <value>卡塔尔</value>
@@ -1315,7 +1030,7 @@
     <value>申请表格</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12BET 合作伙伴 - 您的申请</value>
+    <value>12BET合作伙伴 - 您的申请</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>感谢您提交申请。&lt;br /&gt;&lt;br /&gt;
@@ -1385,12 +1100,6 @@
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
   </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>安全问答设置成功！</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Select</value>
-  </data>
   <data name="SelectOne" xml:space="preserve">
     <value>请选择</value>
   </data>
@@ -1414,9 +1123,6 @@
   </data>
   <data name="Singapore" xml:space="preserve">
     <value>新加坡</value>
-  </data>
-  <data name="SiteUrl" xml:space="preserve">
-    <value>网站链接</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>尺寸</value>
@@ -1454,9 +1160,6 @@
   <data name="Sportbook" xml:space="preserve">
     <value>体育博彩</value>
   </data>
-  <data name="SportType" xml:space="preserve">
-    <value>体育类型</value>
-  </data>
   <data name="SriLanka" xml:space="preserve">
     <value>斯里兰卡</value>
   </data>
@@ -1469,9 +1172,6 @@
   <data name="StatementHistory" xml:space="preserve">
     <value>历史账目</value>
   </data>
-  <data name="Statistic" xml:space="preserve">
-    <value>统计</value>
-  </data>
   <data name="Status" xml:space="preserve">
     <value>状态</value>
   </data>
@@ -1479,13 +1179,13 @@
     <value>主题</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12BET 合作伙伴 — 您的登录详情</value>
+    <value>12BET合作伙伴 - 您的登录详情</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>主题无效</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12BET 合作伙伴 — 您的新密码</value>
+    <value>12BET合作伙伴 - 您的新密码</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
@@ -1518,12 +1218,6 @@
   <data name="Tennis" xml:space="preserve">
     <value>网球</value>
   </data>
-  <data name="TermCondition" xml:space="preserve">
-    <value>条款及规则</value>
-  </data>
-  <data name="TermErr" xml:space="preserve">
-    <value>没有同意条款及规则，请查看！</value>
-  </data>
   <data name="Text" xml:space="preserve">
     <value>文本冊</value>
   </data>
@@ -1548,9 +1242,6 @@
   <data name="TitelForgetPass" xml:space="preserve">
     <value>新的密码会发到您提供的注册邮箱。&lt;br /&gt;若您遇到任何困难，请 &lt;a href="{0}"&gt;联络我们。&lt;/a&gt;.</value>
   </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>合作伙伴登入</value>
-  </data>
   <data name="To" xml:space="preserve">
     <value>到</value>
   </data>
@@ -1560,20 +1251,11 @@
   <data name="Total" xml:space="preserve">
     <value>总数</value>
   </data>
-  <data name="TotalActive" xml:space="preserve">
-    <value>活跃玩家总数</value>
-  </data>
   <data name="TotalClick" xml:space="preserve">
     <value>總點擊量</value>
   </data>
   <data name="TotalDeposit" xml:space="preserve">
     <value>存款总额</value>
-  </data>
-  <data name="TotalPlay" xml:space="preserve">
-    <value>玩家总数</value>
-  </data>
-  <data name="TotalQualifiedMembers" xml:space="preserve">
-    <value>总计活跃合格会员</value>
   </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>追踪代碼</value>
@@ -1625,12 +1307,6 @@
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value> 您的帐户资料已成功更新</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>补设安全提问</value>
-  </data>
-  <data name="UpToNow" xml:space="preserve">
-    <value>到目前为止</value>
   </data>
   <data name="Uruguay" xml:space="preserve">
     <value>乌拉圭</value>
@@ -1740,9 +1416,6 @@
   <data name="Product12RUBY" xml:space="preserve">
     <value>红宝厅 (12BET)</value>
   </data>
-  <data name="Product12DIAMOND" xml:space="preserve">
-    <value>钻石厅 (OPUS)</value>
-  </data>
   <data name="Product12PEARL" xml:space="preserve">
     <value>珍珠厅 (ASIA GAMING)</value>
   </data>
@@ -1755,17 +1428,11 @@
   <data name="Product12OPAL" xml:space="preserve">
     <value>欧泊厅 (EBET)</value>
   </data>
-  <data name="Product12AMETHYST" xml:space="preserve">
-    <value>紫晶厅 (GOLD DELUXE)</value>
-  </data>
   <data name="Product12ONYX" xml:space="preserve">
     <value>玛瑙厅 (ALLBET)</value>
   </data>
   <data name="Product12AMBER" xml:space="preserve">
     <value>琥珀厅 (BETSOFT)</value>
-  </data>
-  <data name="RevenueShare" xml:space="preserve">
-    <value>佣金分成</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>所有产品</value>
@@ -1863,42 +1530,6 @@
   <data name="ContactNow" xml:space="preserve">
     <value>联系我们！</value>
   </data>
-  <data name="OptimizeYourWebsite" xml:space="preserve">
-    <value>优化您的网站</value>
-  </data>
-  <data name="AndSocialChannels" xml:space="preserve">
-    <value>与社交媒体</value>
-  </data>
-  <data name="ThroughSoccerSeason2018" xml:space="preserve">
-    <value>透过2018/2019新赛季</value>
-  </data>
-  <data name="Update12BetBannersfromYourMediaGallery" xml:space="preserve">
-    <value>在媒体中心取得最新广告资源</value>
-  </data>
-  <data name="AndPostPromotionsInYourWebsite" xml:space="preserve">
-    <value>并且公告优惠活动</value>
-  </data>
-  <data name="ToBeatTheBestCommission" xml:space="preserve">
-    <value>以获取最高佣金！</value>
-  </data>
-  <data name="GetBannerNow" xml:space="preserve">
-    <value>立即领取广告！</value>
-  </data>
-  <data name="UpTo" xml:space="preserve">
-    <value>&lt;span class="text-white"&gt;高达&lt;/span&gt;</value>
-  </data>
-  <data name="MonthlyCommission" xml:space="preserve">
-    <value>&lt;p class="text-white"&gt;&lt;span class="text-red"&gt;体育博彩 &amp; 娱乐城&lt;/span&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="OnSportandCasino" xml:space="preserve">
-    <value>&lt;p class="text-white"&gt;每月佣金！&lt;/p&gt;</value>
-  </data>
-  <data name="YouAreNotAffiliateYet" xml:space="preserve">
-    <value>还不是合作伙伴？</value>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>立即注册！</value>
-  </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>佣金报表</value>
   </data>
@@ -1930,7 +1561,7 @@
     <value>尚未计算</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>处理您的请求是发生错误！请联系管理员。</value>
+    <value>在处理您的请求时发生问题，请与管理员联系。</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>会员存款信息</value>
@@ -1994,9 +1625,6 @@
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>很抱歉！您无法在此网域登录。</value>
-  </data>
-  <data name="MarketingTools" xml:space="preserve">
-    <value>營銷工具</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>统计数据</value>
@@ -2127,9 +1755,6 @@
   <data name="GpiLottery" xml:space="preserve">
     <value>GPI彩票</value>
   </data>
-  <data name="PrefixProduct12DIAMOND" xml:space="preserve">
-    <value>钻石厅</value>
-  </data>
   <data name="PrefixProduct12EMERALD" xml:space="preserve">
     <value>PT翡翠厅</value>
   </data>
@@ -2138,9 +1763,6 @@
   </data>
   <data name="PrefixProduct12OPAL" xml:space="preserve">
     <value>欧泊厅</value>
-  </data>
-  <data name="PrefixProduct12AMETHYST" xml:space="preserve">
-    <value>紫晶厅</value>
   </data>
   <data name="PrefixProduct12ONYX" xml:space="preserve">
     <value>玛瑙厅</value>
@@ -2151,9 +1773,6 @@
   <data name="PrefixProduct12AMBER" xml:space="preserve">
     <value>琥珀厅</value>
   </data>
-  <data name="SuffixProduct12DIAMOND" xml:space="preserve">
-    <value>(OPUS)</value>
-  </data>
   <data name="SuffixProduct12EMERALD" xml:space="preserve">
     <value>(PLAYTECH)</value>
   </data>
@@ -2162,9 +1781,6 @@
   </data>
   <data name="SuffixProduct12OPAL" xml:space="preserve">
     <value>(EBET)</value>
-  </data>
-  <data name="SuffixProduct12AMETHYST" xml:space="preserve">
-    <value>(GOLD DELUXE)</value>
   </data>
   <data name="SuffixProduct12ONYX" xml:space="preserve">
     <value>(ALLBET)</value>
@@ -2274,5 +1890,121 @@
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>柬埔寨客服</value>
+  </data>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE SEXY)</value>
+  </data>
+  <data name="AndarBahar" xml:space="preserve">
+    <value>Andar Bahar</value>
+  </data>
+  <data name="Teenpatti" xml:space="preserve">
+    <value>Teenpatti</value>
+  </data>
+  <data name="ChineseTraditional" xml:space="preserve">
+    <value>繁體中文</value>
+  </data>
+  <data name="ChineseSimplified" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="IN" xml:space="preserve">
+    <value>IN</value>
+  </data>
+  <data name="MKK" xml:space="preserve">
+    <value>MMK</value>
+  </data>
+  <data name="NewSignUp" xml:space="preserve">
+    <value>新注册会员</value>
+  </data>
+  <data name="MessageSentReview" xml:space="preserve">
+    <value>感谢您与我们联系. &lt;br /&gt;
+您的信息已经发送。我们将尽快答复您的申请。 &lt;br /&gt;
+如有任何问题，欢迎随时致电1-34354-3454 &lt;br /&gt;&lt;br /&gt;
+祝您好运！ &lt;br /&gt;&lt;br /&gt;
+致以敬意， &lt;br /&gt;&lt;br /&gt;
+12BET合作伙伴团队</value>
+  </data>
+  <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
+    <value>请输入验证码</value>
+  </data>
+  <data name="ErrmsgEntryCaptcha" xml:space="preserve">
+    <value>请输入验证码</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>摘要</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>合作伙伴链接</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最后一次登录</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>最后登录的IP地址</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>概述</value>
+  </data>
+  <data name="PlayersDetails" xml:space="preserve">
+    <value>基本信息</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>总投注额</value>
+  </data>
+  <data name="EmailTittleVerificationAccount" xml:space="preserve">
+    <value>核实账户信息</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>玩家</value>
+  </data>
+  <data name="SubjectVerificationAccount" xml:space="preserve">
+    <value>12BET合作伙伴 - 验证账户细节</value>
+  </data>
+  <data name="NewSignupAndDeposited" xml:space="preserve">
+    <value>新注册 / 存款 会员</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>活跃的 / 符合资格的玩家</value>
+  </data>
+  <data name="DepositedMembers" xml:space="preserve">
+    <value>已存款会员</value>
+  </data>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>活跃会员</value>
+  </data>
+  <data name="QualifiedActiveMembers" xml:space="preserve">
+    <value>符合资格活跃会员</value>
+  </data>
+  <data name="WinAndLoss" xml:space="preserve">
+    <value>输赢</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>规模</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>复制横幅广告代码</value>
+  </data>
+  <data name="ShareBanner" xml:space="preserve">
+    <value>分享横幅广告给朋友</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="CopyQR" xml:space="preserve">
+    <value>复制二维码</value>
+  </data>
+  <data name="SaveQR" xml:space="preserve">
+    <value>储存二维码</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>如果您没有电邮，请联系管理员。</value>
   </data>
 </root>

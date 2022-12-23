@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public string JsVersion => GetValue("JsVersion");
 
-        public bool IsLocal => Environment.Equals("LOCAL", StringComparison.OrdinalIgnoreCase);
+        public bool IsDev => Environment.Equals("DEV", StringComparison.OrdinalIgnoreCase);
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
 

@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (!IsInDateRange() && !paymentCreationParam.IsLocalTest)
             {
-                resultInfo.Message = Lang.PayoutTime;
+                resultInfo.Message = Error.PaymentPayoutTimeInvalid;
             }
             else if (!IsValidAmount(paymentCreationParam))
             {

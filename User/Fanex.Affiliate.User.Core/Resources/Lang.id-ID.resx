@@ -117,17 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutUs" xml:space="preserve">
-    <value>Tentang Kami</value>
-  </data>
   <data name="AccInfo" xml:space="preserve">
     <value>Informasi Akun</value>
   </data>
   <data name="AccOverview" xml:space="preserve">
     <value>Dashboard</value>
-  </data>
-  <data name="ActivatedTrackingCode" xml:space="preserve">
-    <value>Diaktifkan</value>
   </data>
   <data name="Address" xml:space="preserve">
     <value>Alamat</value>
@@ -217,34 +211,16 @@
     <value>Bahrain </value>
   </data>
   <data name="BalForward" xml:space="preserve">
-    <value>Saldo (Balance Brought Forward)</value>
+    <value>Saldo yang diteruskan</value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
     <value>Bangladesh </value>
   </data>
-  <data name="BankABA_Swift_SIsRequired" xml:space="preserve">
-    <value>Kode Bank ABA/Swift/Sort diperlukan</value>
-  </data>
-  <data name="BankAccnumber" xml:space="preserve">
-    <value>Nomor Rekening Bank</value>
-  </data>
-  <data name="BankAccountNameIsRequired" xml:space="preserve">
-    <value>Nama Rekening Bank diperlukan</value>
-  </data>
-  <data name="BankAccountNumbIsRequired" xml:space="preserve">
-    <value>Nomor Rekening Bank diperlukan</value>
-  </data>
   <data name="BankAddress" xml:space="preserve">
     <value>Alamat Bank</value>
   </data>
-  <data name="BankAddressisre" xml:space="preserve">
-    <value>Alamat Bank diperlukan</value>
-  </data>
   <data name="BankName" xml:space="preserve">
     <value>Nama Bank</value>
-  </data>
-  <data name="BankNameisrequi" xml:space="preserve">
-    <value>Nama Bank diperlukan</value>
   </data>
   <data name="BankTransfer" xml:space="preserve">
     <value>Transfer Bank</value>
@@ -272,9 +248,6 @@
   </data>
   <data name="Bermuda" xml:space="preserve">
     <value>Bermuda </value>
-  </data>
-  <data name="Bet12Username" xml:space="preserve">
-    <value>12BET Nama Pengguna</value>
   </data>
   <data name="BETUserNameIsRequired" xml:space="preserve">
     <value>Nama Pengguna 12BET diperlukan</value>
@@ -363,38 +336,8 @@
   <data name="ChangePass" xml:space="preserve">
     <value>Ubah Kata Sandi</value>
   </data>
-  <data name="ChangePassErr" xml:space="preserve">
-    <value>Kesalahan Mengubah Kata Sandi.</value>
-  </data>
   <data name="ChangePassText" xml:space="preserve">
     <value>Gunakan formulir ini untuk mengubah kata sandi Anda. Setelah diubah, kata sandi baru Anda akan berlaku pada waktu berikutnya Anda login.</value>
-  </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>Ubah Kata Sandi</value>
-  </data>
-  <data name="Cheque" xml:space="preserve">
-    <value>Cek</value>
-  </data>
-  <data name="ChequeAddressis" xml:space="preserve">
-    <value>Alamat Cek diperlukan</value>
-  </data>
-  <data name="ChequeCityisreq" xml:space="preserve">
-    <value>Kota Cek diperlukan</value>
-  </data>
-  <data name="ChequeCountryis" xml:space="preserve">
-    <value>Negara Cek diperlukan</value>
-  </data>
-  <data name="ChequeFullNamei" xml:space="preserve">
-    <value>Nama Lengkap Cek diperlukan</value>
-  </data>
-  <data name="ChequePostcode_" xml:space="preserve">
-    <value>Kode Pos/Zip Cek diperlukan</value>
-  </data>
-  <data name="ChequeStateisre" xml:space="preserve">
-    <value>Negara Bagian Cek diperlukan</value>
-  </data>
-  <data name="CHF" xml:space="preserve">
-    <value>CHF (Swiss Franc)</value>
   </data>
   <data name="Chile" xml:space="preserve">
     <value>Cile </value>
@@ -420,9 +363,6 @@
   <data name="CommentsIsInvalid" xml:space="preserve">
     <value>Komentar tidak valid</value>
   </data>
-  <data name="CommPercent" xml:space="preserve">
-    <value>Persentase Komisi</value>
-  </data>
   <data name="CompletedDate" xml:space="preserve">
     <value>Tanggal Selesai (mm/dd/yyyy)</value>
   </data>
@@ -438,12 +378,6 @@
   <data name="ContactNumber" xml:space="preserve">
     <value>Nomor Ponsel</value>
   </data>
-  <data name="ContactTitle" xml:space="preserve">
-    <value>Harap tujukan komentar atau pertanyaan apa pun ke 
-           {email}
-           atau menggunakan formulir di bawah.                   
-   </value>
-  </data>
   <data name="ContactUs" xml:space="preserve">
     <value>Hubungi Kami</value>
   </data>
@@ -451,7 +385,7 @@
     <value>Kep. Cook </value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>Copyright © 2008 - 2021 | 12BET. All Rights Reserved | 21+</value>
+    <value>Copyright © 2008 - {0} | 12BET. All Rights Reserved | 21+</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>Kosta Rika </value>
@@ -472,16 +406,13 @@
     <value>Kroasia </value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>Rekening baru Afiliasi 12Bet ﾖ  menunggu persetujuan</value>
+    <value>Afiliasi 12Bet - Rekening baru Afiliasi 12Bet ﾖ  menunggu persetujuan</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>Mata Uang</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>Saat Ini</value>
-  </data>
-  <data name="CurrentCommissiSetting" xml:space="preserve">
-    <value>Perhitungan Komisi</value>
   </data>
   <data name="Cyprus" xml:space="preserve">
     <value>Siprus </value>
@@ -567,107 +498,8 @@
   <data name="Eritrea" xml:space="preserve">
     <value>Eritrea </value>
   </data>
-  <data name="Err1" xml:space="preserve">
-    <value>Diskon salah</value>
-  </data>
-  <data name="Err100" xml:space="preserve">
-    <value>Maaf, tidak dapat membuat agen</value>
-  </data>
-  <data name="Err1001" xml:space="preserve">
-    <value>Informasi afiliasi tidak valid</value>
-  </data>
-  <data name="Err1002" xml:space="preserve">
-    <value>Alamat email yang Anda ketik sudah digunakan untuk mendaftarkan rekening. Silakan pilih yang berbeda!</value>
-  </data>
-  <data name="Err1003" xml:space="preserve">
-    <value>Nama Pengguna 12BET tidak valid</value>
-  </data>
-  <data name="Err1004" xml:space="preserve">
-    <value>Informasi pengguna tidak valid. Proses pembaruan tidak berhasil</value>
-  </data>
-  <data name="Err1005" xml:space="preserve">
-    <value>Terjadi kesalahan. Proses pembaruan tidak berhasil</value>
-  </data>
-  <data name="Err1006" xml:space="preserve">
-    <value>Error occurs. Update process is unsuccessful</value>
-  </data>
-  <data name="Err101" xml:space="preserve">
-    <value>Nama pengguna ini tidak tersedia</value>
-  </data>
-  <data name="Err102" xml:space="preserve">
-    <value>Wrong position taking (max for master set by super)</value>
-  </data>
-  <data name="Err103" xml:space="preserve">
-    <value>Maaf, taruhan minimum harus kurang daripada taruhan maksimum, dan taruhan maksimum harus kurang daripada taruhan maksimum per pertandingan</value>
-  </data>
-  <data name="Err104" xml:space="preserve">
-    <value>Maaf, pembaruan kredit tidak berhasil, Anda sudah melampaui kredit master Anda</value>
-  </data>
-  <data name="Err105" xml:space="preserve">
-    <value>Maaf, taruhan minimum harus sama, atau lebih besar daripada taruhan minimum agen master</value>
-  </data>
-  <data name="Err107" xml:space="preserve">
-    <value>Sorry, Max Per Match must be equal to or less than master agent Max Per Match</value>
-  </data>
-  <data name="Err111" xml:space="preserve">
-    <value>Gagal membuat pelanggan. Silakan coba lagi</value>
-  </data>
-  <data name="Err113" xml:space="preserve">
-    <value>Create customer failed. Please try again</value>
-  </data>
-  <data name="Err114" xml:space="preserve">
-    <value>Create customer failed. Please try again</value>
-  </data>
-  <data name="Err115" xml:space="preserve">
-    <value>Create customer failed. Please try again</value>
-  </data>
-  <data name="Err116" xml:space="preserve">
-    <value>Anda tidak diotorisasi untuk membuat/mengedit informasi ini</value>
-  </data>
-  <data name="Err2" xml:space="preserve">
-    <value>Wrong Min bet/ Max bet/ Max per match/ Credit/ Master Agent name/ user group</value>
-  </data>
-  <data name="Err3" xml:space="preserve">
-    <value>Wrong position taking</value>
-  </data>
   <data name="Err3001" xml:space="preserve">
     <value>Ada permintaan Anda yang tertunda. Agar dapat membuat permintaan baru, harap batalkan permintaan yang tertunda, atau tunggu sampai pemrosesan selesai.</value>
-  </data>
-  <data name="Err3002" xml:space="preserve">
-    <value>ID Peran tidak valid.</value>
-  </data>
-  <data name="Err3003" xml:space="preserve">
-    <value>Maaf, Afiliasi ini tidak mempunyai cukup uang untuk ditarik.</value>
-  </data>
-  <data name="Err3004" xml:space="preserve">
-    <value>Rekening saldo tidak valid, atau mata uangnya, atau metode pembayaran tidak didukung.</value>
-  </data>
-  <data name="Err3006" xml:space="preserve">
-    <value>Gagal menyisipkan transaksi.</value>
-  </data>
-  <data name="Err4" xml:space="preserve">
-    <value>Wrong position taking (min/max set by company)</value>
-  </data>
-  <data name="Err4001" xml:space="preserve">
-    <value>ID Pelanggan tidak valid.</value>
-  </data>
-  <data name="Err4002" xml:space="preserve">
-    <value>Transaksi ini bukan penarikan dana.</value>
-  </data>
-  <data name="Err4003" xml:space="preserve">
-    <value>Transaksi ini sudah dibatalkan sebelumnya.</value>
-  </data>
-  <data name="Err4004" xml:space="preserve">
-    <value>Rekening saldo tidak valid, atau mata uangnya tidak didukung.</value>
-  </data>
-  <data name="Err4005" xml:space="preserve">
-    <value>Transaksi ini sudah dibatalkan sebelumnya.</value>
-  </data>
-  <data name="Err5" xml:space="preserve">
-    <value>Wrong position taking (max set by company)</value>
-  </data>
-  <data name="Err999" xml:space="preserve">
-    <value>Gagal Membuat Info Afiliasi. Silakan coba lagi</value>
   </data>
   <data name="ErrAuthorized" xml:space="preserve">
     <value>Anda tidak diotorisasi atas fungsi ini</value>
@@ -675,26 +507,14 @@
   <data name="errContactNumberEmpty" xml:space="preserve">
     <value>Nomor Kontak kosong. Silakan diperiksa!</value>
   </data>
-  <data name="ErrDefault" xml:space="preserve">
-    <value>Kesalahan Tidak Diketahui!</value>
-  </data>
   <data name="errDepositDBConnectFailed" xml:space="preserve">
     <value>Terdapat kesalahan ketika mengambil informasi pemain 12Bet. Harap menghubungi administrator Anda!</value>
-  </data>
-  <data name="ErrEmailInvalid" xml:space="preserve">
-    <value>Alamat email - tidak valid</value>
   </data>
   <data name="ErrEmailRequire" xml:space="preserve">
     <value>Email address - is required</value>
   </data>
   <data name="errExistAccount" xml:space="preserve">
     <value>Pengguna sudah memiliki rekening IBC</value>
-  </data>
-  <data name="ErrGender" xml:space="preserve">
-    <value>Jenis kelamin kosong. Silakan Diperiksa!</value>
-  </data>
-  <data name="errMobileNumberEmpty" xml:space="preserve">
-    <value>Yahoo Messenger dibutuhkan</value>
   </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>Masukkan kata sandi.</value>
@@ -704,12 +524,6 @@
   </data>
   <data name="ErrmsgEntryValidCode" xml:space="preserve">
     <value>Masukkan kode validasi.</value>
-  </data>
-  <data name="ErrMsgForgetPwFail" xml:space="preserve">
-    <value>Informasi untuk menyetel ulang kata sandi tidak valid, silakan &lt;a href='ForgetPass.aspx'&gt;coba lagi&lt;/a&gt;. Kalau Anda masih belum dapat menyetel ulang kata sandi, silakan &lt;a href='ContactUs.aspx'&gt;hubungi kami&lt;/a&gt;</value>
-  </data>
-  <data name="ErrPaymentMethod" xml:space="preserve">
-    <value>Maaf! Pembayaran melalui {method} tidak tersedia. Pada saat ini, hanya metode 'Rekening Pemain 12Bet' yang didukung. Silakan &lt;a href='MyAccount.aspx?ispay=1#payment'&gt;klik di sini&lt;/a&gt; untuk membuat perubahan.</value>
   </data>
   <data name="errSecQuestionEmpty" xml:space="preserve">
     <value>Pertanyaan Keamanan kosong. Silakan diperiksa!</value>
@@ -758,9 +572,6 @@
   </data>
   <data name="Football" xml:space="preserve">
     <value>Sepakbola</value>
-  </data>
-  <data name="For" xml:space="preserve">
-    <value>Bulan</value>
   </data>
   <data name="ForAnyReason" xml:space="preserve">
     <value>Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;Hubungi Kami&lt;/a&gt; untuk bantuan lebih lanjut. </value>
@@ -831,9 +642,6 @@
   <data name="HotNews" xml:space="preserve">
     <value>BERITA HANGAT</value>
   </data>
-  <data name="HtmlFormat" xml:space="preserve">
-    <value>Format Html</value>
-  </data>
   <data name="Hungary" xml:space="preserve">
     <value>Hungaria </value>
   </data>
@@ -848,9 +656,6 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>Gambar</value>
-  </data>
-  <data name="ImageType" xml:space="preserve">
-    <value>Tipe</value>
   </data>
   <data name="Important" xml:space="preserve">
     <value>Penting</value>
@@ -878,9 +683,6 @@
   </data>
   <data name="Israel" xml:space="preserve">
     <value>Israel </value>
-  </data>
-  <data name="IsRequired" xml:space="preserve">
-    <value>diperlukan</value>
   </data>
   <data name="Italy" xml:space="preserve">
     <value>Italia </value>
@@ -923,9 +725,6 @@
   </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>Rep. Dem. Rakyat Lao </value>
-  </data>
-  <data name="Last6Month" xml:space="preserve">
-    <value>Perolehan 6 Bulan Terakhir</value>
   </data>
   <data name="LastNameIsRequired" xml:space="preserve">
     <value>Nama Belakang diperlukan</value>
@@ -1015,37 +814,21 @@
     <value>Riwayat Pesan</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
-    <value>       Terima kasih telah menghubungi kami. {br}
-       Pesan Anda sudah dikirim. Kami akan menanggapi permintaan Anda secepat mungkin. {br}
-       Silakan menghubungi kami di 1-34354-3454 jika ada pertanyaan apa pun. {br}{br}
-       Semoga hari Anda menyenangkan! {br}{br}
-       Salam hormat, {br}{br}
-       Tim Dukungan Afiliasi 12BET
-   </value>
+    <value>Terima kasih telah menghubungi kami. &lt;br /&gt;
+Pesan Anda sudah dikirim. Kami akan menanggapi permintaan Anda secepat mungkin. &lt;br /&gt;
+Silakan menghubungi kami di 1-34354-3454 jika ada pertanyaan apa pun. &lt;br /&gt;&lt;br /&gt;
+Semoga hari Anda menyenangkan! &lt;br /&gt;&lt;br /&gt;
+Salam hormat, &lt;br /&gt;&lt;br /&gt;
+Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="Mexico" xml:space="preserve">
     <value>Meksiko </value>
   </data>
-  <data name="MinAmt_explain" xml:space="preserve">
-    <value>Minimum Total Rugi Bersih Anggota</value>
-  </data>
-  <data name="MinQM_explain" xml:space="preserve">
-    <value>Minimum Anggota Lolos Kualifikasi</value>
-  </data>
   <data name="MinWithdraw" xml:space="preserve">
     <value>Minimal Penarikan (USD)</value>
   </data>
-  <data name="Mobile" xml:space="preserve">
-    <value>Yahoo Messenger</value>
-  </data>
   <data name="Moldova" xml:space="preserve">
     <value>Moldova </value>
-  </data>
-  <data name="MoneyBooker" xml:space="preserve">
-    <value>Moneybookers</value>
-  </data>
-  <data name="MoneybookersEma" xml:space="preserve">
-    <value>Email Moneybookers tidak valid</value>
   </data>
   <data name="Mongolia" xml:space="preserve">
     <value>Mongolia </value>
@@ -1086,9 +869,6 @@
   <data name="Nepal" xml:space="preserve">
     <value>Nepal </value>
   </data>
-  <data name="NetellerAccount" xml:space="preserve">
-    <value>ID Rekening Neteller diperlukan</value>
-  </data>
   <data name="Netherlands" xml:space="preserve">
     <value>Belanda </value>
   </data>
@@ -1104,12 +884,6 @@
   <data name="NewPasswordisre" xml:space="preserve">
     <value>Kata Sandi Baru diperlukan</value>
   </data>
-  <data name="NewSignup" xml:space="preserve">
-    <value>Member yang daftar</value>
-  </data>
-  <data name="NewTrackingCode" xml:space="preserve">
-    <value>Baru</value>
-  </data>
   <data name="NewZealand" xml:space="preserve">
     <value>Selandia Baru </value>
   </data>
@@ -1121,9 +895,6 @@
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>Tidak ada informasi yang tersedia</value>
-  </data>
-  <data name="NonDeposit" xml:space="preserve">
-    <value>Hanya rekening non setoran</value>
   </data>
   <data name="none" xml:space="preserve">
     <value>Tidak ada</value>
@@ -1146,17 +917,8 @@
   <data name="October" xml:space="preserve">
     <value>Oktober</value>
   </data>
-  <data name="Of" xml:space="preserve">
-    <value>Dari</value>
-  </data>
   <data name="OldPass" xml:space="preserve">
     <value>Kata Sandi Lama</value>
-  </data>
-  <data name="OldPassandNewPass" xml:space="preserve">
-    <value>Kata sandi lama dan kata sandi baru diperlukan!</value>
-  </data>
-  <data name="OldPassErr" xml:space="preserve">
-    <value>Kata sandi lama salah</value>
   </data>
   <data name="OldPasswordisre" xml:space="preserve">
     <value>Kata Sandi Lama diperlukan</value>
@@ -1194,24 +956,6 @@
   <data name="Passwordchanged" xml:space="preserve">
     <value>Kata sandi berhasil diubah</value>
   </data>
-  <data name="PaymentErr1001" xml:space="preserve">
-    <value>Maaf, jumlah tidak valid.</value>
-  </data>
-  <data name="PaymentErr1002" xml:space="preserve">
-    <value>ID Peran tidak valid.</value>
-  </data>
-  <data name="PaymentErr1003" xml:space="preserve">
-    <value>Maaf, Afiliasi ini tidak mempunyai cukup uang untuk ditarik.</value>
-  </data>
-  <data name="PaymentErr1004" xml:space="preserve">
-    <value>Rekening saldo tidak valid, atau mata uangnya, atau metode pembayaran tidak didukung.</value>
-  </data>
-  <data name="PaymentErr1006" xml:space="preserve">
-    <value>Gagal menyisipkan transaksi.</value>
-  </data>
-  <data name="PaymentErr1007" xml:space="preserve">
-    <value>Insert transaction failed.</value>
-  </data>
   <data name="PaymentInfor" xml:space="preserve">
     <value>Informasi Penarikan </value>
   </data>
@@ -1221,17 +965,8 @@
   <data name="PaymentRequest" xml:space="preserve">
     <value>Penarikan</value>
   </data>
-  <data name="PayoutSuccess" xml:space="preserve">
-    <value>Permintaan pembayaran Anda sudah berhasil diajukan!</value>
-  </data>
-  <data name="PayoutTime" xml:space="preserve">
-    <value>Anda hanya bisa meminta pembayaran dari tanggal 8 - 15 dalam bulan.</value>
-  </data>
   <data name="Pending" xml:space="preserve">
     <value>Tertunda</value>
-  </data>
-  <data name="PendingComm" xml:space="preserve">
-    <value>Komisi Tertunda</value>
   </data>
   <data name="PendingRequest" xml:space="preserve">
     <value>Permintaan Tertunda</value>
@@ -1241,9 +976,6 @@
   </data>
   <data name="Philippines" xml:space="preserve">
     <value>Filipina </value>
-  </data>
-  <data name="PlainText" xml:space="preserve">
-    <value>Teks Biasa</value>
   </data>
   <data name="Pleasecheckyour" xml:space="preserve">
     <value>Harap periksa alamat email Anda untuk mengetahui nama pengguna dan rincian tentang kata sandi Anda.</value>
@@ -1269,23 +1001,14 @@
   <data name="Preference" xml:space="preserve">
     <value>Preferensi</value>
   </data>
-  <data name="PreferLang" xml:space="preserve">
-    <value>Preferensi</value>
-  </data>
   <data name="PreferLangErr" xml:space="preserve">
     <value>Pilih preferensi bahasa</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>Memproses</value>
   </data>
-  <data name="ProgDetails" xml:space="preserve">
-    <value>Rincian Program</value>
-  </data>
   <data name="PSP" xml:space="preserve">
     <value>PSP</value>
-  </data>
-  <data name="PwdChanged" xml:space="preserve">
-    <value>Kata sandi berhasil diubah</value>
   </data>
   <data name="Qatar" xml:space="preserve">
     <value>Qatar </value>
@@ -1380,12 +1103,6 @@
   <data name="Search" xml:space="preserve">
     <value>Cari</value>
   </data>
-  <data name="SecurityQuestionUpdated" xml:space="preserve">
-    <value>Pertanyaan dan jawaban keamanan Anda sudah diperbarui!</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Pilih</value>
-  </data>
   <data name="SelectOne" xml:space="preserve">
     <value>Pilih Satu</value>
   </data>
@@ -1409,9 +1126,6 @@
   </data>
   <data name="Singapore" xml:space="preserve">
     <value>Singapura </value>
-  </data>
-  <data name="SiteUrl" xml:space="preserve">
-    <value>URL Situs Web</value>
   </data>
   <data name="Size" xml:space="preserve">
     <value>Ukuran</value>
@@ -1449,9 +1163,6 @@
   <data name="Sportbook" xml:space="preserve">
     <value>Olahraga</value>
   </data>
-  <data name="SportType" xml:space="preserve">
-    <value>Jenis Olahraga</value>
-  </data>
   <data name="SriLanka" xml:space="preserve">
     <value>Sri Lanka </value>
   </data>
@@ -1463,9 +1174,6 @@
   </data>
   <data name="StatementHistory" xml:space="preserve">
     <value>Riwayat Laporan</value>
-  </data>
-  <data name="Statistic" xml:space="preserve">
-    <value>Data</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
@@ -1509,12 +1217,6 @@
   <data name="Tennis" xml:space="preserve">
     <value>Tenis</value>
   </data>
-  <data name="TermCondition" xml:space="preserve">
-    <value>Persyaratan &amp; Ketentuan</value>
-  </data>
-  <data name="TermErr" xml:space="preserve">
-    <value>Persyaratan &amp;amp; Ketentuan tidak disetujui, Harap diperiksa!</value>
-  </data>
   <data name="Text" xml:space="preserve">
     <value>Text Box</value>
   </data>
@@ -1537,11 +1239,7 @@
     <value>Level</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
-    <value>Kata sandi baru akan dikirim ke alamat email yang sudah Anda berikan.
-               &lt;br /&gt;Jika Anda mengalami kesulitan lebih jauh, silakan &lt;a href="{0}"&gt;Hubungi kami&lt;/a&gt;.</value>
-  </data>
-  <data name="TitleLogin" xml:space="preserve">
-    <value>Login Afiliasi</value>
+    <value>Kata sandi baru akan dikirim ke alamat email yang sudah Anda berikan.&lt;br /&gt;Jika Anda mengalami kesulitan lebih jauh, silakan &lt;a href="{0}"&gt;Hubungi kami&lt;/a&gt;.</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>Hingga tanggal</value>
@@ -1552,20 +1250,11 @@
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
-  <data name="TotalActive" xml:space="preserve">
-    <value>Total member yang aktif</value>
-  </data>
   <data name="TotalClick" xml:space="preserve">
     <value>Total Klik</value>
   </data>
   <data name="TotalDeposit" xml:space="preserve">
     <value>Total Deposit</value>
-  </data>
-  <data name="TotalPlay" xml:space="preserve">
-    <value>Total member</value>
-  </data>
-  <data name="TotalQualifiedMembers" xml:space="preserve">
-    <value>Member yang memenuhi syarat</value>
   </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>Kode Tracking/Pelacakan</value>
@@ -1617,12 +1306,6 @@
   </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value>Informasi rekening Anda sudah berhasil diperbarui.</value>
-  </data>
-  <data name="UpdateSecurityQuestion" xml:space="preserve">
-    <value>Perbarui Pertanyaan Keamanan</value>
-  </data>
-  <data name="UpToNow" xml:space="preserve">
-    <value>Hingga Sekarang</value>
   </data>
   <data name="Uruguay" xml:space="preserve">
     <value>Uruguay </value>
@@ -1732,9 +1415,6 @@
   <data name="Product12RUBY" xml:space="preserve">
     <value>12RUBY (12BET)</value>
   </data>
-  <data name="Product12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND (OPUS)</value>
-  </data>
   <data name="Product12PEARL" xml:space="preserve">
     <value>12PEARL (ASIA GAMING)</value>
   </data>
@@ -1747,17 +1427,11 @@
   <data name="Product12OPAL" xml:space="preserve">
     <value>12OPAL (EBET)</value>
   </data>
-  <data name="Product12AMETHYST" xml:space="preserve">
-    <value>12AMETHYST (GOLD DELUXE)</value>
-  </data>
   <data name="Product12ONYX" xml:space="preserve">
     <value>12ONYX (ALLBET)</value>
   </data>
   <data name="Product12AMBER" xml:space="preserve">
     <value>12AMBER (BETSOFT)</value>
-  </data>
-  <data name="RevenueShare" xml:space="preserve">
-    <value>Pembagian Hasil</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>Semua Produk</value>
@@ -1852,42 +1526,6 @@
   <data name="ContactNow" xml:space="preserve">
     <value>HUBUNGI SEKARANG!</value>
   </data>
-  <data name="OptimizeYourWebsite" xml:space="preserve">
-    <value>OPTIMALKAN PENDAPATAN WEBSITE</value>
-  </data>
-  <data name="AndSocialChannels" xml:space="preserve">
-    <value>DAN AKUN SOSIAL MEDIA ANDA</value>
-  </data>
-  <data name="ThroughSoccerSeason2018" xml:space="preserve">
-    <value>SEPANJANG MUSIM KOMPETISI 2018/19</value>
-  </data>
-  <data name="Update12BetBannersfromYourMediaGallery" xml:space="preserve">
-    <value>Update Banner 12BET dan</value>
-  </data>
-  <data name="AndPostPromotionsInYourWebsite" xml:space="preserve">
-    <value>Post Promosi 12BET di Website Anda</value>
-  </data>
-  <data name="ToBeatTheBestCommission" xml:space="preserve">
-    <value>Untuk Dapat Komisi Terbaik!</value>
-  </data>
-  <data name="GetBannerNow" xml:space="preserve">
-    <value>LIHAT BANNER SEKARANG!</value>
-  </data>
-  <data name="UpTo" xml:space="preserve">
-    <value>&lt;span class="up-to-group-indo up-to-group"&gt;&lt;span class="up"&gt;KOMISI BULANAN&lt;/span&gt;&lt;span class="to"&gt;HINGGA&lt;/span&gt;&lt;/span&gt;</value>
-  </data>
-  <data name="MonthlyCommission" xml:space="preserve">
-    <value>&lt;p&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="OnSportandCasino" xml:space="preserve">
-    <value>&lt;p class="text-white"&gt;DARI PENDAPATAN&lt;span class="text-red"&gt; OLAHRAGA&lt;/span&gt; &amp; &lt;span class="text-red"&gt;KASINO&lt;/span&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="YouAreNotAffiliateYet" xml:space="preserve">
-    <value>BELUM MENJADI AFILIASI?</value>
-  </data>
-  <data name="SignUpAffiliatesNow" xml:space="preserve">
-    <value>DAFTAR JADI AFILIASI SEKARANG JUGA!</value>
-  </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>Laporan Komisi</value>
   </data>
@@ -1919,7 +1557,7 @@
     <value>Uncalculated</value>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>Error ketika memproses permohonan Anda! Mohon hubungi Administrator.</value>
+    <value>Kesalahan terjadi saat memproses permintaan Anda! Silakan hubungi Administrator.</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>Informasi Deposit Member</value>
@@ -1987,9 +1625,6 @@
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>Maaf! Anda tidak diijinkan masuk dengan domain ini.</value>
   </data>
-  <data name="MarketingTools" xml:space="preserve">
-    <value>Tools Marketing</value>
-  </data>
   <data name="Statistics" xml:space="preserve">
     <value>Statistik</value>
   </data>
@@ -2042,7 +1677,7 @@
     <value>IDR (Indonesian Rupiah)</value>
   </data>
   <data name="Player" xml:space="preserve">
-    <value>Melalui Akun 12BET</value>
+    <value>Pemain</value>
   </data>
   <data name="MetaTitle" xml:space="preserve">
     <value>Jadilah Mitra Bisnis 12BET | Program Afiliasi 12BET</value>
@@ -2099,7 +1734,7 @@
     <value>Verifikasi kode sudah dikirimkan ke alamat email anda. Silahkan masukkan username, password &amp; kode verifikasi di bawah ini untuk log in. </value>
   </data>
   <data name="UsernameVerification" xml:space="preserve">
-    <value>Username</value>
+    <value>Nama Pengguna</value>
   </data>
   <data name="UsernameIsRequired" xml:space="preserve">
     <value>Username diperlukan</value>
@@ -2125,9 +1760,6 @@
   <data name="GpiLottery" xml:space="preserve">
     <value>GPI LOTTERY</value>
   </data>
-  <data name="PrefixProduct12DIAMOND" xml:space="preserve">
-    <value>12DIAMOND</value>
-  </data>
   <data name="PrefixProduct12EMERALD" xml:space="preserve">
     <value>12EMERALD</value>
   </data>
@@ -2136,9 +1768,6 @@
   </data>
   <data name="PrefixProduct12OPAL" xml:space="preserve">
     <value>12OPAL</value>
-  </data>
-  <data name="PrefixProduct12AMETHYST" xml:space="preserve">
-    <value>12AMETHYST</value>
   </data>
   <data name="PrefixProduct12ONYX" xml:space="preserve">
     <value>12ONYX</value>
@@ -2149,9 +1778,6 @@
   <data name="PrefixProduct12AMBER" xml:space="preserve">
     <value>12AMBER</value>
   </data>
-  <data name="SuffixProduct12DIAMOND" xml:space="preserve">
-    <value>(OPUS GAMING)</value>
-  </data>
   <data name="SuffixProduct12EMERALD" xml:space="preserve">
     <value>(Playtech)</value>
   </data>
@@ -2160,9 +1786,6 @@
   </data>
   <data name="SuffixProduct12OPAL" xml:space="preserve">
     <value>(EBET)</value>
-  </data>
-  <data name="SuffixProduct12AMETHYST" xml:space="preserve">
-    <value>(GOLD DELUXE)</value>
   </data>
   <data name="SuffixProduct12ONYX" xml:space="preserve">
     <value>(ALLBET)</value>
@@ -2267,7 +1890,115 @@
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>Pembagian Hasil</value>
   </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>Virtual Sports</value>
+  </data>
+  <data name="PrefixProduct12JADE" xml:space="preserve">
+    <value>12JADE</value>
+  </data>
+  <data name="SuffixProduct12JADE" xml:space="preserve">
+    <value>(AE SEXY)</value>
+  </data>
+  <data name="AndarBahar" xml:space="preserve">
+    <value>Andar Bahar</value>
+  </data>
+  <data name="Teenpatti" xml:space="preserve">
+    <value>Teenpatti</value>
+  </data>
+  <data name="ChineseTraditional" xml:space="preserve">
+    <value>繁體中文</value>
+  </data>
+  <data name="ChineseSimplified" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="MKK" xml:space="preserve">
+    <value>MMK</value>
+  </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Kambodia</value>
+  </data>
+  <data name="NewSignUp" xml:space="preserve">
+    <value>Member Daftar terbaru</value>
+  </data>
+  <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
+    <value>Masukkan Kode Verifikasi.</value>
+  </data>
+  <data name="ErrmsgEntryCaptcha" xml:space="preserve">
+    <value>Masukkan captcha!</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Ringkasan</value>
+  </data>
+  <data name="AffiliateLink" xml:space="preserve">
+    <value>Link Afiliasi</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>Login terakhir</value>
+  </data>
+  <data name="LastLoginIpAddress" xml:space="preserve">
+    <value>Alamat IP Login terakhir</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Tinjauan</value>
+  </data>
+  <data name="PlayersDetails" xml:space="preserve">
+    <value>Data Pemain</value>
+  </data>
+  <data name="TotalTurnover" xml:space="preserve">
+    <value>Total turnover</value>
+  </data>
+  <data name="EmailTittleVerificationAccount" xml:space="preserve">
+    <value>Verifikasi detail akun Anda</value>
+  </data>
+  <data name="SubjectVerificationAccount" xml:space="preserve">
+    <value>Afiliasi 12Bet - Verifikasi data akun Anda</value>
+  </data>
+  <data name="NewSignupAndDeposited" xml:space="preserve">
+    <value>Daftar/Deposit terbaru</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>Pemain Aktif/Terkualifikasi</value>
+  </data>
+  <data name="DepositedMembers" xml:space="preserve">
+    <value>Member Deposit</value>
+  </data>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>Member Aktif</value>
+  </data>
+  <data name="QualifiedActiveMembers" xml:space="preserve">
+    <value>Member Aktif yang terkualifikasi</value>
+  </data>
+  <data name="WinAndLoss" xml:space="preserve">
+    <value>Menang/Kalah</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Salinan</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="Dimension" xml:space="preserve">
+    <value>Dimensi</value>
+  </data>
+  <data name="CopyBannerCode" xml:space="preserve">
+    <value>Salin kode Banner</value>
+  </data>
+  <data name="ShareBanner" xml:space="preserve">
+    <value>Bagikan banner ke teman Anda</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>Salin Link</value>
+  </data>
+  <data name="CopyQR" xml:space="preserve">
+    <value>Salin kode QR</value>
+  </data>
+  <data name="SaveQR" xml:space="preserve">
+    <value>Simpan kode QR</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Salin</value>
+  </data>
+  <data name="YouDoNotHaveEmail" xml:space="preserve">
+    <value>Anda tidak memiliki alamat email ini. Mohon hubungi administrator.</value>
   </data>
 </root>

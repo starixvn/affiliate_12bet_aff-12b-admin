@@ -129,9 +129,6 @@
   <data name="LoginClosedAccount" xml:space="preserve">
     <value>บัญชีของคุณถูดปิด กรุณาติดต่อฝ่ายบริการลูกค้า!</value>
   </data>
-  <data name="LoginLockedAccount" xml:space="preserve">
-    <value>บัญชีของคุณถูดปิด กรุณาติดต่อฝ่ายบริการลูกค้า!</value>
-  </data>
   <data name="LoginWrongInfo" xml:space="preserve">
     <value>ชื่อผู้ใช้เข้าสู่ระบบ หรือ รหัสผ่านที่กรอกไม่ถูกต้องค่ะ</value>
   </data>
@@ -158,5 +155,59 @@
   </data>
   <data name="Wait60Seconds" xml:space="preserve">
     <value>คุณต้องรออีก 60 วินาทีก่อนที่จะส่งขอรหัสยืนยันอีกครั้ง</value>
+  </data>
+  <data name="YourSessionHasExpired" xml:space="preserve">
+    <value>เซสชั่นของคุณหมดอายุแล้ว!</value>
+  </data>
+  <data name="RecoverPassword1002" xml:space="preserve">
+    <value>กู้คืนรหัสผ่านล้มเหลว กรุณาลองอีกครั้ง!</value>
+  </data>
+  <data name="PaymentAmountInvalid" xml:space="preserve">
+    <value>จำนวนคำขอไม่ถูกต้อง</value>
+  </data>
+  <data name="NoSiteDescMaxLength" xml:space="preserve">
+    <value>โปรดอธิบายวิธีที่คุณต้องการโปรโมตหากคุณไม่มี URL ซึ่งมีความยาวไม่เกิน 4,000 ตัวอักษร</value>
+  </data>
+  <data name="PostalMaxLength" xml:space="preserve">
+    <value>รหัสไปรษณีย์/ไปรษณีย์ ไม่เกิน 50 ตัวอักษร</value>
+  </data>
+  <data name="CityMaxLength" xml:space="preserve">
+    <value>เมืองไม่เกิน 150 ตัวอักษร</value>
+  </data>
+  <data name="AddressMaxLength" xml:space="preserve">
+    <value>ที่อยู่ไม่เกิน 250 ตัวอักษร</value>
+  </data>
+  <data name="PhoneMaxLength" xml:space="preserve">
+    <value>เบอร์ติดต่อไม่เกิน 50 ตัวอักษร</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>ที่อยู่อีเมลไม่เกิน 50 ตัวอักษร</value>
+  </data>
+  <data name="AnswerMaxLength" xml:space="preserve">
+    <value>คำตอบของคุณไม่เกิน 250 ตัวอักษร</value>
+  </data>
+  <data name="UserNameMaxLength" xml:space="preserve">
+    <value>ชื่อผู้ใช้ ไม่เกิน 50 ตัวอักษร</value>
+  </data>
+  <data name="LastNameMaxLength" xml:space="preserve">
+    <value>นามสกุลไม่เกิน 50 ตัวอักษร</value>
+  </data>
+  <data name="FirstNameMaxLength" xml:space="preserve">
+    <value>ชื่อไม่เกิน 50 ตัวอักษร</value>
+  </data>
+  <data name="SiteUrlMaxLength" xml:space="preserve">
+    <value>URL ของเว็บไซต์ไม่เกิน 250 ตัวอักษร</value>
+  </data>
+  <data name="InvalidFeedback" xml:space="preserve">
+    <value>กรุณาเลือกอิโมจิหรือกรอกข้อความ</value>
+  </data>
+  <data name="MessageMaxLength" xml:space="preserve">
+    <value>ข้อความไม่เกิน 4,000 ตัวอักษร</value>
+  </data>
+  <data name="InvalidEmoji" xml:space="preserve">
+    <value>อีโมจิไม่ถูกต้อง</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ!</value>
   </data>
 </root>

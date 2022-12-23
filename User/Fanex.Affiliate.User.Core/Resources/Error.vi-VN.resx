@@ -129,9 +129,6 @@
   <data name="LoginClosedAccount" xml:space="preserve">
     <value>Tài khoản của bạn bị đóng. Vui lòng liên hệ với quản trị viên của bạn!</value>
   </data>
-  <data name="LoginLockedAccount" xml:space="preserve">
-    <value>Tài khoản của bạn bị khóa tạm thời do đăng nhập sai 5 lần liên tiếp. Vui lòng thử lại sau 10 phút hoặc liên hệ với quản trị viên của bạn!</value>
-  </data>
   <data name="LoginWrongInfo" xml:space="preserve">
     <value>Tên đăng nhập và mật khẩu không chính xác</value>
   </data>
@@ -158,5 +155,59 @@
   </data>
   <data name="Wait60Seconds" xml:space="preserve">
     <value>Vui lòng đợi 60 giây trước khi gửi yêu cầu nhận mã xác nhận mới</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Đã xảy ra lỗi khi xử lý yêu cầu của bạn!</value>
+  </data>
+  <data name="YourSessionHasExpired" xml:space="preserve">
+    <value>Phiên của bạn đã hết hạn!</value>
+  </data>
+  <data name="RecoverPassword1002" xml:space="preserve">
+    <value>Khôi phục mật khẩu không thành công. Vui lòng thử lại!</value>
+  </data>
+  <data name="PaymentAmountInvalid" xml:space="preserve">
+    <value>Số tiền yêu cầu không hợp lệ</value>
+  </data>
+  <data name="NoSiteDescMaxLength" xml:space="preserve">
+    <value>Vui lòng mô tả cách bạn muốn quảng bá nếu bạn không có URL, không quá 4,000 ký tự.</value>
+  </data>
+  <data name="PostalMaxLength" xml:space="preserve">
+    <value>Mã bưu điện/Zip không quá 50 ký tự.</value>
+  </data>
+  <data name="CityMaxLength" xml:space="preserve">
+    <value>Tên thành phố không quá 150 ký tự.</value>
+  </data>
+  <data name="AddressMaxLength" xml:space="preserve">
+    <value>Địa chỉ không quá 250 ký tự.</value>
+  </data>
+  <data name="PhoneMaxLength" xml:space="preserve">
+    <value>Số liên lạc không quá 50 ký tự.</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>Địa chỉ Email không quá 50 ký tự.</value>
+  </data>
+  <data name="AnswerMaxLength" xml:space="preserve">
+    <value>Câu trả lời của bạn không quá 250 ký tự.</value>
+  </data>
+  <data name="UserNameMaxLength" xml:space="preserve">
+    <value>Tên đăng nhập không quá 50 ký tự.</value>
+  </data>
+  <data name="LastNameMaxLength" xml:space="preserve">
+    <value>Họ không quá 50 ký tự.</value>
+  </data>
+  <data name="FirstNameMaxLength" xml:space="preserve">
+    <value>Tên không quá 50 ký tự.</value>
+  </data>
+  <data name="SiteUrlMaxLength" xml:space="preserve">
+    <value>Liên kết trang web không quá 250 ký tự.</value>
+  </data>
+  <data name="InvalidFeedback" xml:space="preserve">
+    <value>Vui lòng chọn biểu tượng cảm xúc hoặc nhập tin nhắn!</value>
+  </data>
+  <data name="MessageMaxLength" xml:space="preserve">
+    <value>Tin nhắn không quá 4000 ký tự.</value>
+  </data>
+  <data name="InvalidEmoji" xml:space="preserve">
+    <value>Biểu tượng cảm xúc không hợp lệ.</value>
   </data>
 </root>

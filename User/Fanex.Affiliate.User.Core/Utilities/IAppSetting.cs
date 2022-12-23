@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string Environment { get; }
 
+        bool IsDev { get; }
+
         bool IsLocal { get; }
 
         bool IsProduction { get; }
@@ -46,8 +48,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
         int ValidIdleTime { get; }
 
         DateTime StatementAvailableFrom { get; }
-
-        DateTime ShowingNoticeEndDate { get; }
 
         string SymmetricPassword { get; }
 

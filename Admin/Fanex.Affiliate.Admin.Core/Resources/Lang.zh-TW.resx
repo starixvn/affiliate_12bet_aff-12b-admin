@@ -124,13 +124,13 @@
     <value>這是一封由系統自動發送的電子郵件，請勿直接回复此電子郵件。</value>
   </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
-    <value>壹貳博合作夥伴通知</value>
+    <value>12Bet合作夥伴 - 壹貳博合作夥伴通知</value>
   </data>
   <data name="EmailSubjectAffInfor" xml:space="preserve">
-    <value>12BET合作夥伴—您的合作夥伴帳戶信息</value>
+    <value>12Bet合作夥伴 - 您的合作夥伴帳戶信息</value>
   </data>
   <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
-    <value>壹貳博合作夥伴提款指南</value>
+    <value>12Bet合作夥伴 - 壹貳博合作夥伴提款指南</value>
   </data>
   <data name="EmailTitleAffApproved" xml:space="preserve">
     <value>壹貳博合作夥伴通知</value>
@@ -142,13 +142,13 @@
     <value>壹貳博合作夥伴提款指南</value>
   </data>
   <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
-    <value>12Bet合作夥伴- [{0}] -您的提款申請已被核准並成功辦理</value>
+    <value>12Bet合作夥伴 - [{0}] -您的提款申請已被核准並成功辦理</value>
   </data>
   <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
     <value>您的提款申請已被核准並成功辦理</value>
   </data>
   <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
-    <value>12Bet合作夥伴- [{0}] -您的提款申請未被核准</value>
+    <value>12Bet合作夥伴 - [{0}] -您的提款申請未被核准</value>
   </data>
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>您的提款申請未被核准</value>
@@ -157,6 +157,6 @@
     <value>您的加盟申請</value>
   </data>
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
-    <value>12Bet合作夥伴–您的加盟申請</value>
+    <value>12Bet合作夥伴 - 您的加盟申請</value>
   </data>
 </root>

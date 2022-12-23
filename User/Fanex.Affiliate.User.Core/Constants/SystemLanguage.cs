@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 {
     public static class SystemLanguage
     {
-        private static IDictionary<string, string> _supportedLanguageForGoogleAnalytics = new Dictionary<string, string>
+        private static readonly IDictionary<string, string> _supportedLanguageForGoogleAnalytics = new Dictionary<string, string>
         {
             ["en-US"] = "en",
             ["zh-CN"] = "cs",
@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             ["vi-VN"] = "vn",
             ["id-ID"] = "id",
             ["hi-IN"] = "hi",
-            //["km-KH"] = "kh",
+            ["km-KH"] = "kh",
             ["ko-KR"] = "ko",
             ["ja-JP"] = "jp"
         };
