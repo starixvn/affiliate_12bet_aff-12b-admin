@@ -739,9 +739,9 @@
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-TW.jpg" />
+    <Content Include="www\build\styles\Images\right-side-banner.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.km-KH.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.km-KH.jpg" />
-    <Content Include="www\build\styles\Images\left-main-banner.jpeg" />
     <Content Include="www\build\styles\Images\promotion\existing\promotion-mobile.km-KH.jpg" />
     <Content Include="www\build\styles\Images\promotion\existing\promotion-laptop.km-KH.jpg" />
     <Content Include="www\build\styles\Images\promotion\existing\promotion.km-KH.jpg" />
@@ -861,7 +861,7 @@
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.zh-TW.jpg" />
-    <Content Include="www\build\styles\Images\right-main-banner.jpeg" />
+    <Content Include="www\build\styles\Images\left-side-banner.jpg" />
     <Content Include="www\source\js\components\authhelper.js" />
     <Content Include="www\source\js\components\clipboard.js" />
     <Content Include="www\source\js\components\clipboard.min.js" />
@@ -1285,8 +1285,6 @@
     <Content Include="Views\Shared\Email\RecoverPassword\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.km-KH.cshtml" />
-    <Content Include="www\build\styles\Images\left-main-banner.webp" />
-    <Content Include="www\build\styles\Images\right-main-banner.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.zh-TW.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.zh-CN.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.en-US.webp" />
@@ -1306,6 +1304,8 @@
     <Content Include="Views\Promotion\New\_Content.vi-VN.cshtml" />
     <Content Include="Views\Promotion\New\_Content.zh-CN.cshtml" />
     <Content Include="Views\Promotion\New\_Content.zh-TW.cshtml" />
+    <Content Include="www\build\styles\Images\right-side-banner.webp" />
+    <Content Include="www\build\styles\Images\left-side-banner.webp" />
     <Content Include="Views\CommissionStructure\_Content.km-KH.cshtml" />
     <Content Include="Views\Product\_Content.km-KH.cshtml" />
     <Content Include="Views\TermAndCondition\_Content.km-KH.cshtml" />
