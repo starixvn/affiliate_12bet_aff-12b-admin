@@ -1,5 +1,8 @@
 ﻿@{
-    ViewBag.Title = Lang.CommissionStructure;
+    ViewBag.Title = Lang.MetaCommissionStructureTitle;
+    ViewBag.MetaDescription = Lang.MetaCommissionStructureDescription;
+    ViewBag.MetaKeywords = Lang.MetaCommissionStructureKeywords;
+    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.CommissionStructure);
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 @model string

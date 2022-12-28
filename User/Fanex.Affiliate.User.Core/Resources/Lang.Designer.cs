@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -2911,11 +2911,200 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12BET offers an exclusive affiliate program in line to FIFA World Cup 2022 and earn 50% flat affiliate commission rate. .
+        /// </summary>
+        public static string MetaCommissionStructureDescription {
+            get {
+                return ResourceManager.GetString("MetaCommissionStructureDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate,best commission,affiliate marketing,affiliate commission rate,affiliate program.
+        /// </summary>
+        public static string MetaCommissionStructureKeywords {
+            get {
+                return ResourceManager.GetString("MetaCommissionStructureKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make your website tops best commission with 12BET Affiliate Program.
+        /// </summary>
+        public static string MetaCommissionStructureTitle {
+            get {
+                return ResourceManager.GetString("MetaCommissionStructureTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience the best affiliate marketing program of 12BET and become a partner to promote the Asia&apos;s trusted sportsbook as a best betting site..
+        /// </summary>
+        public static string MetaContactUsDescription {
+            get {
+                return ResourceManager.GetString("MetaContactUsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate,affiliate program,affiliate marketing,best betting site,affiliate program,12BET.
+        /// </summary>
+        public static string MetaContactUsKeywords {
+            get {
+                return ResourceManager.GetString("MetaContactUsKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliate, an affiliate program designed for future.
+        /// </summary>
+        public static string MetaContactUsTitle {
+            get {
+                return ResourceManager.GetString("MetaContactUsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Become 12BET Affiliate Business Partner to promote 12BET Sportsbook and Casino and earn monthly commission from customers brought from your websites..
         /// </summary>
         public static string MetaDescription {
             get {
                 return ResourceManager.GetString("MetaDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate program is one of a kind opportunity for affiliates to earn massive income .
+        /// </summary>
+        public static string MetaFAQsDescription {
+            get {
+                return ResourceManager.GetString("MetaFAQsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate,best betting site,affiliate,12BET,affiliate program.
+        /// </summary>
+        public static string MetaFAQsKeywords {
+            get {
+                return ResourceManager.GetString("MetaFAQsKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best betting site in Asia launch 12BET affiliate Program.
+        /// </summary>
+        public static string MetaFAQsTitle {
+            get {
+                return ResourceManager.GetString("MetaFAQsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliate Program, a best affiliate betting site that drives you to prosperity by promoting casino games and sports betting in your website..
+        /// </summary>
+        public static string MetaHomeDescription {
+            get {
+                return ResourceManager.GetString("MetaHomeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate,sports,casino,best affiliate betting sites,affiliate marketing.
+        /// </summary>
+        public static string MetaHomeKeywords {
+            get {
+                return ResourceManager.GetString("MetaHomeKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliate – the best affiliate program that shapes success.
+        /// </summary>
+        public static string MetaHomeTitle {
+            get {
+                return ResourceManager.GetString("MetaHomeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate is an affiliate casino program for affiliates across the globe to market 12BET as a trusted sportsbook in the world..
+        /// </summary>
+        public static string MetaProductDescription {
+            get {
+                return ResourceManager.GetString("MetaProductDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate,affiliate marketing betting,affiliate casino program,affiliate marketing betting,sportsbook,casino.
+        /// </summary>
+        public static string MetaProductKeywords {
+            get {
+                return ResourceManager.GetString("MetaProductKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bet your way to prosperity with 12BET Affiliate.
+        /// </summary>
+        public static string MetaProductTitle {
+            get {
+                return ResourceManager.GetString("MetaProductTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET offers a world-class affiliate marketing for partners to endorse 12BET casino and sports betting across the world and earn 50% flat commission. .
+        /// </summary>
+        public static string MetaPromotionDescription {
+            get {
+                return ResourceManager.GetString("MetaPromotionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate,Sportsbook,Casino,Online Casino,affiliate marketing casino online,affiliate marketing betting,sports.
+        /// </summary>
+        public static string MetaPromotionKeywords {
+            get {
+                return ResourceManager.GetString("MetaPromotionKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kick your way to success with 12BET Affiliate Sportsbook.
+        /// </summary>
+        public static string MetaPromotionTitle {
+            get {
+                return ResourceManager.GetString("MetaPromotionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET is a best betting site in Asia and a rising platform in the world that offers safe, easy affiliate program and surely provides you profit..
+        /// </summary>
+        public static string MetaTermAndConditionDescription {
+            get {
+                return ResourceManager.GetString("MetaTermAndConditionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate,affiliate program,affiliate marketing,best betting site.
+        /// </summary>
+        public static string MetaTermAndConditionKeywords {
+            get {
+                return ResourceManager.GetString("MetaTermAndConditionKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience the success of Affiliate Marketing with 12BET Affiliate.
+        /// </summary>
+        public static string MetaTermAndConditionTitle {
+            get {
+                return ResourceManager.GetString("MetaTermAndConditionTitle", resourceCulture);
             }
         }
         

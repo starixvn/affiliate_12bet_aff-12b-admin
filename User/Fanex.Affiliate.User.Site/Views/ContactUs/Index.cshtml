@@ -1,6 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
-    ViewBag.Title = "12BET Affiliate Program | Contact Us";
+    ViewBag.Title = Lang.MetaContactUsTitle;
+    ViewBag.MetaDescription = Lang.MetaContactUsDescription;
+    ViewBag.MetaKeywords = Lang.MetaContactUsKeywords;
+    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.ContactUs);
 }
 
 @using Fanex.Affiliate.User.Core.Utilities

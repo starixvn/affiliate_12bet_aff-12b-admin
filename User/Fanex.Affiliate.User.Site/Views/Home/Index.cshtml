@@ -1,6 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
-    ViewBag.Title = Lang.Home;
+    ViewBag.Title = Lang.MetaHomeTitle;
+    ViewBag.MetaDescription = Lang.MetaHomeDescription;
+    ViewBag.MetaKeywords = Lang.MetaHomeKeywords;
+    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(String.Empty);
 }
 
 @model Fanex.Affiliate.User.Core.ViewModels.HomeViewModel

@@ -1,5 +1,8 @@
 ﻿@{
-    ViewBag.Title = Lang.Product;
+    ViewBag.Title = Lang.MetaProductTitle;
+    ViewBag.MetaDescription = Lang.MetaProductDescription;
+    ViewBag.MetaKeywords = Lang.MetaProductKeywords;
+    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.Product);
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
