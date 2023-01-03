@@ -1,6 +1,7 @@
 ﻿var Promotion = (function ($) {
     let DEFAULT_ACTION_OF_PROMOTION = 'New';
     let allowedActionListOfPromotion = ["New", "Existing"];
+    let alertPromotionBlockRemoveHeight = 15;
 
     var _me = {
         initialize: function () {
@@ -18,6 +19,14 @@
                 }, null, `#${name}`);
 
                 _me.renderView(name);
+                _me.handleShowAlert();
+            })
+
+            $('#alertPromotionBlockRemove').on('click', function (event) {
+                event.preventDefault();
+                $("#alertPromotion").hide();
+                $(document.body).css('overflow', 'auto');
+                window.removeEventListener("resize", _me.adjustAlertPromotionBlockRemovePosition);
             })
         },
         activeMenu: function (actionName) {
@@ -48,6 +57,30 @@
                 }
             });
         },
+        handleShowAlert: function () {
+            $("#alertPromotion").show();
+            $(document.body).css('overflow', 'hidden');
+            _me.adjustAlertPromotionBlockRemovePosition();
+            window.addEventListener("resize", _me.adjustAlertPromotionBlockRemovePosition);
+        },
+
+        adjustAlertPromotionBlockRemovePosition: function () {
+            var alertPromotionBlockHeight = $('#alertPromotionBlock').outerHeight();
+            var alertPromotionBlockWidth = $('#alertPromotionBlock').outerWidth();
+            $('#alertPromotionBlock').css({
+                top: `calc(50% - ${alertPromotionBlockHeight / 2}px)`,
+                right: `calc(50% - ${alertPromotionBlockWidth / 2}px)`
+            });
+
+            var alertPromotionBlockOffset = $('#alertPromotionBlock').position();
+            var alertPromotionBlockTop = alertPromotionBlockOffset.top;
+            var alertPromotionBlockLeft = alertPromotionBlockOffset.left;
+
+            $('#alertPromotionBlockRemove').css({
+                top: (alertPromotionBlockTop - alertPromotionBlockRemoveHeight) + 'px',
+                right: `calc(100% - ${alertPromotionBlockLeft + alertPromotionBlockWidth + alertPromotionBlockRemoveHeight}px)`
+            });
+        }
     };
 
     return _me;

@@ -37,7 +37,11 @@
     <div class="main-container">
         <div class="main">
             <div class="banner-side banner-left">
-                <img src=@Url.RenderLinkByJsVersion("~/www/build/styles/Images/left-main-banner.jpeg") alt="aff left banner" />
+                <picture>
+                    <source srcset="~/www/build/styles/Images/left-side-banner.webp?v=1819" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/left-side-banner.jpg?v=1819" type="image/jpeg" />
+                    <img src="~/www/build/styles/Images/left-side-banner.jpeg?v=1819" alt="left banner" />
+                </picture>
             </div>
 
             <div class="page-container">
@@ -53,7 +57,11 @@
             </div>
 
             <div class="banner-side banner-right">
-                <img src=@Url.RenderLinkByJsVersion("~/www/build/styles/Images/right-main-banner.jpeg") alt="aff right banner" />
+                <picture>
+                    <source srcset="~/www/build/styles/Images/right-side-banner.webp?v=1819" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/right-side-banner.jpg?v=1819" type="image/jpeg" />
+                    <img src="~/www/build/styles/Images/right-side-banner.jpg?v=1819" alt="right banner" />
+                </picture>
             </div>
         </div>
     </div>

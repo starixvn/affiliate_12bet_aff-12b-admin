@@ -5251,6 +5251,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This promotion is Expired. Please stay tune for new exciting promotion..
+        /// </summary>
+        public static string ThisPromotionIsExpired {
+            get {
+                return ResourceManager.GetString("ThisPromotionIsExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tier.
         /// </summary>
         public static string Tier {

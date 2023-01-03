@@ -2002,6 +2002,9 @@
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>คุณไม่มีที่อยู่อีเมล โปรดติดต่อทีมงานพันธมิตร!</value>
   </data>
+  <data name="ThisPromotionIsExpired" xml:space="preserve">
+    <value>โปรโมชั่นนี้ได้สิ้นสุดลงแล้ว โปรดติดตามโปรโมชั่นใหม่ที่น่าสนใจเร็วๆนี้</value>
+  </data>
   <data name="MetaHomeTitle" xml:space="preserve">
     <value>12BETพันธมิตร – ก้าวสู่ความสำเร็จไปพร้อมกันกับโปรแกรมพันธมิตรที่ดีที่สุด</value>
   </data>
