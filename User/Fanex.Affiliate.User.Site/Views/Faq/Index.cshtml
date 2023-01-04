@@ -1,5 +1,8 @@
 ﻿@{
-    ViewBag.Title = Lang.Faqs;
+    ViewBag.Title = Lang.MetaFAQsTitle;
+    ViewBag.MetaDescription = Lang.MetaFAQsDescription;
+    ViewBag.MetaKeywords = Lang.MetaFAQsKeywords;
+    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.Faq);
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
