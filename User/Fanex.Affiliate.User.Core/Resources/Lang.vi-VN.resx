@@ -2001,6 +2001,9 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>Bạn không có email. Vui lòng liên hệ quản trị viên!</value>
   </data>
+  <data name="ThisPromotionIsExpired" xml:space="preserve">
+    <value>Khuyến mãi này đã hết hạn. Vui lòng chờ khuyến mãi mới hấp dẫn tiếp theo.</value>
+  </data>
   <data name="MetaHomeTitle" xml:space="preserve">
     <value>Đại lý 12BET - nền tảng tiếp thị liên kết nhà cái tốt nhất</value>
   </data>

@@ -11,6 +11,20 @@
 }
 
 <div class="promotion">
+    <div class="alert-promotion" id="alertPromotion">
+        <div class="alert-promotion-block" id="alertPromotionBlock">
+            <div class="alert-promotion-block-remove">
+                <div class="alert-glyphicon-remove" id="alertPromotionBlockRemove">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </div>
+            </div>
+            <div class="alert-promotion-block-group">
+                <div class="alert-promotion-block-group-text">
+                    <span>@Html.Raw(Lang.ThisPromotionIsExpired)</span>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="page-title">
         <span class="text">@Lang.Promotion</span>
     </div>

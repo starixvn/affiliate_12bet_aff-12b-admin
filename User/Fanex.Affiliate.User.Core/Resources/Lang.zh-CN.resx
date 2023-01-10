@@ -2007,6 +2007,9 @@
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>如果您没有电邮，请联系管理员。</value>
   </data>
+  <data name="ThisPromotionIsExpired" xml:space="preserve">
+    <value>此优惠活动已结束。敬请期待全新优惠活动登场！</value>
+  </data>
   <data name="MetaHomeTitle" xml:space="preserve">
     <value>12BET合作伙伴—最成功合作伙伴计划</value>
   </data>

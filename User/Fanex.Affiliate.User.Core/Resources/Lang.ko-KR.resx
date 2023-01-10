@@ -1998,6 +1998,9 @@
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>이메일 주소가 없습니다. 관리자에게 문의하세요!</value>
   </data>
+  <data name="ThisPromotionIsExpired" xml:space="preserve">
+    <value>이벤트가 종료되었습니다.새롭고 흥미진진한 이벤트가 추가 될 예정이오니 계속 지켜봐 주시기 바랍니다.</value>
+  </data>
   <data name="MetaHomeTitle" xml:space="preserve">
     <value>12벳 제휴 – 성공을 만드는 최고의 제휴 프로그램</value>
   </data>
