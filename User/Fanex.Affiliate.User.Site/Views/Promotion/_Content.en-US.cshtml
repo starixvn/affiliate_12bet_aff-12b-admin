@@ -1,8 +1,8 @@
 ﻿@model bool
 @{
-    var orgBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/new/promotion.hi-IN.jpg");
-    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/new/promotion-mobile.hi-IN.jpg");
-    var laptopBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/new/promotion-laptop.hi-IN.jpg");
+    var orgBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion.en-US.jpg");
+    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion-mobile.en-US.jpg");
+    var laptopBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion-laptop.en-US.jpg");
 }
 <div class="banner-promotion">
     <picture>
@@ -50,5 +50,3 @@
         </p>
     </div>
 </div>
-
-<script src="@Url.RenderLink("~/www/build/js/pages/promotion/new-promotion.js")"></script>

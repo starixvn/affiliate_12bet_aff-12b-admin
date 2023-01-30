@@ -1,4 +1,4 @@
-﻿var NewPromotion = (function ($) {
+﻿var Promotion = (function ($) {
     var _me = {
         initialize: function () {
             _me.initEvent();
@@ -19,4 +19,4 @@
     return _me;
 })(jQuery);
 
-NewPromotion.initialize();
+Promotion.initialize();

@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.ViewModels
 {
-    public class ProductPageViewModel
+    public class ProPageViewModel
     {
         public string CurrentLanguage { get; set; }
 

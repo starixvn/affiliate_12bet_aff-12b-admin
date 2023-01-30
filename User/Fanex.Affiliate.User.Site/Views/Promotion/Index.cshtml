@@ -5,46 +5,21 @@
     ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.Promotion);
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
-@model string
+@model Fanex.Affiliate.User.Core.ViewModels.ProPageViewModel
+@{
+    var viewName = "~/Views/Promotion/_Content." + Model.CurrentLanguage + ".cshtml";
+}
 @section styles{
     @Html.InlineStyles("~/www/build/styles/css/promotion.css")
 }
 
-<div class="promotion">
-    <div class="alert-promotion" id="alertPromotion">
-        <div class="alert-promotion-block" id="alertPromotionBlock">
-            <div class="alert-promotion-block-remove">
-                <div class="alert-glyphicon-remove" id="alertPromotionBlockRemove">
-                    <i class="glyphicon glyphicon-remove"></i>
-                </div>
-            </div>
-            <div class="alert-promotion-block-group">
-                <div class="alert-promotion-block-group-text">
-                    <span>@Html.Raw(Lang.ThisPromotionIsExpired)</span>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="content">
     <div class="page-title">
         <span class="text">@Lang.Promotion</span>
     </div>
-    <div class="tab-menu" id="promotion-menu">
-        <ul class="menu list-unstyled">
-            <li><a href="javascript:;" data-name="New" class="menu-item promotion-menu-item" id="menuNew">@Lang.NewPromotion</a></li>
-            <li><a href="javascript:;" data-name="Existing" class="menu-item promotion-menu-item" id="menuExisting">@Lang.ExistingPromotion</a></li>
-        </ul>
-    </div>
-    <div id="promotion-content"></div>
+
+    @{ Html.RenderPartial(viewName, Model.IsAuthenticated); }
+    @RazorHelper.RenderMovingTopButton()
 </div>
 
-@RazorHelper.RenderMovingTopButton()
-<input type="hidden" id="shortedLangCode" value="@Model" />
-
-@section scripts{
-    <script>
-        var promotionResourceLanguage = {
-            signUpToAffiliateProgram: '@Lang.SignUpToAffiliateProgram.Replace("40", "50")'
-        }
-    </script>
-    @Html.InlineScripts("~/www/build/js/pages/promotion/promotion.js")
-}
+<script src="@Url.RenderLink("~/www/build/js/pages/promotion.js")"></script>

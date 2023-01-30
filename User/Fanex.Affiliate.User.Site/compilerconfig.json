@@ -152,15 +152,7 @@
     "inputFile": "www/source/styles/pages/promotion.scss"
   },
   {
-    "outputFile": "www/build/js/pages/promotion/promotion.js",
-    "inputFile": "www/source/js/pages/promotion/promotion.js"
-  },
-  {
-    "outputFile": "www/build/js/pages/promotion/new-promotion.js",
-    "inputFile": "www/source/js/pages/promotion/new-promotion.js"
-  },
-  {
-    "outputFile": "www/build/js/pages/promotion/existing-promotion.js",
-    "inputFile": "www/source/js/pages/promotion/existing-promotion.js"
+    "outputFile": "www/build/js/pages/promotion.js",
+    "inputFile": "www/source/js/pages/promotion.js"
   }
 ]
