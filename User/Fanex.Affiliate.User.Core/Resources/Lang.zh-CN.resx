@@ -2008,7 +2008,7 @@
     <value>12BET合作伙伴计划，老牌联盟博彩网站，通过在自己的网站上，推广娱乐游戏和体育博彩，赚取丰厚的收入。</value>
   </data>
   <data name="MetaHomeKeywords" xml:space="preserve">
-    <value>12BET合作伙伴、体育、娱乐城、最佳合作伙伴博彩网站、联盟营销</value>
+    <value>12BET合作伙伴、体育、娱乐城、最佳合作伙伴博彩网站、联盟营销、代理营销推广</value>
   </data>
   <data name="MetaCommissionStructureTitle" xml:space="preserve">
     <value>通过12BET合作伙伴计划赚取丰厚佣金</value>
@@ -2017,7 +2017,7 @@
     <value>12BET推出专属合作伙伴计划，为配合2022世界杯，让您赚取高达50%佣金。</value>
   </data>
   <data name="MetaCommissionStructureKeywords" xml:space="preserve">
-    <value>12BET合作伙伴、最佳佣金、联盟营销、联盟佣金率、合作伙伴计划</value>
+    <value>12BET合作伙伴、最佳佣金、联盟营销、联盟佣金率、合作伙伴计划、代理计划、最佳博彩网站</value>
   </data>
   <data name="MetaProductTitle" xml:space="preserve">
     <value>在12BET合作伙伴开启您的致富之路</value>
@@ -2026,7 +2026,7 @@
     <value>12BET合作伙伴是联盟博彩计划，为全球的联盟成员推广世界上值得信赖的体育博彩12BET。</value>
   </data>
   <data name="MetaProductKeywords" xml:space="preserve">
-    <value>12BET合作伙伴、联盟营销博彩、博彩合作伙伴计划、联盟营销博彩、体育博彩、娱乐城</value>
+    <value>12BET合作伙伴、联盟营销博彩、博彩合作伙伴计划、联盟营销博彩、体育博彩、娱乐城、博彩代理营销</value>
   </data>
   <data name="MetaTermAndConditionTitle" xml:space="preserve">
     <value>12BET合作伙伴中，体验成功营销</value>
@@ -2035,7 +2035,7 @@
     <value>12BET是亚洲老牌博彩网站，也是世界上正在崛起的平台，提供安全、简单的合作伙伴计划，肯定会给您带来利润。</value>
   </data>
   <data name="MetaTermAndConditionKeywords" xml:space="preserve">
-    <value>12BET合作伙伴、合作伙伴计划、联盟营销、最佳博彩网站</value>
+    <value>12BET合作伙伴、合作伙伴计划、联盟营销、最佳博彩网站、博彩代理计划</value>
   </data>
   <data name="MetaFAQsTitle" xml:space="preserve">
     <value>亚洲最佳博彩网站推出12BET合作伙伴计划</value>
@@ -2044,7 +2044,7 @@
     <value>12BET合作伙伴计划是让成员赚取大量收入的专属机会。 </value>
   </data>
   <data name="MetaFAQsKeywords" xml:space="preserve">
-    <value>12BET合作伙伴、老牌博彩网站、合作伙伴、12BET、联盟计划</value>
+    <value>12BET合作伙伴、老牌博彩网站、合作伙伴、12BET、联盟计划、最佳博彩代理计划</value>
   </data>
   <data name="MetaPromotionTitle" xml:space="preserve">
     <value>在12BET合作伙伴体育博彩中踢出成功之路</value>
@@ -2053,7 +2053,7 @@
     <value>12BET推出世界级的联盟营销，让合作伙伴在全球为12BET娱乐城和体育博彩进行推广，赚取50%稳定佣金。</value>
   </data>
   <data name="MetaPromotionKeywords" xml:space="preserve">
-    <value>12BET合作伙伴、体育博彩、老虎机、在线娱乐、在线娱乐联盟营销、在线合作伙伴营销博彩、体育</value>
+    <value>12BET合作伙伴、体育博彩、老虎机、在线娱乐、在线娱乐联盟营销、在线合作伙伴营销博彩、体育、最佳博彩代理佣金计划</value>
   </data>
   <data name="MetaContactUsTitle" xml:space="preserve">
     <value>12BET合作伙伴，为未来设计的联盟计划。</value>
@@ -2062,6 +2062,27 @@
     <value>体验12BET最佳联盟营销计划，成为合作伙伴，推广亚洲值得信赖的体育博彩公司，成为最佳博彩网站。</value>
   </data>
   <data name="MetaContactUsKeywords" xml:space="preserve">
-    <value>12BET合作伙伴、合作伙伴计划、联盟营销、最佳博彩网站、合作伙伴计划、12BET</value>
+    <value>12BET合作伙伴、合作伙伴计划、联盟营销、最佳博彩网站、合作伙伴计划、12BET、最高报酬合作伙伴计划</value>
+  </data>
+  <data name="HomeHeaderTitle" xml:space="preserve">
+    <value>12BET合作伙伴</value>
+  </data>
+  <data name="CommissionStructureHeaderTitle" xml:space="preserve">
+    <value>12BET合作伙伴佣金</value>
+  </data>
+  <data name="ProductHeaderTitle" xml:space="preserve">
+    <value>12BET合作伙伴产品</value>
+  </data>
+  <data name="TermAndConditionHeaderTitle" xml:space="preserve">
+    <value>12BET合作伙伴计划</value>
+  </data>
+  <data name="FAQsHeaderTitle" xml:space="preserve">
+    <value>加入12BET合作伙伴</value>
+  </data>
+  <data name="PromotionHeaderTitle" xml:space="preserve">
+    <value>成为12BET合作伙伴</value>
+  </data>
+  <data name="ContactUsHeaderTitle" xml:space="preserve">
+    <value>12BET合作伙伴市场推广</value>
   </data>
 </root>

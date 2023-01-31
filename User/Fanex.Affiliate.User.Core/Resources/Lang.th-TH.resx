@@ -2012,7 +2012,7 @@
     <value>12BET มอบข้อเสนอพิเศษ สมัครโปรแกรมพันธมิตรในช่วงบอลโลก2022 และรับคอมมิชชั่น50% ไปเลย</value>
   </data>
   <data name="MetaCommissionStructureKeywords" xml:space="preserve">
-    <value>12BETพันธมิตร,คอมมิชชั่นดีที่สุด,การตลาดพันธมิตร,คอมมิชชั่น,โปรแกรมพันธมิตร</value>
+    <value>12BETพันธมิตร,คอมมิชชั่นดีที่สุด,การตลาดพันธมิตร,คอมมิชชั่น,โปรแกรมพันธมิตร,เว็บเดิมพันดีที่สุด</value>
   </data>
   <data name="MetaProductTitle" xml:space="preserve">
     <value>ร่วมงานกับโปรแกรมพันธมิตรที่ดีที่สุดที่นำพาคุณไปสู่ความมั่งคั่ง</value>
@@ -2039,7 +2039,7 @@
     <value>โปรแกรม12BETพันธมิตรคือโอกาสพิเศษที่จะทำให้คุณได้รับรายได้มหาศาล</value>
   </data>
   <data name="MetaFAQsKeywords" xml:space="preserve">
-    <value>12BETพันธมิตร,เว็บเดิมพันดีที่สุด,พันธมิตร,12BET,โปรแกรมพันธมิตร</value>
+    <value>12BETพันธมิตร,เว็บเดิมพันดีที่สุด,พันธมิตร,12BET,โปรแกรมพันธมิตร,การตลาดพันธมิตรดีที่สุด</value>
   </data>
   <data name="MetaPromotionTitle" xml:space="preserve">
     <value>ก้าวสู่ความสำเร็จกับ12BETพันธมิตร </value>
@@ -2048,7 +2048,7 @@
     <value>12BET ขอเสนอโปรแกรมพันธมิตรระดับโลกด้วยข้อเสนอสุดพิเศษรับค่าคอมมิชชั่นสูงถึง50%</value>
   </data>
   <data name="MetaPromotionKeywords" xml:space="preserve">
-    <value>12BETพันธมิตร,เดิมพันกีฬา,เดิมพันกีฬา,คาสิโนออนไลน์,การตลาดพันธมิตร,เดิมพัน,กีฬา</value>
+    <value>12BETพันธมิตร,เดิมพันกีฬา,เดิมพันกีฬา,คาสิโนออนไลน์,การตลาดพันธมิตร,เดิมพัน,กีฬา,เว็บการตลาดพันธมิตรดีที่สุด</value>
   </data>
   <data name="MetaContactUsTitle" xml:space="preserve">
     <value>12BETพันธมิตร โปรแกรมที่นำคุณก้าวสู่ความมั่งคั่ง</value>
@@ -2057,6 +2057,27 @@
     <value>ร่วมเปิดประสบการณ์กับโปรแกรมการตลาดพันธมิตรที่ดีที่สุดใน12BET เว็บไซต์เดิมพันที่ดีที่สุดในเอเชีย</value>
   </data>
   <data name="MetaContactUsKeywords" xml:space="preserve">
-    <value>12BETพันธมิตร,โปรแกรมพันธมิตร,การตลาดพันธมิตร,เว็บพนันดีที่สุด,โปรแกรมพันธมิตร,12BET</value>
+    <value>12BETพันธมิตร,โปรแกรมพันธมิตร,การตลาดพันธมิตร,เว็บพนันดีที่สุด,โปรแกรมพันธมิตร,12BET,โปรแกรมการตลาดพันธมิตร</value>
+  </data>
+  <data name="HomeHeaderTitle" xml:space="preserve">
+    <value>12BETพันธมิตร</value>
+  </data>
+  <data name="CommissionStructureHeaderTitle" xml:space="preserve">
+    <value>12BETพันธมิตรคอมมิชชั่น</value>
+  </data>
+  <data name="ProductHeaderTitle" xml:space="preserve">
+    <value>12BETพันธมิตรผลิตภัณฑ์</value>
+  </data>
+  <data name="TermAndConditionHeaderTitle" xml:space="preserve">
+    <value>12BETโปรแกรมพันธมิตร</value>
+  </data>
+  <data name="FAQsHeaderTitle" xml:space="preserve">
+    <value>เข้าร่วม 12BETพันธมิตร</value>
+  </data>
+  <data name="PromotionHeaderTitle" xml:space="preserve">
+    <value>สมัครพันธมิตรตอนนี้</value>
+  </data>
+  <data name="ContactUsHeaderTitle" xml:space="preserve">
+    <value>12BETการตลาดพันธมิตร</value>
   </data>
 </root>
