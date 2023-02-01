@@ -10,7 +10,7 @@
     var viewName = "~/Views/Promotion/_Content." + Model.CurrentLanguage + ".cshtml";
 }
 @section styles{
-    @Html.InlineStyles("~/www/build/styles/css/promotion.css")
+    <link rel="stylesheet" href="@Url.Content("~/www/build/styles/css/promotion.css")" />
 }
 
 <div class="content">
@@ -21,5 +21,3 @@
     @{ Html.RenderPartial(viewName, Model.IsAuthenticated); }
     @RazorHelper.RenderMovingTopButton()
 </div>
-
-<script src="@Url.RenderLink("~/www/build/js/pages/promotion.js")"></script>

@@ -1,27 +1,76 @@
-﻿.content {
-    .banner-promotion {
-        .img-item {
-            margin: auto;
-        }
+﻿.banner-promotion {
+    display: block;
+    max-width: 700px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 15px 15px;
+    background-repeat: no-repeat;
+    text-align: left;
+    background-image: url("../../../build/styles/Images/promotion/promotion.jpg");
+    background-size: cover;
+    color: white;
+    font-weight: bold;
+    background-position: center;
+
+    @media (min-width: 540px) {
+        padding: 25px 15px;
     }
 
-    .promotion-content-text {
-        padding: 0 10px;
+    .text-content {
+        text-align: center;
+        font-size: 1rem;
+        max-width: 75%;
 
-        .header-underline {
-            text-decoration: underline;
+        @media (min-width: 320px) {
+            max-width: 70%;
+            font-size: 1.1rem;
         }
 
-        .btn-join-affiliate {
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: inline-block;
+        @media (min-width: 390px) {
+            max-width: 65%;
+            font-size: 1.25rem;
         }
 
-        .promotion-login-link {
-            color: #cb0e1a;
-            font-weight: bold;
+        @media (min-width: 450px) {
+            max-width: 60%;
+            font-size: 1.4rem;
+        }
+
+        @media (min-width: 600px) {
+            font-size: 1.6rem;
+        }
+
+        @media (min-width: 768px) {
+            font-size: 1.75rem;
+        }
+
+        .text-big {
+            font-size: 2.25rem;
+
+            @media (min-width: 600px) {
+                font-size: 2.75rem;
+            }
+
+            @media (min-width: 768px) {
+                font-size: 3.25rem;
+            }
         }
     }
+}
+
+.promo-header {
+    margin: 2.5em 0;
+    font-weight: 600;
+    text-align: center;
+}
+
+.header-underline {
+    text-decoration: underline;
+}
+.btn-join-affiliate {
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    display: inline-block;
 }

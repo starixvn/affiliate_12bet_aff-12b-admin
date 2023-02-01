@@ -1,52 +1,85 @@
-﻿@model bool
-@{
-    var orgBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion.km-KH.jpg");
-    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion-mobile.km-KH.jpg");
-    var laptopBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion-laptop.km-KH.jpg");
-}
-<div class="banner-promotion">
-    <picture>
-        <source media="(max-width:600px)" srcset="@(mobileBannerSrc)" type="image/jpeg" />
-        <source media="(max-width:1120px)" srcset="@(laptopBannerSrc)" type="image/jpeg" />
-        <source srcset="@(orgBannerSrc)" type="image/jpeg" />
-        <img class="img-item img-responsive" src="@orgBannerSrc" alt="@Lang.NewPromotion" />
-    </picture>
+﻿<div class="banner-promotion">
+    <div class="text-content">
+        <p>ដោះសោសេរីភាពហិរញ្ញវត្ថុ</p>
+        <p>ជាមួយនឹងការរកកំរៃជើងសារដ៏អស្ចារ្យ!</p>
+        <p>ទទួលបានប្រាក់បន្ថែម</p>
+        <p class="text-big">$2,000</p>
+        <p>បន្ថែមពីលើកម្រៃជើងសារ</p>
+        <p>ប្រចាំខែរបស់អ្នក</p>
+        <br />
+        <p>ចាប់ផ្តើមផ្សព្វផ្សាយឥឡូវនេះ!</p>
+    </div>
 </div>
 
-<div class="promotion-content-text">
-    <div class="info-group">
-        <p class="text-bold">ទាមទារកំរៃជើងសារ 50% ត្រឹមតែ 3 ជំហានងាយៗតែប៉ុណ្ណោះ៖</p>
+<h3 class="promo-header text-center text-bold"> ចូលរួមជាមួយអាជីវកម្មដែលរកប្រាក់ចំណេញល្អបំផុត </h3>
+
+<div class="info-group">
+    <p class="text-header">ទទួលបានកំរៃជើងសារបន្ថែមរបស់អ្នកឥឡូវនេះជាមួយនឹងជំហានងាយៗ៖</p>
+    <ol>
+        <li class="text">ចូលរួមកម្មវិធីភ្នាក់ងារ 12BET  ហើយចាប់ផ្តើមផ្សព្វផ្សាយ 12BET ដោយចុចលើប៊ូតុង។</li>
+        <li class="text">អញ្ជើញសមាជិករបស់អ្នកឱ្យបានច្រើនតាមដែលអ្នកអាចធ្វើបាន ដើម្បីសម្រេចគោលដៅដូចតារាងខាងក្រោម។</li>
+        <li class="text">កម្រៃជើងសារបន្ថែមនឹងត្រូវបានបញ្ចូលជាមួយកំរៃជើងសារប្រចាំខែរបស់អ្នក។</li>
+    </ol>
+</div>
+<div class="table table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th width="20%">ចំនួនសមាជិកថ្មី</th>
+                <th width="20%">ការដាក់ប្រាក់សរុបដំបូងរបស់សមាជិក ($)</th>
+                <th width="30%">កម្រៃជើងសារបន្ថែម</th>
+                <th width="30%">កម្រៃជើងសារបន្ថែមធំបំផុត ($)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">12</td>
+                <td class="text-center">4,500</td>
+                <td class="text-center">5%</td>
+                <td class="text-center">500</td>
+            </tr>
+            <tr>
+                <td class="text-center">25</td>
+                <td class="text-center">10,500</td>
+                <td class="text-center">8%</td>
+                <td class="text-center">1,200</td>
+            </tr>
+            <tr>
+                <td class="text-center">40</td>
+                <td class="text-center">15,000</td>
+                <td class="text-center">12%</td>
+                <td class="text-center">2,000</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="info-group">
+    <p class="text">
+        ឧទាហរណ៍៖ ភ្នាក់ងារទទួលបានកំរៃជើងសារ 30% = USD 5,000
+    </p>
+    <p class="text">
+        សមាជិកដាក់ប្រាក់លើកដំបូងចំនួន 12 នាក់ និងសមាជិកចំនួន 12 នាក់ដែលបានដាក់ប្រាក់សរុបចំនួន 4,500 ដុល្លារ។
+    </p>
+    <p class="text">
+        យោងតាមតារាងខាងលើ គាត់នឹងទទួលបានប្រាក់កំរៃបន្ថែម 5%
+    </p>
+    <p class="text">
+        5% នៃ USD 5,000 = USD 250
+    </p>
+    <p class="text">
+        សរុបកំរៃជើងសារគាត់នឹងទទួលបាន 5,250 ដុល្លារ
+    </p>
+</div>
+<div class="text-center"><a class='btn-danger btn-join-affiliate' href='@Url.Content("~/signup")'>ក្លាយជាភ្នាក់ងាររបស់យើងឥឡូវនេះ!</a></div>
+<h2 class="header-underline text-red">លក្ខខណ្ឌនៃការផ្តល់ជូនពិសេស</h2>
+<div class="info-group">
+    <p class="text">
         <ol>
-            <li class="text">គ្រាន់តែចុចប៊ូតុង "ក្លាយជាភ្នាក់ងារឥឡូវនេះ!"  ហើយចូលរួមកម្មវិធីភ្នាក់ងារ 12BET</li>
-            <li class="text">អញ្ជើញអ្នកលេងរបស់អ្នកអោយបានច្រើនតាមដែលអ្នកអាចធ្វើបានហើយអាចឈានដល់គោលដៅដូចតារាងខាងក្រោម</li>
-            <li class="text">ទទួលបានកំរៃជើងសារ 50% ​​នៃប្រាក់ចំណេញសុទ្ធគ្មានដែនកំណត់</li>
+            <li>ការផ្តល់ជូនពិសេសនេះអនុវត្តចំពោះភ្នាក់ងារ 12BET ទាំងអស់។</li>
+            <li>ភ្នាក់ងារនឹងមានសិទ្ធិទទួលបានកំរៃជើងសារបន្ថែម ប្រសិនបើពួកគេអាចបំពេញនូវតម្រូវការដូចដែលបានបង្ហាញក្នុងតារាងខាងលើ។</li>
+            <li>កម្រៃជើងសារបន្ថែមនឹងត្រូវបានគណនាពីចំនួនសរុបចុងក្រោយនៃកម្រៃជើងសារក្នុងខែនីមួយៗ។</li>
+            <li>កំរៃជើងសារបន្ថែមនឹងត្រូវបានបញ្ចូលជាមួយកំរៃជើងសារចុងក្រោយក្នុងថ្ងៃ 08 - 15 នៃខែ។</li>
+            <li>12BET រក្សាសិទ្ធិក្នុងការលុបចោលការផ្តល់ជូនពិសេសនេះគ្រប់ពេល ទាំងសម្រាប់ភ្នាក់ងារទាំងអស់ ឬបុគ្គល <a href="@Url.Content("~/TermAndCondition")" class="text-red">ចំពោះលក្ខខណ្ឌនៃភ្នាក់ងាររបស់ 12BET។</a> </li>
         </ol>
-    </div>
-
-    @{ Html.RenderPartial("~/Views/CommissionStructure/_NewRevenueShareTable.cshtml"); }
-    @if (!Model)
-    {
-        <div class="text-center"><a class='btn-danger btn-join-affiliate' href='@Url.Content("~/Signup")'>ក្លាយជាភ្នាក់ងារឥឡូវនេះ!</a></div>
-    }
-    <div class="info-group">
-        <p class="text">
-            មានសំណួរ? <a href="@Url.Content("~/ContactUs")">សូមទំនាក់ទំនង</a>ក្រុមការងារ 12BET ឥឡូវនេះ!
-        </p>
-    </div>
-
-    <h2 class="header-underline text-danger">ល័ក្ខខ័ណ្ឌនៃការផ្តល់ជូនពិសេស</h2>
-    <div class="info-group">
-        <p class="text">
-            <ol>
-                <li>
-                    ការផ្តល់ជូននេះអនុវត្តចំពោះភ្នាក់ងារទាំងអស់ដែលចូលរួមកម្មវិធីភ្នាក់ងារ 12BET ពីថ្ងៃទី 1 ខែតុលា ដល់ថ្ងៃទី 31 ខែធ្នូ ឆ្នាំ 2022
-                </li>
-                <li>ភ្នាក់ងារនឹងមានសិទ្ធិទទួលបានកំរៃជើងសារ 50% តាមលក្ខណៈវិនិច្ឆ័យដែលមានបង្ហាញក្នុងតារាងខាងលើ</li>
-                <li>ភ្នាក់ងារអាចទទួលបានកំរៃជើងសារ 50% សម្រាប់អតិបរមា 3 ដងចន្លោះពីថ្ងៃទី 1 ខែតុលា ដល់ថ្ងៃទី 31 ខែធ្នូ ឆ្នាំ 2022</li>
-                <li>កំរៃជើងសារទាំងអស់នឹងត្រូវបានបញ្ចូលក្នុងកំឡុងថ្ងៃទី 08 - 15 នៃខែបន្ទាប់</li>
-                <li>បន្ទាប់ពីការផ្តល់ជូនត្រូវបានបញ្ចប់ ភ្នាក់ងារជាដៃគូនិងទទួលបាន<a href="@Url.Content("~/CommissionStructure")">រចនាសម្ព័ន្ធនៃកំរៃជើងសារតាមធម្មតា</a></li>
-                <li>ក្រុមភ្នាក់ងាររបស់ 12BET សូមរក្សាសិទ្ធិក្នុងការលុបចោលការផ្តល់ជូននេះគ្រប់ពេលវេលា មិនថាគ្រប់ភ្នាក់ងារទាំងអស់ ឬភ្នាក់ងារឯកជននោះទេ <a href="@Url.Content("~/TermAndCondition")">លក្ខខណ្ឌភ្នាក់ងារ 12BET</a>នឹងក្លាយជាមូលដ្ឋានសម្រាប់ការសម្រេចចិត្តក្នុងការអនុវត្ត</li>
-            </ol>
-        </p>
-    </div>
+    </p>
 </div>
