@@ -7,7 +7,7 @@
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateOnlineList_Sel" SpName="Aff_Admin_AffiliateOnlineList_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="Commission">
@@ -54,9 +54,9 @@
     <Setting Key="Aff_Admin_AffiliateNote_Detail_Sel" SpName="Aff_Admin_AffiliateNote_Detail_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateNote_Ins" SpName="Aff_Admin_AffiliateNote_Ins" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateNote_Upd" SpName="Aff_Admin_AffiliateNote_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_CustomerSelBalBF" SpName="Aff_CustomerSelBalBF" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateAdjustment_Ins" SpName="Aff_Admin_AffiliateAdjustment_Ins" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliatePreferredLanguage_Upd" SpName="Aff_Admin_AffiliatePreferredLanguage_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
@@ -65,7 +65,7 @@
     <Setting Key="Aff_Admin_AffiliateAffType_Upd" SpName="Aff_Admin_AffiliateAffType_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateInfo_Upd" SpName="Aff_Admin_AffiliateInfo_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_User_SecurityQuestions_Sel" SpName="Aff_User_SecurityQuestions_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Country_Sel" SpName="Aff_Country_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Country_Sel" SpName="Aff_Country_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="MediaGallery">
     <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />

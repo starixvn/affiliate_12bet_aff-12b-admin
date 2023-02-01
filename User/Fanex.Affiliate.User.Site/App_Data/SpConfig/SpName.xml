@@ -36,17 +36,17 @@
   </Function>
 
   <Function Name="Statistics">
-    <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_ClickStatisticsSelBySite_view" SpName="Aff_ClickStatisticsSelBySite_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_ClickStatisticsSelBySite_view" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_ClickStatisticsDetailBySite_view" SpName="Aff_ClickStatisticsDetailBySite_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_ClickStatisticsDetailBySite_view" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
 
-    <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
     
-    <Setting Key="Aff_Country_Sel" SpName="Aff_Country_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_Country_Sel_view" SpName="Aff_Country_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_Country_Sel" SpName="Aff_Country_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_Country_Sel_view" SpName="Aff_Country_Sel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
   <Function Name="HotNews">
