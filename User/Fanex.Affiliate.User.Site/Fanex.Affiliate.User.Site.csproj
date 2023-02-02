@@ -574,18 +574,8 @@
     <Content Include="www\build\js\pages\logout.min.js">
       <DependentUpon>logout.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\pages\promotion\existing-promotion.js" />
-    <Content Include="www\build\js\pages\promotion\existing-promotion.min.js">
-      <DependentUpon>existing-promotion.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\pages\promotion\new-promotion.js" />
-    <Content Include="www\build\js\pages\promotion\new-promotion.min.js">
-      <DependentUpon>new-promotion.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\pages\promotion\promotion.js" />
-    <Content Include="www\build\js\pages\promotion\promotion.min.js">
-      <DependentUpon>promotion.js</DependentUpon>
-    </Content>
+    <Content Include="www\build\js\pages\promotion.js" />
+    <Content Include="www\build\js\pages\promotion.min.js" />
     <Content Include="www\build\js\pages\verification-account.js" />
     <Content Include="www\build\js\pages\verification-account.min.js">
       <DependentUpon>verification-account.js</DependentUpon>

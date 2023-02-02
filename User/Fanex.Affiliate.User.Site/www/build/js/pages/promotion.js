@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-var NewPromotion = (function ($) {
+var Promotion = (function ($) {
     var _me = {
         initialize: function initialize() {
             _me.initEvent();
@@ -21,5 +21,5 @@ var NewPromotion = (function ($) {
     return _me;
 })(jQuery);
 
-NewPromotion.initialize();
+Promotion.initialize();
 

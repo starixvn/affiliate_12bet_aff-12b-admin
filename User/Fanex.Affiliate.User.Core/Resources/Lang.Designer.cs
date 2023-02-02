@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -638,7 +638,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Be Our Affiliate partner this month &amp; Enjoy commissions up to 40% + Extra 12%! Click for more details!.
+        ///   Looks up a localized string similar to Unlock Financial Freedom With Our $2,000 Commission Boost!.
         /// </summary>
         public static string BeOurAffThisMonth {
             get {
@@ -1898,7 +1898,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXTRA COMMISSION UP TO 12%!.
+        ///   Looks up a localized string similar to Extra Commission Up To 12%!.
         /// </summary>
         public static string ExtraCommission {
             get {
