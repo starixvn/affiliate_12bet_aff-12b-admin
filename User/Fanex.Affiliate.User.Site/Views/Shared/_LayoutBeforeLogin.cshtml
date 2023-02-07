@@ -48,6 +48,7 @@
 }
 
 <div class="main">
+    <h1 class="hidden">@(string.IsNullOrEmpty(ViewBag.HeaderTitle) ? Lang.HomeHeaderTitle : ViewBag.HeaderTitle)</h1>
     <div class="banner-side banner-left">
         <picture>
             <source srcset="~/www/build/styles/Images/left-side-banner.webp?v=1819" type="image/webp" />

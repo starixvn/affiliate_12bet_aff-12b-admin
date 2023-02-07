@@ -1124,6 +1124,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate commission.
+        /// </summary>
+        public static string CommissionStructureHeaderTitle {
+            get {
+                return ResourceManager.GetString("CommissionStructureHeaderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comm. Rate.
         /// </summary>
         public static string CommRate {
@@ -1201,6 +1210,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string ContactUs {
             get {
                 return ResourceManager.GetString("ContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate Marketing.
+        /// </summary>
+        public static string ContactUsHeaderTitle {
+            get {
+                return ResourceManager.GetString("ContactUsHeaderTitle", resourceCulture);
             }
         }
         
@@ -1916,6 +1934,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Join 12BET Affiliate.
+        /// </summary>
+        public static string FAQsHeaderTitle {
+            get {
+                return ResourceManager.GetString("FAQsHeaderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FDM.
         /// </summary>
         public static string FDM {
@@ -2218,6 +2245,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate.
+        /// </summary>
+        public static string HomeHeaderTitle {
+            get {
+                return ResourceManager.GetString("HomeHeaderTitle", resourceCulture);
             }
         }
         
@@ -2902,7 +2938,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12BET Affiliate,best commission,affiliate marketing,affiliate commission rate,affiliate program.
+        ///   Looks up a localized string similar to 12BET Affiliate,best commission,affiliate marketing,affiliate commission rate,affiliate program,best betting site.
         /// </summary>
         public static string MetaCommissionStructureKeywords {
             get {
@@ -2929,7 +2965,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12BET Affiliate,affiliate program,affiliate marketing,best betting site,affiliate program,12BET.
+        ///   Looks up a localized string similar to 12BET Affiliate,affiliate program,affiliate marketing,best betting site,affiliate program,12BET,affiliate marketing betting program.
         /// </summary>
         public static string MetaContactUsKeywords {
             get {
@@ -2965,7 +3001,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12BET Affiliate,best betting site,affiliate,12BET,affiliate program.
+        ///   Looks up a localized string similar to 12BET Affiliate,best betting site,affiliate,12BET,affiliate program,affiliate best betting program.
         /// </summary>
         public static string MetaFAQsKeywords {
             get {
@@ -3046,7 +3082,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12BET Affiliate,Sportsbook,Casino,Online Casino,affiliate marketing casino online,affiliate marketing betting,sports.
+        ///   Looks up a localized string similar to 12BET Affiliate,Sportsbook,Casino,Online Casino,affiliate marketing casino online,affiliate marketing betting,sports,best affiliate marketing betting site commission.
         /// </summary>
         public static string MetaPromotionKeywords {
             get {
@@ -3073,7 +3109,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12BET Affiliate,affiliate program,affiliate marketing,best betting site.
+        ///   Looks up a localized string similar to 12BET Affiliate,affiliate program,affiliate marketing,best betting site,affiliate betting program.
         /// </summary>
         public static string MetaTermAndConditionKeywords {
             get {
@@ -4171,6 +4207,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate products.
+        /// </summary>
+        public static string ProductHeaderTitle {
+            get {
+                return ResourceManager.GetString("ProductHeaderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Type.
         /// </summary>
         public static string ProductType {
@@ -4194,6 +4239,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Promotion {
             get {
                 return ResourceManager.GetString("Promotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Be 12BET Affiliate now.
+        /// </summary>
+        public static string PromotionHeaderTitle {
+            get {
+                return ResourceManager.GetString("PromotionHeaderTitle", resourceCulture);
             }
         }
         
@@ -5166,6 +5220,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string TermAndCondition {
             get {
                 return ResourceManager.GetString("TermAndCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate program.
+        /// </summary>
+        public static string TermAndConditionHeaderTitle {
+            get {
+                return ResourceManager.GetString("TermAndConditionHeaderTitle", resourceCulture);
             }
         }
         
