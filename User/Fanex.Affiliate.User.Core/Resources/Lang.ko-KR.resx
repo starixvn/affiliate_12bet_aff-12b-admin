@@ -1833,10 +1833,10 @@
     <value>이벤트</value>
   </data>
   <data name="ExtraCommission" xml:space="preserve">
-    <value> 추가 커미션 최대 12% </value>
+    <value>추가 커미션 최대 12%!</value>
   </data>
   <data name="BeOurAffThisMonth" xml:space="preserve">
-    <value>최대 40% +12% 추가 커미션을 보장해드립니다! 자세한 내용 클릭!</value>
+    <value>부스트 커미션 $2,000달러로 경제적 자유를 누리세요!</value>
   </data>
   <data name="OffersForMe" xml:space="preserve">
     <value>독점 제공</value>

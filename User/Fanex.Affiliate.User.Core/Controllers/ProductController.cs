@@ -15,7 +15,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            var viewModel = new ProductPageViewModel
+            var viewModel = new ProPageViewModel
             {
                 CurrentLanguage = SessionService.CurrentLanguage,
                 IsAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null
