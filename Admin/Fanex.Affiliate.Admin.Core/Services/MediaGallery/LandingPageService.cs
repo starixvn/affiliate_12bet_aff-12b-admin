@@ -10,8 +10,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public class LandingPageService : ILandingPageService
     {
-        private const string RestrictedCharacterPattern = "[;/\\?:@=&\"<>#%\\{\\}\\|\\\\\\^~\\[\\]`\\s+]";
-        private const string RestricedCharacterErrorMessage = "Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `";
+        private const string RestrictedCharacterPattern = "[;\\?:@=&\"<>#%\\{\\}\\|\\\\\\^~\\[\\]`\\s+]";
+        private const string RestricedCharacterErrorMessage = "Special characters are not allowed:\n the blank/empty space and ; ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `";
 
         private readonly ILandingPageRepository _landingPageRepository;
 
