@@ -1,94 +1,86 @@
-﻿using Fanex.Logging;
+﻿using Fanex.Affiliate.DataService.Importer.Core.Utilities;
 using System;
 
 namespace Fanex.Affiliate.DataService.Job.Log
 {
     public class LogWrapper : ILogWrapper
     {
-        protected ILogger _logger;
-        protected LogLevel _logLevel;
+        private LogLevel _logLevel;
 
-        public LogWrapper(ILogger logger = null, LogLevel logLevel = LogLevel.Error)
+        public LogWrapper(LogLevel logLevel = LogLevel.Error)
         {
-            _logger = logger ?? Fanex.Logging.Logger.Log;
             _logLevel = logLevel;
-        }
-
-        private LogLevel LogLevel
-        {
-            get { return _logLevel; }
-            set { _logLevel = value; }
         }
 
         public static ILogWrapper Logger => new LogWrapper();
 
         public void Error(string message)
         {
-            if (LogLevel <= LogLevel.Error)
+            if (_logLevel <= LogLevel.Error)
             {
-                _logger.Error(message);
+                LogHelper.Error(message);
             }
         }
 
         public void Error(string message, string category)
         {
-            if (LogLevel <= LogLevel.Error)
+            if (_logLevel <= LogLevel.Error)
             {
-                _logger.Error(message,category);
+                LogHelper.Error(message, category);
             }
         }
 
         public void Error(string message, Exception exception)
         {
-            if (LogLevel <= LogLevel.Error)
+            if (_logLevel <= LogLevel.Error)
             {
-                _logger.Error(message, exception);
+                LogHelper.Error(message, exception);
             }
         }
 
         public void Error(string message, string category, Exception exception)
         {
-            if (LogLevel <= LogLevel.Error)
+            if (_logLevel <= LogLevel.Error)
             {
-                _logger.Error(message, category, exception);
+                LogHelper.Error(message, category, exception);
             }
         }
 
         public void Info(string message)
         {
-            if (LogLevel <= LogLevel.Info)
+            if (_logLevel <= LogLevel.Info)
             {
-                _logger.Info(message);
+                LogHelper.Info(message);
             }
         }
 
         public void Info(string message, string category)
         {
-            if (LogLevel <= LogLevel.Info)
+            if (_logLevel <= LogLevel.Info)
             {
-                _logger.Info(message,category);
+                LogHelper.Info(message,category);
             }
         }
 
         public void Info(string format, params object[] args)
         {
-            if (LogLevel <= LogLevel.Info)
+            if (_logLevel <= LogLevel.Info)
             {
-                _logger.Info(format, args);
+                LogHelper.Info(format, args);
             }
         }
 
         public void Info(string format, string category, params object[] args)
         {
-            if (LogLevel <= LogLevel.Info)
+            if (_logLevel <= LogLevel.Info)
             {
-                _logger.Info(format, category, args);
+                LogHelper.Info(format, category, args);
             }
         }
 
         public void SetLogLevel(LogLevel level)
         {
-            LogLevel = level;
+            _logLevel = level;
         }
     }
 }

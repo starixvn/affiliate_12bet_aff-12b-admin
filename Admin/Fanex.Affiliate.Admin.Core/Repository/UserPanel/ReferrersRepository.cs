@@ -19,12 +19,18 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
+                objectDb.SetParameterValue("CountryCodes", param.SelectedCountries);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        result.Add(BuildReferrersItem(reader, true));
+                        var item = BuildReferrersItem(reader);
+                        item.SiteUrl = Convert.ToString(reader["SiteUrls"]);
+                        item.Country = Convert.ToString(reader["Country"]);
+                        item.CountryCode = Convert.ToString(reader["CountryCode"]);
+
+                        result.Add(item);
                     }
                 }
             }
@@ -42,6 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 AssignCommonParam(objectDb, param);
                 objectDb.SetParameterValue("Domain", param.SelectedSiteUrl);
+                objectDb.SetParameterValue("CountryCode", param.SelectedCountry);
                 objectDb.SetParameterValue("PageIndex", param.PageIndex);
                 objectDb.SetParameterValue("PageSize", param.PageSize);
 
@@ -51,7 +58,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildReferrersItem(reader, false));
+                        var item = BuildReferrersItem(reader);
+                        item.WebsiteUrl = Convert.ToString(reader["URLReferrer"]);
+
+                        dataList.Add(item);
                     }
                 }
                 result.MainData = dataList;
@@ -69,12 +79,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             objectDb.SetParameterValue("DeviceType", param.DeviceType);
         }
 
-        private static Referrers BuildReferrersItem(IDataReader reader, bool isGetReferrersList)
+        private static Referrers BuildReferrersItem(IDataReader reader)
         {
             return new Referrers
             {
-                SiteUrl = isGetReferrersList ? (Convert.ToString(reader["DomainReferrer"])) : string.Empty,
-                WebsiteUrl = isGetReferrersList ? string.Empty : (Convert.ToString(reader["URLReferrer"])),
                 TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"]),
                 Signups = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),

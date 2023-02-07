@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
@@ -40,10 +41,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var commissionGroupRepository = new Mock<ICommissionGroupRepository>();
             commissionGroupRepository.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(new List<SelectItem> { new SelectItem() });
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateAffiliateController(commissionGroupRepository: commissionGroupRepository.Object, languageService: languageService.Object);
+            var controller = CreateAffiliateController(commissionGroupRepository: commissionGroupRepository.Object, commonSettingService: commonSettingService.Object);
 
             // Action
             var viewResult = controller.GetFilter() as JsonNetResult;
@@ -60,10 +61,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var affiliateInfoRepository = new Mock<IAffiliateInfoRepository>();
             affiliateInfoRepository.Setup(t => t.GetAffiliateList(It.IsAny<AffiliateInfoParam>())).Returns(new EntityResult<AffiliateInfo> { MainData = new List<AffiliateInfo> { new AffiliateInfo() }, TotalItem = 1 });
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateAffiliateController(affiliateInfoRepository: affiliateInfoRepository.Object, languageService: languageService.Object);
+            var controller = CreateAffiliateController(affiliateInfoRepository: affiliateInfoRepository.Object, commonSettingService: commonSettingService.Object);
 
             // Action
             var result = controller.GetAffiliateList(new GetAffiliateViewModel()) as JsonNetResult;
@@ -161,17 +162,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private AffiliateController CreateAffiliateController(
             ISessionService sessionService = null,
-            ILanguageService languageService = null,
+            ICommonSettingService commonSettingService = null,
             IAffiliateInfoRepository affiliateInfoRepository = null,
             ICommissionGroupRepository commissionGroupRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeAffiliateInfoRepository = affiliateInfoRepository ?? Mock.Of<IAffiliateInfoRepository>();
             var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommissionGroupRepository>();
 
-            var controller = new AffiliateController(fakeSessionService, fakeAffiliateInfoRepository, fakeCommissionGroupRepository, fakeLanguageService);
+            var controller = new AffiliateController(fakeSessionService, fakeAffiliateInfoRepository, fakeCommissionGroupRepository, fakecommonSettingService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

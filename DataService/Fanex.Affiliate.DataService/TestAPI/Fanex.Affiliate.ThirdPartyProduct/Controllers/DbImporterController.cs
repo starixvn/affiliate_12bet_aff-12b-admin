@@ -41,21 +41,21 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             try
             {
                 _service = GetImporterService(param.ProductId);
-                LogHelper.WriteInfo("Start import data from UAT web " + _service.GetType().Name);
+                LogHelper.Info("Start import data from UAT web " + _service.GetType().Name);
                 var timeRanges = DateTimeHelper.GetProportionTimeRange(param.FromDate, param.ToDate, PullRange);
                 foreach (var range in timeRanges)
                 {
-                    LogHelper.WriteInfo($"Import from {range.Item1} to {range.Item2}");
+                    LogHelper.Info($"Import from {range.Item1} to {range.Item2}");
                     var rawDatas = await _service.GetRawDataListAsync(range.Item1, range.Item2);
                     var xmlDatas = await ConvertToXmlAsync(rawDatas);
                     await _service.ImportAsync(xmlDatas.Select(xml => xml.ToString()));
                 }
-                LogHelper.WriteInfo("Finished import data from UAT web");
+                LogHelper.Info("Finished import data from UAT web");
             }
             catch (Exception ex)
             {
                 timeTracker.Currency = -999;
-                LogHelper.WriteError(ex);
+                LogHelper.Error(ex);
             }
 
             result.Add(timeTracker);

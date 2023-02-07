@@ -1,11 +1,12 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
@@ -18,15 +19,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     public class DomainControlController : ReadOnlySessionBaseController
     {
         private readonly IDomainControlService _domainControlService;
-        private readonly ILanguageRepository _languageRepository;
+        private readonly ICommonSettingService _commonSettingService;
 
         public DomainControlController(
             ISessionService sessionService,
             IDomainControlService domainControlService,
-            ILanguageRepository languageRepository) : base(sessionService)
+            ICommonSettingService commonSettingService) : base(sessionService)
         {
             _domainControlService = domainControlService;
-            _languageRepository = languageRepository;
+            _commonSettingService = commonSettingService;
         }
 
         public ActionResult Index()
@@ -41,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             var model = new DomainControlViewModel
             {
                 SubMenuList = subMenu,
-                MarketList = _languageRepository.GetLanguageList()
+                MarketList = _commonSettingService.GetInChangeMarkets()
             };
 
             return View("~/Areas/Portal/Views/Domain/DomainControl.cshtml", model);

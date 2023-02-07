@@ -1,9 +1,14 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
@@ -11,12 +16,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class LandingPageStatisticsController : ReadOnlySessionBaseController
     {
+        private readonly ICommonSettingService _commonSettingService;
         private readonly ILandingPageStatisticsRepository _landingPageStatisticsRepository;
 
         public LandingPageStatisticsController(
             ISessionService sessionService,
+            ICommonSettingService commonSettingService,
             ILandingPageStatisticsRepository landingPageStatisticsRepository) : base(sessionService)
         {
+            _commonSettingService = commonSettingService;
             _landingPageStatisticsRepository = landingPageStatisticsRepository;
         }
 
@@ -26,6 +34,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (ModelState.IsValid)
             {
+                if(!string.Equals("Country", param.GroupBy, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    param.LanguageCode = GetShortedCode(_commonSettingService.GetInChangeMarkets(), param.LanguageCode);
+                }
+
                 return new JsonNetResult
                 {
                     Data = _landingPageStatisticsRepository.GetLandingPageStatisticsList(param)
@@ -48,6 +61,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             }
 
             return new JsonNetResult();
+        }
+
+        private static string GetShortedCode(IEnumerable<Language> languageList, string languageCode)
+        {
+            if (string.IsNullOrEmpty(languageCode))
+            {
+                return string.Join(",", languageList.Select(l => l.ShortedCode));
+            }
+
+            var shortedCode = languageList.FirstOrDefault(l => l.ShortedCode.MatchWith(languageCode))?.ShortedCode ?? LanguageSystem.ShortedDefaultCode;
+
+            return shortedCode;
         }
     }
 }

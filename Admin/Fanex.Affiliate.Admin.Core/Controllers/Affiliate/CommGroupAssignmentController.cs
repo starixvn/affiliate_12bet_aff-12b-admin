@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -29,18 +28,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private readonly IAffiliateService _affiliateService;
 
-        private readonly IProductRepository _productRepository;
+        private readonly ICommonSettingService _commonSettingService;
 
         public CommGroupAssignmentController(
             ISessionService sessionService,
-            IProductRepository productRepository,
+            ICommonSettingService commonSettingService,
             IAffiliateService affiliateService,
             ICommGroupAssignmentService commGroupAssignmentService,
             ICommGroupCommonService commGroupCommonService) : base(sessionService)
         {
             _affiliateService = affiliateService;
             _commGroupAssignmentService = commGroupAssignmentService;
-            _productRepository = productRepository;
+            _commonSettingService = commonSettingService;
             _commGroupCommonService = commGroupCommonService;
         }
 
@@ -97,7 +96,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = affId >= Validation.MinId ?
                 new AssignPrivateGroupViewModel
                 {
-                    ProductList = _productRepository.GetProductList(),
+                    ProductList = _commonSettingService.GetProductList(),
                     DeductionList = _commGroupCommonService.GetDeductionList(),
                     AffInfo = _affiliateService.GetAffiliateBasicInfo(affId)
                 } :
@@ -116,7 +115,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 return CreateErrorResult();
             }
 
-            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_productRepository, commGroup.PlatformFeeList);
+            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_commonSettingService, commGroup.PlatformFeeList);
             if (platformFeeValidation.IsSuccessful)
             {
                 var assignParam = new CreateUpdateCommissionGroupParam

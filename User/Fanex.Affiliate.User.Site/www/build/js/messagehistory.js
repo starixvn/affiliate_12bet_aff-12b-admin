@@ -1477,7 +1477,7 @@
             $.error('Method ' + methodOrOptions + ' does not exist on jQuery.pager');
         }
     };
-})(jQuery)
+})(jQuery);
 var MessageHistory = (function ($) {
     var _pageSize = 10;
     var _pageIndex = 0;

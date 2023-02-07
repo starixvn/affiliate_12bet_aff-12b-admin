@@ -2,7 +2,6 @@
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Controllers;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -35,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void Preview_WhenCallHasException_ReturnView()
         {
             // Arrange
-            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ILanguageService>());
+            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ICommonSettingService>());
 
             // Action
             var viewResult = controller.Preview(string.Empty, string.Empty, string.Empty) as ViewResult;
@@ -127,7 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void SendEmail_WhenCallHasException_ReturnFalse()
         {
             // Arrange
-            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ILanguageService>());
+            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ICommonSettingService>());
 
             // Action
             var jsonResult = controller.SendEmail(string.Empty, string.Empty, string.Empty, string.Empty) as JsonResult;
@@ -167,15 +166,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             ISessionService sessionService = null,
             IMailProcessor mailProcessor = null,
             IAppSetting appSetting = null,
-            ILanguageService languageService = null
+            ICommonSettingService commonSettingService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeMailProcessor = mailProcessor ?? Mock.Of<IMailProcessor>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
 
-            var controller = new EmailTestingController(fakeSessionService, fakeMailProcessor, fakeAppSetting, fakeLanguageService);
+            var controller = new EmailTestingController(fakeSessionService, fakeMailProcessor, fakeAppSetting, fakecommonSettingService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

@@ -9,7 +9,7 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 }
 
 const testCaseList = [
-    { name: 'selectedSiteUrl', value: null, action: { type: types.SET_SELECTED_SITE_URL, data: 'abc' }, expectedResult: 'abc' },
+    { name: 'selectedSiteDetailFilter', value: null, action: { type: types.SET_SELECTED_SITE_DETAIL_FILTER, data: {} }, expectedResult: {} },
     { name: 'param', value: {}, action: { type: types.SET_PARAM, data: { productId: 123, content: 'abc' } }, expectedResult: { productId: 123, content: 'abc' } }
 ]
 

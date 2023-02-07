@@ -13,29 +13,54 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
     {
         private const int LimitedLevelOfInnerException = 5;
 
-        public static void WriteError(string msg)
+        public static void Error(string msg)
         {
             LogService.Error(msg);
         }
 
-        public static void WriteError(Exception exception)
+        public static void Error(string msg, string category)
         {
-            var content = new StringBuilder().AppendLine($"Error Message: {exception.Message}");
+            LogService.Error(msg, category);
+        }
+
+        public static void Error(string msg, Exception exception)
+        {
+            Error(exception, msg);
+        }
+
+        public static void Error(string msg, string category, Exception exception)
+        {
+            Error(exception, msg, category);
+        }
+
+        public static void Error(Exception exception, string msg = null, string category = null)
+        {
+            var content = new StringBuilder().AppendLine($"Error Message: {msg ?? exception?.Message}");
 
             AddDatabaseInfo(content, exception);
             AddExceptionInfo(content, exception, LimitedLevelOfInnerException);
 
-            LogService.Error(content.ToString(), exception);
+            LogService.Error(content.ToString(), category, exception);
         }
 
-        public static void WriteInfo(string msg)
+        public static void Info(string msg)
         {
             LogService.Info(msg);
+        }
+
+        public static void Info(string msg, string category)
+        {
+            LogService.Info(msg, category);
         }
 
         public static void Info(string format, params object[] args)
         {
             LogService.Info(format, args);
+        }
+
+        public static void Info(string format, string category, params object[] args)
+        {
+            LogService.Info(format, category, args);
         }
 
         public static void Warn(string format, params object[] args)

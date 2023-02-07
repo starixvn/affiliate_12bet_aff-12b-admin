@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using System.Collections.Generic;
 

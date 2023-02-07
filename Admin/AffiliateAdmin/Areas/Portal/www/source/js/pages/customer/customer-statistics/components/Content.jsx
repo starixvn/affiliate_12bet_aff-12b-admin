@@ -9,7 +9,7 @@ import { rowTitle, resource } from '../libs/constants';
 import { shortedMonthNames, minMonthDate, selectedAllProduct, deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
-import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
+import { redirectToPlayerDetail, redirectToReferrers } from '../../user-panel/actions';
 import { setMonthDate, fetchData } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 
@@ -120,15 +120,6 @@ export class Content extends PureComponent {
                 { isDisplayTurnOver && this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
-                    this._buildRow(rowTitle.TrackingRate,
-                        (
-                            <MyLink onClick={() => this.props.redirectToTrackingStatistics({ isClickLink: true })}>
-                                {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
-                            </MyLink>
-                        ),
-                        resource.NA)
-                }
-                {
                     this._buildRow(rowTitle.TrackingRatePC,
                         (
                             <MyLink onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
@@ -183,7 +174,7 @@ function mapStateToProps({ affCommonInfo, today, customerStatistics, claimsPrinc
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMonthDate, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers, fetchData }, dispatch);
+    return bindActionCreators({ setMonthDate, redirectToPlayerDetail, redirectToReferrers, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

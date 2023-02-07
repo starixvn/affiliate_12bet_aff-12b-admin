@@ -141,7 +141,6 @@
     <Compile Include="Modules\KYGamingJob.cs" />
     <Compile Include="Modules\KYGamingScheduler.cs" />
     <Compile Include="NewApiJobBase.cs" />
-    <Compile Include="QuartzLogProvider.cs" />
     <Compile Include="IJobScheduler.cs" />
     <Compile Include="IJobSchedulerFactory.cs" />
     <Compile Include="JobBase.cs" />

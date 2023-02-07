@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
-using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -17,10 +17,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateCustomerController(languageService: languageService.Object);
+            var controller = CreateCustomerController(commonSettingService: commonSettingService.Object);
 
             // Action
             var viewResult = controller.Index("12BETAFF226") as ViewResult;
@@ -38,10 +38,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.AffName).Returns("12BETAFF226");
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateCustomerController(languageService: languageService.Object);
+            var controller = CreateCustomerController(commonSettingService: commonSettingService.Object);
 
             // Action
             var viewResult = controller.Index("") as ViewResult;
@@ -55,13 +55,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private CustomerController CreateCustomerController(
             ISessionService sessionService = null,
-            ILanguageService languageService = null
+            ICommonSettingService commonSettingService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
 
-            return new CustomerController(fakeSessionService, fakeLanguageService);
+            return new CustomerController(fakeSessionService, fakecommonSettingService);
         }
     }
 }

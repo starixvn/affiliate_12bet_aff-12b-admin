@@ -1974,6 +1974,9 @@
   <data name="Default" xml:space="preserve">
     <value>លំនាំដើម</value>
   </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>រាយការណ៍ដោយ</value>
+  </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>ប្រូម៉ូសិននេះត្រូវបានផុតកំណត់ សូមរង់ចាំប្រូម៉ូសិនថ្មីៗដែលនឹងមកដល់ក្នុងពេលឆាប់ៗនេះ។</value>
   </data>

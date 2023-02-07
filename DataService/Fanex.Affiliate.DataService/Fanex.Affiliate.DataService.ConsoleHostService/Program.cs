@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
 
             InitLogging();
             RunJobs().GetAwaiter().GetResult();
-            LogHelper.WriteInfo("Done");
+            LogHelper.Info("Done");
 
             Console.ReadLine();
         }
@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         {
             var schedulerFactory = new JobSchedulerFactory();
             await schedulerFactory.SetUpAsync();
-            LogHelper.WriteInfo("StartService!!!");
+            LogHelper.Info("StartService!!!");
             await schedulerFactory.PauseAsync();
             await schedulerFactory.ResumeAsync();
         }
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
             }
             catch (Exception ex)
             {
-                LogHelper.WriteError(ex);
+                LogHelper.Error(ex);
             }
 
         }

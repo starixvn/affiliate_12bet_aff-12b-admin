@@ -420,9 +420,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>Ceko (Rep) </value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>Daily Earning Detail</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>Perolehan Harian</value>
   </data>
@@ -1256,12 +1253,6 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="TotalDeposit" xml:space="preserve">
     <value>Total Deposit</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>Kode Tracking/Pelacakan</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>Total Klik &amp; Unik Klik</value>
-  </data>
   <data name="Transaction" xml:space="preserve">
     <value>Transaksi</value>
   </data>
@@ -1606,9 +1597,6 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>Bet List</value>
   </data>
   <data name="result" xml:space="preserve">
     <value>Results</value>
@@ -2000,6 +1988,9 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>Anda tidak memiliki alamat email ini. Mohon hubungi administrator.</value>
+  </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value> Dibuat Oleh</value>
   </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>Promosi ini telah berakhir. Nantikan promosi menarik terbaru kami selanjutnya.</value>

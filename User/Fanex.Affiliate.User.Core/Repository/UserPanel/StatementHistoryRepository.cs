@@ -69,16 +69,5 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             return result;
         }
-
-        public IEnumerable<DailyEarningDetail> GetDailyEarningDetail(DailyEarningParam earningDetailParam)
-        {
-            const string uSpKey = "Aff_DailyEarning_Detail_Sel";
-            var mode = earningDetailParam.IsInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, mode))
-            {
-                return db.Query<DailyEarningDetail>(earningDetailParam);
-            }
-        }
     }
 }

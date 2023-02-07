@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics;
@@ -22,16 +22,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             {
                 TotalPages = 10
             };
-            var trackingStatisticsList = new List<ReferrerStatistics> { new ReferrerStatistics() };
+            var referrersStatisticsList = new List<ReferrerStatistics> { new ReferrerStatistics() };
 
             var statisticsRepository = new Mock<IStatisticsService>();
-            statisticsRepository.Setup(s => s.GetStatisticsDetailBySite(param)).Returns(trackingStatisticsList);
+            statisticsRepository.Setup(s => s.GetStatisticsDetailBySite(param)).Returns(referrersStatisticsList);
 
             var controller = CreateController(statisticsService: statisticsRepository.Object);
 
             var expectedViewModel = new ReferrerStatisticsViewModel
             {
-                DataList = trackingStatisticsList,
+                DataList = referrersStatisticsList,
                 IsDetail = true
             };
 

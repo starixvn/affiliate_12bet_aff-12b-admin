@@ -166,29 +166,6 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         </td>
       </tr>
       <tr
-        key="Tracking Rate (Unique/Total)"
-      >
-        <td
-          className="font-weight-bold"
-        >
-          Tracking Rate (Unique/Total)
-        </td>
-        <td
-          className="text-right"
-        >
-          <Memo(MyLink)
-            onClick={[Function]}
-          >
-            /
-          </Memo(MyLink)>
-        </td>
-        <td
-          className="text-right"
-        >
-          N/A
-        </td>
-      </tr>
-      <tr
         key="Tracking Rate for PC/Laptop (Unique/Total) New!!!!!"
       >
         <td
@@ -406,31 +383,6 @@ exports[`customer statistics - components - Content Should render correctly with
           className="text-right"
         >
           -$42,950.02
-        </td>
-      </tr>
-      <tr
-        key="Tracking Rate (Unique/Total)"
-      >
-        <td
-          className="font-weight-bold"
-        >
-          Tracking Rate (Unique/Total)
-        </td>
-        <td
-          className="text-right"
-        >
-          <Memo(MyLink)
-            onClick={[Function]}
-          >
-            0
-            /
-            0
-          </Memo(MyLink)>
-        </td>
-        <td
-          className="text-right"
-        >
-          N/A
         </td>
       </tr>
       <tr
@@ -659,31 +611,6 @@ exports[`customer statistics - components - Content Should render correctly with
           className="text-right"
         >
           -$42,950.02
-        </td>
-      </tr>
-      <tr
-        key="Tracking Rate (Unique/Total)"
-      >
-        <td
-          className="font-weight-bold"
-        >
-          Tracking Rate (Unique/Total)
-        </td>
-        <td
-          className="text-right"
-        >
-          <Memo(MyLink)
-            onClick={[Function]}
-          >
-            0
-            /
-            0
-          </Memo(MyLink)>
-        </td>
-        <td
-          className="text-right"
-        >
-          N/A
         </td>
       </tr>
       <tr

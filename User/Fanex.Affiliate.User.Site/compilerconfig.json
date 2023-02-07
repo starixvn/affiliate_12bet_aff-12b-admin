@@ -1,8 +1,8 @@
 ﻿[
-  {
-    "outputFile": "www/build/styles/css/main.css",
-    "inputFile": "www/source/styles/scss/main.scss"
-  },
+  //{
+  //  "outputFile": "www/build/styles/css/main.css",
+  //  "inputFile": "www/source/styles/scss/main.scss"
+  //},
   //{
   //  "outputFile": "www/build/styles/css/bootstrap.css",
   //  "inputFile": "www/source/styles/scss/vendors/_bootstrap.scss"
@@ -39,18 +39,18 @@
   //  "outputFile": "www/build/styles/css/products.css",
   //  "inputFile": "www/source/styles/pages/products.scss"
   //},
-  //{
-  //  "outputFile": "www/build/js/user-panel.js",
-  //  "inputFile": "www/source/js/pages/user-panel.js"
-  //},
+  {
+    "outputFile": "www/build/js/user-panel.js",
+    "inputFile": "www/source/js/pages/user-panel.js"
+  },
   //{
   //  "outputFile": "www/build/js/lib/bootstrap.min.js",
   //  "inputFile": "www/source/js/lib/bootstrap.min.js"
   //},
-  //{
-  //  "outputFile": "www/build/js/daily-earning.js",
-  //  "inputFile": "www/source/js/pages/daily-earning.js"
-  //},
+  {
+    "outputFile": "www/build/js/daily-earning.js",
+    "inputFile": "www/source/js/pages/daily-earning.js"
+  },
   //{
   //  "outputFile": "www/build/js/test.js",
   //  "inputFile": "www/source/js/pages/test.js"
@@ -67,25 +67,13 @@
   //  "outputFile": "www/build/js/pages/logout.js",
   //  "inputFile": "www/source/js/pages/logout.js"
   //},
-  //{
-  //  "outputFile": "www/build/js/trackingstatistics.js",
-  //  "inputFile": "www/source/js/pages/statistics/trackingstatistics.js"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/statistics.css",
-  //  "inputFile": "www/source/styles/pages/statistics.scss"
-  //},
+  {
+    "outputFile": "www/build/styles/css/statistics.css",
+    "inputFile": "www/source/styles/pages/statistics.scss"
+  },
   //{
   //  "outputFile": "www/build/styles/css/statement-history.css",
   //  "inputFile": "www/source/styles/pages/statement-history.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/dailyearning-detail.css",
-  //  "inputFile": "www/source/styles/pages/dailyearning-detail.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/betlist.css",
-  //  "inputFile": "www/source/styles/pages/betlist.scss"
   //},
   //{
   //  "outputFile": "www/build/styles/css/account-overview.css",
@@ -98,10 +86,6 @@
   //{
   //  "outputFile": "www/build/js/pages/commission-report.js",
   //  "inputFile": "www/source/js/pages/commission-report.js"
-  //},
-  //{
-  //  "outputFile": "www/build/js/betlist.js",
-  //  "inputFile": "www/source/js/pages/betlist.js"
   //},
   //{
   //  "outputFile": "www/build/styles/css/pages/payment-request.css",

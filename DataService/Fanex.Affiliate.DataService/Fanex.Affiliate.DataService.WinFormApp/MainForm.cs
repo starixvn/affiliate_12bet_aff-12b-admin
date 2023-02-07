@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             }
             catch (Exception ex)
             {
-                LogHelper.WriteError(ex);
+                LogHelper.Error(ex);
             }
 
         }

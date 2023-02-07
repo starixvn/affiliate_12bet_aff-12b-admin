@@ -11,7 +11,8 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setSelectedPage', type: types.SET_SELECTED_PAGE, data: 'abc.com' },
+    { name: 'setSelectedPageDetailFilter', type: types.SET_SELECTED_PAGE_DETAIL_FILTER, data: {} },
+    { name: 'setIsGroupByCountry', type: types.SET_IS_GROUP_BY_COUNTRY, data: false },
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
     { name: 'setShortCodeLanguageList', type: types.SET_SHORT_CODE_LANGUAGE_LIST, data: 'vn' },
 ]
@@ -63,7 +64,7 @@ describe('landing page actions', () => {
             toDate: "7/3/2019"
         }
 
-        const result = await actions['fetchData'](param, { en: 'en-US', vn: 'vi-VN' })();
+        const result = await actions['fetchData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList', param);
         expect(result).toEqual(expectedResponse.data);
@@ -80,9 +81,9 @@ describe('landing page actions', () => {
             toDate: "7/3/2019"
         }
 
-        const result = await actions['fetchData'](param, { en: 'en-US', vn: 'vi-VN' })();
+        const result = await actions['fetchData'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList', { ...param, languageCode: "en,vn" });
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList', param);
 
         expect(result).toEqual(null);
     })

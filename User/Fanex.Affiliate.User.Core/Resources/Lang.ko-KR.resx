@@ -430,9 +430,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>체코 (공화국)</value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>Daily Earning Detail</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>일일 수입</value>
   </data>
@@ -1285,12 +1282,6 @@
   <data name="TotalDeposit" xml:space="preserve">
     <value>총 입금금액</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>트래킹 코드</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>접속 통계</value>
-  </data>
   <data name="Transaction" xml:space="preserve">
     <value>거래,이체</value>
   </data>
@@ -1608,9 +1599,6 @@
   </data>
   <data name="PCDevice" xml:space="preserve">
     <value>PC / 랜탑</value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>베팅 내역</value>
   </data>
   <data name="result" xml:space="preserve">
     <value>결과</value>
@@ -1997,6 +1985,9 @@
   </data>
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>이메일 주소가 없습니다. 관리자에게 문의하세요!</value>
+  </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>필터 유형</value>
   </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>이벤트가 종료되었습니다.새롭고 흥미진진한 이벤트가 추가 될 예정이오니 계속 지켜봐 주시기 바랍니다.</value>

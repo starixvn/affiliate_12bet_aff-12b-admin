@@ -5,7 +5,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
     {
         public string Page { get; set; }
 
+        public string Language { get; set; }
+
         public string LanguageCode { get; set; }
+
+        public string Country { get; set; }
+
+        public string CountryCode { get; set; }
 
         public int TotalClick { get; set; }
 

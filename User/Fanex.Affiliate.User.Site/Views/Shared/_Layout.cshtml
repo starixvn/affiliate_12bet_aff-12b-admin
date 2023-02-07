@@ -223,8 +223,12 @@
     <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
     @if (userSession != null)
     {
-        <script src="@Url.RenderLink("~/www/build/js/recheckin.js")"></script>
         <script src="@Url.RenderLink("~/www/build/js/pages/logout.js")"></script>
+    }
+
+    @if (!settingService.IsLocal && userSession != null)
+    {
+        <script src="@Url.RenderLink("~/www/build/js/recheckin.js")"></script>
     }
 
     @RenderSection("scripts", required: false)

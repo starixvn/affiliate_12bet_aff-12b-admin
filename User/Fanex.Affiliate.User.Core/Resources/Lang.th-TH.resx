@@ -420,9 +420,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>เช็คริพับบลิค</value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>รายละเอียดรายวัน</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>รายได้แต่ละวัน</value>
   </data>
@@ -1260,12 +1257,6 @@
   <data name="TotalDeposit" xml:space="preserve">
     <value>ยอดรวมของการฝากเงิน</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>รหัสที่ใช้ตรวจสอบ</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>ตรวจสอบสถิติ</value>
-  </data>
   <data name="Transaction" xml:space="preserve">
     <value>รายการ</value>
   </data>
@@ -1613,9 +1604,6 @@
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>รายการเดิมพัน</value>
   </data>
   <data name="result" xml:space="preserve">
     <value>ผลเดิมพัน</value>
@@ -2001,6 +1989,9 @@
   </data>
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>คุณไม่มีที่อยู่อีเมล โปรดติดต่อทีมงานพันธมิตร!</value>
+  </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>อ้างอิงจาก</value>
   </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>โปรโมชั่นนี้ได้สิ้นสุดลงแล้ว โปรดติดตามโปรโมชั่นใหม่ที่น่าสนใจเร็วๆนี้</value>

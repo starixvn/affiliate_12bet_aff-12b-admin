@@ -5,6 +5,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class LandingPageStatisticsDetailParam : LandingPageStatisticsParam
     {
+        public string SelectedCountry { get; set; }
+
         [Range(Validation.MinPageIndex, Validation.MaxPageIndex)]
         public int PageIndex { get; set; }
 

@@ -2,6 +2,7 @@
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;

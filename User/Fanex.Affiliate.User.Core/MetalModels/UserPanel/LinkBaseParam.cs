@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel

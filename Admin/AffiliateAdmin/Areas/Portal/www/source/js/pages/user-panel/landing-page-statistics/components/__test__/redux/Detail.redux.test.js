@@ -21,13 +21,13 @@ describe('landing page statistics - Detail - connect', () => {
         const expectedResult = {
             param: { abc: 123 },
             pagingOption: { PageSize: 10 },
-            selectedPage: 'abc'
+            selectedPageDetailFilter: { page: 'abc' }
         };
         const state = {
             landingPageStatistics: {
                 param: { abc: 123 },
                 pagingOption: { PageSize: 10 },
-                selectedPage: 'abc'
+                selectedPageDetailFilter: { page: 'abc' }
             },
             anotherProp: "Not included"
         };

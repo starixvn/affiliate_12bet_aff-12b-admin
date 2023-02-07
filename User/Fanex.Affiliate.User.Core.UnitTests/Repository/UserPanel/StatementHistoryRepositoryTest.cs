@@ -115,27 +115,5 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             Assert.Equal(key, db.SettingKey);
             Assert.NotNull(result);
         }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetDailyEarningDetail_WhenCall_QueryDailyEarningDetail(bool isInternal)
-        {
-            const string uSpKey = "Aff_DailyEarning_Detail_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var key = uSpKey + dbMode;
-            var param = new DailyEarningParam { IsInternal = isInternal };
-            var db = Builder.Build(uSpKey, dbMode);
-            db.Query<DailyEarningDetail>(param).Returns(new List<DailyEarningDetail>
-            {
-                new DailyEarningDetail { CustId = 1, Deposit = 100, Turnover = 100, UserName = "", WinLost = 100, Withdrawal = 100 }
-            });
-            var repo = CreateRepo();
-
-            var result = repo.GetDailyEarningDetail(param);
-
-            Assert.Equal(key, db.SettingKey);
-            Assert.NotEmpty(result);
-        }
     }
 }

@@ -59,18 +59,20 @@
     ]
   },
   {
-    "outputFileName": "www/build/js/referrerstatistics.js",
+    "outputFileName": "www/build/js/statistics/referrerstatistics.js",
     "inputFiles": [
       "www/source/js/lib/pikaday.js",
       "www/source/js/components/pager.js",
+      "www/source/js/components/multiple-select.js",
       "www/source/js/pages/statistics/referrerstatistics.js"
     ]
   },
   {
-    "outputFileName": "www/build/js/landingpagestatistics.js",
+    "outputFileName": "www/build/js/statistics/landingpagestatistics.js",
     "inputFiles": [
       "www/source/js/lib/pikaday.js",
       "www/source/js/components/pager.js",
+      "www/source/js/components/multiple-select.js",
       "www/source/js/pages/statistics/landingpagestatistics.js"
     ]
   },
@@ -79,23 +81,6 @@
     "inputFiles": [
       "www/source/js/components/pager.js",
       "www/source/js/pages/statement-history.js"
-    ]
-  },
-  {
-    "outputFileName": "www/build/js/daily-earning-detail.js",
-    "inputFiles": [
-      "www/source/js/lib/pikaday.js",
-      "www/source/js/pages/daily-earning-detail.js"
-    ]
-  },
-  {
-    "outputFileName": "www/build/styles/css/betlist/betlist.css",
-    "inputFiles": [
-      "www/source/styles/scss/vendors/betlist/betlist.css",
-      "www/source/styles/scss/vendors/betlist/fanex.result.css",
-      "www/source/styles/scss/vendors/betlist/systemparlay.detail.css",
-      "www/source/styles/scss/vendors/betlist/cashoutdetail.css",
-      "www/source/styles/scss/vendors/betlist/rngcasino.handhistory.css"
     ]
   },
   {

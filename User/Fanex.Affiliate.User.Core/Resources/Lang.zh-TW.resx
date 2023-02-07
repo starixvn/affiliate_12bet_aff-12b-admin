@@ -417,9 +417,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>捷克</value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>每日收益明細</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>日收入</value>
   </data>
@@ -1262,12 +1259,6 @@
   <data name="TotalDeposit" xml:space="preserve">
     <value>存款總額</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>追踪代码</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>追踪统计</value>
-  </data>
   <data name="Transaction" xml:space="preserve">
     <value>交易</value>
   </data>
@@ -1615,9 +1606,6 @@
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>無存款紀錄</value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>投注歷史</value>
   </data>
   <data name="result" xml:space="preserve">
     <value>投注結果</value>
@@ -2007,8 +1995,11 @@
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>如果您沒有email，請聯繫管理員。</value>
   </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>篩選類型</value>
+  </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
-    <value>此優惠活動已結束。敬請期待全新優惠活動登場！</value>
+    <value>Khuyến mãi này đã hết hạn. Vui lòng chờ khuyến mãi mới hấp dẫn tiếp theo.</value>
   </data>
   <data name="MetaHomeTitle" xml:space="preserve">
     <value>12BET合作夥伴—最成功合作夥伴計劃</value>

@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -24,16 +23,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private readonly ICommissionGroupService _commissionGroupService;
 
-        private readonly IProductRepository _productRepository;
+        private readonly ICommonSettingService _commonSettingService;
 
         public CommissionGroupController(
             ISessionService sessionService,
             ICommissionGroupService commissionService,
-            IProductRepository productRepository,
+            ICommonSettingService commonSettingService,
             ICommGroupCommonService commGroupCommonService) : base(sessionService)
         {
             _commissionGroupService = commissionService;
-            _productRepository = productRepository;
+            _commonSettingService = commonSettingService;
             _commGroupCommonService = commGroupCommonService;
         }
 
@@ -43,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var viewModel = new CommissionGroupViewModel
             {
-                ProductList = _productRepository.GetProductList(),
+                ProductList = _commonSettingService.GetProductList(),
                 DeductionList = _commGroupCommonService.GetDeductionList(),
             };
 
@@ -56,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var viewModel = new CommissionGroupViewModel
             {
-                ProductList = _productRepository.GetProductList(),
+                ProductList = _commonSettingService.GetProductList(),
                 DeductionList = _commGroupCommonService.GetDeductionList(),
             };
 
@@ -123,7 +122,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
 
             var groupNameValidation = ValidateGroupName(commGroup.GroupName);
-            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_productRepository, commGroup.PlatformFeeList);
+            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_commonSettingService, commGroup.PlatformFeeList);
 
             if (groupNameValidation.IsSuccessful && platformFeeValidation.IsSuccessful)
             {
@@ -169,7 +168,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
 
             var groupNameValidation = ValidateGroupName(commGroup.GroupName);
-            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_productRepository, commGroup.PlatformFeeList);
+            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_commonSettingService, commGroup.PlatformFeeList);
 
             if (groupNameValidation.IsSuccessful && platformFeeValidation.IsSuccessful)
             {

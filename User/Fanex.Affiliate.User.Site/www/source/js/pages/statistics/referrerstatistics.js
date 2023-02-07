@@ -2,6 +2,12 @@
     var _pageSize = 20;
     var _pageIndex = 0;
     var _selectedDomain;
+    var _selectedCountryCode;
+    let countrySelector = null;
+
+    function initCountrySelector() {
+        countrySelector = $('#country').multipleSelector();
+    }
 
     function initPager() {
         $("#statisticsDetailPager").pager({
@@ -42,6 +48,7 @@
         initialize: function () {
             initDatePicker('FromDate', 'fromPicker');
             initDatePicker('ToDate', 'toPicker');
+            initCountrySelector();
             _me.initEvent();
         },
 
@@ -53,13 +60,16 @@
                 var params = {
                     fromDate: $('#FromDate').val(),
                     toDate: $('#ToDate').val(),
-                    deviceType: $('#DeviceType').val()
+                    deviceType: $('#DeviceType').val(),
+                    isSubmit: true,
+                    countryCodes: countrySelector.getSelectedValues()
                 };
                 _me.getMainView(params);
             });
 
             $('#statisticsTable').on('click', '.statisticsItem', function () {
                 _selectedDomain = $(this).data('domain');
+                _selectedCountryCode = $(this).data('country-code');
                 _pageIndex = 0;
                 var params = _me.getDetailParam();
 
@@ -89,7 +99,7 @@
         },
 
         getDetailView: function (params, onSuccess) {
-            if (!params.domain) {
+            if (!params.domain || !params.countryCode) {
                 return;
             }
 
@@ -116,6 +126,7 @@
         getDetailParam: function () {
             return {
                 domain: _selectedDomain,
+                countryCode: _selectedCountryCode,
                 fromDate: $('#FromDate').val(),
                 toDate: $('#ToDate').val(),
                 deviceType: $('#DeviceType').val(),

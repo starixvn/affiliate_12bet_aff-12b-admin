@@ -1129,19 +1129,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\reducers\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\AppContainer.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\Content.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\Detail.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\Filter.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\redux\Content.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\redux\Detail.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\__test__\redux\Filter.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\libs\constants.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\__test__\index.test.js" />
@@ -1404,10 +1391,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\Detail.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\Detail.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\Filter.jsx" />
@@ -1538,6 +1521,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\new-view-log.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\processing-request.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\feedback-report.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer\user-panel\click-statistics.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

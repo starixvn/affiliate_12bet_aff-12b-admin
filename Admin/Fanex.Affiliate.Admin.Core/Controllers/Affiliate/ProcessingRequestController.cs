@@ -8,7 +8,6 @@ using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -17,15 +16,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     [FunctionAuthorize(FunctionName = Function.ProcessingRequest)]
     public class ProcessingRequestController : ReadOnlySessionBaseController
     {
-        private readonly ILanguageService _languageService;
+        private readonly ICommonSettingService _commonSettingService;
         private readonly IProcessingRequestService _processingRequestService;
 
         public ProcessingRequestController(
             IProcessingRequestService processingRequestService,
-            ILanguageService languageService,
+            ICommonSettingService commonSettingService,
             ISessionService sessionService) : base(sessionService)
         {
-            _languageService = languageService;
+            _commonSettingService = commonSettingService;
             _processingRequestService = processingRequestService;
         }
 
@@ -33,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [AllowByPassFunctionAuthorize]
         public ActionResult Index(string userName)
         {
-            var languageList = _languageService.GetLanguageList();
+            var languageList = _commonSettingService.GetInChangeMarkets();
             ViewBag.Languages = languageList;
             ViewBag.UserName = userName;
             return View("~/Areas/Portal/Views/Affiliate/ProcessingRequest.cshtml");
@@ -46,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         {
             if (ModelState.IsValid)
             {
-                var supportLanguages = _languageService.GetInChangeMarkets();
+                var supportLanguages = _commonSettingService.GetInChangeMarkets();
                 var queryLangs = LanguageHelper.BuildAllowQueryLanguages(null, supportLanguages);
                 param.PreferredLanguages = queryLangs;
                 return new JsonNetResult

@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System;
 using System.Collections.Generic;
@@ -16,48 +16,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         public StatisticsRepository(IObjectDBBuilder builder)
         {
             _builder = builder;
-        }
-
-        public IEnumerable<string> GetTrackingCode(int affId, bool isInternal)
-        {
-            const string uSpkey = "Aff_AffiliateSelTrackingCode";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpkey, dbMode))
-            {
-                return db.Query<string>(new { affId });
-            }
-        }
-
-        public IEnumerable<TrackingStatistics> GetTrackingStatistics(int affId, string trackingCode, bool isInternal)
-        {
-            const string uSpkey = "Aff_AffiliateSelClickStatisticsAllMonths";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var dataList = new List<TrackingStatistics>();
-
-            using (var db = _builder.Build(uSpkey, dbMode))
-            {
-                using (var multipleReader = db.QueryMultiple(new { affId, trackingCode }))
-                {
-                    while (!multipleReader.IsEmptyOrClosed)
-                    {
-                        dataList.AddRange(multipleReader.Read<TrackingStatistics>());
-                    }
-                }
-            }
-
-            return dataList;
-        }
-
-        public IEnumerable<TrackingStatistics> GetTrackingStatisticsDetail(TrackingStatisticsDetailParam trackingStatisticsDetailParam)
-        {
-            const string uSpkey = "Aff_AffiliateSelClickStatisticsMonthDetail";
-            var dbMode = trackingStatisticsDetailParam.IsInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpkey, dbMode))
-            {
-                return db.Query<TrackingStatistics>(trackingStatisticsDetailParam);
-            }
         }
 
         public IEnumerable<ReferrerStatistics> GetReferrerStatistics(ReferrerStatisticsParam referrerStatisticsParam)
@@ -85,7 +43,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                     {
                         dataList.Add(new ReferrerStatistics
                         {
-                            DomainReferrer = Convert.ToString(reader["UrlReferrer"]),
+                            SiteUrls = Convert.ToString(reader["UrlReferrer"]),
                             TotalClick = reader[TotalClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[TotalClickColumn]),
                             UniqueClick = reader[UniqueClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[UniqueClickColumn]),
                             SignUps = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),
@@ -109,14 +67,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public AccountOverviewStatistics GetStatisticsOverview(StatisticsOverviewParam overviewParam)
+        public IEnumerable<Country> GetCountryList(bool isInternal)
         {
-            const string uSpKey = "Aff_User_StatisticsSel";
-            var dbMode = overviewParam.IsInternal ? DBMode.View : DBMode.Main;
+            const string uSpKey = "Aff_Country_Sel";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
             using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return db.QueryEntity<AccountOverviewStatistics>(overviewParam);
+                return db.Query<Country>();
             }
         }
     }

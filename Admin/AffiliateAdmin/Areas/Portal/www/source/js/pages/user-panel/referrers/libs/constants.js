@@ -14,4 +14,5 @@ export const headerText = {
     TotalClicks: 'Total Clicks',
     UniqueClicks: 'Unique Clicks',
     Signup: 'Sign up',
+    Country: 'Country'
 }

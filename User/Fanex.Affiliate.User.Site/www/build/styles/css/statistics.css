@@ -286,6 +286,88 @@ http://nicolasgallagher.com/micro-clearfix-hack/
   color: #924c4c;
   cursor: pointer; }
 
+.multiple-select-container {
+  position: relative; }
+
+.multiple-select-default {
+  box-sizing: border-box;
+  width: 100%; }
+
+.multiple-select-label {
+  display: flex;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #adadad; }
+  .multiple-select-label .text-display {
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden; }
+  .multiple-select-label .caret {
+    /*            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 2px;
+            vertical-align: middle;
+            border-top: 4px solid;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;*/
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 3px); }
+
+.multiple-select-options-container {
+  border: 1px solid #d3d4d4;
+  background: #fff;
+  position: absolute;
+  top: 28px;
+  left: 0px;
+  z-index: 1; }
+
+.multiple-select-options {
+  margin: 0;
+  padding: 5px;
+  overflow: auto;
+  max-height: 230px; }
+
+.multiple-select-option-all {
+  border-bottom: 1px solid #d3d4d4;
+  padding-top: 0;
+  padding-bottom: 0; }
+
+.multiple-select-item {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  text-indent: 4px;
+  user-select: none; }
+  .multiple-select-item input[type=checkbox] {
+    cursor: pointer; }
+  .multiple-select-item input[type=checkbox] + label {
+    margin-bottom: 0;
+    cursor: pointer;
+    width: calc(100% - 15px);
+    font-weight: normal; }
+
+/*.multiple-select {
+    &-options-container {
+        top: 23px;
+    }
+
+    &-label {
+        height: 24px;
+        padding: 2px 20px 0 6px;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+    }
+}*/
+.multiple-select-wrapper.is-invalid .multiple-select-label {
+  color: #dc3545;
+  border-color: #dc3545; }
+
+.multiple-select-wrapper.is-invalid .invalid-feedback {
+  display: block; }
+
 .btn-statistics {
   margin-bottom: 5px; }
 
@@ -303,6 +385,3 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 
 .form-filter .form-group {
   width: 320px; }
-
-#TrackingCode {
-  width: 150px; }

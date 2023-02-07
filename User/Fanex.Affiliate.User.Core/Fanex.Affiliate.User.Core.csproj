@@ -270,6 +270,7 @@
     <Compile Include="Constants\Page.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\Product.cs" />
+    <Compile Include="Constants\Statistics.cs" />
     <Compile Include="Constants\RouteName.cs" />
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\TransType.cs" />
@@ -293,7 +294,6 @@
     <Compile Include="Controllers\UserPanel\ReferrersStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\SummaryController.cs" />
-    <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\AffiliateLinkController.cs" />
     <Compile Include="Controllers\UserPanel\MediaGalleryController.cs" />
     <Compile Include="Controllers\UserPanel\MarketingController.cs" />
@@ -319,7 +319,6 @@
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\TermAndConditionController.cs" />
     <Compile Include="Controllers\UserPanel\MyAccountController.cs" />
-    <Compile Include="Controllers\UserPanel\DailyEarningDetailController.cs" />
     <Compile Include="Controllers\UserPanel\PaymentRequestController.cs" />
     <Compile Include="Controllers\UserPanel\MainController.cs" />
     <Compile Include="Controllers\UserPanel\StatisticsController.cs" />
@@ -327,7 +326,6 @@
     <Compile Include="CoreService\SessionService.cs" />
     <Compile Include="DTO\ContactApp.cs" />
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
-    <Compile Include="DTO\DailyEarningDetail.cs" />
     <Compile Include="DTO\DBMode.cs" />
     <Compile Include="DTO\ExtraUserInfo.cs" />
     <Compile Include="DTO\InternalPermission.cs" />
@@ -340,15 +338,16 @@
     <Compile Include="DTO\InternalLoginInfo.cs" />
     <Compile Include="DTO\UserPanel\Offer.cs" />
     <Compile Include="DTO\UserPanel\HtmlFileInfo.cs" />
-    <Compile Include="DTO\UserPanel\LastLoginInfo.cs" />
+    <Compile Include="DTO\UserPanel\AccountOverview\LastLoginInfo.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\CategoryType.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\CurrencyType.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\SizeType.cs" />
     <Compile Include="DTO\UserPanel\NewsLetter.cs" />
-    <Compile Include="DTO\UserPanel\OverviewDetail.cs" />
-    <Compile Include="DTO\UserPanel\OverviewSummary.cs" />
-    <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
+    <Compile Include="DTO\UserPanel\AccountOverview\OverviewDetail.cs" />
+    <Compile Include="DTO\UserPanel\AccountOverview\OverviewSummary.cs" />
+    <Compile Include="DTO\UserPanel\AccountOverview\PlayerDetail.cs" />
     <Compile Include="DTO\UserPanel\RateInfo.cs" />
+    <Compile Include="DTO\UserPanel\Statistics\Country.cs" />
     <Compile Include="Filters\AddOnClaimAuthFilter.cs" />
     <Compile Include="Infrastructure\DateTimeProvider.cs" />
     <Compile Include="Infrastructure\HttpRequestParserHandler.cs" />
@@ -372,6 +371,7 @@
     <Compile Include="Utilities\HttpClientUtility.cs" />
     <Compile Include="Utilities\IHttpClientUtility.cs" />
     <Compile Include="Utilities\LogHelper.cs" />
+    <Compile Include="Utilities\StatisticsHelper.cs" />
     <Compile Include="ViewModels\UserPanel\FeedbackViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />
@@ -379,26 +379,24 @@
     <Compile Include="DTO\VerificationAccount\SendCodeResult.cs" />
     <Compile Include="DTO\Transaction.cs" />
     <Compile Include="DTO\UserInfo.cs" />
-    <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
     <Compile Include="DTO\UserPanel\AffiliateCommisionByMonth.cs" />
     <Compile Include="DTO\UserPanel\AffiliateCommission.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
     <Compile Include="DTO\UserPanel\DepositAccountInfo.cs" />
     <Compile Include="DTO\UserPanel\IbcPlayerAccountInsertResult.cs" />
-    <Compile Include="DTO\UserPanel\LandingPage.cs" />
-    <Compile Include="DTO\UserPanel\LandingPageStatistics.cs" />
-    <Compile Include="DTO\UserPanel\MarketingItem.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\LandingPage.cs" />
+    <Compile Include="DTO\UserPanel\Statistics\LandingPageStatistics.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\BannerType.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
-    <Compile Include="DTO\UserPanel\Domain.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\Domain.cs" />
     <Compile Include="DTO\UserPanel\Member.cs" />
     <Compile Include="DTO\UserPanel\MessageHistory.cs" />
     <Compile Include="DTO\UserPanel\PlayerAccountCheckingResult.cs" />
-    <Compile Include="DTO\UserPanel\ReferrerStatistics.cs" />
+    <Compile Include="DTO\UserPanel\Statistics\ReferrerStatistics.cs" />
     <Compile Include="DTO\UserPanel\StatementHistory.cs" />
-    <Compile Include="DTO\UserPanel\StatisticsBase.cs" />
-    <Compile Include="DTO\UserPanel\TrackingStatistics.cs" />
+    <Compile Include="DTO\UserPanel\Statistics\StatisticsBase.cs" />
     <Compile Include="DTO\UserSession.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\VerificationAccount\VerificationInfo.cs" />
@@ -462,8 +460,6 @@
     <Compile Include="MetalModels\UserPanel\ReferrerStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsBySiteBaseParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsDetailBySiteParam.cs" />
-    <Compile Include="MetalModels\UserPanel\StatisticsOverviewParam.cs" />
-    <Compile Include="MetalModels\UserPanel\TrackingStatisticsDetailParam.cs" />
     <Compile Include="MetalModels\UserSignUpParam.cs" />
     <Compile Include="MetalModels\VerificationAccountParam.cs" />
     <Compile Include="MetalModels\VerificationOtpParam.cs" />
@@ -597,7 +593,6 @@
     <Compile Include="ViewModels\MemberTransactionViewModel.cs" />
     <Compile Include="ViewModels\ProductPageViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\CommissionReportDataViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\DailyEarningDetailViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\LatestHotNewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
@@ -606,7 +601,6 @@
     <Compile Include="ViewModels\UserPanel\PaymentViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\LandingPageStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\ReferrerStatisticsViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\Statistics\TrackingStatisticsViewModel.cs" />
     <Compile Include="ViewModels\VerificationAccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -710,5 +704,6 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

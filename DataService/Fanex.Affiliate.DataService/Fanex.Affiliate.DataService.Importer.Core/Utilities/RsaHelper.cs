@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using Fanex.Logging;
 
 namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
 {
@@ -37,7 +36,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Utilities
             }
             catch (CryptographicException ex)
             {
-                LogHelper.WriteError(ex);
+                LogHelper.Error(ex);
                 return false;
             }
         }

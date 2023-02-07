@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using System.Collections.Generic;
 
@@ -9,6 +8,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
     public static class Constant
     {
         public const string DefaultLanguage = "en-US";
+
+        public const string DefaultShortedLanguageCode = "EN";
 
         public const int DefaultAffId = 123;
 

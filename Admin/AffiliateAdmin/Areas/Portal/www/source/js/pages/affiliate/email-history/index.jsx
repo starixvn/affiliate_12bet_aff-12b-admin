@@ -11,7 +11,6 @@ export default class App extends PureComponent {
         super(props);
     }
     render() {
-        console.log(window.initialState);
         const storeState = Object.assign({}, window.initialState, {claimsPrincipal: ClaimPrincipal.currentClaimPrincipal});
         const store = configureStore(storeState, reducer);
         return (

@@ -37,6 +37,87 @@
     </div>
 }
 
+@helper RenderMultipleSelect(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true, System.Web.Mvc.SelectListItem itemDefaultOption = null, string className = null)
+{
+    var displayText = "Please select";
+    var selectedValues = dataList.Where(d => d.Selected).Select(d => d.Value);
+    var selectedItemCount = selectedValues.Count();
+    var hasSelectedItem = selectedItemCount >= 1;
+
+    if (hasSelectedItem)
+    {
+        displayText = $"{selectedItemCount} selected";
+    }
+    <div class="form-group @className" id="@($"{id}")">
+        <label>@label</label>
+        <div id="@($"{id}-multiple-select")" class="multiple-select-container @(hasSelectedItem ? "" : "multiple-select-wrapper is-invalid")">
+            <button id="@($"{id}-multiple-select-label")" type="button" class="form-control multiple-select-default multiple-select-label">
+                <span id="@($"{id}-multiple-select-text-display")" class="text-display">@displayText</span>
+                <b class="caret @($"{id}-multiple-select-caret")"></b>
+            </button>
+            <div id="@($"{id}-multiple-select-options-container")" class="multiple-select-default multiple-select-options-container" style="display:none;">
+                @RenderOptionAll(id, dataList, hasAllOption, itemDefaultOption)
+                <ul class="multiple-select-options">
+                    @foreach (var item in dataList)
+                    {
+                        @RenderOption(id, item);
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+@helper RenderOptionAll(string id, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true, System.Web.Mvc.SelectListItem itemDefaultOption = null)
+{
+    if (hasAllOption)
+    {
+        <ul class="multiple-select-options multiple-select-option-all">
+            @if (itemDefaultOption is null)
+            {
+                var checkedItemCount = dataList.Where(d => d.Selected).Count();
+                var checkedAll = checkedItemCount == dataList.Count();
+
+                <li class="multiple-select-item">
+                    <input id="@(id)-multiple-select-option-all"
+                           type="checkbox"
+                           class="multiple-select-option-checkbox"
+                           checked="@checkedAll" />
+                    <label class="multiple-select-option-label" for="@(id)-multiple-select-option-all">
+                        All
+                    </label>
+                </li>
+            }
+            else
+            {
+                <li class="multiple-select-item">
+                    <input id="@(id)-multiple-select-option-all"
+                           type="checkbox"
+                           class="multiple-select-option-checkbox"
+                           checked="@itemDefaultOption.Selected" />
+                    <label class="multiple-select-option-label" for="@(id)-multiple-select-option-all">
+                        @itemDefaultOption.Text
+                    </label>
+                </li>
+            }
+        </ul>
+    }
+}
+
+@helper RenderOption(string id, System.Web.Mvc.SelectListItem item)
+{
+    <li class="multiple-select-item">
+        <input id="@($"{id}-{item.Value}")"
+               type="checkbox"
+               class="multiple-select-option-checkbox @($"{id}-multiple-select-option-checkbox")"
+               value="@item.Value"
+               checked="@item.Selected" />
+        <label class="multiple-select-option-label" for="@($"{id}-{item.Value}")">
+            @item.Text
+        </label>
+    </li>
+}
+
 @helper RenderAppContact(string language)
 {
     const string firstAppName = "Skype";
@@ -75,7 +156,7 @@
         {
             <div class="col-sm-4">
                 <input type="text" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-control" value=""
-                    data-val="true" data-val-required="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
+                       data-val="true" data-val-required="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
             </div>
         }
         <div class="col-sm-offset-3 col-sm-9">

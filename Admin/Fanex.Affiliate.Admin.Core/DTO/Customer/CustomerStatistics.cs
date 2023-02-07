@@ -35,9 +35,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public decimal WinlostTotal { get; set; }
 
-        public int UniqueClickByMonth { get; set; }
-
-        public int TotalClickByMonth { get; set; }
 
         public int UniqueClickPcLaptopByMonth { get; set; }
 

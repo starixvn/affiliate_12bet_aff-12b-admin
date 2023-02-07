@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Microsoft.Practices.ObjectBuilder2;
 using System;
 using System.Collections.Generic;

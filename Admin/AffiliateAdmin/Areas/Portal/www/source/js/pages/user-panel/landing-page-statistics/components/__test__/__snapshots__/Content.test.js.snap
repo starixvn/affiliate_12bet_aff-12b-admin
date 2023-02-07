@@ -13,34 +13,36 @@ exports[`landing page statistics - components - Content render correctly with ha
     body={
       Array [
         <t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="casino"
-          >
-            <Button
-              className="p-0"
-              color="link"
+          <React.Fragment>
+            <t
+              asc={true}
+              header={false}
               onClick={[Function]}
-              tag="button"
+              sortable={false}
+              sorting={false}
+              title="England"
+            >
+              <Button
+                className="p-0"
+                color="link"
+                onClick={[Function]}
+                tag="button"
+              >
+                England
+              </Button>
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="casino"
             >
               casino
-            </Button>
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="English (India)"
-          >
-            English (India)
-          </t>
+            </t>
+          </React.Fragment>
           <t
             asc={true}
             className="text-right"
@@ -87,34 +89,36 @@ exports[`landing page statistics - components - Content render correctly with ha
           </t>
         </t>,
         <t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="casino"
-          >
-            <Button
-              className="p-0"
-              color="link"
+          <React.Fragment>
+            <t
+              asc={true}
+              header={false}
               onClick={[Function]}
-              tag="button"
+              sortable={false}
+              sorting={false}
+              title="England"
+            >
+              <Button
+                className="p-0"
+                color="link"
+                onClick={[Function]}
+                tag="button"
+              >
+                England
+              </Button>
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="casino"
             >
               casino
-            </Button>
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="English (India)"
-          >
-            English (India)
-          </t>
+            </t>
+          </React.Fragment>
           <t
             asc={true}
             className="text-right"
@@ -161,34 +165,36 @@ exports[`landing page statistics - components - Content render correctly with ha
           </t>
         </t>,
         <t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="sportsbook"
-          >
-            <Button
-              className="p-0"
-              color="link"
+          <React.Fragment>
+            <t
+              asc={true}
+              header={false}
               onClick={[Function]}
-              tag="button"
+              sortable={false}
+              sorting={false}
+              title="England"
+            >
+              <Button
+                className="p-0"
+                color="link"
+                onClick={[Function]}
+                tag="button"
+              >
+                England
+              </Button>
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="sportsbook"
             >
               sportsbook
-            </Button>
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="English"
-          >
-            English
-          </t>
+            </t>
+          </React.Fragment>
           <t
             asc={true}
             className="text-right"
@@ -234,73 +240,7 @@ exports[`landing page statistics - components - Content render correctly with ha
             0
           </t>
         </t>,
-        <t>
-          <t
-            asc={true}
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Old URL"
-          >
-            Old URL
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="none"
-          >
-            none
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-          <t
-            asc={true}
-            className="text-right"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title={0}
-          >
-            0
-          </t>
-        </t>,
+        null,
       ]
     }
     bodyHeight={300}
@@ -309,7 +249,18 @@ exports[`landing page statistics - components - Content render correctly with ha
       <t>
         <t
           asc={true}
-          colWidth={290}
+          colWidth={370}
+          header={true}
+          onClick={[Function]}
+          sortable={false}
+          sorting={false}
+          title="Country"
+        >
+          Country
+        </t>
+        <t
+          asc={true}
+          colWidth={210}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -317,17 +268,6 @@ exports[`landing page statistics - components - Content render correctly with ha
           title="Page"
         >
           Page
-        </t>
-        <t
-          asc={true}
-          colWidth={290}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="Language"
-        >
-          Language
         </t>
         <t
           asc={true}
@@ -414,7 +354,18 @@ exports[`landing page statistics - components - Content render correctly with ha
       <t>
         <t
           asc={true}
-          colWidth={290}
+          colWidth={370}
+          header={true}
+          onClick={[Function]}
+          sortable={false}
+          sorting={false}
+          title="Country"
+        >
+          Country
+        </t>
+        <t
+          asc={true}
+          colWidth={210}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -422,17 +373,6 @@ exports[`landing page statistics - components - Content render correctly with ha
           title="Page"
         >
           Page
-        </t>
-        <t
-          asc={true}
-          colWidth={290}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="Language"
-        >
-          Language
         </t>
         <t
           asc={true}

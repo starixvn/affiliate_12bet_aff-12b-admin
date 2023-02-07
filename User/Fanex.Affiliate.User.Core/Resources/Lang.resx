@@ -449,9 +449,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>Czech (Rep) </value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>Daily Earning Detail</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>Daily Earnings</value>
   </data>
@@ -775,10 +772,6 @@
   </data>
   <data name="Latvia" xml:space="preserve">
     <value>Latvia </value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>Bet List</value>
-    <comment>87923</comment>
   </data>
   <data name="lblSecureQuestion" xml:space="preserve">
     <value>Security Question</value>
@@ -1370,12 +1363,6 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="TotalDeposit" xml:space="preserve">
     <value>Total Deposits</value>
-  </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>Tracking Code</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>Tracking Statistics</value>
   </data>
   <data name="Transaction" xml:space="preserve">
     <value>Transaction</value>
@@ -2115,6 +2102,9 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="CopyBannerCode" xml:space="preserve">
     <value>Copy Banner Code</value>
+  </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>Report By</value>
   </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>This promotion is Expired. Please stay tune for new exciting promotion.</value>

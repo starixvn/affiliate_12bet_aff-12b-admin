@@ -1,8 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using DTO.UserPanel;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
     using Filters;
     using MetalModels.UserPanel;
     using System;
@@ -40,6 +41,8 @@
             var landingPageParam = new LandingPageStatisticsParam
             {
                 AffId = userSession.AffId,
+                ReportBy = Statistics.ReportByCountry,
+                CountryCodes = _statisticsService.GetCountryCodes(isInternal),
                 IsInternal = isInternal,
                 FromDate = new DateTime(now.Year, now.Month, 1),
                 ToDate = now
@@ -49,10 +52,11 @@
             {
                 LanguageList = MarketingHelper.GetLanguageList(_marketingService.GetLanguageList(), userSession.PreferredLanguage),
                 MemberSitePageList = _marketingService.GetLandingPageList(isInternal),
+                CountryList = _statisticsService.GetCountryList(isInternal),
+                ReportBy = Statistics.ReportByCountry,
                 FromDate = landingPageParam.FromDate,
                 ToDate = landingPageParam.ToDate,
-                DataList = GetLandingPageStatisticsData(landingPageParam),
-                IsDetail = false
+                DataList = _statisticsService.GetLandingPageStatistics(landingPageParam)
             };
 
             return View("~/Views/UserPanel/Statistics/LandingPageStatistics/Index.cshtml", viewModel);
@@ -67,25 +71,11 @@
 
             var viewModel = new LandingPageStatisticsViewModel
             {
-                DataList = GetLandingPageStatisticsData(landingPageParam),
-                IsDetail = false
+                ReportBy = landingPageParam.ReportBy,
+                DataList = _statisticsService.GetLandingPageStatistics(landingPageParam)
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_LandingPageStatisticsContent.cshtml", viewModel);
-        }
-
-        private IEnumerable<LandingPageStatistics> GetLandingPageStatisticsData(LandingPageStatisticsParam landingPageParam)
-        {
-            var dataList = _statisticsService.GetLandingPageStatistics(landingPageParam);
-
-            foreach (var item in dataList)
-            {
-                var language = _marketingService.GetLanguageList().FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
-
-                item.LanguageName = language == null ? item.LanguageCode : language.MarketNativeName;
-            }
-
-            return dataList;
         }
     }
 }

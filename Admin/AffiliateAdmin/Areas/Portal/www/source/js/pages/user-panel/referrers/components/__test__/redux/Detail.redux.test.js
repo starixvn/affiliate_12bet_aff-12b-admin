@@ -21,17 +21,13 @@ describe('referrers - Detail - connect', () => {
         const expectedResult = {
             param: { abc: 123 },
             pagingOption: { PageSize: 10 },
-            selectedSiteUrl: 'abc',
-            affId: 1271808
+            selectedSiteDetailFilter: { site: 'abc' }
         };
         const state = {
-            affCommonInfo: {
-                affId: 1271808
-            },
             clickStatistics: {
                 param: { abc: 123 },
                 pagingOption: { PageSize: 10 },
-                selectedSiteUrl: 'abc'
+                selectedSiteDetailFilter: { site: 'abc' }
             },
             anotherProp: "Not included"
         };

@@ -79,7 +79,7 @@ $indexNormal: 1;
         text-indent: 4px;
         user-select: none;
 
-        input[type=checkbox] + label {
+        input[type=checkbox], input[type=checkbox] + label {
             cursor: pointer;
         }
 

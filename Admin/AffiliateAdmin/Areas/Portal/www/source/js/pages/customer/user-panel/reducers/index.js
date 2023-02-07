@@ -6,7 +6,6 @@ import statementHistoryReducer from '../../../user-panel/statement-history/reduc
 import userAccountReducer from '../../../user-panel/user-account/reducers';
 import noteReducer from '../../../user-panel/note/reducers';
 import adjustmentReducer from '../../../user-panel/adjustment/reducers';
-import trackingStatisticsReducer from '../../../user-panel/tracking-statistics/reducers';
 import memberReducer from '../../../user-panel/customer-member/reducers';
 import viewLogReducer from '../../../user-panel/view-log/reducers';
 import referrerStatisticsReducer from '../../../user-panel/referrers/reducers';
@@ -35,7 +34,6 @@ export const userPanelReducer = {
     [menuKey.note]: noteReducer,
     [menuKey.playerDetail]: playerDetailReducer,
     [menuKey.adjustment]: adjustmentReducer,
-    [menuKey.trackingStatistics]: trackingStatisticsReducer,
     [menuKey.member]: memberReducer,
     [menuKey.viewLog]: viewLogReducer,
     [menuKey.clickStatistics]: referrerStatisticsReducer,

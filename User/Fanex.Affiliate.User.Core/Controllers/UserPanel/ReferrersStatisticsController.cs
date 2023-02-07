@@ -3,9 +3,11 @@
     using Enum;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
     using Filters;
     using MetalModels.UserPanel;
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using ViewModels.UserPanel.Statistics;
 
@@ -26,18 +28,22 @@
         public ActionResult Index()
         {
             var now = DateTime.Now;
+            var isInternal = SessionService.IsInternal;
+
             var referrerStatisticsParam = new ReferrerStatisticsParam
             {
                 AffId = SessionService.UserSession.AffId,
-                IsInternal = SessionService.IsInternal,
+                IsInternal = isInternal,
                 FromDate = new DateTime(now.Year, now.Month, 1),
                 ToDate = now,
+                CountryCodes = _statisticsService.GetCountryCodes(isInternal),
                 DeviceType = (byte)DeviceType.PCDevice
             };
 
             var viewModel = new ReferrerStatisticsViewModel
             {
                 DataList = _statisticsService.GetReferrerStatistics(referrerStatisticsParam),
+                CountryList = _statisticsService.GetCountryList(isInternal),
                 FromDate = referrerStatisticsParam.FromDate,
                 ToDate = referrerStatisticsParam.ToDate
             };
@@ -54,7 +60,7 @@
 
             var viewModel = new ReferrerStatisticsViewModel
             {
-                DataList = _statisticsService.GetReferrerStatistics(referrerStatisticsParam)
+                DataList = ModelState.IsValid ? _statisticsService.GetReferrerStatistics(referrerStatisticsParam) : new List<ReferrerStatistics>()
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_ReferrersStatisticsContent.cshtml", viewModel);

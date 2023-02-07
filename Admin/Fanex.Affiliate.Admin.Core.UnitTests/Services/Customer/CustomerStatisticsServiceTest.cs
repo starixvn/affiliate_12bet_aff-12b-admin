@@ -67,8 +67,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
                 ["TurnoverTotal"] = 0,
                 ["WinlostByMonth"] = 0,
                 ["WinlostTotal"] = 0,
-                ["TotalClickByMonth"] = 0,
-                ["UniqueClickByMonth"] = 0,
                 ["UniqueClickPCByMonth"] = 0,
                 ["TotalClickPCByMonth"] = 0,
                 ["UniqueClickMobileByMonth"] = 0,

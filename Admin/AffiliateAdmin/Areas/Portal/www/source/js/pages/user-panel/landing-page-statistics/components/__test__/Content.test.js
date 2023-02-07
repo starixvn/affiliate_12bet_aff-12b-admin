@@ -21,12 +21,13 @@ describe('landing page statistics - components - Content', () => {
         vn: "Vietnamese"
     };
     const defaultProps = {
+        affId: 1271808,
+        isGroupByCountry: true,
         shortCodeLanguageList,
         param: {
             affId: 1271808,
             deviceType: 0,
             fromDate: "07/01/2018",
-            languageCode: "",
             selectedPage: "",
             toDate: "7/15/2019"
         }
@@ -36,6 +37,9 @@ describe('landing page statistics - components - Content', () => {
         {
             Fdm: 0,
             LanguageCode: "hien",
+            Language: "English (India)",
+            CountryCode: "en",
+            Country: "England",
             Page: "casino",
             Signups: 0,
             TotalClick: 2,
@@ -45,6 +49,9 @@ describe('landing page statistics - components - Content', () => {
         {
             Fdm: 0,
             LanguageCode: "hien",
+            Language: "English (India)",
+            CountryCode: "en",
+            Country: "England",
             Page: "casino",
             Signups: 0,
             TotalClick: 2,
@@ -54,6 +61,9 @@ describe('landing page statistics - components - Content', () => {
         {
             Fdm: 0,
             LanguageCode: "en",
+            Language: "English",
+            CountryCode: "en",
+            Country: "England",
             Page: "sportsbook",
             Signups: 0,
             TotalClick: 2,
@@ -62,7 +72,10 @@ describe('landing page statistics - components - Content', () => {
         },
         {
             Fdm: 0,
-            LanguageCode: "none",
+            LanguageCode: "en",
+            Language: "English",
+            CountryCode: "-",
+            Country: "Unknown",
             Page: "Old URL",
             Signups: 0,
             TotalClick: 0,
@@ -119,7 +132,7 @@ describe('landing page statistics - components - Content', () => {
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith(param, shortCodeLanguageList);
+        expect(props.fetchData).toHaveBeenCalledWith(param);
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: [{ Id: 123 }] });
     });
 
@@ -137,29 +150,29 @@ describe('landing page statistics - components - Content', () => {
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith(param, shortCodeLanguageList);
+        expect(props.fetchData).toHaveBeenCalledWith(param);
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: null });
     });
 
-    it('handleSelectedPage - should be called when click page Button', () => {
+    it('handleSelectedPageDetailFilter - should be called when click page Button', () => {
         const wrapper = shallow(<Content {...defaultProps} />);
 
-        wrapper.instance().handleSelectedPage = jest.fn();
+        wrapper.instance().handleSelectedPageDetailFilter = jest.fn();
 
-        const dataRow = shallow(<div>{wrapper.instance()._buildDataRow(gridData[0], 1)}</div>);
+        const dataRow = shallow(<div>{wrapper.instance()._buildDataRow(gridData[0], 1, true)}</div>);
 
         dataRow.find('Button').at(0).simulate('click');
 
-        expect(wrapper.instance().handleSelectedPage).toHaveBeenCalledWith('casino', 'hien');
+        expect(wrapper.instance().handleSelectedPageDetailFilter).toHaveBeenCalledWith('casino', 'en', true);
     });
 
-    it('handleSelectedPage - should call setSelectedPage', () => {
-        const props = Object.assign({}, defaultProps, { setSelectedPage: jest.fn() });
+    it('handleSelectedPageDetailFilter - should call setSelectedPageDetailFilter', () => {
+        const props = Object.assign({}, defaultProps, { setSelectedPageDetailFilter: jest.fn() });
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState = jest.fn();
 
-        wrapper.instance().handleSelectedPage('casino', 'hien');
+        wrapper.instance().handleSelectedPageDetailFilter('casino', 'hien');
 
-        expect(props.setSelectedPage).toHaveBeenCalledWith({ languageCode: 'hien', selectedPage: "casino"});
+        expect(props.setSelectedPageDetailFilter).toHaveBeenCalledWith({ languageCode: 'hien', selectedPage: "casino"});
     });
 });

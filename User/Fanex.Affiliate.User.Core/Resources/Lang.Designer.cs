@@ -1376,15 +1376,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Daily Earning Detail.
-        /// </summary>
-        public static string DailyEarningDetail {
-            get {
-                return ResourceManager.GetString("DailyEarningDetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Daily Earnings.
         /// </summary>
         public static string DailyEarnings {
@@ -2605,15 +2596,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Latvia {
             get {
                 return ResourceManager.GetString("Latvia", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet List.
-        /// </summary>
-        public static string lblBetLists {
-            get {
-                return ResourceManager.GetString("lblBetLists", resourceCulture);
             }
         }
         
@@ -4369,6 +4351,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report By.
+        /// </summary>
+        public static string ReportBy {
+            get {
+                return ResourceManager.GetString("ReportBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Request Amount.
         /// </summary>
         public static string RequestAmount {
@@ -5328,24 +5319,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string TotalTurnover {
             get {
                 return ResourceManager.GetString("TotalTurnover", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tracking Code.
-        /// </summary>
-        public static string TrackingCode {
-            get {
-                return ResourceManager.GetString("TrackingCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tracking Statistics.
-        /// </summary>
-        public static string TrackingStatistics {
-            get {
-                return ResourceManager.GetString("TrackingStatistics", resourceCulture);
             }
         }
         

@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using System.Linq;
@@ -18,17 +17,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
     public class OfferPageController : ReadOnlySessionBaseController
     {
-        private readonly ILanguageService _languageService;
+        private readonly ICommonSettingService _commonSettingService;
         private readonly IOfferPageService _offerPageService;
         private readonly IAppSetting _appSetting;
 
         public OfferPageController(
             IOfferPageService offerPageService,
             ISessionService sessionService,
-            ILanguageService languageService,
+            ICommonSettingService commonSettingService,
             IAppSetting appSetting) : base(sessionService)
         {
-            _languageService = languageService;
+            _commonSettingService = commonSettingService;
             _offerPageService = offerPageService;
             _appSetting = appSetting;
         }
@@ -36,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         public ActionResult Index()
         {
             ViewBag.PreviewUrl = $"{_appSetting.AsianAffSiteUrl}/UserPanel/OffersForMe/Preview";
-            ViewBag.Languages = _languageService.GetInChangeMarkets();
+            ViewBag.Languages = _commonSettingService.GetInChangeMarkets();
             return View("~/Areas/Portal/Views/MediaGallery/Common.cshtml");
         }
 

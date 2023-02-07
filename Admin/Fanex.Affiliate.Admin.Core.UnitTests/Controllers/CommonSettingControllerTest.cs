@@ -1,10 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
-using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -17,9 +16,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetProductList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var productRepository = new Mock<IProductRepository>();
-            productRepository.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
-            var controller = CreateCommonSettingController(productRepository: productRepository.Object);
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
+            var controller = CreateCommonSettingController(commonSettingService: commonSettingService.Object);
 
             // Action
             var result = controller.GetProductList() as JsonNetResult;
@@ -46,35 +45,30 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void GetTrackingCodeList_WhenCall_ReturnCorrectData()
+        public void GetCountryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = 1271808;
-            var passedParam = 0;
-            var trackingStatisticsService = new Mock<ITrackingStatisticsService>();
-            trackingStatisticsService.Setup(s => s.GetTrackingCodeList(param)).Returns(new List<string> { "Sportbook" }).Callback<int>(p => passedParam = p);
-            var controller = CreateCommonSettingController(trackingStatisticsService: trackingStatisticsService.Object);
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(s => s.GetCountryList()).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
+            var controller = CreateCommonSettingController(commonSettingService.Object);
 
             // Action
-            var result = controller.GetTrackingCodeList(param) as JsonNetResult;
-            var data = result.Data as List<string>;
+            var result = controller.GetCountryList() as JsonNetResult;
+            var data = result.Data as List<Country>;
 
             // Assert
             Assert.Single(data);
-            Assert.Equal(param, passedParam);
         }
 
         private CommonSettingController CreateCommonSettingController(
-            IProductRepository productRepository = null,
-            ILandingPageRepository landingPageRepository = null,
-            ITrackingStatisticsService trackingStatisticsService = null
+            ICommonSettingService commonSettingService = null,
+            ILandingPageRepository landingPageRepository = null
             )
         {
-            var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
+            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
             var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
-            var faketrackingStatisticsService = trackingStatisticsService ?? Mock.Of<ITrackingStatisticsService>();
 
-            return new CommonSettingController(fakeProductRepository, fakeLandingPageRepository, faketrackingStatisticsService);
+            return new CommonSettingController(fakeCommonService, fakeLandingPageRepository);
         }
     }
 }

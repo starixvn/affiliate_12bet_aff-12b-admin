@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             repository.Setup(re => re.GetObjectDb("Aff_ClickStatisticsSelByPage", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetLandingPageStatisticsList(new LandingPageStatisticsParam());
+            var result = repository.Object.GetLandingPageStatisticsList(new LandingPageStatisticsParam { GroupBy = "Country" });
 
             // Assert
             Assert.Single(result);
@@ -120,6 +120,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
                 ["TotalClick"] = 123,
                 ["UniqueClick"] = 12,
                 ["LanguageCode"] = "vi-VN",
+                ["CountryCode"] = "EN",
+                ["Country"] = "England",
                 ["Signups"] = 11,
                 ["FDM"] = 1,
                 ["URLReferrer"] = "abc.com"

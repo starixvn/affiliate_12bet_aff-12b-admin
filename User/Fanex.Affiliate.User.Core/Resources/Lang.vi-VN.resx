@@ -420,9 +420,6 @@
   <data name="CzechRep" xml:space="preserve">
     <value>Cộng hòa Séc </value>
   </data>
-  <data name="DailyEarningDetail" xml:space="preserve">
-    <value>Thu nhập chi tiết mỗi ngày</value>
-  </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>Thu nhập hàng ngày</value>
   </data>
@@ -1256,12 +1253,6 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="TotalDeposit" xml:space="preserve">
     <value>Tổng tiền nạp vào</value>
   </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>Mã theo dõi</value>
-  </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>Thống kê theo dõi</value>
-  </data>
   <data name="Transaction" xml:space="preserve">
     <value>Thắng/Thua chưa xử lý</value>
   </data>
@@ -1609,9 +1600,6 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Chưa Gửi Tiền</value>
-  </data>
-  <data name="lblBetLists" xml:space="preserve">
-    <value>Danh Sách Vé Cược</value>
   </data>
   <data name="result" xml:space="preserve">
     <value>Kết Quả</value>
@@ -2000,6 +1988,9 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="YouDoNotHaveEmail" xml:space="preserve">
     <value>Bạn không có email. Vui lòng liên hệ quản trị viên!</value>
+  </data>
+  <data name="ReportBy" xml:space="preserve">
+    <value>Được báo cáo bởi</value>
   </data>
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>Khuyến mãi này đã hết hạn. Vui lòng chờ khuyến mãi mới hấp dẫn tiếp theo.</value>
