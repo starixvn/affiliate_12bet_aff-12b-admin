@@ -29,7 +29,7 @@
 
             routes.MapRoute(
                name: "Link",
-               url: "{affId}/{pageId}/{lang}/index.html",
+               url: "{affId}/{pageCode}/{lang}/index.html",
                defaults:
                new
                {
@@ -41,13 +41,13 @@
                });
 
             routes.MapRoute(
-                name: "OldLink",
-                url: "{affId}/{pageId}/{lang}/{deviceType}/index.html",
+                name: "NewLink",
+                url: "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}/index.html",
                 defaults:
                 new
                 {
                     controller = "Home",
-                    action = "OldLink",
+                    action = "NewLink",
                     affId = UrlParameter.Optional,
                     pageId = UrlParameter.Optional,
                     lang = UrlParameter.Optional,

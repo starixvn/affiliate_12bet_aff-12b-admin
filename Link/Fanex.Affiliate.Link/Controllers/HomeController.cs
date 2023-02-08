@@ -47,17 +47,17 @@ namespace Fanex.Affiliate.Link.Controllers
             return View();
         }
 
-        public ActionResult Link(int affId, string pageId, string lang)
+        public ActionResult Link(int affId, string pageCode, string lang)
         {
-            return InsertAffiliate(affId, pageId, lang);
+            return InsertAffiliate(affId, pageCode, lang);
         }
 
-        public ActionResult OldLink(int affId, string pageId, string lang, string deviceType)
+        public ActionResult NewLink(int affId, string pageCodePart1, string pageCodePart2, string lang)
         {
-            return InsertAffiliate(affId, pageId, lang);
+            return InsertAffiliate(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
-        private ActionResult InsertAffiliate(int affId, string pageId, string lang)
+        private ActionResult InsertAffiliate(int affId, string pageCode, string lang)
         {
             if (Request.Url != null)
             {
@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 {
                     AffDomain = affDomain,
                     AffiliateID = affId,
-                    PageCode = pageId,
+                    PageCode = pageCode,
                     LanguageCode = lang,
                     DeviceType = GetDeviceType(),
                     IP = Common.GetIPAddressOfClient(),

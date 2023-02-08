@@ -18,7 +18,7 @@ export const defaultState = {
     message: ''
 }
 
-export const restrictedCharactersPattern = /[;\/\?:@=&"<>#%{}\|\\^~\[\]`\s+]/;
+export const restrictedCharactersPattern = /[;\?:@=&"<>#%{}\|\\^~\[\]`\s+]/;
 export const maxLength = 50;
 
 export const messages = {

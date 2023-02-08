@@ -14,10 +14,12 @@
     /// </summary>
     public static class Common
     {
+        private const string IpRegex = "((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}";
+
         /// <summary>
         /// Contains all operating system mapping.
         /// </summary>
-        private static IDictionary<string, string> _operatingSystemMapping = new Dictionary<string, string>
+        private static readonly IDictionary<string, string> _operatingSystemMapping = new Dictionary<string, string>
         {
                 { "Windows NT 6.1", "Windows 7" },
                 { "Windows NT 6.0", "Windows Vista" },
@@ -37,7 +39,7 @@
         /// <summary>
         /// Contains all device mapping.
         /// </summary>
-        private static IDictionary<string, string> _deviceMapping = new Dictionary<string, string>
+        private static readonly IDictionary<string, string> _deviceMapping = new Dictionary<string, string>
         {
                 { "iphone", "iPhone" },
                 { "ipad", "iPad" },
@@ -89,9 +91,7 @@
         public static string GetIPAddressOfClient()
         {
             string ips = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-            string ip = ips == null ?
-                HttpContext.Current.Request.UserHostAddress :
-                ips.Split(',').First().Trim();
+            string ip = GetForwardedIPAddress(ips) ?? HttpContext.Current.Request.UserHostAddress;
 
             if (ip == "::1")
             {
@@ -99,6 +99,26 @@
             }
 
             return ip;
+        }
+
+        private static string GetForwardedIPAddress(string ips)
+        {
+            if (string.IsNullOrEmpty(ips))
+            {
+                return null;
+            }
+
+            var ipList = ips.Split(',');
+
+            foreach (var ip in ipList)
+            {
+                if (Regex.IsMatch(ip, IpRegex))
+                {
+                    return ip;
+                }
+            }
+
+            return null;
         }
 
         /// <summary>
