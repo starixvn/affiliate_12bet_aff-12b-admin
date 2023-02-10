@@ -137,7 +137,7 @@ export class InsertUpdateForm extends PureComponent {
         const title = isInsert ? "Add Landing Page" : "Edit Landing Page";
 
         return (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='false'>
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static">
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">

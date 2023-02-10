@@ -41,12 +41,10 @@ exports[`domain control - components - Filter  render correctly 1`] = `
           All
         </option>
         <option
-          key="market-en-GB"
-          value="en-GB"
+          key="market-undefined"
         />
         <option
-          key="market-vi-VN"
-          value="vi-VN"
+          key="market-undefined"
         />
       </Input>
     </FormGroup>

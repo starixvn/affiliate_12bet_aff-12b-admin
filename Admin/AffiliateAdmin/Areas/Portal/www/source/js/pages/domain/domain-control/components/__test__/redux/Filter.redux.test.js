@@ -36,7 +36,7 @@ describe('domain control - Filter - connect', () => {
         const mockBindAction = jest.fn();
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
-            setSelectedMarket: actions['setSelectedMarket'],
+            setSelectedMarketId: actions['setSelectedMarketId'],
             fetchData: actions['fetchData']
         }
 

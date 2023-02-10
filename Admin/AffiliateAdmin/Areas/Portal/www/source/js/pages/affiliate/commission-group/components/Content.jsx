@@ -68,7 +68,7 @@ export class Content extends Component {
                 <GridData onEdit={this.handleEditGroup} />
                 <Pager pageOption={this.props.pagingOption} onPaging={this.onPaging} />
 
-                <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop='false' innerRef={this.modalRef}>
+                <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop="static" innerRef={this.modalRef}>
                     <ModalHeader toggle={this.handleHide}><span className="iconpopup"></span>{popupTitle}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">

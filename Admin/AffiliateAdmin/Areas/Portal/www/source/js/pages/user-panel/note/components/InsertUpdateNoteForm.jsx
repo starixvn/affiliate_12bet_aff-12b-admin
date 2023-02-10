@@ -112,7 +112,7 @@ export class InsertUpdateNoteForm extends PureComponent {
         const validationResult = this._validateNoteContent();
 
         return (
-            <Modal isOpen={isShowPopup} toggle={this.handleClosePopup} backdrop='false'>
+            <Modal isOpen={isShowPopup} toggle={this.handleClosePopup} backdrop="static">
                 <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>{popupTitle}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">

@@ -15,7 +15,7 @@ describe('Loader', () => {
     it('render - correctly with correct props', () => {
         const renderer = new ShallowRenderer();
 
-        const result = renderer.render(<Loader backdrop={false} show={true} style={{ color: 'red' }} />);
+        const result = renderer.render(<Loader backdrop="static" show={true} style={{ color: 'red' }} />);
 
         expect(result).toMatchSnapshot();
     });

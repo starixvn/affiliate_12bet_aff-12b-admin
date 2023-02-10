@@ -84,9 +84,18 @@ exports[`domain - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="4/19/2018"
+              title=""
             >
-              4/19/2018
+              
+            </t>
+            <t
+              asc={true}
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              undefined
             </t>
             <React.Fragment>
               <t
@@ -96,31 +105,22 @@ exports[`domain - components - Content  render correctly 1`] = `
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="Edit Domain"
               >
                 <Button
-                  color="link p-0"
+                  color="link py-0"
                   onClick={[Function]}
                   tag="button"
+                  title="Edit Domain"
                 >
                   <span
                     className="oi oi-pencil text-secondary"
                   />
                 </Button>
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="Delete Domain"
-              >
                 <Button
-                  color="link p-0"
+                  color="link py-0"
                   onClick={[Function]}
                   tag="button"
+                  title="Delete Domain"
                 >
                   <span
                     className="oi oi-trash text-danger"
@@ -184,9 +184,18 @@ exports[`domain - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="8/1/2018"
+              title=""
             >
-              8/1/2018
+              
+            </t>
+            <t
+              asc={true}
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              undefined
             </t>
             <React.Fragment>
               <t
@@ -196,31 +205,22 @@ exports[`domain - components - Content  render correctly 1`] = `
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="Edit Domain"
               >
                 <Button
-                  color="link p-0"
+                  color="link py-0"
                   onClick={[Function]}
                   tag="button"
+                  title="Edit Domain"
                 >
                   <span
                     className="oi oi-pencil text-secondary"
                   />
                 </Button>
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="Delete Domain"
-              >
                 <Button
-                  color="link p-0"
+                  color="link py-0"
                   onClick={[Function]}
                   tag="button"
+                  title="Delete Domain"
                 >
                   <span
                     className="oi oi-trash text-danger"
@@ -237,7 +237,7 @@ exports[`domain - components - Content  render correctly 1`] = `
         <t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={35}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -248,7 +248,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={500}
+            colWidth={175}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -259,7 +259,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={35}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -270,7 +270,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={160}
+            colWidth={80}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -281,7 +281,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={100}
+            colWidth={80}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -292,25 +292,24 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={320}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Edit"
+            title="Block Market"
           >
-            Edit
+            Block Market
           </t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={50}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Delete"
           >
-            Delete
+            Action
           </t>
         </t>
       }
@@ -379,7 +378,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
         <t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={35}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -390,7 +389,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={500}
+            colWidth={175}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -401,7 +400,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={35}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -412,7 +411,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={160}
+            colWidth={80}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -423,7 +422,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={100}
+            colWidth={80}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -434,25 +433,24 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={320}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Edit"
+            title="Block Market"
           >
-            Edit
+            Block Market
           </t>
           <t
             asc={true}
-            colWidth={60}
+            colWidth={50}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Delete"
           >
-            Delete
+            Action
           </t>
         </t>
       }

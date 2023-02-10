@@ -124,7 +124,7 @@ export class EditExchangeRateForm extends PureComponent {
         const isValidRate = this._isValidRate(rate.replace(/,/g, '')) || rate === '';
 
         return selectedExchangeRate && (
-            <Modal isOpen={isOpenPopup} toggle={() => this.props.setTogglePopup(false)} backdrop='false'>
+            <Modal isOpen={isOpenPopup} toggle={() => this.props.setTogglePopup(false)} backdrop="static">
                 <ModalHeader toggle={() => this.props.setTogglePopup(false)}><span className="iconpopup"></span>{resource.Title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">

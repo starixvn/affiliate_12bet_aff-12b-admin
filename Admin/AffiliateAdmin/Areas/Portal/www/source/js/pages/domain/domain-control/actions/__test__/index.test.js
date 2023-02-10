@@ -1,8 +1,6 @@
 ﻿import * as actions from '../index';
 import * as types from '../types';
-import { defaultPagingOption } from '../../../../../modules/constants';
 import * as ajaxRequest from '../../../../../modules/ajaxRequest';
-import { getDomainList } from '../../../domain/actions/index';
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -19,12 +17,12 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setSelectedDomain', type: types.SET_SELECTED_DOMAIN, data: { domainId: 123 }},
+    { name: 'setSelectedDomainId', type: types.SET_SELECTED_DOMAIN_ID, data: 123},
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
     { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' },
-    { name: 'setSelectedMarket', type: types.SET_SELECTED_MARKET, data: { marketId: 234 }},
+    { name: 'setSelectedMarketId', type: types.SET_SELECTED_MARKET_ID, data: 234},
     { name: 'setAffDomainList', type: types.SET_AFF_DOMAIN_LIST, data: [{ domainName: "abc.com" }] },
-    { name: 'setRedirectDomainList', type: types.SET_REDIRECT_DOMAIN, data: [{ domainName: "123.com" }] }
+    { name: 'setRedirectDomainList', type: types.SET_REDIRECT_DOMAIN_LIST, data: [{ domainName: "123.com" }] }
 ];
 
 describe('domain control actions', () => {
@@ -36,7 +34,7 @@ describe('domain control actions', () => {
         const expectedResponse = {
             data: [
                 {
-                    DomainId: 123
+                    DomainControlId: 123
                 }
             ],
             status: 200
@@ -52,7 +50,7 @@ describe('domain control actions', () => {
         
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData']("en-GB")).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { market: "en-GB" });
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { "marketId": "en-GB" });
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -69,7 +67,7 @@ describe('domain control actions', () => {
         
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData']("en-GB")).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { market: "en-GB" });
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { "marketId": "en-GB" });
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -77,7 +75,7 @@ describe('domain control actions', () => {
     it('should create action to fetchDomain with insert successfully', () => {
         const expectedAction = [
             { type: types.SET_AFF_DOMAIN_LIST , data: [] },
-            { type: types.SET_REDIRECT_DOMAIN , data: [] },
+            { type: types.SET_REDIRECT_DOMAIN_LIST , data: [] },
         ];
         
         const store = mockStore({ todos: [] });
@@ -177,6 +175,26 @@ describe('domain control actions', () => {
         const result = await actions['deleteDomain'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/DeleteDomainControl', param);
+        expect(result).toEqual(null);
+    })
+
+    it('should create action to getDomainControlById successfully', async () => {
+        const expectedResponse = { data: { DomainId: 123, DomainName: 'abc' }, status: 200 };
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+
+        const result = await actions['getDomainControlById'](123)();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlById', { "domainControlId": 123 });
+
+        expect(result).toEqual({ DomainId: 123, DomainName: 'abc' });
+    })
+
+    it('should create action to getDomainControlById failed', async () => {
+        ajaxRequest.post = jest.fn();
+
+        const result = await actions['getDomainControlById'](123)();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlById', { "domainControlId": 123 });
         expect(result).toEqual(null);
     })
 });

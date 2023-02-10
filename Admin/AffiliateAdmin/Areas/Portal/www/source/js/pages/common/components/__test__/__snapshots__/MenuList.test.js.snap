@@ -8,6 +8,7 @@ exports[`common - Menu List component -  render correctly 1`] = `
     className="d-inline-block"
   >
     <img
+      alt="12Bet icon"
       src="Areas/Portal/www/dist/imgs/i_media1.png"
     />
   </div>

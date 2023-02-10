@@ -20,15 +20,15 @@ describe('domain control - DomainControlPopup - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            selectedDomain: { domainId: 123 },
-            selectedMarket: 'en-GB',
+            selectedDomainId: 123,
+            selectedMarketId: 'en-GB',
             marketList: [],
             affDomainList: [],
             redirectDomainList: []
         };
         const state = {
-            selectedDomain: { domainId: 123 },
-            selectedMarket: 'en-GB',
+            selectedDomainId: 123,
+            selectedMarketId: 'en-GB',
             marketList: [],
             affDomainList: [],
             redirectDomainList: [],
@@ -48,7 +48,9 @@ describe('domain control - DomainControlPopup - connect', () => {
             fetchData: actions['fetchData'],
             updateDomain: actions['updateDomain'],
             toggleLoader: actions['toggleLoader'],
-            setSelectedDomain: actions['setSelectedDomain']
+            getDomainControlById: actions['getDomainControlById'],
+            getMarketListByDomains: actions['getMarketListByDomains'],
+            setSelectedDomainId: actions['setSelectedDomainId']
         }
 
         const dispatch = {};

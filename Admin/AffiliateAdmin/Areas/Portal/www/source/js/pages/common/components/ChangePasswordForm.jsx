@@ -111,7 +111,7 @@ export class ChangePasswordForm extends PureComponent {
         const isValid = passwordValidation.IsValid && confirmPasswordValidation.IsValid;
 
         return (
-            <Modal isOpen={showPopupPassword} toggle={this.handleClosePopup} backdrop='false'>
+            <Modal isOpen={showPopupPassword} toggle={this.handleClosePopup} backdrop="static">
                 <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>{resource.ChangePassword}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">

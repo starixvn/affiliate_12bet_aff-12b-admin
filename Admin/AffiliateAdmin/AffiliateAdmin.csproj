@@ -522,6 +522,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\domain\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\libs\menus.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\OnlineList.redux.test.js" />

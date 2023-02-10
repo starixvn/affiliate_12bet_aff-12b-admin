@@ -153,7 +153,7 @@ export class Content extends PureComponent {
                 {reportTitle && <ReportTitle content={this._buildReportTitle(reportTitle)} />}
                 <GridData handleView={this.handleViewRequest} handleEdit={this.handleEditRequest} handleDelete={this.handleDeleteRequest} />
 
-                <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop='false'>
+                <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop="static">
                     <ModalHeader toggle={this.handleHide}><span className="iconpopup"></span>{popupTitle}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">

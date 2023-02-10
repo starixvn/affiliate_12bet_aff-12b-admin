@@ -25,6 +25,11 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
+  style={
+    Object {
+      "maxWidth": 600,
+    }
+  }
   toggle={[Function]}
   unmountOnClose={true}
   zIndex={1050}
@@ -87,7 +92,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-5"
+          className="mb-3"
           tag="form"
         >
           <FormGroup
@@ -98,7 +103,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
             <Label
               className="required"
               for="domainName"
-              sm={4}
+              sm={3}
               tag="label"
               widths={
                 Array [
@@ -113,7 +118,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
               Domain
             </Label>
             <Col
-              sm={8}
+              sm={9}
               tag="div"
               widths={
                 Array [
@@ -141,7 +146,8 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
             tag="div"
           >
             <Label
-              sm={4}
+              for="isSSL"
+              sm={3}
               tag="label"
               widths={
                 Array [
@@ -156,7 +162,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
               SSL
             </Label>
             <Col
-              sm={8}
+              sm={9}
               tag="div"
               widths={
                 Array [
@@ -170,7 +176,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
             >
               <input
                 checked={false}
-                className="mt-2"
+                id="isSSL"
                 name="isSSL"
                 onChange={[Function]}
                 type="checkbox"
@@ -228,6 +234,11 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
+  style={
+    Object {
+      "maxWidth": 600,
+    }
+  }
   toggle={[Function]}
   unmountOnClose={true}
   zIndex={1050}
@@ -290,7 +301,7 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-5"
+          className="mb-3"
           tag="form"
         >
           <FormGroup
@@ -301,7 +312,7 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
             <Label
               className="required"
               for="domainName"
-              sm={4}
+              sm={3}
               tag="label"
               widths={
                 Array [
@@ -316,7 +327,7 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
               Domain
             </Label>
             <Col
-              sm={8}
+              sm={9}
               tag="div"
               widths={
                 Array [
@@ -344,7 +355,8 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
             tag="div"
           >
             <Label
-              sm={4}
+              for="isSSL"
+              sm={3}
               tag="label"
               widths={
                 Array [
@@ -359,7 +371,7 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
               SSL
             </Label>
             <Col
-              sm={8}
+              sm={9}
               tag="div"
               widths={
                 Array [
@@ -373,11 +385,164 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
             >
               <input
                 checked={true}
-                className="mt-2"
+                id="isSSL"
                 name="isSSL"
                 onChange={[Function]}
                 type="checkbox"
               />
+            </Col>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={3}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Block Market
+            </Label>
+            <Col
+              sm={9}
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <div
+                className="block-market"
+              >
+                <div
+                  className="block-market-item"
+                  key="en-US"
+                >
+                  <input
+                    checked={false}
+                    className="mr-2"
+                    disabled={true}
+                    id="en-US"
+                    onChange={[Function]}
+                    title="This Affiliate domain has been used for this market!"
+                    type="checkbox"
+                  />
+                  <Label
+                    for="en-US"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    English
+                  </Label>
+                </div>
+                <div
+                  className="block-market-item"
+                  key="th-TH"
+                >
+                  <input
+                    checked={true}
+                    className="mr-2"
+                    disabled={false}
+                    id="th-TH"
+                    onChange={[Function]}
+                    title={false}
+                    type="checkbox"
+                  />
+                  <Label
+                    for="th-TH"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Thailand
+                  </Label>
+                </div>
+                <div
+                  className="block-market-item"
+                  key="zh-CN"
+                >
+                  <input
+                    checked={false}
+                    className="mr-2"
+                    disabled={false}
+                    id="zh-CN"
+                    onChange={[Function]}
+                    title={false}
+                    type="checkbox"
+                  />
+                  <Label
+                    for="zh-CN"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    Chinese
+                  </Label>
+                </div>
+                <div
+                  className="block-market-item block-market-All"
+                >
+                  <input
+                    checked={false}
+                    className="mr-2"
+                    disabled={false}
+                    id="All-Markets"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  <Label
+                    for="All-Markets"
+                    tag="label"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    All
+                  </Label>
+                </div>
+              </div>
             </Col>
           </FormGroup>
         </Form>

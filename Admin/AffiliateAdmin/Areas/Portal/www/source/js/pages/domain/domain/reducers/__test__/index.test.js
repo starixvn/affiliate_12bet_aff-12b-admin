@@ -11,7 +11,7 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 const testCaseList = [
     { name: 'shouldResetScrollPosition', value: true, action: { type: types.SHOULD_RESET_SCROLL_POSITION, data: false }, expectedResult: false },
     { name: 'gridData', value: null, action: { type: types.SET_GRID_DATA, data: [{ domainName: 'abc.com' }] }, expectedResult: [{ domainName: 'abc.com' }] },
-    { name: 'selectedDomain', value: null, action: { type: types.SET_SELECTED_DOMAIN, data: { domainId: 123 } }, expectedResult: { domainId: 123 } }
+    { name: 'selectedDomainId', value: null, action: { type: types.SET_SELECTED_DOMAIN_ID, data: 123 }, expectedResult: 123 }
 ]
 
 describe('domain reducers', () => {

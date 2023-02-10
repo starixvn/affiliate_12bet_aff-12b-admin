@@ -133,7 +133,7 @@ export class DomainControlPopup extends PureComponent {
         const buttonLabel = isInsert ? "Add" : "Submit";
 
         return selectedDomain && affDomainList && redirectDomainList && (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='false'>
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static">
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">

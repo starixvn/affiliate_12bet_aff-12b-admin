@@ -73,24 +73,21 @@ export class DomainPopup extends PureComponent {
             return;
         }
 
-        const marketItem = marketListByDomains.find(item => item.MarketId === marketId && item.Status !== marketStatus.Using);
-        if (marketItem) {
-            const newMarketListByDomains = marketListByDomains.map(item => {
-                if (item.MarketId !== marketId) {
-                    return item;
-                }
-                return {
-                    ...item,
-                    Status: isChecked ? marketStatus.Blocked : marketStatus.Unblocked
-                };
-            });
+        const newMarketListByDomains = marketListByDomains.map(item => {
+            if (item.MarketId !== marketId) {
+                return item;
+            }
+            return {
+                ...item,
+                Status: isChecked ? marketStatus.Blocked : marketStatus.Unblocked
+            };
+        });
 
-            const blockMarkets = this._handleGetBlockMarkets(newMarketListByDomains);
-            const newDomain = Object.assign({}, selectedDomain, { blockMarkets });
-            const isBlockAllMarkets = (usingMarkets.length + blockMarkets.length) === newMarketListByDomains.length;
+        const blockMarkets = this._handleGetBlockMarkets(newMarketListByDomains);
+        const newDomain = Object.assign({}, selectedDomain, { blockMarkets });
+        const isBlockAllMarkets = (usingMarkets.length + blockMarkets.length) === newMarketListByDomains.length;
 
-            this.setState({ selectedDomain: newDomain, marketListByDomains: newMarketListByDomains, isBlockAllMarkets });
-        }
+        this.setState({ selectedDomain: newDomain, marketListByDomains: newMarketListByDomains, isBlockAllMarkets });
     }
 
     _handleChangeAllMarkets = (event) => {
