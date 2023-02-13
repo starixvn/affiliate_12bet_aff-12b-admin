@@ -4,15 +4,15 @@
     <Setting Key="Aff_SessionIdSel" SpName="Aff_SessionIdSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
     <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
-    <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_User_Login_ResultUpd_view" SpName="Aff_User_Login_ResultUpd_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
+    <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_Login_ResultUpd_view" SpName="Aff_User_Login_ResultUpd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
     <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_CheckIn_view" SpName="Aff_CheckIn" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_Recheckin_view" SpName="Aff_Recheckin" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
     <Setting Key="Aff_User_VerificationInfoSel" SpName="Aff_User_VerificationInfoSel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_User_VerificationUpd" SpName="Aff_User_VerificationUpd" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
-    <Setting Key="Aff_User_VerificationSuccessIns" SpName="Aff_User_VerificationSuccessIns_xtest" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
+    <Setting Key="Aff_User_VerificationSuccessIns" SpName="Aff_User_VerificationSuccessIns" DbName="DBAFF_Affiliate_12bet_bodbDownlineNet" />
     <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="DBAFF_Affiliate_12bet_bodbDownlineNetView" />
   </Function>
 
