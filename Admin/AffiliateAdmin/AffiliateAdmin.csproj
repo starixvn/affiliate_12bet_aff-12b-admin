@@ -279,7 +279,6 @@
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
     <Content Include="Areas\Portal\www\dist\vendors\moment.js" />
     <Content Include="Areas\Portal\www\dist\vendors\react.js" />
-    <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
     <Content Include="Areas\Portal\www\config-utils\entry.js" />
     <Content Include="Areas\Portal\www\source\js\actions\actionTypes.js" />
@@ -292,6 +291,12 @@
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\MultipleSelectOptionList.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\Option.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\__tests__\OptionAll.test.js" />
+    <Content Include="Areas\Portal\www\source\js\components\select\components\Option.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\select\components\Select.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\select\components\SelectLabel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\select\components\SelectOptionList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\select\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\select\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\components\__test__\Loader.test.js" />
     <Content Include="Areas\Portal\www\source\js\components\__test__\ReportTitle.test.js" />
     <Content Include="Areas\Portal\www\source\js\layouts\__test__\AppLayout.test.js" />
@@ -514,6 +519,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain\components\__test__\redux\AppContainer.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\libs\menus.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\home\components\__test__\redux\OnlineList.redux.test.js" />
@@ -952,8 +961,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Unactivated.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\Activated.jsx" />
-    <Content Include="Areas\Portal\Views\Domain\DomainControl.cshtml" />
-    <Content Include="Areas\Portal\Views\Domain\_DomainSubMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\index.jsx" />
@@ -1505,8 +1512,6 @@
     <Content Include="Areas\Portal\www\source\style\pages\under-maintenance.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\change-admin-password.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\member\active-member.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\domain\domain.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_department-popup.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\home.scss" />
@@ -1522,6 +1527,10 @@
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\processing-request.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate\feedback-report.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\user-panel\click-statistics.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\domain.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_select.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_autocomplete.scss" />
+    <Content Include="Areas\Portal\www\source\style\vendors\select.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1550,7 +1559,6 @@
       <Name>Fanex.Affiliate.Admin.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
@@ -1559,6 +1567,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

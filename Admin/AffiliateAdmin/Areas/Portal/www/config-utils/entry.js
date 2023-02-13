@@ -63,11 +63,8 @@ module.exports = {
     [`${styleDist}/pages/admin-role/role-permission`]: clientRoot + "/style/pages/admin-role/role-permission.scss",
 
     //Domain
-    [`${jsDist}/pages/domain/domain`]: clientRoot + "/js/pages/domain/domain/index.jsx",
-    [`${jsDist}/pages/domain/domain-control`]: clientRoot + "/js/pages/domain/domain-control/index.jsx",
-
-    [`${styleDist}/pages/domain/domain`]: clientRoot + "/style/pages/domain/domain.scss",
-    [`${styleDist}/pages/domain/domain-control`]: clientRoot + "/style/pages/domain/domain-control.scss",
+    [`${jsDist}/pages/domain`]: clientRoot + "/js/pages/domain/index.jsx",
+    [`${styleDist}/pages/domain`]: clientRoot + "/style/pages/domain.scss",
 
     //Common
     [`${jsDist}/pages/login`]: clientRoot + "/js/pages/login/index.jsx",

@@ -1,14 +1,15 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
+using Fanex.Affiliate.Admin.Core.Utilities.Domain;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -17,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     [FunctionAuthorize(FunctionName = Function.DomainMenu)]
     public class DomainController : ReadOnlySessionBaseController
     {
-        private readonly IDomainService _domainService;
+        protected readonly IDomainService _domainService;
 
         public DomainController(
             ISessionService sessionService,
@@ -26,40 +27,55 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             _domainService = domainService;
         }
 
-        public ActionResult Index(bool isAffDomain = true)
+        public virtual ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain?isAffDomain=true"), IsActive = isAffDomain },
-                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/Domain?isAffDomain=false"), IsActive = !isAffDomain },
-                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl") }
-            };
-
             var model = new DomainViewModel
             {
-                SubMenuList = subMenu,
-                IsAffDomain = isAffDomain
+                MarketList = _domainService.GetVisibleMarketsByUser(SessionService.UserId),
+                IsAffDomain = true
             };
 
-            return View(model);
+            return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainList(bool isAffDomain)
+        public ActionResult GetDomainList(bool isAffDomain = true)
         {
             return new JsonNetResult
             {
-                Data = _domainService.GetDomainList(isAffDomain)
+                Data = _domainService.GetDomainList(SessionService.UserId, isAffDomain)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetDomainById(int domainId, bool isAffDomain = true)
+        {
+            return new JsonNetResult
+            {
+                Data = _domainService.GetDomainById(SessionService.UserId, domainId, isAffDomain)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetMarketList(MarketParam param)
+        {
+            param.UserId = SessionService.UserId;
+
+            return new JsonNetResult
+            {
+                Data = _domainService.GetMarketList(param)
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
-        public ActionResult InsertDomain(InsertUpdateDomainParam param)
+        public ActionResult InsertDomain(InsertDomainParam param)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -75,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Please input Domain's name."
+                    Message = "The Domain' info is invalid!"
                 }
             };
         }
@@ -83,17 +99,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
-        public ActionResult UpdateDomain(InsertUpdateDomainParam param)
+        public ActionResult UpdateDomain(UpdateDomainParam param)
         {
-            var isValidDomainId = param.DomainId >= Validation.MinId;
-            if (ModelState.IsValid && isValidDomainId)
+            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
-                GetUserInfoParam(encodeParam);
+                var serializedParent = JsonConvert.SerializeObject(encodeParam);
+                UpdateDomainParam newParam = JsonConvert.DeserializeObject<UpdateDomainParam>(serializedParent);
+                newParam.DomainId = param.DomainId;
+                GetUserInfoParam(newParam);
 
                 return new JsonNetResult
                 {
-                    Data = _domainService.UpdateDomain(encodeParam)
+                    Data = _domainService.UpdateDomain(newParam)
                 };
             }
 
@@ -102,7 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = !isValidDomainId ? "Domain Id is invalid." : "Please input Domain's name."
+                    Message = "The Domain' info is invalid!"
                 }
             };
         }
@@ -127,17 +145,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 Data = new ResultInfo
                 {
                     Code = Code.GeneralErrorCode,
-                    Message = "Domain id is incorrect."
+                    Message = "The Domain is incorrect!"
                 }
             };
         }
 
-        private InsertUpdateDomainParam EncodeParam(InsertUpdateDomainParam param)
+        private InsertDomainParam EncodeParam(InsertDomainParam param)
         {
-            return new InsertUpdateDomainParam
+            return new InsertDomainParam
             {
-                DomainId = param.DomainId,
                 DomainName = Server.HtmlEncode(param.DomainName),
+                BlockMarkets = Server.HtmlEncode(param.BlockMarkets),
                 IsSSL = param.IsSSL,
                 IsAffDomain = param.IsAffDomain
             };
@@ -147,6 +165,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             param.UserId = SessionService.UserId;
             param.Ip = Request.UserHostAddress;
+        }
+
+        private IEnumerable<Market> GetVisibleMarketsNotUsingByUser()
+        {
+            return _domainService.GetVisibleMarketsNotUsingByUser(SessionService.UserId);
         }
     }
 }

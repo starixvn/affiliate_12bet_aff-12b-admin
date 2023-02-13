@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 {
     public class DomainControlInfo
     {
-        public int DomainId { get; set; }
+        public int DomainControlId { get; set; }
 
         public int AffDomainId { get; set; }
 
@@ -16,14 +16,12 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string MarketId { get; set; }
 
-        public string Market { get; set; }
+        public string MarketName { get; set; }
 
-        public bool IsUsed { get; set; }
+        public bool Status { get; set; }
 
         public string Creator { get; set; }
 
         public DateTime? CreatedDate { get; set; }
-
-        public string CreatedDateText => CreatedDate?.ToString("MM/dd/yyyy");
     }
 }

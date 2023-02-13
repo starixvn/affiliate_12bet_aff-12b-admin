@@ -48,10 +48,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Chinese Simplified"
-            >
-              Chinese Simplified
-            </t>
+            />
             <t
               asc={true}
               className="text-center"
@@ -105,7 +102,6 @@ exports[`domain control - components - Content  render correctly 1`] = `
               sorting={false}
             >
               <input
-                checked={true}
                 disabled={true}
                 type="checkbox"
               />
@@ -118,31 +114,22 @@ exports[`domain control - components - Content  render correctly 1`] = `
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="Edit Domain"
               >
                 <Button
-                  color="link p-0"
+                  color="link py-0"
                   onClick={[Function]}
                   tag="button"
+                  title="Edit Domain"
                 >
                   <span
                     className="oi oi-pencil text-secondary"
                   />
                 </Button>
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="Delete Domain"
-              >
                 <Button
-                  color="link p-0"
+                  color="link py-0"
                   onClick={[Function]}
                   tag="button"
+                  title="Delete Domain"
                 >
                   <span
                     className="oi oi-trash text-danger"
@@ -170,10 +157,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Chinese Simplified"
-            >
-              Chinese Simplified
-            </t>
+            />
             <t
               asc={true}
               className="text-center"
@@ -227,7 +211,6 @@ exports[`domain control - components - Content  render correctly 1`] = `
               sorting={false}
             >
               <input
-                checked={true}
                 disabled={true}
                 type="checkbox"
               />
@@ -240,31 +223,22 @@ exports[`domain control - components - Content  render correctly 1`] = `
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="Edit Domain"
               >
                 <Button
-                  color="link p-0"
+                  color="link py-0"
                   onClick={[Function]}
                   tag="button"
+                  title="Edit Domain"
                 >
                   <span
                     className="oi oi-pencil text-secondary"
                   />
                 </Button>
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="Delete Domain"
-              >
                 <Button
-                  color="link p-0"
+                  color="link py-0"
                   onClick={[Function]}
                   tag="button"
+                  title="Delete Domain"
                 >
                   <span
                     className="oi oi-trash text-danger"
@@ -281,7 +255,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
         <t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={22}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -292,7 +266,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={100}
+            colWidth={86}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -308,9 +282,9 @@ exports[`domain control - components - Content  render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="AffDomain"
+            title="Aff Domain"
           >
-            AffDomain
+            Aff Domain
           </t>
           <t
             asc={true}
@@ -347,7 +321,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={22}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -358,25 +332,13 @@ exports[`domain control - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={35}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Edit"
           >
-            Edit
-          </t>
-          <t
-            asc={true}
-            colWidth={20}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Delete"
-          >
-            Delete
+            Action
           </t>
         </t>
       }
@@ -445,7 +407,7 @@ exports[`domain control - components - Content  render correctly with gridData i
         <t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={22}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -456,7 +418,7 @@ exports[`domain control - components - Content  render correctly with gridData i
           </t>
           <t
             asc={true}
-            colWidth={100}
+            colWidth={86}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -472,9 +434,9 @@ exports[`domain control - components - Content  render correctly with gridData i
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="AffDomain"
+            title="Aff Domain"
           >
-            AffDomain
+            Aff Domain
           </t>
           <t
             asc={true}
@@ -511,7 +473,7 @@ exports[`domain control - components - Content  render correctly with gridData i
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={22}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -522,25 +484,13 @@ exports[`domain control - components - Content  render correctly with gridData i
           </t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={35}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Edit"
           >
-            Edit
-          </t>
-          <t
-            asc={true}
-            colWidth={20}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Delete"
-          >
-            Delete
+            Action
           </t>
         </t>
       }

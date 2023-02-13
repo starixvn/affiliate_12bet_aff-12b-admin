@@ -111,7 +111,7 @@ export class PermissionPopup extends PureComponent {
         const { userInfo } = this.props;
 
         return data && (
-            <Modal isOpen={!!userInfo} toggle={this._handleClosePopup} backdrop='static'>
+            <Modal isOpen={!!userInfo} toggle={this._handleClosePopup} backdrop="static">
                 <ModalHeader toggle={this._handleClosePopup}>
                     <div className="text-truncate" style={{ width: 450 }}>
                         <span className="iconpopup"></span>{userInfo.UserName + " - Permission"}

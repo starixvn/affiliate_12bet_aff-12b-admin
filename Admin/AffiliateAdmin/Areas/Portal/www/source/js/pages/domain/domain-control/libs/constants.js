@@ -5,11 +5,19 @@ export { globalResource };
 export const headerText = {
     Index: globalResource.Index,
     Market: 'Market',
-    AffDomain: 'AffDomain',
+    AffDomain: 'Aff Domain',
     RedirectDomain: 'Redirect Domain',
     Creator: 'Creator',
     CreatedDate: 'Created Date',
     Status: 'Status',
-    Edit: globalResource.Edit,
-    Delete: globalResource.Delete
+    Action: globalResource.Action
+}
+
+export const defaultState = {
+    isInsert: true,
+    isShowMessage: false,
+    isSuccess: true,
+    message: '',
+    selectedDomain: null,
+    marketListByDomains: null
 }

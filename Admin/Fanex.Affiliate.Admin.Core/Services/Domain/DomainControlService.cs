@@ -1,109 +1,51 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Data;
-using System;
+using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
-    public class DomainControlService : BaseRepository, IDomainControlService
+    public class DomainControlService : IDomainControlService
     {
-        public IEnumerable<DomainControlInfo> GetDomainControlList(string market)
+        private readonly IDomainService _domainService;
+        private readonly IDomainControlRepository _domainControlRepository;
+        public DomainControlService(
+            IDomainService domainService,
+            IDomainControlRepository domainControlRepository)
         {
-            const string SpKey = "Aff_Admin_DomainControl_Sel";
-
-            var result = new List<DomainControlInfo>();
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.SetParameterValue("MarketId", market);
-
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new DomainControlInfo
-                        {
-                            DomainId = Convert.ToInt32(reader["DomainControlId"]),
-                            MarketId = Convert.ToString(reader["MarketId"]),
-                            Market = Convert.ToString(reader["MarketName"]),
-                            AffDomainId = reader.GetVal<int>("AffDomainId"),
-                            AffDomain = Convert.ToString(reader["AffDomain"]),
-                            RedirectDomainId = reader.GetVal<int>("RedirectDomainId"),
-                            RedirectDomain = Convert.ToString(reader["RedirectDomain"]),
-                            IsUsed = reader.GetVal<bool>("Status"),
-                            Creator = Convert.ToString(reader["Creator"]),
-                            CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"])
-                        });
-                    }
-                }
-            }
-
-            return result;
+            _domainService = domainService;
+            _domainControlRepository = domainControlRepository;
         }
 
-        public ResultInfo InsertDomainControl(InsertUpdateDomainControlParam param)
+        public IEnumerable<Market> GetVisibleMarketsByUser(int userId)
         {
-            const string SpKey = "Aff_Admin_DomainControl_Ins";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                AssignParam(objectDb, param);
-
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
+            return _domainService.GetVisibleMarketsByUser(userId);
         }
 
-        public ResultInfo UpdateDomainControl(InsertUpdateDomainControlParam param)
+        public IEnumerable<DomainControlInfo> GetDomainControlList(string marketIds)
         {
-            const string SpKey = "Aff_Admin_DomainControl_Upd";
+            return _domainControlRepository.GetDomainControlList(marketIds);
+        }
 
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.SetParameterValue("DomainControlId", param.DomainId);
+        public DomainControlInfo GetDomainControlById(int domainControlId)
+        {
+            return _domainControlRepository.GetDomainControlById(domainControlId);
+        }
 
-                AssignParam(objectDb, param);
+        public ResultInfo InsertDomainControl(InsertDomainControlParam param)
+        {
+            return _domainControlRepository.InsertDomainControl(param);
+        }
 
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
+        public ResultInfo UpdateDomainControl(UpdateDomainControlParam param)
+        {
+            return _domainControlRepository.UpdateDomainControl(param);
         }
 
         public ResultInfo DeleteDomainControl(DeleteDomainControlParam param)
         {
-            const string SpKey = "Aff_Admin_DomainControl_Del";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.SetParameterValue("DomainControlId", param.DomainId);
-                objectDb.SetParameterValue("userid", param.UserId);
-                objectDb.SetParameterValue("ip", param.Ip);
-
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
-        }
-
-        private static void AssignParam(IObjectDb objectDb, InsertUpdateDomainControlParam param)
-        {
-            objectDb.SetParameterValue("AffDomainID", param.AffDomainId);
-            objectDb.SetParameterValue("12BetDomainID", param.RedirectDomainId);
-            objectDb.SetParameterValue("MarketID", param.MarketId);
-            objectDb.SetParameterValue("Status", param.IsUsed);
-            objectDb.SetParameterValue("UserID", param.UserId);
-            objectDb.SetParameterValue("IP", param.Ip);
-
-            AssignResultOutputParam(objectDb);
+            return _domainControlRepository.DeleteDomainControl(param);
         }
     }
 }

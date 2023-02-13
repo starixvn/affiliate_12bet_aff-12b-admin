@@ -74,7 +74,7 @@ export default class CommissionGroupPopup extends PureComponent {
 
         return (
             <div className="data-content">
-                <Modal isOpen={showPopupCommGroup} toggle={this.handleClosePopup} backdrop='static' size={size} style={{ maxWidth }}>
+                <Modal isOpen={showPopupCommGroup} toggle={this.handleClosePopup} backdrop="static" size={size} style={{ maxWidth }}>
                     <ModalHeader toggle={this.handleClosePopup}>
                         <span className="iconpopup"></span>{isUsingPrivateGroup ? `Approve affiliate ${affName} with a private commission group` : title}
                     </ModalHeader>

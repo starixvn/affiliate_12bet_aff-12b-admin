@@ -94,7 +94,7 @@ export class EmailDetailForm extends PureComponent {
 
         return dataItem && (
             <React.Fragment>
-                <Modal isOpen={!!selectedEmailId} toggle={this.handleClosePopup} backdrop='static'>
+                <Modal isOpen={!!selectedEmailId} toggle={this.handleClosePopup} backdrop="static">
                     <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>{resource.EmailDetail}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">

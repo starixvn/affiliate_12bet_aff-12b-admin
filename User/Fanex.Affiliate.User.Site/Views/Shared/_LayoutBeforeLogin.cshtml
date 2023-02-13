@@ -16,20 +16,20 @@
 @section classNav{page-container}
 
 @section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
+    <script src="~/www/build/js/lib/jsencrypt-2.3.1.min.js"></script>
 
     @if (!settingService.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase) || settingService.IsProduction)
     {
         <!-- Google Analytics -->
         <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5160706-44"></script>
-            <script type="text/javascript">
-                window.dataLayer = window.dataLayer || [];
-                function gtag() { dataLayer.push(arguments); }
-                gtag('js', new Date());
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5160706-44"></script>
+        <script type="text/javascript">
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
 
-                gtag('config', 'UA-5160706-44');
-            </script>
+            gtag('config', 'UA-5160706-44');
+        </script>
         <!-- End Google Analytics -->
     }
 
@@ -103,7 +103,8 @@
                             <div class="form-group">
                                 <input type="text" id="dialogtxtValidation" class="form-control captcha-input" placeholder="@Lang.Validation" />
                                 <div class="validation-value">
-                                <img src="" alt="captcha" id="loginDialogcaptchaImg" /></div>
+                                    <img src="" alt="captcha" id="loginDialogcaptchaImg" />
+                                </div>
                             </div>
 
                             <button type="button" id="btnDialogLogin" class="btn btn-submit btn-block text-uppercase">@Lang.Login</button>

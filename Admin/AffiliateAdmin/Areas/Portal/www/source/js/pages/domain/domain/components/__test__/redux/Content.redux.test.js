@@ -45,7 +45,7 @@ describe('domain - Content - connect', () => {
             deleteDomain: actions['deleteDomain'],
             fetchData: actions['fetchData'],
             toggleLoader: actions['toggleLoader'],
-            setSelectedDomain: actions['setSelectedDomain'],
+            setSelectedDomainId: actions['setSelectedDomainId'],
             setShouldResetScrollPosition: actions['setShouldResetScrollPosition']
         }
 

@@ -131,7 +131,7 @@ export class InsertForm extends PureComponent {
 
         return (
             <React.Fragment>
-                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
+                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static">
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>Assign Offer Page To Affiliate</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">

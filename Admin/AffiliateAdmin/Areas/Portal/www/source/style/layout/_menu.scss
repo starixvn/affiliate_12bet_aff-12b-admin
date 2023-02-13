@@ -5,7 +5,11 @@
     background: linear-gradient(#b5d7fa, #86a9d3);
 
     .menu-list {
+        width: 100%;
         margin-left: 1px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow-x: auto;
 
         .nav-link {
             padding: 4px 12px 2px 12px;

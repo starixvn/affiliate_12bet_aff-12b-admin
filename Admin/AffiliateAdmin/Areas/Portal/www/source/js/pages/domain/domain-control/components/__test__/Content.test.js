@@ -33,7 +33,7 @@ describe('domain control - components - Content ', () => {
                         CreatedDate: "2018-05-02T04:23:45.707",
                         CreatedDateText: "05/02/2018",
                         Creator: "AAjenny",
-                        DomainId: 89,
+                        DomainControlId: 89,
                         IsUsed: true,
                         Market: "Chinese Simplified",
                         MarketId: "zh-CN",
@@ -46,7 +46,7 @@ describe('domain control - components - Content ', () => {
                         CreatedDate: "2018-05-02T23:15:20.28",
                         CreatedDateText: "05/02/2018",
                         Creator: "AAjenny",
-                        DomainId: 92,
+                        DomainControlId: 92,
                         IsUsed: true,
                         Market: "Chinese Simplified",
                         MarketId: "zh-CN",
@@ -58,7 +58,7 @@ describe('domain control - components - Content ', () => {
     const defaultProps = {
         shouldResetScrollPosition: true,
         isModifiable: true,
-        selectedMarket: '',
+        selectedMarketId: '',
         gridData,
         affDomainList,
         redirectDomainList
@@ -123,7 +123,7 @@ describe('domain control - components - Content ', () => {
     });
 
     it('_handleEditDomain - should be called when click edit button', () => {
-        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn(), setSelectedDomain: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn(), setSelectedDomainId: jest.fn() });
 
         const wrapper = shallow(<Content {...props} />);
         const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
@@ -131,18 +131,18 @@ describe('domain control - components - Content ', () => {
         dataRow.find('Button').at(0).simulate('click');
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(props.setSelectedDomain).toHaveBeenCalledWith({"affDomainId": 21, "domainId": 89, "isUsed": true, "marketId": "zh-CN", "redirectDomainId": 58});
+        expect(props.setSelectedDomainId).toHaveBeenCalledWith(89);
     });
 
     it('_handleEditDomain - should be called when click add button', () => {
-        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn(), setSelectedDomain: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn(), setSelectedDomainId: jest.fn() });
 
         const wrapper = shallow(<Content {...props} />);
 
         wrapper.find('Button').at(0).simulate('click');
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(props.setSelectedDomain).toHaveBeenCalledWith({"affDomainId": 21, "domainId": 0, "isUsed": false, "marketId": "en-GB", "redirectDomainId": 46});
+        expect(props.setSelectedDomainId).toHaveBeenCalledWith(0);
     });
 
     it('_deleteDomain - should call deleteDomain with delete successfully', async () => {
@@ -155,7 +155,7 @@ describe('domain control - components - Content ', () => {
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteDomain).toHaveBeenCalledWith({ DomainId: 2438 });
+        expect(props.deleteDomain).toHaveBeenCalledWith({ DomainControlId: 2438 });
         expect(props.fetchData).toHaveBeenCalledWith('');
     });
 
@@ -170,7 +170,7 @@ describe('domain control - components - Content ', () => {
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteDomain).toHaveBeenCalledWith({ DomainId: 2438 });
+        expect(props.deleteDomain).toHaveBeenCalledWith({ DomainControlId: 2438 });
         expect(wrapper.setState).toHaveBeenCalledWith({ message: "Delete is failed!", isConfirmPopup: false });
     });
 
@@ -184,7 +184,7 @@ describe('domain control - components - Content ', () => {
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteDomain).toHaveBeenCalledWith({ DomainId: 2438 });
+        expect(props.deleteDomain).toHaveBeenCalledWith({ DomainControlId: 2438 });
         expect(wrapper.setState).not.toHaveBeenCalled();
     });
 })

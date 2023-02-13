@@ -6,6 +6,7 @@ export const globalResource = {
     Search: 'Search',
     SearchBy: 'Search By',
     All: 'All',
+    Action: 'Action',
     Product: 'Product',
     Add: 'Add',
     Edit: 'Edit',

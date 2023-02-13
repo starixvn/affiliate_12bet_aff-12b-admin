@@ -19,7 +19,6 @@ export default class App extends Component {
     render() {
         const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
         const languageList = window.initialState.languageList;
-        const userName = window.initialState.userName;
         const today = window.initialState.today;
         const state = Object.assign({}, this.state, {claimsPrincipal, languageList, today});
         const store = configureStore(state, reducer);

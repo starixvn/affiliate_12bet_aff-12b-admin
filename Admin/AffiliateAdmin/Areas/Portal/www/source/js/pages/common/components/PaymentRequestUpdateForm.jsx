@@ -246,7 +246,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
         const isUpdatableForm = isPending && isUpdatable;
 
         return paymentRequestInfo && (
-            <Modal isOpen={transactionId} toggle={this.handleClosePopup} backdrop='static'>
+            <Modal isOpen={transactionId} toggle={this.handleClosePopup} backdrop="static">
                 <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>Trxn.ID {transactionId}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper p-0">

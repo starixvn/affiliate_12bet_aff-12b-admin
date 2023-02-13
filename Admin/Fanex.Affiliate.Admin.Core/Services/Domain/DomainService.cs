@@ -1,104 +1,59 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Data;
-using System;
+using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using System.Collections.Generic;
-using System.Data;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
-    public class DomainService : BaseRepository, IDomainService
+    public class DomainService : IDomainService
     {
-        public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain)
+        private const byte USING = 2;
+        private readonly IDomainRepository _domainRepository;
+        public DomainService(
+            IDomainRepository domainRepository)
         {
-            var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel";
-
-            var result = new List<DomainInfo>();
-
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(BuildDomainInfoItem(reader));
-                    }
-                }
-            }
-
-            return result;
+            _domainRepository = domainRepository;
+        }
+        public IEnumerable<Market> GetMarketList(MarketParam param)
+        {
+            return _domainRepository.GetMarketList(param);
         }
 
-        public ResultInfo InsertDomain(InsertUpdateDomainParam param)
+        public IEnumerable<Market> GetVisibleMarketsByUser(int userId)
         {
-            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Ins" : "Aff_Admin_12BETDomain_Ins";
-
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                AssignParam(objectDb, param);
-
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
+            return GetMarketList(new MarketParam { UserId = userId });
         }
 
-        public ResultInfo UpdateDomain(InsertUpdateDomainParam param)
+        public IEnumerable<Market> GetVisibleMarketsNotUsingByUser(int userId)
         {
-            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Upd" : "Aff_Admin_12BETDomain_Upd";
+            return GetVisibleMarketsByUser(userId).Where(m => m.Status != USING);
+        }
 
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                objectDb.SetParameterValue("DomainId", param.DomainId);
-                AssignParam(objectDb, param);
+        public IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true)
+        {
+            return _domainRepository.GetDomainList(userId, isAffDomain);
+        }
 
-                objectDb.ExecuteNonQuery();
+        public DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true)
+        {
+            return _domainRepository.GetDomainById(userId, domainId, isAffDomain);
+        }
 
-                return GetResultInfo(objectDb);
-            }
+        public ResultInfo InsertDomain(InsertDomainParam param)
+        {
+            return _domainRepository.InsertDomain(param);
+        }
+
+        public ResultInfo UpdateDomain(UpdateDomainParam param)
+        {
+            return _domainRepository.UpdateDomain(param);
         }
 
         public ResultInfo DeleteDomain(DeleteDomainParam param)
         {
-            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Del" : "Aff_Admin_12BETDomain_Del";
-
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                objectDb.SetParameterValue("DomainId", param.DomainId);
-                objectDb.SetParameterValue("userid", param.UserId);
-                objectDb.SetParameterValue("ip", param.Ip);
-
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
-        }
-
-        private static void AssignParam(IObjectDb objectDb, InsertUpdateDomainParam param)
-        {
-            objectDb.SetParameterValue("DomainName", param.DomainName);
-            objectDb.SetParameterValue("IsSSL", param.IsSSL);
-            objectDb.SetParameterValue("UserID", param.UserId);
-            objectDb.SetParameterValue("IP", param.Ip);
-
-            AssignResultOutputParam(objectDb);
-        }
-
-        private static DomainInfo BuildDomainInfoItem(IDataReader reader)
-        {
-            return new DomainInfo
-            {
-                DomainId = Convert.ToInt32(reader["DomainId"]),
-                DomainName = Convert.ToString(reader["DomainName"]),
-                IsSSL = reader.GetVal<bool>("IsSSL"),
-                Creator = Convert.ToString(reader["Creator"]),
-                CreatedDate = reader["CreateDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreateDate"])
-            };
+            return _domainRepository.DeleteDomain(param);
         }
     }
 }

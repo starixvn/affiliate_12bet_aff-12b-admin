@@ -151,7 +151,7 @@ export class MessageDetailForm extends PureComponent {
 
         return (
             <React.Fragment>
-                <Modal isOpen={isShowPopup} size="lg" toggle={this._handleClosePopup} backdrop='static' innerRef={this.modalRef}>
+                <Modal isOpen={isShowPopup} size="lg" toggle={this._handleClosePopup} backdrop="static" innerRef={this.modalRef}>
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">

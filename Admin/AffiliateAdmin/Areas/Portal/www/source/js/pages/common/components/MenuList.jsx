@@ -5,7 +5,7 @@ export const MenuList = (props) => {
     return (
         <div className='sub-menu-container'>
             <div className='d-inline-block'>
-                <img src={props.img} />
+                <img src={props.img} alt="12Bet icon"/>
             </div>
             <div className='d-inline-block'>
                 <ul className='nav'>

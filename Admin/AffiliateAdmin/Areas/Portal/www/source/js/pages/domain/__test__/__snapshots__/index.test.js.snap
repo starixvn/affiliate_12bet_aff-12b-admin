@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`domain - index Should render correctly 1`] = `
+<BrowserRouter
+  forceRefresh={true}
+>
+  <Memo(MenuList)
+    img="Areas/Portal/www/dist/imgs/i_domain.jpg"
+    menus={
+      Array [
+        Object {
+          "href": "/Portal/Domain",
+          "label": "Affiliate Domain",
+        },
+        Object {
+          "href": "/Portal/MemberDomains",
+          "label": "12Bet Domains",
+        },
+        Object {
+          "href": "/Portal/DomainControl",
+          "label": "Domain Control",
+        },
+      ]
+    }
+  />
+  <Suspense
+    fallback={null}
+  >
+    <Switch>
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_0"
+        path="/Portal/Domain"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_1"
+        path="/Portal/MemberDomains"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_2"
+        path="/Portal/DomainControl"
+      />
+      <Redirect
+        from="/"
+        to="/Portal/Domain"
+      />
+    </Switch>
+  </Suspense>
+</BrowserRouter>
+`;

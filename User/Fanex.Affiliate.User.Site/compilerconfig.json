@@ -39,18 +39,18 @@
   //  "outputFile": "www/build/styles/css/products.css",
   //  "inputFile": "www/source/styles/pages/products.scss"
   //},
-  {
-    "outputFile": "www/build/js/user-panel.js",
-    "inputFile": "www/source/js/pages/user-panel.js"
-  },
+  //{
+  //  "outputFile": "www/build/js/user-panel.js",
+  //  "inputFile": "www/source/js/pages/user-panel.js"
+  //},
   //{
   //  "outputFile": "www/build/js/lib/bootstrap.min.js",
   //  "inputFile": "www/source/js/lib/bootstrap.min.js"
   //},
-  {
-    "outputFile": "www/build/js/daily-earning.js",
-    "inputFile": "www/source/js/pages/daily-earning.js"
-  },
+  //{
+  //  "outputFile": "www/build/js/daily-earning.js",
+  //  "inputFile": "www/source/js/pages/daily-earning.js"
+  //},
   //{
   //  "outputFile": "www/build/js/test.js",
   //  "inputFile": "www/source/js/pages/test.js"
@@ -67,10 +67,10 @@
   //  "outputFile": "www/build/js/pages/logout.js",
   //  "inputFile": "www/source/js/pages/logout.js"
   //},
-  {
-    "outputFile": "www/build/styles/css/statistics.css",
-    "inputFile": "www/source/styles/pages/statistics.scss"
-  },
+  //{
+  //  "outputFile": "www/build/styles/css/statistics.css",
+  //  "inputFile": "www/source/styles/pages/statistics.scss"
+  //},
   //{
   //  "outputFile": "www/build/styles/css/statement-history.css",
   //  "inputFile": "www/source/styles/pages/statement-history.scss"
@@ -135,10 +135,10 @@
   //  "outputFile": "www/build/js/pages/feedback.js",
   //  "inputFile": "www/source/js/pages/feedback.js"
   //},
-  {
-    "outputFile": "www/build/js/pagetracking.js",
-    "inputFile": "www/source/js/components/pagetracking.js"
-  },
+  //{
+  //  "outputFile": "www/build/js/pagetracking.js",
+  //  "inputFile": "www/source/js/components/pagetracking.js"
+  //},
   //{
   //  "outputFile": "www/build/styles/css/verification-account.css",
   //  "inputFile": "www/source/styles/pages/verification-account.scss"
@@ -147,12 +147,12 @@
   //  "outputFile": "www/build/styles/css/news-letter.css",
   //  "inputFile": "www/source/styles/pages/news-letter.scss"
   //},
-  {
-    "outputFile": "www/build/styles/css/promotion.css",
-    "inputFile": "www/source/styles/pages/promotion.scss"
-  },
-  {
-    "outputFile": "www/build/js/pages/promotion.js",
-    "inputFile": "www/source/js/pages/promotion.js"
-  }
+  //{
+  //  "outputFile": "www/build/styles/css/promotion.css",
+  //  "inputFile": "www/source/styles/pages/promotion.scss"
+  //},
+  //{
+  //  "outputFile": "www/build/js/pages/promotion.js",
+  //  "inputFile": "www/source/js/pages/promotion.js"
+  //}
 ]

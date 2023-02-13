@@ -1,6 +1,6 @@
 ﻿.headWrapper {
     width: 100%;
-    min-width: 1007px;
+    min-width: 540px;
     height: 38px;
     background: url(../assets/bg_top.jpg) repeat-x #d4d4d4;
 
@@ -42,6 +42,10 @@
         padding: 10px;
         color: #131111;
         margin-right: 20px;
+
+        @media (max-width: 767px) {
+            display: none;
+        }
 
         .oi-clock {
             margin-right: 10px;
