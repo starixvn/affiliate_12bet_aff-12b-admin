@@ -3,7 +3,6 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
-            _me.handleShowAlert();
         },
         initEvent: function () {
             $('.homeBanner').on('click', function (event) {

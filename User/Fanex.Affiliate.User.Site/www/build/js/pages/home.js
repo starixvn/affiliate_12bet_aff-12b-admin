@@ -5,7 +5,6 @@ var Home = (function ($) {
     var _me = {
         initialize: function initialize() {
             _me.initEvent();
-            _me.handleShowAlert();
         },
         initEvent: function initEvent() {
             $('.homeBanner').on('click', function (event) {
