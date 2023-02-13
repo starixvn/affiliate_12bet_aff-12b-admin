@@ -719,9 +719,9 @@
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-TW.jpg" />
-    <Content Include="www\build\styles\Images\left-side-banner.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.km-KH.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.km-KH.jpg" />
+    <Content Include="www\build\styles\Images\left-side-banner.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion.jpg" />
     <Content Include="www\build\styles\Images\apply12bet\3step.en-US.png" />
     <Content Include="www\build\styles\Images\apply12bet\3step.hi-IN.png" />
@@ -1169,8 +1169,6 @@
     <Content Include="Views\Promotion\_Content.vi-VN.cshtml" />
     <Content Include="Views\Promotion\_Content.zh-CN.cshtml" />
     <Content Include="Views\Promotion\_Content.zh-TW.cshtml" />
-    <Content Include="www\build\styles\Images\left-side-banner.webp" />
-    <Content Include="www\build\styles\Images\right-side-banner.webp" />
     <Content Include="Views\CommissionStructure\_Content.km-KH.cshtml" />
     <Content Include="Views\Product\_Content.km-KH.cshtml" />
     <Content Include="Views\TermAndCondition\_Content.km-KH.cshtml" />
@@ -1275,6 +1273,8 @@
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutLeft.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutRight.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutUp.scss" />
+    <Content Include="www\build\styles\Images\left-side-banner.webp" />
+    <Content Include="www\build\styles\Images\right-side-banner.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
