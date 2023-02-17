@@ -17,7 +17,7 @@
     }
 
     .carousel-inner {
-        height: 300px;
+        height: auto;
 
         > .item {
             height: 100%;
@@ -27,11 +27,8 @@
                 height: 100%;
             }
         }
-
-
-
-        @media (min-width: 1600px) {
-            height: 500px;
+        /*@media (min-width: 1600px) {
+            height: 525px;
         }
 
         @media (min-width: 1300px) and (max-width: 1599px) {
@@ -41,11 +38,25 @@
         @media (min-width: 993px) and (max-width: 1299px) {
             height: 350px;
         }
-        /*@media (min-width: 768px) and (max-width: 992px) {
-            height: 250px;
-        }*/
+
+        @media (min-width: 768px) and (max-width: 992px) {
+            height: 300px;
+        }
+
         @media (max-width: 767px) {
             height: 250px;
+        }
+
+        @media (max-width: 480px) {
+            height: 250px;
+        }*/
+
+        @media (max-width: 480px) {
+            height: 165px;
+        }
+
+        @media (max-width: 320px) {
+            height: 135px;
         }
     }
 }
