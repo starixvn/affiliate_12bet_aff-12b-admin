@@ -1,8 +1,8 @@
-﻿import { maxWidth, deviceTypes, minDate } from '../../../../modules/constants';
+﻿import { maxWidth, deviceTypes, minDateOfClickStatistics } from '../../../../modules/constants';
 import { headerText } from '../../referrers/libs/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-export { globalResource, deviceTypes, maxWidth, minDate }
+export { globalResource, deviceTypes, maxWidth, minDateOfClickStatistics }
 
 export const headerTitle = {
     Page: 'Page',

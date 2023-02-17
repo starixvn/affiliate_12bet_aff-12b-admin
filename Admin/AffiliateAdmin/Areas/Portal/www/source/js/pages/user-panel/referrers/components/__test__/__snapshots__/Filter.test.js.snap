@@ -81,7 +81,7 @@ exports[`referrers - components - Filter render correctly 1`] = `
         }
         isEnable={true}
         maxDate="7/12/2019"
-        minDate={2009-11-30T17:00:00.000Z}
+        minDate={2014-12-31T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>

@@ -7,7 +7,7 @@ import MultipleSelect from '../../../../components/multiple-select';
 
 import { setSelectedSiteDetailFilter, setParam, getCountryList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
-import { headerText, globalResource, deviceTypes, pcLaptop, minDate } from '../libs/constants';
+import { headerText, globalResource, deviceTypes, pcLaptop, minDateOfClickStatistics } from '../libs/constants';
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -123,7 +123,7 @@ export class Filter extends PureComponent {
                     </FormGroup>
                     <FormGroup className="mr-sm-2">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
-                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate}
+                        <DatePicker minDate={minDateOfClickStatistics} maxDate={this.nowString} date={fromDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>
