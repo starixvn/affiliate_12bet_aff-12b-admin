@@ -6,7 +6,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../../components/multiple-select';
 
 import { getDateRange } from '../../../../modules/utils';
-import { headerTitle, deviceTypes, globalResource, minDate, groupByCountry, groupByList } from '../libs/constants';
+import { headerTitle, deviceTypes, globalResource, minDateOfClickStatistics, groupByCountry, groupByList } from '../libs/constants';
 import { setSelectedPageDetailFilter, setParam, setShortCodeLanguageList, getPageList, getCountryList, setIsGroupByCountry } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
@@ -170,7 +170,7 @@ export class Filter extends React.Component {
                     }
                     <FormGroup className="mr-sm-2 my-2">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
-                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate}
+                        <DatePicker minDate={minDateOfClickStatistics} maxDate={this.nowString} date={fromDate}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                             onChange={this.handleChangeFromDate} />
                     </FormGroup>

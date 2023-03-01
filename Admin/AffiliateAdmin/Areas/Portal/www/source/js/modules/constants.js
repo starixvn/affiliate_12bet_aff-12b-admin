@@ -26,6 +26,7 @@ export const spinnerLoaderWidth = (maxWidth / 2) - 32
 export const spinnerLoaderUserPanelHeight = (maxUserPanelHeight / 2) - 32
 
 export const minDate = new Date(2009, 11, 1);
+export const minDateOfClickStatistics = new Date(2015, 0, 1);
 export const sixMonth = 6;
 
 export const pcLaptop = 'PC / Laptop';
