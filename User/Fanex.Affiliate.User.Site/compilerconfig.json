@@ -2,7 +2,7 @@
   {
     "outputFile": "www/build/styles/css/main.css",
     "inputFile": "www/source/styles/scss/main.scss"
-  }
+  },
   //{
   //  "outputFile": "www/build/styles/css/bootstrap.css",
   //  "inputFile": "www/source/styles/scss/vendors/_bootstrap.scss"
@@ -147,10 +147,10 @@
   //  "outputFile": "www/build/styles/css/news-letter.css",
   //  "inputFile": "www/source/styles/pages/news-letter.scss"
   //},
-  //{
-  //  "outputFile": "www/build/styles/css/promotion.css",
-  //  "inputFile": "www/source/styles/pages/promotion.scss"
-  //},
+  {
+    "outputFile": "www/build/styles/css/promotion.css",
+    "inputFile": "www/source/styles/pages/promotion.scss"
+  }
   //{
   //  "outputFile": "www/build/js/pages/promotion.js",
   //  "inputFile": "www/source/js/pages/promotion.js"

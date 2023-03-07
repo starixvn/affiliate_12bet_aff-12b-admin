@@ -2022,12 +2022,6 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Above</value>
   </data>
-  <data name="NewPromotion" xml:space="preserve">
-    <value>New Affiliate Promotion</value>
-  </data>
-  <data name="ExistingPromotion" xml:space="preserve">
-    <value>Existing Affiliate Promotion</value>
-  </data>
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>Revenue Share</value>
   </data>
@@ -2192,5 +2186,47 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BET Affiliate Marketing</value>
+  </data>
+  <data name="CompanyProfit" xml:space="preserve">
+    <value>Company Profit For The Month ($)</value>
+  </data>
+  <data name="ByInvitationOnly" xml:space="preserve">
+    <value>By Invitation only</value>
+  </data>
+  <data name="AboveTwoThousand" xml:space="preserve">
+    <value>250,001 - Above</value>
+  </data>
+  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
+    <value>Qualified Active Members/ Month</value>
+  </data>
+  <data name="Flat50" xml:space="preserve">
+    <value>Flat 50%</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>NEW FDM's</value>
+  </data>
+  <data name="AboveOneThousand" xml:space="preserve">
+    <value>15,000 &amp; Above</value>
+  </data>
+  <data name="FiveToEleven" xml:space="preserve">
+    <value>5 to 11</value>
+  </data>
+  <data name="TwelveToTwentyFour" xml:space="preserve">
+    <value>12 to 24</value>
+  </data>
+  <data name="TwentyFiveToThirtyNine" xml:space="preserve">
+    <value>25 to 39</value>
+  </data>
+  <data name="AboveFourty" xml:space="preserve">
+    <value>40 &amp; Above</value>
+  </data>
+  <data name="TotalFdmDeposit" xml:space="preserve">
+    <value>TOTAL FDM's DEPOSIT ($)</value>
+  </data>
+  <data name="ExtraComm" xml:space="preserve">
+    <value>EXTRA COMMISSION</value>
+  </data>
+  <data name="MaxExtraComm" xml:space="preserve">
+    <value>MAX EXTRA COMMISSION ($)</value>
   </data>
 </root>

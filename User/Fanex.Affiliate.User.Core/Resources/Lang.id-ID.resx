@@ -355,7 +355,7 @@
     <value>Kolombia</value>
   </data>
   <data name="Comm" xml:space="preserve">
-    <value>Komisi </value>
+    <value>Komisi</value>
   </data>
   <data name="Comment" xml:space="preserve">
     <value>Komentar</value>
@@ -1425,7 +1425,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>12AMBER (BETSOFT)</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>Semua Produk</value>
+    <value>Semua produk</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
     <value>Info Lengkap Mengenai Produk 12BET</value>
@@ -1869,14 +1869,8 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Keatas</value>
   </data>
-  <data name="ExistingPromotion" xml:space="preserve">
-    <value>Promosi afiliasi lama</value>
-  </data>
-  <data name="NewPromotion" xml:space="preserve">
-    <value>Promosi afiliasi baru</value>
-  </data>
   <data name="RevenueShareTitle" xml:space="preserve">
-    <value>Pembagian Hasil</value>
+    <value>Pembagian hasil</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
     <value>Virtual Sports</value>
@@ -2078,5 +2072,47 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>Marketing Afiliasi 12BET</value>
+  </data>
+  <data name="CompanyProfit" xml:space="preserve">
+    <value>Pendapatan bersih dalam sebulan ($)</value>
+  </data>
+  <data name="ByInvitationOnly" xml:space="preserve">
+    <value>Khusus Undangan</value>
+  </data>
+  <data name="AboveTwoThousand" xml:space="preserve">
+    <value>250,001 - Lebih</value>
+  </data>
+  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
+    <value>Member aktif per bulan</value>
+  </data>
+  <data name="Flat50" xml:space="preserve">
+    <value>Flat 50%</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>MEMBER BARU DEPOSIT</value>
+  </data>
+  <data name="AboveOneThousand" xml:space="preserve">
+    <value>15,000 &amp; Lebih</value>
+  </data>
+  <data name="FiveToEleven" xml:space="preserve">
+    <value>5 - 11</value>
+  </data>
+  <data name="TwelveToTwentyFour" xml:space="preserve">
+    <value>12 - 24</value>
+  </data>
+  <data name="TwentyFiveToThirtyNine" xml:space="preserve">
+    <value>25 - 39</value>
+  </data>
+  <data name="AboveFourty" xml:space="preserve">
+    <value>40 &amp; Lebih</value>
+  </data>
+  <data name="TotalFdmDeposit" xml:space="preserve">
+    <value>TOTAL DEPOSIT ($)</value>
+  </data>
+  <data name="ExtraComm" xml:space="preserve">
+    <value>EKSTRA KOMISI</value>
+  </data>
+  <data name="MaxExtraComm" xml:space="preserve">
+    <value>MAKS. EKSTRA KOMISI ($)</value>
   </data>
 </root>

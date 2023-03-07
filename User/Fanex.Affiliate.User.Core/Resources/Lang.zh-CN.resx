@@ -1234,7 +1234,7 @@
     <value>这是一封由系统自动发送的电子邮件，请勿直接回复此电子邮件。</value>
   </data>
   <data name="Tier" xml:space="preserve">
-    <value>等级 </value>
+    <value>等级</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>新的密码会发到您提供的注册邮箱。&lt;br /&gt;若您遇到任何困难，请 &lt;a href="{0}"&gt;联络我们。&lt;/a&gt;.</value>
@@ -1867,12 +1867,6 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1及以上</value>
   </data>
-  <data name="NewPromotion" xml:space="preserve">
-    <value>新注册合作伙伴优惠活动</value>
-  </data>
-  <data name="ExistingPromotion" xml:space="preserve">
-    <value>现有合作伙伴优惠活动</value>
-  </data>
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>佣金分成</value>
   </data>
@@ -2084,5 +2078,47 @@
   </data>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BET合作伙伴市场推广</value>
+  </data>
+  <data name="CompanyProfit" xml:space="preserve">
+    <value>每月公司盈利 ($)</value>
+  </data>
+  <data name="ByInvitationOnly" xml:space="preserve">
+    <value>仅限邀请</value>
+  </data>
+  <data name="AboveTwoThousand" xml:space="preserve">
+    <value>250,001 - Above</value>
+  </data>
+  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
+    <value>每月符合资格的活跃会员</value>
+  </data>
+  <data name="Flat50" xml:space="preserve">
+    <value>统一50%</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>首次存款新会员</value>
+  </data>
+  <data name="AboveOneThousand" xml:space="preserve">
+    <value>15,000 及以上</value>
+  </data>
+  <data name="FiveToEleven" xml:space="preserve">
+    <value>5名至11名</value>
+  </data>
+  <data name="TwelveToTwentyFour" xml:space="preserve">
+    <value>12名至24名</value>
+  </data>
+  <data name="TwentyFiveToThirtyNine" xml:space="preserve">
+    <value>25名至39名</value>
+  </data>
+  <data name="AboveFourty" xml:space="preserve">
+    <value>40名以上</value>
+  </data>
+  <data name="TotalFdmDeposit" xml:space="preserve">
+    <value>首次存款新会员总存款金额 ($)</value>
+  </data>
+  <data name="ExtraComm" xml:space="preserve">
+    <value>额外佣金比例</value>
+  </data>
+  <data name="MaxExtraComm" xml:space="preserve">
+    <value>最高额外佣金</value>
   </data>
 </root>

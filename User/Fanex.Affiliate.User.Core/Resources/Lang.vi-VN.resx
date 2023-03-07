@@ -1233,7 +1233,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Đây là email do hệ thống tạo tự động, vui lòng không trả lời trực tiếp email này.</value>
   </data>
   <data name="Tier" xml:space="preserve">
-    <value>Cấp Bậc</value>
+    <value>Cấp</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>Mật khẩu mới sẽ được gửi tới địa chỉ email mà bạn đã cung cấp.&lt;br /&gt;Nếu bạn gặp thêm bất kỳ khó khăn nào, hãy &lt;a href="{0}"&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
@@ -1425,7 +1425,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>12AMBER (BETSOFT)</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>Tất Cả Sản Phẩm</value>
+    <value>Tất cả sản phẩm</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
     <value>Chi tiết các sản phẩm 12BET</value>
@@ -1866,12 +1866,6 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; hơn</value>
   </data>
-  <data name="ExistingPromotion" xml:space="preserve">
-    <value>Khuyến mãi hiện có</value>
-  </data>
-  <data name="NewPromotion" xml:space="preserve">
-    <value>Chương trình khuyến mãi đại lý mới</value>
-  </data>
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>Chia sẻ lợi nhuận</value>
   </data>
@@ -2078,5 +2072,47 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>Tiếp thị liên kết nhà cái 12BET</value>
+  </data>
+  <data name="CompanyProfit" xml:space="preserve">
+    <value>Lợi Nhuận Ròng Trong Tháng ($)</value>
+  </data>
+  <data name="ByInvitationOnly" xml:space="preserve">
+    <value>Chỉ cần giới thiệu</value>
+  </data>
+  <data name="AboveTwoThousand" xml:space="preserve">
+    <value>250,001+</value>
+  </data>
+  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
+    <value>Thành viên đủ điều kiện/ Tháng</value>
+  </data>
+  <data name="Flat50" xml:space="preserve">
+    <value>50% cố định</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>THÀNH VIÊN NẠP MỚI</value>
+  </data>
+  <data name="AboveOneThousand" xml:space="preserve">
+    <value>15,000 &amp; Hơn</value>
+  </data>
+  <data name="FiveToEleven" xml:space="preserve">
+    <value>5 đến 11</value>
+  </data>
+  <data name="TwelveToTwentyFour" xml:space="preserve">
+    <value>12 đến 24</value>
+  </data>
+  <data name="TwentyFiveToThirtyNine" xml:space="preserve">
+    <value>25 đến 39</value>
+  </data>
+  <data name="AboveFourty" xml:space="preserve">
+    <value>40 &amp; Hơn</value>
+  </data>
+  <data name="TotalFdmDeposit" xml:space="preserve">
+    <value>TỔNG GIÁ TRỊ NẠP MỚI ($)</value>
+  </data>
+  <data name="ExtraComm" xml:space="preserve">
+    <value>HOA HỒNG THÊM</value>
+  </data>
+  <data name="MaxExtraComm" xml:space="preserve">
+    <value>MỨC HOA HỒNG CAO NHẤT ($)</value>
   </data>
 </root>

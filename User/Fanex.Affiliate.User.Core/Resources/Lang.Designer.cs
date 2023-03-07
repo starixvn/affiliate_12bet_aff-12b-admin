@@ -107,6 +107,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 40 &amp; Above.
+        /// </summary>
+        public static string AboveFourty {
+            get {
+                return ResourceManager.GetString("AboveFourty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 15,000 &amp; Above.
+        /// </summary>
+        public static string AboveOneThousand {
+            get {
+                return ResourceManager.GetString("AboveOneThousand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 250,001 - Above.
+        /// </summary>
+        public static string AboveTwoThousand {
+            get {
+                return ResourceManager.GetString("AboveTwoThousand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Information.
         /// </summary>
         public static string AccInfo {
@@ -773,6 +800,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By Invitation only.
+        /// </summary>
+        public static string ByInvitationOnly {
+            get {
+                return ResourceManager.GetString("ByInvitationOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cambodia .
         /// </summary>
         public static string Cambodia {
@@ -1147,6 +1183,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CommShorted {
             get {
                 return ResourceManager.GetString("CommShorted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Profit For The Month ($).
+        /// </summary>
+        public static string CompanyProfit {
+            get {
+                return ResourceManager.GetString("CompanyProfit", resourceCulture);
             }
         }
         
@@ -1907,11 +1952,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Existing Affiliate Promotion.
+        ///   Looks up a localized string similar to EXTRA COMMISSION.
         /// </summary>
-        public static string ExistingPromotion {
+        public static string ExtraComm {
             get {
-                return ResourceManager.GetString("ExistingPromotion", resourceCulture);
+                return ResourceManager.GetString("ExtraComm", resourceCulture);
             }
         }
         
@@ -2006,11 +2051,29 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 5 to 11.
+        /// </summary>
+        public static string FiveToEleven {
+            get {
+                return ResourceManager.GetString("FiveToEleven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flash  .
         /// </summary>
         public static string Flash {
             get {
                 return ResourceManager.GetString("Flash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flat 50%.
+        /// </summary>
+        public static string Flat50 {
+            get {
+                return ResourceManager.GetString("Flat50", resourceCulture);
             }
         }
         
@@ -2861,6 +2924,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MAX EXTRA COMMISSION ($).
+        /// </summary>
+        public static string MaxExtraComm {
+            get {
+                return ResourceManager.GetString("MaxExtraComm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to May.
         /// </summary>
         public static string May {
@@ -3370,6 +3442,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NEW FDM&apos;s.
+        /// </summary>
+        public static string NewFDM {
+            get {
+                return ResourceManager.GetString("NewFDM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Password.
         /// </summary>
         public static string NewPass {
@@ -3384,15 +3465,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string NewPasswordisre {
             get {
                 return ResourceManager.GetString("NewPasswordisre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Affiliate Promotion.
-        /// </summary>
-        public static string NewPromotion {
-            get {
-                return ResourceManager.GetString("NewPromotion", resourceCulture);
             }
         }
         
@@ -4275,6 +4347,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string QualifiedActiveMembers {
             get {
                 return ResourceManager.GetString("QualifiedActiveMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qualified Active Members/ Month.
+        /// </summary>
+        public static string QualifiedActiveMembersByMonth {
+            get {
+                return ResourceManager.GetString("QualifiedActiveMembersByMonth", resourceCulture);
             }
         }
         
@@ -5377,6 +5458,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TOTAL FDM&apos;s DEPOSIT ($).
+        /// </summary>
+        public static string TotalFdmDeposit {
+            get {
+                return ResourceManager.GetString("TotalFdmDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Turnover.
         /// </summary>
         public static string TotalTurnover {
@@ -5436,6 +5526,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Turnover {
             get {
                 return ResourceManager.GetString("Turnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12 to 24.
+        /// </summary>
+        public static string TwelveToTwentyFour {
+            get {
+                return ResourceManager.GetString("TwelveToTwentyFour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 25 to 39.
+        /// </summary>
+        public static string TwentyFiveToThirtyNine {
+            get {
+                return ResourceManager.GetString("TwentyFiveToThirtyNine", resourceCulture);
             }
         }
         

@@ -1872,12 +1872,6 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1及以上</value>
   </data>
-  <data name="ExistingPromotion" xml:space="preserve">
-    <value>現有合作夥伴優惠活動</value>
-  </data>
-  <data name="NewPromotion" xml:space="preserve">
-    <value>新註冊合作夥伴優惠活動</value>
-  </data>
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>佣金分成</value>
   </data>
@@ -2084,5 +2078,47 @@
   </data>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BET合作夥伴市場推廣</value>
+  </data>
+  <data name="CompanyProfit" xml:space="preserve">
+    <value>每月公司盈利 ($)</value>
+  </data>
+  <data name="ByInvitationOnly" xml:space="preserve">
+    <value>僅限邀請</value>
+  </data>
+  <data name="AboveTwoThousand" xml:space="preserve">
+    <value>250,001 - Above</value>
+  </data>
+  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
+    <value>每月符合資格的活躍會員</value>
+  </data>
+  <data name="Flat50" xml:space="preserve">
+    <value>统一50%</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>首次存款新會員</value>
+  </data>
+  <data name="AboveOneThousand" xml:space="preserve">
+    <value>15,000 及以上</value>
+  </data>
+  <data name="FiveToEleven" xml:space="preserve">
+    <value>5名至11名</value>
+  </data>
+  <data name="TwelveToTwentyFour" xml:space="preserve">
+    <value>12名至24名</value>
+  </data>
+  <data name="TwentyFiveToThirtyNine" xml:space="preserve">
+    <value>25名至39名</value>
+  </data>
+  <data name="AboveFourty" xml:space="preserve">
+    <value>40名以上</value>
+  </data>
+  <data name="TotalFdmDeposit" xml:space="preserve">
+    <value>首次存款新會員總存款金額 ($)</value>
+  </data>
+  <data name="ExtraComm" xml:space="preserve">
+    <value>額外佣金比例</value>
+  </data>
+  <data name="MaxExtraComm" xml:space="preserve">
+    <value>最高額外佣金</value>
   </data>
 </root>
