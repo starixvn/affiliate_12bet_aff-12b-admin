@@ -2081,7 +2081,7 @@
     <value>พันธมิตรที่ได้รับการเชิญชวนเท่านั้น</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - Above</value>
+    <value>250,001 ขึ้นไป</value>
   </data>
   <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
     <value>ผู้เล่นที่เข้าเกณฑ์</value>
