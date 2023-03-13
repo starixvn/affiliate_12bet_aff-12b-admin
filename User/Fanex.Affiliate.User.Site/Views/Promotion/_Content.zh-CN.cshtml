@@ -1,84 +1,71 @@
-﻿<div class="banner-promotion">
-    <div class="text-content">
-        <p>解锁财务自由</p>
-        <p>领取额外佣金</p>
-        <p>赚取额外</p>
-        <p class="text-big">$2,000</p>
-        <p>为每月佣金加薪</p>
-        <br />
-        <p>立即推广！</p>
-    </div>
+﻿@{
+    var bannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion.zh-CN.jpg");
+    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion-mobile.zh-CN.jpg");
+}
+<div class="banner-promotion">
+    <picture>
+        <source media="(max-width:400px)" srcset="@(mobileBannerSrc)" type="image/jpeg" />
+        <source srcset="@(bannerSrc)" type="image/jpeg" />
+        <img class="img-item img-responsive" src="@bannerSrc" alt="@Lang.Promotion" />
+    </picture>
 </div>
-
-<h3 class="promo-header text-center text-bold"> 与最优秀的公司合作 </h3>
-
+<br />
 <div class="info-group">
-    <p class="text-header">轻松领取额外佣金：</p>
-    <ol>
-        <li class="text">加入【12BET合作伙伴】，点击推广12BET。</li>
-        <li class="text">尽可能地邀请您的会员，完成以下要求。</li>
-        <li class="text">额外佣金将与每月佣金，一起存入您的账户。</li>
-    </ol>
+    <h3 class="header-underline text-red">12BET 佣金提升</h3>
+    <p><strong>赚取高达50%的佣金！</strong></p>
+    <p>轻松赚取更高的每月佣金比例—只需满足以下要求，即可自动拥有资格。</p>
 </div>
-<div class="table table-responsive">
-    <table>
-        <thead>
-            <tr>
-                <th width="20%">新注册首次存款会员</th>
-                <th width="20%">会员首次存款总存款 ($)</th>
-                <th width="30%">额外佣金</th>
-                <th width="30%">最高额外佣金($)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="text-center">12</td>
-                <td class="text-center">4,500</td>
-                <td class="text-center">5%</td>
-                <td class="text-center">500</td>
-            </tr>
-            <tr>
-                <td class="text-center">25</td>
-                <td class="text-center">10,500</td>
-                <td class="text-center">8%</td>
-                <td class="text-center">1,200</td>
-            </tr>
-            <tr>
-                <td class="text-center">40</td>
-                <td class="text-center">15,000</td>
-                <td class="text-center">12%</td>
-                <td class="text-center">2,000</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+@{ Html.RenderPartial("~/Views/Promotion/_RevenueShareTable.cshtml"); }
 <div class="info-group">
-    <p class="text">
-        举例: A会员获得30%的佣金=USD 5,000
-    </p>
-    <p class="text">
-        12位首次存款会员，以及12位会员总存款达到USD 4,500。
-    </p>
-    <p class="text">
-        根据上表，将获得额外5%的佣金
-    </p>
-    <p class="text">
-        USD 5,000 x 5%额外佣金 = USD 250
-    </p>
-    <p class="text">
-        该会员共可获得 USD 5,250 佣金
-    </p>
-</div>
-<div class="text-center"><a class='btn-danger btn-join-affiliate' href='@Url.Content("~/signup")'>成为合作伙伴！</a></div>
-<h2 class="header-underline text-red">条款与规则</h2>
-<div class="info-group">
+    <p class="text-header"><strong>备注：</strong></p>
     <p class="text">
         <ol>
-            <li>此优惠活动适用于12BET所有合作伙伴。</li>
-            <li>完成以上列表要求的合作伙伴，即可获得额外佣金。</li>
-            <li>额外佣金将由上一个月的最终佣金中计算。</li>
-            <li>额外佣金将于每月8日至15日期间，与最终结算的佣金一起入账。</li>
-            <li>12BET保留在任何时候对全部或部分客户，取消该优惠活动的所有权利。本优惠活动同时遵守 <a href="@Url.Content("~/TermAndCondition")" class="text-red">12BET 合作伙伴条款及规则准则。</a> </li>
+            <li>如果合作伙伴在【每月公司利润】和【每月符合资格活跃会员】达到了不同的门槛，佣金支付将根据较低的门槛。例如，如果合作伙伴成员当月的盈亏总额为$46,000，而符合资格活跃会员为7人，则该月的佣金将为35%。</li>
+            <li>仅限邀请 —如果您有独具特色的提议，可以带来巨大的获利（例如：吸引VIP会员），您可以与合作伙伴经理联系，评估该提议并确定资格。</li>
+        </ol>
+    </p>
+</div>
+<div class="info-group">
+    <h3 class="header-underline text-red">首次存款新会员影响力</h3>
+    <p>在12BET，额外的奖励总是有保证的。所需要做的就是满足规定【每月符合资格的活跃会员】要求，并在佣金之外赚取额外的佣金。</p>
+</div>
+@{ Html.RenderPartial("~/Views/Promotion/_FdmTable.cshtml"); }
+<div class="info-group">
+    <p class="text-header"><strong>注意—</strong>每位合作伙伴成员，都会在他们赚取的佣金之外，还有额外佣金比例，无论是常规佣金还是12BET佣金提升优惠。</p>
+</div>
+<div class="info-group">
+    <p class="text-header"><strong>佣金计算实例：</strong></p>
+    <p>举例：“合作伙伴—王先生”的盈亏总额为$35,000，有25名符合资格的活跃会员，和12名首次存款新会员。首次存款新会员的总存款为$3,000。这个人有资格参加两个优惠活动，即12BET佣金提升和首次存款新会员影响力。</p>
+    <p>为了计算佣金，首先采用佣金提升方案，即$35,000的35%，佣金是$12,250</p>
+    <p>接下来，我们将首次存款新会员影响力使用于佣金提升额度，即3%。因此，首次存款新会员影响力奖金是367.5美元，但由于最高奖金是250美元，所以佣金将是$12,250+$250=$12,500。</p>
+    <p>因此，“合作伙伴—王先生”赚取的总佣金为$12,500。</p>
+</div>
+<h3 class="header-underline text-red">条款与规则</h3>
+<div class="info-group">
+    <p class="text-header"><strong>每月佣金提升</strong></p>
+    <p class="text">
+        <ol>
+            <li>本促销活动适用于所有12BET会员。</li>
+            <li>如果合作伙伴在【每月公司利润】和【每月符合资格活跃会员】达到了不同的门槛，佣金支付将根据较低的门槛。</li>
+            <li>不符资格这个优惠活动的合作伙伴，将按照现有的<a href="@Url.Content("~/CommissionStructure")">常规佣金结构</a>结算佣金。</li>
+            <li>仅限邀请 —如果您有独具特色的提议，可以带来巨大的获利（例如：吸引VIP会员），您可以与合作伙伴经理联系，评估该提议并确定资格。</li>
+            <li>如果合作伙伴会员能够达到上表所示的要求，他们将有资格获得额外的佣金。</li>
+            <li>额外的佣金将使用上个月的最终佣金计算。</li>
+            <li>额外的佣金将在当月的第8-15日内，加入最终佣金。</li>
+            <li>12BET保留在任何时候对全部或部分合作伙伴，取消该优惠活动的所有权利。本优惠活动同时遵守 <a href="@Url.Content("~/TermAndCondition")">12BET 合作伙伴条款及规则准则。</a></li>
+        </ol>
+    </p>
+</div>
+<div class="info-group">
+    <p class="text-header"><strong>首次存款新会员影响力</strong></p>
+    <p class="text">
+        <ol>
+            <li>本促销活动适用于所有12BET会员。</li>
+            <li>如果合作伙伴在【每月公司利润】和【每月符合资格活跃会员】达到了不同的门槛，佣金支付将根据较低的门槛。</li>
+            <li>如果合作伙伴会员能够达到上表所示的要求，他们将有资格获得额外的佣金。</li>
+            <li>额外的佣金将使用上个月的最终佣金计算。</li>
+            <li>额外的佣金将在当月的第8-15日内，加入最终佣金。</li>
+            <li>12BET保留在任何时候对全部或部分合作伙伴，取消该优惠活动的所有权利。本优惠活动同时遵守 <a href="@Url.Content("~/TermAndCondition")">12BET 合作伙伴条款及规则准则。</a></li>
         </ol>
     </p>
 </div>

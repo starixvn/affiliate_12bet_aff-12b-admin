@@ -1867,12 +1867,6 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; ขึ้นไป</value>
   </data>
-  <data name="ExistingPromotion" xml:space="preserve">
-    <value>โปรโมชั่นพันธมิตรเก่า</value>
-  </data>
-  <data name="NewPromotion" xml:space="preserve">
-    <value>โปรโมชั่นพันธมิตรใหม่</value>
-  </data>
   <data name="RevenueShareTitle" xml:space="preserve">
     <value>ส่วนแบ่งรายได้</value>
   </data>
@@ -2079,5 +2073,47 @@
   </data>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BETการตลาดพันธมิตร</value>
+  </data>
+  <data name="CompanyProfit" xml:space="preserve">
+    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลล่าร์ฯ)</value>
+  </data>
+  <data name="ByInvitationOnly" xml:space="preserve">
+    <value>พันธมิตรที่ได้รับการเชิญชวนเท่านั้น</value>
+  </data>
+  <data name="AboveTwoThousand" xml:space="preserve">
+    <value>250,001 ขึ้นไป</value>
+  </data>
+  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
+    <value>ผู้เล่นที่เข้าเกณฑ์</value>
+  </data>
+  <data name="Flat50" xml:space="preserve">
+    <value>คอมมิชชั่นเริ่มต้น 50%</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>ฝากแรก</value>
+  </data>
+  <data name="AboveOneThousand" xml:space="preserve">
+    <value>15,000 &amp; ขึ้นไป</value>
+  </data>
+  <data name="FiveToEleven" xml:space="preserve">
+    <value>5 - 11</value>
+  </data>
+  <data name="TwelveToTwentyFour" xml:space="preserve">
+    <value>12 - 24</value>
+  </data>
+  <data name="TwentyFiveToThirtyNine" xml:space="preserve">
+    <value>25 - 39</value>
+  </data>
+  <data name="AboveFourty" xml:space="preserve">
+    <value>40  ขึ้นไป</value>
+  </data>
+  <data name="TotalFdmDeposit" xml:space="preserve">
+    <value>จำนวนเงินฝากทั้งหมด ($)</value>
+  </data>
+  <data name="ExtraComm" xml:space="preserve">
+    <value>ค่าคอมมิชชั่นพิเศษ</value>
+  </data>
+  <data name="MaxExtraComm" xml:space="preserve">
+    <value>ค่าคอมมิชชั่นพิเศษสูงสุด ($)</value>
   </data>
 </root>
