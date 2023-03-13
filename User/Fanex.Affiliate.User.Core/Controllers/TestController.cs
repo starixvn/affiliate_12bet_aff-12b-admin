@@ -113,18 +113,6 @@
             return Json(result);
         }
 
-        private static readonly IDictionary<string, (string, string)> SubjectAndTitleList = new Dictionary<string, (string, string)>
-        {
-            ["contactus"] = (Lang.ContactUs, Lang.ContactUs),
-            ["csd"] = (Lang.CsdSubject, Lang.CsdSubject),
-            ["recoverpassword"] = (Lang.SubjectForgetPass, Lang.EmailTitlePasswordRecovery),
-            ["paymentcancel"] = (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment),
-            ["paymentrequest"] = (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment),
-            ["newpassword"] = (Lang.SubjectNewPass, Lang.EmailTitleNewPassword),
-            ["signup"] = (Lang.RegisSubject, Lang.EmailTitleSignUp),
-            ["verificationaccount"] = (Lang.SubjectVerificationAccount, Lang.EmailTittleVerificationAccount)
-        };
-
         private static (string, string) GetSubjectAndTitle(string functionName)
         {
             switch (functionName)

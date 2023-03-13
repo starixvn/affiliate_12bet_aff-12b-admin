@@ -72,6 +72,11 @@
       display: inline-block; }
       .languages-item .info .contact-info .im-icon {
         margin-right: 5px; }
+      .languages-item .info .contact-info-zalo {
+        padding-top: 4px;
+        padding-bottom: 3px; }
+      .languages-item .info .contact-info-english {
+        height: 40.15px; }
     .languages-item .info-whats-app {
       white-space: pre-line;
       margin-top: -21px;
