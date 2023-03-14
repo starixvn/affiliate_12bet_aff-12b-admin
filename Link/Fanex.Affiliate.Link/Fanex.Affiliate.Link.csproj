@@ -187,7 +187,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\Common.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Impl\TrackingSystemService.cs" />
     <Compile Include="Services\Interface\ITrackingSystemService.cs" />
@@ -247,17 +249,11 @@
     <Content Include="Web.12betgo.uat.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
-    <Content Include="Web.12betgo.master.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
-    </Content>
     <Content Include="Web.12betgo.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="Deployment.ignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Web.12betgo.backupmnl.config">
-      <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
     <Content Include="Fanex.Affiliate.Link.ruleset" />
   </ItemGroup>
