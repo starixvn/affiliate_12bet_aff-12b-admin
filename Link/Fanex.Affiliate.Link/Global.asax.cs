@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Affiliate.Link
 {
+    using Fanex.Affiliate.Link.Helpers;
     using Fanex.Data;
     using Fanex.Data.SqlServer;
     using System;
@@ -39,8 +40,7 @@
                 return;
             }
 
-            //var message = exception.Message + Environment.NewLine + exception.StackTrace;
-            //LogService.Error("Affiliate Link Error!" + Environment.NewLine + message + Environment.NewLine + Request.Url);
-       }
+            LogHelper.WriteError(exception, $"Request url: {Request.Url}");
+        }
     }
 }

@@ -62,14 +62,13 @@ namespace Fanex.Affiliate.Link.Controllers
             if (Request.Url != null)
             {
                 var affDomain = GetFullAffDomain(Request.Url.ToString(), affId);
-                var urlReferrer = Request.UrlReferrer?.AbsoluteUri;
-                var domainReferrer = Request.UrlReferrer?.Host;
+                var urlReferrer = Request?.UrlReferrer?.AbsoluteUri;
+                var domainReferrer = Request?.UrlReferrer?.Host;
 
                 if (string.IsNullOrEmpty(urlReferrer) && !string.IsNullOrEmpty(Request["ref"]))
                 {
                     urlReferrer = Request["ref"];
-                    var referrerUri = new Uri(urlReferrer);
-                    domainReferrer = string.IsNullOrEmpty(referrerUri.Host) ? null : referrerUri.Host;
+                    domainReferrer = Common.GetDomainReferrer(urlReferrer);
                 }
 
                 var command = new TrackingSystemCommand
