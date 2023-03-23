@@ -56,6 +56,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             return new Dictionary<string, string>
             {
+                ["bn-BD"] = Convert.ToString(reader[MessagePrefix + "bn"]),
                 ["en-US"] = Convert.ToString(reader[MessagePrefix + "en"]),
                 ["zh-CN"] = Convert.ToString(reader[MessagePrefix + "cn"]),
                 ["zh-TW"] = Convert.ToString(reader[MessagePrefix + "tw"]),

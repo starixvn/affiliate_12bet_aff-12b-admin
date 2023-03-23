@@ -38,7 +38,20 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Message
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string MessageContentKh { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string MessageContentBn { get; set; }
+
         public bool IsValid()
+        {
+            if (!(string.IsNullOrEmpty(MessageContentJp) && string.IsNullOrEmpty(MessageContentKh) && string.IsNullOrEmpty(MessageContentBn)))
+            {
+                return true;
+            }
+
+            return ValidateSomeLanguage();
+        }
+
+        private bool ValidateSomeLanguage()
         {
             if (!(string.IsNullOrEmpty(MessageContentEn) && string.IsNullOrEmpty(MessageContentCn) && string.IsNullOrEmpty(MessageContentTw) && string.IsNullOrEmpty(MessageContentEs)))
             {
@@ -50,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Message
                 return true;
             }
 
-            return !(string.IsNullOrEmpty(MessageContentJp) && string.IsNullOrEmpty(MessageContentKh));
+            return false;
         }
     }
 }

@@ -2016,4 +2016,7 @@
   <data name="MaxExtraComm" xml:space="preserve">
     <value>បន្ថែមកំរៃជើងសារធំបំផុត ($)</value>
   </data>
+  <data name="BDT" xml:space="preserve">
+    <value>BDT</value>
+  </data>
 </root>

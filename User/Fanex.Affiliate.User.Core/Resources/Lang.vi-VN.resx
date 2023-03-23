@@ -2115,4 +2115,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="MaxExtraComm" xml:space="preserve">
     <value>MỨC HOA HỒNG CAO NHẤT ($)</value>
   </data>
+  <data name="BDT" xml:space="preserve">
+    <value>BDT</value>
+  </data>
 </root>

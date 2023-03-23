@@ -2229,4 +2229,10 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="MaxExtraComm" xml:space="preserve">
     <value>MAX EXTRA COMMISSION ($)</value>
   </data>
+  <data name="BDT" xml:space="preserve">
+    <value>BDT</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>Bangladesh Support</value>
+  </data>
 </root>

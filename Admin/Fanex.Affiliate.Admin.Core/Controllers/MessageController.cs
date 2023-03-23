@@ -151,6 +151,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 MessageId = param.MessageId,
                 Important = param.Important,
                 MessageContentEn = Server.HtmlEncode(param.MessageContentEn),
+                MessageContentBn = Server.HtmlEncode(param.MessageContentBn),
                 MessageContentCn = Server.HtmlEncode(param.MessageContentCn),
                 MessageContentTw = Server.HtmlEncode(param.MessageContentTw),
                 MessageContentEs = Server.HtmlEncode(param.MessageContentEs),

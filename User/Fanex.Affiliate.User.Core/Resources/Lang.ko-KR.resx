@@ -2111,4 +2111,7 @@
   <data name="MaxExtraComm" xml:space="preserve">
     <value>최대 추가 커미션 ($)</value>
   </data>
+  <data name="BDT" xml:space="preserve">
+    <value>BDT</value>
+  </data>
 </root>
