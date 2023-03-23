@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Data;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Message
 {
@@ -71,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                             MessageId = Convert.ToInt32(reader[Field.MessageId]),
                             Important = Convert.ToBoolean(reader["Important"]),
                             MessageContentEn = Convert.ToString(reader["message_en"]),
-                            //MessageContentBn = Convert.ToString(reader["message_bn"]),
+                            MessageContentBn = Convert.ToString(reader["message_bn"]),
                             MessageContentCn = Convert.ToString(reader["message_cn"]),
                             MessageContentTw = Convert.ToString(reader["message_tw"]),
                             MessageContentEs = Convert.ToString(reader["message_es"]),
@@ -140,7 +139,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
         {
             objectDb.SetParameterValue("IsImportant", param.Important);
             objectDb.SetParameterValue("msgen", param.MessageContentEn);
-            //objectDb.SetParameterValue("msgbn", param.MessageContentBn);
+            objectDb.SetParameterValue("msgbn", param.MessageContentBn);
             objectDb.SetParameterValue("msgcn", param.MessageContentCn);
             objectDb.SetParameterValue("msgtw", param.MessageContentTw);
             objectDb.SetParameterValue("msges", param.MessageContentEs);
