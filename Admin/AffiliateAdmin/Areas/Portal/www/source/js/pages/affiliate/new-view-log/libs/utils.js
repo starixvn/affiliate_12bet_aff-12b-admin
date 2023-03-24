@@ -1,4 +1,6 @@
-﻿export const removeFirstCharacter = (value) => {
+﻿import { htmlDecode } from "../../../../modules/htmlHelper";
+
+export const removeFirstCharacter = (value) => {
     return value.replace('@', '');
 }
 

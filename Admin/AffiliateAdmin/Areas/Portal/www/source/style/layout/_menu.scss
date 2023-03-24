@@ -5,7 +5,7 @@
     background: linear-gradient(#b5d7fa, #86a9d3);
 
     .menu-list {
-        width: 100%;
+        width: calc(100% - 1px);
         margin-left: 1px;
         flex-wrap: nowrap;
         white-space: nowrap;
