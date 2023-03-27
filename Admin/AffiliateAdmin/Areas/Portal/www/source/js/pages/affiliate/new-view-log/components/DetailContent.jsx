@@ -89,8 +89,8 @@ export class DetailContent extends PureComponent {
 
         const updatedBy = htmlDecode(dataItem.UpdatedName);
         const action = htmlDecode(dataItem.Action);
-        const oldData = htmlDecode(dataItem.OldData);
-        const newData = htmlDecode(dataItem.NewData);
+        const oldData = dataItem.OldData;
+        const newData = dataItem.NewData;
 
         return (
             <Fragment key={`dataRow-${index}`}>
