@@ -5,7 +5,7 @@
             _me.initEvent();
         },
         initEvent: function () {
-            $('.homeBanner').on('click', function (event) {
+            $('.home-banner-tracking').on('click', function (event) {
                 event.preventDefault();
                 var redirectLink = $(this).attr('href');
                 PageTracking.addTrackingForSignUpPage();
@@ -15,7 +15,7 @@
                 }, 10);
             })
 
-            $('.mediaLink').on('click', function (event) {
+            $('.media-link-tracking').on('click', function (event) {
                 event.preventDefault();
                 var $this = $(this);
                 var isLoggedIn = !$this.hasClass('mediaLoginLink');
@@ -27,6 +27,26 @@
                         Site.redirect($this.attr('href'));
                     }, 10);
                 }
+            })
+
+            $('.home-banner-tracking-flat').on('click', function (event) {
+                event.preventDefault();
+                var redirectLink = $(this).attr('href');
+                PageTracking.addTrackingForHomeBanAFFFlat50();
+
+                setTimeout(function () {
+                    Site.redirect(redirectLink);
+                }, 10);
+            })
+
+            $('.home-banner-tracking-smart').on('click', function (event) {
+                event.preventDefault();
+                var redirectLink = $(this).attr('href');
+                PageTracking.addTrackingForSmartBanAFFFlat50();
+
+                setTimeout(function () {
+                    Site.redirect(redirectLink);
+                }, 10);
             })
         }
     };

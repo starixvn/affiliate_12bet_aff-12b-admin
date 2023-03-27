@@ -1,9 +1,33 @@
 ﻿var PageTracking = (function ($) {
+    const _defaultShortedLanguageCode = "EN"
+    const _shortedLanguageCodes = {
+        "bn": "BN",
+        "en": "EN",
+        "cs": "CS",
+        "ch": "CH",
+        "hi": "HIEN",
+        "id": "ID",
+        "kh": "KH",
+        "ko": "KO",
+        "jp": "JP",
+        "th": "TH",
+        "vn": "VN"
+    };
+
+    function _getShortedLangCode() {
+        return $('#shortedLangCode').val() || _defaultShortedLanguageCode;
+    }
+
+    function _getShortedLangCodeUpperCase() {
+        var shortedLangCode = $('#shortedLangCode').val();
+
+        return _shortedLanguageCodes[shortedLangCode] || _defaultShortedLanguageCode;
+    }
+
     var _me = {
         addTrackingForMediaPage: function () {
             if (window.gtag) {
-                var shortedLangCode = $('#shortedLangCode').val();
-                var trackingAction = 'AffNewSeasonMedia-' + shortedLangCode;
+                var trackingAction = 'AffNewSeasonMedia-' + _getShortedLangCode();
                 window.gtag('event', trackingAction, {
                     'event_category': 'AFFiliatePage',
                     'event_label': 'AFFBigBanner'
@@ -12,8 +36,7 @@
         },
         addTrackingForSignUpPage: function () {
             if (window.gtag) {
-                var shortedLangCode = $('#shortedLangCode').val();
-                var actionName = 'AffJoinJuly40Com-' + shortedLangCode;
+                var actionName = 'AffJoinJuly40Com-' + _getShortedLangCode();
                 window.gtag('event', actionName, {
                     'event_category': 'AFFiliatePage',
                     'event_label': 'AFFBigBanner'
@@ -31,12 +54,28 @@
             //  'value': <value>
             //});
             if (window.gtag) {
-                var shortedLangCode = $('#shortedLangCode').val();
-                var actionName = 'PreAFFSignUpNewPage' + shortedLangCode;
-
+                var actionName = 'PreAFFSignUpNewPage' + _getShortedLangCode();
                 window.gtag('event', actionName, {
                     'event_category': 'AFFiliatePage',
                     'event_label': 'NavigationButton'
+                });
+            }
+        },
+        addTrackingForHomeBanAFFFlat50: function () {
+            if (window.gtag) {
+                var trackingAction = 'HomeBanAFFFlat50-' + _getShortedLangCodeUpperCase();
+                window.gtag('event', trackingAction, {
+                    'event_category': 'HomePage',
+                    'event_label': 'Banner'
+                });
+            }
+        },
+        addTrackingForSmartBanAFFFlat50: function () {
+            if (window.gtag) {
+                var trackingAction = 'SmartBanAFFFlat50-' + _getShortedLangCodeUpperCase();
+                window.gtag('event', trackingAction, {
+                    'event_category': 'HomePage',
+                    'event_label': 'Banner'
                 });
             }
         }

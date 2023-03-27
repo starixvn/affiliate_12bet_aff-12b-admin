@@ -52,10 +52,21 @@
         };
 
         /// <summary>
+        /// Get Country.
+        /// </summary>
+        /// <returns>Country English Name.</returns>
+        public static string GetCountry()
+        {
+            var regionInfo = ResolveCountry();
+
+            return regionInfo != null ? regionInfo.EnglishName : CultureInfo.CurrentCulture.ToString();
+        }
+
+        /// <summary>
         /// Get region info.
         /// </summary>
         /// <returns>Region info.</returns>
-        public static RegionInfo ResolveCountry()
+        private static RegionInfo ResolveCountry()
         {
             var culture = ResolveCulture();
             return culture != null ? new RegionInfo(culture.Name) : null; //Fix exception "Culture ID 4096 is a Neutral Culture" when creating a RegionInfo from it's LCID.
@@ -65,7 +76,7 @@
         /// Get culture info.
         /// </summary>
         /// <returns>Culture info.</returns>
-        public static CultureInfo ResolveCulture()
+        private static CultureInfo ResolveCulture()
         {
             var languages = HttpContext.Current.Request.UserLanguages;
 

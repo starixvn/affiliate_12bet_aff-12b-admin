@@ -90,9 +90,7 @@ namespace Fanex.Affiliate.Link.Controllers
                                               ? string.Empty
                                               : Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"],
                     UserAgent = Request.UserAgent,
-                    Country = Common.ResolveCountry() != null
-                                      ? Common.ResolveCountry().EnglishName
-                                      : CultureInfo.CurrentCulture.ToString(),
+                    Country = Common.GetCountry(),
 
                 };
 
