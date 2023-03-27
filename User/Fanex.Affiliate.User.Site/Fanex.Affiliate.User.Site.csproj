@@ -684,6 +684,7 @@
     <Content Include="www\build\styles\Images\account-overview\icon-zalo.png" />
     <Content Include="www\build\styles\Images\account-overview\new-sign-up.png" />
     <Content Include="www\build\styles\Images\account-overview\total-deposit.png" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.bn-BD.png" />
     <Content Include="www\build\styles\Images\apply12bet\3step.km-KH.png" />
     <Content Include="www\build\styles\Images\contact-us\cambodia_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\korea_lang.png" />
@@ -738,6 +739,7 @@
     <Content Include="www\build\styles\Images\home-banners\priority-4\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-4\Home-Banner.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\left-side-banner.jpg" />
+    <Content Include="www\build\styles\Images\promotion\promotion-mobile.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.zh-CN.jpg" />
@@ -746,6 +748,7 @@
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.id-ID.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.km-KH.png" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.ko-KR.jpg" />
+    <Content Include="www\build\styles\Images\promotion\promotion.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion.zh-CN.jpg" />
@@ -953,7 +956,9 @@
     <Content Include="www\source\styles\fonts\myriadPro\font.css" />
     <Content Include="www\source\styles\Images\bootstrap-formhelpers-countries.flags.png" />
     <Content Include="www\source\styles\Images\email\banner.png" />
+    <Content Include="www\source\styles\Images\email\banner_km-KH.jpg" />
     <Content Include="www\source\styles\Images\email\banner_en-GB.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_bn-BD.jpg" />
     <Content Include="www\source\styles\Images\email\banner_en-US.jpg" />
     <Content Include="www\source\styles\Images\email\banner_en.jpg" />
     <Content Include="www\source\styles\Images\email\banner_es-ES.jpg" />
@@ -1293,6 +1298,21 @@
     <Content Include="www\build\styles\Images\right-side-banner.webp" />
     <Content Include="Views\Promotion\_RevenueShareTable.cshtml" />
     <Content Include="Views\Promotion\_FdmTable.cshtml" />
+    <Content Include="Views\CommissionStructure\_Content.bn-BD.cshtml" />
+    <Content Include="Views\Faq\_Content.bn-BD.cshtml" />
+    <Content Include="Views\Product\_Content.bn-BD.cshtml" />
+    <Content Include="Views\Promotion\_Content.bn-BD.cshtml" />
+    <Content Include="Views\Shared\Email\NewPassword\Content.bn-BD.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.bn-BD.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentRequest\Content.bn-BD.cshtml" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.bn-BD.cshtml" />
+    <Content Include="Views\Shared\Email\Signup\Content.bn-BD.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.bn-BD.cshtml" />
+    <Content Include="Views\TermAndCondition\_Content.bn-BD.cshtml" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.bn-BD.webp" />
+    <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.bn-BD.webp" />
+    <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.bn-BD.webp" />
+    <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.bn-BD.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.bn-BD.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-4\Home-Banner.bn-BD.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-4\Home-Banner.en-US.webp" />
@@ -1320,7 +1340,7 @@
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.zh-TW.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.zh-CN.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.en-US.webp" />
-    <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.id_ID.webp" />
+    <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.id-ID.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.km-KH.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.ko-KR.webp" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.th-TH.webp" />

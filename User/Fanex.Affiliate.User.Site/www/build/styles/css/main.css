@@ -325,6 +325,8 @@ input[type="checkbox"], input[type="radio"] {
     background-position: -1564px 0; }
   .flag-km-KH {
     background-position: -1733px 0; }
+  .flag-bn-BD {
+    background-position: -306px 0; }
 
 .header-top {
   background: #000 url(../../../source/styles/Images/header-bg.png) center top no-repeat; }
@@ -461,7 +463,7 @@ input[type="checkbox"], input[type="radio"] {
     position: absolute;
     background: #fff;
     z-index: 100;
-    width: 175px;
+    width: 200px;
     padding: 5px 0;
     font-size: 13px;
     top: 25px;
