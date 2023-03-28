@@ -1,40 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_UserInfoUpd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_ForgotPassword" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateClosed_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_f_MediaCurrency_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_MediaCurrency_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Del" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Ins" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Message_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_RecoverPassWord" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_PaymentRequest_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_f_GetMessageById" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Affiliate_Ins" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Assign" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Del" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Ins" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateInfo_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateInfo_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Affiliate_Approved" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Adjustment_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_CheckPermission" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateNote_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Affiliate_Password_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateStatus_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliatePaymentRequest_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateNote_Ins" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliatePreferredLanguage_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateAffType_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateAdjustment_Ins" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Affiliate_Favorite_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_HotNewsDetail" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_HotNewsSel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_f_Get_SecurityQuestions" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_SecurityQuestions_Sel" Suffix="_xtest"></item>
   
 </Root>
