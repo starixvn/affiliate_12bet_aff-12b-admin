@@ -25,5 +25,7 @@
         public string MessageContentJp { get; set; }
 
         public string MessageContentKh { get; set; }
+
+        public string MessageContentBn { get; set; }
     }
 }

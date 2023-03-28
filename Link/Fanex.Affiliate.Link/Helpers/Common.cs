@@ -69,7 +69,13 @@
         private static RegionInfo ResolveCountry()
         {
             var culture = ResolveCulture();
-            return culture != null ? new RegionInfo(culture.Name) : null; //Fix exception "Culture ID 4096 is a Neutral Culture" when creating a RegionInfo from it's LCID.
+
+            //solving a culture issue
+            if (culture != null && culture.LCID != 0x7F)
+            {
+                return new RegionInfo(culture.Name);
+            }
+            return null;
         }
 
         /// <summary>

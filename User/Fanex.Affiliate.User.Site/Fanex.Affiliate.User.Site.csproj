@@ -686,6 +686,7 @@
     <Content Include="www\build\styles\Images\account-overview\total-deposit.png" />
     <Content Include="www\build\styles\Images\apply12bet\3step.bn-BD.png" />
     <Content Include="www\build\styles\Images\apply12bet\3step.km-KH.png" />
+    <Content Include="www\build\styles\Images\contact-us\bangladesh_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\cambodia_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\korea_lang.png" />
     <Content Include="www\build\styles\Images\feedback\dissatisfaction-active.png" />

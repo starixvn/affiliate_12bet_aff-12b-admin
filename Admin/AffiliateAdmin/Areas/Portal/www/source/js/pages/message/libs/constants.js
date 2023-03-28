@@ -10,6 +10,7 @@ export const messageInsertId = 0;
 export const messageCurrentId = -1;
 
 const english = 'MessageContentEn';
+const bangladesh = 'MessageContentBn';
 const chineseTraditional = 'MessageContentTw';
 const chineseSimplified = 'MessageContentCn';
 const spanish = 'MessageContentEs';
@@ -24,6 +25,7 @@ export const defaultMessageContentList =
 {
     MessageId: 0,
     [english]: '',
+    [bangladesh]: '',
     [chineseTraditional]: '',
     [chineseSimplified]: '',
     [spanish]: '',
@@ -37,6 +39,7 @@ export const defaultMessageContentList =
 
 export const languages = {
     [english]: 'English',
+    [bangladesh]: 'English (Bangladesh)',
     [chineseTraditional]: 'Chinese Traditional',
     [chineseSimplified]: 'Chinese Simplified',
     [spanish]: 'Spanish',

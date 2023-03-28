@@ -124,6 +124,7 @@
     var secondAppContactList = new Dictionary<string, string>
     {
         ["en-US"] = "Facebook",
+        ["bn-BD"] = "WhatsApp",
         ["zh-CN"] = "QQ",
         ["zh-TW"] = "QQ",
         ["vi-VN"] = "Zalo",
@@ -136,7 +137,10 @@
     };
     var thirdAppContactList = new Dictionary<string, string>
     {
-        ["zh-CN"] = "Telegram",
+        ["bn-BD"] = "Telegram",
+        ["hi-IN"] = "Telegram",
+        ["km-KH"] = "Telegram",
+        ["zh-CN"] = "Telegram"
     };
 
     var hasTwoContactApp = secondAppContactList.ContainsKey(language);
@@ -188,7 +192,7 @@
         {
             var thirdAppName = thirdAppContactList[language];
             <div class="form-group">
-                <label class="col-sm-3 control-label">纸飞机(Telegram)</label>
+                <label class="col-sm-3 control-label">@thirdAppName</label>
                 <div class="col-sm-4">
                     <input type="text" name="ContactAppList[2].Value" id="ContactAppList[2].Value" class="form-control" value=""
                            data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[0].Value,ContactAppList[1].Value"

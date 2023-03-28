@@ -548,6 +548,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bangladesh Support.
+        /// </summary>
+        public static string BangladeshSupport {
+            get {
+                return ResourceManager.GetString("BangladeshSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bank Address.
         /// </summary>
         public static string BankAddress {
@@ -625,6 +634,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Basketball {
             get {
                 return ResourceManager.GetString("Basketball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BDT.
+        /// </summary>
+        public static string BDT {
+            get {
+                return ResourceManager.GetString("BDT", resourceCulture);
             }
         }
         
