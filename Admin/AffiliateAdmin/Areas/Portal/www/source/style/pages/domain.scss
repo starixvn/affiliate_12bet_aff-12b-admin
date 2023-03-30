@@ -9,10 +9,9 @@
     .block-market {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
 
         &-item {
-            min-width: 125px;
+            min-width: 152px;
         }
     }
 }
