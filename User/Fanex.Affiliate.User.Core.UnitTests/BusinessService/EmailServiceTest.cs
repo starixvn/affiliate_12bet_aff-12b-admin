@@ -31,12 +31,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreateRecoverEmailParam();
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendRecoverPasswordEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<RecoverPasswordEmailParam>());
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<RecoverPasswordEmailParam>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectForgetPass, param.MailBcc, param.MailCc);
         }
 
@@ -49,13 +49,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
             LanguageService.IsValid(Arg.Any<string>()).Returns(true);
 
             service.SendRecoverPasswordEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<RecoverPasswordEmailParam>());
-            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<RecoverPasswordEmailParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectForgetPass, param.MailBcc, param.MailCc);
         }
 
@@ -66,12 +66,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreateNewPasswordEmailParam();
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendNewPasswordEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<NewPasswordEmailParam>());
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<NewPasswordEmailParam>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectNewPass, param.MailBcc, param.MailCc);
         }
 
@@ -84,12 +84,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendNewPasswordEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<NewPasswordEmailParam>());
-            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<NewPasswordEmailParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectNewPass, param.MailBcc, param.MailCc);
         }
 
@@ -102,12 +102,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreatePaymentEmailParam(type);
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendPaymentEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<PaymentEmailParam>());
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<PaymentEmailParam>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Arg.Compat.Is<string>(c => c.Contains(param.TransId.ToString())), param.MailBcc, param.MailCc);
         }
 
@@ -122,12 +122,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendPaymentEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<PaymentEmailParam>());
-            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<PaymentEmailParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Arg.Compat.Is<string>(c => c.Contains(param.TransId.ToString())), param.MailBcc, param.MailCc);
         }
 
@@ -138,12 +138,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreateEmailBaseParam();
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendSignUpEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailBaseParam>());
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailBaseParam>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.RegisSubject, param.MailBcc, param.MailCc);
         }
 
@@ -156,12 +156,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendSignUpEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailBaseParam>());
-            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailBaseParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.RegisSubject, param.MailBcc, param.MailCc);
         }
 
@@ -172,11 +172,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreateNoticeEmailParam();
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendNoticeEmailToCsd(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<NoticeEmailParam>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<NoticeEmailParam>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Arg.Compat.Is<string>(c => c.Contains(param.UserName)), param.MailBcc, param.MailCc);
         }
 
@@ -188,11 +188,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var contactUsParam = CreateContactUsParam();
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendContactUsEmail(param, contactUsParam);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<ContactUsParam>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<ContactUsParam>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Arg.Compat.Is<string>(c => c.Contains(contactUsParam.Subject)), param.MailBcc, param.MailCc);
         }
 
@@ -203,12 +203,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreateVerificationAccountEmailParam();
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendVerificationEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<VerificationAccountEmailParam>());
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<VerificationAccountEmailParam>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectVerificationAccount, param.MailBcc, param.MailCc);
         }
 
@@ -221,12 +221,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null).ReturnsForAnyArgs(mainContent);
+            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
 
             service.SendVerificationEmail(param);
 
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<VerificationAccountEmailParam>());
-            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
+            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<VerificationAccountEmailParam>());
+            MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
             MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectVerificationAccount, param.MailBcc, param.MailCc);
         }
 

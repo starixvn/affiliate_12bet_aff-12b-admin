@@ -124,9 +124,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private string GetEmailTextContent(string templateName, string preferredLanguage, object model)
         {
             var viewPath = string.Format(TemplateString.EmailTemplatePath, templateName, preferredLanguage);
+            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, templateName, SystemLanguage.DefaultLanguageCode);
             var physicalPath = HttpContext.Current.Server.MapPath(viewPath);
+            var physicalPathBackup = HttpContext.Current.Server.MapPath(viewPathBackup);
 
-            return _mailProcessor.BuildTemplateContent(physicalPath, model);
+            return _mailProcessor.BuildTemplateContent(physicalPath, physicalPathBackup, model);
         }
 
         private string GetEmailHtmlContent(string content, string title, string language, string domain)
@@ -140,8 +142,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 Title = title
             };
             var viewPath = HttpContext.Current.Server.MapPath("~/Views/Shared/Email/CommonLayout.cshtml");
+            var viewPathBackup = viewPath;
 
-            return _mailProcessor.BuildTemplateContent(viewPath, viewModel);
+            return _mailProcessor.BuildTemplateContent(viewPath, viewPathBackup, viewModel);
         }
 
         private void HandleSetCulture(string preferredLanguage)
