@@ -7,9 +7,7 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 @model Fanex.Affiliate.User.Core.ViewModels.ProPageViewModel
-@{
-    var viewName = "~/Views/Promotion/_Content." + Model.CurrentLanguage + ".cshtml";
-}
+
 @section styles{
     <link rel="stylesheet" href="@Url.Content("~/www/build/styles/css/promotion.css")" />
 }
@@ -19,7 +17,6 @@
         <span class="text">@Lang.Promotion</span>
     </div>
 
-
-    @{ Html.RenderPartial(viewName, Model.IsAuthenticated); }
+    @Html.RenderPartialByLanguage("~/Views/Promotion/_Content", Model.CurrentLanguage, Model.IsAuthenticated);
     @RazorHelper.RenderMovingTopButton()
 </div>

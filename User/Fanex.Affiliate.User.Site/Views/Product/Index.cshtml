@@ -9,10 +9,6 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.ProPageViewModel
 
-@{
-    var viewName = "~/Views/Product/_Content." + Model.CurrentLanguage + ".cshtml";
-}
-
 @section styles{
     @Html.InlineStyles("~/www/build/styles/css/products.css")
 }
@@ -22,8 +18,7 @@
         <span class="text">@Lang.Product</span>
     </div>
 
-    @{ Html.RenderPartial(viewName); }
-
+    @Html.RenderPartialByLanguage("~/Views/Product/_Content", Model.CurrentLanguage);
     @if (!Model.IsAuthenticated)
     {
         <div class="col-sm-offset-3 col-sm-6 signup-block">

@@ -10,9 +10,6 @@
 }
 
 @model string
-@{
-    var viewName = "~/Views/TermAndCondition/_Content." + Model + ".cshtml";
-}
 
 <!DOCTYPE html>
 
@@ -50,8 +47,7 @@
                         <span class="text">@Lang.TermAndCondition</span>
                     </div>
 
-                    @{ Html.RenderPartial(viewName); }
-
+                    @Html.RenderPartialByLanguage("~/Views/TermAndCondition/_Content", Model);
                     @RazorHelper.RenderMovingTopButton()
                 </div>
             </div>
