@@ -998,6 +998,12 @@
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.km-KH.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.km-KH.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.km-KH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.bn-BD.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.bn-BD.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.bn-BD.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.bn-BD.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.bn-BD.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.bn-BD.cshtml" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />
