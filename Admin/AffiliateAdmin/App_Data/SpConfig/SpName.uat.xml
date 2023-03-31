@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet Admin">
   <Function Name="Language">
-    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="AffiliateInformation">
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
@@ -136,7 +136,7 @@
     <Setting Key="Aff_Admin_DomainControl_Ins" SpName="Aff_Admin_DomainControl_Ins" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_DomainControl_Upd" SpName="Aff_Admin_DomainControl_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_DomainControl_Del" SpName="Aff_Admin_DomainControl_Del" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_SupportBlockMarket_Sel" SpName="Aff_SupportBlockMarket_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_SupportBlockMarket_Sel" SpName="Aff_SupportBlockMarket_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="Home">
     <Setting Key="DEP_AffiliateGetPSP" SpName="DEP_AffiliateGetPSP" DbName="DBDEPOSIT_Deposit_DB_bodbAffiliateNet" />
@@ -151,10 +151,10 @@
     <Setting Key="Aff_Admin_AdminUser_Upd" SpName="Aff_Admin_AdminUser_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AdminUser_Del" SpName="Aff_Admin_AdminUser_Del" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AdminUser_Role_Sel" SpName="Aff_Admin_AdminUser_Role_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_AdminUser_Detail_Sel" SpName="Aff_Admin_AdminUser_Detail_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_AdminUser_Detail_Sel" SpName="Aff_Admin_AdminUser_Detail_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AdminUser_FunctionPermission_Sel" SpName="Aff_Admin_AdminUser_FunctionPermission_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_AdminUser_Market_Sel" SpName="Aff_Admin_AdminUser_Market_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_AdminUser_RoleMarket_Sel" SpName="Aff_Admin_AdminUser_RoleMarket_Sel_xtest" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_AdminUser_Market_Sel" SpName="Aff_Admin_AdminUser_Market_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_AdminUser_RoleMarket_Sel" SpName="Aff_Admin_AdminUser_RoleMarket_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AdminUser_RoleMarket_Upd" SpName="Aff_Admin_AdminUser_RoleMarket_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AdminUser_RolePermission_Sel" SpName="Aff_Admin_AdminUser_RolePermission_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AdminUser_RolePermission_Upd" SpName="Aff_Admin_AdminUser_RolePermission_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
