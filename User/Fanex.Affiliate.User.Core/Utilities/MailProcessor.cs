@@ -8,10 +8,18 @@
 
     public class MailProcessor : IMailProcessor
     {
-        public string BuildTemplateContent(string path, object model)
+        public string BuildTemplateContent(string path, string pathBackup, object model)
         {
-            var templateContent = File.ReadAllText(path);
-            return Engine.Razor.RunCompile(templateContent, path, model: model);
+            try
+            {
+                var templateContent = File.ReadAllText(path);
+                return Engine.Razor.RunCompile(templateContent, path, model: model);
+            }
+            catch
+            {
+                var templateContentBackup = File.ReadAllText(pathBackup);
+                return Engine.Razor.RunCompile(templateContentBackup, pathBackup, model: model);
+            }
         }
 
         public void Send(string content, string mailTo, string subject, string mailBcc = "", string mailCc = "")

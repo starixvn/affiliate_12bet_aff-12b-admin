@@ -6,42 +6,54 @@ namespace Fanex.Affiliate.User.Core.Constants
 {
     public static class SystemLanguage
     {
+        private const string _English_LanguageCode = "en-US";
+        private const string _Bangladesh_LanguageCode = "bn-BD";
+        private const string _India_LanguageCode = "hi-IN";
+        private const string _Indonesia_LanguageCode = "id-ID";
+        private const string _Japan_LanguageCode = "ja-JP";
+        private const string _Cambodia_LanguageCode = "km-KH";
+        private const string _Korea_LanguageCode = "ko-KR";
+        private const string _Thailand_LanguageCode = "th-TH";
+        private const string _VietNam_LanguageCode = "vi-VN";
+        private const string _Chinese_LanguageCode = "zh-CN";
+        private const string _Taiwan_LanguageCode = "zh-TW";
+
         private static readonly IDictionary<string, string> _supportedLanguageForGoogleAnalytics = new Dictionary<string, string>
         {
-            ["bn-BD"] = "bn",
-            ["en-US"] = "en",
-            ["zh-CN"] = "cs",
-            ["zh-TW"] = "ch",
-            ["th-TH"] = "th",
-            ["vi-VN"] = "vn",
-            ["id-ID"] = "id",
-            ["hi-IN"] = "hi",
-            ["km-KH"] = "kh",
-            ["ko-KR"] = "ko",
-            ["ja-JP"] = "jp"
+            [_English_LanguageCode] = "en",
+            [_Bangladesh_LanguageCode] = "bn",
+            [_India_LanguageCode] = "hi",
+            [_Indonesia_LanguageCode] = "id",
+            [_Japan_LanguageCode] = "jp",
+            [_Cambodia_LanguageCode] = "kh",
+            [_Korea_LanguageCode] = "ko",
+            [_Thailand_LanguageCode] = "th",
+            [_VietNam_LanguageCode] = "vn",
+            [_Chinese_LanguageCode] = "cs",
+            [_Taiwan_LanguageCode] = "ch",
         };
 
         private static readonly IReadOnlyDictionary<string, string> _supportedLanguageForSEO = new Dictionary<string, string>
         {
-            ["en-US"] = "en",
-            ["zh-CN"] = "zh",
-            ["zh-TW"] = "zh-MY",
-            ["th-TH"] = "th",
-            ["vi-VN"] = "vi",
-            ["id-ID"] = "id",
-            ["hi-IN"] = "en-IN",
-            ["ko-KR"] = "ko",
+            [_English_LanguageCode] = "en",
+            [_Chinese_LanguageCode] = "zh",
+            [_Taiwan_LanguageCode] = "zh-MY",
+            [_Thailand_LanguageCode] = "th",
+            [_VietNam_LanguageCode] = "vi",
+            [_Indonesia_LanguageCode] = "id",
+            [_India_LanguageCode] = "en-IN",
+            [_Korea_LanguageCode] = "ko",
         };
 
         public static IDictionary<string, string> SupportedLanguage => _supportedLanguageForGoogleAnalytics;
 
-        public const string DefaultLanguageCode = "en-US";
+        public const string DefaultLanguageCode = _English_LanguageCode;
 
-        public const string VietNamLanguageCode = "vi-VN";
+        public const string VietNamLanguageCode = _VietNam_LanguageCode;
 
-        public const string IndonesiaLanguageCode = "id-ID";
+        public const string IndonesiaLanguageCode = _Indonesia_LanguageCode;
 
-        public const string IndiaLanguageCode = "hi-IN";
+        public const string IndiaLanguageCode = _India_LanguageCode;
 
         public const string ShortedDefaultCode = "en";
 
@@ -75,7 +87,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         public static string GetCanonicalLangName()
         {
             var currentCulture = Thread.CurrentThread.CurrentCulture;
-            var canonicalLangName = _supportedLanguageForSEO.TryGetValue(currentCulture.Name, out string result)
+            var canonicalLangName = _supportedLanguageForSEO.TryGetValue(currentCulture.Name, out string _)
                 ? currentCulture.TwoLetterISOLanguageName
                 : ShortedDefaultCode;
             return canonicalLangName;

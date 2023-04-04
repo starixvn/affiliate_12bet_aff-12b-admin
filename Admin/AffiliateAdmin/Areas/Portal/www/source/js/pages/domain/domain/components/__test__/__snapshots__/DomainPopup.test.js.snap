@@ -27,7 +27,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
   scrollable={false}
   style={
     Object {
-      "maxWidth": 600,
+      "maxWidth": 650,
     }
   }
   toggle={[Function]}
@@ -236,7 +236,7 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
   scrollable={false}
   style={
     Object {
-      "maxWidth": 600,
+      "maxWidth": 650,
     }
   }
   toggle={[Function]}

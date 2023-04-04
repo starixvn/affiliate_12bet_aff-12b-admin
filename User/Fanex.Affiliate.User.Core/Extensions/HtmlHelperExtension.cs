@@ -1,5 +1,7 @@
-﻿using System.Web;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using System.Web.Optimization;
 
 namespace Fanex.Affiliate.User.Core.Extensions
@@ -17,6 +19,18 @@ namespace Fanex.Affiliate.User.Core.Extensions
         public static IHtmlString InlineStyles(this HtmlHelper htmlHelper, string bundleVirtualPath)
         {
             return htmlHelper.InlineBundle(bundleVirtualPath, htmlTagName: StyleTag);
+        }
+
+        public static MvcHtmlString RenderPartialByLanguage(this HtmlHelper htmlHelper, string viewName, string language, object model = null)
+        {
+            try
+            {
+                return htmlHelper.Partial($"{viewName}.{language}.cshtml", model);
+            }
+            catch
+            {
+                return htmlHelper.Partial($"{viewName}.{SystemLanguage.DefaultLanguageCode}.cshtml", model);
+            }
         }
 
         private static IHtmlString InlineBundle(this HtmlHelper htmlHelper, string bundleVirtualPath, string htmlTagName)

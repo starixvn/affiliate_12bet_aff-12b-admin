@@ -2,7 +2,7 @@
 {
     public interface IMailProcessor
     {
-        string BuildTemplateContent(string path, object model);
+        string BuildTemplateContent(string path, string pathBackup, object model);
 
         void Send(string content, string mailTo, string subject, string mailBcc = "", string mailCc = "");
     }

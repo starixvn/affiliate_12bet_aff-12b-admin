@@ -12,16 +12,13 @@
 }
 
 @model string
-@{ 
-    var contentView = "~/Views/Faq/_Content." + Model + ".cshtml";
-}
 
 <div class="content">
     <div class="page-title">
         <span class="text">@Lang.Faqs</span>
     </div>
 
-    @{ Html.RenderPartial(contentView); }
+    @Html.RenderPartialByLanguage("~/Views/Faq/_Content", Model);
 
     @RazorHelper.RenderMovingTopButton()
 </div>

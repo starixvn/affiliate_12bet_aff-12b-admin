@@ -177,7 +177,7 @@ export class DomainPopup extends PureComponent {
         const buttonLabel = isInsert ? "Add" : "Submit";
 
         return selectedDomain && (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 600 }}>
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 650 }}>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
