@@ -2,7 +2,7 @@
 {
     public static class LanguageSystem
     {
-        public const string DefaultLanguage = "en-US";
+        public const string DefaultLanguageCode = "en-US";
         public const string ShortedDefaultCode = "en";
     }
 }

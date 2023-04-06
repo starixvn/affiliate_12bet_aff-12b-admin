@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
                     emailParam.FirstName = affInfo.FirstName;
                     emailParam.MailTo = affInfo.Email;
                     emailParam.IsHtml = !affInfo.MailOption;
-                    emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguage;
+                    emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguageCode;
 
                     emailParam.IsApproved = param.IsApproved;
                     emailParam.TransId = param.TransId;

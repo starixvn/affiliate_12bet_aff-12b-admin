@@ -30,19 +30,15 @@ namespace Fanex.Affiliate.Admin.Core.Services
             SendApprovedAffEmail(emailParam);
             SendAffInforEmail(emailParam);
             SendWithdrawalGuidanceEmail(emailParam);
-            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguage);
+            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
         }
 
         private void SendApprovedAffEmail(AffInformationEmail emailParam)
         {
-            const string TemplateName = "AffiliateApproved";
-            var model = new EmailBase
-            {
-                MailContact = _appSetting.MailContact
-            };
-
-            var content = GetEmailTextContent(TemplateName, emailParam.Language, model);
             var subject = Lang.EmailSubjectAffApproved;
+
+            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
+            var content = GetEmailTextContent(TemplateString.AffiliateApproved, emailParam.Language, emailParam);
 
             var contentToSend = emailParam.IsHtml ?
                 GetEmailHtmlContent(content, Lang.EmailTitleAffApproved, emailParam.Language, emailParam.RootUrl) :
@@ -53,18 +49,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private void SendAffInforEmail(AffInformationEmail emailParam)
         {
-            const string TemplateName = "AffiliateInformation";
-            var model = new AffInformationEmail
-            {
-                MailContact = _appSetting.MailContact,
-                UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(2),
-                FirstName = emailParam.FirstName,
-                UserName = emailParam.UserName,
-                Password = emailParam.Password
-            };
-
-            var content = GetEmailTextContent(TemplateName, emailParam.Language, model);
             var subject = Lang.EmailSubjectAffInfor;
+
+            emailParam.MailContact = _appSetting.MailContact;
+            emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(emailParam.AffType);
+            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
+            var content = GetEmailTextContent(TemplateString.AffiliateInformation, emailParam.Language, emailParam);
 
             var contentToSend = emailParam.IsHtml ?
                 GetEmailHtmlContent(content, Lang.EmailTitleAffInfor, emailParam.Language, emailParam.RootUrl) :
@@ -75,15 +65,10 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private void SendWithdrawalGuidanceEmail(AffInformationEmail emailParam)
         {
-            const string TemplateName = "WithdrawalGuidance";
-            var model = new WithdrawalEmail
-            {
-                MailContact = _appSetting.MailContact,
-                FirstName = emailParam.FirstName
-            };
-
-            var content = GetEmailTextContent(TemplateName, emailParam.Language, model);
             var subject = Lang.EmailSubjectWithdrawalGuidance;
+
+            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
+            var content = GetEmailTextContent(TemplateString.WithdrawalGuidance, emailParam.Language, emailParam);
 
             var contentToSend = emailParam.IsHtml ?
                 GetEmailHtmlContent(content, Lang.EmailTitleWithdrawalGuidance, emailParam.Language, emailParam.RootUrl) :
@@ -92,10 +77,53 @@ namespace Fanex.Affiliate.Admin.Core.Services
             _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
         }
 
+        public void SendPaymentRequestUpdateEmail(PaymentRequestUpdateEmail emailParam)
+        {
+            _commonSettingService.SetCulture(emailParam.Language);
+            var title = emailParam.IsApproved ? Lang.EmailTitlePaymentRequestApproved : Lang.EmailTitlePaymentRequestRejected;
+            var TemplateName = emailParam.IsApproved ? TemplateString.PaymentRequestApproved : TemplateString.PaymentRequestRejected;
+
+            emailParam.MailContact = _appSetting.MailContact;
+            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
+            var content = GetEmailTextContent(TemplateName, emailParam.Language, emailParam);
+            var subject = emailParam.IsApproved ?
+                string.Format(Lang.EmailSubjectPaymentRequestApproved, emailParam.TransId) :
+                string.Format(Lang.EmailSubjectPaymentRequestRejected, emailParam.TransId);
+
+            var contentToSend = emailParam.IsHtml ?
+                GetEmailHtmlContent(content, title, emailParam.Language, emailParam.RootUrl) :
+                content;
+
+            _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
+            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
+        }
+
+        public void SendDisapprovedEmail(AffInformationEmail emailParam)
+        {
+            _commonSettingService.SetCulture(emailParam.Language);
+            SendDisapprovedAffiliateEmail(emailParam);
+            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
+        }
+
+        private void SendDisapprovedAffiliateEmail(AffInformationEmail emailParam)
+        {
+            var subject = Lang.EmailSubjectAffDisapproved;
+
+            emailParam.MailContact = _appSetting.MailContact;
+            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
+            var content = GetEmailTextContent(TemplateString.AffiliateDisapproved, emailParam.Language, emailParam);
+
+            var contentToSend = emailParam.IsHtml ?
+                GetEmailHtmlContent(content, Lang.EmailTitleAffDisapproved, emailParam.Language, emailParam.RootUrl) :
+                content;
+
+            _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
+        }
+
         private string GetEmailTextContent(string templateName, string prefrerredLanguage, object model)
         {
             var viewPath = string.Format(TemplateString.EmailTemplatePath, templateName, prefrerredLanguage);
-            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, templateName, LanguageSystem.DefaultLanguage);
+            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, templateName, LanguageSystem.DefaultLanguageCode);
             var physicalPath = HttpContext.Current.Server.MapPath(viewPath);
             var physicalPathBackup = HttpContext.Current.Server.MapPath(viewPathBackup);
 
@@ -112,57 +140,10 @@ namespace Fanex.Affiliate.Admin.Core.Services
                 Content = content,
                 Title = title
             };
-            var viewPath = HttpContext.Current.Server.MapPath("~/Areas/Portal/Views/Shared/Email/CommonLayout.cshtml");
+            var viewPath = HttpContext.Current.Server.MapPath(TemplateString.CommonLayoutEmailTemplatePath);
             var viewPathBackup = viewPath;
 
             return _mailProcessor.BuildTemplateContent(viewPath, viewPathBackup, viewModel);
-        }
-
-        public void SendPaymentRequestUpdateEmail(PaymentRequestUpdateEmail emailParam)
-        {
-            _commonSettingService.SetCulture(emailParam.Language);
-            emailParam.MailContact = _appSetting.MailContact;
-
-            var TemplateName = emailParam.IsApproved ? "PaymentRequest/Approved" : "PaymentRequest/Rejected";
-
-            var content = GetEmailTextContent(TemplateName, emailParam.Language, emailParam);
-            var subject = emailParam.IsApproved ?
-                string.Format(Lang.EmailSubjectPaymentRequestApproved, emailParam.TransId) :
-                string.Format(Lang.EmailSubjectPaymentRequestRejected, emailParam.TransId);
-            var title = emailParam.IsApproved ? Lang.EmailTitlePaymentRequestApproved : Lang.EmailTitlePaymentRequestRejected;
-
-            var contentToSend = emailParam.IsHtml ?
-                GetEmailHtmlContent(content, title, emailParam.Language, emailParam.RootUrl) :
-                content;
-
-            _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
-            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguage);
-        }
-
-        public void SendDisapprovedEmail(AffInformationEmail emailParam)
-        {
-            _commonSettingService.SetCulture(emailParam.Language);
-            SendDisapprovedAffiliateEmail(emailParam);
-            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguage);
-        }
-
-        private void SendDisapprovedAffiliateEmail(AffInformationEmail emailParam)
-        {
-            const string TemplateName = "AffiliateDisapproved";
-            var model = new AffInformationEmail
-            {
-                MailContact = _appSetting.MailContact,
-                FirstName = emailParam.FirstName
-            };
-
-            var content = GetEmailTextContent(TemplateName, emailParam.Language, model);
-            var subject = Lang.EmailSubjectAffDisapproved;
-
-            var contentToSend = emailParam.IsHtml ?
-                GetEmailHtmlContent(content, Lang.EmailTitleAffDisapproved, emailParam.Language, emailParam.RootUrl) :
-                content;
-
-            _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
         }
     }
 }

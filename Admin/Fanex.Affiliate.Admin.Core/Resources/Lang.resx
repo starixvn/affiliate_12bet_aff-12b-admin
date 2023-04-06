@@ -347,4 +347,10 @@
   <data name="FileNameMustNotContain" xml:space="preserve">
     <value>File name must not contain \ / : * ? $ \" &lt; &gt; | characters</value>
   </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>MARK</value>
+  </data>
+  <data name="ContactTitle" xml:space="preserve">
+    <value>AFFILIATE MANAGER</value>
+  </data>
 </root>

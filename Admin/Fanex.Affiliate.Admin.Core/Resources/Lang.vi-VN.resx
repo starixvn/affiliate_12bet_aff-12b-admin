@@ -159,4 +159,10 @@
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
     <value>Đại lý 12Bet - Đơn đăng ký chương trình liên kết 12BET bị từ chối</value>
   </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>Lily</value>
+  </data>
+  <data name="ContactTitle" xml:space="preserve">
+    <value>QUẢN LÝ ĐẠI LÝ</value>
+  </data>
 </root>

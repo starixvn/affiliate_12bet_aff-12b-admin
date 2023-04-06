@@ -116,12 +116,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
         private void SendEmailApprove(AffInformationEmail emailParam, AffiliateBasicInfo affInfo, string password)
         {
             emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
-            emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguage;
+            emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguageCode;
             emailParam.FirstName = affInfo.FirstName;
             emailParam.UserName = affInfo.UserName;
             emailParam.MailTo = affInfo.Email;
             emailParam.IsHtml = !affInfo.MailOption;
             emailParam.Password = password;
+            emailParam.AffType = affInfo.AffType;
 
             _emailService.SendApprovedEmail(emailParam);
         }

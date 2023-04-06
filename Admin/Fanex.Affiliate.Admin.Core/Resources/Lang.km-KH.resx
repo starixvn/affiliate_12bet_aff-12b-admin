@@ -159,4 +159,10 @@
   <data name="Affiliate" xml:space="preserve">
     <value>ភ្នាក់ងារ</value>
   </data>
+  <data name="ContactTitle" xml:space="preserve">
+    <value>អ្នកគ្រប់គ្រងភ្នាក់ងារ</value>
+  </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>Dara</value>
+  </data>
 </root>

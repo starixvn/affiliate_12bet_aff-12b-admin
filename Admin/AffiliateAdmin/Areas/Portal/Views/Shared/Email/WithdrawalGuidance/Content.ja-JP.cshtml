@@ -1,28 +1,33 @@
 ﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.WithdrawalEmail
 
-<div>
-    @(Model.FirstName)様、<br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                Dear @Model.FirstName,<br /><br />
 
-    祝・12BETアフィリエイトへようこそ！<br /><br />
+                Congratulation on becoming our 12Bet affiliate!<br /><br />
 
-    貴方のアフィリエイトアカウントのペイアウトを迅速、確実に行なうために下記の内容をご確認願います:<br /><br />
+                To ensure for a faster payout for your affiliate, please take some time to read the following procedure for withdrawal:<br /><br />
 
-    1. まず、12BETのベットアカウントを作成してください。(入金はなさらないでください)<br /><br />
-    2. 12BETのアフィリエイトユーザー名と共にベットアカウントのユーザー名も必ず明記していただきEメール <a href="mailto:@Model.MailContact">@Model.MailContact</a> を弊社まで送信してください。<br /><br />
-    3. Eメール送信後、アフィリエイトの画面から、アフィリエイトアカウントにログイン、“ マイアカウント“ を選択してください。
-    お支払い情報欄、12BETプレイヤーアカウントにお支払い方法を変更し、支払い情報のフィールド(列)を“12BETユーザー名(ベットアカウント)”を記入し送信ボタンをクリックしてください。<br /><br />
-    4. 当社は毎月1度アフィリエイトメンバーのコミッション配当を決算しています。まずはアフィリエイトアカウントにログインし、支払請求を選択してください、希望支出額を入力します。<br /><br />
-    5. 支出申請が承認された場合、貴方の申請された金額はベットアカウントへ自動的に転送されます。<br /><br />
-    6. 貴方はいつでも12BETのベットアカウントから行なえます、またこれに対しての費用/手数料はかかりません。<br /><br />
+                1. Please do register a new 12Bet betting account (DO NOT DEPOSIT)<br /><br />
+                2. Send an email to <a href="mailto:@Model.MailContact">@Model.MailContact</a> and state your 12Bet username together with your affiliate username<br /><br />
+                3. After sending email to us for your 12Bet account, please login your affiliate account and click on "My Account",
+                at the payment Information column, please change your payment method to 12Bet Player Account, fill in your 12Bet username and click submit.<br /><br />
+                4. We will settle member's commission payout once in a month, please access your affiliate account and click on Payment request, enter the amount and request Payout.<br /><br />
+                5. If your withdrawal request is approved, your fund will be automatically transferred to your 12bet betting account.<br /><br />
+                6. You may request a withdrawal from your 12Bet betting account anytime and there will be no additional charges.<br /><br />
 
-    お知らせと注意事項:<br /><br />
-    1. 貴方の12BETアカウントはアフィリエイト用のみのアカウントです。ゲーム、ベットやご入金はなさらないようお願い申し上げます。<br /><br />
-    2. 貴方が12BETアカウントでご登録された名前は、アフィリエイトアカウントにご登録された際と同じ名前、尚且つ本当の名前でなくてはなりません。<br /><br />
-    3. 上記の手続き手順は2番と3番目は、初めての手続きを行なうメンバー様用で2回目以降のメンバー様は4番目以降をご参照願います。<br /><br />
+                Please take note:<br /><br />
+                1. Your 12Bet betting account is for affiliate purpose only; please do not make any deposit or placing bet.<br /><br />
+                2. Your 12Bet betting account registered name must be the same registered name that you had registered in your affiliate account, and it must be your real name.<br /><br />
+                3. The above procedures is for first time withdrawal affiliate members only, if request for 2nd or 3rd withdrawal, please refer to step 4, 5 and 6.<br /><br />
 
-    また、何がご質問ご不明な点がございましたらこちらからお問い合わせ願います。<br /><br />
+                Please do not hesitate to contact us if you have any further question.<br /><br />
 
-    以上、よろしくお願いします。<br /><br />
-    12BETアフィリエイトチーム<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div>
+                Sincerely,<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

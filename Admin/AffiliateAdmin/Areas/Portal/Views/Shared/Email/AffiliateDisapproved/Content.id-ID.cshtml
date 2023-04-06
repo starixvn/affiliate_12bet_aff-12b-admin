@@ -1,13 +1,22 @@
 ﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.AffInformationEmail
-<div>
-    Yang terhormat @Model.FirstName,<br /><br />
 
-    Aku menyesal untuk memberitahu Anda bahwa aplikasi Anda untuk bergabung dengan program Afiliasi 12Bet belum disetujui. Saya mohon maaf atas ketidaknyamanan yang ditimbulkan.<br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                Dear @Model.FirstName,<br /><br />
 
-    Jika Anda mempunyai pertanyaan mengenai mengapa situs Web Anda belum memenuhi kriteria yang diperlukan, silakan menghubungi saya di <a href="mailto:@Model.MailContact">@Model.MailContact</a>.<br /><br />
+                Terimakasih telah mengajukan permintaan untuk bergabung dengan Program Afiliasi 12BET. Setelah peninjauan, kami informasikan bahwa pengajuan Anda ditolak. <br /><br />
 
-    Hormat kami,<br /><br />
-    Afiliasi Services Manager,<br />
-    Afiliasi 12BET Tim<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div> 
+                Kami menghargai ketertarikan Anda untuk bekerjasama dengan 12BET, tetapi saat ini kami tidak dapat menyetujui permohonan Anda. Sehubungan standar yang diberlakukan pada Afiliasi kami, sayangnya, Pengajuan Anda tidak memenuhi Standar 12BET yang telah diberlakukan selama periode yang lama. <br /><br />
+
+                Kami minta maaf atas ketidaknyamanannya dan silakan lakukan pengajuan ulang di waktu mendatang mengingat Marketing Online selalu berkembang.               <br /><br />
+
+                Semoga kerjasama segera terjalin dan Sukses Selalu.<br /><br />
+
+                Best regards,<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

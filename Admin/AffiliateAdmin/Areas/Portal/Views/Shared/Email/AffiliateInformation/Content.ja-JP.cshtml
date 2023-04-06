@@ -1,20 +1,26 @@
 ﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.AffInformationEmail
-<div>
-    @(Model.FirstName)様、<br /><br />
 
-    おめでとうございます、お客様の申請内容は12BETアフィリエイトから承認されました。<br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                Dear @Model.FirstName,<br /><br />
 
-    当社のアフィリエイトファミリーの一因として参加していただき、大変感謝しております。また共に収益事業関係を構築することを楽しみにしております。あなたの12BETアフィリエイトアカウント詳細情報は以下の通りです:<br /><br />
+                Congratulations! Your Affiliate applcation is now approved. We are thrilled to welcome you offically as a 12BET Affiliate Partner.<br /><br />
 
-    テキストリンク: <a href="@Model.UserSiteUrl">@Model.UserSiteUrl</a><br />
-    ユーザー名: @Model.UserName<br />
-    パスワード: @Model.Password<br /><br />
+                As our Partner you will have access to a variety of marketing resources and tools to help you succeed. Please use the following login information to access your 12BET Affiliate Account:<br /><br />
 
-    お使いアカウントでは、あなたのアフィリエイトのトラッキングURLと同様にバナー広告や宣伝用資料がございます。<br /><br />
+                Site link: <a href="@Model.UserSiteUrl">@Model.UserSiteUrl</a><br />
+                Username: @Model.UserName<br />
+                Password: @Model.Password<br /><br />
 
-    また何かご不明な点等ございましたら、お気軽に12BETまでお問い合わせてください。<br /><br />
+                Please note that this password is temporary and should be changed after logging in to your account for the first time.<br /><br />
 
-    以上、よろしくお願い申し上げます。<br /><br />
-    12BETアフィリエイトチーム<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div>
+                Be it a custom sized image or a geo-specific link, do not hesitate to reach out for any assistance. We are here to support you in every step of the way and ensure that you have a successful and rewarding partnership with 12BET.<br /><br />
+
+                Best regards,<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

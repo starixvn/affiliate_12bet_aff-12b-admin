@@ -159,4 +159,10 @@
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
     <value>12Bet 제휴 - 제휴 신청</value>
   </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>한국</value>
+  </data>
+  <data name="ContactTitle" xml:space="preserve">
+    <value>제휴매니저</value>
+  </data>
 </root>

@@ -159,4 +159,10 @@
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
     <value>Afiliados de 12BET: Su solicitud</value>
   </data>
+  <data name="ContactTitle" xml:space="preserve">
+    <value>AFFILIATE MANAGER</value>
+  </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>MARK</value>
+  </data>
 </root>
