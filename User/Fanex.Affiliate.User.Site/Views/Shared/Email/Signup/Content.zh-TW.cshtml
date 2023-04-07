@@ -1,16 +1,22 @@
-﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.EmailBaseParam
-<div>
-    尊敬的 @Model.User.FirstName<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.EmailSignUpParam
 
-    感謝您申請加盟12BET合作夥伴計劃! <br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                敬愛的 @Model.User.FirstName,<br /><br />
 
-    我們合作夥伴部門經理將在三個工作日內電郵答复您的加盟申請。<br /><br />
+                我們已經收到12BET聯盟的申請，團隊目前正在審查中，感謝您對與我們合作的興趣。<br /><br />
 
-    如有任何疑問，歡迎隨時聯繫我們.<br /><br />
+                12BET一直在尋找有能力和有奉獻精神的伙伴，加入我們的計劃。我們致力於為合作夥伴會員，提供邁向成功所需的支持和資源，相信共同合作是盈利的關鍵。<br /><br />
 
-    誠摯的,<br /><br />
+                審查您的申請可能需要3個工作日，請放心，我們會花時間仔細考慮您提供的所有信息。<br /><br />
 
-    12BET合作夥伴經理,<br />
-    12BET合作夥伴團隊<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div>
+                在審核您的申請時，我們的合作夥伴經理可能會嘗試通過 <strong>@Model.IMName: @Model.IMValue</strong> 或您提供的號碼：<strong>@Model.ContactNumber</strong>與您聯繫。如果上述細節不正確，請回复我們並更新您的聯繫信息。<br /><br />
+
+                感謝您的耐心並考慮將12BET視為潛在的合作夥伴。<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

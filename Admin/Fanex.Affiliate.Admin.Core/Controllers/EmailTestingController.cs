@@ -123,7 +123,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 RootUrl = domain,
                 UserSiteUrl = _appSetting.AsianAffSiteUrl,
-                ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, domain),
                 Language = language,
                 Content = content,
                 Title = title

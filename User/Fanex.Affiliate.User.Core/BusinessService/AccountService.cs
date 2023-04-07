@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _emailService = emailService;
         }
 
-        public ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailBaseParam emailParam)
+        public ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailSignUpParam emailParam)
         {
             if (!signUpParam.IsLocal)
             {

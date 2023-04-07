@@ -1,20 +1,26 @@
 ﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
-<div>
-เรียน คุณ  Mr./Mrs. @Model.User.FirstName<br /><br />
 
-ตามที่คุณได้ขอถอนเงินมาวันที่ @Model.RequestDate.ToString("MM/dd/yyyy") จำนวนเงิน @Model.Amount บาท<br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                เรียน คุณ  Mr./Mrs. @Model.User.FirstName<br /><br />
 
-หมายเลขอ้างอิงการถอนเงิน คือ @Model.TransId<br /><br />
+                ตามที่คุณได้ขอถอนเงินมาวันที่ @Model.RequestDate.ToString("MM/dd/yyyy") จำนวนเงิน @Model.Amount บาท<br /><br />
 
-การถอนเงินของคุณจำนวนเงินดังกล่าวได้รับการปฏิเสธ<br /><br />
+                หมายเลขอ้างอิงการถอนเงิน คือ @Model.TransId<br /><br />
 
-อีเมลล์นี้เป็นการอีเมลล์ที่ถูกส่งโดยระบบ  กรุณาอย่าตอบกลับอีเมลล์นี้โดยตรง<br /><br />
+                การถอนเงินของคุณจำนวนเงินดังกล่าวได้รับการปฏิเสธ<br /><br />
 
-หากมีข้อสงสัยกรุณาอย่าลังเลที่จะติดต่อเรา สำหรับคำถามหรือความคิดเห็นเพิ่มเติม ส่งมาที่  <a href="mailto:@Model.MailContact">@Model.MailContact</a><br /><br />
+                อีเมลล์นี้เป็นการอีเมลล์ที่ถูกส่งโดยระบบ  กรุณาอย่าตอบกลับอีเมลล์นี้โดยตรง<br /><br />
 
-ขอให้คุณโชคดี<br /><br />
+                หากมีข้อสงสัยกรุณาอย่าลังเลที่จะติดต่อเรา สำหรับคำถามหรือความคิดเห็นเพิ่มเติม ส่งมาที่  <a href="mailto:@Model.MailContact">@Model.MailContact</a><br /><br />
 
-ขอแสดงความนับถือ<br /><br />
+                ขอให้คุณโชคดี<br /><br />
 
-ทีมงานพันธมิตร 12BET
-</div>
+                ขอแสดงความนับถือ<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

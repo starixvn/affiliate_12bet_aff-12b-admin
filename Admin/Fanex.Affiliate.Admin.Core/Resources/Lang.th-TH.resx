@@ -159,10 +159,4 @@
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
     <value>พันธมิตร 12bet - เรื่อง  สถานะการสมัครของท่าน</value>
   </data>
-  <data name="ContactName" xml:space="preserve">
-    <value>มาร์ติน</value>
-  </data>
-  <data name="ContactTitle" xml:space="preserve">
-    <value>ผู้จัดการฝ่ายพันธมิตร</value>
-  </data>
 </root>

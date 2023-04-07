@@ -159,10 +159,4 @@
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
     <value>12Bet合作夥伴 - 您的加盟申請</value>
   </data>
-  <data name="ContactName" xml:space="preserve">
-    <value>MARK</value>
-  </data>
-  <data name="ContactTitle" xml:space="preserve">
-    <value>合作夥伴經理</value>
-  </data>
 </root>

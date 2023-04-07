@@ -271,8 +271,6 @@
     <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\font.css" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\font.min.css" />
     <Content Include="Areas\Portal\www\dist\imgs\email\icon-12bet.png" />
     <Content Include="Areas\Portal\www\dist\imgs\email\bg-footer.jpg" />
     <Content Include="Areas\Portal\www\dist\imgs\email\icon-email.png" />
@@ -281,6 +279,7 @@
     <Content Include="Areas\Portal\www\dist\imgs\email\icon-telegram.png" />
     <Content Include="Areas\Portal\www\dist\imgs\email\icon-whatsapp.png" />
     <Content Include="Areas\Portal\www\dist\imgs\email\icon-zalo.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\note.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_admin.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_affiliateslist.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_domain.jpg" />
@@ -1046,19 +1045,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.vi-VN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.zh-CN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.zh-TW.cshtml" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-Light.ttf" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-Medium.eot" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-Medium.ttf" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-Medium.woff" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-Medium.woff2" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-Regular.eot" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-Regular.ttf" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-Regular.woff" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-Regular.woff2" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-SemiBold.eot" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-SemiBold.ttf" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-SemiBold.woff" />
-    <Content Include="Areas\Portal\www\dist\assets\fonts\montserrat\Montserrat-SemiBold.woff2" />
     <None Include="Areas\Portal\www\source\js\pages\message\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\__test__\Content.test.js" />

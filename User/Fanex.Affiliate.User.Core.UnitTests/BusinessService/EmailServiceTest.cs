@@ -135,7 +135,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void SendSignUpEmail_WhenCall_SendMail()
         {
             var service = CreateService();
-            var param = CreateEmailBaseParam();
+            var param = CreateEmailSignUpParam();
             var mainContent = "mail content";
             MockingHelper.SetUpEnviroment();
             MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
@@ -151,7 +151,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void SendSignUpEmail_WhenCallWithTextContent_SendMail()
         {
             var service = CreateService();
-            var param = CreateEmailBaseParam();
+            var param = CreateEmailSignUpParam();
             param.User.MailOption = true;
 
             var mainContent = "mail content";
@@ -298,6 +298,30 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                     SecretKey = "124m",
                     UserName = "test"
                 }
+            };
+
+            private static EmailSignUpParam CreateEmailSignUpParam()
+            => new EmailSignUpParam
+            {
+                MailBcc = "abc@gmail.com",
+                MailCc = "12b@gmail.com",
+                MailContact = "ab",
+                MailTo = "12@gmail.com",
+                RootDomain = "abc.com",
+                User = new DTO.UserInfo
+                {
+                    AffId = 1,
+                    Email = "abb@gmail.com",
+                    FirstName = "User",
+                    LastName = "Name",
+                    MailOption = false,
+                    PreferredLanguage = "vn-vi",
+                    SecretKey = "124m",
+                    UserName = "test"
+                },
+                IMName = "Whatsapp",
+                IMValue = "0123456789",
+                ContactNumber = "0987654321"
             };
 
         private static ContactUsParam CreateContactUsParam()

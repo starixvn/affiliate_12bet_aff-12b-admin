@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.DTO;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.Email
 {
@@ -17,5 +18,9 @@ namespace Fanex.Affiliate.User.Core.MetalModels.Email
         public UserInfo User { get; set; }
 
         public string CurrentLanguage { get; set; }
+
+        public string ContactInfo { get; set; }
+
+        public string ImageRootUrl => string.Format(TemplateString.EmailImageRootPath, RootDomain);
     }
 }

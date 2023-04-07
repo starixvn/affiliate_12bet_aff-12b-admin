@@ -159,10 +159,4 @@
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
     <value>12Bet Affiliates – Permohonan Anda</value>
   </data>
-  <data name="ContactName" xml:space="preserve">
-    <value>Diandra</value>
-  </data>
-  <data name="ContactTitle" xml:space="preserve">
-    <value>Manajer Afiliasi</value>
-  </data>
 </root>

@@ -135,7 +135,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
             var viewModel = new EmailTemplateViewModel
             {
                 RootUrl = domain,
-                ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, domain),
                 Language = language,
                 Content = content,
                 Title = title

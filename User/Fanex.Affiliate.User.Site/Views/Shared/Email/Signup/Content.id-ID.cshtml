@@ -1,16 +1,24 @@
-﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.EmailBaseParam
-<div>
-    Yang terhormat @Model.User.FirstName,<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.EmailSignUpParam
 
-    Terima kasih kerana Anda sudah berjaya  mendaftar untuk menjadi afiliasi 12BET!<br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                Dear @Model.User.FirstName,<br /><br />
 
-    Salah satu Afiliasi Account Manager kami akan menghubungi Anda melalui email dalam waktu 3 hari kerja untuk menentukan status aplikasi Anda.<br /><br />
+                Kami telah menerima pengajuan Anda untuk menjadi Afiliasi 12BET. Tim kami sedang meninjau pengajuan Anda saat ini dan senang untuk kerjasama dengan Anda.<br /><br />
 
-    Jika Anda memiliki pertanyaan dan memerlukan bantuan jangan ragu untuk menghubungi saya.<br /><br />
+                Di 12BET, kami selalu mencari Afiliasi yang berpotensi untuk bergabung di program ini. Kami memberikan dukungan untuk kesuksesan setiap member Afiliasi kami dan kami percaya bahwa kerjasama adalah kunci keberhasilan dalam program ini.<br /><br />
 
-    Hormat kami,<br /><br />
+                Sehubungan dengan pengajuan Anda akan diproses dalam waktu 3 hari kerja mengingat kami perlu mempertimbangkan semua informasi yang telah Anda berikan.<br /><br />
 
-    Afiliasi Services Manager,<br />
-    Afiliasi 12BET Tim<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div>
+                Manajer Afiliasi kami akan menghubungi Anda di <strong>@Model.IMName: @Model.IMValue</strong> atau nomer telepon Anda di: <strong>@Model.ContactNumber</strong> saat meninjau pengajuan Anda. Mohon informasikan kepada kami apabila informasi yang disediakan tidak sesuai.<br /><br />
+
+                Terimakasih untuk menunggu dan kesediaan Anda untuk bergabung di Afiliasi 12BET.<br /><br />
+
+                Best regards,<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

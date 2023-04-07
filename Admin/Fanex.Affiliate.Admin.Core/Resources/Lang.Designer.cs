@@ -88,24 +88,6 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MARK.
-        /// </summary>
-        public static string ContactName {
-            get {
-                return ResourceManager.GetString("ContactName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AFFILIATE MANAGER.
-        /// </summary>
-        public static string ContactTitle {
-            get {
-                return ResourceManager.GetString("ContactTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Domain Control.
         /// </summary>
         public static string DomainControl {

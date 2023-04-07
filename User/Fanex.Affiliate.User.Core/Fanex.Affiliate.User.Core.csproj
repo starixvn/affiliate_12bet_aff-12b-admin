@@ -353,6 +353,7 @@
     <Compile Include="Infrastructure\HttpRequestParserHandler.cs" />
     <Compile Include="Infrastructure\IDateTimeProvider.cs" />
     <Compile Include="Infrastructure\IHttpRequestParserHandler.cs" />
+    <Compile Include="MetalModels\Email\EmailSignUpParam.cs" />
     <Compile Include="MetalModels\UserPanel\CopiedBannerCounterParam.cs" />
     <Compile Include="MetalModels\UserPanel\FeedbackParam.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
