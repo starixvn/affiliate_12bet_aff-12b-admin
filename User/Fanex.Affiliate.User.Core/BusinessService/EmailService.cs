@@ -90,7 +90,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendNoticeEmailToCsd(NoticeEmailParam emailParam)
         {
-            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
             var emailContent = GetEmailTextContent(TemplateString.Csd, SystemLanguage.DefaultLanguageCode, emailParam);
             var subject = string.Format(Lang.CsdSubject, emailParam.UserName);
 
@@ -99,7 +98,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendContactUsEmail(EmailBaseParam emailParam, ContactUsParam model)
         {
-            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
             var emailContent = GetEmailTextContent(TemplateString.ContactUs, SystemLanguage.DefaultLanguageCode, model);
             var subject = $"12Bet Affiliates - Contact Us - {model.Subject}";
 

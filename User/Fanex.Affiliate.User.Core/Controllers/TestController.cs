@@ -219,7 +219,7 @@
             switch (functionName)
             {
                 case TemplateString.Csd:
-                    return GetCSDModel(rootUrl, language, isText);
+                    return GetCSDModel(rootUrl);
 
                 case TemplateString.RecoverPassword:
                     return GetForgetPasswordModel(rootUrl, language, isText);
@@ -255,12 +255,11 @@
             };
         }
 
-        private object GetCSDModel(string rootUrl, string language, bool isText)
+        private object GetCSDModel(string rootUrl)
         {
             return new NoticeEmailParam
             {
                 RootDomain = rootUrl,
-                User = GetUserInfo(language, isText),
                 UserName = _userName,
                 FirstName = "Firs Name",
                 LastName = "Last Name",
@@ -322,7 +321,7 @@
                 MailContact = _mailContact,
                 IMName = contactApp.Name,
                 IMValue = contactApp.Value,
-                ContactNumber = "0123456789",
+                UserNumberContact = "0123456789",
                 RootDomain = rootUrl
             };
         }

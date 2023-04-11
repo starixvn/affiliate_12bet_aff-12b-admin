@@ -26,6 +26,9 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public void SendApprovedEmail(AffInformationEmail emailParam)
         {
+            emailParam.MailContact = _appSetting.MailContact;
+            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
+
             _commonSettingService.SetCulture(emailParam.Language);
             SendApprovedAffEmail(emailParam);
             SendAffInforEmail(emailParam);
@@ -36,10 +39,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
         private void SendApprovedAffEmail(AffInformationEmail emailParam)
         {
             var subject = Lang.EmailSubjectAffApproved;
-
-            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
-            var content = GetEmailTextContent(TemplateString.AffiliateApproved, emailParam.Language, emailParam);
-
+            var model = new EmailBase
+            {
+                MailContact = emailParam.MailContact,
+                ContactInfo = emailParam.ContactInfo
+            };
+            var content = GetEmailTextContent(TemplateString.AffiliateApproved, emailParam.Language, model);
             var contentToSend = emailParam.IsHtml ?
                 GetEmailHtmlContent(content, Lang.EmailTitleAffApproved, emailParam.Language, emailParam.RootUrl) :
                 content;
@@ -51,9 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         {
             var subject = Lang.EmailSubjectAffInfor;
 
-            emailParam.MailContact = _appSetting.MailContact;
             emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(emailParam.AffType);
-            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
             var content = GetEmailTextContent(TemplateString.AffiliateInformation, emailParam.Language, emailParam);
 
             var contentToSend = emailParam.IsHtml ?
@@ -66,9 +69,14 @@ namespace Fanex.Affiliate.Admin.Core.Services
         private void SendWithdrawalGuidanceEmail(AffInformationEmail emailParam)
         {
             var subject = Lang.EmailSubjectWithdrawalGuidance;
+            var model = new WithdrawalEmail
+            {
+                MailContact = emailParam.MailContact,
+                ContactInfo = emailParam.ContactInfo,
+                FirstName = emailParam.FirstName
+            };
 
-            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
-            var content = GetEmailTextContent(TemplateString.WithdrawalGuidance, emailParam.Language, emailParam);
+            var content = GetEmailTextContent(TemplateString.WithdrawalGuidance, emailParam.Language, model);
 
             var contentToSend = emailParam.IsHtml ?
                 GetEmailHtmlContent(content, Lang.EmailTitleWithdrawalGuidance, emailParam.Language, emailParam.RootUrl) :

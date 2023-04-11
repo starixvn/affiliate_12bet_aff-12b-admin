@@ -104,6 +104,7 @@
                     MailTo = _appSetting.MailContact,
                     IMName = contactApp.Name,
                     IMValue = contactApp.Value,
+                    UserNumberContact = param.Phone,
                     CurrentLanguage = SessionService.CurrentLanguage
                 };
 

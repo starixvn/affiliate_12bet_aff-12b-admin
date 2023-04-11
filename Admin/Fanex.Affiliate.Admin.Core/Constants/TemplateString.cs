@@ -29,6 +29,11 @@ namespace Fanex.Affiliate.Admin.Core.Constants
 
         public static string GetContactInfoContent(EmailBase param, Func<string, string, object, string> getEmailTextContent)
         {
+            if (param is null)
+            {
+                return string.Empty;
+            }
+
             var contactInfoTemplateName = param.IsHtml ? ContactInfoHtml : ContactInfoText;
             return getEmailTextContent(contactInfoTemplateName, param.Language, param.ImageRootUrl);
         }

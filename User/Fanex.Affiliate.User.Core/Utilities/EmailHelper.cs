@@ -37,6 +37,11 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public static string GetContactInfoContent(EmailBaseParam param, Func<string, string, object, string> getEmailTextContent)
         {
+            if(param is null || param.User is null)
+            {
+                return string.Empty;
+            }
+            
             var contactInfoTemplateName = param.User.MailOption ? ContactInfoText : ContactInfoHtml;
             return getEmailTextContent(contactInfoTemplateName, param.User.PreferredLanguage, param.ImageRootUrl);
         }

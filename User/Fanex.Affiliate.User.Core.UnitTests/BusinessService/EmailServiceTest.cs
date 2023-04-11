@@ -321,7 +321,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 },
                 IMName = "Whatsapp",
                 IMValue = "0123456789",
-                ContactNumber = "0987654321"
+                UserNumberContact = "0987654321"
             };
 
         private static ContactUsParam CreateContactUsParam()
