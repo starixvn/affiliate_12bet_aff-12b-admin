@@ -35,6 +35,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         string BannerRootUrl { get; }
 
+        string EmailBackgroundUrl { get; }
+
         string[] BannerFolders { get; }
 
         int ImageSize { get; }

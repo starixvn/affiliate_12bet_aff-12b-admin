@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
             return newEmailName + "@" + emailSuffix;
         }
 
-        public static string GetContactInfoContent(EmailBaseParam param, Func<string, string, object, string> getEmailTextContent)
+        public static string GetContactInfoContent(EmailBaseParam param, Func<string, string, object, string> getEmailTextContent, string emailBackgroundUrl)
         {
             if(param is null || param.User is null)
             {
@@ -43,19 +44,19 @@ namespace Fanex.Affiliate.User.Core.Utilities
             }
             
             var contactInfoTemplateName = param.User.MailOption ? ContactInfoText : ContactInfoHtml;
-            return getEmailTextContent(contactInfoTemplateName, param.User.PreferredLanguage, param.ImageRootUrl);
+            return getEmailTextContent(contactInfoTemplateName, param.User.PreferredLanguage, emailBackgroundUrl);
         }
 
         public static ContactApp GetContactAppInfo(IEnumerable<ContactApp> contactAppList)
         {
             var contactApp = contactAppList.FirstOrDefault(c => c.Order == PRIORITY_1);
 
-            if (string.IsNullOrEmpty(contactApp.Value))
+            if (string.IsNullOrEmpty(contactApp?.Value))
             {
                 contactApp = contactAppList.FirstOrDefault(c => c.Order == PRIORITY_2);
             }
 
-            if (string.IsNullOrEmpty(contactApp.Value))
+            if (string.IsNullOrEmpty(contactApp?.Value))
             {
                 return contactAppList.FirstOrDefault(c => c.Order == PRIORITY_3);
             }

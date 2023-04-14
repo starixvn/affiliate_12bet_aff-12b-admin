@@ -31,7 +31,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string BannerDomain => GetValue("BannerDomain");
 
-        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
+        public string EmailBackgroundUrl => GetValue("EmailBackgroundUrl");
+
         public string MediaScriptUrl => GetValue("MediaScriptUrl");
 
         public string MailContact => GetValue("MailContact");

@@ -122,7 +122,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             UserSignUpParam passedParam = null;
             var accountService = new Mock<IAccountService>();
             accountService.Setup(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailSignUpParam>()))
-                        .Callback<UserSignUpParam, EmailBaseParam>((p, e) => passedParam = p);
+                        .Callback<UserSignUpParam, EmailSignUpParam>((p, e) => passedParam = p);
 
             var appSetting = Mock.Of<IAppSetting>(ap =>
             ap.AllowedAffiliateTypes == new List<string> { Constant.AffTypeAsian } &&
@@ -171,12 +171,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void Index_ModelStateIsValid_CallServiceWithCorrectEmailParam()
         {
             // Arrange
-            EmailBaseParam passedEmailParam = null;
+            EmailSignUpParam passedEmailParam = null;
             var resultInfo = new ResultInfo { IsOk = true, Message = string.Empty };
             var accountService = new Mock<IAccountService>();
             accountService.Setup(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailSignUpParam>()))
                                 .Returns(resultInfo)
-                                .Callback<UserSignUpParam, EmailBaseParam>((u, e) => passedEmailParam = e);
+                                .Callback<UserSignUpParam, EmailSignUpParam>((u, e) => passedEmailParam = e);
 
             var appSetting = Mock.Of<IAppSetting>(ap =>
             ap.AllowedAffiliateTypes == new List<string> { Constant.AffTypeAsian } &&
@@ -190,14 +190,17 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var signUpParam = CreateParam();
             signUpParam.Captcha = Constant.Captcha;
 
-            var expectedResult = JsonConvert.SerializeObject(new EmailBaseParam
+            var expectedResult = JsonConvert.SerializeObject(new EmailSignUpParam
             {
                 MailContact = Constant.DefaultMailContact,
                 MailCc = Constant.DefaultMailCc,
                 MailBcc = string.Empty,
                 MailTo = Constant.DefaultMailContact,
                 RootDomain = Constant.DefaultRootDomain + "/",
-                CurrentLanguage = Constant.DefaultLanguage
+                CurrentLanguage = Constant.DefaultLanguage,
+                UserNumberContact = "Phone",
+                IMName = "Zalo",
+                IMValue = "Zalor"
             });
 
             // Action
@@ -318,13 +321,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                     {
                         Name = "Skype",
                         Value = "skyper",
-                        Order = 0
+                        Order = 1
                     },
                     new ContactApp
                     {
                         Name = "Zalo",
                         Value = "Zalor",
-                        Order = 1
+                        Order = 2
                     }
                 };
         }

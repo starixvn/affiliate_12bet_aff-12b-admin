@@ -62,8 +62,8 @@ namespace Fanex.Affiliate.Link.Controllers
             if (Request.Url != null)
             {
                 var affDomain = GetFullAffDomain(Request.Url.ToString(), affId);
-                var urlReferrer = Request?.UrlReferrer?.AbsoluteUri;
-                var domainReferrer = Request?.UrlReferrer?.Host;
+                var urlReferrer = Request.UrlReferrer?.AbsoluteUri;
+                var domainReferrer = Request.UrlReferrer?.Host;
 
                 if (string.IsNullOrEmpty(urlReferrer) && !string.IsNullOrEmpty(Request["ref"]))
                 {
