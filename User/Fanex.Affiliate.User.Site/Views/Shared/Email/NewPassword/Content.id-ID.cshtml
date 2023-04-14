@@ -2,20 +2,25 @@
 @{
     var userInfo = Model.User;
 }
-<div>
-Yang terhotmat @userInfo.FirstName, <br /><br />
 
-Seperti yang Anda minta, kami berikan kata sandi yang baru. Anda informasi account baru adalah sebagai berikut: <br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                Yang terhotmat @userInfo.FirstName, <br /><br />
 
--------------------------------------------------------- <br />
-Nama Pengguna: @userInfo.UserName <br />
-Kata Sandi: @Model.NewPassword <br />
--------------------------------------------------------- <br /><br />
+                Seperti yang Anda minta, kami berikan kata sandi yang baru. Anda informasi account baru adalah sebagai berikut: <br /><br />
 
-Namun, Anda dapat mengunjungi <a href="@Model.RootDomain">@Model.RootDomain</a> untuk mengubah sandi Anda kapan saja <br /><br />
+                -------------------------------------------------------- <br />
+                Nama Pengguna: @userInfo.UserName <br />
+                Kata Sandi: @Model.NewPassword <br />
+                -------------------------------------------------------- <br /><br />
 
-Salam Sejahtera, <br /><br />
+                Namun, Anda dapat mengunjungi <a href="@Model.RootDomain">@Model.RootDomain</a> untuk mengubah sandi Anda kapan saja <br /><br />
 
-Tim di 12Bet Afiliasi<br />
-<a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div>
+                Salam Sejahtera, <br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

@@ -1,21 +1,25 @@
 ﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.EmailBase
 
-<div>
-    Estimado afiliado,<br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                Dear valued Affiliate,<br /><br />
 
-    Enhorabuena, ya es un apreciado miembro afiliado de 12BET.<br /><br />
+                Congratulations, you are now a valued 12BET Affiliate member!<br /><br />
 
-    Para ayudarnos a proporcionarle un mejor servicio, actualice cualquier cambio en su información personal e incluya su dirección URL adicional (si la hubiera) en "Mi cuenta" en nuestro sitio de afiliado de 12BET.<br /><br />
-    Notifíquenos la dirección o direcciones URL exactas del sitio Web en el que desea colocar los carteles de 12BET enviando un correo electrónico a <a href="mailto:@Model.MailContact">@Model.MailContact</a>. Si necesita diferentes tamaños de carteles, póngase en contacto con nosotros y haremos los arreglos necesarios lo antes posible.<br /><br />
+                To assist us in serving you better please update any latest change in your personal details and  include your  additional URL (if any) in "My Account" at our 12Bet Affiliate site.<br /><br />
+                Kindly notify us by e-mail to <a href="mailto:@Model.MailContact">@Model.MailContact</a> the exact website URL or URLs you are planning to put up 12Bet’s banners. If there is a need for different sizes banners, kindly contact us and we will arrange them soonest for you.<br /><br />
 
-    Se le informa de que su cuenta de afiliado puede estar sujeta al cierre si los carteles de 12BET no se colocan en su sitio Web registrado o cualquier URL notificada a los siete días siguientes desde su aprobación como miembro, a menos que haya proporcionado una explicación previa por escrito a 12BET.<br /><br />
+                Please be informed that your affiliate account may be subjected to closure if 12Bet banners have not been put up on your registered website or any notified URL within seven days from your affiliate membership approval unless you have given prior written explanation to 12Bet.<br /><br />
 
-    Le deseamos todo lo mejor y que su tráfico Web le proporcione grandes beneficios.<br /><br />
+                We wish you all the best and may your web traffic bring forth great profits to you!<br /><br />
 
-    Gracias.<br /><br />
+                Thank you.<br /><br />
 
-    Saludos,<br /><br />
-
-    Equipo de afiliados de 12BET<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div>
+                Regards,<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

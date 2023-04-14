@@ -20,6 +20,28 @@
     [CustomAuthorize]
     public class TestController : BaseController
     {
+        private readonly IList<ContactApp> CONTACT_APPS = new List<ContactApp>
+        {
+            new ContactApp
+            {
+                Order = 1,
+                Name = "Skype",
+                Value = "abc123"
+            },
+            new ContactApp
+            {
+                Order = 3,
+                Name = "Email",
+                Value = "abc@gmail.com"
+            },
+            new ContactApp
+            {
+                Order = 2,
+                Name = "Telegram",
+                Value = string.Empty
+            }
+        };
+
         private readonly IMailProcessor _mailProcessor;
         private readonly IAppSetting _appSetting;
 
@@ -59,12 +81,12 @@
             {
                 LanguageService.SetCulture(criteria.Language);
 
-                var function = criteria.Function.ToLowerInvariant();
+                var function = criteria.Function;
                 (var subject, var title) = GetSubjectAndTitle(function);
                 criteria.Title = title;
                 ViewBag.Data = GetEmailContent(criteria);
 
-                LanguageService.SetCulture("en-US");
+                LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -94,7 +116,7 @@
                 criteria.Title = title;
                 var content = GetEmailContent(criteria);
 
-                LanguageService.SetCulture("en-US");
+                LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
 
                 _mailProcessor.Send(content, criteria.EmailAddress, subject);
             }
@@ -117,28 +139,28 @@
         {
             switch (functionName)
             {
-                case "contactus":
+                case TemplateString.ContactUs:
                     return (Lang.ContactUs, Lang.ContactUs);
 
-                case "csd":
+                case TemplateString.Csd:
                     return (Lang.CsdSubject, Lang.CsdSubject);
 
-                case "recoverpassword":
+                case TemplateString.RecoverPassword:
                     return (Lang.SubjectForgetPass, Lang.EmailTitlePasswordRecovery);
 
-                case "paymentcancel":
+                case TemplateString.PaymentCancel:
                     return (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment);
 
-                case "paymentrequest":
+                case TemplateString.PaymentRequest:
                     return (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment);
 
-                case "newpassword":
+                case TemplateString.NewPassword:
                     return (Lang.SubjectNewPass, Lang.EmailTitleNewPassword);
 
-                case "signup":
+                case TemplateString.Signup:
                     return (Lang.RegisSubject, Lang.EmailTitleSignUp);
 
-                case "verificationaccount":
+                case TemplateString.VerificationAccount:
                     return (Lang.SubjectVerificationAccount, Lang.EmailTittleVerificationAccount);
 
                 default:
@@ -149,91 +171,95 @@
 
         private string GetEmailContent(TestCriteria criteria)
         {
-            var content = GetEmailTextContent(criteria);
+            var isText = criteria.Format == "txt";
+            var rootUrl = SiteDomainHelper.GetRootUrl(this);
+            var content = string.Empty;
 
-            return criteria.Format == "txt" ? content : GetEmailHtmlContent(content, criteria.Language, criteria.Title);
+            if(string.Equals(criteria.Function, TemplateString.ContactUs, StringComparison.OrdinalIgnoreCase))
+            {
+                content = GetEmailTextContent(criteria.Function, criteria.Language, GetContactUsModel(rootUrl));
+            } else
+            {
+                var model = GetModelByFunction(criteria.Function, rootUrl, criteria.Language, isText) as EmailBaseParam;
+                model.ContactInfo = EmailHelper.GetContactInfoContent(model, GetEmailTextContent);
+
+                content = GetEmailTextContent(criteria.Function, criteria.Language, model);
+            }
+
+            return isText ? content : GetEmailHtmlContent(content, criteria.Language, criteria.Title, rootUrl);
         }
 
-        private string GetEmailTextContent(TestCriteria criteria)
+        private string GetEmailTextContent(string templateName, string preferredLanguage, object model)
         {
-            var language = criteria.Language;
-            var function = criteria.Function;
-
-            var viewPath = string.Format(TemplateString.EmailTemplatePath, function, language);
-            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, function, SystemLanguage.DefaultLanguageCode);
+            var viewPath = string.Format(TemplateString.EmailTemplatePath, templateName, preferredLanguage);
+            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, templateName, SystemLanguage.DefaultLanguageCode);
             var physicalPath = Server.MapPath(viewPath);
             var physicalPathBackup = Server.MapPath(viewPathBackup);
-            var model = GetModelByFunction(function.ToLowerInvariant());
 
-            return model == null ? string.Empty : _mailProcessor.BuildTemplateContent(physicalPath, physicalPathBackup, model);
+            return _mailProcessor.BuildTemplateContent(physicalPath, physicalPathBackup, model);
         }
 
-        private string GetEmailHtmlContent(string content, string language, string title)
+        private string GetEmailHtmlContent(string content, string language, string title, string rootUrl)
         {
-            var domain = SiteDomainHelper.GetRootUrl(this, _appSetting);
-
             var viewModel = new EmailTemplateViewModel
             {
-                RootUrl = domain,
-                ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, domain),
+                RootUrl = rootUrl,
                 Language = language,
                 Content = content,
                 Title = title
             };
-            var viewPath = Server.MapPath("~/Views/Shared/Email/CommonLayout.cshtml");
+            var viewPath = Server.MapPath(TemplateString.CommonLayoutEmailTemplatePath);
             var viewPathBackup = viewPath;
 
             return _mailProcessor.BuildTemplateContent(viewPath, viewPathBackup, viewModel);
         }
 
-        private object GetModelByFunction(string functionName)
+        private object GetModelByFunction(string functionName, string rootUrl, string language, bool isText)
         {
             switch (functionName)
             {
-                case "contactus":
-                    return GetContactUsModel();
+                case TemplateString.Csd:
+                    return GetCSDModel(rootUrl);
 
-                case "csd":
-                    return GetCSDModel();
+                case TemplateString.RecoverPassword:
+                    return GetForgetPasswordModel(rootUrl, language, isText);
 
-                case "recoverpassword":
-                    return GetForgetPasswordModel();
+                case TemplateString.PaymentCancel:
+                    return GetPaymentModel(PaymentRequestType.Cancel, rootUrl, language, isText);
 
-                case "paymentcancel":
-                    return GetPaymentModel(PaymentRequestType.Cancel);
+                case TemplateString.PaymentRequest:
+                    return GetPaymentModel(PaymentRequestType.Create, rootUrl, language, isText);
 
-                case "paymentrequest":
-                    return GetPaymentModel(PaymentRequestType.Create);
+                case TemplateString.NewPassword:
+                    return GetRecoverPasswordModel(rootUrl, language, isText);
 
-                case "newpassword":
-                    return GetRecoverPasswordModel();
+                case TemplateString.Signup:
+                    return GetSignupModel(rootUrl, language, isText);
 
-                case "signup":
-                    return GetSignupModel();
-
-                case "verificationaccount":
-                    return GetVerificationAccountModel();
+                case TemplateString.VerificationAccount:
+                    return GetVerificationAccountModel(rootUrl, language, isText);
 
                 default:
                     return null;
             }
         }
 
-        private object GetContactUsModel()
+        private object GetContactUsModel(string rootUrl)
         {
             return new ContactUsParam
             {
                 Sender = "Sender",
                 Affiliate = _userName,
                 Email = "abc@12b.com",
-                Content = SiteDomainHelper.GetRootUrl(this, _appSetting),
+                Content = rootUrl,
             };
         }
 
-        private object GetCSDModel()
+        private object GetCSDModel(string rootUrl)
         {
             return new NoticeEmailParam
             {
+                RootDomain = rootUrl,
                 UserName = _userName,
                 FirstName = "Firs Name",
                 LastName = "Last Name",
@@ -243,70 +269,76 @@
             };
         }
 
-        private object GetForgetPasswordModel()
+        private object GetForgetPasswordModel(string rootUrl, string language, bool isText)
         {
             return new RecoverPasswordEmailParam
             {
-                User = GetUserInfo(),
+                RootDomain = rootUrl,
+                User = GetUserInfo(language, isText),
                 MailContact = _mailContact,
                 Code = "12345",
-                RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                 MailTo = _mailContact
             };
         }
 
-        private object GetPaymentModel(PaymentRequestType type)
+        private object GetPaymentModel(PaymentRequestType type, string rootUrl, string language, bool isText)
         {
             const long TranId = 1L;
             const decimal Amount = 989;
 
             return new PaymentEmailParam
             {
-                User = GetUserInfo(),
+                User = GetUserInfo(language, isText),
                 MailContact = _mailContact,
                 TransId = TranId,
                 RequestDate = DateTime.Now.Date,
                 Amount = Amount,
-                RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
+                RootDomain = rootUrl,
                 MailTo = _mailContact,
                 PaymentType = type
             };
         }
 
-        private object GetRecoverPasswordModel()
+        private object GetRecoverPasswordModel(string rootUrl, string language, bool isText)
         {
             return new NewPasswordEmailParam
             {
-                User = GetUserInfo(),
+                User = GetUserInfo(language, isText),
                 MailContact = _mailContact,
                 NewPassword = "1234aa",
-                RootDomain = "http://affiliate.12ying.com/",
+                RootDomain = rootUrl,
                 MailTo = _mailContact,
             };
         }
 
-        private object GetSignupModel()
+        private object GetSignupModel(string rootUrl, string language, bool isText)
         {
-            return new EmailBaseParam
+            var contactApp = EmailHelper.GetContactAppInfo(CONTACT_APPS);
+
+            return new EmailSignUpParam
             {
-                User = GetUserInfo(),
-                MailContact = _mailContact
+                User = GetUserInfo(language, isText),
+                MailContact = _mailContact,
+                IMName = contactApp.Name,
+                IMValue = contactApp.Value,
+                UserNumberContact = "0123456789",
+                RootDomain = rootUrl
             };
         }
 
-        private object GetVerificationAccountModel()
+        private object GetVerificationAccountModel(string rootUrl, string language, bool isText)
         {
             return new VerificationAccountEmailParam
             {
-                User = GetUserInfo(),
+                User = GetUserInfo(language, isText),
                 MailContact = _mailContact,
-                RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
+                RootDomain = rootUrl,
                 Code = "123456",
                 Ip = "127.0.0.1"
             };
         }
 
-        private UserInfo GetUserInfo()
+        private UserInfo GetUserInfo(string language, bool isText)
         {
             return new UserInfo
             {
@@ -315,14 +347,14 @@
                 UserName = _userName,
                 Email = "abc@nova.com",
                 LastName = "Last name",
-                MailOption = false,
-                PreferredLanguage = "en-US"
+                MailOption = isText,
+                PreferredLanguage = language
             };
         }
 
         private bool IsValidUser()
         {
-            return _appSetting.IsLocal || SessionService.IsInternal;
+            return _appSetting.IsLocal || SessionService.IsInternal || _appSetting.IsDev;
         }
     }
 

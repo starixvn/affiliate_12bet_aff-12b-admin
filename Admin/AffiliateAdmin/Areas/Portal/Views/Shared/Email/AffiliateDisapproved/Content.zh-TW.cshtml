@@ -1,14 +1,20 @@
 ﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.AffInformationEmail
 
-<div>
-    尊敬的 @Model.FirstName,<br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                敬愛的 @Model.FirstName,<br /><br />
 
-    非常遺憾的通知您，您的12BET合作夥伴加盟申請未獲批准。對於給您造成的不便，我們在此深表歉意。 <br /><br />
+                感謝您申請加入12BET合作夥伴計劃。經過仔細審查，我們很遺憾地通知您，您的申請已被拒絕。<br /><br />
 
-    如果您我們的上述答復存有疑問，歡迎您電郵至<a href="mailto:@Model.MailContact">@Model.MailContact</a>聯繫我們.<br /><br />
+                我們感謝您對與12BET合作夥伴的興趣，但不幸的是，我們目前無法批准您的申請。我們對合作夥伴有嚴格的準則，不幸的是，您的申請並不符合12BET多年來的標準。<br /><br />
 
-    誠摯的,<br /><br />
-    12BET合作夥伴經理,<br />
-    12BET合作夥伴團隊<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div> 
+                我們對所造成的任何不便表示歉意，並鼓勵您在未來重新申請，因為網絡營銷是不斷發展的。<br /><br />
+
+                我們的團隊願祝您在未來的工作中一切順利。<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

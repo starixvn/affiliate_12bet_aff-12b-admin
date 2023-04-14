@@ -94,13 +94,17 @@
                     IsLocal = _appSetting.IsLocal
                 };
 
-                var emailParam = new EmailBaseParam
+                var contactApp = EmailHelper.GetContactAppInfo(param.ContactAppList);
+                var emailParam = new EmailSignUpParam
                 {
                     MailCc = _appSetting.MailCc,
                     MailContact = _appSetting.MailContact,
                     MailBcc = _appSetting.MailBcc,
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     MailTo = _appSetting.MailContact,
+                    IMName = contactApp.Name,
+                    IMValue = contactApp.Value,
+                    UserNumberContact = param.Phone,
                     CurrentLanguage = SessionService.CurrentLanguage
                 };
 

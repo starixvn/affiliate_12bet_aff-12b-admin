@@ -8,6 +8,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         ResultInfo CheckPlayerAccountIsActived(int affId, string language);
 
-        ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailBaseParam emailParam);
+        ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailSignUpParam emailParam);
     }
 }

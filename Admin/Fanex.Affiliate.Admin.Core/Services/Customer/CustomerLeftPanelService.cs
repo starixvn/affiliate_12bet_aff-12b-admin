@@ -110,7 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
         private void SendDisapprovedEmail(AffInformationEmail emailParam, AffiliateBasicInfo affInfo)
         {
             emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
-            emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguage;
+            emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguageCode;
             emailParam.FirstName = affInfo.FirstName;
             emailParam.MailTo = affInfo.Email;
             emailParam.IsHtml = !affInfo.MailOption;

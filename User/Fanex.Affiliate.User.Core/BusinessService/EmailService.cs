@@ -24,9 +24,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendRecoverPasswordEmail(RecoverPasswordEmailParam emailParam)
         {
-            const string TemplateName = "RecoverPassword";
+            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
             var preferredLanguage = emailParam.User.PreferredLanguage;
-            var emailContent = GetEmailTextContent(TemplateName, preferredLanguage, emailParam);
+            var emailContent = GetEmailTextContent(TemplateString.RecoverPassword, preferredLanguage, emailParam);
 
             HandleSetCulture(preferredLanguage);
             if (!emailParam.User.MailOption)
@@ -40,9 +40,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendNewPasswordEmail(NewPasswordEmailParam emailParam)
         {
-            const string TemplateName = "NewPassword";
+            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
             var preferredLanguage = emailParam.User.PreferredLanguage;
-            var emailContent = GetEmailTextContent(TemplateName, preferredLanguage, emailParam);
+            var emailContent = GetEmailTextContent(TemplateString.NewPassword, preferredLanguage, emailParam);
 
             HandleSetCulture(preferredLanguage);
             if (!emailParam.User.MailOption)
@@ -56,7 +56,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendPaymentEmail(PaymentEmailParam emailParam)
         {
-            var templateName = emailParam.PaymentType == PaymentRequestType.Cancel ? "PaymentCancel" : "PaymentRequest";
+            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
+            var templateName = emailParam.PaymentType == PaymentRequestType.Cancel ? TemplateString.PaymentCancel : TemplateString.PaymentRequest;
             var preferredLanguage = emailParam.User.PreferredLanguage;
             var emailContent = GetEmailTextContent(templateName, preferredLanguage, emailParam);
 
@@ -71,11 +72,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _languageService.SetCulture(emailParam.CurrentLanguage);
         }
 
-        public void SendSignUpEmail(EmailBaseParam emailParam)
+        public void SendSignUpEmail(EmailSignUpParam emailParam)
         {
-            const string TemplateName = "Signup";
+            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
             var preferredLanguage = emailParam.User.PreferredLanguage;
-            var emailContent = GetEmailTextContent(TemplateName, preferredLanguage, emailParam);
+            var emailContent = GetEmailTextContent(TemplateString.Signup, preferredLanguage, emailParam);
 
             HandleSetCulture(preferredLanguage);
             if (!emailParam.User.MailOption)
@@ -89,27 +90,25 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendNoticeEmailToCsd(NoticeEmailParam emailParam)
         {
-            const string TemplateName = "Csd";
-            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, emailParam);
-
+            var emailContent = GetEmailTextContent(TemplateString.Csd, SystemLanguage.DefaultLanguageCode, emailParam);
             var subject = string.Format(Lang.CsdSubject, emailParam.UserName);
+
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
         }
 
         public void SendContactUsEmail(EmailBaseParam emailParam, ContactUsParam model)
         {
-            const string TemplateName = "ContactUs";
-            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, model);
-
+            var emailContent = GetEmailTextContent(TemplateString.ContactUs, SystemLanguage.DefaultLanguageCode, model);
             var subject = $"12Bet Affiliates - Contact Us - {model.Subject}";
+
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
         }
 
         public void SendVerificationEmail(VerificationAccountEmailParam emailParam)
         {
-            const string TemplateName = "VerificationAccount";
+            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
             var preferredLanguage = emailParam.User.PreferredLanguage;
-            var emailContent = GetEmailTextContent(TemplateName, preferredLanguage, emailParam);
+            var emailContent = GetEmailTextContent(TemplateString.VerificationAccount, preferredLanguage, emailParam);
 
             HandleSetCulture(preferredLanguage);
             if (!emailParam.User.MailOption)
@@ -136,12 +135,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var viewModel = new EmailTemplateViewModel
             {
                 RootUrl = domain,
-                ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, domain),
                 Language = language,
                 Content = content,
                 Title = title
             };
-            var viewPath = HttpContext.Current.Server.MapPath("~/Views/Shared/Email/CommonLayout.cshtml");
+            var viewPath = HttpContext.Current.Server.MapPath(TemplateString.CommonLayoutEmailTemplatePath);
             var viewPathBackup = viewPath;
 
             return _mailProcessor.BuildTemplateContent(viewPath, viewPathBackup, viewModel);

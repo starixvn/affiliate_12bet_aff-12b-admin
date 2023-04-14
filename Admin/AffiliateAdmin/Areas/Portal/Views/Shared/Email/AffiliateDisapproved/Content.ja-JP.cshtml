@@ -1,17 +1,22 @@
 ﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.AffInformationEmail
 
-<div>
-    @(Model.FirstName)様、<br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                Dear @Model.FirstName,<br /><br />
 
-    この度は当社のアフィリエイトプログラムに応募して頂きありがとうございました。<br />
-    厳正なる選考の結果、誠に残念ではございますが、不承認となり申請は却下されたことをお知らせいたします。<br />
+                Thank you for submitting your request to join the 12BET Affiliate Program. After careful review, we regret to inform you that your application has been rejected.<br /><br />
 
-    貴方のWebサイトが必要基準を満たしていない理由等ですが、何かご不明な点等ございましたら、お気軽に12BET<a href="mailto:@Model.MailContact">@Model.MailContact</a>までお問い合わせてください。<br />
+                We appreciate your interest in partnering with 12BET, but unfortunately, we are unable to approve your request at this time. We have strict guidelines for our affiliates, and unfortunately, your application did not meet the standards 12BET has set over the years.<br /><br />
 
-    この度は当社として大変心苦しい結果ですが、何卒ご了承深くお願い申し上げます。<br />
+                We apologize for any inconvenience this may cause and encourage you to re-apply in the future as we all know online marketing is ever evolving. <br /><br />
 
-    ありがとうございました。<br /><br />
-    アフィリエイトサービスマネージャー<br />
-    12BETアフィリエイトチーム<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div> 
+                Our team wishes you the best in your future endeavours.<br /><br />
+
+                Best regards,<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

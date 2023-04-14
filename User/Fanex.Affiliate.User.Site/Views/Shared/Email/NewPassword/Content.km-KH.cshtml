@@ -1,23 +1,28 @@
 ﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.NewPasswordEmailParam
-@{ 
+@{
     var userInfo = Model.User;
 }
-<div>
-    សូមគោរព @userInfo.FirstName,<br /><br />
 
-    ដូចដែលអ្នកបានស្នើសុំ យើងផ្តល់ឱ្យអ្នកនូវពាក្យសម្ងាត់ថ្មី ព័ត៌មានគណនីថ្មីរបស់អ្នកមានដូចខាងក្រោម៖<br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                សូមគោរព @userInfo.FirstName,<br /><br />
 
-    --------------------------------------------------------<br />
-    ឈ្មោះ​ប្រើប្រាស់: @userInfo.UserName<br />
-    ពាក្យសម្ងាត់: @Model.NewPassword<br />
-    --------------------------------------------------------<br /><br />
+                ដូចដែលអ្នកបានស្នើសុំ យើងផ្តល់ឱ្យអ្នកនូវពាក្យសម្ងាត់ថ្មី ព័ត៌មានគណនីថ្មីរបស់អ្នកមានដូចខាងក្រោម៖<br /><br />
 
-    ទោះយ៉ាងណាក៏ដោយ អ្នកអាចចូលទៅកាន់ <a href="@Model.RootDomain">@Model.RootDomain</a> ដើម្បីផ្លាស់ប្តូរពាក្យសម្ងាត់របស់អ្នកបានគ្រប់ពេលវេលា<br /><br />
+                --------------------------------------------------------<br />
+                ឈ្មោះ​ប្រើប្រាស់: @userInfo.UserName<br />
+                ពាក្យសម្ងាត់: @Model.NewPassword<br />
+                --------------------------------------------------------<br /><br />
 
-    សូមជួបតែសំណាងល្អ!<br /><br />
+                ទោះយ៉ាងណាក៏ដោយ អ្នកអាចចូលទៅកាន់ <a href="@Model.RootDomain">@Model.RootDomain</a> ដើម្បីផ្លាស់ប្តូរពាក្យសម្ងាត់របស់អ្នកបានគ្រប់ពេលវេលា<br /><br />
 
-    ដោយក្តីគោរព,<br /><br />
+                សូមជួបតែសំណាងល្អ!<br /><br />
 
-    ពីក្រុមការងារភ្នាក់ងារ 12Bet<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div>
+                ដោយក្តីគោរព,<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

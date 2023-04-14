@@ -265,7 +265,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var times = isLocalTest ? Times.Never() : Times.Once();
 
             // Action
-            accountService.CreateAffiliate(signUpParam, new EmailBaseParam());
+            accountService.CreateAffiliate(signUpParam, new EmailSignUpParam());
 
             // Assert
             accountRepository.Verify(ac => ac.CreateAffiliate(signUpParam), Times.Once);
@@ -286,7 +286,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
-            accountService.CreateAffiliate(signUpParam, new EmailBaseParam());
+            accountService.CreateAffiliate(signUpParam, new EmailSignUpParam());
 
             // Assert
             accountRepository.Verify(ac => ac.CreateAffiliate(signUpParam), Times.Never);
@@ -306,7 +306,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var expectedResult = new ResultInfo { IsOk = false, Message = Lang.errDepositDBConnectFailed };
 
             // Action
-            var result = accountService.CreateAffiliate(signUpParam, new EmailBaseParam());
+            var result = accountService.CreateAffiliate(signUpParam, new EmailSignUpParam());
 
             // Assert
             Assert.Equal(expectedResult.IsOk, result.IsOk);
@@ -325,7 +325,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
-            var result = accountService.CreateAffiliate(signUpParam, new EmailBaseParam());
+            var result = accountService.CreateAffiliate(signUpParam, new EmailSignUpParam());
 
             // Assert
             Assert.Equal(expectedResultInfo, result);
@@ -341,7 +341,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var accountRepository = GetMockAccountRepository(signUpParam: signUpParam);
 
             var emailService = new Mock<IEmailService>();
-            emailService.Setup(e => e.SendSignUpEmail(It.IsAny<EmailBaseParam>())).Callback<EmailBaseParam>(p => passedParam = p);
+            emailService.Setup(e => e.SendSignUpEmail(It.IsAny<EmailSignUpParam>())).Callback<EmailBaseParam>(p => passedParam = p);
 
             var accountService = CreateAccountService(accountRepository, emailService.Object);
 
@@ -361,7 +361,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var result = JsonConvert.SerializeObject(passedParam);
 
             // Assert
-            emailService.Verify(e => e.SendSignUpEmail(It.IsAny<EmailBaseParam>()), Times.Once);
+            emailService.Verify(e => e.SendSignUpEmail(It.IsAny<EmailSignUpParam>()), Times.Once);
             Assert.Equal(expectedResult, result);
         }
 
@@ -430,9 +430,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             return accountRepository.Object;
         }
 
-        private EmailBaseParam CreateEmailParam()
+        private EmailSignUpParam CreateEmailParam()
         {
-            return new EmailBaseParam
+            return new EmailSignUpParam
             {
                 MailCc = Constant.DefaultMailCc,
                 MailContact = Constant.DefaultMailContact,

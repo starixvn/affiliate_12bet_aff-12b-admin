@@ -1,16 +1,21 @@
 ﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.PaymentRequestUpdateEmail
 
-<div>
-    Estimado/a Sr./Sra. @Model.FirstName,  <br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                Dear @Model.FirstName,  <br /><br />
 
-    El número de referencia de su solicitud es @Model.TransId, con fecha @Model.TransDate.<br /><br />
+                Request reference number is @Model.TransId, dated @Model.TransDate.<br /><br />
 
-    Lamentamos informarme de que se ha rechazado su solicitud de pago de la cantidad de @Model.Amount dólares.<br /><br />
+                We regret to inform you that your payment request amount of $@Model.Amount has been rejected.<br /><br />
 
-    Póngase en contacto con nosotros en el <a href="mailto:@Model.MailContact">@Model.MailContact</a> de asistencia.<br />
-    Este es un sistema de correo electrónico generado de forma automática; no responda a este correo electrónico directamente.<br /><br />
+                Please contact us at <a href="mailto:@Model.MailContact">@Model.MailContact</a> for assistance.<br />
+                This is a system auto generated email, please do not reply to this email directly.<br /><br />
 
-    Atentamente,<br /><br />
-    Equipo de afiliados de 12BET.<br />
-      <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div>
+                Sincerely,<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)

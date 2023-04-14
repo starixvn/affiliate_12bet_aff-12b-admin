@@ -1,16 +1,21 @@
 ﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.PaymentRequestUpdateEmail
 
-<div>
-    សូមគោរព @Model.FirstName,  <br /><br />
+<table>
+    <tr>
+        <td>
+            <p style="color: #313131; margin: 0; line-height: 1.5">
+                សូមគោរព @Model.FirstName,  <br /><br />
 
-    ស្នើសុំលេខយោងគឺ @Model.TransId, ចុះថ្ងៃទី @Model.TransDate<br /><br />
+                ស្នើសុំលេខយោងគឺ @Model.TransId, ចុះថ្ងៃទី @Model.TransDate<br /><br />
 
-    សូមចូលរួមសោកស្ដាយនិងជូនដំណឹងអំពីសំណើទូទាត់ប្រាក់របស់អ្នកចំនួន $@Model.Amount ត្រូវបានបដិសេធ។<br /><br />
+                សូមចូលរួមសោកស្ដាយនិងជូនដំណឹងអំពីសំណើទូទាត់ប្រាក់របស់អ្នកចំនួន $@Model.Amount ត្រូវបានបដិសេធ។<br /><br />
 
-    សូមទាក់ទងមកយើងខ្ញុំតាម <a href="mailto:@Model.MailContact">@Model.MailContact</a> សម្រាប់ជំនួយ។<br />
-    នេះជាអ៊ីមែលដែលបង្កើតឡើងដោយប្រព័ន្ធស្វ័យប្រវត្តិ សូមកុំឆ្លើយតបអ៊ីមែលនេះ។<br /><br />
+                សូមទាក់ទងមកយើងខ្ញុំតាម <a href="mailto:@Model.MailContact">@Model.MailContact</a> សម្រាប់ជំនួយ។<br />
+                នេះជាអ៊ីមែលដែលបង្កើតឡើងដោយប្រព័ន្ធស្វ័យប្រវត្តិ សូមកុំឆ្លើយតបអ៊ីមែលនេះ។<br /><br />
 
-    ដោយក្តីគោរព,<br /><br />
-    ក្រុមភ្នាក់ងារ 12BET<br />
-    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-</div>
+                ដោយក្តីគោរព,<br /><br />
+            </p>
+        </td>
+    </tr>
+</table>
+@Raw(Model.ContactInfo)
