@@ -15,6 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels
 
         public string Content { get; set; }
 
-        public string ImageRootUrl => string.Format(TemplateString.EmailImageRootPath, RootUrl);
+        public string ImageRootUrl { get; set; }
     }
 }

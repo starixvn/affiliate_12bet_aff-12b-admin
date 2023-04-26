@@ -37,6 +37,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public string BannerRootUrl => GetValue("BannerUrl");
 
+        public string EmailBackgroundUrl => GetValue("EmailBackgroundUrl");
+
         public string[] BannerFolders => GetValue("BannerFolders").Split(';');
 
         public int ImageSize => Convert.ToInt32(GetValue("imagesize"));

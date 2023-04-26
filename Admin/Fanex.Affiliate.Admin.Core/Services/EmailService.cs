@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public void SendApprovedEmail(AffInformationEmail emailParam)
         {
             emailParam.MailContact = _appSetting.MailContact;
-            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
+            emailParam.ContactInfo = GetContactInfoContent(emailParam);
 
             _commonSettingService.SetCulture(emailParam.Language);
             SendApprovedAffEmail(emailParam);
@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             var TemplateName = emailParam.IsApproved ? TemplateString.PaymentRequestApproved : TemplateString.PaymentRequestRejected;
 
             emailParam.MailContact = _appSetting.MailContact;
-            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
+            emailParam.ContactInfo = GetContactInfoContent(emailParam);
             var content = GetEmailTextContent(TemplateName, emailParam.Language, emailParam);
             var subject = emailParam.IsApproved ?
                 string.Format(Lang.EmailSubjectPaymentRequestApproved, emailParam.TransId) :
@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             var subject = Lang.EmailSubjectAffDisapproved;
 
             emailParam.MailContact = _appSetting.MailContact;
-            emailParam.ContactInfo = TemplateString.GetContactInfoContent(emailParam, GetEmailTextContent);
+            emailParam.ContactInfo = GetContactInfoContent(emailParam);
             var content = GetEmailTextContent(TemplateString.AffiliateDisapproved, emailParam.Language, emailParam);
 
             var contentToSend = emailParam.IsHtml ?
@@ -143,6 +143,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             var viewModel = new EmailTemplateViewModel
             {
                 RootUrl = domain,
+                ImageRootUrl = _appSetting.EmailBackgroundUrl,
                 Language = language,
                 Content = content,
                 Title = title
@@ -151,6 +152,11 @@ namespace Fanex.Affiliate.Admin.Core.Services
             var viewPathBackup = viewPath;
 
             return _mailProcessor.BuildTemplateContent(viewPath, viewPathBackup, viewModel);
+        }
+
+        public string GetContactInfoContent(EmailBase param)
+        {
+            return TemplateString.GetContactInfoContent(param, GetEmailTextContent, _appSetting.EmailBackgroundUrl);
         }
     }
 }

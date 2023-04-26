@@ -5,26 +5,29 @@ using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
+using System;
 using System.Web;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class EmailService : IEmailService
     {
+        private readonly IAppSetting _appSetting;
         private readonly IMailProcessor _mailProcessor;
         private readonly ILanguageService _languageService;
 
         public EmailService(
+            IAppSetting appSetting,
             IMailProcessor mailProcessor,
             ILanguageService languageService)
         {
+            _appSetting = appSetting;
             _mailProcessor = mailProcessor;
             _languageService = languageService;
         }
-
         public void SendRecoverPasswordEmail(RecoverPasswordEmailParam emailParam)
         {
-            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
+            emailParam.ContactInfo = GetContactInfoContent(emailParam);
             var preferredLanguage = emailParam.User.PreferredLanguage;
             var emailContent = GetEmailTextContent(TemplateString.RecoverPassword, preferredLanguage, emailParam);
 
@@ -40,7 +43,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendNewPasswordEmail(NewPasswordEmailParam emailParam)
         {
-            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
+            emailParam.ContactInfo = GetContactInfoContent(emailParam);
             var preferredLanguage = emailParam.User.PreferredLanguage;
             var emailContent = GetEmailTextContent(TemplateString.NewPassword, preferredLanguage, emailParam);
 
@@ -56,7 +59,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendPaymentEmail(PaymentEmailParam emailParam)
         {
-            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
+            emailParam.ContactInfo = GetContactInfoContent(emailParam);
             var templateName = emailParam.PaymentType == PaymentRequestType.Cancel ? TemplateString.PaymentCancel : TemplateString.PaymentRequest;
             var preferredLanguage = emailParam.User.PreferredLanguage;
             var emailContent = GetEmailTextContent(templateName, preferredLanguage, emailParam);
@@ -74,7 +77,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendSignUpEmail(EmailSignUpParam emailParam)
         {
-            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
+            emailParam.ContactInfo = GetContactInfoContent(emailParam);
             var preferredLanguage = emailParam.User.PreferredLanguage;
             var emailContent = GetEmailTextContent(TemplateString.Signup, preferredLanguage, emailParam);
 
@@ -106,7 +109,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendVerificationEmail(VerificationAccountEmailParam emailParam)
         {
-            emailParam.ContactInfo = EmailHelper.GetContactInfoContent(emailParam, GetEmailTextContent);
+            emailParam.ContactInfo = GetContactInfoContent(emailParam);
             var preferredLanguage = emailParam.User.PreferredLanguage;
             var emailContent = GetEmailTextContent(TemplateString.VerificationAccount, preferredLanguage, emailParam);
 
@@ -135,6 +138,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var viewModel = new EmailTemplateViewModel
             {
                 RootUrl = domain,
+                ImageRootUrl = _appSetting.EmailBackgroundUrl,
                 Language = language,
                 Content = content,
                 Title = title
@@ -149,6 +153,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             var userLang = _languageService.IsValid(preferredLanguage) ? preferredLanguage : SystemLanguage.DefaultLanguageCode;
             _languageService.SetCulture(userLang);
+        }
+
+        public string GetContactInfoContent(EmailBaseParam param)
+        {
+            return EmailHelper.GetContactInfoContent(param, GetEmailTextContent, _appSetting.EmailBackgroundUrl);
         }
     }
 }

@@ -181,7 +181,7 @@
             } else
             {
                 var model = GetModelByFunction(criteria.Function, rootUrl, criteria.Language, isText) as EmailBaseParam;
-                model.ContactInfo = EmailHelper.GetContactInfoContent(model, GetEmailTextContent);
+                model.ContactInfo = EmailHelper.GetContactInfoContent(model, GetEmailTextContent, _appSetting.EmailBackgroundUrl);
 
                 content = GetEmailTextContent(criteria.Function, criteria.Language, model);
             }
@@ -204,6 +204,7 @@
             var viewModel = new EmailTemplateViewModel
             {
                 RootUrl = rootUrl,
+                ImageRootUrl = _appSetting.EmailBackgroundUrl,
                 Language = language,
                 Content = content,
                 Title = title

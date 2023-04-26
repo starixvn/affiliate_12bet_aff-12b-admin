@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -143,6 +144,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.Environment).Returns("UAT");
             appSetting.Setup(a => a.IsProduction).Returns(true);
+            appSetting.Setup(a => a.EmailBackgroundUrl).Returns("https://google.com");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
@@ -155,7 +157,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var controller = CreateEmailTestingController();
 
             // Action
-            var jsonResult = controller.SendEmail(string.Empty, null, string.Empty, string.Empty) as JsonResult;
+            var jsonResult = controller.SendEmail(string.Empty, TemplateString.AffiliateApproved, string.Empty, string.Empty) as JsonResult;
             var data = jsonResult.Data as dynamic;
 
             // Assert

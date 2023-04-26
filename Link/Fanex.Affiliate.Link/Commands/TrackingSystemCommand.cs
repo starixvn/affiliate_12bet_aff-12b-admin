@@ -49,7 +49,7 @@
 
         public override string GetSettingKey()
         {
-            return "Aff_AffiliateInsClickStatistics";
+            return "Aff_AffiliateInsClickStatistics_New";
         }
 
         public override bool IsValid()

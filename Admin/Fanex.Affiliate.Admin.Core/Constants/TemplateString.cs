@@ -9,8 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Constants
 
         public const string EmailTemplatePath = "~/Areas/Portal/Views/Shared/Email/{0}/Content.{1}.cshtml";
 
-        public const string EmailImageRootPath = "{0}Areas/Portal/www/dist/imgs/email";
-
         public const string AffiliateDisapproved = "AffiliateDisapproved";
 
         public const string AffiliateApproved = "AffiliateApproved";
@@ -27,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Constants
 
         public const string ContactInfoText = "ContactInfo/Text";
 
-        public static string GetContactInfoContent(EmailBase param, Func<string, string, object, string> getEmailTextContent)
+        public static string GetContactInfoContent(EmailBase param, Func<string, string, object, string> getEmailTextContent, string emailBackgroundUrl)
         {
             if (param is null)
             {
@@ -35,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Constants
             }
 
             var contactInfoTemplateName = param.IsHtml ? ContactInfoHtml : ContactInfoText;
-            return getEmailTextContent(contactInfoTemplateName, param.Language, param.ImageRootUrl);
+            return getEmailTextContent(contactInfoTemplateName, param.Language, emailBackgroundUrl);
         }
     }
 }

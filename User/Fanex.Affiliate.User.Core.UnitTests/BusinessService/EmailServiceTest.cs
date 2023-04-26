@@ -15,11 +15,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
     public class EmailServiceTest
     {
+        private readonly IAppSetting AppSetting;
         private readonly IMailProcessor MailProcessor;
         private readonly ILanguageService LanguageService;
 
         public EmailServiceTest()
         {
+            AppSetting = Substitute.For<IAppSetting>();
             MailProcessor = Substitute.For<IMailProcessor>();
             LanguageService = Substitute.For<ILanguageService>();
         }
@@ -343,6 +345,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
 
         private EmailService CreateService()
-            => new EmailService(MailProcessor, LanguageService);
+            => new EmailService(AppSetting, MailProcessor, LanguageService);
     }
 }

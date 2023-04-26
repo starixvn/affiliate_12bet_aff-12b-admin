@@ -98,7 +98,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var isHtml = format != "txt";
             var rootUrl = SiteDomainHelper.GetRootUrl(this);
             var model = GetModelByFunction(function, language, rootUrl, isHtml) as EmailBase;
-            model.ContactInfo = TemplateString.GetContactInfoContent(model, GetEmailTextContent);
+            model.ContactInfo = TemplateString.GetContactInfoContent(model, GetEmailTextContent, _appSetting.EmailBackgroundUrl);
 
             var content = GetEmailTextContent(function, language, model);
 
@@ -122,6 +122,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var viewModel = new EmailTemplateViewModel
             {
                 RootUrl = domain,
+                ImageRootUrl = _appSetting.EmailBackgroundUrl,
                 UserSiteUrl = _appSetting.AsianAffSiteUrl,
                 Language = language,
                 Content = content,

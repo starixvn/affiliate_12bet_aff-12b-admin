@@ -271,22 +271,12 @@
     <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Portal\www\dist\imgs\email\icon-12bet.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\bg-footer.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\icon-email.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\icon-line.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\icon-skype.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\icon-telegram.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\icon-whatsapp.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\icon-zalo.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\note.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_admin.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_affiliateslist.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_domain.jpg" />
     <Content Include="Areas\Portal\www\dist\imgs\i_media1.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_member.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\email\bg-header.jpg" />
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\dist\js\**" />
     <Content Include="Areas\Portal\www\dist\style\**" />
