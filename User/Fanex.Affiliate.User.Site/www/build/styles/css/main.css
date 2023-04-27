@@ -973,6 +973,7 @@ input[type="checkbox"], input[type="radio"] {
   padding: 20px 0;
   margin-top: auto; }
   .footer .footer-text {
+    color: #FFFFFF;
     padding-top: 10px; }
   .footer .item {
     display: inline-block;
