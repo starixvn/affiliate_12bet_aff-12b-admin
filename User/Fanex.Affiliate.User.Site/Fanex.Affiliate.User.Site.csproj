@@ -701,6 +701,7 @@
     <Content Include="www\build\styles\Images\feedback\very-please-active.png" />
     <Content Include="www\build\styles\Images\feedback\very-please.png" />
     <Content Include="www\build\styles\Images\contact-us\telegram-icon.png" />
+    <Content Include="www\build\styles\Images\footer\cr-18.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.png" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.km-KH.jpg" />
@@ -791,7 +792,6 @@
     <Content Include="www\build\styles\Images\contact-us\vietnam_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\whats_app.png" />
     <Content Include="www\build\styles\Images\contact-us\zalo.png" />
-    <Content Include="www\build\styles\Images\footer\cr-21.png" />
     <Content Include="www\build\styles\Images\footer\cr-gamleaware.png" />
     <Content Include="www\build\styles\Images\footer\cr-playtech.png" />
     <Content Include="www\build\styles\Images\footer\cr-safe&amp;secure.png" />
