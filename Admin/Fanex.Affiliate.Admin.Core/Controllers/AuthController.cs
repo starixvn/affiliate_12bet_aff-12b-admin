@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
 using Fanex.Affiliate.Admin.Core.Resources;
@@ -63,10 +64,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             var result = _signInService.VerifyAccount(param);
 
-            var claims = param.UserId > 0 ? _authService.GetClaims(param.UserId) : new List<Claim>();
-
-            if (result.IsSuccessful && param.UserId > 0)
+            if (result.IsSuccessful)
             {
+                var claims = _authService.GetClaims(param.UserId);
+
                 if (claims.Any())
                 {
                     var authTicket = new FormsAuthenticationTicket(param.UserName, true, 20);
@@ -93,6 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 }
                 else
                 {
+                    result.Code = Code.GeneralErrorCode;
                     result.Message = "Your account is not configured to access any functions! Please contact your administrator";
                 }
             }
