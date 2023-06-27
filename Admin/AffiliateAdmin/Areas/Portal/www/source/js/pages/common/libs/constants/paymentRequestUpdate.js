@@ -37,4 +37,5 @@ export const resource = {
 
     AffiliateNote: 'Affiliate Note',
     VisibleAffiliate: 'Visible also to affiliate',
+    BalanceBroughtForward: 'Balance Brought Forward',
 }

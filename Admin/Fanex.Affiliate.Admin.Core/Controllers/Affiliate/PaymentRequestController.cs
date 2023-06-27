@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Payment;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Web.Mvc;
 
@@ -15,12 +16,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     public class PaymentRequestController : ReadOnlySessionBaseController
     {
         private readonly IPaymentRequestService _paymentRequestService;
+        private readonly IAdjustmentService _adjustmentService;
 
         public PaymentRequestController(
             ISessionService sessionService,
-            IPaymentRequestService paymentRequestService) : base(sessionService)
+            IPaymentRequestService paymentRequestService,
+            IAdjustmentService adjustmentService) : base(sessionService)
         {
             _paymentRequestService = paymentRequestService;
+            _adjustmentService = adjustmentService;
         }
 
         [HttpGet]
@@ -52,9 +56,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         {
             if (transId >= Validation.MinId)
             {
+                var paymentDetail = _paymentRequestService.GetPaymentRequestDetail(transId);
+                var balanceBF = _adjustmentService.GetBalanceBroughtForward(paymentDetail.AffId);
+                paymentDetail.BalanceBF = balanceBF;
+
                 return new JsonNetResult
                 {
-                    Data = _paymentRequestService.GetPaymentRequestDetail(transId)
+                    Data = paymentDetail
                 };
             }
 

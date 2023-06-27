@@ -130,6 +130,10 @@ export class PaymentRequestUpdateForm extends PureComponent {
                     <Label sm={6}>{resource.LastName}</Label>
                     <Label sm={6}>{paymentRequestInfo.LastName}</Label>
                 </FormGroup>
+                <FormGroup row className="mb-2">
+                    <Label sm={6}>{resource.BalanceBroughtForward}</Label>
+                    <Label sm={6}><strong>{formatDecimalWithCurrencySymbol(paymentRequestInfo.BalanceBF)}</strong></Label>
+                </FormGroup>
 
             </fieldset>
         );

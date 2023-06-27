@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Data;
 using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Payment
@@ -24,6 +25,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Payment
         public string AdminDesc { get; set; }
 
         public string AffDesc { get; set; }
+
+        [SpParam(Ignored = true)]
+        public decimal BalanceBF { get; set; }
 
         public new string TransDateText => TransDate.ToString("MM/dd/yyyy HH:mm:ss tt");
 
