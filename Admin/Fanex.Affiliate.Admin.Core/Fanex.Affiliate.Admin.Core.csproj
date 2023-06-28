@@ -278,6 +278,8 @@
     <Compile Include="DTO\Member\RegisteredMemberInfo.cs" />
     <Compile Include="DTO\NewViewLog\NewViewLogInfo.cs" />
     <Compile Include="DTO\NewViewLog\NewViewLogDetailInfo.cs" />
+    <Compile Include="DTO\Payment\SiteDBConfigInfo.cs" />
+    <Compile Include="DTO\Payment\PaymentUpdateResult.cs" />
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestDetailInfo.cs" />
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestEntity.cs" />
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestBasicInfo.cs" />
@@ -302,6 +304,8 @@
     <Compile Include="MetaModels\MediaGallery\UpdateNewsLetterParam.cs" />
     <Compile Include="MetaModels\NewViewLog\NewViewLogParam.cs" />
     <Compile Include="MetaModels\PagingParam.cs" />
+    <Compile Include="MetaModels\Payment\PaymentApproveParam.cs" />
+    <Compile Include="MetaModels\Payment\PaymentUpdateLogParam.cs" />
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestBaseParam.cs" />
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestDelParam.cs" />
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestInsParam.cs" />
@@ -517,7 +521,7 @@
     <Compile Include="MetaModels\Message\MessageParam.cs" />
     <Compile Include="MetaModels\ParamFromHome.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
-    <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
+    <Compile Include="MetaModels\Payment\PaymentUpdateParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParamFromHome.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
     <Compile Include="MetaModels\UserInfoParam.cs" />
@@ -702,6 +706,7 @@
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Utilities\SystemFile.cs" />
+    <Compile Include="Utilities\XmlHelper.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\Affiliate\GetAffiliateViewModel.cs" />

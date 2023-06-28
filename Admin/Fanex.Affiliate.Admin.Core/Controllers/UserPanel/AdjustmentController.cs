@@ -68,21 +68,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
                 return new JsonNetResult
                 {
-                    Data = new ResultInfo
-                    {
-                        Code = Code.GeneralErrorCode,
-                        Message = Lang.AmountIsInvalid
-                    }
+                    Data = ResultInfo.GenerateErr(Lang.AmountIsInvalid)
                 };
             }
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Affiliate not exists!"
-                }
+                Data = ResultInfo.GenerateErr("Affiliate not exists!")
             };
         }
     }

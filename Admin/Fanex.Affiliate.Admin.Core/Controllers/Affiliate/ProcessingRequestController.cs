@@ -96,11 +96,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 .Select(e => e.ErrorMessage);
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("---", msg)
-                }
+                Data = ResultInfo.GenerateErr(string.Join("---", msg))
             };
         }
 
@@ -130,11 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 .Select(e => e.ErrorMessage);
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("---", msg)
-                }
+                Data = ResultInfo.GenerateErr(string.Join("---", msg))
             };
         }
 

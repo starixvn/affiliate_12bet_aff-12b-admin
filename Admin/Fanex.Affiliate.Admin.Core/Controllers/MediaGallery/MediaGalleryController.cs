@@ -147,11 +147,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidBannerBrowser
-                }
+                Data = ResultInfo.GenerateErr(Lang.InvalidBannerBrowser)
             };
         }
 
@@ -174,11 +170,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = !isValidBannerId ? "Banner Id is invalid." : Lang.PleaseEnterFileName
-                }
+                Data = ResultInfo.GenerateErr(!isValidBannerId ? "Banner Id is invalid." : Lang.PleaseEnterFileName)
             };
         }
 
@@ -199,11 +191,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Please select Banner(s) to delete."
-                }
+                Data = ResultInfo.GenerateErr("Please select Banner(s) to delete.")
             };
         }
 

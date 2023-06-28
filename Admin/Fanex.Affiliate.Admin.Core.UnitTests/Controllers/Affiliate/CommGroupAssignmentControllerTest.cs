@@ -75,11 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             const string ErrorMessage1 = "ErrorMessage1";
             var controller = CreateCommGroupAssignmentController();
             controller.ModelState.AddModelError("Error01", ErrorMessage1);
-            var expectResult = new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = ErrorMessage1
-            };
+            var expectResult = ResultInfo.GenerateErr(ErrorMessage1);
             // Action
             var jsonNetResult = controller.AssignGroup(assignParam, affInfo) as JsonNetResult;
             var resultInfo = jsonNetResult.Data as ResultInfo;
@@ -97,10 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var assignParam = new AssignGroupParam { AffId = 1271808 };
             var affInfo = new AffiliateBasicInfo();
             var controller = CreateCommGroupAssignmentController();
-            var expectResult = new ResultInfo
-            {
-                Code = Code.GeneralErrorCode
-            };
+            var expectResult = ResultInfo.GenerateErr();
             // Action
             var jsonNetResult = controller.AssignGroup(assignParam, affInfo) as JsonNetResult;
             var resultInfo = jsonNetResult.Data as ResultInfo;
@@ -190,11 +183,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             const string ErrorMessage1 = "ErrorMessage1";
             var controller = CreateCommGroupAssignmentController();
             controller.ModelState.AddModelError("Error01", ErrorMessage1);
-            var expectResult = new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = ErrorMessage1
-            };
+            var expectResult = ResultInfo.GenerateErr(ErrorMessage1);
             // Action
             var jsonNetResult = controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
             var resultInfo = jsonNetResult.Data as ResultInfo;

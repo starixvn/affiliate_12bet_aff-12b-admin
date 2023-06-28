@@ -51,6 +51,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     handleSave = async () => {
+        this.props.handleToggleLoader(true);
+
         const { paymentRequestInfo, originalStatus } = this.state;
         const selectedStatus = paymentRequestInfo.Status;
 
@@ -92,6 +94,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 message: errorList.NotChoose,
             }, () => window.setTimeout(this.hideMessage, 3000));
         }
+
+        this.props.handleToggleLoader(false);
     }
 
     hideMessage = () => {
@@ -244,6 +248,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     render() {
+        console.log(this.props);
+
         const { transactionId, isUpdatable } = this.props;
         const { paymentRequestInfo, originalStatus, isSuccess, isShowMessage, message } = this.state;
         const isPending = originalStatus && originalStatus.toLowerCase() === pendingStatus;

@@ -147,11 +147,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = platformFeeValidation.Message
-                }
+                Data = ResultInfo.GenerateErr(platformFeeValidation.Message)
             };
         }
 
@@ -159,11 +155,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         {
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
     }

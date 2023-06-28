@@ -110,11 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Please input text to upload."
-                }
+                Data = ResultInfo.GenerateErr("Please input text to upload.")
             };
         }
 
@@ -137,11 +133,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = !isValidTextId ? "TextId is invalid." : "Please input text to update."
-                }
+                Data = ResultInfo.GenerateErr(!isValidTextId ? "TextId is invalid." : "Please input text to update.")
             };
         }
 
@@ -162,11 +154,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Please select texts to delete."
-                }
+                Data = ResultInfo.GenerateErr("Please select texts to delete.")
             };
         }
 

@@ -33,25 +33,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return _OfferAffiliateRepository.InsertOfferAff(param);
         }
 
-        private ResultInfo ValidateAffNames(string affNames)
+        private static ResultInfo ValidateAffNames(string affNames)
         {
             var regex = new Regex("[^0-9a-zA-Z,]");
             if(regex.IsMatch(affNames))
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Affiliate(s) must be letters and digits, separated by [Comma]"
-                };
+                return ResultInfo.GenerateErr("Affiliate(s) must be letters and digits, separated by [Comma]");
             }
 
             if(affNames.Split(',').Length > MaxAffiliates)
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "The function can only create assignment for up to 500 affiliates per request."
-                };
+                return ResultInfo.GenerateErr("The function can only create assignment for up to 500 affiliates per request.");
             }
 
             return ResultInfo.Success;

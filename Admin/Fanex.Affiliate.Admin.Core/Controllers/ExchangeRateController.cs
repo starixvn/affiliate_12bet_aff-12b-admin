@@ -54,11 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "The rate is invalid."
-                }
+                Data = ResultInfo.GenerateErr("The rate is invalid.")
             };
         }
     }

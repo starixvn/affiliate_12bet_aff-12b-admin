@@ -88,11 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "The Domain' info is invalid!"
-                }
+                Data = ResultInfo.GenerateErr("The Domain' info is invalid!")
             };
         }
 
@@ -117,11 +113,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "The Domain' info is invalid!"
-                }
+                Data = ResultInfo.GenerateErr("The Domain' info is invalid!")
             };
         }
 
@@ -142,11 +134,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "The Domain is incorrect!"
-                }
+                Data = ResultInfo.GenerateErr("The Domain is incorrect!")
             };
         }
 

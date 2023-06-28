@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var service = CreatePaymentRequestService(paymentRequestRepository: paymentRequestRepository.Object);
 
             // Action
-            var result = service.UpdatePaymentRequest(new PaymentRequestUpdateParam(), new PaymentRequestUpdateEmail());
+            var result = service.UpdatePaymentRequest(new PaymentUpdateParam(), new PaymentRequestUpdateEmail());
 
             // Assert
             Assert.Null(result);
@@ -77,12 +77,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             // Arrange
             var paymentRequestRepository = new Mock<IPaymentRequestRepository>();
             paymentRequestRepository.Setup(l => l.GetPaymentRequestDetail(It.IsAny<long>())).Returns(new PaymentRequestDetail { Status = "pending" });
-            paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentRequestUpdateParam>())).Returns(new ResultInfo { Code = 1 });
+            paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentUpdateParam>())).Returns(new PaymentUpdateResult { Code = 1 });
 
             var service = CreatePaymentRequestService(paymentRequestRepository: paymentRequestRepository.Object);
 
             // Action
-            var result = service.UpdatePaymentRequest(new PaymentRequestUpdateParam { IsApproved = true }, new PaymentRequestUpdateEmail());
+            var result = service.UpdatePaymentRequest(new PaymentUpdateParam { IsApproved = true }, new PaymentRequestUpdateEmail());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -95,16 +95,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             // Arrange
             var paymentRequestRepository = new Mock<IPaymentRequestRepository>();
             paymentRequestRepository.Setup(l => l.GetPaymentRequestDetail(It.IsAny<long>())).Returns(new PaymentRequestDetail { Status = "pending" });
-            paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentRequestUpdateParam>())).Returns(new ResultInfo { Code = -999 });
+            paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentUpdateParam>())).Returns(new PaymentUpdateResult { Code = -999 });
 
             var service = CreatePaymentRequestService(paymentRequestRepository: paymentRequestRepository.Object);
 
             // Action
-            var result = service.UpdatePaymentRequest(new PaymentRequestUpdateParam { IsApproved = true }, new PaymentRequestUpdateEmail());
+            var result = service.UpdatePaymentRequest(new PaymentUpdateParam { IsApproved = true }, new PaymentRequestUpdateEmail());
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("Update transaction failed!", result.Message);
+            Assert.Equal("Update the Payment Request is failed!", result.Message);
         }
 
         [Fact]
@@ -124,14 +124,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 
             var paymentRequestRepository = new Mock<IPaymentRequestRepository>();
             paymentRequestRepository.Setup(l => l.GetPaymentRequestDetail(It.IsAny<long>())).Returns(new PaymentRequestDetail { Status = "pending" });
-            paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentRequestUpdateParam>())).Returns(new ResultInfo());
+            paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentUpdateParam>())).Returns(new PaymentUpdateResult());
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { AffType = 2 });
 
             var service = CreatePaymentRequestService(null, affiliateService.Object, paymentRequestRepository.Object);
 
             // Action
-            var result = service.UpdatePaymentRequest(new PaymentRequestUpdateParam(), new PaymentRequestUpdateEmail());
+            var result = service.UpdatePaymentRequest(new PaymentUpdateParam(), new PaymentRequestUpdateEmail());
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -154,14 +154,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 
             var paymentRequestRepository = new Mock<IPaymentRequestRepository>();
             paymentRequestRepository.Setup(l => l.GetPaymentRequestDetail(It.IsAny<long>())).Returns(new PaymentRequestDetail { Status = "pending" });
-            paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentRequestUpdateParam>())).Returns(new ResultInfo());
+            paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentUpdateParam>())).Returns(new PaymentUpdateResult());
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });
 
             var service = CreatePaymentRequestService(null, affiliateService.Object, paymentRequestRepository.Object);
 
             // Action
-            var result = service.UpdatePaymentRequest(new PaymentRequestUpdateParam(), new PaymentRequestUpdateEmail());
+            var result = service.UpdatePaymentRequest(new PaymentUpdateParam(), new PaymentRequestUpdateEmail());
 
             // Assert
             Assert.True(result.IsSuccessful);

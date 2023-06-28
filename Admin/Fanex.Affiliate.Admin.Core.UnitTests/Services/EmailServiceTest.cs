@@ -103,7 +103,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             {
                 Language = "en-US",
                 TransId = 123,
-                IsApproved = true,
                 IsHtml = true
             };
             var mainContent = "mail content";
@@ -111,7 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             //Action
             var service = CreateEmailService();
-            service.SendPaymentRequestUpdateEmail(emailParam);
+            service.SendApprovedPaymentRequestEmail(emailParam);
 
             //Assert
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<PaymentRequestUpdateEmail>());
@@ -132,7 +131,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             //Action
             var service = CreateEmailService();
-            service.SendPaymentRequestUpdateEmail(emailParam);
+            service.SendRejectedPaymentRequestEmail(emailParam);
 
             //Assert
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<PaymentRequestUpdateEmail>());

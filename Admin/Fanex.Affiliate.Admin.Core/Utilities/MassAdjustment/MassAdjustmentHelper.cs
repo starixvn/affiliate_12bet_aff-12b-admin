@@ -24,11 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MassAdjustment
         {
             return new AdjustmentResultInfo
             {
-                Result = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidAdjustmentFile
-                }
+                Result = ResultInfo.GenerateErr(Lang.InvalidAdjustmentFile)
             };
         }
     }

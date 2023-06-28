@@ -81,11 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = ex.Message
-                };
+                return ResultInfo.GenerateErr(ex.Message);
             }
         }
 

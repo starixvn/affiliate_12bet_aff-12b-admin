@@ -72,11 +72,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [FunctionAuthorize(FunctionName = Function.PaymentRequest, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult UpdatePaymentRequest(PaymentRequestUpdateParam param)
+        public ActionResult UpdatePaymentRequest(PaymentUpdateParam param)
         {
             if (ModelState.IsValid)
             {
-                var paymentRequestUpdateParam = new PaymentRequestUpdateParam
+                var paymentRequestUpdateParam = new PaymentUpdateParam
                 {
                     UserId = SessionService.UserId,
                     Ip = Request.UserHostAddress,
@@ -99,11 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Transaction not exists!"
-                }
+                Data = ResultInfo.GenerateErr("Transaction not exists!")
             };
         }
     }

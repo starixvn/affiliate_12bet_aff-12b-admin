@@ -12,11 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
         private const string brElementHtml = "<br />";
         public static ResultInfo ValidatePlatformFeeList(ICommonSettingService commonSettingService, IEnumerable<DeductionSetting> platformFeeList)
         {
-            var result = new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = CommGroupErrorMessage.InvalidPlatformFee
-            };
+            var result = ResultInfo.GenerateErr(CommGroupErrorMessage.InvalidPlatformFee);
 
             if (platformFeeList == null || !platformFeeList.Any() || platformFeeList.Any(item => string.IsNullOrEmpty(item.ProductIds)))
             {
@@ -38,41 +34,32 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 
         public static ResultInfo ValidateTierSettingList(IEnumerable<TierSetting> tierSettingList)
         {
-            var result = new ResultInfo();
-
             if (tierSettingList == null || !tierSettingList.Any())
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + brElementHtml, "Tier Setting must have at least 1 tier!");
-                return result;
+                return ResultInfo.GenerateErr("Tier Setting must have at least 1 tier!");
             }
 
             if (!tierSettingList.Any(item => (item.MaxAmount == Validation.InfinityAmount && item.MaxQm == Validation.InfinityQualifiedMember)))
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + brElementHtml, "Last Tier Setting must have maximum value=∞!");
-                return result;
+                return ResultInfo.GenerateErr("Last Tier Setting must have maximum value=∞!");
             }
 
             if (tierSettingList.Any(item => item.MinAmount > item.MaxAmount))
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + brElementHtml, "Max Amount must be greater than or equal to Min Amount!");
-                return result;
+                return ResultInfo.GenerateErr("Max Amount must be greater than or equal to Min Amount!");
             }
 
             if (tierSettingList.Any(item => item.MinQm > item.MaxQm))
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = string.Join(result.Message + brElementHtml, "Max QM must be greater than or equal to Min QM!");
+                return ResultInfo.GenerateErr("Max QM must be greater than or equal to Min QM!");
             }
 
-            return result;
+            return new ResultInfo();
         }
 
         private static ResultInfo ValidateProductIds(IEnumerable<string> productIdOfDB, IEnumerable<string> productIdOfPlatform)
         {
-            var result = new ResultInfo { Code = Code.GeneralErrorCode };
+            var result = ResultInfo.GenerateErr();
 
             var inputProductIdListCount = productIdOfPlatform.Count();
             if (productIdOfDB.Count() != inputProductIdListCount)

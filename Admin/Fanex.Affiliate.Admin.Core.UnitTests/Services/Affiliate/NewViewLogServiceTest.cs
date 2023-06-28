@@ -89,6 +89,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
             service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateLog_Sel", 120)).Returns(objectDb.Object);
 
+            MockingHelper.SetUpEnviroment();
+
             // Action
             var result = service.Object.GetNewViewLogDetailList(new NewViewLogParam());
             var item = result.MainData.FirstOrDefault();

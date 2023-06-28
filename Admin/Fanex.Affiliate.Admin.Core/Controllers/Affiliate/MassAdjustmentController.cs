@@ -55,11 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 Data = new AdjustmentResultInfo
                 {
-                    Result = new ResultInfo
-                    {
-                        Code = Code.GeneralErrorCode,
-                        Message = "You must browse file to upload!"
-                    }
+                    Result = ResultInfo.GenerateErr("You must browse file to upload!")
                 }
             };
         }

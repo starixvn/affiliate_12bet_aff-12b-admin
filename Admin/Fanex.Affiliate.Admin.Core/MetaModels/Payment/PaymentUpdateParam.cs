@@ -1,17 +1,13 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
-using System;
+using Fanex.Data;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
 {
-    public class PaymentRequestUpdateParam : AffiliateBasicInfoParam
+    public class PaymentUpdateParam : UserInfoParam
     {
         [Range(Validation.MinId, long.MaxValue)]
         public long TransId { get; set; }
-
-        public decimal Amount { get; set; }
-
-        public DateTime TransDate { get; set; }
 
         public string Status { get; set; }
 
@@ -19,6 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
 
         public string AffDesc { get; set; }
 
+        [SpParam(Ignored = true)]
         public bool IsApproved { get; set; }
     }
 }

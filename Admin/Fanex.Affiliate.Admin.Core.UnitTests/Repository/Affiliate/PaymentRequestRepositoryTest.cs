@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePaymentRequest_Upd", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.UpdatePaymentRequest(new PaymentRequestUpdateParam());
+            var result = repository.Object.UpdatePaymentRequest(new PaymentUpdateParam());
 
             // Assert
             Assert.True(result.IsSuccessful);

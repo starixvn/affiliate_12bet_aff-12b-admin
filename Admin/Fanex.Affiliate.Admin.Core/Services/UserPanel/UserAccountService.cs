@@ -48,34 +48,22 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 return _userAccountRepository.UpdateUserAccount(param);
             }
 
-            return new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = Lang.UpdateIsFailed
-            };
+            return ResultInfo.GenerateErr(Lang.UpdateIsFailed);
         }
 
         public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
             => _userAccountRepository.GetSecurityQuestions(language, isIncludeOldData);
 
-        private ResultInfo ValidateWebSite(UserAccountParam param)
+        private static ResultInfo ValidateWebSite(UserAccountParam param)
         {
             if (param.HasWebSite && string.IsNullOrEmpty(param.SiteUrl))
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Website URL is required"
-                };
+                return ResultInfo.GenerateErr("Website URL is required");
             }
 
             if (!param.HasWebSite && string.IsNullOrEmpty(param.NoSiteDescription))
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = $"Please describe how you would like to promote 12Bet if you don't have the URL is required"
-                };
+                return ResultInfo.GenerateErr($"Please describe how you would like to promote 12Bet if you don't have the URL is required");
             }
 
             return new ResultInfo();

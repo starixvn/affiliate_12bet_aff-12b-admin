@@ -129,11 +129,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = new GetCommissionGroupParam();
             var controller = CreateCommissionGroupController();
-            var expectedResult = new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = CommGroupErrorMessage.InvalidGroupId
-            };
+            var expectedResult = ResultInfo.GenerateErr(CommGroupErrorMessage.InvalidGroupId);
 
             // Action
             var result = controller.GetCommissionGroup(param) as JsonNetResult;

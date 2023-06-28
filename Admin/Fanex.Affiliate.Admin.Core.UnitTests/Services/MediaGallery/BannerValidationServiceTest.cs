@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(s => s.BannerFolders).Returns(bannerFolders);
             var systemFile = new Mock<ISystemFile>();
-            systemFile.Setup(s => s.CreateFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "Can not access the folder!" });
+            systemFile.Setup(s => s.CreateFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(ResultInfo.GenerateErr("Can not access the folder!"));
             var service = CreateBannerValidationService(appSetting.Object, systemFile.Object);
 
             // Action
@@ -89,7 +89,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             appSetting.Setup(s => s.BannerFolders).Returns(bannerFolders);
             var systemFile = new Mock<ISystemFile>();
             systemFile.Setup(s => s.CreateFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
-            systemFile.Setup(s => s.CheckExistedFile(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo { Code = Code.GeneralErrorCode, Message = "The file has already existed!" });
+            systemFile.Setup(s => s.CheckExistedFile(It.IsAny<string>(), It.IsAny<string>())).Returns(ResultInfo.GenerateErr("The file has already existed!"));
             var service = CreateBannerValidationService(appSetting.Object, systemFile.Object);
 
             // Action
