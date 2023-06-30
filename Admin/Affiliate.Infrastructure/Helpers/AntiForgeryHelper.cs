@@ -14,7 +14,7 @@
         {
             var requestCookie = context.Request.Cookies[AntiXsrfTokenKey];
             string resultFormToken;
-            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out Guid requestCookieGuidValue))
+            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out Guid _))
             {
                 resultFormToken = CreateFormToken(requestCookie.Value, context.User.Identity.Name);
             }

@@ -22,8 +22,7 @@ describe('statement history - AppContainer - connect', () => {
     })
 
     it('should show correct value', () => {
-        const { transactionId, param, affName, claimsPrincipal  } = wrapper.props();
-        expect(claimsPrincipal).toEqual({})
+        const { transactionId, param, affName  } = wrapper.props();
         expect(affName).toEqual('ABC')
         expect(transactionId).toEqual('123')
         expect(param).toEqual({})

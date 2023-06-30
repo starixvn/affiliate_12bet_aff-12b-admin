@@ -248,8 +248,6 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     render() {
-        console.log(this.props);
-
         const { transactionId, isUpdatable } = this.props;
         const { paymentRequestInfo, originalStatus, isSuccess, isShowMessage, message } = this.state;
         const isPending = originalStatus && originalStatus.toLowerCase() === pendingStatus;

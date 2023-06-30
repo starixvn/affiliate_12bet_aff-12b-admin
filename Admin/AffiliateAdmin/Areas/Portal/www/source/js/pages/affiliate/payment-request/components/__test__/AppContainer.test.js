@@ -7,17 +7,6 @@ describe('payment request - components - AppContainer ', () => {
     const defaultProps = {
         isShowLoader: true,
         transactionId: 123,
-        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
-        param: {
-            FromDate: "6/25/2019",
-            IsGetAll: false,
-            PageIndex: 1,
-            PageSize: 20,
-            SearchBy: 1,
-            Status: null,
-            ToDate: "6/26/2019",
-            Username: null
-        }
     }
 
     it('render correctly', () => {
@@ -38,14 +27,14 @@ describe('payment request - components - AppContainer ', () => {
         expect(props.setTransactionId).toHaveBeenCalledWith(null);
     });
 
-    it('setParam - should be called when call handleFetchData in PaymentRequestUpdateForm', () => {
-        const setParam = jest.fn();
-        const props = Object.assign({}, defaultProps, { setParam });
+    it('setIsClickSearch - should be called when call handleFetchData in PaymentRequestUpdateForm', () => {
+        const setIsClickSearch = jest.fn();
+        const props = Object.assign({}, defaultProps, { setIsClickSearch });
 
         const wrapper = shallow(<AppContainer {...props} />);
 
         wrapper.find(PaymentRequestUpdateForm).props().handleFetchData();
 
-        expect(props.setParam).toHaveBeenCalledWith(defaultProps.param);
+        expect(props.setIsClickSearch).toHaveBeenCalledWith(true);
     })
 });

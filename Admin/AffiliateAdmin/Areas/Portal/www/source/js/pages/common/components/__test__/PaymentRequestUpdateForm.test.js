@@ -94,7 +94,7 @@ describe('common - components - PaymentRequestUpdateForm', () => {
     it('handleSave - should call updatePaymentRequest, handleFetchData, handleClosePopup and setState', async () => {
         const paymentRequest = Object.assign({}, paymentRequestInfo, { Status: 'Approved' });
         const expectedResponse = { IsSuccessful: true, }
-        const props = { updatePaymentRequest: jest.fn(() => expectedResponse), handleFetchData: jest.fn(), handleClosePopup: jest.fn() };
+        const props = { updatePaymentRequest: jest.fn(() => expectedResponse), handleFetchData: jest.fn(), handleClosePopup: jest.fn(), handleToggleLoader: jest.fn() };
         const result = shallow(<PaymentRequestUpdateForm {...props}/>);
         const instance = result.instance();
         instance.setState({ paymentRequestInfo: paymentRequest, originalStatus: 'Pending' });
@@ -117,7 +117,7 @@ describe('common - components - PaymentRequestUpdateForm', () => {
     it('handleSave - should call updatePaymentRequest and setState when save failed', async () => {
         const paymentRequest = Object.assign({}, paymentRequestInfo, { Status: 'Approved' });
         const expectedResponse = { IsSuccessful: false, Message: 'Failed!' };
-        const props = { updatePaymentRequest: jest.fn(() => expectedResponse), handleFetchData: jest.fn(), handleClosePopup: jest.fn() };
+        const props = { updatePaymentRequest: jest.fn(() => expectedResponse), handleFetchData: jest.fn(), handleClosePopup: jest.fn(), handleToggleLoader: jest.fn() };
         const result = shallow(<PaymentRequestUpdateForm {...props}/>);
         const instance = result.instance();
         instance.setState({ paymentRequestInfo: paymentRequest, originalStatus: 'Pending' });
@@ -139,7 +139,7 @@ describe('common - components - PaymentRequestUpdateForm', () => {
 
     it('handleSave - should call updatePaymentRequest and setState when save error', async () => {
         const paymentRequest = Object.assign({}, paymentRequestInfo, { Status: 'Rejected' });
-        const props = { updatePaymentRequest: jest.fn(), handleFetchData: jest.fn(), handleClosePopup: jest.fn() };
+        const props = { updatePaymentRequest: jest.fn(), handleFetchData: jest.fn(), handleClosePopup: jest.fn(), handleToggleLoader: jest.fn() };
         const result = shallow(<PaymentRequestUpdateForm {...props}/>);
         const instance = result.instance();
         instance.setState({ paymentRequestInfo: paymentRequest, originalStatus: 'Pending' });
@@ -160,7 +160,8 @@ describe('common - components - PaymentRequestUpdateForm', () => {
     });
 
     it('handleSave - should call setState with invalid data', async () => {
-        const result = shallow(<PaymentRequestUpdateForm />);
+        const props = { handleToggleLoader: jest.fn() };
+        const result = shallow(<PaymentRequestUpdateForm {...props}/>);
         const instance = result.instance();
         instance.setState({ paymentRequestInfo });
         instance.hideMessage = jest.fn();

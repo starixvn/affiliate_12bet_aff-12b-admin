@@ -1167,7 +1167,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\Filter.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\redux\Contain.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\libs\constants.js" />
