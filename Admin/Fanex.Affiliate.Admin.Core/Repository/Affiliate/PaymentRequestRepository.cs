@@ -139,14 +139,15 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             }
         }
 
-        public ResultInfo RollbackApprovePaymentRequest(string detailXml)
+        public ResultInfo RollbackApprovePaymentRequest(ResultInfo approveResult, string detailXml)
         {
             const string SpKey = "Aff_Admin_AffiliatePaymentRequest_Upd_Rollback";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.SetParameterValue("DetailXml", detailXml);
-                AssignResultOutputParam(objectDb);
+                objectDb.SetParameterValue("ErrCode", approveResult.Code);
+                objectDb.SetParameterValue("ErrMsg", approveResult.Message);
 
                 objectDb.ExecuteNonQuery();
 

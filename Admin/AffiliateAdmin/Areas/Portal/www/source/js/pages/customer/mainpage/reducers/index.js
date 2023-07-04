@@ -6,9 +6,11 @@ import { affCommonInfo, today, languageList, hasTurnOverPermission } from './com
 import {claimsPrincipal} from '../../../../reducers/claimReducer';
 import { userPanelReducer, selectedUserPanel, isShowLoaderUserPanel } from '../../user-panel/reducers';
 import customerStatistics from '../../customer-statistics/reducers';
+import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 const allReducers = combineReducers({
     today,
+    isShowLoader,
     languageList,
     hasTurnOverPermission,
     claimsPrincipal,

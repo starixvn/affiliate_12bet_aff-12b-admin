@@ -2,6 +2,7 @@
 
 exports[`customer - mainpage - components - AppContainer Should render correctly with status approved 1`] = `
 <AppLayout>
+  <Loader />
   <div
     className="data-content m-2"
   >
@@ -54,6 +55,7 @@ exports[`customer - mainpage - components - AppContainer Should render correctly
 
 exports[`customer - mainpage - components - AppContainer Should render correctly with status pending 1`] = `
 <AppLayout>
+  <Loader />
   <div
     className="data-content m-2"
   >

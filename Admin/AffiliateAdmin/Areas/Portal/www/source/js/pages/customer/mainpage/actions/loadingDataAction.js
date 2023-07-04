@@ -5,6 +5,9 @@ import { toggleLoaderLeftPanel } from '../../left-panel/actions';
 import { setSelectedUserPanel } from '../../user-panel/actions';
 import { userPanelMenuKey } from '../../common/libs/constants';
 import { setIsValidUserName } from '../../left-panel/actions';
+import { toggleLoader } from '../../../../actions/loaderAction';
+
+export { toggleLoader };
 
 export const receiveLeftMenuInfo = (data) => {
     return {

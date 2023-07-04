@@ -6,7 +6,7 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
 import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
-import { setTransactionId, setParam, getAffiliateInfo, toggleLoaderUserPanel } from '../actions';
+import { setTransactionId, setParam, getAffiliateInfo, toggleLoader } from '../actions';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -24,11 +24,11 @@ export class AppContainer extends PureComponent {
     }
 
     handleToggleLoader = (toggle) => {
-        this.props.toggleLoaderUserPanel(toggle);
+        this.props.toggleLoader(toggle);
     }
 
     render() {
-        const { transactionId, claimsPrincipal } = this.props;
+        const { transactionId } = this.props;
 
         return (
             <AppLayout>
@@ -52,7 +52,7 @@ function mapStateToProps({ statementHistory, affCommonInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId, setParam, getAffiliateInfo, toggleLoaderUserPanel }, dispatch);
+    return bindActionCreators({ setTransactionId, setParam, getAffiliateInfo, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

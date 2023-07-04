@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         ResultInfo ApprovePaymentRequest(PaymentApproveParam param);
 
-        ResultInfo RollbackApprovePaymentRequest(string detailXml);
+        ResultInfo RollbackApprovePaymentRequest(ResultInfo approveResult, string detailXml);
 
         void WriteLogWhenUpdatePaymentRequestSuccessfully(PaymentUpdateLogParam param);
     }

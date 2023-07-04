@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
+  <!--<item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliatePaymentRequest_Upd" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliatePaymentRequest_Approve" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliatePaymentRequest_Upd_Rollback" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_UserLog_RunSP_Detail_WriteLog" Suffix="_xtest"></item>-->
+  
+</Root>

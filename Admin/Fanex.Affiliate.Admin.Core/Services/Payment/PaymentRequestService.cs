@@ -101,17 +101,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
                 if (approvedResult.IsSuccessful)
                 {
-                    approvedResult.Message = "Approve the Payment Request is successful!";
-
                     _emailService.SendApprovedPaymentRequestEmail(emailParam);
                     _paymentRequestRepository.WriteLogWhenUpdatePaymentRequestSuccessfully(logParam);
+
+                    approvedResult.Message = "Approve the Payment Request is successful!";
                 }
                 else
                 {
-                    approvedResult.Message = GetErrMsg(approvedResult.Code, approvedResult.Message);
-
                     WriteErrorLogSentry($"Approve the Payment Request is failed: ErrorCode: {approvedResult.Code}, ErrorMessage:{approvedResult.Message}", approveParam, result.DetailXml);
-                    HandleRollbackApprovePaymentRequest(result.DetailXml);
+                    HandleRollbackApprovePaymentRequest(approvedResult, result.DetailXml);
+
+                    approvedResult.Message = GetErrMsg(approvedResult.Code, approvedResult.Message);
                 }
 
                 return approvedResult;
@@ -123,9 +123,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
             }
         }
 
-        private void HandleRollbackApprovePaymentRequest(string detailXml)
+        private void HandleRollbackApprovePaymentRequest(ResultInfo approveResult,string detailXml)
         {
-            var result = _paymentRequestRepository.RollbackApprovePaymentRequest(detailXml);
+            var result = _paymentRequestRepository.RollbackApprovePaymentRequest(approveResult, detailXml);
 
             if (!result.IsSuccessful)
             {

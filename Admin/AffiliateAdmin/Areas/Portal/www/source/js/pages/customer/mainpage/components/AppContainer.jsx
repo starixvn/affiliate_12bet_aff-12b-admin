@@ -7,16 +7,18 @@ import AppLayout from '../../../../layouts/AppLayout';
 import LeftPanel from '../../left-panel/components/AppContainer';
 import UserPanel from '../../user-panel/components/UserPanel';
 import { setSelectedUserPanel } from '../../user-panel/actions';
+import Loader from '../../../../components/Loader';
 
 export const CustomerStatistics = React.lazy(() =>
     import(/* webpackChunkName: "customer-statistics" */ '../../customer-statistics/components/AppContainer'));
 
 export const AppContainer = (props) => {
-    const { affId, selectedUserPanel, status } = props;
+    const { affId, selectedUserPanel, status, isShowLoader } = props;
     const isPending = status && (status.toLowerCase() === 'pending' || status.toLowerCase() === 'disapproved');
 
     return (
         <AppLayout>
+            <Loader show={isShowLoader} />
             <div className='data-content m-2'>
                 <Row>
                     <div className="left-panel">
@@ -50,10 +52,10 @@ export const AppContainer = (props) => {
     );
 }
 
-function mapStateToProps({ selectedUserPanel, affCommonInfo }) {
+function mapStateToProps({ selectedUserPanel, affCommonInfo, isShowLoader }) {
     const { affId, status } = affCommonInfo || { affId: null, status: null }
 
-    return Object.assign({}, { selectedUserPanel, affId, status });
+    return Object.assign({}, { selectedUserPanel, affId, status, isShowLoader });
 }
 
 function mapDispatchToProps(dispatch) {
