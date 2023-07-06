@@ -108,7 +108,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
                 }
                 else
                 {
-                    WriteErrorLogSentry($"Approve the Payment Request is failed: ErrorCode: {approvedResult.Code}, ErrorMessage:{approvedResult.Message}", approveParam, result.DetailXml);
+                    WriteErrorLogSentry($"Approval of the Payment Request has failed: ErrorCode: {approvedResult.Code}, ErrorMessage: {approvedResult.Message}", approveParam, result.DetailXml);
                     HandleRollbackApprovePaymentRequest(approvedResult, result.DetailXml);
 
                     approvedResult.Message = GetErrMsg(approvedResult.Code, approvedResult.Message);
@@ -129,7 +129,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
             if (!result.IsSuccessful)
             {
-                LogHelper.WriteError($"Rollback approve the Payment Request is failed: ErrorCode: {result.Code}, ErrorMessage:{result.Message}");
+                LogHelper.WriteError($"Rollback approval of the Payment Request has failed: ErrorCode: {result.Code}, ErrorMessage: {result.Message}");
             }
         }
 
