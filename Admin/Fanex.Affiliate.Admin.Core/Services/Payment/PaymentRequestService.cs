@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
             _emailService.SendRejectedPaymentRequestEmail(emailParam);
             _paymentRequestRepository.WriteLogWhenUpdatePaymentRequestSuccessfully(logParam);
 
-            return new ResultInfo { Message = "Reject the Payment Request is successful!" };
+            return new ResultInfo { Message = "Rejecting the Payment Request is successful!" };
         }
 
         private ResultInfo HandleApprovePaymentRequest(PaymentUpdateResult result, PaymentUpdateLogParam logParam, PaymentRequestUpdateEmail emailParam, PaymentUpdateParam param)
@@ -89,7 +89,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
             if (approveParam is null)
             {
-                WriteErrorLogSentry($"Update the Payment Request is failed: DetailXml is incorrect format", param, result.DetailXml);
+                WriteErrorLogSentry($"Updating the Payment Request has failed: DetailXml is in an incorrect format", param, result.DetailXml);
+
+                var error = ResultInfo.GenerateErr("The DetailXml is in an incorrect format.");
+                HandleRollbackApprovePaymentRequest(error, result.DetailXml);
 
                 return ResultInfo.GenerateErr(Lang.ErrGeneral);
             }
@@ -104,11 +107,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
                     _emailService.SendApprovedPaymentRequestEmail(emailParam);
                     _paymentRequestRepository.WriteLogWhenUpdatePaymentRequestSuccessfully(logParam);
 
-                    approvedResult.Message = "Approve the Payment Request is successful!";
+                    approvedResult.Message = "The approval of the Payment Request is successful!";
                 }
                 else
                 {
-                    WriteErrorLogSentry($"Approval of the Payment Request has failed: ErrorCode: {approvedResult.Code}, ErrorMessage: {approvedResult.Message}", approveParam, result.DetailXml);
+                    WriteErrorLogSentry($"The approval of the Payment Request has failed: ErrorCode: {approvedResult.Code}, ErrorMessage: {approvedResult.Message}", approveParam, result.DetailXml);
                     HandleRollbackApprovePaymentRequest(approvedResult, result.DetailXml);
 
                     approvedResult.Message = GetErrMsg(approvedResult.Code, approvedResult.Message);
@@ -118,6 +121,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
             } catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
+
+                var error = ResultInfo.GenerateErr("An exception was thrown at the approval of the Payment request process.");
+                HandleRollbackApprovePaymentRequest(error, result.DetailXml);
 
                 return ResultInfo.GenerateErr(Lang.ErrGeneral);
             }
@@ -129,7 +135,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
             if (!result.IsSuccessful)
             {
-                LogHelper.WriteError($"Rollback approval of the Payment Request has failed: ErrorCode: {result.Code}, ErrorMessage: {result.Message}");
+                LogHelper.WriteError($"Rollback the approval of the Payment Request has failed: ErrorCode: {result.Code}, ErrorMessage: {result.Message}");
             }
         }
 
@@ -162,7 +168,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
         {
             var message = Lang.ResourceManager.GetString("UpdatePaymentErr" + errCode);
 
-            return message ?? errMessage ?? "Update the Payment Request is failed!";
+            return message ?? errMessage ?? "Updating the Payment Request has failed!";
         }
 
         private static void WriteErrorLogSentry(string errMessage, object param, string detailXml)

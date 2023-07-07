@@ -40,11 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [ValidateAntiForgeryHeader]
         public ActionResult GetDomainControlList(string marketId)
         {
-            var visibleMarketIds = marketId;
-            if (string.IsNullOrWhiteSpace(marketId))
-            {
-                visibleMarketIds = MarketHelper.GetVisibleMarketIds(marketId, GetVisibleMarketsByUser());
-            }
+            var visibleMarketIds =  MarketHelper.GetVisibleMarketIds(marketId, GetVisibleMarketsByUser());
 
             return new JsonNetResult
             {

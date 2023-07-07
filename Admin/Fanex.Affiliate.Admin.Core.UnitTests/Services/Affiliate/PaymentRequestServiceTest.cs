@@ -104,7 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("Update the Payment Request is failed!", result.Message);
+            Assert.Equal("Updating the Payment Request has failed!", result.Message);
         }
 
         [Fact]

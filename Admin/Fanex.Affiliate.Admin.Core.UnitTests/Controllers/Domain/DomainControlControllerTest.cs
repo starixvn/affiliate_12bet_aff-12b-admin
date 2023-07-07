@@ -35,23 +35,45 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             Assert.Single(model.MarketList);
         }
 
-        [Fact]
-        public void GetDomainControlList_WhenCall_ReturnCorrectData()
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("en-US")]
+        public void GetDomainControlList_WhenCallWithValidMarket_ReturnCorrectData(string marketId)
         {
             // Arrange
-            var market = "en";
             string passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
             domainControlService.Setup(t => t.GetDomainControlList(It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() }).Callback<string>(p => passedParam = p);
             var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
 
             // Action
-            var result = controller.GetDomainControlList(market) as JsonNetResult;
+            var result = controller.GetDomainControlList(marketId) as JsonNetResult;
             var data = result.Data as List<DomainControlInfo>;
 
             // Assert
             Assert.Single(data);
-            Assert.Equal(market, passedParam);
+            Assert.Equal("en-US", passedParam);
+        }
+
+        [Fact]
+        public void GetDomainControlList_WhenCallWithInvalidMarket_ReturnCorrectData()
+        {
+            // Arrange
+            string passedParam = null;
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
+            domainControlService.Setup(t => t.GetDomainControlList(It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() }).Callback<string>(p => passedParam = p);
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetDomainControlList("abc") as JsonNetResult;
+            var data = result.Data as List<DomainControlInfo>;
+
+            // Assert
+            Assert.Single(data);
+            Assert.Equal("", passedParam);
         }
 
         [Fact]
