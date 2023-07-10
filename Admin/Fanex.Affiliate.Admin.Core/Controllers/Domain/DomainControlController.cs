@@ -40,11 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [ValidateAntiForgeryHeader]
         public ActionResult GetDomainControlList(string marketId)
         {
-            var visibleMarketIds = marketId;
-            if (string.IsNullOrWhiteSpace(marketId))
-            {
-                visibleMarketIds = MarketHelper.GetVisibleMarketIds(marketId, GetVisibleMarketsByUser());
-            }
+            var visibleMarketIds =  MarketHelper.GetVisibleMarketIds(marketId, GetVisibleMarketsByUser());
 
             return new JsonNetResult
             {
@@ -82,11 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "The Domain Control's info is invalid!"
-                }
+                Data = ResultInfo.GenerateErr("The Domain Control's info is invalid!")
             };
         }
 
@@ -107,11 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "The Domain Control's info is invalid!"
-                }
+                Data = ResultInfo.GenerateErr("The Domain Control's info is invalid!")
             };
         }
 
@@ -132,11 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "The Domain Control is incorrect!"
-                }
+                Data = ResultInfo.GenerateErr("The Domain Control is incorrect!")
             };
         }
 

@@ -6,8 +6,7 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
 import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
-
-import { setTransactionId, setParam, getAffiliateInfo } from '../actions';
+import { setTransactionId, setParam, getAffiliateInfo, toggleLoader } from '../actions';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -24,8 +23,12 @@ export class AppContainer extends PureComponent {
         this.props.getAffiliateInfo(affName);
     }
 
+    handleToggleLoader = (toggle) => {
+        this.props.toggleLoader(toggle);
+    }
+
     render() {
-        const { transactionId, claimsPrincipal } = this.props;
+        const { transactionId } = this.props;
 
         return (
             <AppLayout>
@@ -34,6 +37,7 @@ export class AppContainer extends PureComponent {
                 <PaymentRequestUpdateForm
                     transactionId={transactionId}
                     handleClosePopup={this.handleClosePopup}
+                    handleToggleLoader={this.handleToggleLoader}
                     handleFetchData={this.handleFetchData}
                 />
             </AppLayout>
@@ -41,14 +45,14 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ statementHistory, affCommonInfo, claimsPrincipal }) {
+function mapStateToProps({ statementHistory, affCommonInfo }) {
     const { transactionId, param } = statementHistory;
     const { affName } = affCommonInfo;
-    return Object.assign({}, { transactionId, param, affName, claimsPrincipal });
+    return Object.assign({}, { transactionId, param, affName });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId, setParam, getAffiliateInfo }, dispatch);
+    return bindActionCreators({ setTransactionId, setParam, getAffiliateInfo, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

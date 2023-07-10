@@ -136,11 +136,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 {
                     return new JsonNetResult
                     {
-                        Data = new ResultInfo
-                        {
-                            Code = Code.GeneralErrorCode,
-                            Message = "At least one IM account is required!"
-                        }
+                        Data = ResultInfo.GenerateErr("At least one IM account is required!")
                     };
                 } else
                 {
@@ -159,11 +155,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             }
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
     }

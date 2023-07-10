@@ -6,7 +6,9 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Newtonsoft.Json;
 using System;
+using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Payment
 {
@@ -36,40 +38,36 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
             return _paymentRequestRepository.GetPaymentRequestDetail(transId);
         }
 
-        public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam)
+        public ResultInfo UpdatePaymentRequest(PaymentUpdateParam param, PaymentRequestUpdateEmail emailParam)
         {
             var paymentRequestDetail = _paymentRequestRepository.GetPaymentRequestDetail(param.TransId);
 
             if (paymentRequestDetail != null &&
                 string.Equals(AffStatus.Pending, paymentRequestDetail.Status, StringComparison.InvariantCultureIgnoreCase))
             {
-                param.AffId = paymentRequestDetail.AffId;
-                param.Amount = paymentRequestDetail.Amount;
-                param.TransDate = paymentRequestDetail.TransDate;
                 param.Status = param.IsApproved ? AffStatus.Approved : AffStatus.Rejected;
 
                 var result = _paymentRequestRepository.UpdatePaymentRequest(param);
 
                 if (result.IsSuccessful)
                 {
-                    var affInfo = _affiliateService.GetAffiliateBasicInfo(param.AffId);
+                    var logParam = new PaymentUpdateLogParam
+                    {
+                        AffId = paymentRequestDetail.AffId,
+                        UserId = param.UserId,
+                        Ip = param.Ip,
+                        OldData = result.OldData,
+                        NewData = result.NewData
+                    };
+                    var paymentEmailParam = GetPaymentRequestUpdateEmailParam(param.TransId, emailParam, paymentRequestDetail);
 
-                    emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
-                    emailParam.FirstName = affInfo.FirstName;
-                    emailParam.MailTo = affInfo.Email;
-                    emailParam.IsHtml = !affInfo.MailOption;
-                    emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguageCode;
-
-                    emailParam.IsApproved = param.IsApproved;
-                    emailParam.TransId = param.TransId;
-                    emailParam.TransDate = paymentRequestDetail.TransDate.ToString("MM/dd/yyyy");
-                    emailParam.Amount = paymentRequestDetail.Amount;
-
-                    _emailService.SendPaymentRequestUpdateEmail(emailParam);
+                    return param.IsApproved
+                        ? HandleApprovePaymentRequest(result, logParam, paymentEmailParam, param)
+                        : HandleRejectPaymentRequest(logParam, paymentEmailParam);
                 }
                 else
                 {
-                    result.Message = GetErrMsg(result.Code);
+                    result.Message = GetErrMsg(result.Code, result.Message);
                 }
 
                 return result;
@@ -77,11 +75,109 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
             return null;
         }
 
-        public static string GetErrMsg(int errCode)
+        private ResultInfo HandleRejectPaymentRequest(PaymentUpdateLogParam logParam, PaymentRequestUpdateEmail emailParam)
+        {
+            _emailService.SendRejectedPaymentRequestEmail(emailParam);
+            _paymentRequestRepository.WriteLogWhenUpdatePaymentRequestSuccessfully(logParam);
+
+            return new ResultInfo { Message = "Rejecting the Payment Request is successful!" };
+        }
+
+        private ResultInfo HandleApprovePaymentRequest(PaymentUpdateResult result, PaymentUpdateLogParam logParam, PaymentRequestUpdateEmail emailParam, PaymentUpdateParam param)
+        {
+            var approveParam = XmlHelper.GetPaymentApproveParam(result.DetailXml);
+
+            if (approveParam is null)
+            {
+                WriteErrorLogSentry($"Updating the Payment Request has failed: DetailXml is in an incorrect format", param, result.DetailXml);
+
+                var error = ResultInfo.GenerateErr("The DetailXml is in an incorrect format.");
+                HandleRollbackApprovePaymentRequest(error, result.DetailXml);
+
+                return ResultInfo.GenerateErr(Lang.ErrGeneral);
+            }
+
+            try
+            {
+                approveParam.SpKey = GetPaymentApproveSpKeyByCustId(approveParam.PlayerIbcCustId);
+                var approvedResult = _paymentRequestRepository.ApprovePaymentRequest(approveParam);
+
+                if (approvedResult.IsSuccessful)
+                {
+                    _emailService.SendApprovedPaymentRequestEmail(emailParam);
+                    _paymentRequestRepository.WriteLogWhenUpdatePaymentRequestSuccessfully(logParam);
+
+                    approvedResult.Message = "The approval of the Payment Request is successful!";
+                }
+                else
+                {
+                    WriteErrorLogSentry($"The approval of the Payment Request has failed: ErrorCode: {approvedResult.Code}, ErrorMessage: {approvedResult.Message}", approveParam, result.DetailXml);
+                    HandleRollbackApprovePaymentRequest(approvedResult, result.DetailXml);
+
+                    approvedResult.Message = GetErrMsg(approvedResult.Code, approvedResult.Message);
+                }
+
+                return approvedResult;
+            } catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+
+                var error = ResultInfo.GenerateErr("An exception was thrown at the approval of the Payment request process.");
+                HandleRollbackApprovePaymentRequest(error, result.DetailXml);
+
+                return ResultInfo.GenerateErr(Lang.ErrGeneral);
+            }
+        }
+
+        private void HandleRollbackApprovePaymentRequest(ResultInfo approveResult,string detailXml)
+        {
+            var result = _paymentRequestRepository.RollbackApprovePaymentRequest(approveResult, detailXml);
+
+            if (!result.IsSuccessful)
+            {
+                LogHelper.WriteError($"Rollback the approval of the Payment Request has failed: ErrorCode: {result.Code}, ErrorMessage: {result.Message}");
+            }
+        }
+
+        private string GetPaymentApproveSpKeyByCustId(string playerIbcCustId)
+        {
+            const string ApprovePaymentRequest_SpKey = "Aff_Admin_AffiliatePaymentRequest_Approve";
+
+            var siteDbConfig = _paymentRequestRepository.GetSiteDBConfigInfoByCustId(playerIbcCustId);
+
+            return $"{ApprovePaymentRequest_SpKey}_{siteDbConfig.LinkedServerName}";
+        }
+
+        private PaymentRequestUpdateEmail GetPaymentRequestUpdateEmailParam(long transId, PaymentRequestUpdateEmail emailParam, PaymentRequestDetail paymentRequestDetail)
+        {
+            var affInfo = _affiliateService.GetAffiliateBasicInfo(paymentRequestDetail.AffId);
+
+            emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
+            emailParam.FirstName = affInfo.FirstName;
+            emailParam.MailTo = affInfo.Email;
+            emailParam.IsHtml = !affInfo.MailOption;
+            emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguageCode;
+            emailParam.TransId = transId;
+            emailParam.TransDate = paymentRequestDetail.TransDate.ToString("MM/dd/yyyy");
+            emailParam.Amount = paymentRequestDetail.Amount;
+
+            return emailParam;
+        }
+
+        private static string GetErrMsg(int errCode, string errMessage)
         {
             var message = Lang.ResourceManager.GetString("UpdatePaymentErr" + errCode);
 
-            return message ?? "Update transaction failed!";
+            return message ?? errMessage ?? "Updating the Payment Request has failed!";
+        }
+
+        private static void WriteErrorLogSentry(string errMessage, object param, string detailXml)
+        {
+            var messageLog = new StringBuilder().AppendLine(errMessage).AppendLine();
+            messageLog.AppendLine($"Parameters: {JsonConvert.SerializeObject(param)}");
+            messageLog.AppendLine($"DetailXml: {detailXml}");
+
+            LogHelper.WriteError(messageLog.ToString());
         }
     }
 }

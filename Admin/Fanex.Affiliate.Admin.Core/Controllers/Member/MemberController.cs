@@ -61,11 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "No member specificed!"
-                }
+                Data = ResultInfo.GenerateErr("No member specificed!")
             };
         }
     }

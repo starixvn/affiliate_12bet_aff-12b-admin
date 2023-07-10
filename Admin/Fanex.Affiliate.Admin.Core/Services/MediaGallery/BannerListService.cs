@@ -66,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return resultValidateAllFiles;
         }
 
-        private ResultInfo CheckDuplicateFileNames(string[] inputFileNames)
+        private static ResultInfo CheckDuplicateFileNames(string[] inputFileNames)
         {
             var length = inputFileNames.Length;
             for (var i = 0; i <= length - 1; i++)
@@ -77,11 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 {
                     if (string.Equals(fileName, inputFileNames[j].Trim(), StringComparison.OrdinalIgnoreCase))
                     {
-                        return new ResultInfo
-                        {
-                            Code = Code.GeneralErrorCode,
-                            Message = "File Name is unique, please enter other file name!"
-                        };
+                        return ResultInfo.GenerateErr("File Name is unique, please enter other file name!");
                     }
                 }
             }
@@ -189,11 +185,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             var regex = new Regex("[\\\\/:*?\"<>#%&+]");
             if (regex.IsMatch(param.InputFileNames))
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.FileNameCanNotContain
-                };
+                return ResultInfo.GenerateErr(Lang.FileNameCanNotContain);
             }
             var inputFileNames = param.InputFileNames.Split('|');
             result = ValidateAllInputFileNames(inputFileNames, files);
@@ -243,11 +235,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 var regex = new Regex("[\\\\/:*?\"<>|#%&+]");
                 if (regex.IsMatch(param.InputFileNames))
                 {
-                    return new ResultInfo
-                    {
-                        Code = Code.GeneralErrorCode,
-                        Message = Lang.FileNameCanNotContain
-                    };
+                    return ResultInfo.GenerateErr(Lang.FileNameCanNotContain);
                 }
 
                 if (!BannerHelper.IsValidExtension(_systemFile.GetExtension(param.InputFileNames)))
@@ -260,11 +248,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 param.InputFileNames = file.FileName;
             }
 
-            return param.InputFileNames.Length > MaxLength ? new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = Lang.MaxLenghtOfFileName
-            } : new ResultInfo();
+            return param.InputFileNames.Length > MaxLength ? ResultInfo.GenerateErr(Lang.MaxLenghtOfFileName) : new ResultInfo();
         }
 
         public ResultInfo UpdateBanner(HttpPostedFileBase file, InsertUpdateMultipleBannersParam param)

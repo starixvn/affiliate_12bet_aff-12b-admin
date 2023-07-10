@@ -85,22 +85,31 @@ namespace Fanex.Affiliate.Admin.Core.Services
             _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
         }
 
-        public void SendPaymentRequestUpdateEmail(PaymentRequestUpdateEmail emailParam)
+        public void SendApprovedPaymentRequestEmail(PaymentRequestUpdateEmail emailParam)
         {
             _commonSettingService.SetCulture(emailParam.Language);
-            var title = emailParam.IsApproved ? Lang.EmailTitlePaymentRequestApproved : Lang.EmailTitlePaymentRequestRejected;
-            var TemplateName = emailParam.IsApproved ? TemplateString.PaymentRequestApproved : TemplateString.PaymentRequestRejected;
+            AssignEmailBaseInfo(emailParam);
 
-            emailParam.MailContact = _appSetting.MailContact;
-            emailParam.ContactInfo = GetContactInfoContent(emailParam);
-            var content = GetEmailTextContent(TemplateName, emailParam.Language, emailParam);
-            var subject = emailParam.IsApproved ?
-                string.Format(Lang.EmailSubjectPaymentRequestApproved, emailParam.TransId) :
-                string.Format(Lang.EmailSubjectPaymentRequestRejected, emailParam.TransId);
-
+            var content = GetEmailTextContent(TemplateString.PaymentRequestApproved, emailParam.Language, emailParam);
             var contentToSend = emailParam.IsHtml ?
-                GetEmailHtmlContent(content, title, emailParam.Language, emailParam.RootUrl) :
+                GetEmailHtmlContent(content, Lang.EmailTitlePaymentRequestApproved, emailParam.Language, emailParam.RootUrl) :
                 content;
+            var subject = string.Format(Lang.EmailSubjectPaymentRequestApproved, emailParam.TransId);
+
+            _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
+            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
+        }
+
+        public void SendRejectedPaymentRequestEmail(PaymentRequestUpdateEmail emailParam)
+        {
+            _commonSettingService.SetCulture(emailParam.Language);
+            AssignEmailBaseInfo(emailParam);
+
+            var content = GetEmailTextContent(TemplateString.PaymentRequestRejected, emailParam.Language, emailParam);
+            var contentToSend = emailParam.IsHtml ?
+                GetEmailHtmlContent(content, Lang.EmailTitlePaymentRequestRejected, emailParam.Language, emailParam.RootUrl) :
+                content;
+            var subject = string.Format(Lang.EmailSubjectPaymentRequestRejected, emailParam.TransId);
 
             _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
             _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
@@ -116,9 +125,8 @@ namespace Fanex.Affiliate.Admin.Core.Services
         private void SendDisapprovedAffiliateEmail(AffInformationEmail emailParam)
         {
             var subject = Lang.EmailSubjectAffDisapproved;
+            AssignEmailBaseInfo(emailParam);
 
-            emailParam.MailContact = _appSetting.MailContact;
-            emailParam.ContactInfo = GetContactInfoContent(emailParam);
             var content = GetEmailTextContent(TemplateString.AffiliateDisapproved, emailParam.Language, emailParam);
 
             var contentToSend = emailParam.IsHtml ?
@@ -157,6 +165,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public string GetContactInfoContent(EmailBase param)
         {
             return TemplateString.GetContactInfoContent(param, GetEmailTextContent, _appSetting.EmailBackgroundUrl);
+        }
+
+        private void AssignEmailBaseInfo(EmailBase param)
+        {
+            param.MailContact = _appSetting.MailContact;
+            param.ContactInfo = GetContactInfoContent(param);
         }
     }
 }

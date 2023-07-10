@@ -64,11 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = ResultInfo.GenerateErr(string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
 
@@ -90,11 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = ResultInfo.GenerateErr(string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
 
@@ -116,11 +108,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = ResultInfo.GenerateErr(string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
 

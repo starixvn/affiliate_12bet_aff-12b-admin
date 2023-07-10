@@ -98,11 +98,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
             return new JsonResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Update Language is failed!"
-                }
+                Data = ResultInfo.GenerateErr("Update Language is failed!")
             };
         }
 
@@ -121,11 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
             return new JsonResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Update Affiliate Type is failed!"
-                }
+                Data = ResultInfo.GenerateErr("Update Affiliate Type is failed!")
             };
         }
 
@@ -156,11 +148,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
             return new JsonResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Update Status is failed!"
-                }
+                Data = ResultInfo.GenerateErr("Update Status is failed!")
             };
         }
 
@@ -179,11 +167,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
             return new JsonResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Update Closed Status is failed!"
-                }
+                Data = ResultInfo.GenerateErr("Update Closed Status is failed!")
             };
         }
 

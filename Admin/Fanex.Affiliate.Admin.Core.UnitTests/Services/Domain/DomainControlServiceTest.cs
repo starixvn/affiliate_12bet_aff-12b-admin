@@ -1,8 +1,10 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
+using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Data;
 using Moq;
+using NSubstitute;
 using System;
 using Xunit;
 
@@ -10,134 +12,100 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 {
     public class DomainControlServiceTest
     {
-        [Fact]
-        public void GetDomainControlList_WhenCall_ReturnCorrectData()
+        private readonly IDomainService domainService;
+        private readonly IDomainControlRepository domainControlRepository;
+
+        public DomainControlServiceTest()
         {
-            // Arrange
-            var service = new Mock<DomainControlRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-
-            service.Setup(r => r.GetObjectDb("Aff_Admin_DomainControl_Sel", It.IsAny<int>())).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetDomainControlList(string.Empty);
-
-            // Assert
-            objectDb.Verify(obj => obj.Query<DomainControlInfo>(It.IsAny<object>(), null), Times.Once);
+            domainService = Substitute.For<IDomainService>();
+            domainControlRepository = Substitute.For<IDomainControlRepository>();
         }
 
         [Fact]
-        public void InsertDomainControl_WhenCallWithValidParam_InsertSuccessfully()
+        public void GetVisibleMarketsByUser_WhenCall_Excute()
         {
             // Arrange
-            var service = new Mock<DomainControlRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Ins", 120)).Returns(objectDb.Object);
+            var param = 123;
+            var service = CreateDomainControlService;
 
             // Action
-            var result = service.Object.InsertDomainControl(new InsertDomainControlParam());
+            service.GetVisibleMarketsByUser(param);
 
             // Assert
-            Assert.True(result.IsSuccessful);
+            domainService.Received().GetVisibleMarketsByUser(param);
         }
 
         [Fact]
-        public void InsertDomainControl_WhenCallWithInvalidParam_InsertIsFailed()
+        public void GetDomainControlList_WhenCall_Excute()
         {
             // Arrange
-            var message = "Insert Domain is failed.";
-            var service = new Mock<DomainControlRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Ins", 120)).Returns(objectDb.Object);
+            var param = "123";
+            var service = CreateDomainControlService;
 
             // Action
-            var result = service.Object.InsertDomainControl(new InsertDomainControlParam());
+            service.GetDomainControlList(param);
 
             // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
+            domainControlRepository.Received().GetDomainControlList(param);
         }
 
         [Fact]
-        public void UpdateDomainControl_WhenCallWithValidParam_UpdateSuccessfully()
+        public void GetDomainControlById_WhenCall_Excute()
         {
             // Arrange
-            var service = new Mock<DomainControlRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Upd", 120)).Returns(objectDb.Object);
+            var param = 123;
+            var service = CreateDomainControlService;
 
             // Action
-            var result = service.Object.UpdateDomainControl(new UpdateDomainControlParam());
+            service.GetDomainControlById(param);
 
             // Assert
-            Assert.True(result.IsSuccessful);
+            domainControlRepository.Received().GetDomainControlById(param);
         }
 
         [Fact]
-        public void UpdateDomainControl_WhenCallWithInvalidParam_UpdateIsFailed()
+        public void InsertDomainControl_WhenCall_Excute()
         {
             // Arrange
-            var message = "Update Domain is failed.";
-            var service = new Mock<DomainControlRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Upd", 120)).Returns(objectDb.Object);
+            var param = new InsertDomainControlParam();
+            var service = CreateDomainControlService;
 
             // Action
-            var result = service.Object.UpdateDomainControl(new UpdateDomainControlParam());
+            service.InsertDomainControl(param);
 
             // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
+            domainControlRepository.Received().InsertDomainControl(param);
         }
 
         [Fact]
-        public void DeleteDomainControl_WhenCallWithValidParam_DeleteSuccessfully()
+        public void UpdateDomainControl_WhenCall_Excute()
         {
             // Arrange
-            var service = new Mock<DomainControlRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Del", 120)).Returns(objectDb.Object);
+            var param = new UpdateDomainControlParam();
+            var service = CreateDomainControlService;
 
             // Action
-            var result = service.Object.DeleteDomainControl(new DeleteDomainControlParam());
+            service.UpdateDomainControl(param);
 
             // Assert
-            Assert.True(result.IsSuccessful);
+            domainControlRepository.Received().UpdateDomainControl(param);
         }
 
         [Fact]
-        public void DeleteDomainControl_WhenCallWithInvalidParam_DeleteIsFailed()
+        public void DeleteDomainControl_WhenCall_Excute()
         {
             // Arrange
-            var message = "Delete Domain is failed.";
-            var service = new Mock<DomainControlRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_DomainControl_Del", 120)).Returns(objectDb.Object);
+            var param = new DeleteDomainControlParam();
+            var service = CreateDomainControlService;
 
             // Action
-            var result = service.Object.DeleteDomainControl(new DeleteDomainControlParam());
+            service.DeleteDomainControl(param);
 
             // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
+            domainControlRepository.Received().DeleteDomainControl(param);
         }
+
+        private DomainControlService CreateDomainControlService
+            => new DomainControlService(domainService, domainControlRepository);
     }
 }

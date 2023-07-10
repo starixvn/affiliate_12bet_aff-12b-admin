@@ -9,6 +9,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Payment;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
@@ -118,10 +119,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var resolver = new AutofacDependencyResolver(container, _scopeProvider);
             DependencyResolver.SetResolver(resolver);
 
-            var param = new PaymentRequestUpdateParam { TransId = 123 };
-            PaymentRequestUpdateParam passedParam = null;
+            var param = new PaymentUpdateParam { TransId = 123 };
+            PaymentUpdateParam passedParam = null;
             var PaymentRequestService = new Mock<IPaymentRequestService>();
-            PaymentRequestService.Setup(s => s.UpdatePaymentRequest(It.IsAny<PaymentRequestUpdateParam>(), It.IsAny<PaymentRequestUpdateEmail>())).Returns(new ResultInfo()).Callback<PaymentRequestUpdateParam, PaymentRequestUpdateEmail>((a, b) => passedParam = a); ;
+            PaymentRequestService.Setup(s => s.UpdatePaymentRequest(It.IsAny<PaymentUpdateParam>(), It.IsAny<PaymentRequestUpdateEmail>())).Returns(new ResultInfo()).Callback<PaymentUpdateParam, PaymentRequestUpdateEmail>((a, b) => passedParam = a); ;
             var controller = CreatePaymentRequestController(PaymentRequestService: PaymentRequestService.Object);
 
             // Action
@@ -141,7 +142,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             controller.ModelState.AddModelError("Error01", "Failed!");
 
             // Action
-            var result = controller.UpdatePaymentRequest(new PaymentRequestUpdateParam()) as JsonNetResult;
+            var result = controller.UpdatePaymentRequest(new PaymentUpdateParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -151,13 +152,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private PaymentRequestController CreatePaymentRequestController(
             ISessionService sessionService = null,
-            IPaymentRequestService PaymentRequestService = null
+            IPaymentRequestService PaymentRequestService = null,
+            IAdjustmentService AdjustmentService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakePaymentRequestService = PaymentRequestService ?? Mock.Of<IPaymentRequestService>();
+            var fakeAdjustmentService = AdjustmentService ?? Mock.Of<IAdjustmentService>();
 
-            var controller = new PaymentRequestController(fakeSessionService, fakePaymentRequestService);
+            var controller = new PaymentRequestController(fakeSessionService, fakePaymentRequestService, fakeAdjustmentService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

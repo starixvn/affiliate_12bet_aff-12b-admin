@@ -115,10 +115,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Common
             Assert.Null(service.UserClaim);
         }
 
-        [Fact]
-        public void RequestIp_WhenCall_ReturnCorrectData()
+        [Theory]
+        [InlineData("")]
+        [InlineData("123,234")]
+        public void RequestIp_WhenCall_ReturnCorrectData(string ips)
         {
-            SetUpHttpContextSession();
+            SetUpHttpContextSession(ips);
             var service = CreateService();
 
             Assert.Null(service.RequestIp);
@@ -127,9 +129,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Common
         private static SessionService CreateService()
             => new SessionService();
 
-        private static void SetUpHttpContextSession()
+        private static void SetUpHttpContextSession(string ips = null)
         {
-            var request = new HttpRequest(null, "http://abco.com", "?HTTP_X_FORWARDED_FOR=abc");
+            var request = new HttpRequest(null, "http://abco.com", $"?HTTP_X_FORWARDED_FOR={ips}");
             var response = new HttpResponse(new StringWriter());
             HttpContext.Current = new HttpContext(request, response);
             var sessionContainer = new HttpSessionStateContainer("id", new SessionStateItemCollection(),

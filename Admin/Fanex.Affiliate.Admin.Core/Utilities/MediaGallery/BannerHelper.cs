@@ -23,11 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
 
         public static ResultInfo CreateErrorResult()
         {
-            return new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = Lang.InvalidBannerExtensionFile
-            };
+            return ResultInfo.GenerateErr(Lang.InvalidBannerExtensionFile);
         }
     }
 }

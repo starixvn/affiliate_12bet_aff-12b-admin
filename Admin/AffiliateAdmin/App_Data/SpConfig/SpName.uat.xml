@@ -41,6 +41,12 @@
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Upd" SpName="Aff_Admin_AffiliatePaymentRequest_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Acc_SiteDBConfigSel" SpName="Acc_SiteDBConfigSel" DbName="DB052_bodb02_bodbAdminNet" />
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Approve_DBSite01" SpName="Aff_Admin_AffiliatePaymentRequest_Approve" DbName="DBSite01_bodb02_bodbAdminNet" />
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Approve_DBSite02" SpName="Aff_Admin_AffiliatePaymentRequest_Approve" DbName="DBSite02_bodb02_bodbAdminNet" />
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Approve_DBTXN" SpName="Aff_Admin_AffiliatePaymentRequest_Approve" DbName="DBTXN_bodb02_bodbAdminNet" />
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Upd_Rollback" SpName="Aff_Admin_AffiliatePaymentRequest_Upd_Rollback" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_UserLog_RunSP_Detail_WriteLog" SpName="Aff_UserLog_RunSP_Detail_WriteLog" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="StatementHistory">
     <Setting Key="Aff_Admin_StatementHistory_Sel" SpName="Aff_Admin_StatementHistory_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />

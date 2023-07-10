@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using Moq;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -55,6 +56,41 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             // Assert
             Assert.Single(data);
             Assert.Equal(isAffDomain, passedParam);
+        }
+
+        [Fact]
+        public void GetDomainById_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            bool passedParam = false;
+            var domainService = new Mock<IDomainService>();
+            domainService.Setup(t => t.GetDomainById(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<bool>())).Returns(new DomainInfo()).Callback<int, int, bool>((userId, domainId, isAff) => passedParam = isAff);
+            var controller = CreateDomainController(domainService: domainService.Object);
+
+            // Action
+            var result = controller.GetDomainById(123) as JsonNetResult;
+            var data = result.Data as DomainInfo;
+
+            // Assert
+            Assert.NotNull(data);
+            Assert.NotNull(JsonConvert.SerializeObject(data));
+            Assert.True(passedParam);
+        }
+
+        [Fact]
+        public void GetMarketList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var domainService = new Mock<IDomainService>();
+            domainService.Setup(t => t.GetMarketList(It.IsAny<MarketParam>())).Returns(new List<Market> { new Market() });
+            var controller = CreateDomainController(domainService: domainService.Object);
+
+            // Action
+            var result = controller.GetMarketList(new MarketParam { UserId = 123, AffDomainId = 1, RedirectDomainId = 2 }) as JsonNetResult;
+            var data = result.Data as List<Market>;
+
+            // Assert
+            Assert.Single(data);
         }
 
         [Fact]

@@ -29,6 +29,7 @@ describe('customer - mainpage reducer', () => {
             userAccountInfo: null,
         },
         hasTurnOverPermission: false,
+        isShowLoader: false,
         isShowLoaderUserPanel: false,
         landingPageStatistics: {
             pageList: [],

@@ -278,6 +278,44 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
               L&#234; Văn
             </Label>
           </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Balance Brought Forward
+            </Label>
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <strong>
+                -$
+              </strong>
+            </Label>
+          </FormGroup>
         </fieldset>
         <fieldset>
           <legend>
@@ -880,6 +918,44 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
               }
             >
               L&#234; Văn
+            </Label>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Balance Brought Forward
+            </Label>
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <strong>
+                -$
+              </strong>
             </Label>
           </FormGroup>
         </fieldset>

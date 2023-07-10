@@ -4,12 +4,10 @@ using Fanex.Affiliate.Admin.Core.DTO.NewViewLog;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.NewViewLog;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Xml;
 
 namespace Fanex.Affiliate.Admin.Core.Services.NewViewLog
 {
@@ -75,8 +73,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.NewViewLog
                         {
                             LogId = Convert.ToInt32(reader["LogId"]),
                             Date = Convert.ToDateTime(reader["Date"]),
-                            OldData = ParseXmlToJson(Convert.ToString(reader["OldData"])),
-                            NewData = ParseXmlToJson(Convert.ToString(reader["NewData"])),
+                            OldData = XmlHelper.ParseXmlToJson(Convert.ToString(reader["OldData"])),
+                            NewData = XmlHelper.ParseXmlToJson(Convert.ToString(reader["NewData"])),
                             UpdatedName = Convert.ToString(reader["UpdatedName"]),
                             Action = Convert.ToString(reader["Action"]),
                             Ip = Convert.ToString(reader["IP"]),
@@ -99,36 +97,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.NewViewLog
             objectDb.SetParameterValue("PageIndex", param.PageIndex);
             objectDb.SetParameterValue("PageSize", param.PageSize);
             objectDb.SetParameterValue("NRows", DefaultValue.Int);
-        }
-
-        private static string ParseXmlToJson(string xmlString)
-        {
-            if (!string.IsNullOrEmpty(xmlString) && xmlString.TrimStart().StartsWith("<"))
-            {
-                try
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.LoadXml(xmlString);
-
-                    var rootNode = doc.SelectSingleNode("root");
-                    var childNodes = rootNode.ChildNodes;
-
-                    if (childNodes.Count != 1)
-                    {
-                        return string.Empty;
-                    }
-
-                    return JsonConvert.SerializeXmlNode(doc);
-                }
-                catch (Exception)
-                {
-                    return string.Empty;
-                }
-            }
-            else
-            {
-                return string.Empty;
-            }
         }
     }
 }

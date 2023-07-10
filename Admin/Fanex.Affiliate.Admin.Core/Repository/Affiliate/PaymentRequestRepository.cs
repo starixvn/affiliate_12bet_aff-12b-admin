@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
@@ -57,7 +56,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
         public PaymentRequestDetail GetPaymentRequestDetail(long transId)
         {
             const string SpKey = "Aff_Admin_AffiliatePaymentRequest_Detail_Sel";
-            PaymentRequestDetail result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -67,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 {
                     if (reader.Read())
                     {
-                        result = new PaymentRequestDetail
+                        return new PaymentRequestDetail
                         {
                             TransId = Convert.ToInt64(reader["Transid"]),
                             AffId = Convert.ToInt32(reader["AffId"]),
@@ -89,26 +87,81 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 }
             }
 
-            return result;
+            return null;
         }
 
-        public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param)
+        public PaymentUpdateResult UpdatePaymentRequest(PaymentUpdateParam param)
         {
             const string SpKey = "Aff_Admin_AffiliatePaymentRequest_Upd";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue(Field.Status, param.Status);
-                objectDb.SetParameterValue("TransID", param.TransId);
-                objectDb.SetParameterValue("AdminDesc", param.AdminDesc);
-                objectDb.SetParameterValue("AffDesc", param.AffDesc);
-                objectDb.SetParameterValue("UserID", param.UserId);
-                objectDb.SetParameterValue("IP", param.Ip);
                 AssignResultOutputParam(objectDb);
+
+                objectDb.SetParameterValue("DetailXml", DefaultValue.String);
+                objectDb.SetParameterValue("OldData", DefaultValue.String);
+                objectDb.SetParameterValue("NewData", DefaultValue.String);
+
+                objectDb.ExecuteNonQuery(param);
+
+                var resultInfo = GetResultInfo(objectDb);
+
+                return new PaymentUpdateResult
+                {
+                    Code = resultInfo.Code,
+                    Message = resultInfo.Message,
+                    DetailXml = Convert.ToString(objectDb.GetParameterValue("DetailXml")),
+                    OldData = Convert.ToString(objectDb.GetParameterValue("OldData")),
+                    NewData = Convert.ToString(objectDb.GetParameterValue("NewData"))
+                };
+            }
+        }
+
+        public SiteDBConfigInfo GetSiteDBConfigInfoByCustId(string playerIbcCustId)
+        {
+            const string SpKey = "Acc_SiteDBConfigSel";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                return objectDb.QueryEntity<SiteDBConfigInfo>( new { Custid = playerIbcCustId });
+            }
+        }
+
+        public ResultInfo ApprovePaymentRequest(PaymentApproveParam param)
+        {
+            using (var objectDb = GetObjectDb(param.SpKey))
+            {
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery(param);
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public ResultInfo RollbackApprovePaymentRequest(ResultInfo approveResult, string detailXml)
+        {
+            const string SpKey = "Aff_Admin_AffiliatePaymentRequest_Upd_Rollback";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.SetParameterValue("DetailXml", detailXml);
+                objectDb.SetParameterValue("ErrCode", approveResult.Code);
+                objectDb.SetParameterValue("ErrMsg", approveResult.Message);
 
                 objectDb.ExecuteNonQuery();
 
                 return GetResultInfo(objectDb);
+            }
+        }
+
+        public void WriteLogWhenUpdatePaymentRequestSuccessfully(PaymentUpdateLogParam param)
+        {
+            const string SpKey = "Aff_UserLog_RunSP_Detail_WriteLog";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.ExecuteNonQuery(param);
             }
         }
     }

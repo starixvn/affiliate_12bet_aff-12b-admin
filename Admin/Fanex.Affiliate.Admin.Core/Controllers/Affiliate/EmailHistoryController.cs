@@ -75,11 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 };
             }
 
-            return Json(new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-            });
+            return Json(ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))));
         }
     }
 }

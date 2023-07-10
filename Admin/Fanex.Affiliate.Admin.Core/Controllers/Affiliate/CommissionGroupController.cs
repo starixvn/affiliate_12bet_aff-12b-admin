@@ -103,11 +103,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = CommGroupErrorMessage.InvalidGroupId
-                }
+                Data = ResultInfo.GenerateErr(CommGroupErrorMessage.InvalidGroupId)
             };
         }
 
@@ -149,11 +145,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = groupNameValidation.Message + platformFeeValidation.Message
-                }
+                Data = ResultInfo.GenerateErr(groupNameValidation.Message + platformFeeValidation.Message)
             };
         }
 
@@ -196,11 +188,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = groupNameValidation.Message + platformFeeValidation.Message
-                }
+                Data = ResultInfo.GenerateErr(groupNameValidation.Message + platformFeeValidation.Message)
             };
         }
 
@@ -227,24 +215,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
 
         private static ResultInfo ValidateGroupName(string groupName)
         {
-            var result = new ResultInfo();
             if (string.IsNullOrEmpty(groupName) || groupName.Length > MaxLength)
             {
-                result.Code = Code.GeneralErrorCode;
-                result.Message = CommGroupErrorMessage.InvalidGroupName;
+                return ResultInfo.GenerateErr(CommGroupErrorMessage.InvalidGroupName);
             }
 
-            return result;
+            return new ResultInfo();
         }
     }
 }

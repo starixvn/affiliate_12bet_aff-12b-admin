@@ -45,8 +45,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             Assert.Equal("", viewName);
         }
 
-        [Fact]
-        public void Preview_WhenCallWithAffiliateApproved_ReturnView()
+        [Theory]
+        [InlineData(TemplateString.AffiliateDisapproved)]
+        [InlineData(TemplateString.AffiliateApproved)]
+        [InlineData(TemplateString.WithdrawalGuidance)]
+        [InlineData(TemplateString.AffiliateInformation)]
+        [InlineData(TemplateString.PaymentRequestApproved)]
+        [InlineData(TemplateString.PaymentRequestRejected)]
+        [InlineData("Default")]
+        public void Preview_WhenCall_ReturnView(string template)
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
@@ -64,59 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var controller = CreateEmailTestingController();
 
             // Action
-            var viewResult = controller.Preview(string.Empty, "AffiliateApproved", string.Empty) as ViewResult;
-            var viewName = viewResult.ViewName;
-
-            // Assert
-            Assert.Equal("", viewName);
-        }
-
-        [Fact]
-        public void Preview_WhenCallWithAffiliateInformation_ReturnView()
-        {
-            // Arrange
-            var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.Environment).Returns("UAT");
-            appSetting.Setup(a => a.IsProduction).Returns(true);
-
-            var builder = new ContainerBuilder();
-            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
-            var container = builder.Build();
-
-            _scopeProvider = new SimpleLifetimeScopeProvider(container);
-            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            DependencyResolver.SetResolver(resolver);
-
-            var controller = CreateEmailTestingController();
-
-            // Action
-            var viewResult = controller.Preview(string.Empty, "AffiliateInformation", string.Empty) as ViewResult;
-            var viewName = viewResult.ViewName;
-
-            // Assert
-            Assert.Equal("", viewName);
-        }
-
-        [Fact]
-        public void Preview_WhenCallWithWithdrawalGuidance_ReturnView()
-        {
-            // Arrange
-            var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.Environment).Returns("UAT");
-            appSetting.Setup(a => a.IsProduction).Returns(true);
-
-            var builder = new ContainerBuilder();
-            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
-            var container = builder.Build();
-
-            _scopeProvider = new SimpleLifetimeScopeProvider(container);
-            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
-            DependencyResolver.SetResolver(resolver);
-
-            var controller = CreateEmailTestingController();
-
-            // Action
-            var viewResult = controller.Preview(string.Empty, "WithdrawalGuidance", string.Empty) as ViewResult;
+            var viewResult = controller.Preview(string.Empty, template, string.Empty) as ViewResult;
             var viewName = viewResult.ViewName;
 
             // Assert
@@ -157,7 +112,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var controller = CreateEmailTestingController();
 
             // Action
-            var jsonResult = controller.SendEmail(string.Empty, TemplateString.AffiliateApproved, string.Empty, string.Empty) as JsonResult;
+            var jsonResult = controller.SendEmail(string.Empty, TemplateString.AffiliateApproved, "txt", string.Empty) as JsonResult;
             var data = jsonResult.Data as dynamic;
 
             // Assert

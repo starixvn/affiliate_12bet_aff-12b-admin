@@ -28,11 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             if (contentLength > _appSetting.ImageSize)
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.InvalidBannerSize
-                };
+                return ResultInfo.GenerateErr(Lang.InvalidBannerSize);
             }
 
             return new ResultInfo();

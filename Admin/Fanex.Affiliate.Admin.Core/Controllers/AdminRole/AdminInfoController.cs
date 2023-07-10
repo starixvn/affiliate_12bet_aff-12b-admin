@@ -85,11 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
 
@@ -127,11 +123,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
 
@@ -156,11 +148,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "User is invalid!"
-                }
+                Data = ResultInfo.GenerateErr("User is invalid!")
             };
         }
 
@@ -187,11 +175,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                }
+                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
 

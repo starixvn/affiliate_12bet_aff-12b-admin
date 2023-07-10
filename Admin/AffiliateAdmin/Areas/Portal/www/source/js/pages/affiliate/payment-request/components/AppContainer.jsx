@@ -7,8 +7,7 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import Content from './Content';
 import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
-import { setTransactionId, setParam } from '../actions';
-import { claimResource } from '../../../../modules/claim';
+import { setTransactionId, setIsClickSearch, toggleLoader } from '../actions';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -20,11 +19,15 @@ export class AppContainer extends PureComponent {
     }
 
     handleFetchData = () => {
-        this.props.setParam(this.props.param);
+        this.props.setIsClickSearch(true);
+    }
+
+    handleToggleLoader = (toggle) => {
+        this.props.toggleLoader(toggle);
     }
 
     render() {
-        const { isShowLoader, transactionId, claimsPrincipal } = this.props;
+        const { isShowLoader, transactionId } = this.props;
 
         return (
             <AppLayout>
@@ -32,11 +35,9 @@ export class AppContainer extends PureComponent {
                 <Filter />
                 <Content />
                 <PaymentRequestUpdateForm
-                    isUpdatable={claimsPrincipal.hasWriteClaim(claimResource.PaymentRequest)}
-                    isShowEmail={claimsPrincipal.hasReadClaim(claimResource.AffEmail)}
-                    isShowPaymentInfo={claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo)}
                     transactionId={transactionId}
                     handleClosePopup={this.handleClosePopup}
+                    handleToggleLoader={this.handleToggleLoader}
                     handleFetchData={this.handleFetchData}
                 />
             </AppLayout>
@@ -44,12 +45,12 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ isShowLoader, transactionId, param, claimsPrincipal }) {
-    return Object.assign({}, { isShowLoader, transactionId, param, claimsPrincipal });
+function mapStateToProps({ isShowLoader, transactionId }) {
+    return Object.assign({}, { isShowLoader, transactionId });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId, setParam }, dispatch);
+    return bindActionCreators({ setTransactionId, setIsClickSearch, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

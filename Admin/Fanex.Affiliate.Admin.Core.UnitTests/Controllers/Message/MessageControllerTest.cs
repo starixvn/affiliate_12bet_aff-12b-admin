@@ -162,6 +162,25 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         }
 
         [Fact]
+        public void UpdateMessage_WhenCallWithValidParamBn_InsertSuccessful()
+        {
+            // Arrange
+            var param = new InsertUpdateMessageParam { MessageId = 1, MessageContentBn = "xyz" };
+            InsertUpdateMessageParam passedParam = null;
+            var messageSevice = new Mock<IMessageService>();
+            messageSevice.Setup(s => s.UpdateMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
+            var controller = CreateMessageController(messageSevice: messageSevice.Object);
+
+            // Action
+            var result = controller.UpdateMessage(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.True(resultInfo.IsSuccessful);
+            Assert.Equal(param.MessageId, passedParam.MessageId);
+        }
+
+        [Fact]
         public void UpdateMessage_WhenCallWithInvalidMessageContent_ReturnError()
         {
             // Arrange

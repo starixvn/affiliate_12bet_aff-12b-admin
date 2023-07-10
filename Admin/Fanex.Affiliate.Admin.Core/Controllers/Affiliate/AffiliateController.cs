@@ -104,11 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 return Json(_affiliateInfoRepository.ToggleFavorite(param));
             }
 
-            return Json(new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = "Update Favorite failed!"
-            });
+            return Json(ResultInfo.GenerateErr("Update Favorite failed!"));
         }
 
         [HttpPost]
@@ -124,11 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
                 return Json(_affiliateInfoRepository.ChangePassword(param));
             }
-            return Json(new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = "Change Password is failed!"
-            });
+            return Json(ResultInfo.GenerateErr("Change Password is failed!"));
         }
 
         private AffiliateInfoParam BuildGetModelToParam(GetAffiliateViewModel viewModel)

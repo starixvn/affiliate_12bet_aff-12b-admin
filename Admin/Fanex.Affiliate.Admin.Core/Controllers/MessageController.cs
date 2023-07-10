@@ -84,11 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.PleaseEnterContent
-                }
+                Data = ResultInfo.GenerateErr(Lang.PleaseEnterContent)
             };
         }
 
@@ -111,11 +107,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = !isValidMessageId ? Lang.MessageIdIsInvalid : Lang.PleaseEnterContent
-                }
+                Data = ResultInfo.GenerateErr(!isValidMessageId ? Lang.MessageIdIsInvalid : Lang.PleaseEnterContent)
             };
         }
 
@@ -136,11 +128,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             return new JsonNetResult
             {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = Lang.PleaseSelectMessage
-                }
+                Data = ResultInfo.GenerateErr(Lang.PleaseSelectMessage)
             };
         }
 

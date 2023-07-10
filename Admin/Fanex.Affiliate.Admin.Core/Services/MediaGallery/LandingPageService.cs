@@ -34,11 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         {
             if (HasRestrictedCharacter(param.PageCode))
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = RestricedCharacterErrorMessage
-                };
+                return ResultInfo.GenerateErr(RestricedCharacterErrorMessage);
             }
 
             return _landingPageRepository.InsertLandingPage(param);
@@ -48,11 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         {
             if (HasRestrictedCharacter(param.PageCode))
             {
-                return new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = RestricedCharacterErrorMessage
-                };
+                return ResultInfo.GenerateErr(RestricedCharacterErrorMessage);
             }
 
             return _landingPageRepository.UpdateLandingPage(param);

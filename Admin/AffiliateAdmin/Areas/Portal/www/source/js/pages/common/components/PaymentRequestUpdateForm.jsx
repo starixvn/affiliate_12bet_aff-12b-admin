@@ -51,6 +51,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     handleSave = async () => {
+        this.props.handleToggleLoader(true);
+
         const { paymentRequestInfo, originalStatus } = this.state;
         const selectedStatus = paymentRequestInfo.Status;
 
@@ -92,6 +94,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 message: errorList.NotChoose,
             }, () => window.setTimeout(this.hideMessage, 3000));
         }
+
+        this.props.handleToggleLoader(false);
     }
 
     hideMessage = () => {
@@ -129,6 +133,10 @@ export class PaymentRequestUpdateForm extends PureComponent {
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.LastName}</Label>
                     <Label sm={6}>{paymentRequestInfo.LastName}</Label>
+                </FormGroup>
+                <FormGroup row className="mb-2">
+                    <Label sm={6}>{resource.BalanceBroughtForward}</Label>
+                    <Label sm={6}><strong>{formatDecimalWithCurrencySymbol(paymentRequestInfo.BalanceBF)}</strong></Label>
                 </FormGroup>
 
             </fieldset>

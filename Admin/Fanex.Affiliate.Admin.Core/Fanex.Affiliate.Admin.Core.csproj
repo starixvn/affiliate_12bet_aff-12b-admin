@@ -278,6 +278,8 @@
     <Compile Include="DTO\Member\RegisteredMemberInfo.cs" />
     <Compile Include="DTO\NewViewLog\NewViewLogInfo.cs" />
     <Compile Include="DTO\NewViewLog\NewViewLogDetailInfo.cs" />
+    <Compile Include="DTO\Payment\SiteDBConfigInfo.cs" />
+    <Compile Include="DTO\Payment\PaymentUpdateResult.cs" />
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestDetailInfo.cs" />
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestEntity.cs" />
     <Compile Include="DTO\ProcessingRequest\ProcessingRequestBasicInfo.cs" />
@@ -302,6 +304,8 @@
     <Compile Include="MetaModels\MediaGallery\UpdateNewsLetterParam.cs" />
     <Compile Include="MetaModels\NewViewLog\NewViewLogParam.cs" />
     <Compile Include="MetaModels\PagingParam.cs" />
+    <Compile Include="MetaModels\Payment\PaymentApproveParam.cs" />
+    <Compile Include="MetaModels\Payment\PaymentUpdateLogParam.cs" />
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestBaseParam.cs" />
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestDelParam.cs" />
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestInsParam.cs" />
@@ -467,7 +471,6 @@
     <Compile Include="DTO\Report\AffiliateReport.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\Common\SelectItem.cs" />
-    <Compile Include="DTO\Common\SubMenu.cs" />
     <Compile Include="DTO\UserPanel\ContactApp.cs" />
     <Compile Include="DTO\UserPanel\CustomerMember.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
@@ -517,7 +520,7 @@
     <Compile Include="MetaModels\Message\MessageParam.cs" />
     <Compile Include="MetaModels\ParamFromHome.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
-    <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
+    <Compile Include="MetaModels\Payment\PaymentUpdateParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParamFromHome.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
     <Compile Include="MetaModels\UserInfoParam.cs" />
@@ -531,8 +534,6 @@
     <Compile Include="MetaModels\UserPanel\PlayerDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\ReferrersDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\ReferrersParam.cs" />
-    <Compile Include="MetaModels\UserPanel\TrackingStatisticsDetailParam.cs" />
-    <Compile Include="MetaModels\UserPanel\TrackingStatisticsParam.cs" />
     <Compile Include="MetaModels\UserPanel\UserAccountParam.cs" />
     <Compile Include="MetaModels\UserPanel\ViewLogParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -702,6 +703,7 @@
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Utilities\SystemFile.cs" />
+    <Compile Include="Utilities\XmlHelper.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\Affiliate\GetAffiliateViewModel.cs" />
@@ -713,7 +715,6 @@
     <Compile Include="ViewModels\MediaGallery\GetTextLinkViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\ImageSizeViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
-    <Compile Include="ViewModels\Domain\DomainControlViewModel.cs" />
     <Compile Include="ViewModels\Domain\DomainViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />

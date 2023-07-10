@@ -11,6 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
         PaymentRequestDetail GetPaymentRequestDetail(long transId);
 
-        ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam);
+        ResultInfo UpdatePaymentRequest(PaymentUpdateParam param, PaymentRequestUpdateEmail emailParam);
     }
 }
