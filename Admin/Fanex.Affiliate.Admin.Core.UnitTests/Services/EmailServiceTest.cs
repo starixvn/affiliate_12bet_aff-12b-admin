@@ -95,15 +95,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             MailProcessor.Received(3).Send(mainContent, Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<string>());
         }
 
-        [Fact]
-        public void SendPaymentRequestUpdateEmail_WhenCallWithIsApproved_SendMail()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void SendApprovedPaymentRequestEmail_WhenCallWithIsApproved_SendMail(bool isHtml)
         {
             //Arrange
             var emailParam = new PaymentRequestUpdateEmail
             {
                 Language = "en-US",
                 TransId = 123,
-                IsHtml = true
+                IsHtml = isHtml
             };
             var mainContent = "mail content";
             MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
@@ -117,14 +119,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             MailProcessor.Received().Send(mainContent, emailParam.MailTo, "12Bet Affiliates - [123] - Your payment request has been processed and completed successfully", AppSetting.BccMail, AppSetting.CcMail);
         }
 
-        [Fact]
-        public void SendPaymentRequestUpdateEmail_WhenCallWithIsReject_SendMail()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void SendRejectedPaymentRequestEmail_WhenCallWithIsApproved_SendMail(bool isHtml)
         {
             //Arrange
             var emailParam = new PaymentRequestUpdateEmail
             {
                 Language = "en-US",
-                TransId = 123
+                TransId = 123,
+                IsHtml = isHtml
             };
             var mainContent = "mail content";
             MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);

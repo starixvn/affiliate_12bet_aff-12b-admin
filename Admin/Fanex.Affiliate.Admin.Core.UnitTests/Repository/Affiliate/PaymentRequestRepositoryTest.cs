@@ -1,11 +1,15 @@
-﻿using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Payment;
+using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
 using Moq;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using Xunit;
 
@@ -115,6 +119,79 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
 
             // Assert
             Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void GetSiteDBConfigInfoByCustId_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var repository = new Mock<PaymentRequestRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+
+            repository.Setup(re => re.GetObjectDb("Acc_SiteDBConfigSel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetSiteDBConfigInfoByCustId("123");
+
+            // Assert
+            objectDb.Verify(obj => obj.QueryEntity<SiteDBConfigInfo>(It.IsAny<object>(), null), Times.Once);
+        }
+
+        [Fact]
+        public void ApprovePaymentRequest_WhenCall_ExcuteSucceed()
+        {
+            // Arrange
+            const string SpKey = "Aff_Admin_AffiliatePaymentRequest_Approve";
+            var repository = new Mock<PaymentRequestRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.ApprovePaymentRequest(new PaymentApproveParam { SpKey = SpKey });
+
+            // Assert
+            Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void RollbackApprovePaymentRequest_WhenCall_ExcuteSucceed()
+        {
+            // Arrange
+            var repository = new Mock<PaymentRequestRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePaymentRequest_Upd_Rollback", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.RollbackApprovePaymentRequest(new ResultInfo(), "");
+
+            // Assert
+            Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void WriteLogWhenUpdatePaymentRequestSuccessfully_WhenCall_ExcuteSucceed()
+        {
+            // Arrange
+            var param = new PaymentUpdateLogParam();
+            var repository = new Mock<PaymentRequestRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+
+            repository.Setup(re => re.GetObjectDb("Aff_UserLog_RunSP_Detail_WriteLog", 120)).Returns(objectDb.Object);
+
+            // Action
+            repository.Object.WriteLogWhenUpdatePaymentRequestSuccessfully(param);
+
+            // Assert
+            Assert.NotNull(JsonConvert.SerializeObject(param));
+            objectDb.Verify(obj => obj.ExecuteNonQuery(It.IsAny<object>(), null), Times.Once);
         }
 
         private IDictionary<string, object> GetExpectedPaymentRequestList()

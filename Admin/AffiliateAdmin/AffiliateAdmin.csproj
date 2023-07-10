@@ -1302,7 +1302,6 @@
     <Content Include="Areas\Portal\Views\Shared\_Header.cshtml" />
     <Content Include="Areas\Portal\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\_SinglePageLayout.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\_SubMenu.cshtml" />
     <Content Include="Areas\Portal\Views\Home\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\layout\_header.scss" />
     <Content Include="Areas\Portal\www\source\style\layout\main-layout.scss" />
@@ -1389,7 +1388,6 @@
     <Content Include="Areas\Portal\www\source\style\components\_spinner.scss" />
     <Content Include="Areas\Portal\Views\Shared\_UserPanelLayout.cshtml" />
     <Content Include="Areas\Portal\www\source\style\layout\user-panel-layout.scss" />
-    <Content Include="Areas\Portal\Views\Shared\_UserPanelMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\Filter.jsx" />

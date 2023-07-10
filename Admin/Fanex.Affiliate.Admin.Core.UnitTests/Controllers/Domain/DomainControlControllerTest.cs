@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using Moq;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -33,6 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             // Assert
             Assert.Equal("~/Areas/Portal/Views/Domain/Index.cshtml", viewName);
             Assert.Single(model.MarketList);
+            Assert.NotNull(JsonConvert.SerializeObject(model.MarketList));
         }
 
 
@@ -77,10 +79,62 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         }
 
         [Fact]
+        public void GetDomainControlById_WhenCallWithValidDomainControlId_ReturnCorrectData()
+        {
+            // Arrange
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
+            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { MarketId = "en-US"});
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetDomainControlById(123) as JsonNetResult;
+            var data = result.Data as DomainControlInfo;
+
+            // Assert
+            Assert.NotNull(data);
+            Assert.NotNull(JsonConvert.SerializeObject(data));
+        }
+
+        [Fact]
+        public void GetDomainControlById_WhenCallWithInvalidDomainControlId_ReturnNull()
+        {
+            // Arrange
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
+            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(null as DomainControlInfo);
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetDomainControlById(123) as JsonNetResult;
+            var data = result.Data as DomainControlInfo;
+
+            // Assert
+            Assert.Null(data);
+        }
+
+        [Fact]
+        public void GetDomainControlById_WhenCallWithInvalidMarket_ReturnNull()
+        {
+            // Arrange
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
+            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { MarketId = "abc" });
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetDomainControlById(123) as JsonNetResult;
+            var data = result.Data as DomainControlInfo;
+
+            // Assert
+            Assert.Null(data);
+        }
+
+        [Fact]
         public void InsertDomainControl_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertDomainControlParam { AffDomainId = 1, RedirectDomainId = 2, MarketId = Constant.MarketId };
+            var param = new InsertDomainControlParam { AffDomainId = 1, RedirectDomainId = 2, MarketId = Constant.MarketId, Status = true };
             InsertDomainControlParam passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
             domainControlService.Setup(s => s.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = Constant.MarketId } });

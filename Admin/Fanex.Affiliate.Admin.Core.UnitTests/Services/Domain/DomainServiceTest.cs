@@ -1,9 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
-using Fanex.Data;
-using Moq;
-using System;
+using Fanex.Affiliate.Admin.Core.Services.Domain;
+using NSubstitute;
 using System.Collections.Generic;
 using Xunit;
 
@@ -11,162 +10,124 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 {
     public class DomainServiceTest
     {
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetDomainList_WhenCall_ReturnCorrectData(bool isAffDomain)
+        private readonly IDomainRepository domainRepository;
+
+        public DomainServiceTest()
         {
-            // Arrange
-            var service = new Mock<DomainRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-
-            service.Setup(r => r.GetObjectDb(isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel", It.IsAny<int>())).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetDomainList(123, isAffDomain);
-
-            // Assert
-            objectDb.Verify(obj => obj.Query<DomainInfo>(It.IsAny<object>(), null), Times.Once);
+            domainRepository = Substitute.For<IDomainRepository>();
         }
 
         [Fact]
-        public void InsertDomain_WhenCallWithValidParam_InsertSuccessfully()
+        public void GetMarketList_WhenCall_Excute()
         {
             // Arrange
-            var service = new Mock<DomainRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_AffiliateDomain_Ins", 120)).Returns(objectDb.Object);
+            var param = new MarketParam();
+            var service = CreateDomainService;
 
             // Action
-            var result = service.Object.InsertDomain(new InsertDomainParam { IsAffDomain = true });
+            service.GetMarketList(param);
 
             // Assert
-            Assert.True(result.IsSuccessful);
+            domainRepository.Received().GetMarketList(param);
         }
 
         [Fact]
-        public void InsertDomain_WhenCallWithInvalidParam_InsertIsFailed()
+        public void GetVisibleMarketsByUser_WhenCall_Excute()
         {
             // Arrange
-            var message = "Insert Domain is failed.";
-            var service = new Mock<DomainRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_12BETDomain_Ins", 120)).Returns(objectDb.Object);
+            var service = CreateDomainService;
 
             // Action
-            var result = service.Object.InsertDomain(new InsertDomainParam());
+            service.GetVisibleMarketsByUser(123);
 
             // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
+            domainRepository.Received().GetMarketList(Arg.Any<MarketParam>());
         }
 
         [Fact]
-        public void UpdateDomain_WhenCallWithValidParam_UpdateSuccessfully()
+        public void GetVisibleMarketsNotUsingByUser_WhenCall_Excute()
         {
             // Arrange
-            var service = new Mock<DomainRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_AffiliateDomain_Upd", 120)).Returns(objectDb.Object);
+            domainRepository.GetMarketList(Arg.Any<MarketParam>()).Returns(new List<Market> { new Market { Status = 1 } });
+            var service = CreateDomainService;
 
             // Action
-            var result = service.Object.UpdateDomain(new UpdateDomainParam { IsAffDomain = true });
+            var result = service.GetVisibleMarketsNotUsingByUser(123);
 
             // Assert
-            Assert.True(result.IsSuccessful);
+            Assert.Single(result);
+            domainRepository.Received().GetMarketList(Arg.Any<MarketParam>());
         }
 
         [Fact]
-        public void UpdateDomain_WhenCallWithInvalidParam_UpdateIsFailed()
+        public void GetDomainList_WhenCall_Excute()
         {
             // Arrange
-            var message = "Update Domain is failed.";
-            var service = new Mock<DomainRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_12BETDomain_Upd", 120)).Returns(objectDb.Object);
+            var service = CreateDomainService;
 
             // Action
-            var result = service.Object.UpdateDomain(new UpdateDomainParam());
+            service.GetDomainList(123);
 
             // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
+            domainRepository.Received().GetDomainList(123, true);
         }
 
         [Fact]
-        public void DeleteDomain_WhenCallWithValidParam_DeleteSuccessfully()
+        public void GetDomainById_WhenCall_Excute()
         {
             // Arrange
-            var service = new Mock<DomainRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_AffiliateDomain_Del", 120)).Returns(objectDb.Object);
+            var service = CreateDomainService;
 
             // Action
-            var result = service.Object.DeleteDomain(new DeleteDomainParam { IsAffDomain = true });
+            service.GetDomainById(123, 234);
 
             // Assert
-            Assert.True(result.IsSuccessful);
+            domainRepository.Received().GetDomainById(123, 234, true);
         }
 
         [Fact]
-        public void DeleteDomain_WhenCallWithInvalidParam_DeleteIsFailed()
+        public void InsertDomain_WhenCall_Excute()
         {
             // Arrange
-            var message = "Delete Domain is failed.";
-            var service = new Mock<DomainRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            service.Setup(re => re.GetObjectDb("Aff_Admin_12BETDomain_Del", 120)).Returns(objectDb.Object);
+            var param = new InsertDomainParam();
+            var service = CreateDomainService;
 
             // Action
-            var result = service.Object.DeleteDomain(new DeleteDomainParam());
+            service.InsertDomain(param);
 
             // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
+            domainRepository.Received().InsertDomain(param);
         }
 
-        private IDictionary<string, object> GetDomainList()
+        [Fact]
+        public void UpdateDomain_WhenCall_Excute()
         {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["DomainId"] = 123,
-                ["DomainName"] = "abc.com",
-                ["IsSSL"] = true,
-                ["Creator"] = "sa",
-                ["BlockMarket"] = "",
-                ["CreateDate"] = new DateTime(2019, 10, 25)
-            };
+            // Arrange
+            var param = new UpdateDomainParam();
+            var service = CreateDomainService;
+
+            // Action
+            service.UpdateDomain(param);
+
+            // Assert
+            domainRepository.Received().UpdateDomain(param);
         }
 
-        private IDictionary<string, object> GetDomainListHasNull()
+        [Fact]
+        public void DeleteDomain_WhenCall_Excute()
         {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["DomainId"] = 123,
-                ["DomainName"] = "abc.com",
-                ["IsSSL"] = true,
-                ["Creator"] = "sa",
-                ["BlockMarket"] = "sa",
-                ["CreateDate"] = DBNull.Value
-            };
+            // Arrange
+            var param = new DeleteDomainParam();
+            var service = CreateDomainService;
+
+            // Action
+            service.DeleteDomain(param);
+
+            // Assert
+            domainRepository.Received().DeleteDomain(param);
         }
+
+        private DomainService CreateDomainService
+            => new DomainService(domainRepository);
     }
 }
