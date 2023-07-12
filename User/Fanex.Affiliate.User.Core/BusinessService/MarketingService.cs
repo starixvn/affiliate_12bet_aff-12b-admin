@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (domainList == null)
             {
-                domainList = _marketingRepository.GetDomainList(affId, isInternal);
+                domainList = _marketingRepository.GetDomainList(affId, isInternal).Where(d => !d.DomainName.Contains("glg46.com"));
                 _cacheService.Set(CacheKey.DomainList, domainList, Number.Ten);
             }
 
