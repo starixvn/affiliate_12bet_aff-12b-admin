@@ -7,9 +7,11 @@ using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Text;
 using System.Web.Mvc;
 using System.Web.UI;
 
@@ -140,15 +142,25 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     }
                     else
                     {
+                        var message = new StringBuilder().AppendLine($"Internal Login {admin.UserId} was failed: {JsonConvert.SerializeObject(loginResult)}");
+                        message.AppendLine($"UserLoginParam: {userLoginParam}");
+                        message.AppendLine($"InternalClaims: {internalClaims}");
+
+                        LogHelper.WriteInfo(message.ToString());
+
                         return Redirect(Url.Content("~/Notify/PageNotFound"));
                     }
                 }
                 else
                 {
+                    var message = new StringBuilder().AppendLine($"Compare Internal Login {loginParam.AccOnId} was failed: {JsonConvert.SerializeObject(admin)}");
+                    message.AppendLine($"AccKey: {loginParam.AccKey}");
+                    message.AppendLine($"HashedPassword: {hashedPassword}");
+
+                    LogHelper.WriteInfo(message.ToString());
                     return Redirect(Url.Content("~/Notify/PageNotFound"));
                 }
             }
-
             return Redirect(Url.Content("~/UserPanel/Main/#AccountOverView"));
         }
 
