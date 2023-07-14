@@ -133,7 +133,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     var loginResult = AuthService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
 
-                    if (loginResult.Result.IsOk && user != null && IsValidDomain(user.AffType))
+                    var isValidUser = user != null && IsValidDomain(user.AffType);
+                    if (loginResult.Result.IsOk && isValidUser)
                     {
                         user.UserId = admin.UserId;
                         var adminId = admin.UserId * -1;
@@ -142,9 +143,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     }
                     else
                     {
-                        var message = new StringBuilder().AppendLine($"Internal Login {admin.UserId} was failed: {JsonConvert.SerializeObject(loginResult)}");
-                        message.AppendLine($"UserLoginParam: {userLoginParam}");
-                        message.AppendLine($"InternalClaims: {internalClaims}");
+                        var message = new StringBuilder().AppendLine($"Internal Login on AccOnId {loginParam.AccOnId} was failed: {JsonConvert.SerializeObject(loginResult)}");
+                        message.AppendLine($"Admin: {JsonConvert.SerializeObject(admin)}");
+                        message.AppendLine($"UserLoginParam: {JsonConvert.SerializeObject(userLoginParam)}");
+                        message.AppendLine($"IsValidDomain: {isValidUser}");
+                        message.AppendLine($"AllowedAffiliateTypes: {JsonConvert.SerializeObject(AppSetting.AllowedAffiliateTypes)}");
 
                         LogHelper.WriteInfo(message.ToString());
 
@@ -153,7 +156,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 }
                 else
                 {
-                    var message = new StringBuilder().AppendLine($"Compare Internal Login {loginParam.AccOnId} was failed: {JsonConvert.SerializeObject(admin)}");
+                    var message = new StringBuilder().AppendLine($"Compare Internal Login on AccOnId {loginParam.AccOnId} was failed: {JsonConvert.SerializeObject(admin)}");
                     message.AppendLine($"AccKey: {loginParam.AccKey}");
                     message.AppendLine($"HashedPassword: {hashedPassword}");
 
