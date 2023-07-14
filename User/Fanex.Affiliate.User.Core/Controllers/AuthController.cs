@@ -7,9 +7,11 @@ using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Text;
 using System.Web.Mvc;
 using System.Web.UI;
 
@@ -131,7 +133,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     var loginResult = AuthService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
 
-                    if (loginResult.Result.IsOk && user != null && IsValidDomain(user.AffType))
+                    var isValidUser = user != null && IsValidDomain(user.AffType);
+                    if (loginResult.Result.IsOk && isValidUser)
                     {
                         user.UserId = admin.UserId;
                         var adminId = admin.UserId * -1;
@@ -140,15 +143,27 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     }
                     else
                     {
+                        var message = new StringBuilder().AppendLine($"Internal Login on AccOnId {loginParam.AccOnId} was failed: {JsonConvert.SerializeObject(loginResult)}");
+                        message.AppendLine($"Admin: {JsonConvert.SerializeObject(admin)}");
+                        message.AppendLine($"UserLoginParam: {JsonConvert.SerializeObject(userLoginParam)}");
+                        message.AppendLine($"IsValidDomain: {isValidUser}");
+                        message.AppendLine($"AllowedAffiliateTypes: {JsonConvert.SerializeObject(AppSetting.AllowedAffiliateTypes)}");
+
+                        LogHelper.WriteInfo(message.ToString());
+
                         return Redirect(Url.Content("~/Notify/PageNotFound"));
                     }
                 }
                 else
                 {
+                    var message = new StringBuilder().AppendLine($"Compare Internal Login on AccOnId {loginParam.AccOnId} was failed: {JsonConvert.SerializeObject(admin)}");
+                    message.AppendLine($"AccKey: {loginParam.AccKey}");
+                    message.AppendLine($"HashedPassword: {hashedPassword}");
+
+                    LogHelper.WriteInfo(message.ToString());
                     return Redirect(Url.Content("~/Notify/PageNotFound"));
                 }
             }
-
             return Redirect(Url.Content("~/UserPanel/Main/#AccountOverView"));
         }
 
