@@ -8,7 +8,6 @@ import { buildDefaultCommGroup, validateCommGroup } from '../../libs/utils';
 import { messages } from '../../libs/constant';
 
 import DeductionSetting from '../shared/deduction';
-import ExchangeRevenueShareSetting from '../shared/exchange';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import FdmSetting from '../shared/fdmsetting';
@@ -106,7 +105,6 @@ export class AssignPrivateGroup extends React.Component {
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
-                <ExchangeRevenueShareSetting />
                 <DeductionSetting />
                 <QmTurnOverSetting />
                 <TierSetting />

@@ -51,9 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
                              FdmSettingList = groupFdmSetting,
                              PlatformFeeList = groupDeduction.Where(p => p.DeductionId == DeductionId.PlatformFee),
                              OperationalFee = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.OperationalFee),
-                             BankingFee = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.BankingFee),
-                             ExchangeWinLossShare = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.ExchangeWinLossShare),
-                             ExchangeCommissionShare = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.ExchangeCommissionShare)
+                             BankingFee = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.BankingFee)
                          };
 
             return result;

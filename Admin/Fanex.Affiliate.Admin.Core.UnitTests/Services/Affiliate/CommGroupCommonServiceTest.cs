@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
                     {
                         new Deduction
                         {
-                            DeductedPercentage= 0, DeductionId= 14, DeductionName = "ExchangeCommissionShare"
+                            DeductedPercentage= 0, DeductionId= 12, DeductionName = "BankingFee"
                         }
                     };
             commGroupRepository.Setup(comm => comm.GetDeductionList()).Returns(expectedResult);
@@ -113,18 +113,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
                     DeductedPercentage = 0.02m,
                     DeductionId = 12,
                     ProductIds = "0"
-                },
-                ExchangeCommissionShare = new DeductionSetting
-                {
-                    DeductedPercentage = 0.10m,
-                    DeductionId = 14,
-                    ProductIds = "19"
-                },
-                ExchangeWinLossShare = new DeductionSetting
-                {
-                    DeductedPercentage = 0.15m,
-                    DeductionId = 13,
-                    ProductIds = "19"
                 },
                 OperationalFee = new DeductionSetting
                 {

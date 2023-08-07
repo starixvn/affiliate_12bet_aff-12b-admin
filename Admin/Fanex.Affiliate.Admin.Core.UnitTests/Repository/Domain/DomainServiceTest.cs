@@ -176,31 +176,5 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Domain
             Assert.False(result.IsSuccessful);
             Assert.Equal(message, result.Message);
         }
-
-        private IDictionary<string, object> GetDomainList()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["DomainId"] = 123,
-                ["DomainName"] = "abc.com",
-                ["IsSSL"] = true,
-                ["Creator"] = "sa",
-                ["BlockMarket"] = "",
-                ["CreateDate"] = new DateTime(2019, 10, 25)
-            };
-        }
-
-        private IDictionary<string, object> GetDomainListHasNull()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["DomainId"] = 123,
-                ["DomainName"] = "abc.com",
-                ["IsSSL"] = true,
-                ["Creator"] = "sa",
-                ["BlockMarket"] = "sa",
-                ["CreateDate"] = DBNull.Value
-            };
-        }
     }
 }

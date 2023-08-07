@@ -10,9 +10,7 @@ const emptyCommGroup = {
     FdmSettingList: [],
     PlatformFeeList: [],
     OperationalFee: {},
-    BankingFee: {},
-    ExchangeWinLossShare: {},
-    ExchangeCommissionShare: {}
+    BankingFee: {}
 }
 
 export const buildDefaultCommGroup = (deductionList, productList) => {
@@ -23,15 +21,11 @@ export const buildDefaultCommGroup = (deductionList, productList) => {
 
     const operationalFee = createDefaultOperationalSetting(deductionSetting.operationalFeeSetting);
     const bankingFee = createDefaultBankingSetting(deductionSetting.bankingFeeSetting);
-    const exchangeWinLossShare = createDefaultWinLossShareSetting(deductionSetting.exchangeWinLossShareSetting);
-    const exchangeCommissionShare = createDefaultCommissionShareSetting(deductionSetting.exchangeCommissionShareSetting);
 
     return Object.assign({}, emptyCommGroup, {
         PlatformFeeList: platformFeeList,
         OperationalFee: operationalFee,
-        BankingFee: bankingFee,
-        ExchangeWinLossShare: exchangeWinLossShare,
-        ExchangeCommissionShare: exchangeCommissionShare
+        BankingFee: bankingFee
     });
 }
 
@@ -40,15 +34,11 @@ export const getDeductionSetting = (deductionList) => {
     const platformFeeSetting = deductionObj[deductionNameList.platformFee];
     const operationalFeeSetting = deductionObj[deductionNameList.operationalFee];
     const bankingFeeSetting = deductionObj[deductionNameList.bankingFee];
-    const exchangeWinLossShareSetting = deductionObj[deductionNameList.exchangeWinLossShare];
-    const exchangeCommissionShareSetting = deductionObj[deductionNameList.exchangeCommissionShare];
 
     return {
         platformFeeSetting,
         operationalFeeSetting,
-        bankingFeeSetting,
-        exchangeWinLossShareSetting,
-        exchangeCommissionShareSetting
+        bankingFeeSetting
     }
 }
 
@@ -65,22 +55,6 @@ export const createDefaultBankingSetting = (bankingFeeSetting) => {
         DeductionId: bankingFeeSetting.DeductionId,
         ProductIds: 0,
         DeductedPercentage: bankingFeeSetting.DeductedPercentage
-    }
-}
-
-export const createDefaultWinLossShareSetting = (exchangeWinLossShareSetting) => {
-    return {
-        DeductionId: exchangeWinLossShareSetting.DeductionId,
-        ProductIds: 19,
-        DeductedPercentage: exchangeWinLossShareSetting.DeductedPercentage
-    }
-}
-
-export const createDefaultCommissionShareSetting = (exchangeCommissionShareSetting) => {
-    return {
-        DeductionId: exchangeCommissionShareSetting.DeductionId,
-        ProductIds: 19,
-        DeductedPercentage: exchangeCommissionShareSetting.DeductedPercentage
     }
 }
 

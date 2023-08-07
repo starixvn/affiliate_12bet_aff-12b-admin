@@ -34,9 +34,5 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
         public DeductionSetting OperationalFee { get; set; }
 
         public DeductionSetting BankingFee { get; set; }
-
-        public DeductionSetting ExchangeWinLossShare { get; set; }
-
-        public DeductionSetting ExchangeCommissionShare { get; set; }
     }
 }
