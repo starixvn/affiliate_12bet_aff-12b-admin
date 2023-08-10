@@ -55,11 +55,6 @@
         margin-left: -9px;
     }
 
-    .im-line {
-        width: 3rem;
-        margin: -4px 5px 0px -4px;
-    }
-
     .im-zalo {
         width: 4rem;
         margin-left: -9px;
@@ -115,15 +110,6 @@
             white-space: pre-line;
             margin-top: -21px;
             color: green !important;
-        }
-
-        &-line {
-            margin-bottom: 4px;
-            color: green !important;
-
-            @media (max-width: 1044px) and (min-width: 1024px) {
-                margin-bottom: 22px !important;
-            }
         }
 
         &-zalo {
