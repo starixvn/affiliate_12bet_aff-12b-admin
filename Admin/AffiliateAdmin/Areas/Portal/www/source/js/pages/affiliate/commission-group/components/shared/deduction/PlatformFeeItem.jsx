@@ -26,7 +26,7 @@ export default class PlatformFeeItem extends React.Component {
         const isValid = productList.filter(p => !p.Checked).length < productList.length;
 
         return (
-            <FormGroup row>
+            <FormGroup row className="fee-group">
                 <Col sm={4}>
                     <div className={`select-product ${isValid ? "" : "is-invalid"}`}>
                         <MultipleSelect

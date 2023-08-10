@@ -20,12 +20,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
         public ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            var result = CommGroupValidationHelper.ValidateTierSettingList(param.TierSettingList);
+            var result = CommGroupValidationHelper.ValidateMultiSettingsList(param.TierSettingList, param.FdmSettingList);
 
             if (result.IsSuccessful)
             {
                 var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee, param.ExchangeWinLossShare, param.ExchangeCommissionShare });
                 param.TierList = BuildTierSettingXml(param.TierSettingList);
+                param.FdmList = BuildFdmSettingXml(param.FdmSettingList);
                 param.DeductionList = BuildDeductionSettingXml(deductionSettingList, true);
 
                 return _commGroupRepository.CreateCommissionGroup(param);
@@ -36,12 +37,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
         public ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            var result = CommGroupValidationHelper.ValidateTierSettingList(param.TierSettingList);
+            var result = CommGroupValidationHelper.ValidateMultiSettingsList(param.TierSettingList, param.FdmSettingList);
 
             if (result.IsSuccessful)
             {
                 var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee, param.ExchangeWinLossShare, param.ExchangeCommissionShare });
                 param.TierList = BuildTierSettingXml(param.TierSettingList);
+                param.FdmList = BuildFdmSettingXml(param.FdmSettingList);
                 param.DeductionList = BuildDeductionSettingXml(deductionSettingList, false);
 
                 return _commGroupRepository.UpdateCommissionGroup(param);
@@ -63,6 +65,29 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             foreach (var item in tierSettingList)
             {
                 var row = $"<row id=\"{item.TierId}\" minamount=\"{item.MinAmount}\" maxamount=\"{item.MaxAmount}\" minqm=\"{item.MinQm}\" maxqm=\"{item.MaxQm}\" commission=\"{item.Commission}\" />";
+                result.Append(row);
+            }
+
+            result.Append("</root>");
+
+            return result.ToString();
+        }
+
+        private static string BuildFdmSettingXml(IEnumerable<FdmSetting> fdmSettingList)
+        {
+            if (fdmSettingList == null || !fdmSettingList.Any())
+            {
+                return null;
+            }
+
+            var result = new StringBuilder();
+            result.Append("<root>");
+
+            foreach (var item in fdmSettingList)
+            {
+                var row = $"<row id=\"{item.FdmId}\" minfdm=\"{item.MinNewFdm}\" maxfdm=\"{item.MaxNewFdm}\"" +
+                            $" minamount=\"{item.MinFdmDeposit}\" maxamount=\"{item.MaxFdmDeposit}\"" +
+                            $" limitamount=\"{item.MaxExtraComm}\" commission=\"{item.Commission}\" />";
                 result.Append(row);
             }
 

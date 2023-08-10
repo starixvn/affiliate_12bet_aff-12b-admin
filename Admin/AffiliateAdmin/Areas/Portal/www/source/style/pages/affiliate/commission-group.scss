@@ -9,6 +9,11 @@
         font-size: 1rem;
     }
 
+    .fee-group {
+        align-items: center;
+        min-height: 36px;
+    }
+
     .platformfee-group {
         margin-bottom: 0.5rem;
 
@@ -62,7 +67,7 @@
             display: inline-block;
             position: absolute;
             right: -5px;
-            top: 7px;
+            top: 3px;
         }
     }
 

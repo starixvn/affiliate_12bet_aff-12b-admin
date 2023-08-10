@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
         public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
         {
-            var result = CommGroupValidationHelper.ValidateTierSettingList(param.TierSettingList);
+            var result = CommGroupValidationHelper.ValidateMultiSettingsList(param.TierSettingList, param.FdmSettingList);
 
             if (result.IsSuccessful)
             {

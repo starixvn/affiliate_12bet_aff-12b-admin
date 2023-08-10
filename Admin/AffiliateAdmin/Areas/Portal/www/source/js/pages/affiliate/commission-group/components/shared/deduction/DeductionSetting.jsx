@@ -6,6 +6,7 @@ import { setSelectedGroup } from '../../../actions';
 
 import PlatformFeeSetting from './PlatformFeeSetting';
 import FeeSettingItem from './FeeSettingItem';
+import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 export class DeductionSetting extends Component {
     constructor(props) {
@@ -26,8 +27,14 @@ export class DeductionSetting extends Component {
         });
     }
 
+    handleApplyBonus = (value) => {
+        this.props.setSelectedGroup({
+            IsApplyBonus: value
+        });
+    }
+
     render() {
-        const { OperationalFee, BankingFee, GroupId } = this.props.selectedGroup;
+        const { OperationalFee, BankingFee, GroupId, IsApplyBonus } = this.props.selectedGroup;
         const isCreating = GroupId === 0;
 
         return (
@@ -44,6 +51,28 @@ export class DeductionSetting extends Component {
                     onChangeCommission={this.handleSelectBankingFee}
                     data={BankingFee}
                     isCreating={isCreating} />
+
+                <FormGroup row className="fee-group">
+                    <Col sm={4}>
+                        <Row className="align-items-baseline">
+                            <Label sm={6} className="font-weight-bold">Bonus</Label>
+                            <FormGroup check className="ml-3">
+                                <Label check>
+                                    <Input name="IsApplyBonus" type="radio" className="mr-2" checked={IsApplyBonus} onChange={() => this.handleApplyBonus(true)} />
+                                    Include
+                                </Label>
+                            </FormGroup>
+                        </Row>
+                    </Col>
+                    <Col sm={8}>
+                        <FormGroup check>
+                            <Label check>
+                                <Input name="IsApplyBonus" type="radio" className="mr-2" checked={!IsApplyBonus} onChange={() => this.handleApplyBonus(false)} />
+                                Exclude
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                </FormGroup>
             </fieldset>
         )
     }

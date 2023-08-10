@@ -5,7 +5,9 @@ const emptyCommGroup = {
     GroupName: '',
     Description: '',
     QmTurnover: 100,
+    IsApplyBonus: true,
     TierSettingList: [],
+    FdmSettingList: [],
     PlatformFeeList: [],
     OperationalFee: {},
     BankingFee: {},
@@ -124,28 +126,29 @@ export const convertProductList = (productList, productIds = '') => {
     })
 }
 
-export const validate = (selectedGroup) => {
-    const { GroupName, QmTurnover, TierSettingList, PlatformFeeList } = selectedGroup;
+export const validateCommGroup = (selectedGroup, shouldValidateGroupName = true) => {
+    const { GroupName, QmTurnover, TierSettingList, FdmSettingList, PlatformFeeList } = selectedGroup;
 
-    const groupNameValidation = validateGroupName(GroupName);
+    const groupNameValidation = validateGroupName(GroupName, shouldValidateGroupName);
     const qmTurnoverValidation = validateQmTurnover(QmTurnover);
     const tierSettingValidation = validateTierSettingList(TierSettingList);
+    const fdmSettingValidation = validateFdmSettingList(FdmSettingList);
     const platformFeeListValidation = validatePlatformFeeList(PlatformFeeList);
 
     const isValid = groupNameValidation.isValid && qmTurnoverValidation.isValid &&
-        tierSettingValidation.isValid && platformFeeListValidation.isValid;
+        tierSettingValidation.isValid && fdmSettingValidation.isValid && platformFeeListValidation.isValid;
     const messageList = [...groupNameValidation.messageList, ...qmTurnoverValidation.messageList,
-    ...tierSettingValidation.messageList, ...platformFeeListValidation.messageList
+        ...tierSettingValidation.messageList, ...fdmSettingValidation.messageList, ...platformFeeListValidation.messageList
     ];
 
     return { isValid, messageList };
 }
 
-export const validateGroupName = (groupName) => {
+export const validateGroupName = (groupName, shouldValidateGroupName) => {
     let isValid = true;
     const messageList = [];
 
-    if (!groupName) {
+    if (shouldValidateGroupName && !groupName) {
         isValid = false;
         messageList.push(messages.requireGroupName);
     }
@@ -181,6 +184,26 @@ export const validateTierSettingList = (tierSettingList) => {
     } else if (tierSettingList.filter(item => item.MinQm > item.MaxQm).length > 0) {
         isValid = false;
         messageList.push(messages.qmConstrain);
+    }
+
+    return { isValid, messageList };
+}
+
+export const validateFdmSettingList = (fdmSettingList) => {
+    let isValid = true;
+    const messageList = [];
+
+    if (!fdmSettingList.length) {
+        isValid = true;
+    } else if (!fdmSettingList.filter(item => item.MaxFdmDeposit === INFINITY_AM && item.MaxNewFdm === INFINITY_QM).length) {
+        isValid = false;
+        messageList.push(messages.requireFdmInfinity);
+    } else if (fdmSettingList.filter(item => item.MinNewFdm > item.MaxNewFdm).length > 0) {
+        isValid = false;
+        messageList.push(messages.newFdmConstrain);
+    } else if (fdmSettingList.filter(item => item.MinFdmDeposit > item.MaxFdmDeposit).length > 0) {
+        isValid = false;
+        messageList.push(messages.fdmDepositConstrain);
     }
 
     return { isValid, messageList };

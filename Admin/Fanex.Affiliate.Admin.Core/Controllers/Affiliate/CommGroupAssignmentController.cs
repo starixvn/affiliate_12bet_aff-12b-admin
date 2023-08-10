@@ -126,6 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     Description = PrivateGroupName,
                     QmTurnover = commGroup.QmTurnover,
                     TierSettingList = commGroup.TierSettingList,
+                    FdmSettingList = commGroup.FdmSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,
                     OperationalFee = commGroup.OperationalFee,
                     BankingFee = commGroup.BankingFee,

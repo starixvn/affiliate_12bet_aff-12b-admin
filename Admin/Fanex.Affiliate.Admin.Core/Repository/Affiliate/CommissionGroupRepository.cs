@@ -25,6 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                     result.CommGroupList = GetCommGroupList(reader);
                     result.TierSettingList = GetTierSettingList(reader);
                     result.DeductionSettingList = GetDeductionSettingList(reader);
+                    result.FdmSettingList = GetFdmSettingList(reader);
                 }
 
                 param.Nrows = GetTotalRow(objectDb);
@@ -149,7 +150,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                     Description = reader["Description"].ToString(),
                     QmTurnover = Convert.ToDecimal(reader["QMTurnover"]),
                     NextQmTurnover = Convert.ToDecimal(reader["NextQMTurnover"]),
-                    NoAffs = Convert.ToInt32(reader["NoAffs"])
+                    NoAffs = Convert.ToInt32(reader["NoAffs"]),
+                    IsApplyBonus = Convert.ToBoolean(reader["IsApplyBonus"])
                 });
             }
 
@@ -177,6 +179,31 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             }
 
             return tierSettingList;
+        }
+
+        private static IEnumerable<FdmSetting> GetFdmSettingList(IDataReader reader)
+        {
+            var fdmSettingList = new List<FdmSetting>();
+
+            if (reader.NextResult())
+            {
+                while (reader.Read())
+                {
+                    fdmSettingList.Add(new FdmSetting
+                    {
+                        GroupId = Convert.ToInt32(reader[Field.GroupId]),
+                        FdmId = Convert.ToInt32(reader["TierId"]),
+                        MinNewFdm = Convert.ToInt32(reader["MinFdm"]),
+                        MaxNewFdm = Convert.ToInt32(reader["MaxFdm"]),
+                        MinFdmDeposit = Convert.ToDecimal(reader["MinAmount"]),
+                        MaxFdmDeposit = Convert.ToDecimal(reader["MaxAmount"]),
+                        Commission = Convert.ToDecimal(reader["Commission"]),
+                        MaxExtraComm = Convert.ToDecimal(reader["LimitAmount"])
+                    });
+                }
+            }
+
+            return fdmSettingList;
         }
 
         private static IEnumerable<DeductionSetting> GetDeductionSettingList(IDataReader reader)
@@ -208,7 +235,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             objectDb.SetParameterValue(Field.GroupName, param.GroupName);
             objectDb.SetParameterValue("Description", param.Description);
             objectDb.SetParameterValue("DeductionList", param.DeductionList);
+            objectDb.SetParameterValue("IsApplyBonus", param.IsApplyBonus);
             objectDb.SetParameterValue("TierList", param.TierList);
+            objectDb.SetParameterValue("FdmTierList", param.FdmList);
             objectDb.SetParameterValue("QMTurnover", param.QmTurnover);
             objectDb.SetParameterValue("IP", param.Ip);
 

@@ -4,12 +4,13 @@ import { bindActionCreators } from 'redux';
 import { Alert } from 'reactstrap';
 
 import { insertCommissionGroup, getGroupSettingList, setSelectedGroup } from '../../actions';
-import { buildDefaultCommGroup, validate } from '../../libs/service';
+import { buildDefaultCommGroup, validateCommGroup } from '../../libs/utils';
 
 import DeductionSetting from '../shared/deduction';
 import ExchangeRevenueShareSetting from '../shared/exchange';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
+import FdmSetting from '../shared/fdmsetting';
 import CommGroupInfo from '../shared/CommGroupInfo';
 import { messages } from '../../libs/constant';
 import { toggleLoader } from '../../../../../actions/loaderAction';
@@ -38,7 +39,8 @@ export class AddGroup extends React.Component {
 
     handleSave = async () => {
         const { selectedGroup } = this.props;
-        const validationResult = validate(selectedGroup);
+        const validationResult = validateCommGroup(selectedGroup);
+        this.props.onSave && this.props.onSave();
 
         if (!validationResult.isValid) {
             this.setState({
@@ -62,7 +64,6 @@ export class AddGroup extends React.Component {
                     this.props.getGroupSettingList(gettingParam);
                 }
 
-                this.props.onSave && this.props.onSave();
                 this.setState({
                     isShowMessage: true,
                     isSuccess: result.IsSuccessful,
@@ -86,6 +87,7 @@ export class AddGroup extends React.Component {
                 <DeductionSetting />
                 <QmTurnOverSetting />
                 <TierSetting />
+                <FdmSetting />
 
                 <button type="button" className="my-2 btn btn-success btn-save" onClick={this.handleSave}>SAVE</button>
             </div>

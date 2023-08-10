@@ -31,7 +31,19 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
             return new ResultInfo();
         }
 
-        public static ResultInfo ValidateTierSettingList(IEnumerable<TierSetting> tierSettingList)
+        public static ResultInfo ValidateMultiSettingsList(IEnumerable<TierSetting> tierSettingList, IEnumerable<FdmSetting> fdmSettingList)
+        {
+            var validateTierResult = ValidateTierSettingList(tierSettingList);
+            var validateFdmResult = ValidateFdmSettingList(fdmSettingList);
+
+            return new ResultInfo
+            {
+                Code = validateTierResult.IsSuccessful ? validateFdmResult.Code : validateTierResult.Code,
+                Message = string.Join("<br />", validateTierResult.Message, validateFdmResult.Message)
+            };
+        }
+
+        private static ResultInfo ValidateTierSettingList(IEnumerable<TierSetting> tierSettingList)
         {
             if (tierSettingList == null || !tierSettingList.Any())
             {
@@ -54,6 +66,31 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
             }
 
             return new ResultInfo();
+        }
+
+        private static ResultInfo ValidateFdmSettingList(IEnumerable<FdmSetting> fdmSettingList)
+        {
+            if (fdmSettingList == null || !fdmSettingList.Any())
+            {
+                return ResultInfo.Success;
+            }
+
+            if (!fdmSettingList.Any(item => (item.MaxFdmDeposit == Validation.InfinityAmount && item.MaxNewFdm == Validation.InfinityQualifiedMember)))
+            {
+                return ResultInfo.GenerateErr("Last FDM Setting must have maximum value=∞!");
+            }
+
+            if (fdmSettingList.Any(item => item.MinFdmDeposit > item.MaxFdmDeposit))
+            {
+                return ResultInfo.GenerateErr("Max FDM's Deposit must be greater than or equal to Min FDM's Deposit!");
+            }
+
+            if (fdmSettingList.Any(item => item.MinNewFdm > item.MaxNewFdm))
+            {
+                return ResultInfo.GenerateErr("Max New FDM must be greater than or equal to Min New FDM!");
+            }
+
+            return ResultInfo.Success;
         }
 
         private static ResultInfo ValidateProductIds(IEnumerable<string> productIdOfDB, IEnumerable<string> productIdOfPlatform)

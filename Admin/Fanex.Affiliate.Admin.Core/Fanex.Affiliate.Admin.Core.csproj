@@ -266,6 +266,7 @@
     <Compile Include="Controllers\MediaGallery\OfferPageController.cs" />
     <Compile Include="Controllers\MediaGallery\NewsLetterController.cs" />
     <Compile Include="Controllers\Member\RegisteredMemberController.cs" />
+    <Compile Include="DTO\CommissionGroup\FdmSetting.cs" />
     <Compile Include="DTO\Domain\Market.cs" />
     <Compile Include="DTO\FeedbackReport\FeedbackReportInfo.cs" />
     <Compile Include="DTO\FeedbackReport\RateInfo.cs" />

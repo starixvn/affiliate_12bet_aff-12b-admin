@@ -28,6 +28,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
         [Range(0, Validation.MaxId, ErrorMessage = "NextQmTurnover not valid!")]
         public int NoAffs { get; set; }
 
-        public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy HH:mm:ss");
+        public bool IsApplyBonus { get; set; } = true;
     }
 }

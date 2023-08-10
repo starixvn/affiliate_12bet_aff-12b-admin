@@ -6,7 +6,7 @@ import { setSelectedGroup } from '../../../actions';
 
 import PlatformFeeItem from "./PlatformFeeItem";
 import { deepClone, updateObjectInArray } from "../../../../../../modules/dataHandler";
-import { convertProductList, createDefaultPlatformfee, getDeductionSetting } from '../../../libs/service';
+import { convertProductList, createDefaultPlatformfee, getDeductionSetting } from '../../../libs/utils';
 
 export class PlatformFeeSetting extends Component {
     constructor(props) {
