@@ -59,6 +59,10 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string ResourceDomain => GetValue("ResourceDomain");
 
+        public IEnumerable<string> MarketingAffIds => GetValue("MarketingAffIds").Split(',');
+
+        public IEnumerable<string> MarketingLandingPages => GetValue("MarketingLandingPages").Split(',');
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

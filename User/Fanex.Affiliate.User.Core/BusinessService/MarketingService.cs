@@ -1,12 +1,12 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Affiliate.User.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +20,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private readonly IMemoryCacheService _cacheService;
         private readonly ILanguageService _languageService;
+        private readonly IAppSetting _appSetting;
 
-        public MarketingService(IMarketingRepository marketingRepository
-            , IMemoryCacheService cacheService
-            , ILanguageService languageService)
+        public MarketingService(
+            IMarketingRepository marketingRepository,
+            IMemoryCacheService cacheService,
+            ILanguageService languageService,
+            IAppSetting appSetting)
         {
             _marketingRepository = marketingRepository;
             _cacheService = cacheService;
             _languageService = languageService;
+            _appSetting = appSetting;
         }
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
@@ -87,7 +91,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (domainList == null)
             {
-                domainList = _marketingRepository.GetDomainList(affId, isInternal).Where(d => !d.DomainName.Contains("glg46.com"));
+                domainList = _marketingRepository.GetDomainList(affId, isInternal)?.Where(d => !d.DomainName.Contains("glg46.com"));
                 _cacheService.Set(CacheKey.DomainList, domainList, Number.Ten);
             }
 
@@ -180,9 +184,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return textList;
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList(bool isInternal)
+        public IEnumerable<LandingPage> GetLandingPageList(int affId, bool isInternal)
         {
-            return _marketingRepository.GetLandingPageList(isInternal);
+            var landingPages = _marketingRepository.GetLandingPageList(isInternal);
+
+            if(_appSetting.MarketingAffIds.Any(id => string.Equals(id, affId.ToString(), StringComparison.OrdinalIgnoreCase)))
+            {
+                return landingPages;
+            }
+
+            return landingPages.Where(l => !_appSetting.MarketingLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
         }
 
         public ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param)

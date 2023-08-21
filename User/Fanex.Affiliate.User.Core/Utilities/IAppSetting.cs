@@ -56,5 +56,9 @@ namespace Fanex.Affiliate.User.Core.Utilities
         string QrCodeIcon { get; }
 
         string ResourceDomain { get; }
+
+        IEnumerable<string> MarketingAffIds { get; }
+
+        IEnumerable<string> MarketingLandingPages { get; }
     }
 }
