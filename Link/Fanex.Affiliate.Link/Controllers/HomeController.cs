@@ -4,6 +4,7 @@ namespace Fanex.Affiliate.Link.Controllers
 {
     using System;
     using System.Globalization;
+    using System.Linq;
     using System.Web.Mvc;
     using Commands;
     using Helpers;
@@ -15,6 +16,8 @@ namespace Fanex.Affiliate.Link.Controllers
     /// </summary>
     public class HomeController : Controller
     {
+        private const string SIGN_UP_PAGE_CODE = "signup";
+        private readonly string[] SpecialAffIds;
         #region Services
 
         private readonly ITrackingSystemService _trackingSystemService;
@@ -26,6 +29,7 @@ namespace Fanex.Affiliate.Link.Controllers
         public HomeController()
         {
             _trackingSystemService = new TrackingSystemService();
+            SpecialAffIds = ConfigurationManager.AppSettings["SpecialAffIds"].ToString().Split(',');
         }
 
         #endregion Constructor
@@ -49,6 +53,14 @@ namespace Fanex.Affiliate.Link.Controllers
 
         public ActionResult Link(int affId, string pageCode, string lang)
         {
+            var isSpecialAff = IsSpecialAffiliate(affId, pageCode);
+
+            if (isSpecialAff)
+            {
+                var defaultLanguageStatistic = ConfigurationManager.AppSettings["DefaultLanguageStatistic"].ToString();
+                return InsertAffiliate(affId, pageCode, defaultLanguageStatistic, true);
+            }
+
             return InsertAffiliate(affId, pageCode, lang);
         }
 
@@ -57,7 +69,7 @@ namespace Fanex.Affiliate.Link.Controllers
             return InsertAffiliate(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
-        private ActionResult InsertAffiliate(int affId, string pageCode, string lang)
+        private ActionResult InsertAffiliate(int affId, string pageCode, string lang, bool isSpecialAff = false, string replacedLang = null)
         {
             if (Request.Url != null)
             {
@@ -80,7 +92,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     DeviceType = GetDeviceType(),
                     IP = Common.GetIPAddressOfClient(),
                     Browser = Request.Browser.Browser,
-                    URLReferrer = urlReferrer,
+                    URLReferrer = isSpecialAff ? urlReferrer?.Replace($"/{replacedLang}/", $"/{lang}/") : urlReferrer,
                     DomainReferrer = domainReferrer,
                     OS = Common.GetOsName(Request.UserAgent),
                     Device = Common.GetDeviceName(Request.UserAgent),
@@ -98,6 +110,13 @@ namespace Fanex.Affiliate.Link.Controllers
 
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {
+                    if (isSpecialAff)
+                    {
+                        var customRedirectUrl = redirectUrl.Replace($"/{lang}/", "/");
+
+                        return Redirect(customRedirectUrl);
+                    }    
+
                     return Redirect(redirectUrl);
                 }
 
@@ -125,6 +144,11 @@ namespace Fanex.Affiliate.Link.Controllers
         private byte GetDeviceType()
         {
             return (byte)(Common.IsMobile() ? 1 : 0);
+        }
+
+        private bool IsSpecialAffiliate(int affId, string pageCode)
+        {  
+            return SpecialAffIds.Contains(affId.ToString()) && string.Equals(SIGN_UP_PAGE_CODE, pageCode, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

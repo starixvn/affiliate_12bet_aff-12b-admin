@@ -17,6 +17,23 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "LinkNoLanguage",
+               url: "{affId}/{pageCode}/index.html",
+               defaults:
+               new
+               {
+                   controller = "Home",
+                   action = "Link",
+                   affId = UrlParameter.Optional,
+                   pageCode = UrlParameter.Optional
+               },
+               constraints:
+               new
+               {
+                   affId = @"\d+"
+               });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults:
@@ -36,8 +53,13 @@
                    controller = "Home",
                    action = "Link",
                    affId = UrlParameter.Optional,
-                   pageId = UrlParameter.Optional,
+                   pageCode = UrlParameter.Optional,
                    lang = UrlParameter.Optional
+               },
+               constraints:
+               new
+               {
+                   affId = @"\d+"
                });
 
             routes.MapRoute(
@@ -49,9 +71,14 @@
                     controller = "Home",
                     action = "NewLink",
                     affId = UrlParameter.Optional,
-                    pageId = UrlParameter.Optional,
-                    lang = UrlParameter.Optional,
-                    deviceType = UrlParameter.Optional
+                    pageCodePart1 = UrlParameter.Optional,
+                    pageCodePart2 = UrlParameter.Optional,
+                    lang = UrlParameter.Optional
+                },
+                constraints:
+                new
+                {
+                    affId = @"\d+"
                 });
 
             routes.IgnoreRoute("go");
