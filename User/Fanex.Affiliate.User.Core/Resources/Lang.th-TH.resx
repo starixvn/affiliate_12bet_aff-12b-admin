@@ -306,7 +306,7 @@
   <data name="CancelRequest" xml:space="preserve">
     <value>การขอยกเลิก</value>
   </data>
-  <data name="CancelSubject" xml:space="preserve">
+  <data name="PaymentSubject" xml:space="preserve">
     <value>พันธมิตร 12bet - จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">

@@ -306,7 +306,7 @@
   <data name="CancelRequest" xml:space="preserve">
     <value>取消申请</value>
   </data>
-  <data name="CancelSubject" xml:space="preserve">
+  <data name="PaymentSubject" xml:space="preserve">
     <value>12BET合作伙伴 - [{transid}] - 支付申请通知</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">

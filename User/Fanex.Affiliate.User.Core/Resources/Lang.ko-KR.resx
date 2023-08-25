@@ -315,7 +315,7 @@
   <data name="CancelRequest" xml:space="preserve">
     <value>취소요청</value>
   </data>
-  <data name="CancelSubject" xml:space="preserve">
+  <data name="PaymentSubject" xml:space="preserve">
     <value>12Bet 제휴 - 결제요청 알림</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">

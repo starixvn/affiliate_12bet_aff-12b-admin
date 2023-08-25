@@ -321,7 +321,7 @@
   <data name="CancelRequest" xml:space="preserve">
     <value>Cancel Request</value>
   </data>
-  <data name="CancelSubject" xml:space="preserve">
+  <data name="PaymentSubject" xml:space="preserve">
     <value>12Bet Affiliates - [{transid}] - Payment Request Notification</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">

@@ -1320,7 +1320,7 @@
   <data name="EmailTitlePayment" xml:space="preserve">
     <value>សេចក្តីជូនដំណឹងអំពីការស្នើសុំ</value>
   </data>
-  <data name="CancelSubject" xml:space="preserve">
+  <data name="PaymentSubject" xml:space="preserve">
     <value>ភ្នាក់ងារ12Bet  - [{transid}] - សេចក្តីជូនដំណឹងអំពីការស្នើសុំ</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">

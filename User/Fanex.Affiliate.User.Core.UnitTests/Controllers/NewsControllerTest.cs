@@ -267,7 +267,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             // Assert
             Assert.Equal(passedParam, param);
             Assert.Equal(passedParam.IsInternal, isInternal);
-            Assert.Equal(passedParam.Language, Constant.DefaultLanguage);
+            Assert.Equal(Constant.DefaultLanguage, passedParam.Language);
         }
 
         private static NewsController CreateController(INewsService newsService, ISessionService sessionService = null, ILanguageService languageService = null)
