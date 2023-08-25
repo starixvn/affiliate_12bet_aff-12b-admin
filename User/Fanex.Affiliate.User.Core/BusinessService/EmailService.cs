@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitlePayment, preferredLanguage, emailParam.RootDomain);
             }
 
-            var subject = Lang.CancelSubject.Replace("{transid}", emailParam.TransId.ToString());
+            var subject = Lang.PaymentSubject.Replace("{transid}", emailParam.TransId.ToString());
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
             _languageService.SetCulture(emailParam.CurrentLanguage);
         }

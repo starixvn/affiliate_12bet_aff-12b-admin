@@ -80,10 +80,6 @@
             try
             {
                 LanguageService.SetCulture(criteria.Language);
-
-                var function = criteria.Function;
-                (var subject, var title) = GetSubjectAndTitle(function);
-                criteria.Title = title;
                 ViewBag.Data = GetEmailContent(criteria);
 
                 LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
@@ -112,13 +108,11 @@
                 LanguageService.SetCulture(criteria.Language);
 
                 var function = criteria.Function.ToLowerInvariant();
-                (var subject, var title) = GetSubjectAndTitle(function);
-                criteria.Title = title;
                 var content = GetEmailContent(criteria);
 
-                LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
+                _mailProcessor.Send(content, criteria.EmailAddress, GetSubject(function));
 
-                _mailProcessor.Send(content, criteria.EmailAddress, subject);
+                LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -135,36 +129,36 @@
             return Json(result);
         }
 
-        private static (string, string) GetSubjectAndTitle(string functionName)
+        private static string GetSubject(string functionName)
         {
             switch (functionName)
             {
                 case TemplateString.ContactUs:
-                    return (Lang.ContactUs, Lang.ContactUs);
+                    return Lang.ContactUs;
 
                 case TemplateString.Csd:
-                    return (Lang.CsdSubject, Lang.CsdSubject);
+                    return Lang.CsdSubject;
 
                 case TemplateString.RecoverPassword:
-                    return (Lang.SubjectForgetPass, Lang.EmailTitlePasswordRecovery);
+                    return Lang.SubjectForgetPass;
 
                 case TemplateString.PaymentCancel:
-                    return (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment);
+                    return Lang.PaymentSubject.Replace("{transid}", "12345");
 
                 case TemplateString.PaymentRequest:
-                    return (Lang.CancelSubject.Replace("{transid}", "12345"), Lang.EmailTitlePayment);
+                    return Lang.PaymentSubject.Replace("{transid}", "12345");
 
                 case TemplateString.NewPassword:
-                    return (Lang.SubjectNewPass, Lang.EmailTitleNewPassword);
+                    return Lang.SubjectNewPass;
 
                 case TemplateString.Signup:
-                    return (Lang.RegisSubject, Lang.EmailTitleSignUp);
+                    return Lang.RegisSubject;
 
                 case TemplateString.VerificationAccount:
-                    return (Lang.SubjectVerificationAccount, Lang.EmailTittleVerificationAccount);
+                    return Lang.SubjectVerificationAccount;
 
                 default:
-                    return (Lang.AffiliateProgram, Lang.AffiliateProgram);
+                    return Lang.AffiliateProgram;
             }
         }
 

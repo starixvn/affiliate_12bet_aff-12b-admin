@@ -671,6 +671,8 @@
     <Content Include="www\build\styles\fonts\tahoma\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\Images\left-side-banner.jpg" />
+    <Content Include="www\build\styles\Images\right-side-banner.jpg" />
     <Content Include="www\build\styles\Images\account-overview\commission.png" />
     <Content Include="www\build\styles\Images\account-overview\icon-copy.png" />
     <Content Include="www\build\styles\Images\account-overview\icon-facebook.png" />
@@ -739,7 +741,6 @@
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.zh-TW.jpg" />
-    <Content Include="www\build\styles\Images\left-side-banner.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.zh-TW.jpg" />
@@ -809,7 +810,6 @@
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.zh-TW.jpg" />
-    <Content Include="www\build\styles\Images\right-side-banner.jpg" />
     <Content Include="www\source\js\components\authhelper.js" />
     <Content Include="www\source\js\components\clipboard.js" />
     <Content Include="www\source\js\components\clipboard.min.js" />
@@ -1312,8 +1312,6 @@
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.vi-VN.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.zh-TW.cshtml" />
-    <Content Include="www\build\styles\Images\left-side-banner.webp" />
-    <Content Include="www\build\styles\Images\right-side-banner.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.bn-BD.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.en-US.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.hi-IN.webp" />
@@ -1325,6 +1323,8 @@
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.vi-VN.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-CN.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-TW.webp" />
+    <Content Include="www\build\styles\Images\left-side-banner.webp" />
+    <Content Include="www\build\styles\Images\right-side-banner.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

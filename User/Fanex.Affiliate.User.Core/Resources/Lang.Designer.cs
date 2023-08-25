@@ -908,15 +908,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliates - [{transid}] - Payment Request Notification.
-        /// </summary>
-        public static string CancelSubject {
-            get {
-                return ResourceManager.GetString("CancelSubject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t Get Enough!.
         /// </summary>
         public static string CannotGetEnough {
@@ -3888,6 +3879,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string PaymentRequest {
             get {
                 return ResourceManager.GetString("PaymentRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates - [{transid}] - Payment Request Notification.
+        /// </summary>
+        public static string PaymentSubject {
+            get {
+                return ResourceManager.GetString("PaymentSubject", resourceCulture);
             }
         }
         
