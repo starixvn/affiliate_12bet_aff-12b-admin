@@ -4,6 +4,19 @@ import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../../modules/constants';
 
 describe('commission group - AddGroup', () => {
+    const selectedGroupValid = {
+        BankingFee: { DeductedPercentage: 0.02, DeductionId: 12, ProductIds: 0 },
+        Description: "test",
+        GroupId: 0,
+        GroupName: "test",
+        OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
+        PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8" }],
+        QmTurnover: 100,
+        TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }],
+        FdmSettingList: [],
+        IsApplyBonus: true
+    }
+
     const expectParam = {
         BankingFee: { DeductedPercentage: 0.02, DeductionId: 12, ProductIds: 0 },
         ExchangeCommissionShare: { DeductedPercentage: 0, DeductionId: 14, ProductIds: 19 },
@@ -14,7 +27,9 @@ describe('commission group - AddGroup', () => {
         OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
         QmTurnover: 100,
-        TierSettingList: []
+        TierSettingList: [],
+        FdmSettingList: [],
+        IsApplyBonus: true
     };
     const defaultProps = {
         deductionList: [
@@ -37,7 +52,9 @@ describe('commission group - AddGroup', () => {
             OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
             QmTurnover: 100,
-            TierSettingList: []
+            TierSettingList: [],
+            FdmSettingList: [],
+            IsApplyBonus: true
         },
         pagingOption: defaultPagingOption,
         searchedGroupName: '',
@@ -85,16 +102,6 @@ describe('commission group - AddGroup', () => {
 
     it('handleSave - should call toggleLoader,  when click button SAVE with correct respone', async () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: "OK" }, status: 200 };
-        const selectedGroupValid = {
-            BankingFee: { DeductedPercentage: 0.02, DeductionId: 12, ProductIds: 0 },
-            Description: "test",
-            GroupId: 0,
-            GroupName: "test",
-            OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
-            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8" }],
-            QmTurnover: 100,
-            TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
-        }
         const mockSetSelectedGroup = jest.fn();
         const mockToggleLoader = jest.fn();
         const mockInsertCommissionGroup = jest.fn(() => expectedResponse);
@@ -120,16 +127,6 @@ describe('commission group - AddGroup', () => {
 
     it('handleSave - should call toggleLoader,  when click button SAVE with correct respone but not success', async () => {
         const expectedResponse = { data: { IsSuccessful: false, Message: "fail" }, status: 200 };
-        const selectedGroupValid = {
-            BankingFee: { DeductedPercentage: 0.02, DeductionId: 12, ProductIds: 0 },
-            Description: "test",
-            GroupId: 0,
-            GroupName: "test",
-            OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
-            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8" }],
-            QmTurnover: 100,
-            TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
-        }
         const mockSetSelectedGroup = jest.fn();
         const mockToggleLoader = jest.fn();
         const mockInsertCommissionGroup = jest.fn(() => expectedResponse);
@@ -155,17 +152,6 @@ describe('commission group - AddGroup', () => {
 
     it('handleSave - should call toggleLoader,  when click button SAVE with incorrect response', async () => {
         const expectedResponse = { status: 500 };
-
-        const selectedGroupValid = {
-            BankingFee: { DeductedPercentage: 0.02, DeductionId: 12, ProductIds: 0 },
-            Description: "test",
-            GroupId: 0,
-            GroupName: "test",
-            OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
-            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8" }],
-            QmTurnover: 100,
-            TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
-        }
         const mockSetSelectedGroup = jest.fn();
         const mockToggleLoader = jest.fn();
         const mockInsertCommissionGroup = jest.fn(() => expectedResponse);

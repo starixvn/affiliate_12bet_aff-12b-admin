@@ -51,6 +51,7 @@ export class AssignPrivateGroup extends React.Component {
     handleSave = async () => {
         const { selectedGroup } = this.props;
         const validationResult = validateCommGroup(selectedGroup, false);
+
         window.scrollTo({ top: 0, behavior: "smooth" });
 
         if (!validationResult.isValid) {

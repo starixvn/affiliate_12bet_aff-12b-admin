@@ -13,6 +13,18 @@ describe('commission group - GridData ', () => {
         MinQm: 0,
         TierId: 1
     };
+
+    const fdmSettingItem = {
+        Commission: 0.02,
+        MaxExtraComm: 100,
+        GroupId: 153,
+        MaxFdmDeposit: 100000000000000,
+        MinFdmDeposit: 0,
+        MaxNewFdm: 1000000000,
+        MinNewFdm: 0,
+        FdmId: 1
+    };
+
     const dataItem = {
         BankingFee: {
             DeductedPercentage: 0.02,
@@ -50,9 +62,9 @@ describe('commission group - GridData ', () => {
         ],
         QmTurnover: 100,
         RowIdx: 6,
-        TierSettingList: [
-            tierSettingItem
-        ]
+        TierSettingList: [tierSettingItem],
+        FdmSettingList: [fdmSettingItem],
+        IsApplyBonus: false
     };
     const defaultProps = {
         productList: [
@@ -232,9 +244,9 @@ describe('commission group - GridData ', () => {
             ],
             QmTurnover: 100,
             RowIdx: 6,
-            TierSettingList: [
-                tierSettingItem
-            ]
+            TierSettingList: [tierSettingItem],
+            FdmSettingList: [fdmSettingItem],
+            IsApplyBonus: false
         };
         const props = Object.assign({}, defaultProps, { gridData: [dataPrivateGroupItem] });
         const wrapper = shallow(<GridData {...props} />);

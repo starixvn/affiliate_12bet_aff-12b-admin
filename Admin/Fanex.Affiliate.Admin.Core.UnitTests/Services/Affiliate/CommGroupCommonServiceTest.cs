@@ -161,7 +161,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
                         MinQm = 101,
                         TierId = 2
                     }
-                }
+                },
+                FdmSettingList = null,
+                IsApplyBonus = false
             };
         }
     }

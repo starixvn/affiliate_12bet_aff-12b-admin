@@ -412,6 +412,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\fdmsetting\FdmSettingItem.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\libs\__test__\utils.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\actions\index.js" />
