@@ -12,7 +12,7 @@ export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { today } = this.props;
+        const { today, param } = this.props;
         const now = new Date(today);
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
@@ -20,7 +20,7 @@ export class Filter extends PureComponent {
         const sixMonthAgo = new Date(today);
         sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
 
-        this.state = {
+        this.state = param || {
             isGetAll: false,
             fromDate: `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
@@ -28,15 +28,22 @@ export class Filter extends PureComponent {
     }
 
     componentDidMount() {
-        this.handleSearch();
+        const { isBack, scrollTop } = this.props.param || { isBack: false, scrollTop: 0 }
+        this.search(isBack, scrollTop);
     }
 
     handleSearch = () => {
+        this.search(false, 0);
+    }
+
+    search = (isBack, scrollTop) => {
         const { isGetAll, fromDate, toDate } = this.state;
         const newParam = Object.assign({}, {
             isGetAll,
             fromDate: isGetAll ? `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}` : fromDate,
-            toDate: isGetAll ? this.nowString : toDate
+            toDate: isGetAll ? this.nowString : toDate,
+            isBack,
+            scrollTop
         });
         this.props.setParam(newParam);
     }
@@ -88,8 +95,10 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ today }) {
-    return Object.assign({}, { today });
+function mapStateToProps({ today, statementHistory }) {
+    const { param } = statementHistory;
+
+    return Object.assign({}, { today, param });
 }
 
 function mapDispatchToProps(dispatch) {

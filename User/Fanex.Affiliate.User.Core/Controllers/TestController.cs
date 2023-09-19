@@ -169,10 +169,11 @@
             var rootUrl = SiteDomainHelper.GetRootUrl(this);
             var content = string.Empty;
 
-            if(string.Equals(criteria.Function, TemplateString.ContactUs, StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(criteria.Function, TemplateString.ContactUs, StringComparison.OrdinalIgnoreCase))
             {
                 content = GetEmailTextContent(criteria.Function, criteria.Language, GetContactUsModel(rootUrl));
-            } else
+            }
+            else
             {
                 var model = GetModelByFunction(criteria.Function, rootUrl, criteria.Language, isText) as EmailBaseParam;
                 model.ContactInfo = EmailHelper.GetContactInfoContent(model, GetEmailTextContent, _appSetting.EmailBackgroundUrl);

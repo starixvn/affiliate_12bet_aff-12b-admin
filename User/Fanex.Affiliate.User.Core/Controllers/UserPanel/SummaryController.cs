@@ -69,10 +69,11 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly(PermissionName = ClaimConstant.ActivePlayerDetailType)]
         public ActionResult PlayersDetails(PlayerDetailParam param)
         {
-            if(ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
+            if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
             {
                 param.SortById = Turnover;
-            } else
+            }
+            else
             {
                 var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, SessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !SessionService.IsInternal;
 

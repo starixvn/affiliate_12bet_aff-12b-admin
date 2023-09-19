@@ -260,6 +260,7 @@
     <Compile Include="BusinessService\VerificationService.cs" />
     <Compile Include="Constants\ActionName.cs" />
     <Compile Include="Constants\CacheKey.cs" />
+    <Compile Include="Constants\CalculatedType.cs" />
     <Compile Include="Constants\ClaimConstant.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
     <Compile Include="Constants\CommissionType.cs" />
@@ -600,6 +601,7 @@
     <Compile Include="ViewModels\UserPanel\Marketing\SearchFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\MessageHistoryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\StatementHistoryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\LandingPageStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\ReferrerStatisticsViewModel.cs" />
     <Compile Include="ViewModels\VerificationAccountViewModel.cs" />

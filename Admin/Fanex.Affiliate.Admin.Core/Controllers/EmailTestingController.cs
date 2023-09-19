@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 _commonSettingService.SetCulture(language);
 
-                (var subject, var title) = GetSubjectAndTitle(function);
+                (var _, var title) = GetSubjectAndTitle(function);
                 result = GetEmailContent(language, function, format, title);
 
                 _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);

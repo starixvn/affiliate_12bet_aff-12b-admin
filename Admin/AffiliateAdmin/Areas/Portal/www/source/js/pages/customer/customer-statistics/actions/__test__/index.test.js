@@ -25,6 +25,8 @@ describe('customer statistics actions', () => {
                 ActivePlayerByMonth: 0,
                 DepositByMonth: 0,
                 DepositTotal: 951.435,
+                FdmDepositByMonth: 0,
+                FdmDepositTotal: 51.435,
                 NewFdmByMonth: 0,
                 NewFdmTotal: 1829,
                 NewSignUpByMonth: 0,

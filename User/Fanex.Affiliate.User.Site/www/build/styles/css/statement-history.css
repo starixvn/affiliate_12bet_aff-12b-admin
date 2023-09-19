@@ -45,3 +45,12 @@
   .pager-container .page-info {
     float: right;
     padding: 3px; }
+
+#statementDataList .btn.btn-transparent {
+  margin-right: 5px;
+  background: transparent; }
+  #statementDataList .btn.btn-transparent :hover {
+    color: cornflowerblue; }
+
+#statementDataList .display-none {
+  display: none; }

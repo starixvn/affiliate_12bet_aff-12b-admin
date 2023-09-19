@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.User.Core.Repository
                     {
                         var countryShort = Convert.ToString(reader["countrySHORT"]);
 
-                        if(string.IsNullOrEmpty(countryShort) && reader.NextResult())
+                        if (string.IsNullOrEmpty(countryShort) && reader.NextResult())
                         {
                             countryShort = Convert.ToString(reader["countrySHORT"]);
                         }

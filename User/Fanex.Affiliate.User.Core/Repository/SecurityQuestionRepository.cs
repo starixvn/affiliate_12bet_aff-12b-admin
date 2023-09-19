@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {

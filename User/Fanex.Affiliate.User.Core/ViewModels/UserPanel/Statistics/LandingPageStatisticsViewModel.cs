@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using System;
 using System.Collections.Generic;

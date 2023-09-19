@@ -31,6 +31,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
                             QualifiedMemberByMonth = Convert.ToInt32(reader["QualifiedMembersByMonth"]),
                             DepositByMonth = Convert.ToDecimal(reader["DepositByMonth"]),
                             DepositTotal = Convert.ToDecimal(reader["DepositTotal"]),
+                            FdmDepositByMonth = Convert.ToDecimal(reader["DepositByMonth"]),
+                            FdmDepositTotal = Convert.ToDecimal(reader["DepositTotal"]),
                             TurnoverByMonth = Convert.ToDecimal(reader["TurnoverByMonth"]),
                             TurnoverTotal = Convert.ToDecimal(reader["TurnoverTotal"]),
                             WinlostByMonth = Convert.ToDecimal(reader["WinlostByMonth"]),

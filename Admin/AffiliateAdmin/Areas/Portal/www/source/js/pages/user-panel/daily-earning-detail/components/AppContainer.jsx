@@ -7,8 +7,8 @@ import UserPanelBreadcrumb from '../../../common/components/UserPanelBreadcrumb'
 import Filter from './Filter';
 import Content from './Content';
 
-import { setSelectedUserPanel, redirectToDailyEarning } from '../actions';
-import { monthNames, userPanelMenuKey } from '../libs/constants';
+import { setSelectedUserPanel, redirectToDailyEarning, redirectToStatementHistory } from '../actions';
+import { monthNames } from '../libs/constants';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -24,7 +24,7 @@ export class AppContainer extends PureComponent {
         const dailyEarningParam = Object.assign({}, param, { monthDate: this.monthDate });
 
         const breadcrumbList = [
-            { handleClick: () => this.props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History' },
+            { handleClick: () => this.props.redirectToStatementHistory(param.statementHistory), title: 'Statement History' },
             { handleClick: () => this.props.redirectToDailyEarning(dailyEarningParam), title: `${monthNames[this.date.getMonth()]} ${this.date.getFullYear()}` },
             { title: this.monthDate }
         ];
@@ -45,7 +45,7 @@ function mapStateToProps({ dailyEarningDetail }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedUserPanel, redirectToDailyEarning }, dispatch);
+    return bindActionCreators({ setSelectedUserPanel, redirectToDailyEarning, redirectToStatementHistory }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

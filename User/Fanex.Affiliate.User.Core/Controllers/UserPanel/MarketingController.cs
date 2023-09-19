@@ -125,10 +125,10 @@
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GenerateLink(string selectedLanguage, string selectedPage, int? selectedDomainId)
         {
-            if(selectedDomainId == null)
+            if (selectedDomainId == null)
             {
                 return View("~/Views/UserPanel/AccountOverview/Partial/_TextLink.cshtml", new Dictionary<string, QrCodeLinkModel>());
-            }    
+            }
             var userSession = SessionService.UserSession;
             var selectedDomain = MarketingService
                 .GetDomainList(userSession.AffId, SessionService.IsInternal)

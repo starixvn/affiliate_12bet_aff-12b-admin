@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 || string.Equals("Feedback", controller, StringComparison.CurrentCultureIgnoreCase)))
             {
                 SessionService.LastestRequestTime = DateTime.Now;
-            }    
+            }
         }
     }
 }

@@ -1,1 +1,16 @@
 ﻿@import "../scss/components/pager";
+
+#statementDataList {
+    .btn.btn-transparent {
+        margin-right: 5px;
+        background: transparent;
+
+        :hover {
+            color: cornflowerblue;
+        }
+    }
+
+    .display-none {
+        display: none;
+    }
+}

@@ -1,10 +1,8 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Common.Extensions;
 using Fanex.Data;
-using System;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.Repository

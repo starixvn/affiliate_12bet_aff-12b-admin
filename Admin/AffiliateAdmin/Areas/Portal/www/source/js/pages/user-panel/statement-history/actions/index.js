@@ -2,20 +2,27 @@
 import { setPagingOption } from '../../../../actions/pagingAction';
 import { toggleLoaderUserPanel, redirectToDailyEarning } from '../../../customer/user-panel/actions';
 import { getAffiliateInfo, toggleLoader } from '../../../customer/mainpage/actions/loadingDataAction';
-import { SET_PARAM, TRANSACTION_ID } from '../actions/types';
+import * as types from '../actions/types';
 
 export { setPagingOption, toggleLoaderUserPanel, getAffiliateInfo, redirectToDailyEarning, toggleLoader };
 
 export const setParam = (data) => {
     return {
-        type: SET_PARAM,
+        type: types.SET_PARAM,
         data
     }
 }
 
 export const setTransactionId = (data) => {
     return {
-        type: TRANSACTION_ID,
+        type: types.TRANSACTION_ID,
+        data
+    }
+}
+
+export const setExpandMonthDateList = (data) => {
+    return {
+        type: types.SET_EXPAND_MONTH_DATE_LIST,
         data
     }
 }

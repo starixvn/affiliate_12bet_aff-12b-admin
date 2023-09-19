@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Utilities
         public void HasWriteClaim_WhenCall_ReturnFalse(bool isNull)
         {
             MockingHelper.SetUpEnviroment("test", true);
-            if(isNull)
+            if (isNull)
             {
                 HttpContext.Current.User = null;
             }

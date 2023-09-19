@@ -1,53 +1,95 @@
-﻿@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.StatementHistory>
+﻿@model IEnumerable<Fanex.Affiliate.User.Core.ViewModels.UserPanel.StatementHistoryViewModel>
+
+@helper RenderItem(Fanex.Affiliate.User.Core.ViewModels.UserPanel.StatementHistoryViewModel item, int id, int? parentId = null, int? index = null)
+{
+    var isLink = item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Payment
+    && item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Adjustment
+    && item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.MonthlyTotal
+    && DateTime.Compare(item.MonthDate, ViewBag.AvailableFromDate) > 0;
+
+    var hasChildren = item.Children == null || item.Children.Count() > 0;
+    var displayClass = parentId != null ? "display-none" : "";
+
+    <tr data-id='@id' data-parent='@parentId' class='@displayClass'>
+        <td>@index</td>
+        <td class="text-bold">
+            <div class="flex">
+                <span class="flex-0">@item.DateString</span>
+                @if (hasChildren)
+                {
+                    <div class="flex-middle">
+                        <button class="btn btn-transparent">
+                            <span class="chevron right"></span>
+                        </button>
+                    </div>
+                }
+            </div>
+        </td>
+        <td>@item.TransTypeString</td>
+        <td class="text-right">
+            @if (isLink)
+            {
+                <a class="amountItem" data-date="@item.MonthDate.ToString("yyyy-MM-dd")" data-transtype="@item.TransType" href="javascript:;">
+                    @item.Amount.ToStringMoneyWithSymbol()
+                </a>
+            }
+            else
+            {
+                @item.Amount.ToStringMoneyWithSymbol()
+            }
+        </td>
+        <td class="text-center">@item.DisplayStatus</td>
+        <td>
+            @if (item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Adjustment)
+            {
+                @Html.Raw(item.DescriptionDisplay)
+            }
+        </td>
+    </tr>
+}
+
 
 <div class="table table-responsive">
     <table>
         <thead>
             <tr>
                 <th width="5%"></th>
-                <th>@Lang.Date</th>
-                <th>@Lang.Type</th>
-                <th>@Lang.Amount</th>
-                <th>@Lang.Status</th>
+                <th width="25%">@Lang.Date</th>
+                <th width="15%">@Lang.Type</th>
+                <th width="15%">@Lang.Amount</th>
+                <th width="10%">@Lang.Status</th>
                 <th>@Lang.Description</th>
             </tr>
         </thead>
         <tbody>
             @{
-                var index = (int)ViewBag.StartRowNumber;
-
-                foreach (var item in Model)
+                if (Model != null && Model.Any())
                 {
-                    var isLink =  item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Payment &&
-                                        item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Adjustment &&
-                                        DateTime.Compare(item.MonthDate, ViewBag.AvailableFromDate) > 0;
-       
-                    <tr>
-                        <td>@index</td>
-                        <td class="text-bold">@item.DateString</td>
-                        <td>@item.TransTypeString</td>
-                        <td class="text-right">
-                            @if (isLink)
-                            {
-                                <a class="amountItem" data-date="@item.MonthDate.ToString("MM/dd/yyyy")" href="javascript:;">
-                                    @item.Amount.ToStringMoneyWithSymbol()
-                                </a>
-                            }
-                            else
-                            {
-                                @item.Amount.ToStringMoneyWithSymbol()
-                            }
-                        </td>
-                        <td class="text-center">@item.DisplayStatus</td>
-                        <td>
-                            @if (item.TransType == (byte)Fanex.Affiliate.User.Core.Enum.TransType.Payment)
-                            {
-                                @Html.Raw(item.Description)
-                            }
-                        </td>
-                    </tr>
+                    var index = (int)ViewBag.StartRowNumber;
+                    var id = 1;
 
-                    index++;
+                    foreach (var item in Model)
+                    {
+                        @RenderItem(item, id, index: index);
+                        if (item.Children != null)
+                        {
+                            var parentId = id;
+                            foreach (var child in item.Children)
+                            {
+                                id++;
+                                @RenderItem(child, id, parentId: parentId)
+                            }
+                        }
+
+                        index++;
+                        id++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td class="text-center" colspan="6">@Lang.NoInfo</td>
+                    </tr>
                 }
             }
         </tbody>

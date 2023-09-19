@@ -302,29 +302,29 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 }
             };
 
-            private static EmailSignUpParam CreateEmailSignUpParam()
-            => new EmailSignUpParam
+        private static EmailSignUpParam CreateEmailSignUpParam()
+        => new EmailSignUpParam
+        {
+            MailBcc = "abc@gmail.com",
+            MailCc = "12b@gmail.com",
+            MailContact = "ab",
+            MailTo = "12@gmail.com",
+            RootDomain = "abc.com",
+            User = new DTO.UserInfo
             {
-                MailBcc = "abc@gmail.com",
-                MailCc = "12b@gmail.com",
-                MailContact = "ab",
-                MailTo = "12@gmail.com",
-                RootDomain = "abc.com",
-                User = new DTO.UserInfo
-                {
-                    AffId = 1,
-                    Email = "abb@gmail.com",
-                    FirstName = "User",
-                    LastName = "Name",
-                    MailOption = false,
-                    PreferredLanguage = "vn-vi",
-                    SecretKey = "124m",
-                    UserName = "test"
-                },
-                IMName = "Whatsapp",
-                IMValue = "0123456789",
-                UserNumberContact = "0987654321"
-            };
+                AffId = 1,
+                Email = "abb@gmail.com",
+                FirstName = "User",
+                LastName = "Name",
+                MailOption = false,
+                PreferredLanguage = "vn-vi",
+                SecretKey = "124m",
+                UserName = "test"
+            },
+            IMName = "Whatsapp",
+            IMValue = "0123456789",
+            UserNumberContact = "0987654321"
+        };
 
         private static ContactUsParam CreateContactUsParam()
             => new ContactUsParam

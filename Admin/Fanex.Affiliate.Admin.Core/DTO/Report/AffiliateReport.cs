@@ -53,6 +53,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public decimal Earning { get; set; }
 
+        public decimal NewFdmEarning { get; set; }
+
+        public decimal TotalEarning { get; set; }
+
         public decimal AffWithdrawal { get; set; }
 
         public decimal AffAdjustment { get; set; }

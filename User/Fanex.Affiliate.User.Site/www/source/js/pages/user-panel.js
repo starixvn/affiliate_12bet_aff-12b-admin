@@ -2,6 +2,11 @@
 var SUB_MENU_HEIGHT = 43;
 var DETAILS_SECTION_MENU_HEIGHT = 33;
 
+function toggleCollapseButton(btn) {
+    $(btn).children("span").toggleClass("right");
+    $(btn).children("span").toggleClass("bottom");
+}
+
 function handleSetTop() {
     let isOverviewTable = $("#overview-table").length;
 

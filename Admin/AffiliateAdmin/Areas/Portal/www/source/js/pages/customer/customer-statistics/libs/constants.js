@@ -4,7 +4,7 @@
     NewSignups: "New Signups/FDM",
     TotalActive: "Total Active Players",
     TotalQualified: "Total Qualified Active Players",
-    TotalDeposits: "Total Deposits",
+    TotalDeposits: "Total Deposits/FDM's Deposit",
     Turnover: "Turnover",
     Winlost: "Winlost",
     TrackingRatePC: "Tracking Rate for PC/Laptop (Unique/Total) New!!!!!",

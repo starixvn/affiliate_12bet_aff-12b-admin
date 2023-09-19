@@ -43,8 +43,8 @@
         <img class="img-responsive" src="~/www/build/styles/Images/account-overview/total-deposit.png" alt="Total Deposit icon" />
     </div>
     <div class="info-panel @(hasTurnOverPermission ? "" : "w-100")">
-        <span class="info-panel-title">@Lang.TotalDeposit</span>
-        <span class="info-panel-content">@Model.Deposit.ToStringMoneyWithSymbol()</span>
+        <span class="info-panel-title">@Lang.TotalDeposit/@Lang.FdmDeposit</span>
+        <span class="info-panel-content">@Model.Deposit.ToStringMoneyWithSymbol()/@Model.FdmDeposit.ToStringMoneyWithSymbol()</span>
     </div>
 
     @if (hasTurnOverPermission)

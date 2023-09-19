@@ -1,5 +1,6 @@
 import { SET_SELECTED_USERPANEL, RESET_USER_PANEL, TOGGLE_LOADER_USER_PANEL } from './types';
 import { userPanelMenuKey } from '../../common/libs/constants';
+import { setParam as setStatementHistoryParam, setExpandMonthDateList } from '../../../user-panel/statement-history/actions';
 import { setParam as setDailyEarningParam } from '../../../user-panel/daily-earning/actions';
 import { setParam as setDailyEarningDetailParam } from '../../../user-panel/daily-earning-detail/actions';
 
@@ -25,6 +26,12 @@ export const toggleLoaderUserPanel = (data) => {
         type: TOGGLE_LOADER_USER_PANEL,
         data
     }
+}
+
+export const redirectToStatementHistory = (data) => (dispatch) => {
+    dispatch(setSelectedUserPanel(userPanelMenuKey.statementHistory));
+    dispatch(setStatementHistoryParam({ ...data.param, isBack: true, scrollTop: data.scrollTop }));
+    dispatch(setExpandMonthDateList(data.expandMonthDateList));
 }
 
 export const redirectToDailyEarning = (data) => (dispatch) => {

@@ -1278,12 +1278,6 @@
   <data name="none" xml:space="preserve">
     <value>គ្មាន</value>
   </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>ស្ថិតិតាមដាន</value>
-  </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>កូដតាមដាន</value>
-  </data>
   <data name="Guinea" xml:space="preserve">
     <value>Guinea</value>
   </data>

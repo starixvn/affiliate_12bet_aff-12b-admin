@@ -12,7 +12,8 @@ const runTestAction = ({ name, type, data }) => {
 
 const actionList = [
     { name: 'setTransactionId', type: types.TRANSACTION_ID, data: 1262276211 },
-    { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } }
+    { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
+    { name: 'setExpandMonthDateList', type: types.SET_EXPAND_MONTH_DATE_LIST, data: "setExpandMonthDateList" }
 ]
 
 describe('referrers actions', () => {

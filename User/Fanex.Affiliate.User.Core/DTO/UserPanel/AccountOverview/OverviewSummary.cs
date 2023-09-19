@@ -17,5 +17,7 @@
         public decimal Deposit { get; set; }
 
         public decimal Commission { get; set; }
+
+        public decimal FdmDeposit { get; set; }
     }
 }

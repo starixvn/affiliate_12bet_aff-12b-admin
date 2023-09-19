@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -188,7 +187,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).ReturnsNull();
-            Repo.GetDomainList(0, false).ReturnsNullForAnyArgs();
+            Repo.GetDomainList(0, false).ReturnsForAnyArgs(new List<Domain>());
 
             var result = service.GetDomainList(0, false);
 

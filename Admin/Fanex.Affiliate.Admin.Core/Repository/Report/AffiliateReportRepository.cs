@@ -136,6 +136,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
                 TotalFee = Convert.ToDecimal(reader["TotalFee"]),
                 CommissionRate = decimal.Round(OneHundred * Convert.ToDecimal(reader["CommissionRate"]), NumberOfDigits),
                 Earning = Convert.ToDecimal(reader["Earning"]),
+                NewFdmEarning = Convert.ToDecimal(reader["Earning"]),
+                TotalEarning = Convert.ToDecimal(reader["Earning"]),
                 AffWithdrawal = Convert.ToDecimal(reader["AffWithdrawal"]),
                 AffAdjustment = Convert.ToDecimal(reader["AffAdjustment"]),
                 BalanceBf = Convert.ToDecimal(reader["BFF"])

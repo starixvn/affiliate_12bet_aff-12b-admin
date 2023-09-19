@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         [Fact]
         public void GetLandingPageStatistics_WhenCallWithReportByCountry_CallStatisticsRepository()
         {
-            var param = new LandingPageStatisticsParam { ReportBy = "Country"};
+            var param = new LandingPageStatisticsParam { ReportBy = "Country" };
             var service = CreateService();
 
             service.GetLandingPageStatistics(param);

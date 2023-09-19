@@ -5,7 +5,6 @@ using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using System;
 using System.Web;
 
 namespace Fanex.Affiliate.User.Core.BusinessService

@@ -113,6 +113,8 @@ export class GridData extends PureComponent {
                 {h2[reportKey.CommissionRate].isVisable && <Cell header={true} colWidth={60} title={headerText.CommissionRate}>{headerText.CommissionRate}</Cell>}
                 {h2[reportKey.PreviousBalanceBf].isVisable && <Cell header={true} colWidth={100} title={headerText.PreviousBalanceBf}>{headerText.PreviousBalanceBf}</Cell>}
                 {h2[reportKey.Earning].isVisable && <Cell header={true} colWidth={80} title={headerText.Earning}>{headerText.Earning}</Cell>}
+                {h2[reportKey.NewFdmEarning].isVisable && <Cell header={true} colWidth={80} title={headerText.Earning}>{headerText.NewFdmEarning}</Cell>}
+                {h2[reportKey.TotalEarning].isVisable && <Cell header={true} colWidth={80} title={headerText.Earning}>{headerText.TotalEarning}</Cell>}
                 {h2[reportKey.AffWithdrawal].isVisable && <Cell header={true} colWidth={80} title={headerText.AffWithdrawal}>{headerText.AffWithdrawal}</Cell>}
                 {h2[reportKey.AffAdjustment].isVisable && <Cell header={true} colWidth={70} title={headerText.AffAdjustment}>{headerText.AffAdjustment}</Cell>}
                 {h2[reportKey.BalanceBf].isVisable && <Cell header={true} colWidth={100} title={headerText.BalanceBf}>{headerText.BalanceBf}</Cell>}
@@ -194,6 +196,8 @@ export class GridData extends PureComponent {
         const totalFee = formatDecimal(dataItem.TotalFee);
 
         const earning = formatDecimal(dataItem.Earning);
+        const newFdmEarning = formatDecimal(dataItem.NewFdmEarning);
+        const totalEarning = formatDecimal(dataItem.TotalEarning);
         const affWithdrawal = formatDecimal(dataItem.AffWithdrawal);
         const affAdjustment = formatDecimal(dataItem.AffAdjustment);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
@@ -222,6 +226,8 @@ export class GridData extends PureComponent {
                 { header[reportKey.CommissionRate].isVisable && <Cell className="text-right" title={commRate}>{commRate}</Cell>}
                 { header[reportKey.PreviousBalanceBf].isVisable && <Cell className="text-right" title={prevBalanceBf}>{prevBalanceBf}</Cell>}
                 { header[reportKey.Earning].isVisable && <Cell className="text-right" title={earning}>{earning}</Cell>}
+                { header[reportKey.NewFdmEarning].isVisable && <Cell className="text-right" title={newFdmEarning}>{newFdmEarning}</Cell>}
+                { header[reportKey.TotalEarning].isVisable && <Cell className="text-right" title={totalEarning}>{totalEarning}</Cell>}
                 { header[reportKey.AffWithdrawal].isVisable && <Cell className="text-right" title={affWithdrawal}>{affWithdrawal}</Cell>}
                 { header[reportKey.AffAdjustment].isVisable &&  (<Cell className="text-right" title={affAdjustment}>{affAdjustment}</Cell>)}
                 { header[reportKey.BalanceBf].isVisable && <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>}
@@ -261,7 +267,7 @@ export class GridData extends PureComponent {
         return gridData && (
             <div className="table-responsive table-striped">
                 <Table
-                    minWidth={1000}
+                    minWidth={1368}
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}

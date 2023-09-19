@@ -4,6 +4,6 @@
     {
         public const string ReportByCountry = "Country";
 
-        public static readonly string[] ReportByList = new [] { ReportByCountry, "Language" };
+        public static readonly string[] ReportByList = new[] { ReportByCountry, "Language" };
     }
 }

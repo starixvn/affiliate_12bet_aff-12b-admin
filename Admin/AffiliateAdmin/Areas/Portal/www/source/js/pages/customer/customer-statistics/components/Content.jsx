@@ -83,12 +83,14 @@ export class Content extends PureComponent {
     _renderData(monthDate, data) {
         data = data || {};
         const { isDisplayTurnOver, isDisplayActivePlayer, today } = this.props;
-        const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
-        const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
-        const TurnoverByMonth = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
-        const TurnoverTotal = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverTotal);
-        const WinlostByMonth = formatDecimalWithCurrencySymbol(data.WinlostByMonth);
-        const WinlostTotal = formatDecimalWithCurrencySymbol(data.WinlostTotal);
+        const depositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
+        const depositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
+        const fdmDepositByMonth = formatDecimalWithCurrencySymbol(data.FdmDepositByMonth);
+        const fdmDepositTotal = formatDecimalWithCurrencySymbol(data.FdmDepositTotal);
+        const turnoverByMonth = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
+        const turnoverTotal = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverTotal);
+        const winlostByMonth = formatDecimalWithCurrencySymbol(data.WinlostByMonth);
+        const winlostTotal = formatDecimalWithCurrencySymbol(data.WinlostTotal);
 
         const startMonthString = `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`;
 
@@ -116,9 +118,9 @@ export class Content extends PureComponent {
                         resource.NA)
                 }
                 { isDisplayActivePlayer && this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
-                { isDisplayActivePlayer && this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
-                { isDisplayTurnOver && this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
-                {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
+                {isDisplayActivePlayer && this._buildRow(rowTitle.TotalDeposits, `${depositByMonth}/${fdmDepositByMonth}`, `${depositTotal}/${fdmDepositTotal}`)}
+                { isDisplayTurnOver && this._buildRow(rowTitle.Turnover, turnoverByMonth, turnoverTotal)}
+                {this._buildRow(rowTitle.Winlost, winlostByMonth, winlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
                         (

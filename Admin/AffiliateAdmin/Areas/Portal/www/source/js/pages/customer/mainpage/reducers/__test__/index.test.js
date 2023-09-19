@@ -67,6 +67,7 @@ describe('customer - mainpage reducer', () => {
         },
         selectedUserPanel: null,
         statementHistory: {
+            expandMonthDateList: {},
             pagingOption: defaultPagingOption,
             param: {},
             transactionId: null,

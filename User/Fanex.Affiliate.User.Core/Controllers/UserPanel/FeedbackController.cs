@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         {
             if (IsValidAffToAddFeedback(param.IsClickLogout))
             {
-                if(ModelState.IsValid && param.IsValid)
+                if (ModelState.IsValid && param.IsValid)
                 {
                     param.AffId = SessionService.UserSession.AffId;
                     param.Message = string.IsNullOrEmpty(param.Message) ? string.Empty : Server.HtmlEncode(param.Message.Trim());

@@ -249,6 +249,7 @@
     <Compile Include="Configurations\UMConfig.cs" />
     <Compile Include="Constants\AffStatus.cs" />
     <Compile Include="Constants\AffType.cs" />
+    <Compile Include="Constants\CalculatedType.cs" />
     <Compile Include="Constants\Code.cs" />
     <Compile Include="Constants\CommGroupErrorMessage.cs" />
     <Compile Include="Constants\DeductionId.cs" />
@@ -257,6 +258,7 @@
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\Menu.cs" />
     <Compile Include="Constants\ProcessingRequestStatus.cs" />
+    <Compile Include="Constants\TransType.cs" />
     <Compile Include="Controllers\Affiliate\FeedbackReportController.cs" />
     <Compile Include="Controllers\Affiliate\MassAdjustmentController.cs" />
     <Compile Include="Controllers\Affiliate\NewViewLogController.cs" />

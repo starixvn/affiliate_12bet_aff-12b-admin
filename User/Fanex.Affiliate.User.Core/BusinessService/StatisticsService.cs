@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
