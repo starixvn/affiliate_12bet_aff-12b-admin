@@ -2202,7 +2202,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
+  <data name="NewFDMs" xml:space="preserve">
     <value>NEW FDM's</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
@@ -2273,5 +2273,8 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="CurrentMonthStatistics" xml:space="preserve">
     <value>Current Month Statistics</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>New FDM</value>
   </data>
 </root>

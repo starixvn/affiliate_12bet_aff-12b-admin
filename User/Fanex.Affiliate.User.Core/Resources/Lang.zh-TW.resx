@@ -2094,7 +2094,7 @@
   <data name="Flat50" xml:space="preserve">
     <value>统一50%</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
+  <data name="NewFDMs" xml:space="preserve">
     <value>首次存款新會員</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
@@ -2123,5 +2123,47 @@
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
+  </data>
+  <data name="FdmDeposit" xml:space="preserve">
+    <value>首次存款新會員存款金額</value>
+  </data>
+  <data name="TransactionInReport" xml:space="preserve">
+    <value>交易</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>首次存款新會員</value>
+  </data>
+  <data name="MonthlyTotal" xml:space="preserve">
+    <value>每月總計</value>
+  </data>
+  <data name="MonthlyEarning" xml:space="preserve">
+    <value>每月收入</value>
+  </data>
+  <data name="UncalculatedMonthlyEarning" xml:space="preserve">
+    <value>未計算月收入</value>
+  </data>
+  <data name="CurrentMonthlyEarning" xml:space="preserve">
+    <value>當月收入</value>
+  </data>
+  <data name="CurrentNewFdmCommBonus" xml:space="preserve">
+    <value>當前首次存款新會員佣金</value>
+  </data>
+  <data name="NewFdmCommBonus" xml:space="preserve">
+    <value>首次存款新會員佣金</value>
+  </data>
+  <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
+    <value>未計算首次存款新會員佣金</value>
+  </data>
+  <data name="UncalculatedMonth" xml:space="preserve">
+    <value>未計算月份</value>
+  </data>
+  <data name="CurrentMonthStatistics" xml:space="preserve">
+    <value>當月統計</value>
+  </data>
+  <data name="FdmExtraComm" xml:space="preserve">
+    <value>首次存款新會員額外佣金</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>總佣金</value>
   </data>
 </root>

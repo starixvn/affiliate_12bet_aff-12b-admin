@@ -2088,7 +2088,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="Flat50" xml:space="preserve">
     <value>50% cố định</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
+  <data name="NewFDMs" xml:space="preserve">
     <value>THÀNH VIÊN NẠP MỚI</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
@@ -2117,5 +2117,47 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
+  </data>
+  <data name="FdmDeposit" xml:space="preserve">
+    <value>Khoản gửi của FDM</value>
+  </data>
+  <data name="TransactionInReport" xml:space="preserve">
+    <value>Giao dịch</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>FDM mới</value>
+  </data>
+  <data name="MonthlyTotal" xml:space="preserve">
+    <value>Tổng hàng tháng</value>
+  </data>
+  <data name="MonthlyEarning" xml:space="preserve">
+    <value>Thu nhập hàng tháng</value>
+  </data>
+  <data name="UncalculatedMonthlyEarning" xml:space="preserve">
+    <value>Thu nhập hàng tháng chưa tính</value>
+  </data>
+  <data name="CurrentMonthlyEarning" xml:space="preserve">
+    <value>Thu nhập hàng tháng hiện tại</value>
+  </data>
+  <data name="CurrentNewFdmCommBonus" xml:space="preserve">
+    <value>Tiền thưởng hoa hồng FDM mới hiện tại</value>
+  </data>
+  <data name="NewFdmCommBonus" xml:space="preserve">
+    <value>Tiền thưởng hoa hồng FDM mới</value>
+  </data>
+  <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
+    <value>Tiền thưởng hoa hồng FDM mới chưa tính</value>
+  </data>
+  <data name="UncalculatedMonth" xml:space="preserve">
+    <value>Tháng chưa tính</value>
+  </data>
+  <data name="CurrentMonthStatistics" xml:space="preserve">
+    <value>Thống kê tháng hiện tại</value>
+  </data>
+  <data name="FdmExtraComm" xml:space="preserve">
+    <value>Tiền thưởng hoa hồng FDM bổ sung</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>Tổng hoa hồng</value>
   </data>
 </root>

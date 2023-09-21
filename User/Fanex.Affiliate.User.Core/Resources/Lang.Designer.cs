@@ -3514,7 +3514,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NEW FDM&apos;s.
+        ///   Looks up a localized string similar to New FDM.
         /// </summary>
         public static string NewFDM {
             get {
@@ -3528,6 +3528,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string NewFdmCommBonus {
             get {
                 return ResourceManager.GetString("NewFdmCommBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEW FDM&apos;s.
+        /// </summary>
+        public static string NewFDMs {
+            get {
+                return ResourceManager.GetString("NewFDMs", resourceCulture);
             }
         }
         
