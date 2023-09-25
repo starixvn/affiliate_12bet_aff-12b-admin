@@ -1,15 +1,20 @@
-﻿'use strict';
+﻿"use strict";
 
 var SUPPORT_MIN_WITDH = 716;
 var SUB_MENU_HEIGHT = 43;
 var DETAILS_SECTION_MENU_HEIGHT = 33;
+
+function toggleCollapseButton(btn) {
+    $(btn).children("span").toggleClass("right");
+    $(btn).children("span").toggleClass("bottom");
+}
 
 function handleSetTop() {
     var isOverviewTable = $("#overview-table").length;
 
     if (isOverviewTable) {
         var headerHeight = $('#overview-table-header').height();
-        $('#overview-table-total > th').css({ top: SUB_MENU_HEIGHT + headerHeight + 'px' });
+        $('#overview-table-total > th').css({ top: SUB_MENU_HEIGHT + headerHeight + "px" });
     }
 }
 

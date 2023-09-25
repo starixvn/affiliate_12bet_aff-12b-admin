@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
                 {
                     case Constants.TransType.Adjustment:
                         return Resources.Lang.Adjustment;
-                    case Constants.TransType.Commission:
+                    case Constants.TransType.MonthlyEarning:
                         return Resources.Lang.MonthlyEarning;
                     case Constants.TransType.Payment:
                         return Resources.Lang.PaymentRequest;
@@ -75,7 +75,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
                         return Resources.Lang.NewFDM;
                     case Constants.TransType.MonthlyTotal:
                         {
-                            if (CalculatedType == Constants.CalculatedType.CalculatedMonth || CalculatedType == Constants.CalculatedType.UnCalculatedMonth)
+                            if (string.Equals("Monthly Earning", Description, StringComparison.OrdinalIgnoreCase))
                             {
                                 return Resources.Lang.MonthlyTotal;
                             }
@@ -94,12 +94,12 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
             {
                 switch (TransType)
                 {
-                    case Constants.TransType.Commission:
-                        return GetCommissionDescription(CalculatedType);
+                    case Constants.TransType.MonthlyEarning:
+                        return GetMonthlyEarningDescription(Description);
                     case Constants.TransType.NewFDM:
-                        return GetNewFdmDescription(CalculatedType);
+                        return GetNewFdmDescription(Description);
                     case Constants.TransType.MonthlyTotal:
-                        return GetMonthlyTotalDescription(CalculatedType);
+                        return GetMonthlyTotalDescription(Description);
                     default:
                         return Description;
                 }
@@ -108,43 +108,61 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
 
         public IEnumerable<StatementHistoryViewModel> Children { get; set; } = new List<StatementHistoryViewModel>();
 
-        private static string GetCommissionDescription(byte? calculatedType)
+        private static string GetMonthlyEarningDescription(string description)
         {
-            switch (calculatedType)
+            if (string.IsNullOrWhiteSpace(description))
             {
-                case Constants.CalculatedType.CalculatedMonth:
-                    return Resources.Lang.MonthlyEarning;
-                case Constants.CalculatedType.UnCalculatedMonth:
-                    return Resources.Lang.UncalculatedMonthlyEarning;
-                default:
-                    return Resources.Lang.CurrentMonthlyEarning;
+                return Resources.Lang.MonthlyEarning;
             }
+
+            if (description.Contains("Current"))
+            {
+                return Resources.Lang.CurrentMonthlyEarning;
+            }
+            if (description.Contains("Uncalculated"))
+            {
+                return Resources.Lang.UncalculatedMonthlyEarning;
+            }
+
+            return Resources.Lang.MonthlyEarning;
         }
 
-        private static string GetNewFdmDescription(byte? calculatedType)
+        private static string GetNewFdmDescription(string description)
         {
-            switch (calculatedType)
+            if (string.IsNullOrWhiteSpace(description))
             {
-                case Constants.CalculatedType.CalculatedMonth:
-                    return Resources.Lang.NewFdmCommBonus;
-                case Constants.CalculatedType.UnCalculatedMonth:
-                    return Resources.Lang.UncalculatedNewFdmCommBonus;
-                default:
-                    return Resources.Lang.CurrentNewFdmCommBonus;
+                return Resources.Lang.NewFdmCommBonus;
             }
+
+            if (description.Contains("Current"))
+            {
+                return Resources.Lang.CurrentNewFdmCommBonus;
+            }
+            if (description.Contains("Uncalculated"))
+            {
+                return Resources.Lang.UncalculatedNewFdmCommBonus;
+            }
+
+            return Resources.Lang.NewFdmCommBonus;
         }
 
-        private static string GetMonthlyTotalDescription(byte? calculatedType)
+        private static string GetMonthlyTotalDescription(string description)
         {
-            switch (calculatedType)
+            if (string.IsNullOrWhiteSpace(description))
             {
-                case Constants.CalculatedType.CalculatedMonth:
-                    return Resources.Lang.MonthlyTotal;
-                case Constants.CalculatedType.UnCalculatedMonth:
-                    return Resources.Lang.UncalculatedMonth;
-                default:
-                    return Resources.Lang.CurrentMonthStatistics;
+                return Resources.Lang.MonthlyTotal;
             }
+
+            if (description.Contains("Current"))
+            {
+                return Resources.Lang.CurrentMonthStatistics;
+            }
+            if (description.Contains("Uncalculated"))
+            {
+                return Resources.Lang.UncalculatedMonth;
+            }
+
+            return Resources.Lang.MonthlyTotal;
         }
     }
 }

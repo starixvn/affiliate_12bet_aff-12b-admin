@@ -2,10 +2,7 @@
 
 @helper RenderItem(Fanex.Affiliate.User.Core.ViewModels.UserPanel.StatementHistoryViewModel item, int id, int? parentId = null, int? index = null)
 {
-    var isLink = item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Payment
-    && item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Adjustment
-    && item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.MonthlyTotal
-    && DateTime.Compare(item.MonthDate, ViewBag.AvailableFromDate) > 0;
+    var isLink = item.TransType == (byte)Fanex.Affiliate.User.Core.Enum.TransType.MonthlyEarning && DateTime.Compare(item.MonthDate, ViewBag.AvailableFromDate) > 0;
 
     var hasChildren = item.Children == null || item.Children.Count() > 0;
     var displayClass = parentId != null ? "display-none" : "";

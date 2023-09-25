@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Theory]
         [InlineData(true, (int)TransType.Payment, "running")]
         [InlineData(false, (int)TransType.Adjustment, "pending")]
-        [InlineData(false, (int)TransType.Commission, "completed")]
+        [InlineData(false, (int)TransType.MonthlyEarning, "completed")]
         [InlineData(false, 123, "cancelled")]
         [InlineData(false, 123, "approved")]
         [InlineData(false, 123, "rejected")]

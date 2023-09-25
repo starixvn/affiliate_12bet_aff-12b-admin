@@ -135,7 +135,7 @@ var commissionReport = (function ($) {
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.Bonus)));
                 rowItems.push(_me.buildCell(dataRow.CommissionRate + '%'));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.Commission)));
-                rowItems.push(_me.buildCell(formatDecimal(dataRow.FdmExtraComm)));
+                rowItems.push(_me.buildCell(formatDecimal(dataRow.FdmCommission)));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.TotalCommission)));
             } else {
                 for (var i = 0; i < 8; i++) {
@@ -151,7 +151,7 @@ var commissionReport = (function ($) {
             var dataRow = _reportData.Total;
             var columnNames = _me.getHeaderColNames();
             if (dataRow) {
-                return '<tr class="total">' + '<td class="text-right" colspan="2">' + 'Total' + '</td>' + (columnNames.TurnOver ? _me.buildCell(formatDecimal(dataRow.TurnOver)) : '') + _me.buildCell(formatDecimal(dataRow.WinLoss)) + _me.buildCell(formatDecimal(dataRow.PlatformFee)) + _me.buildCell(formatDecimal(dataRow.OperationalFee)) + _me.buildCell(formatDecimal(dataRow.BankingFee)) + _me.buildCell(formatDecimal(dataRow.Bonus)) + _me.buildCell('') + _me.buildCell(formatDecimal(dataRow.Commission)) + _me.buildCell(formatDecimal(dataRow.FdmExtraComm)) + _me.buildCell(formatDecimal(dataRow.TotalCommission)) + '</tr>';
+                return '<tr class="total">' + '<td class="text-right" colspan="2">' + 'Total' + '</td>' + (columnNames.TurnOver ? _me.buildCell(formatDecimal(dataRow.TurnOver)) : '') + _me.buildCell(formatDecimal(dataRow.WinLoss)) + _me.buildCell(formatDecimal(dataRow.PlatformFee)) + _me.buildCell(formatDecimal(dataRow.OperationalFee)) + _me.buildCell(formatDecimal(dataRow.BankingFee)) + _me.buildCell(formatDecimal(dataRow.Bonus)) + _me.buildCell('') + _me.buildCell(formatDecimal(dataRow.Commission)) + _me.buildCell(formatDecimal(dataRow.FdmCommission)) + _me.buildCell(formatDecimal(dataRow.TotalCommission)) + '</tr>';
             }
 
             return '';

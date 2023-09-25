@@ -260,7 +260,6 @@
     <Compile Include="BusinessService\VerificationService.cs" />
     <Compile Include="Constants\ActionName.cs" />
     <Compile Include="Constants\CacheKey.cs" />
-    <Compile Include="Constants\CalculatedType.cs" />
     <Compile Include="Constants\ClaimConstant.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
     <Compile Include="Constants\CommissionType.cs" />

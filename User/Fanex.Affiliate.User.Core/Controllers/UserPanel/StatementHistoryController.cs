@@ -75,7 +75,7 @@
 
             foreach (var item in statementHistoryList)
             {
-                if (item.TransType == TransType.Commission || item.TransType == TransType.NewFDM)
+                if (item.TransType == TransType.MonthlyEarning || item.TransType == TransType.NewFDM)
                 {
                     if (CheckIfExistMonthlyTotal(item.MonthDate, statementHistoryViews))
                     {
@@ -95,9 +95,9 @@
         private static StatementHistoryViewModel CreateMonthlyTotal(DateTime monthDate, IEnumerable<StatementHistory> statementHistoryList)
         {
             var transItems = statementHistoryList.Where(s => s.MonthDate == monthDate)
-                .Where(s => s.TransType == TransType.NewFDM || s.TransType == TransType.Commission);
+                .Where(s => s.TransType == TransType.NewFDM || s.TransType == TransType.MonthlyEarning);
 
-            var monthlyCom = transItems.FirstOrDefault(s => s.TransType == TransType.Commission);
+            var monthlyCom = transItems.FirstOrDefault(s => s.TransType == TransType.MonthlyEarning);
             var children = transItems.Select(s => CreateViewModelFromStatementHistoryItem(s));
 
             var monthlyTotal = new StatementHistoryViewModel
@@ -107,7 +107,7 @@
                 Children = children,
                 Status = monthlyCom?.Status ?? children.FirstOrDefault().Status,
                 TransType = TransType.MonthlyTotal,
-                CalculatedType = monthlyCom?.CalculatedType ?? children.FirstOrDefault().CalculatedType
+                Description = monthlyCom?.Description ?? children.FirstOrDefault().Description
             };
             return monthlyTotal;
         }
@@ -125,8 +125,7 @@
                 Description = item.Description,
                 MonthDate = item.MonthDate,
                 Status = item.Status,
-                TransType = item.TransType,
-                CalculatedType = item.CalculatedType
+                TransType = item.TransType
             };
         }
     }

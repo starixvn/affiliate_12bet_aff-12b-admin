@@ -23,8 +23,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         [JsonIgnore]
         public string Description { get; set; }
 
-        public string DateText => (TransType == Constants.TransType.MonthlyEarning || TransType == Constants.TransType.MonthlyTotal
-            || TransType == Constants.TransType.NewFdmCommissionBonus) ? Date.ToString("MMM-yyyy") : Date.ToString("dd-MMM-yyyy");
+        public string DateText => (TransType == Constants.TransType.Adjustment || TransType == Constants.TransType.PaymentRequest)
+                                    ? Date.ToString("dd-MMM-yyyy") : Date.ToString("MMM-yyyy");
 
         public string NormalizeDateText => Date.ToString("yyyy-MM-dd");
 
