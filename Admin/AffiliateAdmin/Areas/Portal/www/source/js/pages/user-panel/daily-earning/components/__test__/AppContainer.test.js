@@ -4,13 +4,17 @@ import { shallow } from 'enzyme';
 import UserPanelBreadcrumb from '../../../../common/components/UserPanelBreadcrumb';
 
 describe('daily earning - components - AppContainer', () => {
+    const param = {
+        affId: 1271808,
+        monthDate: "Jan-2019",
+        productId: 0,
+        statementHistory: {}
+    };
+
     const defaultProps = {
-        param: {
-            affId: 1271808,
-            monthDate: "Jan-2019",
-            productId: 0
-        }
+        param
     }
+
     it('render correctly', () => {
         const result = shallow(<AppContainer {...defaultProps} />);
 
@@ -25,11 +29,11 @@ describe('daily earning - components - AppContainer', () => {
     });
 
     it('setSelectedUserPanel - should be called', () => {
-        const props = Object.assign({}, defaultProps, { setSelectedUserPanel: jest.fn() });
+        const props = Object.assign({}, defaultProps, { redirectToStatementHistory: jest.fn() });
         const wrapper = shallow(<AppContainer {...props} />);
 
         wrapper.find(UserPanelBreadcrumb).props().breadcrumbList[0].handleClick();
 
-        expect(props.setSelectedUserPanel).toHaveBeenCalledWith('statementHistory');
+        expect(props.redirectToStatementHistory).toHaveBeenCalledWith(param.statementHistory);
     });
 });

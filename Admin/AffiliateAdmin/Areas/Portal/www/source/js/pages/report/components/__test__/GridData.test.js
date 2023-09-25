@@ -306,7 +306,7 @@ describe('affiliate report - GridData ', () => {
 
         buildDataRow.find('Button').simulate('click');
 
-        expect(componentInstance.handleViewMonthOnMonth).toHaveBeenCalledWith("12BETAFF002");
+        expect(componentInstance.handleViewMonthOnMonth).toHaveBeenCalledWith("12BETAFF001");
     });
 
     it('_buildMonthCell - should return correctly with correct paramaters', () => {

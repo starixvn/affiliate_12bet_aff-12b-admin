@@ -19,10 +19,14 @@ describe('statement history - Filter - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            today: '25/09/2019'
+            today: '25/09/2019',
+            param: {}
         };
         const state = {
             today: '25/09/2019',
+            statementHistory: {
+                param: {}
+            },
             anotherProp: "Not included"
         };
 

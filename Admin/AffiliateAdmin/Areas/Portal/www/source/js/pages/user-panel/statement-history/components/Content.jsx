@@ -7,7 +7,7 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning, setExpandMonthDateList } from '../actions';
-import { headerText, globalResource, transTypeList, monthlyEarning, MONTHLY_EARNING, PAYMENT_REQUEST, MONTHLY_TOTAL, selectedAllProduct, maxWidth, CalculatedMonth } from '../libs/constants';
+import { headerText, globalResource, transTypeList, monthlyEarning, MONTHLY_EARNING, PAYMENT_REQUEST, MONTHLY_TOTAL, selectedAllProduct, maxWidth } from '../libs/constants';
 import { getScrollTopPosition, setScrollTop } from '../libs/utils';
 
 export class Content extends PureComponent {
@@ -136,8 +136,8 @@ export class Content extends PureComponent {
         const status = isPending ? "Processing" : dataItem.Status;
         const creator = htmlDecode(dataItem.Creator);
         const description = htmlDecode(dataItem.DescriptionDisplay);
-        const isTotalRow = transType === MONTHLY_TOTAL;
-        const transTypeString = isTotalRow && dataItem.CalculatedType == CalculatedMonth ? 'Monthly Total' : transTypeList[transType];
+        const isTotalRow = transType === MONTHLY_TOTAL && !!dataItem.Children.length;
+        const transTypeString = isTotalRow && dataItem.Description === 'Monthly Total' ? dataItem.Description : transTypeList[transType];
 
         return (
             <React.Fragment key={`dataRow-${dataItem.TransId}-${dataItem.DateText}-${dataItem.TransType}`}>

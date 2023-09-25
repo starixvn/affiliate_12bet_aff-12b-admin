@@ -86,7 +86,6 @@ export class Content extends PureComponent {
         const depositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const depositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
         const fdmDepositByMonth = formatDecimalWithCurrencySymbol(data.FdmDepositByMonth);
-        const fdmDepositTotal = formatDecimalWithCurrencySymbol(data.FdmDepositTotal);
         const turnoverByMonth = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
         const turnoverTotal = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverTotal);
         const winlostByMonth = formatDecimalWithCurrencySymbol(data.WinlostByMonth);
@@ -118,7 +117,7 @@ export class Content extends PureComponent {
                         resource.NA)
                 }
                 { isDisplayActivePlayer && this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
-                {isDisplayActivePlayer && this._buildRow(rowTitle.TotalDeposits, `${depositByMonth}/${fdmDepositByMonth}`, `${depositTotal}/${fdmDepositTotal}`)}
+                {isDisplayActivePlayer && this._buildRow(rowTitle.TotalDeposits, `${depositByMonth}/${fdmDepositByMonth}`, `${depositTotal}/N/A`)}
                 { isDisplayTurnOver && this._buildRow(rowTitle.Turnover, turnoverByMonth, turnoverTotal)}
                 {this._buildRow(rowTitle.Winlost, winlostByMonth, winlostTotal)}
                 {

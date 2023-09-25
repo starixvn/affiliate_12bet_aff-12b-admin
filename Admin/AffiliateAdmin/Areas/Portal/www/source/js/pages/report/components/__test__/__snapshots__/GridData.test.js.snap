@@ -18,9 +18,9 @@ exports[`affiliate report - GridData  _buildCommonCell - should return correctly
     onClick={[Function]}
     sortable={false}
     sorting={false}
-    title="1"
+    title="0"
   >
-    1
+    0
   </t>
   <t
     asc={true}
@@ -29,9 +29,9 @@ exports[`affiliate report - GridData  _buildCommonCell - should return correctly
     onClick={[Function]}
     sortable={false}
     sorting={false}
-    title="1"
+    title="0"
   >
-    1
+    0
   </t>
   <t
     asc={true}
@@ -236,9 +236,31 @@ exports[`affiliate report - GridData  _buildCommonCell - should return correctly
     onClick={[Function]}
     sortable={false}
     sorting={false}
-    title="803,935.72"
+    title="0.00"
   >
-    803,935.72
+    0.00
+  </t>
+  <t
+    asc={true}
+    className="text-right"
+    header={false}
+    onClick={[Function]}
+    sortable={false}
+    sorting={false}
+    title="0.00"
+  >
+    0.00
+  </t>
+  <t
+    asc={true}
+    className="text-right"
+    header={false}
+    onClick={[Function]}
+    sortable={false}
+    sorting={false}
+    title="165.00"
+  >
+    165.00
   </t>
 </div>
 `;
@@ -254,9 +276,9 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       onClick={[Function]}
       sortable={false}
       sorting={false}
-      title="Total (all pages)"
+      title="12BETAFF001"
     >
-      Total (all pages)
+      12BETAFF001
     </t>
     <t
       asc={true}
@@ -273,28 +295,6 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       onClick={[Function]}
       sortable={false}
       sorting={false}
-      title="1"
-    >
-      1
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="1"
-    >
-      1
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
       title="0"
     >
       0
@@ -309,249 +309,6 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       title="0"
     >
       0
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0"
-    >
-      0
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0"
-    >
-      0
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="N/A"
-    >
-      N/A
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title=""
-    />
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="0.00"
-    >
-      0.00
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="803,935.72"
-    >
-      803,935.72
-    </t>
-    <t
-      asc={true}
-      className="text-center"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-    />
-  </t>
-</div>
-`;
-
-exports[`affiliate report - GridData  _buildDataRow - should render correctly is Month on Month view 1`] = `
-<div>
-  <t
-    key="dataRow-1"
-  >
-    <t
-      asc={true}
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="Total (all pages)"
-    >
-      Total (all pages)
-    </t>
-    <t
-      asc={true}
-      className="text-left"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title=""
-    />
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="1"
-    >
-      1
-    </t>
-    <t
-      asc={true}
-      className="text-right"
-      header={false}
-      onClick={[Function]}
-      sortable={false}
-      sorting={false}
-      title="1"
-    >
-      1
     </t>
     <t
       asc={true}
@@ -756,9 +513,327 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       onClick={[Function]}
       sortable={false}
       sorting={false}
-      title="803,935.72"
+      title="0.00"
     >
-      803,935.72
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="165.00"
+    >
+      165.00
+    </t>
+    <t
+      asc={true}
+      className="text-center"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      <Button
+        className="p-0"
+        color="link"
+        onClick={[Function]}
+        tag="button"
+      >
+        View
+      </Button>
+    </t>
+  </t>
+</div>
+`;
+
+exports[`affiliate report - GridData  _buildDataRow - should render correctly is Month on Month view 1`] = `
+<div>
+  <t
+    key="dataRow-1"
+  >
+    <t
+      asc={true}
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="Total (all pages)"
+    >
+      Total (all pages)
+    </t>
+    <t
+      asc={true}
+      className="text-left"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title=""
+    />
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0"
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0"
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0"
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0"
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0"
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0"
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00%"
+    >
+      0.00%
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title=""
+    />
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="165.00"
+    >
+      165.00
     </t>
   </t>
 </div>
@@ -973,6 +1048,28 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
       sorting={false}
       title=""
     />
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
     <t
       asc={true}
       className="text-right"
@@ -1230,6 +1327,28 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
       sorting={false}
       title=""
     />
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
+    <t
+      asc={true}
+      className="text-right"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="0.00"
+    >
+      0.00
+    </t>
     <t
       asc={true}
       className="text-right"
@@ -1538,6 +1657,28 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
               title="165.00"
             >
               165.00
@@ -1767,6 +1908,28 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
               title=""
             >
               
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
             </t>
             <t
               asc={true}
@@ -2088,6 +2251,28 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             >
               
             </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
           </React.Fragment>
           <t
             asc={true}
@@ -2214,7 +2399,7 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colSpan={6}
+            colSpan={8}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -2376,6 +2561,28 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="Earning"
+          >
+            New FDM Earning
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Earning"
+          >
+            Total Earning
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
             title="Withdrawal"
           >
             Withdrawal
@@ -2407,7 +2614,7 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
     }
     isPaging={true}
     maxWidth={0}
-    minWidth={1000}
+    minWidth={1368}
     onPaging={[Function]}
     pageOption={
       Object {
@@ -2689,6 +2896,28 @@ exports[`affiliate report - GridData  should render correctly when have not turn
               onClick={[Function]}
               sortable={false}
               sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
               title="165.00"
             >
               165.00
@@ -2918,6 +3147,28 @@ exports[`affiliate report - GridData  should render correctly when have not turn
               title=""
             >
               
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="0.00"
+            >
+              0.00
             </t>
             <t
               asc={true}
@@ -3239,6 +3490,28 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             >
               
             </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-right"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
           </React.Fragment>
           <t
             asc={true}
@@ -3365,7 +3638,7 @@ exports[`affiliate report - GridData  should render correctly when have not turn
           </t>
           <t
             asc={true}
-            colSpan={6}
+            colSpan={8}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -3527,6 +3800,28 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="Earning"
+          >
+            New FDM Earning
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Earning"
+          >
+            Total Earning
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
             title="Withdrawal"
           >
             Withdrawal
@@ -3558,7 +3853,7 @@ exports[`affiliate report - GridData  should render correctly when have not turn
     }
     isPaging={true}
     maxWidth={0}
-    minWidth={1000}
+    minWidth={1368}
     onPaging={[Function]}
     pageOption={
       Object {
@@ -3694,7 +3989,7 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </t>
     <t
       asc={true}
-      colSpan={6}
+      colSpan={8}
       header={true}
       onClick={[Function]}
       sortable={false}
@@ -3858,6 +4153,28 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       onClick={[Function]}
       sortable={false}
       sorting={false}
+      title="Earning"
+    >
+      New FDM Earning
+    </t>
+    <t
+      asc={true}
+      colWidth={80}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="Earning"
+    >
+      Total Earning
+    </t>
+    <t
+      asc={true}
+      colWidth={80}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
       title="Withdrawal"
     >
       Withdrawal
@@ -4002,7 +4319,7 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </t>
     <t
       asc={true}
-      colSpan={6}
+      colSpan={8}
       header={true}
       onClick={[Function]}
       sortable={false}
@@ -4154,6 +4471,28 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       onClick={[Function]}
       sortable={false}
       sorting={false}
+      title="Earning"
+    >
+      New FDM Earning
+    </t>
+    <t
+      asc={true}
+      colWidth={80}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+      title="Earning"
+    >
+      Total Earning
+    </t>
+    <t
+      asc={true}
+      colWidth={80}
+      header={true}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
       title="Withdrawal"
     >
       Withdrawal
@@ -4198,7 +4537,7 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
           <t
             asc={true}
             className="text-center"
-            colSpan={24}
+            colSpan={26}
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -4324,7 +4663,7 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
           </t>
           <t
             asc={true}
-            colSpan={6}
+            colSpan={8}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -4486,6 +4825,28 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="Earning"
+          >
+            New FDM Earning
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Earning"
+          >
+            Total Earning
+          </t>
+          <t
+            asc={true}
+            colWidth={80}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
             title="Withdrawal"
           >
             Withdrawal
@@ -4517,7 +4878,7 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
     }
     isPaging={true}
     maxWidth={0}
-    minWidth={1000}
+    minWidth={1368}
     onPaging={[Function]}
     pageOption={
       Object {

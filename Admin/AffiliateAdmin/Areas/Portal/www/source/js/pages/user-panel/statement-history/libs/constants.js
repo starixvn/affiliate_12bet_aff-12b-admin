@@ -13,13 +13,11 @@ export const headerText = {
     Description: 'Description',
 }
 
-export const CalculatedMonth = 2;
-
 export const MONTHLY_TOTAL = 0;
 export const MONTHLY_EARNING = 201;
 export const PAYMENT_REQUEST = 202;
 export const ADJUSTMENT = 203;
-export const NEW_FDM_COMM_BONUS = 204;
+export const NEW_FDM_COMM_BONUS = 205;
 
 export const monthlyEarning = 'Monthly Earning'
 

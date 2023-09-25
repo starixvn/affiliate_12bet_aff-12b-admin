@@ -112,7 +112,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 Children = children,
                 Status = monthlyCom?.Status ?? children.FirstOrDefault().Status,
                 TransType = TransType.MonthlyTotal,
-                CalculatedType = monthlyCom?.CalculatedType ?? children.FirstOrDefault().CalculatedType
+                Description = monthlyCom?.Description
             };
             return monthlyTotal;
         }

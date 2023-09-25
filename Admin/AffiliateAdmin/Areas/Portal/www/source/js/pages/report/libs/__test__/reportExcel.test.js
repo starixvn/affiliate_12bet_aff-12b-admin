@@ -8,7 +8,7 @@ describe('affiliate report - Report Excel ', () => {
 
     const INDEX_DEPOSIT_COLUMN = 8;
     const INDEX_COMM_COLUMN = 17;
-    const TOTAL_COLUMNS = 23;
+    const TOTAL_COLUMNS = 25;
 
     const MAIN_SECTION_STYLE = 'mainSectionStyle';
     const TOTAL_SECTION_STYLE = 'totalSectionStyle';
@@ -170,7 +170,7 @@ describe('affiliate report - Report Excel ', () => {
 
         instance._createHeader();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(25);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(TOTAL_COLUMNS + 2);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": TITLE_ROW_INDEX, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": TITLE_ROW_INDEX + 1, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": TITLE_ROW_INDEX + 2, "r": HEADER_ROW_INDEX });

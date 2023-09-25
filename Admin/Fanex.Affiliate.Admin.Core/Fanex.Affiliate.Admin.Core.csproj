@@ -249,7 +249,6 @@
     <Compile Include="Configurations\UMConfig.cs" />
     <Compile Include="Constants\AffStatus.cs" />
     <Compile Include="Constants\AffType.cs" />
-    <Compile Include="Constants\CalculatedType.cs" />
     <Compile Include="Constants\Code.cs" />
     <Compile Include="Constants\CommGroupErrorMessage.cs" />
     <Compile Include="Constants\DeductionId.cs" />

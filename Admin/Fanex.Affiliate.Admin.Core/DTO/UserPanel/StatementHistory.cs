@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -24,8 +23,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         [JsonIgnore]
         public string Description { get; set; }
 
-        public byte? CalculatedType { get; set; }
-
         public string DateText => (TransType == Constants.TransType.MonthlyEarning || TransType == Constants.TransType.MonthlyTotal
             || TransType == Constants.TransType.NewFdmCommissionBonus) ? Date.ToString("MMM-yyyy") : Date.ToString("dd-MMM-yyyy");
 
@@ -37,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
             {
                 if (TransType == Constants.TransType.MonthlyTotal)
                 {
-                    return GetMonthlyTotalDescription(CalculatedType);
+                    return GetMonthlyTotalDescription(Description);
                 }
 
                 return Description;
@@ -46,17 +43,23 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public IEnumerable<StatementHistory> Children { get; set; } = new List<StatementHistory>();
 
-        private static string GetMonthlyTotalDescription(byte? calculatedType)
+        private static string GetMonthlyTotalDescription(string description)
         {
-            switch (calculatedType)
+            if (string.IsNullOrWhiteSpace(description))
             {
-                case Constants.CalculatedType.CalculatedMonth:
-                    return "Monthly Total";
-                case Constants.CalculatedType.UnCalculatedMonth:
-                    return "Uncalculated Month";
-                default:
-                    return "Current Month Statistics";
+                return "Monthly Total";
             }
+
+            if (description.Contains("Current"))
+            {
+                return "Current Month Statistics";
+            }
+            if (description.Contains("Uncalculated"))
+            {
+                return "Uncalculated Month";
+            }  
+            
+            return "Monthly Total";
         }
     }
 }
