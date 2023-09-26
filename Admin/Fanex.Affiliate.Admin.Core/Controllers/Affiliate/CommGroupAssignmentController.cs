@@ -125,6 +125,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     GroupName = affInfo.UserName,
                     Description = PrivateGroupName,
                     QmTurnover = commGroup.QmTurnover,
+                    IsApplyBonus = commGroup.IsApplyBonus,
                     TierSettingList = commGroup.TierSettingList,
                     FdmSettingList = commGroup.FdmSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,

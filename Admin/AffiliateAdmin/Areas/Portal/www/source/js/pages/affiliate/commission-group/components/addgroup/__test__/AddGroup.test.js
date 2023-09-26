@@ -29,7 +29,7 @@ describe('commission group - AddGroup', () => {
         QmTurnover: 100,
         TierSettingList: [],
         FdmSettingList: [],
-        IsApplyBonus: true
+        IsApplyBonus: false
     };
     const defaultProps = {
         deductionList: [

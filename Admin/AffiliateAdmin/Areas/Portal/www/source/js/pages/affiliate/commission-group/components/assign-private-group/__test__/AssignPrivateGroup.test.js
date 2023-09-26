@@ -16,7 +16,7 @@ describe('commission group - assign private group', () => {
         QmTurnover: 100,
         TierSettingList: [],
         FdmSettingList: [],
-        IsApplyBonus: true
+        IsApplyBonus: false
     };
 
     const selectedGroup = {

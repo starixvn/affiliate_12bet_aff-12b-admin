@@ -107,10 +107,9 @@
             {
                 LanguageService.SetCulture(criteria.Language);
 
-                var function = criteria.Function.ToLowerInvariant();
                 var content = GetEmailContent(criteria);
 
-                _mailProcessor.Send(content, criteria.EmailAddress, GetSubject(function));
+                _mailProcessor.Send(content, criteria.EmailAddress, GetSubject(criteria.Function));
 
                 LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
             }
@@ -166,7 +165,7 @@
         private string GetEmailContent(TestCriteria criteria)
         {
             var isText = criteria.Format == "txt";
-            var rootUrl = SiteDomainHelper.GetRootUrl(this);
+            var rootUrl = SiteDomainHelper.GetRootUrl(this, _appSetting);
             var content = string.Empty;
 
             if (string.Equals(criteria.Function, TemplateString.ContactUs, StringComparison.OrdinalIgnoreCase))

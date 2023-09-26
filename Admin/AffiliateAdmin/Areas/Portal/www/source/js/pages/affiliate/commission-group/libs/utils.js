@@ -5,7 +5,7 @@ const emptyCommGroup = {
     GroupName: '',
     Description: '',
     QmTurnover: 100,
-    IsApplyBonus: true,
+    IsApplyBonus: false,
     TierSettingList: [],
     FdmSettingList: [],
     PlatformFeeList: [],
