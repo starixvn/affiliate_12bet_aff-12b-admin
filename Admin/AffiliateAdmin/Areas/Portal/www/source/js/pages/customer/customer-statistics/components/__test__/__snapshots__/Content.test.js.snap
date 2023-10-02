@@ -109,12 +109,12 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         </td>
       </tr>
       <tr
-        key="Total Deposits/FDM's Deposit"
+        key="Total Deposit/FDM's Deposit"
       >
         <td
           className="font-weight-bold"
         >
-          Total Deposits/FDM's Deposit
+          Total Deposit/FDM's Deposit
         </td>
         <td
           className="text-right"
@@ -329,12 +329,12 @@ exports[`customer statistics - components - Content Should render correctly with
         </td>
       </tr>
       <tr
-        key="Total Deposits/FDM's Deposit"
+        key="Total Deposit/FDM's Deposit"
       >
         <td
           className="font-weight-bold"
         >
-          Total Deposits/FDM's Deposit
+          Total Deposit/FDM's Deposit
         </td>
         <td
           className="text-right"
@@ -557,12 +557,12 @@ exports[`customer statistics - components - Content Should render correctly with
         </td>
       </tr>
       <tr
-        key="Total Deposits/FDM's Deposit"
+        key="Total Deposit/FDM's Deposit"
       >
         <td
           className="font-weight-bold"
         >
-          Total Deposits/FDM's Deposit
+          Total Deposit/FDM's Deposit
         </td>
         <td
           className="text-right"

@@ -86,12 +86,12 @@ export class GridData extends Component {
             </Row>,
             <Row key="sub-theard">
                 <Cell header={true} colWidth={80}></Cell>
-                <Cell header={true} colWidth={80}>Tier /<br /> Min New FDM</Cell>
-                <Cell header={true} colWidth={80} title="Minimum all members' winlost amount">Min AM($) /<br /> Max New FDM</Cell>
-                <Cell header={true} colWidth={80} title="Maximum all members' winlost amount">Max AM($) /<br /> Min FDM's Deposit</Cell>
-                <Cell header={true} colWidth={80} title="Minimum number of qualified members">Min QM /<br /> Max FDM's Deposit</Cell>
-                <Cell header={true} colWidth={80} title="Maximum number of qualified members">Max QM /<br /> Comm Rate</Cell>
-                <Cell header={true} colWidth={80}>Comm Rate /<br /> Max Comm Rate</Cell>
+                <Cell header={true} colWidth={80}>Tier/<br /> Min New FDM</Cell>
+                <Cell header={true} colWidth={80} title="Minimum all members' winlost amount">Min AM($)/<br /> Max New FDM</Cell>
+                <Cell header={true} colWidth={80} title="Maximum all members' winlost amount">Max AM($)/<br /> Min FDM's Deposit</Cell>
+                <Cell header={true} colWidth={80} title="Minimum number of qualified members">Min QM/<br /> Max FDM's Deposit</Cell>
+                <Cell header={true} colWidth={80} title="Maximum number of qualified members">Max QM/<br /> Comm Rate</Cell>
+                <Cell header={true} colWidth={80}>Comm Rate/<br /> Max Comm Rate</Cell>
                 <Cell header={true} colWidth={80}>Bonus</Cell>
                 <Cell header={true} colWidth={80}>Exchg. Rev%</Cell>
                 <Cell header={true} colWidth={80}>Operational Fee</Cell>

@@ -15,8 +15,6 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
 
         public string Description { get; set; }
 
-        public byte? CalculatedType { get; set; }
-
         public string DateString
         {
             get

@@ -733,7 +733,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sortable={false}
       sorting={false}
     >
-      Tier /
+      Tier/
       <br />
        Min New FDM
     </t>
@@ -746,7 +746,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sorting={false}
       title="Minimum all members' winlost amount"
     >
-      Min AM($) /
+      Min AM($)/
       <br />
        Max New FDM
     </t>
@@ -759,7 +759,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sorting={false}
       title="Maximum all members' winlost amount"
     >
-      Max AM($) /
+      Max AM($)/
       <br />
        Min FDM's Deposit
     </t>
@@ -772,7 +772,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sorting={false}
       title="Minimum number of qualified members"
     >
-      Min QM /
+      Min QM/
       <br />
        Max FDM's Deposit
     </t>
@@ -785,7 +785,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sorting={false}
       title="Maximum number of qualified members"
     >
-      Max QM /
+      Max QM/
       <br />
        Comm Rate
     </t>
@@ -797,7 +797,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sortable={false}
       sorting={false}
     >
-      Comm Rate /
+      Comm Rate/
       <br />
        Max Comm Rate
     </t>
@@ -1265,7 +1265,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sortable={false}
               sorting={false}
             >
-              Tier /
+              Tier/
               <br />
                Min New FDM
             </t>
@@ -1278,7 +1278,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sorting={false}
               title="Minimum all members' winlost amount"
             >
-              Min AM($) /
+              Min AM($)/
               <br />
                Max New FDM
             </t>
@@ -1291,7 +1291,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sorting={false}
               title="Maximum all members' winlost amount"
             >
-              Max AM($) /
+              Max AM($)/
               <br />
                Min FDM's Deposit
             </t>
@@ -1304,7 +1304,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sorting={false}
               title="Minimum number of qualified members"
             >
-              Min QM /
+              Min QM/
               <br />
                Max FDM's Deposit
             </t>
@@ -1317,7 +1317,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sorting={false}
               title="Maximum number of qualified members"
             >
-              Max QM /
+              Max QM/
               <br />
                Comm Rate
             </t>
@@ -1329,7 +1329,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sortable={false}
               sorting={false}
             >
-              Comm Rate /
+              Comm Rate/
               <br />
                Max Comm Rate
             </t>
@@ -1514,7 +1514,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sortable={false}
               sorting={false}
             >
-              Tier /
+              Tier/
               <br />
                Min New FDM
             </t>
@@ -1527,7 +1527,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sorting={false}
               title="Minimum all members' winlost amount"
             >
-              Min AM($) /
+              Min AM($)/
               <br />
                Max New FDM
             </t>
@@ -1540,7 +1540,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sorting={false}
               title="Maximum all members' winlost amount"
             >
-              Max AM($) /
+              Max AM($)/
               <br />
                Min FDM's Deposit
             </t>
@@ -1553,7 +1553,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sorting={false}
               title="Minimum number of qualified members"
             >
-              Min QM /
+              Min QM/
               <br />
                Max FDM's Deposit
             </t>
@@ -1566,7 +1566,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sorting={false}
               title="Maximum number of qualified members"
             >
-              Max QM /
+              Max QM/
               <br />
                Comm Rate
             </t>
@@ -1578,7 +1578,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sortable={false}
               sorting={false}
             >
-              Comm Rate /
+              Comm Rate/
               <br />
                Max Comm Rate
             </t>
@@ -2058,7 +2058,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sortable={false}
               sorting={false}
             >
-              Tier /
+              Tier/
               <br />
                Min New FDM
             </t>
@@ -2071,7 +2071,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sorting={false}
               title="Minimum all members' winlost amount"
             >
-              Min AM($) /
+              Min AM($)/
               <br />
                Max New FDM
             </t>
@@ -2084,7 +2084,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sorting={false}
               title="Maximum all members' winlost amount"
             >
-              Max AM($) /
+              Max AM($)/
               <br />
                Min FDM's Deposit
             </t>
@@ -2097,7 +2097,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sorting={false}
               title="Minimum number of qualified members"
             >
-              Min QM /
+              Min QM/
               <br />
                Max FDM's Deposit
             </t>
@@ -2110,7 +2110,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sorting={false}
               title="Maximum number of qualified members"
             >
-              Max QM /
+              Max QM/
               <br />
                Comm Rate
             </t>
@@ -2122,7 +2122,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sortable={false}
               sorting={false}
             >
-              Comm Rate /
+              Comm Rate/
               <br />
                Max Comm Rate
             </t>
