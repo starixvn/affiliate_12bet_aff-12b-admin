@@ -25,9 +25,11 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
         [Range(0, (double)Money.MaxValue, ErrorMessage = "NextQmTurnover not valid!")]
         public decimal NextQmTurnover { get; set; }
 
-        [Range(0, Validation.MaxId, ErrorMessage = "NextQmTurnover not valid!")]
+        [Range(0, Validation.MaxId, ErrorMessage = "NoAffs not valid!")]
         public int NoAffs { get; set; }
 
         public bool IsApplyBonus { get; set; }
+
+        public bool NextIsApplyBonus { get; set; }
     }
 }

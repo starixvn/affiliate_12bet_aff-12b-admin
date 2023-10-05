@@ -46,6 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
                              NextQmTurnover = c.NextQmTurnover,
                              NoAffs = c.NoAffs,
                              IsApplyBonus = c.IsApplyBonus,
+                             NextIsApplyBonus = c.NextIsApplyBonus,
                              TierSettingList = groupTierSetting,
                              FdmSettingList = groupFdmSetting,
                              PlatformFeeList = groupDeduction.Where(p => p.DeductionId == DeductionId.PlatformFee),

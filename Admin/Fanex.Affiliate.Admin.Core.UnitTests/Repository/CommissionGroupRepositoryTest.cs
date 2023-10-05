@@ -317,6 +317,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
                 ["QMTurnover"] = 100.50m,
                 ["NextQMTurnover"] = 150.50m,
                 ["IsApplyBonus"] = true,
+                ["NextIsApplyBonus"] = false,
                 ["NoAffs"] = 2
             };
         }

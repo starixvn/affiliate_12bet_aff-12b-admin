@@ -174,7 +174,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     Ip = Request.UserHostAddress,
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     QmTurnover = commGroup.NextQmTurnover,
-                    IsApplyBonus = commGroup.IsApplyBonus,
+                    IsApplyBonus = commGroup.NextIsApplyBonus,
                     TierSettingList = commGroup.TierSettingList,
                     FdmSettingList = commGroup.FdmSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,

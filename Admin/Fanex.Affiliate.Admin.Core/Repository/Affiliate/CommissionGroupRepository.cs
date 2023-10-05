@@ -151,7 +151,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                     QmTurnover = Convert.ToDecimal(reader["QMTurnover"]),
                     NextQmTurnover = Convert.ToDecimal(reader["NextQMTurnover"]),
                     NoAffs = Convert.ToInt32(reader["NoAffs"]),
-                    IsApplyBonus = Convert.ToBoolean(reader["IsApplyBonus"])
+                    IsApplyBonus = Convert.ToBoolean(reader["IsApplyBonus"]),
+                    NextIsApplyBonus = Convert.ToBoolean(reader["NextIsApplyBonus"])
                 });
             }
 
