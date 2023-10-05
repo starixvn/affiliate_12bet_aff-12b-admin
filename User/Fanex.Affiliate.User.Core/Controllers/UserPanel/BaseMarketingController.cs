@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             var viewModel = new LinkFormViewModel
             {
                 DomainList = MarketingService.GetDomainList(userSession.AffId, isInternal),
-                MemberSitePageList = MarketingService.GetLandingPageList(isInternal)
+                MemberSitePageList = MarketingService.GetLandingPageList(userSession.AffId, isInternal)
             };
 
             return viewModel;

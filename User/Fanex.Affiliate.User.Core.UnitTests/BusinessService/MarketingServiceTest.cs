@@ -6,6 +6,7 @@ using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using System;
@@ -20,12 +21,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
     public class MarketingServiceTest
     {
         private readonly IMarketingRepository Repo;
+        private readonly IAppSetting AppSetting;
         private readonly IMemoryCacheService CacheService;
         private readonly ILanguageService LanguageService;
 
         public MarketingServiceTest()
         {
             Repo = Substitute.For<IMarketingRepository>();
+            AppSetting = Substitute.For<IAppSetting>();
             CacheService = Substitute.For<IMemoryCacheService>();
             LanguageService = NSubtituteMockingHelper.FakeLanguageService();
         }
@@ -287,7 +290,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var servcice = CreateService();
 
-            servcice.GetLandingPageList(false);
+            servcice.GetLandingPageList(Constant.DefaultAffId, false);
 
             Repo.Received().GetLandingPageList(false);
         }
@@ -418,6 +421,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         private MarketingService CreateService()
-            => new MarketingService(Repo, CacheService, LanguageService);
+            => new MarketingService(Repo, CacheService, LanguageService, AppSetting);
     }
 }
