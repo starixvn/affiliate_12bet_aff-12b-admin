@@ -62,6 +62,10 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public IEnumerable<string> MarketingLandingPages => GetValue("MarketingLandingPages").Split(',');
 
+        public IEnumerable<string> ODIWorldCupLandingPages => GetValue("ODIWorldCupLandingPages").Split(',');
+
+        public IEnumerable<string> SupportedODIWorldCupLanguages => GetValue("SupportedODIWorldCupLanguages").Split(',');
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

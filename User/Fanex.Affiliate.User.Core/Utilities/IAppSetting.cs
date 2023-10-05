@@ -60,5 +60,9 @@ namespace Fanex.Affiliate.User.Core.Utilities
         IEnumerable<string> MarketingForCommGroups { get; }
 
         IEnumerable<string> MarketingLandingPages { get; }
+
+        IEnumerable<string> ODIWorldCupLandingPages { get; }
+
+        IEnumerable<string> SupportedODIWorldCupLanguages { get; }
     }
 }

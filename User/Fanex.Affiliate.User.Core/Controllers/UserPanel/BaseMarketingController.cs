@@ -62,11 +62,12 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             var viewModel = new LinkFormViewModel
             {
                 DomainList = MarketingService.GetDomainList(userSession.AffId, isInternal),
-                MemberSitePageList = MarketingService.GetLandingPageList(userSession.GroupName, isInternal)
+                MemberSitePageList = MarketingService.GetSpecialLandingPageList(userSession.GroupName, userSession.PreferredLanguage, isInternal)
             };
 
             return viewModel;
         }
+
         protected IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
         {
             if (textParam.SelectedDomain == null)

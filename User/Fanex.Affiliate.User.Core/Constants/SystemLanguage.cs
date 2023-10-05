@@ -59,6 +59,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string ShortedEuroCode = "eneuro";
 
+        public const string SelectedAllLanguages = "";
+
         public static string GetShortedCodeForTracking(string currentLanguage)
         {
             if (_supportedLanguageForGoogleAnalytics.TryGetValue(currentLanguage, out string result) && !string.IsNullOrEmpty(result))

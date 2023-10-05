@@ -291,6 +291,7 @@ var MediaGallery = (function ($) {
 
             $("#Language").on("change", function () {
                 _me.getSize();
+                _me.getLinkTo();
             });
 
             $("#Currency").on("change", function () {
@@ -413,7 +414,47 @@ var MediaGallery = (function ($) {
                 url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSize"),
                 success: function (response) {
                     var html = _me.buildOptionList(response, "Size", "Size", true);
+                    var previousSelectedSize = $("#Size").val();
+
                     $("#Size").html(html);
+
+                    var hasPreviousSelectedSize = response.some(i => i.Size == previousSelectedSize);
+
+                    if (hasPreviousSelectedSize) {
+                        $("#Size").val(previousSelectedSize);
+                    }
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
+        getLinkTo: function () {
+            let param = {
+                language: $("#Language").val()
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetLinkTo"),
+                success: function (response) {
+                    var html = _me.buildOptionList(response, "PageCode", "PageName", false);
+                    var previousSelectedPage = $("#MemberSitePage").val();
+
+                    $("#MemberSitePage").html(html);
+
+                    var hasPreviousSelectedPage = response.some(i => i.PageCode == previousSelectedPage);
+
+                    if (hasPreviousSelectedPage) {
+                        $("#MemberSitePage").val(previousSelectedPage);
+                    }
                 },
                 beforeSend: function () {
                     Site.showLoader();
