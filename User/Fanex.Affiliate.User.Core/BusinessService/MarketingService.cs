@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             if (domainList == null)
             {
                 domainList = _marketingRepository.GetDomainList(affId, isInternal)?.Where(d => !d.DomainName.Contains("glg46.com"));
-                _cacheService.Set(CacheKey.DomainList, domainList, Number.Ten);
+                _cacheService.Set(CacheKey.DomainList, domainList);
             }
 
             return domainList ?? new List<Domain>();
@@ -214,15 +214,29 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal)
         {
-            var landingPages = _marketingRepository.GetLandingPageList(isInternal);
-            var sortedLandingPages = GetSortedLandingPageList(landingPages);
+            var landingPages = GetCachedLandingPageList(isInternal);
 
             if (_appSetting.MarketingForCommGroups.Any(c => string.Equals(c, commGroupName, StringComparison.OrdinalIgnoreCase)))
             {
-                return sortedLandingPages;
+                return landingPages;
             }
 
-            return sortedLandingPages.Where(l => !_appSetting.MarketingLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
+            return landingPages.Where(l => !_appSetting.MarketingLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        public IEnumerable<LandingPage> GetCachedLandingPageList(bool isInternal)
+        {
+            var landingPages = _cacheService.Get<IEnumerable<LandingPage>>(CacheKey.LandingPageList);
+
+            if (landingPages == null)
+            {
+                var landingPageList = _marketingRepository.GetLandingPageList(isInternal);
+
+                landingPages = GetSortedLandingPageList(landingPageList);
+                _cacheService.Set(CacheKey.LandingPageList, landingPages);
+            }
+
+            return landingPages ?? new List<LandingPage>();
         }
 
         public IEnumerable<LandingPage> GetSortedLandingPageList(IEnumerable<LandingPage> landingPages)
