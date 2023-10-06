@@ -289,7 +289,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var servcice = CreateService();
 
-            servcice.GetLandingPageList(Constant.DefaultAffId, false);
+            servcice.GetLandingPageList(Constant.GroupName, false);
 
             Repo.Received().GetLandingPageList(false);
         }

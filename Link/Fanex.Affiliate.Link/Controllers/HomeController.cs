@@ -18,9 +18,12 @@ namespace Fanex.Affiliate.Link.Controllers
     {
         private const string SIGN_UP_PAGE_CODE = "signup";
         private readonly string[] SpecialAffIds;
+        private readonly string[] MarketingForCommGroups;
+        private readonly string[] MarketingLandingPages;
         #region Services
 
         private readonly ITrackingSystemService _trackingSystemService;
+        private readonly IAffiliateService _affiliateService;
 
         #endregion Services
 
@@ -29,7 +32,10 @@ namespace Fanex.Affiliate.Link.Controllers
         public HomeController()
         {
             _trackingSystemService = new TrackingSystemService();
+            _affiliateService = new AffiliateService();
             SpecialAffIds = ConfigurationManager.AppSettings["SpecialAffIds"].ToString().Split(',');
+            MarketingForCommGroups = ConfigurationManager.AppSettings["MarketingForCommGroups"].ToString().Split(',');
+            MarketingLandingPages = ConfigurationManager.AppSettings["MarketingLandingPages"].ToString().Split(',');
         }
 
         #endregion Constructor
@@ -115,9 +121,14 @@ namespace Fanex.Affiliate.Link.Controllers
                         var customRedirectUrl = redirectUrl.Replace($"/{lang}/", "/");
 
                         return Redirect(customRedirectUrl);
-                    }    
+                    }
 
-                    return Redirect(redirectUrl);
+                    var isMarketingLandingPage = MarketingLandingPages.Any(l => string.Equals(pageCode, l, StringComparison.OrdinalIgnoreCase));
+
+                    if (!isMarketingLandingPage || IsValidAffMarketing(affId))
+                    {
+                        return Redirect(redirectUrl);
+                    }
                 }
 
                 ViewBag.Result = "This link does not exists. Please contact administrator!";
@@ -149,6 +160,18 @@ namespace Fanex.Affiliate.Link.Controllers
         private bool IsSpecialAffiliate(int affId, string pageCode)
         {  
             return SpecialAffIds.Contains(affId.ToString()) && string.Equals(SIGN_UP_PAGE_CODE, pageCode, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private bool IsValidAffMarketing(int affId)
+        {
+            var commGroup = _affiliateService.GetCommGroupByAffId(affId);
+
+            if (MarketingForCommGroups.Any(c => string.Equals(commGroup, c, StringComparison.OrdinalIgnoreCase)))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

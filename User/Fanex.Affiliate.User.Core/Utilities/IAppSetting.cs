@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string ResourceDomain { get; }
 
-        IEnumerable<string> MarketingAffIds { get; }
+        IEnumerable<string> MarketingForCommGroups { get; }
 
         IEnumerable<string> MarketingLandingPages { get; }
     }
