@@ -20,6 +20,8 @@ namespace Fanex.Affiliate.Link.Controllers
         private readonly string[] SpecialAffIds;
         private readonly string[] MarketingForCommGroups;
         private readonly string[] MarketingLandingPages;
+        private readonly string[] ODIWorldCupLandingPages;
+        private readonly string[] SupportedODIWorldCupLanguages;
         #region Services
 
         private readonly ITrackingSystemService _trackingSystemService;
@@ -36,6 +38,8 @@ namespace Fanex.Affiliate.Link.Controllers
             SpecialAffIds = ConfigurationManager.AppSettings["SpecialAffIds"].ToString().Split(',');
             MarketingForCommGroups = ConfigurationManager.AppSettings["MarketingForCommGroups"].ToString().Split(',');
             MarketingLandingPages = ConfigurationManager.AppSettings["MarketingLandingPages"].ToString().Split(',');
+            ODIWorldCupLandingPages = ConfigurationManager.AppSettings["ODIWorldCupLandingPages"].ToString().Split(',');
+            SupportedODIWorldCupLanguages = ConfigurationManager.AppSettings["SupportedODIWorldCupLanguages"].ToString().Split(',');
         }
 
         #endregion Constructor
@@ -124,8 +128,19 @@ namespace Fanex.Affiliate.Link.Controllers
                     }
 
                     var isMarketingLandingPage = MarketingLandingPages.Any(l => string.Equals(pageCode, l, StringComparison.OrdinalIgnoreCase));
+                    var isODIWorldCupLandingPage = ODIWorldCupLandingPages.Any(l => string.Equals(pageCode, l, StringComparison.OrdinalIgnoreCase));
 
-                    if (!isMarketingLandingPage || IsValidAffMarketing(affId))
+                    if (!(isMarketingLandingPage || isODIWorldCupLandingPage))
+                    {
+                        return Redirect(redirectUrl);
+                    }
+
+                    if (isMarketingLandingPage && IsValidAffMarketing(affId))
+                    {
+                        return Redirect(redirectUrl);
+                    }
+
+                    if (isODIWorldCupLandingPage && IsValidODIWorldCupLink(lang))
                     {
                         return Redirect(redirectUrl);
                     }
@@ -162,6 +177,16 @@ namespace Fanex.Affiliate.Link.Controllers
             return SpecialAffIds.Contains(affId.ToString()) && string.Equals(SIGN_UP_PAGE_CODE, pageCode, StringComparison.OrdinalIgnoreCase);
         }
 
+        private bool IsValidODIWorldCupLink(string languageCode)
+        {
+            if (!string.IsNullOrEmpty(languageCode) && SupportedODIWorldCupLanguages.Any(l => string.Equals(languageCode, l, StringComparison.OrdinalIgnoreCase)))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
         private bool IsValidAffMarketing(int affId)
         {
             var commGroup = _affiliateService.GetCommGroupByAffId(affId);
