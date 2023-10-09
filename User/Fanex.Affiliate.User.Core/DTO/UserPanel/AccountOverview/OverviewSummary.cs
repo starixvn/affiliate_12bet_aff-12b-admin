@@ -18,6 +18,8 @@
 
         public decimal Commission { get; set; }
 
+        public decimal FDMCommission { get; set; }
+
         public decimal FdmDeposit { get; set; }
     }
 }
