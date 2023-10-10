@@ -7,15 +7,15 @@
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel_xpre" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateOnlineList_Sel" SpName="Aff_Admin_AffiliateOnlineList_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_CommGroup_Deductions_Sel" SpName="Aff_Admin_CommGroup_Deductions_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel_xpre" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins_xpre" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd_xpre" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_CommGroup_Del" SpName="Aff_Admin_CommGroup_Del" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_CommGroupNormal_Sel" SpName="Aff_Admin_CommGroupNormal_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_CommGroup_Assign" SpName="Aff_Admin_CommGroup_Assign" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
@@ -29,8 +29,8 @@
     <Setting Key="Aff_Check_AffBelongToUser" SpName="Aff_Check_AffBelongToUser" DbName="DBAFF_Affiliate_12bet_bodbAdminNet"/>
   </Function>
   <Function Name="Report">
-    <Setting Key="Aff_Admin_AffiliateReport_Sel" SpName="Aff_Admin_AffiliateReport_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_AffiliateReport_Detail_Sel" SpName="Aff_Admin_AffiliateReport_Detail_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_AffiliateReport_Sel" SpName="Aff_Admin_AffiliateReport_Sel_xpre" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_AffiliateReport_Detail_Sel" SpName="Aff_Admin_AffiliateReport_Detail_Sel_xpre" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="Info">
     <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
@@ -49,7 +49,7 @@
     <Setting Key="Aff_UserLog_RunSP_Detail_WriteLog" SpName="Aff_UserLog_RunSP_Detail_WriteLog" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="StatementHistory">
-    <Setting Key="Aff_Admin_StatementHistory_Sel" SpName="Aff_Admin_StatementHistory_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_StatementHistory_Sel" SpName="Aff_Admin_StatementHistory_Sel_xpre" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
@@ -95,11 +95,6 @@
     <Setting Key="Aff_Admin_Newsletter_Del" SpName="Aff_Admin_Newsletter_Del" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_Admin_Newsletter_Ins" SpName="Aff_Admin_Newsletter_Ins" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
     <Setting Key="Aff_AffTypeSel" SpName="Aff_AffTypeSel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-  </Function>
-  <Function Name="ThirdPartyProduct">
-    <Setting Key="Aff_3rdProduct_ImportQueueSel" SpName="Aff_3rdProduct_ImportQueueSel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_3rdProduct_XmlDataByQueueIdSel" SpName="Aff_3rdProduct_XmlDataByQueueIdSel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_3rdProduct_TimeTrackerSel" SpName="Aff_3rdProduct_TimeTrackerSel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
   <Function Name="EmailHistory">
     <Setting Key="Aff_Admin_EmailHistory_Sel" SpName="Aff_Admin_EmailHistory_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
@@ -148,7 +143,7 @@
     <Setting Key="DEP_AffiliateGetPSP" SpName="DEP_AffiliateGetPSP" DbName="DBDEPOSIT_Deposit_DB_bodbAffiliateNet" />
     <Setting Key="DEP_AffiliateGeneralInfo" SpName="DEP_AffiliateGeneralInfo" DbName="DBDEPOSIT_Deposit_DB_bodbAffiliateNet" />
     <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Admin_GeneralInfo_Sel" SpName="Aff_Admin_GeneralInfo_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Admin_GeneralInfo_Sel" SpName="Aff_Admin_GeneralInfo_Sel_xpre" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
   </Function>
 
   <Function Name="AdminRole">

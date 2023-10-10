@@ -81,7 +81,7 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={50} rowSpan="2">No.Aff</Cell>
                 <Cell header={true} colWidth={150} rowSpan="2">Description</Cell>
                 <Cell header={true} colWidth={80} rowSpan="2">Creation</Cell>
-                <Cell header={true} colSpan="11">Policy</Cell>
+                <Cell header={true} colSpan="12">Policy</Cell>
                 {isModifiable && <Cell header={true} colWidth={70} rowSpan="2">Action</Cell>}
             </Row>,
             <Row key="sub-theard">
@@ -212,7 +212,7 @@ export class GridData extends Component {
         }
         else {
             rows.push(<Row>
-                <Cell className="text-center" colSpan="16">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="18">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
