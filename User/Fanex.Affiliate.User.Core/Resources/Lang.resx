@@ -1083,8 +1083,8 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Preference" xml:space="preserve">
     <value>Preference</value>
   </data>
-  <data name="PreferLangErr" xml:space="preserve">
-    <value>Please select Preferred Language</value>
+  <data name="AffAccountLanguageErr" xml:space="preserve">
+    <value>Please select Affiliate Account Language</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>Processing</value>
@@ -2276,5 +2276,14 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="NewFDM" xml:space="preserve">
     <value>New FDM</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>Affiliate Account Language</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>Please select Target Country</value>
+  </data>
+  <data name="TargetCountry" xml:space="preserve">
+    <value>Target Country</value>
   </data>
 </root>

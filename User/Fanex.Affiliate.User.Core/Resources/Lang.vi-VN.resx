@@ -998,7 +998,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="Preference" xml:space="preserve">
     <value>Tham chiếu</value>
   </data>
-  <data name="PreferLangErr" xml:space="preserve">
+  <data name="AffAccountLanguageErr" xml:space="preserve">
     <value>Vui lòng chọn ngôn ngữ bạn thích</value>
   </data>
   <data name="Proccessing" xml:space="preserve">

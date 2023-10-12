@@ -31,6 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                             AffName = Convert.ToString(reader["UserName"]),
                             FirstName = HttpUtility.HtmlDecode(Convert.ToString(reader["FirstName"])),
                             LastName = HttpUtility.HtmlDecode(Convert.ToString(reader["LastName"])),
+                            TargetCountry = Convert.ToString(reader["PreferredLanguage"]),
                             PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
                             AffType = Convert.ToByte(reader["AffType"]),
                             BalanceBf = Convert.ToDecimal(reader["BalBroughtForward"]),

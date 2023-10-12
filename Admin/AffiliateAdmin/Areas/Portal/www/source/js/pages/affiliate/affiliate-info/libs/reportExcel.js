@@ -18,7 +18,7 @@ const REPORT_TITLE_ROW_INDEX = 0;
 const HEADER_ROW_INDEX = 1;
 const DATA_ROW_INDEX = 2;
 
-const TOTAL_COLUMN = 17;
+const TOTAL_COLUMN = 19;
 
 const MAIN_SECTION_STYLE = 'mainSectionStyle';
 
@@ -29,6 +29,7 @@ const fields = {
     ProcessingStatus: 'ProcessingStatus',
     FirstName: 'FirstName',
     LastName: 'LastName',
+    TargetCountry: 'TargetCountry',
     Language: 'Language',
     Phone: 'Phone',
     Email: 'Email',
@@ -44,9 +45,10 @@ const fields = {
 }
 
 export default class ReportExcel {
-    constructor(data, title, languageList, selectedColumnList) {
+    constructor(data, title, targetCountryList, languageList, selectedColumnList) {
         this.title = title;
         this.data = data;
+        this.targetCountryList = targetCountryList;
         this.languageList = languageList;
         this.selectedColumnList = selectedColumnList;
 
@@ -146,6 +148,8 @@ export default class ReportExcel {
             value = value === null ? resource.NA : formatDecimal(value);
         } else if (fieldName === fields.Member) {
             value = value === null ? resource.NA : format(value);
+        } else if (fieldName === fields.TargetCountry) {
+            value = this.targetCountryList[value] || '';
         } else if (fieldName === fields.Language) {
             value = this.languageList[value] || '';
         } else if (!value && fieldName === fields.CommissionGroup) {
@@ -207,6 +211,10 @@ export default class ReportExcel {
             field: fields.LastName,
             [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 170
+        }, {
+            field: fields.TargetCountry,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 150
         }, {
             field: fields.Language,
             [MAIN_SECTION_STYLE]: bodyCellStyle.left,

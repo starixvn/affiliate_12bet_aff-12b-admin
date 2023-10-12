@@ -998,7 +998,7 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="Preference" xml:space="preserve">
     <value>Preferensi</value>
   </data>
-  <data name="PreferLangErr" xml:space="preserve">
+  <data name="AffAccountLanguageErr" xml:space="preserve">
     <value>Pilih preferensi bahasa</value>
   </data>
   <data name="Proccessing" xml:space="preserve">

@@ -58,6 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
                 LanguageList = _commonSettingService.GetInChangeMarkets(),
+                TargetCountryList = _commonSettingService.GetInChangeMarkets()
             };
 
             return new JsonNetResult(viewModel);
@@ -136,6 +137,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 IsExportExcel = viewModel.IsExportExcel,
                 PageIndex = viewModel.PageIndex,
                 PageSize = viewModel.PageSize,
+                TargetCountries = queryLangs,
                 PreferenceLanguages = queryLangs,
                 SortBy = viewModel.SortBy,
                 SortDirectionType = viewModel.SortDirectionType,

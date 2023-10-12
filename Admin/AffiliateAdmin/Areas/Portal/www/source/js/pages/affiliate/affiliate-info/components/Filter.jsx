@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import MultipleSelect from '../../../../components/multiple-select';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { statusList, sortByList, defaultSortBy, resource, processingStatusList } from '../libs/constants';
-import { setReportTitle, setParam, setSelectedColumn, setLanguageList, setIsClickSearch } from '../actions';
+import { setReportTitle, setParam, setSelectedColumn, setIsClickSearch } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { claimResource } from '../../../../modules/claim';
 
@@ -17,6 +17,7 @@ export class Filter extends PureComponent {
 
         this.state = {
             selectedCommGroup: this.initialGroupId,
+            selectedTargetCountry: '',
             selectedLanguage: '',
             selectedStatus: props.param.Status || '',
             selectedProcessingStatus: '',
@@ -49,12 +50,13 @@ export class Filter extends PureComponent {
     }
 
     handleClickSearch = () => {
-        const { selectedCommGroup, selectedLanguage, selectedStatus, selectedProcessingStatus, userName, email, selectedSortBy, isSortAscending, affId } = this.state;
+        const { selectedCommGroup, selectedTargetCountry, selectedLanguage, selectedStatus, selectedProcessingStatus, userName, email, selectedSortBy, isSortAscending, affId } = this.state;
 
         const affIdInput = affId.trim();
-        this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, selectedProcessingStatus, userName, email, affIdInput));
+        this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedTargetCountry, selectedLanguage, selectedStatus, selectedProcessingStatus, userName, email, affIdInput));
         const param = {
             GroupId: selectedCommGroup,
+            TargetCountry: selectedTargetCountry,
             Language: selectedLanguage,
             Status: selectedStatus,
             ProcessingStatus: selectedProcessingStatus,
@@ -87,11 +89,12 @@ export class Filter extends PureComponent {
         this.props.setSelectedColumn(newColumnList);
     }
 
-    _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, selectedProcessingStatus, userName, email, affId) {
-        const { commGroupList, languageList, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter, isShowProcessingStatusFilter } = this.props;
+    _buildReportTitle(selectedCommGroup, selectedTargetCountry, selectedLanguage, selectedStatus, selectedProcessingStatus, userName, email, affId) {
+        const { commGroupList, targetCountryList, languageList, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter, isShowProcessingStatusFilter, isShowTargetCountryFilter } = this.props;
 
         const space = resource.Space;
         const apostrophe = resource.Apostrophe;
+        const targetCountryTitle = targetCountryList[selectedTargetCountry] || resource.AllTargetCountries;
         const commGroupTitle = commGroupList[selectedCommGroup] || resource.AllCommGroups;
         const languageTitle = languageList[selectedLanguage] || resource.AllLanguages;
         const statusTitle = statusList[selectedStatus] || resource.AllStatuses;
@@ -99,6 +102,7 @@ export class Filter extends PureComponent {
 
         const titles = [resource.ReportName];
         isShowCommFilter && titles.push(commGroupTitle.toUpperCase());
+        isShowTargetCountryFilter && titles.push(targetCountryTitle.toUpperCase());
         isShowLangFilter && titles.push(languageTitle.toUpperCase());
         isShowAccStatusFilter && titles.push(statusTitle.toUpperCase());
         isShowProcessingStatusFilter && titles.push(processingStatusTitle.toUpperCase())
@@ -110,8 +114,8 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending, selectedProcessingStatus } = this.state;
-        const { columnList, languageList, commGroupList, isShowEmailFilter, sortKeys, isShowAccStatusFilter, isShowCommFilter, isShowLangFilter, isShowProcessingStatusFilter } = this.props;
+        const { selectedCommGroup, selectedTargetCountry, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending, selectedProcessingStatus } = this.state;
+        const { columnList, languageList, targetCountryList, commGroupList, isShowEmailFilter, sortKeys, isShowAccStatusFilter, isShowCommFilter, isShowLangFilter, isShowTargetCountryFilter, isShowProcessingStatusFilter } = this.props;
 
         return (
             <div className="filter-container">
@@ -127,6 +131,21 @@ export class Filter extends PureComponent {
                                     })
                                 }
                             </Input>
+                        </FormGroup>
+                    }
+
+                    {isShowTargetCountryFilter &&
+                        <FormGroup className="my-2 mr-sm-2">
+                            {
+                                <Input type="select" name="selectedTargetCountry" id="TargetCountry" value={selectedTargetCountry} onChange={this.handleChange}>
+                                    <option key="target-all" value="">{resource.AllTargetCountries}</option>
+                                    {
+                                        Object.keys(targetCountryList).map(target => {
+                                            return (<option key={'target-' + target} value={target}>{targetCountryList[target]}</option>)
+                                        })
+                                    }
+                                </Input>
+                            }
                         </FormGroup>
                     }
 
@@ -234,10 +253,11 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ languageList, commGroupList, param, groupId, columnList, claimsPrincipal }) {
+function mapStateToProps({ languageList, targetCountryList, commGroupList, param, groupId, columnList, claimsPrincipal }) {
     const isShowEmailFilter = claimsPrincipal.hasReadClaim(claimResource.AffEmail);
     const isShowAccStatusFilter = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
     const isShowCommFilter = claimsPrincipal.hasReadClaim(claimResource.AssignCommGroup);
+    const isShowTargetCountryFilter = claimsPrincipal.hasReadClaim(claimResource.AffTargetCountry);
     const isShowLangFilter = claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment);
     const isShowProcessingStatusFilter = claimsPrincipal.hasReadClaim(claimResource.ProcRequest);
     const sortKeys = Object.keys(sortByList)
@@ -246,11 +266,11 @@ function mapStateToProps({ languageList, commGroupList, param, groupId, columnLi
             return !item.renderClaim || claimsPrincipal.hasClaim(item.renderClaim);
         })
         .map(key => { return { key: key, value: sortByList[key].value } });
-    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter, isShowProcessingStatusFilter });
+    return Object.assign({}, { languageList, targetCountryList, commGroupList, param, groupId, columnList, isShowEmailFilter, sortKeys, isShowCommFilter, isShowAccStatusFilter, isShowLangFilter, isShowTargetCountryFilter, isShowProcessingStatusFilter });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setReportTitle, setParam, setSelectedColumn, setLanguageList, setIsClickSearch }, dispatch);
+    return bindActionCreators({ setReportTitle, setParam, setSelectedColumn, setIsClickSearch }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

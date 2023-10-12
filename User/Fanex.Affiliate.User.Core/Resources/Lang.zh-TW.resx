@@ -995,7 +995,7 @@
   <data name="Preference" xml:space="preserve">
     <value>首選</value>
   </data>
-  <data name="PreferLangErr" xml:space="preserve">
+  <data name="AffAccountLanguageErr" xml:space="preserve">
     <value>請選擇語言</value>
   </data>
   <data name="Proccessing" xml:space="preserve">

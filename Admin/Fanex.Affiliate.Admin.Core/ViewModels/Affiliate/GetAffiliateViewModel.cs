@@ -10,6 +10,8 @@
 
         public int GroupId { get; set; }
 
+        public string TargetCountry { get; set; }
+
         public string Language { get; set; }
 
         public string Status { get; set; }

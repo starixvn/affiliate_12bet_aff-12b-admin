@@ -21,6 +21,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string LastName { get; set; }
 
+        [PermissionCheck(Function.AffTargetCountry)]
+        public string TargetCountry { get; set; }
+
+        [PermissionCheck(Function.LanguageAmendment)]
         public string Language { get; set; }
 
         [PermissionCheck(Function.AffEmail)]

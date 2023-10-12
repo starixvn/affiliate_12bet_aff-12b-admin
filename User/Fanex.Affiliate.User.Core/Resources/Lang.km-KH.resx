@@ -745,7 +745,7 @@
   <data name="Del" xml:space="preserve">
     <value>លុប</value>
   </data>
-  <data name="PreferLangErr" xml:space="preserve">
+  <data name="AffAccountLanguageErr" xml:space="preserve">
     <value>សូមជ្រើសរើសភាសាដែលពេញចិត្ត</value>
   </data>
   <data name="errSecQuestionEmpty" xml:space="preserve">
