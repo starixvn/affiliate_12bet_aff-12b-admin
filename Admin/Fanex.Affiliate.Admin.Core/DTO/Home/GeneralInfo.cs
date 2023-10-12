@@ -6,10 +6,6 @@
 
         public int BannerNumber { get; set; }
 
-        public int ImageBannerNumber { get; set; }
-
-        public int FlashBannerNumber { get; set; }
-
         public int TextBannerNumber { get; set; }
 
         public int AllAffiliateNumber { get; set; }

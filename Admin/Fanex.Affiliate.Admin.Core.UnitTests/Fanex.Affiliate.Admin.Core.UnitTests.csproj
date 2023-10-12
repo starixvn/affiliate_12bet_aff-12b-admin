@@ -236,7 +236,6 @@
     <Compile Include="Controllers\LoginControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\LandingPageControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\MediaGalleryControllerTest.cs" />
-    <Compile Include="Controllers\MediaGallery\TextListControllerTest.cs" />
     <Compile Include="Controllers\Member\ActiveMemberControllerTest.cs" />
     <Compile Include="Controllers\Member\MemberControllerTest.cs" />
     <Compile Include="Controllers\Message\MessageControllerTest.cs" />
@@ -293,7 +292,6 @@
     <Compile Include="Services\MediaGallery\BannerValidationServiceTest.cs" />
     <Compile Include="Services\MediaGallery\CommonMediaGalleryServiceTest.cs" />
     <Compile Include="Services\MediaGallery\LandingPageServiceTest.cs" />
-    <Compile Include="Services\MediaGallery\TextListServiceTest.cs" />
     <Compile Include="Services\Member\ActiveMemberServiceTest.cs" />
     <Compile Include="Services\Member\MemberServiceTest.cs" />
     <Compile Include="Services\Message\MessageServiceTest.cs" />

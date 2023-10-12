@@ -386,7 +386,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MediaGallery\LandingPageListController.cs" />
     <Compile Include="Controllers\MediaGallery\MediaGalleryController.cs" />
-    <Compile Include="Controllers\MediaGallery\TextListController.cs" />
     <Compile Include="Controllers\Member\ActiveMemberController.cs" />
     <Compile Include="Controllers\Member\MemberController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -463,11 +462,8 @@
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteBannerParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\DeleteTextParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateMultipleBannersParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\InsertUpdateTextParam.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
-    <Compile Include="DTO\MediaGallery\TextInfo.cs" />
     <Compile Include="DTO\Message\MessageDetail.cs" />
     <Compile Include="DTO\Message\MessageInfo.cs" />
     <Compile Include="DTO\Payment\PaymentRequest.cs" />
@@ -516,7 +512,6 @@
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\SizeParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\TextParam.cs" />
     <Compile Include="MetaModels\Member\ActiveMemberParam.cs" />
     <Compile Include="MetaModels\Member\UpdateMemberStatusParam.cs" />
     <Compile Include="MetaModels\Member\MemberParam.cs" />
@@ -666,9 +661,7 @@
     <Compile Include="Services\MediaGallery\IBannerValidationService.cs" />
     <Compile Include="Services\MediaGallery\ICommonMediaGalleryService.cs" />
     <Compile Include="Services\MediaGallery\ILandingPageService.cs" />
-    <Compile Include="Services\MediaGallery\ITextListService.cs" />
     <Compile Include="Services\MediaGallery\LandingPageService.cs" />
-    <Compile Include="Services\MediaGallery\TextListService.cs" />
     <Compile Include="Services\Member\ActiveMemberService.cs" />
     <Compile Include="Services\Member\IActiveMemberService.cs" />
     <Compile Include="Services\Member\IMemberService.cs" />
@@ -717,7 +710,6 @@
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\GetReportMainDataViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\GetBannerViewModel.cs" />
-    <Compile Include="ViewModels\MediaGallery\GetTextLinkViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\ImageSizeViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
     <Compile Include="ViewModels\Domain\DomainViewModel.cs" />
@@ -725,7 +717,6 @@
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\BannerListViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\NewsLetterViewModel.cs" />
-    <Compile Include="ViewModels\MediaGallery\TextListViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

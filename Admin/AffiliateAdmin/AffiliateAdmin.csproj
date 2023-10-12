@@ -592,7 +592,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\newsletter\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\offer-page\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\offer-page\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\__test__\redux\AppContainer.redux.test.js" />
@@ -886,20 +885,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\libs\menus.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\actions\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\AppContainer.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\Content.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\Filter.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\redux\Content.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\redux\Filter.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\redux\TextDetailForm.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\__test__\TextDetailForm.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\libs\constants.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\reducers\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\active-member\actions\__test__\index.test.js" />
@@ -936,11 +921,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\NotificationPopup.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\text-list\components\TextDetailForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\affiliate-info\components\__tests__\redux\GridData.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\index.jsx" />
@@ -991,7 +971,6 @@
     <Content Include="Areas\Portal\Views\AdminRole\RolePermission.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\PaymentRequest.cshtml" />
     <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
-    <Content Include="Areas\Portal\Views\MediaGallery\TextList.cshtml" />
     <Content Include="Areas\Portal\www\dist\assets\template.xlsx" />
     <Content Include="Areas\Portal\Views\MediaGallery\Common.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\Index.cshtml" />
@@ -1557,7 +1536,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\message\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\MessageDetailForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\message\message.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\media-gallery\text-list.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\banner-list.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\login.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\under-maintenance\index.jsx" />
