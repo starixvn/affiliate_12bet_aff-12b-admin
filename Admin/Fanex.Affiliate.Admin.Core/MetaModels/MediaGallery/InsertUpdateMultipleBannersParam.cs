@@ -17,21 +17,12 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
         [Required]
         public string Categories { get; set; }
 
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string SubCategories { get; set; }
-
         [Required]
         public string Language { get; set; }
-
-        [Required]
-        public string Currencies { get; set; }
 
         public List<string> Sizes { get; set; } = new List<string>();
 
         [Required]
         public string AffTypes { get; set; }
-
-        [Required]
-        public string DeviceTypes { get; set; }
     }
 }

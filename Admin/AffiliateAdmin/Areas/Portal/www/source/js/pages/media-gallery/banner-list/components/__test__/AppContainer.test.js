@@ -15,8 +15,6 @@ describe('banner list - components - AppContainer', () => {
             PageIndex: 1,
             PageSize: 20,
             category: "",
-            currency: "",
-            deviceType: 0,
             language: ""
         }
         const props = Object.assign({}, { isShowLoader: true, fetchData: jest.fn(), param, isModifiable: true })

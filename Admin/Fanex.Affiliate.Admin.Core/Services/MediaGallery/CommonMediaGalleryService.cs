@@ -23,54 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                     {
                         result.Add(new Category
                         {
-                            CategoryName = Convert.ToString(reader["Category"]),
-                            SubCategoryName = Convert.ToString(reader["SubCategory"])
-                        });
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public IEnumerable<MediaGalleryFilterItem> GetCurrencyList()
-        {
-            const string SpKey = "Aff_Admin_MediaCurrency_Sel";
-            var result = new List<MediaGalleryFilterItem>();
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new MediaGalleryFilterItem
-                        {
-                            Id = Convert.ToInt32(reader["CurrencyId"]),
-                            Name = Convert.ToString(reader["Currency"])
-                        });
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public IEnumerable<MediaGalleryFilterItem> GetImageTypeList()
-        {
-            const string SpKey = "Aff_Admin_MediaType_Sel";
-            var result = new List<MediaGalleryFilterItem>();
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new MediaGalleryFilterItem
-                        {
-                            Id = Convert.ToInt32(reader["TypeId"]),
-                            Name = Convert.ToString(reader["Type"])
+                            CategoryName = Convert.ToString(reader["Category"])
                         });
                     }
                 }

@@ -22,12 +22,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             {
                 objectDb.SetParameterValue("languages", param.Languages);
                 objectDb.SetParameterValue("category", param.Category);
-                objectDb.SetParameterValue("subcategory", param.SubCategory);
-                objectDb.SetParameterValue("currency", param.Currency);
-                objectDb.SetParameterValue("ImageType", param.ImageType);
                 objectDb.SetParameterValue("Size", param.Size);
                 objectDb.SetParameterValue("AffType", param.AffType);
-                objectDb.SetParameterValue("devicetype", param.DeviceType);
                 objectDb.SetParameterValue("CopiedFrom", param.FromDate);
                 objectDb.SetParameterValue("CopiedTo", param.ToDate);
                 objectDb.SetParameterValue("PageIndex", param.PageIndex);
@@ -132,12 +128,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.SetParameterValue("Category", param.Category);
-                objectDb.SetParameterValue("SubCategory", param.SubCategory);
                 objectDb.SetParameterValue("Languages", param.Languages);
-                objectDb.SetParameterValue("Currency", param.Currency);
-                objectDb.SetParameterValue("ImageType", param.ImageType);
                 objectDb.SetParameterValue("AffType", param.AffType);
-                objectDb.SetParameterValue("DeviceType", param.DeviceType);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -159,11 +151,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
         {
             objectDb.SetParameterValue("Files", param.Files);
             objectDb.SetParameterValue("Categories", param.Categories);
-            objectDb.SetParameterValue("SubCategories", param.SubCategories);
             objectDb.SetParameterValue("Language", param.Language);
-            objectDb.SetParameterValue("Currencies", param.Currencies);
             objectDb.SetParameterValue("AffTypes", param.AffTypes);
-            objectDb.SetParameterValue("DeviceTypes", param.DeviceTypes);
             objectDb.SetParameterValue("UserID", param.UserId);
             objectDb.SetParameterValue("IP", param.Ip);
 
@@ -177,12 +166,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                 BannerId = Convert.ToInt32(reader["BannerID"]),
                 FileName = Convert.ToString(reader["FileName"]),
                 Categories = Convert.ToString(reader["Categories"]).Split(','),
-                SubCategories = Convert.ToString(reader["SubCategories"]).Split(','),
                 Language = Convert.ToString(reader["Language"]),
-                Currencies = Convert.ToString(reader["Currencies"]).Split(','),
-                ImageType = Convert.ToString(reader["ImageType"]),
-                Size = Convert.ToString(reader["Size"]),
-                DeviceTypes = reader.GetVal<string>("DeviceTypes").Split(',')
+                Size = Convert.ToString(reader["Size"])
             };
         }
     }

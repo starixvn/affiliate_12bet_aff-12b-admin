@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader, getSizeList } from '../actions/index';
-import { headerText, globalResource, defaultState, Casino, Sportsbook, regSpecialCharacters } from '../libs/constants';
+import { headerText, globalResource, defaultState, regSpecialCharacters } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
@@ -18,15 +18,12 @@ export class EditBannerForm extends PureComponent {
     constructor(props) {
         super(props)
 
-        const { categoryList, currencyList, affTypeList, deviceTypeList } = this.props;
+        const { categoryList, affTypeList } = this.props;
 
         this.state = {
             ...defaultState,
             categoryList,
-            subCategoryList: null,
-            currencyList,
-            affTypeList,
-            deviceTypeList
+            affTypeList
         }
 
         this.modalRef = React.createRef();
@@ -53,7 +50,7 @@ export class EditBannerForm extends PureComponent {
         const bannerInfo = await this.props.getBannerDetail(selectedBannerId);
 
         if (bannerInfo) {
-            const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.props;
+            const { categoryList, affTypeList } = this.props;
 
             const fileName = htmlDecode(bannerInfo.FileName);
             const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
@@ -61,12 +58,8 @@ export class EditBannerForm extends PureComponent {
 
             this.setState({
                 inputFileNames: [shortFileName],
-                categoryList: this.handleChangeMultipleSelected(categoryList, bannerInfo.Categories, true),
-                subCategoryList: this.handleChangeMultipleSelected(subCategoryList.filter(s => bannerInfo.Categories.includes(s.parentCategoryName)), bannerInfo.SubCategories),
-                language: bannerInfo.Language,
-                currencyList: this.handleChangeMultipleSelected(currencyList, bannerInfo.Currencies),
+                categoryList: this.handleChangeMultipleSelected(categoryList, bannerInfo.Categories, true),language: bannerInfo.Language,
                 affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffTypes),
-                deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, bannerInfo.DeviceTypes),
                 iniatalFileName: shortFileName
             });
         }
@@ -161,9 +154,9 @@ export class EditBannerForm extends PureComponent {
         }
     }
 
-    _save = async (hasSubCategory) => {
+    _save = async () => {
         const { inputFileNames, isInsert, iniatalFileName } = this.state;
-        const bannerInfo = this._getParam(hasSubCategory);
+        const bannerInfo = this._getParam();
 
         if (isInsert) {
             const result = await this.props.insertBanner(bannerInfo);
@@ -177,19 +170,16 @@ export class EditBannerForm extends PureComponent {
         };
     }
 
-    _getParam = (hasSubCategory) => {
-        const { files, inputFileNames, categoryList, subCategoryList, language, currencyList, affTypeList, deviceTypeList, isInsert } = this.state;
+    _getParam = () => {
+        const { files, inputFileNames, categoryList, language, affTypeList, isInsert } = this.state;
 
         const categories = categoryList.filter(item => item.checked).map(item => item.key).join(',');
-        const subCategories = hasSubCategory ? subCategoryList.filter(item => item.checked).map(item => item.key).join(',') : '';
-        const currencies = currencyList.filter(item => item.checked).map(item => item.key).join(',');
         const affTypes = affTypeList.filter(item => item.checked).map(item => item.key).join(',');
-        const deviceTypes = deviceTypeList.filter(item => item.checked).map(item => item.key).join(',');
         const { selectedBannerId } = this.props;
 
         return Object.assign({}, {
             bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item.trim()).join('|') : inputFileNames[0] && inputFileNames[0].trim(),
-            categories, subCategories, language, currencies, affTypes, deviceTypes
+            categories, language, affTypes
         });
     }
 
@@ -274,34 +264,19 @@ export class EditBannerForm extends PureComponent {
         return false;
     }
 
-    _handleSubmit = (hasSubCategory) => {
+    _handleSubmit = () => {
         this.props.toggleLoader(true);
 
-        const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList, inputFileNames } = this.state;
+        const { categoryList, affTypeList, inputFileNames } = this.state;
         const category = categoryList.filter(item => item.checked).map(item => item.key);
-        const subCategory = hasSubCategory && subCategoryList.filter(item => item.checked);
-        const currency = currencyList.filter(item => item.checked);
         const affType = affTypeList.filter(item => item.checked);
-        const deviceType = deviceTypeList.filter(item => item.checked);
 
         if (!category.length) {
-            this._handleShowAlert(false, "Please select Category.");
-            return;
-        }
-        if (hasSubCategory && (category.indexOf(Casino) !== -1 || category.indexOf(Sportsbook) !== -1) && !subCategory.length) {
-            this._handleShowAlert(false, "Please select Sub Category.");
-            return;
-        }
-        if (!currency.length) {
-            this._handleShowAlert(false, "Please select Currency.");
+            this._handleShowAlert(false, "Please select Target Product.");
             return;
         }
         if (!affType.length) {
             this._handleShowAlert(false, "Please select Affiliate Type.");
-            return;
-        }
-        if (!deviceType.length) {
-            this._handleShowAlert(false, "Please select Device.");
             return;
         }
         if (inputFileNames.length > 10) {
@@ -314,7 +289,7 @@ export class EditBannerForm extends PureComponent {
         }
 
         const validInputFileNames = this._validateInputFileName();
-        validInputFileNames.isOK ? this._save(hasSubCategory) : this._handleShowAlert(false, validInputFileNames.message)
+        validInputFileNames.isOK ? this._save() : this._handleShowAlert(false, validInputFileNames.message)
 
         this.props.toggleLoader(false);
     }
@@ -348,11 +323,11 @@ export class EditBannerForm extends PureComponent {
         this.resetToDefault();
     }
 
-    handleCloseNotificationPopup = (confirmResult, hasSubCategory) => {
+    handleCloseNotificationPopup = (confirmResult) => {
         this.setState({ messageNotificationPopup: '' });
 
         if (confirmResult) {
-            const bannerInfo = this._getParam(hasSubCategory);
+            const bannerInfo = this._getParam();
 
             this._updateBanner(bannerInfo);
         }
@@ -368,27 +343,10 @@ export class EditBannerForm extends PureComponent {
     resetToDefault = () => {
         this.setState(prevState => {
             const categoryList = this.selectedAll(prevState.categoryList);
-            const subCategoryList = this.selectedAll(this.getSubCategories(categoryList));
-            const currencyList = this.selectedAll(prevState.currencyList);
             const affTypeList = this.selectedAll(prevState.affTypeList);
-            const deviceTypeList = this.selectedAll(prevState.deviceTypeList);
 
-            return { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList };
+            return { categoryList, affTypeList };
         });
-    }
-
-    getSubCategories = (categories) => {
-        const { subCategoryList } = this.state;
-        const categoryNames = categories.filter(category => category.checked).map(category => category.categoryName);
-        let newSubCategoryList = categoryNames.map(c => this.props.subCategoryList.filter(sub => sub.parentCategoryName == c)).reduce((accumulator, field) => {
-            var newField = field.reduce((acc, item) => {
-                var newItem = subCategoryList && subCategoryList.filter(sub => sub.key === item.key);
-
-                return acc.concat((!!newItem && !!newItem[0]) ? newItem : item);
-            }, []);
-            return accumulator.concat(newField);
-        }, []);
-        return newSubCategoryList;
     }
 
     selectedAll = (selectedArray) => {
@@ -422,21 +380,8 @@ export class EditBannerForm extends PureComponent {
         const { categoryList } = this.props;
 
         const newCategoryList = this.handleChangeMultipleSelected(categoryList, selectedKey, true);
-        const newSubCategoryList = this.getSubCategories(newCategoryList);
 
-        this.setState({ categoryList: newCategoryList, subCategoryList: newSubCategoryList });
-    }
-
-    handleChangeSubCategory = (item, selectedKey) => {
-        const { subCategoryList } = this.state;
-
-        this.setState({ subCategoryList: this.handleChangeMultipleSelected(subCategoryList, selectedKey) });
-    }
-
-    handleChangeCurrency = (item, selectedKey) => {
-        const { currencyList } = this.state;
-
-        this.setState({ currencyList: this.handleChangeMultipleSelected(currencyList, selectedKey) });
+        this.setState({ categoryList: newCategoryList });
     }
 
     handleChangeAffType = (item, selectedKey) => {
@@ -445,21 +390,12 @@ export class EditBannerForm extends PureComponent {
         this.setState({ affTypeList: this.handleChangeMultipleSelected(affTypeList, selectedKey) });
     }
 
-    handleChangeDevice = (item, selectedKey) => {
-        const { deviceTypeList } = this.state;
-
-        this.setState({ deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, selectedKey) });
-    }
-
     render() {
         const { selectedBannerId, languageList } = this.props;
-        const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, categoryList,
-            subCategoryList, currencyList, affTypeList, deviceTypeList, files } = this.state;
+        const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, categoryList, affTypeList, files } = this.state;
         const isShowPopup = selectedBannerId !== null;
         const title = isInsert ? "Add Banner" : "Update Banner";
         const buttonLabel = isInsert ? "Upload" : "Update";
-        const selectedCategory = categoryList.filter(item => item.checked).map(item => item.key);
-        const hasSubCategory = selectedCategory.indexOf(Casino) !== -1 || selectedCategory.indexOf(Sportsbook) !== -1;
 
         return (
             <React.Fragment>
@@ -467,7 +403,7 @@ export class EditBannerForm extends PureComponent {
                     !!messageNotificationPopup && <NotificationPopup
                         message={messageNotificationPopup}
                         isConfirmPopup={true}
-                        onClose={(confirmResult) => this.handleCloseNotificationPopup(confirmResult, hasSubCategory)}
+                        onClose={(confirmResult) => this.handleCloseNotificationPopup(confirmResult)}
                     />
                 }
                 <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" innerRef={this.modalRef}>
@@ -510,23 +446,6 @@ export class EditBannerForm extends PureComponent {
                                                 onChange={this.handleChangeCategory} />
                                         </Col>
                                     </FormGroup>
-                                    {
-                                        hasSubCategory && subCategoryList && (
-                                            <FormGroup row className="mb-2">
-                                                <Label sm={3} for="subCategory" className="required">{headerText.SubCategory}</Label>
-                                                <Col sm={5}>
-                                                    <MultipleSelect
-                                                        dataSource={subCategoryList}
-                                                        keyField="key"
-                                                        valueField="name"
-                                                        statusField="checked"
-                                                        maxDisplayItemCount={1}
-                                                        noneSelectedLabel="Please Select"
-                                                        onChange={this.handleChangeSubCategory} />
-                                                </Col>
-                                            </FormGroup>
-                                        )
-                                    }
                                     <FormGroup row className="mb-2">
                                         <Label sm={3} for="language">{headerText.Language}</Label>
                                         <Col sm={5}>
@@ -540,19 +459,6 @@ export class EditBannerForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label sm={3} for="currency" className="required">{headerText.Currency}</Label>
-                                        <Col sm={5}>
-                                            <MultipleSelect
-                                                dataSource={currencyList}
-                                                keyField="key"
-                                                valueField="name"
-                                                statusField="checked"
-                                                maxDisplayItemCount={1}
-                                                noneSelectedLabel="Please Select"
-                                                onChange={this.handleChangeCurrency} />
-                                        </Col>
-                                    </FormGroup>
-                                    <FormGroup row className="mb-2">
                                         <Label sm={3} for="affType" className="required">{headerText.AffType}</Label>
                                         <Col sm={5}>
                                             <MultipleSelect
@@ -563,19 +469,6 @@ export class EditBannerForm extends PureComponent {
                                                 maxDisplayItemCount={1}
                                                 noneSelectedLabel="Please Select"
                                                 onChange={this.handleChangeAffType} />
-                                        </Col>
-                                    </FormGroup>
-                                    <FormGroup row className="mb-2">
-                                        <Label sm={3} for="deviceType" className="required">{headerText.Device}</Label>
-                                        <Col sm={5}>
-                                            <MultipleSelect
-                                                dataSource={deviceTypeList}
-                                                keyField="key"
-                                                valueField="name"
-                                                statusField="checked"
-                                                maxDisplayItemCount={1}
-                                                noneSelectedLabel="Please Select"
-                                                onChange={this.handleChangeDevice} />
                                         </Col>
                                     </FormGroup>
                                     {
@@ -620,7 +513,7 @@ export class EditBannerForm extends PureComponent {
                                     color="success"
                                     className="mr-3"
                                     disabled={((isInsert || (inputFileNames && !inputFileNames[0]))) ? isDisabled : false}
-                                    onClick={() => this._handleSubmit(hasSubCategory)}>
+                                    onClick={() => this._handleSubmit()}>
                                     {buttonLabel}
                                 </Button>
                                 <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
@@ -633,12 +526,10 @@ export class EditBannerForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedBannerId, param, categoryList, subCategoryCasinoList, subCategorySportsbookList,
-    languageList, currencyList, sizeList, affTypeList, deviceTypeList, subCategoryList }) {
+function mapStateToProps({ selectedBannerId, param, categoryList, languageList, sizeList, affTypeList }) {
     return Object.assign({},
         {
-            selectedBannerId, param, categoryList, subCategoryCasinoList,
-            subCategorySportsbookList, languageList, currencyList, sizeList, affTypeList, deviceTypeList, subCategoryList
+            selectedBannerId, param, categoryList, languageList, sizeList, affTypeList
         });
 }
 

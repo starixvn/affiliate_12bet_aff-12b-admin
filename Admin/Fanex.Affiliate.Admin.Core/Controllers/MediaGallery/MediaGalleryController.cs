@@ -47,23 +47,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             var sizeParam = new SizeParam
             {
-                ImageType = param.ImageType,
                 Languages = BuildQueryLanguages()
             };
             var bannerListCategory = _commonMediaGalleryService.GetCategoryList(BannerListCategory);
 
             var model = new BannerListViewModel
             {
-                CategoryList = bannerListCategory.Where(c => string.IsNullOrEmpty(c.SubCategoryName)),
-                SubCategoryList = bannerListCategory.Where(c => !string.IsNullOrEmpty(c.SubCategoryName)),
-                SubCategoryCasinoList = bannerListCategory.Where(c => string.Equals(c.CategoryName, CasinoCategory, StringComparison.CurrentCultureIgnoreCase)
-                                        && !string.IsNullOrEmpty(c.SubCategoryName)),
-                SubCategorySportsbookList = bannerListCategory.Where(c => string.Equals(c.CategoryName, SportsbookCategory, StringComparison.CurrentCultureIgnoreCase)
-                                        && !string.IsNullOrEmpty(c.SubCategoryName)),
+                CategoryList = bannerListCategory,
                 BannerRootUrl = _appSetting.BannerRootUrl,
                 LanguageList = _commonSettingService.GetInChangeMarkets(),
-                CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
-                ImageTypeList = _commonMediaGalleryService.GetImageTypeList(),
                 SizeList = _bannerListService.GetSizeList(sizeParam),
                 AffTypeList = _commonSettingService.GetAffTypeList(),
                 Param = param
@@ -80,11 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 AffType = model.AffType,
                 Category = model.Category,
-                Currency = model.Currency,
-                DeviceType = model.DeviceType,
-                ImageType = model.ImageType,
-                Languages = BuildQueryLanguages(model.Language),
-                SubCategory = model.SubCategory
+                Languages = BuildQueryLanguages(model.Language)
             };
 
             return new JsonNetResult
@@ -101,16 +89,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 AffType = model.AffType,
                 Category = model.Category,
-                Currency = model.Currency,
-                DeviceType = model.DeviceType,
-                ImageType = model.ImageType,
                 Languages = BuildQueryLanguages(model.Language),
                 PageIndex = model.PageIndex,
                 PageSize = model.PageSize,
                 Size = model.Size,
                 FromDate = model.FromDate,
-                ToDate = model.ToDate,
-                SubCategory = model.SubCategory
+                ToDate = model.ToDate
             };
 
             return new JsonNetResult
@@ -213,11 +197,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 BannerId = param.BannerId,
                 InputFileNames = param.InputFileNames,
                 Categories = Server.HtmlEncode(param.Categories),
-                SubCategories = Server.HtmlEncode(param.SubCategories),
                 Language = Server.HtmlEncode(param.Language),
-                Currencies = Server.HtmlEncode(param.Currencies),
-                AffTypes = param.AffTypes,
-                DeviceTypes = param.DeviceTypes
+                AffTypes = param.AffTypes
             };
         }
 

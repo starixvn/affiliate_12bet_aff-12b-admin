@@ -26,11 +26,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var param = new BannerParamFromHome { ImageType = "Image", IsFromHome = true };
+            var param = new BannerParamFromHome { IsFromHome = true };
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
             commonMediaGalleryService.Setup(c => c.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryName = "Category" } });
-            commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
-            commonMediaGalleryService.Setup(c => c.GetImageTypeList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 345, Name = "Image" } });
             var commonSettingService = new Mock<ICommonSettingService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             commonSettingService.Setup(a => a.GetAffTypeList()).Returns(new List<AffType> { new AffType { AffTypeId = 2, AffTypeName = "Asian" } });
@@ -53,12 +51,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             Assert.Equal("", viewName);
             Assert.Single(model.CategoryList);
             Assert.Single(model.LanguageList);
-            Assert.Single(model.CurrencyList);
-            Assert.Single(model.ImageTypeList);
             Assert.Single(model.SizeList);
             Assert.Single(model.AffTypeList);
             Assert.Equal(param, model.Param);
-            Assert.Equal(param.ImageType, passedSizeParam.ImageType);
         }
 
         [Fact]

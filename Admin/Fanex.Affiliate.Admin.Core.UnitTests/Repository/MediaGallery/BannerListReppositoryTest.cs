@@ -283,13 +283,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
                 ["BannerID"] = 123,
                 ["FileName"] = "test/abc.gìf",
                 ["Categories"] = "Casino",
-                ["SubCategories"] = "Baccarat",
                 ["Language"] = "English",
-                ["Currencies"] = "EURO",
-                ["ImageType"] = "Image",
                 ["AffTypes"] = "2",
                 ["Size"] = "320x250",
-                ["DeviceTypes"] = "1",
                 ["NumberOfCopies"] = "1",
                 ["UpdatedDate"] = new DateTime(2020, 01, 20)
             };
@@ -302,13 +298,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
                 ["BannerID"] = 123,
                 ["FileName"] = "test/abc.gìf",
                 ["Categories"] = "Casino",
-                ["SubCategories"] = "Baccarat",
                 ["Language"] = "English",
-                ["Currencies"] = "EURO",
-                ["ImageType"] = "Image",
                 ["AffTypes"] = "2",
                 ["Size"] = "320x250",
-                ["DeviceTypes"] = "1",
                 ["NumberOfCopies"] = "1",
                 ["UpdatedDate"] = DBNull.Value
             };

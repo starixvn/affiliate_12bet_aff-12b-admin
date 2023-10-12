@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import MyLink from '../../../common/components/MyLink';
 
 import { resizeWidthHeight } from '../libs/utils';
-import { headerText, globalResource, maxWidthHeight, pcLaptop, mobile } from '../libs/constants';
+import { headerText, globalResource, maxWidthHeight } from '../libs/constants';
 import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl } from '../actions';
 import { claimResource } from '../../../../modules/claim';
 import { format } from '../../../../modules/numberFormat';
@@ -46,11 +46,7 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={415} title={headerText.Images}>{headerText.Images}</Cell>
                 <Cell header={true} colWidth={190} title={headerText.FileName}>{headerText.FileName}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Category}>{headerText.Category}</Cell>
-                <Cell header={true} colWidth={55} title={headerText.SubCategory}>{headerText.SubCategory}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={55} title={headerText.Currency}>{headerText.Currency}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Device}>{headerText.Device}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.ImageType}>{headerText.ImageType}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Size}>{headerText.Size}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.NumberOfCopies}>{headerText.NumberOfCopies}</Cell>
                 { isModifiable && <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
@@ -72,7 +68,7 @@ export const Content = (props) => {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="12">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="9">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -122,29 +118,7 @@ export const Content = (props) => {
                         })
                     }
                 </Cell>
-                <Cell className="text-center text-break">
-                    {
-                        dataItem.SubCategories && dataItem.SubCategories.map(value => {
-                            return (<p key={`subCategory-${value}`}>{value}</p>)
-                        })
-                    }
-                </Cell>
                 <Cell className="text-center text-break" title={dataItem.Language}>{dataItem.Language}</Cell>
-                <Cell className="text-center text-break">
-                    {
-                        dataItem.Currencies && dataItem.Currencies.map(value => {
-                            return (<p key={`currency-${value}`}>{value}</p>)
-                        })
-                    }
-                </Cell>
-                <Cell className="text-center text-break">
-                    {
-                        dataItem.DeviceTypes && dataItem.DeviceTypes.map(value => {
-                            return (<p key={`deviceType-${value}`}>{value == 0 ? pcLaptop : mobile}</p>)
-                        })
-                    }
-                </Cell>
-                <Cell className="text-center text-break" title={dataItem.ImageType}>{dataItem.ImageType}</Cell>
                 <Cell className="text-center text-break" title={size}>{size}</Cell>
                 <Cell className="text-center text-break" title={numberOfCopies}>{numberOfCopies}</Cell>
                 {isModifiable &&

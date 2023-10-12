@@ -10,22 +10,14 @@ describe('banner list - components - Content ', () => {
         {
             BannerId: 2485,
             Categories: ["Casino"],
-            SubCategories: ["Baccarat"],
-            Currencies: ["EURO"],
-            DeviceTypes: ["0"],
             FileName: "CategoryMedia/giphy.gif",
-            ImageType: "Image",
             Language: "Chinese Simplified",
             Size: "500x500"
         },
         {
             BannerId: 2448,
             Categories: ["Number Game"],
-            SubCategories: [""],
-            Currencies: ["EURO"],
-            DeviceTypes: ["1"],
             FileName: "CategoryMedia/step1.jpg",
-            ImageType: "Image",
             Language: "Chinese Simplified",
             Size: "1655x438"
         }
@@ -34,24 +26,11 @@ describe('banner list - components - Content ', () => {
     const param = {
         AffType: 2,
         Category: "",
-        Currency: "",
-        DeviceType: 0,
-        ImageType: "",
         Language: "",
         PageIndex: 1,
         PageSize: 20,
-        Size: "",
-        SubCategory: ""
+        Size: ""
     };
-
-    const deviceTypeList = [
-        {
-            key: 0, name: "PC / Laptop", checked: false
-        },
-        {
-            key: 1, name: "Mobile", checked: false
-        }
-    ];
 
     const defaultProps = {
         pagingOption: defaultPagingOption,
@@ -64,16 +43,7 @@ describe('banner list - components - Content ', () => {
             { categoryName: "Casino", key: "Casino", name: "Casino", checked: false },
             { categoryName: "Sportsbook", key: "Sportsbook", name: "Sportsbook", checked: false }
         ],
-        subCategoryList: [
-            { parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false },
-            { parentCategoryName: "Sportsbook", key: "Basketball", name: "Basketball", checked: false }
-        ],
-        currencyList: [
-            { key: "EURO", name: "EURO", checked: false },
-            { key: "VND", name: "VND", checked: false }
-        ],
-        isModifiable: true,
-        deviceTypeList
+        isModifiable: true
     };
 
     it('render correctly', () => {
@@ -103,7 +73,7 @@ describe('banner list - components - Content ', () => {
         result.find(Table).props().onPaging(50, 50);
 
         expect(props.setPagingOption).toHaveBeenCalledWith({ PageIndex: 50, PageSize: 50 });
-        expect(props.setParam).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Currency": "", "DeviceType": 0, "ImageType": "", "Language": "", "PageIndex": 50, "PageSize": 50, "Size": "", "SubCategory": "" });
+        expect(props.setParam).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Language": "", "PageIndex": 50, "PageSize": 50, "Size": "" });
     });
 
     it('setSelectedBannerId - should be called when click edit button', () => {
@@ -113,7 +83,7 @@ describe('banner list - components - Content ', () => {
         result.find('Button').at(0).simulate('click');
 
         expect(props.setSelectedBannerId).toHaveBeenCalledWith(2485);
-        expect(props.fetchData).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Currency": "", "DeviceType": 0, "ImageType": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "", "SubCategory": "" });
+        expect(props.fetchData).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "" });
     });
 
     it('setBannerDetailUrl - should be called when click image', () => {
@@ -123,7 +93,7 @@ describe('banner list - components - Content ', () => {
         result.find('a[id="link2448"]').simulate('click');
 
         expect(props.setBannerDetailUrl).toHaveBeenCalledWith({ "bannerId": 2448, "height": "438", "src": "null/CategoryMedia/step1.jpg?id=undefined", "width": "1655" });
-        expect(props.fetchData).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Currency": "", "DeviceType": 0, "ImageType": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "", "SubCategory": "" });
+        expect(props.fetchData).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "" });
     });
 
     it('_onCheckItem - should be called when click edit button', () => {
@@ -139,6 +109,6 @@ describe('banner list - components - Content ', () => {
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
         expect(props.setCheckedBanners).toHaveBeenCalledWith({ "2448": false, "2485": true });
-        expect(props.fetchData).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Currency": "", "DeviceType": 0, "ImageType": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "", "SubCategory": "" });
+        expect(props.fetchData).toHaveBeenCalledWith({ "AffType": 2, "Category": "", "Language": "", "PageIndex": 1, "PageSize": 20, "Size": "" });
     });
 })

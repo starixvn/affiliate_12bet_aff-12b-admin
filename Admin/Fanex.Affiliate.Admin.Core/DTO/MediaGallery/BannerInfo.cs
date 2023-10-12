@@ -11,15 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 
         public string[] Categories { get; set; }
 
-        public string[] SubCategories { get; set; }
-
         public string Language { get; set; }
-
-        public string[] Currencies { get; set; }
-
-        public string[] DeviceTypes { get; set; }
-
-        public string ImageType { get; set; }
 
         public string[] AffTypes { get; set; }
 

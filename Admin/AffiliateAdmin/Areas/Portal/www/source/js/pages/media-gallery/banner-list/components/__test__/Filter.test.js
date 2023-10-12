@@ -6,44 +6,15 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('banner list - components - Filter ', () => {
-    const deviceTypeList = [
-        {
-            key: 0, name: "PC / Laptop", checked: false
-        },
-        {
-            key: 1, name: "Mobile", checked: false
-        }
-    ];
-
     const defaultProps = {
         pagingOption: defaultPagingOption,
         categoryList: [
             { categoryName: "Casino", key: "Casino", name: "Casino", checked: false },
             { categoryName: "Sportsbook", key: "Sportsbook", name: "Sportsbook", checked: false }
         ],
-        subCategoryList: [
-            { parentCategoryName: "Casino", key: "Slot", name: "Slot", checked: false },
-            { parentCategoryName: "Sportsbook", key: "Basketball", name: "Basketball", checked: false }
-        ],
-        subCategoryCasinoList: [
-            { CategoryName: "Casino Bonus" },
-            { CategoryName: "Slot" }
-        ],
-        subCategorySportsbookList: [
-            { CategoryName: "Basketball" },
-            { CategoryName: "SB Bonus" }
-        ],
         languageList: [
             { LanguageName: "English" },
             { LanguageName: "Vietnamese" }
-        ],
-        currencyList: [
-            { key: "EURO", name: "EURO", checked: false },
-            { key: "VND", name: "VND", checked: false }
-        ],
-        imageTypeList: [
-            { Id: 0, Name: "Image"},
-            { Id: 1, Name: "Flash"}
         ],
         sizeList: [
             { key: "300x250", name: "300x250", checked: false },
@@ -53,7 +24,6 @@ describe('banner list - components - Filter ', () => {
             { key: "Asian", name: "Asian", checked: false },
             { key: "Media", name: "Media", checked: false }
         ],
-        deviceTypeList,
         today: "7/11/2022",
         paramFromHome: {
             IsFromHome: false
@@ -66,20 +36,6 @@ describe('banner list - components - Filter ', () => {
         expect(result).toMatchSnapshot();
     });
 
-    it("render correctly with Casino's subcategory", () => {
-        const wrapper = shallow(<Filter {...defaultProps} />);
-        wrapper.setState({ category: 'Casino' });
-
-        expect(wrapper).toMatchSnapshot();
-    });
-
-    it("render correctly with Sportbook's subcategory", () => {
-        const wrapper = shallow(<Filter {...defaultProps} />);
-        wrapper.setState({ category: 'Sportsbook' });
-
-        expect(wrapper).toMatchSnapshot();
-    });
-
     it('_handleSearch - should be called when click Search Button', () => {
         const setParam = jest.fn();
         const props = Object.assign({}, defaultProps, { setParam });
@@ -87,7 +43,7 @@ describe('banner list - components - Filter ', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "fromDate": "7/1/2022", "toDate": "7/11/2022", "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "fromDate": "7/1/2022", "toDate": "7/11/2022", "affType": 2, "category": "", "language": "", "size": ""});
     });
 
     it('_handleChangeCategory - should change category when change category select', () => {
@@ -100,7 +56,7 @@ describe('banner list - components - Filter ', () => {
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Casino');
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "7/1/2022", "toDate": "7/11/2022", "category": "Casino", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "7/1/2022", "toDate": "7/11/2022", "category": "Casino", "language": "", "size": ""});
     });
 
     it('_handleChangeCategory - should change category when change category select', () => {
@@ -113,20 +69,19 @@ describe('banner list - components - Filter ', () => {
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Sportsbook');
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "7/1/2022", "toDate": "7/11/2022", "category": "Sportsbook", "currency": "", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "7/1/2022", "toDate": "7/11/2022", "category": "Sportsbook", "language": "", "size": ""});
     });
 
     it("_handleChange - should call getSizeList and setState", () => {
         const event = {
-            target: { name: 'currency', value: 'USD' }
+            target: { name: 'category', value: 'Sportsbook' }
         };
         const props = Object.assign({}, defaultProps, { getSizeList: jest.fn() });
         const wrapper = shallow(<Filter {...props} />);
         wrapper.setState = jest.fn();
 
         wrapper.instance()._handleChange(event)
-        expect(wrapper.setState).toHaveBeenCalledWith({"currency": "USD"});
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "7/1/2022", "toDate": "7/11/2022", "category": "", "currency": "USD", "deviceType": 0, "imageType": "", "language": "", "size": "", "subCategory": ""});
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "fromDate": "7/1/2022", "toDate": "7/11/2022", "category": "Sportsbook", "language": "", "size": ""});
     });
 
     it('handleChangeFromDate - should be called when From > To', () => {
@@ -171,7 +126,7 @@ describe('banner list - components - Filter ', () => {
         instance.componentDidMount();
 
         expect(props.setParamFromHome).toHaveBeenCalledWith({ IsFromHome: false });
-        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "fromDate": "7/1/2022", "toDate": "7/11/2022", "affType": 2, "category": "", "currency": "", "deviceType": 0, "imageType": "Flash", "language": "", "size": "", "subCategory": ""});
+        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "fromDate": "7/1/2022", "toDate": "7/11/2022", "affType": 2, "category": "", "language": "", "size": ""});
     });
 
     it('componentDidMount - should not call setParamFromHome and _handleSearch', () => {

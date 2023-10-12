@@ -21,11 +21,7 @@ describe('banner list - Filter - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             categoryList: [{ 123: 'Bonus' }],
-            subCategoryCasinoList: [{ Id: 123, Name: 'Slot' }],
-            subCategorySportsbookList: [{ Id: 123, Name: 'SP Bonus' }],
             languageList: [{ LanguageCode: 'en-US', LanguageName: 'English' }],
-            currencyList: [{ 234: 'EURO' }],
-            imageTypeList: [{ Id: 123, Name: 'Image' }],
             sizeList: [{ Id: 123, Name: '300x250' }],
             affTypeList: [{ AffTypeId: 2, AfTypeName: 'Asia' }],
             paramFromHome: { IsFromHome: true },
@@ -33,11 +29,7 @@ describe('banner list - Filter - connect', () => {
         };
         const state = {
             categoryList: [{ 123: 'Bonus' }],
-            subCategoryCasinoList: [{ Id: 123, Name: 'Slot' }],
-            subCategorySportsbookList: [{ Id: 123, Name: 'SP Bonus' }],
             languageList: [{ LanguageCode: 'en-US', LanguageName: 'English' }],
-            currencyList: [{ 234: 'EURO' }],
-            imageTypeList: [{ Id: 123, Name: 'Image' }],
             sizeList: [{ Id: 123, Name: '300x250' }],
             affTypeList: [{ AffTypeId: 2, AfTypeName: 'Asia' }],
             paramFromHome: { IsFromHome: true },
@@ -56,8 +48,6 @@ describe('banner list - Filter - connect', () => {
         const expectedActionCreator = {
             setParam: actions['setParam'],
             setParamFromHome: actions['setParamFromHome'],
-            getSubCategoryCasinoList: actions['getSubCategoryCasinoList'],
-            getSubCategorySportsbookList: actions['getSubCategorySportsbookList'],
             getSizeList: actions['getSizeList']
         }
 
