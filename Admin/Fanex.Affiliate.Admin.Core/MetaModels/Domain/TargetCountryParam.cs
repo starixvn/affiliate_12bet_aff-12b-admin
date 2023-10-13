@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
 {
-    public class MarketParam
+    public class TargetCountryParam
     {
         public int UserId { get; set; }
 

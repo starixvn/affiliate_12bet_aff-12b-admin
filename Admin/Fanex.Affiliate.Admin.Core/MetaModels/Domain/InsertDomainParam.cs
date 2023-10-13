@@ -8,9 +8,9 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         [Required]
         public string DomainName { get; set; }
 
-        [SpParam(SqlParamName = "BlockMarket")]
+        [SpParam(SqlParamName = "BlockTargetCountries")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string BlockMarkets { get; set; }
+        public string BlockTargetCountries { get; set; }
 
         public bool IsSSL { get; set; }
 

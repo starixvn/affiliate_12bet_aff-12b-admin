@@ -7,13 +7,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 {
     public class DomainRepository : BaseRepository, IDomainRepository
     {
-        public IEnumerable<Market> GetMarketList(MarketParam param)
+        public IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param)
         {
             const string SpKey = "Aff_SupportBlockMarket_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                return objectDb.Query<Market>(param);
+                return objectDb.Query<TargetCountry>(param);
             }
         }
 

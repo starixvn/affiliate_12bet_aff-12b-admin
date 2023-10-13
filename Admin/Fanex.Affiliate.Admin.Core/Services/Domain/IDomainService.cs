@@ -7,11 +7,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public interface IDomainService
     {
-        IEnumerable<Market> GetMarketList(MarketParam param);
+        IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param);
 
-        IEnumerable<Market> GetVisibleMarketsByUser(int userId);
+        IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser(int userId);
 
-        IEnumerable<Market> GetVisibleMarketsNotUsingByUser(int userId);
+        IEnumerable<TargetCountry> GetVisibleTargetCountriesNotUsingByUser(int userId);
 
         DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true);
 

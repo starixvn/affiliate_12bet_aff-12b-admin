@@ -22,17 +22,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         [Fact]
-        public void GetVisibleMarketsByUser_WhenCall_Excute()
+        public void GetVisibleTargetCountriesByUser_WhenCall_Excute()
         {
             // Arrange
             var param = 123;
             var service = CreateDomainControlService;
 
             // Action
-            service.GetVisibleMarketsByUser(param);
+            service.GetVisibleTargetCountriesByUser(param);
 
             // Assert
-            domainService.Received().GetVisibleMarketsByUser(param);
+            domainService.Received().GetVisibleTargetCountriesByUser(param);
         }
 
         [Fact]

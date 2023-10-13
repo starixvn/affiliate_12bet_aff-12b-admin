@@ -1,6 +1,5 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
@@ -40,7 +39,7 @@ describe('domain - DomainPopup - connect', () => {
         const expectedActionCreator = {
             insertDomain: actions['insertDomain'],
             getDomainById: actions['getDomainById'],
-            getMarketListByDomain: actions['getMarketListByDomain'],
+            getTargetCountryListByDomain: actions['getTargetCountryListByDomain'],
             fetchData: actions['fetchData'],
             updateDomain: actions['updateDomain'],
             toggleLoader: actions['toggleLoader'],

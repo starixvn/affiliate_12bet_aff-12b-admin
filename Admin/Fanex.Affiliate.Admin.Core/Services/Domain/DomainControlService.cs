@@ -18,14 +18,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             _domainControlRepository = domainControlRepository;
         }
 
-        public IEnumerable<Market> GetVisibleMarketsByUser(int userId)
+        public IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser(int userId)
         {
-            return _domainService.GetVisibleMarketsByUser(userId);
+            return _domainService.GetVisibleTargetCountriesByUser(userId);
         }
 
-        public IEnumerable<DomainControlInfo> GetDomainControlList(string marketIds)
+        public IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryIds)
         {
-            return _domainControlRepository.GetDomainControlList(marketIds);
+            return _domainControlRepository.GetDomainControlList(targetCountryIds);
         }
 
         public DomainControlInfo GetDomainControlById(int domainControlId)

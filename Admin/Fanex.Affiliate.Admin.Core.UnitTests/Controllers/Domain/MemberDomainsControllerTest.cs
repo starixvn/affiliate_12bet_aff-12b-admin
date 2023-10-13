@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             // Arrange
             var session = MockingHelper.GetSessionService();
             var domainService = new Mock<IDomainService>();
-            domainService.Setup(d => d.GetMarketList(It.IsAny<MarketParam>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
+            domainService.Setup(d => d.GetTargetCountryList(It.IsAny<TargetCountryParam>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
             var controller = new MemberDomainsController(session, domainService.Object);
 
             // Action
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.Equal("~/Areas/Portal/Views/Domain/Index.cshtml", viewName);
-            Assert.Single(model.MarketList);
+            Assert.Single(model.TargetCountryList);
             Assert.False(model.IsAffDomain);
         }
     }

@@ -18,45 +18,45 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         [Fact]
-        public void GetMarketList_WhenCall_Excute()
+        public void GetTargetCountryList_WhenCall_Excute()
         {
             // Arrange
-            var param = new MarketParam();
+            var param = new TargetCountryParam();
             var service = CreateDomainService;
 
             // Action
-            service.GetMarketList(param);
+            service.GetTargetCountryList(param);
 
             // Assert
-            domainRepository.Received().GetMarketList(param);
+            domainRepository.Received().GetTargetCountryList(param);
         }
 
         [Fact]
-        public void GetVisibleMarketsByUser_WhenCall_Excute()
+        public void GetVisibleTargetCountriesByUser_WhenCall_Excute()
         {
             // Arrange
             var service = CreateDomainService;
 
             // Action
-            service.GetVisibleMarketsByUser(123);
+            service.GetVisibleTargetCountriesByUser(123);
 
             // Assert
-            domainRepository.Received().GetMarketList(Arg.Any<MarketParam>());
+            domainRepository.Received().GetTargetCountryList(Arg.Any<TargetCountryParam>());
         }
 
         [Fact]
-        public void GetVisibleMarketsNotUsingByUser_WhenCall_Excute()
+        public void GetVisibleTargetCountriesNotUsingByUser_WhenCall_Excute()
         {
             // Arrange
-            domainRepository.GetMarketList(Arg.Any<MarketParam>()).Returns(new List<Market> { new Market { Status = 1 } });
+            domainRepository.GetTargetCountryList(Arg.Any<TargetCountryParam>()).Returns(new List<TargetCountry> { new TargetCountry { Status = 1 } });
             var service = CreateDomainService;
 
             // Action
-            var result = service.GetVisibleMarketsNotUsingByUser(123);
+            var result = service.GetVisibleTargetCountriesNotUsingByUser(123);
 
             // Assert
             Assert.Single(result);
-            domainRepository.Received().GetMarketList(Arg.Any<MarketParam>());
+            domainRepository.Received().GetTargetCountryList(Arg.Any<TargetCountryParam>());
         }
 
         [Fact]

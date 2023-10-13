@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             var model = new DomainViewModel
             {
-                MarketList = _domainService.GetVisibleMarketsByUser(SessionService.UserId),
+                TargetCountryList = _domainService.GetVisibleTargetCountriesByUser(SessionService.UserId),
                 IsAffDomain = true
             };
 
@@ -60,13 +60,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetMarketList(MarketParam param)
+        public ActionResult GetTargetCountryList(TargetCountryParam param)
         {
             param.UserId = SessionService.UserId;
 
             return new JsonNetResult
             {
-                Data = _domainService.GetMarketList(param)
+                Data = _domainService.GetTargetCountryList(param)
             };
         }
 
@@ -75,7 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult InsertDomain(InsertDomainParam param)
         {
-            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsingByUser()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.BlockTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -88,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
             return new JsonNetResult
             {
-                Data = ResultInfo.GenerateErr("The Domain' info is invalid!")
+                Data = ResultInfo.GenerateErr("The Domain's info is invalid!")
             };
         }
 
@@ -97,7 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomain(UpdateDomainParam param)
         {
-            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsingByUser()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.BlockTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 var serializedParent = JsonConvert.SerializeObject(encodeParam);
@@ -113,7 +113,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
             return new JsonNetResult
             {
-                Data = ResultInfo.GenerateErr("The Domain' info is invalid!")
+                Data = ResultInfo.GenerateErr("The Domain's info is invalid!")
             };
         }
 
@@ -143,7 +143,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             return new InsertDomainParam
             {
                 DomainName = Server.HtmlEncode(param.DomainName),
-                BlockMarkets = Server.HtmlEncode(param.BlockMarkets),
+                BlockTargetCountries = Server.HtmlEncode(param.BlockTargetCountries),
                 IsSSL = param.IsSSL,
                 IsAffDomain = param.IsAffDomain
             };
@@ -155,9 +155,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             param.Ip = Request.UserHostAddress;
         }
 
-        private IEnumerable<Market> GetVisibleMarketsNotUsingByUser()
+        private IEnumerable<TargetCountry> GetVisibleTargetCountriesNotUsingByUser()
         {
-            return _domainService.GetVisibleMarketsNotUsingByUser(SessionService.UserId);
+            return _domainService.GetVisibleTargetCountriesNotUsingByUser(SessionService.UserId);
         }
     }
 }

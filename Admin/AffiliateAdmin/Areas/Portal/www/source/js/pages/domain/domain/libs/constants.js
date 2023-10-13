@@ -8,11 +8,11 @@ export const headerText = {
     SSL: 'SSL',
     Creator: 'Creator',
     CreatedDate: 'Created Date',
-    BlockMarket: 'Block Market',
+    BlockTargetCountry: 'Block Target Country',
     Action: globalResource.Action
 }
 
-export const marketStatus = {
+export const targetCountryStatus = {
     Unblocked: 0,
     Blocked: 1,
     Using: 2
@@ -23,8 +23,8 @@ export const defaultState = {
     isShowMessage: false,
     isSuccess: true,
     message: '',
-    usingMarkets: [],
-    isBlockAllMarkets: false,
+    usingTargetCountries: [],
+    isBlockAllTargetCountries: false,
     selectedDomain: null,
-    marketListByDomain: null
+    targetCountryListByDomain: null
 }

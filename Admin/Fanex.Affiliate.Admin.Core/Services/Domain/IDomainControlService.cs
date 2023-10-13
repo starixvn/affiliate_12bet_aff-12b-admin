@@ -7,9 +7,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public interface IDomainControlService
     {
-        IEnumerable<Market> GetVisibleMarketsByUser(int userId);
+        IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser(int userId);
 
-        IEnumerable<DomainControlInfo> GetDomainControlList(string marketIds);
+        IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryIds);
 
         DomainControlInfo GetDomainControlById(int domainControlId);
 

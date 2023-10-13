@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 {
     public interface IDomainControlRepository
     {
-        IEnumerable<DomainControlInfo> GetDomainControlList(string marketIds);
+        IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryIds);
 
         DomainControlInfo GetDomainControlById(int domainControlId);
 

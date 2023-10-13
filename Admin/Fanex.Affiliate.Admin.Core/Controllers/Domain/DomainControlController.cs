@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             var model = new DomainViewModel
             {
-                MarketList = GetVisibleMarketsByUser()
+                TargetCountryList = GetVisibleTargetCountriesByUser()
             };
 
             return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);
@@ -38,13 +38,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainControlList(string marketId)
+        public ActionResult GetDomainControlList(string targetCountryIds)
         {
-            var visibleMarketIds =  MarketHelper.GetVisibleMarketIds(marketId, GetVisibleMarketsByUser());
+            var visibleTargetCountryIds =  TargetCountryHelper.GetVisibleTargetCountryIds(targetCountryIds, GetVisibleTargetCountriesByUser());
 
             return new JsonNetResult
             {
-                Data = _domainControlService.GetDomainControlList(visibleMarketIds)
+                Data = _domainControlService.GetDomainControlList(visibleTargetCountryIds)
             };
         }
 
@@ -53,11 +53,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         public ActionResult GetDomainControlById(int domainControlId)
         {
             var domainControl = _domainControlService.GetDomainControlById(domainControlId);
-            var isValidMarket = MarketHelper.IsValidMarketIds(domainControl?.MarketId, GetVisibleMarketsByUser());
+            var isValidTargetCountry = TargetCountryHelper.IsValidTargetCountryIds(domainControl?.TargetCountryId, GetVisibleTargetCountriesByUser());
 
             return new JsonNetResult
             {
-                Data = isValidMarket ? domainControl : null
+                Data = isValidTargetCountry ? domainControl : null
             };
         }
 
@@ -66,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult InsertDomainControl(InsertDomainControlParam param)
         {
-            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.MarketId, GetVisibleMarketsByUser()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.TargetCountryId, GetVisibleTargetCountriesByUser()))
             {
                 GetUserInfoParam(param);
 
@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomainControl(UpdateDomainControlParam param)
         {
-            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.MarketId, GetVisibleMarketsByUser()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.TargetCountryId, GetVisibleTargetCountriesByUser()))
             {
                 GetUserInfoParam(param);
 
@@ -130,9 +130,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             param.Ip = Request.UserHostAddress;
         }
 
-        private IEnumerable<Market> GetVisibleMarketsByUser()
+        private IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser()
         {
-            return _domainControlService.GetVisibleMarketsByUser(SessionService.UserId);
+            return _domainControlService.GetVisibleTargetCountriesByUser(SessionService.UserId);
         }
     }
 }

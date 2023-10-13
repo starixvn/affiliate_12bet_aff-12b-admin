@@ -1,9 +1,9 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { defaultState, marketStatus } from '../libs/constants';
+import { defaultState, targetCountryStatus } from '../libs/constants';
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainById, getMarketListByDomain } from '../actions/index';
+import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainById, getTargetCountryListByDomain } from '../actions/index';
 
 export class DomainPopup extends PureComponent {
     constructor(props) {
@@ -21,9 +21,9 @@ export class DomainPopup extends PureComponent {
 
     _handleUpdateState = async (selectedDomainId, isAffDomain) => {
         if (selectedDomainId === 0) {
-            const marketListByDomains = await this.props.getMarketListByDomain({ affDomainId: 0, redirectDomainId: 0 });
+            const targetCountryListByDomains = await this.props.getTargetCountryListByDomain({ affDomainId: 0, redirectDomainId: 0 });
 
-            this.setState({ isInsert: true, selectedDomain: { domainId: selectedDomainId, domainName: '', blockMarkets: [], isSSL: false }, marketListByDomains });
+            this.setState({ isInsert: true, selectedDomain: { domainId: selectedDomainId, domainName: '', blockTargetCountries: [], isSSL: false }, targetCountryListByDomains });
         } else {
             this.props.toggleLoader(true);
             const domain = await this.props.getDomainById(selectedDomainId, isAffDomain);
@@ -31,27 +31,27 @@ export class DomainPopup extends PureComponent {
             if (domain) {
                 const { DomainName, IsSSL } = domain;
                 var domainIdParam = isAffDomain ? "affDomainId" : "redirectDomainId";
-                const marketListByDomains = await this.props.getMarketListByDomain({ [domainIdParam]: selectedDomainId });
-                if (marketListByDomains) {
-                    const usingMarkets = this._handleGetUsingMarkets(marketListByDomains);
-                    const blockMarkets = this._handleGetBlockMarkets(marketListByDomains);
-                    const isBlockAllMarkets = blockMarkets.length !== 0 && (usingMarkets.length + blockMarkets.length) === marketListByDomains.length;
+                const targetCountryListByDomains = await this.props.getTargetCountryListByDomain({ [domainIdParam]: selectedDomainId });
+                if (targetCountryListByDomains) {
+                    const usingTargetCountries = this._handleGetUsingTargetCountries(targetCountryListByDomains);
+                    const blockTargetCountries = this._handleGetBlockTargetCountries(targetCountryListByDomains);
+                    const isBlockAllTargetCountries = blockTargetCountries.length !== 0 && (usingTargetCountries.length + blockTargetCountries.length) === targetCountryListByDomains.length;
 
-                    this.setState({ isInsert: false, usingMarkets, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockMarkets, isSSL: IsSSL }, marketListByDomains, isBlockAllMarkets });
+                    this.setState({ isInsert: false, usingTargetCountries, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountries, isSSL: IsSSL }, targetCountryListByDomains, isBlockAllTargetCountries });
                 } else {
-                    this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockMarkets: '', isSSL: IsSSL } });
+                    this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountries: '', isSSL: IsSSL } });
                 }
             }
             this.props.toggleLoader(false);
         }
     }
 
-    _handleGetBlockMarkets = (marketListByDomains) => {
-        return marketListByDomains.filter(m => m.Status === marketStatus.Blocked).map(m => m.MarketId);
+    _handleGetBlockTargetCountries = (targetCountryListByDomains) => {
+        return targetCountryListByDomains.filter(m => m.Status === targetCountryStatus.Blocked).map(m => m.TargetCountryId);
     }
 
-    _handleGetUsingMarkets = (marketListByDomains) => {
-        return marketListByDomains.filter(m => m.Status === marketStatus.Using).map(m => m.MarketId);
+    _handleGetUsingTargetCountries = (targetCountryListByDomains) => {
+        return targetCountryListByDomains.filter(m => m.Status === targetCountryStatus.Using).map(m => m.TargetCountryId);
     }
 
     _handleChange = (event) => {
@@ -64,40 +64,40 @@ export class DomainPopup extends PureComponent {
         this.setState({ selectedDomain: newDomain });
     }
 
-    _handleChangeMarket = (event, marketId) => {
+    _handleChangeTargetCountry = (event, targetCountryId) => {
         const isChecked = event.target.checked;
 
-        const { selectedDomain, usingMarkets, marketListByDomains } = this.state;
+        const { selectedDomain, usingTargetCountries, targetCountryListByDomains } = this.state;
 
-        if (usingMarkets.includes(marketId)) {
+        if (usingTargetCountries.includes(targetCountryId)) {
             return;
         }
 
-        const newMarketListByDomains = marketListByDomains.map(item => {
-            if (item.MarketId !== marketId) {
+        const newTargetCountryListByDomains = targetCountryListByDomains.map(item => {
+            if (item.TargetCountryId !== targetCountryId) {
                 return item;
             }
             return {
                 ...item,
-                Status: isChecked ? marketStatus.Blocked : marketStatus.Unblocked
+                Status: isChecked ? targetCountryStatus.Blocked : targetCountryStatus.Unblocked
             };
         });
 
-        const blockMarkets = this._handleGetBlockMarkets(newMarketListByDomains);
-        const newDomain = Object.assign({}, selectedDomain, { blockMarkets });
-        const isBlockAllMarkets = (usingMarkets.length + blockMarkets.length) === newMarketListByDomains.length;
+        const blockTargetCountries = this._handleGetBlockTargetCountries(newTargetCountryListByDomains);
+        const newDomain = Object.assign({}, selectedDomain, { blockTargetCountries });
+        const isBlockAllTargetCountries = (usingTargetCountries.length + blockTargetCountries.length) === newTargetCountryListByDomains.length;
 
-        this.setState({ selectedDomain: newDomain, marketListByDomains: newMarketListByDomains, isBlockAllMarkets });
+        this.setState({ selectedDomain: newDomain, targetCountryListByDomains: newTargetCountryListByDomains, isBlockAllTargetCountries });
     }
 
-    _handleChangeAllMarkets = (event) => {
+    _handleChangeAllTargetCountries = (event) => {
         const isChecked = event.target.checked;
-        const { selectedDomain, marketListByDomains } = this.state;
+        const { selectedDomain, targetCountryListByDomains } = this.state;
 
-        if (marketListByDomains) {
-            const status = isChecked ? marketStatus.Blocked : marketStatus.Unblocked;
-            const newMarketListByDomains = marketListByDomains.map(item => {
-                if (item.Status === marketStatus.Using) {
+        if (targetCountryListByDomains) {
+            const status = isChecked ? targetCountryStatus.Blocked : targetCountryStatus.Unblocked;
+            const newTargetCountryListByDomains = targetCountryListByDomains.map(item => {
+                if (item.Status === targetCountryStatus.Using) {
                     return item;
                 }
                 return {
@@ -106,10 +106,10 @@ export class DomainPopup extends PureComponent {
                 };
             });
 
-            const blockMarkets = this._handleGetBlockMarkets(newMarketListByDomains);
-            const newDomain = Object.assign({}, selectedDomain, { blockMarkets });
+            const blockTargetCountries = this._handleGetBlockTargetCountries(newTargetCountryListByDomains);
+            const newDomain = Object.assign({}, selectedDomain, { blockTargetCountries });
 
-            this.setState({ selectedDomain: newDomain, marketListByDomains: newMarketListByDomains, isBlockAllMarkets: isChecked });
+            this.setState({ selectedDomain: newDomain, targetCountryListByDomains: newTargetCountryListByDomains, isBlockAllTargetCountries: isChecked });
         }
     }
 
@@ -121,7 +121,7 @@ export class DomainPopup extends PureComponent {
 
         if(selectedDomain.domainName) {
             const { isInsert } = this.state;
-            const domainInfo = Object.assign({}, selectedDomain, { isAffDomain, blockMarkets: selectedDomain.blockMarkets.join(',') })
+            const domainInfo = Object.assign({}, selectedDomain, { isAffDomain, blockTargetCountries: selectedDomain.blockTargetCountries.join(',') })
             const message = isInsert ? "Add Successfully!" : "Update Successfully!";
 
             const result = isInsert ? await this.props.insertDomain(domainInfo) : await this.props.updateDomain(domainInfo);
@@ -171,7 +171,7 @@ export class DomainPopup extends PureComponent {
     }
 
     render() {
-        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, usingMarkets, marketListByDomains, isBlockAllMarkets } = this.state;
+        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, usingTargetCountries, targetCountryListByDomains, isBlockAllTargetCountries } = this.state;
         const isShowPopup = selectedDomain !== null;
         const title = isInsert ? "Add Domain" : "Edit Domain";
         const buttonLabel = isInsert ? "Add" : "Submit";
@@ -200,26 +200,26 @@ export class DomainPopup extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 {
-                                    marketListByDomains && (
+                                    targetCountryListByDomains && (
                                         <FormGroup row className="mb-2">
-                                            <Label sm={3}>Block Market</Label>
+                                            <Label sm={3}>Block Target Country</Label>
                                             <Col sm={9}>
-                                                <div className="block-market">
+                                                <div className="block-target-country">
                                                     {
-                                                        marketListByDomains.map(item => {
-                                                            const isUsing = usingMarkets.includes(item.MarketId);
+                                                        targetCountryListByDomains.map(item => {
+                                                            const isUsing = usingTargetCountries.includes(item.TargetCountryId);
 
                                                             return (
-                                                                <div key={item.MarketId} className="block-market-item">
-                                                                    <input type="checkbox" className="mr-2" disabled={isUsing} title={isUsing && "This Affiliate domain has been used for this market!"} id={item.MarketId} checked={item.Status === marketStatus.Blocked} onChange={(e) => this._handleChangeMarket(e, item.MarketId)} />
-                                                                    <Label for={item.MarketId}>{item.MarketName}</Label>
+                                                                <div key={item.TargetCountryId} className="block-target-country-item">
+                                                                    <input type="checkbox" className="mr-2" disabled={isUsing} title={isUsing && "This Affiliate domain has been used for this target country!"} id={item.TargetCountryId} checked={item.Status === targetCountryStatus.Blocked} onChange={(e) => this._handleChangeTargetCountry(e, item.TargetCountryId)} />
+                                                                    <Label for={item.TargetCountryId}>{item.TargetCountryName}</Label>
                                                                 </div>
                                                             )
                                                         })
                                                     }
-                                                    <div className="block-market-item block-market-All">
-                                                        <input type="checkbox" className="mr-2" disabled={marketListByDomains.every(i => i.Status === marketStatus.Using)} id="All-Markets" checked={isBlockAllMarkets} onChange={this._handleChangeAllMarkets} />
-                                                            <Label for="All-Markets">All</Label>
+                                                    <div className="block-target-country-item block-target-country-All">
+                                                        <input type="checkbox" className="mr-2" disabled={targetCountryListByDomains.every(i => i.Status === targetCountryStatus.Using)} id="All-Target-Countries" checked={isBlockAllTargetCountries} onChange={this._handleChangeAllTargetCountries} />
+                                                            <Label for="All-Target-Countries">All</Label>
                                                         </div>
                                                 </div>
                                             </Col>
@@ -243,7 +243,7 @@ function mapStateToProps({ selectedDomainId, isAffDomain }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainById, getMarketListByDomain }, dispatch);
+    return bindActionCreators({ insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainById, getTargetCountryListByDomain }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DomainPopup);

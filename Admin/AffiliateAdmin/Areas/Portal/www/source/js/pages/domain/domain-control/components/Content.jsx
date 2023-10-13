@@ -56,7 +56,7 @@ export class Content extends PureComponent {
             if (result.IsSuccessful) {
                 this.setState({ message: `The domain control has been removed successfully!`, isConfirmPopup: false });
 
-                this.props.fetchData(this.props.selectedMarketId);
+                this.props.fetchData(this.props.selectedTargetCountryId);
             }
             else {
                 this.setState({ message: result.Message, isConfirmPopup: false });
@@ -71,7 +71,7 @@ export class Content extends PureComponent {
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={22} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={86} title={headerText.Market}>{headerText.Market}</Cell>
+                <Cell header={true} colWidth={86} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.AffDomain}>{headerText.AffDomain}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.RedirectDomain}>{headerText.RedirectDomain}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Creator}>{headerText.Creator}</Cell>
@@ -111,7 +111,7 @@ export class Content extends PureComponent {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center" title={dataItem.MarketName}>{dataItem.MarketName}</Cell>
+                <Cell className="text-center" title={dataItem.TargetCountryName}>{dataItem.TargetCountryName}</Cell>
                 <Cell className="text-center" title={affDomain}>{affDomain}</Cell>
                 <Cell className="text-center" title={redirectDomain}>{redirectDomain}</Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
@@ -169,9 +169,9 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarketId, affDomainList, redirectDomainList, claimsPrincipal }) {
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedTargetCountryId, affDomainList, redirectDomainList, claimsPrincipal }) {
     const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.DomainMenu);
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarketId, affDomainList, redirectDomainList, isModifiable });
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedTargetCountryId, affDomainList, redirectDomainList, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {

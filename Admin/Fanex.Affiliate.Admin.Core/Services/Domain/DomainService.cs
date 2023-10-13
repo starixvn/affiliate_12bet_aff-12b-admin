@@ -16,19 +16,19 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         {
             _domainRepository = domainRepository;
         }
-        public IEnumerable<Market> GetMarketList(MarketParam param)
+        public IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param)
         {
-            return _domainRepository.GetMarketList(param);
+            return _domainRepository.GetTargetCountryList(param);
         }
 
-        public IEnumerable<Market> GetVisibleMarketsByUser(int userId)
+        public IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser(int userId)
         {
-            return GetMarketList(new MarketParam { UserId = userId });
+            return GetTargetCountryList(new TargetCountryParam { UserId = userId });
         }
 
-        public IEnumerable<Market> GetVisibleMarketsNotUsingByUser(int userId)
+        public IEnumerable<TargetCountry> GetVisibleTargetCountriesNotUsingByUser(int userId)
         {
-            return GetVisibleMarketsByUser(userId).Where(m => m.Status != USING);
+            return GetVisibleTargetCountriesByUser(userId).Where(m => m.Status != USING);
         }
 
         public IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true)

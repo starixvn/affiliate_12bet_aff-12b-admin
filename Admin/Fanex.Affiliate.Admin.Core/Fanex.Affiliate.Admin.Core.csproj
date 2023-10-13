@@ -271,7 +271,7 @@
     <Compile Include="Controllers\UserPanel\MarketingNoteController.cs" />
     <Compile Include="Controllers\UserPanel\NoteBaseController.cs" />
     <Compile Include="DTO\CommissionGroup\FdmSetting.cs" />
-    <Compile Include="DTO\Domain\Market.cs" />
+    <Compile Include="DTO\Domain\TargetCountry.cs" />
     <Compile Include="DTO\FeedbackReport\FeedbackReportInfo.cs" />
     <Compile Include="DTO\FeedbackReport\RateInfo.cs" />
     <Compile Include="DTO\MassAdjustment\AdjustmentResultInfo.cs" />
@@ -294,7 +294,7 @@
     <Compile Include="DTO\UserPanel\LogAction.cs" />
     <Compile Include="Enum\ProcessingRequestStatus.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
-    <Compile Include="MetaModels\Domain\MarketParam.cs" />
+    <Compile Include="MetaModels\Domain\TargetCountryParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainParam.cs" />
     <Compile Include="MetaModels\FeedbackReport\FeedbackReportParam.cs" />
@@ -351,7 +351,7 @@
     <Compile Include="Services\ProcessingRequest\IProcessingRequestService.cs" />
     <Compile Include="Services\ProcessingRequest\ProcessingRequestService.cs" />
     <Compile Include="Utilities\DateTimeHelper.cs" />
-    <Compile Include="Utilities\Domain\MarketHelper.cs" />
+    <Compile Include="Utilities\Domain\TargetCountryHelper.cs" />
     <Compile Include="Utilities\IDateTimeHelper.cs" />
     <Compile Include="Utilities\MassAdjustment\MassAdjustmentHelper.cs" />
     <Compile Include="Utilities\Result.cs" />

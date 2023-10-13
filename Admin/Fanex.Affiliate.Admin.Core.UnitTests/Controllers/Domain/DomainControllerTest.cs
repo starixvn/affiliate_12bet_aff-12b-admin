@@ -78,16 +78,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         }
 
         [Fact]
-        public void GetMarketList_WhenCall_ReturnCorrectData()
+        public void GetTargetCountryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var domainService = new Mock<IDomainService>();
-            domainService.Setup(t => t.GetMarketList(It.IsAny<MarketParam>())).Returns(new List<Market> { new Market() });
+            domainService.Setup(t => t.GetTargetCountryList(It.IsAny<TargetCountryParam>())).Returns(new List<TargetCountry> { new TargetCountry() });
             var controller = CreateDomainController(domainService: domainService.Object);
 
             // Action
-            var result = controller.GetMarketList(new MarketParam { UserId = 123, AffDomainId = 1, RedirectDomainId = 2 }) as JsonNetResult;
-            var data = result.Data as List<Market>;
+            var result = controller.GetTargetCountryList(new TargetCountryParam { UserId = 123, AffDomainId = 1, RedirectDomainId = 2 }) as JsonNetResult;
+            var data = result.Data as List<TargetCountry>;
 
             // Assert
             Assert.Single(data);
@@ -97,10 +97,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void InsertDomain_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertDomainParam { DomainName = "abc.com", BlockMarkets = Constant.MarketId };
+            var param = new InsertDomainParam { DomainName = "abc.com", BlockTargetCountries = Constant.TargetCountryId };
             InsertDomainParam passedParam = null;
             var domainService = new Mock<IDomainService>();
-            domainService.Setup(s => s.GetVisibleMarketsNotUsingByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = Constant.MarketId } });
+            domainService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
             domainService.Setup(s => s.InsertDomain(It.IsAny<InsertDomainParam>())).Returns(new ResultInfo()).Callback<InsertDomainParam>(p => passedParam = p);
             var controller = CreateDomainController(domainService: domainService.Object);
 
@@ -125,17 +125,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("The Domain' info is invalid!", resultInfo.Message);
+            Assert.Equal("The Domain's info is invalid!", resultInfo.Message);
         }
 
         [Fact]
         public void UpdateDomain_WhenCallWithValidParam_UpdateSuccessful()
         {
             // Arrange
-            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com", BlockMarkets = Constant.MarketId };
+            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com", BlockTargetCountries = Constant.TargetCountryId };
             UpdateDomainParam passedParam = null;
             var domainService = new Mock<IDomainService>();
-            domainService.Setup(s => s.GetVisibleMarketsNotUsingByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = Constant.MarketId } });
+            domainService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
             domainService.Setup(s => s.UpdateDomain(It.IsAny<UpdateDomainParam>())).Returns(new ResultInfo()).Callback<UpdateDomainParam>(p => passedParam = p);
             var controller = CreateDomainController(domainService: domainService.Object);
 
@@ -162,7 +162,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.False(resultInfo.IsSuccessful);
-            Assert.Equal("The Domain' info is invalid!", resultInfo.Message);
+            Assert.Equal("The Domain's info is invalid!", resultInfo.Message);
         }
 
         [Fact]

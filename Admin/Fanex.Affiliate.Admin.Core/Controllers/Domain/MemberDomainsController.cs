@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             var model = new DomainViewModel
             {
-                MarketList = _domainService.GetMarketList(new MarketParam { UserId = SessionService.UserId })
+                TargetCountryList = _domainService.GetTargetCountryList(new TargetCountryParam { UserId = SessionService.UserId })
             };
 
             return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);

@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 {
     public interface IDomainRepository
     {
-        IEnumerable<Market> GetMarketList(MarketParam param);
+        IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param);
 
         DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true);
 
