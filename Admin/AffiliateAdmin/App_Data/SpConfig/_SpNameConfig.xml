@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Ins" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Upd" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Sel" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Statistics_Sel" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_StatementHistory_Sel" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateReport_Sel" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateReport_Detail_Sel" Suffix="_xpre"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_GeneralInfo_Sel" Suffix="_xpre"></item>
   
 </Root>
