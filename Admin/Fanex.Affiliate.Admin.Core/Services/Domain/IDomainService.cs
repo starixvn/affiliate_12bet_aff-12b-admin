@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using System.Collections.Generic;
@@ -8,10 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
     public interface IDomainService
     {
         IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param);
-
-        IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser(int userId);
-
-        IEnumerable<TargetCountry> GetVisibleTargetCountriesNotUsingByUser(int userId);
 
         DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true);
 

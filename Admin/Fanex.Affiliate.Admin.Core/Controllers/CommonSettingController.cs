@@ -2,9 +2,9 @@
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using ONEbook.UM.AspNetMVC.Filters;
 using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -26,6 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
         public ActionResult GetProductList()
         {
             return new JsonNetResult
@@ -36,6 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
         public ActionResult GetPageList()
         {
             return new JsonNetResult
@@ -46,6 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
         public ActionResult GetCountryList()
         {
             return new JsonNetResult

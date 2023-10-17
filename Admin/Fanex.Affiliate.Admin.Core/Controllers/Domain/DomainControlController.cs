@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Domain;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
@@ -18,12 +18,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     public class DomainControlController : ReadOnlySessionBaseController
     {
         private readonly IDomainControlService _domainControlService;
+        private readonly ITargetCountryService _targetCountryService;
 
         public DomainControlController(
             ISessionService sessionService,
-            IDomainControlService domainControlService) : base(sessionService)
+            IDomainControlService domainControlService,
+            ITargetCountryService targetCountryService) : base(sessionService)
         {
             _domainControlService = domainControlService;
+            _targetCountryService = targetCountryService;
         }
 
         public ActionResult Index()
@@ -132,7 +135,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         private IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser()
         {
-            return _domainControlService.GetVisibleTargetCountriesByUser(SessionService.UserId);
+            return _targetCountryService.GetVisibleTargetCountriesByUser(SessionService.UserId);
         }
     }
 }

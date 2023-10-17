@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Domain;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
@@ -19,19 +19,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     public class DomainController : ReadOnlySessionBaseController
     {
         protected readonly IDomainService _domainService;
+        private readonly ITargetCountryService _targetCountryService;
 
         public DomainController(
             ISessionService sessionService,
-            IDomainService domainService) : base(sessionService)
+            IDomainService domainService,
+            ITargetCountryService targetCountryService) : base(sessionService)
         {
             _domainService = domainService;
+            _targetCountryService = targetCountryService;
         }
 
         public virtual ActionResult Index()
         {
             var model = new DomainViewModel
             {
-                TargetCountryList = _domainService.GetVisibleTargetCountriesByUser(SessionService.UserId),
                 IsAffDomain = true
             };
 
@@ -157,7 +159,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         private IEnumerable<TargetCountry> GetVisibleTargetCountriesNotUsingByUser()
         {
-            return _domainService.GetVisibleTargetCountriesNotUsingByUser(SessionService.UserId);
+            return _targetCountryService.GetVisibleTargetCountriesNotUsingByUser(SessionService.UserId);
         }
     }
 }

@@ -8,19 +8,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public class DomainControlService : IDomainControlService
     {
-        private readonly IDomainService _domainService;
         private readonly IDomainControlRepository _domainControlRepository;
         public DomainControlService(
-            IDomainService domainService,
             IDomainControlRepository domainControlRepository)
         {
-            _domainService = domainService;
             _domainControlRepository = domainControlRepository;
-        }
-
-        public IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser(int userId)
-        {
-            return _domainService.GetVisibleTargetCountriesByUser(userId);
         }
 
         public IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryIds)

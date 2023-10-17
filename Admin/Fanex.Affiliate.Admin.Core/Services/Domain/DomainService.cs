@@ -1,15 +1,15 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public class DomainService : IDomainService
     {
-        private const byte USING = 2;
         private readonly IDomainRepository _domainRepository;
         public DomainService(
             IDomainRepository domainRepository)
@@ -18,17 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         }
         public IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param)
         {
-            return _domainRepository.GetTargetCountryList(param);
-        }
-
-        public IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser(int userId)
-        {
-            return GetTargetCountryList(new TargetCountryParam { UserId = userId });
-        }
-
-        public IEnumerable<TargetCountry> GetVisibleTargetCountriesNotUsingByUser(int userId)
-        {
-            return GetVisibleTargetCountriesByUser(userId).Where(m => m.Status != USING);
+            return _domainRepository.GetTargetCountryList(param).ExcludeEmpty();
         }
 
         public IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true)

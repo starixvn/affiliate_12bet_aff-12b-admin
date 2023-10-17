@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using Fanex.Data;

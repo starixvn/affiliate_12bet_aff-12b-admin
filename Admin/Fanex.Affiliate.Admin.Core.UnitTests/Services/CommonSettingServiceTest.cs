@@ -85,6 +85,39 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         }
 
         [Fact]
+        public void GetVisibleTargetCountriesByUser_WhenCall_Excute()
+        {
+            // Arrange
+            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            commonSettingRepository.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry() });
+
+            var service = CreateCommonService(commonSettingRepository.Object);
+
+            // Action
+            var result = service.GetVisibleTargetCountriesByUser(123);
+
+            // Assert
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetVisibleTargetCountriesNotUsingByUser_WhenCall_Excute()
+        {
+            // Arrange
+            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            commonSettingRepository.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { Status = 2 } });
+
+            var service = CreateCommonService(commonSettingRepository.Object);
+
+            // Action
+            var result = service.GetVisibleTargetCountriesNotUsingByUser(123);
+
+            // Assert
+            Assert.Empty(result);
+        }
+
+
+        [Fact]
         public void SetCulture_WhenCall_Excute()
         {
             // Arrange

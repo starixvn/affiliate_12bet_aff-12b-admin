@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;

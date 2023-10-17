@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Data;
@@ -58,6 +59,16 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             }
 
             return result;
+        }
+
+        public IEnumerable<TargetCountry> GetExcludeTargetCountryList(ExcludeTargetCountryParam param)
+        {
+            const string SpKey = "";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                return objectDb.Query<TargetCountry>(param);
+            }
         }
 
         public ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param)

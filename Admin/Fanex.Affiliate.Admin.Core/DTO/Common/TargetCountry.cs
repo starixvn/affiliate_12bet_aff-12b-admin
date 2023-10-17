@@ -1,5 +1,5 @@
 ﻿
-namespace Fanex.Affiliate.Admin.Core.DTO.Domain
+namespace Fanex.Affiliate.Admin.Core.DTO.Common
 {
     public class TargetCountry
     {

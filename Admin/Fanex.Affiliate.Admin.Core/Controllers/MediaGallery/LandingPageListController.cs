@@ -14,10 +14,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     public class LandingPageListController : ReadOnlySessionBaseController
     {
         private readonly ILandingPageService _landingPageService;
+        private readonly ITargetCountryService _targetCountryService;
 
-        public LandingPageListController(ISessionService sessionService, ILandingPageService landingPageService) : base(sessionService)
+        public LandingPageListController(
+            ISessionService sessionService,
+            ILandingPageService landingPageService,
+            ITargetCountryService targetCountryService) : base(sessionService)
         {
             _landingPageService = landingPageService;
+            _targetCountryService = targetCountryService;
         }
 
         [HttpGet]
@@ -43,6 +48,28 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             return new JsonNetResult
             {
                 Data = _landingPageService.GetLandingPageById(pageId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetVisibleTargetCountriesByUser()
+        {
+            return new JsonNetResult
+            {
+                Data = _targetCountryService.GetVisibleTargetCountriesByUser(SessionService.UserId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetExcludeTargetCountryList(ExcludeTargetCountryParam param)
+        {
+            param.UserId = SessionService.UserId;
+
+            return new JsonNetResult
+            {
+                Data = _landingPageService.GetExcludeTargetCountryList(param)
             };
         }
 

@@ -79,8 +79,8 @@ export class Content extends PureComponent {
                     </Cell>
                 }
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-left" title={dataItem.UserName}>{dataItem.UserName}</Cell>
-                <Cell className="text-left" title={fileName}>{fileName}</Cell>
+                <Cell title={dataItem.UserName}>{dataItem.UserName}</Cell>
+                <Cell title={fileName}>{fileName}</Cell>
                 <Cell className="text-center" title={effectiveFromDate}>{effectiveFromDate}</Cell>
                 <Cell className="text-center" title={effectiveToDate}>{effectiveToDate}</Cell>
                 <Cell className="text-center" title={headerText.Preview}>

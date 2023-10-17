@@ -10,7 +10,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     {
         public MemberDomainsController(
             ISessionService sessionService,
-            IDomainService domainService) : base(sessionService, domainService)
+            IDomainService domainService,
+            ITargetCountryService targetCountryService) : base(sessionService, domainService, targetCountryService)
         {
         }
 

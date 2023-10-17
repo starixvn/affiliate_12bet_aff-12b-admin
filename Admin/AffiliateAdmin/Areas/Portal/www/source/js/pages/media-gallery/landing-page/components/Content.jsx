@@ -26,6 +26,7 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
                 <Cell header={true} colWidth={250} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
+                <Cell header={true} colWidth={350} title={headerText.ExcludedTargetCountry}>{headerText.ExcludedTargetCountry}</Cell>
                 { isModifiable && <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
             </Row>
         );
@@ -42,7 +43,7 @@ export const Content = (props) => {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="5">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="6">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -53,6 +54,7 @@ export const Content = (props) => {
         const { isModifiable } = props;
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
+        const excludedTargetCountry = htmlDecode(dataItem.ExcludedTargetCountry).split(',').join(', ');
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -65,8 +67,9 @@ export const Content = (props) => {
                     )
                 }
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>
-                <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
+                <Cell title={landingPageName}>{landingPageName}</Cell>
+                <Cell title={landingPageCode}>{landingPageCode}</Cell>
+                <Cell title={excludedTargetCountry}>{excludedTargetCountry}</Cell>
                 { isModifiable &&
                     <Cell className="text-center" title="Edit Landing Page">
                         <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)}>

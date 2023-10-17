@@ -271,7 +271,7 @@
     <Compile Include="Controllers\UserPanel\MarketingNoteController.cs" />
     <Compile Include="Controllers\UserPanel\NoteBaseController.cs" />
     <Compile Include="DTO\CommissionGroup\FdmSetting.cs" />
-    <Compile Include="DTO\Domain\TargetCountry.cs" />
+    <Compile Include="DTO\Common\TargetCountry.cs" />
     <Compile Include="DTO\FeedbackReport\FeedbackReportInfo.cs" />
     <Compile Include="DTO\FeedbackReport\RateInfo.cs" />
     <Compile Include="DTO\MassAdjustment\AdjustmentResultInfo.cs" />
@@ -293,8 +293,10 @@
     <Compile Include="DTO\Common\Country.cs" />
     <Compile Include="DTO\UserPanel\LogAction.cs" />
     <Compile Include="Enum\ProcessingRequestStatus.cs" />
+    <Compile Include="Extensions\GenericExtension.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
     <Compile Include="MetaModels\Domain\TargetCountryParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\ExcludeTargetCountryParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainParam.cs" />
     <Compile Include="MetaModels\FeedbackReport\FeedbackReportParam.cs" />
@@ -318,6 +320,8 @@
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestUpdParam.cs" />
     <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
+    <Compile Include="Repository\Common\ITargetCountryRepository.cs" />
+    <Compile Include="Repository\Common\TargetCountryRepository.cs" />
     <Compile Include="Repository\ICommonSettingRepository.cs" />
     <Compile Include="Repository\Domain\DomainControlRepository.cs" />
     <Compile Include="Repository\Domain\DomainRepository.cs" />
@@ -332,6 +336,8 @@
     <Compile Include="Repository\ProcessingRequest\IProcessingRequestRepository.cs" />
     <Compile Include="Repository\ProcessingRequest\ProcessingRequestRepository.cs" />
     <Compile Include="Repository\CommonSettingRepository.cs" />
+    <Compile Include="Services\Common\ITargetCountryService.cs" />
+    <Compile Include="Services\Common\TargetCountryService.cs" />
     <Compile Include="Services\FeedbackReport\FeedbackReportService.cs" />
     <Compile Include="Services\FeedbackReport\IFeedbackReportService.cs" />
     <Compile Include="Services\MassAdjustment\IMassAdjustmentService.cs" />

@@ -1,38 +1,18 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
-using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+﻿using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Data;
-using Moq;
 using NSubstitute;
-using System;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 {
     public class DomainControlServiceTest
     {
-        private readonly IDomainService domainService;
         private readonly IDomainControlRepository domainControlRepository;
 
         public DomainControlServiceTest()
         {
-            domainService = Substitute.For<IDomainService>();
             domainControlRepository = Substitute.For<IDomainControlRepository>();
-        }
-
-        [Fact]
-        public void GetVisibleTargetCountriesByUser_WhenCall_Excute()
-        {
-            // Arrange
-            var param = 123;
-            var service = CreateDomainControlService;
-
-            // Action
-            service.GetVisibleTargetCountriesByUser(param);
-
-            // Assert
-            domainService.Received().GetVisibleTargetCountriesByUser(param);
         }
 
         [Fact]
@@ -106,6 +86,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         private DomainControlService CreateDomainControlService
-            => new DomainControlService(domainService, domainControlRepository);
+            => new DomainControlService(domainControlRepository);
     }
 }

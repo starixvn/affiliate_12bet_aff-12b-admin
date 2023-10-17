@@ -53,13 +53,7 @@ export const getTargetCountryListByDomain = (param) => async () => {
     const url = 'Portal/Domain/GetTargetCountryList';
     const response = await post(url, param);
 
-    return response && response.status === 200 ? getTargetCountryList(response) : null;
-}
-
-const getTargetCountryList = (response) => {
-    var targetCountryList = response.data;
-
-    return targetCountryList && !targetCountryList.length ? null : targetCountry;
+    return response && response.status === 200 ? response.data : null;
 }
 
 export const insertDomain = (param) => async () => {

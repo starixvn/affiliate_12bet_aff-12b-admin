@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         IEnumerable<LandingPage> GetLandingPageList();
 
         LandingPage GetLandingPageById(int pageId);
+
+        IEnumerable<TargetCountry> GetExcludeTargetCountryList(ExcludeTargetCountryParam param);
 
         ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param);
 

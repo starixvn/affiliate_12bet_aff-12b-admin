@@ -6,6 +6,7 @@ import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBo
 import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader } from '../actions/index';
 import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
+import { targetCountryStatus } from '../../../../modules/globalResource';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class InsertUpdateForm extends PureComponent {
@@ -23,6 +24,33 @@ export class InsertUpdateForm extends PureComponent {
             this.setState({ isInsert: selectedLandingPageId === defaultInsertId });
 
             selectedLandingPageId && this._handleGetLandingPageDetail(selectedLandingPageId);
+        }
+    }
+
+    _handleUpdateState = async (selectedLandingPageId) => {
+        if (selectedDomainId === 0) {
+            const targetCountryListByDomains = await this.props.getTargetCountryListByDomain({ affDomainId: 0, redirectDomainId: 0 });
+
+            this.setState({ isInsert: true, selectedDomain: { domainId: selectedDomainId, domainName: '', blockTargetCountries: [], isSSL: false }, targetCountryListByDomains });
+        } else {
+            this.props.toggleLoader(true);
+            const domain = await this.props.getDomainById(selectedDomainId, isAffDomain);
+
+            if (domain) {
+                const { DomainName, IsSSL } = domain;
+                var domainIdParam = isAffDomain ? "affDomainId" : "redirectDomainId";
+                const targetCountryListByDomains = await this.props.getTargetCountryListByDomain({ [domainIdParam]: selectedDomainId });
+                if (targetCountryListByDomains) {
+                    const usingTargetCountries = this._handleGetUsingTargetCountries(targetCountryListByDomains);
+                    const blockTargetCountries = this._handleGetBlockTargetCountries(targetCountryListByDomains);
+                    const isBlockAllTargetCountries = blockTargetCountries.length !== 0 && (usingTargetCountries.length + blockTargetCountries.length) === targetCountryListByDomains.length;
+
+                    this.setState({ isInsert: false, usingTargetCountries, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountries, isSSL: IsSSL }, targetCountryListByDomains, isBlockAllTargetCountries });
+                } else {
+                    this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountries: '', isSSL: IsSSL } });
+                }
+            }
+            this.props.toggleLoader(false);
         }
     }
 

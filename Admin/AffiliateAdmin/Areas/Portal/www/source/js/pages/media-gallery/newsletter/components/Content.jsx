@@ -77,7 +77,7 @@ export class Content extends PureComponent {
                     )
                 }
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-left" title={fileName}>{fileName}</Cell>
+                <Cell title={fileName}>{fileName}</Cell>
                 <Cell className="text-center" title={displayFileSize}>{displayFileSize}</Cell>
                 <Cell className="text-center" title={dataItem.LanguageName}>{dataItem.LanguageName}</Cell>
                 <Cell className="text-center" title={uploadDate}>{uploadDate}</Cell>

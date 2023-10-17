@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
@@ -22,9 +23,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry() });
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry() });
+            var controller = CreateDomainControlController(commonSettingService: commonSettingService.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -46,9 +47,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             // Arrange
             string passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
             domainControlService.Setup(t => t.GetDomainControlList(It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() }).Callback<string>(p => passedParam = p);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+            
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, commonSettingService.Object);
 
             // Action
             var result = controller.GetDomainControlList(targetCountryId) as JsonNetResult;
@@ -65,9 +68,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             // Arrange
             string passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
             domainControlService.Setup(t => t.GetDomainControlList(It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() }).Callback<string>(p => passedParam = p);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+            
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, commonSettingService.Object);
 
             // Action
             var result = controller.GetDomainControlList("abc") as JsonNetResult;
@@ -83,9 +88,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         {
             // Arrange
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
             domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryId = "en-US"});
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, commonSettingService.Object);
 
             // Action
             var result = controller.GetDomainControlById(123) as JsonNetResult;
@@ -101,9 +108,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         {
             // Arrange
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
             domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(null as DomainControlInfo);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, commonSettingService.Object);
 
             // Action
             var result = controller.GetDomainControlById(123) as JsonNetResult;
@@ -118,9 +127,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         {
             // Arrange
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
             domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryId = "abc" });
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, commonSettingService.Object);
 
             // Action
             var result = controller.GetDomainControlById(123) as JsonNetResult;
@@ -137,9 +148,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var param = new InsertDomainControlParam { AffDomainId = 1, RedirectDomainId = 2, TargetCountryId = Constant.TargetCountryId, Status = true };
             InsertDomainControlParam passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(s => s.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
             domainControlService.Setup(s => s.InsertDomainControl(It.IsAny<InsertDomainControlParam>())).Returns(new ResultInfo()).Callback<InsertDomainControlParam>(p => passedParam = p);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(s => s.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, commonSettingService.Object);
 
             // Action
             var result = controller.InsertDomainControl(param) as JsonNetResult;
@@ -173,9 +186,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var param = new UpdateDomainControlParam { DomainControlId = 123, AffDomainId = 1, RedirectDomainId = 2, TargetCountryId = Constant.TargetCountryId };
             UpdateDomainControlParam passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(s => s.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
             domainControlService.Setup(s => s.UpdateDomainControl(It.IsAny<UpdateDomainControlParam>())).Returns(new ResultInfo()).Callback<UpdateDomainControlParam>(p => passedParam = p);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var commonSettingService = new Mock<ICommonSettingService>();
+            commonSettingService.Setup(s => s.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, commonSettingService.Object);
 
             // Action
             var result = controller.UpdateDomainControl(param) as JsonNetResult;
@@ -240,13 +255,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
         private DomainControlController CreateDomainControlController(
         ISessionService sessionService = null,
-        IDomainControlService domainControlService = null
+        IDomainControlService domainControlService = null,
+        ICommonSettingService commonSettingService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeDomainControlService = domainControlService ?? Mock.Of<IDomainControlService>();
+            var fakeCommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
 
-            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService);
+            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService, fakeCommonSettingService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

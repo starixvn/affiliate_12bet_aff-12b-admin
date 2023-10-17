@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
@@ -29,34 +29,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 
             // Assert
             domainRepository.Received().GetTargetCountryList(param);
-        }
-
-        [Fact]
-        public void GetVisibleTargetCountriesByUser_WhenCall_Excute()
-        {
-            // Arrange
-            var service = CreateDomainService;
-
-            // Action
-            service.GetVisibleTargetCountriesByUser(123);
-
-            // Assert
-            domainRepository.Received().GetTargetCountryList(Arg.Any<TargetCountryParam>());
-        }
-
-        [Fact]
-        public void GetVisibleTargetCountriesNotUsingByUser_WhenCall_Excute()
-        {
-            // Arrange
-            domainRepository.GetTargetCountryList(Arg.Any<TargetCountryParam>()).Returns(new List<TargetCountry> { new TargetCountry { Status = 1 } });
-            var service = CreateDomainService;
-
-            // Action
-            var result = service.GetVisibleTargetCountriesNotUsingByUser(123);
-
-            // Assert
-            Assert.Single(result);
-            domainRepository.Received().GetTargetCountryList(Arg.Any<TargetCountryParam>());
         }
 
         [Fact]

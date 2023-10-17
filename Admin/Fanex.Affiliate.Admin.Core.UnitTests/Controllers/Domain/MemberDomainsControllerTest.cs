@@ -1,15 +1,11 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.Domain;
-using Fanex.Affiliate.Admin.Core.DTO.Domain;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using Xunit;
 
@@ -24,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var session = MockingHelper.GetSessionService();
             var domainService = new Mock<IDomainService>();
             domainService.Setup(d => d.GetTargetCountryList(It.IsAny<TargetCountryParam>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
-            var controller = new MemberDomainsController(session, domainService.Object);
+            var controller = new MemberDomainsController(session, domainService.Object, null);
 
             // Action
             var viewResult = controller.Index() as ViewResult;

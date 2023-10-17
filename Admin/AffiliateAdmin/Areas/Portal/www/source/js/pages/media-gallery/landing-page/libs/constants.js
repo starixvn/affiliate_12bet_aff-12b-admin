@@ -4,6 +4,7 @@ export { globalResource };
 
 export const headerText = {
     Index: globalResource.Index,
+    ExcludedTargetCountry: 'Excluded Target Country',
     LandingPageName: 'Landing Page Name (Shown in dropdown)',
     LandingPageCode: 'Landing Page Code (Contained in links)'
 }
