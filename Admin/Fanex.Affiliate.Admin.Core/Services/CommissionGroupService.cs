@@ -27,10 +27,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
             var commGroupList = rawData.CommGroupList;
             var tierSettingList = rawData.TierSettingList;
+            var fdmSettingList = rawData.FdmSettingList;
             var deductionSettingList = rawData.DeductionSettingList;
 
             var result = from c in commGroupList
                          join t in tierSettingList on c.GroupId equals t.GroupId into groupTierSetting
+                         join f in fdmSettingList on c.GroupId equals f.GroupId into groupFdmSetting
                          join d in deductionSettingList on c.GroupId equals d.GroupId into groupDeduction
                          select new CommissionGroupSetting
                          {
@@ -43,7 +45,10 @@ namespace Fanex.Affiliate.Admin.Core.Services
                              QmTurnover = c.QmTurnover,
                              NextQmTurnover = c.NextQmTurnover,
                              NoAffs = c.NoAffs,
+                             IsApplyBonus = c.IsApplyBonus,
+                             NextIsApplyBonus = c.NextIsApplyBonus,
                              TierSettingList = groupTierSetting,
+                             FdmSettingList = groupFdmSetting,
                              PlatformFeeList = groupDeduction.Where(p => p.DeductionId == DeductionId.PlatformFee),
                              OperationalFee = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.OperationalFee),
                              BankingFee = groupDeduction.FirstOrDefault(p => p.DeductionId == DeductionId.BankingFee),

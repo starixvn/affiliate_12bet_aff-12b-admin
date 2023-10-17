@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using System;
 using System.Collections.Generic;
@@ -38,11 +37,11 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public static string GetContactInfoContent(EmailBaseParam param, Func<string, string, object, string> getEmailTextContent, string emailBackgroundUrl)
         {
-            if(param is null || param.User is null)
+            if (param is null || param.User is null)
             {
                 return string.Empty;
             }
-            
+
             var contactInfoTemplateName = param.User.MailOption ? ContactInfoText : ContactInfoHtml;
             return getEmailTextContent(contactInfoTemplateName, param.User.PreferredLanguage, emailBackgroundUrl);
         }

@@ -2,6 +2,7 @@
 
 exports[`commission group - FeeSettingItem Should render correctly 1`] = `
 <FormGroup
+  className="fee-group"
   row={true}
   tag="div"
 >
@@ -676,6 +677,7 @@ exports[`commission group - FeeSettingItem Should render correctly 1`] = `
 
 exports[`commission group - FeeSettingItem Should render correctly with isCreating is false 1`] = `
 <FormGroup
+  className="fee-group"
   row={true}
   tag="div"
 >

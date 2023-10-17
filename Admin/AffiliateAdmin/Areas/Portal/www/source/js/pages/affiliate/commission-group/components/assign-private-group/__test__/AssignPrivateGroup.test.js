@@ -14,10 +14,13 @@ describe('commission group - assign private group', () => {
         OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6" }],
         QmTurnover: 100,
-        TierSettingList: []
+        TierSettingList: [],
+        FdmSettingList: [],
+        IsApplyBonus: false
     };
 
     const selectedGroup = {
+        GroupId: 102,
         BankingFee: { DeductedPercentage: 0.02, DeductionId: 12, ProductIds: 0 },
         Description: "",
         GroupId: 0,
@@ -25,13 +28,15 @@ describe('commission group - assign private group', () => {
         OperationalFee: { DeductedPercentage: 0.07, DeductionId: 11, ProductIds: 0 },
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6" }],
         QmTurnover: 100,
-        TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }]
+        TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }],
+        FdmSettingList: [],
+        IsApplyBonus: true
     };
 
     const selectedProductIds = [1, 2, 3, 4, 5, 6];
 
     const defaultProps = {
-        selectedGroup: { GroupId: 102 },
+        selectedGroup,
         affInfo: {
             AffId: 927841,
             AffType: 4,
@@ -57,6 +62,7 @@ describe('commission group - assign private group', () => {
             { ProductId: 5, ProductName: "Virtual Sports" },
             { ProductId: 6, ProductName: "Keno" }
         ],
+        isModifiable: true,
         selectedProductIds
     };
 
@@ -102,17 +108,16 @@ describe('commission group - assign private group', () => {
     })
 
     it('handleSave - should call setSate with isValid is false', async () => {
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup });
+        const props = Object.assign({}, defaultProps, { setSelectedGroup: jest.fn(), selectedGroup: { ...selectedGroup, TierSettingList: [] } });
         const wrapper = shallow(<AssignPrivateGroup {...props} />);
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
         window.setTimeout = jest.fn((fn, time) => fn());
-        wrapper.instance()._validate = jest.fn(() => ({ isValid: false, messageList: 'failed!' }));
+        window.scrollTo = jest.fn();
 
         await wrapper.find('button').simulate('click');
 
         expect(wrapper.setState).toHaveBeenCalledTimes(2);
-        expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'failed!' });
+        expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: ["Tier Setting must have at least 1 tier"] });
         expect(wrapper.setState.mock.calls[0][1]).toEqual(expect.any(Function));
 
         expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: false });
@@ -122,8 +127,7 @@ describe('commission group - assign private group', () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: "OK" }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selectedGroup });
+        const props = Object.assign({}, defaultProps, { setSelectedGroup: jest.fn() });
         const wrapper = shallow(<AssignPrivateGroup {...props} />);
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
         window.setTimeout = jest.fn((fn, time) => fn());
@@ -167,8 +171,7 @@ describe('commission group - assign private group', () => {
         const expectedResponse = { data: { IsSuccessful: false, Message: "failed!" }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selectedGroup });
+        const props = Object.assign({}, defaultProps, { setSelectedGroup: jest.fn() });
         const wrapper = shallow(<AssignPrivateGroup {...props} />);
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
         window.setTimeout = jest.fn((fn, time) => fn());
@@ -187,12 +190,11 @@ describe('commission group - assign private group', () => {
         expect(parent.postMessage).not.toHaveBeenCalled();
     })
 
-    it('handleSave - should call setSate with respone erro', async () => {
+    it('handleSave - should call setSate with respone error', async () => {
         const expectedResponse = { data: { IsSuccessful: false, Message: "failed!" }, status: 500 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selectedGroup });
+        const props = Object.assign({}, defaultProps, { setSelectedGroup: jest.fn() });
         const wrapper = shallow(<AssignPrivateGroup {...props} />);
         wrapper.setState = jest.fn();
         window.scrollTo = jest.fn();
@@ -203,72 +205,7 @@ describe('commission group - assign private group', () => {
 
         expect(wrapper.setState).toHaveBeenCalledTimes(1);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowLoader: true });
-        expect(window.scrollTo).not.toHaveBeenCalled()
-    })
-
-    it('_validate', () => {
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selectedGroup });
-        const wrapper = shallow(<AssignPrivateGroup {...props} />);
-
-        const result = wrapper.instance()._validate();
-
-        expect(result).toEqual({ isValid: true, messageList: [] });
-    })
-
-    it('_validate - QmTurnover is NaN', () => {
-        const selected_Group = Object.assign({}, selectedGroup, { QmTurnover: 'abc' })
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selected_Group });
-        const wrapper = shallow(<AssignPrivateGroup {...props} />);
-
-        const result = wrapper.instance()._validate();
-
-        expect(result).toEqual({ isValid: false, messageList: ["QM Turnover value is required"] });
-    })
-
-    it('_validate - TierSettingList is not MaxAmount', () => {
-        const selected_Group = Object.assign({}, selectedGroup, { TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100, MinQm: 0, MaxQm: 10, Commission: 0 }] })
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selected_Group });
-        const wrapper = shallow(<AssignPrivateGroup {...props} />);
-
-        const result = wrapper.instance()._validate();
-
-        expect(result).toEqual({ isValid: false, messageList: ["Last Tier Setting must have maximum value=∞"] });
-    })
-
-    it('_validate - TierSettingList has MinAmount > MaxAmount', () => {
-        const selected_Group = Object.assign({}, selectedGroup, { TierSettingList: [{ TierId: 1, MinAmount: 1000000000000000, MaxAmount: 100000000000000, MinQm: 0, MaxQm: 1000000000, Commission: 0 }] })
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selected_Group });
-        const wrapper = shallow(<AssignPrivateGroup {...props} />);
-
-        const result = wrapper.instance()._validate();
-
-        expect(result).toEqual({ isValid: false, messageList: ["Max Amount must be greater than or equal to Min Amount"] });
-    })
-
-    it('_validate - TierSettingList has MinQm > MaxQm', () => {
-        const selected_Group = Object.assign({}, selectedGroup, { TierSettingList: [{ TierId: 1, MinAmount: 10, MaxAmount: 100000000000000, MinQm: 10000000000, MaxQm: 1000000000, Commission: 0 }] })
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selected_Group });
-        const wrapper = shallow(<AssignPrivateGroup {...props} />);
-
-        const result = wrapper.instance()._validate();
-
-        expect(result).toEqual({ isValid: false, messageList: ["Max QM must be greater than or equal to Min QM"] });
-    })
-
-    it('_validate - PlatformFeeList has ProductId is null', () => {
-        const selected_Group = Object.assign({}, selectedGroup, { PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "" }] })
-        const mockSetSelectedGroup = jest.fn();
-        const props = Object.assign({}, defaultProps, { setSelectedGroup: mockSetSelectedGroup, selectedGroup: selected_Group });
-        const wrapper = shallow(<AssignPrivateGroup {...props} />);
-
-        const result = wrapper.instance()._validate();
-
-        expect(result).toEqual({ isValid: false, messageList: ["At least 1 product must be selected per group"] });
+        expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
     })
 
     it('should render correctly', () => {

@@ -1,7 +1,8 @@
 ﻿@{
     Layout = null;
+    var isClickBreadcumb = ViewBag.IsClickBreadcumb;
 }
-@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.StatementHistory>
+@model IEnumerable<Fanex.Affiliate.User.Core.ViewModels.UserPanel.StatementHistoryViewModel>
 
 @Html.InlineStyles("~/www/build/styles/css/statement-history.css")
 
@@ -16,4 +17,5 @@
     </div>
 </div>
 
+<input type="hidden" id="isClickBreadcumb" value="@isClickBreadcumb" />
 <script src="@Url.RenderLink("~/www/build/js/statement-history.js")"></script>

@@ -2088,7 +2088,7 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
+  <data name="NewFDMs" xml:space="preserve">
     <value>MEMBER BARU DEPOSIT</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
@@ -2117,5 +2117,47 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
+  </data>
+  <data name="FdmDeposit" xml:space="preserve">
+    <value>Member baru deposit (FDM)</value>
+  </data>
+  <data name="TransactionInReport" xml:space="preserve">
+    <value>Transaksi</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>Member deposit baru (FDM)</value>
+  </data>
+  <data name="MonthlyTotal" xml:space="preserve">
+    <value>Total Bulanan</value>
+  </data>
+  <data name="MonthlyEarning" xml:space="preserve">
+    <value>Pendapatan Bulanan</value>
+  </data>
+  <data name="UncalculatedMonthlyEarning" xml:space="preserve">
+    <value>Penghasilan Bulanan yang Tidak Dihitung</value>
+  </data>
+  <data name="CurrentMonthlyEarning" xml:space="preserve">
+    <value>Penghasilan Bulanan Saat Ini</value>
+  </data>
+  <data name="CurrentNewFdmCommBonus" xml:space="preserve">
+    <value>Bonus Komisi FDM Baru Saat Ini</value>
+  </data>
+  <data name="NewFdmCommBonus" xml:space="preserve">
+    <value>Bonus Komisi FDM baru</value>
+  </data>
+  <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
+    <value>Bonus Komisi FDM Baru yang Belum Dihitung</value>
+  </data>
+  <data name="UncalculatedMonth" xml:space="preserve">
+    <value>Bulan yang Tidak Dihitung</value>
+  </data>
+  <data name="CurrentMonthStatistics" xml:space="preserve">
+    <value>Statistik Bulan Ini</value>
+  </data>
+  <data name="FdmExtraComm" xml:space="preserve">
+    <value>Komisi Ekstra FDM</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>Total komisi</value>
   </data>
 </root>

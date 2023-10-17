@@ -5,8 +5,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
     public class CommissionGroupSetting : CommGroup
     {
-        [Required]
+        [Required(ErrorMessage = "Tier Setting must have at least 1 tier!")]
         public IEnumerable<TierSetting> TierSettingList { get; set; }
+
+        public IEnumerable<FdmSetting> FdmSettingList { get; set; }
 
         [Required]
         public IEnumerable<DeductionSetting> PlatformFeeList { get; set; }

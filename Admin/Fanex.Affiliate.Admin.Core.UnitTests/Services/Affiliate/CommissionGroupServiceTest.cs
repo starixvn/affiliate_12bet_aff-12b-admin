@@ -77,7 +77,22 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
                         MaxQm = 50,
                         Commission = 0.2m
                     }
+                },
+                FdmSettingList = new List<FdmSetting>
+                {
+                    new FdmSetting
+                    {
+                        GroupId = 101,
+                        FdmId = 1,
+                        MinFdmDeposit = 0m,
+                        MaxFdmDeposit = 100m,
+                        MinNewFdm = 0,
+                        MaxNewFdm = 50,
+                        MaxExtraComm = 150,
+                        Commission = 0.2m
+                    }
                 }
+                
             };
             var commGroupRepository = new Mock<ICommissionGroupRepository>();
             commGroupRepository.Setup(comm => comm.GetCommissionGroupList(param)).Returns(commissionGroupResultEntity);

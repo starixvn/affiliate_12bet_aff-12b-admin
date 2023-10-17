@@ -63,6 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
                 ["QualifiedMembersByMonth"] = 0,
                 ["DepositByMonth"] = 0,
                 ["DepositTotal"] = 0,
+                ["FdmDepositByMonth"] = 0,
                 ["TurnoverByMonth"] = 0,
                 ["TurnoverTotal"] = 0,
                 ["WinlostByMonth"] = 0,

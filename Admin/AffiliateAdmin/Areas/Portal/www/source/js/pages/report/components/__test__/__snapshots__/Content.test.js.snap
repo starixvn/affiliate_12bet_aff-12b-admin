@@ -143,6 +143,16 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
                 "visable": true,
               },
               SingleHeader {
+                "key": "NewFdmEarning",
+                "text": "New FDM Earning",
+                "visable": true,
+              },
+              SingleHeader {
+                "key": "TotalEarning",
+                "text": "Total Earning",
+                "visable": true,
+              },
+              SingleHeader {
                 "key": "AffWithdrawal",
                 "text": "Withdrawal",
                 "visable": true,
@@ -322,6 +332,16 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
               SingleHeader {
                 "key": "Earning",
                 "text": "Earning",
+                "visable": true,
+              },
+              SingleHeader {
+                "key": "NewFdmEarning",
+                "text": "New FDM Earning",
+                "visable": true,
+              },
+              SingleHeader {
+                "key": "TotalEarning",
+                "text": "Total Earning",
                 "visable": true,
               },
               SingleHeader {

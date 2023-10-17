@@ -1278,12 +1278,6 @@
   <data name="none" xml:space="preserve">
     <value>គ្មាន</value>
   </data>
-  <data name="TrackingStatistics" xml:space="preserve">
-    <value>ស្ថិតិតាមដាន</value>
-  </data>
-  <data name="TrackingCode" xml:space="preserve">
-    <value>កូដតាមដាន</value>
-  </data>
   <data name="Guinea" xml:space="preserve">
     <value>Guinea</value>
   </data>
@@ -1989,7 +1983,7 @@
   <data name="Flat50" xml:space="preserve">
     <value>50% ថេរ</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
+  <data name="NewFDMs" xml:space="preserve">
     <value>សមាជិកដាក់ប្រាក់ថ្មី</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
@@ -2018,5 +2012,47 @@
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
+  </data>
+  <data name="FdmDeposit" xml:space="preserve">
+    <value>ការដាក់ប្រាក់ដំបូងរបស់អ្នក</value>
+  </data>
+  <data name="TransactionInReport" xml:space="preserve">
+    <value>ប្រតិបត្តិការ</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>ប្រាក់ដំបូង</value>
+  </data>
+  <data name="MonthlyTotal" xml:space="preserve">
+    <value>សរុបប្រចាំខែ</value>
+  </data>
+  <data name="MonthlyEarning" xml:space="preserve">
+    <value>ប្រាក់ចំណូលប្រចាំខែ</value>
+  </data>
+  <data name="UncalculatedMonthlyEarning" xml:space="preserve">
+    <value>ប្រាក់ចំណូលប្រចាំខែដែលមិនបានគណនា</value>
+  </data>
+  <data name="CurrentMonthlyEarning" xml:space="preserve">
+    <value>ប្រាក់ចំណូលប្រចាំខែបច្ចុប្បន្ន</value>
+  </data>
+  <data name="CurrentNewFdmCommBonus" xml:space="preserve">
+    <value>ប្រាក់រង្វាន់បច្ចុប្បន្នសម្រាប់កម្រៃជើងសារដំបូង</value>
+  </data>
+  <data name="NewFdmCommBonus" xml:space="preserve">
+    <value>ប្រាក់រង្វាន់សម្រាប់កម្រៃជើងសារដំបូង</value>
+  </data>
+  <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
+    <value>ប្រាក់រង្វាន់កម្រៃជើងសារដំបូងដែលមិនបានគណនា</value>
+  </data>
+  <data name="UncalculatedMonth" xml:space="preserve">
+    <value>ខែដែលមិនបានគណនា</value>
+  </data>
+  <data name="CurrentMonthStatistics" xml:space="preserve">
+    <value>ស្ថិតិខែបច្ចុប្បន្ន</value>
+  </data>
+  <data name="FdmExtraComm" xml:space="preserve">
+    <value>បន្ថែមកម្រៃជើងសារសម្រាប់ការដាក់ប្រាក់ដំបូង</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>កម្រៃជើងសារសរុប</value>
   </data>
 </root>

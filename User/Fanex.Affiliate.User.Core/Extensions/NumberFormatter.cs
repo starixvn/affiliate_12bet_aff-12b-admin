@@ -34,7 +34,7 @@
             const double NegativeFive = -5;
 
             //-$0.00xy (x < 5), digit = 2, the amount must be shown as $0.00
-            if ((double)value * (Math.Pow(Ten,(digit + 1))) > NegativeFive)
+            if ((double)value * (Math.Pow(Ten, (digit + 1))) > NegativeFive)
             {
                 return false;
             }

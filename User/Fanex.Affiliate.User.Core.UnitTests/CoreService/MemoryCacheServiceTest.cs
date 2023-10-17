@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Caching;
-using Moq;
 using NSubstitute;
 using Xunit;
 

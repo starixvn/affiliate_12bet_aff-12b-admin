@@ -6,6 +6,7 @@ import { setSelectedGroup } from '../../../actions';
 
 import PlatformFeeSetting from './PlatformFeeSetting';
 import FeeSettingItem from './FeeSettingItem';
+import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 export class DeductionSetting extends Component {
     constructor(props) {
@@ -26,8 +27,14 @@ export class DeductionSetting extends Component {
         });
     }
 
+    handleApplyBonus = (field, value) => {
+        this.props.setSelectedGroup({
+            [field]: value
+        });
+    }
+
     render() {
-        const { OperationalFee, BankingFee, GroupId } = this.props.selectedGroup;
+        const { OperationalFee, BankingFee, GroupId, IsApplyBonus, NextIsApplyBonus } = this.props.selectedGroup;
         const isCreating = GroupId === 0;
 
         return (
@@ -44,6 +51,54 @@ export class DeductionSetting extends Component {
                     onChangeCommission={this.handleSelectBankingFee}
                     data={BankingFee}
                     isCreating={isCreating} />
+                {
+                    isCreating ? (
+                        <FormGroup row className="fee-group">
+                            <Col sm={4}>
+                                <Row className="align-items-baseline">
+                                    <Label sm={6} className="font-weight-bold">Bonus</Label>
+                                    <FormGroup check className="ml-3">
+                                        <Label check>
+                                            <Input name="IsApplyBonus" type="radio" className="mr-2" checked={IsApplyBonus} onChange={() => this.handleApplyBonus("IsApplyBonus", true)} />
+                                            Include
+                                        </Label>
+                                    </FormGroup>
+                                </Row>
+                            </Col>
+                            <Col sm={8}>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input name="IsApplyBonus" type="radio" className="mr-2" checked={!IsApplyBonus} onChange={() => this.handleApplyBonus("IsApplyBonus", false)} />
+                                        Exclude
+                                    </Label>
+                                </FormGroup>
+                            </Col>
+                        </FormGroup>
+                    ) : (
+                         <FormGroup row className="fee-group">
+                            <Label sm={4} className="font-weight-bold">Bonus</Label>
+                            <Col sm={8}>
+                                <Row className="align-items-baseline">
+                                    <FormGroup className="mb-2 mb-sm-0">
+                                        <Label style={{marginLeft: -3}}>Current: {IsApplyBonus ? "Include" : "Exclude"} | Next Month</Label>
+                                    </FormGroup>
+                                    <FormGroup check className="mx-3">
+                                        <Label check>
+                                                <Input name="NextIsApplyBonus" type="radio" className="mr-2" checked={!!NextIsApplyBonus} onChange={() => this.handleApplyBonus("NextIsApplyBonus", true)} />
+                                            Include
+                                        </Label>
+                                    </FormGroup>
+                                    <FormGroup check>
+                                        <Label check>
+                                            <Input name="NextIsApplyBonus" type="radio" className="mr-2" checked={!NextIsApplyBonus} onChange={() => this.handleApplyBonus("NextIsApplyBonus", false)} />
+                                            Exclude
+                                        </Label>
+                                    </FormGroup>
+                                </Row>
+                            </Col>
+                        </FormGroup>
+                    )
+                }
             </fieldset>
         )
     }

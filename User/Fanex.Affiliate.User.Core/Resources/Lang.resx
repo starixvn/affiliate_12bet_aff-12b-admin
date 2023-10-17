@@ -2202,7 +2202,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
+  <data name="NewFDMs" xml:space="preserve">
     <value>NEW FDM's</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
@@ -2234,5 +2234,47 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>Bangladesh Support</value>
+  </data>
+  <data name="FdmDeposit" xml:space="preserve">
+    <value>FDM's Deposit</value>
+  </data>
+  <data name="FdmExtraComm" xml:space="preserve">
+    <value>FDM Extra Comm</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>Total Commission</value>
+  </data>
+  <data name="MonthlyEarning" xml:space="preserve">
+    <value>Monthly Earning</value>
+  </data>
+  <data name="MonthlyTotal" xml:space="preserve">
+    <value>Monthly Total</value>
+  </data>
+  <data name="TransactionInReport" xml:space="preserve">
+    <value>Transaction</value>
+  </data>
+  <data name="UncalculatedMonthlyEarning" xml:space="preserve">
+    <value>Uncalculated Monthly Earning</value>
+  </data>
+  <data name="CurrentMonthlyEarning" xml:space="preserve">
+    <value>Current Monthly Earning</value>
+  </data>
+  <data name="NewFdmCommBonus" xml:space="preserve">
+    <value>New FDM Commission Bonus</value>
+  </data>
+  <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
+    <value>Uncalculated New FDM Commission Bonus</value>
+  </data>
+  <data name="CurrentNewFdmCommBonus" xml:space="preserve">
+    <value>Current New FDM Commission Bonus</value>
+  </data>
+  <data name="UncalculatedMonth" xml:space="preserve">
+    <value>Uncalculated Month</value>
+  </data>
+  <data name="CurrentMonthStatistics" xml:space="preserve">
+    <value>Current Month Statistics</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>New FDM</value>
   </data>
 </root>

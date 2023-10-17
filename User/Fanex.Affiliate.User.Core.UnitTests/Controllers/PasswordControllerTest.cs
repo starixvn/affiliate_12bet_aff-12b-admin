@@ -163,7 +163,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void RecoverPasswordResult_WhenCallWithErrorCodtRecoverPasswordFailed_ReturnMessageReconverPasswordFailed()
+        public void RecoverPasswordResult_WhenCallWithErrorCodeRecoverPasswordFailed_ReturnMessageReconverPasswordFailed()
         {
             var controller = CreateController();
             NSubtituteMockingHelper.FakeController(controller);

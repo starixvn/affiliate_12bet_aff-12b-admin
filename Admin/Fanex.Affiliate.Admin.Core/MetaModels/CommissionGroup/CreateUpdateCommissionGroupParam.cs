@@ -17,11 +17,17 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
 
         public string TierList { get; set; }
 
+        public string FdmList { get; set; }
+
         public decimal QmTurnover { get; set; }
 
         public string Ip { get; set; }
 
+        public bool IsApplyBonus { get; set; }
+
         public IEnumerable<TierSetting> TierSettingList { get; set; }
+
+        public IEnumerable<FdmSetting> FdmSettingList { get; set; }
 
         public IEnumerable<DeductionSetting> PlatformFeeList { get; set; }
 

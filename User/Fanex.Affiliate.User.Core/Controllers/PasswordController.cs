@@ -139,16 +139,15 @@
         public ActionResult RecoverPasswordResult(bool isSuccessful = false, int errCode = 0)
         {
             var errorMsg = Common.GetErrorMessage("RecoverPassword", errCode == RecoverPasswordFailed ? RecoverPasswordFailed : InvalidUrlAddress);
-            var msg = errorMsg?.Replace("{0}", Url.Content("~/ContactUs"));
             var result = new ResultInfo
             {
                 IsOk = false,
-                Message = msg
+                Message = errorMsg
             };
 
             if (isSuccessful)
             {
-                result.IsOk = true;
+                result.IsOk = true; 
                 result.Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.ForAnyReason.Replace("{0}", Url.Content("~/ContactUs"))}";
             }
 

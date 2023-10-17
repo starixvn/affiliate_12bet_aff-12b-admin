@@ -17,7 +17,7 @@ export default class FeeSettingItem extends React.Component {
     render() {
         const { label, data, basedValueName, isCreating } = this.props;
         return (
-            <FormGroup row>
+            <FormGroup row className="fee-group">
                 <Label sm={4} className="font-weight-bold">{label}</Label>
 
                 {

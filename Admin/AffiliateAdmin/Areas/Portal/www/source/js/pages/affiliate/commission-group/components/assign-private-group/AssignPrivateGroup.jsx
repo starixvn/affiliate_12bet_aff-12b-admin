@@ -4,13 +4,14 @@ import { bindActionCreators } from 'redux';
 import { Alert } from 'reactstrap';
 
 import { getSelectedCommGroup, setSelectedGroup } from '../../actions';
-import { buildDefaultCommGroup, validateQmTurnover, validateTierSettingList, validatePlatformFeeList } from '../../libs/service';
+import { buildDefaultCommGroup, validateCommGroup } from '../../libs/utils';
 import { messages } from '../../libs/constant';
 
 import DeductionSetting from '../shared/deduction';
 import ExchangeRevenueShareSetting from '../shared/exchange';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
+import FdmSetting from '../shared/fdmsetting';
 import Loader from '../../../../../components/Loader';
 import { post } from '../../../../../modules/ajaxRequest';
 import { popupEventNames } from '../../../../common/libs/constants/commissionGroup';
@@ -48,7 +49,10 @@ export class AssignPrivateGroup extends React.Component {
     }
 
     handleSave = async () => {
-        const validationResult = this._validate();
+        const { selectedGroup } = this.props;
+        const validationResult = validateCommGroup(selectedGroup, false);
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
         if (!validationResult.isValid) {
             this.setState({
@@ -59,7 +63,7 @@ export class AssignPrivateGroup extends React.Component {
         }
         else {
             this.setState({ isShowLoader: true });
-            const { selectedGroup, affInfo } = this.props;
+            const { affInfo } = this.props;
 
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
             const commGroup = { ...selectedGroup, PlatformFeeList: platformFeeList };
@@ -72,8 +76,6 @@ export class AssignPrivateGroup extends React.Component {
                 const resultMessage = result.IsSuccessful ?
                     (affInfo.GroupId > 0 ? messages.updateGroupSuccessfully : messages.assignGroupSuccessfully) :
                     result.Message;
-
-                window.scrollTo({ top: 0, behavior: "smooth" });
 
                 this.setState({
                     isShowMessage: true,
@@ -94,20 +96,6 @@ export class AssignPrivateGroup extends React.Component {
         });
     }
 
-    _validate() {
-        const { QmTurnover, TierSettingList, PlatformFeeList } = this.props.selectedGroup;
-        const qmTurnoverValidation = validateQmTurnover(QmTurnover);
-        const tierSettingValidation = validateTierSettingList(TierSettingList);
-        const platformFeeListValidation = validatePlatformFeeList(PlatformFeeList);
-
-        const isValid = qmTurnoverValidation.isValid && tierSettingValidation.isValid && platformFeeListValidation.isValid;
-        const messageList = [...qmTurnoverValidation.messageList, ...tierSettingValidation.messageList,
-        ...platformFeeListValidation.messageList
-        ];
-
-        return { isValid, messageList };
-    }
-
     render() {
         const { isShowMessage, isSuccess, message, isShowLoader } = this.state;
         const { affInfo, selectedGroup, isModifiable } = this.props;
@@ -122,6 +110,7 @@ export class AssignPrivateGroup extends React.Component {
                 <DeductionSetting />
                 <QmTurnOverSetting />
                 <TierSetting />
+                <FdmSetting />
 
                 <button type="button" disabled={!isModifiable} className="my-2 btn btn-success btn-save" onClick={this.handleSave}>SAVE</button>
             </div>

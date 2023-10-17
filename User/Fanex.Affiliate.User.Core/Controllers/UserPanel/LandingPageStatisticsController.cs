@@ -3,12 +3,9 @@
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
     using Filters;
     using MetalModels.UserPanel;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel.Statistics;

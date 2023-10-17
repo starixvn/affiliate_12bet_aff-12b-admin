@@ -2,7 +2,6 @@
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using System;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers

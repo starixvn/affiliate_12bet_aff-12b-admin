@@ -28,6 +28,41 @@ describe('affiliate report - GridData ', () => {
         currentViewLevel: mainView
     };
 
+    const dataItem = {
+        ActiveMember: 0,
+        AffAdjustment: 0,
+        AffId: 927841,
+        AffWithdrawal: 0,
+        BalanceBf: 165,
+        BankingFee: 0,
+        Bonus: 0,
+        CommissionRate: 0,
+        Deposit: 0,
+        Description: "",
+        Earning: 0,
+        NewFdmEarning: 0,
+        TotalEarning: 0,
+        Earning: 0,
+        Fdm: 0,
+        MonthDate: null,
+        MonthDateString: "",
+        OperationalFee: 0,
+        PlatformFee: 0,
+        QualifiedMember: 0,
+        Signup: 0,
+        TotalClick: 0,
+        TotalFee: 0,
+        Turnover: 0,
+        UniqueClick: 0,
+        UserName: "12BETAFF001",
+        Winlost: 0,
+        Withdrawal: 0,
+    };
+
+    const dataList = [
+        dataItem
+    ];
+
     it('componentDidUpdate - should call setState, setPagingOption when param changed, cachedMainReport not null and currentViewLevel is Main view', () => {
         const param = {
             PageIndex: 1,
@@ -221,35 +256,6 @@ describe('affiliate report - GridData ', () => {
     });
 
     it('_renderDataSection - should render correctly', () => {
-        const dataList = [
-            {
-                ActiveMember: 0,
-                AffAdjustment: 0,
-                AffId: 927841,
-                AffWithdrawal: 0,
-                BalanceBf: 165,
-                BankingFee: 0,
-                Bonus: 0,
-                CommissionRate: 0,
-                Deposit: 0,
-                Description: "",
-                Earning: 0,
-                Fdm: 0,
-                MonthDate: null,
-                MonthDateString: "",
-                OperationalFee: 0,
-                PlatformFee: 0,
-                QualifiedMember: 0,
-                Signup: 0,
-                TotalClick: 0,
-                TotalFee: 0,
-                Turnover: 0,
-                UniqueClick: 0,
-                UserName: "12BETAFF001",
-                Winlost: 0,
-                Withdrawal: 0,
-            }
-        ];
         const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth });
         const componentInstance = new GridData(props);
 
@@ -259,35 +265,6 @@ describe('affiliate report - GridData ', () => {
     });
 
     it('_renderDataSection - should render correctly with ProductIds equal allProduct', () => {
-        const dataList = [
-            {
-                ActiveMember: 0,
-                AffAdjustment: 0,
-                AffId: 927841,
-                AffWithdrawal: 0,
-                BalanceBf: 165,
-                BankingFee: 0,
-                Bonus: 0,
-                CommissionRate: 0,
-                Deposit: 0,
-                Description: "",
-                Earning: 0,
-                Fdm: 0,
-                MonthDate: null,
-                MonthDateString: "",
-                OperationalFee: 0,
-                PlatformFee: 0,
-                QualifiedMember: 0,
-                Signup: 0,
-                TotalClick: 0,
-                TotalFee: 0,
-                Turnover: 0,
-                UniqueClick: 0,
-                UserName: "12BETAFF001",
-                Winlost: 0,
-                Withdrawal: 0,
-            }
-        ];
         const props = Object.assign({}, defaultProps, { currentViewLevel: monthOnMonth, param: { ProductIds: '0' } });
         const componentInstance = new GridData(props);
 
@@ -297,33 +274,6 @@ describe('affiliate report - GridData ', () => {
     });
 
     it('_buildDataRow - should render correctly is Main view', () => {
-        const dataItem = {
-            ActiveMember: 0,
-            AffAdjustment: 0,
-            AffId: 0,
-            AffWithdrawal: 0,
-            BalanceBf: 803935.7199,
-            BankingFee: 0,
-            Bonus: 0,
-            CommissionRate: 0,
-            Deposit: 0,
-            Description: "",
-            Earning: 0,
-            Fdm: 0,
-            MonthDate: null,
-            MonthDateString: "",
-            OperationalFee: 0,
-            PlatformFee: 0,
-            QualifiedMember: 0,
-            Signup: 0,
-            TotalClick: 1,
-            TotalFee: 0,
-            Turnover: 0,
-            UniqueClick: 1,
-            UserName: "",
-            Winlost: 0,
-            Withdrawal: 0,
-        };
         const index = 1;
 
         const componentInstance = new GridData(defaultProps);
@@ -335,33 +285,6 @@ describe('affiliate report - GridData ', () => {
     });
 
     it('_buildDataRow - should render correctly is Month on Month view', () => {
-        const dataItem = {
-            ActiveMember: 0,
-            AffAdjustment: 0,
-            AffId: 968222,
-            AffWithdrawal: 0,
-            BalanceBf: 803935.7199,
-            BankingFee: 0,
-            Bonus: 0,
-            CommissionRate: 0,
-            Deposit: 0,
-            Description: "",
-            Earning: 0,
-            Fdm: 0,
-            MonthDate: '12/26/2018',
-            MonthDateString: "",
-            OperationalFee: 0,
-            PlatformFee: 0,
-            QualifiedMember: 0,
-            Signup: 0,
-            TotalClick: 1,
-            TotalFee: 0,
-            Turnover: 0,
-            UniqueClick: 1,
-            UserName: "12BETAFF002",
-            Winlost: 0,
-            Withdrawal: 0,
-        };
         const index = 1;
 
         const componentInstance = new GridData(defaultProps);
@@ -373,33 +296,6 @@ describe('affiliate report - GridData ', () => {
     });
 
     it('_buildDataRow - should call handleViewMonthOnMonth when click button view', () => {
-        const dataItem = {
-            ActiveMember: 0,
-            AffAdjustment: 0,
-            AffId: 968222,
-            AffWithdrawal: 0,
-            BalanceBf: 803935.7199,
-            BankingFee: 0,
-            Bonus: 0,
-            CommissionRate: 0,
-            Deposit: 0,
-            Description: "",
-            Earning: 0,
-            Fdm: 0,
-            MonthDate: null,
-            MonthDateString: "",
-            OperationalFee: 0,
-            PlatformFee: 0,
-            QualifiedMember: 0,
-            Signup: 0,
-            TotalClick: 1,
-            TotalFee: 0,
-            Turnover: 0,
-            UniqueClick: 1,
-            UserName: "12BETAFF002",
-            Winlost: 0,
-            Withdrawal: 0,
-        };
         const index = 1;
 
         const componentInstance = new GridData(defaultProps);
@@ -410,7 +306,7 @@ describe('affiliate report - GridData ', () => {
 
         buildDataRow.find('Button').simulate('click');
 
-        expect(componentInstance.handleViewMonthOnMonth).toHaveBeenCalledWith("12BETAFF002");
+        expect(componentInstance.handleViewMonthOnMonth).toHaveBeenCalledWith("12BETAFF001");
     });
 
     it('_buildMonthCell - should return correctly with correct paramaters', () => {
@@ -434,33 +330,6 @@ describe('affiliate report - GridData ', () => {
     });
 
     it('_buildCommonCell - should return correctly with correct paramaters', () => {
-        const dataItem = {
-            ActiveMember: 0,
-            AffAdjustment: 0,
-            AffId: 968222,
-            AffWithdrawal: 0,
-            BalanceBf: 803935.7199,
-            BankingFee: 0,
-            Bonus: 0,
-            CommissionRate: 0,
-            Deposit: 0,
-            Description: "",
-            Earning: 0,
-            Fdm: 0,
-            MonthDate: null,
-            MonthDateString: "",
-            OperationalFee: 0,
-            PlatformFee: 0,
-            QualifiedMember: 0,
-            Signup: 0,
-            TotalClick: 1,
-            TotalFee: 0,
-            Turnover: 0,
-            UniqueClick: 1,
-            UserName: "12BETAFF002",
-            Winlost: 0,
-            Withdrawal: 0,
-        };
         const componentInstance = new GridData(defaultProps);
 
         const buildCommonCell = shallow(<div>{componentInstance._buildCommonCell(dataItem, 'text-right', false)}</div>);
@@ -515,6 +384,8 @@ describe('affiliate report - GridData ', () => {
             Deposit: 0,
             Description: "",
             Earning: 0,
+            NewFdmEarning: 0,
+            TotalEarning: 0,
             Fdm: 0,
             MonthDate: null,
             MonthDateString: "",
@@ -543,6 +414,8 @@ describe('affiliate report - GridData ', () => {
             Deposit: 0,
             Description: "",
             Earning: 0,
+            NewFdmEarning: 0,
+            TotalEarning: 0,
             Fdm: 0,
             MonthDate: null,
             MonthDateString: "",

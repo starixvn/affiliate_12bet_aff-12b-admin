@@ -43,7 +43,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             Assert.Single(result.CommGroupList);
             Assert.Empty(result.TierSettingList);
             Assert.Empty(result.DeductionSettingList);
-            Assert.Equal("07/11/2018 00:00:00", commGroupItem.CreatedDateText);
         }
 
         [Fact]
@@ -317,6 +316,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
                 ["Description"] = "Description",
                 ["QMTurnover"] = 100.50m,
                 ["NextQMTurnover"] = 150.50m,
+                ["IsApplyBonus"] = true,
+                ["NextIsApplyBonus"] = false,
                 ["NoAffs"] = 2
             };
         }

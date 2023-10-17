@@ -55,6 +55,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 total.BankingFee += item.Data.BankingFee;
                 total.Bonus += item.Data.Bonus;
                 total.Commission += item.Data.Commission;
+                total.FdmCommission += item.Data.FdmCommission;
             }
 
             return new CommissionReportDataViewModel

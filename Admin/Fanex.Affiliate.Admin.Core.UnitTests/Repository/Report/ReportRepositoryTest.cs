@@ -146,6 +146,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
                 ["TotalFee"] = 123,
                 ["CommissionRate"] = 123,
                 ["Earning"] = 123,
+                ["FdmEarning"] = 123,
                 ["AffWithdrawal"] = 123,
                 ["AffAdjustment"] = 123,
                 ["BFF"] = 123,

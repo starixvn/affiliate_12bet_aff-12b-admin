@@ -11,7 +11,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -22,7 +22,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
       title={false}
@@ -34,7 +34,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -45,7 +45,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     />
@@ -54,7 +54,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -62,7 +62,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
         AAnina
       </p>
       <p>
-        08/15/2018 01:59:32
+        NaN/NaN/NaN NaN:NaN:NaN
       </p>
     </t>
     <t
@@ -141,25 +141,18 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       className="text-right"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
-      <p>
-        WL: 
-        0.10
-      </p>
-      <p>
-        Comm: 
-        0.20
-      </p>
+      Exclude
     </t>
     <t
       asc={true}
       className="text-right"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -170,7 +163,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       className="text-right"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -181,7 +174,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       className="text-right"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -192,7 +185,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -204,6 +197,81 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
           className="oi oi-pencil text-secondary"
         />
       </button>
+    </t>
+  </t>
+  <t
+    key="row-fdm-0-0"
+  >
+    <t
+      asc={true}
+      className="text-center font-weight-bold cell-tier"
+      header={false}
+      onClick={[Function]}
+      rowSpan={1}
+      sortable={false}
+      sorting={false}
+    >
+      FDM Setting
+    </t>
+    <t
+      asc={true}
+      className="text-center cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      ∞
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      ∞
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      0.02
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      100
     </t>
   </t>
   <t
@@ -256,7 +324,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -267,7 +335,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
       title="Private Group"
@@ -282,7 +350,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -298,7 +366,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     />
@@ -307,7 +375,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -315,7 +383,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
         AAnina
       </p>
       <p>
-        08/15/2018 01:59:32
+        NaN/NaN/NaN NaN:NaN:NaN
       </p>
     </t>
     <t
@@ -394,25 +462,18 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       className="text-right"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
-      <p>
-        WL: 
-        0
-      </p>
-      <p>
-        Comm: 
-        0
-      </p>
+      Exclude
     </t>
     <t
       asc={true}
       className="text-right"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -423,7 +484,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       className="text-right"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -434,7 +495,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       className="text-right"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -445,7 +506,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       className="text-center"
       header={false}
       onClick={[Function]}
-      rowSpan={2}
+      rowSpan={3}
       sortable={false}
       sorting={false}
     >
@@ -457,6 +518,81 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
           className="oi oi-pencil text-secondary"
         />
       </button>
+    </t>
+  </t>
+  <t
+    key="row-fdm-0-0"
+  >
+    <t
+      asc={true}
+      className="text-center font-weight-bold cell-tier"
+      header={false}
+      onClick={[Function]}
+      rowSpan={1}
+      sortable={false}
+      sorting={false}
+    >
+      FDM Setting
+    </t>
+    <t
+      asc={true}
+      className="text-center cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      ∞
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      0
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      ∞
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      0.02
+    </t>
+    <t
+      asc={true}
+      className="text-right cell-tier"
+      header={false}
+      onClick={[Function]}
+      sortable={false}
+      sorting={false}
+    >
+      100
     </t>
   </t>
   <t
@@ -597,7 +733,9 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sortable={false}
       sorting={false}
     >
-      Tier
+      Tier/
+      <br />
+       Min New FDM
     </t>
     <t
       asc={true}
@@ -608,7 +746,9 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sorting={false}
       title="Minimum all members' winlost amount"
     >
-      Min AM($)
+      Min AM($)/
+      <br />
+       Max New FDM
     </t>
     <t
       asc={true}
@@ -619,7 +759,9 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sorting={false}
       title="Maximum all members' winlost amount"
     >
-      Max AM($)
+      Max AM($)/
+      <br />
+       Min FDM's Deposit
     </t>
     <t
       asc={true}
@@ -630,7 +772,9 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sorting={false}
       title="Minimum number of qualified members"
     >
-      Min QM
+      Min QM/
+      <br />
+       Max FDM's Deposit
     </t>
     <t
       asc={true}
@@ -641,7 +785,9 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sorting={false}
       title="Maximum number of qualified members"
     >
-      Max QM
+      Max QM/
+      <br />
+       Comm Rate
     </t>
     <t
       asc={true}
@@ -651,7 +797,9 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sortable={false}
       sorting={false}
     >
-      Comm Rate
+      Comm Rate/
+      <br />
+       Max Comm Rate
     </t>
     <t
       asc={true}
@@ -661,7 +809,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sortable={false}
       sorting={false}
     >
-      Exchg. Rev%
+      Bonus
     </t>
     <t
       asc={true}
@@ -716,7 +864,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -727,7 +875,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
               title={false}
@@ -739,7 +887,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -755,7 +903,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -766,7 +914,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -774,7 +922,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
                 AAnina
               </p>
               <p>
-                08/15/2018 01:59:32
+                NaN/NaN/NaN NaN:NaN:NaN
               </p>
             </t>
             <t
@@ -853,25 +1001,18 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               className="text-right"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
-              <p>
-                WL: 
-                0
-              </p>
-              <p>
-                Comm: 
-                0
-              </p>
+              Exclude
             </t>
             <t
               asc={true}
               className="text-right"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -882,7 +1023,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               className="text-right"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -893,7 +1034,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               className="text-right"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -904,7 +1045,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -916,6 +1057,79 @@ exports[`commission group - GridData  Should render correctly 1`] = `
                   className="oi oi-pencil text-secondary"
                 />
               </button>
+            </t>
+          </t>,
+          <t>
+            <t
+              asc={true}
+              className="text-center font-weight-bold cell-tier"
+              header={false}
+              onClick={[Function]}
+              rowSpan={1}
+              sortable={false}
+              sorting={false}
+            >
+              FDM Setting
+            </t>
+            <t
+              asc={true}
+              className="text-center cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              ∞
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              ∞
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              0.02
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              100
             </t>
           </t>,
           <t>
@@ -955,7 +1169,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
         ]
       }
       bodyHeight={300}
-      containerPadding={70}
+      containerPadding={20}
       header={
         Array [
           <t>
@@ -1051,7 +1265,9 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sortable={false}
               sorting={false}
             >
-              Tier
+              Tier/
+              <br />
+               Min New FDM
             </t>
             <t
               asc={true}
@@ -1062,7 +1278,9 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sorting={false}
               title="Minimum all members' winlost amount"
             >
-              Min AM($)
+              Min AM($)/
+              <br />
+               Max New FDM
             </t>
             <t
               asc={true}
@@ -1073,7 +1291,9 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sorting={false}
               title="Maximum all members' winlost amount"
             >
-              Max AM($)
+              Max AM($)/
+              <br />
+               Min FDM's Deposit
             </t>
             <t
               asc={true}
@@ -1084,7 +1304,9 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sorting={false}
               title="Minimum number of qualified members"
             >
-              Min QM
+              Min QM/
+              <br />
+               Max FDM's Deposit
             </t>
             <t
               asc={true}
@@ -1095,7 +1317,9 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sorting={false}
               title="Maximum number of qualified members"
             >
-              Max QM
+              Max QM/
+              <br />
+               Comm Rate
             </t>
             <t
               asc={true}
@@ -1105,7 +1329,9 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sortable={false}
               sorting={false}
             >
-              Comm Rate
+              Comm Rate/
+              <br />
+               Max Comm Rate
             </t>
             <t
               asc={true}
@@ -1115,7 +1341,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sortable={false}
               sorting={false}
             >
-              Exchg. Rev%
+              Bonus
             </t>
             <t
               asc={true}
@@ -1180,7 +1406,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
             <t
               asc={true}
               className="text-center"
-              colSpan="16"
+              colSpan="15"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -1192,7 +1418,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
         ]
       }
       bodyHeight={300}
-      containerPadding={70}
+      containerPadding={20}
       header={
         Array [
           <t>
@@ -1288,7 +1514,9 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sortable={false}
               sorting={false}
             >
-              Tier
+              Tier/
+              <br />
+               Min New FDM
             </t>
             <t
               asc={true}
@@ -1299,7 +1527,9 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sorting={false}
               title="Minimum all members' winlost amount"
             >
-              Min AM($)
+              Min AM($)/
+              <br />
+               Max New FDM
             </t>
             <t
               asc={true}
@@ -1310,7 +1540,9 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sorting={false}
               title="Maximum all members' winlost amount"
             >
-              Max AM($)
+              Max AM($)/
+              <br />
+               Min FDM's Deposit
             </t>
             <t
               asc={true}
@@ -1321,7 +1553,9 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sorting={false}
               title="Minimum number of qualified members"
             >
-              Min QM
+              Min QM/
+              <br />
+               Max FDM's Deposit
             </t>
             <t
               asc={true}
@@ -1332,7 +1566,9 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sorting={false}
               title="Maximum number of qualified members"
             >
-              Max QM
+              Max QM/
+              <br />
+               Comm Rate
             </t>
             <t
               asc={true}
@@ -1342,7 +1578,9 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sortable={false}
               sorting={false}
             >
-              Comm Rate
+              Comm Rate/
+              <br />
+               Max Comm Rate
             </t>
             <t
               asc={true}
@@ -1352,7 +1590,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sortable={false}
               sorting={false}
             >
-              Exchg. Rev%
+              Bonus
             </t>
             <t
               asc={true}
@@ -1416,7 +1654,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -1427,7 +1665,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
               title="Private Group"
@@ -1442,7 +1680,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -1458,7 +1696,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -1469,7 +1707,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -1477,7 +1715,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
                 AAnina
               </p>
               <p>
-                08/15/2018 01:59:32
+                NaN/NaN/NaN NaN:NaN:NaN
               </p>
             </t>
             <t
@@ -1556,25 +1794,18 @@ exports[`commission group - GridData  Should render correctly with is private gr
               className="text-right"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
-              <p>
-                WL: 
-                0
-              </p>
-              <p>
-                Comm: 
-                0
-              </p>
+              Exclude
             </t>
             <t
               asc={true}
               className="text-right"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -1585,7 +1816,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               className="text-right"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -1596,7 +1827,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               className="text-right"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -1607,7 +1838,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               className="text-center"
               header={false}
               onClick={[Function]}
-              rowSpan={2}
+              rowSpan={3}
               sortable={false}
               sorting={false}
             >
@@ -1619,6 +1850,79 @@ exports[`commission group - GridData  Should render correctly with is private gr
                   className="oi oi-pencil text-secondary"
                 />
               </button>
+            </t>
+          </t>,
+          <t>
+            <t
+              asc={true}
+              className="text-center font-weight-bold cell-tier"
+              header={false}
+              onClick={[Function]}
+              rowSpan={1}
+              sortable={false}
+              sorting={false}
+            >
+              FDM Setting
+            </t>
+            <t
+              asc={true}
+              className="text-center cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              ∞
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              0
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              ∞
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              0.02
+            </t>
+            <t
+              asc={true}
+              className="text-right cell-tier"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+            >
+              100
             </t>
           </t>,
           <t>
@@ -1658,7 +1962,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
         ]
       }
       bodyHeight={300}
-      containerPadding={70}
+      containerPadding={20}
       header={
         Array [
           <t>
@@ -1754,7 +2058,9 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sortable={false}
               sorting={false}
             >
-              Tier
+              Tier/
+              <br />
+               Min New FDM
             </t>
             <t
               asc={true}
@@ -1765,7 +2071,9 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sorting={false}
               title="Minimum all members' winlost amount"
             >
-              Min AM($)
+              Min AM($)/
+              <br />
+               Max New FDM
             </t>
             <t
               asc={true}
@@ -1776,7 +2084,9 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sorting={false}
               title="Maximum all members' winlost amount"
             >
-              Max AM($)
+              Max AM($)/
+              <br />
+               Min FDM's Deposit
             </t>
             <t
               asc={true}
@@ -1787,7 +2097,9 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sorting={false}
               title="Minimum number of qualified members"
             >
-              Min QM
+              Min QM/
+              <br />
+               Max FDM's Deposit
             </t>
             <t
               asc={true}
@@ -1798,7 +2110,9 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sorting={false}
               title="Maximum number of qualified members"
             >
-              Max QM
+              Max QM/
+              <br />
+               Comm Rate
             </t>
             <t
               asc={true}
@@ -1808,7 +2122,9 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sortable={false}
               sorting={false}
             >
-              Comm Rate
+              Comm Rate/
+              <br />
+               Max Comm Rate
             </t>
             <t
               asc={true}
@@ -1818,7 +2134,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sortable={false}
               sorting={false}
             >
-              Exchg. Rev%
+              Bonus
             </t>
             <t
               asc={true}

@@ -26,6 +26,32 @@ describe('user panel actions', () => {
         runTestAction(item);
     });
 
+    it('should create action to redirectToStatementHistory', () => {
+        const param = {
+            affId: 1271808,
+            monthDate: "Jan-2019",
+            productId: 0
+        };
+
+        const data = {
+            param,
+            scrollTop: 100,
+            expandMonthDateList: []
+        }
+
+        const expectedAction = [
+            { type: 'USER_PANEL/SET_SELECTED_USERPANEL', data: 'statementHistory' },
+            { type: 'USER_PANEL/STATEMENT_HISTORY/SET_PARAM', data: { ...param, isBack: true, scrollTop: data.scrollTop } },
+            { type: 'USER_PANEL/STATEMENT_HISTORY/SET_EXPAND_MONTH_DATE_LIST', data: data.expandMonthDateList }
+        ];
+
+        const store = mockStore({ todos: [] });
+        store.dispatch(actions['redirectToStatementHistory'](data));
+
+        expect(store.getActions()).toEqual(expectedAction);
+    })
+
+
     it('should create action to redirectToDailyEarning', () => {
         const param = {
             affId: 1271808,

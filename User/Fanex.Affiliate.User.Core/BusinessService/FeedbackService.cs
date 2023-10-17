@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly IFeedbackRepository _feedbackRepository;
 
         public FeedbackService(
-            IAppSetting appSetting, 
+            IAppSetting appSetting,
             IFeedbackRepository feedbackRepository)
         {
             _appSetting = appSetting;

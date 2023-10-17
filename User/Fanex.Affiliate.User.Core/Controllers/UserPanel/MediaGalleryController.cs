@@ -59,9 +59,9 @@
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult CountNumberOfCopies(CopiedBannerCounterParam param)
         {
-            if(SessionService.IsInternal)
+            if (SessionService.IsInternal)
             {
-                return Json(new ResultInfo { Message = Lang.ErrAuthorized});
+                return Json(new ResultInfo { Message = Lang.ErrAuthorized });
             }
 
             param.AffId = SessionService.UserSession.AffId;

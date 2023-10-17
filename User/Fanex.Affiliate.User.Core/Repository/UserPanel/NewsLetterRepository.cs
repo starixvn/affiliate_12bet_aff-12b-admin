@@ -1,9 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
@@ -19,7 +16,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         public NewsLetter GetNewsLetterById(int id)
         {
             const string spKey = "Aff_Admin_Newsletter_Sel";
-            using( var objectDb = _builder.Build(spKey))
+            using (var objectDb = _builder.Build(spKey))
             {
                 return objectDb.QueryEntity<NewsLetter>(new { NewsletterId = id });
             }

@@ -8,7 +8,7 @@ describe('affiliate report - Report Excel ', () => {
 
     const INDEX_DEPOSIT_COLUMN = 8;
     const INDEX_COMM_COLUMN = 17;
-    const TOTAL_COLUMNS = 23;
+    const TOTAL_COLUMNS = 25;
 
     const MAIN_SECTION_STYLE = 'mainSectionStyle';
     const TOTAL_SECTION_STYLE = 'totalSectionStyle';
@@ -32,6 +32,8 @@ describe('affiliate report - Report Excel ', () => {
         Deposit: 0,
         Description: "12BETAFF001",
         Earning: 0,
+        NewFdmEarning: 0,
+        TotalEarning: 0,
         Fdm: 0,
         MonthDate: null,
         MonthDateString: "",
@@ -61,6 +63,8 @@ describe('affiliate report - Report Excel ', () => {
         Deposit: 0,
         Description: "",
         Earning: 0,
+        NewFdmEarning: 0,
+        TotalEarning: 0,
         Fdm: 0,
         MonthDate: null,
         MonthDateString: "",
@@ -166,7 +170,7 @@ describe('affiliate report - Report Excel ', () => {
 
         instance._createHeader();
 
-        expect(Excel.getCellAddress).toHaveBeenCalledTimes(25);
+        expect(Excel.getCellAddress).toHaveBeenCalledTimes(TOTAL_COLUMNS + 2);
         expect(Excel.getCellAddress.mock.calls[0][0]).toEqual({ "c": TITLE_ROW_INDEX, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[1][0]).toEqual({ "c": TITLE_ROW_INDEX + 1, "r": HEADER_ROW_INDEX });
         expect(Excel.getCellAddress.mock.calls[2][0]).toEqual({ "c": TITLE_ROW_INDEX + 2, "r": HEADER_ROW_INDEX });
@@ -351,6 +355,8 @@ describe('affiliate report - Report Excel ', () => {
             { field: "CommissionRate", mainSectionStyle: { "alignment": { horizontal: "right", vertical: "center" } }, totalSectionStyle: { alignment: { horizontal: "right", vertical: "center" }, fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true } }, wpx: 80 },
             { field: "PreviousBalanceBf", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" }, wpx: 225 },
             { field: "Earning", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" }, wpx: 100 },
+            { field: "NewFdmEarning", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" }, wpx: 150 },
+            { field: "TotalEarning", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" }, wpx: 100 },
             { field: "AffWithdrawal", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" }, wpx: 100 },
             { field: "AffAdjustment", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" }, wpx: 100 },
             { field: "BalanceBf", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" }, wpx: 150 }]

@@ -194,7 +194,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             {
                 ["TransId"] = 37,
                 ["Amount"] = 100,
-                ["TransType"] = 123,
+                ["TransType"] = 202,
                 ["MonthDate"] = new DateTime(2019, 11, 22),
                 ["Status"] = "Approved",
                 ["Creator"] = "sa",

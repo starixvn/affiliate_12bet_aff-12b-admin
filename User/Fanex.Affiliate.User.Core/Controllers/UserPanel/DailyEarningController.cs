@@ -30,8 +30,8 @@
         {
             param.AffId = SessionService.UserSession.AffId;
             param.IsInternal = SessionService.IsInternal;
-            param.ProductId = param.ProductId.HasValue ? param.ProductId.Value : Product.Sportsbook;
-            param.MonthDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.AddDays(-1);
+            param.ProductId = param.ProductId ?? Product.Sportsbook;
+            param.MonthDate = param.MonthDate ?? DateTime.Now.AddDays(-1);
 
             var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
 

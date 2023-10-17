@@ -7,8 +7,8 @@ import UserPanelBreadcrumb from '../../../common/components/UserPanelBreadcrumb'
 import Filter from './Filter';
 import Content from './Content';
 
-import { monthNames, userPanelMenuKey } from '../libs/constants';
-import { setSelectedUserPanel } from '../actions';
+import { monthNames } from '../libs/constants';
+import { setSelectedUserPanel, redirectToStatementHistory } from '../actions';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -19,7 +19,7 @@ export class AppContainer extends PureComponent {
         const date = new Date(this.monthDate);
 
         this.breadcrumbList = [
-            { handleClick: () => this.props.setSelectedUserPanel(userPanelMenuKey.statementHistory), title: 'Statement History'},
+            { handleClick: () => this.props.redirectToStatementHistory(param.statementHistory), title: 'Statement History'},
             { title: `${monthNames[date.getMonth()]} ${date.getFullYear()}`}
         ];
     }
@@ -41,7 +41,7 @@ function mapStateToProps({ dailyEarning }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedUserPanel }, dispatch);
+    return bindActionCreators({ setSelectedUserPanel, redirectToStatementHistory }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

@@ -13,16 +13,18 @@ export const headerText = {
     Description: 'Description',
 }
 
-export const MONTHLY_WINLOST = 201;
+export const MONTHLY_TOTAL = 0;
+export const MONTHLY_EARNING = 201;
 export const PAYMENT_REQUEST = 202;
 export const ADJUSTMENT = 203;
-export const TRANSACTION = 0;
+export const NEW_FDM_COMM_BONUS = 205;
+
+export const monthlyEarning = 'Monthly Earning'
 
 export const transTypeList = {
-    [MONTHLY_WINLOST]: 'Monthly Winlost',
+    [MONTHLY_EARNING]: 'Monthly Earning',
     [PAYMENT_REQUEST]: 'Payment Request',
     [ADJUSTMENT]: 'Adjustment',
-    [TRANSACTION]: 'Transaction'
+    [NEW_FDM_COMM_BONUS]: 'New FDM',
+    [MONTHLY_TOTAL]: 'Transaction'
 }
-
-export const monthlyWinlost = 'Monthly Winlost'

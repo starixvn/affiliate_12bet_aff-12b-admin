@@ -30,10 +30,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void Index_WhenCallWithIsInvalidUser_ReturnPageNotFound()
         {
             //Arrange
-            UserSession userSession = null;
-            var sessionService = Substitute.For<ISessionService>();
-            sessionService.UserSession.Returns(userSession);
-            var controller = new TestController(sessionService, LanguageService, AppSetting, MailProcessor);
+            SessionService.UserSession.Returns(null as UserSession);
+            var controller = CreateTestingEmailController();
 
             //Action
             var result = controller.Index() as HttpNotFoundResult;
@@ -160,7 +158,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
 
             //Action
-            var result = controller.SendEmail(new TestCriteria { Function = function }) as JsonResult;
+            var result = controller.SendEmail(new TestCriteria { Function = function, Language = Constant.DefaultLanguage, EmailAddress = "abc@gmail.com" }) as JsonResult;
 
             //Assert
             Assert.NotNull(result);
@@ -182,7 +180,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.NotNull(result);
         }
 
-        private TestController CreateTestingEmailController()
-            => new TestController(SessionService, LanguageService, AppSetting, MailProcessor);
+        private TestController CreateTestingEmailController(ISessionService sessionService = null)
+            => new TestController(sessionService ?? SessionService, LanguageService, AppSetting, MailProcessor);
     }
 }

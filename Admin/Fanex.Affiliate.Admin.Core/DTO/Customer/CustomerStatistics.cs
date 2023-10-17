@@ -25,6 +25,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
         [PermissionCheck(Function.AffPlayerDetail)]
         public decimal DepositTotal { get; set; }
 
+        [PermissionCheck(Function.AffPlayerDetail)]
+        public decimal FdmDepositByMonth { get; set; }
+
         [PermissionCheck(Function.Turnover)]
         public decimal TurnoverByMonth { get; set; }
 

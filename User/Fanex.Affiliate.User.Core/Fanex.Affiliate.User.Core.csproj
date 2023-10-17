@@ -600,6 +600,7 @@
     <Compile Include="ViewModels\UserPanel\Marketing\SearchFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\MessageHistoryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\StatementHistoryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\LandingPageStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\ReferrerStatisticsViewModel.cs" />
     <Compile Include="ViewModels\VerificationAccountViewModel.cs" />

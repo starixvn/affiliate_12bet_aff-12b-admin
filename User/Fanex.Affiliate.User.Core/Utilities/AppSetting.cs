@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Fanex.Affiliate.User.Core.Utilities

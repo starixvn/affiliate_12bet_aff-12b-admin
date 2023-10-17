@@ -5,13 +5,15 @@
 
 @section scripts{
     <script src="~/www/build/js/lib/jsencrypt-2.3.1.min.js"></script>
+    <script>
+        window.JSEncrypt || document.write('\x3Cscript src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js">\x3C/script>')
+    </script>
 
     <script type="text/javascript">
         var resource = {
             notMatchPassword: '@Lang.ReenterNewPassw'
         }
     </script>
-
     <script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
     @Html.InlineScripts("~/www/build/js/pages/changepassword.js")
 }

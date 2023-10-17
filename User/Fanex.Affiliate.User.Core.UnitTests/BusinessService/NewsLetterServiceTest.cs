@@ -37,7 +37,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             var newsLetterId = 123;
             var content = "test";
-            NewsLetter newsLetter = new NewsLetter {
+            NewsLetter newsLetter = new NewsLetter
+            {
                 FileName = "abc.html",
                 EffectiveFrom = DateTime.Now,
                 EffectiveTo = DateTime.Now,

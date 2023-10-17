@@ -412,7 +412,7 @@
     <value>สกุลเงิน</value>
   </data>
   <data name="Current" xml:space="preserve">
-    <value>Current</value>
+    <value>ปัจจุบัน</value>
   </data>
   <data name="Cyprus" xml:space="preserve">
     <value>ไซปรัส</value>
@@ -2089,7 +2089,7 @@
   <data name="Flat50" xml:space="preserve">
     <value>คอมมิชชั่นเริ่มต้น 50%</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
+  <data name="NewFDMs" xml:space="preserve">
     <value>ฝากแรก</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
@@ -2118,5 +2118,47 @@
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
+  </data>
+  <data name="FdmDeposit" xml:space="preserve">
+    <value>การฝากเงินของ FDM</value>
+  </data>
+  <data name="TransactionInReport" xml:space="preserve">
+    <value>ธุรกรรม</value>
+  </data>
+  <data name="NewFDM" xml:space="preserve">
+    <value>FDM ใหม่</value>
+  </data>
+  <data name="MonthlyTotal" xml:space="preserve">
+    <value>ยอดรวมรายเดือน</value>
+  </data>
+  <data name="MonthlyEarning" xml:space="preserve">
+    <value>รายได้ต่อเดือน</value>
+  </data>
+  <data name="UncalculatedMonthlyEarning" xml:space="preserve">
+    <value>รายได้ต่อเดือนที่ไม่ได้คำนวณ</value>
+  </data>
+  <data name="CurrentMonthlyEarning" xml:space="preserve">
+    <value>รายได้ต่อเดือนปัจจุบัน</value>
+  </data>
+  <data name="CurrentNewFdmCommBonus" xml:space="preserve">
+    <value>โบนัสคอมมิชชั่น FDM ใหม่ในปัจจุบัน</value>
+  </data>
+  <data name="NewFdmCommBonus" xml:space="preserve">
+    <value>โบนัสค่าคอมมิชชัน FDM ใหม่</value>
+  </data>
+  <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
+    <value>โบนัสคอมมิชชัน FDM ใหม่ที่ไม่ได้คำนวณ</value>
+  </data>
+  <data name="UncalculatedMonth" xml:space="preserve">
+    <value>เดือนที่ไม่ได้คำนวณ</value>
+  </data>
+  <data name="CurrentMonthStatistics" xml:space="preserve">
+    <value>สถิติเดือนปัจจุบัน</value>
+  </data>
+  <data name="FdmExtraComm" xml:space="preserve">
+    <value>ค่าคอมมิชชั่น FDM พิเศษ</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>ค่าคอมมิชชั่นทั้งหมด</value>
   </data>
 </root>

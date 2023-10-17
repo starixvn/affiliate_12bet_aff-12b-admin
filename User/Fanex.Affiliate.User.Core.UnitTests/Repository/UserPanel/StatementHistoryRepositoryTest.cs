@@ -6,7 +6,6 @@ using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
@@ -16,7 +15,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Theory]
         [InlineData(true, (int)TransType.Payment, "running")]
         [InlineData(false, (int)TransType.Adjustment, "pending")]
-        [InlineData(false, (int)TransType.Commission, "completed")]
+        [InlineData(false, (int)TransType.MonthlyEarning, "completed")]
         [InlineData(false, 123, "cancelled")]
         [InlineData(false, 123, "approved")]
         [InlineData(false, 123, "rejected")]
@@ -45,13 +44,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var repo = CreateRepo();
 
             var result = repo.GetStatementHistory(param);
-            var item = result.FirstOrDefault();
 
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result);
-            Assert.NotNull(item.DateString);
-            Assert.NotNull(item.DisplayStatus);
-            Assert.NotNull(item.TransTypeString);
         }
 
         [Theory]

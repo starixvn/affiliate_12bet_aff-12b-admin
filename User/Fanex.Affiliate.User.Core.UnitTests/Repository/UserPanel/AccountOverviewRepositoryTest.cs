@@ -89,6 +89,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
                 BalanceBroughtForward = 100,
                 Commission = 10,
                 Deposit = 100,
+                FdmDeposit = 0,
                 DepositedMembers = 2,
                 QualifiedActivePlayers = 1,
                 Signups = 2,

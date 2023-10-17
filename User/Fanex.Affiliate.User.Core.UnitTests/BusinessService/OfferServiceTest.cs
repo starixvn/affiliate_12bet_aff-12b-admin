@@ -35,7 +35,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             var offerId = 123;
             var content = "test";
-            Offer offer = new Offer {
+            Offer offer = new Offer
+            {
                 FileName = "abc.html",
                 EffectiveFromDate = DateTime.Now,
                 EffectiveToDate = DateTime.Now,

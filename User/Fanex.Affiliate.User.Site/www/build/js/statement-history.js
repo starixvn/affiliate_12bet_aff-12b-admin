@@ -233,8 +233,15 @@
     };
 })(jQuery);
 var StatementHistory = (function ($) {
-    var _pageSize = 20;
-    var _pageIndex = 0;
+    const _currentPage = "StatementHistory";
+    const urlMapping = [
+        { transType: 201, url: "UserPanel/Main/#DailyEarning" }
+    ];
+
+    let _pageSize = 20;
+    let _pageIndex = 0;
+    let _scrollY = 0;
+    let _expandElementList = [];
 
     function initPager() {
         $("#statementPager").pager({
@@ -245,6 +252,7 @@ var StatementHistory = (function ($) {
             onChange: function (pageIndex, pageSize) {
                 _pageIndex = pageIndex;
                 _pageSize = pageSize;
+                _expandElementList = [];
 
                 var params = _me.getStatementHistoryParam();
                 _me.renderStatementHistory(params);
@@ -252,19 +260,45 @@ var StatementHistory = (function ($) {
         });
     }
 
+    function toggleChildrenElem(children, id) {
+        if (children.hasClass("display-none")) {
+            _expandElementList.push(id);
+        } else {
+            const index = _expandElementList.indexOf(id);
+            if (index > -1) {
+                _expandElementList.splice(index, 1);
+            }
+        }
+
+        $(children).toggleClass("display-none");
+    }
+
     var _me = {
         initialize: function () {
+            _me.handleIfIsClickBreadcumb();
             initPager();
-            StatementHistory.initEvent();
+            _me.initEvent();
         },
 
         initEvent: function () {
             $("#statementDataList").on("click", ".amountItem", function () {
-                var params = {
-                    monthDate: $(this).data("date")
+                let transtype = Number($(this).data("transtype"));
+                let url = urlMapping.find(elem => elem.transType === transtype).url;
+                let params = {
+                    monthDate: $(this).data("date"),
+                    requestPage: _currentPage,
+                    isOnlyContent: false
                 };
+                _me.setStatementHistoryParamIntoStorage();
+                Site.redirect(Site.resolveRelativeUrl(`${url}?${$.param(params)}`));
+            });
 
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#DailyEarning?" + $.param(params)));
+            $("#statementDataList").on("click", ".btn.btn-transparent", function () {
+                let id = $(this).parents("tr").data("id");
+                let children = $(this).parents("tr").siblings(`tr[data-parent='${id}']`);
+
+                toggleCollapseButton(this);
+                toggleChildrenElem(children, id);
             });
         },
 
@@ -275,7 +309,55 @@ var StatementHistory = (function ($) {
             };
         },
 
-        renderStatementHistory: function (params) {
+        handleIfIsClickBreadcumb: function () {
+            const isClickBreadcumb = $("#isClickBreadcumb").val() === 'True';
+
+            if (isClickBreadcumb) {
+                let statementHistoryState = sessionStorage.getItem("statementHistoryState");
+                const oldState = JSON.parse(statementHistoryState) || { pageSize: _pageSize, pageIndex: _pageIndex, scrollY: _scrollY, expandElementList: _expandElementList }
+
+                _pageSize = oldState.pageSize;
+                _pageIndex = oldState.pageIndex;
+                _scrollY = oldState.scrollY;
+                _expandElementList = oldState.expandElementList;
+
+                var params = _me.getStatementHistoryParam();
+                _me.renderStatementHistory(params, isClickBreadcumb);
+            }
+        },
+
+        handleUpdateByOldState: function () {
+            window.scroll({
+                top: _scrollY,
+                behavior: 'smooth',
+            });
+
+            _expandElementList.forEach(_me.handleUpdateExpandingElementByOldState);
+        },
+
+        handleUpdateExpandingElementByOldState: function (id) {
+            var btnChevron = $(`[data-id="${id}"] span.chevron`)[0];
+
+            if (!!btnChevron) {
+                let childrenOfId = $(`tr[data-parent='${id}']`);
+                $(childrenOfId).toggleClass("display-none");
+
+                $(btnChevron).toggleClass("right");
+                $(btnChevron).toggleClass("bottom");
+            }
+        },
+
+        setStatementHistoryParamIntoStorage: function () {
+            const param = {
+                pageSize: _pageSize,
+                pageIndex: _pageIndex,
+                scrollY: window.scrollY,
+                expandElementList: _expandElementList
+            }
+            sessionStorage.setItem("statementHistoryState", JSON.stringify(param))
+        },
+
+        renderStatementHistory: function (params, isClickBreadcumb = false) {
             $.ajax({
                 type: "POST",
                 dataType: "html",
@@ -285,6 +367,8 @@ var StatementHistory = (function ($) {
                 url: Site.resolveRelativeUrl("UserPanel/StatementHistory"),
                 success: function (response) {
                     $("#statementDataList").html(response);
+
+                    !!isClickBreadcumb && _me.handleUpdateByOldState();
                 },
                 beforeSend: function () {
                     Site.showLoader();

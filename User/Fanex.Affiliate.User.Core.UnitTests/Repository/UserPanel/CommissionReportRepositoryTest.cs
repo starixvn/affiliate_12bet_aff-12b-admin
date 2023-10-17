@@ -3,6 +3,7 @@ using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
@@ -25,9 +26,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             });
 
             var result = repo.GetAffiliateCommission(1, DateTime.Now);
+            var item = result.FirstOrDefault();
 
             Assert.Equal(uSpKey, db.SettingKey);
             Assert.NotEmpty(result);
+            Assert.Equal(item.TotalCommission, item.Commission + item.FdmCommission);
         }
     }
 }

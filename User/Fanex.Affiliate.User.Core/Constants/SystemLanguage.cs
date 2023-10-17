@@ -78,8 +78,8 @@ namespace Fanex.Affiliate.User.Core.Constants
         public static string GetSEOHtmlTagLangAttribute()
         {
             var currentCulture = Thread.CurrentThread.CurrentCulture;
-            var htmlTagSeoName = _supportedLanguageForSEO.TryGetValue(currentCulture.Name, out string result) 
-                ? result 
+            var htmlTagSeoName = _supportedLanguageForSEO.TryGetValue(currentCulture.Name, out string result)
+                ? result
                 : ShortedDefaultCode;
             return htmlTagSeoName;
         }

@@ -2,9 +2,10 @@
 {
     public enum TransType : byte
     {
-        Commission = 201,
+        MonthlyTotal = 0,
+        MonthlyEarning = 201,
         Payment = 202,
         Adjustment = 203,
-        Marketing = 204
+        SubAffBonus = 205
     }
 }

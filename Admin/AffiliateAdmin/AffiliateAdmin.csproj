@@ -407,8 +407,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\assign-private-group\__test__\redux\AssignPrivateGroup.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\editgroup\__test__\redux\EditGroup.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\deduction\__test__\redux\DeductionSetting.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\fdmsetting\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\fdmsetting\FdmSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\fdmsetting\FdmSettingItem.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\__test__\redux\Content.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\libs\__test__\utils.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\feedback-report\actions\index.js" />
@@ -713,7 +717,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\grouplist\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\libs\constant.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\libs\service.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\reducers\__test__\index.test.js" />
@@ -1171,6 +1175,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\__test__\redux\Filter.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\actions\index.js" />
@@ -1566,6 +1571,7 @@
     <Content Include="Areas\Portal\www\source\style\components\_select.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_autocomplete.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\select.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer\user-panel\statement-history.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

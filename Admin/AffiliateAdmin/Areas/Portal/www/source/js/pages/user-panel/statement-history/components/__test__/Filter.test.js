@@ -3,7 +3,7 @@ import { Filter } from '../Filter';
 import { shallow } from 'enzyme';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-describe('customer member - components - Filter', () => {
+describe('statement history - components - Filter', () => {
     afterAll(() => {
         jest.resetAllMocks();
     });
@@ -28,7 +28,7 @@ describe('customer member - components - Filter', () => {
 
         wrapper.instance().componentDidMount();
 
-        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "1/11/2019", isGetAll: false, toDate: "7/11/2019" });
+        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "1/11/2019", isGetAll: false, toDate: "7/11/2019", isBack: false, scrollTop: 0 });
     });
 
     it('handleChecked - should call setState when click GetAll checkbox', () => {
@@ -88,6 +88,6 @@ describe('customer member - components - Filter', () => {
         wrapper.find('Input[type="checkbox"][name="isGetAll"]').simulate('change', event);
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "1/11/2019", isGetAll: false, toDate: "7/11/2019" });
+        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "1/11/2019", isGetAll: false, toDate: "7/11/2019", isBack: false, scrollTop: 0 });
     });
 });

@@ -1,11 +1,17 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.Utilities;
+    using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
 
     [CustomAuthorize]
@@ -27,7 +33,7 @@
         }
         [HttpGet]
         [AjaxOnly]
-        public ActionResult Index()
+        public ActionResult Index(bool isClickBreadcumb = false)
         {
             var param = new StatementHistoryParam
             {
@@ -37,10 +43,12 @@
                 PageSize = DefaultPageSize
             };
 
-            var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
+            var statementHistoryList = GetStatementHistoryViewModel(param);
             ViewBag.TotalItem = param.NRows;
             ViewBag.StartRowNumber = 1;
             ViewBag.AvailableFromDate = _appSetting.StatementAvailableFrom;
+            ViewBag.IsClickBreadcumb = isClickBreadcumb.ToString();
+
             return View("~/Views/UserPanel/StatementHistory/Index.cshtml", statementHistoryList);
         }
 
@@ -53,11 +61,72 @@
             param.IsInternal = SessionService.IsInternal;
             param.PageSize = param.PageSize ?? DefaultPageSize;
 
-            var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
+            var statementHistoryList = GetStatementHistoryViewModel(param);
             ViewBag.TotalItem = param.NRows;
             ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
             ViewBag.AvailableFromDate = _appSetting.StatementAvailableFrom;
             return PartialView("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_StatementHistoryContent.cshtml", statementHistoryList);
+        }
+
+        private IEnumerable<StatementHistoryViewModel> GetStatementHistoryViewModel(StatementHistoryParam param)
+        {
+            var statementHistoryViews = new List<StatementHistoryViewModel>();
+            var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
+
+            foreach (var item in statementHistoryList)
+            {
+                if (item.TransType == TransType.MonthlyEarning || item.TransType == TransType.NewFDM)
+                {
+                    if (CheckIfExistMonthlyTotal(item.MonthDate, statementHistoryViews))
+                    {
+                        continue;
+                    }
+                    statementHistoryViews.Add(CreateMonthlyTotal(item.MonthDate, statementHistoryList));
+                }
+                else
+                {
+                    statementHistoryViews.Add(CreateViewModelFromStatementHistoryItem(item));
+                }
+            }
+
+            return statementHistoryViews;
+        }
+
+        private static StatementHistoryViewModel CreateMonthlyTotal(DateTime monthDate, IEnumerable<StatementHistory> statementHistoryList)
+        {
+            var transItems = statementHistoryList.Where(s => s.MonthDate == monthDate)
+                .Where(s => s.TransType == TransType.NewFDM || s.TransType == TransType.MonthlyEarning);
+
+            var monthlyCom = transItems.FirstOrDefault(s => s.TransType == TransType.MonthlyEarning);
+            var children = transItems.Select(s => CreateViewModelFromStatementHistoryItem(s));
+
+            var monthlyTotal = new StatementHistoryViewModel
+            {
+                Amount = transItems.Sum(s => s.Amount),
+                MonthDate = monthDate,
+                Children = children,
+                Status = monthlyCom?.Status ?? children.FirstOrDefault().Status,
+                TransType = TransType.MonthlyTotal,
+                Description = monthlyCom?.Description ?? children.FirstOrDefault().Description
+            };
+            return monthlyTotal;
+        }
+
+        private static bool CheckIfExistMonthlyTotal(DateTime monthDate, List<StatementHistoryViewModel> statementHistoryViews)
+        {
+            return statementHistoryViews.Any(m => m.MonthDate == monthDate && m.TransType == TransType.MonthlyTotal);
+        }
+
+        private static StatementHistoryViewModel CreateViewModelFromStatementHistoryItem(StatementHistory item)
+        {
+            return new StatementHistoryViewModel
+            {
+                Amount = item.Amount,
+                Description = item.Description,
+                MonthDate = item.MonthDate,
+                Status = item.Status,
+                TransType = item.TransType
+            };
         }
     }
 }
