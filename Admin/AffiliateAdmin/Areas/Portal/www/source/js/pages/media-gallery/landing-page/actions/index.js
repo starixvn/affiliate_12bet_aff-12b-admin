@@ -70,8 +70,8 @@ export const getVisibleTargetCountriesByUser = () => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const getExcludeTargetCountryList = (param) => async () => {
-    const url = 'Portal/Domain/GetExcludeTargetCountryList';
+export const getTargetCountryListByLandingPage = (param) => async () => {
+    const url = 'Portal/Domain/GetTargetCountryListByLandingPage';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;

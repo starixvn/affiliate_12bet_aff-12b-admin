@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
@@ -13,7 +12,7 @@ using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 {
-    public class commonSettingServiceTest
+    public class CommonSettingServiceTest
     {
         [Fact]
         public void GetInChangeMarkets_WhenCall_ReturnCorrectData()
@@ -82,38 +81,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             // Assert
             Assert.Single(result);
-        }
-
-        [Fact]
-        public void GetVisibleTargetCountriesByUser_WhenCall_Excute()
-        {
-            // Arrange
-            var commonSettingRepository = new Mock<ICommonSettingRepository>();
-            commonSettingRepository.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry() });
-
-            var service = CreateCommonService(commonSettingRepository.Object);
-
-            // Action
-            var result = service.GetVisibleTargetCountriesByUser(123);
-
-            // Assert
-            Assert.Single(result);
-        }
-
-        [Fact]
-        public void GetVisibleTargetCountriesNotUsingByUser_WhenCall_Excute()
-        {
-            // Arrange
-            var commonSettingRepository = new Mock<ICommonSettingRepository>();
-            commonSettingRepository.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { Status = 2 } });
-
-            var service = CreateCommonService(commonSettingRepository.Object);
-
-            // Action
-            var result = service.GetVisibleTargetCountriesNotUsingByUser(123);
-
-            // Assert
-            Assert.Empty(result);
         }
 
 

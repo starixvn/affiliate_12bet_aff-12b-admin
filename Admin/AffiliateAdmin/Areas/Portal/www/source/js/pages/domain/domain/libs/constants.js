@@ -8,14 +8,8 @@ export const headerText = {
     SSL: 'SSL',
     Creator: 'Creator',
     CreatedDate: 'Created Date',
-    BlockTargetCountry: 'Block Target Country',
+    ExcludedTargetCountry: 'Block Target Country',
     Action: globalResource.Action
-}
-
-export const targetCountryStatus = {
-    Unblocked: 0,
-    Blocked: 1,
-    Using: 2
 }
 
 export const defaultState = {
@@ -24,7 +18,7 @@ export const defaultState = {
     isSuccess: true,
     message: '',
     usingTargetCountries: [],
-    isBlockAllTargetCountries: false,
+    isExcludedAllTargetCountries: false,
     selectedDomain: null,
-    targetCountryListByDomain: null
+    targetCountryList: null
 }

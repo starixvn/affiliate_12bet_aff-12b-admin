@@ -296,7 +296,7 @@
     <Compile Include="Extensions\GenericExtension.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
     <Compile Include="MetaModels\Domain\TargetCountryParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\ExcludeTargetCountryParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\ExcludedTargetCountryParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainParam.cs" />
     <Compile Include="MetaModels\FeedbackReport\FeedbackReportParam.cs" />

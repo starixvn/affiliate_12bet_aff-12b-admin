@@ -500,6 +500,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\processing-request\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\processing-request\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\ExcludedTargetCountryFormGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\InputPopUp.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\InputFile.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\__test__\CheckboxSelectAll.test.js" />
@@ -513,6 +514,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\processing-request\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\processing-request\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\processing-request\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\libs\utils\targetCountry.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\ContactNumber.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\ApprovedStatus.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\general-info\__test__\redux\ContactNumber.redux.test.js" />
@@ -1563,6 +1565,7 @@
     <Content Include="Areas\Portal\www\source\style\components\_autocomplete.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\select.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\user-panel\statement-history.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\common\excluded-target-country-form-group.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

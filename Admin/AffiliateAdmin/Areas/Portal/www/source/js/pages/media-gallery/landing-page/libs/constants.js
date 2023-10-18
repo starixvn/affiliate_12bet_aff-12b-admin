@@ -10,8 +10,10 @@ export const headerText = {
 }
 
 export const defaultState = {
-    pageName: '',
-    pageCode: '',
+    usingTargetCountries: [],
+    isExcludedAllTargetCountries: false,
+    selectedPage: null,
+    targetCountryList: null,
     isClickedSubmit: false,
     isInsert: true,
     isShowMessage: false,

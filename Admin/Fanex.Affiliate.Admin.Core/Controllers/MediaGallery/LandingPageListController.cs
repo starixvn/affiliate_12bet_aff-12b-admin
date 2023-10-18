@@ -63,13 +63,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetExcludeTargetCountryList(ExcludeTargetCountryParam param)
+        public ActionResult GetExcludedTargetCountryList(ExcludedTargetCountryParam param)
         {
             param.UserId = SessionService.UserId;
 
             return new JsonNetResult
             {
-                Data = _landingPageService.GetExcludeTargetCountryList(param)
+                Data = _landingPageService.GetExcludedTargetCountryList(param)
             };
         }
 

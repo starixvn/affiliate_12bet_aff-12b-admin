@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             return result;
         }
 
-        public IEnumerable<TargetCountry> GetExcludeTargetCountryList(ExcludeTargetCountryParam param)
+        public IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param)
         {
             const string SpKey = "";
 

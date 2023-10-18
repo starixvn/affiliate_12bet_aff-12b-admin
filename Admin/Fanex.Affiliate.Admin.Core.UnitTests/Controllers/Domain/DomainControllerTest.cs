@@ -103,9 +103,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var domainService = new Mock<IDomainService>();
             domainService.Setup(s => s.InsertDomain(It.IsAny<InsertDomainParam>())).Returns(new ResultInfo()).Callback<InsertDomainParam>(p => passedParam = p);
 
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
-            var controller = CreateDomainController(null, domainService.Object, commonSettingService.Object);
+            var targetCountryService = new Mock<ITargetCountryService>();
+            targetCountryService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
+            var controller = CreateDomainController(null, domainService.Object, targetCountryService.Object);
 
             // Action
             var result = controller.InsertDomain(param) as JsonNetResult;
@@ -140,9 +140,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var domainService = new Mock<IDomainService>();
             domainService.Setup(s => s.UpdateDomain(It.IsAny<UpdateDomainParam>())).Returns(new ResultInfo()).Callback<UpdateDomainParam>(p => passedParam = p);
 
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
-            var controller = CreateDomainController(null, domainService.Object, commonSettingService.Object);
+            var targetCountryService = new Mock<ITargetCountryService>();
+            targetCountryService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
+            var controller = CreateDomainController(null, domainService.Object, targetCountryService.Object);
 
             // Action
             var result = controller.UpdateDomain(param) as JsonNetResult;
@@ -208,14 +208,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         private DomainController CreateDomainController(
         ISessionService sessionService = null,
         IDomainService domainService = null,
-        ICommonSettingService commonSettingService = null
+        ITargetCountryService targetCountryService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeDomainService = domainService ?? Mock.Of<IDomainService>();
-            var fakeCommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakeTargetCountryService = targetCountryService ?? Mock.Of<ITargetCountryService>();
 
-            var controller = new DomainController(fakeSessionService, fakeDomainService, fakeCommonSettingService);
+            var controller = new DomainController(fakeSessionService, fakeDomainService, fakeTargetCountryService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

@@ -1,12 +1,13 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ExcludedTargetCountryFormGroup from '../../../common/components/ExcludedTargetCountryFormGroup';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert, FormFeedback } from 'reactstrap';
-import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader } from '../actions/index';
+import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getVisibleTargetCountriesByUser, getExcludedTargetCountryList } from '../actions/index';
 import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
-import { targetCountryStatus } from '../../../../modules/globalResource';
+import { getExcludedTargetCountries, getUsingTargetCountries, checkExcludedAllTargetCountries } from '../../../common/libs/utils/targetcountry';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class InsertUpdateForm extends PureComponent {
@@ -23,51 +24,52 @@ export class InsertUpdateForm extends PureComponent {
         if (prevProps.selectedLandingPageId !== selectedLandingPageId) {
             this.setState({ isInsert: selectedLandingPageId === defaultInsertId });
 
-            selectedLandingPageId && this._handleGetLandingPageDetail(selectedLandingPageId);
+            selectedLandingPageId && this._handleUpdateState(selectedLandingPageId);
         }
     }
 
-    _handleUpdateState = async (selectedLandingPageId) => {
-        if (selectedDomainId === 0) {
-            const targetCountryListByDomains = await this.props.getTargetCountryListByDomain({ affDomainId: 0, redirectDomainId: 0 });
+    _handleUpdateState = async (pageId) => {
+        if (pageId === 0) {
+            const visibleTargetCountryList = await this.props.getVisibleTargetCountriesByUser();
 
-            this.setState({ isInsert: true, selectedDomain: { domainId: selectedDomainId, domainName: '', blockTargetCountries: [], isSSL: false }, targetCountryListByDomains });
+            this.setState({ isInsert: true, selectedPage: { pageId, pageName: '', pageCode: '', excludedTargetCountries: [] }, excludedTargetCountryList: visibleTargetCountryList });
         } else {
             this.props.toggleLoader(true);
-            const domain = await this.props.getDomainById(selectedDomainId, isAffDomain);
+            const landingPage = await this.props.getLandingPageDetail(pageId);
 
-            if (domain) {
-                const { DomainName, IsSSL } = domain;
-                var domainIdParam = isAffDomain ? "affDomainId" : "redirectDomainId";
-                const targetCountryListByDomains = await this.props.getTargetCountryListByDomain({ [domainIdParam]: selectedDomainId });
-                if (targetCountryListByDomains) {
-                    const usingTargetCountries = this._handleGetUsingTargetCountries(targetCountryListByDomains);
-                    const blockTargetCountries = this._handleGetBlockTargetCountries(targetCountryListByDomains);
-                    const isBlockAllTargetCountries = blockTargetCountries.length !== 0 && (usingTargetCountries.length + blockTargetCountries.length) === targetCountryListByDomains.length;
+            if (landingPage) {
+                const pageName = htmlDecode(landingPage.PageName);
+                const pageCode = htmlDecode(landingPage.PageCode);
 
-                    this.setState({ isInsert: false, usingTargetCountries, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountries, isSSL: IsSSL }, targetCountryListByDomains, isBlockAllTargetCountries });
+                const targetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
+
+                if (targetCountryList) {
+                    const usingTargetCountries = getExcludedTargetCountries(targetCountryList);
+                    const excludedTargetCountries = getUsingTargetCountries(targetCountryList);
+                    const isExcludedAllTargetCountries = checkExcludedAllTargetCountries(targetCountryList, usingTargetCountries, excludedTargetCountries);
+
+                    this.setState({ isInsert: false, usingTargetCountries, selectedLandingPage: { pageId, pageName, pageCode, excludedTargetCountries }, targetCountryList, isExcludedAllTargetCountries });
                 } else {
-                    this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountries: '', isSSL: IsSSL } });
+                    this.setState({ isInsert: false, selectedLandingPage: { pageId, pageName, pageCode, excludedTargetCountries: '' } });
                 }
             }
             this.props.toggleLoader(false);
         }
     }
 
-    _handleGetLandingPageDetail = async (selectedLandingPageId) => {
-        const item = await this.props.getLandingPageDetail(selectedLandingPageId);
+    _handleChange = (event) => {
+        const { name, value } = event.target;
 
-        item && this.setState({
-            pageName: htmlDecode(item.PageName),
-            pageCode: htmlDecode(item.PageCode)
-        });
+        const { selectedPage } = this.state;
+        const newPage = Object.assign({}, selectedPage, { [name]: value });
+
+        this.setState({ selectedPage: newPage });
     }
 
-    _handleChange = (event) => {
-        const value = event.target.value;
-        const name = event.target.name;
+    handleChangeTargetCountry = (isExcludedAllTargetCountries, excludedTargetCountries, newTargetCountryList) => {
+        const newPage = Object.assign({}, selectedPage, { excludedTargetCountries });
 
-        this.setState({ [name]: value });
+        this.setState({ selectedPage: newPage, targetCountryList: newTargetCountryList, isExcludedAllTargetCountries });
     }
 
     _validatePageCode() {
@@ -192,6 +194,12 @@ export class InsertUpdateForm extends PureComponent {
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageCodeValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
+                                <ExcludedTargetCountryFormGroup
+                                    targetCountryList={targetCountryListByDomains}
+                                    usingTargetCountries={usingTargetCountries}
+                                    isExcludedAllTargetCountries={isExcludedAllTargetCountries}
+                                    changeTargetCountry={this.handleChangeTargetCountry}
+                                />
                             </Form>
 
                             <Button type="button" color="success" className="mr-3" disabled={isClickedSubmit ? !isValid : false} onClick={() => this._handleSubmit(isValid)} >Submit</Button>
@@ -209,7 +217,7 @@ function mapStateToProps({ selectedLandingPageId }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader }, dispatch);
+    return bindActionCreators({ setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getVisibleTargetCountriesByUser, getExcludedTargetCountryList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InsertUpdateForm);

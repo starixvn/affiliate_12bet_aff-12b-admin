@@ -178,14 +178,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         private LandingPageListController CreateLandingPageListController(
         ISessionService sessionService = null,
         ILandingPageService landingPageService = null,
-        ICommonSettingService commonSettingService = null
+        ITargetCountryService targetCountryService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLandingPageService = landingPageService ?? Mock.Of<ILandingPageService>();
-            var fakeCommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakeTargetCountryService = targetCountryService ?? Mock.Of<ITargetCountryService>();
 
-            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService, fakeCommonSettingService);
+            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService, fakeTargetCountryService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

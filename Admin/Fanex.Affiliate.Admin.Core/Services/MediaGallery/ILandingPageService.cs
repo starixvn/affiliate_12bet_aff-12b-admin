@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         LandingPage GetLandingPageById(int pageId);
 
-        IEnumerable<TargetCountry> GetExcludeTargetCountryList(ExcludeTargetCountryParam param);
+        IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param);
 
         ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param);
 

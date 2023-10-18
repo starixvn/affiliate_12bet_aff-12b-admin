@@ -32,9 +32,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return _landingPageRepository.GetLandingPageById(pageId);
         }
 
-        public IEnumerable<TargetCountry> GetExcludeTargetCountryList(ExcludeTargetCountryParam param)
+        public IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param)
         {
-            return _landingPageRepository.GetExcludeTargetCountryList(param).ExcludeEmpty();
+            return _landingPageRepository.GetExcludedTargetCountryList(param).ExcludeEmpty();
         }
 
         public ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param)

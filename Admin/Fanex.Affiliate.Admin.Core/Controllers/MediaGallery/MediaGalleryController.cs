@@ -22,8 +22,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     public class MediaGalleryController : ReadOnlySessionBaseController
     {
         private const int BannerListCategory = 1;
-        private const string CasinoCategory = "Casino";
-        private const string SportsbookCategory = "Sportsbook";
         private readonly ICommonSettingService _commonSettingService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
         private readonly IBannerListService _bannerListService;

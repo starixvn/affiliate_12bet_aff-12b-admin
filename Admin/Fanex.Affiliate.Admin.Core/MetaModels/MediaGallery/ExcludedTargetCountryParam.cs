@@ -1,7 +1,7 @@
 ﻿
 namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
-    public class ExcludeTargetCountryParam
+    public class ExcludedTargetCountryParam
     {
         public int UserId { get; set; }
 

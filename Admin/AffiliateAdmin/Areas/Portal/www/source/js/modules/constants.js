@@ -38,8 +38,8 @@ export const deviceTypes = {
 }
 
 export const targetCountryStatus = {
-    Unblocked: 0,
-    Blocked: 1,
+    Included: 0,
+    Excluded: 1,
     Using: 2
 }
 
