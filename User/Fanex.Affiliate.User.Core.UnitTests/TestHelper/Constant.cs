@@ -31,6 +31,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 
         public const string Browser = "Chrome";
 
+        public const string GroupName = "No Commission";
+
         public static IEnumerable<Language> LanguageList = new List<Language>
         {
             new Language { MarketId = "en-UK", DisplayName = "English", MarketName = "English", MarketNativeName = "English", ShortedCode = "en" },

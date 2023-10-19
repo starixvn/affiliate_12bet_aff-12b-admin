@@ -184,11 +184,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return textList;
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList(int affId, bool isInternal)
+        public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal)
         {
             var landingPages = _marketingRepository.GetLandingPageList(isInternal);
 
-            if(_appSetting.MarketingAffIds.Any(id => string.Equals(id, affId.ToString(), StringComparison.OrdinalIgnoreCase)))
+            if(_appSetting.MarketingForCommGroups.Any(c => string.Equals(c, commGroupName, StringComparison.OrdinalIgnoreCase)))
             {
                 return landingPages;
             }

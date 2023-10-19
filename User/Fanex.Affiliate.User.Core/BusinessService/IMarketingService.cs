@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
 
-        IEnumerable<LandingPage> GetLandingPageList(int affId, bool isInternal);
+        IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal);
 
         ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param);
     }
