@@ -98,7 +98,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void InsertDomain_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertDomainParam { DomainName = "abc.com", BlockTargetCountries = Constant.TargetCountryId };
+            var param = new InsertDomainParam { DomainName = "abc.com", ExcludedTargetCountries = Constant.TargetCountryId };
             InsertDomainParam passedParam = null;
             var domainService = new Mock<IDomainService>();
             domainService.Setup(s => s.InsertDomain(It.IsAny<InsertDomainParam>())).Returns(new ResultInfo()).Callback<InsertDomainParam>(p => passedParam = p);
@@ -135,7 +135,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void UpdateDomain_WhenCallWithValidParam_UpdateSuccessful()
         {
             // Arrange
-            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com", BlockTargetCountries = Constant.TargetCountryId };
+            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com", ExcludedTargetCountries = Constant.TargetCountryId };
             UpdateDomainParam passedParam = null;
             var domainService = new Mock<IDomainService>();
             domainService.Setup(s => s.UpdateDomain(It.IsAny<UpdateDomainParam>())).Returns(new ResultInfo()).Callback<UpdateDomainParam>(p => passedParam = p);

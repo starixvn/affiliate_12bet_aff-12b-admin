@@ -24,12 +24,13 @@ export class DomainPopup extends PureComponent {
     }
 
     _handleUpdateState = async (domainId, isAffDomain) => {
+        this.props.toggleLoader(true);
+
         if (domainId === 0) {
             const targetCountryList = await this.props.getTargetCountryListByDomain({ affDomainId: 0, redirectDomainId: 0 });
 
             this.setState({ isInsert: true, selectedDomain: { domainId, domainName: '', excludedTargetCountries: [], isSSL: false }, targetCountryList });
         } else {
-            this.props.toggleLoader(true);
             const domain = await this.props.getDomainById(domainId, isAffDomain);
 
             if (domain) {
@@ -48,8 +49,9 @@ export class DomainPopup extends PureComponent {
                     this.setState({ isInsert: false, selectedDomain: { domainId, domainName, isSSL, excludedTargetCountries: '' } });
                 }
             }
-            this.props.toggleLoader(false);
         }
+
+        this.props.toggleLoader(false);
     }
 
     _handleChange = (event) => {

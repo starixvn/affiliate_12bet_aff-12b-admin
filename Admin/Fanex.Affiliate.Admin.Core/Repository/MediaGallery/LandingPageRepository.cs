@@ -26,7 +26,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                         {
                             PageId = Convert.ToInt32(reader[Field.PageId]),
                             PageName = Convert.ToString(reader["PageName"]),
-                            PageCode = Convert.ToString(reader["PageCode"])
+                            PageCode = Convert.ToString(reader["PageCode"]),
+                            ExcludedTargetCountry = string.Empty //Convert.ToString(reader["ExcludedTargetCountry"])
                         });
                     }
                 }
@@ -52,7 +53,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                         {
                             PageId = Convert.ToInt32(reader[Field.PageId]),
                             PageName = Convert.ToString(reader["PageName"]),
-                            PageCode = Convert.ToString(reader["PageCode"])
+                            PageCode = Convert.ToString(reader["PageCode"]),
+                            ExcludedTargetCountry = string.Empty //Convert.ToString(reader["ExcludedTargetCountry"])
                         };
                     }
                 }
@@ -63,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
         public IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param)
         {
-            const string SpKey = "";
+            const string SpKey = "Aff_SupportBlockMarket_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {

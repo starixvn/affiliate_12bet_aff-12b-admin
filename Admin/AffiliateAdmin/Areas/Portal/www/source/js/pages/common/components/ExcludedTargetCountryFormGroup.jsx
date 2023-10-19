@@ -55,12 +55,12 @@ export default class ExcludedTargetCountryFormGroup extends PureComponent {
     }
 
     render() {
-        const { lblText, targetCountryList, isExcludedAllTargetCountries, usingTargetCountries } = this.props;
+        const { lblText, targetCountryList, isExcludedAllTargetCountries, usingTargetCountries, sm } = this.props;
 
         return targetCountryList && (
-            <FormGroup row className="mb-2">
-                <Label sm={3}>{lblText}</Label>
-                <Col sm={9}>
+            <FormGroup row>
+                <Label sm={sm}>{lblText}</Label>
+                <Col>
                     <div className="excluded-target-country">
                         {
                             targetCountryList.map(item => {
@@ -86,6 +86,7 @@ export default class ExcludedTargetCountryFormGroup extends PureComponent {
 }
 
 ExcludedTargetCountryFormGroup.propTypes = {
+    sm: PropTypes.number,
     targetCountryList: PropTypes.array.isRequired,
     usingTargetCountries: PropTypes.array.isRequired,
     isExcludedAllTargetCountries: PropTypes.bool,
@@ -95,6 +96,7 @@ ExcludedTargetCountryFormGroup.propTypes = {
 };
 
 ExcludedTargetCountryFormGroup.defaultProps = {
+    sm: 3,
     targetCountryList: null,
     isExcludedAllTargetCountries: false,
     usingTargetCountries: [],

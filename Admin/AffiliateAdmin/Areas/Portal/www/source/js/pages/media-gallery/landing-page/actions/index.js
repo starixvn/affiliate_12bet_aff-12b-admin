@@ -64,14 +64,14 @@ export const getLandingPageDetail = (selectedLandingPageId) => async () => {
 }
 
 export const getVisibleTargetCountriesByUser = () => async () => {
-    const url = 'Portal/Domain/GetVisibleTargetCountriesByUser';
+    const url = 'Portal/LandingPageList/GetVisibleTargetCountriesByUser';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
 export const getTargetCountryListByLandingPage = (param) => async () => {
-    const url = 'Portal/Domain/GetTargetCountryListByLandingPage';
+    const url = 'Portal/LandingPageList/GetTargetCountryListByLandingPage';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;

@@ -22,10 +22,10 @@ export const Content = (props) => {
         const { isModifiable } = props;
         return (
             <Row key="thead">
-                {isModifiable && <Cell header={true} colWidth={20}></Cell>}
-                <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={250} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
-                <Cell header={true} colWidth={250} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
+                {isModifiable && <Cell header={true} colWidth={25}></Cell>}
+                <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={200} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
+                <Cell header={true} colWidth={200} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
                 <Cell header={true} colWidth={350} title={headerText.ExcludedTargetCountry}>{headerText.ExcludedTargetCountry}</Cell>
                 { isModifiable && <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
             </Row>

@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult InsertDomain(InsertDomainParam param)
         {
-            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.BlockTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.ExcludedTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomain(UpdateDomainParam param)
         {
-            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.BlockTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.ExcludedTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 var serializedParent = JsonConvert.SerializeObject(encodeParam);
@@ -145,7 +145,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             return new InsertDomainParam
             {
                 DomainName = Server.HtmlEncode(param.DomainName),
-                BlockTargetCountries = Server.HtmlEncode(param.BlockTargetCountries),
+                ExcludedTargetCountries = Server.HtmlEncode(param.ExcludedTargetCountries),
                 IsSSL = param.IsSSL,
                 IsAffDomain = param.IsAffDomain
             };

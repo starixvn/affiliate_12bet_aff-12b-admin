@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import ExcludedTargetCountryFormGroup from '../../../common/components/ExcludedTargetCountryFormGroup';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert, FormFeedback } from 'reactstrap';
-import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getVisibleTargetCountriesByUser, getExcludedTargetCountryList } from '../actions/index';
+import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getVisibleTargetCountriesByUser, getTargetCountryListByLandingPage } from '../actions/index';
 import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { getExcludedTargetCountries, getUsingTargetCountries, checkExcludedAllTargetCountries } from '../../../common/libs/utils/targetcountry';
@@ -29,12 +29,13 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     _handleUpdateState = async (pageId) => {
+        this.props.toggleLoader(true);
+
         if (pageId === 0) {
             const visibleTargetCountryList = await this.props.getVisibleTargetCountriesByUser();
 
             this.setState({ isInsert: true, selectedPage: { pageId, pageName: '', pageCode: '', excludedTargetCountries: [] }, excludedTargetCountryList: visibleTargetCountryList });
         } else {
-            this.props.toggleLoader(true);
             const landingPage = await this.props.getLandingPageDetail(pageId);
 
             if (landingPage) {
@@ -53,8 +54,9 @@ export class InsertUpdateForm extends PureComponent {
                     this.setState({ isInsert: false, selectedLandingPage: { pageId, pageName, pageCode, excludedTargetCountries: '' } });
                 }
             }
-            this.props.toggleLoader(false);
         }
+
+        this.props.toggleLoader(false);
     }
 
     _handleChange = (event) => {
@@ -159,7 +161,7 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     render() {
-        const { pageName, pageCode, isShowMessage, isSuccess, message, isInsert, isClickedSubmit } = this.state;
+        const { pageName, pageCode, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, usingTargetCountries, isExcludedAllTargetCountries } = this.state;
         const pageNameValidation = this._validatePageName();
         const pageCodeValidation = this._validatePageCode();
         const isValid = pageNameValidation.isValid && pageCodeValidation.isValid;
@@ -167,7 +169,7 @@ export class InsertUpdateForm extends PureComponent {
         const title = isInsert ? "Add Landing Page" : "Edit Landing Page";
 
         return (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static">
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 800 }}>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
@@ -175,9 +177,9 @@ export class InsertUpdateForm extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-5" autoComplete="off">
+                            <Form tag="form" className="mb-4" autoComplete="off">
                                 <FormGroup row className="mb-2">
-                                    <Label for="pageName" sm={7} className="required">{headerText.LandingPageName}</Label>
+                                    <Label for="pageName" sm={4} className="required">{headerText.LandingPageName}</Label>
                                     <Col sm={5}>
                                         <Input type="text" name="pageName" className="input-required mt-2" value={pageName} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageNameValidation.isValid} />
@@ -185,8 +187,8 @@ export class InsertUpdateForm extends PureComponent {
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageNameValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
-                                <FormGroup row>
-                                    <Label for="pageCode" sm={7} className="required">{headerText.LandingPageCode}</Label>
+                                <FormGroup row className="mb-3">
+                                    <Label for="pageCode" sm={4} className="required">{headerText.LandingPageCode}</Label>
                                     <Col sm={5}>
                                         <Input type="text" name="pageCode" className="input-required mt-2" value={pageCode} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageCodeValidation.isValid} />
@@ -195,7 +197,8 @@ export class InsertUpdateForm extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 <ExcludedTargetCountryFormGroup
-                                    targetCountryList={targetCountryListByDomains}
+                                    sm={4}
+                                    targetCountryList={targetCountryList}
                                     usingTargetCountries={usingTargetCountries}
                                     isExcludedAllTargetCountries={isExcludedAllTargetCountries}
                                     changeTargetCountry={this.handleChangeTargetCountry}
@@ -217,7 +220,7 @@ function mapStateToProps({ selectedLandingPageId }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getVisibleTargetCountriesByUser, getExcludedTargetCountryList }, dispatch);
+    return bindActionCreators({ setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getVisibleTargetCountriesByUser, getTargetCountryListByLandingPage }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InsertUpdateForm);

@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
 
         [SpParam(SqlParamName = "BlockTargetCountries")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string BlockTargetCountries { get; set; }
+        public string ExcludedTargetCountries { get; set; }
 
         public bool IsSSL { get; set; }
 

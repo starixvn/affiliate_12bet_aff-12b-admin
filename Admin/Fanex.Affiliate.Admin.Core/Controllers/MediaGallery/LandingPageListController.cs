@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetExcludedTargetCountryList(ExcludedTargetCountryParam param)
+        public ActionResult GetTargetCountryListByLandingPage(ExcludedTargetCountryParam param)
         {
             param.UserId = SessionService.UserId;
 
