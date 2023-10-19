@@ -1,6 +1,7 @@
 ﻿var Site = (function ($) {
     var _rootUrl = null;
     var _language = null;
+    var optionAll = "<option value=''>All</option>";
 
     var _me = {
         initialize: function () {
@@ -37,6 +38,17 @@
             $result.toggleClass("alert-danger", !isSuccess);
             $result.html(message);
             $result.show();
+        },
+        buildOptionList: function (dataList, value, text, hasAllOption) {
+            var optionList = dataList.map(function (item) {
+                return "<option value='" + item[value] + "'>" + item[text] + "</option>"
+            });
+
+            if (hasAllOption) {
+                optionList.unshift(optionAll);
+            }
+
+            return optionList.join("");
         }
     };
 

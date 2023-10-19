@@ -81,6 +81,15 @@
 
         [HttpGet]
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
+        public ActionResult GetLinkTo(string language)
+        {
+            var landingPages = MarketingService.GetSpecialLandingPageList(SessionService.UserSession.GroupName, language, SessionService.IsInternal);
+
+            return Json(landingPages, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetBanner(MarketingBannerParam bannerParam)
         {
             var userSession = SessionService.UserSession;
@@ -133,6 +142,7 @@
             var selectedDomain = MarketingService
                 .GetDomainList(userSession.AffId, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
+
             var languageList = string.IsNullOrEmpty(selectedLanguage)
                 ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(), userSession.PreferredLanguage)
                 : null;

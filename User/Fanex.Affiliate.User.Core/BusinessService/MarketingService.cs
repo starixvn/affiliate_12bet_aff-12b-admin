@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             if (domainList == null)
             {
                 domainList = _marketingRepository.GetDomainList(affId, isInternal)?.Where(d => !d.DomainName.Contains("glg46.com"));
-                _cacheService.Set(CacheKey.DomainList, domainList, Number.Ten);
+                _cacheService.Set(CacheKey.DomainList, domainList);
             }
 
             return domainList ?? new List<Domain>();
@@ -107,18 +107,24 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (IsSelectedAllLanguages(selectedLanguage) && languageListFromParam != null && languageListFromParam.Any())
             {
+                if(_appSetting.ODIWorldCupLandingPages.Contains(linkGenerationParam.SelectedPage))
+                {
+                    foreach (var item in _appSetting.SupportedODIWorldCupLanguages)
+                    {
+                        AddGenerateLinkToList(languageList, linkList, linkGenerationParam, item);
+                    }
+
+                    return linkList;
+                }
+
                 foreach (var item in languageListFromParam)
                 {
-                    var language = languageList.FirstOrDefault(l => l.MarketId.MatchWith(item.Value));
-
-                    if (language != null)
-                    {
-                        linkList.Add(language.MarketNativeName, GenerateLink(linkGenerationParam, language.ShortedCode));
-                    }
+                    AddGenerateLinkToList(languageList, linkList, linkGenerationParam, item.Value);
                 }
 
                 var preferredLanguage = languageList.FirstOrDefault(l => l.MarketId.MatchWith(linkGenerationParam.PreferredLanguage));
                 linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, preferredLanguage?.ShortedCode ?? SystemLanguage.ShortedDefaultCode));
+
             }
             else
             {
@@ -134,6 +140,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
 
             return linkList;
+        }
+
+        private static void AddGenerateLinkToList(IEnumerable<Language> languageList, Dictionary<string, string> linkList, LinkGenerationParam linkGenerationParam, string marketId)
+        {
+            var language = languageList.FirstOrDefault(l => l.MarketId.MatchWith(marketId));
+
+            if (language != null)
+            {
+                linkList.Add(language.MarketNativeName, GenerateLink(linkGenerationParam, language.ShortedCode));
+            }
         }
 
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
@@ -184,16 +200,50 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return textList;
         }
 
+        public IEnumerable<LandingPage> GetSpecialLandingPageList(string commGroupName, string language, bool isInternal)
+        {
+            var landingPages = GetLandingPageList(commGroupName, isInternal);
+
+            if (string.IsNullOrEmpty(language) || _appSetting.SupportedODIWorldCupLanguages.Contains(language))
+            {
+                return landingPages;
+            }
+
+            return landingPages.Where(l => !_appSetting.ODIWorldCupLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
+        }
+
         public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal)
         {
-            var landingPages = _marketingRepository.GetLandingPageList(isInternal);
+            var landingPages = GetCachedLandingPageList(isInternal);
 
-            if(_appSetting.MarketingForCommGroups.Any(c => string.Equals(c, commGroupName, StringComparison.OrdinalIgnoreCase)))
+            if (_appSetting.MarketingForCommGroups.Any(c => string.Equals(c, commGroupName, StringComparison.OrdinalIgnoreCase)))
             {
                 return landingPages;
             }
 
             return landingPages.Where(l => !_appSetting.MarketingLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        public IEnumerable<LandingPage> GetCachedLandingPageList(bool isInternal)
+        {
+            var landingPages = _cacheService.Get<IEnumerable<LandingPage>>(CacheKey.LandingPageList);
+
+            if (landingPages == null)
+            {
+                var landingPageList = _marketingRepository.GetLandingPageList(isInternal);
+
+                landingPages = GetSortedLandingPageList(landingPageList);
+                _cacheService.Set(CacheKey.LandingPageList, landingPages);
+            }
+
+            return landingPages ?? new List<LandingPage>();
+        }
+
+        public IEnumerable<LandingPage> GetSortedLandingPageList(IEnumerable<LandingPage> landingPages)
+        {
+            var excludedODIlangdingPages = landingPages.Where(l => !_appSetting.ODIWorldCupLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
+            var specialLandingPages = landingPages.Where(l => _appSetting.ODIWorldCupLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
+            return excludedODIlangdingPages.Concat(specialLandingPages);
         }
 
         public ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param)

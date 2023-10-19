@@ -236,8 +236,6 @@ var MediaGallery = (function ($) {
     var CATEGORY_CASINO = "casino";
     var CATEGORY_SPORTSBOOK = "sportsbook";
 
-    var optionAll = "<option value=''>All</option>";
-
     var _pageSize = 20;
     var _pageIndex = 0;
 
@@ -278,7 +276,7 @@ var MediaGallery = (function ($) {
                     _me.getSubcategory(selectedValue);
                 }
                 else {
-                    $("#SubCategory").html(optionAll);
+                    $("#SubCategory").html(Site.optionAll);
                     $subCategoryContainer.addClass("hide");
                 }
 
@@ -291,6 +289,7 @@ var MediaGallery = (function ($) {
 
             $("#Language").on("change", function () {
                 _me.getSize();
+                _me.getLinkTo();
             });
 
             $("#Currency").on("change", function () {
@@ -353,7 +352,7 @@ var MediaGallery = (function ($) {
                 data: { category: category },
                 url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSubCategory"),
                 success: function (response) {
-                    var html = _me.buildOptionList(response, "Value", "Value", true);
+                    var html = Site.buildOptionList(response, "Value", "Value", true);
                     $("#SubCategory").html(html);
                 },
                 beforeSend: function () {
@@ -412,8 +411,16 @@ var MediaGallery = (function ($) {
                 data: param,
                 url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSize"),
                 success: function (response) {
-                    var html = _me.buildOptionList(response, "Size", "Size", true);
+                    var html = Site.buildOptionList(response, "Size", "Size", true);
+                    var previousSelectedSize = $("#Size").val();
+
                     $("#Size").html(html);
+
+                    var hasPreviousSelectedSize = response.some(i => i.Size == previousSelectedSize);
+
+                    if (hasPreviousSelectedSize) {
+                        $("#Size").val(previousSelectedSize);
+                    }
                 },
                 beforeSend: function () {
                     Site.showLoader();
@@ -424,16 +431,36 @@ var MediaGallery = (function ($) {
             });
         },
 
-        buildOptionList: function (dataList, value, text, hasAllOption) {
-            var optionList = dataList.map(function (item) {
-                return "<option value='" + item[value] + "'>" + item[text] + "</option>"
+        getLinkTo: function () {
+            let param = {
+                language: $("#Language").val()
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetLinkTo"),
+                success: function (response) {
+                    var html = Site.buildOptionList(response, "PageCode", "PageName", false);
+                    var previousSelectedPage = $("#MemberSitePage").val();
+
+                    $("#MemberSitePage").html(html);
+
+                    var hasPreviousSelectedPage = response.some(i => i.PageCode == previousSelectedPage);
+
+                    if (hasPreviousSelectedPage) {
+                        $("#MemberSitePage").val(previousSelectedPage);
+                    }
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
             });
-
-            if (hasAllOption) {
-                optionList.unshift(optionAll);
-            }
-
-            return optionList.join("");
         },
 
         getSearchParam: function () {

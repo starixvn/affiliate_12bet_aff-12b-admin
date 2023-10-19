@@ -1640,6 +1640,12 @@ var LandingPageStatistics = (function ($) {
                     $('.country-filter').hide();
                     $('.language-filter').show();
                 }
+
+                _me.getSportCode();
+            });
+
+            $("#Language").on("change", function () {
+                _me.getSportCode();
             });
         },
 
@@ -1700,6 +1706,38 @@ var LandingPageStatistics = (function ($) {
                 pageSize: _pageSize,
                 pageIndex: _pageIndex + 1
             };
+        },
+
+        getSportCode: function () {
+            let param = {
+                language: $("#Language").val()
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetLinkTo"),
+                success: function (response) {
+                    var html = Site.buildOptionList(response, "PageCode", "PageName", true);
+                    var previousSelectedPage = $("#SportCode").val();
+
+                    $("#SportCode").html(html);
+
+                    var hasPreviousSelectedPage = response.some(i => i.PageCode == previousSelectedPage);
+
+                    if (hasPreviousSelectedPage) {
+                        $("#SportCode").val(previousSelectedPage);
+                    }
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
         }
     };
 
