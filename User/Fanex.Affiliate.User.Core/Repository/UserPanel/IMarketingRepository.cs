@@ -7,19 +7,13 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public interface IMarketingRepository
     {
-        IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal);
-
-        IEnumerable<CurrencyType> GetCurrencyList(bool isInternal);
-
-        IEnumerable<BannerType> GetBannerTypeList(bool isInternal);
+        IEnumerable<TargetProduct> GetTargetProductList(bool isInternal);
 
         IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal);
 
         IEnumerable<Domain> GetDomainList(int affId, bool isInternal);
 
-        IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
-
-        IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
+        IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam);
 
         IEnumerable<LandingPage> GetLandingPageList(bool isInternal);
 

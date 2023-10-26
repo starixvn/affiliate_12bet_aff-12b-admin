@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.LinkFormViewModel
+
+@{
+    var hasAnyDomain = Model.DomainList != null && Model.DomainList.Any();
+}
+
+<div class="form-horizontal">
+    @RazorHelper.RenderDropdownForMarketing("TargetCountry", Lang.TargetCountry, Model.LanguageList)
+
+    @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, Model.LanguageList)
+
+    @RazorHelper.RenderDropdownForAvailableDomain(Model.DomainList, hasAnyDomain)
+
+    @RazorHelper.RenderDropdownForMarketing("MemberSitePage", Lang.LinkTo, Model.MemberSitePageList, false)
+
+    @if (hasAnyDomain)
+    {
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-lg-offset-2 col-sm-1">
+                <button type="button" class="btn btn-submit" id="btnGenerateLink">@Lang.GenerateLink</button>
+            </div>
+        </div>
+    }
+</div>

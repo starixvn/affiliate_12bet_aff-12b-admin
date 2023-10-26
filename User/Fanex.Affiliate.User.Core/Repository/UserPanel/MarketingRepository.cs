@@ -9,7 +9,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         private readonly IObjectDBBuilder _builder;
 
-        private const int AffiliateLink = 1;
         private const int MediaGallery = 2;
 
         public MarketingRepository(IObjectDBBuilder builder)
@@ -17,36 +16,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             _builder = builder;
         }
 
-        public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
+        public IEnumerable<TargetProduct> GetTargetProductList(bool isInternal)
         {
             const string uSpKey = "Aff_Admin_MediaCategory_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
             using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return db.Query<CategoryType>(new { TypeId = isMediaPage ? AffiliateLink : MediaGallery });
-            }
-        }
-
-        public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
-        {
-            const string uSpKey = "Aff_Admin_MediaCurrency_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<CurrencyType>();
-            }
-        }
-
-        public IEnumerable<BannerType> GetBannerTypeList(bool isInternal)
-        {
-            const string uSpKey = "Aff_Admin_MediaType_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<BannerType>();
+                return db.Query<TargetProduct>(new { TypeId = MediaGallery });
             }
         }
 
@@ -73,7 +50,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        public IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam)
         {
             const string uSpKey = "Aff_Admin_Banner_Sel";
 
@@ -81,18 +58,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return db.Query<MarketingItem>(bannerParam);
-            }
-        }
-
-        public IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
-        {
-            const string uSpKey = "Aff_Admin_Text_Sel";
-            var dbMode = textParam.IsInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<MarketingItem>(textParam);
+                return db.Query<Banner>(bannerParam);
             }
         }
 

@@ -2258,6 +2258,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate your unique link!.
+        /// </summary>
+        public static string GenerateYourUniqueLink {
+            get {
+                return ResourceManager.GetString("GenerateYourUniqueLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Georgia .
         /// </summary>
         public static string Georgia {
@@ -2272,6 +2281,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Germany {
             get {
                 return ResourceManager.GetString("Germany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get banner for your target market!.
+        /// </summary>
+        public static string GetBannerForYourTargetMarket {
+            get {
+                return ResourceManager.GetString("GetBannerForYourTargetMarket", resourceCulture);
             }
         }
         
@@ -5391,6 +5409,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string TargetCountryErr {
             get {
                 return ResourceManager.GetString("TargetCountryErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target Product.
+        /// </summary>
+        public static string TargetProduct {
+            get {
+                return ResourceManager.GetString("TargetProduct", resourceCulture);
             }
         }
         

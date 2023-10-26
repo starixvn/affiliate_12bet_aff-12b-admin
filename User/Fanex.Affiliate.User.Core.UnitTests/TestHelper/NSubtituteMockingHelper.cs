@@ -17,17 +17,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         public static IMarketingService FakeMarkengtingService()
         {
             var marketingService = Substitute.For<IMarketingService>();
-            marketingService.GetTextList(Arg.Compat.Any<MarketingTextParam>()).Returns(new List<MarketingItem>
-            {
-                new MarketingItem { BannerId = 1, TextId = 1 }
-            });
-            marketingService.GetCategoryList(Arg.Compat.Any<bool>(), Arg.Compat.Any<bool>()).Returns(Constant.CategoryList);
+            marketingService.GetTargetProductList(Arg.Compat.Any<bool>()).Returns(Constant.TargetProductList);
             marketingService.GetLanguageList().Returns(Constant.LanguageList);
-            marketingService.GetCurrencyList(Arg.Compat.Any<bool>()).Returns(Constant.CurrencyType);
             marketingService.GetDomainList(Arg.Compat.Any<int>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
             marketingService.GetLandingPageList(Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.LandingPageList);
             marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
-            marketingService.GetBannerTypeList(Arg.Compat.Any<bool>()).Returns(Constant.BannerTypeList);
 
             return marketingService;
         }

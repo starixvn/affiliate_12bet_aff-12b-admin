@@ -1,104 +1,66 @@
 ﻿var AffiliateLink = (function ($) {
-    var _pageSize = 20;
-    var _pageIndex = 0;
-
-    function initPager() {
-        $("#marketingPager").pager({
-            totalItems: parseInt($("#TotalItem").val()),
-            pageSize: _pageSize,
-            pageIndex: _pageIndex,
-            languageCode: Site.getCurrentLanguage(),
-            onChange: function (pageIndex, pageSize) {
-                _pageIndex = pageIndex;
-                _pageSize = pageSize;
-
-                var searchParams = _me.getSearchParam();
-                _me.getTextList(searchParams);
-            }
-        });
-    }
-
-    function initCopyEvent() {
-        new ClipboardJS('.btn-marketing-copy', {
-            text: function (trigger) {
-                let copyText = $(trigger).parent().next().text();
-                return copyText;
-            }
-        })
-    }
-
     var _me = {
         initialize: function () {
             _me.initEvent();
-            initPager();
-            _me.togglePager();
+            _me.resiterQrcodeEvent();
         },
 
         initEvent: function () {
-            $("#btnMarketingSearch").on("click", function () {
-                _me.submitSearch();
-
-                MarketingBase.generateTextLink();
-            });
-
-            $("#dataContainerList").on("change", "#DeviceType", function () {
-                var params = _me.getSearchParam();
-                _me.getTextList(params, _me.updatePager);
-            });
-
             $("#btnGenerateLink").on("click", function () {
-                _me.submitSearch();
+                _me.generateTextLink();
+            });
+        },
 
-                MarketingBase.generateTextLink();
+        resiterQrcodeEvent: function () {
+            new ClipboardJS('.btn-copy-link');
+
+            new ClipboardJS('.btn-copy-qr', {
+                text: function (trigger) {
+                    let imgTag = $(trigger).nextAll("img")[0];
+                    return imgTag.outerHTML;
+                }
             });
 
-            initCopyEvent();
+            $('.btn-save-img').click(function () {
+                let base64Img = $(this).nextAll("img").attr("src");
+                let downloadTag = document.createElement("a");
+                let downloadName = $(this).data("image-name");
+                downloadTag.href = base64Img;
+                downloadTag.download = downloadName;
+                downloadTag.click();
+            });
+        },
+        generateTextLink: function () {
+            var params = _me.getLinkGenerationParam();
+            _me.getTextLink(params);
         },
 
-        togglePager: function () {
-            var totalItem = parseInt($("#TotalItem").val());
-            $("#marketingPager").toggle(totalItem !== 0);
-        },
-
-        submitSearch: function () {
-            _pageIndex = 0;
-            var searchParams = _me.getSearchParam();
-            _me.getTextList(searchParams, _me.updatePager);
-        },
-
-        getSearchParam: function () {
+        getLinkGenerationParam: function () {
             return {
-                category: $("#Category").val(),
-                language: $("#Language").val(),
-                currency: $("#Currency").val(),
-                deviceType: $("#DeviceType").val(),
                 selectedDomainId: $("#Domain").val(),
-                selectedPage: $("#MemberSitePage").val(),
-                pageIndex: _pageIndex + 1,
-                pageSize: _pageSize
+                selectedLanguage: $("#Language").val(),
+                selectedPage: $("#MemberSitePage").val()
             }
         },
 
-        getTextList: function (params, onSuccess) {
+        getTextLink: function (params) {
+            var that = this;
             $.ajax({
                 type: "GET",
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetText"),
+                url: Site.resolveRelativeUrl("UserPanel/AffiliateLink/GenerateLink"),
                 success: function (response) {
-                    $("#marketingDataList").html(response);
-                    onSuccess && onSuccess();
-
-                    _me.togglePager();
+                    $("#textLinkList").html(response);
+                    that.resiterQrcodeEvent();
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
-            });
-        },
-
-        updatePager: function () {
-            $("#marketingPager").pager("update", {
-                pageIndex: _pageIndex,
-                totalItems: parseInt($("#TotalItem").val())
             });
         }
     };

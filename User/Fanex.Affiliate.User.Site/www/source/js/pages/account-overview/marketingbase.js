@@ -1,48 +1,42 @@
 ﻿var MarketingBase = (function ($) {
     var _me = {
-        resiterQrcodeEvent: function() {
-            new ClipboardJS('.btn-copy-link');
-
-            new ClipboardJS('.btn-copy-qr', {
-                text: function (trigger) {
-                    let imgTag = $(trigger).nextAll("img")[0];
-                    return imgTag.outerHTML;
-                }
-            })
-
-            $('.btn-save-img').click(function () {
-                let base64Img = $(this).nextAll("img").attr("src");
-                let downloadTag = document.createElement("a");
-                let downloadName = $(this).data("image-name");
-                downloadTag.href = base64Img;
-                downloadTag.download = downloadName;
-                downloadTag.click();
-            })
-        },
-        generateTextLink: function () {
-            var params = _me.getLinkGenerationParam();
-            _me.getTextLink(params);
+        initialize: function () {
+            _me.initEvent();
         },
 
-        getLinkGenerationParam: function () {
-            return {
-                selectedDomainId: $("#Domain").val(),
-                selectedLanguage: $("#Language").val(),
-                selectedPage: $("#MemberSitePage").val()
-            }
+        initEvent: function () {
+            $("#Language").on("change", function () {
+                _me.getLinkTo();
+            });
+
+            $("#TargetCountry").on("change", function () {
+                _me.getLinkTo();
+            });
         },
 
-        getTextLink: function (params) {
-            var that = this;
+        getLinkTo: function () {
+            let param = {
+                targetCountry: $("#TargetCountry").val(),
+                language: $("#Language").val()
+            };
+
             $.ajax({
                 type: "GET",
-                dataType: "html",
+                dataType: "json",
                 cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GenerateLink"),
+                data: param,
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetLinkTo"),
                 success: function (response) {
-                    $("#textLinkList").html(response);
-                    that.resiterQrcodeEvent();
+                    var html = Site.buildOptionList(response, "PageCode", "PageName", false);
+                    var previousSelectedPage = $("#MemberSitePage").val();
+
+                    $("#MemberSitePage").html(html);
+
+                    var hasPreviousSelectedPage = response.some(i => i.PageCode == previousSelectedPage);
+
+                    if (hasPreviousSelectedPage) {
+                        $("#MemberSitePage").val(previousSelectedPage);
+                    }
                 },
                 beforeSend: function () {
                     Site.showLoader();
@@ -51,11 +45,7 @@
                     Site.hideLoader();
                 }
             });
-        },
-
-        initialize: function () {
-            this.resiterQrcodeEvent();
-        },
+        }
     };
 
     return _me;

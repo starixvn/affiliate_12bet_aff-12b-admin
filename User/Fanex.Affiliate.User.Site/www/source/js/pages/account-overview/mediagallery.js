@@ -1,7 +1,4 @@
 ﻿var MediaGallery = (function ($) {
-    var CATEGORY_CASINO = "casino";
-    var CATEGORY_SPORTSBOOK = "sportsbook";
-
     var _pageSize = 20;
     var _pageIndex = 0;
 
@@ -33,57 +30,16 @@
         },
 
         initEvent: function () {
-            $("#Category").on("change", function () {
-                var selectedValue = $(this).val().toLowerCase();
-                var $subCategoryContainer = $("#SubCategory").closest(".form-group");
-
-                if (selectedValue === CATEGORY_CASINO || selectedValue === CATEGORY_SPORTSBOOK) {
-                    $subCategoryContainer.removeClass("hide");
-                    _me.getSubcategory(selectedValue);
-                }
-                else {
-                    $("#SubCategory").html(Site.optionAll);
-                    $subCategoryContainer.addClass("hide");
-                }
-
-                _me.getSize();
-            });
-
-            $("#SubCategory").on("change", function () {
+            $("#TargetProduct").on("change", function () {
                 _me.getSize();
             });
 
             $("#Language").on("change", function () {
                 _me.getSize();
-                _me.getLinkTo();
-            });
-
-            $("#Currency").on("change", function () {
-                _me.getSize();
-            });
-
-            $("#ImageType").on("change", function () {
-                _me.getSize();
-            });
-
-            $("#DeviceType").on("change", function () {
-                _me.getSize();
             });
 
             $("#btnMarketingSearch").on("click", function () {
                 _me.submitSearch();
-
-                MarketingBase.generateTextLink();
-            });
-
-            $("#dataContainerList").on("change", "#DeviceType", function () {
-                _me.submitSearch();
-            });
-
-            $("#btnGenerateLink").on("click", function () {
-                _me.submitSearch();
-
-                MarketingBase.generateTextLink();
             });
 
             $("#alertMediaBlockRemove").on("click", function () {
@@ -108,26 +64,6 @@
             _pageIndex = 0;
             var searchParams = _me.getSearchParam();
             _me.getBannerList(searchParams, _me.updatePager);
-        },
-
-        getSubcategory: function (category) {
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                cache: false,
-                data: { category: category },
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSubCategory"),
-                success: function (response) {
-                    var html = Site.buildOptionList(response, "Value", "Value", true);
-                    $("#SubCategory").html(html);
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
-                }
-            });
         },
 
         countNumberOfCopies: function (bannerId) {
@@ -162,12 +98,8 @@
 
         getSize: function () {
             let param = {
-                category: $("#Category").val(),
-                subCategory: $("#SubCategory").val(),
+                targetProduct: $("#TargetProduct").val(),
                 language: $("#Language").val(),
-                currency: $("#Currency").val(),
-                imageType: $("#ImageType").val(),
-                deviceType: $("#DeviceType").val()
             };
 
             $.ajax({
@@ -175,7 +107,7 @@
                 dataType: "json",
                 cache: false,
                 data: param,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSize"),
+                url: Site.resolveRelativeUrl("UserPanel/MediaGallery/GetSize"),
                 success: function (response) {
                     var html = Site.buildOptionList(response, "Size", "Size", true);
                     var previousSelectedSize = $("#Size").val();
@@ -197,47 +129,11 @@
             });
         },
 
-        getLinkTo: function () {
-            let param = {
-                language: $("#Language").val()
-            };
-
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                cache: false,
-                data: param,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetLinkTo"),
-                success: function (response) {
-                    var html = Site.buildOptionList(response, "PageCode", "PageName", false);
-                    var previousSelectedPage = $("#MemberSitePage").val();
-
-                    $("#MemberSitePage").html(html);
-
-                    var hasPreviousSelectedPage = response.some(i => i.PageCode == previousSelectedPage);
-
-                    if (hasPreviousSelectedPage) {
-                        $("#MemberSitePage").val(previousSelectedPage);
-                    }
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
-                }
-            });
-        },
-
         getSearchParam: function () {
             return {
-                category: $("#Category").val(),
-                subCategory: $("#SubCategory").val(),
+                targetProduct: $("#TargetProduct").val(),
                 language: $("#Language").val(),
-                imageType: $("#ImageType").val(),
                 size: $("#Size").val(),
-                currency: $("#Currency").val(),
-                deviceType: $("#DeviceType").val(),
                 selectedDomainId: $("#Domain").val(),
                 selectedPage: $("#MemberSitePage").val(),
                 pageIndex: _pageIndex + 1,
@@ -251,7 +147,7 @@
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetBanner"),
+                url: Site.resolveRelativeUrl("UserPanel/MediaGallery/GetBanner"),
                 success: function (response) {
                     $("#marketingDataList").html(response);
                     onSuccess && onSuccess();

@@ -34,35 +34,21 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _appSetting = appSetting;
         }
 
-        public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
+        public IEnumerable<TargetProduct> GetTargetProductList(bool isInternal)
         {
-            var cacheKey = isMediaPage ? CacheKey.BannerCategoryList : CacheKey.TextCategoryList;
-            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(cacheKey);
-            if (categoryList == null)
+            var targetProductList = _cacheService.Get<IEnumerable<TargetProduct>>(CacheKey.TargetProductList);
+            if (targetProductList == null)
             {
-                categoryList = _marketingRepository.GetCategoryList(isMediaPage, isInternal);
+                targetProductList = _marketingRepository.GetTargetProductList(isInternal);
 
-                _cacheService.Set(cacheKey, categoryList);
+                _cacheService.Set(CacheKey.TargetProductList, targetProductList);
             }
 
-            return categoryList ?? new List<CategoryType>();
+            return targetProductList ?? new List<TargetProduct>();
         }
 
         public IEnumerable<Language> GetLanguageList()
             => _languageService.GetSystemLanguages();
-
-        public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
-        {
-            var currencyList = _cacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList);
-
-            if (currencyList == null)
-            {
-                currencyList = _marketingRepository.GetCurrencyList(isInternal);
-                _cacheService.Set(CacheKey.CurrencyList, currencyList);
-            }
-
-            return currencyList ?? new List<CurrencyType>();
-        }
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal)
         {
@@ -70,19 +56,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             param.Languages = GetLanguageName(languageList, param.Language);
 
             return _marketingRepository.GetSizeList(param, isInternal);
-        }
-
-        public IEnumerable<BannerType> GetBannerTypeList(bool isInternal)
-        {
-            var bannerTypeList = _cacheService.Get<IEnumerable<BannerType>>(CacheKey.BannerTypeList);
-
-            if (bannerTypeList == null)
-            {
-                bannerTypeList = _marketingRepository.GetBannerTypeList(isInternal);
-                _cacheService.Set(CacheKey.BannerTypeList, bannerTypeList);
-            }
-
-            return bannerTypeList ?? new List<BannerType>();
         }
 
         public IEnumerable<Domain> GetDomainList(int affId, bool isInternal)
@@ -152,7 +125,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
         }
 
-        public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        public IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam)
         {
             const int LengthOfSplittingSize = 2;
 
@@ -181,26 +154,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return bannerList;
         }
 
-        public IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
-        {
-            var languageList = _languageService.GetSystemLanguages();
-            textParam.Languages = GetLanguageName(languageList, textParam.Language);
-
-            var textList = _marketingRepository.GetTextList(textParam);
-
-            foreach (var text in textList)
-            {
-                text.Message = HttpContext.Current.Server.HtmlDecode(text.Message.Replace("\r\n", "<br/>"));
-                text.ScriptSrc = textParam.ScriptUrl + text.TextId;
-                var language = languageList.FirstOrDefault(l => l.MarketName.MatchWith(text.Language));
-
-                text.RedirectLink = GenerateLink(textParam, language?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
-            }
-
-            return textList;
-        }
-
-        public IEnumerable<LandingPage> GetSpecialLandingPageList(string commGroupName, string language, bool isInternal)
+        public IEnumerable<LandingPage> GetSpecialLandingPageList(string commGroupName, string targetCountry, string language, bool isInternal)
         {
             var landingPages = GetLandingPageList(commGroupName, isInternal);
 

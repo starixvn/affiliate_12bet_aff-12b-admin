@@ -2286,4 +2286,13 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="TargetCountry" xml:space="preserve">
     <value>Target Country</value>
   </data>
+  <data name="GenerateYourUniqueLink" xml:space="preserve">
+    <value>Generate your unique link!</value>
+  </data>
+  <data name="TargetProduct" xml:space="preserve">
+    <value>Target Product</value>
+  </data>
+  <data name="GetBannerForYourTargetMarket" xml:space="preserve">
+    <value>Get banner for your target market!</value>
+  </data>
 </root>

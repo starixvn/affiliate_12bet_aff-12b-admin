@@ -7,13 +7,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public interface IMarketingService
     {
-        IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal);
+        IEnumerable<TargetProduct> GetTargetProductList(bool isInternal);
 
         IEnumerable<Language> GetLanguageList();
-
-        IEnumerable<CurrencyType> GetCurrencyList(bool isInternal);
-
-        IEnumerable<BannerType> GetBannerTypeList(bool isInternal);
 
         IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal);
 
@@ -21,11 +17,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam);
 
-        IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
+        IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam);
 
-        IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
-
-        IEnumerable<LandingPage> GetSpecialLandingPageList(string commGroupName, string language, bool isInternal);
+        IEnumerable<LandingPage> GetSpecialLandingPageList(string commGroupName, string targetCountry, string language, bool isInternal);
 
         IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal);
 

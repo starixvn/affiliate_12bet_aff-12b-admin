@@ -3,23 +3,29 @@
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
+    using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
     using System.Web.Mvc;
     using ViewModels.UserPanel.Marketing;
 
-    public class AffiliateLinkController : BaseMarketingController
+    public sealed class AffiliateLinkController : BaseMarketingController
     {
-        public AffiliateLinkController(ISessionService sessionService,
+        private readonly IQrCodeGeneratorService _qrCodeGeneratorService;
+
+        public AffiliateLinkController(
+            ISessionService sessionService,
             IAppSetting appSetting,
             ILanguageService languageService,
-            IMarketingService marketingService) : base(sessionService,
-                appSetting,
-                languageService,
-                marketingService)
+            IMarketingService marketingService,
+            IQrCodeGeneratorService QrCodeGeneratorService
+            ) : base(sessionService, appSetting, languageService, marketingService)
         {
+            _qrCodeGeneratorService = QrCodeGeneratorService;
         }
 
         [HttpGet]
@@ -27,33 +33,101 @@
         public ActionResult Index()
         {
             var userSession = SessionService.UserSession;
-
-            var searchForm = GetSearchFormViewModel(false);
             var linkForm = GetLinkFormViewModel();
+            var languageList = MarketingService.GetLanguageList();
 
+            var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
-            var selectedPage = linkForm.MemberSitePageList.FirstOrDefault()?.PageCode ?? string.Empty;
+            var selectedPage = linkForm.MemberSitePageList.FirstOrDefault()?.Value ?? string.Empty;
+            var selectedLanguageList = MarketingHelper.GetLanguageList(languageList, SessionService.UserSession.PreferredLanguage);
 
-            var textParam = new MarketingTextParam
+            var linkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, selectedLanguageList);
+            var qrCodes = GetQrCodes(linkList);
+
+            var viewModel = new AffiliateLinkViewModel
             {
-                AffId = userSession.AffId,
-                Language = userSession.PreferredLanguage,
-                SelectedDomain = selectedDomain,
-                SelectedPage = selectedPage,
-                ScriptUrl = AppSetting.MediaScriptUrl,
-                TextLinkTemplate = AppSetting.TextLinkTemplate
+                QrCodeList = qrCodes,
+                LinkForm = linkForm
             };
-
-            var viewModel = new MarketingViewModel
-            {
-                SearchForm = searchForm,
-                LinkForm = linkForm,
-                MarketingDataList = GetTextList(textParam)
-            };
-
-            ViewBag.TotalItem = textParam.Nrows;
 
             return View("~/Views/UserPanel/AccountOverview/AffiliateLink/Index.cshtml", viewModel);
+        }
+
+        [HttpGet]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
+        public ActionResult GenerateLink(string selectedLanguage, string selectedPage, int? selectedDomainId)
+        {
+            if (selectedDomainId == null)
+            {
+                return View("~/Views/UserPanel/AccountOverview/Partial/_QrCodeLinkList.cshtml", new Dictionary<string, QrCodeLinkModel>());
+            }
+            var userSession = SessionService.UserSession;
+            var selectedDomain = MarketingService
+                .GetDomainList(userSession.AffId, SessionService.IsInternal)
+                .FirstOrDefault(d => d.DomainId == selectedDomainId);
+
+            var languageList = string.IsNullOrEmpty(selectedLanguage)
+                ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(), userSession.PreferredLanguage)
+                : null;
+
+            var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
+
+            var qrCodeParamsDic = GetQrCodes(textLinkList);
+
+            return View("~/Views/UserPanel/AccountOverview/Partial/_QrCodeLinkList.cshtml", qrCodeParamsDic);
+        }
+
+        private IDictionary<string, QrCodeLinkModel> GetQrCodes(IDictionary<string, string> txtLinkList)
+        {
+            var qrCodeLinks = txtLinkList.Select(link => GetQrCodeParam(link));
+            return qrCodeLinks.ToDictionary(itm => itm.Language);
+        }
+
+        private QrCodeLinkModel GetQrCodeParam(KeyValuePair<string, string> link)
+        {
+            using (var icon = GetQrCodeIcon())
+            {
+                var language = link.Key;
+                var textLink = link.Value;
+                var qrCode = _qrCodeGeneratorService.GenerateBase64QrCode(textLink, icon, true);
+                return new QrCodeLinkModel
+                {
+                    Language = language,
+                    Link = textLink,
+                    QrCode = qrCode
+                };
+            }
+        }
+
+        private Image GetQrCodeIcon()
+        {
+            var qrIconFileName = AppSetting.QrCodeIcon;
+            var path = HttpContext.Server.MapPath($"~/www/build/styles/Images/{qrIconFileName}");
+            return _qrCodeGeneratorService.GetImage(path);
+        }
+
+        private IDictionary<string, string> GetTextLinkList(string selectedLanguage, string selectedPage,
+            Domain selectedDomain, IEnumerable<SelectListItem> languageList)
+        {
+            if (selectedDomain == null)
+            {
+                return new Dictionary<string, string>();
+            }
+
+            var userSession = SessionService.UserSession;
+
+            var linkGenerationParam = new LinkGenerationParam
+            {
+                AffId = userSession.AffId,
+                TextLinkTemplate = AppSetting.TextLinkTemplate,
+                PreferredLanguage = userSession.PreferredLanguage,
+                SelectedLanguage = selectedLanguage,
+                SelectedDomain = selectedDomain,
+                SelectedPage = selectedPage,
+                LanguageList = languageList
+            };
+
+            return MarketingService.GenerateLinkList(linkGenerationParam);
         }
     }
 }

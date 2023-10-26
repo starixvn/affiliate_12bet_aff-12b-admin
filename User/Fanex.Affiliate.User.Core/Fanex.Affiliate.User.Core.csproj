@@ -339,8 +339,7 @@
     <Compile Include="DTO\UserPanel\Offer.cs" />
     <Compile Include="DTO\UserPanel\HtmlFileInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverview\LastLoginInfo.cs" />
-    <Compile Include="DTO\UserPanel\MediaGallery\CategoryType.cs" />
-    <Compile Include="DTO\UserPanel\MediaGallery\CurrencyType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\TargetProduct.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\SizeType.cs" />
     <Compile Include="DTO\UserPanel\NewsLetter.cs" />
     <Compile Include="DTO\UserPanel\AccountOverview\OverviewDetail.cs" />
@@ -374,7 +373,8 @@
     <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="Utilities\StatisticsHelper.cs" />
     <Compile Include="ViewModels\UserPanel\FeedbackViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\AffiliateLinkViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\MediaGalleryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResult.cs" />
@@ -388,8 +388,7 @@
     <Compile Include="DTO\UserPanel\IbcPlayerAccountInsertResult.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\LandingPage.cs" />
     <Compile Include="DTO\UserPanel\Statistics\LandingPageStatistics.cs" />
-    <Compile Include="DTO\UserPanel\MediaGallery\MarketingItem.cs" />
-    <Compile Include="DTO\UserPanel\MediaGallery\BannerType.cs" />
+    <Compile Include="DTO\UserPanel\MediaGallery\Banner.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\Domain.cs" />
     <Compile Include="DTO\UserPanel\Member.cs" />
