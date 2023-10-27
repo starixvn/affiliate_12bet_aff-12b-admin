@@ -22,7 +22,7 @@
         private readonly IStatementHistoryRepository _statementHistoryRepository;
 
         public StatementHistoryController(ISessionService sessionService,
-            ILanguageService languageService,
+            ISystemService languageService,
             IAppSetting appSetting,
             IStatementHistoryRepository statementHistoryRepository
 

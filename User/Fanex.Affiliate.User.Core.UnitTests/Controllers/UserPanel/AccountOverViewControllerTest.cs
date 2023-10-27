@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var expectResult = new LastLoginInfo();
             var repository = new Mock<IAccountOverviewRepository>();
             repository.Setup(r => r.GetLastLoginInfo(It.IsAny<int>())).Returns(expectResult);
-            var controller = new AccountOverviewController(MockingHelper.GetSessionService(), Mock.Of<ILanguageService>(), repository.Object);
+            var controller = new AccountOverviewController(MockingHelper.GetSessionService(), Mock.Of<ISystemService>(), repository.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;

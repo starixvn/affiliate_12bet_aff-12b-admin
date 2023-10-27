@@ -40,6 +40,10 @@ var Site = (function ($) {
             $result.toggleClass("alert-danger", !isSuccess);
             $result.html(message);
             $result.show();
+
+            isSuccess && window.setTimeout(function () {
+                return $result.hide();
+            }, 3000);
         },
         buildOptionList: function buildOptionList(dataList, value, text, hasAllOption) {
             var optionList = dataList.map(function (item) {

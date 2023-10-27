@@ -15,7 +15,7 @@
     public class ReferrersStatisticsController : BaseController
     {
         private readonly IStatisticsService _statisticsService;
-        public ReferrersStatisticsController(ISessionService sessionService, ILanguageService languageService,
+        public ReferrersStatisticsController(ISessionService sessionService, ISystemService languageService,
             IStatisticsService statisticsService
             ) : base(sessionService, languageService)
         {

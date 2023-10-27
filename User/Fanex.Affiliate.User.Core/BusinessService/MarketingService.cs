@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
@@ -19,13 +20,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly IMarketingRepository _marketingRepository;
 
         private readonly IMemoryCacheService _cacheService;
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _languageService;
         private readonly IAppSetting _appSetting;
 
         public MarketingService(
             IMarketingRepository marketingRepository,
             IMemoryCacheService cacheService,
-            ILanguageService languageService,
+            ISystemService languageService,
             IAppSetting appSetting)
         {
             _marketingRepository = marketingRepository;

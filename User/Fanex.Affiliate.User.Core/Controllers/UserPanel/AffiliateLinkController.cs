@@ -20,7 +20,7 @@
         public AffiliateLinkController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService,
+            ISystemService languageService,
             IMarketingService marketingService,
             IQrCodeGeneratorService QrCodeGeneratorService
             ) : base(sessionService, appSetting, languageService, marketingService)
@@ -39,7 +39,7 @@
             var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
             var selectedPage = linkForm.MemberSitePageList.FirstOrDefault()?.Value ?? string.Empty;
-            var selectedLanguageList = MarketingHelper.GetLanguageList(languageList, SessionService.UserSession.PreferredLanguage);
+            var selectedLanguageList = SystemHelper.GetLanguageList(languageList, SessionService.UserSession.PreferredLanguage);
 
             var linkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, selectedLanguageList);
             var qrCodes = GetQrCodes(linkList);
@@ -67,7 +67,7 @@
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
 
             var languageList = string.IsNullOrEmpty(selectedLanguage)
-                ? MarketingHelper.GetLanguageList(MarketingService.GetLanguageList(), userSession.PreferredLanguage)
+                ? SystemHelper.GetLanguageList(MarketingService.GetLanguageList(), userSession.PreferredLanguage)
                 : null;
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);

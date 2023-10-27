@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
     public class StatisticsServiceTest
     {
         private readonly IStatisticsRepository Repo;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
 
         public StatisticsServiceTest()
         {

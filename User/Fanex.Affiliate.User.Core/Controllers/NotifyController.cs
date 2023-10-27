@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
     {
 
         public NotifyController(
-            ISessionService sessionService, ILanguageService languageService)
+            ISessionService sessionService, ISystemService languageService)
             : base(sessionService, languageService)
         {
         }

@@ -23,13 +23,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
     {
         private static PaymentRequestController CreatePaymentRequestController(ISessionService sessionService = null,
             IAppSetting appSetting = null,
-            ILanguageService languageService = null,
+            ISystemService languageService = null,
             IPaymentService paymentService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakePaymentService = paymentService ?? (new Mock<IPaymentService>()).Object;
             var fakeAppsetting = appSetting ?? (new Mock<IAppSetting>()).Object;
-            var fakeLanguageService = languageService ?? (new Mock<ILanguageService>()).Object;
+            var fakeLanguageService = languageService ?? (new Mock<ISystemService>()).Object;
             var controller = new PaymentRequestController(fakeSessionService, fakeAppsetting, fakeLanguageService, fakePaymentService);
 
             return MockingHelper.FakeController(controller) as PaymentRequestController;

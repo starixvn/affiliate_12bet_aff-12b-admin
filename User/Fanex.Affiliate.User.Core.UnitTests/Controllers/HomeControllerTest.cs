@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         [InlineData("Feedback", "Index")]
         public void Excute_WhenRequestChangeLang_SetForNewLang(string controller, string action)
         {
-            var languageService = Substitute.For<ILanguageService>();
+            var languageService = Substitute.For<ISystemService>();
             var sessionService = NSubtituteMockingHelper.FakeSessionService();
             var appSetting = Substitute.For<IAppSetting>();
             var homeController = new HomeController(sessionService, appSetting, languageService);
@@ -107,13 +107,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         private static HomeController CreateController(
-            ILanguageService languageService = null,
+            ISystemService languageService = null,
             ISessionService sessionService = null,
             IAppSetting appSetting = null,
             bool isAuthenticated = true,
             Uri uri = null)
         {
-            languageService = languageService ?? Mock.Of<ILanguageService>();
+            languageService = languageService ?? Mock.Of<ISystemService>();
             sessionService = sessionService ?? MockingHelper.GetSessionService();
             appSetting = appSetting ?? Mock.Of<IAppSetting>(ap =>
                 !ap.IsEuroSite &&

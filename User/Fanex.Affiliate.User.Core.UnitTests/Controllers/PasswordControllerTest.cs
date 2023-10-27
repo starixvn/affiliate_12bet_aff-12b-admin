@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         private readonly IAppSetting AppSetting;
         private readonly IAccountRepository AccountRepo;
         private readonly ICryptographyService CryptographyService;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
         private readonly IEmailService EmailService;
 
         const string Email = "abc@gmail.com";

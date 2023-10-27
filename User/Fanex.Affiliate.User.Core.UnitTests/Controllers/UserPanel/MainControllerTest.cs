@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     public class MainControllerTest
     {
         private readonly ISessionService SessionService;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
 
         public MainControllerTest()
         {

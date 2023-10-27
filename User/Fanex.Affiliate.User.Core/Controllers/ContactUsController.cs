@@ -22,7 +22,7 @@
         public ContactUsController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService,
+            ISystemService languageService,
             IContactService contactService,
             IAccountRepository accountRepository,
             ICaptchaService captchaService)

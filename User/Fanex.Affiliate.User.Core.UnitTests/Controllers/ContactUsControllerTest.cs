@@ -242,14 +242,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             IAppSetting appSetting = null,
             IAccountRepository accountRepository = null,
             ICaptchaService captchaService = null,
-            ILanguageService languageService = null)
+            ISystemService languageService = null)
         {
             contactService = contactService ?? Mock.Of<IContactService>();
             sessionService = sessionService ?? MockingHelper.GetSessionService();
             appSetting = appSetting ?? Mock.Of<IAppSetting>();
             accountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
             captchaService = captchaService ?? Mock.Of<ICaptchaService>();
-            languageService = languageService ?? Mock.Of<ILanguageService>();
+            languageService = languageService ?? Mock.Of<ISystemService>();
 
             var controller = new ContactUsController(sessionService, appSetting, languageService, contactService, accountRepository, captchaService);
             var request = MockingHelper.GetHttpRequest();

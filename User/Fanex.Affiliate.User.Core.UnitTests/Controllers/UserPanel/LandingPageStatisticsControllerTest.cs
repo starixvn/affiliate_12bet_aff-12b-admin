@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
@@ -146,12 +146,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
         private static LandingPageStatisticsController CreateController(
             ISessionService sessionService = null,
-            ILanguageService languageService = null,
+            ISystemService languageService = null,
             IStatisticsService statisticsService = null,
             IMarketingService marketingService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
             var fakeStaticticsService = statisticsService ?? Mock.Of<IStatisticsService>();
             var fakeMarketingService = marketingService ?? Mock.Of<IMarketingService>();
 

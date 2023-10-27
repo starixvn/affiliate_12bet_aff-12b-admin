@@ -49,7 +49,7 @@
         private readonly string _userName;
 
         public TestController(ISessionService sessionService,
-            ILanguageService languageService, IAppSetting appSetting, IMailProcessor mailProcessor) : base(sessionService, languageService)
+            ISystemService languageService, IAppSetting appSetting, IMailProcessor mailProcessor) : base(sessionService, languageService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;

@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     {
         private readonly ISessionService SessionService;
         private readonly IAppSetting AppSetting;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
         private readonly IMarketingService MarketingService;
 
         public MarketingControllerTest()

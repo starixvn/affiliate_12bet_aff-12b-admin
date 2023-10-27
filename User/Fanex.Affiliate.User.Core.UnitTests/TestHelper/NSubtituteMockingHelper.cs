@@ -36,9 +36,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             return service;
         }
 
-        public static ILanguageService FakeLanguageService()
+        public static ISystemService FakeLanguageService()
         {
-            var service = Substitute.For<ILanguageService>();
+            var service = Substitute.For<ISystemService>();
             service.GetFavoriteLanguage().Returns(Constant.DefaultLanguage);
             service.GetSystemLanguages().ReturnsForAnyArgs(Constant.LanguageList);
             return service;

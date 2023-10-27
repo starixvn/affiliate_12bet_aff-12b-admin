@@ -73,11 +73,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
         private static MemberTransactionController CreateController(
             ISessionService sessionService = null,
-            ILanguageService languageService = null,
+            ISystemService languageService = null,
             IMemberTransactionService memberTransactionService = null)
         {
             sessionService = sessionService ?? new Mock<ISessionService>().Object;
-            languageService = languageService ?? new Mock<ILanguageService>().Object;
+            languageService = languageService ?? new Mock<ISystemService>().Object;
             memberTransactionService = memberTransactionService ?? new Mock<IMemberTransactionService>().Object;
 
             return new MemberTransactionController(sessionService, languageService, memberTransactionService);

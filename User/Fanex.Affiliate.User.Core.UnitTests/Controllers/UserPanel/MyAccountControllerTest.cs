@@ -22,11 +22,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private static MyAccountController CreateAccountController(
             ISessionService sessionService = null,
             IAccountRepository accountRepository = null,
-            ILanguageService languageService = null)
+            ISystemService languageService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeAccountRepository = accountRepository ?? (new Mock<IAccountRepository>()).Object;
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
             var controller = new MyAccountController(fakeSessionService, fakeLanguageService, fakeAccountRepository);
             return MockingHelper.FakeController(controller) as MyAccountController;
         }
@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             var expectedAccount = new AccountInformation { PreferredLanguage = Constant.DefaultLanguage };
             var accountRepository = new Mock<IAccountRepository>();
-            var languageService = new Mock<ILanguageService>();
+            var languageService = new Mock<ISystemService>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(expectedAccount);
             languageService.Setup(ac => ac.GetSystemLanguages(true)).Returns(Constant.LanguageList);
             var controller = CreateAccountController(null, accountRepository: accountRepository.Object, languageService: languageService.Object);

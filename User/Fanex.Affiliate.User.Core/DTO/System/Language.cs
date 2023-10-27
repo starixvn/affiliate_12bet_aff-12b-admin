@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.User.Core.DTO
+﻿namespace Fanex.Affiliate.User.Core.DTO.System
 {
     public class Language
     {

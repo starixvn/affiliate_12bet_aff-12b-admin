@@ -1,6 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,15 +11,15 @@ using System.Web;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class LanguageService : ILanguageService
+    public class SystemService : ISystemService
     {
         private readonly ISessionService _sessionService;
-        private readonly ILanguageRepository _languageRepository;
+        private readonly ISystemRepository _systemRepository;
         private readonly IMemoryCacheService _cacheService;
 
-        public LanguageService(ILanguageRepository languageRepository, ISessionService sessionService, IMemoryCacheService cacheService)
+        public SystemService(ISystemRepository systemRepository, ISessionService sessionService, IMemoryCacheService cacheService)
         {
-            _languageRepository = languageRepository;
+            _systemRepository = systemRepository;
             _sessionService = sessionService;
             _cacheService = cacheService;
         }
@@ -47,11 +47,42 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var languageList = _cacheService.Get<IEnumerable<Language>>(cacheKey);
             if (languageList == null)
             {
-                languageList = _languageRepository.GetLanguageList(isInternal, _sessionService.UserSession?.UserId);
+                languageList = _systemRepository.GetLanguageList(isInternal, _sessionService.UserSession?.UserId);
                 _cacheService.Set(cacheKey, languageList);
             }
 
             return languageList ?? new List<Language>();
+        }
+
+        public IEnumerable<TargetCountry> GetSystemTargetCountries()
+        {
+            var isInternal = _sessionService.IsInternal;
+            var cacheKey = isInternal ? CacheKey.InternalTargetCountryList : CacheKey.TargetCountryList;
+
+            var targetCountryList = _cacheService.Get<IEnumerable<TargetCountry>>(cacheKey);
+            if (targetCountryList == null)
+            {
+                targetCountryList = _systemRepository.GetTargetCountryList(isInternal, _sessionService.UserSession?.UserId);
+                _cacheService.Set(cacheKey, targetCountryList);
+            }
+
+            return targetCountryList ?? new List<TargetCountry>();
+        }
+
+        public IEnumerable<TargetLanguage> GetSystemTargetLanguages()
+        {
+            var isInternal = _sessionService.IsInternal;
+            var cacheKey = isInternal ? CacheKey.InternalTargetLanguageList : CacheKey.TargetLanguageList;
+
+            
+            var targetLanguageList = _cacheService.Get<IEnumerable<TargetLanguage>>(cacheKey);
+            if (targetLanguageList == null)
+            {
+                targetLanguageList = _systemRepository.GetTargetLanguageList(isInternal, _sessionService.UserSession?.UserId);
+                _cacheService.Set(cacheKey, targetLanguageList);
+            }
+
+            return targetLanguageList ?? new List<TargetLanguage>();
         }
 
         public bool IsValid(string langCode, bool isAfterLogin = true)

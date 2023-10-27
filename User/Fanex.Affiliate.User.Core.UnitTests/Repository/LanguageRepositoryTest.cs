@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.Repository;
 using NSubstitute;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 {
-    public class LanguageRepositoryTest : RepositoryTestBase<LanguageRepository>
+    public class LanguageRepositoryTest : RepositoryTestBase<SystemRepository>
     {
         [Theory]
         [InlineData(true)]

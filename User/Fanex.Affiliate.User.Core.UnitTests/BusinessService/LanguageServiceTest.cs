@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using NSubstitute;
@@ -17,13 +17,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
     public class LanguageServiceTest
     {
-        private readonly ILanguageRepository Repo;
+        private readonly ISystemRepository Repo;
         private readonly ISessionService SessionService;
         private readonly IMemoryCacheService CacheServive;
 
         public LanguageServiceTest()
         {
-            Repo = Substitute.For<ILanguageRepository>();
+            Repo = Substitute.For<ISystemRepository>();
             SessionService = NSubtituteMockingHelper.FakeSessionService();
             CacheServive = Substitute.For<IMemoryCacheService>();
         }
@@ -160,7 +160,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 new Language { DisplayName="England", MarketId="en-US", MarketName="England", MarketNativeName="England", ShortedCode="en" }
             };
 
-        private LanguageService CreateService()
-            => new LanguageService(Repo, SessionService, CacheServive);
+        private SystemService CreateService()
+            => new SystemService(Repo, SessionService, CacheServive);
     }
 }

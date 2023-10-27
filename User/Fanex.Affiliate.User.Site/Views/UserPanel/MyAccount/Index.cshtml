@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+@using Fanex.Affiliate.User.Core.BusinessService
 @using Fanex.Affiliate.User.Core.CoreService
 @using Fanex.Affiliate.User.Core.Utilities
 @using Fanex.Affiliate.User.Core.Constants
@@ -8,6 +9,7 @@
 @model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountInformation
 
 @{
+    var systemService = DependencyResolver.Current.GetService<ISystemService>();
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var currentLanguage = sessionService.CurrentLanguage;
     var isCsLanguage = currentLanguage.Equals("zh-CN");
@@ -144,9 +146,9 @@
                             {
                                 StringBuilder dependentField = new StringBuilder();
 
-                                for(var i = 0; i < contactAppCount; i++)
+                                for (var i = 0; i < contactAppCount; i++)
                                 {
-                                    if(i != index)
+                                    if (i != index)
                                     {
                                         dependentField.Append($"ContactAppList[{i}].Value,");
                                     }
@@ -301,6 +303,17 @@
                     <span class="text">@Lang.Preference</span>
                 </div>
                 <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@Lang.TargetCountry</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="TargetCountryCode" id="TargetCountryCode">
+                                @foreach (var item in systemService.GetSystemTargetCountries())
+                                {
+                                    <option value="@item.TargetCountryCode" @(item.TargetCountryCode == Model.TargetCountryCode ? "selected" : string.Empty)>@item.TargetCountryName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@Lang.Language</label>
                         <div class="col-sm-4">

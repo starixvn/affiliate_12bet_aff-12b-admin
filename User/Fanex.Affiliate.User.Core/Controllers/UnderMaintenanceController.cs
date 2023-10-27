@@ -9,10 +9,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
     public class UnderMaintenanceController : Controller
     {
         private readonly ISessionService _sessionService;
-        protected readonly ILanguageService _languageService;
+        protected readonly ISystemService _languageService;
         private readonly IUnderMaintenanceService _underMaintenanceService;
         public UnderMaintenanceController(ISessionService sessionService,
-            ILanguageService languageService, IUnderMaintenanceService underMaintenanceService)
+            ISystemService languageService, IUnderMaintenanceService underMaintenanceService)
         {
             _sessionService = sessionService;
             _languageService = languageService;

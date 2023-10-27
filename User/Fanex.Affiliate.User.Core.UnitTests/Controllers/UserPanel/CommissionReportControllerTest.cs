@@ -15,13 +15,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     public class CommissionReportControllerTest
     {
         private readonly ISessionService SessionService;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
         private readonly ICommissionReportService CommissionService;
 
         public CommissionReportControllerTest()
         {
             SessionService = NSubtituteMockingHelper.FakeSessionService();
-            LanguageService = Substitute.For<ILanguageService>();
+            LanguageService = Substitute.For<ISystemService>();
             CommissionService = Substitute.For<ICommissionReportService>();
         }
 

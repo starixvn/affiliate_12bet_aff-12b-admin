@@ -27,7 +27,7 @@
             IAppSetting appSetting,
             IAccountRepository accountRepository,
             ICryptographyService cryptographyService,
-            ILanguageService languageService,
+            ISystemService languageService,
             IEmailService mailService)
             : base(sessionService, languageService)
         {

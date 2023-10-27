@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
     public class ProductControllerTest
     {
         private readonly ISessionService SessionService;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
 
         public ProductControllerTest()
         {

@@ -17,7 +17,7 @@
         private readonly IMarketingService _marketingService;
 
         public LandingPageStatisticsController(ISessionService sessionService,
-            ILanguageService languageService,
+            ISystemService languageService,
             IStatisticsService statisticsService,
             IMarketingService marketingService
             ) : base(sessionService, languageService)
@@ -47,7 +47,7 @@
 
             var viewModel = new LandingPageStatisticsViewModel
             {
-                LanguageList = MarketingHelper.GetLanguageList(_marketingService.GetLanguageList(), userSession.PreferredLanguage),
+                LanguageList = SystemHelper.GetLanguageList(_marketingService.GetLanguageList(), userSession.PreferredLanguage),
                 MemberSitePageList = _marketingService.GetLandingPageList(userSession.GroupName, isInternal),
                 CountryList = _statisticsService.GetCountryList(isInternal),
                 ReportBy = Statistics.ReportByCountry,

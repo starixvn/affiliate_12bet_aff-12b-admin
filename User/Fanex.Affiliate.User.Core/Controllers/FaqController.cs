@@ -7,7 +7,7 @@
     public class FaqController : BaseController
     {
 
-        public FaqController(ISessionService sessionService, ILanguageService languageService)
+        public FaqController(ISessionService sessionService, ISystemService languageService)
             : base(sessionService, languageService)
         {
         }

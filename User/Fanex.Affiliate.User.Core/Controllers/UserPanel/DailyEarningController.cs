@@ -17,7 +17,7 @@
         private readonly IStatementHistoryRepository _statementHistoryRepository;
 
         public DailyEarningController(ISessionService sessionService,
-            ILanguageService languageService,
+            ISystemService languageService,
             IStatementHistoryRepository statementHistoryRepository
 
             ) : base(sessionService, languageService)

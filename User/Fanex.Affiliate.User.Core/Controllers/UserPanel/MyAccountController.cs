@@ -23,7 +23,7 @@
         private readonly ISessionService _sessionService;
         private readonly IAccountRepository _accountRepository;
         public MyAccountController(ISessionService sessionService,
-            ILanguageService languageService, IAccountRepository accountRepository)
+            ISystemService languageService, IAccountRepository accountRepository)
             : base(sessionService, languageService)
         {
             _sessionService = sessionService;
@@ -51,6 +51,7 @@
                 PreferredPayment = Server.HtmlDecode(model.PreferredPayment),
                 PlayerUsername = Server.HtmlDecode(model.PlayerUsername),
                 Postal = Server.HtmlDecode(model.Postal),
+                TargetCountryCode = model.TargetCountryCode,
                 PreferredLanguage = model.PreferredLanguage,
                 NoSiteDesc = Server.HtmlDecode(model.NoSiteDesc),
                 IsRenderState = _sessionService.CurrentLanguage == SimplifiedChineseCode || _sessionService.CurrentLanguage == TraditionalChineseCode,
@@ -104,6 +105,7 @@
                 SiteUrl = Server.HtmlEncode(model.SiteUrl ?? string.Empty),
                 MoreSiteUrls = Server.HtmlEncode(model.MoreSiteUrls ?? string.Empty),
                 NoSiteDesc = Server.HtmlEncode(model.NoSiteDesc ?? string.Empty),
+                TargetCountryCode = Server.HtmlEncode(model.TargetCountryCode),
                 Player_UserName = model.PlayerUsername,
                 Ip = RequestHelper.GetClientIPAddress(Request),
                 Language = _sessionService.CurrentLanguage,

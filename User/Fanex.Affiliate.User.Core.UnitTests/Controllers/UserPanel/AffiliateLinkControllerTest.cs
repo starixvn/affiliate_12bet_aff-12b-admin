@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     {
         private readonly ISessionService _sessionService;
         private readonly IAppSetting _appSetting;
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _languageService;
         private readonly IMarketingService _marketingService;
         private readonly IQrCodeGeneratorService _qrCodeService;
 

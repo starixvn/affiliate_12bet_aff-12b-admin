@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         private readonly IAccountOverviewRepository _accountOverviewRepository;
 
         public SummaryController(ISessionService sessionService,
-            ILanguageService languageService,
+            ISystemService languageService,
             IAccountOverviewRepository accountOverviewRepository
             ) : base(sessionService, languageService)
         {

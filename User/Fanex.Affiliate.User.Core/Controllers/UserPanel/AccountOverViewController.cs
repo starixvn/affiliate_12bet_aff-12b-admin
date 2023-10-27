@@ -11,7 +11,7 @@
     {
         private readonly IAccountOverviewRepository _accountOverviewRepository;
         public AccountOverviewController(ISessionService sessionService,
-            ILanguageService languageService,
+            ISystemService languageService,
             IAccountOverviewRepository accountOverviewRepository
             ) : base(sessionService, languageService)
         {

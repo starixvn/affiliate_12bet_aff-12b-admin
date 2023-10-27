@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string NoSiteDesc { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "TargetCountryErr")]
-        public string TargetCountry { get; set; }
+        public string TargetCountryCode { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "AffAccountLanguageErr")]
         public string PreferredLanguage { get; set; }

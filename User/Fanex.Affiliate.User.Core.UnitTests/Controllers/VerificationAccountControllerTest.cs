@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
     {
         private readonly ISessionService SessionService;
         private readonly IAppSetting AppSetting;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
         private readonly ICaptchaService CaptchaService;
         private readonly IAccountRepository AccountRepo;
         private readonly IAuthService AuthService;

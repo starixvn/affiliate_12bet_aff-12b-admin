@@ -20,7 +20,7 @@
         public MediaGalleryController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService,
+            ISystemService languageService,
             IMarketingService marketingService
             ) : base(sessionService, appSetting, languageService, marketingService)
         {

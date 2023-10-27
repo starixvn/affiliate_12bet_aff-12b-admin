@@ -16,7 +16,7 @@
 
         public CommissionReportController(
             ISessionService sessionService,
-            ILanguageService languageService,
+            ISystemService languageService,
             ICommissionReportService commissionReportService)
             : base(sessionService, languageService)
         {

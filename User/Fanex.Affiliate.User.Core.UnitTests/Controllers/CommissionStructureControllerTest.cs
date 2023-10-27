@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void Index_WhenCall_ReturnCorrectView()
         {
             var sessionService = Substitute.For<ISessionService>();
-            var languageService = Substitute.For<ILanguageService>();
+            var languageService = Substitute.For<ISystemService>();
             var controller = new CommissionStructureController(sessionService, languageService);
 
             var result = controller.Index() as ViewResult;

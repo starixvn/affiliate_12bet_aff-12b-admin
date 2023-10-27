@@ -10,10 +10,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
     [CheckUMFilter]
     public class BaseController : Controller
     {
-        protected readonly ILanguageService LanguageService;
+        protected readonly ISystemService LanguageService;
 
         protected BaseController(ISessionService sessionService,
-            ILanguageService languageService)
+            ISystemService languageService)
         {
             SessionService = sessionService;
             LanguageService = languageService;

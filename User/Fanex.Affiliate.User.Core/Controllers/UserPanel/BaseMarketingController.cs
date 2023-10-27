@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         public BaseMarketingController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService,
+            ISystemService languageService,
             IMarketingService marketingService
             ) : base(sessionService, languageService)
         {
@@ -35,8 +35,8 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
             var viewModel = new LinkFormViewModel
             {
-                TargetCountryList = MarketingHelper.GetLanguageList(languageList, userSession.PreferredLanguage),
-                LanguageList = MarketingHelper.GetLanguageList(languageList, userSession.PreferredLanguage),
+                TargetCountryList = SystemHelper.GetLanguageList(languageList, userSession.PreferredLanguage),
+                LanguageList = SystemHelper.GetLanguageList(languageList, userSession.PreferredLanguage),
                 DomainList = MarketingService.GetDomainList(userSession.AffId, isInternal),
                 MemberSitePageList = MarketingService.GetSpecialLandingPageList(userSession.GroupName, userSession.TargetCountry, userSession.PreferredLanguage, isInternal)
                 .Select(i => new SelectListItem { Value = i.PageCode, Text = i.PageName })

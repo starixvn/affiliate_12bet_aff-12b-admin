@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
@@ -15,10 +15,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class StatisticsService : IStatisticsService
     {
         private readonly IStatisticsRepository _statisticsRepository;
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _languageService;
         public StatisticsService(
             IStatisticsRepository statisticsRepository,
-            ILanguageService languageService)
+            ISystemService languageService)
         {
             _statisticsRepository = statisticsRepository;
             _languageService = languageService;

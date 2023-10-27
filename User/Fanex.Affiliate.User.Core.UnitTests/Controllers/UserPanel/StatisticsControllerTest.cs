@@ -48,11 +48,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
         private static StatisticsController CreateController(
             ISessionService sessionService = null,
-            ILanguageService languageService = null,
+            ISystemService languageService = null,
             IStatisticsService statisticsService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
             var fakeStaticticsService = statisticsService ?? Mock.Of<IStatisticsService>();
 
             return new StatisticsController(fakeSessionService, fakeLanguageService, fakeStaticticsService);

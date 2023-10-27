@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public VerificationAccountController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService,
+            ISystemService languageService,
             ICaptchaService captchaService,
             IAccountRepository accountRepository,
             IAuthService authService,

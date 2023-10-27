@@ -2,7 +2,17 @@
 {
     public static class CacheKey
     {
+        public const string TargetCountryList = "Affiliate.12Bet.TargetCountryList";
+
+        public const string InternalTargetCountryList = "Affiliate.12Bet.InternalTargetCountryList";
+
         public const string TargetProductList = "Affiliate.12Bet.TargetProductList";
+
+        public const string InternalTargetProductList = "Affiliate.12Bet.InternalTargetProductList";
+
+        public const string TargetLanguageList = "Affiliate.12Bet.TargetLanguageList";
+
+        public const string InternalTargetLanguageList = "Affiliate.12Bet.InternalTargetLanguageList";
 
         public const string LanguageList = "Affiliate.12Bet.LanguageList";
 

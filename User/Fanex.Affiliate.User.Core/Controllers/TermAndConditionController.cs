@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
     public class TermAndConditionController : BaseController
     {
 
-        public TermAndConditionController(ISessionService sessionService, ILanguageService languageService) :
+        public TermAndConditionController(ISessionService sessionService, ISystemService languageService) :
             base(sessionService, languageService)
         {
         }

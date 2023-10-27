@@ -1,9 +1,9 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.DTO.System;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public interface ILanguageService
+    public interface ISystemService
     {
         void SetCulture(string languageCode);
 
@@ -12,5 +12,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         bool IsValid(string langCode, bool isAfterLogin = true);
 
         IEnumerable<Language> GetSystemLanguages(bool isAfterLogin = true);
+
+        IEnumerable<TargetLanguage> GetSystemTargetLanguages();
+
+        IEnumerable<TargetCountry> GetSystemTargetCountries();
     }
 }

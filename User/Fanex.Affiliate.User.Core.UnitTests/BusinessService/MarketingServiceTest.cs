@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         private readonly IMarketingRepository Repo;
         private readonly IAppSetting AppSetting;
         private readonly IMemoryCacheService CacheService;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
 
         public MarketingServiceTest()
         {
