@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
     public class InsertDomainControlParam : UserInfoParam
     {
         [Required]
-        public string TargetCountryId { get; set; }
+        public string TargetCountryCode { get; set; }
 
         [Range(Validation.MinId, Validation.MaxId)]
         public int AffDomainId { get; set; }

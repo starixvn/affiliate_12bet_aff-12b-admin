@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var commissionGroupRepository = new Mock<ICommissionGroupRepository>();
             commissionGroupRepository.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(new List<SelectItem> { new SelectItem() });
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
             var controller = CreateAffiliateController(commissionGroupRepository: commissionGroupRepository.Object, commonSettingService: commonSettingService.Object);
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var affiliateInfoRepository = new Mock<IAffiliateInfoRepository>();
             affiliateInfoRepository.Setup(t => t.GetAffiliateList(It.IsAny<AffiliateInfoParam>())).Returns(new EntityResult<AffiliateInfo> { MainData = new List<AffiliateInfo> { new AffiliateInfo() }, TotalItem = 1 });
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
             var controller = CreateAffiliateController(affiliateInfoRepository: affiliateInfoRepository.Object, commonSettingService: commonSettingService.Object);
@@ -162,13 +162,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private AffiliateController CreateAffiliateController(
             ISessionService sessionService = null,
-            ICommonSettingService commonSettingService = null,
+            ISystemService commonSettingService = null,
             IAffiliateInfoRepository affiliateInfoRepository = null,
             ICommissionGroupRepository commissionGroupRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
             var fakeAffiliateInfoRepository = affiliateInfoRepository ?? Mock.Of<IAffiliateInfoRepository>();
             var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommissionGroupRepository>();
 

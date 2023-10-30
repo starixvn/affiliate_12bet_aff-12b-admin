@@ -7,7 +7,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Affiliate.Admin.Core.Utilities.Domain;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -41,13 +41,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainControlList(string targetCountryIds)
+        public ActionResult GetDomainControlList(string targetCountryCodes)
         {
-            var visibleTargetCountryIds =  TargetCountryHelper.GetVisibleTargetCountryIds(targetCountryIds, GetVisibleTargetCountriesByUser());
+            var visibleTargetCountryCodes = SystemHelper.GetVisibleTargetCountryCodes(targetCountryCodes, GetVisibleTargetCountriesByUser());
 
             return new JsonNetResult
             {
-                Data = _domainControlService.GetDomainControlList(visibleTargetCountryIds)
+                Data = _domainControlService.GetDomainControlList(visibleTargetCountryCodes)
             };
         }
 
@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         public ActionResult GetDomainControlById(int domainControlId)
         {
             var domainControl = _domainControlService.GetDomainControlById(domainControlId);
-            var isValidTargetCountry = TargetCountryHelper.IsValidTargetCountryIds(domainControl?.TargetCountryId, GetVisibleTargetCountriesByUser());
+            var isValidTargetCountry = SystemHelper.IsValidTargetCountryCodes(domainControl?.TargetCountryCode, GetVisibleTargetCountriesByUser());
 
             return new JsonNetResult
             {
@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult InsertDomainControl(InsertDomainControlParam param)
         {
-            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.TargetCountryId, GetVisibleTargetCountriesByUser()))
+            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesByUser()))
             {
                 GetUserInfoParam(param);
 
@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomainControl(UpdateDomainControlParam param)
         {
-            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.TargetCountryId, GetVisibleTargetCountriesByUser()))
+            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesByUser()))
             {
                 GetUserInfoParam(param);
 

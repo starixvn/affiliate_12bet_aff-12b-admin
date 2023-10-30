@@ -178,7 +178,7 @@ describe('domain actions', () => {
     })
 
     it('should create action to getTargetCountryListByDomain successfully', async () => {
-        const expectedResponse = { data: [{ TargetCountryId: 'en-US', TargetCountryName: 'English' }], status: 200 };
+        const expectedResponse = { data: [{ TargetCountryCode: 'en-US', TargetCountryName: 'English' }], status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
             DomainId: 123,
@@ -189,7 +189,7 @@ describe('domain actions', () => {
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Domain/GetTargetCountryList', param);
 
-        expect(result).toEqual([{ TargetCountryId: 'en-US', TargetCountryName: 'English' }]);
+        expect(result).toEqual([{ TargetCountryCode: 'en-US', TargetCountryName: 'English' }]);
     })
 
     it('should create action to getTargetCountryListByDomain with empty successfully', async () => {

@@ -29,20 +29,20 @@ export class DomainControlPopup extends PureComponent {
                 const redirectDomainId = redirectDomainList[0].DomainId;
 
                 const targetCountryListByDomains = await this.props.getTargetCountryListByDomains({ affDomainId, redirectDomainId });
-                const targetCountryId = targetCountryListByDomains ? targetCountryListByDomains[0].TargetCountryId : "";
+                const targetCountryCode = targetCountryListByDomains ? targetCountryListByDomains[0].TargetCountryCode : "";
 
-                this.setState({ isInsert: true, selectedDomain: { domainControlId: selectedDomainId, affDomainId, redirectDomainId, targetCountryId, status: false }, targetCountryListByDomains });
+                this.setState({ isInsert: true, selectedDomain: { domainControlId: selectedDomainId, affDomainId, redirectDomainId, targetCountryCode, status: false }, targetCountryListByDomains });
             }
         } else {
             this.props.toggleLoader(true);
             const domain = await this.props.getDomainControlById(selectedDomainId);
 
             if (domain) {
-                const { AffDomainId, RedirectDomainId, TargetCountryId, Status } = domain;
+                const { AffDomainId, RedirectDomainId, TargetCountryCode, Status } = domain;
                 const domainIds = { affDomainId: AffDomainId, redirectDomainId: RedirectDomainId };
                 const targetCountryListByDomains = await this.props.getTargetCountryListByDomains(domainIds);
 
-                this.setState({ isInsert: false, selectedDomain: { domainControlId: selectedDomainId, ...domainIds, targetCountryId: TargetCountryId, status: Status }, targetCountryListByDomains });
+                this.setState({ isInsert: false, selectedDomain: { domainControlId: selectedDomainId, ...domainIds, targetCountryCode: TargetCountryCode, status: Status }, targetCountryListByDomains });
             } else {
                 this.props.setSelectedDomainId(null);
             }
@@ -77,9 +77,9 @@ export class DomainControlPopup extends PureComponent {
         const { affDomainId, redirectDomainId } = newDomain;
 
         const targetCountryListByDomains = await this.props.getTargetCountryListByDomains({ affDomainId, redirectDomainId });
-        const selectedTargetCountryIdByDomains = targetCountryListByDomains ? targetCountryListByDomains[0].TargetCountryId : "";
+        const selectedTargetCountryCodeByDomains = targetCountryListByDomains ? targetCountryListByDomains[0].TargetCountryCode : "";
 
-        this.setState({ selectedDomain: { ...newDomain, targetCountryId: selectedTargetCountryIdByDomains }, targetCountryListByDomains });
+        this.setState({ selectedDomain: { ...newDomain, targetCountryCode: selectedTargetCountryCodeByDomains }, targetCountryListByDomains });
         this.props.toggleLoader(false);
     }
 
@@ -114,7 +114,7 @@ export class DomainControlPopup extends PureComponent {
         });
 
         if (isSuccess) {
-            this.props.fetchData(this.props.selectedTargetCountryId);
+            this.props.fetchData(this.props.selectedTargetCountryCode);
             this._handleClosePopup();
         }
     }
@@ -173,14 +173,14 @@ export class DomainControlPopup extends PureComponent {
                                     <Col sm={8}>
                                         {
                                             isDisabled ? (
-                                                <Input type="select" name="targetCountryId" disabled="true" title="All target countries are blocked for these domains!" className="mt-1" value="">
+                                                <Input type="select" name="targetCountryCode" disabled="true" title="All target countries are blocked for these domains!" className="mt-1" value="">
                                                     <option key="target-country-none" value="">Please select!</option>
                                                 </Input>
                                             ) : (
-                                                    <Input type="select" name="targetCountryId" className="mt-1" value={selectedDomain.targetCountryId} onChange={this._handleChange}>
+                                                    <Input type="select" name="targetCountryCode" className="mt-1" value={selectedDomain.targetCountryCode} onChange={this._handleChange}>
                                                         {
                                                             targetCountryListByDomains.map(item => {
-                                                                return (<option key={`target-country-${item.TargetCountryId}`} value={item.TargetCountryId}>{item.TargetCountryName}</option>)
+                                                                return (<option key={`target-country-${item.TargetCountryCode}`} value={item.TargetCountryCode}>{item.TargetCountryName}</option>)
                                                             })
                                                         }
                                                     </Input>
@@ -196,7 +196,7 @@ export class DomainControlPopup extends PureComponent {
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" disabled={isDisabled || !selectedDomain.targetCountryId} onClick={this._handleSubmit}>{buttonLabel}</Button>
+                            <Button type="button" color="success" className="mr-3" disabled={isDisabled || !selectedDomain.targetCountryCode} onClick={this._handleSubmit}>{buttonLabel}</Button>
                             <Button type="button" color="info" onClick={this._handleClosePopup}>Cancel</Button>
                         </div>
                     </div>
@@ -206,8 +206,8 @@ export class DomainControlPopup extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedDomainId, selectedTargetCountryId, targetCountryList, affDomainList, redirectDomainList }) {
-    return Object.assign({}, { selectedDomainId, selectedTargetCountryId, targetCountryList, affDomainList, redirectDomainList });
+function mapStateToProps({ selectedDomainId, selectedTargetCountryCode, targetCountryList, affDomainList, redirectDomainList }) {
+    return Object.assign({}, { selectedDomainId, selectedTargetCountryCode, targetCountryList, affDomainList, redirectDomainList });
 }
 
 function mapDispatchToProps(dispatch) {

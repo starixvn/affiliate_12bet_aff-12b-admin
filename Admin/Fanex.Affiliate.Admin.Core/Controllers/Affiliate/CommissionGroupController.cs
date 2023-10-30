@@ -23,12 +23,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private readonly ICommissionGroupService _commissionGroupService;
 
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
 
         public CommissionGroupController(
             ISessionService sessionService,
             ICommissionGroupService commissionService,
-            ICommonSettingService commonSettingService,
+            ISystemService commonSettingService,
             ICommGroupCommonService commGroupCommonService) : base(sessionService)
         {
             _commissionGroupService = commissionService;

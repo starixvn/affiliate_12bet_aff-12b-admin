@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void Preview_WhenCallHasException_ReturnView()
         {
             // Arrange
-            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ICommonSettingService>());
+            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ISystemService>());
 
             // Action
             var viewResult = controller.Preview(string.Empty, string.Empty, string.Empty) as ViewResult;
@@ -82,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void SendEmail_WhenCallHasException_ReturnFalse()
         {
             // Arrange
-            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ICommonSettingService>());
+            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ISystemService>());
 
             // Action
             var jsonResult = controller.SendEmail(string.Empty, string.Empty, string.Empty, string.Empty) as JsonResult;
@@ -123,13 +123,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             ISessionService sessionService = null,
             IMailProcessor mailProcessor = null,
             IAppSetting appSetting = null,
-            ICommonSettingService commonSettingService = null
+            ISystemService commonSettingService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeMailProcessor = mailProcessor ?? Mock.Of<IMailProcessor>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
 
             var controller = new EmailTestingController(fakeSessionService, fakeMailProcessor, fakeAppSetting, fakecommonSettingService);
 

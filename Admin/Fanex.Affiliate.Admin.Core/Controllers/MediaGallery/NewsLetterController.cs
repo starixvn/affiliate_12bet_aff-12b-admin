@@ -18,11 +18,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
     public class NewsLetterController : ReadOnlySessionBaseController
     {
-        private ICommonSettingService CommonSettingService { get; }
+        private ISystemService CommonSettingService { get; }
         private INewsLetterService NewsLetterService { get; }
         private IAppSetting AppSetting { get; }
 
-        public NewsLetterController(INewsLetterService newsLetterService, ISessionService sessionService, ICommonSettingService commonSettingService, IAppSetting appSetting) : base(sessionService)
+        public NewsLetterController(INewsLetterService newsLetterService, ISessionService sessionService, ISystemService commonSettingService, IAppSetting appSetting) : base(sessionService)
         {
             CommonSettingService = commonSettingService;
             NewsLetterService = newsLetterService;

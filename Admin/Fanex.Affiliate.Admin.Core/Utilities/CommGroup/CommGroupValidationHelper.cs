@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 {
     public static class CommGroupValidationHelper
     {
-        public static ResultInfo ValidatePlatformFeeList(ICommonSettingService commonSettingService, IEnumerable<DeductionSetting> platformFeeList)
+        public static ResultInfo ValidatePlatformFeeList(ISystemService commonSettingService, IEnumerable<DeductionSetting> platformFeeList)
         {
             var result = ResultInfo.GenerateErr(CommGroupErrorMessage.InvalidPlatformFee);
 

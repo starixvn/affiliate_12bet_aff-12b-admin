@@ -3,28 +3,28 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { setSelectedTargetCountryId, fetchData } from '../actions';
+import { setSelectedTargetCountryCode, fetchData } from '../actions';
 import { headerText, globalResource } from '../libs/constants';
 
 export const Filter = (props) => {
     const { targetCountryList } = props;
-    const [targetCountryId, setTargetCountryId] = useState('');
+    const [targetCountryCode, setTargetCountryCode] = useState('');
 
     const _handleSearch = () => {
-        props.setSelectedTargetCountryId(targetCountryId);
-        props.fetchData(targetCountryId);
+        props.setSelectedTargetCountryCode(targetCountryCode);
+        props.fetchData(targetCountryCode);
     }
 
     return targetCountryList && (
         <div className="filter-container my-2">
             <Form inline tag="div">
                 <FormGroup className="mr-sm-3">
-                    <Label for="targetCountryId" className="mr-sm-2">{headerText.TargetCountry}</Label>
-                    <Input type="select" id="targetCountryId" value={targetCountryId} onChange={(e) => setTargetCountryId(e.target.value)}>
+                    <Label for="targetCountryCode" className="mr-sm-2">{headerText.TargetCountry}</Label>
+                    <Input type="select" id="targetCountryCode" value={targetCountryCode} onChange={(e) => setTargetCountryCode(e.target.value)}>
                         <option key={'target-country-all'} value={''}>{globalResource.All}</option>
                         {
                             targetCountryList.map(item => {
-                                return (<option key={`target-country-${item.TargetCountryId}`} value={item.TargetCountryId}>{item.TargetCountryName}</option>)
+                                return (<option key={`target-country-${item.TargetCountryCode}`} value={item.TargetCountryCode}>{item.TargetCountryName}</option>)
                             })
                         }
                     </Input>
@@ -42,7 +42,7 @@ function mapStateToProps({ targetCountryList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedTargetCountryId, fetchData }, dispatch);
+    return bindActionCreators({ setSelectedTargetCountryCode, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

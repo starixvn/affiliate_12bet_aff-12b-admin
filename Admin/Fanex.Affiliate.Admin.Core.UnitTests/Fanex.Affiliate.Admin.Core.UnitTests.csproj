@@ -240,7 +240,6 @@
     <Compile Include="Controllers\Member\MemberControllerTest.cs" />
     <Compile Include="Controllers\Message\MessageControllerTest.cs" />
     <Compile Include="Controllers\ReportControllerTest.cs" />
-    <Compile Include="Controllers\SystemControllerTest.cs" />
     <Compile Include="Controllers\UnderMaintenanceControllerTest.cs" />
     <Compile Include="Extensions\DataReaderExtensionTest.cs" />
     <Compile Include="Extensions\UrlHelperExtensionTest.cs" />
@@ -261,7 +260,7 @@
     <Compile Include="Repository\MediaGallery\LandingPageRepositoryTest.cs" />
     <Compile Include="Repository\Member\ActiveMemberRepositoryTest.cs" />
     <Compile Include="Repository\Member\MemberRepositoryTest.cs" />
-    <Compile Include="Repository\CommonSettingRepositoryTest.cs" />
+    <Compile Include="Repository\SystemRepositoryTest.cs" />
     <Compile Include="Repository\Report\ReportRepositoryTest.cs" />
     <Compile Include="Services\Affiliate\AffilateServiceTest.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordServiceTest.cs" />
@@ -280,13 +279,14 @@
     <Compile Include="Services\Domain\DomainServiceTest.cs" />
     <Compile Include="Services\EmailServiceTest.cs" />
     <Compile Include="Services\Home\HomeServiceTest.cs" />
-    <Compile Include="Services\CommonSettingServiceTest.cs" />
+    <Compile Include="Services\SystemServiceTest.cs" />
     <Compile Include="Services\ExchangeRate\ExchangeRateServiceTest.cs" />
     <Compile Include="Services\MediaGallery\HtmlFileServiceTest.cs" />
     <Compile Include="Services\MediaGallery\OfferAffServiceTest.cs" />
     <Compile Include="Services\MediaGallery\OfferPageServiceTest.cs" />
     <Compile Include="Services\MediaGallery\NewsLetterServiceTest.cs" />
     <Compile Include="Services\Member\RegisteredMemberServiceTest.cs" />
+    <Compile Include="Utilities\SystemHelperTest.cs" />
     <Compile Include="Utilities\MassAdjustmentHelperTest.cs" />
     <Compile Include="Services\MediaGallery\BannerListServiceTest.cs" />
     <Compile Include="Services\MediaGallery\BannerValidationServiceTest.cs" />
@@ -303,7 +303,6 @@
     <Compile Include="TestHelper\ReaderHelper.cs" />
     <Compile Include="TestHelper\SimpleLifetimeScopeProvider.cs" />
     <Compile Include="Utilities\BannerHelperTest.cs" />
-    <Compile Include="Utilities\LanguageHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

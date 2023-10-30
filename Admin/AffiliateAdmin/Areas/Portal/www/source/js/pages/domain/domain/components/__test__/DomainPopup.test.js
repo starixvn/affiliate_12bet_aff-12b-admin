@@ -19,17 +19,17 @@ describe('domain - components - DomainPopup ', () => {
 
     const targetCountryList = [
         {
-            TargetCountryId: 'en-US',
+            TargetCountryCode: 'en-US',
             TargetCountryName: 'English',
             Status: 0
         },
         {
-            TargetCountryId: 'th-TH',
+            TargetCountryCode: 'th-TH',
             TargetCountryName: 'Thailand',
             Status: 1
         },
         {
-            TargetCountryId: 'zh-CN',
+            TargetCountryCode: 'zh-CN',
             TargetCountryName: 'Chinese',
             Status: 2
         }
@@ -77,7 +77,7 @@ describe('domain - components - DomainPopup ', () => {
     });
 
     it('_handleUpdateState - with insert - should call getTargetCountryListByDomain and setState', async () => {
-        const targetCountryByDomain = [{ TargetCountryId: 'en-US', TargetCountryName: "English" }];
+        const targetCountryByDomain = [{ TargetCountryCode: 'en-US', TargetCountryName: "English" }];
         const props = Object.assign({}, defaultProps, { getTargetCountryListByDomain: jest.fn(() => targetCountryByDomain), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainPopup {...props} />);
         const instance = wrapper.instance();
@@ -86,7 +86,7 @@ describe('domain - components - DomainPopup ', () => {
         await instance._handleUpdateState(0, false);
 
         expect(props.getTargetCountryListByDomain).toHaveBeenCalledWith({ "affDomainId": 0, "redirectDomainId": 0 });
-        expect(instance.setState).toHaveBeenCalledWith({ "isInsert": true, "targetCountryList": [{ "TargetCountryId": "en-US", "TargetCountryName": "English" }], "selectedDomain": { "excludedTargetCountries": [], "domainId": 0, "domainName": "", "isSSL": false } });
+        expect(instance.setState).toHaveBeenCalledWith({ "isInsert": true, "targetCountryList": [{ "TargetCountryCode": "en-US", "TargetCountryName": "English" }], "selectedDomain": { "excludedTargetCountries": [], "domainId": 0, "domainName": "", "isSSL": false } });
     });
 
     it('_handleUpdateState - with insert - should call getTargetCountryListByDomain and setState with empty target country', async () => {
@@ -103,7 +103,7 @@ describe('domain - components - DomainPopup ', () => {
 
     it('_handleUpdateState - with update - should call toggleLoader, getDomainById, getTargetCountryListByDomain and setState', async () => {
         const domain = { DomainId: 123, DomainName: "abc.com", IsSSL: true };
-        const targetCountryByDomain = [{ TargetCountryId: 'en-US', TargetCountryName: "English", Status: 0 }, { TargetCountryId: 'th-TH', TargetCountryName: "Thailand", Status: 2 }];
+        const targetCountryByDomain = [{ TargetCountryCode: 'en-US', TargetCountryName: "English", Status: 0 }, { TargetCountryCode: 'th-TH', TargetCountryName: "Thailand", Status: 2 }];
         const props = Object.assign({}, defaultProps, { getTargetCountryListByDomain: jest.fn(() => targetCountryByDomain), getDomainById: jest.fn(() => domain), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainPopup {...props} />);
         const instance = wrapper.instance();
@@ -116,12 +116,12 @@ describe('domain - components - DomainPopup ', () => {
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(props.getDomainById).toHaveBeenCalledWith(123, true);
         expect(props.getTargetCountryListByDomain).toHaveBeenCalledWith({ "affDomainId": 123 });
-        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": false, "isInsert": false, "targetCountryList": [{ "TargetCountryId": "en-US", "TargetCountryName": "English", "Status": 0 }, { TargetCountryId: 'th-TH', TargetCountryName: "Thailand", Status: 2 }], "selectedDomain": { "excludedTargetCountries": [], "domainId": 123, "domainName": "abc.com", "isSSL": true }, "usingTargetCountries": ["th-TH"] });
+        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": false, "isInsert": false, "targetCountryList": [{ "TargetCountryCode": "en-US", "TargetCountryName": "English", "Status": 0 }, { TargetCountryCode: 'th-TH', TargetCountryName: "Thailand", Status: 2 }], "selectedDomain": { "excludedTargetCountries": [], "domainId": 123, "domainName": "abc.com", "isSSL": true }, "usingTargetCountries": ["th-TH"] });
     });
 
     it('_handleUpdateState - with update - should call toggleLoader, getDomainById, getTargetCountryListByDomain and setState with has blocked target country', async () => {
         const domain = { DomainId: 123, DomainName: "abc.com", IsSSL: true };
-        const targetCountryByDomain = [{ TargetCountryId: 'en-US', TargetCountryName: "English", Status: 1 }];
+        const targetCountryByDomain = [{ TargetCountryCode: 'en-US', TargetCountryName: "English", Status: 1 }];
         const props = Object.assign({}, defaultProps, { getTargetCountryListByDomain: jest.fn(() => targetCountryByDomain), getDomainById: jest.fn(() => domain), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainPopup {...props} />);
         const instance = wrapper.instance();
@@ -134,7 +134,7 @@ describe('domain - components - DomainPopup ', () => {
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(props.getDomainById).toHaveBeenCalledWith(123, true);
         expect(props.getTargetCountryListByDomain).toHaveBeenCalledWith({ "affDomainId": 123 });
-        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": true, "isInsert": false, "targetCountryList": [{ "TargetCountryId": "en-US", "TargetCountryName": "English", "Status": 1 }], "selectedDomain": { "excludedTargetCountries": ["en-US"], "domainId": 123, "domainName": "abc.com", "isSSL": true }, "usingTargetCountries": [] });
+        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": true, "isInsert": false, "targetCountryList": [{ "TargetCountryCode": "en-US", "TargetCountryName": "English", "Status": 1 }], "selectedDomain": { "excludedTargetCountries": ["en-US"], "domainId": 123, "domainName": "abc.com", "isSSL": true }, "usingTargetCountries": [] });
     });
 
     it('_handleUpdateState - with update - should call toggleLoader, getDomainById, getTargetCountryListByDomain and setState with empty target country', async () => {
@@ -251,7 +251,7 @@ describe('domain - components - DomainPopup ', () => {
         instance.setState = jest.fn();
         instance._handleChangeTargetCountry(event, "th-TH");
 
-        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": false, "targetCountryList": [{ "TargetCountryId": "en-US", "TargetCountryName": "English", "Status": 0 }, { "TargetCountryId": "th-TH", "TargetCountryName": "Thailand", "Status": 1 }, { "TargetCountryId": "zh-CN", "TargetCountryName": "Chinese", "Status": 2 }], "selectedDomain": { "excludedTargetCountries": ["th-TH"], "domainId": 123, "domainName": "abc.com", "isSSL": true } });
+        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": false, "targetCountryList": [{ "TargetCountryCode": "en-US", "TargetCountryName": "English", "Status": 0 }, { "TargetCountryCode": "th-TH", "TargetCountryName": "Thailand", "Status": 1 }, { "TargetCountryCode": "zh-CN", "TargetCountryName": "Chinese", "Status": 2 }], "selectedDomain": { "excludedTargetCountries": ["th-TH"], "domainId": 123, "domainName": "abc.com", "isSSL": true } });
     });
 
     it('_handleChangeTargetCountry - should call setState with uncheck', () => {
@@ -268,7 +268,7 @@ describe('domain - components - DomainPopup ', () => {
         instance.setState = jest.fn();
         instance._handleChangeTargetCountry(event, "th-TH");
 
-        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": false, "targetCountryList": [{ "TargetCountryId": "en-US", "TargetCountryName": "English", "Status": 0 }, { "TargetCountryId": "th-TH", "TargetCountryName": "Thailand", "Status": 0 }, { "TargetCountryId": "zh-CN", "TargetCountryName": "Chinese", "Status": 2 }], "selectedDomain": { "excludedTargetCountries": [], "domainId": 123, "domainName": "abc.com", "isSSL": true } });
+        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": false, "targetCountryList": [{ "TargetCountryCode": "en-US", "TargetCountryName": "English", "Status": 0 }, { "TargetCountryCode": "th-TH", "TargetCountryName": "Thailand", "Status": 0 }, { "TargetCountryCode": "zh-CN", "TargetCountryName": "Chinese", "Status": 2 }], "selectedDomain": { "excludedTargetCountries": [], "domainId": 123, "domainName": "abc.com", "isSSL": true } });
     });
 
     it('_handleChangeAllTargetCountries - should not call setState with not have target countrys', () => {
@@ -301,7 +301,7 @@ describe('domain - components - DomainPopup ', () => {
         instance.setState = jest.fn();
         instance._handleChangeAllTargetCountries(event);
 
-        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": true, "targetCountryList": [{ "TargetCountryId": "en-US", "TargetCountryName": "English", "Status": 1 }, { "TargetCountryId": "th-TH", "TargetCountryName": "Thailand", "Status": 1 }, { "TargetCountryId": "zh-CN", "TargetCountryName": "Chinese", "Status": 2 }], "selectedDomain": { "excludedTargetCountries": ["en-US", "th-TH"], "domainId": 123, "domainName": "abc.com", "isSSL": true } });
+        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": true, "targetCountryList": [{ "TargetCountryCode": "en-US", "TargetCountryName": "English", "Status": 1 }, { "TargetCountryCode": "th-TH", "TargetCountryName": "Thailand", "Status": 1 }, { "TargetCountryCode": "zh-CN", "TargetCountryName": "Chinese", "Status": 2 }], "selectedDomain": { "excludedTargetCountries": ["en-US", "th-TH"], "domainId": 123, "domainName": "abc.com", "isSSL": true } });
     });
 
     it('_handleChangeAllTargetCountries - should call setState with uncheck', () => {
@@ -318,7 +318,7 @@ describe('domain - components - DomainPopup ', () => {
         instance.setState = jest.fn();
         instance._handleChangeAllTargetCountries(event);
 
-        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": false, "targetCountryList": [{ "TargetCountryId": "en-US", "TargetCountryName": "English", "Status": 0 }, { "TargetCountryId": "th-TH", "TargetCountryName": "Thailand", "Status": 0 }, { "TargetCountryId": "zh-CN", "TargetCountryName": "Chinese", "Status": 2 }], "selectedDomain": { "excludedTargetCountries": [], "domainId": 123, "domainName": "abc.com", "isSSL": true } });
+        expect(instance.setState).toHaveBeenCalledWith({ "isBlockAllTargetCountries": false, "targetCountryList": [{ "TargetCountryCode": "en-US", "TargetCountryName": "English", "Status": 0 }, { "TargetCountryCode": "th-TH", "TargetCountryName": "Thailand", "Status": 0 }, { "TargetCountryCode": "zh-CN", "TargetCountryName": "Chinese", "Status": 2 }], "selectedDomain": { "excludedTargetCountries": [], "domainId": 123, "domainName": "abc.com", "isSSL": true } });
     });
 
     it('_handleSubmit - should be called toggleLoader and _handleShowAlert with domain is empty', async () => {

@@ -74,7 +74,7 @@ export class GridData extends Component {
                 {selectedColumnList['ProcessingStatus'] && <Cell header={true} colWidth={250} title={headerText.ProcessingStatus.label}>{headerText.ProcessingStatus.label}</Cell>}
                 {selectedColumnList['FirstName'] && <Cell header={true} colWidth={200} title={headerText.FirstName.label}>{headerText.FirstName.label}</Cell>}
                 {selectedColumnList['LastName'] && <Cell header={true} colWidth={200} title={headerText.LastName.label}>{headerText.LastName.label}</Cell>}
-                {selectedColumnList['TargetCountry'] && <Cell header={true} colWidth={200} title={headerText.TargetCountry.label}>{headerText.TargetCountry.label}</Cell>}
+                {selectedColumnList['TargetCountryCode'] && <Cell header={true} colWidth={200} title={headerText.TargetCountryCode.label}>{headerText.TargetCountryCode.label}</Cell>}
                 {selectedColumnList['Language'] && <Cell header={true} colWidth={200} title={headerText.Language.label}>{headerText.Language.label}</Cell>}
                 {selectedColumnList['Phone'] && <Cell header={true} colWidth={200} title={headerText.Phone.label}>{headerText.Phone.label}</Cell>}
                 {selectedColumnList['Email'] && <Cell header={true} colWidth={400} title={headerText.Email.label}>{headerText.Email.label}</Cell>}
@@ -134,7 +134,7 @@ export class GridData extends Component {
             </a>);
 
         const language = languageList[dataItem.Language];
-        const targetCountry = targetCountryList[dataItem.TargetCountry];
+        const targetCountry = targetCountryList[dataItem.TargetCountryCode];
         const commissionGroup = dataItem.CommissionGroup ? (
             commissionGroupName === dataItem.UserName && isAssignCommGroup ? (
                 <Button color="link"

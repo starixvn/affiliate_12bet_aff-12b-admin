@@ -12,11 +12,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [CheckUMFilter]
     public class CommonSettingController : Controller
     {
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
         private readonly ILandingPageRepository _landingPageRepository;
 
         public CommonSettingController(
-            ICommonSettingService commonSettingService,
+            ISystemService commonSettingService,
             ILandingPageRepository landingPageRepository
             )
         {

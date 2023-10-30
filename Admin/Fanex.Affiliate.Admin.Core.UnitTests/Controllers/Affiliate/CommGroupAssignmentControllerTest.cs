@@ -153,7 +153,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             int affId = 1271808;
             var productList = new List<Product> { new Product { ProductId = 123, ProductName = "Casino" } };
             var deductionList = new List<Deduction> { new Deduction { DeductionId = 12, DeductionName = "BankingFee", DeductedPercentage = 0.05m } };
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(p => p.GetProductList()).Returns(productList);
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
             commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(deductionList);
@@ -202,7 +202,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var commGroup = CreateCommissionGroupSetting();
             commGroup.PlatformFeeList = platformFeeList;
             var affInfo = new AffiliateBasicInfo { AffId = 1271808 };
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
@@ -238,7 +238,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             var commGroup = CreateCommissionGroupSetting();
             var affInfo = new AffiliateBasicInfo { AffId = 1271808 };
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
@@ -259,13 +259,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private static CommGroupAssignmentController CreateCommGroupAssignmentController(
             ISessionService sessionService = null,
-            ICommonSettingService commonSettingService = null,
+            ISystemService commonSettingService = null,
             IAffiliateService affiliateService = null,
             ICommGroupAssignmentService commGroupAssignmentService = null,
             ICommGroupCommonService commGroupCommonService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeCommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakeCommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
             var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
             var fakeCommGroupAssignmentService = commGroupAssignmentService ?? Mock.Of<ICommGroupAssignmentService>();
             var fakeCommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();

@@ -37,7 +37,7 @@ export const headerText = {
     ProcessingStatus:{label: 'Processing Status', renderClaim: new Claim(claimResource.ProcRequest)},
     FirstName: { label: 'First Name' },
     LastName: { label: 'Last Name' },
-    TargetCountry: { label: 'Target Country', renderClaim: new Claim(claimResource.AffTargetCountry) },
+    TargetCountryCode: { label: 'Target Country', renderClaim: new Claim(claimResource.AffTargetCountry) },
     Language: { label: 'Language', renderClaim: new Claim(claimResource.LanguageAmendment) },
     Phone: { label: 'Mobile Phone', renderClaim: new Claim(claimResource.AffPhone) },
     Email: { label: 'Email', renderClaim: new Claim(claimResource.AffEmail) },

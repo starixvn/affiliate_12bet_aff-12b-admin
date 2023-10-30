@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var param = new BannerParamFromHome { IsFromHome = true };
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
             commonMediaGalleryService.Setup(c => c.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryName = "Category" } });
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             commonSettingService.Setup(a => a.GetAffTypeList()).Returns(new List<AffType> { new AffType { AffTypeId = 2, AffTypeName = "Asian" } });
 
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var model = new ImageSizeViewModel { Language = "English" };
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
             var bannerListService = new Mock<IBannerListService>();
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var model = new GetBannerViewModel();
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
             var bannerListService = new Mock<IBannerListService>();
@@ -265,14 +265,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private MediaGalleryController CreateMediaGalleryController(
         ISessionService sessionService = null,
-        ICommonSettingService commonSettingService = null,
+        ISystemService commonSettingService = null,
         ICommonMediaGalleryService commonMediaGalleryService = null,
         IBannerListService bannerListService = null,
         IAppSetting appSetting = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakeCommonService = commonSettingService ?? Mock.Of<ISystemService>();
             var fakeCommonMediaGalleryService = commonMediaGalleryService ?? Mock.Of<ICommonMediaGalleryService>();
             var fakeBannerListService = bannerListService ?? Mock.Of<IBannerListService>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();

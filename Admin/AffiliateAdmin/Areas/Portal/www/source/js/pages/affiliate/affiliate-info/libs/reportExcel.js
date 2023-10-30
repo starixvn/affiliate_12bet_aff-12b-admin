@@ -29,7 +29,7 @@ const fields = {
     ProcessingStatus: 'ProcessingStatus',
     FirstName: 'FirstName',
     LastName: 'LastName',
-    TargetCountry: 'TargetCountry',
+    TargetCountryCode: 'TargetCountryCode',
     Language: 'Language',
     Phone: 'Phone',
     Email: 'Email',
@@ -148,7 +148,7 @@ export default class ReportExcel {
             value = value === null ? resource.NA : formatDecimal(value);
         } else if (fieldName === fields.Member) {
             value = value === null ? resource.NA : format(value);
-        } else if (fieldName === fields.TargetCountry) {
+        } else if (fieldName === fields.TargetCountryCode) {
             value = this.targetCountryList[value] || '';
         } else if (fieldName === fields.Language) {
             value = this.languageList[value] || '';
@@ -212,7 +212,7 @@ export default class ReportExcel {
             [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 170
         }, {
-            field: fields.TargetCountry,
+            field: fields.TargetCountryCode,
             [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 150
         }, {

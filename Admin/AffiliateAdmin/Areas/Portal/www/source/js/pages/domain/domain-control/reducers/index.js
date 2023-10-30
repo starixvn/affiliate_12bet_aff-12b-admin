@@ -19,8 +19,8 @@ export const gridData = createReducer(null, {
     }
 })
 
-export const selectedTargetCountryId = createReducer('', {
-    [types.SET_SELECTED_TARGET_COUNTRY_ID](prevState, action) {
+export const selectedTargetCountryCode = createReducer('', {
+    [types.SET_SELECTED_TARGET_COUNTRY_CODE](prevState, action) {
         return action.data;
     }
 })
@@ -47,7 +47,7 @@ export default combineReducers({
     gridData,
     isShowLoader,
     targetCountryList,
-    selectedTargetCountryId,
+    selectedTargetCountryCode,
     selectedDomainId,
     affDomainList,
     redirectDomainList,

@@ -17,14 +17,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
     public class OfferPageController : ReadOnlySessionBaseController
     {
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
         private readonly IOfferPageService _offerPageService;
         private readonly IAppSetting _appSetting;
 
         public OfferPageController(
             IOfferPageService offerPageService,
             ISessionService sessionService,
-            ICommonSettingService commonSettingService,
+            ISystemService commonSettingService,
             IAppSetting appSetting) : base(sessionService)
         {
             _commonSettingService = commonSettingService;

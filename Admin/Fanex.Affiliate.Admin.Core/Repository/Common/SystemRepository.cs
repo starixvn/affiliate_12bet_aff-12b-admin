@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 
-namespace Fanex.Affiliate.Admin.Core.Repository
+namespace Fanex.Affiliate.Admin.Core.Repository.Common
 {
-    public class CommonSettingRepository : BaseRepository, ICommonSettingRepository
+    public class SystemRepository : BaseRepository, ISystemRepository
     {
         public IEnumerable<Product> GetProductList()
         {
@@ -72,6 +72,26 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             }
 
             return result;
+        }
+
+        public IEnumerable<TargetCountry> GetTargetCountryList(int userId)
+        {
+            const string SpKey = "Aff_TargetCountry_Sel";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                return objectDb.Query<TargetCountry>(new { userId });
+            }
+        }
+
+        public IEnumerable<Language> GetTargetLanguageList(int userId)
+        {
+            const string SpKey = "Aff_Language_Sel";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                return objectDb.Query<Language>(new { userId });
+            }
         }
     }
 }

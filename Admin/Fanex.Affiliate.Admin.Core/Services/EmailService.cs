@@ -15,9 +15,9 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
 
-        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ICommonSettingService commonSettingService)
+        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ISystemService commonSettingService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;

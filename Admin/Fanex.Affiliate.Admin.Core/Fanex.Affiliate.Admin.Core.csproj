@@ -322,7 +322,7 @@
     <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
     <Compile Include="Repository\Common\ITargetCountryRepository.cs" />
     <Compile Include="Repository\Common\TargetCountryRepository.cs" />
-    <Compile Include="Repository\ICommonSettingRepository.cs" />
+    <Compile Include="Repository\Common\ISystemRepository.cs" />
     <Compile Include="Repository\Domain\DomainControlRepository.cs" />
     <Compile Include="Repository\Domain\DomainRepository.cs" />
     <Compile Include="Repository\Domain\IDomainControlRepository.cs" />
@@ -335,7 +335,7 @@
     <Compile Include="Repository\MediaGallery\NewsLetterRepository.cs" />
     <Compile Include="Repository\ProcessingRequest\IProcessingRequestRepository.cs" />
     <Compile Include="Repository\ProcessingRequest\ProcessingRequestRepository.cs" />
-    <Compile Include="Repository\CommonSettingRepository.cs" />
+    <Compile Include="Repository\Common\SystemRepository.cs" />
     <Compile Include="Services\Common\ITargetCountryService.cs" />
     <Compile Include="Services\Common\TargetCountryService.cs" />
     <Compile Include="Services\FeedbackReport\FeedbackReportService.cs" />
@@ -357,7 +357,7 @@
     <Compile Include="Services\ProcessingRequest\IProcessingRequestService.cs" />
     <Compile Include="Services\ProcessingRequest\ProcessingRequestService.cs" />
     <Compile Include="Utilities\DateTimeHelper.cs" />
-    <Compile Include="Utilities\Domain\TargetCountryHelper.cs" />
+    <Compile Include="Utilities\SystemHelper.cs" />
     <Compile Include="Utilities\IDateTimeHelper.cs" />
     <Compile Include="Utilities\MassAdjustment\MassAdjustmentHelper.cs" />
     <Compile Include="Utilities\Result.cs" />
@@ -397,7 +397,6 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\Affiliate\PaymentRequestController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\AdjustmentController.cs" />
     <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
@@ -657,9 +656,9 @@
     <Compile Include="Services\IAuthService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
     <Compile Include="Services\IEmailService.cs" />
-    <Compile Include="Services\Common\ICommonSettingService.cs" />
+    <Compile Include="Services\Common\ISystemService.cs" />
     <Compile Include="Services\ISignInService.cs" />
-    <Compile Include="Services\Common\CommonSettingService.cs" />
+    <Compile Include="Services\Common\SystemService.cs" />
     <Compile Include="Services\MediaGallery\BannerListService.cs" />
     <Compile Include="Services\MediaGallery\BannerValidationService.cs" />
     <Compile Include="Services\MediaGallery\CommonMediaGalleryService.cs" />
@@ -700,7 +699,6 @@
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\ISystemFile.cs" />
-    <Compile Include="Utilities\LanguageHelper.cs" />
     <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />

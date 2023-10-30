@@ -12,9 +12,9 @@ export const setSelectedDomainId = (data) => {
     }
 }
 
-export const setSelectedTargetCountryId = (data) => {
+export const setSelectedTargetCountryCode = (data) => {
     return {
-        type: types.SET_SELECTED_TARGET_COUNTRY_ID,
+        type: types.SET_SELECTED_TARGET_COUNTRY_CODE,
         data
     }
 }
@@ -47,11 +47,11 @@ export const setRedirectDomainList = (data) => {
     }
 }
 
-export const fetchData = (targetCountryId) => async (dispatch) => {
+export const fetchData = (targetCountryCode) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
     const url = 'Portal/DomainControl/GetDomainControlList';
-    const response = await post(url, { targetCountryId });
+    const response = await post(url, { targetCountryCode });
 
     const data = response && response.status === 200 ? response.data : [];
 

@@ -21,14 +21,14 @@ describe('domain control - DomainControlPopup - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             selectedDomainId: 123,
-            selectedTargetCountryId: 'en-GB',
+            selectedTargetCountryCode: 'en-GB',
             targetCountryList: [],
             affDomainList: [],
             redirectDomainList: []
         };
         const state = {
             selectedDomainId: 123,
-            selectedTargetCountryId: 'en-GB',
+            selectedTargetCountryCode: 'en-GB',
             targetCountryList: [],
             affDomainList: [],
             redirectDomainList: [],

@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.Affiliate
 
         public IEnumerable<Language> LanguageList { get; set; }
 
-        public IEnumerable<Language> TargetCountryList { get; set; }
+        public IEnumerable<TargetCountry> TargetCountryList { get; set; }
 
         public int SelectedGroupId { get; set; }
 

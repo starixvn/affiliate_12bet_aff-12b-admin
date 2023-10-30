@@ -98,13 +98,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void InsertDomain_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertDomainParam { DomainName = "abc.com", ExcludedTargetCountries = Constant.TargetCountryId };
+            var param = new InsertDomainParam { DomainName = "abc.com", ExcludedTargetCountries = Constant.TargetCountryCode };
             InsertDomainParam passedParam = null;
             var domainService = new Mock<IDomainService>();
             domainService.Setup(s => s.InsertDomain(It.IsAny<InsertDomainParam>())).Returns(new ResultInfo()).Callback<InsertDomainParam>(p => passedParam = p);
 
             var targetCountryService = new Mock<ITargetCountryService>();
-            targetCountryService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
+            targetCountryService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = Constant.TargetCountryCode } });
             var controller = CreateDomainController(null, domainService.Object, targetCountryService.Object);
 
             // Action
@@ -135,13 +135,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void UpdateDomain_WhenCallWithValidParam_UpdateSuccessful()
         {
             // Arrange
-            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com", ExcludedTargetCountries = Constant.TargetCountryId };
+            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com", ExcludedTargetCountries = Constant.TargetCountryCode };
             UpdateDomainParam passedParam = null;
             var domainService = new Mock<IDomainService>();
             domainService.Setup(s => s.UpdateDomain(It.IsAny<UpdateDomainParam>())).Returns(new ResultInfo()).Callback<UpdateDomainParam>(p => passedParam = p);
 
             var targetCountryService = new Mock<ITargetCountryService>();
-            targetCountryService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
+            targetCountryService.Setup(s => s.GetVisibleTargetCountriesNotUsingByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = Constant.TargetCountryCode } });
             var controller = CreateDomainController(null, domainService.Object, targetCountryService.Object);
 
             // Action

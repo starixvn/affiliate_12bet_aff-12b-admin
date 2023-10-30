@@ -15,9 +15,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             _domainControlRepository = domainControlRepository;
         }
 
-        public IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryIds)
+        public IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryCodes)
         {
-            return _domainControlRepository.GetDomainControlList(targetCountryIds);
+            return _domainControlRepository.GetDomainControlList(targetCountryCodes);
         }
 
         public DomainControlInfo GetDomainControlById(int domainControlId)

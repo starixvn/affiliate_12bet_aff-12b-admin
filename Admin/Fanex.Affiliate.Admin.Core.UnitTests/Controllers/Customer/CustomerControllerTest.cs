@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
             var controller = CreateCustomerController(commonSettingService: commonSettingService.Object);
@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.AffName).Returns("12BETAFF226");
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
             var controller = CreateCustomerController(commonSettingService: commonSettingService.Object);
@@ -55,11 +55,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private CustomerController CreateCustomerController(
             ISessionService sessionService = null,
-            ICommonSettingService commonSettingService = null
+            ISystemService commonSettingService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
 
             return new CustomerController(fakeSessionService, fakecommonSettingService);
         }

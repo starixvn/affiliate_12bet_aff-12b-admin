@@ -20,13 +20,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         private ILifetimeScopeProvider ScopeProvider;
         private readonly IMailProcessor MailProcessor;
         private readonly IAppSetting AppSetting;
-        private readonly ICommonSettingService commonSettingService;
+        private readonly ISystemService commonSettingService;
 
         public EmailServiceTest()
         {
             MailProcessor = Substitute.For<IMailProcessor>();
             AppSetting = Substitute.For<IAppSetting>();
-            commonSettingService = Substitute.For<ICommonSettingService>();
+            commonSettingService = Substitute.For<ISystemService>();
         }
 
         [Fact]

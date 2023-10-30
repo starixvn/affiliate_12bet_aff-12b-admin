@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Common;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,37 +7,47 @@ using System.Threading;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
-    public class CommonSettingService : ICommonSettingService
+    public class SystemService : ISystemService
     {
-        private readonly ICommonSettingRepository _commonSettingRepository;
+        private readonly ISystemRepository _systemService;
         private readonly ISessionService _sessionService;
 
-        public CommonSettingService(ICommonSettingRepository commonSettingRepository, ISessionService sessionService)
+        public SystemService(ISystemRepository systemService, ISessionService sessionService)
         {
-            _commonSettingRepository = commonSettingRepository;
+            _systemService = systemService;
             _sessionService = sessionService;
         }
 
         public IEnumerable<Language> GetInChangeMarkets()
         {
-            var languages = _commonSettingRepository.GetLanguageList();
+            var languages = _systemService.GetLanguageList();
             var inChangeMarket = _sessionService.UserClaim.FindAll(Constants.Function.InChargeMarket).Select(c => c.Value);
             return languages.Where(l => inChangeMarket.Contains(l.LanguageCode));
         }
 
         public IEnumerable<Product> GetProductList()
         {
-            return _commonSettingRepository.GetProductList();
+            return _systemService.GetProductList();
         }
 
         public IEnumerable<AffType> GetAffTypeList()
         {
-            return _commonSettingRepository.GetAffTypeList();
+            return _systemService.GetAffTypeList();
         }
 
         public IEnumerable<Country> GetCountryList()
         {
-            return _commonSettingRepository.GetCountryList();
+            return _systemService.GetCountryList();
+        }
+
+        public IEnumerable<TargetCountry> GetTargetCountryList()
+        {
+            return _systemService.GetTargetCountryList(_sessionService.UserId);
+        }
+
+        public IEnumerable<Language> GetTargetLanguageList()
+        {
+            return _systemService.GetTargetLanguageList(_sessionService.UserId);
         }
 
         public void SetCulture(string languageCode)

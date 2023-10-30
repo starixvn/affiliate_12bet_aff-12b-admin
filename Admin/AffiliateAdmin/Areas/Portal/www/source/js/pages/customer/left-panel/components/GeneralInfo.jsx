@@ -52,7 +52,7 @@ export const GeneralInfo = (props) => {
                 claimsPrincipal.hasReadClaim(claimResource.AffTargetCountry) &&
                 <Row>
                     <Col sm={5}>{resource.TargetCountry}</Col>
-                    <Col sm={7} className='text-right'>{affiliateInfo.TargetCountry}</Col>
+                    <Col sm={7} className='text-right'>{affiliateInfo.TargetCountryName}</Col>
                 </Row>
             }
             { claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment) &&

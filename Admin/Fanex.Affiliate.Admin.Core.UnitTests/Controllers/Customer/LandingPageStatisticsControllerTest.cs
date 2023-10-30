@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         {
             // Arrange
             var param = new LandingPageStatisticsParam { GroupBy = "Language", LanguageCode = languageCode };
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(c => c.GetInChangeMarkets()).Returns(new List<Language>
             {
                 new Language
@@ -112,12 +112,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private LandingPageStatisticsController CreateLandingPageStatisticsController(
             ISessionService sessionService = null,
-            ICommonSettingService commonSettingService = null,
+            ISystemService commonSettingService = null,
             ILandingPageStatisticsRepository landingPageStatisticsRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeCommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakeCommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
             var fakeLandingPageStatisticsRepository = landingPageStatisticsRepository ?? Mock.Of<ILandingPageStatisticsRepository>();
 
             return new LandingPageStatisticsController(fakeSessionService, fakeCommonSettingService, fakeLandingPageStatisticsRepository);

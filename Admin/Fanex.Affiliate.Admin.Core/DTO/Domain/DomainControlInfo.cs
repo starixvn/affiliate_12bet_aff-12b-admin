@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string RedirectDomain { get; set; }
 
-        public string TargetCountryId { get; set; }
+        public string TargetCountryCode { get; set; }
 
         public string TargetCountryName { get; set; }
 

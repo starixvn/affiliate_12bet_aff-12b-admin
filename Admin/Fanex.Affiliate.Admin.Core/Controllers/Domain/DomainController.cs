@@ -7,7 +7,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Affiliate.Admin.Core.Utilities.Domain;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult InsertDomain(InsertDomainParam param)
         {
-            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.ExcludedTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
+            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomain(UpdateDomainParam param)
         {
-            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryIds(param.ExcludedTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
+            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 var serializedParent = JsonConvert.SerializeObject(encodeParam);

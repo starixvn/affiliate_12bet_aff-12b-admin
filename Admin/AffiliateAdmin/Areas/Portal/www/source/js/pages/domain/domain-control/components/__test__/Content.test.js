@@ -36,7 +36,7 @@ describe('domain control - components - Content ', () => {
                         DomainControlId: 89,
                         IsUsed: true,
                         TargetCountry: "Chinese Simplified",
-                        TargetCountryId: "zh-CN",
+                        TargetCountryCode: "zh-CN",
                         RedirectDomain: "www.want.to",
                         RedirectDomainId: 58
                     },
@@ -49,7 +49,7 @@ describe('domain control - components - Content ', () => {
                         DomainControlId: 92,
                         IsUsed: true,
                         TargetCountry: "Chinese Simplified",
-                        TargetCountryId: "zh-CN",
+                        TargetCountryCode: "zh-CN",
                         RedirectDomain: "12liampc.com",
                         RedirectDomainId: 59
                     }
@@ -58,7 +58,7 @@ describe('domain control - components - Content ', () => {
     const defaultProps = {
         shouldResetScrollPosition: true,
         isModifiable: true,
-        selectedTargetCountryId: '',
+        selectedTargetCountryCode: '',
         gridData,
         affDomainList,
         redirectDomainList

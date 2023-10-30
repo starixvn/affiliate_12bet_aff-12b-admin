@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
 using Moq;
@@ -10,14 +10,14 @@ using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
 {
-    public class CommonSettingRepositoryTest
+    public class SystemRepositoryTest
     {
         [Fact]
         public void GetProductList_WhenCall_CallCorrectMethodOfObjectDb()
         {
             // Arrange
             var objectDb = new Mock<IObjectDb>();
-            var repository = new Mock<CommonSettingRepository> { CallBase = true };
+            var repository = new Mock<SystemRepository> { CallBase = true };
             repository.Setup(r => r.GetObjectDb("Aff_ProductList_Sel", It.IsAny<int>())).Returns(objectDb.Object);
 
             // Action
@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         {
             // Arrange
             var objectDb = new Mock<IObjectDb>();
-            var repository = new Mock<CommonSettingRepository> { CallBase = true };
+            var repository = new Mock<SystemRepository> { CallBase = true };
             repository.Setup(r => r.GetObjectDb("Aff_Country_Sel", It.IsAny<int>())).Returns(objectDb.Object);
 
             // Action
@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         public void GetLanguageList_WhenCall_ReturnCorrectLanguageList()
         {
             // Arrange
-            var repository = new Mock<CommonSettingRepository> { CallBase = true };
+            var repository = new Mock<SystemRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
@@ -66,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         public void GetAffTypeList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var service = new Mock<CommonSettingRepository> { CallBase = true };
+            var service = new Mock<SystemRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         public void GetAffTypeList_WhenCall_ReturnNullData()
         {
             // Arrange
-            var service = new Mock<CommonSettingRepository> { CallBase = true };
+            var service = new Mock<SystemRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);

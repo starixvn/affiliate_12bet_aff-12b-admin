@@ -28,11 +28,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private readonly IAffiliateService _affiliateService;
 
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
 
         public CommGroupAssignmentController(
             ISessionService sessionService,
-            ICommonSettingService commonSettingService,
+            ISystemService commonSettingService,
             IAffiliateService affiliateService,
             ICommGroupAssignmentService commGroupAssignmentService,
             ICommGroupCommonService commGroupCommonService) : base(sessionService)

@@ -16,12 +16,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     [FunctionAuthorize(FunctionName = Function.ProcessingRequest)]
     public class ProcessingRequestController : ReadOnlySessionBaseController
     {
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
         private readonly IProcessingRequestService _processingRequestService;
 
         public ProcessingRequestController(
             IProcessingRequestService processingRequestService,
-            ICommonSettingService commonSettingService,
+            ISystemService commonSettingService,
             ISessionService sessionService) : base(sessionService)
         {
             _commonSettingService = commonSettingService;
@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             if (ModelState.IsValid)
             {
                 var supportLanguages = _commonSettingService.GetInChangeMarkets();
-                var queryLangs = LanguageHelper.BuildAllowQueryLanguages(null, supportLanguages);
+                var queryLangs = SystemHelper.BuildAllowQueryLanguages(null, supportLanguages);
                 param.PreferredLanguages = queryLangs;
                 return new JsonNetResult
                 {

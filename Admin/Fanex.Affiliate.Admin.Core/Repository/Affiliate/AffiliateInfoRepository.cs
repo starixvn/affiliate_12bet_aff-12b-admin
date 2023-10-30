@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             objectDb.SetParameterValue(Field.AffId, param.AffIdNumber);
             objectDb.SetParameterValue("UserId", param.UserId);
             objectDb.SetParameterValue("GroupID", param.GroupId);
-            //objectDb.SetParameterValue("TargetCountries", param.TargetCountries);
+            objectDb.SetParameterValue("TargetCountryCodes", param.TargetCountryCodes);
             objectDb.SetParameterValue("PreferredLanguages", param.PreferenceLanguages);
             objectDb.SetParameterValue("Status", param.Status);
             objectDb.SetParameterValue("ProcessingStatus", param.ProcessingStatus);
@@ -93,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 Status = Convert.ToString(reader["Status"]),
                 FirstName = HttpUtility.HtmlDecode(Convert.ToString(reader["FirstName"])),
                 LastName = HttpUtility.HtmlDecode(Convert.ToString(reader["LastName"])),
-                TargetCountry = Convert.ToString(reader["PreferredLanguage"]),
+                TargetCountryCode = Convert.ToString(reader["TargetCountryCode"]),
                 Language = Convert.ToString(reader["PreferredLanguage"]),
                 Email = Convert.ToString(reader["Email"]),
                 RegistrationDate = Convert.ToDateTime(reader["RegisteredDate"]),

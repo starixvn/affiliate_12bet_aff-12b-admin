@@ -20,7 +20,7 @@ const actionList = [
     { name: 'setSelectedDomainId', type: types.SET_SELECTED_DOMAIN_ID, data: 123},
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
     { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' },
-    { name: 'setSelectedTargetCountryId', type: types.SET_SELECTED_TARGET_COUNTRY_ID, data: 234},
+    { name: 'setSelectedTargetCountryCode', type: types.SET_SELECTED_TARGET_COUNTRY_CODE, data: 234},
     { name: 'setAffDomainList', type: types.SET_AFF_DOMAIN_LIST, data: [{ domainName: "abc.com" }] },
     { name: 'setRedirectDomainList', type: types.SET_REDIRECT_DOMAIN_LIST, data: [{ domainName: "123.com" }] }
 ];
@@ -50,7 +50,7 @@ describe('domain control actions', () => {
         
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData']("en-GB")).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { "targetCountryId": "en-GB" });
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { "TargetCountryCode": "en-GB" });
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -67,7 +67,7 @@ describe('domain control actions', () => {
         
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData']("en-GB")).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { "targetCountryId": "en-GB" });
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { "TargetCountryCode": "en-GB" });
             expect(store.getActions()).toEqual(expectedAction)
         })
     })

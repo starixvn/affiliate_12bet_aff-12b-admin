@@ -16,12 +16,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class LandingPageStatisticsController : ReadOnlySessionBaseController
     {
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
         private readonly ILandingPageStatisticsRepository _landingPageStatisticsRepository;
 
         public LandingPageStatisticsController(
             ISessionService sessionService,
-            ICommonSettingService commonSettingService,
+            ISystemService commonSettingService,
             ILandingPageStatisticsRepository landingPageStatisticsRepository) : base(sessionService)
         {
             _commonSettingService = commonSettingService;

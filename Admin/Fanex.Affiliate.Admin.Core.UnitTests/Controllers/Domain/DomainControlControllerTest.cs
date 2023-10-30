@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         [Theory]
         [InlineData("")]
         [InlineData("en-US")]
-        public void GetDomainControlList_WhenCallWithValidTargetCountry_ReturnCorrectData(string targetCountryId)
+        public void GetDomainControlList_WhenCallWithValidTargetCountry_ReturnCorrectData(string targetCountryCode)
         {
             // Arrange
             string passedParam = null;
@@ -50,11 +50,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             domainControlService.Setup(t => t.GetDomainControlList(It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() }).Callback<string>(p => passedParam = p);
             
             var targetCountryService = new Mock<ITargetCountryService>();
-            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
             var controller = CreateDomainControlController(null, domainControlService.Object, targetCountryService.Object);
 
             // Action
-            var result = controller.GetDomainControlList(targetCountryId) as JsonNetResult;
+            var result = controller.GetDomainControlList(targetCountryCode) as JsonNetResult;
             var data = result.Data as List<DomainControlInfo>;
 
             // Assert
@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             domainControlService.Setup(t => t.GetDomainControlList(It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() }).Callback<string>(p => passedParam = p);
             
             var targetCountryService = new Mock<ITargetCountryService>();
-            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
             var controller = CreateDomainControlController(null, domainControlService.Object, targetCountryService.Object);
 
             // Action
@@ -88,10 +88,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         {
             // Arrange
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryId = "en-US"});
+            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryCode = "en-US"});
 
             var targetCountryService = new Mock<ITargetCountryService>();
-            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
             var controller = CreateDomainControlController(null, domainControlService.Object, targetCountryService.Object);
 
             // Action
@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(null as DomainControlInfo);
 
             var targetCountryService = new Mock<ITargetCountryService>();
-            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
             var controller = CreateDomainControlController(null, domainControlService.Object, targetCountryService.Object);
 
             // Action
@@ -127,10 +127,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         {
             // Arrange
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryId = "abc" });
+            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryCode = "abc" });
 
             var targetCountryService = new Mock<ITargetCountryService>();
-            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            targetCountryService.Setup(l => l.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
             var controller = CreateDomainControlController(null, domainControlService.Object, targetCountryService.Object);
 
             // Action
@@ -145,13 +145,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void InsertDomainControl_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertDomainControlParam { AffDomainId = 1, RedirectDomainId = 2, TargetCountryId = Constant.TargetCountryId, Status = true };
+            var param = new InsertDomainControlParam { AffDomainId = 1, RedirectDomainId = 2, TargetCountryCode = Constant.TargetCountryCode, Status = true };
             InsertDomainControlParam passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
             domainControlService.Setup(s => s.InsertDomainControl(It.IsAny<InsertDomainControlParam>())).Returns(new ResultInfo()).Callback<InsertDomainControlParam>(p => passedParam = p);
 
             var targetCountryService = new Mock<ITargetCountryService>();
-            targetCountryService.Setup(s => s.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
+            targetCountryService.Setup(s => s.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = Constant.TargetCountryCode } });
             var controller = CreateDomainControlController(null, domainControlService.Object, targetCountryService.Object);
 
             // Action
@@ -183,13 +183,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void UpdateDomainControl_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new UpdateDomainControlParam { DomainControlId = 123, AffDomainId = 1, RedirectDomainId = 2, TargetCountryId = Constant.TargetCountryId };
+            var param = new UpdateDomainControlParam { DomainControlId = 123, AffDomainId = 1, RedirectDomainId = 2, TargetCountryCode = Constant.TargetCountryCode };
             UpdateDomainControlParam passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
             domainControlService.Setup(s => s.UpdateDomainControl(It.IsAny<UpdateDomainControlParam>())).Returns(new ResultInfo()).Callback<UpdateDomainControlParam>(p => passedParam = p);
 
             var targetCountryService = new Mock<ITargetCountryService>();
-            targetCountryService.Setup(s => s.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = Constant.TargetCountryId } });
+            targetCountryService.Setup(s => s.GetVisibleTargetCountriesByUser(It.IsAny<int>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = Constant.TargetCountryCode } });
             var controller = CreateDomainControlController(null, domainControlService.Object, targetCountryService.Object);
 
             // Action

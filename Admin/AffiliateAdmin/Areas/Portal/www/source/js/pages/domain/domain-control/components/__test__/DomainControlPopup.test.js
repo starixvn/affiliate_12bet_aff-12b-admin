@@ -39,7 +39,7 @@ describe('domain control - components - DomainControlPopup ', () => {
 
     const emptyDomain = {
         domainControlId: 0,
-        targetCountryId: 'en-GB',
+        TargetCountryCode: 'en-GB',
         affDomainId: 21,
         redirectDomainId: 46,
         isUsed: false
@@ -47,7 +47,7 @@ describe('domain control - components - DomainControlPopup ', () => {
 
     const selectedDomain = {
         domainControlId: 89,
-        targetCountryId: 'vi-VN',
+        TargetCountryCode: 'vi-VN',
         affDomainId: 34,
         redirectDomainId: 60,
         isUsed: true
@@ -94,7 +94,7 @@ describe('domain control - components - DomainControlPopup ', () => {
     });
 
     it('_handleUpdateState - with insert - should call getTargetCountryListByDomains and setState', async () => {
-        const targetCountryByDomains = [{ TargetCountryId: 'en-US', TargetCountryName: "English" }];
+        const targetCountryByDomains = [{ TargetCountryCode: 'en-US', TargetCountryName: "English" }];
         const props = Object.assign({}, defaultProps, { getTargetCountryListByDomains: jest.fn(() => targetCountryByDomains), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainControlPopup {...props} />);
         const instance = wrapper.instance();
@@ -131,8 +131,8 @@ describe('domain control - components - DomainControlPopup ', () => {
     });
 
     it('_handleUpdateState - with update - should call toggleLoader, getDomainControlById, getTargetCountryListByDomains and setState', async () => {
-        const domainControl = { AffDomainId: 1, RedirectDomainId: 2, TargetCountryId: 'en-US', Status: true };
-        const targetCountryByDomains = [{ TargetCountryId: 'en-US', TargetCountryName: "English" }];
+        const domainControl = { AffDomainId: 1, RedirectDomainId: 2, TargetCountryCode: 'en-US', Status: true };
+        const targetCountryByDomains = [{ TargetCountryCode: 'en-US', TargetCountryName: "English" }];
         const props = Object.assign({}, defaultProps, { getTargetCountryListByDomains: jest.fn(() => targetCountryByDomains), getDomainControlById: jest.fn(() => domainControl), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainControlPopup {...props} />);
         const instance = wrapper.instance();
@@ -167,17 +167,17 @@ describe('domain control - components - DomainControlPopup ', () => {
     it('_handleChange should be called when change target Country', () => {
         const targetCountryListByDomains = [
             {
-                TargetCountryId: 'en-US',
+                TargetCountryCode: 'en-US',
                 TargetCountryName: 'English',
                 Status: 0
             },
             {
-                TargetCountryId: 'th-TH',
+                TargetCountryCode: 'th-TH',
                 TargetCountryName: 'Thailand',
                 Status: 1
             },
             {
-                TargetCountryId: 'zh-CN',
+                TargetCountryCode: 'zh-CN',
                 TargetCountryName: 'Chinese',
                 Status: 2
             }
@@ -186,16 +186,16 @@ describe('domain control - components - DomainControlPopup ', () => {
         const event = {
             target: {
                 type: 'select',
-                name: 'targetCountryId',
+                name: 'targetCountryCode',
                 value: 'en-GB'
             }
         };
         const result = shallow(<DomainControlPopup {...defaultProps} />);
         result.setState({ selectedDomain, targetCountryListByDomains });
         result.setState = jest.fn();
-        result.find('Input[type="select"][name="yargetCountryId"]').simulate('change', event);
+        result.find('Input[type="select"][name="targetCountryCode"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ selectedDomain: { domainControlId: 89, targetCountryId: 'en-GB', affDomainId: 34, redirectDomainId: 60, isUsed: true } });
+        expect(result.setState).toHaveBeenCalledWith({ selectedDomain: { domainControlId: 89, targetCountryCode: 'en-GB', affDomainId: 34, redirectDomainId: 60, isUsed: true } });
     });
 
     it('_handleChange should be called when change aff domain', () => {
@@ -212,7 +212,7 @@ describe('domain control - components - DomainControlPopup ', () => {
         result.setState = jest.fn();
         result.find('input[type="checkbox"][name="status"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ selectedDomain: { domainControlId: 89, targetCountryId: 'vi-VN', isUsed: true, affDomainId: 34, redirectDomainId: 60, status: false } });
+        expect(result.setState).toHaveBeenCalledWith({ selectedDomain: { domainControlId: 89, targetCountryCode: 'vi-VN', isUsed: true, affDomainId: 34, redirectDomainId: 60, status: false } });
     });
 
     it('_handleChangeDomain should be called when change aff domain', () => {
@@ -235,7 +235,7 @@ describe('domain control - components - DomainControlPopup ', () => {
     });
 
     it('_handleChangeDomain - should call toggleLoader, getTargetCountryListByDomains and setState', async () => {
-        const result = [{ TargetCountryId: 'en-US', TargetCountryName: "English" }];
+        const result = [{ TargetCountryCode: 'en-US', TargetCountryName: "English" }];
         const props = Object.assign({}, defaultProps, { getTargetCountryListByDomains: jest.fn(() => result), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainControlPopup {...props} />);
         const instance = wrapper.instance();

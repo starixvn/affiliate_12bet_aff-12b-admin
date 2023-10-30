@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
-    public interface ICommonSettingService
+    public interface ISystemService
     {
         void SetCulture(string languageCode);
 
@@ -14,5 +14,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         IEnumerable<AffType> GetAffTypeList();
 
         IEnumerable<Country> GetCountryList();
+
+        IEnumerable<TargetCountry> GetTargetCountryList();
+
+        IEnumerable<Language> GetTargetLanguageList();
     }
 }

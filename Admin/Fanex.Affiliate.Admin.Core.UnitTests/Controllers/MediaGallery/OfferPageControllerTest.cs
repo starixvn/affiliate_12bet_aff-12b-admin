@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12bet.nexdev.net/12BetUserAsianNew");
@@ -205,13 +205,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private OfferPageController CreateOfferPageController(
             ISessionService sessionService = null,
-            ICommonSettingService commonSettingService = null,
+            ISystemService commonSettingService = null,
             IOfferPageService OfferPageService = null,
             IAppSetting appSetting = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
             var fakeOfferPageService = OfferPageService ?? Mock.Of<IOfferPageService>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
 

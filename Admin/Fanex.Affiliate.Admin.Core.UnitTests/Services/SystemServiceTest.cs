@@ -1,6 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Common;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
@@ -12,13 +12,13 @@ using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 {
-    public class CommonSettingServiceTest
+    public class SystemServiceTest
     {
         [Fact]
         public void GetInChangeMarkets_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            var commonSettingRepository = new Mock<ISystemRepository>();
             commonSettingRepository.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en-US", LanguageName = "English", ShortedCode = "en" } });
 
             var sessionService = new Mock<ISessionService>();
@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetProductList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            var commonSettingRepository = new Mock<ISystemRepository>();
             commonSettingRepository.Setup(l => l.GetProductList()).Returns(new List<Product> { new Product () });
 
             var service = CreateCommonService(commonSettingRepository.Object);
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetAffTypeList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            var commonSettingRepository = new Mock<ISystemRepository>();
             commonSettingRepository.Setup(l => l.GetAffTypeList()).Returns(new List<DTO.Common.AffType> { new DTO.Common.AffType() });
 
             var service = CreateCommonService(commonSettingRepository.Object);
@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetCountryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingRepository = new Mock<ICommonSettingRepository>();
+            var commonSettingRepository = new Mock<ISystemRepository>();
             commonSettingRepository.Setup(l => l.GetCountryList()).Returns(new List<Country> { new Country() });
 
             var service = CreateCommonService(commonSettingRepository.Object);
@@ -102,12 +102,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             Assert.Equal(Thread.CurrentThread.CurrentCulture, currentCulture);
         }
 
-        private static CommonSettingService CreateCommonService(ICommonSettingRepository commonSettingRepository = null, ISessionService sessionService = null)
+        private static SystemService CreateCommonService(ISystemRepository commonSettingRepository = null, ISessionService sessionService = null)
         {
-            var fakecommonSettingRepository = commonSettingRepository ?? Mock.Of<ICommonSettingRepository>();
+            var fakecommonSettingRepository = commonSettingRepository ?? Mock.Of<ISystemRepository>();
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
 
-            return new CommonSettingService(fakecommonSettingRepository, fakeSessionService);
+            return new SystemService(fakecommonSettingRepository, fakeSessionService);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void Index_WhenCall_ReturnCorrectView()
         {
             //Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
             var controller = CreateProcessingRequestController(commonSettingService: commonSettingService.Object);
@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void GetProcessingRequestList_WhenCallValidParam_ReturnCorrectData()
         {
             //Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
             var processingRequestService = new Mock<IProcessingRequestService>();
             processingRequestService.Setup(l => l.GetProcessingRequestList(It.IsAny<ProcessingRequestSelParam>())).Returns(new ProcessingRequestEntity { TotalItem = 0 });
@@ -192,12 +192,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private ProcessingRequestController CreateProcessingRequestController(
             IProcessingRequestService processingRequestService = null,
- 			ICommonSettingService commonSettingService = null,
+ 			ISystemService commonSettingService = null,
             ISessionService sessionService = null
             )
         {
             var fakeProcessingRequestService = processingRequestService ?? Mock.Of<IProcessingRequestService>();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakecommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
 
             return new ProcessingRequestController(fakeProcessingRequestService, fakecommonSettingService, fakeSessionService);

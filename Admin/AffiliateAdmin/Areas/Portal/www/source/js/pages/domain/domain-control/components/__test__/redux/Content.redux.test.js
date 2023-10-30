@@ -20,7 +20,7 @@ describe('domain control- Content - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            selectedTargetCountryId: 'en-GB',
+            selectedTargetCountryCode: 'en-GB',
             shouldResetScrollPosition: true,
             gridData: [],
             affDomainList: [],
@@ -28,7 +28,7 @@ describe('domain control- Content - connect', () => {
             redirectDomainList: []
         };
         const state = {
-            selectedTargetCountryId: 'en-GB',
+            selectedTargetCountryCode: 'en-GB',
             shouldResetScrollPosition: true,
             gridData: [],
             affDomainList: [],

@@ -14,7 +14,7 @@
 
         public const string MarketId = "en-US";
 
-        public const string TargetCountryId = "Malaysia";
+        public const string TargetCountryCode = "MY";
 
         public const int OnUserId = 8647;
 

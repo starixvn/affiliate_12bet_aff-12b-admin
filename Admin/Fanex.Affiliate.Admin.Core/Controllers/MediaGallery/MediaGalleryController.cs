@@ -22,14 +22,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     public class MediaGalleryController : ReadOnlySessionBaseController
     {
         private const int BannerListCategory = 1;
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
         private readonly IBannerListService _bannerListService;
         private readonly IAppSetting _appSetting;
 
         public MediaGalleryController(
             ISessionService sessionService,
-            ICommonSettingService commonSettingService,
+            ISystemService commonSettingService,
             ICommonMediaGalleryService commonMediaGalleryService,
             IBannerListService bannerListService,
             IAppSetting appSetting) : base(sessionService)

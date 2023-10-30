@@ -22,13 +22,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
 
         public EmailTestingController(
             ISessionService sessionService,
             IMailProcessor mailProcessor,
             IAppSetting appSetting,
-            ICommonSettingService commonSettingService
+            ISystemService commonSettingService
             ) : base(sessionService)
         {
             _mailProcessor = mailProcessor;

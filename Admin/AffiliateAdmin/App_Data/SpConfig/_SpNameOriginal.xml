@@ -189,4 +189,9 @@
     <Setting Key="Aff_RateSel" SpName="Aff_RateSel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_Feedback_Sel" SpName="Aff_Admin_Feedback_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
   </Function>
+
+  <Function Name="TargetCountry">
+    <Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+  </Function>
 </Functions>

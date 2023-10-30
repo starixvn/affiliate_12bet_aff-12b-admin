@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             // Arrange
             var session = MockingHelper.GetSessionService();
             var domainService = new Mock<IDomainService>();
-            domainService.Setup(d => d.GetTargetCountryList(It.IsAny<TargetCountryParam>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryId = "en-US", TargetCountryName = "English" } });
+            domainService.Setup(d => d.GetTargetCountryList(It.IsAny<TargetCountryParam>())).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
             var controller = new MemberDomainsController(session, domainService.Object, null);
 
             // Action

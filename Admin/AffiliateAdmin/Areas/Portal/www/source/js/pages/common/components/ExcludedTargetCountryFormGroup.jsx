@@ -9,17 +9,17 @@ export default class ExcludedTargetCountryFormGroup extends PureComponent {
         super(props);
     }
 
-    _handleChangeTargetCountry = (event, targetCountryId) => {
+    _handleChangeTargetCountry = (event, targetCountryCode) => {
         const isChecked = event.target.checked;
 
         const { usingTargetCountries, targetCountryList } = this.props;
 
-        if (usingTargetCountries.includes(targetCountryId)) {
+        if (usingTargetCountries.includes(targetCountryCode)) {
             return;
         }
 
         const newTargetCountryList = targetCountryList.map(item => {
-            if (item.TargetCountryId !== targetCountryId) {
+            if (item.TargetCountryCode !== targetCountryCode) {
                 return item;
             }
             return {
@@ -64,12 +64,12 @@ export default class ExcludedTargetCountryFormGroup extends PureComponent {
                     <div className="excluded-target-country">
                         {
                             targetCountryList.map(item => {
-                                const isUsing = usingTargetCountries.includes(item.TargetCountryId);
+                                const isUsing = usingTargetCountries.includes(item.TargetCountryCode);
 
                                 return (
-                                    <div key={item.TargetCountryId} className="excluded-target-country-item">
-                                        <input type="checkbox" className="mr-2" disabled={isUsing} title={isUsing && "This Affiliate domain has been used for this target country!"} id={item.TargetCountryId} checked={item.Status === targetCountryStatus.Excluded} onChange={(e) => this._handleChangeTargetCountry(e, item.TargetCountryId)} />
-                                        <Label for={item.TargetCountryId}>{item.TargetCountryName}</Label>
+                                    <div key={item.TargetCountryCode} className="excluded-target-country-item">
+                                        <input type="checkbox" className="mr-2" disabled={isUsing} title={isUsing && "This Affiliate domain has been used for this target country!"} id={item.TargetCountryCode} checked={item.Status === targetCountryStatus.Excluded} onChange={(e) => this._handleChangeTargetCountry(e, item.TargetCountryCode)} />
+                                        <Label for={item.TargetCountryCode}>{item.TargetCountryName}</Label>
                                     </div>
                                 )
                             })

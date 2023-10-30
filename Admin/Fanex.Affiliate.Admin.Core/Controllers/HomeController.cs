@@ -14,12 +14,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     public class HomeController : ReadOnlySessionBaseController
     {
         private readonly IHomeService _homeService;
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _commonSettingService;
 
         public HomeController(
             ISessionService sessionService,
             IHomeService homeService,
-            ICommonSettingService commonSettingService) : base(sessionService)
+            ISystemService commonSettingService) : base(sessionService)
         {
             _homeService = homeService;
             _commonSettingService = commonSettingService;
@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         private string GetCurrentInChargeMarkets()
         {
             var supportLanguages = _commonSettingService.GetInChangeMarkets();
-            return LanguageHelper.BuildAllowQueryLanguages(string.Empty, supportLanguages);
+            return SystemHelper.BuildAllowQueryLanguages(string.Empty, supportLanguages);
 
         }
     }

@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public string LastName { get; set; }
 
         [PermissionCheck(Function.AffTargetCountry)]
-        public string TargetCountry { get; set; }
+        public string TargetCountryCode { get; set; }
 
         [PermissionCheck(Function.LanguageAmendment)]
         public string Language { get; set; }

@@ -23,9 +23,9 @@ export class AppContainer extends PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        const { languageList, commGroupList } = this.props;
+        const { languageList, commGroupList, targetCountryList } = this.props;
 
-        if (this.isEmptyObject(languageList) && this.isEmptyObject(commGroupList)) {
+        if (this.isEmptyObject(languageList) && this.isEmptyObject(commGroupList) && this.isEmptyObject(targetCountryList)) {
             this.fetchFilter();
         }
     }
@@ -43,7 +43,7 @@ export class AppContainer extends PureComponent {
         if (!!data) {
             const commGroupList = convertArrayToObjectProps(data.CommGroupList, 'Id', 'Name');
             const languageList = convertArrayToObjectProps(data.LanguageList, 'LanguageCode', 'LanguageName');
-            const targetCountryList = convertArrayToObjectProps(data.TargetCountryList, 'LanguageCode', 'LanguageName');
+            const targetCountryList = convertArrayToObjectProps(data.TargetCountryList, 'TargetCountryCode', 'TargetCountryName');
             this.props.setLanguageList(languageList);
             this.props.setCommGroupList(commGroupList);
             this.props.setTargetCountryList(targetCountryList);

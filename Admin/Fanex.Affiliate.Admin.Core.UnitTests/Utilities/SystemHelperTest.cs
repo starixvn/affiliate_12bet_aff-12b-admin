@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
 {
-    public class LanguageHelperTests
+    public class SystemHelperTest
     {
 
         [Fact]
@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             var expect = "us-en,vi-vn";
 
-            var result = LanguageHelper.BuildAllowQueryLanguages(string.Empty, GetInChargeMarkets());
+            var result = SystemHelper.BuildAllowQueryLanguages(string.Empty, GetInChargeMarkets());
 
             Assert.Equal(expect, result);
         }
@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             var lang = "us-en";
 
-            var result = LanguageHelper.BuildAllowQueryLanguages(lang, GetInChargeMarkets());
+            var result = SystemHelper.BuildAllowQueryLanguages(lang, GetInChargeMarkets());
 
             Assert.Equal(lang, result);
         }
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             var lang = "abc";
 
-            var result = LanguageHelper.BuildAllowQueryLanguages(lang, GetInChargeMarkets());
+            var result = SystemHelper.BuildAllowQueryLanguages(lang, GetInChargeMarkets());
 
             Assert.Empty(result);
         }

@@ -23,12 +23,12 @@ describe('domain control - components - Filter ', () => {
     });
 
     it('_handleSearch - should be called when click Search Button', () => {
-        const props = Object.assign({}, defaultProps, { setSelectedTargetCountryId: jest.fn(), fetchData: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setSelectedTargetCountryCode: jest.fn(), fetchData: jest.fn() });
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setSelectedTargetCountryId).toHaveBeenCalledWith('');
+        expect(props.setSelectedTargetCountryCode).toHaveBeenCalledWith('');
         expect(props.fetchData).toHaveBeenCalledWith('');
     });
 

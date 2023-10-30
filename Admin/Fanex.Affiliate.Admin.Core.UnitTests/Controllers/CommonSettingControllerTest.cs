@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetProductList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
             var controller = CreateCommonSettingController(commonSettingService: commonSettingService.Object);
 
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetCountryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
+            var commonSettingService = new Mock<ISystemService>();
             commonSettingService.Setup(s => s.GetCountryList()).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
             var controller = CreateCommonSettingController(commonSettingService.Object);
 
@@ -61,11 +61,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         private CommonSettingController CreateCommonSettingController(
-            ICommonSettingService commonSettingService = null,
+            ISystemService commonSettingService = null,
             ILandingPageRepository landingPageRepository = null
             )
         {
-            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakeCommonService = commonSettingService ?? Mock.Of<ISystemService>();
             var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
 
             return new CommonSettingController(fakeCommonService, fakeLandingPageRepository);
