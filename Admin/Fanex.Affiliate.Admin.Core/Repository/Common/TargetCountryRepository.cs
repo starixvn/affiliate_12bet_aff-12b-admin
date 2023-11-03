@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Common
     {
         public IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser(int userId)
         {
-            const string SpKey = "";
+            const string SpKey = "Aff_Domain_BlockTargetCountry_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {

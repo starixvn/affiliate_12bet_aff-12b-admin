@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         [Required]
         public string DomainName { get; set; }
 
-        [SpParam(SqlParamName = "BlockTargetCountries")]
+        [SpParam(SqlParamName = "BlockTargetCountry")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string ExcludedTargetCountries { get; set; }
 

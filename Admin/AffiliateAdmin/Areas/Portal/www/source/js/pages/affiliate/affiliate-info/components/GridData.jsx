@@ -166,7 +166,7 @@ export class GridData extends Component {
                 </Cell>}
                 {selectedColumnList['FirstName'] && <Cell title={firstName}>{firstName}</Cell>}
                 {selectedColumnList['LastName'] && <Cell title={lastName}>{lastName}</Cell>}
-                {selectedColumnList['TargetCountry'] && <Cell title={targetCountry}>{targetCountry}</Cell>}
+                {selectedColumnList['TargetCountryCode'] && <Cell title={targetCountry}>{targetCountry}</Cell>}
                 {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}
                 {selectedColumnList['Phone'] && <Cell title={phone}>{phone}</Cell>}
                 {selectedColumnList['Email'] && <Cell title={email}>{email}</Cell>}

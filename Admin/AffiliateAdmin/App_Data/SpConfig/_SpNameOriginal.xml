@@ -134,7 +134,7 @@
     <Setting Key="Aff_Admin_DomainControl_Ins" SpName="Aff_Admin_DomainControl_Ins" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_DomainControl_Upd" SpName="Aff_Admin_DomainControl_Upd" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_DomainControl_Del" SpName="Aff_Admin_DomainControl_Del" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
-    <Setting Key="Aff_SupportBlockMarket_Sel" SpName="Aff_SupportBlockMarket_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
+    <Setting Key="Aff_Domain_BlockTargetCountry_Sel" SpName="Aff_Domain_BlockTargetCountry_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
   </Function>
   <Function Name="Home">
     <Setting Key="DEP_AffiliateGetPSP" SpName="DEP_AffiliateGetPSP" DbName="DBDEPOSIT.Deposit_DB.bodbAffiliateNet" />
@@ -191,7 +191,7 @@
   </Function>
 
   <Function Name="TargetCountry">
-    <Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
-    <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel" DbName="DBAFF_Affiliate_12bet_bodbAdminNet" />
+    <Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
+    <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
   </Function>
 </Functions>

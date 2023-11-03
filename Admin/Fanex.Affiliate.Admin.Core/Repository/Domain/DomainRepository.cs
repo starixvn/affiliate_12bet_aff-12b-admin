@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
     {
         public IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param)
         {
-            const string SpKey = "Aff_SupportBlockMarket_Sel";
+            const string SpKey = "Aff_Domain_BlockTargetCountry_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {

@@ -65,6 +65,7 @@ export class DomainPopup extends PureComponent {
     }
 
     handleChangeTargetCountry = (isExcludedAllTargetCountries, excludedTargetCountries, newTargetCountryList) => {
+        const { selectedDomain } = this.state;
         const newDomain = Object.assign({}, selectedDomain, { excludedTargetCountries });
 
         this.setState({ selectedDomain: newDomain, targetCountryList: newTargetCountryList, isExcludedAllTargetCountries });
@@ -76,7 +77,7 @@ export class DomainPopup extends PureComponent {
         const { isAffDomain } = this.props;
         const { selectedDomain } = this.state;
 
-        if(selectedDomain.domainName) {
+        if (selectedDomain && selectedDomain.domainName) {
             const { isInsert } = this.state;
             const domainInfo = Object.assign({}, selectedDomain, { isAffDomain, excludedTargetCountries: selectedDomain.excludedTargetCountries.join(',') })
             const message = isInsert ? "Add Successfully!" : "Update Successfully!";

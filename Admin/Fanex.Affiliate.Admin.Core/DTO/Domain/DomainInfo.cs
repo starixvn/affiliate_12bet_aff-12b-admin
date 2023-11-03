@@ -1,5 +1,5 @@
-﻿using Fanex.Data;
-using System;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 {
@@ -13,8 +13,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string Creator { get; set; }
 
-        [SpParam(SqlParamName = "BlockTargetCountries")]
-        public string ExcludedTargetCountries { get; set; }
+        [JsonProperty(PropertyName = "ExcludedTargetCountry")]
+        public string BlockTargetCountry { get; set; }
 
         public DateTime? CreateDate { get; set; }
     }
