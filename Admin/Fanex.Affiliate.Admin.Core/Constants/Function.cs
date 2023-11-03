@@ -72,7 +72,7 @@
 
         public const string AffPhone = "[AffPhone]";
 
-        public const string AffTargetCountry = "[AffMarket]";
+        public const string AffTargetCountry = "[TargetCountry]";
 
         public const string AffPaymentInfo = "[AffPaymentInfo]";
 

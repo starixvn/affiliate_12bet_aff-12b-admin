@@ -32,7 +32,7 @@ export const claimResource = {
     AffAccountStatus: '[AffAccountStatus]',
     AffPlayerDetail: '[AffPlayerDetail]',
     AffPassword: '[AffPassword]',
-    AffTargetCountry: '[AffMarket]',
+    AffTargetCountry: '[TargetCountry]',
     LanguageAmendment: '[AffMarket]',
     AffPersonalInfo: "[AffPersonalInfo]",
     ProcRequest: "[ProcessingRequest]",
