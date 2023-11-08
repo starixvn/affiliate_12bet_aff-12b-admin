@@ -15,15 +15,15 @@
     {
         protected void Application_Start()
         {
+            UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
             DbSettingProviderManager
                 .StartNewSession()
                 .WithSqlServer("~/App_Data/SpNames.xml")
                 .Run();
-
-            AreaRegistration.RegisterAllAreas();
-
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
             LoggingConfig.RegisterSentry();
         }
 
