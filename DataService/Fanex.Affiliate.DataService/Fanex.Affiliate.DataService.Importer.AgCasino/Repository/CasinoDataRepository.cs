@@ -10,7 +10,7 @@
     {
         public ResultInfo ImportDataFor12Bet(CasinoDataMetaModel metaModel)
         {
-            const string SpName = "Aff_CasinoImportData";
+            const string SpName = "";
 
             using (var objectDb = GetObjectDb(SpName))
             {
@@ -28,7 +28,7 @@
 
         public ResultInfo ImportDataForIncomeAccess(CasinoDataMetaModel metaModel)
         {
-            const string SpName = "Task_Aff_MemberDailyCasino_IA";
+            const string SpName = "";
 
             using (var objectDb = GetObjectDb(SpName))
             {
