@@ -5,6 +5,7 @@
     using System.Web.Mvc;
     using System.Web.Routing;
     using App_Start;
+    using Fanex.Affiliate.Banner.Helpers;
     using Fanex.Data;
     using Fanex.Data.SqlServer;
 
@@ -12,14 +13,15 @@
     {
         protected void Application_Start()
         {
+            UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
             DbSettingProviderManager
                 .StartNewSession()
                 .WithSqlServer("~/App_Data/SpNames.xml")
                 .Run();
-            AreaRegistration.RegisterAllAreas();
-
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
             LoggingConfig.RegisterSentry();
         }
 
@@ -36,8 +38,7 @@
                 return;
             }
 
-            //var message = exception.Message + Environment.NewLine + exception.StackTrace;
-            //LogService.Error("Affiliate Media Error!" + Environment.NewLine + message + Environment.NewLine + Request.Url);
+            LogHelper.WriteError(exception, $"Request url: {Request.Url}");
         }
     }
 }
