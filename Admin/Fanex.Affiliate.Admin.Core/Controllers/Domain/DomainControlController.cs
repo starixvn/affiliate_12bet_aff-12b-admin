@@ -17,23 +17,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     [FunctionAuthorize(FunctionName = Function.DomainMenu)]
     public class DomainControlController : ReadOnlySessionBaseController
     {
+        private readonly ISystemService _systemService;
         private readonly IDomainControlService _domainControlService;
-        private readonly ITargetCountryService _targetCountryService;
 
         public DomainControlController(
             ISessionService sessionService,
             IDomainControlService domainControlService,
-            ITargetCountryService targetCountryService) : base(sessionService)
+            ISystemService systemService) : base(sessionService)
         {
+            _systemService = systemService;
             _domainControlService = domainControlService;
-            _targetCountryService = targetCountryService;
         }
 
         public ActionResult Index()
         {
             var model = new DomainViewModel
             {
-                TargetCountryList = GetVisibleTargetCountriesByUser()
+                TargetCountryList = _systemService.GetTargetCountryListByUser()
             };
 
             return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [ValidateAntiForgeryHeader]
         public ActionResult GetDomainControlList(string targetCountryCodes)
         {
-            var visibleTargetCountryCodes = SystemHelper.GetVisibleTargetCountryCodes(targetCountryCodes, GetVisibleTargetCountriesByUser());
+            var visibleTargetCountryCodes = SystemHelper.GetVisibleTargetCountryCodes(targetCountryCodes, _systemService.GetTargetCountryListByUser());
 
             return new JsonNetResult
             {
@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         public ActionResult GetDomainControlById(int domainControlId)
         {
             var domainControl = _domainControlService.GetDomainControlById(domainControlId);
-            var isValidTargetCountry = SystemHelper.IsValidTargetCountryCodes(domainControl?.TargetCountryCode, GetVisibleTargetCountriesByUser());
+            var isValidTargetCountry = SystemHelper.IsValidTargetCountryCodes(domainControl?.TargetCountryCode, _systemService.GetTargetCountryListByUser());
 
             return new JsonNetResult
             {
@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult InsertDomainControl(InsertDomainControlParam param)
         {
-            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesByUser()))
+            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesNotBlockedByUser(param.AffDomainId, param.RedirectDomainId)))
             {
                 GetUserInfoParam(param);
 
@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomainControl(UpdateDomainControlParam param)
         {
-            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesByUser()))
+            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesNotBlockedByUser(param.AffDomainId, param.RedirectDomainId)))
             {
                 GetUserInfoParam(param);
 
@@ -133,9 +133,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             param.Ip = Request.UserHostAddress;
         }
 
-        private IEnumerable<TargetCountry> GetVisibleTargetCountriesByUser()
+        private IEnumerable<TargetCountry> GetVisibleTargetCountriesNotBlockedByUser(int affDomainId, int redirectDomainId)
         {
-            return _targetCountryService.GetVisibleTargetCountriesByUser(SessionService.UserId);
+            var param = new TargetCountryParam
+            {
+                UserId = SessionService.UserId,
+                AffDomainId = affDomainId,
+                RedirectDomainId = redirectDomainId
+            };
+
+            return _domainControlService.GetVisibleTargetCountryListNotBlocked(param);
         }
     }
 }

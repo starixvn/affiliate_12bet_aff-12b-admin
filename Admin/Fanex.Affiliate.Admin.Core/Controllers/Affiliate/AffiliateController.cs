@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
                 LanguageList = _systemService.GetInChangeMarkets(),
-                TargetCountryList = _systemService.GetTargetCountryList()
+                TargetCountryList = _systemService.GetTargetCountryListByUser()
             };
 
             return new JsonNetResult(viewModel);
@@ -126,7 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         private AffiliateInfoParam BuildGetModelToParam(GetAffiliateViewModel viewModel)
         {
             var supportLanguages = _systemService.GetInChangeMarkets();
-            var supportTargetCountries = _systemService.GetTargetCountryList();
+            var supportTargetCountries = _systemService.GetTargetCountryListByUser();
 
             var queryLangs = SystemHelper.BuildAllowQueryLanguages(viewModel.Language, supportLanguages);
             var queryTargetCountries = SystemHelper.GetVisibleTargetCountryCodes(viewModel.TargetCountry, supportTargetCountries);

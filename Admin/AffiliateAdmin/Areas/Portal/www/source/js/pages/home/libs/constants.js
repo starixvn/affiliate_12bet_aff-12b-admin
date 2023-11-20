@@ -43,8 +43,7 @@ export const defaultGeneralInfo = {
         DisapprovedAffiliateNumber: 0,
         PaymentRequestNumber: 0,
         PendingAffiliateMonthNumber: 0,
-        PendingAffiliateNumber: 0,
-        TextBannerNumber: 0
+        PendingAffiliateNumber: 0
 }
 export const defaultDepositInfo = {
     AllMemberDepositThisMonth: 0,

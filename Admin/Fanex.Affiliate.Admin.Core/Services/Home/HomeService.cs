@@ -112,7 +112,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
             {
                 PaymentRequestNumber = reader.GetVal<int>("PaymentReqNum"),
                 BannerNumber = reader.GetVal<int>("BannerNum"),
-                TextBannerNumber = reader.GetVal<int>("TextBannerNum"),
                 AllAffiliateNumber = reader.GetVal<int>("AffInProAllNum"),
                 PendingAffiliateNumber = reader.GetVal<int>("PendingAllNum"),
                 ApprovedAffiliateNumber = reader.GetVal<int>("ApprovedAllNum"),

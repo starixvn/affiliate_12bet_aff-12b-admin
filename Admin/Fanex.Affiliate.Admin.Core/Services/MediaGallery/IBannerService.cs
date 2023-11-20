@@ -6,8 +6,10 @@ using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
-    public interface IBannerListService
+    public interface IBannerService
     {
+        IEnumerable<TargetProduct> GetTargetProductList();
+
         EntityResult<BannerInfo> GetBannerList(BannerParam param);
 
         BannerInfo GetBannerDetail(int selectedBannerId);

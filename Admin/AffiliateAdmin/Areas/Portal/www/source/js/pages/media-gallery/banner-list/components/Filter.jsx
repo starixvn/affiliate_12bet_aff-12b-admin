@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { setParam, setParamFromHome, getSizeList } from '../actions';
-import { headerText, globalResource, deviceTypes, pcLaptop, Asian, Casino, Sportsbook } from '../libs/constants';
+import { headerText, globalResource, Asian, selectedAllProduct } from '../libs/constants';
 import { handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
 
 const minDate = '7/1/2022';
@@ -20,7 +20,7 @@ export class Filter extends PureComponent {
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
         this.state = {
-            category: '',
+            targetProductId: selectedAllProduct,
             language: '',
             affType: Asian,
             fromDate: `${now.getMonth() + 1}/${1}/${now.getFullYear()}`,
@@ -36,15 +36,6 @@ export class Filter extends PureComponent {
             this._handleSearch();
             this.props.setParamFromHome({ IsFromHome: false });
         }
-    }
-
-    _handleChangeCategory = (event) => {
-        const selectedCategory = event.target.value;
-
-        const param = Object.assign({}, this.state, { category: selectedCategory });
-
-        this.props.getSizeList(param);
-        this.setState({ category: selectedCategory });
     }
 
     _handleChange = (event) => {
@@ -74,19 +65,19 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { categoryList, languageList, sizeList, affTypeList } = this.props;
-        const { category, language, affType, size, fromDate, toDate } = this.state;
+        const { targetProductList, languageList, sizeList, affTypeList } = this.props;
+        const { targetProductId, language, affType, size, fromDate, toDate } = this.state;
 
         return (
             <div className="filter-container my-2 pb-0">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-3 pb-2">
-                        <Label for="category" className="mr-sm-2">{headerText.Category}</Label>
-                        <Input type="select" name="category" id="category" value={category} onChange={this._handleChangeCategory}>
-                            <option key={'category-all'} value={''}>{globalResource.All}</option>
+                        <Label for="targetProductId" className="mr-sm-2">{headerText.TargetProduct}</Label>
+                        <Input type="select" name="targetProductId" id="targetProductId" value={targetProductId} onChange={this._handleChange}>
+                            <option key={'targetProduct-all'} value={''}>{globalResource.All}</option>
                             {
-                                categoryList && categoryList.map(item => {
-                                    return (<option key={`category-${item.name}`} value={item.name}>{item.name}</option>)
+                                targetProductList && targetProductList.map(item => {
+                                    return (<option key={`targetProduct-${item.name}`} value={item.key}>{item.name}</option>)
                                 })
                             }
                         </Input>
@@ -148,10 +139,10 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ categoryList, languageList, sizeList, affTypeList, pagingOption, paramFromHome, today }) {
+function mapStateToProps({ targetProductList, languageList, sizeList, affTypeList, pagingOption, paramFromHome, today }) {
 
     return Object.assign({}, {
-        categoryList, languageList, sizeList, affTypeList, pagingOption, paramFromHome, today
+        targetProductList, languageList, sizeList, affTypeList, pagingOption, paramFromHome, today
     });
 }
 

@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
         public string InputFileNames { get; set; } = string.Empty;
 
         [Required]
-        public string Categories { get; set; }
+        public string TargetProductIds { get; set; }
 
         [Required]
         public string Language { get; set; }

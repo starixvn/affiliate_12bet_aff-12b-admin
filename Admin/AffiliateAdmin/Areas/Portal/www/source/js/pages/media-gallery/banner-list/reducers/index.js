@@ -6,7 +6,7 @@ import { isShowLoader } from '../../../../reducers/loaderReducer';
 import {claimsPrincipal} from '../../../../reducers/claimReducer';
 import * as types from '../actions/types';
 
-export const categoryList = createReducer(null, {});
+export const targetProductList = createReducer(null, {});
 export const languageList = createReducer(null, {});
 export const affTypeList = createReducer(null, {});
 export const today = createReducer(null, {});
@@ -62,7 +62,7 @@ export const gridData = createReducer(null, {
 })
 
 export default combineReducers({
-    categoryList,
+    targetProductList,
     languageList,
     sizeList,
     affTypeList,

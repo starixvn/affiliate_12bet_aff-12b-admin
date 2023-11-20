@@ -8,7 +8,7 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
-            categoryList: @Html.Raw(Json.Encode(Model.CategoryList)),
+            targetProductList: @Html.Raw(Json.Encode(Model.TargetProductList)),
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
             bannerRootUrl: @Html.Raw(Json.Encode(Model.BannerRootUrl)),
             sizeList: @Html.Raw(Json.Encode(Model.SizeList)),

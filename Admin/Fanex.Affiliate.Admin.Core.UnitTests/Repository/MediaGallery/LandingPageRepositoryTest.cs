@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetLandingPageList();
+            var result = repository.Object.GetLandingPageList(123);
 
             // Assert
             Assert.Single(result);
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetLandingPageList();
+            var result = repository.Object.GetLandingPageList(123);
 
             // Assert
             Assert.Empty(result);
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetLandingPageById(123);
+            var result = repository.Object.GetLandingPageById(123, 123);
 
             // Assert
             Assert.Equal(123, result.PageId);
@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetLandingPageById(123);
+            var result = repository.Object.GetLandingPageById(123, 123);
 
             // Assert
             Assert.Null(result);

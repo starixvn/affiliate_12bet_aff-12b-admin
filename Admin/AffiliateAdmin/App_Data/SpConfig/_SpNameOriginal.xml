@@ -81,7 +81,8 @@
     <Setting Key="Aff_Admin_LandingPage_Ins" SpName="Aff_Admin_LandingPage_Ins" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_LandingPage_Upd" SpName="Aff_Admin_LandingPage_Upd" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_LandingPage_Del" SpName="Aff_Admin_LandingPage_Del" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
-    <Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
+    <Setting Key="Aff_LandingPage_ExcludedTargetCountry_Sel" SpName="Aff_LandingPage_ExcludedTargetCountry_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
+    <Setting Key="Aff_TargetProduct_Sel" SpName="Aff_TargetProduct_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_Banner_Ins" SpName="Aff_Admin_Banner_Ins" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_Banner_Upd" SpName="Aff_Admin_Banner_Upd" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />

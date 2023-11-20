@@ -54,7 +54,7 @@ export const Content = (props) => {
         const { isModifiable } = props;
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
-        const excludedTargetCountry = htmlDecode(dataItem.ExcludedTargetCountry).split(',').join(', ');
+        const excludedTargetCountries = htmlDecode(dataItem.ExcludedTargetCountries).split(',').join(', ');
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -69,7 +69,7 @@ export const Content = (props) => {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell title={landingPageName}>{landingPageName}</Cell>
                 <Cell title={landingPageCode}>{landingPageCode}</Cell>
-                <Cell title={excludedTargetCountry}>{excludedTargetCountry}</Cell>
+                <Cell title={excludedTargetCountries}>{excludedTargetCountries}</Cell>
                 { isModifiable &&
                     <Cell className="text-center" title="Edit Landing Page">
                         <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)}>

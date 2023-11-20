@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void GetBannerList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void GetBannerList_WhenCall_ReturnCorrectDataWithNull()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void GetBannerList_WhenCallWithSpKeyBannerSel_ReturnNullData()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
@@ -88,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void GetBannerDetail_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.Setup(d => d.Read()).Returns(true);
@@ -108,7 +108,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void GetBannerDetail_WhenCall_ReturnNullData()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.Setup(d => d.Read()).Returns(false);
@@ -127,7 +127,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void InsertBanner_WhenCallWithValidParam_InsertSuccessfully()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
@@ -146,7 +146,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         {
             // Arrange
             var message = "Insert Banner is failed.";
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
@@ -165,7 +165,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void UpdateBanner_WhenCallWithValidParam_InsertSuccessfully()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
@@ -184,7 +184,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         {
             // Arrange
             var message = "Update Banner is failed.";
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
@@ -203,7 +203,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void DeleteBanners_WhenCallWithValidParam_DeleteSuccessfully()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
@@ -222,7 +222,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         {
             // Arrange
             var message = "Delete Banner(s) is failed.";
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
@@ -241,7 +241,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void GetSizeList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
@@ -261,7 +261,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
         public void GetSizeList_WhenCall_ReturnNullData()
         {
             // Arrange
-            var repository = new Mock<BannerListRepository> { CallBase = true };
+            var repository = new Mock<BannerRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);
@@ -282,7 +282,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             {
                 ["BannerID"] = 123,
                 ["FileName"] = "test/abc.gìf",
-                ["Categories"] = "Casino",
+                ["TargetProductIds"] = "Casino",
                 ["Language"] = "English",
                 ["AffTypes"] = "2",
                 ["Size"] = "320x250",
@@ -297,7 +297,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGalleryRepository
             {
                 ["BannerID"] = 123,
                 ["FileName"] = "test/abc.gìf",
-                ["Categories"] = "Casino",
+                ["TargetProductIds"] = "Casino",
                 ["Language"] = "English",
                 ["AffTypes"] = "2",
                 ["Size"] = "320x250",

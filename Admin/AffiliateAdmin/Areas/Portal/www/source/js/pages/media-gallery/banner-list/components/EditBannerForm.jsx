@@ -18,11 +18,11 @@ export class EditBannerForm extends PureComponent {
     constructor(props) {
         super(props)
 
-        const { categoryList, affTypeList } = this.props;
+        const { targetProductList, affTypeList } = this.props;
 
         this.state = {
             ...defaultState,
-            categoryList,
+            targetProductList,
             affTypeList
         }
 
@@ -50,7 +50,7 @@ export class EditBannerForm extends PureComponent {
         const bannerInfo = await this.props.getBannerDetail(selectedBannerId);
 
         if (bannerInfo) {
-            const { categoryList, affTypeList } = this.props;
+            const { targetProductList, affTypeList } = this.props;
 
             const fileName = htmlDecode(bannerInfo.FileName);
             const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
@@ -58,7 +58,8 @@ export class EditBannerForm extends PureComponent {
 
             this.setState({
                 inputFileNames: [shortFileName],
-                categoryList: this.handleChangeMultipleSelected(categoryList, bannerInfo.Categories, true),language: bannerInfo.Language,
+                targetProductList: this.handleChangeMultipleSelected(targetProductList, bannerInfo.TargetProductIds),
+                language: bannerInfo.Language,
                 affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffTypes),
                 iniatalFileName: shortFileName
             });
@@ -171,15 +172,15 @@ export class EditBannerForm extends PureComponent {
     }
 
     _getParam = () => {
-        const { files, inputFileNames, categoryList, language, affTypeList, isInsert } = this.state;
+        const { files, inputFileNames, targetProductList, language, affTypeList, isInsert } = this.state;
 
-        const categories = categoryList.filter(item => item.checked).map(item => item.key).join(',');
+        const targetProductIds = targetProductList.filter(item => item.checked).map(item => item.key).join(',');
         const affTypes = affTypeList.filter(item => item.checked).map(item => item.key).join(',');
         const { selectedBannerId } = this.props;
 
         return Object.assign({}, {
             bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item.trim()).join('|') : inputFileNames[0] && inputFileNames[0].trim(),
-            categories, language, affTypes
+            targetProductIds, language, affTypes
         });
     }
 
@@ -267,8 +268,8 @@ export class EditBannerForm extends PureComponent {
     _handleSubmit = () => {
         this.props.toggleLoader(true);
 
-        const { categoryList, affTypeList, inputFileNames } = this.state;
-        const category = categoryList.filter(item => item.checked).map(item => item.key);
+        const { targetProductList, affTypeList, inputFileNames } = this.state;
+        const category = targetProductList.filter(item => item.checked).map(item => item.key);
         const affType = affTypeList.filter(item => item.checked);
 
         if (!category.length) {
@@ -342,10 +343,10 @@ export class EditBannerForm extends PureComponent {
 
     resetToDefault = () => {
         this.setState(prevState => {
-            const categoryList = this.selectedAll(prevState.categoryList);
+            const targetProductList = this.selectedAll(prevState.targetProductList);
             const affTypeList = this.selectedAll(prevState.affTypeList);
 
-            return { categoryList, affTypeList };
+            return { targetProductList, affTypeList };
         });
     }
 
@@ -356,32 +357,25 @@ export class EditBannerForm extends PureComponent {
         })
     }
 
-    handleChangeMultipleSelected = (initialList, selectedKey, isCategory) => {
+    handleChangeMultipleSelected = (initialList, selectedKey) => {
         const selectedList = typeof (selectedKey) === "string" ? selectedKey.split(',').filter(p => !!p) : selectedKey;
 
         return initialList && initialList.map(item => {
-            const { key, name, categoryName } = item;
+            const { key, name } = item;
             const checked = selectedList.indexOf(key.toString()) !== -1;
 
-            return isCategory ? {
-                categoryName,
+            return {
                 key,
                 name,
                 checked
-            } : {
-                    key,
-                    name,
-                    checked
-                };
+            };
         })
     }
 
-    handleChangeCategory = (item, selectedKey) => {
-        const { categoryList } = this.props;
+    handleChangeTargetProduct = (item, selectedKey) => {
+        const { targetProductList } = this.props;
 
-        const newCategoryList = this.handleChangeMultipleSelected(categoryList, selectedKey, true);
-
-        this.setState({ categoryList: newCategoryList });
+        this.setState({ targetProductList: this.handleChangeMultipleSelected(targetProductList, selectedKey) });
     }
 
     handleChangeAffType = (item, selectedKey) => {
@@ -392,7 +386,7 @@ export class EditBannerForm extends PureComponent {
 
     render() {
         const { selectedBannerId, languageList } = this.props;
-        const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, categoryList, affTypeList, files } = this.state;
+        const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, targetProductList, affTypeList, files } = this.state;
         const isShowPopup = selectedBannerId !== null;
         const title = isInsert ? "Add Banner" : "Update Banner";
         const buttonLabel = isInsert ? "Upload" : "Update";
@@ -434,16 +428,16 @@ export class EditBannerForm extends PureComponent {
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
-                                        <Label sm={3} for="category" className="required">{headerText.Category}</Label>
+                                        <Label sm={3} for="category" className="required">{headerText.TargetProduct}</Label>
                                         <Col sm={5}>
                                             <MultipleSelect
-                                                dataSource={categoryList}
+                                                dataSource={targetProductList}
                                                 keyField="key"
                                                 valueField="name"
                                                 statusField="checked"
                                                 maxDisplayItemCount={1}
                                                 noneSelectedLabel="Please Select"
-                                                onChange={this.handleChangeCategory} />
+                                                onChange={this.handleChangeTargetProduct} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="mb-2">
@@ -526,10 +520,10 @@ export class EditBannerForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedBannerId, param, categoryList, languageList, sizeList, affTypeList }) {
+function mapStateToProps({ selectedBannerId, param, targetProductList, languageList, sizeList, affTypeList }) {
     return Object.assign({},
         {
-            selectedBannerId, param, categoryList, languageList, sizeList, affTypeList
+            selectedBannerId, param, targetProductList, languageList, sizeList, affTypeList
         });
 }
 

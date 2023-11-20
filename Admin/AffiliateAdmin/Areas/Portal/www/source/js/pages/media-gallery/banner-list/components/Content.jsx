@@ -45,8 +45,9 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={415} title={headerText.Images}>{headerText.Images}</Cell>
                 <Cell header={true} colWidth={190} title={headerText.FileName}>{headerText.FileName}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.Category}>{headerText.Category}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.TargetProduct}>{headerText.TargetProduct}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Language}>{headerText.Language}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.AffType}>{headerText.AffType}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Size}>{headerText.Size}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.NumberOfCopies}>{headerText.NumberOfCopies}</Cell>
                 { isModifiable && <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
@@ -68,7 +69,7 @@ export const Content = (props) => {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan="9">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="10">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -113,12 +114,19 @@ export const Content = (props) => {
                 <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
                 <Cell className="text-center text-break">
                     {
-                        dataItem.Categories && dataItem.Categories.map(value => {
-                            return (<p key={`category-${value}`} value={value}>{value}</p>)
+                        dataItem.TargetProductNames && dataItem.TargetProductNames.map(value => {
+                            return (<p key={`target-product-${value}`} value={value}>{value}</p>)
                         })
                     }
                 </Cell>
                 <Cell className="text-center text-break" title={dataItem.Language}>{dataItem.Language}</Cell>
+                <Cell className="text-center text-break">
+                    {
+                        dataItem.AffTypes && dataItem.AffTypes.map(value => {
+                            return (<p key={`aff-type-${value}`} value={value}>{value}</p>)
+                        })
+                    }
+                </Cell>
                 <Cell className="text-center text-break" title={size}>{size}</Cell>
                 <Cell className="text-center text-break" title={numberOfCopies}>{numberOfCopies}</Cell>
                 {isModifiable &&

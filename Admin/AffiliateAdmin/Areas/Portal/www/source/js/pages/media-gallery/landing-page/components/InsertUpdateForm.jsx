@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 import ExcludedTargetCountryFormGroup from '../../../common/components/ExcludedTargetCountryFormGroup';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert, FormFeedback } from 'reactstrap';
-import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getVisibleTargetCountriesByUser, getTargetCountryListByLandingPage } from '../actions/index';
+import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryListByUser, getTargetCountryListByLandingPage } from '../actions/index';
 import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
-import { getExcludedTargetCountries, getUsingTargetCountries, checkExcludedAllTargetCountries } from '../../../common/libs/utils/targetcountry';
+import { getExcludedTargetCountryList, checkExcludedAllTargetCountries } from '../../../common/libs/utils/targetcountry';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class InsertUpdateForm extends PureComponent {
@@ -21,10 +21,10 @@ export class InsertUpdateForm extends PureComponent {
 
     componentDidUpdate(prevProps) {
         const { selectedLandingPageId } = this.props;
-        if (prevProps.selectedLandingPageId !== selectedLandingPageId) {
+        if (selectedLandingPageId !== null && prevProps.selectedLandingPageId !== selectedLandingPageId) {
             this.setState({ isInsert: selectedLandingPageId === defaultInsertId });
 
-            selectedLandingPageId && this._handleUpdateState(selectedLandingPageId);
+            this._handleUpdateState(selectedLandingPageId);
         }
     }
 
@@ -32,9 +32,9 @@ export class InsertUpdateForm extends PureComponent {
         this.props.toggleLoader(true);
 
         if (pageId === 0) {
-            const visibleTargetCountryList = await this.props.getVisibleTargetCountriesByUser();
+            const visibleTargetCountryList = await this.props.getTargetCountryListByUser();
 
-            this.setState({ isInsert: true, selectedPage: { pageId, pageName: '', pageCode: '', excludedTargetCountries: [] }, excludedTargetCountryList: visibleTargetCountryList });
+            this.setState({ isInsert: true, selectedLandingPage: { pageName: '', pageCode: '', excludedTargetCountries: '' }, targetCountryList: visibleTargetCountryList });
         } else {
             const landingPage = await this.props.getLandingPageDetail(pageId);
 
@@ -45,13 +45,12 @@ export class InsertUpdateForm extends PureComponent {
                 const targetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
 
                 if (targetCountryList) {
-                    const usingTargetCountries = getExcludedTargetCountries(targetCountryList);
-                    const excludedTargetCountries = getUsingTargetCountries(targetCountryList);
-                    const isExcludedAllTargetCountries = checkExcludedAllTargetCountries(targetCountryList, usingTargetCountries, excludedTargetCountries);
+                    const excludedTargetCountryList = getExcludedTargetCountryList(targetCountryList);
+                    const isExcludedAllTargetCountries = checkExcludedAllTargetCountries(targetCountryList, excludedTargetCountryList);
 
-                    this.setState({ isInsert: false, usingTargetCountries, selectedLandingPage: { pageId, pageName, pageCode, excludedTargetCountries }, targetCountryList, isExcludedAllTargetCountries });
+                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, excludedTargetCountries: excludedTargetCountryList.join(',') }, targetCountryList, isExcludedAllTargetCountries });
                 } else {
-                    this.setState({ isInsert: false, selectedLandingPage: { pageId, pageName, pageCode, excludedTargetCountries: '' } });
+                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, excludedTargetCountries: '' } });
                 }
             }
         }
@@ -62,20 +61,21 @@ export class InsertUpdateForm extends PureComponent {
     _handleChange = (event) => {
         const { name, value } = event.target;
 
-        const { selectedPage } = this.state;
-        const newPage = Object.assign({}, selectedPage, { [name]: value });
+        const { selectedLandingPage } = this.state;
+        const newPage = Object.assign({}, selectedLandingPage, { [name]: value });
 
-        this.setState({ selectedPage: newPage });
+        this.setState({ selectedLandingPage: newPage });
     }
 
     handleChangeTargetCountry = (isExcludedAllTargetCountries, excludedTargetCountries, newTargetCountryList) => {
-        const newPage = Object.assign({}, selectedPage, { excludedTargetCountries });
+        const { selectedLandingPage } = this.state;
+        const newPage = Object.assign({}, selectedLandingPage, { excludedTargetCountries });
 
-        this.setState({ selectedPage: newPage, targetCountryList: newTargetCountryList, isExcludedAllTargetCountries });
+        this.setState({ selectedLandingPage: newPage, targetCountryList: newTargetCountryList, isExcludedAllTargetCountries });
     }
 
     _validatePageCode() {
-        const { pageCode } = this.state;
+        const { pageCode } = this.state.selectedLandingPage;
         const hasRestrictedCharacter = restrictedCharactersPattern.test(pageCode);
         const result = {
             isValid: !!pageCode && !hasRestrictedCharacter && pageCode.length <= maxLength,
@@ -93,7 +93,7 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     _validatePageName() {
-        const { pageName } = this.state;
+        const { pageName } = this.state.selectedLandingPage;
 
         const result = {
             isValid: !!pageName && pageName.length <= maxLength,
@@ -112,10 +112,11 @@ export class InsertUpdateForm extends PureComponent {
         this.setState({ isClickedSubmit: true });
 
         if (isValid) {
-            const { pageName, pageCode, isInsert } = this.state;
+            const { selectedLandingPage, isInsert } = this.state;
             const { selectedLandingPageId } = this.props;
             const message = isInsert ? "Add Successfully!" : "Update Successfully!";
-            const landingPageInfo = Object.assign({}, { pageId: selectedLandingPageId, pageName, pageCode });
+            const landingPageInfo = Object.assign({}, { pageId: selectedLandingPageId, ...selectedLandingPage });
+
             const result = isInsert ? await this.props.insertLandingPage(landingPageInfo) : await this.props.updateLandingPage(landingPageInfo);
 
             if (result) {
@@ -161,7 +162,7 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     render() {
-        const { pageName, pageCode, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, usingTargetCountries, isExcludedAllTargetCountries } = this.state;
+        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, isExcludedAllTargetCountries } = this.state;
         const pageNameValidation = this._validatePageName();
         const pageCodeValidation = this._validatePageCode();
         const isValid = pageNameValidation.isValid && pageCodeValidation.isValid;
@@ -181,7 +182,7 @@ export class InsertUpdateForm extends PureComponent {
                                 <FormGroup row className="mb-2">
                                     <Label for="pageName" sm={4} className="required">{headerText.LandingPageName}</Label>
                                     <Col sm={5}>
-                                        <Input type="text" name="pageName" className="input-required mt-2" value={pageName} onChange={this._handleChange}
+                                        <Input type="text" name="pageName" className="input-required mt-2" value={selectedLandingPage.pageName} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageNameValidation.isValid} />
                                         {pageNameValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageNameValidation.message }} /></FormFeedback>}
@@ -190,7 +191,7 @@ export class InsertUpdateForm extends PureComponent {
                                 <FormGroup row className="mb-3">
                                     <Label for="pageCode" sm={4} className="required">{headerText.LandingPageCode}</Label>
                                     <Col sm={5}>
-                                        <Input type="text" name="pageCode" className="input-required mt-2" value={pageCode} onChange={this._handleChange}
+                                        <Input type="text" name="pageCode" className="input-required mt-2" value={selectedLandingPage.pageCode} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageCodeValidation.isValid} />
                                         {pageCodeValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageCodeValidation.message }} /></FormFeedback>}
@@ -199,7 +200,6 @@ export class InsertUpdateForm extends PureComponent {
                                 <ExcludedTargetCountryFormGroup
                                     sm={4}
                                     targetCountryList={targetCountryList}
-                                    usingTargetCountries={usingTargetCountries}
                                     isExcludedAllTargetCountries={isExcludedAllTargetCountries}
                                     changeTargetCountry={this.handleChangeTargetCountry}
                                 />
@@ -220,7 +220,7 @@ function mapStateToProps({ selectedLandingPageId }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getVisibleTargetCountriesByUser, getTargetCountryListByLandingPage }, dispatch);
+    return bindActionCreators({ setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryListByUser, getTargetCountryListByLandingPage }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InsertUpdateForm);

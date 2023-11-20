@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { Col, FormGroup, Label } from 'reactstrap';
 import { targetCountryStatus } from '../../../modules/constants';
-import { getExcludedTargetCountries } from '../libs/utils/targetcountry';
+import { getExcludedTargetCountryList } from '../libs/utils/targetcountry';
 
 export default class ExcludedTargetCountryFormGroup extends PureComponent {
     constructor(props) {
@@ -12,9 +12,9 @@ export default class ExcludedTargetCountryFormGroup extends PureComponent {
     _handleChangeTargetCountry = (event, targetCountryCode) => {
         const isChecked = event.target.checked;
 
-        const { usingTargetCountries, targetCountryList } = this.props;
+        const { usingTargetCountryList, targetCountryList } = this.props;
 
-        if (usingTargetCountries.includes(targetCountryCode)) {
+        if (usingTargetCountryList.includes(targetCountryCode)) {
             return;
         }
 
@@ -28,10 +28,10 @@ export default class ExcludedTargetCountryFormGroup extends PureComponent {
             };
         });
 
-        const excludedTargetCountries = getExcludedTargetCountries(newTargetCountryList);
-        const isExcludedAllTargetCountries = (usingTargetCountries.length + excludedTargetCountries.length) === newTargetCountryList.length;
+        const excludedTargetCountryList = getExcludedTargetCountryList(newTargetCountryList);
+        const isExcludedAllTargetCountries = (usingTargetCountryList.length + excludedTargetCountryList.length) === newTargetCountryList.length;
 
-        this.props.changeTargetCountry(isExcludedAllTargetCountries, excludedTargetCountries, newTargetCountryList);
+        this.props.changeTargetCountry(isExcludedAllTargetCountries, excludedTargetCountryList.join(','), newTargetCountryList);
     }
 
     _handleChangeAllTargetCountries = (event) => {
@@ -49,13 +49,13 @@ export default class ExcludedTargetCountryFormGroup extends PureComponent {
             };
         });
 
-        const excludedTargetCountries = getExcludedTargetCountries(newTargetCountryList);
+        const excludedTargetCountryList = getExcludedTargetCountryList(newTargetCountryList);
 
-        this.props.changeTargetCountry(isChecked, excludedTargetCountries, newTargetCountryList);
+        this.props.changeTargetCountry(isChecked, excludedTargetCountryList.join(','), newTargetCountryList);
     }
 
     render() {
-        const { lblText, targetCountryList, isExcludedAllTargetCountries, usingTargetCountries, sm } = this.props;
+        const { lblText, targetCountryList, isExcludedAllTargetCountries, usingTargetCountryList, sm } = this.props;
 
         return targetCountryList && (
             <FormGroup row>
@@ -64,7 +64,7 @@ export default class ExcludedTargetCountryFormGroup extends PureComponent {
                     <div className="excluded-target-country">
                         {
                             targetCountryList.map(item => {
-                                const isUsing = usingTargetCountries.includes(item.TargetCountryCode);
+                                const isUsing = usingTargetCountryList.includes(item.TargetCountryCode);
 
                                 return (
                                     <div key={item.TargetCountryCode} className="excluded-target-country-item">
@@ -88,7 +88,6 @@ export default class ExcludedTargetCountryFormGroup extends PureComponent {
 ExcludedTargetCountryFormGroup.propTypes = {
     sm: PropTypes.number,
     targetCountryList: PropTypes.array.isRequired,
-    usingTargetCountries: PropTypes.array.isRequired,
     isExcludedAllTargetCountries: PropTypes.bool,
     changeTargetCountry: PropTypes.func.isRequired,
     tooltipText: PropTypes.string,
@@ -99,7 +98,7 @@ ExcludedTargetCountryFormGroup.defaultProps = {
     sm: 3,
     targetCountryList: null,
     isExcludedAllTargetCountries: false,
-    usingTargetCountries: [],
+    usingTargetCountryList: [],
     tooltipText: 'This Affiliate domain has been used for this target country!',
     lblText: 'Excluded Target Country'
 };

@@ -9,11 +9,6 @@ export const getProductList = () => async() => {
     return response && response.status === 200 ? response.data : [];
 }
 
-export const getPageList = () => async() => {
-    const response = await post('Portal/CommonSetting/GetPageList');
-    return response && response.status === 200 ? response.data : [];
-}
-
 export const getCountryList = () => async () => {
     const response = await post('Portal/CommonSetting/GetCountryList');
     return response && response.status === 200 ? convertCountryList(response.data) : [];

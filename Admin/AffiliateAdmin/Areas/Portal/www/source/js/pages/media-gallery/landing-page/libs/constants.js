@@ -12,7 +12,7 @@ export const headerText = {
 export const defaultState = {
     usingTargetCountries: [],
     isExcludedAllTargetCountries: false,
-    selectedPage: null,
+    selectedLandingPage: { pageName: '', pageCode: '', excludedTargetCountries: '' },
     targetCountryList: null,
     isClickedSubmit: false,
     isInsert: true,

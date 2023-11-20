@@ -5,7 +5,7 @@ import ExcludedTargetCountryFormGroup from '../../../common/components/ExcludedT
 
 import { defaultState, headerText } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { getExcludedTargetCountries, getUsingTargetCountries, checkExcludedAllTargetCountries } from '../../../common/libs/utils/targetcountry';
+import { getExcludedTargetCountryList, getUsingTargetCountryList, checkExcludedAllTargetCountries } from '../../../common/libs/utils/targetcountry';
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainById, getTargetCountryListByDomain } from '../actions/index';
 
@@ -29,7 +29,7 @@ export class DomainPopup extends PureComponent {
         if (domainId === 0) {
             const targetCountryList = await this.props.getTargetCountryListByDomain({ affDomainId: 0, redirectDomainId: 0 });
 
-            this.setState({ isInsert: true, selectedDomain: { domainId, domainName: '', excludedTargetCountries: [], isSSL: false }, targetCountryList });
+            this.setState({ isInsert: true, selectedDomain: { domainId, domainName: '', excludedTargetCountries: '', isSSL: false }, targetCountryList });
         } else {
             const domain = await this.props.getDomainById(domainId, isAffDomain);
 
@@ -40,11 +40,11 @@ export class DomainPopup extends PureComponent {
                 const targetCountryList = await this.props.getTargetCountryListByDomain({ [domainIdParam]: domainId });
 
                 if (targetCountryList) {
-                    const usingTargetCountries = getUsingTargetCountries(targetCountryList);
-                    const excludedTargetCountries = getExcludedTargetCountries(targetCountryList);
-                    const isExcludedAllTargetCountries = checkExcludedAllTargetCountries(targetCountryList, usingTargetCountries, excludedTargetCountries);
+                    const usingTargetCountryList = getUsingTargetCountryList(targetCountryList);
+                    const excludedTargetCountryList = getExcludedTargetCountryList(targetCountryList);
+                    const isExcludedAllTargetCountries = checkExcludedAllTargetCountries(targetCountryList, excludedTargetCountryList, usingTargetCountryList);
 
-                    this.setState({ isInsert: false, usingTargetCountries, selectedDomain: { domainId, domainName, isSSL, excludedTargetCountries }, targetCountryList, isExcludedAllTargetCountries });
+                    this.setState({ isInsert: false, usingTargetCountryList, selectedDomain: { domainId, domainName, isSSL, excludedTargetCountries: excludedTargetCountryList.join(',') }, targetCountryList, isExcludedAllTargetCountries });
                 } else {
                     this.setState({ isInsert: false, selectedDomain: { domainId, domainName, isSSL, excludedTargetCountries: '' } });
                 }
@@ -79,7 +79,7 @@ export class DomainPopup extends PureComponent {
 
         if (selectedDomain && selectedDomain.domainName) {
             const { isInsert } = this.state;
-            const domainInfo = Object.assign({}, selectedDomain, { isAffDomain, excludedTargetCountries: selectedDomain.excludedTargetCountries.join(',') })
+            const domainInfo = Object.assign({}, selectedDomain, { isAffDomain })
             const message = isInsert ? "Add Successfully!" : "Update Successfully!";
 
             const result = isInsert ? await this.props.insertDomain(domainInfo) : await this.props.updateDomain(domainInfo);
@@ -129,7 +129,7 @@ export class DomainPopup extends PureComponent {
     }
 
     render() {
-        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, usingTargetCountries, targetCountryList, isExcludedAllTargetCountries } = this.state;
+        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, usingTargetCountryList, targetCountryList, isExcludedAllTargetCountries } = this.state;
         const isShowPopup = selectedDomain !== null;
         const title = isInsert ? "Add Domain" : "Edit Domain";
         const buttonLabel = isInsert ? "Add" : "Submit";
@@ -160,7 +160,7 @@ export class DomainPopup extends PureComponent {
                                 <ExcludedTargetCountryFormGroup
                                     lblText={headerText.ExcludedTargetCountry}
                                     targetCountryList={targetCountryList}
-                                    usingTargetCountries={usingTargetCountries}
+                                    usingTargetCountryList={usingTargetCountryList}
                                     isExcludedAllTargetCountries={isExcludedAllTargetCountries}
                                     changeTargetCountry={this.handleChangeTargetCountry}
                                     />

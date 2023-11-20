@@ -258,6 +258,7 @@
     <Compile Include="Constants\Menu.cs" />
     <Compile Include="Constants\NoteType.cs" />
     <Compile Include="Constants\ProcessingRequestStatus.cs" />
+    <Compile Include="Enum\TargetCountryStatus.cs" />
     <Compile Include="Constants\TransType.cs" />
     <Compile Include="Controllers\Affiliate\FeedbackReportController.cs" />
     <Compile Include="Controllers\Affiliate\MassAdjustmentController.cs" />
@@ -320,8 +321,6 @@
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestUpdParam.cs" />
     <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
-    <Compile Include="Repository\Common\ITargetCountryRepository.cs" />
-    <Compile Include="Repository\Common\TargetCountryRepository.cs" />
     <Compile Include="Repository\Common\ISystemRepository.cs" />
     <Compile Include="Repository\Domain\DomainControlRepository.cs" />
     <Compile Include="Repository\Domain\DomainRepository.cs" />
@@ -336,8 +335,6 @@
     <Compile Include="Repository\ProcessingRequest\IProcessingRequestRepository.cs" />
     <Compile Include="Repository\ProcessingRequest\ProcessingRequestRepository.cs" />
     <Compile Include="Repository\Common\SystemRepository.cs" />
-    <Compile Include="Services\Common\ITargetCountryService.cs" />
-    <Compile Include="Services\Common\TargetCountryService.cs" />
     <Compile Include="Services\FeedbackReport\FeedbackReportService.cs" />
     <Compile Include="Services\FeedbackReport\IFeedbackReportService.cs" />
     <Compile Include="Services\MassAdjustment\IMassAdjustmentService.cs" />
@@ -441,7 +438,7 @@
     <Compile Include="DTO\EntityResult.cs" />
     <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
     <Compile Include="DTO\Common\Language.cs" />
-    <Compile Include="DTO\MediaGallery\Category.cs" />
+    <Compile Include="DTO\MediaGallery\TargetProduct.cs" />
     <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
     <Compile Include="DTO\Member\ActiveMemberInfo.cs" />
     <Compile Include="DTO\Member\AllMemberEntities.cs" />
@@ -555,8 +552,8 @@
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
-    <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
-    <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
+    <Compile Include="Repository\MediaGallery\BannerRepository.cs" />
+    <Compile Include="Repository\MediaGallery\IBannerRepository.cs" />
     <Compile Include="Repository\Member\ActiveMemberRepository.cs" />
     <Compile Include="Repository\Member\IActiveMemberRepository.cs" />
     <Compile Include="Repository\Member\IMemberRepository.cs" />
@@ -659,12 +656,10 @@
     <Compile Include="Services\Common\ISystemService.cs" />
     <Compile Include="Services\ISignInService.cs" />
     <Compile Include="Services\Common\SystemService.cs" />
-    <Compile Include="Services\MediaGallery\BannerListService.cs" />
+    <Compile Include="Services\MediaGallery\BannerService.cs" />
     <Compile Include="Services\MediaGallery\BannerValidationService.cs" />
-    <Compile Include="Services\MediaGallery\CommonMediaGalleryService.cs" />
-    <Compile Include="Services\MediaGallery\IBannerListService.cs" />
+    <Compile Include="Services\MediaGallery\IBannerService.cs" />
     <Compile Include="Services\MediaGallery\IBannerValidationService.cs" />
-    <Compile Include="Services\MediaGallery\ICommonMediaGalleryService.cs" />
     <Compile Include="Services\MediaGallery\ILandingPageService.cs" />
     <Compile Include="Services\MediaGallery\LandingPageService.cs" />
     <Compile Include="Services\Member\ActiveMemberService.cs" />

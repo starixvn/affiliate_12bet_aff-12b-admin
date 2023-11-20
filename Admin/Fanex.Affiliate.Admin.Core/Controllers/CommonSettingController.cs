@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using ONEbook.UM.AspNetMVC.Filters;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Constants;
@@ -13,15 +12,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     public class CommonSettingController : Controller
     {
         private readonly ISystemService _commonSettingService;
-        private readonly ILandingPageRepository _landingPageRepository;
 
         public CommonSettingController(
-            ISystemService commonSettingService,
-            ILandingPageRepository landingPageRepository
+            ISystemService commonSettingService
             )
         {
             _commonSettingService = commonSettingService;
-            _landingPageRepository = landingPageRepository;
         }
 
         [HttpPost]
@@ -32,17 +28,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return new JsonNetResult
             {
                 Data = _commonSettingService.GetProductList()
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
-        public ActionResult GetPageList()
-        {
-            return new JsonNetResult
-            {
-                Data = _landingPageRepository.GetLandingPageList()
             };
         }
 

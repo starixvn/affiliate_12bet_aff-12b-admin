@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
     {
         IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param);
 
+        IEnumerable<TargetCountry> GetVisibleTargetCountryListNotUsing(TargetCountryParam param);
+
         DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true);
 
         IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true);

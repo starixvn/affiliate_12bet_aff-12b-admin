@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
@@ -21,22 +20,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
     public class MediaGalleryController : ReadOnlySessionBaseController
     {
-        private const int BannerListCategory = 1;
-        private readonly ISystemService _commonSettingService;
-        private readonly ICommonMediaGalleryService _commonMediaGalleryService;
-        private readonly IBannerListService _bannerListService;
+        private readonly ISystemService _systemService;
+        private readonly IBannerService _bannerService;
         private readonly IAppSetting _appSetting;
 
         public MediaGalleryController(
             ISessionService sessionService,
-            ISystemService commonSettingService,
-            ICommonMediaGalleryService commonMediaGalleryService,
-            IBannerListService bannerListService,
+            ISystemService systemService,
+            IBannerService bannerService,
             IAppSetting appSetting) : base(sessionService)
         {
-            _commonSettingService = commonSettingService;
-            _commonMediaGalleryService = commonMediaGalleryService;
-            _bannerListService = bannerListService;
+            _systemService = systemService;
+            _bannerService = bannerService;
             _appSetting = appSetting;
         }
 
@@ -47,15 +42,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 Languages = BuildQueryLanguages()
             };
-            var bannerListCategory = _commonMediaGalleryService.GetCategoryList(BannerListCategory);
 
             var model = new BannerListViewModel
             {
-                CategoryList = bannerListCategory,
+                TargetProductList = _bannerService.GetTargetProductList(),
                 BannerRootUrl = _appSetting.BannerRootUrl,
-                LanguageList = _commonSettingService.GetInChangeMarkets(),
-                SizeList = _bannerListService.GetSizeList(sizeParam),
-                AffTypeList = _commonSettingService.GetAffTypeList(),
+                LanguageList = _systemService.GetTargetLanguageListByUser(),
+                SizeList = _bannerService.GetSizeList(sizeParam),
+                AffTypeList = _systemService.GetAffTypeList(),
                 Param = param
             };
 
@@ -69,13 +63,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             var param = new SizeParam
             {
                 AffType = model.AffType,
-                Category = model.Category,
+                TargetProductId = model.TargetProductId,
                 Languages = BuildQueryLanguages(model.Language)
             };
 
             return new JsonNetResult
             {
-                Data = _bannerListService.GetSizeList(param)
+                Data = _bannerService.GetSizeList(param)
             };
         }
 
@@ -86,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             var param = new BannerParam
             {
                 AffType = model.AffType,
-                Category = model.Category,
+                TargetProductId = model.TargetProductId,
                 Languages = BuildQueryLanguages(model.Language),
                 PageIndex = model.PageIndex,
                 PageSize = model.PageSize,
@@ -97,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = _bannerListService.GetBannerList(param)
+                Data = _bannerService.GetBannerList(param)
             };
         }
 
@@ -107,7 +101,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             return new JsonNetResult
             {
-                Data = _bannerListService.GetBannerDetail(selectedBannerId)
+                Data = _bannerService.GetBannerDetail(selectedBannerId)
             };
         }
 
@@ -123,7 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
                 return new JsonNetResult
                 {
-                    Data = _bannerListService.InsertBanner(files, encodeParam)
+                    Data = _bannerService.InsertBanner(files, encodeParam)
                 };
             }
 
@@ -146,7 +140,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
                 return new JsonNetResult
                 {
-                    Data = _bannerListService.UpdateBanner(files, encodeParam)
+                    Data = _bannerService.UpdateBanner(files, encodeParam)
                 };
             }
 
@@ -167,7 +161,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
                 return new JsonNetResult
                 {
-                    Data = _bannerListService.DeleteBanners(param)
+                    Data = _bannerService.DeleteBanners(param)
                 };
             }
 
@@ -179,7 +173,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         private string BuildQueryLanguages(string lang = null)
         {
-            var langs = _commonSettingService.GetInChangeMarkets();
+            var langs = _systemService.GetTargetLanguageListByUser();
             if (!string.IsNullOrWhiteSpace(lang))
             {
                 langs = langs.Where(l => l.LanguageName.Equals(lang, StringComparison.OrdinalIgnoreCase));
@@ -194,7 +188,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 BannerId = param.BannerId,
                 InputFileNames = param.InputFileNames,
-                Categories = Server.HtmlEncode(param.Categories),
+                TargetProductIds = Server.HtmlEncode(param.TargetProductIds),
                 Language = Server.HtmlEncode(param.Language),
                 AffTypes = param.AffTypes
             };

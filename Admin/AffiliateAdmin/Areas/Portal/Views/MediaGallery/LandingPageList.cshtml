@@ -4,12 +4,6 @@
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/landing-page.css")" rel="stylesheet" />
 }
 
-<script type="text/javascript">
-        window.initialState = {
-            targetCountryList: @Html.Raw(@Model),
-        }
-</script>
-
 @section pagejs{
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/media-gallery.js")"></script>
 }

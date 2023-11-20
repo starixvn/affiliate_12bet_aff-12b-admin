@@ -256,7 +256,7 @@
     <Compile Include="Repository\Customer\ReferrersRepositoryTest.cs" />
     <Compile Include="Repository\Customer\StatementHistoryRepositoryTest.cs" />
     <Compile Include="Repository\Customer\UserAccountRepositoryTest.cs" />
-    <Compile Include="Repository\MediaGallery\BannerListReppositoryTest.cs" />
+    <Compile Include="Repository\MediaGallery\BannerReppositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepositoryTest.cs" />
     <Compile Include="Repository\Member\ActiveMemberRepositoryTest.cs" />
     <Compile Include="Repository\Member\MemberRepositoryTest.cs" />
@@ -288,9 +288,8 @@
     <Compile Include="Services\Member\RegisteredMemberServiceTest.cs" />
     <Compile Include="Utilities\SystemHelperTest.cs" />
     <Compile Include="Utilities\MassAdjustmentHelperTest.cs" />
-    <Compile Include="Services\MediaGallery\BannerListServiceTest.cs" />
+    <Compile Include="Services\MediaGallery\BannerServiceTest.cs" />
     <Compile Include="Services\MediaGallery\BannerValidationServiceTest.cs" />
-    <Compile Include="Services\MediaGallery\CommonMediaGalleryServiceTest.cs" />
     <Compile Include="Services\MediaGallery\LandingPageServiceTest.cs" />
     <Compile Include="Services\Member\ActiveMemberServiceTest.cs" />
     <Compile Include="Services\Member\MemberServiceTest.cs" />

@@ -8,9 +8,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
     public interface ILandingPageRepository
     {
-        IEnumerable<LandingPage> GetLandingPageList();
+        IEnumerable<LandingPage> GetLandingPageList(int userId);
 
-        LandingPage GetLandingPageById(int pageId);
+        LandingPage GetLandingPageById(int userId, int pageId);
 
         IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param);
 

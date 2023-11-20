@@ -10,8 +10,18 @@ using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
-    public class BannerListRepository : BaseRepository, IBannerListRepository
+    public class BannerRepository : BaseRepository, IBannerRepository
     {
+        public IEnumerable<TargetProduct> GetTargetProductList()
+        {
+            const string SpKey = "Aff_TargetProduct_Sel";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                return objectDb.Query<TargetProduct>();
+            }
+        }
+
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
             const string SpKey = "Aff_Admin_Banner_Sel";
@@ -21,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.SetParameterValue("languages", param.Languages);
-                objectDb.SetParameterValue("category", param.Category);
+                objectDb.SetParameterValue("targetProductId", param.TargetProductId);
                 objectDb.SetParameterValue("Size", param.Size);
                 objectDb.SetParameterValue("AffType", param.AffType);
                 objectDb.SetParameterValue("CopiedFrom", param.FromDate);
@@ -36,6 +46,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     while (reader.Read())
                     {
                         var bannerInfo = BuildBannerInfoItem(reader);
+                        bannerInfo.TargetProductNames = Convert.ToString(reader["TargetProductNames"]).Split(',');
+                        bannerInfo.AffTypes = reader.GetVal<string>("AffTypeNames").Split(',');
                         bannerInfo.NumberOfCopies = Convert.ToInt32(reader["NumberOfCopies"]);
                         bannerInfo.LastUpdate = reader["UpdatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["UpdatedDate"]);
 
@@ -65,6 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     if (reader.Read())
                     {
                         item = BuildBannerInfoItem(reader);
+                        item.TargetProductIds = Convert.ToString(reader["TargetProductIds"]).Split(',');
                         item.AffTypes = reader.GetVal<string>("AffTypes").Split(',');
                     }
                 }
@@ -127,7 +140,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("Category", param.Category);
+                objectDb.SetParameterValue("TargetProductId", param.TargetProductId);
                 objectDb.SetParameterValue("Languages", param.Languages);
                 objectDb.SetParameterValue("AffType", param.AffType);
 
@@ -150,7 +163,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
         private static void AssignParam(IObjectDb objectDb, InsertUpdateMultipleBannersParam param)
         {
             objectDb.SetParameterValue("Files", param.Files);
-            objectDb.SetParameterValue("Categories", param.Categories);
+            objectDb.SetParameterValue("TargetProductIds", param.TargetProductIds);
             objectDb.SetParameterValue("Language", param.Language);
             objectDb.SetParameterValue("AffTypes", param.AffTypes);
             objectDb.SetParameterValue("UserID", param.UserId);
@@ -165,7 +178,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             {
                 BannerId = Convert.ToInt32(reader["BannerID"]),
                 FileName = Convert.ToString(reader["FileName"]),
-                Categories = Convert.ToString(reader["Categories"]).Split(','),
                 Language = Convert.ToString(reader["Language"]),
                 Size = Convert.ToString(reader["Size"])
             };

@@ -3,7 +3,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
     public class SizeParam
     {
-        public string Category { get; set; }
+        public byte TargetProductId { get; set; }
 
         public string Languages { get; set; }
 

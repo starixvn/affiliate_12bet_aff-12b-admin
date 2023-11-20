@@ -34,7 +34,7 @@ export const resizeWidthHeight = (realWidth, realHeight, size = 500) => {
 }
 
 export const rearrangeItems = (arr = []) => {
-    return arr.map(item => {
+    return arr?.map(item => {
         return {
             key: item.Name,
             name: item.Name,

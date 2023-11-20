@@ -81,14 +81,14 @@ describe('banner list actions', () => {
                 MainData: [
                     {
                         BannerId: 2485,
-                        Categories: ["Casino"],
+                        TargetProducts: ["Casino"],
                         FileName: "CategoryMedia/giphy.gif",
                         Language: "Chinese Simplified",
                         Size: "500x500"
                     },
                     {
                         BannerId: 2448,
-                        Categories: ["Number Game"],
+                        TargetProducts: ["Number Game"],
                         FileName: "CategoryMedia/step1.jpg",
                         Language: "Chinese Simplified",
                         Size: "1655x438"

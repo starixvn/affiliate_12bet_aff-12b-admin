@@ -2,7 +2,7 @@
 {
     public class ImageSizeViewModel
     {
-        public string Category { get; set; }
+        public byte TargetProductId { get; set; }
 
         public string Language { get; set; }
 

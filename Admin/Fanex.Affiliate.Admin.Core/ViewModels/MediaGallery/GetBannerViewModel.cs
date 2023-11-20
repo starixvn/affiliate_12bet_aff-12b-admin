@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery
 {
     public class GetBannerViewModel
     {
-        public string Category { get; set; }
+        public byte TargetProductId { get; set; }
 
         public string Language { get; set; }
 

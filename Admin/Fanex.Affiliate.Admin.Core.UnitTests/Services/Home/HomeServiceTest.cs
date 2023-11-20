@@ -218,7 +218,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
                 ["BannerNum"] = 2,
                 ["ImageBannerNum"] = 3,
                 ["FlashBannerNum"] = 4,
-                ["TextBannerNum"] = 5,
                 ["AffInProAllNum"] = 1,
                 ["PendingAllNum"] = 2,
                 ["ApprovedAllNum"] = 3,

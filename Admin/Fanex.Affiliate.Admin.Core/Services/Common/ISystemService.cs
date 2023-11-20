@@ -15,8 +15,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         IEnumerable<Country> GetCountryList();
 
-        IEnumerable<TargetCountry> GetTargetCountryList();
+        IEnumerable<TargetCountry> GetTargetCountryListByUser();
 
-        IEnumerable<Language> GetTargetLanguageList();
+        IEnumerable<Language> GetTargetLanguageListByUser();
     }
 }

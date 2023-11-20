@@ -6,8 +6,6 @@
 
         public int BannerNumber { get; set; }
 
-        public int TextBannerNumber { get; set; }
-
         public int AllAffiliateNumber { get; set; }
 
         public int PendingAffiliateNumber { get; set; }

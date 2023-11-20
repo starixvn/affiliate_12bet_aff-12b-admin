@@ -5,8 +5,10 @@ using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
-    public interface IBannerListRepository
+    public interface IBannerRepository
     {
+        IEnumerable<TargetProduct> GetTargetProductList();
+
         EntityResult<BannerInfo> GetBannerList(BannerParam param);
 
         BannerInfo GetBannerDetail(int selectedBannerId);

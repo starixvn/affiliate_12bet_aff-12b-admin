@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string Creator { get; set; }
 
-        [JsonProperty(PropertyName = "ExcludedTargetCountry")]
+        [JsonProperty(PropertyName = "ExcludedTargetCountries")]
         public string BlockTargetCountry { get; set; }
 
         public DateTime? CreateDate { get; set; }

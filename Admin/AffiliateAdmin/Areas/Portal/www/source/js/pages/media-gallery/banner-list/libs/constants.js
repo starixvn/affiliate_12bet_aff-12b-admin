@@ -1,9 +1,7 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
+import { selectedAllProduct } from '../../../../modules/constants';
 
-export { globalResource };
-
-export const Casino = 'Casino';
-export const Sportsbook = 'Sportsbook';
+export { globalResource, selectedAllProduct };
 
 const defaultLanguage = 'Chinese Simplified';
 export const Asian = 2;
@@ -16,7 +14,7 @@ export const headerText = {
     Index: globalResource.Index,
     Images: 'Images',
     FileName: 'File Name',
-    Category: 'Target Product',
+    TargetProduct: 'Target Product',
     Language: 'Language',
     Size: 'Size',
     CopiedFrom: 'Copied From',

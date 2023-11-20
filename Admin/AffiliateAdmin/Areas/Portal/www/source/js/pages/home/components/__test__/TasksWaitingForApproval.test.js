@@ -28,8 +28,7 @@ describe('home - components - TasksWaitingForApproval', () => {
             DisapprovedAffiliateNumber: 1016,
             PaymentRequestNumber: 1,
             PendingAffiliateMonthNumber: 0,
-            PendingAffiliateNumber: 1024,
-            TextBannerNumber: 13
+            PendingAffiliateNumber: 1024
         },
         isShowAffLink: false,
         isShowPaymentLink: false,

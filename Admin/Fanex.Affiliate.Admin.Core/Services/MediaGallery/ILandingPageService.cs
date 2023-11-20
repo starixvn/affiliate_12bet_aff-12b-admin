@@ -8,15 +8,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public interface ILandingPageService
     {
-        IEnumerable<LandingPage> GetLandingPageList();
+        IEnumerable<LandingPage> GetLandingPageList(int userId);
 
-        LandingPage GetLandingPageById(int pageId);
+        LandingPage GetLandingPageById(int userId, int pageId);
 
         IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param);
 
-        ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param);
-
-        ResultInfo UpdateLandingPage(InsertUpdateLandingPageParam param);
+        ResultInfo HandleSaveLandingPage(InsertUpdateLandingPageParam param, bool isInsert = false);
 
         ResultInfo DeleteLandingPage(DeleteLandingPageParam param);
     }

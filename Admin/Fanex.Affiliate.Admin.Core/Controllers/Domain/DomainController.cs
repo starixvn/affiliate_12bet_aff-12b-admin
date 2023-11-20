@@ -18,16 +18,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     [FunctionAuthorize(FunctionName = Function.DomainMenu)]
     public class DomainController : ReadOnlySessionBaseController
     {
-        protected readonly IDomainService _domainService;
-        private readonly ITargetCountryService _targetCountryService;
+        private readonly IDomainService _domainService;
+        protected readonly ISystemService _systemService;
 
         public DomainController(
             ISessionService sessionService,
             IDomainService domainService,
-            ITargetCountryService targetCountryService) : base(sessionService)
+            ISystemService systemService) : base(sessionService)
         {
             _domainService = domainService;
-            _targetCountryService = targetCountryService;
+            _systemService = systemService;
         }
 
         public virtual ActionResult Index()
@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult InsertDomain(InsertDomainParam param)
         {
-            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
+            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, _systemService.GetTargetCountryListByUser()))
             {
                 var encodeParam = EncodeParam(param);
                 GetUserInfoParam(encodeParam);
@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
         public ActionResult UpdateDomain(UpdateDomainParam param)
         {
-            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, GetVisibleTargetCountriesNotUsingByUser()))
+            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, GetVisibleTargetCountryListNotUsingByUser(param.IsAffDomain, param.DomainId)))
             {
                 var encodeParam = EncodeParam(param);
                 var serializedParent = JsonConvert.SerializeObject(encodeParam);
@@ -157,9 +157,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             param.Ip = Request.UserHostAddress;
         }
 
-        private IEnumerable<TargetCountry> GetVisibleTargetCountriesNotUsingByUser()
+        private IEnumerable<TargetCountry> GetVisibleTargetCountryListNotUsingByUser(bool isAffDomain, int domainId)
         {
-            return _targetCountryService.GetVisibleTargetCountriesNotUsingByUser(SessionService.UserId);
+            var param = new TargetCountryParam
+            {
+                UserId = SessionService.UserId,
+                AffDomainId = isAffDomain ? domainId : DefaultValue.Int,
+                RedirectDomainId = isAffDomain ? DefaultValue.Int : domainId
+            };
+
+            return _domainService.GetVisibleTargetCountryListNotUsing(param);
         }
     }
 }

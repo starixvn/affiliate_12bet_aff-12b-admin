@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery
 {
     public class BannerListViewModel
     {
-        public IEnumerable<Category> CategoryList { get; set; }
+        public IEnumerable<TargetProduct> TargetProductList { get; set; }
 
         public IEnumerable<Language> LanguageList { get; set; }
 

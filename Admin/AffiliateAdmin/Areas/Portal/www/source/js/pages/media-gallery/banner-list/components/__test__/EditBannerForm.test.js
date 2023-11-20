@@ -8,7 +8,7 @@ import { defaultState } from '../../libs/constants';
 describe('banner list - components - EditBannerForm ', () => {
     const bannerInfo =         {
         BannerId: 2485,
-        Categories: ["Casino"],
+        targetProductIds: ["Casino"],
         AffTypes: ["2"],
         FileName: "CategoryMedia/giphy.gif",
         Language: "Chinese Simplified",
@@ -544,7 +544,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
         await instance._save();
 
-        expect(props.insertBanner).toHaveBeenCalledWith({"affTypes": "Asian,Media", "bannerId": 0, "categories": "Casino,Sportsbook", "files": [], "inputFileNames": "", "language": "Chinese Simplified"});
+        expect(props.insertBanner).toHaveBeenCalledWith({ "affTypes": "Asian,Media", "bannerId": 0, "targetProductIds": "Casino,Sportsbook", "files": [], "inputFileNames": "", "language": "Chinese Simplified"});
         expect(instance._handleAfterSave).toHaveBeenCalledWith(true, expectedResult);
     });
 
@@ -558,7 +558,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
         await instance._save();
 
-        expect(props.updateBanner).toHaveBeenCalledWith({"affTypes": "Asian,Media", "bannerId": 0, "categories": "Casino,Sportsbook", "files": [], "inputFileNames": "", "language": "Chinese Simplified"});
+        expect(props.updateBanner).toHaveBeenCalledWith({ "affTypes": "Asian,Media", "bannerId": 0, "targetProductIds": "Casino,Sportsbook", "files": [], "inputFileNames": "", "language": "Chinese Simplified"});
         expect(instance._handleAfterSave).toHaveBeenCalledWith(false, expectedResult);
     });
 
@@ -582,7 +582,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
         const result = wrapper.instance()._getParam(false);
 
-        expect(result).toEqual({ bannerId: 0, "files": [], inputFileNames: '', categories: 'Casino', language: 'Chinese Simplified', affTypes: 'Asian' });
+        expect(result).toEqual({ bannerId: 0, "files": [], inputFileNames: '', targetProductIds: 'Casino', language: 'Chinese Simplified', affTypes: 'Asian' });
     });
 
     it('_getParam - should return correct data with update', () => {
@@ -595,7 +595,7 @@ describe('banner list - components - EditBannerForm ', () => {
 
         const result = wrapper.instance()._getParam(true);
 
-        expect(result).toEqual({ bannerId: 0, "files": [], inputFileNames: 'abc', categories: 'Casino', language: 'Chinese Simplified', affTypes: 'Asian' });
+        expect(result).toEqual({ bannerId: 0, "files": [], inputFileNames: 'abc', targetProductIds: 'Casino', language: 'Chinese Simplified', affTypes: 'Asian' });
     });
 
     it('handleChangeCategory - should call setState', async () => {

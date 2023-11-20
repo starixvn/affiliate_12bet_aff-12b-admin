@@ -102,7 +102,7 @@ export class Content extends PureComponent {
         const domainName = htmlDecode(dataItem.DomainName);
         const creator = htmlDecode(dataItem.Creator);
         const createDate = formatDateTime(dataItem.CreateDate, "MM/dd/yyyy");
-        const excludedTargetCountry = htmlDecode(dataItem.ExcludedTargetCountry).split(',').join(', ');
+        const excludedTargetCountries = htmlDecode(dataItem.ExcludedTargetCountries).split(',').join(', ');
         const { isModifiable } = this.props;
         return (
             <Row key={`dataRow-${index}`}>
@@ -113,7 +113,7 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={createDate}>{createDate}</Cell>
-                <Cell>{excludedTargetCountry}</Cell>
+                <Cell title={excludedTargetCountries}>{excludedTargetCountries}</Cell>
                 { isModifiable &&
                     <React.Fragment>
                         <Cell className="text-center">

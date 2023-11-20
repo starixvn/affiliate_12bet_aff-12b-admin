@@ -8,11 +8,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 {
     public class DomainControlServiceTest
     {
-        private readonly IDomainControlRepository domainControlRepository;
+        private readonly IDomainService _domainService;
+        private readonly IDomainControlRepository _domainControlRepository;
 
         public DomainControlServiceTest()
         {
-            domainControlRepository = Substitute.For<IDomainControlRepository>();
+            _domainService = Substitute.For<IDomainService>();
+            _domainControlRepository = Substitute.For<IDomainControlRepository>();
         }
 
         [Fact]
@@ -26,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.GetDomainControlList(param);
 
             // Assert
-            domainControlRepository.Received().GetDomainControlList(param);
+            _domainControlRepository.Received().GetDomainControlList(param);
         }
 
         [Fact]
@@ -40,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.GetDomainControlById(param);
 
             // Assert
-            domainControlRepository.Received().GetDomainControlById(param);
+            _domainControlRepository.Received().GetDomainControlById(param);
         }
 
         [Fact]
@@ -54,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.InsertDomainControl(param);
 
             // Assert
-            domainControlRepository.Received().InsertDomainControl(param);
+            _domainControlRepository.Received().InsertDomainControl(param);
         }
 
         [Fact]
@@ -68,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.UpdateDomainControl(param);
 
             // Assert
-            domainControlRepository.Received().UpdateDomainControl(param);
+            _domainControlRepository.Received().UpdateDomainControl(param);
         }
 
         [Fact]
@@ -82,10 +84,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.DeleteDomainControl(param);
 
             // Assert
-            domainControlRepository.Received().DeleteDomainControl(param);
+            _domainControlRepository.Received().DeleteDomainControl(param);
         }
 
         private DomainControlService CreateDomainControlService
-            => new DomainControlService(domainControlRepository);
+            => new DomainControlService(_domainControlRepository, _domainService);
     }
 }

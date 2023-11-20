@@ -29,22 +29,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void GetPageList_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(s => s.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
-            var controller = CreateCommonSettingController(landingPageRepository: landingPageRepository.Object);
-
-            // Action
-            var result = controller.GetPageList() as JsonNetResult;
-            var data = result.Data as List<LandingPage>;
-
-            // Assert
-            Assert.Single(data);
-        }
-
-        [Fact]
         public void GetCountryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
@@ -61,14 +45,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         private CommonSettingController CreateCommonSettingController(
-            ISystemService commonSettingService = null,
-            ILandingPageRepository landingPageRepository = null
+            ISystemService commonSettingService = null
             )
         {
             var fakeCommonService = commonSettingService ?? Mock.Of<ISystemService>();
-            var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
 
-            return new CommonSettingController(fakeCommonService, fakeLandingPageRepository);
+            return new CommonSettingController(fakeCommonService);
         }
     }
 }

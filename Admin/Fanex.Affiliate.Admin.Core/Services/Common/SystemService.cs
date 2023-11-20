@@ -40,12 +40,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             return _systemService.GetCountryList();
         }
 
-        public IEnumerable<TargetCountry> GetTargetCountryList()
+        public IEnumerable<TargetCountry> GetTargetCountryListByUser()
         {
             return _systemService.GetTargetCountryList(_sessionService.UserId);
         }
 
-        public IEnumerable<Language> GetTargetLanguageList()
+        public IEnumerable<Language> GetTargetLanguageListByUser()
         {
             return _systemService.GetTargetLanguageList(_sessionService.UserId);
         }

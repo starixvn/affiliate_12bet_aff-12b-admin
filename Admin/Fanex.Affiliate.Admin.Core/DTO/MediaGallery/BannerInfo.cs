@@ -9,7 +9,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 
         public string FileName { get; set; }
 
-        public string[] Categories { get; set; }
+        public string[] TargetProductIds { get; set; }
+
+        public string[] TargetProductNames { get; set; }
 
         public string Language { get; set; }
 

@@ -9,13 +9,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class CustomerController : ReadOnlySessionBaseController
     {
-        private readonly ISystemService _commonSettingService;
+        private readonly ISystemService _systemService;
 
         public CustomerController(
             ISessionService sessionService,
-            ISystemService commonSettingService) : base(sessionService)
+            ISystemService systemService) : base(sessionService)
         {
-            _commonSettingService = commonSettingService;
+            _systemService = systemService;
         }
 
         public ActionResult Index(string user)
@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var viewModel = new CustomerViewModel
             {
                 AffName = user,
-                LanguageList = _commonSettingService.GetTargetLanguageList()
+                LanguageList = _systemService.GetTargetLanguageListByUser()
             };
 
             if (string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(SessionService.AffName))

@@ -12,14 +12,13 @@ export default class App extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        const { categoryList, languageList, sizeList, affTypeList,
+        const { targetProductList, languageList, sizeList, affTypeList,
             paramFromHome, bannerRootUrl, today } = window.initialState;
 
-        const newCategoryList = categoryList.map(item => {
+        const newTargetProductList = targetProductList.map(item => {
             return {
-                categoryName: item.CategoryName,
-                key: item.CategoryName,
-                name: item.CategoryName,
+                key: item.TargetProductId,
+                name: item.TargetProductName,
                 checked: false
             };
         });
@@ -36,7 +35,7 @@ export default class App extends React.PureComponent {
 
         const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
         this.store = configureStore({
-            languageList, paramFromHome, categoryList: newCategoryList, sizeList: newSizeList, affTypeList: newAffTypeList,
+            languageList, paramFromHome, targetProductList: newTargetProductList, sizeList: newSizeList, affTypeList: newAffTypeList,
             bannerRootUrl, claimsPrincipal, today
         }, reducer);
     }

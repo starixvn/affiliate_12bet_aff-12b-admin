@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -17,15 +18,28 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     public class LandingPageStatisticsController : ReadOnlySessionBaseController
     {
         private readonly ISystemService _commonSettingService;
+        private readonly ILandingPageRepository _landingPageRepository;
         private readonly ILandingPageStatisticsRepository _landingPageStatisticsRepository;
 
         public LandingPageStatisticsController(
             ISessionService sessionService,
             ISystemService commonSettingService,
+            ILandingPageRepository landingPageRepository,
             ILandingPageStatisticsRepository landingPageStatisticsRepository) : base(sessionService)
         {
             _commonSettingService = commonSettingService;
+            _landingPageRepository = landingPageRepository;
             _landingPageStatisticsRepository = landingPageStatisticsRepository;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetPageList()
+        {
+            return new JsonNetResult
+            {
+                Data = _landingPageRepository.GetLandingPageList(SessionService.UserId)
+            };
         }
 
         [HttpPost]

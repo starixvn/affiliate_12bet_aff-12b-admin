@@ -17,33 +17,38 @@ using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
-    public class BannerListService : IBannerListService
+    public class BannerService : IBannerService
     {
         private const int MaxLength = 50;
-        private readonly IBannerListRepository _bannerListRepository;
+        private readonly IBannerRepository _bannerRepository;
         private readonly IAppSetting _appSetting;
         private readonly ISystemFile _systemFile;
         private readonly IBannerValidationService _bannerValidationService;
-        public BannerListService(
-            IBannerListRepository bannerListRepository,
+        public BannerService(
+            IBannerRepository bannerRepository,
             IAppSetting appSetting,
             ISystemFile systemFile,
             IBannerValidationService bannerValidationService)
         {
-            _bannerListRepository = bannerListRepository;
+            _bannerRepository = bannerRepository;
             _appSetting = appSetting;
             _systemFile = systemFile;
             _bannerValidationService = bannerValidationService;
         }
 
+        public IEnumerable<TargetProduct> GetTargetProductList()
+        {
+            return _bannerRepository.GetTargetProductList();
+        }
+
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
-            return _bannerListRepository.GetBannerList(param);
+            return _bannerRepository.GetBannerList(param);
         }
 
         public BannerInfo GetBannerDetail(int selectedBannerId)
         {
-            return _bannerListRepository.GetBannerDetail(selectedBannerId);
+            return _bannerRepository.GetBannerDetail(selectedBannerId);
         }
 
         private ResultInfo ValidateAllFiles(HttpPostedFileBase[] files)
@@ -215,7 +220,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
 
             BuildFilesXml(param);
-            result = _bannerListRepository.InsertBanner(param);
+            result = _bannerRepository.InsertBanner(param);
 
             if (!result.IsSuccessful)
             {
@@ -259,7 +264,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 return result;
             }
 
-            var oldBannerInfo = _bannerListRepository.GetBannerDetail(param.BannerId);
+            var oldBannerInfo = _bannerRepository.GetBannerDetail(param.BannerId);
             var oldFilePath = oldBannerInfo.FileName;
 
             result = CheckFileInFolder(param, oldFilePath);
@@ -279,7 +284,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                     {
                         param.Sizes.Add(BannerHelper.GetSize(bitmap.Width, bitmap.Height));
                         BuildFilesXml(param);
-                        result = _bannerListRepository.UpdateBanner(param);
+                        result = _bannerRepository.UpdateBanner(param);
 
                         if (result.IsSuccessful)
                         {
@@ -293,7 +298,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             {
                 param.Sizes.Add(oldBannerInfo.Size);
                 BuildFilesXml(param);
-                result = _bannerListRepository.UpdateBanner(param);
+                result = _bannerRepository.UpdateBanner(param);
 
                 if (result.IsSuccessful && !string.Equals(param.FilePaths[0], oldFilePath, StringComparison.CurrentCultureIgnoreCase))
                 {
@@ -307,7 +312,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         public ResultInfo DeleteBanners(DeleteBannerParam param)
         {
             var fileNameList = GetFileNameList(param.BannerIdList);
-            var result = _bannerListRepository.DeleteBanners(param);
+            var result = _bannerRepository.DeleteBanners(param);
 
             if (result.IsSuccessful)
             {
@@ -318,7 +323,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public IEnumerable<MediaGalleryFilterItem> GetSizeList(SizeParam param)
         {
-            return _bannerListRepository.GetSizeList(param);
+            return _bannerRepository.GetSizeList(param);
         }
 
         private void UploadFile(Bitmap bitmap, string fileName)
@@ -361,7 +366,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             foreach (var bannerId in bannerIdList)
             {
-                var bannerInfo = _bannerListRepository.GetBannerDetail(Convert.ToInt32(bannerId));
+                var bannerInfo = _bannerRepository.GetBannerDetail(Convert.ToInt32(bannerId));
                 fileNameList.Add(bannerInfo.FileName);
             }
 
