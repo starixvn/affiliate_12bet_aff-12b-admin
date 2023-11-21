@@ -4,10 +4,11 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { headerText, globalResource } from '../libs/constants';
+import { headerText, globalResource, selectedActionAll } from '../libs/constants';
 import { setMainViewParam, setDetailViewParam, getLogActionList } from '../actions';
 import { sixMonth } from '../../../../modules/constants';
 import { handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
+import Select from './../../../../components/select';
 
 const minDate = '3/25/2021';
 
@@ -25,7 +26,7 @@ export class Filter extends React.Component {
 
         this.state = {
             affName: '',
-            logActionIds: '',
+            logActionIds: selectedActionAll.ActionIds,
             fromDate: sixMonthAgo < new Date(minDate) ? minDate : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
             logActionList: null
@@ -64,6 +65,10 @@ export class Filter extends React.Component {
         this.setState(prevState => handleAfterChangeToDate(momentDate, prevState.fromDate, sixMonth));
     }
 
+    _handleChangeAction = (selectedAction) => {
+        this.setState({ logActionIds: selectedAction });
+    }
+
     _handleSearch = () => {
         const { selectedAff } = this.props;
         const { affName, logActionIds, fromDate, toDate } = this.state;
@@ -81,6 +86,7 @@ export class Filter extends React.Component {
     render() {
         const { selectedAff } = this.props;
         const { affName, logActionIds, fromDate, toDate, logActionList } = this.state;
+        const dataSource = logActionList ? [selectedActionAll, ...logActionList] : [selectedActionAll];
 
         return (
             <div className="filter-container">
@@ -94,15 +100,16 @@ export class Filter extends React.Component {
                         )
                     }
                     <FormGroup className="mr-sm-2 my-2">
-                        <Label for="logActionIds" className="mr-sm-2">{headerText.Action}</Label>
-                        <Input type="select" name="logActionIds" id="logActionIds" value={logActionIds} onChange={this._handleChange}>
-                            <option value="">{globalResource.All}</option>
-                            {
-                                logActionList && logActionList.map(item => {
-                                    return (<option key={`logAction-${item.ActionIds}`} value={item.ActionIds}>{item.ActionName}</option>)
-                                })
-                            }
-                        </Input>
+                        <Label className="mr-sm-2">{headerText.Action}</Label>
+                        <Select
+                            key={logActionIds}
+                            dataSource={dataSource}
+                            id="log-action"
+                            keyField="ActionIds"
+                            valueField="ActionName"
+                            hasInputOption={true}
+                            selectedKey={logActionIds}
+                            onChange={this._handleChangeAction} />
                     </FormGroup>
                     <FormGroup className="mr-sm-2 my-2">
                         <Label className="mr-sm-2">{globalResource.From}</Label>

@@ -173,6 +173,22 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "name": "",
           "parent": "clickStatistics",
         },
+        Object {
+          "component": Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(UserPanelItem)",
+            "type": [Function],
+          },
+          "key": "marketingNote",
+          "name": "",
+          "parent": "note",
+          "renderClaim": Claim {
+            "type": "[MarketingTeamNote]",
+            "value": undefined,
+          },
+        },
       ]
     }
     onClickMenu={[MockFunction]}
@@ -236,6 +252,22 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "parent": null,
           "renderClaim": Claim {
             "type": "[Note]",
+            "value": undefined,
+          },
+        },
+        Object {
+          "component": Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(UserPanelItem)",
+            "type": [Function],
+          },
+          "key": "marketingNote",
+          "name": "",
+          "parent": "note",
+          "renderClaim": Claim {
+            "type": "[MarketingTeamNote]",
             "value": undefined,
           },
         },

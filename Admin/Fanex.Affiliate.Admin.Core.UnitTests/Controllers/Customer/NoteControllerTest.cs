@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var param = new AffiliatePagingParam { AffId = 1271808, PageIndex = 1, PageSize = 20 };
             AffiliatePagingParam passedParam = null;
-            var noteService = new Mock<INoteService>();
+            var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.GetNoteList(param)).Returns(new EntityResult<NoteDetail> { MainData = new List<NoteDetail> { new NoteDetail() }, TotalItem = 1 }).Callback<AffiliatePagingParam>(p => passedParam = p);
             var controller = CreateNoteController(noteService: noteService.Object);
 
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void GetNoteContentById_WhenCallWithValidParam_ExcuteWithCorrectData()
         {
             // Arrange
-            var noteService = new Mock<INoteService>();
+            var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.GetNoteContentById(1271808, 123)).Returns(new Note { NoteId = 123, NoteContent = "abc" });
             var controller = CreateNoteController(noteService: noteService.Object);
 
@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void GetNoteContentById_WhenCallWithValidParam_ExcuteWithNoNote()
         {
             // Arrange
-            var noteService = new Mock<INoteService>();
+            var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.GetNoteContentById(1271808, 123));
             var controller = CreateNoteController(noteService: noteService.Object);
 
@@ -101,7 +101,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var param = new InsertUpdateNoteParam { NoteContent = "abc" };
             InsertUpdateNoteParam passedParam = null;
-            var noteService = new Mock<INoteService>();
+            var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.InsertNote(It.IsAny<InsertUpdateNoteParam>())).Returns(new ResultInfo()).Callback<InsertUpdateNoteParam>(p => passedParam = p);
             var controller = CreateNoteController(noteService: noteService.Object);
 
@@ -136,7 +136,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var param = new InsertUpdateNoteParam { NoteId = 1, NoteContent = "abc" };
             InsertUpdateNoteParam passedParam = null;
-            var noteService = new Mock<INoteService>();
+            var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.UpdateNote(It.IsAny<InsertUpdateNoteParam>())).Returns(new ResultInfo()).Callback<InsertUpdateNoteParam>(p => passedParam = p);
             var controller = CreateNoteController(noteService: noteService.Object);
 
@@ -184,11 +184,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private NoteController CreateNoteController(
             ISessionService sessionService = null,
-            INoteService noteService = null
+            INoteServiceBase noteService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeNoteService = noteService ?? Mock.Of<INoteService>();
+            var fakeNoteService = noteService ?? Mock.Of<INoteServiceBase>();
 
             var controller = new NoteController(fakeSessionService, fakeNoteService);
 

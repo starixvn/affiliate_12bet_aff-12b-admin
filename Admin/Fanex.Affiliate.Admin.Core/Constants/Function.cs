@@ -90,6 +90,8 @@
 
         public const string AffPersonalInfo = "[AffPersonalInfo]";
 
+        public const string MarketingTeamNote = "[MarketingTeamNote]";
+
         // Export excel
 
         public const string ExportAffInfoExcel = "[ExportAffInfoExcel]";

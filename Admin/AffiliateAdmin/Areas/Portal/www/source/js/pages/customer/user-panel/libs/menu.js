@@ -12,7 +12,7 @@ const DailyEarningDetail = React.lazy(() =>
 const UserAccount = React.lazy(() =>
     import( /* webpackChunkName: "userAccount" */ '../../../user-panel/user-account/components/AppContainer'));
 const Note = React.lazy(() =>
-    import( /* webpackChunkName: "note" */ '../../../user-panel/note/components/AppContainer'));
+    import( /* webpackChunkName: "note" */ '../../../user-panel/note/aff-note/components/AppContainer'));
 const PlayerDetail = React.lazy(() =>
     import( /* webpackChunkName: "playerDetail" */ '../../../user-panel/player-detail/components/AppContainer'));
 const Adjustment = React.lazy(() =>
@@ -25,6 +25,8 @@ const ReferrerStatistics = React.lazy(() =>
     import( /* webpackChunkName: "referrerStatistics" */ '../../../user-panel/referrers/components/AppContainer'));
 const LandingPageStatistics = React.lazy(() =>
     import( /* webpackChunkName: "landingPageStatistics" */ '../../../user-panel/landing-page-statistics/components/AppContainer'));
+const MarketingNote = React.lazy(() =>
+    import( /* webpackChunkName: "marketingNote" */ '../../../user-panel/note/marketing-note/components/AppContainer'));
 
 export const userPanelMenuList = [
     { key: menuKey.statementHistory, name: 'Statement History', component: withUserPanel(StatementHistory, menuKey.statementHistory), parent: null },
@@ -37,10 +39,12 @@ export const userPanelMenuList = [
     { key: menuKey.member, name: 'Member', component: withUserPanel(Member, menuKey.member), parent: null, renderClaim: new Claim(claimResource.MemberDetail) },
     { key: menuKey.viewLog, name: 'View Log (Old)', component: withUserPanel(ViewLog, menuKey.viewLog), parent: null, renderClaim: new Claim(claimResource.ViewLog) },
     { key: menuKey.clickStatistics, name: 'Click Statistics', component: withUserPanel(ReferrerStatistics, menuKey.clickStatistics), parent: null },
-    { key: menuKey.landingPageStatistics, name: '', component: withUserPanel(LandingPageStatistics, menuKey.landingPageStatistics), parent: menuKey.clickStatistics }
+    { key: menuKey.landingPageStatistics, name: '', component: withUserPanel(LandingPageStatistics, menuKey.landingPageStatistics), parent: menuKey.clickStatistics },
+    { key: menuKey.marketingNote, name: '', component: withUserPanel(MarketingNote, menuKey.marketingNote), parent: menuKey.note, renderClaim: new Claim(claimResource.MarketingTeamNote) },
 ]
 
 export const userPanelPendingMenuList = [
     { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null, renderClaim: new Claim(claimResource.EditAffiliate) },
-    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null, renderClaim: new Claim(claimResource.Note) }
+    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null, renderClaim: new Claim(claimResource.Note) },
+    { key: menuKey.marketingNote, name: '', component: withUserPanel(MarketingNote, menuKey.marketingNote), parent: menuKey.note, renderClaim: new Claim(claimResource.MarketingTeamNote) },
 ]

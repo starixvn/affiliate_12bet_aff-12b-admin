@@ -256,6 +256,7 @@
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\Menu.cs" />
+    <Compile Include="Constants\NoteType.cs" />
     <Compile Include="Constants\ProcessingRequestStatus.cs" />
     <Compile Include="Constants\TransType.cs" />
     <Compile Include="Controllers\Affiliate\FeedbackReportController.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="Controllers\MediaGallery\OfferPageController.cs" />
     <Compile Include="Controllers\MediaGallery\NewsLetterController.cs" />
     <Compile Include="Controllers\Member\RegisteredMemberController.cs" />
+    <Compile Include="Controllers\UserPanel\MarketingNoteController.cs" />
     <Compile Include="DTO\CommissionGroup\FdmSetting.cs" />
     <Compile Include="DTO\Domain\Market.cs" />
     <Compile Include="DTO\FeedbackReport\FeedbackReportInfo.cs" />
@@ -683,12 +685,12 @@
     <Compile Include="Services\UserPanel\CustomerMemberService.cs" />
     <Compile Include="Services\UserPanel\IAdjustmentService.cs" />
     <Compile Include="Services\UserPanel\ICustomerMemberService.cs" />
-    <Compile Include="Services\UserPanel\INoteService.cs" />
+    <Compile Include="Services\UserPanel\INoteServiceBase.cs" />
     <Compile Include="Services\UserPanel\IPlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\IStatementHistoryService.cs" />
     <Compile Include="Services\UserPanel\IUserAccountService.cs" />
     <Compile Include="Services\UserPanel\IViewLogService.cs" />
-    <Compile Include="Services\UserPanel\NoteService.cs" />
+    <Compile Include="Services\UserPanel\NoteServiceBase.cs" />
     <Compile Include="Services\UserPanel\PlayerDetailService.cs" />
     <Compile Include="Services\UserPanel\StatementHistoryService.cs" />
     <Compile Include="Services\UserPanel\UserAccountService.cs" />

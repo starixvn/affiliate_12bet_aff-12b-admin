@@ -14,13 +14,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.Note)]
     public class NoteController : ReadOnlySessionBaseController
     {
-        private readonly INoteService _noteService;
+        private readonly INoteServiceBase _noteService;
 
         public NoteController(
             ISessionService sessionService,
-            INoteService noteService) : base(sessionService)
+            INoteServiceBase noteService) : base(sessionService)
         {
             _noteService = noteService;
+            _noteService.FunctionName = NoteType.AffNote;
         }
 
         [HttpPost]

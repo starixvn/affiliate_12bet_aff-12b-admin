@@ -10,5 +10,6 @@ export const userPanelMenuKey = {
     member: 'member',
     viewLog: 'viewLog',
     clickStatistics: 'clickStatistics',
-    landingPageStatistics: 'landingPageStatistics'
+    landingPageStatistics: 'landingPageStatistics',
+    marketingNote: 'marketingNote'
 }

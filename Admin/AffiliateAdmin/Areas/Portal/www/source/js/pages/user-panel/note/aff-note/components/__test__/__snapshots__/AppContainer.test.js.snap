@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`note - components - AppContainer render correctly 1`] = `
+<AppLayout>
+  <Memo(UserPanelSubMenu)
+    subMenuList={
+      Array [
+        Object {
+          "handleClick": [Function],
+          "isActive": true,
+          "title": "Note",
+        },
+        Object {
+          "handleClick": [Function],
+          "isActive": false,
+          "title": "Marketing Team Note",
+        },
+      ]
+    }
+  />
+  <Connect(Content) />
+  <Connect(InsertUpdateForm) />
+</AppLayout>
+`;

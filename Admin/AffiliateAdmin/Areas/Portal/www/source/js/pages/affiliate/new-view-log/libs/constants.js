@@ -2,6 +2,11 @@
 
 export { globalResource }
 
+export const selectedActionAll = {
+    ActionIds: '',
+    ActionName: globalResource.All
+};
+
 export const headerText = {
     Index: globalResource.Index,
     Affiliate: "Affiliate",
