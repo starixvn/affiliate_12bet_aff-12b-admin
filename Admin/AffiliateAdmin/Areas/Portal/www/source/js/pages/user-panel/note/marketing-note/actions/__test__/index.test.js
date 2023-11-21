@@ -64,7 +64,7 @@ describe('marketing note actions', () => {
 
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getMarketingNoteList'](param)).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/GetNoteList', param);
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/GetMarketingNoteList', param);
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -84,7 +84,7 @@ describe('marketing note actions', () => {
 
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getMarketingNoteList'](param)).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/GetNoteList', param);
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/GetMarketingNoteList', param);
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -106,7 +106,7 @@ describe('marketing note actions', () => {
 
         const result = await actions['getMarketingNoteContentById'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/GetNoteContentById', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/GetMarketingNoteContentById', param);
 
         expect(result).toEqual(expectedResponse.data);
     })
@@ -120,7 +120,7 @@ describe('marketing note actions', () => {
 
         const result = await actions['getMarketingNoteContentById'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/GetNoteContentById', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/GetMarketingNoteContentById', param);
         expect(result).toEqual(null);
     })
 
@@ -135,7 +135,7 @@ describe('marketing note actions', () => {
 
         const result = await actions['insertMarketingNote'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/InsertNote', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/InsertMarketingNote', param);
 
         expect(result).toEqual({ IsSuccessful: true, Message: "" });
     })
@@ -150,7 +150,7 @@ describe('marketing note actions', () => {
 
         const result = await actions['insertMarketingNote'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/InsertNote', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/InsertMarketingNote', param);
         expect(result).toEqual(null);
     })
 
@@ -165,7 +165,7 @@ describe('marketing note actions', () => {
 
         const result = await actions['updateMarketingNote'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/UpdateNote', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/UpdateMarketingNote', param);
 
         expect(result).toEqual({ IsSuccessful: true, Message: "" });
     })
@@ -180,7 +180,7 @@ describe('marketing note actions', () => {
 
         const result = await actions['updateMarketingNote'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/UpdateNote', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/MarketingNote/UpdateMarketingNote', param);
         expect(result).toEqual(null);
     })
 });

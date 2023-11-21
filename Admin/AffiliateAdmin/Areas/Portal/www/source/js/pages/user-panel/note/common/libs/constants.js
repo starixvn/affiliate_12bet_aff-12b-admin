@@ -21,3 +21,5 @@ export const resource = {
     UpdateNoteSuccess: 'Update Note is successful',
     Failed: 'The request is failed'
 }
+
+export const defaultNote = { noteId: 0, noteContent: '' };

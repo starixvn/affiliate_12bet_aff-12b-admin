@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     using System.Web.Mvc;
+    using Fanex.Affiliate.Admin.Core.Attributes;
     using Fanex.Affiliate.Admin.Core.Constants;
     using Fanex.Affiliate.Admin.Core.DTO;
     using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
@@ -10,6 +11,7 @@
     using Fanex.Affiliate.Admin.Core.Services.Common;
     using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 
+    [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class NoteBaseController : ReadOnlySessionBaseController
     {
         private readonly INoteServiceBase _noteService;
@@ -23,7 +25,7 @@
             _noteService.FunctionName = noteType;
         }
 
-        public ActionResult GetList(AffiliatePagingParam param)
+        protected ActionResult GetNoteList(AffiliatePagingParam param)
         {
             if (ModelState.IsValid)
             {
@@ -36,7 +38,7 @@
             return new JsonNetResult();
         }
 
-        public ActionResult GetContentById(int affId, int noteId)
+        protected ActionResult GetNoteContentById(int affId, int noteId)
         {
             if (affId >= Validation.MinId && noteId >= Validation.MinId)
             {
@@ -54,7 +56,7 @@
             return new JsonNetResult();
         }
 
-        public ActionResult Insert(InsertUpdateNoteParam param)
+        protected ActionResult InsertNote(InsertUpdateNoteParam param)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +78,7 @@
             };
         }
 
-        public ActionResult Update(InsertUpdateNoteParam param)
+        protected ActionResult UpdateNote(InsertUpdateNoteParam param)
         {
             if (ModelState.IsValid && param.NoteId >= Validation.MinId)
             {

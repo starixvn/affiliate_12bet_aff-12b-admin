@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
     public class MarketingNoteControllerTest
     {
         [Fact]
-        public void GetNoteList_WhenCallWithValidParam_ExecuteWithCorrectData()
+        public void GetMarketingNoteList_WhenCallWithValidParam_ExecuteWithCorrectData()
         {
             // Arrange
             var param = new AffiliatePagingParam { AffId = 1271808, PageIndex = 1, PageSize = 20 };
@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var controller = CreateMarketingNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.GetNoteList(param) as JsonNetResult;
+            var result = controller.GetMarketingNoteList(param) as JsonNetResult;
             var entityResult = result.Data as EntityResult<NoteDetail>;
 
             // Assert
@@ -38,21 +38,21 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void GetNoteList_WhenCallWithInvalidParam_ReturnError()
+        public void GetMarketingNoteList_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
             var controller = CreateMarketingNoteController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.GetNoteList(new AffiliatePagingParam()) as JsonNetResult;
+            var result = controller.GetMarketingNoteList(new AffiliatePagingParam()) as JsonNetResult;
 
             // Assert
             Assert.Null(result.Data);
         }
 
         [Fact]
-        public void GetNoteContentById_WhenCallWithValidParam_ExecuteWithCorrectData()
+        public void GetMarketingNoteContentById_WhenCallWithValidParam_ExecuteWithCorrectData()
         {
             // Arrange
             var noteService = new Mock<INoteServiceBase>();
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var controller = CreateMarketingNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.GetNoteContentById(1271808, 123) as JsonNetResult;
+            var result = controller.GetMarketingNoteContentById(1271808, 123) as JsonNetResult;
             var note = result.Data as Note;
 
             // Assert
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void GetNoteContentById_WhenCallWithValidParam_ExecuteWithNoNote()
+        public void GetMarketingNoteContentById_WhenCallWithValidParam_ExecuteWithNoNote()
         {
             // Arrange
             var noteService = new Mock<INoteServiceBase>();
@@ -76,27 +76,27 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var controller = CreateMarketingNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.GetNoteContentById(1271808, 123) as JsonNetResult;
+            var result = controller.GetMarketingNoteContentById(1271808, 123) as JsonNetResult;
 
             // Assert
             Assert.Null(result.Data);
         }
 
         [Fact]
-        public void GetNoteContentById_WhenCallWithInvalidParam_ReturnNull()
+        public void GetMarketingNoteContentById_WhenCallWithInvalidParam_ReturnNull()
         {
             // Arrange
             var controller = CreateMarketingNoteController();
 
             // Action
-            var result = controller.GetNoteContentById(0, 0) as JsonNetResult;
+            var result = controller.GetMarketingNoteContentById(0, 0) as JsonNetResult;
 
             // Assert
             Assert.Null(result.Data);
         }
 
         [Fact]
-        public void InsertNote_WhenCallWithValidParam_InsertSuccessful()
+        public void InsertMarketingNote_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
             var param = new InsertUpdateNoteParam { NoteContent = "abc" };
@@ -106,7 +106,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var controller = CreateMarketingNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.InsertNote(param) as JsonNetResult;
+            var result = controller.InsertMarketingNote(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -115,14 +115,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void InsertNote_WhenCallWithInvalidParam_ReturnError()
+        public void InsertMarketingNote_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
             var controller = CreateMarketingNoteController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.InsertNote(new InsertUpdateNoteParam()) as JsonNetResult;
+            var result = controller.InsertMarketingNote(new InsertUpdateNoteParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -131,7 +131,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void UpdateNote_WhenCallWithValidParam_InsertSuccessful()
+        public void UpdateMarketingNote_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
             var param = new InsertUpdateNoteParam { NoteId = 1, NoteContent = "abc" };
@@ -141,7 +141,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var controller = CreateMarketingNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.UpdateNote(param) as JsonNetResult;
+            var result = controller.UpdateMarketingNote(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -150,14 +150,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void UpdateNote_WhenCallWithInvalidMessageContent_ReturnError()
+        public void UpdateMarketingNote_WhenCallWithInvalidMessageContent_ReturnError()
         {
             // Arrange
             var param = new InsertUpdateNoteParam { NoteContent = "abc" };
             var controller = CreateMarketingNoteController();
 
             // Action
-            var result = controller.UpdateNote(param) as JsonNetResult;
+            var result = controller.UpdateMarketingNote(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -166,7 +166,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void UpdateNote_WhenCallWithInvalidParam_ReturnError()
+        public void UpdateMarketingNote_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
             var param = new InsertUpdateNoteParam { NoteId = 123 };
@@ -174,7 +174,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.UpdateNote(param) as JsonNetResult;
+            var result = controller.UpdateMarketingNote(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert

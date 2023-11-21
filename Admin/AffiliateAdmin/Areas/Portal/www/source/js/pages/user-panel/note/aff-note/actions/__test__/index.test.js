@@ -64,7 +64,7 @@ describe('aff-note actions', () => {
 
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getNoteList'](param)).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Note/GetNoteList', param);
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/GetAffNoteList', param);
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -84,7 +84,7 @@ describe('aff-note actions', () => {
 
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['getNoteList'](param)).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Note/GetNoteList', param);
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/GetAffNoteList', param);
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -106,7 +106,7 @@ describe('aff-note actions', () => {
 
         const result = await actions['getNoteContentById'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Note/GetNoteContentById', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/GetAffNoteContentById', param);
 
         expect(result).toEqual(expectedResponse.data);
     })
@@ -120,7 +120,7 @@ describe('aff-note actions', () => {
 
         const result = await actions['getNoteContentById'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Note/GetNoteContentById', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/GetAffNoteContentById', param);
         expect(result).toEqual(null);
     })
 
@@ -135,7 +135,7 @@ describe('aff-note actions', () => {
 
         const result = await actions['insertNote'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Note/InsertNote', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/InsertAffNote', param);
 
         expect(result).toEqual({ IsSuccessful: true, Message: "" });
     })
@@ -150,7 +150,7 @@ describe('aff-note actions', () => {
 
         const result = await actions['insertNote'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Note/InsertNote', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/InsertAffNote', param);
         expect(result).toEqual(null);
     })
 
@@ -165,7 +165,7 @@ describe('aff-note actions', () => {
 
         const result = await actions['updateNote'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Note/UpdateNote', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/UpdateAffNote', param);
 
         expect(result).toEqual({ IsSuccessful: true, Message: "" });
     })
@@ -180,7 +180,7 @@ describe('aff-note actions', () => {
 
         const result = await actions['updateNote'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Note/UpdateNote', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/UpdateAffNote', param);
         expect(result).toEqual(null);
     })
 });

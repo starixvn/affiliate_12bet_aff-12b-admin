@@ -59,6 +59,15 @@ describe('customer - mainpage reducer', () => {
             noteList: [],
             pagingOption: defaultPagingOption,
         },
+        marketingNote: {
+            isShowPopup: false,
+            marketingNoteInfo: {
+                noteContent: '',
+                noteId: 0,
+            },
+            marketingNoteList: [],
+            pagingOption: defaultPagingOption,
+        },
         playerDetail: {
             pagingOption: defaultPagingOption,
             param: {},

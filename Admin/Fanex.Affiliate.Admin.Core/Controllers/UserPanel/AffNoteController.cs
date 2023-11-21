@@ -9,41 +9,41 @@
     using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 
     [FunctionAuthorize(FunctionName = Function.Note)]
-    public class NoteController : NoteBaseController
+    public class AffNoteController : NoteBaseController
     {
-        public NoteController(
+        public AffNoteController(
             ISessionService sessionService,
             INoteServiceBase noteService) : base(sessionService, noteService, NoteType.AffNote)
         { }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetNoteList(AffiliatePagingParam param)
+        public ActionResult GetAffNoteList(AffiliatePagingParam param)
         {
-            return GetList(param);
+            return GetNoteList(param);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetNoteContentById(int affId, int noteId)
+        public ActionResult GetAffNoteContentById(int affId, int noteId)
         {
-            return GetContentById(affId, noteId);
-        }
-
-        [FunctionAuthorize(FunctionName = Function.Note, IsHost = true)]
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult InsertNote(InsertUpdateNoteParam param)
-        {
-            return Insert(param);
+            return GetNoteContentById(affId, noteId);
         }
 
         [FunctionAuthorize(FunctionName = Function.Note, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult UpdateNote(InsertUpdateNoteParam param)
+        public ActionResult InsertAffNote(InsertUpdateNoteParam param)
         {
-            return Update(param);
+            return InsertNote(param);
+        }
+
+        [FunctionAuthorize(FunctionName = Function.Note, IsHost = true)]
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult UpdateAffNote(InsertUpdateNoteParam param)
+        {
+            return UpdateNote(param);
         }
     }
 }

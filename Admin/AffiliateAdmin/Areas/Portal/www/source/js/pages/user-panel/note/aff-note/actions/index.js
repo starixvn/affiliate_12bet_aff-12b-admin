@@ -1,13 +1,27 @@
 ﻿import { post } from '../../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../../actions/pagingAction';
 import { setSelectedUserPanel, toggleLoaderUserPanel } from '../../../../customer/user-panel/actions';
-import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_NOTE_INFO } from './types';
+import * as types from './types';
 
 export { setSelectedUserPanel, toggleLoaderUserPanel };
 
 export const setNoteList = (data) => {
     return {
-        type: SET_NOTE_LIST,
+        type: types.SET_NOTE_LIST,
+        data
+    }
+}
+
+export const setShowPopup = (data) => {
+    return {
+        type: types.SET_SHOW_POPUP,
+        data
+    }
+}
+
+export const setNoteInfo = (data) => {
+    return {
+        type: types.SET_NOTE_INFO,
         data
     }
 }
@@ -15,7 +29,7 @@ export const setNoteList = (data) => {
 export const getNoteList = (param) => async (dispatch) => {
     dispatch(toggleLoaderUserPanel(true));
 
-    const url = 'Portal/UserPanel/Note/GetNoteList';
+    const url = 'Portal/UserPanel/AffNote/GetAffNoteList';
     const response = await post(url, param);
 
     if (response && response.status === 200) {
@@ -34,36 +48,22 @@ export const getNoteList = (param) => async (dispatch) => {
     dispatch(toggleLoaderUserPanel(false));
 }
 
-export const setShowPopup = (data) => {
-    return {
-        type: SET_SHOW_POPUP,
-        data
-    }
-}
-
-export const setNoteInfo = (data) => {
-    return {
-        type: SET_NOTE_INFO,
-        data
-    }
-}
-
 export const getNoteContentById = (param) => async () => {
-    const url = 'Portal/UserPanel/Note/GetNoteContentById';
+    const url = 'Portal/UserPanel/AffNote/GetAffNoteContentById';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
 export const insertNote = (param) => async () => {
-    const url = 'Portal/UserPanel/Note/InsertNote';
+    const url = 'Portal/UserPanel/AffNote/InsertAffNote';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
 export const updateNote = (param) => async () => {
-    const url = 'Portal/UserPanel/Note/UpdateNote';
+    const url = 'Portal/UserPanel/AffNote/UpdateAffNote';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;

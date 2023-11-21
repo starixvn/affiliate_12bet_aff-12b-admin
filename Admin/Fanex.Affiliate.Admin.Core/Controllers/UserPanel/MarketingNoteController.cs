@@ -18,32 +18,32 @@
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetNoteList(AffiliatePagingParam param)
+        public ActionResult GetMarketingNoteList(AffiliatePagingParam param)
         {
-            return GetList(param);
+            return GetNoteList(param);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetNoteContentById(int affId, int noteId)
+        public ActionResult GetMarketingNoteContentById(int affId, int noteId)
         {
-            return GetContentById(affId, noteId);
-        }
-
-        [FunctionAuthorize(FunctionName = Function.MarketingTeamNote, IsHost = true)]
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult InsertNote(InsertUpdateNoteParam param)
-        {
-            return Insert(param);
+            return GetNoteContentById(affId, noteId);
         }
 
         [FunctionAuthorize(FunctionName = Function.MarketingTeamNote, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult UpdateNote(InsertUpdateNoteParam param)
+        public ActionResult InsertMarketingNote(InsertUpdateNoteParam param)
         {
-            return Update(param);
+            return InsertNote(param);
+        }
+
+        [FunctionAuthorize(FunctionName = Function.MarketingTeamNote, IsHost = true)]
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult UpdateMarketingNote(InsertUpdateNoteParam param)
+        {
+            return UpdateNote(param);
         }
     }
 }

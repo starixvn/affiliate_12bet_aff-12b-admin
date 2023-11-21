@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web;
-using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
+﻿using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
@@ -12,26 +8,27 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 {
-    public class NoteBaseControllerTest
+    public class AffNoteControllerTest
     {
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void GetList_WhenCallWithValidParam_ExecuteWithCorrectData(string noteType)
+        [Fact]
+        public void GetAffNoteList_WhenCallWithValidParam_ExecuteWithCorrectData()
         {
             // Arrange
             var param = new AffiliatePagingParam { AffId = 1271808, PageIndex = 1, PageSize = 20 };
             AffiliatePagingParam passedParam = null;
             var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.GetNoteList(param)).Returns(new EntityResult<NoteDetail> { MainData = new List<NoteDetail> { new NoteDetail() }, TotalItem = 1 }).Callback<AffiliatePagingParam>(p => passedParam = p);
-            var controller = CreateNoteBaseController(noteType, noteService: noteService.Object);
+            var controller = CreateNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.GetList(param) as JsonNetResult;
+            var result = controller.GetAffNoteList(param) as JsonNetResult;
             var entityResult = result.Data as EntityResult<NoteDetail>;
 
             // Assert
@@ -40,86 +37,76 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             Assert.Equal(param, passedParam);
         }
 
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void GetList_WhenCallWithInvalidParam_ReturnError(string noteType)
+        [Fact]
+        public void GetNoteList_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
-            var controller = CreateNoteBaseController(noteType);
+            var controller = CreateNoteController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.GetList(new AffiliatePagingParam()) as JsonNetResult;
+            var result = controller.GetAffNoteList(new AffiliatePagingParam()) as JsonNetResult;
 
             // Assert
             Assert.Null(result.Data);
         }
 
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void GetContentById_WhenCallWithValidParam_ExecuteWithCorrectData(string noteType)
+        [Fact]
+        public void GetAffNoteContentById_WhenCallWithValidParam_ExecuteWithCorrectData()
         {
             // Arrange
             var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.GetNoteContentById(1271808, 123)).Returns(new Note { NoteId = 123, NoteContent = "abc" });
-            var controller = CreateNoteBaseController(noteType, noteService: noteService.Object);
+            var controller = CreateNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.GetContentById(1271808, 123) as JsonNetResult;
+            var result = controller.GetAffNoteContentById(1271808, 123) as JsonNetResult;
             var note = result.Data as Note;
 
             // Assert
             Assert.Equal(123, note.NoteId);
         }
 
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void GetContentById_WhenCallWithValidParam_ExecuteWithNoNote(string noteType)
+        [Fact]
+        public void GetAffNoteContentById_WhenCallWithValidParam_ExecuteWithNoNote()
         {
             // Arrange
             var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.GetNoteContentById(1271808, 123));
-            var controller = CreateNoteBaseController(noteType, noteService: noteService.Object);
+            var controller = CreateNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.GetContentById(1271808, 123) as JsonNetResult;
+            var result = controller.GetAffNoteContentById(1271808, 123) as JsonNetResult;
 
             // Assert
             Assert.Null(result.Data);
         }
 
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void GetContentById_WhenCallWithInvalidParam_ReturnNull(string noteType)
+        [Fact]
+        public void GetAffNoteContentById_WhenCallWithInvalidParam_ReturnNull()
         {
             // Arrange
-            var controller = CreateNoteBaseController(noteType);
+            var controller = CreateNoteController();
 
             // Action
-            var result = controller.GetContentById(0, 0) as JsonNetResult;
+            var result = controller.GetAffNoteContentById(0, 0) as JsonNetResult;
 
             // Assert
             Assert.Null(result.Data);
         }
 
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void Insert_WhenCallWithValidParam_InsertSuccessful(string noteType)
+        [Fact]
+        public void InsertAffNote_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
             var param = new InsertUpdateNoteParam { NoteContent = "abc" };
             InsertUpdateNoteParam passedParam = null;
             var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.InsertNote(It.IsAny<InsertUpdateNoteParam>())).Returns(new ResultInfo()).Callback<InsertUpdateNoteParam>(p => passedParam = p);
-            var controller = CreateNoteBaseController(noteType, noteService: noteService.Object);
+            var controller = CreateNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.Insert(param) as JsonNetResult;
+            var result = controller.InsertAffNote(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -127,17 +114,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             Assert.Equal(param.NoteId, passedParam.NoteId);
         }
 
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void Insert_WhenCallWithInvalidParam_ReturnError(string noteType)
+        [Fact]
+        public void InsertAffNote_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
-            var controller = CreateNoteBaseController(noteType);
+            var controller = CreateNoteController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.Insert(new InsertUpdateNoteParam()) as JsonNetResult;
+            var result = controller.InsertAffNote(new InsertUpdateNoteParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -145,20 +130,18 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             Assert.Equal("Insert Note is failed!", resultInfo.Message);
         }
 
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void Update_WhenCallWithValidParam_InsertSuccessful(string noteType)
+        [Fact]
+        public void UpdateAffNote_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
             var param = new InsertUpdateNoteParam { NoteId = 1, NoteContent = "abc" };
             InsertUpdateNoteParam passedParam = null;
             var noteService = new Mock<INoteServiceBase>();
             noteService.Setup(s => s.UpdateNote(It.IsAny<InsertUpdateNoteParam>())).Returns(new ResultInfo()).Callback<InsertUpdateNoteParam>(p => passedParam = p);
-            var controller = CreateNoteBaseController(noteType, noteService: noteService.Object);
+            var controller = CreateNoteController(noteService: noteService.Object);
 
             // Action
-            var result = controller.Update(param) as JsonNetResult;
+            var result = controller.UpdateAffNote(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -166,17 +149,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             Assert.Equal(param.NoteId, passedParam.NoteId);
         }
 
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void Update_WhenCallWithInvalidMessageContent_ReturnError(string noteType)
+        [Fact]
+        public void UpdateAffNote_WhenCallWithInvalidMessageContent_ReturnError()
         {
             // Arrange
             var param = new InsertUpdateNoteParam { NoteContent = "abc" };
-            var controller = CreateNoteBaseController(noteType);
+            var controller = CreateNoteController();
 
             // Action
-            var result = controller.Update(param) as JsonNetResult;
+            var result = controller.UpdateAffNote(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -184,18 +165,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             Assert.Equal("Update Note is failed!", resultInfo.Message);
         }
 
-        [Theory]
-        [InlineData(NoteType.AffNote)]
-        [InlineData(NoteType.MarketingNote)]
-        public void Update_WhenCallWithInvalidParam_ReturnError(string noteType)
+        [Fact]
+        public void UpdateAffNote_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
             var param = new InsertUpdateNoteParam { NoteId = 123 };
-            var controller = CreateNoteBaseController(noteType);
+            var controller = CreateNoteController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.Update(param) as JsonNetResult;
+            var result = controller.UpdateAffNote(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -203,8 +182,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             Assert.Equal("Update Note is failed!", resultInfo.Message);
         }
 
-        private static NoteBaseController CreateNoteBaseController(
-            string noteType,
+        private AffNoteController CreateNoteController(
             ISessionService sessionService = null,
             INoteServiceBase noteService = null
             )
@@ -212,7 +190,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeNoteService = noteService ?? Mock.Of<INoteServiceBase>();
 
-            var controller = new NoteBaseController(fakeSessionService, fakeNoteService, noteType);
+            var controller = new AffNoteController(fakeSessionService, fakeNoteService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();
