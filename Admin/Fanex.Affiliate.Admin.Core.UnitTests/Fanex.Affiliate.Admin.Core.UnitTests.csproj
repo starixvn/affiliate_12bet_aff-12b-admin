@@ -180,6 +180,7 @@
     <Compile Include="Controllers\Affiliate\NewViewLogControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\ProcessingRequestControllerTest.cs" />
     <Compile Include="Controllers\Customer\MarketingNoteControllerTest.cs" />
+    <Compile Include="Controllers\Customer\NoteBaseControllerTest.cs" />
     <Compile Include="Controllers\Domain\MemberDomainsControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\OfferAffControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\OfferPageControllerTest.cs" />

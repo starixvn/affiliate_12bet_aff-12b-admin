@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
     public class NoteControllerTest
     {
         [Fact]
-        public void GetNoteList_WhenCallWithValidParam_ExcuteWithCorrectData()
+        public void GetNoteList_WhenCallWithValidParam_ExecuteWithCorrectData()
         {
             // Arrange
             var param = new AffiliatePagingParam { AffId = 1271808, PageIndex = 1, PageSize = 20 };
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void GetNoteContentById_WhenCallWithValidParam_ExcuteWithCorrectData()
+        public void GetNoteContentById_WhenCallWithValidParam_ExecuteWithCorrectData()
         {
             // Arrange
             var noteService = new Mock<INoteServiceBase>();
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void GetNoteContentById_WhenCallWithValidParam_ExcuteWithNoNote()
+        public void GetNoteContentById_WhenCallWithValidParam_ExecuteWithNoNote()
         {
             // Arrange
             var noteService = new Mock<INoteServiceBase>();
