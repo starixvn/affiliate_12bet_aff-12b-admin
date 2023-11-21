@@ -79,10 +79,10 @@
 
             try
             {
-                LanguageService.SetCulture(criteria.Language);
+                SystemService.SetCulture(criteria.Language);
                 ViewBag.Data = GetEmailContent(criteria);
 
-                LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
+                SystemService.SetCulture(SystemLanguage.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -105,13 +105,13 @@
 
             try
             {
-                LanguageService.SetCulture(criteria.Language);
+                SystemService.SetCulture(criteria.Language);
 
                 var content = GetEmailContent(criteria);
 
                 _mailProcessor.Send(content, criteria.EmailAddress, GetSubject(criteria.Function));
 
-                LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
+                SystemService.SetCulture(SystemLanguage.DefaultLanguageCode);
             }
             catch (Exception ex)
             {

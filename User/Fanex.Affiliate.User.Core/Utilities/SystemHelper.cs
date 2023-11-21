@@ -20,5 +20,29 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
             return dataList;
         }
+
+        public static IEnumerable<SelectListItem> GetTargetLanguageList(IEnumerable<TargetLanguage> targetLanguageList, string targetLanguageCode)
+        {
+            var dataList = targetLanguageList.Select(l => new SelectListItem
+            {
+                Value = l.LanguageCode,
+                Text = SystemLanguage.GetLanguageText(l.LanguageName),
+                Selected = l.LanguageCode.MatchWith(targetLanguageCode)
+            });
+
+            return dataList;
+        }
+
+        public static IEnumerable<SelectListItem> GetTargetCountryList(IEnumerable<TargetCountry> targetCountryList, string targetCountryCode)
+        {
+            var dataList = targetCountryList.Select(l => new SelectListItem
+            {
+                Value = l.TargetCountryCode,
+                Text = SystemLanguage.GetLanguageText(l.TargetCountryName),
+                Selected = l.TargetCountryCode.MatchWith(targetCountryCode)
+            });
+
+            return dataList;
+        }
     }
 }

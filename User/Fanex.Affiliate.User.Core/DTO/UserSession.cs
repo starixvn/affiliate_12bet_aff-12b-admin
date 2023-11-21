@@ -21,6 +21,6 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
 
         public int OfferPageId { get; set; }
 
-        public string TargetCountry { get; set; }
+        public string TargetCountryCode { get; set; }
     }
 }

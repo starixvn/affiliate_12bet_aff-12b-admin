@@ -18,9 +18,9 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         public BaseMarketingController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemService,
             IMarketingService marketingService
-            ) : base(sessionService, languageService)
+            ) : base(sessionService, systemService)
         {
             MarketingService = marketingService;
             AppSetting = appSetting;
@@ -28,17 +28,19 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         protected LinkFormViewModel GetLinkFormViewModel()
         {
-            var languageList = MarketingService.GetLanguageList();
+            var targetCountryList = SystemService.GetSystemTargetCountries();
+            var targetLanguageList = SystemService.GetSystemTargetLanguages();
 
             var userSession = SessionService.UserSession;
             var isInternal = SessionService.IsInternal;
+            var targetLanguageCode = targetCountryList.FirstOrDefault(t => t.TargetCountryCode == userSession.TargetCountryCode)?.DefaultLanguageCode ?? userSession.PreferredLanguage;
 
             var viewModel = new LinkFormViewModel
             {
-                TargetCountryList = SystemHelper.GetLanguageList(languageList, userSession.PreferredLanguage),
-                LanguageList = SystemHelper.GetLanguageList(languageList, userSession.PreferredLanguage),
+                TargetCountryList = SystemHelper.GetTargetCountryList(targetCountryList, userSession.TargetCountryCode),
+                LanguageList = SystemHelper.GetTargetLanguageList(targetLanguageList, targetLanguageCode),
                 DomainList = MarketingService.GetDomainList(userSession.AffId, isInternal),
-                MemberSitePageList = MarketingService.GetSpecialLandingPageList(userSession.GroupName, userSession.TargetCountry, userSession.PreferredLanguage, isInternal)
+                MemberSitePageList = MarketingService.GetSpecialLandingPageList(userSession.GroupName, userSession.TargetCountryCode, targetLanguageCode, isInternal)
                 .Select(i => new SelectListItem { Value = i.PageCode, Text = i.PageName })
             };
 
