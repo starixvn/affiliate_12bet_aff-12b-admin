@@ -18,7 +18,7 @@
         <span class="text">@Lang.Product</span>
     </div>
 
-    @Html.RenderPartialByLanguage("~/Views/Product/_Content", Model.CurrentLanguage);
+    @Html.RenderPartialByLanguage("~/Views/Product/_Content", Model.CurrentLanguage)
     @if (!Model.IsAuthenticated)
     {
         <div class="col-sm-offset-3 col-sm-6 signup-block">

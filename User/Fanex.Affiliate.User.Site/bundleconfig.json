@@ -146,6 +146,12 @@
   //  ]
   //},
   //{
+  //  "outputFileName": "www/build/styles/fonts/nokora/font.css",
+  //  "inputFiles": [
+  //    "www/source/styles/fonts/nokora/font.css"
+  //  ]
+  //},
+  //{
   //  "outputFileName": "www/build/js/pages/verification-account.js",
   //  "inputFiles": [
   //    "www/source/js/lib/hmac-sha256.js",
