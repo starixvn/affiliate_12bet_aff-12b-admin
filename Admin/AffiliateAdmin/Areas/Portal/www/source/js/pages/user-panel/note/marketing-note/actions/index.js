@@ -30,25 +30,11 @@ export const getMarketingNoteList = (param) => async (dispatch) => {
     dispatch(toggleLoaderUserPanel(true));
 
     const url = 'Portal/UserPanel/MarketingNote/GetMarketingNoteList';
-
     const response = await post(url, param);
+    const data = response && response.status === 200 ? response.data : null;
 
-    if (response && response.status === 200) {
-        const { MainData, TotalItem } = response.data;
-
-        dispatch(setMarketingNoteList(MainData));
-
-        const { pageIndex, pageSize } = param;
-
-        const pagingOption = {
-            PageIndex: pageIndex,
-            PageSize: pageSize,
-            TotalItem: TotalItem
-        };
-
-        dispatch(setPagingOption(pagingOption));
-    }
-
+    dispatch(setMarketingNoteList(data ? data.MainData || [] : []));
+    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize }));
     dispatch(toggleLoaderUserPanel(false));
 }
 

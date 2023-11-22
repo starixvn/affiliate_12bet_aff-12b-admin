@@ -5,8 +5,8 @@ import { setShowPopup, setMarketingNoteInfo, getMarketingNoteList, getMarketingN
 import { claimResource } from '../../../../../modules/claim';
 import Content from '../../common/components/Content';
 
-const mapStateToProps = ({ affCommonInfo, marketingNote, claimsPrincipal }) => {
-    const { pagingOption, marketingNoteList, marketingNoteInfo } = marketingNote;
+const mapStateToProps = ({ affCommonInfo, note, claimsPrincipal }) => {
+    const { pagingOption, marketingNoteList, marketingNoteInfo } = note.marketingNote;
     const { affId } = affCommonInfo;
     const isEditNote = claimsPrincipal.hasWriteClaim(claimResource.MarketingTeamNote);
 

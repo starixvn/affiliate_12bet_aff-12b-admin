@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { setShowPopup, getMarketingNoteList, insertMarketingNote, updateMarketingNote } from '../actions';
 import InsertUpdateForm from '../../common/components/InsertUpdateForm';
 
-const mapStateToProps = ({ affCommonInfo, marketingNote }) => {
-    const { pagingOption, marketingNoteInfo, isShowPopup } = marketingNote;
+const mapStateToProps = ({ affCommonInfo, note }) => {
+    const { pagingOption, marketingNoteInfo, isShowPopup } = note.marketingNote;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {

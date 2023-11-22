@@ -5,7 +5,7 @@ import { pagingOption } from '../../../../../reducers/pagingReducer';
 
 import { defaultNote } from '../../common/libs/constants';
 
-export const marketingNoteList = createReducer([], {
+export const marketingNoteList = createReducer(null, {
     [types.SET_MARKETING_NOTE_LIST](prevState, action) {
         return [...action.data];
     }

@@ -4,7 +4,7 @@ import { userPanelMenuKey as menuKey } from '../../common/libs/constants';
 
 import statementHistoryReducer from '../../../user-panel/statement-history/reducers';
 import userAccountReducer from '../../../user-panel/user-account/reducers';
-import noteReducer from '../../../user-panel/note/aff-note/reducers';
+import noteReducer from '../../../user-panel/note/reducers';
 import adjustmentReducer from '../../../user-panel/adjustment/reducers';
 import memberReducer from '../../../user-panel/customer-member/reducers';
 import viewLogReducer from '../../../user-panel/view-log/reducers';
@@ -13,7 +13,6 @@ import landingPageStatisticsReducer from '../../../user-panel/landing-page-stati
 import playerDetailReducer from '../../../user-panel/player-detail/reducers';
 import dailyEarningReducer from '../../../user-panel/daily-earning/reducers';
 import dailyEarningDetailReducer from '../../../user-panel/daily-earning-detail/reducers';
-import marketingNoteReducer from '../../../user-panel/note/marketing-note/reducers';
 
 export const selectedUserPanel = createReducer(null, {
     [SET_SELECTED_USERPANEL](prevState, action) {
@@ -38,6 +37,5 @@ export const userPanelReducer = {
     [menuKey.member]: memberReducer,
     [menuKey.viewLog]: viewLogReducer,
     [menuKey.clickStatistics]: referrerStatisticsReducer,
-    [menuKey.landingPageStatistics]: landingPageStatisticsReducer,
-    [menuKey.marketingNote]: marketingNoteReducer,
+    [menuKey.landingPageStatistics]: landingPageStatisticsReducer
 }

@@ -8,8 +8,22 @@ import { headerText, maxWidth, globalResource } from '../libs/constants';
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
+    }
 
-        const { pagingOption, affId } = props;
+    componentDidMount() {
+        this.handleFetchData();
+    }
+
+    componentDidUpdate(prevProps) {
+        const { noteList } = this.props;
+
+        if (noteList === null) {
+            this.handleFetchData();
+        }
+    }
+
+    handleFetchData = () => {
+        const { pagingOption, affId } = this.props;
         const param = Object.assign({}, { affId, pageIndex: 1, pageSize: pagingOption.PageSize });
 
         this.props.getNoteList(param);

@@ -5,7 +5,7 @@ import { setShowPopup, getNoteList, insertNote, updateNote } from '../actions';
 import InsertUpdateForm from '../../common/components/InsertUpdateForm';
 
 const mapStateToProps = ({ affCommonInfo, note }) => {
-    const { pagingOption, noteInfo, isShowPopup } = note;
+    const { pagingOption, noteInfo, isShowPopup } = note.affNote;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {

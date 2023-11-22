@@ -1122,9 +1122,14 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\__test__\redux\ModifyNote.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\common\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\common\components\__test__\InsertUpdateForm.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\libs\menus.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\actions\__test__\index.test.js" />
@@ -1147,6 +1152,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\reducers\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\actions\__test__\index.test.js" />

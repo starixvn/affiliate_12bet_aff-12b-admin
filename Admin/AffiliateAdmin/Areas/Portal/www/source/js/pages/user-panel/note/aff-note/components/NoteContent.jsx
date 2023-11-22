@@ -6,7 +6,7 @@ import { claimResource } from '../../../../../modules/claim';
 import Content from '../../common/components/Content';
 
 const mapStateToProps = ({ affCommonInfo, note, claimsPrincipal }) => {
-    const { pagingOption, noteList, noteInfo } = note;
+    const { pagingOption, noteList, noteInfo } = note.affNote;
     const { affId } = affCommonInfo;
     const isEditNote = claimsPrincipal.hasWriteClaim(claimResource.Note);
 

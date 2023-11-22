@@ -4,22 +4,23 @@ import Loader from '../../../../components/Loader';
 import UserPanelMenu from './UserPanelMenu';
 import { userPanelMenuList, userPanelPendingMenuList } from '../libs/menu';
 import { userPanelMenuKey } from '../../common/libs/constants';
-import { claimResource } from '../../../../modules/claim';
 import { spinnerLoaderWidth, spinnerLoaderUserPanelHeight } from '../../../../modules/constants';
 
 export const UserPanel = (props) => {
     const { selectedUserPanel, onClickMenu, isPending, isShowLoader, claimsPrincipal } = props;
+    const menuList = isPending ? userPanelPendingMenuList : userPanelMenuList;
 
     useEffect(() => {
         if (isPending && selectedUserPanel === userPanelMenuKey.statementHistory) {
-            props.onClickMenu(claimsPrincipal.hasClaim(claimResource.EditAffiliate) ? userPanelMenuKey.edit : userPanelMenuKey.note);
+            const firstMenu = menuList.find(m => m.renderClaim == undefined || claimsPrincipal.hasClaim(m.renderClaim) || (Array.isArray(m.renderClaim) && m.renderClaim.some(claim => claimsPrincipal.hasClaim(claim))));
+
+            firstMenu && props.onClickMenu(firstMenu.key);
         }
     });
 
-    const menuList = isPending ? userPanelPendingMenuList : userPanelMenuList;
-    const filterByClaimMenuList = menuList.filter(item => item.renderClaim == undefined || claimsPrincipal.hasClaim(item.renderClaim));
-    const componentIndex = filterByClaimMenuList.findIndex(p => p.key === selectedUserPanel);
-    const UserPanelComponent = componentIndex === -1 ? null : filterByClaimMenuList[componentIndex].component;
+    const filterByClaimMenuList = menuList.filter(m => m.renderClaim == undefined || claimsPrincipal.hasClaim(m.renderClaim) || (Array.isArray(m.renderClaim) && m.renderClaim.some(claim => claimsPrincipal.hasClaim(claim))));
+    const selectedMenu = filterByClaimMenuList.find(p => p.key === selectedUserPanel);
+    const UserPanelComponent = !selectedMenu ? null : selectedMenu.component;
 
     return (
         <div className="user-panel-container">
@@ -28,7 +29,7 @@ export const UserPanel = (props) => {
 
             <div className="user-panel-content-container">
                 {
-                    componentIndex !== -1 &&
+                    UserPanelComponent &&
                     <Suspense fallback={null}>
                         <UserPanelComponent />
                     </Suspense>

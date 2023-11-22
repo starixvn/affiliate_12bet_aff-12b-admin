@@ -31,20 +31,10 @@ export const getNoteList = (param) => async (dispatch) => {
 
     const url = 'Portal/UserPanel/AffNote/GetAffNoteList';
     const response = await post(url, param);
+    const data = response && response.status === 200 ? response.data : null;
 
-    if (response && response.status === 200) {
-        const { MainData, TotalItem } = response.data;
-
-        dispatch(setNoteList(MainData));
-
-        const { pageIndex, pageSize } = param;
-        const pagingOption = {
-            PageIndex: pageIndex,
-            PageSize: pageSize,
-            TotalItem: TotalItem
-        };
-        dispatch(setPagingOption(pagingOption));
-    }
+    dispatch(setNoteList(data ? data.MainData || [] : []));
+    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize }));
     dispatch(toggleLoaderUserPanel(false));
 }
 
