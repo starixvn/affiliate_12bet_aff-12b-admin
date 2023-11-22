@@ -667,23 +667,12 @@
     <Content Include="www\build\styles\fonts\myriadPro\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\fonts\nokora\font.css" />
+    <Content Include="www\build\styles\fonts\nokora\font.min.css" />
     <Content Include="www\build\styles\fonts\tahoma\font.css" />
     <Content Include="www\build\styles\fonts\tahoma\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.bn-BD.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.en-US.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.hi-IN.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.id-ID.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.ja-JP.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.km-KH.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.ko-KR.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.th-TH.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.vi-VN.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.zh-CN.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.zh-TW.png" />
-    <Content Include="www\build\styles\Images\left-side-banner.jpg" />
-    <Content Include="www\build\styles\Images\right-side-banner.jpg" />
     <Content Include="www\build\styles\Images\account-overview\commission.png" />
     <Content Include="www\build\styles\Images\account-overview\icon-copy.png" />
     <Content Include="www\build\styles\Images\account-overview\icon-facebook.png" />
@@ -716,6 +705,17 @@
     <Content Include="www\build\styles\Images\feedback\very-please.png" />
     <Content Include="www\build\styles\Images\contact-us\telegram-icon.png" />
     <Content Include="www\build\styles\Images\footer\cr-18.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.bn-BD.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.en-US.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.hi-IN.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.id-ID.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.ja-JP.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.km-KH.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.ko-KR.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.th-TH.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.vi-VN.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.zh-CN.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.zh-TW.png" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.km-KH.jpg" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.th-TH.jpg" />
@@ -751,6 +751,7 @@
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.zh-TW.jpg" />
+    <Content Include="www\build\styles\Images\left-side-banner.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.zh-TW.jpg" />
@@ -820,6 +821,7 @@
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.zh-TW.jpg" />
+    <Content Include="www\build\styles\Images\right-side-banner.jpg" />
     <Content Include="www\source\js\components\authhelper.js" />
     <Content Include="www\source\js\components\clipboard.js" />
     <Content Include="www\source\js\components\clipboard.min.js" />
@@ -954,6 +956,7 @@
     <Content Include="www\source\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\source\styles\fonts\Montserrat\font.css" />
     <Content Include="www\source\styles\fonts\myriadPro\font.css" />
+    <Content Include="www\source\styles\fonts\nokora\font.css" />
     <Content Include="www\source\styles\Images\bootstrap-formhelpers-countries.flags.png" />
     <Content Include="www\source\styles\Images\header-bg.png" />
     <Content Include="www\source\styles\Images\notify\bgMain.jpg" />
@@ -1335,6 +1338,10 @@
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-TW.webp" />
     <Content Include="www\build\styles\Images\left-side-banner.webp" />
     <Content Include="www\build\styles\Images\right-side-banner.webp" />
+    <Content Include="www\source\styles\fonts\nokora\Nokora-Bold.ttf" />
+    <Content Include="www\source\styles\fonts\nokora\Nokora-Regular.ttf" />
+    <Content Include="www\build\styles\fonts\nokora\Nokora-Bold.ttf" />
+    <Content Include="www\build\styles\fonts\nokora\Nokora-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

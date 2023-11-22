@@ -42,7 +42,14 @@
     }
     else
     {
-        <link href="@Url.RenderLink("~/www/build/styles/fonts/Montserrat/font.css")" rel="stylesheet" />
+        if (sessionService.CurrentLanguage == SystemLanguage.CambodianLanguageCode)
+        {
+            <link href="@Url.RenderLink("~/www/build/styles/fonts/nokora/font.css")" rel="stylesheet" />
+        }
+        else
+        {
+            <link href="@Url.RenderLink("~/www/build/styles/fonts/Montserrat/font.css")" rel="stylesheet" />
+        }
     }
     <link href="~/www/build/styles/fonts/myriadPro/font.css" rel="stylesheet" />
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
@@ -164,7 +171,7 @@
         <div class="footer-img">
             <div class="img-top">
                 <a class="item">
-                    <img width="350" src="~/www/build/styles/Images/footer/cr-nosponsor.@(sessionService.CurrentLanguage).png" alt="sponsors" />
+                    <img width="365" src="~/www/build/styles/Images/footer/cr-nosponsor.@(sessionService.CurrentLanguage).png?v=1" alt="sponsors" />
                 </a>
             </div>
             <div class="img-bottom">

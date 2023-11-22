@@ -51,6 +51,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string VietNamLanguageCode = _VietNam_LanguageCode;
 
+        public const string CambodianLanguageCode = _Cambodia_LanguageCode;
+
         public const string IndonesiaLanguageCode = _Indonesia_LanguageCode;
 
         public const string IndiaLanguageCode = _India_LanguageCode;
