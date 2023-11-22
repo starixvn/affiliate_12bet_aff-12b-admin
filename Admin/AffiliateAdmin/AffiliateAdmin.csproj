@@ -647,9 +647,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\deduction\__test__\PlatformFeeItem.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\deduction\__test__\PlatformFeeSetting.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\deduction\__test__\redux\PlatformFeeSetting.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\exchange\__test__\ExchangeRevenueShareSetting.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\exchange\__test__\redux\ExchangeRevenueShareSetting.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\exchange\__test__\SharePercentSettingItem.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\tiersetting\__test__\redux\TierSetting.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\tiersetting\__test__\TierSetting.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\tiersetting\__test__\TierSettingItem.test.js" />
@@ -1530,9 +1527,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate\email-history\components\DeleteEmail.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\common\payment-request-table.scss" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\exchange\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\exchange\SharePercentSettingItem.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate\commission-group\components\shared\exchange\ExchangeRevenueShareSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\exchange-rate\components\Filter.jsx" />

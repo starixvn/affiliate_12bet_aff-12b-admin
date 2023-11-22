@@ -134,9 +134,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     FdmSettingList = commGroup.FdmSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,
                     OperationalFee = commGroup.OperationalFee,
-                    BankingFee = commGroup.BankingFee,
-                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
-                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare
+                    BankingFee = commGroup.BankingFee
                 };
 
                 return new JsonNetResult
@@ -179,9 +177,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     FdmSettingList = commGroup.FdmSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,
                     OperationalFee = commGroup.OperationalFee,
-                    BankingFee = commGroup.BankingFee,
-                    ExchangeWinLossShare = commGroup.ExchangeWinLossShare,
-                    ExchangeCommissionShare = commGroup.ExchangeCommissionShare
+                    BankingFee = commGroup.BankingFee
                 };
 
                 return new JsonNetResult

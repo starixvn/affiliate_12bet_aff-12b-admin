@@ -49,8 +49,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
                     new DeductionSetting
                     {
                         GroupId = 101,
-                        DeductionId = 13,
-                        DeductionName = "ExchangeWinLossShare",
+                        DeductionId = 12,
+                        DeductionName = "BankingFee",
                         ProductIds = "19",
                         DeductedPercentage = 0.0m,
                         NextDeductedPercentage = 0.0m
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
                     {
                         GroupId = 101,
                         DeductionId = 11,
-                        DeductionName = "BankingFee",
+                        DeductionName = "OperationalFee",
                         ProductIds = "0",
                         DeductedPercentage = 0.07m,
                         NextDeductedPercentage = 0.05m

@@ -157,7 +157,7 @@ describe('commission group - GridData ', () => {
     });
 
     it('_renderGroupData - render correctly', () => {
-        const props = { ...defaultProps, isShowAffTab: false, gridData: [{ ...dataItem, ExchangeWinLossShare: { DeductedPercentage: 0.1 }, ExchangeCommissionShare: { DeductedPercentage: 0.2 } }] }
+        const props = { ...defaultProps, isShowAffTab: false, gridData: [{ ...dataItem }] }
         const componentInstance = new GridData(props);
 
         const renderGroupData = shallow(<div>{componentInstance._renderGroupData()}</div>);

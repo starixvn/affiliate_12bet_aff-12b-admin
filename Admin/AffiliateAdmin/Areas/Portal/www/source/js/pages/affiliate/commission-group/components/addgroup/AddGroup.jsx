@@ -7,7 +7,6 @@ import { insertCommissionGroup, getGroupSettingList, setSelectedGroup } from '..
 import { buildDefaultCommGroup, validateCommGroup } from '../../libs/utils';
 
 import DeductionSetting from '../shared/deduction';
-import ExchangeRevenueShareSetting from '../shared/exchange';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import FdmSetting from '../shared/fdmsetting';
@@ -83,7 +82,6 @@ export class AddGroup extends React.Component {
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
                 <CommGroupInfo />
-                <ExchangeRevenueShareSetting />
                 <DeductionSetting />
                 <QmTurnOverSetting />
                 <TierSetting />

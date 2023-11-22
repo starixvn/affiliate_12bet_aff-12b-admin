@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
             if (result.IsSuccessful)
             {
-                var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee, param.ExchangeWinLossShare, param.ExchangeCommissionShare });
+                var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
                 param.TierList = BuildTierSettingXml(param.TierSettingList);
                 param.FdmList = BuildFdmSettingXml(param.FdmSettingList);
                 param.DeductionList = BuildDeductionSettingXml(deductionSettingList, true);
@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
             if (result.IsSuccessful)
             {
-                var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee, param.ExchangeWinLossShare, param.ExchangeCommissionShare });
+                var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
                 param.TierList = BuildTierSettingXml(param.TierSettingList);
                 param.FdmList = BuildFdmSettingXml(param.FdmSettingList);
                 param.DeductionList = BuildDeductionSettingXml(deductionSettingList, false);
