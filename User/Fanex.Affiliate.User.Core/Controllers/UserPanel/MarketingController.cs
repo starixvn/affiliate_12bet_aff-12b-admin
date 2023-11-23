@@ -3,7 +3,6 @@
     using Constants;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using System.Web.Mvc;
 
@@ -11,10 +10,9 @@
     {
         public MarketingController(
             ISessionService sessionService,
-            IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemService,
             IMarketingService marketingService
-            ) : base(sessionService, appSetting, languageService, marketingService)
+            ) : base(sessionService, systemService, marketingService)
         {
         }
 
@@ -22,7 +20,16 @@
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetLinkTo(string targetCountry, string language)
         {
-            var landingPages = MarketingService.GetSpecialLandingPageList(SessionService.UserSession.GroupName, targetCountry, language, SessionService.IsInternal);
+            var landingPages = MarketingService.GetSpecialLandingPageList(targetCountry, SessionService.UserSession.GroupName, language, SessionService.IsInternal);
+
+            return Json(landingPages, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
+        public ActionResult GetAvailableDomains(string targetCountry)
+        {
+            var landingPages = MarketingService.GetDomainList(targetCountry, SessionService.IsInternal);
 
             return Json(landingPages, JsonRequestBehavior.AllowGet);
         }

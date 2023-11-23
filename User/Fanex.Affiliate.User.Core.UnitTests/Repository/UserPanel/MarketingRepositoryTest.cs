@@ -60,9 +60,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var key = uSpKey + dbMode;
             var repo = CreateRepo();
             var db = Builder.Build(uSpKey, dbMode);
-            db.Query<Domain>(Arg.Compat.Is<object>(o => CheckPropertyValue(o, "AffId", 1))).Returns(new List<Domain> { new Domain() });
+            db.Query<Domain>(Arg.Compat.Is<object>(o => CheckPropertyValue(o, "AffId", "123"))).Returns(new List<Domain> { new Domain() });
 
-            var result = repo.GetDomainList(1, isInternal);
+            var result = repo.GetDomainListByTargetCountry("123", isInternal);
 
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result);
@@ -93,14 +93,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [InlineData(false)]
         public void GetLandingPageList_WhenCall_QueryLandingPage(bool isInternal)
         {
-            const string SpKey = "Aff_Admin_LandingPage_Sel";
+            const string SpKey = "Aff_User_LandingPage_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
             var key = SpKey + dbMode;
             var repo = CreateRepo();
             var db = Builder.Build(SpKey, dbMode);
             db.Query<LandingPage>().Returns(new List<LandingPage> { new LandingPage() });
 
-            var result = repo.GetLandingPageList(isInternal);
+            var result = repo.GetLandingPageListByTargetCountry(string.Empty, isInternal);
 
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result);

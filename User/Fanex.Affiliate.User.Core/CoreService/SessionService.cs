@@ -95,7 +95,6 @@ namespace Fanex.Affiliate.User.Core.CoreService
                 PreferredLanguage = string.IsNullOrEmpty(authorizedUser.PreferredLanguage) ?
                                         SystemLanguage.DefaultLanguageCode :
                                         authorizedUser.PreferredLanguage,
-                TargetCountryCode = authorizedUser.TargetCountryCode,
                 OnUserId = authorizedUser.OnUserId,
                 AffType = authorizedUser.AffType,
                 GroupName = authorizedUser.GroupName,

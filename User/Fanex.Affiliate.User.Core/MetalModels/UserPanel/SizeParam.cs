@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
     public class SizeParam
     {
-        [SpParam(SqlParamName = "Category")]
+        [SpParam(SqlParamName = "TargetProductId")]
         public string TargetProduct { get; set; }
 
         [SpParam(Ignored = true)]

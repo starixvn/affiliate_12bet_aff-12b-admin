@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System.Collections.Generic;
@@ -10,20 +9,20 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         IEnumerable<TargetProduct> GetTargetProductList(bool isInternal);
 
-        IEnumerable<Language> GetLanguageList();
-
         IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal);
 
-        IEnumerable<Domain> GetDomainList(int affId, bool isInternal);
+        IEnumerable<Domain> GetDomainList(string targetCountry, bool isInternal);
 
         IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam);
 
         IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam);
 
-        IEnumerable<LandingPage> GetSpecialLandingPageList(string commGroupName, string targetCountry, string language, bool isInternal);
+        IEnumerable<LandingPage> GetSpecialLandingPageList(string targetCountry, string commGroupName, string language, bool isInternal);
 
-        IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal);
+        IEnumerable<LandingPage> GetLandingPageList(string targetCountry, string commGroupName, bool isInternal);
 
         ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param);
+
+        string GetTargetCountryCodeByAff(int affId);
     }
 }

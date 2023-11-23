@@ -6,6 +6,7 @@
 
 @{
     var hasAnyDomain = Model.DomainList != null && Model.DomainList.Any();
+    var hasAnyMemberSitePage = Model.MemberSitePageList != null && Model.MemberSitePageList.Any();
 }
 
 <div class="info-group link-group">
@@ -14,25 +15,22 @@
     </div>
 
     <div class="form-horizontal">
-        @RazorHelper.RenderDropdownForMarketing("TargetCountry", Lang.TargetCountry, Model.TargetCountryList)
+        @RazorHelper.RenderDropdownForMarketing("TargetCountry", Lang.TargetCountry, Model.TargetCountryList, false)
 
         @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, Model.LanguageList)
 
         @RazorHelper.RenderDropdownForMarketing("TargetProduct", Lang.TargetProduct, Model.TargetProductList)
 
-        @RazorHelper.RenderDropdownForAvailableDomain(Model.DomainList, hasAnyDomain)
+        @RazorHelper.RenderDropdownForMarketingHasNoInfo("Domain", Lang.AvailableDomains, Model.DomainList, hasAnyDomain)
 
-        @RazorHelper.RenderDropdownForMarketing("MemberSitePage", Lang.LinkTo, Model.MemberSitePageList, false)
+        @RazorHelper.RenderDropdownForMarketingHasNoInfo("MemberSitePage", Lang.LinkTo, Model.MemberSitePageList, hasAnyMemberSitePage)
 
         @RazorHelper.RenderDropdownForMarketing("Size", Lang.Size, Model.SizeList)
 
-        @if (hasAnyDomain)
-        {
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-lg-offset-2 col-sm-1">
-                    <button type="button" class="btn btn-submit" id="btnMarketingSearch">@Lang.Search</button>
-                </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-lg-offset-2 col-sm-1">
+                <button type="button" class="btn btn-submit" id="btnMarketingSubmit" disabled="@(!(hasAnyDomain && hasAnyMemberSitePage))">@Lang.Search</button>
             </div>
-        }
+        </div>
     </div>
 </div>

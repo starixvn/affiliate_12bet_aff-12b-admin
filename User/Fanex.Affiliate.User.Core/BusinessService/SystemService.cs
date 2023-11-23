@@ -17,7 +17,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly ISystemRepository _systemRepository;
         private readonly IMemoryCacheService _cacheService;
 
-        public SystemService(ISystemRepository systemRepository, ISessionService sessionService, IMemoryCacheService cacheService)
+        public SystemService(
+            ISystemRepository systemRepository,
+            ISessionService sessionService,
+            IMemoryCacheService cacheService)
         {
             _systemRepository = systemRepository;
             _sessionService = sessionService;

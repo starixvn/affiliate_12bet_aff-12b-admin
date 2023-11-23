@@ -41,7 +41,7 @@
 
     <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_ClickStatisticsDetailBySite_view" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-
+    
     <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
     
@@ -113,7 +113,7 @@
     <Setting Key="Aff_Admin_AdminUser_Market_Sel" SpName="Aff_Admin_AdminUser_Market_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_User_Domain_Sel" SpName="Aff_User_Domain_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_User_LandingPage_Sel" SpName="Aff_User_LandingPage_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_User_BannerStatistics_Ins" SpName="Aff_User_BannerStatistics_Ins" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
 
@@ -121,7 +121,7 @@
     <Setting Key="Aff_Admin_AdminUser_Market_Sel_view" SpName="Aff_Admin_AdminUser_Market_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
     <Setting Key="Aff_Admin_MediaSize_Sel_view" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
     <Setting Key="Aff_User_Domain_Sel_view" SpName="Aff_User_Domain_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-    <Setting Key="Aff_Admin_LandingPage_Sel_view" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_User_LandingPage_Sel_view" SpName="Aff_User_LandingPage_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
     <Setting Key="Aff_Admin_Banner_Sel_view" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
   </Function>
 

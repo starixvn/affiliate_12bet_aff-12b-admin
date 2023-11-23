@@ -38,7 +38,7 @@
                 _me.getSize();
             });
 
-            $("#btnMarketingSearch").on("click", function () {
+            $("#btnMarketingSubmit").on("click", function () {
                 _me.submitSearch();
             });
 
@@ -131,6 +131,7 @@
 
         getSearchParam: function () {
             return {
+                selectedTargetCountry: $("#TargetCountry").val(),
                 targetProduct: $("#TargetProduct").val(),
                 language: $("#Language").val(),
                 size: $("#Size").val(),

@@ -13,17 +13,14 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
     public class BaseMarketingController : BaseController
     {
         protected readonly IMarketingService MarketingService;
-        protected readonly IAppSetting AppSetting;
 
         public BaseMarketingController(
             ISessionService sessionService,
-            IAppSetting appSetting,
             ISystemService systemService,
             IMarketingService marketingService
             ) : base(sessionService, systemService)
         {
             MarketingService = marketingService;
-            AppSetting = appSetting;
         }
 
         protected LinkFormViewModel GetLinkFormViewModel()
@@ -33,14 +30,19 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
             var userSession = SessionService.UserSession;
             var isInternal = SessionService.IsInternal;
-            var targetLanguageCode = targetCountryList.FirstOrDefault(t => t.TargetCountryCode == userSession.TargetCountryCode)?.DefaultLanguageCode ?? userSession.PreferredLanguage;
+            var targetCountryCode = MarketingService.GetTargetCountryCodeByAff(userSession.AffId);
+            var targetLanguageCode = targetCountryList.FirstOrDefault(t => t.TargetCountryCode == targetCountryCode)?.DefaultLanguageCode ?? SystemLanguage.DefaultLanguageCode;
+            var domainList = MarketingService.GetDomainList(targetCountryCode, isInternal);
 
             var viewModel = new LinkFormViewModel
             {
-                TargetCountryList = SystemHelper.GetTargetCountryList(targetCountryList, userSession.TargetCountryCode),
+                SelectedTargetCountry = targetCountryCode,
+                SelectedLanguage = targetLanguageCode,
+                SelectedDomain = domainList.FirstOrDefault(),
+                TargetCountryList = SystemHelper.GetTargetCountryList(targetCountryList, targetCountryCode),
                 LanguageList = SystemHelper.GetTargetLanguageList(targetLanguageList, targetLanguageCode),
-                DomainList = MarketingService.GetDomainList(userSession.AffId, isInternal),
-                MemberSitePageList = MarketingService.GetSpecialLandingPageList(userSession.GroupName, userSession.TargetCountryCode, targetLanguageCode, isInternal)
+                DomainList = domainList.Select(i => new SelectListItem { Value = i.DomainId.ToString(), Text = i.DomainName }),
+                MemberSitePageList = MarketingService.GetSpecialLandingPageList(targetCountryCode, userSession.GroupName, targetLanguageCode, isInternal)
                 .Select(i => new SelectListItem { Value = i.PageCode, Text = i.PageName })
             };
 

@@ -23,12 +23,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         private readonly IAppSetting AppSetting;
         private readonly IMemoryCacheService CacheService;
         private readonly ISystemService LanguageService;
+        private readonly IAccountRepository AccountRepository;
 
         public MarketingServiceTest()
         {
             Repo = Substitute.For<IMarketingRepository>();
             AppSetting = Substitute.For<IAppSetting>();
             CacheService = Substitute.For<IMemoryCacheService>();
+            AccountRepository = Substitute.For<IAccountRepository>();
             LanguageService = NSubtituteMockingHelper.FakeLanguageService();
         }
 
@@ -58,16 +60,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetGetLanguageList_WhenCall_CallLanguageService()
-        {
-            var service = CreateService();
-
-            service.GetLanguageList();
-
-            LanguageService.Received().GetSystemLanguages();
-        }
-
-        [Fact]
         public void GetSizeList_WhenCall_RepoCallGetSize()
         {
             var service = CreateService();
@@ -88,11 +80,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).ReturnsNull();
-            Repo.GetDomainList(0, false).ReturnsForAnyArgs(Constant.DomainList);
+            Repo.GetDomainListByTargetCountry(Arg.Any<string>(), false).ReturnsForAnyArgs(Constant.DomainList);
 
-            var result = service.GetDomainList(0, false);
+            var result = service.GetDomainList(string.Empty, false);
 
-            Repo.Received().GetDomainList(0, false);
+            Repo.Received().GetDomainListByTargetCountry(string.Empty, false);
             CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
             Assert.NotEmpty(result);
         }
@@ -102,11 +94,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).ReturnsNull();
-            Repo.GetDomainList(0, false).ReturnsForAnyArgs(new List<Domain>());
+            Repo.GetDomainListByTargetCountry(string.Empty, false).ReturnsForAnyArgs(new List<Domain>());
 
-            var result = service.GetDomainList(0, false);
+            var result = service.GetDomainList(string.Empty, false);
 
-            Repo.Received().GetDomainList(0, false);
+            Repo.Received().GetDomainListByTargetCountry(string.Empty, false);
             CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
             Assert.Empty(result);
         }
@@ -117,9 +109,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreateService();
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).Returns(Constant.DomainList);
 
-            var result = service.GetDomainList(0, false);
+            var result = service.GetDomainList(string.Empty, false);
 
-            Repo.DidNotReceive().GetDomainList(0, false);
+            Repo.DidNotReceive().GetDomainListByTargetCountry(string.Empty, false);
             CacheService.DidNotReceive().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
             Assert.NotEmpty(result);
         }
@@ -187,9 +179,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var servcice = CreateService();
 
-            servcice.GetLandingPageList(Constant.GroupName, false);
+            servcice.GetLandingPageList(string.Empty, Constant.GroupName, false);
 
-            Repo.Received().GetLandingPageList(false);
+            Repo.Received().GetLandingPageListByTargetCountry(string.Empty, false);
         }
 
         [Fact]
@@ -286,6 +278,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         private MarketingService CreateService()
-            => new MarketingService(Repo, CacheService, LanguageService, AppSetting);
+            => new MarketingService(Repo, CacheService, LanguageService, AppSetting, AccountRepository);
     }
 }

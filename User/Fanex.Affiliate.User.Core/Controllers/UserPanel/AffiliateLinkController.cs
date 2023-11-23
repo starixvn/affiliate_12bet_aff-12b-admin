@@ -15,16 +15,18 @@
 
     public sealed class AffiliateLinkController : BaseMarketingController
     {
+        private readonly IAppSetting _appSetting;
         private readonly IQrCodeGeneratorService _qrCodeGeneratorService;
 
         public AffiliateLinkController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemService,
             IMarketingService marketingService,
             IQrCodeGeneratorService QrCodeGeneratorService
-            ) : base(sessionService, appSetting, languageService, marketingService)
+            ) : base(sessionService, systemService, marketingService)
         {
+            _appSetting = appSetting;
             _qrCodeGeneratorService = QrCodeGeneratorService;
         }
 
@@ -32,16 +34,15 @@
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult Index()
         {
-            var userSession = SessionService.UserSession;
             var linkForm = GetLinkFormViewModel();
-            var languageList = MarketingService.GetLanguageList();
+            var languageList = SystemService.GetSystemTargetLanguages();
 
-            var selectedLanguage = userSession.PreferredLanguage;
-            var selectedDomain = linkForm.DomainList.FirstOrDefault();
+            var selectedLanguage = linkForm.SelectedLanguage;
+            var selectedDomain = linkForm.SelectedDomain;
             var selectedPage = linkForm.MemberSitePageList.FirstOrDefault()?.Value ?? string.Empty;
-            var selectedLanguageList = SystemHelper.GetLanguageList(languageList, SessionService.UserSession.PreferredLanguage);
+            var selectedLanguageList = SystemHelper.GetTargetLanguageList(languageList, selectedLanguage);
 
-            var linkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, selectedLanguageList);
+            var linkList = GetTextLinkList(linkForm.SelectedTargetCountry, selectedLanguage, selectedPage, selectedDomain, selectedLanguageList);
             var qrCodes = GetQrCodes(linkList);
 
             var viewModel = new AffiliateLinkViewModel
@@ -55,22 +56,22 @@
 
         [HttpGet]
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
-        public ActionResult GenerateLink(string selectedLanguage, string selectedPage, int? selectedDomainId)
+        public ActionResult GenerateLink(string selectedTargetCountry, string selectedLanguage, string selectedPage, int? selectedDomainId)
         {
-            if (selectedDomainId == null)
+            if (selectedDomainId == null || string.IsNullOrEmpty(selectedPage))
             {
                 return View("~/Views/UserPanel/AccountOverview/Partial/_QrCodeLinkList.cshtml", new Dictionary<string, QrCodeLinkModel>());
             }
-            var userSession = SessionService.UserSession;
+
             var selectedDomain = MarketingService
-                .GetDomainList(userSession.AffId, SessionService.IsInternal)
+                .GetDomainList(selectedTargetCountry, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
 
             var languageList = string.IsNullOrEmpty(selectedLanguage)
-                ? SystemHelper.GetLanguageList(MarketingService.GetLanguageList(), userSession.PreferredLanguage)
+                ? SystemHelper.GetTargetLanguageList(SystemService.GetSystemTargetLanguages(), selectedLanguage)
                 : null;
 
-            var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
+            var textLinkList = GetTextLinkList(selectedTargetCountry, selectedLanguage, selectedPage, selectedDomain, languageList);
 
             var qrCodeParamsDic = GetQrCodes(textLinkList);
 
@@ -101,12 +102,12 @@
 
         private Image GetQrCodeIcon()
         {
-            var qrIconFileName = AppSetting.QrCodeIcon;
+            var qrIconFileName = _appSetting.QrCodeIcon;
             var path = HttpContext.Server.MapPath($"~/www/build/styles/Images/{qrIconFileName}");
             return _qrCodeGeneratorService.GetImage(path);
         }
 
-        private IDictionary<string, string> GetTextLinkList(string selectedLanguage, string selectedPage,
+        private IDictionary<string, string> GetTextLinkList(string selectedTargetCountry, string selectedLanguage, string selectedPage,
             Domain selectedDomain, IEnumerable<SelectListItem> languageList)
         {
             if (selectedDomain == null)
@@ -119,8 +120,9 @@
             var linkGenerationParam = new LinkGenerationParam
             {
                 AffId = userSession.AffId,
-                TextLinkTemplate = AppSetting.TextLinkTemplate,
+                TextLinkTemplate = _appSetting.TextLinkTemplate,
                 PreferredLanguage = userSession.PreferredLanguage,
+                SelectedTargetCountry = selectedTargetCountry,
                 SelectedLanguage = selectedLanguage,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,

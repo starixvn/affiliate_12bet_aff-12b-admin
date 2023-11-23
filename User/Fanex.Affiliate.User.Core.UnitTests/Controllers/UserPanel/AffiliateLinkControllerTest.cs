@@ -64,7 +64,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 var marketingService = Substitute.For<IMarketingService>();
 
                 marketingService.GetTargetProductList(Arg.Compat.Any<bool>()).Returns(Constant.TargetProductList);
-                marketingService.GetLanguageList().Returns(Constant.LanguageList);
                 marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
 
                 _qrCodeService.GetImage(Arg.Compat.Any<string>()).Returns(image);
@@ -81,10 +80,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         }
 
         [Theory]
-        [InlineData(default(string), 123)]
-        [InlineData("en-US", 123)]
-        [InlineData("", null)]
-        public void GenerateLink_WhenCall_ReturnCorrectView(string selectedLanguage, int? selectedDomainId)
+        [InlineData(default(string), default(string), 123)]
+        [InlineData("EN", "en-US", 123)]
+        [InlineData("", "", null)]
+        public void GenerateLink_WhenCall_ReturnCorrectView(string selectedCountry, string selectedLanguage, int? selectedDomainId)
         {
             using (var image = Image)
             {
@@ -93,7 +92,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                     .Returns(BASE64_IMAGE);
 
                 var controller = CreateAffiliateLinkController();
-                var result = controller.GenerateLink(selectedLanguage, DefaultValue.String, selectedDomainId) as ViewResult;
+                var result = controller.GenerateLink(selectedCountry, selectedLanguage, DefaultValue.String, selectedDomainId) as ViewResult;
 
                 Assert.Equal("~/Views/UserPanel/AccountOverview/Partial/_QrCodeLinkList.cshtml", result.ViewName);
             }

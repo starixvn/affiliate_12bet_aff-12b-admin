@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System;
@@ -75,6 +76,17 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             using (var db = _builder.Build(uSpKey, dbMode))
             {
                 return db.Query<Country>();
+            }
+        }
+
+        public IEnumerable<LandingPage> GetLandingPageList(bool isInternal)
+        {
+            const string SpKey = "Aff_User_LandingPage_Sel";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+
+            using (var db = _builder.Build(SpKey, dbMode))
+            {
+                return db.Query<LandingPage>(new { TargetCountryCode = string.Empty});
             }
         }
     }

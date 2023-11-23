@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -16,5 +17,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         IEnumerable<ReferrerStatistics> GetStatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam);
 
         IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam);
+
+        IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal);
     }
 }

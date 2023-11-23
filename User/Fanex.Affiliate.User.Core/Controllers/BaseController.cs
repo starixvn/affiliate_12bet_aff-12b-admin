@@ -12,7 +12,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
     {
         protected readonly ISystemService SystemService;
 
-        protected BaseController(ISessionService sessionService,
+        protected BaseController(
+            ISessionService sessionService,
             ISystemService systemService)
         {
             SessionService = sessionService;

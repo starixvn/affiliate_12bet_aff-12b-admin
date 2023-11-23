@@ -1,4 +1,6 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,16 @@ namespace Fanex.Affiliate.User.Core.Utilities
 {
     public static class StatisticsHelper
     {
+        public static IEnumerable<LandingPage> GetFilteredLandingPageList(IAppSetting appSetting, IEnumerable<LandingPage> landingPages, string commGroupName)
+        {
+            if (appSetting.MarketingForCommGroups.Any(c => string.Equals(c, commGroupName, StringComparison.OrdinalIgnoreCase)))
+            {
+                return landingPages;
+            }
+
+            return landingPages.Where(l => !appSetting.MarketingLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
+        }
+
         public static IEnumerable<SelectListItem> GetCountryList(IEnumerable<Country> countryList)
         {
             var dataList = countryList.Select(c =>

@@ -55,7 +55,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var marketingService = Substitute.For<IMarketingService>();
 
             marketingService.GetTargetProductList(Arg.Compat.Any<bool>()).Returns(Constant.TargetProductList);
-            marketingService.GetLanguageList().Returns(Constant.LanguageList);
             marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
             var controller = new MediaGalleryController(SessionService, AppSetting, LanguageService, marketingService);
 
@@ -98,7 +97,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         [Fact]
         public void GetBanner_WhenCallWithNoSelectedDomain_ReturnEmptyModelItem()
         {
-            MarketingService.GetDomainList(Arg.Compat.Any<int>(), Arg.Compat.Any<bool>()).Returns(new List<Domain>());
+            MarketingService.GetDomainList(Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(new List<Domain>());
             var controller = new MediaGalleryController(SessionService, AppSetting, LanguageService, MarketingService);
             var param = new MarketingBannerParam();
 

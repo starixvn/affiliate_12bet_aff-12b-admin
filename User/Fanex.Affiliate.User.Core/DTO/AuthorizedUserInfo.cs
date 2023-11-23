@@ -12,8 +12,6 @@
 
         public string PreferredLanguage { get; set; }
 
-        public string TargetCountryCode { get; set; }
-
         public bool IsClosed { get; set; }
 
         public string Status { get; set; }

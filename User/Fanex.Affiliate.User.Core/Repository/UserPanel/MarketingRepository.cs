@@ -9,8 +9,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         private readonly IObjectDBBuilder _builder;
 
-        private const int MediaGallery = 2;
-
         public MarketingRepository(IObjectDBBuilder builder)
         {
             _builder = builder;
@@ -18,12 +16,12 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public IEnumerable<TargetProduct> GetTargetProductList(bool isInternal)
         {
-            const string uSpKey = "Aff_Admin_MediaCategory_Sel";
+            const string uSpKey = "Aff_TargetProduct_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
             using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return db.Query<TargetProduct>(new { TypeId = MediaGallery });
+                return db.Query<TargetProduct>();
             }
         }
 
@@ -38,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public IEnumerable<Domain> GetDomainList(int affId, bool isInternal)
+        public IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountryCode, bool isInternal)
         {
             const string uSpKey = "Aff_User_Domain_Sel";
 
@@ -46,7 +44,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return db.Query<Domain>(new { AffId = affId });
+                return db.Query<Domain>(new { targetCountryCode });
             }
         }
 
@@ -62,14 +60,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList(bool isInternal)
+        public IEnumerable<LandingPage> GetLandingPageListByTargetCountry(string targetCountryCode, bool isInternal)
         {
-            const string SpKey = "Aff_Admin_LandingPage_Sel";
+            const string SpKey = "Aff_User_LandingPage_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
             using (var db = _builder.Build(SpKey, dbMode))
             {
-                return db.Query<LandingPage>();
+                return db.Query<LandingPage>(new { targetCountryCode });
             }
         }
 

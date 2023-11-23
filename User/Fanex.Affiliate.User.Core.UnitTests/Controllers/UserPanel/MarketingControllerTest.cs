@@ -39,6 +39,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         }
 
         private MarketingController CreateMarketingController()
-            => new MarketingController(SessionService, AppSetting, LanguageService, MarketingService);
+            => new MarketingController(SessionService, LanguageService, MarketingService);
     }
 }

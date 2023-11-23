@@ -4,6 +4,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
     public class MarketingBannerParam : LinkBaseParam
     {
+        [SpParam(SqlParamName = "TargetProductId")]
         public string TargetProduct { get; set; }
 
         [SpParam(Ignored = true)]

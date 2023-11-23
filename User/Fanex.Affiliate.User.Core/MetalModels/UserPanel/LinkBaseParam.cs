@@ -12,6 +12,9 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public string TextLinkTemplate { get; set; }
 
         [SpParam(Ignored = true)]
+        public string SelectedTargetCountry { get; set; }
+
+        [SpParam(Ignored = true)]
         public string SelectedPage { get; set; }
 
         [SpParam(Ignored = true)]

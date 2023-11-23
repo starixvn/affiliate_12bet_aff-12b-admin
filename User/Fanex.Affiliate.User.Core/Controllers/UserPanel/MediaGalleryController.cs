@@ -17,13 +17,16 @@
 
     public sealed class MediaGalleryController : BaseMarketingController
     {
+        private readonly IAppSetting _appSetting;
+
         public MediaGalleryController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemService,
             IMarketingService marketingService
-            ) : base(sessionService, appSetting, languageService, marketingService)
+            ) : base(sessionService, systemService, marketingService)
         {
+            _appSetting = appSetting;
         }
 
         [HttpGet]
@@ -33,20 +36,22 @@
             var userSession = SessionService.UserSession;
             var searchForm = GetSearchFormViewModel(userSession);
 
-            var selectedDomain = searchForm.DomainList.FirstOrDefault();
+            var selectedDomain = searchForm.SelectedDomain;
             var selectedPage = searchForm.MemberSitePageList.FirstOrDefault()?.Value ?? string.Empty;
-            var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
+            var selectedTargetProduct = searchForm.TargetProductList.FirstOrDefault()?.Value ?? string.Empty;
 
             var bannerParam = new MarketingBannerParam
             {
                 AffId = userSession.AffId,
-                Language = userSession.PreferredLanguage,
+                TargetProduct = selectedTargetProduct,
+                SelectedTargetCountry = searchForm.SelectedTargetCountry,
+                Language = searchForm.SelectedLanguage,
                 AffType = userSession.AffType,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
-                TextLinkTemplate = AppSetting.TextLinkTemplate,
-                BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain
-            };
+                TextLinkTemplate = _appSetting.TextLinkTemplate,
+                BannerDomain = GetBannerDomain()
+        };
 
             var viewModel = new MediaGalleryViewModel
             {
@@ -65,16 +70,14 @@
         {
             var userSession = SessionService.UserSession;
             var selectedDomain = MarketingService
-                .GetDomainList(userSession.AffId, SessionService.IsInternal)
+                .GetDomainList(bannerParam.SelectedTargetCountry, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
-
-            var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
             bannerParam.AffId = userSession.AffId;
             bannerParam.AffType = userSession.AffType;
             bannerParam.SelectedDomain = selectedDomain;
-            bannerParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
-            bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain;
+            bannerParam.TextLinkTemplate = _appSetting.TextLinkTemplate;
+            bannerParam.BannerDomain = GetBannerDomain();
 
             var bannerList = GetBannerList(bannerParam);
             ViewBag.TotalItem = bannerParam.Nrows;
@@ -110,7 +113,7 @@
 
         private IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam)
         {
-            if (bannerParam.SelectedDomain == null)
+            if (bannerParam.SelectedDomain == null || string.IsNullOrEmpty(bannerParam.SelectedPage))
             {
                 return new List<Banner>();
             }
@@ -120,20 +123,30 @@
 
         private SearchFormViewModel GetSearchFormViewModel(UserSession userSession)
         {
-            var targetProductList = MarketingService.GetTargetProductList(SessionService.IsInternal);
-            var sizeList = MarketingService.GetSizeList(new SizeParam { AffType = userSession.AffType, Language = userSession.PreferredLanguage }, SessionService.IsInternal);
-
             var linkModel = GetLinkFormViewModel();
+            var targetProductList = MarketingService.GetTargetProductList(SessionService.IsInternal);
+            var sizeList = MarketingService.GetSizeList(new SizeParam { AffType = userSession.AffType, Language = linkModel.SelectedLanguage }, SessionService.IsInternal);
 
             return new SearchFormViewModel
             {
+                SelectedTargetCountry = linkModel.SelectedTargetCountry,
+                SelectedLanguage = linkModel.SelectedLanguage,
+                SelectedDomain = linkModel.SelectedDomain,
                 TargetCountryList = linkModel.TargetCountryList,
                 LanguageList = linkModel.LanguageList,
                 DomainList = linkModel.DomainList,
-                MemberSitePageList  = linkModel.MemberSitePageList,
-                TargetProductList = targetProductList.Select(i => new SelectListItem { Value = i.ProductId, Text = Lang.ResourceManager.GetString(i.ProductName ?? string.Empty) ?? i.ProductName }),
+                MemberSitePageList = linkModel.MemberSitePageList,
+                TargetProductList = targetProductList.Select(i =>
+                    new SelectListItem { Value = i.TargetProductId.ToString(), Text = Lang.ResourceManager.GetString(i.TargetProductName) ?? i.TargetProductName }),
                 SizeList = sizeList.Select(i => new SelectListItem { Value = i.Size, Text = i.Size })
             };
+        }
+
+        private string GetBannerDomain()
+        {
+            var bannerSettingKey = SessionService.UserSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
+
+            return _appSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? _appSetting.BannerDomain;
         }
     }
 }

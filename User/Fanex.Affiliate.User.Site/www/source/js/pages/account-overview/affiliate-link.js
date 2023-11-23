@@ -6,7 +6,7 @@
         },
 
         initEvent: function () {
-            $("#btnGenerateLink").on("click", function () {
+            $("#btnMarketingSubmit").on("click", function () {
                 _me.generateTextLink();
             });
         },
@@ -37,6 +37,7 @@
 
         getLinkGenerationParam: function () {
             return {
+                selectedTargetCountry: $("#TargetCountry").val(),
                 selectedDomainId: $("#Domain").val(),
                 selectedLanguage: $("#Language").val(),
                 selectedPage: $("#MemberSitePage").val()

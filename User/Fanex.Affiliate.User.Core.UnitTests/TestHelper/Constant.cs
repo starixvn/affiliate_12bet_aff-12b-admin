@@ -42,10 +42,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 
         public static IEnumerable<TargetProduct> TargetProductList = new List<TargetProduct>
         {
-            new TargetProduct { ProductId = "test", ProductName= "testSub1" },
-            new TargetProduct { ProductId = "test1", ProductName = "testSub2" },
-            new TargetProduct { ProductId = "Casino", ProductName = "CasinoClubs" },
-            new TargetProduct { ProductId = "test2" }
+            new TargetProduct { TargetProductId = 1, TargetProductName= "testSub1" },
+            new TargetProduct { TargetProductId = 2, TargetProductName = "testSub2" },
+            new TargetProduct { TargetProductId = 3, TargetProductName = "CasinoClubs" },
+            new TargetProduct { TargetProductId = 4 }
         };
 
         public static IEnumerable<Domain> DomainList = new List<Domain>
