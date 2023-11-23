@@ -6,3 +6,14 @@
 @import "new-view-log";
 @import "processing-request";
 @import "feedback-report";
+@import "../../components/select";
+
+.select {
+    &-options-container {
+        max-width: none !important;
+    }
+}
+
+#select-log-action {
+    width: 320px;
+}

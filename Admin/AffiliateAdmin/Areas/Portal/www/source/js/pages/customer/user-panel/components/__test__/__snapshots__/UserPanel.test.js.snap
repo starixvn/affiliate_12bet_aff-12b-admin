@@ -80,10 +80,16 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "note",
           "name": "Note",
           "parent": null,
-          "renderClaim": Claim {
-            "type": "[Note]",
-            "value": undefined,
-          },
+          "renderClaim": Array [
+            Claim {
+              "type": "[Note]",
+              "value": undefined,
+            },
+            Claim {
+              "type": "[MarketingTeamNote]",
+              "value": undefined,
+            },
+          ],
         },
         Object {
           "component": Object {
@@ -234,10 +240,16 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "note",
           "name": "Note",
           "parent": null,
-          "renderClaim": Claim {
-            "type": "[Note]",
-            "value": undefined,
-          },
+          "renderClaim": Array [
+            Claim {
+              "type": "[Note]",
+              "value": undefined,
+            },
+            Claim {
+              "type": "[MarketingTeamNote]",
+              "value": undefined,
+            },
+          ],
         },
       ]
     }

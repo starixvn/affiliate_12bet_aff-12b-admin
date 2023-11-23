@@ -23,13 +23,16 @@ const allReducers = combineReducers({
 });
 
 export const rootReducer = (state, action) => {
-    const newState = { ...state };
     if (action.type === RESET_USER_PANEL) {
+        const newState = { ...state };
+
         const userPanelName = action.data;
         newState[userPanelName] = {};
+
+        return allReducers(newState, action);
     }
 
-    return allReducers(newState, action);
+    return allReducers(state, action);
 };
 
 export default rootReducer;

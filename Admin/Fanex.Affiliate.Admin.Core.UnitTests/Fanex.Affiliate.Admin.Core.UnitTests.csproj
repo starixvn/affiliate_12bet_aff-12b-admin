@@ -179,6 +179,7 @@
     <Compile Include="Controllers\Affiliate\MassAdjustmentControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\NewViewLogControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\ProcessingRequestControllerTest.cs" />
+    <Compile Include="Controllers\Customer\MarketingNoteControllerTest.cs" />
     <Compile Include="Controllers\Domain\MemberDomainsControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\OfferAffControllerTest.cs" />
     <Compile Include="Controllers\MediaGallery\OfferPageControllerTest.cs" />
@@ -221,7 +222,7 @@
     <Compile Include="Controllers\Customer\CustomerMemberControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerStatisticsControllerTest.cs" />
     <Compile Include="Controllers\Customer\LandingPageStatisticsControllerTest.cs" />
-    <Compile Include="Controllers\Customer\NoteControllerTest.cs" />
+    <Compile Include="Controllers\Customer\AffNoteControllerTest.cs" />
     <Compile Include="Controllers\Customer\PlayerDetailControllerTest.cs" />
     <Compile Include="Controllers\Customer\ReferrersControllerTest.cs" />
     <Compile Include="Controllers\Customer\StatementHistoryControllerTest.cs" />
@@ -271,7 +272,7 @@
     <Compile Include="Services\Customer\AdjustmentServiceTest.cs" />
     <Compile Include="Services\Customer\CustomerLeftPanelServiceTest.cs" />
     <Compile Include="Services\Customer\CustomerStatisticsServiceTest.cs" />
-    <Compile Include="Services\Customer\NoteServiceTest.cs" />
+    <Compile Include="Services\Customer\NoteServiceBaseTest.cs" />
     <Compile Include="Services\Customer\PlayerDetailServiceTest.cs" />
     <Compile Include="Services\Customer\StatementHistoryServiceTest.cs" />
     <Compile Include="Services\Customer\UserAccountServiceTest.cs" />

@@ -21,19 +21,20 @@ export const claimResource = {
     MemberName: '[AffMemberName]',
     TurnOver: '[AffTurnover]',
     Note: '[Note]',
+    MarketingTeamNote: '[MarketingTeamNote]',
     EditAffiliate: '[AffCustomerEdit]',
     SecurityQA: '[SecurityQA]',
     AffEmail: '[AffEmail]',
-    AffPhone : '[AffPhone]',
-    AffPaymentInfo : '[AffPaymentInfo]',
-    AffWebUrl : '[AffWebURL]',
+    AffPhone: '[AffPhone]',
+    AffPaymentInfo: '[AffPaymentInfo]',
+    AffWebUrl: '[AffWebURL]',
     AffAdjustment: '[AffAdjustment]',
     AffAccountStatus: '[AffAccountStatus]',
     AffPlayerDetail: '[AffPlayerDetail]',
     AffPassword: '[AffPassword]',
     LanguageAmendment: '[AffMarket]',
     AffPersonalInfo: "[AffPersonalInfo]",
-    ProcRequest:"[ProcessingRequest]",
+    ProcRequest: "[ProcessingRequest]",
     ProcRequestMarketingRole: '[ProcessingRequestMarketingRole]',
     ProcRequestManagementRole: "[ProcessingRequestManagementRole]",
 
@@ -101,14 +102,14 @@ export const claimTypes = {
 }
 
 export class Claim {
-    constructor(type, value){
+    constructor(type, value) {
         this.type = type;
         this.value = value;
     }
 }
 
-export default class ClaimPrincipal{
-    constructor(claims){
+export default class ClaimPrincipal {
+    constructor(claims) {
         this.claims = claims;
     }
 
@@ -118,31 +119,25 @@ export default class ClaimPrincipal{
     }
 
     hasReadClaim(claimType) {
-        if (typeof claimType === 'string')
-        {
+        if (typeof claimType === 'string') {
             return this.claims[claimType] !== undefined
         }
         return false;
     }
 
-    hasWriteClaim(claimType){
-        if( typeof claimType === 'string' && this.claims[claimType] !== undefined){
+    hasWriteClaim(claimType) {
+        if (typeof claimType === 'string' && this.claims[claimType] !== undefined) {
             const found = this.claims[claimType].find(c => c === claimResource.WritePermission);
             return !!found;
         }
         return false;
     }
 
-    hasClaim(claim){
-        if (typeof claim === 'string')
-        {
+    hasClaim(claim) {
+        if (typeof claim === 'string') {
             return this.hasReadClaim(claim);
         }
         return this.claims[claim.type] !== undefined
             && (claim.value === undefined || !!this.claims[claim.type].find(value => value === claim.value))
     }
-
-    
 }
-
-

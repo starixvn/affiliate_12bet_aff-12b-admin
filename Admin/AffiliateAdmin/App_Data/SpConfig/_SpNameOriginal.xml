@@ -60,6 +60,9 @@
     <Setting Key="Aff_Admin_AffiliateNote_Detail_Sel" SpName="Aff_Admin_AffiliateNote_Detail_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateNote_Ins" SpName="Aff_Admin_AffiliateNote_Ins" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliateNote_Upd" SpName="Aff_Admin_AffiliateNote_Upd" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
+    <Setting Key="Aff_Admin_AffiliateMarketingNote_Sel" SpName="Aff_Admin_AffiliateMarketingNote_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
+    <Setting Key="Aff_Admin_AffiliateMarketingNote_Ins" SpName="Aff_Admin_AffiliateMarketingNote_Ins" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
+    <Setting Key="Aff_Admin_AffiliateMarketingNote_Upd" SpName="Aff_Admin_AffiliateMarketingNote_Upd" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
