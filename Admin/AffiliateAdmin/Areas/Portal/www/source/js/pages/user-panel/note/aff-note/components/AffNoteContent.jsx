@@ -1,31 +1,31 @@
 ﻿import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { setShowPopup, setNoteInfo, getNoteList, getNoteContentById, toggleLoaderUserPanel } from '../actions';
+import { setShowPopup, setAffNoteInfo, getAffNoteList, getAffNoteContentById, toggleLoaderUserPanel } from '../actions';
 import { claimResource } from '../../../../../modules/claim';
 import Content from '../../common/components/Content';
 
 const mapStateToProps = ({ affCommonInfo, note, claimsPrincipal }) => {
-    const { pagingOption, noteList, noteInfo } = note.affNote;
+    const { pagingOption, affNoteList, affNoteInfo } = note.affNote;
     const { affId } = affCommonInfo;
     const isEditNote = claimsPrincipal.hasWriteClaim(claimResource.Note);
 
     return Object.assign({}, {
         affId,
         pagingOption,
-        noteList,
-        noteInfo,
-        isEditNote
+        isEditNote,
+        noteList: affNoteList,
+        noteInfo: affNoteInfo,
     });
 }
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         setShowPopup,
-        setNoteInfo,
         toggleLoaderUserPanel,
-        getNoteList,
-        getNoteContentById
+        setNoteInfo: setAffNoteInfo,
+        getNoteList: getAffNoteList,
+        getNoteContentById: getAffNoteContentById
     }, dispatch);
 }
 

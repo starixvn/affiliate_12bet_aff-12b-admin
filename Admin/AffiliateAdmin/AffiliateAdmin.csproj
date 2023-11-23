@@ -1124,7 +1124,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\__test__\redux\ModifyNote.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\__test__\redux\ModifyAffNote.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\common\components\__test__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\common\components\__test__\InsertUpdateForm.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\index.jsx" />
@@ -1137,7 +1137,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\components\MarketingNoteContent.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\components\ModifyMarketingNote.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\components\__test__\AppContainer.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\components\__test__\redux\Container.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\components\__test__\redux\MarketingNoteContent.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\components\__test__\redux\ModifyMarketingNote.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\reducers\index.js" />
@@ -1147,7 +1146,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\common\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\common\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\__test__\AppContainer.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\__test__\redux\NoteContent.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\__test__\redux\AffNoteContent.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\common\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\reducers\__test__\index.test.js" />
@@ -1449,8 +1448,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Detail.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\NoteContent.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\ModifyNote.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\AffNoteContent.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\ModifyAffNote.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\components\Detail.jsx" />
@@ -1586,7 +1585,6 @@
     <Content Include="Areas\Portal\www\source\style\components\_autocomplete.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\select.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\user-panel\statement-history.scss" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\aff-note\components\__test__\redux\Container.redux.test.js" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

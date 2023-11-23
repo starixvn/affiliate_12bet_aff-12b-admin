@@ -74,6 +74,8 @@ describe('marketing note actions', () => {
 
         const expectedAction = [
             { type: 'TOGGLE_LOADER_USER_PANEL', data: true },
+            { type: types.SET_MARKETING_NOTE_LIST, data: [] },
+            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 0 } },
             { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
         ];
         const param = {

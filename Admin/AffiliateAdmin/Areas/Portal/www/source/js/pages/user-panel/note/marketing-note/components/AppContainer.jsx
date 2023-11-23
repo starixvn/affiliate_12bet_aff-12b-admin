@@ -1,10 +1,9 @@
 ﻿import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
 
 import MarketingNoteContent from './MarketingNoteContent';
 import ModifyMarketingNote from './ModifyMarketingNote';
 
-export const AppContainer = (props) => {
+export const AppContainer = () => {
     return (
         <Fragment>
             <MarketingNoteContent />
@@ -13,4 +12,4 @@ export const AppContainer = (props) => {
     );
 }
 
-export default connect(() => ({}), () => ({}))(React.memo(AppContainer));
+export default React.memo(AppContainer);

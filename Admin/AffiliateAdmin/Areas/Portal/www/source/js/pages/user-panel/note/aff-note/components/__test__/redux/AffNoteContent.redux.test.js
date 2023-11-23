@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import NoteContent from '../../NoteContent';
+import AffNoteContent from '../../AffNoteContent';
 import Content from '../../../../common/components/Content';
 
 jest.mock('../../../../common/components/Content', () => 'mocked-Content');
@@ -16,22 +16,24 @@ const initialState = {
         affId: 1
     },
     note: {
-        pagingOption: {
-            pageIndex: 1,
-            pageSize: 10
-        },
-        noteList: [],
-        noteInfo: {}
+        affNote: {
+            pagingOption: {
+                pageIndex: 1,
+                pageSize: 10
+            },
+            affNoteList: [],
+            affNoteInfo: {}
+        }
     },
     claimsPrincipal: {
         hasWriteClaim: () => true
     }
 };
 
-describe('aff-note - NoteContent - connect', () => {
+describe('aff-note - AffNoteContent - connect', () => {
     it('renders without crashing', () => {
         const store = mockStore(initialState);
-        const wrapper = shallow(<NoteContent store={store} />);
+        const wrapper = shallow(<AffNoteContent store={store} />);
         expect(wrapper).toMatchSnapshot();
     });
 
@@ -40,18 +42,18 @@ describe('aff-note - NoteContent - connect', () => {
 
         const wrapper = mount(
             <Provider store={store}>
-                <NoteContent />
+                <AffNoteContent />
             </Provider>
         );
 
-        const container = wrapper.find(NoteContent);
+        const container = wrapper.find(AffNoteContent);
         const content = container.find(Content);
 
         expect(content.exists()).toBe(true);
         expect(content.props().affId).toBe(1);
-        expect(content.props().pagingOption).toBe(initialState.note.pagingOption);
-        expect(content.props().noteList).toBe(initialState.note.noteList);
-        expect(content.props().noteInfo).toBe(initialState.note.noteInfo);
+        expect(content.props().pagingOption).toBe(initialState.note.affNote.pagingOption);
+        expect(content.props().noteList).toBe(initialState.note.affNote.affNoteList);
+        expect(content.props().noteInfo).toBe(initialState.note.affNote.affNoteInfo);
         expect(content.props().isEditNote).toBe(true);
     });
 });

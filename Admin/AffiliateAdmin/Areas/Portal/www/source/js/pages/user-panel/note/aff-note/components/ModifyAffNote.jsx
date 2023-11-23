@@ -1,27 +1,27 @@
 ﻿import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { setShowPopup, getNoteList, insertNote, updateNote } from '../actions';
+import { setShowPopup, getAffNoteList, insertAffNote, updateAffNote } from '../actions';
 import InsertUpdateForm from '../../common/components/InsertUpdateForm';
 
 const mapStateToProps = ({ affCommonInfo, note }) => {
-    const { pagingOption, noteInfo, isShowPopup } = note.affNote;
+    const { pagingOption, affNoteInfo, isShowPopup } = note.affNote;
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {
         affId,
         isShowPopup,
         pagingOption,
-        noteInfo
+        noteInfo: affNoteInfo
     });
 }
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         setShowPopup,
-        getNoteList,
-        insertNote,
-        updateNote
+        getNoteList: getAffNoteList,
+        insertNote: insertAffNote,
+        updateNote: updateAffNote
     }, dispatch);
 }
 

@@ -15,13 +15,15 @@ const initialState = {
     affCommonInfo: {
         affId: 1
     },
-    marketingNote: {
-        pagingOption: {
-            pageIndex: 1,
-            pageSize: 10
-        },
-        marketingNoteInfo: {},
-        isShowPopup: true
+    note: {
+        marketingNote: {
+            pagingOption: {
+                pageIndex: 1,
+                pageSize: 10
+            },
+            marketingNoteInfo: {},
+            isShowPopup: true
+        }
     }
 };
 
@@ -46,8 +48,8 @@ describe('marketing-note - ModifyMarketingNote - connect', () => {
 
         expect(insertUpdate.exists()).toBe(true);
         expect(insertUpdate.props().affId).toBe(1);
-        expect(insertUpdate.props().pagingOption).toBe(initialState.marketingNote.pagingOption);
-        expect(insertUpdate.props().noteInfo).toBe(initialState.marketingNote.marketingNoteInfo);
+        expect(insertUpdate.props().pagingOption).toBe(initialState.note.marketingNote.pagingOption);
+        expect(insertUpdate.props().noteInfo).toBe(initialState.note.marketingNote.marketingNoteInfo);
         expect(insertUpdate.props().isShowPopup).toBe(true);
     });
 });

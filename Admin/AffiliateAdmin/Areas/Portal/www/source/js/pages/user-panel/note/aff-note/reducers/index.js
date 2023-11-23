@@ -5,8 +5,8 @@ import { pagingOption } from '../../../../../reducers/pagingReducer';
 
 import { defaultNote } from '../../common/libs/constants';
 
-export const noteList = createReducer(null, {
-    [types.SET_NOTE_LIST](prevState, action) {
+export const affNoteList = createReducer(null, {
+    [types.SET_AFF_NOTE_LIST](prevState, action) {
         return [...action.data];
     }
 });
@@ -17,8 +17,8 @@ export const isShowPopup = createReducer(false, {
     }
 });
 
-export const noteInfo = createReducer({ ...defaultNote }, {
-    [types.SET_NOTE_INFO](prevState, action) {
+export const affNoteInfo = createReducer({ ...defaultNote }, {
+    [types.SET_AFF_NOTE_INFO](prevState, action) {
         return { ...action.data };
     }
 });
@@ -26,6 +26,6 @@ export const noteInfo = createReducer({ ...defaultNote }, {
 export default combineReducers({
     pagingOption,
     isShowPopup,
-    noteList,
-    noteInfo
+    affNoteList,
+    affNoteInfo
 });

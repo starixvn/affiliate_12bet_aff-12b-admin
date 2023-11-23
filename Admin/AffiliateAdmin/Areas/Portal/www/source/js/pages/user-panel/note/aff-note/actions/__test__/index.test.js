@@ -17,9 +17,9 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setNoteList', type: types.SET_NOTE_LIST, data: [{ NoteId: 123456 }] },
+    { name: 'setAffNoteList', type: types.SET_AFF_NOTE_LIST, data: [{ NoteId: 123456 }] },
     { name: 'setShowPopup', type: types.SET_SHOW_POPUP, data: true },
-    { name: 'setNoteInfo', type: types.SET_NOTE_INFO, data: { NoteId: 123456 } }
+    { name: 'setAffNoteInfo', type: types.SET_AFF_NOTE_INFO, data: { NoteId: 123456 } }
 ];
 
 describe('aff-note actions', () => {
@@ -27,7 +27,7 @@ describe('aff-note actions', () => {
         runTestAction(item);
     });
 
-    it('should create action to getNoteList with correct parameter', () => {
+    it('should create action to getAffNoteList with correct parameter', () => {
         const expectedResponse = {
             data: {
                 MainData: [
@@ -52,7 +52,7 @@ describe('aff-note actions', () => {
 
         const expectedAction = [
             { type: 'TOGGLE_LOADER_USER_PANEL', data: true },
-            { type: types.SET_NOTE_LIST, data: expectedResponse.data.MainData },
+            { type: types.SET_AFF_NOTE_LIST, data: expectedResponse.data.MainData },
             { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 2 } },
             { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
         ];
@@ -63,17 +63,19 @@ describe('aff-note actions', () => {
         }
 
         const store = mockStore({ todos: [] });
-        return store.dispatch(actions['getNoteList'](param)).then(() => {
+        return store.dispatch(actions['getAffNoteList'](param)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/GetAffNoteList', param);
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
 
-    it('should create action to getNoteList with incorrect parameter', () => {
+    it('should create action to getAffNoteList with incorrect parameter', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
             { type: 'TOGGLE_LOADER_USER_PANEL', data: true },
+            { type: types.SET_AFF_NOTE_LIST, data: [] },
+            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 0 } },
             { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
         ];
         const param = {
@@ -83,13 +85,13 @@ describe('aff-note actions', () => {
         }
 
         const store = mockStore({ todos: [] });
-        return store.dispatch(actions['getNoteList'](param)).then(() => {
+        return store.dispatch(actions['getAffNoteList'](param)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/GetAffNoteList', param);
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
 
-    it('should create action to getNoteContentById with correct parameter', async () => {
+    it('should create action to getAffNoteContentById with correct parameter', async () => {
         const expectedResponse = {
             data: {
                 CreatedBy: null,
@@ -104,27 +106,27 @@ describe('aff-note actions', () => {
             noteId: 1001
         };
 
-        const result = await actions['getNoteContentById'](param)();
+        const result = await actions['getAffNoteContentById'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/GetAffNoteContentById', param);
 
         expect(result).toEqual(expectedResponse.data);
     })
 
-    it('should create action to getNoteContentById with incorrect parameter', async () => {
+    it('should create action to getAffNoteContentById with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
             affId: 123456,
             noteId: 123456
         };
 
-        const result = await actions['getNoteContentById'](param)();
+        const result = await actions['getAffNoteContentById'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/GetAffNoteContentById', param);
         expect(result).toEqual(null);
     })
 
-    it('should create action to insertNote with correct parameter', async () => {
+    it('should create action to insertAffNote with correct parameter', async () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: '' }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
@@ -133,14 +135,14 @@ describe('aff-note actions', () => {
             noteId: 0
         }
 
-        const result = await actions['insertNote'](param)();
+        const result = await actions['insertAffNote'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/InsertAffNote', param);
 
         expect(result).toEqual({ IsSuccessful: true, Message: "" });
     })
 
-    it('should create action to insertNote with incorrect parameter', async () => {
+    it('should create action to insertAffNote with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
             affId: 123456,
@@ -148,13 +150,13 @@ describe('aff-note actions', () => {
             noteId: 0
         }
 
-        const result = await actions['insertNote'](param)();
+        const result = await actions['insertAffNote'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/InsertAffNote', param);
         expect(result).toEqual(null);
     })
 
-    it('should create action to updateNote with correct parameter', async () => {
+    it('should create action to updateAffNote with correct parameter', async () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: '' }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
@@ -163,14 +165,14 @@ describe('aff-note actions', () => {
             noteId: 1001
         }
 
-        const result = await actions['updateNote'](param)();
+        const result = await actions['updateAffNote'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/UpdateAffNote', param);
 
         expect(result).toEqual({ IsSuccessful: true, Message: "" });
     })
 
-    it('should create action to updateNote with incorrect parameter', async () => {
+    it('should create action to updateAffNote with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
             affId: 123456,
@@ -178,7 +180,7 @@ describe('aff-note actions', () => {
             noteId: 123456
         }
 
-        const result = await actions['updateNote'](param)();
+        const result = await actions['updateAffNote'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/AffNote/UpdateAffNote', param);
         expect(result).toEqual(null);

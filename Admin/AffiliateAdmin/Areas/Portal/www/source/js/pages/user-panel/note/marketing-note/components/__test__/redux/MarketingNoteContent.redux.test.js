@@ -15,13 +15,15 @@ const initialState = {
     affCommonInfo: {
         affId: 1
     },
-    marketingNote: {
-        pagingOption: {
-            pageIndex: 1,
-            pageSize: 10
-        },
-        marketingNoteList: [],
-        marketingNoteInfo: {}
+    note: {
+        marketingNote: {
+            pagingOption: {
+                pageIndex: 1,
+                pageSize: 10
+            },
+            marketingNoteList: [],
+            marketingNoteInfo: {}
+        }
     },
     claimsPrincipal: {
         hasWriteClaim: () => false
@@ -49,9 +51,9 @@ describe('marketing-note - MarketingNoteContent - connect', () => {
 
         expect(content.exists()).toBe(true);
         expect(content.props().affId).toBe(1);
-        expect(content.props().pagingOption).toBe(initialState.marketingNote.pagingOption);
-        expect(content.props().noteList).toBe(initialState.marketingNote.marketingNoteList);
-        expect(content.props().noteInfo).toBe(initialState.marketingNote.marketingNoteInfo);
+        expect(content.props().pagingOption).toBe(initialState.note.marketingNote.pagingOption);
+        expect(content.props().noteList).toBe(initialState.note.marketingNote.marketingNoteList);
+        expect(content.props().noteInfo).toBe(initialState.note.marketingNote.marketingNoteInfo);
         expect(content.props().isEditNote).toBe(false);
     });
 });

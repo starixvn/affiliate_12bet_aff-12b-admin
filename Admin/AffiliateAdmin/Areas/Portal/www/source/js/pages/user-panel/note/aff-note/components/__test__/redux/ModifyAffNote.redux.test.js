@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import ModifyNote from '../../ModifyNote';
+import ModifyAffNote from '../../ModifyAffNote';
 import InsertUpdateForm from '../../../../common/components/InsertUpdateForm';
 
 jest.mock('../../../../common/components/InsertUpdateForm', () => 'mocked-InsertUpdateForm');
@@ -16,19 +16,21 @@ const initialState = {
         affId: 1
     },
     note: {
-        pagingOption: {
-            pageIndex: 1,
-            pageSize: 10
-        },
-        noteInfo: {},
-        isShowPopup: true
+        affNote: {
+            pagingOption: {
+                pageIndex: 1,
+                pageSize: 10
+            },
+            affNoteInfo: {},
+            isShowPopup: true
+        }
     }
 };
 
-describe('aff-note - ModifyNote - connect', () => {
+describe('aff-note - ModifyAffNote - connect', () => {
     it('renders without crashing', () => {
         const store = mockStore(initialState);
-        const wrapper = shallow(<ModifyNote store={store} />);
+        const wrapper = shallow(<ModifyAffNote store={store} />);
         expect(wrapper).toMatchSnapshot();
     });
 
@@ -37,17 +39,17 @@ describe('aff-note - ModifyNote - connect', () => {
 
         const wrapper = mount(
             <Provider store={store}>
-                <ModifyNote />
+                <ModifyAffNote />
             </Provider>
         );
 
-        const container = wrapper.find(ModifyNote);
+        const container = wrapper.find(ModifyAffNote);
         const insertUpdate = container.find(InsertUpdateForm);
 
         expect(insertUpdate.exists()).toBe(true);
         expect(insertUpdate.props().affId).toBe(1);
-        expect(insertUpdate.props().pagingOption).toBe(initialState.note.pagingOption);
-        expect(insertUpdate.props().noteInfo).toBe(initialState.note.noteInfo);
+        expect(insertUpdate.props().pagingOption).toBe(initialState.note.affNote.pagingOption);
+        expect(insertUpdate.props().noteInfo).toBe(initialState.note.affNote.affNoteInfo);
         expect(insertUpdate.props().isShowPopup).toBe(true);
     });
 });

@@ -9,9 +9,9 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 }
 
 const testCaseList = [
-    { name: 'noteList', value: [], action: { type: types.SET_NOTE_LIST, data: [{ noteId: 123, noteContent: 'abc' }] }, expectedResult: [{ noteId: 123, noteContent: 'abc' }] },
+    { name: 'affNoteList', value: [], action: { type: types.SET_AFF_NOTE_LIST, data: [{ noteId: 123, noteContent: 'abc' }] }, expectedResult: [{ noteId: 123, noteContent: 'abc' }] },
     { name: 'isShowPopup', value: false, action: { type: types.SET_SHOW_POPUP, data: true }, expectedResult: true },
-    { name: 'noteInfo', value: { noteId: 0, noteContent: '' }, action: { type: types.SET_NOTE_INFO, data: { noteId: 123, noteContent: 'abc' } }, expectedResult: { noteId: 123, noteContent: 'abc' } }
+    { name: 'affNoteInfo', value: { noteId: 0, noteContent: '' }, action: { type: types.SET_AFF_NOTE_INFO, data: { noteId: 123, noteContent: 'abc' } }, expectedResult: { noteId: 123, noteContent: 'abc' } }
 ]
 
 describe('aff-note reducers', () => {

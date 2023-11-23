@@ -116,7 +116,7 @@ export class Content extends PureComponent {
                         <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
                     </div>
                 }
-                <div className="table-responsive table-striped">
+                <div className="table-responsive table-striped my-2">
                     <Table
                         maxWidth={maxWidth}
                         bodyHeight={300}

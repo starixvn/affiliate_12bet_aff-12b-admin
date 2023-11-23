@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`aff-note - ModifyNote - connect renders without crashing 1`] = `
+exports[`aff-note - ModifyAffNote - connect renders without crashing 1`] = `
 <ContextProvider
   value={null}
 >

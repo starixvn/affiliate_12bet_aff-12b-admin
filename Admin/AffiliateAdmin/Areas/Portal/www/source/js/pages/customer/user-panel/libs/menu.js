@@ -11,10 +11,8 @@ const DailyEarningDetail = React.lazy(() =>
     import( /* webpackChunkName: "dailyEarningDetail" */ '../../../user-panel/daily-earning-detail/components/AppContainer'));
 const UserAccount = React.lazy(() =>
     import( /* webpackChunkName: "userAccount" */ '../../../user-panel/user-account/components/AppContainer'));
-
 const Note = React.lazy(() =>
     import( /* webpackChunkName: "note" */ '../../../user-panel/note/index'));
-
 const PlayerDetail = React.lazy(() =>
     import( /* webpackChunkName: "playerDetail" */ '../../../user-panel/player-detail/components/AppContainer'));
 const Adjustment = React.lazy(() =>
@@ -33,9 +31,7 @@ export const userPanelMenuList = [
     { key: menuKey.dailyEarning, name: '', component: withUserPanel(DailyEarning, menuKey.dailyEarning), parent: menuKey.statementHistory },
     { key: menuKey.dailyEarningDetail, name: '', component: withUserPanel(DailyEarningDetail, menuKey.dailyEarningDetail), parent: menuKey.statementHistory },
     { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null, renderClaim: new Claim(claimResource.EditAffiliate) },
-
     { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null, renderClaim: [new Claim(claimResource.Note), new Claim(claimResource.MarketingTeamNote)] },
-
     { key: menuKey.playerDetail, name: 'Players Detail', component: withUserPanel(PlayerDetail, menuKey.playerDetail), parent: null, renderClaim: new Claim(claimResource.AffPlayerDetail) },
     { key: menuKey.adjustment, name: 'Adjustment', component: withUserPanel(Adjustment, menuKey.adjustment), parent: null, renderClaim: new Claim(claimResource.AffAdjustment, claimResource.WritePermission) },
     { key: menuKey.member, name: 'Member', component: withUserPanel(Member, menuKey.member), parent: null, renderClaim: new Claim(claimResource.MemberDetail) },

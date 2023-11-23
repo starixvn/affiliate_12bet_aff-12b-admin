@@ -1,17 +1,16 @@
 ﻿import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
-import NoteContent from './NoteContent';
-import ModifyNote from './ModifyNote';
+import AffNoteContent from './AffNoteContent';
+import ModifyAffNote from './ModifyAffNote';
 
-export const AppContainer = (props) => {
+export const AppContainer = () => {
 
     return (
         <Fragment>
-            <NoteContent />
-            <ModifyNote />
+            <AffNoteContent />
+            <ModifyAffNote />
         </Fragment>
     );
 }
 
 
-export default connect(() => ({}), () => ({}))(React.memo(AppContainer));
+export default React.memo(AppContainer);

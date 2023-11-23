@@ -5,9 +5,9 @@ import * as types from './types';
 
 export { setSelectedUserPanel, toggleLoaderUserPanel };
 
-export const setNoteList = (data) => {
+export const setAffNoteList = (data) => {
     return {
-        type: types.SET_NOTE_LIST,
+        type: types.SET_AFF_NOTE_LIST,
         data
     }
 }
@@ -19,40 +19,40 @@ export const setShowPopup = (data) => {
     }
 }
 
-export const setNoteInfo = (data) => {
+export const setAffNoteInfo = (data) => {
     return {
-        type: types.SET_NOTE_INFO,
+        type: types.SET_AFF_NOTE_INFO,
         data
     }
 }
 
-export const getNoteList = (param) => async (dispatch) => {
+export const getAffNoteList = (param) => async (dispatch) => {
     dispatch(toggleLoaderUserPanel(true));
 
     const url = 'Portal/UserPanel/AffNote/GetAffNoteList';
     const response = await post(url, param);
     const data = response && response.status === 200 ? response.data : null;
 
-    dispatch(setNoteList(data ? data.MainData || [] : []));
+    dispatch(setAffNoteList(data ? data.MainData || [] : []));
     dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize }));
     dispatch(toggleLoaderUserPanel(false));
 }
 
-export const getNoteContentById = (param) => async () => {
+export const getAffNoteContentById = (param) => async () => {
     const url = 'Portal/UserPanel/AffNote/GetAffNoteContentById';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
-export const insertNote = (param) => async () => {
+export const insertAffNote = (param) => async () => {
     const url = 'Portal/UserPanel/AffNote/InsertAffNote';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
-export const updateNote = (param) => async () => {
+export const updateAffNote = (param) => async () => {
     const url = 'Portal/UserPanel/AffNote/UpdateAffNote';
     const response = await post(url, param);
 

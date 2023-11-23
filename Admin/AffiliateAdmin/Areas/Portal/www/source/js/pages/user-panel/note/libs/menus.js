@@ -7,5 +7,5 @@ const MarketingNote = React.lazy(() => import(/* webpackChunkName: "marketingNot
 
 export const menus = [
     { key: menuKey.affNote, label: 'Note', component: AffNote, renderClaim: new Claim(claimResource.Note) },
-    { key: menuKey.marketingNote, label: 'Marketing Note', component: MarketingNote, renderClaim: new Claim(claimResource.MarketingTeamNote) }
+    { key: menuKey.marketingNote, label: 'Marketing Team Note', component: MarketingNote, renderClaim: new Claim(claimResource.MarketingTeamNote) }
 ]
