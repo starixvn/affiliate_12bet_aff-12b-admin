@@ -2,6 +2,7 @@
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -69,18 +70,19 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly(PermissionName = ClaimConstant.ActivePlayerDetailType)]
         public ActionResult PlayersDetails(PlayerDetailParam param)
         {
+            var userSession = SessionService.UserSession;
             if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
             {
                 param.SortById = Turnover;
             }
             else
             {
-                var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, SessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !SessionService.IsInternal;
+                var isIndiaAffiliate = userSession.PreferredLanguage.MatchWith(SystemLanguage.IndiaLanguageCode) && !SessionService.IsInternal;
 
                 param.SortById = isIndiaAffiliate ? Username : Winloss;
             }
 
-            param.AffId = SessionService.UserSession.AffId;
+            param.AffId = userSession.AffId;
             var model = _accountOverviewRepository.GetPlayerDetailList(param);
 
             ViewBag.TotalItem = param.NRows;

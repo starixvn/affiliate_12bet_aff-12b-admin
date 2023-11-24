@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.Resources;
+﻿using Fanex.Affiliate.User.Core.Extensions;
+using Fanex.Affiliate.User.Core.Resources;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -75,7 +76,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public static string GetLanguageText(string value)
         {
-            return value.Equals("english (europe)", System.StringComparison.OrdinalIgnoreCase) ? Lang.EnglishEU
+            return value.MatchWith("english (europe)") ? Lang.EnglishEU
                   : Lang.ResourceManager.GetString(value.Replace(" ", "")) ?? value;
         }
 

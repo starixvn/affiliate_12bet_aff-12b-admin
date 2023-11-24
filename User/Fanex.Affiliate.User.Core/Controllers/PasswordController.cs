@@ -147,7 +147,7 @@
 
             if (isSuccessful)
             {
-                result.IsOk = true; 
+                result.IsOk = true;
                 result.Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.ForAnyReason.Replace("{0}", Url.Content("~/ContactUs"))}";
             }
 

@@ -2,14 +2,12 @@
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Controllers.UserPanel;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Web.Mvc;

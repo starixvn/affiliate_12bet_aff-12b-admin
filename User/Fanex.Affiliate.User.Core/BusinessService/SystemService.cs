@@ -1,8 +1,8 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.System;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Repository;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public string GetFavoriteLanguage()
         {
             var preferedUrlLang = HttpContext.Current.Request["lang"]?.Trim();
-            var preferedLang = SystemLanguage.SupportedLanguage.FirstOrDefault(i => string.Equals(i.Value, preferedUrlLang, StringComparison.OrdinalIgnoreCase)).Key;
+            var preferedLang = SystemLanguage.SupportedLanguage.FirstOrDefault(i => i.Value.MatchWith(preferedUrlLang)).Key;
 
             if (IsValid(preferedLang))
             {
@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var isInternal = _sessionService.IsInternal;
             var cacheKey = isInternal ? CacheKey.InternalTargetLanguageList : CacheKey.TargetLanguageList;
 
-            
+
             var targetLanguageList = _cacheService.Get<IEnumerable<TargetLanguage>>(cacheKey);
             if (targetLanguageList == null)
             {

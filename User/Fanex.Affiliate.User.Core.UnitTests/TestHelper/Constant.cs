@@ -1,5 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.DTO.System;
-using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using System.Collections.Generic;
 

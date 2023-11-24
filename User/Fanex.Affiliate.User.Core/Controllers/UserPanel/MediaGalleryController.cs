@@ -51,7 +51,7 @@
                 SelectedPage = selectedPage,
                 TextLinkTemplate = _appSetting.TextLinkTemplate,
                 BannerDomain = GetBannerDomain()
-        };
+            };
 
             var viewModel = new MediaGalleryViewModel
             {
@@ -70,7 +70,7 @@
         {
             var userSession = SessionService.UserSession;
             var selectedDomain = MarketingService
-                .GetDomainList(bannerParam.SelectedTargetCountry, SessionService.IsInternal)
+                .GetDomainListByTargetCountry(bannerParam.SelectedTargetCountry, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
 
             bannerParam.AffId = userSession.AffId;

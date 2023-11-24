@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Fanex.Affiliate.User.Core.MetalModels
+﻿namespace Fanex.Affiliate.User.Core.MetalModels
 {
     public class UpdateAccountParam
     {

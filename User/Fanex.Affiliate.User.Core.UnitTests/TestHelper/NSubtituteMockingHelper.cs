@@ -1,10 +1,8 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
@@ -18,7 +16,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         {
             var marketingService = Substitute.For<IMarketingService>();
             marketingService.GetTargetProductList(Arg.Compat.Any<bool>()).Returns(Constant.TargetProductList);
-            marketingService.GetDomainList(Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
+            marketingService.GetDomainListByTargetCountry(Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
             marketingService.GetLandingPageList(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.LandingPageList);
             marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
 

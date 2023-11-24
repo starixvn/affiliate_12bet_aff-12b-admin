@@ -29,7 +29,7 @@
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetAvailableDomains(string targetCountry)
         {
-            var landingPages = MarketingService.GetDomainList(targetCountry, SessionService.IsInternal);
+            var landingPages = MarketingService.GetDomainListByTargetCountry(targetCountry, SessionService.IsInternal);
 
             return Json(landingPages, JsonRequestBehavior.AllowGet);
         }

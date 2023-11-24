@@ -1,6 +1,6 @@
-﻿using Fanex.Affiliate.User.Core.MetalModels.Attributes;
+﻿using Fanex.Affiliate.User.Core.Extensions;
+using Fanex.Affiliate.User.Core.MetalModels.Attributes;
 using Fanex.Affiliate.User.Core.Resources;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 
         public bool IsRenderState { get; set; }
 
-        public bool IsPlayerAccount => !string.IsNullOrEmpty(PreferredPayment) && PreferredPayment.Equals("Player", StringComparison.OrdinalIgnoreCase);
+        public bool IsPlayerAccount => !string.IsNullOrEmpty(PreferredPayment) && PreferredPayment.MatchWith("Player");
 
         public IEnumerable<string> MoreWebsiteUrlList => string.IsNullOrEmpty(MoreSiteUrls) ? new string[0] : MoreSiteUrls.Split(';');
 

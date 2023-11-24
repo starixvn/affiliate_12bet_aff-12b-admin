@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.Extensions;
+using System;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
@@ -73,7 +74,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
                         return Resources.Lang.NewFDM;
                     case Constants.TransType.MonthlyTotal:
                         {
-                            if (string.Equals("Monthly Earning", Description, StringComparison.OrdinalIgnoreCase))
+                            if (Description.MatchWith("Monthly Earning"))
                             {
                                 return Resources.Lang.MonthlyTotal;
                             }

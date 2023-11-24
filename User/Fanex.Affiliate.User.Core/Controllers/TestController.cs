@@ -5,6 +5,7 @@
     using CoreService;
     using DTO;
     using Enum;
+    using Fanex.Affiliate.User.Core.Extensions;
     using Fanex.Affiliate.User.Core.MetalModels;
     using Fanex.Affiliate.User.Core.Resources;
     using Filters;
@@ -168,7 +169,7 @@
             var rootUrl = SiteDomainHelper.GetRootUrl(this, _appSetting);
             var content = string.Empty;
 
-            if (string.Equals(criteria.Function, TemplateString.ContactUs, StringComparison.OrdinalIgnoreCase))
+            if (criteria.Function.MatchWith(TemplateString.ContactUs))
             {
                 content = GetEmailTextContent(criteria.Function, criteria.Language, GetContactUsModel(rootUrl));
             }

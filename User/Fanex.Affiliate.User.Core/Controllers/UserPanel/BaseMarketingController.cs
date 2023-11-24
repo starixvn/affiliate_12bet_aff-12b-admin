@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             var isInternal = SessionService.IsInternal;
             var targetCountryCode = MarketingService.GetTargetCountryCodeByAff(userSession.AffId);
             var targetLanguageCode = targetCountryList.FirstOrDefault(t => t.TargetCountryCode == targetCountryCode)?.DefaultLanguageCode ?? SystemLanguage.DefaultLanguageCode;
-            var domainList = MarketingService.GetDomainList(targetCountryCode, isInternal);
+            var domainList = MarketingService.GetDomainListByTargetCountry(targetCountryCode, isInternal);
 
             var viewModel = new LinkFormViewModel
             {

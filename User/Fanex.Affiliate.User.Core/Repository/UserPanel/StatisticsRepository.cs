@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var db = _builder.Build(SpKey, dbMode))
             {
-                return db.Query<LandingPage>(new { TargetCountryCode = string.Empty});
+                return db.Query<LandingPage>(new { TargetCountryCode = string.Empty });
             }
         }
     }

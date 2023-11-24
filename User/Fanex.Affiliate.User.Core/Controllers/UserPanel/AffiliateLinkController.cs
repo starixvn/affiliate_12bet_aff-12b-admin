@@ -64,7 +64,7 @@
             }
 
             var selectedDomain = MarketingService
-                .GetDomainList(selectedTargetCountry, SessionService.IsInternal)
+                .GetDomainListByTargetCountry(selectedTargetCountry, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
 
             var languageList = string.IsNullOrEmpty(selectedLanguage)
