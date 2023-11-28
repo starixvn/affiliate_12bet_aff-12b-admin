@@ -1,23 +1,107 @@
 ﻿.footer {
-    background: #000;
+    background: #222328;
     text-align: center;
-    padding: 20px 0;
     margin-top: auto;
 
-    .footer-text {
-        color: #FFFFFF;
-        padding-top: 10px;
+    &-text {
+        color: #58595D;
+        border-top: 1px solid #2D2E33;
+        padding: 16px 0;
+        letter-spacing: 0.96px;
+        line-height: normal;
+        text-transform: uppercase;
+
+        @include Tablet {
+            font-size: 10px;
+        }
+
+        @include Mobile {
+            border-top: none;
+            font-size: 5px;
+            padding: 0 0 12px;
+        }
     }
 
-    .item {
-        display: inline-block;
-        padding: 5px;
+    &-img {
+        padding: 52px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-        &:not(:last-child):after {
-            content: '|';
-            color: #ddd;
-            font-weight: 600;
-            padding-left: 10px;
+        @include Tablet {
+            padding: 18px 0 26px;
+            display: inherit;
+        }
+
+
+        .img-top {
+            @include Tablet {
+                margin-bottom: 13px;
+            }
+
+            img {
+                width: 160px;
+
+                @include Mobile {
+                    width: 59px;
+                }
+            }
+        }
+
+        .img-bottom {
+            .item {
+                border-left: 1px solid #fff;
+                padding: 0 30px;
+
+                @include Tablet {
+                    padding: 0 13px;
+                    display: inline-flex;
+
+                    &:first-child {
+                        img {
+                            width: 10px;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        img {
+                            width: 44px;
+                        }
+                    }
+
+                    &:nth-child(3) {
+                        img {
+                            width: 16px;
+                        }
+                    }
+
+                    &:nth-child(4) {
+                        img {
+                            width: 30px;
+                        }
+                    }
+
+                    &:nth-child(5) {
+                        img {
+                            width: 35px;
+                        }
+                    }
+
+                    &:nth-child(6) {
+                        img {
+                            width: 25px;
+                        }
+                    }
+                }
+
+                &:first-child {
+                    border: none;
+                }
+            }
+        }
+
+        .item {
+            display: inline-block;
         }
     }
 }

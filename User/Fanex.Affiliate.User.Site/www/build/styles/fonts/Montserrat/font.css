@@ -25,6 +25,26 @@
   font-weight: 600;
 }
 
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('Montserrat-Bold.eot');
+    src: url('Montserrat-Bold.woff2') format('woff2'), 
+        url('Montserrat-Bold.woff') format('woff'), 
+        url('Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('Montserrat-ExtraBold.eot');
+    src: url('Montserrat-ExtraBold.woff2') format('woff2'), 
+        url('Montserrat-ExtraBold.woff') format('woff'),
+        url('Montserrat-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+}
+
+
 body {
     font-family: 'Montserrat', sans-serif;
 }

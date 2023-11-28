@@ -1,0 +1,50 @@
+﻿.block {
+    padding: 52px 0;
+
+    @include Tablet {
+        padding: 44px 0;
+    }
+
+    &-title {
+        letter-spacing: 2.24px;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 28px;
+        line-height: normal;
+        font-weight: 700;
+        margin-bottom: 28px;
+        margin-top: 0;
+        color: #353e5b;
+
+        @include Tablet {
+            color: #343E5C;
+            letter-spacing : 0;
+        }
+
+        @include Tablet {
+            font-size: 20px;
+            margin-bottom: 19px;
+        }
+
+        svg {
+            @include Tablet {
+                position: relative;
+                top: 3px;
+                width: 75px;
+            }
+        }
+
+        .why-become {
+            color: #D90F0F;
+
+            @include Tablet {
+                display: block;
+            }
+        }
+
+        .affiliate {
+            color: #FF8651;
+        }
+    }
+}

@@ -25,6 +25,26 @@
   font-weight: 600;
 }
 
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../../../../build/styles/fonts/Montserrat/Montserrat-Bold.eot');
+    src: url('../../../../build/styles/fonts/Montserrat/Montserrat-Bold.woff2') format('woff2'), 
+        url('../../../../build/styles/fonts/Montserrat/Montserrat-Bold.woff') format('woff'), 
+        url('../../../../build/styles/fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../../../../build/styles/fonts/Montserrat/Montserrat-ExtraBold.eot');
+    src: url('../../../../build/styles/fonts/Montserrat/Montserrat-ExtraBold.woff2') format('woff2'), 
+        url('../../../../build/styles/fonts/Montserrat/Montserrat-ExtraBold.woff') format('woff'),
+        url('../../../../build/styles/fonts/Montserrat/Montserrat-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+}
+
+
 body {
     font-family: 'Montserrat', sans-serif;
 }

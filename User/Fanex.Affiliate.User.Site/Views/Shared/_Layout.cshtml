@@ -57,30 +57,31 @@
 </head>
 <body>
     <div class="header-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 col-sm-5 col-md-5 logo">
-                    <a href="@Url.Content("~")"><img src="~/www/build/styles/Images/logo.png" alt="logo" /><span class="logo-text">@Lang.Affiliate</span></a>
+        <div class="page-container">
+            <div class="logo-lang">
+                <div class="logo">
+                    <a href="@Url.Content("~")">
+                        <img src="~/www/build/styles/Images/logo.png" alt="logo" />
+                        <span class="logo-text">@Lang.Affiliate</span>
+                    </a>
                 </div>
-                <div class="col-xs-12 col-sm-7 col-md-7 login">
+                <div class="login">
                     <div class="user-signup">
                         @if (!HttpContext.Current.User.Identity.IsAuthenticated || userSession == null)
                         {
-                            <a class="btn btn-login-mobile" id="mobileLogin">
-                                <span>@Lang.Login</span>
+                            <a class="btn-auth btn-login" id="mobileLogin">
+                                @Lang.Login
                             </a>
-                            <div class="sign-up">
-                                <a href="@Url.Content("~/Signup/Index")" class="btn btn-signup"><span class="icon glyphicon glyphicon-pencil"></span>@Lang.SignUpAffiliate</a>
-                            </div>
+                            <a href="@Url.Content("~/Signup/Index")" class="btn-auth btn-signup">Join Now</a>
                         }
 
                         <div class="language-container">
                             <div class="language-selection">
                                 <button class="select-language" id="selectedLanguage">
-                                    <span><i class="flag flag-@sessionService.CurrentLanguage"></i>@(currentLanguage)</span>
-                                    <i class="caret"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                        <path d="M12.0007 23.9395C5.93334 23.9395 1.00131 19.0114 1 12.9474C0.998691 6.86697 5.93006 1.93821 12.0111 1.94214C18.0771 1.94607 23.002 6.87744 23 12.9454C22.998 19.0121 18.0686 23.9395 12.0007 23.9395ZM20.4721 9.72614C20.2574 9.29206 20.0446 8.87238 19.8429 8.44747C19.7631 8.2792 19.6583 8.21766 19.4645 8.22028C18.5891 8.23272 17.7131 8.22879 16.8377 8.22159C16.7323 8.22093 16.6047 8.19082 16.5274 8.126C16.3402 7.96887 16.1673 7.79078 16.0082 7.60484C15.9558 7.54395 15.9172 7.38223 15.9513 7.35015C16.2694 7.05225 16.4691 6.5527 17.0394 6.65615C17.4663 6.73406 17.7445 6.50098 18.0248 6.20046C17.8257 6.03874 17.6339 5.88292 17.4414 5.72709C17.3412 5.81548 17.2686 5.8803 17.1946 5.94512C16.8537 6.24323 16.4997 6.26069 16.1326 5.99749C16.0004 5.90321 15.9499 5.80239 16.0318 5.64591C16.1372 5.44425 16.2295 5.23671 16.3356 5.0141C15.1597 4.37575 13.9242 4.01107 12.5735 3.92923C12.5938 4.06606 12.6095 4.17606 12.6272 4.29718C12.5519 4.34301 12.4779 4.39211 12.4007 4.43533C12.1375 4.58264 11.8763 4.83667 11.6085 4.84453C11.3413 4.85238 11.0598 4.62585 10.7973 4.47985C10.265 4.18391 9.70847 4.27361 9.15523 4.36265C8.74079 4.42943 8.46384 4.74763 8.14303 4.98006C8.0075 5.07826 8.0219 5.20528 8.14761 5.30873C8.31195 5.4436 8.492 5.56014 8.64651 5.70549C8.79972 5.85018 8.93852 5.83774 9.11005 5.74674C9.46295 5.55883 9.82697 5.39253 10.1792 5.20332C10.3508 5.111 10.4909 5.10969 10.6519 5.22819C10.8752 5.39319 11.1011 5.56145 11.3479 5.68519C11.7329 5.87833 11.5882 6.21486 11.6 6.5036C11.6098 6.73668 11.3813 6.7537 11.2307 6.79298C10.6762 6.93833 10.2696 7.23492 9.96447 7.73906C9.75757 8.08082 9.58407 8.39509 9.64234 8.80036C9.66591 8.96601 9.57884 9.05112 9.43872 9.12052C9.07273 9.30123 8.71526 9.49961 8.34796 9.67769C8.18886 9.75495 8.09327 9.85316 8.05137 10.0319C7.97345 10.3652 7.86673 10.6912 7.77573 11.0212C7.71026 11.2588 7.56229 11.3734 7.31218 11.3688C6.95209 11.3623 6.58806 11.3996 6.23255 11.359C5.82465 11.3119 5.53723 11.4644 5.3107 11.7748C5.25897 11.8461 5.19219 11.9718 5.221 12.0209C5.26159 12.0903 5.38337 12.1467 5.47176 12.1486C6.01976 12.1597 6.57235 12.1944 7.11577 12.144C7.7862 12.0818 8.32831 12.2305 8.73228 12.7994C8.79251 12.8839 8.95488 12.9277 9.07208 12.9336C9.43152 12.9507 9.79293 12.9232 10.1517 12.9474C10.3187 12.9585 10.5085 13.0096 10.6408 13.1065C11.5581 13.7776 12.4616 14.4676 13.3743 15.1453C13.5118 15.2474 13.5746 15.3568 13.5733 15.5329C13.5654 16.4168 13.5654 17.3006 13.5733 18.1845C13.5753 18.3678 13.5176 18.4844 13.3651 18.5898C12.6999 19.0507 12.0419 19.5215 11.3846 19.9942C11.3093 20.0485 11.2209 20.1264 11.2012 20.2083C11.069 20.7608 10.9538 21.3174 10.83 21.8857C10.9092 21.9014 10.9629 21.9171 11.0179 21.923C11.8776 22.0146 12.7326 21.9898 13.5831 21.832C15.6841 21.4424 17.4388 20.4459 18.8412 18.834C18.8929 18.7744 18.9191 18.6742 18.9204 18.5924C18.9276 18.1099 18.9171 17.6267 18.9276 17.1442C18.9322 16.9451 18.8517 16.8227 18.6834 16.7323C18.3593 16.5588 18.0411 16.3742 17.717 16.202C17.5625 16.1202 17.4925 16.0076 17.4977 15.8288C17.5062 15.5342 17.4859 15.2396 17.4977 14.9449C17.5069 14.7119 17.4198 14.5691 17.2096 14.4598C16.3408 14.0074 15.4805 13.5373 14.6137 13.0809C14.4343 12.9867 14.3498 12.8688 14.3537 12.658C14.3655 12.0524 14.3636 11.4468 14.3544 10.8411C14.3518 10.6565 14.4159 10.5367 14.5698 10.4372C15.0432 10.1308 15.5309 9.84072 15.9735 9.49437C16.4639 9.1107 16.9864 8.99744 17.6031 8.99154C18.3096 8.985 18.944 9.08189 19.4992 9.53431C19.7742 9.75822 20.0891 9.78572 20.4721 9.72483V9.72614ZM3.10101 11.4278C2.34807 15.8635 5.01214 19.9739 8.65044 21.3043C8.65306 21.2794 8.66222 21.2545 8.65764 21.2322C8.47497 20.3543 8.29492 19.4756 8.10113 18.6003C8.07952 18.502 7.9931 18.3993 7.90798 18.3377C7.52431 18.0601 7.13803 17.7845 6.73734 17.5324C6.54027 17.408 6.47479 17.2496 6.44795 17.0328C6.35432 16.2714 6.24302 15.5126 6.14481 14.7518C6.1219 14.5737 6.04071 14.4604 5.88292 14.3721C5.52676 14.173 5.19285 13.9314 4.82751 13.7533C4.31945 13.5052 3.97179 13.1353 3.74329 12.6194C3.57044 12.2291 3.33933 11.8645 3.10035 11.4278H3.10101Z" fill="#D90F0F" />
+                                    </svg>
                                 </button>
-
                                 <div class="language-list-wrapper" id="languageList">
                                     <ul class="list-unstyled language-list">
                                         @foreach (var language in languageList)
@@ -92,11 +93,15 @@
                                         }
                                     </ul>
                                 </div>
+                                @*<button class="select-language" id="selectedLanguage">
+                                    <span><i class="flag flag-@sessionService.CurrentLanguage"></i>@(currentLanguage)</span>
+                                    <i class="caret"></i>
+                                </button>*@
                             </div>
                         </div>
                     </div>
 
-                    @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTime.UtcNow.Ticks });}
+                    @*@{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTime.UtcNow.Ticks });}*@
                 </div>
             </div>
         </div>
@@ -105,59 +110,55 @@
     <div class="header-bottom">
         <div class="navbar">
             <div class="@RenderSection("classNav", required: false)">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                @{
-                                    var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
-                                }
-                                <li>
-                                    <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Home")">
-                                        @Lang.Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.Content("~/CommissionStructure")">
-                                        @Lang.CommissionStructure
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.Content("~/Product")">
-                                        @Lang.Product
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.Content("~/TermAndCondition")">
-                                        @Lang.TermAndCondition
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.Content("~/FAQ")">
-                                        @Lang.Faqs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "Promotion" ? "active" : string.Empty)" href="@Url.Content("~/Promotion")">
-                                        @Lang.Promotion
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.Content("~/ContactUs")">
-                                        @Lang.ContactUs
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        @{
+                            var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
+                        }
+                        <li>
+                            <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Home")">
+                                @Lang.Home
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.Content("~/CommissionStructure")">
+                                @Lang.CommissionStructure
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.Content("~/Product")">
+                                @Lang.Product
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.Content("~/TermAndCondition")">
+                                @Lang.TermAndCondition
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.Content("~/FAQ")">
+                                @Lang.Faqs
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controllerName == "Promotion" ? "active" : string.Empty)" href="@Url.Content("~/Promotion")">
+                                @Lang.Promotion
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.Content("~/ContactUs")">
+                                @Lang.ContactUs
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -168,35 +169,37 @@
     </div>
 
     <div class="footer">
-        <div class="footer-img">
-            <div class="img-top">
-                <a class="item">
-                    <img width="250" src="~/www/build/styles/Images/footer/cr-nosponsor.@(sessionService.CurrentLanguage).png?v=002" alt="sponsors" />
-                </a>
+        <div class="page-container">
+            <div class="footer-img">
+                <div class="img-top">
+                    <a class="item">
+                        <img width="365" src="~/www/build/styles/Images/footer/cr-nosponsor.@(sessionService.CurrentLanguage).png?v=1" alt="sponsors" />
+                    </a>
+                </div>
+                <div class="img-bottom">
+                    <a class="item">
+                        <img width="28" src="@Url.Content("~/www/build/styles/Images/footer/cr-18.png")" alt="cr-18-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-gamleaware.png")" alt="cr-gamleaware-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-tst.png")" alt="cr-tst-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-thawte.png")" alt="cr-thawte-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-playtech.png")" alt="cr-playtech-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-safe&secure.png")" alt="cr-safe&secure-logo" />
+                    </a>
+                </div>
             </div>
-            <div class="img-bottom">
-                <a class="item">
-                    <img width="28" src="@Url.Content("~/www/build/styles/Images/footer/cr-18.png")" alt="cr-18-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-gamleaware.png")" alt="cr-gamleaware-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-tst.png")" alt="cr-tst-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-thawte.png")" alt="cr-thawte-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-playtech.png")" alt="cr-playtech-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-safe&secure.png")" alt="cr-safe&secure-logo" />
-                </a>
+            <div class="footer-text">
+                @Lang.Copyright.Replace("{0}", DateTime.Now.Year.ToString())
             </div>
-        </div>
-        <div class="footer-text">
-            @Lang.Copyright.Replace("{0}", DateTime.Now.Year.ToString())
         </div>
     </div>
 

@@ -1326,6 +1326,7 @@
     <Content Include="www\source\styles\fonts\nokora\Nokora-Regular.ttf" />
     <Content Include="www\build\styles\fonts\nokora\Nokora-Bold.ttf" />
     <Content Include="www\build\styles\fonts\nokora\Nokora-Regular.ttf" />
+    <Content Include="www\source\styles\scss\components\_block.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

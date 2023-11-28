@@ -1,107 +1,215 @@
 ﻿@import "../scss/abstracts/variables";
+@import '../scss/abstracts/mixins';
 
 .main {
     .home-page {
         padding-left: 0;
         padding-right: 0;
     }
-
-    .page-container {
-        background: #a3a3a3;
-    }
-
     .content {
         padding-bottom: 0;
         margin-top: 0;
     }
 }
 
-.news {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    flex: 0 0 auto;
-    flex-wrap: wrap;
+.block-why-become {
+    .block-content {
+        display: flex;
+        justify-content: space-between;
 
-    .item-wrapper {
-        padding-left: 5px;
-        padding-right: 5px;
-        margin-bottom: 5px;
-    }
-
-    .card, .card-content {
-        height: 100%;
-    }
-}
-
-.card-content {
-    border: 1px solid #fff;
-    background: rgba(255,255,255,.2);
-
-    .card-body {
-        padding: 10px;
-    }
-
-    .card-title {
-        color: #2b2b2b;
-        font-weight: 600;
-        font-size: 16px;
-        border-bottom: 1px solid #fff;
-        margin: 0;
-        padding: 5px 10px;
-
-        .text {
-            padding-left: 10px;
+        @include Mobile {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 26px;
         }
 
-        .icon {
-            display: inline-block;
-            width: 36px;
-            height: 36px;
+        .items {
+            text-align: center;
+
+            @include Tablet {
+                width: 110px;
+            }
+
+            @include Mobile {
+                width: 93px;
+            }
 
             img {
-                width: 100%;
+                display: inline-block;
+            }
+
+            .wrap {
+                display: block;
+            }
+
+            .heading-items {
+                font-size: 16px;
+                color: #353E5B;
+                line-height: 24px;
+                font-weight: 700;
+                max-width: 200px;
+                margin-top: 28px;
+
+                @include Tablet {
+                    margin-top: 14px;
+                    font-size: 12px;
+                    line-height: 20px;
+                }
+
+                @include Mobile {
+                    line-height: 13px;
+                    font-size : 10px;
+                }
             }
         }
     }
+}
 
-    .text-content {
-        font-size: 13px;
-        color: $second-color;
-        line-height: 2.4rem;
-        padding: 0 16px 16px;
+.block-about {
+    background: #F6F6F6;
+
+    .group-block {
+        @include Tablet {
+            padding: 0 43px;
+        }
+
+        @include Mobile {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 0;
+        }
     }
 
-    .img-content {
-        //text-align: center;
-        //padding: 10px 0;
+    .block-title {
+        margin-bottom: 10px;
+        @include Tablet {
+            text-align: center;
+        }
 
-        .img-item {
-            margin-left: auto;
-            margin-right: auto;
+        @include Mobile {
+            text-align: left;
+        }
+    }
+
+    .block-content {
+        color: #353E5B;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 30px;
+
+        @include Tablet {
+            font-size: 12px;
+            color: #343E5C;
+        }
+
+        p {
+            margin-bottom: 20px;
+
+            @include Tablet {
+                margin-bottom: 10px;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 }
+.block-get-started {
+    background: #F6F6F6;
 
-.news-content {
-    padding: 0;
+    .block-content {
+        background: #FFF;
+        border-radius: 12px;
+        padding: 36px 68px 52px 68px;
+        display: flex;
+        justify-content: space-between;
 
-    li {
-        list-style: none;
-        padding: 15px 0 10px;
-
-        &:not(:last-child) {
-            border-bottom: 1px solid #fff;
+        @include Tablet {
+            padding: 36px 50px 52px 50px;
         }
 
-        > a {
-            color: #212121;
+        @include Mobile {
+            padding: 0 12px;
+            background: transparent;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 23px;
         }
-    }
 
-    .news-title {
-        display: block;
-        font-weight: 600;
-        padding-bottom: 5px;
+        .items {
+            background: #fff;
+            text-align: center;
+            position: relative;
+            max-width: 250px;
+            width: 100%;
+
+            @include Tablet {
+                max-width: 130px;
+            }
+
+            @include Mobile {
+                border-radius: 12px;
+                max-width: inherit;
+                padding: 15px 20px;
+            }
+
+            .icon {
+                width: 68px;
+                height: 68px;
+                background: #F6F6F6;
+                border-radius: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto;
+
+                @include Mobile {
+                    background: #D9D9D9;
+                }
+            }
+
+            .heading-items {
+                margin-top: 8px;
+                color: #353E5B;
+                font-size: 16px;
+                font-weight: 800;
+                line-height: 24px;
+                text-transform: uppercase;
+
+                @include Tablet {
+                    font-size: 12px;
+                }
+
+                @include Mobile {
+                    line-height: normal;
+                }
+            }
+
+            .description {
+                @extend .heading-items;
+                font-weight: 700;
+                text-transform: capitalize;
+                max-width: 180px;
+                margin: 0 auto;
+            }
+
+            .number {
+                color: #D90F0F;
+                font-size: 16px;
+                font-weight: 800;
+                line-height: 24px;
+                text-decoration-line: underline;
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                @include Mobile {
+                    top: 12px;
+                    left: 20px;
+                }
+            }
+        }
     }
 }

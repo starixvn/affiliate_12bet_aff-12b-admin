@@ -124,12 +124,12 @@
   //    "www/build/styles/css/pages/commissionreport.css"
   //  ]
   //},
-  //{
-  //  "outputFileName": "www/build/styles/fonts/Montserrat/font.css",
-  //  "inputFiles": [
-  //    "www/source/styles/fonts/Montserrat/font.css"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/styles/fonts/Montserrat/font.css",
+    "inputFiles": [
+      "www/source/styles/fonts/Montserrat/font.css"
+    ]
+  }
   //{
   //  "outputFileName": "www/build/styles/fonts/tahoma/font.css",
   //  "inputFiles": [

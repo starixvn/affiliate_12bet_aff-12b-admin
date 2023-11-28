@@ -31,6 +31,12 @@
 
 <div class="content home-page">
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#mainBanner" data-slide-to="0" class="active"></li>
+            <li data-target="#mainBanner" data-slide-to="1"></li>
+            <li data-target="#mainBanner" data-slide-to="2"></li>
+            <li data-target="#mainBanner" data-slide-to="3"></li>
+        </ol>
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <a class="nounderline home-banner-tracking-flat" target="_blank" href="@Url.Content("~/Promotion")">
@@ -69,87 +75,138 @@
                 </a>
             </div>
         </div>
-        <a class="left carousel-control" href="#mainBanner" role="button" data-slide="prev">
-            <span class="chevron left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#mainBanner" role="button" data-slide="next">
-            <span class="chevron right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
-    <div class="news">
-        <div class="item-wrapper first">
-            <div class="card">
-                <div class="card-content">
-                    <h4 class="card-title">
-                        <span class="icon"><img src="~/www/build/styles/Images/icon-1.png" alt="icon-1" /></span>
-                        <span class="text">@Lang.ApplyOneTwoBetAffiliate</span>
-                    </h4>
-                    <a href="@Model.SignUpLink" class="nounderline">
-                        <div class="img-content">
-                            <picture>
-                                <source srcset="@(advFileName + ".webp?v=20190226")" type="image/webp" />
-                                <source srcset="@(advFileName + ".png?v=20190226")" type="image/jpeg" />
-                                <img class="img-item img-responsive" src="@(advFileName + ".png?v=20190226")" alt="ads" />
-                            </picture>
-                        </div>
-                        <p class="text-content">
-                            @Lang.AsAOneTwoBetYouWillEarnCommission
-                        </p>
-                    </a>
+    <div class="block block-why-become">
+        <div class="page-container">
+            <h2 class="block-title">
+                <span class="why-become">why become a</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="108" height="21" viewBox="0 0 108 21" fill="none">
+                    <path d="M69.8766 8.88575H83.2393V12.8838H69.8766V8.88575ZM61.8928 4.88526V16.8843C61.8928 18.9604 63.5698 20.8823 65.8981 20.8823H83.2393V16.8843H69.9109C69.1544 16.8843 68.5643 16.2967 68.5643 15.5426V6.22691C68.5643 5.47284 69.147 4.88281 69.9011 4.88281H83.2393V0.884766H65.8981C63.5723 0.884766 61.8928 2.80911 61.8928 4.88526ZM59.2437 4.88526V7.47309C59.2437 8.97388 58.4284 10.2005 57.3047 10.8835C58.4284 11.5666 59.2437 12.7932 59.2437 14.294V16.8818C59.2437 19.215 57.2826 20.8823 55.2408 20.8823H37.8923V0.884766H55.2408C57.2802 0.884766 59.2437 2.55204 59.2437 4.88526ZM52.5771 6.22691C52.5771 5.47284 51.9919 4.88526 51.2354 4.88526H44.5687V16.8843H51.2354C51.9919 16.8843 52.5771 16.2967 52.5771 15.5426V14.2279C52.5771 13.4738 51.9919 12.8838 51.2354 12.8838H45.8737V8.88575H51.2354C51.9919 8.88575 52.5771 8.29571 52.5771 7.54164V6.22691ZM85.8932 0.884766V4.88526H93.2014V18.9482C93.2014 20.0744 93.9456 20.8823 95.0963 20.8823H99.9023V4.88526H107.237V0.884766H85.8908H85.8932Z" fill="url(#paint0_linear_6679_6040)" />
+                    <path d="M31.1522 0.884766C33.4781 0.884766 35.1748 2.83605 35.1748 4.91219V8.84657C35.1748 10.9227 33.4805 12.8862 31.1547 12.8862H21.8659C21.1118 12.8862 20.4998 13.4787 20.4998 14.2328V16.8867H35.1748V20.8848H13.8257V12.9034C13.8257 10.8272 15.52 8.88575 17.8483 8.88575H27.1591C27.9156 8.88575 28.5007 8.29571 28.5007 7.54164V6.22691C28.5007 5.47284 27.9156 4.88526 27.1591 4.88526H13.8282V0.884766H31.1547H31.1522Z" fill="url(#paint1_linear_6679_6040)" />
+                    <path d="M4.43414 7.06422V20.8823H11.1106V2.81891C11.1106 0.928835 9.31601 0.884766 9.31601 0.884766H5.73418C4.4831 2.6818 3.18062 3.61215 0.761719 4.06018V8.04354C2.10093 8.04354 3.82452 7.57592 4.43414 7.06422Z" fill="url(#paint2_linear_6679_6040)" />
+                    <defs>
+                        <linearGradient id="paint0_linear_6679_6040" x1="0.761719" y1="16.7671" x2="107.237" y2="16.7671" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#D90F0F" />
+                            <stop offset="0.776042" stop-color="#FF8651" />
+                        </linearGradient>
+                        <linearGradient id="paint1_linear_6679_6040" x1="0.761719" y1="16.7671" x2="107.237" y2="16.7671" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#D90F0F" />
+                            <stop offset="0.776042" stop-color="#FF8651" />
+                        </linearGradient>
+                        <linearGradient id="paint2_linear_6679_6040" x1="0.761719" y1="16.7671" x2="107.237" y2="16.7671" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#D90F0F" />
+                            <stop offset="0.776042" stop-color="#FF8651" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="affiliate">Affiliate?</span>
+            </h2>
+            <div class="block-content">
+                <div class="items">
+                    <img src="~/www/build/styles/Images/why-become/highest.png" alt="highest" class="img-responsive" />
+                    <div class="heading-items">
+                        <span class="wrap">HIGHEST</span> COMMISSSION % FOR ALL PRODUCTS
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="item-wrapper">
-            <div class="card">
-                <div class="card-content">
-                    <h4 class="card-title">
-                        <span class="icon"><img src="~/www/build/styles/Images/icon-2.png" alt="icon-2" /></span>
-                        <span class="text">@Lang.WhatNewInAffiliate</span>
-                    </h4>
-                    <div class="card-body">
-                        <a href="@Url.Content("~/ContactUs")" class="img-content adv-contact">
-                            <p class="text-1">@Lang.CannotGetEnough</p>
-                            <p class="text-2">@Lang.YourCurrentCommision</p>
-                            <span class="line"></span>
-                            <p class="text-3">@Lang.ContactYourAffilliateSupportTeam</p>
-                            <span class="btn">@Lang.ContactNow</span>
-                        </a>
+                <div class="items">
+                    <img src="~/www/build/styles/Images/why-become/lefetime.png" alt="lefetime" class="img-responsive" />
+                    <div class="heading-items">
+                        <span class="wrap">LIFETIME</span> REVENUES ON ALL REFERRED PLAYERS
+                    </div>
+                </div>
+                <div class="items">
+                    <img src="~/www/build/styles/Images/why-become/advanced.png" alt="advanced" class="img-responsive" />
+                    <div class="heading-items">
+                        <span class="wrap">ADVANCED</span> MARKETING & ANALYTICAL TOOLS
+                    </div>
+                </div>
+                <div class="items">
+                    <img src="~/www/build/styles/Images/why-become/workat.png" alt="workat" class="img-responsive" />
+                    <div class="heading-items">
+                        <span class="wrap">WORK AT YOUR</span> OWN TIME & BE YOUR OWN BOSS
+                    </div>
+                </div>
+                <div class="items">
+                    <img src="~/www/build/styles/Images/why-become/15year.png" alt="15year" class="img-responsive" />
+                    <div class="heading-items">
+                        <span class="wrap">15 YEARS OF</span> EXPERIENCE IN GAMING INDUSTRY
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="block block-about">
+        <div class="page-container">
+            <div class="group-block">
+                <h2 class="block-title">
+                    About
+                    <svg xmlns="http://www.w3.org/2000/svg" width="108" height="21" viewBox="0 0 108 21" fill="none">
+                        <path d="M69.8766 8.88526H83.2393V12.8833H69.8766V8.88526ZM61.8928 4.88477V16.8838C61.8928 18.9599 63.5698 20.8818 65.8981 20.8818H83.2393V16.8838H69.9109C69.1544 16.8838 68.5643 16.2962 68.5643 15.5421V6.22642C68.5643 5.47235 69.147 4.88232 69.9011 4.88232H83.2393V0.884277H65.8981C63.5723 0.884277 61.8928 2.80863 61.8928 4.88477ZM59.2437 4.88477V7.4726C59.2437 8.9734 58.4284 10.2 57.3047 10.8831C58.4284 11.5661 59.2437 12.7927 59.2437 14.2935V16.8813C59.2437 19.2146 57.2826 20.8818 55.2408 20.8818H37.8923V0.884277H55.2408C57.2802 0.884277 59.2437 2.55156 59.2437 4.88477ZM52.5771 6.22642C52.5771 5.47235 51.9919 4.88477 51.2354 4.88477H44.5687V16.8838H51.2354C51.9919 16.8838 52.5771 16.2962 52.5771 15.5421V14.2274C52.5771 13.4733 51.9919 12.8833 51.2354 12.8833H45.8737V8.88526H51.2354C51.9919 8.88526 52.5771 8.29522 52.5771 7.54115V6.22642ZM85.8932 0.884277V4.88477H93.2014V18.9477C93.2014 20.0739 93.9456 20.8818 95.0963 20.8818H99.9023V4.88477H107.237V0.884277H85.8908H85.8932Z" fill="#353E5B" />
+                        <path d="M31.1522 0.884277C33.4781 0.884277 35.1748 2.83556 35.1748 4.9117V8.84608C35.1748 10.9222 33.4805 12.8857 31.1547 12.8857H21.8659C21.1118 12.8857 20.4998 13.4782 20.4998 14.2323V16.8862H35.1748V20.8843H13.8257V12.9029C13.8257 10.8267 15.52 8.88526 17.8483 8.88526H27.1591C27.9156 8.88526 28.5007 8.29522 28.5007 7.54115V6.22642C28.5007 5.47235 27.9156 4.88477 27.1591 4.88477H13.8282V0.884277H31.1547H31.1522Z" fill="#353E5B" />
+                        <path d="M4.43414 7.06374V20.8818H11.1106V2.81842C11.1106 0.928346 9.31601 0.884277 9.31601 0.884277H5.73418C4.4831 2.68132 3.18062 3.61166 0.761719 4.0597V8.04305C2.10093 8.04305 3.82452 7.57543 4.43414 7.06374Z" fill="#353E5B" />
+                    </svg>
+                    Affiliate
+                </h2>
+                <div class="block-content">
+                    <p>As a prominent sportsbook in Asia, 12BET has earned a reputation as a global market leader, offering competitive odds and being ranked as the 17th Best Online Gaming Operator worldwide.</p>
+                    <p>We are excited to extend a warm welcome to all potential affiliates to join our affiliate program, where you can earn generous commissions from promoting all of our 12BET products.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <div class="item-wrapper last">
-            <div class="card" id="affiliateNews">
-                <div class="card-content">
-                    <h4 class="card-title">
-                        <span class="icon"><img src="~/www/build/styles/Images/icon-3.png" alt="icon-3" /></span>
-                        <span class="text">@Lang.OneTwoBetAffiliateNews</span>
-                    </h4>
-                    <div class="text-content">
-                        <ul class="news-content">
-                            <li>
-                                <a class="nounderline media-link-tracking @(Model.IsAuthenticated ? string.Empty : "mediaLoginLink")" href="@Model.BannerLink">
-                                    <span class="news-title">@Lang.NewBannerIsNowAvailable <span class="text-red" style="text-decoration:underline;">@Lang.NewWithExclamationPoint</span></span>
-                                    <span>@Lang.YouCanNowLogInYourAffiliateAccount </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="@Model.Promotion12BetLink" target="_blank" class="nounderline">
-                                    <span class="news-title">@Lang.WhatNewInOneTwoBetPromotion <span class="text-red" style="text-decoration:underline;">@Lang.NewWithExclamationPoint</span></span>
-                                    <span>@Lang.GetToKnowHotPromotion</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="@Url.Content("~/Promotion")" target="_blank" class="nounderline">
-                                    <span class="news-title">@Lang.ExtraCommission <span class="text-red" style="text-decoration:underline;">@Lang.NewWithExclamationPoint</span></span>
-                                    <span>@Lang.BeOurAffThisMonth</span>
-                                </a>
-                            </li>
-                        </ul>
+    <div class="block block-get-started">
+        <div class="page-container">
+            <h2 class="block-title">
+                Get Started
+            </h2>
+            <div class="block-content">
+                <div class="items">
+                    <span class="number">1</span>
+                    <div class="icon">
+                        <img src="~/www/build/styles/Images/get-started/sign-up.png" alt="signup" />
+                    </div>
+                    <div class="heading-items">
+                        SIGN UP
+                    </div>
+                    <div class="description">
+                        Instant registration Sign up free today
+                    </div>
+                </div>
+                <div class="items">
+                    <span class="number">2</span>
+                    <div class="icon">
+                        <img src="~/www/build/styles/Images/get-started/approved.png" alt="approved" />
+                    </div>
+                    <div class="heading-items">
+                        approved
+                    </div>
+                    <div class="description">
+                        Hassle free Safe place gain money
+                    </div>
+                </div>
+                <div class="items">
+                    <span class="number">3</span>
+                    <div class="icon">
+                        <img src="~/www/build/styles/Images/get-started/promote.png" alt="promote" />
+                    </div>
+                    <div class="heading-items">
+                        promote
+                    </div>
+                    <div class="description">
+                        Start Promoting Grab your tracker
+                    </div>
+                </div>
+                <div class="items">
+                    <span class="number">4</span>
+                    <div class="icon">
+                        <img src="~/www/build/styles/Images/get-started/earning.png" alt="earning" />
+                    </div>
+                    <div class="heading-items">
+                        earning
+                    </div>
+                    <div class="description">
+                        Make money Enjoy earning from Day 1
                     </div>
                 </div>
             </div>

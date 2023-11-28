@@ -3,6 +3,21 @@
 }
 
 .carousel.slide {
+    .carousel-indicators {
+        bottom: 16px;
+
+        li {
+            width: 8px;
+            height: 8px;
+            border: 1px solid #D90F0F;
+            margin : 0 4px;
+            &.active {
+                background: #D90F0F;
+                border: 1px solid #D90F0F;
+            }
+        }
+    }
+
     .carousel-control {
         width: 2.5rem;
         background: transparent;

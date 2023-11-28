@@ -31,8 +31,8 @@ $desktop: "(min-width: 1024px)";
     }
 
     .page-container {
-        max-width: calc(100% - 300px);
-        flex-basis: calc(100% - 300px);
+        max-width: calc(100% - 220px);
+        flex-basis: calc(100% - 220px);
     }
 }
 
@@ -53,10 +53,10 @@ $desktop: "(min-width: 1024px)";
         }
     }
 
-    .user-signup {
+/*    .user-signup {
         margin-top: 30px;
     }
-
+*/
     .content-menu #mainMenu {
         white-space: nowrap; /* [1] */
         overflow-x: auto; /* [2] */
@@ -90,12 +90,8 @@ $desktop: "(min-width: 1024px)";
     }
 
     .header-top .login {
-        padding: 0;
-        text-align: center;
-        padding-bottom: 8px;
-
         .user-signup {
-            text-align: center;
+            margin-right: 15px;
         }
     }
 
