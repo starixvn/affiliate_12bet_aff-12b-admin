@@ -44,8 +44,6 @@ namespace Fanex.Affiliate.Link.Helpers
                    .AppendLine($"Source:{exception.Source}")
                    .AppendLine($"TargetSite:{exception.TargetSite}");
 
-            builder.AppendLine("UserName: " + HttpContext.Current.Session["UserName"]);
-
             return builder;
         }
 

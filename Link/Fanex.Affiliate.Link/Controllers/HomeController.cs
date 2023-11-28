@@ -8,12 +8,14 @@ namespace Fanex.Affiliate.Link.Controllers
     using System.Web.Mvc;
     using Commands;
     using Helpers;
+    using ONEbook.UM.AspNetMVC.Filters;
     using Services.Impl;
     using Services.Interface;
 
     /// <summary>
     /// Home controller for affiliate link.
     /// </summary>
+    [CheckUMFilter]
     public class HomeController : Controller
     {
         private const string SIGN_UP_PAGE_CODE = "signup";
@@ -81,6 +83,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private ActionResult InsertAffiliate(int affId, string pageCode, string lang, bool isSpecialAff = false, string replacedLang = null)
         {
+
             if (Request.Url != null)
             {
                 var affDomain = GetFullAffDomain(Request.Url.ToString(), affId);

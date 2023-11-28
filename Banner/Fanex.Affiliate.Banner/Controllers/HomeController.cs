@@ -6,7 +6,9 @@
     using System.Web;
     using System.Web.Mvc;
     using Fanex.Data.SqlServer;
+    using ONEbook.UM.AspNetMVC.Filters;
 
+    [CheckUMFilter]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -41,7 +43,8 @@
             {
                 var param = new Hashtable()
                 {
-                    { "textid", textId }
+                    { "textid", textId },
+                    { "languages", string.Empty }
                 };
                 var reader = objectDb.ExecuteReader(param);
                 if (reader.Read())
