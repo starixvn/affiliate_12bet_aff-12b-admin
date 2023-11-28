@@ -73,25 +73,7 @@ exports[`banner list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-            >
-              <p
-                value="Casino"
-              >
-                Casino
-              </p>
-            </t>
-            <t
-              asc={true}
-              className="text-center text-break"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-            >
-              <p>
-                Baccarat
-              </p>
-            </t>
+            />
             <t
               asc={true}
               className="text-center text-break"
@@ -110,34 +92,7 @@ exports[`banner list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-            >
-              <p>
-                EURO
-              </p>
-            </t>
-            <t
-              asc={true}
-              className="text-center text-break"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-            >
-              <p>
-                PC / Laptop
-              </p>
-            </t>
-            <t
-              asc={true}
-              className="text-center text-break"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Image"
-            >
-              Image
-            </t>
+            />
             <t
               asc={true}
               className="text-center text-break"
@@ -245,25 +200,7 @@ exports[`banner list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-            >
-              <p
-                value="Number Game"
-              >
-                Number Game
-              </p>
-            </t>
-            <t
-              asc={true}
-              className="text-center text-break"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-            >
-              <p>
-                
-              </p>
-            </t>
+            />
             <t
               asc={true}
               className="text-center text-break"
@@ -282,34 +219,7 @@ exports[`banner list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-            >
-              <p>
-                EURO
-              </p>
-            </t>
-            <t
-              asc={true}
-              className="text-center text-break"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-            >
-              <p>
-                Mobile
-              </p>
-            </t>
-            <t
-              asc={true}
-              className="text-center text-break"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Image"
-            >
-              Image
-            </t>
+            />
             <t
               asc={true}
               className="text-center text-break"
@@ -406,20 +316,9 @@ exports[`banner list - components - Content  render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Category"
+            title="Target Product"
           >
-            Category
-          </t>
-          <t
-            asc={true}
-            colWidth={55}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Sub Category"
-          >
-            Sub Category
+            Target Product
           </t>
           <t
             asc={true}
@@ -434,36 +333,14 @@ exports[`banner list - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={55}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Currency"
-          >
-            Currency
-          </t>
-          <t
-            asc={true}
             colWidth={50}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Device"
+            title="Affiliate Type"
           >
-            Device
-          </t>
-          <t
-            asc={true}
-            colWidth={50}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Image Type"
-          >
-            Image Type
+            Affiliate Type
           </t>
           <t
             asc={true}
@@ -543,7 +420,7 @@ exports[`banner list - components - Content  render correctly with gridData is e
             <t
               asc={true}
               className="text-center"
-              colSpan="12"
+              colSpan="10"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -606,20 +483,9 @@ exports[`banner list - components - Content  render correctly with gridData is e
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Category"
+            title="Target Product"
           >
-            Category
-          </t>
-          <t
-            asc={true}
-            colWidth={55}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Sub Category"
-          >
-            Sub Category
+            Target Product
           </t>
           <t
             asc={true}
@@ -634,36 +500,14 @@ exports[`banner list - components - Content  render correctly with gridData is e
           </t>
           <t
             asc={true}
-            colWidth={55}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Currency"
-          >
-            Currency
-          </t>
-          <t
-            asc={true}
             colWidth={50}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Device"
+            title="Affiliate Type"
           >
-            Device
-          </t>
-          <t
-            asc={true}
-            colWidth={50}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Image Type"
-          >
-            Image Type
+            Affiliate Type
           </t>
           <t
             asc={true}

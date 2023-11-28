@@ -1406,7 +1406,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
             <t
               asc={true}
               className="text-center"
-              colSpan="15"
+              colSpan="17"
               header={false}
               onClick={[Function]}
               sortable={false}

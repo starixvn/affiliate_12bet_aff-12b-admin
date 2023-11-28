@@ -56,31 +56,7 @@ exports[`home - components - BannerStatistics render correctly 1`] = `
         <strong>
           32
         </strong>
-        banners in the program
-      </span>
-    </Col>
-    <Col
-      sm={12}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-    >
-      <span>
-        <strong>
-          23
-        </strong>
-         image banners / 
-        <strong>
-          9
-        </strong>
-         flash banners
+         banners in the program
       </span>
     </Col>
   </Row>
@@ -148,38 +124,6 @@ exports[`home - components - BannerStatistics render correctly with permissions 
           </strong>
         </a>
          banners in the program
-      </span>
-    </Col>
-    <Col
-      sm={12}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-    >
-      <span>
-        <a
-          href="/Portal/MediaGallery?ImageType=Image&IsFromHome=true"
-        >
-          <strong>
-            23
-          </strong>
-        </a>
-         image banners / 
-        <a
-          href="/Portal/MediaGallery?ImageType=Flash&IsFromHome=true"
-        >
-          <strong>
-            9
-          </strong>
-        </a>
-         flash banners
       </span>
     </Col>
   </Row>

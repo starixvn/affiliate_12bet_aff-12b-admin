@@ -8,7 +8,7 @@ exports[`left panel - components - general-info - Language render correctly with
     onClick={[Function]}
     tag="button"
   >
-    Vietnamese
+    undefined
   </Button>
   <NotificationPopup
     isConfirmPopup={true}

@@ -41,7 +41,6 @@ exports[`offer aff - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -52,7 +51,6 @@ exports[`offer aff - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -131,7 +129,6 @@ exports[`offer aff - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -142,7 +139,6 @@ exports[`offer aff - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -221,7 +217,6 @@ exports[`offer aff - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -232,7 +227,6 @@ exports[`offer aff - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}

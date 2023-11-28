@@ -183,6 +183,15 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
               />
             </Col>
           </FormGroup>
+          <ExcludedTargetCountryFormGroup
+            changeTargetCountry={[Function]}
+            isExcludedAllTargetCountries={false}
+            lblText="Block Target Country"
+            sm={3}
+            targetCountryList={null}
+            tooltipText="This Affiliate domain has been used for this target country!"
+            usingTargetCountryList={Array []}
+          />
         </Form>
         <Button
           className="mr-3"
@@ -392,159 +401,33 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
               />
             </Col>
           </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Block Market
-            </Label>
-            <Col
-              sm={9}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <div
-                className="block-market"
-              >
-                <div
-                  className="block-market-item"
-                  key="en-US"
-                >
-                  <input
-                    checked={false}
-                    className="mr-2"
-                    disabled={true}
-                    id="en-US"
-                    onChange={[Function]}
-                    title="This Affiliate domain has been used for this market!"
-                    type="checkbox"
-                  />
-                  <Label
-                    for="en-US"
-                    tag="label"
-                    widths={
-                      Array [
-                        "xs",
-                        "sm",
-                        "md",
-                        "lg",
-                        "xl",
-                      ]
-                    }
-                  >
-                    English
-                  </Label>
-                </div>
-                <div
-                  className="block-market-item"
-                  key="th-TH"
-                >
-                  <input
-                    checked={true}
-                    className="mr-2"
-                    disabled={false}
-                    id="th-TH"
-                    onChange={[Function]}
-                    title={false}
-                    type="checkbox"
-                  />
-                  <Label
-                    for="th-TH"
-                    tag="label"
-                    widths={
-                      Array [
-                        "xs",
-                        "sm",
-                        "md",
-                        "lg",
-                        "xl",
-                      ]
-                    }
-                  >
-                    Thailand
-                  </Label>
-                </div>
-                <div
-                  className="block-market-item"
-                  key="zh-CN"
-                >
-                  <input
-                    checked={false}
-                    className="mr-2"
-                    disabled={false}
-                    id="zh-CN"
-                    onChange={[Function]}
-                    title={false}
-                    type="checkbox"
-                  />
-                  <Label
-                    for="zh-CN"
-                    tag="label"
-                    widths={
-                      Array [
-                        "xs",
-                        "sm",
-                        "md",
-                        "lg",
-                        "xl",
-                      ]
-                    }
-                  >
-                    Chinese
-                  </Label>
-                </div>
-                <div
-                  className="block-market-item block-market-All"
-                >
-                  <input
-                    checked={false}
-                    className="mr-2"
-                    disabled={false}
-                    id="All-Markets"
-                    onChange={[Function]}
-                    type="checkbox"
-                  />
-                  <Label
-                    for="All-Markets"
-                    tag="label"
-                    widths={
-                      Array [
-                        "xs",
-                        "sm",
-                        "md",
-                        "lg",
-                        "xl",
-                      ]
-                    }
-                  >
-                    All
-                  </Label>
-                </div>
-              </div>
-            </Col>
-          </FormGroup>
+          <ExcludedTargetCountryFormGroup
+            changeTargetCountry={[Function]}
+            isExcludedAllTargetCountries={false}
+            lblText="Block Target Country"
+            sm={3}
+            targetCountryList={
+              Array [
+                Object {
+                  "Status": 0,
+                  "TargetCountryCode": "en-US",
+                  "TargetCountryName": "English",
+                },
+                Object {
+                  "Status": 1,
+                  "TargetCountryCode": "th-TH",
+                  "TargetCountryName": "Thailand",
+                },
+                Object {
+                  "Status": 2,
+                  "TargetCountryCode": "zh-CN",
+                  "TargetCountryName": "Chinese",
+                },
+              ]
+            }
+            tooltipText="This Affiliate domain has been used for this target country!"
+            usingTargetCountryList={Array []}
+          />
         </Form>
         <Button
           className="mr-3"

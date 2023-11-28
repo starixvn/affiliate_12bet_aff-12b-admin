@@ -68,12 +68,11 @@ export class Language extends PureComponent {
     }
 
     _renderLanguageLabel() {
-        const { affiliateInfo, languageList } = this.props;
-        const languageItem = languageList.find(l => l.LanguageCode === affiliateInfo.PreferredLanguage);
+        const { affiliateInfo } = this.props;
 
         return (
             <Button color="link" className="left-panel-btn-link text-primary" onClick={() => this.toggleChangingLanguage(true)}>
-                {languageItem && htmlDecode(languageItem.LanguageName)}
+                {htmlDecode(affiliateInfo.PreferredLanguageName)}
             </Button>
         )
     }

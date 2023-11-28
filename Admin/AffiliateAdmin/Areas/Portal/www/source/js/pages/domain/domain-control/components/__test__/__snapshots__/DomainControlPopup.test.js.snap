@@ -220,7 +220,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
                 ]
               }
             >
-              Market
+              Target Country
             </Label>
             <Col
               sm={8}
@@ -238,13 +238,13 @@ exports[`domain control - components - DomainControlPopup  render correctly with
               <Input
                 className="mt-1"
                 disabled="true"
-                name="marketId"
-                title="All markets are blocked for these domains!"
+                name="targetCountryCode"
+                title="All target countries are blocked for these domains!"
                 type="select"
                 value=""
               >
                 <option
-                  key="market-none"
+                  key="target-country-none"
                   value=""
                 >
                   Please select!
@@ -539,7 +539,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
                 ]
               }
             >
-              Market
+              Target Country
             </Label>
             <Col
               sm={8}
@@ -557,13 +557,13 @@ exports[`domain control - components - DomainControlPopup  render correctly with
               <Input
                 className="mt-1"
                 disabled="true"
-                name="marketId"
-                title="All markets are blocked for these domains!"
+                name="targetCountryCode"
+                title="All target countries are blocked for these domains!"
                 type="select"
                 value=""
               >
                 <option
-                  key="market-none"
+                  key="target-country-none"
                   value=""
                 >
                   Please select!

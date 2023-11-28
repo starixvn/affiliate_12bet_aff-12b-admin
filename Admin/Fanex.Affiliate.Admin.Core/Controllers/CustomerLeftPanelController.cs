@@ -44,20 +44,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 return new JsonResult();
             }
 
-            var accOnId = _sessionService.OnUserId.ToString();
-            var sessionId = Session.SessionID;
-            var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accOnId, sessionId);
-
-            if (!string.IsNullOrEmpty(affiliateInfo?.ContactApps))
-            {
-                affiliateInfo.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<CensoredContactApp>>(affiliateInfo.ContactApps).OrderBy(p => p.Order);
-            }
-
             _sessionService.AffName = affUsername;
 
             return new JsonNetResult
             {
-                Data = affiliateInfo
+                Data = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, _sessionService.OnUserId.ToString(), Session.SessionID)
             };
         }
 

@@ -369,15 +369,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             IAffiliateService affiliateService = null,
             IAuthService authService = null,
             ISessionService sessionService = null,
-            ICustomerLeftPanelRepository customerLeftPanelRepository = null)
+            ICustomerLeftPanelRepository customerLeftPanelRepository = null,
+            ISystemService systemService = null)
         {
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
             var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
             var fakeAuthService = authService ?? Mock.Of<IAuthService>();
             var fakeSessionService = sessionService ?? Mock.Of<ISessionService>();
             var fakeCustomerLeftPanelRepository = customerLeftPanelRepository ?? Mock.Of<ICustomerLeftPanelRepository>();
+            var fakeSystemService = systemService ?? Mock.Of<ISystemService>();
 
-            return new CustomerLeftPanelService(fakeEmailService, fakeAffiliateService, fakeAuthService, fakeSessionService, fakeCustomerLeftPanelRepository);
+            return new CustomerLeftPanelService(fakeEmailService, fakeAffiliateService, fakeAuthService, fakeSessionService, fakeCustomerLeftPanelRepository, fakeSystemService);
         }
     }
 }

@@ -41,7 +41,6 @@ exports[`landing page list - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -52,7 +51,6 @@ exports[`landing page list - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -60,6 +58,16 @@ exports[`landing page list - components - Content  render correctly 1`] = `
               title="sportsbooks"
             >
               sportsbooks
+            </t>
+            <t
+              asc={true}
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="undefined"
+            >
+              undefined
             </t>
             <t
               asc={true}
@@ -109,7 +117,6 @@ exports[`landing page list - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -120,7 +127,6 @@ exports[`landing page list - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -128,6 +134,16 @@ exports[`landing page list - components - Content  render correctly 1`] = `
               title="numbergame"
             >
               numbergame
+            </t>
+            <t
+              asc={true}
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="undefined"
+            >
+              undefined
             </t>
             <t
               asc={true}
@@ -157,7 +173,7 @@ exports[`landing page list - components - Content  render correctly 1`] = `
         <t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={25}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -165,7 +181,7 @@ exports[`landing page list - components - Content  render correctly 1`] = `
           />
           <t
             asc={true}
-            colWidth={30}
+            colWidth={25}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -176,7 +192,7 @@ exports[`landing page list - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={250}
+            colWidth={200}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -187,7 +203,7 @@ exports[`landing page list - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={250}
+            colWidth={200}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -195,6 +211,17 @@ exports[`landing page list - components - Content  render correctly 1`] = `
             title="Landing Page Code (Contained in links)"
           >
             Landing Page Code (Contained in links)
+          </t>
+          <t
+            asc={true}
+            colWidth={350}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Excluded Target Country"
+          >
+            Excluded Target Country
           </t>
           <t
             asc={true}
@@ -236,7 +263,7 @@ exports[`landing page list - components - Content  render correctly with gridDat
             <t
               asc={true}
               className="text-center"
-              colSpan="5"
+              colSpan="6"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -253,7 +280,7 @@ exports[`landing page list - components - Content  render correctly with gridDat
         <t>
           <t
             asc={true}
-            colWidth={20}
+            colWidth={25}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -261,7 +288,7 @@ exports[`landing page list - components - Content  render correctly with gridDat
           />
           <t
             asc={true}
-            colWidth={30}
+            colWidth={25}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -272,7 +299,7 @@ exports[`landing page list - components - Content  render correctly with gridDat
           </t>
           <t
             asc={true}
-            colWidth={250}
+            colWidth={200}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -283,7 +310,7 @@ exports[`landing page list - components - Content  render correctly with gridDat
           </t>
           <t
             asc={true}
-            colWidth={250}
+            colWidth={200}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -291,6 +318,17 @@ exports[`landing page list - components - Content  render correctly with gridDat
             title="Landing Page Code (Contained in links)"
           >
             Landing Page Code (Contained in links)
+          </t>
+          <t
+            asc={true}
+            colWidth={350}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Excluded Target Country"
+          >
+            Excluded Target Country
           </t>
           <t
             asc={true}

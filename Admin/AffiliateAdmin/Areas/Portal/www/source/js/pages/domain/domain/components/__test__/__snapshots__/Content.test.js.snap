@@ -94,6 +94,7 @@ exports[`domain - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
+              title="undefined"
             >
               undefined
             </t>
@@ -194,6 +195,7 @@ exports[`domain - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
+              title="undefined"
             >
               undefined
             </t>
@@ -297,9 +299,9 @@ exports[`domain - components - Content  render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Block Market"
+            title="Block Target Country"
           >
-            Block Market
+            Block Target Country
           </t>
           <t
             asc={true}
@@ -438,9 +440,9 @@ exports[`domain - components - Content  render correctly with gridData is empty 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Block Market"
+            title="Block Target Country"
           >
-            Block Market
+            Block Target Country
           </t>
           <t
             asc={true}

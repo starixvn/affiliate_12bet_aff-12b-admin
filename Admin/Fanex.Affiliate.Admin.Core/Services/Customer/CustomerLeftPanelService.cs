@@ -4,12 +4,15 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
@@ -20,19 +23,22 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
         private readonly ICustomerLeftPanelRepository _customerLeftPanelRepository;
         private readonly IAuthService _authService;
         private readonly ISessionService _sessionService;
+        private readonly ISystemService _systemService;
 
         public CustomerLeftPanelService(
             IEmailService emailService,
             IAffiliateService affiliateService,
             IAuthService authService,
             ISessionService sessionService,
-            ICustomerLeftPanelRepository customerLeftPanelRepository)
+            ICustomerLeftPanelRepository customerLeftPanelRepository,
+            ISystemService systemService)
         {
             _emailService = emailService;
             _affiliateService = affiliateService;
             _customerLeftPanelRepository = customerLeftPanelRepository;
             _sessionService = sessionService;
             _authService = authService;
+            _systemService = systemService;
         }
 
         public AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accOnId, string sessionId)
@@ -45,7 +51,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
                 return null;
             }
 
+            affiliateInfo.PreferredLanguageName = GetPreferredLanguageName(affiliateInfo.PreferredLanguage);
             affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accOnId, sessionId).ToString();
+            if (!string.IsNullOrEmpty(affiliateInfo.ContactApps))
+            {
+                affiliateInfo.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<CensoredContactApp>>(affiliateInfo.ContactApps).OrderBy(p => p.Order);
+            }
 
             return affiliateInfo;
         }
@@ -128,6 +139,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             url += "&custName=" + custName;
             url += "&accOnId=" + accOnId;
             return new Uri(url, UriKind.Absolute);
+        }
+
+        private string GetPreferredLanguageName(string preferredLanguage)
+        {
+            var languageList = _systemService.GetInChangeMarkets();
+            var language = languageList.FirstOrDefault(l => l.LanguageCode == preferredLanguage);
+
+            return language?.LanguageName ?? preferredLanguage;
         }
     }
 }

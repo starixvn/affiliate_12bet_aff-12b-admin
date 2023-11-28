@@ -4,7 +4,6 @@ exports[`affiliate report - GridData  _buildCommonCell - should return correctly
 <div>
   <t
     asc={true}
-    className="text-left"
     header={false}
     onClick={[Function]}
     sortable={false}
@@ -282,7 +281,6 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
     </t>
     <t
       asc={true}
-      className="text-left"
       header={false}
       onClick={[Function]}
       sortable={false}
@@ -577,7 +575,6 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
     </t>
     <t
       asc={true}
-      className="text-left"
       header={false}
       onClick={[Function]}
       sortable={false}
@@ -856,7 +853,6 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
     </t>
     <t
       asc={true}
-      className="text-left"
       header={false}
       onClick={[Function]}
       sortable={false}
@@ -1135,7 +1131,6 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
     </t>
     <t
       asc={true}
-      className="text-left"
       header={false}
       onClick={[Function]}
       sortable={false}
@@ -1421,7 +1416,6 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           <React.Fragment>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -1716,7 +1710,6 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           <React.Fragment>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -2014,7 +2007,6 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           <React.Fragment>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -2298,9 +2290,9 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             rowSpan="2"
             sortable={false}
             sorting={false}
-            title="Month"
+            title="Affiliate"
           >
-            Month
+            Affiliate
           </t>
           <t
             asc={true}
@@ -2660,7 +2652,6 @@ exports[`affiliate report - GridData  should render correctly when have not turn
           <React.Fragment>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -2955,7 +2946,6 @@ exports[`affiliate report - GridData  should render correctly when have not turn
           <React.Fragment>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -3253,7 +3243,6 @@ exports[`affiliate report - GridData  should render correctly when have not turn
           <React.Fragment>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -3537,9 +3526,9 @@ exports[`affiliate report - GridData  should render correctly when have not turn
             rowSpan="2"
             sortable={false}
             sorting={false}
-            title="Month"
+            title="Affiliate"
           >
-            Month
+            Affiliate
           </t>
           <t
             asc={true}
@@ -3888,9 +3877,9 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       rowSpan="2"
       sortable={false}
       sorting={false}
-      title="Month"
+      title="Affiliate"
     >
-      Month
+      Affiliate
     </t>
     <t
       asc={true}
@@ -4562,9 +4551,9 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
             rowSpan="2"
             sortable={false}
             sorting={false}
-            title="Month"
+            title="Affiliate"
           >
-            Month
+            Affiliate
           </t>
           <t
             asc={true}

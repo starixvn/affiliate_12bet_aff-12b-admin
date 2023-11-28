@@ -13,10 +13,6 @@ exports[`media gallery - index Should render correctly 1`] = `
           "label": "Banner List",
         },
         Object {
-          "href": "/Portal/TextList",
-          "label": "Text List",
-        },
-        Object {
           "href": "/Portal/LandingPageList",
           "label": "Landing Page List",
         },
@@ -61,18 +57,6 @@ exports[`media gallery - index Should render correctly 1`] = `
           }
         }
         key="route_1"
-        path="/Portal/TextList"
-      />
-      <Route
-        component={
-          Object {
-            "$$typeof": Symbol(react.lazy),
-            "_ctor": [Function],
-            "_result": null,
-            "_status": -1,
-          }
-        }
-        key="route_2"
         path="/Portal/LandingPageList"
       />
       <Route
@@ -84,7 +68,7 @@ exports[`media gallery - index Should render correctly 1`] = `
             "_status": -1,
           }
         }
-        key="route_3"
+        key="route_2"
         path="/Portal/NewsLetter"
       />
       <Route
@@ -96,7 +80,7 @@ exports[`media gallery - index Should render correctly 1`] = `
             "_status": -1,
           }
         }
-        key="route_4"
+        key="route_3"
         path="/Portal/OfferPage"
       />
       <Route
@@ -108,7 +92,7 @@ exports[`media gallery - index Should render correctly 1`] = `
             "_status": -1,
           }
         }
-        key="route_5"
+        key="route_4"
         path="/Portal/OfferAff"
       />
       <Redirect

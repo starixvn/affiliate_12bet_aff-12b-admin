@@ -41,9 +41,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainControlList(string targetCountryCodes)
+        public ActionResult GetDomainControlList(string targetCountryCode)
         {
-            var visibleTargetCountryCodes = SystemHelper.GetVisibleTargetCountryCodes(targetCountryCodes, _systemService.GetTargetCountryListByUser());
+            var visibleTargetCountryCodes = SystemHelper.GetVisibleTargetCountryCodes(targetCountryCode, _systemService.GetTargetCountryListByUser());
 
             return new JsonNetResult
             {
