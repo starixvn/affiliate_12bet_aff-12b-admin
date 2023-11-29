@@ -1472,8 +1472,8 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>Đăng Ký Tham Gia Chương Trình Đại Lý 12BET</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>ĐĂNG KÝ ĐẠI LÝ</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>ĐĂNG KÝ</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>Tham Gia Đại Lý 12BET</value>

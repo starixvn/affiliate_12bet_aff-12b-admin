@@ -383,7 +383,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="karma.conf.js" />
     <Content Include="robots.txt" />
     <Content Include="Views\CommissionStructure\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
@@ -644,8 +643,12 @@
     <Content Include="www\build\styles\css\verification-account.min.css">
       <DependentUpon>verification-account.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\fonts\Montserrat\font.css" />
-    <Content Include="www\build\styles\fonts\Montserrat\font.min.css">
+    <Content Include="www\build\styles\fonts\materialdesignicons\font.css" />
+    <Content Include="www\build\styles\fonts\materialdesignicons\font.min.css">
+      <DependentUpon>font.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\fonts\montserrat\font.css" />
+    <Content Include="www\build\styles\fonts\montserrat\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\fonts\myriadPro\font.css" />
@@ -653,7 +656,9 @@
       <DependentUpon>font.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\fonts\nokora\font.css" />
-    <Content Include="www\build\styles\fonts\nokora\font.min.css" />
+    <Content Include="www\build\styles\fonts\nokora\font.min.css">
+      <DependentUpon>font.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\fonts\tahoma\font.css" />
     <Content Include="www\build\styles\fonts\tahoma\font.min.css">
       <DependentUpon>font.css</DependentUpon>
@@ -703,6 +708,7 @@
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.vi-VN.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.zh-CN.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.zh-TW.png" />
+    <Content Include="www\build\styles\Images\header\earth-fill.svg" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.km-KH.jpg" />
     <Content Include="www\build\styles\Images\home-banners\active\Home-Banner.th-TH.jpg" />
@@ -738,7 +744,6 @@
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-3\Home-Banner.zh-TW.jpg" />
-    <Content Include="www\build\styles\Images\left-side-banner.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\promotion\promotion-mobile.zh-TW.jpg" />
@@ -808,7 +813,6 @@
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.zh-TW.jpg" />
-    <Content Include="www\build\styles\Images\right-side-banner.jpg" />
     <Content Include="www\source\js\components\authhelper.js" />
     <Content Include="www\source\js\components\clipboard.js" />
     <Content Include="www\source\js\components\clipboard.min.js" />
@@ -855,10 +859,6 @@
     <Content Include="www\build\styles\css\account-overview.min.css">
       <DependentUpon>account-overview.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\css\bootstrap.css" />
-    <Content Include="www\build\styles\css\bootstrap.min.css">
-      <DependentUpon>bootstrap.css</DependentUpon>
-    </Content>
     <Content Include="www\build\styles\css\contact-us.css" />
     <Content Include="www\build\styles\css\contact-us.min.css">
       <DependentUpon>contact-us.css</DependentUpon>
@@ -887,10 +887,6 @@
     <Content Include="www\build\styles\css\marketing.min.css">
       <DependentUpon>marketing.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\css\materialdesignicons.css" />
-    <Content Include="www\build\styles\css\materialdesignicons.min.css">
-      <DependentUpon>materialdesignicons.css</DependentUpon>
-    </Content>
     <Content Include="www\build\styles\css\media-gallery.css" />
     <Content Include="www\build\styles\css\media-gallery.min.css">
       <DependentUpon>media-gallery.css</DependentUpon>
@@ -912,7 +908,6 @@
     <Content Include="www\build\styles\css\statistics.min.css">
       <DependentUpon>statistics.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.svg" />
     <Content Include="www\source\js\components\monthpicker.js" />
     <Content Include="www\source\js\components\pager.js" />
@@ -939,9 +934,8 @@
     <Content Include="www\source\js\recheckin.js" />
     <Content Include="www\source\js\site.js" />
     <Content Include="www\source\js\spec\layout.spec.js" />
-    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.svg" />
-    <Content Include="www\source\styles\fonts\font_bebas\Flat-it License.txt" />
-    <Content Include="www\source\styles\fonts\Montserrat\font.css" />
+    <Content Include="www\source\styles\fonts\materialdesignicons\font.css" />
+    <Content Include="www\source\styles\fonts\montserrat\font.css" />
     <Content Include="www\source\styles\fonts\myriadPro\font.css" />
     <Content Include="www\source\styles\fonts\nokora\font.css" />
     <Content Include="www\source\styles\Images\bootstrap-formhelpers-countries.flags.png" />
@@ -970,11 +964,6 @@
     <Content Include="www\source\styles\pages\password.scss" />
     <Content Include="www\source\styles\scss\components\_login-dialog.scss" />
     <Content Include="www\source\styles\scss\components\_marquee.scss" />
-    <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff2" />
-    <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.ttf" />
-    <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff" />
-    <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.eot" />
-    <Content Include="www\source\styles\scss\components\materialdesignicons.scss" />
     <Content Include="www\source\styles\scss\components\_loader.scss" />
     <Content Include="www\source\styles\scss\components\_pager.scss" />
     <Content Include="www\source\styles\pages\statistics.scss" />
@@ -1037,10 +1026,6 @@
     <Content Include="Views\Product\_Content.ko-KR.cshtml" />
     <Content Include="Views\Product\_Content.th-TH.cshtml" />
     <Content Include="Views\Product\_Content.vi-VN.cshtml" />
-    <Content Include="www\source\styles\fonts\tahoma\Tahoma-Regular.ttf" />
-    <Content Include="www\source\styles\fonts\tahoma\Tahoma-Bold.TTF" />
-    <Content Include="www\source\styles\fonts\tahoma\TAHOMABD.TTF" />
-    <Content Include="www\source\styles\fonts\tahoma\TAHOMA_0.TTF" />
     <Content Include="www\build\styles\fonts\tahoma\Tahoma-Regular.ttf" />
     <Content Include="www\build\styles\fonts\tahoma\Tahoma-Bold.TTF" />
     <Content Include="www\build\styles\fonts\tahoma\TAHOMABD.TTF" />
@@ -1060,13 +1045,8 @@
     <Content Include="www\build\styles\fonts\myriadPro\MYRIADPROREGULAR.eot" />
     <Content Include="www\build\styles\fonts\myriadPro\MYRIADPROREGULAR.ttf" />
     <Content Include="www\build\styles\fonts\myriadPro\MYRIADPROREGULAR.woff" />
-    <Content Include="www\source\styles\fonts\myriadPro\MYRIADPROREGULAR.eot" />
-    <Content Include="www\source\styles\fonts\myriadPro\MYRIADPROREGULAR.ttf" />
-    <Content Include="www\source\styles\fonts\myriadPro\MYRIADPROREGULAR.woff" />
     <Content Include="www\build\styles\fonts\myriadPro\Myriad-Pro-Bold.ttf" />
-    <Content Include="www\source\styles\fonts\myriadPro\Myriad-Pro-Bold.ttf" />
     <Content Include="www\build\styles\fonts\myriadPro\Myriad-Pro-Italic.ttf" />
-    <Content Include="www\source\styles\fonts\myriadPro\Myriad-Pro-Italic.ttf" />
     <Content Include="Views\UnderMaintenance\Index.cshtml" />
     <Content Include="packages.config" />
     <Content Include="Views\VerificationAccount\Index.cshtml" />
@@ -1153,99 +1133,6 @@
     <Content Include="www\build\styles\Images\apply12bet\3step.km-KH.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-2\Home-Banner.km-KH.webp" />
     <Content Include="Views\CommissionStructure\_NewRevenueShareTable.cshtml" />
-    <Content Include="www\source\styles\scss\vendors\animate\animate.css.map" />
-    <Content Include="www\source\styles\scss\vendors\animate\animate.min.css.map" />
-    <Content Include="www\source\styles\scss\vendors\animate\animate.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\attention-seekers.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\_bounce.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\_flash.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\_jello.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\_pulse.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\_rubberBand.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\_shake.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\_swing.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\_tada.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_attention-seekers\_wobble.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-entrances\bouncing-entrances.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-entrances\_bounceIn.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-entrances\_bounceInDown.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-entrances\_bounceInLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-entrances\_bounceInRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-entrances\_bounceInUp.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-exits\bouncing-exits.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-exits\_bounceOut.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-exits\_bounceOutDown.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-exits\_bounceOutLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-exits\_bounceOutRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_bouncing-exits\_bounceOutUp.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\fading-entrances.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\_fadeIn.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\_fadeInDown.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\_fadeInDownBig.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\_fadeInLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\_fadeInLeftBig.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\_fadeInRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\_fadeInRightBig.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\_fadeInUp.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-entrances\_fadeInUpBig.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\fading-exits.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\_fadeOut.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\_fadeOutDown.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\_fadeOutDownBig.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\_fadeOutLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\_fadeOutLeftBig.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\_fadeOutRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\_fadeOutRightBig.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\_fadeOutUp.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_fading-exits\_fadeOutUpBig.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_flippers\flippers.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_flippers\_flip.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_flippers\_flipInX.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_flippers\_flipInY.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_flippers\_flipOutX.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_flippers\_flipOutY.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_lightspeed\lightspeed.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_lightspeed\_lightSpeedIn.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_lightspeed\_lightSpeedOut.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_properties.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-entrances\rotating-entrances.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-entrances\_rotateIn.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-entrances\_rotateInDownLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-entrances\_rotateInDownRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-entrances\_rotateInUpLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-entrances\_rotateInUpRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-exits\rotating-exits.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-exits\_rotateOut.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-exits\_rotateOutDownLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-exits\_rotateOutDownRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-exits\_rotateOutUpLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_rotating-exits\_rotateOutUpRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-entrances\sliding-entrances.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-entrances\_slideInDown.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-entrances\_slideInLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-entrances\_slideInRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-entrances\_slideInUp.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-exits\sliding-exits.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-exits\_slideOutDown.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-exits\_slideOutLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-exits\_slideOutRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_sliding-exits\_slideOutUp.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_specials\specials.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_specials\_hinge.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_specials\_rollIn.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_specials\_rollOut.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-entrances\zooming-entrances.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-entrances\_zoomIn.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-entrances\_zoomInDown.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-entrances\_zoomInLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-entrances\_zoomInRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-entrances\_zoomInUp.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\zooming-exits.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOut.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutDown.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutLeft.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutRight.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutUp.scss" />
     <Content Include="Views\Promotion\_RevenueShareTable.cshtml" />
     <Content Include="Views\Promotion\_FdmTable.cshtml" />
     <Content Include="Views\CommissionStructure\_Content.bn-BD.cshtml" />
@@ -1320,13 +1207,19 @@
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.vi-VN.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-CN.webp" />
     <Content Include="www\build\styles\Images\home-banners\priority-1\Home-Banner.zh-TW.webp" />
-    <Content Include="www\build\styles\Images\left-side-banner.webp" />
-    <Content Include="www\build\styles\Images\right-side-banner.webp" />
-    <Content Include="www\source\styles\fonts\nokora\Nokora-Bold.ttf" />
-    <Content Include="www\source\styles\fonts\nokora\Nokora-Regular.ttf" />
     <Content Include="www\build\styles\fonts\nokora\Nokora-Bold.ttf" />
     <Content Include="www\build\styles\fonts\nokora\Nokora-Regular.ttf" />
     <Content Include="www\source\styles\scss\components\_block.scss" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Bold.eot" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Bold.ttf" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Bold.woff2" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-ExtraBold.eot" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-ExtraBold.ttf" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-ExtraBold.woff2" />
+    <Content Include="www\build\styles\fonts\materialdesignicons\materialdesignicons-webfont.eot" />
+    <Content Include="www\build\styles\fonts\materialdesignicons\materialdesignicons-webfont.ttf" />
+    <Content Include="www\build\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff" />
+    <Content Include="www\build\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1366,25 +1259,9 @@
     </Content>
     <Content Include="Fanex.Affiliate.User.Site.ruleset" />
     <Content Include="package.json" />
-    <Content Include="www\source\styles\fonts\font_bebas\BEBAS___.TTF" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Light.ttf" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.eot" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.ttf" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.woff" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.woff2" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.eot" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.ttf" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.woff" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Regular.woff2" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.eot" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.ttf" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.woff" />
-    <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.woff2" />
     <Content Include="www\source\styles\scss\abstracts\_mixins.scss" />
     <Content Include="www\source\styles\scss\abstracts\_variables.scss" />
-    <Content Include="www\source\styles\scss\base\_animations.scss" />
     <Content Include="www\source\styles\scss\base\_base.scss" />
-    <Content Include="www\source\styles\scss\base\_font.scss" />
     <Content Include="www\source\styles\scss\base\_normalize.scss" />
     <Content Include="www\source\styles\scss\base\_typography.scss" />
     <Content Include="www\source\styles\scss\components\_buttons.scss" />
@@ -1393,99 +1270,25 @@
     <Content Include="www\source\styles\scss\layout\_content.scss" />
     <Content Include="www\source\styles\scss\layout\_header.scss" />
     <Content Include="www\source\styles\scss\main.scss" />
-    <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
-    <Content Include="www\source\styles\scss\vendors\animate\animate.min.css" />
     <Content Include="www\source\styles\scss\vendors\bootstrap-3.3.7.min.css" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_alerts.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_background-variant.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_border-radius.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_buttons.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_center-block.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_clearfix.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_forms.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_gradients.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_grid-framework.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_grid.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_hide-text.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_image.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_labels.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_list-group.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_nav-divider.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_nav-vertical-align.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_opacity.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_pagination.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_panels.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_progress-bar.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_reset-filter.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_reset-text.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_resize.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_responsive-visibility.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_size.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_tab-focus.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_table-row.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_text-emphasis.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_text-overflow.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_vendor-prefixes.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_alerts.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_badges.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_breadcrumbs.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_button-groups.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_buttons.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_carousel.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_close.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_code.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_component-animations.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_dropdowns.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_forms.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_glyphicons.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_grid.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_input-groups.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_jumbotron.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_labels.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_list-group.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_media.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_mixins.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_modals.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_navbar.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_navs.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_normalize.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_pager.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_pagination.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_panels.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_popovers.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_print.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_progress-bars.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_responsive-embed.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_responsive-utilities.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_scaffolding.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_tables.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_theme.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_thumbnails.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_tooltip.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_type.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_utilities.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_variables.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\_wells.scss" />
     <Content Include="www\source\styles\scss\vendors\pikaday.css" />
-    <Content Include="www\source\styles\scss\vendors\_bootstrap.scss" />
-    <Content Include="www\build\styles\fonts\font_bebas\BEBAS___.TTF" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.eot" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.ttf" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.woff" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.woff2" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-Light.ttf" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-Medium.eot" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-Medium.ttf" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-Medium.woff" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-Medium.woff2" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-Regular.eot" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-Regular.ttf" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-Regular.woff" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-Regular.woff2" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-SemiBold.eot" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-SemiBold.ttf" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-SemiBold.woff" />
-    <Content Include="www\build\styles\fonts\Montserrat\Montserrat-SemiBold.woff2" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Light.ttf" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Medium.eot" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Medium.ttf" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Medium.woff" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Medium.woff2" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Regular.eot" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Regular.ttf" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Regular.woff" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-Regular.woff2" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-SemiBold.eot" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-SemiBold.woff" />
+    <Content Include="www\build\styles\fonts\montserrat\Montserrat-SemiBold.woff2" />
     <Content Include="www\source\styles\pages\my-account.scss" />
     <Content Include="Views\Shared\_LayoutAfterLogin.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Index.cshtml" />
@@ -1498,10 +1301,6 @@
     <Content Include="www\source\styles\pages\faq.scss" />
     <Content Include="www\source\styles\pages\contact-us.scss" />
     <Content Include="Views\UserPanel\Main\Index.cshtml" />
-    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.eot" />
-    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
-    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.woff" />
-    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Faq\Index.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest\Index.cshtml" />

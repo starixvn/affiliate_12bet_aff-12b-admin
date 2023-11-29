@@ -1472,8 +1472,8 @@
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>สมัครร่วมโปรแกรมพันธมิตร12BETเลยสิคะ!</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>สมัครร่วมเป็นพันธมิตร</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>สมัครตอนนี้</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>สมัครพันธมิตร12BET</value>

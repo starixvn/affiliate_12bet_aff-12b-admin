@@ -367,6 +367,11 @@
     <Compile Include="Repository\UserPanel\IOfferRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsLetterRepository.cs" />
     <Compile Include="Repository\UserPanel\NewsLetterRepository.cs" />
+    <Compile Include="Resources\Lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\ClaimUtitlity.cs" />
     <Compile Include="Utilities\Helper.cs" />
     <Compile Include="Utilities\HttpClientUtility.cs" />
@@ -526,11 +531,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Error.zh-TW.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Lang.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Lang.ko-KR.Designer.cs">
       <AutoGen>True</AutoGen>

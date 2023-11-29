@@ -1503,8 +1503,8 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Terms And Conditions</value>
     <comment>87923</comment>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>Sign Up Affiliate</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>Join Now</value>
     <comment>87923</comment>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">

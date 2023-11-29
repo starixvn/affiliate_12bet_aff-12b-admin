@@ -1469,8 +1469,8 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>DAFTAR PROGRAM AFILIASI 12BET SEKARANG!</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>PENDAFTARAN AFILIASI</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>DAFTAR SEKARANG</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>Pendaftaran Afiliasi 12BET</value>

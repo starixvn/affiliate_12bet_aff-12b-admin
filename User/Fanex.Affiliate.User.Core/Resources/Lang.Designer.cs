@@ -2717,6 +2717,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Join Now.
+        /// </summary>
+        public static string JoinNowHeader {
+            get {
+                return ResourceManager.GetString("JoinNowHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Jordan .
         /// </summary>
         public static string Jordan {
@@ -4959,15 +4968,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SignUp {
             get {
                 return ResourceManager.GetString("SignUp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sign Up Affiliate.
-        /// </summary>
-        public static string SignUpAffiliate {
-            get {
-                return ResourceManager.GetString("SignUpAffiliate", resourceCulture);
             }
         }
         

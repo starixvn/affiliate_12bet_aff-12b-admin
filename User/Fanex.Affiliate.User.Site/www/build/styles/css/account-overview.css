@@ -112,7 +112,7 @@
       outline: none; }
 
 .account-overview #account-overview-menu {
-  background: #f5f5f5; }
+  background: #fff; }
   .account-overview #account-overview-menu .menu {
     margin: 0 !important; }
     .account-overview #account-overview-menu .menu li:not(:last-child) {

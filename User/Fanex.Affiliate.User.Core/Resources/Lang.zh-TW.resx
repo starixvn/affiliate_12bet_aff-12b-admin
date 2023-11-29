@@ -1474,8 +1474,8 @@
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>立即註冊為合作夥伴！</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>立即註冊</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>立即加入</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>申請12BET合作夥伴</value>

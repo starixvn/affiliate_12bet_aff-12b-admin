@@ -1507,8 +1507,8 @@
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>12BET 제휴 프로그램 가입!</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>제휴사 가입</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>제휴 가입</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>12BET 제휴사 등록 방법</value>

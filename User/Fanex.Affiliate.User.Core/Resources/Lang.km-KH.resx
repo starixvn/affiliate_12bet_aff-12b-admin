@@ -123,8 +123,8 @@
   <data name="Affiliate" xml:space="preserve">
     <value>ភ្នាក់ងារ</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>ចុះឈ្មោះចូលជាភ្នាក់ងារ</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>ចូលរួមឥឡូវនេះ</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>ឈ្មោះ​ប្រើប្រាស់</value>

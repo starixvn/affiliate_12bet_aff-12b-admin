@@ -1,24 +1,16 @@
 ﻿[
-  //{
-  //  "outputFile": "www/build/styles/css/main.css",
-  //  "inputFile": "www/source/styles/scss/main.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/bootstrap.css",
-  //  "inputFile": "www/source/styles/scss/vendors/_bootstrap.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/materialdesignicons.css",
-  //  "inputFile": "www/source/styles/scss/components/materialdesignicons.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/my-account.css",
-  //  "inputFile": "www/source/styles/pages/my-account.scss"
-  //},
+  {
+    "outputFile": "www/build/styles/css/main.css",
+    "inputFile": "www/source/styles/scss/main.scss"
+  },
   {
     "outputFile": "www/build/styles/css/home.css",
     "inputFile": "www/source/styles/pages/home.scss"
   },
+  //{
+  //  "outputFile": "www/build/styles/css/my-account.css",
+  //  "inputFile": "www/source/styles/pages/my-account.scss"
+  //},
   //{
   //  "outputFile": "www/build/styles/css/feedback.css",
   //  "inputFile": "www/source/styles/pages/feedback.scss"
@@ -36,10 +28,6 @@
   //  "inputFile": "www/source/styles/pages/marketing.scss"
   //},
   //{
-  //  "outputFile": "www/build/styles/css/products.css",
-  //  "inputFile": "www/source/styles/pages/products.scss"
-  //},
-  //{
   //  "outputFile": "www/build/js/user-panel.js",
   //  "inputFile": "www/source/js/pages/user-panel.js"
   //},
@@ -55,10 +43,10 @@
   //  "outputFile": "www/build/js/test.js",
   //  "inputFile": "www/source/js/pages/test.js"
   //},
-  {
-    "outputFile": "www/build/js/site.js",
-    "inputFile": "www/source/js/site.js"
-  }
+  //{
+  //  "outputFile": "www/build/js/site.js",
+  //  "inputFile": "www/source/js/site.js"
+  //},
   //{
   //  "outputFile": "www/build/js/recheckin.js",
   //  "inputFile": "www/source/js/recheckin.js"
@@ -154,5 +142,9 @@
   //{
   //  "outputFile": "www/build/js/pages/promotion.js",
   //  "inputFile": "www/source/js/pages/promotion.js"
-  //}
+  //},
+  {
+    "outputFile": "www/build/styles/css/products.css",
+    "inputFile": "www/source/styles/pages/products.scss"
+  }
 ]
