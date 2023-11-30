@@ -3032,15 +3032,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Gallery.
-        /// </summary>
-        public static string Media {
-            get {
-                return ResourceManager.GetString("Media", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Member withdrawal information.
         /// </summary>
         public static string MemberWithdrawalInfo {

@@ -801,9 +801,6 @@
   <data name="May" xml:space="preserve">
     <value>五月</value>
   </data>
-  <data name="Media" xml:space="preserve">
-    <value>媒体册</value>
-  </data>
   <data name="Message" xml:space="preserve">
     <value>讯息</value>
   </data>

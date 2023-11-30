@@ -811,9 +811,6 @@
   <data name="May" xml:space="preserve">
     <value>5월</value>
   </data>
-  <data name="Media" xml:space="preserve">
-    <value>배너 갤러리</value>
-  </data>
   <data name="MemberWithdrawalInfo" xml:space="preserve">
     <value>회원 탈퇴 정보</value>
   </data>

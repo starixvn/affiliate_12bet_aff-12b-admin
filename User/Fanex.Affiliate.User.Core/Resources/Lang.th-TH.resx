@@ -801,9 +801,6 @@
   <data name="May" xml:space="preserve">
     <value>พฤษภาคม</value>
   </data>
-  <data name="Media" xml:space="preserve">
-    <value>ที่รวบรวมสื่อโฆษณา</value>
-  </data>
   <data name="Message" xml:space="preserve">
     <value>ข้อความ</value>
   </data>

@@ -801,9 +801,6 @@
   <data name="May" xml:space="preserve">
     <value>Tháng 5</value>
   </data>
-  <data name="Media" xml:space="preserve">
-    <value>Thư viện media</value>
-  </data>
   <data name="Message" xml:space="preserve">
     <value>Tin nhắn</value>
   </data>

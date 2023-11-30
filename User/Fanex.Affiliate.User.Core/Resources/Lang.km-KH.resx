@@ -942,9 +942,6 @@
   <data name="LastLoginIpAddress" xml:space="preserve">
     <value>អាសយដ្ឋាន IP ចូលចុងក្រោយ</value>
   </data>
-  <data name="Media" xml:space="preserve">
-    <value>Media Gallery</value>
-  </data>
   <data name="Overview" xml:space="preserve">
     <value>ទិដ្ឋភាពទូទៅ</value>
   </data>
