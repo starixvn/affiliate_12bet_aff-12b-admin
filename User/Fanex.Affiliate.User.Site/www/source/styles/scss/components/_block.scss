@@ -19,12 +19,20 @@
 
         @include Tablet {
             color: #343E5C;
-            letter-spacing : 0;
-        }
-
-        @include Tablet {
+            letter-spacing: 0;
             font-size: 20px;
-            margin-bottom: 19px;
+        }
+        &.fill-color {
+            background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            .show-pc {
+                @include Mobile {
+                    display: none;
+                }
+            }
         }
 
         svg {
@@ -45,6 +53,12 @@
 
         .affiliate {
             color: #FF8651;
+        }
+
+        .block-mb {
+            @include Mobile {
+                display: block;
+            }
         }
     }
 }

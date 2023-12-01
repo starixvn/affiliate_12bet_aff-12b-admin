@@ -75,6 +75,29 @@
     }
 }
 
+.custom-button {
+    border-radius: 100px;
+    background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
+    color: #FFF;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 52px;
+    font-size : 20px;
+
+    &:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+    @include Mobile{
+        font-size : 22px;
+        padding : 6px 31px;
+    }
+}
+
 
 .btn-submit {
     $bg-submit: #b8491f, #ee6736;

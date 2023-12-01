@@ -1,0 +1,150 @@
+﻿.group-faq {
+    @include Tablet {
+        padding: 0 30px;
+    }
+
+    .number {
+        color: #C2C2C2;
+        font-size: 44px;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 3.52px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+
+        @include Mobile {
+            font-size: 26px;
+            color: #DDD;
+            margin-bottom: 0;
+        }
+    }
+
+    .question {
+        position: relative;
+
+        .title {
+            color: #D90F0F;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+
+            @include Mobile {
+                font-size: 12px;
+            }
+
+            span {
+                background: #F6F6F6;
+                position: relative;
+                z-index: 999;
+                padding-right: 24px;
+
+                @include Mobile {
+                    padding-right: 7px;
+                }
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                width: 96%;
+                position: absolute;
+                top: 9px;
+                left: 0;
+                background: #DDD;
+                height: 2px;
+
+                @include Mobile {
+                    top: 5px;
+                    width: 90%;
+                }
+            }
+        }
+
+        .button-toggle {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
+            border-radius: 100px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+
+            @include Mobile {
+                top: -4px;
+            }
+
+            &.open {
+                &:before {
+                    display: none;
+                }
+            }
+
+            &:before, &:after {
+                content: '';
+                display: block;
+                background: #fff;
+                position: absolute;
+            }
+
+            &:after {
+                height: 1px;
+                width: 10px;
+                top: 9px;
+                left: 5px;
+
+            }
+
+            &:before {
+                height: 10px;
+                width: 1px;
+                top: 5px;
+                left: 9px;
+            }
+        }
+    }
+
+    .anwser {
+        border-radius: 12px;
+        background: #FFF;
+        padding: 52px 66px;
+        color: #353E5B;
+        text-align: justify;
+        font-size: 20px;
+        line-height: 30px;
+
+        @include Mobile {
+            font-size: 12px;
+        }
+
+        @include Mobile {
+            padding: 20px 16px 40px;
+        }
+
+        &-heading {
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: normal;
+
+            @include Mobile {
+                margin-bottom: 10px;
+            }
+        }
+
+        &-text {
+            margin-bottom: 20px;
+
+            @include Mobile {
+                margin-bottom: 10px;
+                line-height: 16px;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

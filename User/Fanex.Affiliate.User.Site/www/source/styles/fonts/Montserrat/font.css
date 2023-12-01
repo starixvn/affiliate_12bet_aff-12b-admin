@@ -44,6 +44,15 @@
     font-weight: 800;
 }
 
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../../../../build/styles/fonts/montserrat/Montserrat-Black.eot');
+    src: url('../../../../build/styles/fonts/montserrat/Montserrat-Black.woff2') format('woff2'),
+        url('../../../../build/styles/fonts/montserrat/Montserrat-Black.woff') format('woff'), 
+        url('../../../../build/styles/fonts/montserrat/Montserrat-Black.tff') format('truetype');
+    font-weight: 900;
+}
+
 
 body {
     font-family: 'Montserrat', sans-serif;

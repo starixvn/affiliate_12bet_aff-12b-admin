@@ -1,7 +1,90 @@
 ﻿var Home = (function ($) {
+    function topBanner() {
+        var swiper = new Swiper(".top-banner", {
+            effect: "fade",
+            loop: true,
+            speed: 900,
+            autoplay: {
+                delay: 4500,
+                disableOnInteraction: false,
+            },
+            centeredSlides: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            }
+        });
+        swiper.on('slideChange', function () {
+            console.log('slide changed');
+        });
+    }
+    function partnershipBanner() {
+        var swiper = new Swiper(".partnership-banner", {
+            slidesPerView: 3,
+            spaceBetween: 100,
+            centeredSlides: true,
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 3,
+                    spaceBetween: 11
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 100,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 100,
+                },
+            },
+        });
+    }
+
+    function miniBlockBanner() {
+        var swiper = new Swiper(".mini-block-banner", {
+            slidesPerView: 3,
+            spaceBetween: 75,
+            slidesPerGroup: 3,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 12,
+                    slidesPerGroup: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 35,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 75,
+                },
+            },
+        });
+    }
 
     var _me = {
         initialize: function () {
+            topBanner();
+            partnershipBanner();
+            miniBlockBanner();
             _me.initEvent();
         },
         initEvent: function () {
@@ -47,11 +130,21 @@
                 setTimeout(function () {
                     Site.redirect(redirectLink);
                 }, 10);
-            })
+            });
+
+            $('.group-faq:not(:first-of-type) .anwser').css("display", "none");
+            $('.group-faq:first-of-type .button-toggle').addClass("open");
+            $('.button-toggle').click(function () {
+                $('.open').not(this).removeClass('open').parent().next().slideUp(300);
+                $(this).toggleClass('open').parent().next().slideToggle(300);
+            });
+
+
+         
+
         }
     };
 
     return _me;
 })(jQuery);
-
 Home.initialize();

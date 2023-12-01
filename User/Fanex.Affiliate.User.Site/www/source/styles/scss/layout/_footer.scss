@@ -52,7 +52,9 @@
             .item {
                 border-left: 1px solid #fff;
                 padding: 0 30px;
-
+                &:last-child{
+                    padding-right : 0;
+                }
                 @include Tablet {
                     padding: 0 13px;
                     display: inline-flex;
