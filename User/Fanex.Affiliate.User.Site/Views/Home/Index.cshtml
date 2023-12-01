@@ -13,12 +13,10 @@
 
 @{
     var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(Model.Language);
-    var activedBanner = Url.Content("~/www/build/styles/Images/home-banners/active/Home-Banner." + Model.Language);
-    var bannerPriority1 = Url.Content("~/www/build/styles/Images/home-banners/priority-1/Home-Banner." + Model.Language);
-    var bannerPriority2 = Url.Content("~/www/build/styles/Images/home-banners/priority-2/Home-Banner." + Model.Language);
-    var bannerPriority3 = Url.Content("~/www/build/styles/Images/home-banners/priority-3/Home-Banner." + Model.Language);
-    var advFileName = Url.Content("~/www/build/styles/Images/apply12bet/3step." + Model.Language);
-    var displayAlert = Model.IsShowAlert ? "block" : "none";
+    //var activedBanner = Url.Content("~/www/build/styles/Images/home/active/Home-Banner." + Model.Language);
+    //var bannerPriority1 = Url.Content("~/www/build/styles/Images/home/priority-1/Home-Banner." + Model.Language);
+    //var bannerPriority2 = Url.Content("~/www/build/styles/Images/home/priority-2/Home-Banner." + Model.Language);
+    //var bannerPriority3 = Url.Content("~/www/build/styles/Images/home/priority-3/Home-Banner." + Model.Language);
 }
 
 @section styles{
@@ -35,9 +33,9 @@
             <div class="swiper-slide">
                 <a class="nounderline home-banner-tracking-flat show-pc" target="_blank" href="@Url.Content("~/Promotion")">
                     <picture>
-                        <source srcset="~/www/build/styles/Images/home-banners/item1.webp" type="image/webp" />
-                        <source srcset="~/www/build/styles/Images/home-banners/item1.jpg" type="image/jpeg" />
-                        <img class="img-item img-responsive" src="~/www/build/styles/Images/home-banners/item1.jpg" alt="Actived Home Banner" />
+                        <source srcset="~/www/build/styles/Images/home/item1.webp" type="image/webp" />
+                        <source srcset="~/www/build/styles/Images/home/item1.jpg" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item1.jpg" alt="Actived Home Banner" />
                     </picture>
                 </a>
                 <a class="nounderline home-banner-tracking-flat show-mobile" target="_blank" href="@Url.Content("~/Promotion")">
@@ -78,9 +76,9 @@
             <div class="swiper-slide">
                 <a class="nounderline home-banner-tracking-flat show-pc" target="_blank" href="@Url.Content("~/Promotion")">
                     <picture>
-                        <source srcset="~/www/build/styles/Images/home-banners/item2.webp" type="image/webp" />
-                        <source srcset="~/www/build/styles/Images/home-banners/item2.jpg" type="image/jpeg" />
-                        <img class="img-item img-responsive" src="~/www/build/styles/Images/home-banners/item2.jpg" alt="Actived Home Banner" />
+                        <source srcset="~/www/build/styles/Images/home/item2.webp" type="image/webp" />
+                        <source srcset="~/www/build/styles/Images/home/item2.jpg" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item2.jpg" alt="Actived Home Banner" />
                     </picture>
                 </a>
                 <a class="nounderline home-banner-tracking-flat show-mobile" target="_blank" href="@Url.Content("~/Promotion")">

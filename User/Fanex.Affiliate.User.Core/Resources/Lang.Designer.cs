@@ -2465,6 +2465,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign Up.
+        /// </summary>
+        public static string HomeSignUp {
+            get {
+                return ResourceManager.GetString("HomeSignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Honduras .
         /// </summary>
         public static string Honduras {

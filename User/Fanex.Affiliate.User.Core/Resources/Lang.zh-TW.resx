@@ -2192,6 +2192,9 @@
   <data name="BangladeshSupport" xml:space="preserve">
     <value>孟加拉客服</value>
   </data>
+  <data name="HomeSignUp" xml:space="preserve">
+    <value>註冊</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>
