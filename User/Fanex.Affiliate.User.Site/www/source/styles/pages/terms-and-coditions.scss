@@ -1,0 +1,78 @@
+﻿@import '../scss/abstracts/mixins';
+@import '../scss/components/faq';
+@import '../scss/components/search-term';
+
+.block {
+    padding: 0;
+    background: #F6F6F6;
+}
+.group-faq {
+    .anwser {
+        border-radius: 12px;
+        background: #F6F6F6;
+    }
+}
+
+.block-content {
+    margin: 40px 0 40px 0;
+
+    @include Mobile {
+        margin: 12px 0 0 0;
+    }
+
+    &:first-child {
+        padding: 40px 0 0 0;
+
+        @include Mobile {
+            padding: 12px 0 0 0;
+        }
+
+        &.active {
+            padding: 0;
+
+            .group-faq {
+                padding: 40px 32px 52px 32px;
+
+                @include Mobile {
+                    padding: 12px 32px 52px 32px;
+                }
+            }
+        }
+    }
+
+    &:last-child {
+        padding: 0 0 52px 0;
+        margin: 40px 0 0 0;
+
+        @include Mobile {
+            margin: 12px 0 0 0;
+            padding: 0 0 12px 0;
+        }
+
+        &.active {
+            padding: 0;
+
+            .group-faq {
+                padding: 40px 0 52px 0;
+            }
+        }
+    }
+
+    &.active {
+        background: #FFF;
+
+        .title {
+            span {
+                background: #FFF;
+            }
+        }
+
+        .group-faq {
+            padding: 40px 0 52px 0;
+
+            @include Mobile {
+                padding: 40px 32px 52px 32px;
+            }
+        }
+    }
+}

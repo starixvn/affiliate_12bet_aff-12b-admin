@@ -28,7 +28,6 @@
             font-weight: 700;
             line-height: 1;
             text-transform: uppercase;
-            margin-bottom: 16px;
 
             @include Mobile {
                 font-size: 12px;
@@ -95,7 +94,6 @@
                 width: 10px;
                 top: 9px;
                 left: 5px;
-
             }
 
             &:before {
@@ -115,6 +113,7 @@
         text-align: justify;
         font-size: 20px;
         line-height: 30px;
+        margin-top: 16px;
 
         @include Mobile {
             font-size: 12px;
@@ -145,6 +144,28 @@
             &:last-child {
                 margin-bottom: 0;
             }
+        }
+    }
+
+    .list-number {
+        font-size: 20px;
+        background: #d90f0f;
+        font-weight: 700;
+        line-height: 30px;
+        color: #fff;
+        border-radius: 100px;
+        width: 30px;
+        height: 30px;
+        display: block;
+        text-align: center;
+        float: left;
+        margin-right: 8px;
+
+        @include Mobile {
+            font-size: 15px;
+            width: 20px;
+            height: 20px;
+            line-height: normal;
         }
     }
 }

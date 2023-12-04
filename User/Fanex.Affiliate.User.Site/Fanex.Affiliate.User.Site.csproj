@@ -562,6 +562,10 @@
     </Content>
     <Content Include="www\build\js\pages\promotion.js" />
     <Content Include="www\build\js\pages\promotion.min.js" />
+    <Content Include="www\build\js\pages\terms-and-coditions.js" />
+    <Content Include="www\build\js\pages\terms-and-coditions.min.js">
+      <DependentUpon>terms-and-coditions.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\pages\verification-account.js" />
     <Content Include="www\build\js\pages\verification-account.min.js">
       <DependentUpon>verification-account.js</DependentUpon>
@@ -586,6 +590,7 @@
     <Content Include="www\build\js\statistics\referrerstatistics.min.js" />
     <Content Include="www\build\js\summary.js" />
     <Content Include="www\build\js\summary.min.js" />
+    <Content Include="www\build\js\terms-and-coditions.js" />
     <Content Include="www\build\js\user-panel.js" />
     <Content Include="www\build\js\user-panel.min.js">
       <DependentUpon>user-panel.js</DependentUpon>
@@ -634,6 +639,10 @@
     <Content Include="www\build\styles\css\signup.css" />
     <Content Include="www\build\styles\css\signup.min.css">
       <DependentUpon>signup.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\css\terms-and-coditions.css" />
+    <Content Include="www\build\styles\css\terms-and-coditions.min.css">
+      <DependentUpon>terms-and-coditions.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\user-panel.css" />
     <Content Include="www\build\styles\css\user-panel.min.css">
@@ -927,6 +936,7 @@
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\statistics\landingpagestatistics.js" />
     <Content Include="www\source\js\pages\statistics\referrerstatistics.js" />
+    <Content Include="www\source\js\pages\terms-and-coditions.js" />
     <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\account-overview\affiliate-link.js" />
     <Content Include="www\source\js\pages\user-panel.js" />
@@ -1220,6 +1230,9 @@
     <Content Include="www\build\styles\fonts\materialdesignicons\materialdesignicons-webfont.ttf" />
     <Content Include="www\build\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff" />
     <Content Include="www\build\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff2" />
+    <Content Include="www\source\styles\pages\terms-and-coditions.scss" />
+    <Content Include="www\source\styles\scss\components\_search-term.scss" />
+    <Content Include="www\source\styles\scss\components\_faq.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -7,13 +7,20 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
+@section styles{
+    @Html.InlineStyles("~/www/build/styles/css/terms-and-coditions.css")
+}
+
+@section scripts{
+    @Html.InlineScripts("~/www/build/js/pages/terms-and-coditions.js")
+}
+
+
 @model string
 
+<div class="page-title">
+    <span class="text">12BET Affiliates Terms and Conditions</span>
+</div>
 <div class="content">
-    <div class="page-title">
-        <span class="text">@Lang.TermAndCondition</span>
-    </div>
-
     @Html.RenderPartialByLanguage("~/Views/TermAndCondition/_Content", Model)
-    @RazorHelper.RenderMovingTopButton()
 </div>

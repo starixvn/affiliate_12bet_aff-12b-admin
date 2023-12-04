@@ -330,7 +330,7 @@ input[type="checkbox"], input[type="radio"] {
   padding: 27px 0; }
   @media screen and (max-width: 1024px) {
     .header-top {
-      padding: 12px 0; } }
+      padding: 16px 0; } }
   .header-top .logo-lang {
     display: flex;
     justify-content: space-between;
@@ -344,20 +344,19 @@ input[type="checkbox"], input[type="radio"] {
       text-decoration: none; }
       @media screen and (max-width: 1024px) {
         .header-top .logo a {
-          display: flex; } }
+          display: flex;
+          flex-wrap: wrap; } }
     @media screen and (max-width: 1024px) {
       .header-top .logo img {
-        width: 75px; } }
+        width: 107px; } }
     .header-top .logo .logo-text {
       color: #fff;
       font-weight: 400;
       font-size: 24px;
-      padding-left: 16px;
-      letter-spacing: 1.747px;
+      letter-spacing: 0.84px;
       text-transform: uppercase; }
       @media screen and (max-width: 1024px) {
         .header-top .logo .logo-text {
-          padding-left: 8px;
           font-size: 12px; } }
     @media (max-width: 992px) {
       .header-top .logo {
@@ -400,9 +399,10 @@ input[type="checkbox"], input[type="radio"] {
     left: 26px; }
     .navbar .navbar-toggle .icon-bar {
       background: #d90f0f;
-      width: 11px;
+      width: 12px;
       margin-top: 2px;
-      border-radius: 0; }
+      border-radius: 0;
+      height: 1px; }
   .navbar.navbar-default .navbar-toggle {
     border-color: transparent; }
     .navbar.navbar-default .navbar-toggle:hover, .navbar.navbar-default .navbar-toggle:focus {
@@ -434,14 +434,17 @@ input[type="checkbox"], input[type="radio"] {
     @media (min-width: 1200px) {
       .menu .menu-item {
         padding: 20px 2vw; } }
+    @media (min-width: 1360px) {
+      .menu .menu-item {
+        padding: 20px 40px; } }
     @media screen and (max-width: 1024px) {
       .menu .menu-item {
         padding: 15px 10px;
-        font-size: 11px; } }
+        font-size: 10px; } }
     .menu .menu-item:hover, .menu .menu-item:focus, .menu .menu-item.active {
-      color: #808080;
-      background: #000;
-      transition: none; }
+      color: #808080 !important;
+      background: #000 !important;
+      transition: none !important; }
 
 .user-signup {
   display: flex;
@@ -668,12 +671,6 @@ input[type="checkbox"], input[type="radio"] {
 .main.after-login {
   flex-direction: column;
   background: #fff; }
-
-.main .content {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-bottom: 15px;
-  margin-top: 5px; }
 
 .main .banner-side {
   flex-basis: 200px;
@@ -1423,42 +1420,31 @@ label.require:after {
   pointer-events: none !important;
   border: none !important; }
 
-.main-content .page-title {
-  margin-left: -15px;
-  margin-right: -15px; }
-
 .page-title {
-  margin-bottom: 1.5rem;
-  background: #fff;
-  border-top: 1px solid #e04f29;
-  margin-left: -1rem;
-  margin-right: -1rem; }
+  background: #F6F6F6;
+  padding: 30px 0;
+  text-align: center;
+  margin-bottom: 36px; }
+  @media screen and (max-width: 1024px) {
+    .page-title {
+      padding: 12px 0; } }
   .page-title .text {
-    background: -ms-linear-gradient(top, #df4f29, #a24627);
-    background: -webkit-linear-gradient(top, #df4f29, #a24627);
-    background: -moz-linear-gradient(top, #df4f29, #a24627);
-    background: -o-linear-gradient(top, #df4f29, #a24627);
-    background: linear-gradient(top, #df4f29, #a24627);
-    position: relative;
-    display: inline-block;
-    padding-left: 2rem;
-    padding-right: 6rem;
-    line-height: 30px;
-    font-size: 14px;
-    color: #fff;
-    text-transform: capitalize;
-    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32); }
-    .page-title .text:after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      height: 0;
-      width: 0;
-      border-left: 22px solid transparent;
-      border-bottom: 18px solid #fff;
-      border-right: 16px solid #fff;
-      border-top: 12px solid transparent; }
+    color: #D90F0F;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2.24px;
+    text-transform: uppercase; }
+    @media screen and (max-width: 1024px) {
+      .page-title .text {
+        font-size: 24px;
+        letter-spacing: 1px; } }
+    @media (max-width: 500px) {
+      .page-title .text {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 22px; } }
 
 .info-group {
   margin-top: 15px; }

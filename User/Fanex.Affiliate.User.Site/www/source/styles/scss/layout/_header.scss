@@ -5,7 +5,7 @@
     padding: 27px 0;
 
     @include Tablet {
-        padding: 12px 0;
+        padding: 16px 0;
     }
 
     .logo-lang {
@@ -22,15 +22,17 @@
         }
 
         a {
-            text-decoration : none;
+            text-decoration: none;
+
             @include Tablet {
                 display: flex;
+                flex-wrap: wrap;
             }
         }
 
         img {
             @include Tablet {
-                width: 75px;
+                width: 107px;
             }
         }
 
@@ -38,12 +40,10 @@
             color: #fff;
             font-weight: 400;
             font-size: 24px;
-            padding-left: 16px;
-            letter-spacing: 1.747px;
+            letter-spacing: 0.84px;
             text-transform: uppercase;
 
             @include Tablet {
-                padding-left: 8px;
                 font-size: 12px;
             }
         }
@@ -102,9 +102,10 @@
 
         .icon-bar {
             background: #d90f0f;
-            width: 11px;
+            width: 12px;
             margin-top: 2px;
             border-radius: 0;
+            height : 1px;
         }
     }
 
@@ -147,20 +148,26 @@
         font-weight: 500;
         font-size: 12px;
         letter-spacing: 0.96px;
-        white-space : nowrap;
+        white-space: nowrap;
+
         @media (min-width : 1200px) {
             padding: 20px 2vw;
         }
 
+        @media (min-width : 1360px) {
+            padding: 20px 40px;
+        }
+
+
         @include Tablet {
             padding: 15px 10px;
-            font-size: 11px;
+            font-size: 10px;
         }
 
         &:hover, &:focus, &.active {
-            color: #808080;
-            background: #000;
-            transition: none
+            color: #808080 !important;
+            background: #000 !important;
+            transition: none !important
         }
     }
 }
