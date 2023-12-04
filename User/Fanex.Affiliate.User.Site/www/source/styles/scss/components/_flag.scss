@@ -1,58 +1,58 @@
 ﻿.flag {
-    width: 16px;
-    height: 14px;
+    width: 24px;
+    height: 24px;
     margin-right: 5px;
     position: relative;
-    top: 1px;
+    top: 0;
     display: inline-block;
     -webkit-font-smoothing: antialiased;
-    background-image: url('../Images/bootstrap-formhelpers-countries.flags.png');
+    background-size: cover;
 
     &-en-US {
-        background-position: -3281px 0;
+        background-image: url('../Images/langs/eng-us.svg');
     }
 
     &-zh-CN {
-        background-position: -714px 0;
+        background-image: url('../Images/langs/cn.svg');
     }
 
     &-zh-TW {
-        background-position: -3213px 0;
+        background-image: url('../Images/langs/taiwan.svg');
     }
 
     &-id-ID {
-        background-position: -1496px 0;
+        background-image: url('../Images/langs/ido.svg');
     }
 
     &-vi-VN {
-        background-position: -3400px 0;
+        background-image: url('../Images/langs/vn.svg');
     }
 
     &-th-TH {
-        background-position: -3077px 0;
+        background-image: url('../Images/langs/thai.svg');
     }
 
     &-ko-KR {
-        background-position: -1819px 0;
+        background-image: url('../Images/langs/korea.svg');
     }
 
     &-es-ES {
-        background-position: -986px 0;
+        background-image: url('../Images/langs/eng-us.svg');
     }
 
     &-ja-JP {
-        background-position: -1683px 0;
+        background-image: url('../Images/langs/japan.svg');
     }
 
     &-hi-IN {
-        background-position: -1564px 0;
+        background-image: url('../Images/langs/eng-hi-in.svg');
     }
 
     &-km-KH {
-        background-position: -1733px 0;
+        background-image: url('../Images/langs/kh.svg');
     }
 
     &-bn-BD {
-        background-position: -306px 0;
+        background-image: url('../Images/langs/eng-bn-bd.svg');
     }
 }

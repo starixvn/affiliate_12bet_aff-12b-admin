@@ -3,14 +3,12 @@
 var Home = (function ($) {
     function topBanner() {
         var swiper = new Swiper(".top-banner", {
-            effect: "fade",
             loop: true,
             speed: 900,
             autoplay: {
                 delay: 4500,
                 disableOnInteraction: false
             },
-            centeredSlides: true,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true

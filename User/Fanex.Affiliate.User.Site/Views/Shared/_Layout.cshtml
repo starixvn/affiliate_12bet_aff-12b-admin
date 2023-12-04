@@ -79,8 +79,12 @@
 
                         <div class="language-container">
                             <div class="language-selection">
-                                <button class="select-language" id="selectedLanguage">
+                                @*<button class="select-language" id="selectedLanguage">
                                     <img src="~/www/build/styles/Images/header/earth-fill.svg" alt="earth-fill" />
+                                </button>*@
+                                <button class="select-language" id="selectedLanguage">
+                                    <span><i class="flag flag-en-US"></i>@(currentLanguage)</span>
+                                    <i class="caret"></i>
                                 </button>
                                 <div class="language-list-wrapper" id="languageList">
                                     <ul class="list-unstyled language-list">

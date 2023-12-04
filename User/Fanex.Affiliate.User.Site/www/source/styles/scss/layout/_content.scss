@@ -5,9 +5,13 @@
 }*/
 
 .page-container {
-    max-width: 1240px;
+    max-width: 960px;
     margin: 0 auto;
-    padding : 0 12px;
+    padding: 0 12px;
+
+    @media (min-width : 1365px) {
+        max-width: 1240px;
+    }
 }
 
 .main {
