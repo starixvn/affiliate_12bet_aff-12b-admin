@@ -123,15 +123,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             ISessionService sessionService = null,
             IMailProcessor mailProcessor = null,
             IAppSetting appSetting = null,
-            ISystemService commonSettingService = null
+            ISystemService systemServive = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeMailProcessor = mailProcessor ?? Mock.Of<IMailProcessor>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
+            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
 
-            var controller = new EmailTestingController(fakeSessionService, fakeMailProcessor, fakeAppSetting, fakecommonSettingService);
+            var controller = new EmailTestingController(fakeSessionService, fakeMailProcessor, fakeAppSetting, fakesystemServive);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

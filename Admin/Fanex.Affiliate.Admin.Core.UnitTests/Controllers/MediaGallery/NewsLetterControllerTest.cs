@@ -27,11 +27,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commonSettingService = new Mock<ISystemService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12bet.nexdev.net/12BetUserAsianNew");
-            var controller = CreateNewsLetterController(commonSettingService: commonSettingService.Object, appSetting: appSetting.Object);
+            var controller = CreateNewsLetterController(systemServive: systemServive.Object, appSetting: appSetting.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -206,17 +206,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private NewsLetterController CreateNewsLetterController(
             ISessionService sessionService = null,
-            ISystemService commonSettingService = null,
+            ISystemService systemServive = null,
             INewsLetterService newsLetterService = null,
             IAppSetting appSetting = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
+            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
             var fakeNewsLetterService = newsLetterService ?? Mock.Of<INewsLetterService>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
 
-            var controller = new NewsLetterController(fakeNewsLetterService, fakeSessionService, fakecommonSettingService, fakeAppSetting);
+            var controller = new NewsLetterController(fakeNewsLetterService, fakeSessionService, fakesystemServive, fakeAppSetting);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

@@ -50,10 +50,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 
                 AssignResultOutputParam(objectDb);
 
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    return GetResultInfo(objectDb);
-                }
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
             }
         }
 
@@ -69,10 +68,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.AdminRole
 
                 AssignResultOutputParam(objectDb);
 
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    return GetResultInfo(objectDb);
-                }
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
             }
         }
     }

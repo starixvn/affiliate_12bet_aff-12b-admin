@@ -20,13 +20,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         private ILifetimeScopeProvider ScopeProvider;
         private readonly IMailProcessor MailProcessor;
         private readonly IAppSetting AppSetting;
-        private readonly ISystemService commonSettingService;
+        private readonly ISystemService systemServive;
 
         public EmailServiceTest()
         {
             MailProcessor = Substitute.For<IMailProcessor>();
             AppSetting = Substitute.For<IAppSetting>();
-            commonSettingService = Substitute.For<ISystemService>();
+            systemServive = Substitute.For<ISystemService>();
         }
 
         [Fact]
@@ -190,7 +190,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             var response = new HttpResponse(new StringWriter());
             HttpContext.Current = new HttpContext(request, response);
 
-            return new EmailService(MailProcessor, AppSetting, commonSettingService);
+            return new EmailService(MailProcessor, AppSetting, systemServive);
         }
     }
 }

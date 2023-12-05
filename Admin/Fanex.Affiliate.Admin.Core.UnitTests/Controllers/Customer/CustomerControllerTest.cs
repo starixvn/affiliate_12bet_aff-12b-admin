@@ -17,10 +17,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commonSettingService = new Mock<ISystemService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateCustomerController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCustomerController(systemServive: systemServive.Object);
 
             // Action
             var viewResult = controller.Index("12BETAFF226") as ViewResult;
@@ -38,10 +38,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.AffName).Returns("12BETAFF226");
-            var commonSettingService = new Mock<ISystemService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateCustomerController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCustomerController(systemServive: systemServive.Object);
 
             // Action
             var viewResult = controller.Index("") as ViewResult;
@@ -55,13 +55,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private CustomerController CreateCustomerController(
             ISessionService sessionService = null,
-            ISystemService commonSettingService = null
+            ISystemService systemServive = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ISystemService>();
+            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
 
-            return new CustomerController(fakeSessionService, fakecommonSettingService);
+            return new CustomerController(fakeSessionService, fakesystemServive);
         }
     }
 }

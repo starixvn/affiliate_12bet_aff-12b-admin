@@ -17,17 +17,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class LandingPageStatisticsController : ReadOnlySessionBaseController
     {
-        private readonly ISystemService _commonSettingService;
+        private readonly ISystemService _systemServive;
         private readonly ILandingPageRepository _landingPageRepository;
         private readonly ILandingPageStatisticsRepository _landingPageStatisticsRepository;
 
         public LandingPageStatisticsController(
             ISessionService sessionService,
-            ISystemService commonSettingService,
+            ISystemService systemServive,
             ILandingPageRepository landingPageRepository,
             ILandingPageStatisticsRepository landingPageStatisticsRepository) : base(sessionService)
         {
-            _commonSettingService = commonSettingService;
+            _systemServive = systemServive;
             _landingPageRepository = landingPageRepository;
             _landingPageStatisticsRepository = landingPageStatisticsRepository;
         }
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 if(!string.Equals("Country", param.GroupBy, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    param.LanguageCode = GetShortedCode(_commonSettingService.GetInChangeMarkets(), param.LanguageCode);
+                    param.LanguageCode = GetShortedCode(_systemServive.GetInChangeMarkets(), param.LanguageCode);
                 }
 
                 return new JsonNetResult

@@ -11,13 +11,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [CheckUMFilter]
     public class CommonSettingController : Controller
     {
-        private readonly ISystemService _commonSettingService;
+        private readonly ISystemService _systemService;
 
         public CommonSettingController(
-            ISystemService commonSettingService
+            ISystemService systemService
             )
         {
-            _commonSettingService = commonSettingService;
+            _systemService = systemService;
         }
 
         [HttpPost]
@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return new JsonNetResult
             {
-                Data = _commonSettingService.GetProductList()
+                Data = _systemService.GetProductList()
             };
         }
 
@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return new JsonNetResult
             {
-                Data = _commonSettingService.GetCountryList()
+                Data = _systemService.GetCountryList()
             };
         }
     }

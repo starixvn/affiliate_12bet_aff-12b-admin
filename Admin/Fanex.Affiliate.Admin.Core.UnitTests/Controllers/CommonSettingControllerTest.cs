@@ -16,9 +16,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetProductList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingService = new Mock<ISystemService>();
-            commonSettingService.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
-            var controller = CreateCommonSettingController(commonSettingService: commonSettingService.Object);
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
+            var controller = CreateCommonSettingController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.GetProductList() as JsonNetResult;
@@ -32,9 +32,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetCountryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingService = new Mock<ISystemService>();
-            commonSettingService.Setup(s => s.GetCountryList()).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
-            var controller = CreateCommonSettingController(commonSettingService.Object);
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(s => s.GetCountryList()).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
+            var controller = CreateCommonSettingController(systemServive.Object);
 
             // Action
             var result = controller.GetCountryList() as JsonNetResult;
@@ -45,10 +45,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         private CommonSettingController CreateCommonSettingController(
-            ISystemService commonSettingService = null
+            ISystemService systemServive = null
             )
         {
-            var fakeCommonService = commonSettingService ?? Mock.Of<ISystemService>();
+            var fakeCommonService = systemServive ?? Mock.Of<ISystemService>();
 
             return new CommonSettingController(fakeCommonService);
         }
