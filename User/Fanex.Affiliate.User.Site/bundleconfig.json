@@ -17,6 +17,12 @@
             "www/source/js/promotion.js"
         ]
     },
+    {
+        "outputFileName": "www/build/js/commission-structure.js",
+        "inputFiles": [
+            "www/source/js/commission-structure.js"
+        ]
+    },
     //{
     //  "outputFileName": "www/build/js/layout.js",
     //  "inputFiles": [

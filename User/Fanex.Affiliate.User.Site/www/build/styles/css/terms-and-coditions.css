@@ -117,6 +117,8 @@
     @media screen and (max-width: 1024px) {
       .group-faq .anwser .view-more img {
         width: 63px; } }
+  .group-faq .anwser ul {
+    padding-left: 30px; }
 
 .group-faq .list-number {
   font-size: 20px;

@@ -1681,7 +1681,7 @@ table + .button-group {
     .table-custom {
       border: none;
       width: auto;
-      margin: 0 40px;
+      margin: 0 25px;
       border-radius: 5px 5px 0 0; } }
   .table-custom table {
     border-collapse: collapse;
@@ -1703,15 +1703,27 @@ table + .button-group {
         .table-custom table thead tr th:last-child {
           border: none; }
     .table-custom table tbody tr {
-      background: #fff; }
+      background: #F6F6F6; }
       .table-custom table tbody tr td {
         color: #D90F0F;
         text-align: center;
         font-size: 16px;
         font-weight: 700;
         line-height: normal;
-        border-right: 2px solid #F6F6F6;
-        border-bottom: 2px solid #F6F6F6; }
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff; }
+        .table-custom table tbody tr td .all-products {
+          color: #343434;
+          font-size: 16px; }
+          @media (max-width: 500px) {
+            .table-custom table tbody tr td .all-products {
+              font-size: 9px; } }
+        .table-custom table tbody tr td .more-detail {
+          color: #D90F0F;
+          font-size: 14px; }
+          @media (max-width: 500px) {
+            .table-custom table tbody tr td .more-detail {
+              font-size: 9px; } }
         @media (max-width: 500px) {
           .table-custom table tbody tr td {
             border-right: 1px solid #F6F6F6;
@@ -1743,6 +1755,24 @@ table + .button-group {
     .table-custom table td {
       padding: 22px 5px;
       line-height: 24px; }
+
+.heading-table {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2.24px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px; }
+  @media (max-width: 500px) {
+    .heading-table {
+      letter-spacing: 0;
+      font-size: 12px;
+      margin-bottom: 14px; } }
 
 .form-horizontal .control-label, .form-horizontal .radio-inline {
   padding-top: 5px;

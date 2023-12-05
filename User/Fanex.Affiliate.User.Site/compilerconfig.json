@@ -20,12 +20,12 @@
     //  "inputFile": "www/source/styles/pages/feedback.scss"
     //},
     {
-      "outputFile": "www/build/styles/css/faq.css",
-      "inputFile": "www/source/styles/pages/faq.scss"
+        "outputFile": "www/build/styles/css/faq.css",
+        "inputFile": "www/source/styles/pages/faq.scss"
     },
     {
-      "outputFile": "www/build/styles/css/contact-us.css",
-      "inputFile": "www/source/styles/pages/contact-us.scss"
+        "outputFile": "www/build/styles/css/contact-us.css",
+        "inputFile": "www/source/styles/pages/contact-us.scss"
     },
     //{
     //  "outputFile": "www/build/styles/css/marketing.css",
@@ -131,6 +131,10 @@
         "outputFile": "www/build/js/pages/faq.js",
         "inputFile": "www/source/js/pages/faq.js"
     },
+    {
+        "outputFile": "www/build/js/pages/commission-structure.js",
+        "inputFile": "www/source/js/pages/commission-structure.js"
+    },
     //{
     //  "outputFile": "www/build/js/pages/feedback.js",
     //  "inputFile": "www/source/js/pages/feedback.js"
@@ -148,12 +152,16 @@
     //  "inputFile": "www/source/styles/pages/news-letter.scss"
     //},
     {
-      "outputFile": "www/build/styles/css/promotion.css",
-      "inputFile": "www/source/styles/pages/promotion.scss"
+        "outputFile": "www/build/styles/css/promotion.css",
+        "inputFile": "www/source/styles/pages/promotion.scss"
     },
     {
-      "outputFile": "www/build/js/pages/promotion.js",
-      "inputFile": "www/source/js/pages/promotion.js"
+        "outputFile": "www/build/styles/css/commission-structure.css",
+        "inputFile": "www/source/styles/pages/commission-structure.scss"
+    },
+    {
+        "outputFile": "www/build/js/pages/promotion.js",
+        "inputFile": "www/source/js/pages/promotion.js"
     },
     {
         "outputFile": "www/build/styles/css/products.css",

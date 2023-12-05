@@ -361,7 +361,12 @@
     <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.uat.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
+    <Content Include="www\build\js\commission-structure.js" />
     <Content Include="www\build\js\promotion.js" />
+    <Content Include="www\build\styles\css\commission-structure.css" />
+    <Content Include="www\build\styles\css\commission-structure.min.css">
+      <DependentUpon>commission-structure.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\swiper.min.css" />
     <Content Include="www\build\styles\Images\arrow-1.png" />
     <Content Include="www\build\styles\Images\arrow-2.png" />
@@ -384,6 +389,7 @@
     <Content Include="www\build\styles\Images\partnership\item3.png" />
     <Content Include="www\build\styles\Images\talk.png" />
     <Content Include="www\source\js\lib\swiper.min.js" />
+    <Content Include="www\source\js\pages\commission-structure.js" />
     <Content Include="www\source\styles\scss\vendors\swiper.min.css" />
     <None Include="Configurations\AppSetting\AppSetting.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1176,6 +1182,7 @@
     <Content Include="Views\Home\Partial\_Content.zh-TW.cshtml" />
     <Content Include="www\build\styles\Images\home\item1-mobile.webp" />
     <Content Include="www\build\styles\Images\home\item2-mobile.webp" />
+    <Content Include="www\source\styles\pages\commission-structure.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
