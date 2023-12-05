@@ -11,6 +11,12 @@
             "www/source/js/faq.js"
         ]
     },
+    {
+        "outputFileName": "www/build/js/promotion.js",
+        "inputFiles": [
+            "www/source/js/promotion.js"
+        ]
+    },
     //{
     //  "outputFileName": "www/build/js/layout.js",
     //  "inputFiles": [
@@ -196,11 +202,11 @@
     //  "inputFiles": [ "www/source/styles/scss/vendors/bootstrap-3.3.7.min.css" ]
     //},
     {
-      "outputFileName": "www/build/styles/css/swiper.min.css",
-      "inputFiles": [ "www/source/styles/scss/vendors/swiper.min.css" ]
+        "outputFileName": "www/build/styles/css/swiper.min.css",
+        "inputFiles": [ "www/source/styles/scss/vendors/swiper.min.css" ]
     },
     {
-      "outputFileName": "www/build/js/lib/swiper.min.js",
-      "inputFiles": [ "www/source/js/lib/swiper.min.js" ]
+        "outputFileName": "www/build/js/lib/swiper.min.js",
+        "inputFiles": [ "www/source/js/lib/swiper.min.js" ]
     }
 ]

@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="@Url.Content("~/www/build/styles/css/promotion.css")" />
 }
 
-<div class="content">
-    <div class="page-title">
-        <span class="text">@Lang.Promotion</span>
-    </div>
+@section scripts{
+    @Html.InlineScripts("~/www/build/js/pages/promotion.js")
+}
 
+<div class="content">
+    @*<div class="page-title">
+        <span class="text">@Lang.Promotion</span>
+    </div>*@
     @Html.RenderPartialByLanguage("~/Views/Promotion/_Content", Model.CurrentLanguage, Model.IsAuthenticated)
-    @RazorHelper.RenderMovingTopButton()
 </div>

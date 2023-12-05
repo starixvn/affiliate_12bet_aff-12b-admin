@@ -1003,7 +1003,133 @@ input[type="checkbox"], input[type="radio"] {
     padding-bottom: 72px; } }
 
 .top-banner .swiper-slide {
-  position: relative; }
+  position: relative;
+  /*.group-banner-text {
+            max-width: 510px;
+            position: absolute;
+            top: 50%;
+            left: 17.7vw;
+            transform: translate(0,-50%);
+
+            @include Tablet {
+                left: 5%;
+                max-width: 350px;
+            }
+
+            @include Mobile {
+                position: unset;
+                max-width: 303px;
+                margin: 0 auto;
+                text-align: center;
+                transform: translate(0,0);
+            }
+
+            .heading-banner {
+                color: #343434;
+                font-weight: 700;
+                line-height: normal;
+                text-transform: uppercase;
+                font-size: 20px;
+                margin-bottom: 8px;
+
+                @include Tablet {
+                    font-size: 18px;
+                    margin-bottom: 4px;
+                }
+
+                @include Mobile {
+                    font-size: 13px;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                .single-text {
+                    text-transform: lowercase;
+                }
+
+                &.heading-banner-top {
+
+                    @include Mobile {
+                        font-size: 13px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        svg {
+                            width: 50px;
+                            margin: 0 4px;
+                        }
+                    }
+                }
+
+                &.heading-red {
+                    color: #D90F0F;
+                    font-size: 2.3vw;
+                    font-style: normal;
+                    font-weight: 900;
+                    line-height: 45px;
+                    transition-delay: 0.8s;
+
+                    @include Tablet {
+                        font-size: 18px;
+                        line-height: normal;
+                    }
+
+                    @include Mobile {
+                        font-size: 27px;
+                    }
+                }
+
+                &.heading-red-black {
+                    font-size: 18px;
+
+                    @include Tablet {
+                        font-size: 16px;
+                    }
+
+                    @include Tablet {
+                        font-size: 18px;
+                    }
+
+                    span {
+                        color: #D90F0F;
+                        font-size: 24px;
+                        font-weight: 900;
+                        line-height: normal;
+                        text-transform: uppercase;
+
+                        @include Tablet {
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+
+            .view-more {
+                text-align: left;
+
+                @include Mobile {
+                    text-align: center;
+                }
+
+                .custom-button {
+                    padding: 10px 31px;
+                    margin-top: 18px;
+                    font-size: 1.05vw;
+
+                    @include Tablet {
+                        font-size: 16px;
+                    }
+
+                    @include Mobile {
+                        padding: 10px 37px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }*/ }
   .top-banner .swiper-slide .show-pc {
     display: block; }
     @media (max-width: 500px) {
@@ -1022,97 +1148,6 @@ input[type="checkbox"], input[type="radio"] {
     @media (max-width: 500px) {
       .top-banner .swiper-slide img {
         min-height: 270px; } }
-  .top-banner .swiper-slide .group-banner-text {
-    max-width: 510px;
-    position: absolute;
-    top: 50%;
-    left: 17.7vw;
-    transform: translate(0, -50%); }
-    @media screen and (max-width: 1024px) {
-      .top-banner .swiper-slide .group-banner-text {
-        left: 5%;
-        max-width: 350px; } }
-    @media (max-width: 500px) {
-      .top-banner .swiper-slide .group-banner-text {
-        position: unset;
-        max-width: 303px;
-        margin: 0 auto;
-        text-align: center;
-        transform: translate(0, 0); } }
-    .top-banner .swiper-slide .group-banner-text .heading-banner {
-      color: #343434;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: uppercase;
-      font-size: 20px;
-      margin-bottom: 8px; }
-      @media screen and (max-width: 1024px) {
-        .top-banner .swiper-slide .group-banner-text .heading-banner {
-          font-size: 18px;
-          margin-bottom: 4px; } }
-      @media (max-width: 500px) {
-        .top-banner .swiper-slide .group-banner-text .heading-banner {
-          font-size: 13px; } }
-      .top-banner .swiper-slide .group-banner-text .heading-banner:last-child {
-        margin-bottom: 0; }
-      .top-banner .swiper-slide .group-banner-text .heading-banner .single-text {
-        text-transform: lowercase; }
-      @media (max-width: 500px) {
-        .top-banner .swiper-slide .group-banner-text .heading-banner.heading-banner-top {
-          font-size: 13px;
-          display: flex;
-          align-items: center;
-          justify-content: center; }
-          .top-banner .swiper-slide .group-banner-text .heading-banner.heading-banner-top svg {
-            width: 50px;
-            margin: 0 4px; } }
-      .top-banner .swiper-slide .group-banner-text .heading-banner.heading-red {
-        color: #D90F0F;
-        font-size: 2.3vw;
-        font-style: normal;
-        font-weight: 900;
-        line-height: 45px;
-        transition-delay: 0.8s; }
-        @media screen and (max-width: 1024px) {
-          .top-banner .swiper-slide .group-banner-text .heading-banner.heading-red {
-            font-size: 18px;
-            line-height: normal; } }
-        @media (max-width: 500px) {
-          .top-banner .swiper-slide .group-banner-text .heading-banner.heading-red {
-            font-size: 27px; } }
-      .top-banner .swiper-slide .group-banner-text .heading-banner.heading-red-black {
-        font-size: 18px; }
-        @media screen and (max-width: 1024px) {
-          .top-banner .swiper-slide .group-banner-text .heading-banner.heading-red-black {
-            font-size: 16px; } }
-        @media screen and (max-width: 1024px) {
-          .top-banner .swiper-slide .group-banner-text .heading-banner.heading-red-black {
-            font-size: 18px; } }
-        .top-banner .swiper-slide .group-banner-text .heading-banner.heading-red-black span {
-          color: #D90F0F;
-          font-size: 24px;
-          font-weight: 900;
-          line-height: normal;
-          text-transform: uppercase; }
-          @media screen and (max-width: 1024px) {
-            .top-banner .swiper-slide .group-banner-text .heading-banner.heading-red-black span {
-              font-size: 20px; } }
-    .top-banner .swiper-slide .group-banner-text .view-more {
-      text-align: left; }
-      @media (max-width: 500px) {
-        .top-banner .swiper-slide .group-banner-text .view-more {
-          text-align: center; } }
-      .top-banner .swiper-slide .group-banner-text .view-more .custom-button {
-        padding: 10px 31px;
-        margin-top: 18px;
-        font-size: 1.05vw; }
-        @media screen and (max-width: 1024px) {
-          .top-banner .swiper-slide .group-banner-text .view-more .custom-button {
-            font-size: 16px; } }
-        @media (max-width: 500px) {
-          .top-banner .swiper-slide .group-banner-text .view-more .custom-button {
-            padding: 10px 37px;
-            font-size: 16px; } }
 
 @media (max-width: 500px) {
   .top-banner .swiper-pagination {
@@ -1637,6 +1672,77 @@ label.require:after {
 table + .button-group {
   text-align: right;
   margin-top: 24px; }
+
+/*========================*/
+.table-custom {
+  font-size: 16px;
+  border-radius: 12px 12px 0 0; }
+  @media (max-width: 500px) {
+    .table-custom {
+      border: none;
+      width: auto;
+      margin: 0 40px;
+      border-radius: 5px 5px 0 0; } }
+  .table-custom table {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%; }
+    .table-custom table .checkbox-group .label-cbx {
+      width: 22px;
+      height: 18px;
+      margin-bottom: 4px;
+      display: inline-block; }
+    .table-custom table thead tr {
+      background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%); }
+      .table-custom table thead tr th {
+        border-right: 2px solid #fff; }
+        @media (max-width: 500px) {
+          .table-custom table thead tr th {
+            border-right: 1px solid #fff; } }
+        .table-custom table thead tr th:last-child {
+          border: none; }
+    .table-custom table tbody tr {
+      background: #fff; }
+      .table-custom table tbody tr td {
+        color: #D90F0F;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: normal;
+        border-right: 2px solid #F6F6F6;
+        border-bottom: 2px solid #F6F6F6; }
+        @media (max-width: 500px) {
+          .table-custom table tbody tr td {
+            border-right: 1px solid #F6F6F6;
+            border-bottom: 1px solid #F6F6F6;
+            padding: 5px 8px;
+            font-size: 8px; } }
+        .table-custom table tbody tr td:last-child {
+          color: #FF8651;
+          border-right: none !important; }
+    .table-custom table tr {
+      background: #f5eaea;
+      padding: .35em;
+      color: #333333; }
+    .table-custom table th, .table-custom table td {
+      word-wrap: break-word; }
+    .table-custom table th {
+      text-transform: uppercase;
+      font-weight: 700;
+      line-height: normal;
+      color: #fff;
+      text-align: center;
+      padding: 22px 15px; }
+      @media (max-width: 500px) {
+        .table-custom table th {
+          padding: 5px 8px;
+          font-size: 8px; } }
+    .table-custom table .non-transform {
+      text-transform: none; }
+    .table-custom table td {
+      padding: 22px 5px;
+      line-height: 24px; }
 
 .form-horizontal .control-label, .form-horizontal .radio-inline {
   padding-top: 5px;

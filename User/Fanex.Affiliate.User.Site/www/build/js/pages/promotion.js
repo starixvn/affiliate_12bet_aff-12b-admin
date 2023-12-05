@@ -1,8 +1,23 @@
-﻿'use strict';
+﻿"use strict";
 
 var Promotion = (function ($) {
+    function topBanner() {
+        var swiper = new Swiper(".top-banner", {
+            loop: true,
+            speed: 900,
+            autoplay: {
+                delay: 4500,
+                disableOnInteraction: false
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            }
+        });
+    }
     var _me = {
         initialize: function initialize() {
+            topBanner();
             _me.initEvent();
         },
         initEvent: function initEvent() {
@@ -14,6 +29,13 @@ var Promotion = (function ($) {
                 setTimeout(function () {
                     Site.redirect(redirectLink);
                 }, 10);
+            });
+
+            $('.button-toggle').addClass("open");
+            $('.button-toggle').click(function () {
+                $('.open').not(this).removeClass('open').parent().next().slideUp(300);
+                $(this).toggleClass('open').parent().parent().prev().find('.anwser').slideToggle(300);
+                $(this).parent().parent().prev().toggleClass('active');
             });
         }
     };

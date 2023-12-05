@@ -12,9 +12,6 @@
                 clickable: true
             }
         });
-        swiper.on('slideChange', function () {
-            console.log('slide changed');
-        });
     }
     function partnershipBanner() {
         var swiper = new Swiper(".partnership-banner", {
