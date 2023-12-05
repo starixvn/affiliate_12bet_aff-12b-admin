@@ -13,10 +13,6 @@
 
 @{
     var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(Model.Language);
-    //var activedBanner = Url.Content("~/www/build/styles/Images/home/active/Home-Banner." + Model.Language);
-    //var bannerPriority1 = Url.Content("~/www/build/styles/Images/home/priority-1/Home-Banner." + Model.Language);
-    //var bannerPriority2 = Url.Content("~/www/build/styles/Images/home/priority-2/Home-Banner." + Model.Language);
-    //var bannerPriority3 = Url.Content("~/www/build/styles/Images/home/priority-3/Home-Banner." + Model.Language);
 }
 
 @section styles{
@@ -26,6 +22,8 @@
 @section scripts{
     @Html.InlineScripts("~/www/build/js/pages/home.js")
 }
+
+@*@Html.RenderPartialByLanguage("~/Views/Home/Partial/_Content", Model.Language)*@
 
 <div class="content home-page">
     <div class="swiper top-banner">

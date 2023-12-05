@@ -11,11 +11,6 @@ var Faq = (function ($) {
             $('.button-toggle').click(function () {
                 $(this).toggleClass('open').parent().next().slideToggle(300);
                 $(this).parents('.block-content').toggleClass("active");
-
-                //$('.block-content').removeClass("active");
-                //if ($(this).hasClass('open')) {
-                //    $(this).parents('.block-content').addClass("active");
-                //}
             });
         }
     };
