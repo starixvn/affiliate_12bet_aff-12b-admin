@@ -114,6 +114,7 @@
         font-size: 20px;
         line-height: 30px;
         margin-top: 16px;
+        position: relative;
 
         @include Mobile {
             font-size: 12px;
@@ -145,6 +146,18 @@
                 margin-bottom: 0;
             }
         }
+
+        .view-more {
+            position: absolute;
+            bottom: -38px;
+            right: 0;
+
+            img {
+                @include Tablet {
+                    width: 63px;
+                }
+            }
+        }
     }
 
     .list-number {
@@ -165,6 +178,19 @@
             font-size: 15px;
             width: 20px;
             height: 20px;
+            line-height: normal;
+        }
+    }
+
+    .red-bold {
+        color: #D90F0F;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 30px;
+
+        @include Mobile {
+            font-size: 12px;
             line-height: normal;
         }
     }

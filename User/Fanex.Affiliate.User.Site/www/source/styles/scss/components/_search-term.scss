@@ -22,6 +22,11 @@
         text-transform: uppercase;
         padding: 14px 50px 14px 20px;
 
+        @include Mobile {
+            height: 32px;
+            width: 214px;
+        }
+
         &::placeholder {
             color: #C2C2C2;
         }
@@ -34,5 +39,10 @@
         position: absolute;
         top: 7px;
         right: 15px;
+
+        @include Mobile {
+            top: 2px;
+            right: 5px;
+        }
     }
 }

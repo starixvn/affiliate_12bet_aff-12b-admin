@@ -489,6 +489,7 @@
     <Content Include="www\build\js\daily-earning.min.js">
       <DependentUpon>daily-earning.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\faq.js" />
     <Content Include="www\build\js\forgotpassword.js" />
     <Content Include="www\build\js\forgotpassword.min.js">
       <DependentUpon>forgotpassword.js</DependentUpon>
@@ -543,6 +544,10 @@
     <Content Include="www\build\js\pages\commission-report.js" />
     <Content Include="www\build\js\pages\commission-report.min.js">
       <DependentUpon>commission-report.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\pages\faq.js" />
+    <Content Include="www\build\js\pages\faq.min.js">
+      <DependentUpon>faq.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\pages\feedback.js" />
     <Content Include="www\build\js\pages\feedback.min.js">
@@ -841,6 +846,7 @@
     <Content Include="www\source\js\pages\account-overview\summary.js" />
     <Content Include="www\source\js\pages\commission-report.js" />
     <Content Include="www\source\js\pages\contactus.js" />
+    <Content Include="www\source\js\pages\faq.js" />
     <Content Include="www\source\js\pages\feedback.js" />
     <Content Include="www\source\js\pages\forgotpassword.js" />
     <Content Include="www\source\js\pages\logout.js" />

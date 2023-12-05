@@ -1,9 +1,121 @@
-﻿.faq-group {
+﻿@import '../scss/abstracts/mixins';
+@import '../scss/components/faq';
+@import '../scss/components/search-term';
+.faq-group {
     &:not(:last-child) {
         margin-bottom: 2rem;
     }
 
     .question {
         font-weight: 600;
+    }
+}
+
+
+.block {
+    padding: 0;
+    background: #F6F6F6;
+
+    .page-title {
+        @include Mobile {
+            margin-bottom: 40px;
+        }
+    }
+}
+
+.group-faq {
+    .anwser {
+        border-radius: 12px;
+        background: #F6F6F6;
+    }
+}
+
+.block-content {
+    margin: 40px 0 52px 0;
+
+
+    @include Mobile {
+        margin: 12px 0 0 0;
+        padding: 0 0 12px 0;
+    }
+
+    &:first-child {
+        padding: 40px 0 0 0;
+
+        @include Mobile {
+            padding: 12px 0 0 0;
+        }
+
+        &.active {
+            padding: 0;
+
+            .group-faq {
+                padding: 0 0 52px 0;
+
+                @include Tablet {
+                    padding: 0 30px 52px 30px;
+                }
+
+                @include Mobile {
+                    padding: 12px 30px 52px 30px;
+                }
+            }
+        }
+    }
+
+    &:last-child {
+        padding: 0 0 52px 0;
+        margin: 40px 0 0 0;
+
+        @include Mobile {
+            margin: 12px 0 0 0;
+            padding: 0 0 24px 0;
+        }
+
+        &.active {
+            padding: 0;
+
+            .group-faq {
+                padding: 40px 0 52px 0;
+
+                @include Tablet {
+                    padding: 12px 30px 52px 30px;
+                }
+            }
+        }
+    }
+
+    &.active {
+        margin: 0;
+
+        &:nth-child(odd) {
+            background: #fff;
+
+            .title {
+                span {
+                    background: #fff;
+                }
+            }
+        }
+
+        &:nth-child(even) {
+            background: #F6F6F6;
+
+            .anwser {
+                background: #fff;
+            }
+        }
+
+        .group-faq {
+            padding: 40px 0 52px 0;
+
+            @include Tablet {
+                padding: 40px 30px 52px 30px;
+            }
+
+            @include Mobile {
+                padding: 12px 30px 52px 30px;
+            }
+        }
     }
 }

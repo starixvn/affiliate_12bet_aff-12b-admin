@@ -17,7 +17,6 @@ var TermAndCondition = (function ($) {
                 $('.block-content').removeClass("active");
                 if ($(this).hasClass('open')) {
                     $(this).parents('.block-content').addClass("active");
-                    $(this).parents('.block-content').addClass("active").next().addClass('spacing');
                 }
             });
         }

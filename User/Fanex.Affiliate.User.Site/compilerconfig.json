@@ -19,10 +19,10 @@
     //  "outputFile": "www/build/styles/css/feedback.css",
     //  "inputFile": "www/source/styles/pages/feedback.scss"
     //},
-    //{
-    //  "outputFile": "www/build/styles/css/faq.css",
-    //  "inputFile": "www/source/styles/pages/faq.scss"
-    //},
+    {
+      "outputFile": "www/build/styles/css/faq.css",
+      "inputFile": "www/source/styles/pages/faq.scss"
+    },
     //{
     //  "outputFile": "www/build/styles/css/contact-us.css",
     //  "inputFile": "www/source/styles/pages/contact-us.scss"
@@ -126,6 +126,10 @@
     {
         "outputFile": "www/build/js/pages/terms-and-coditions.js",
         "inputFile": "www/source/js/pages/terms-and-coditions.js"
+    },
+    {
+        "outputFile": "www/build/js/pages/faq.js",
+        "inputFile": "www/source/js/pages/faq.js"
     },
     //{
     //  "outputFile": "www/build/js/pages/feedback.js",

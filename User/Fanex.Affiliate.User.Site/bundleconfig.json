@@ -1,10 +1,16 @@
 [
     {
-      "outputFileName": "www/build/js/terms-and-coditions.js",
-      "inputFiles": [
-        "www/source/js/terms-and-coditions.js"
-      ]
+        "outputFileName": "www/build/js/terms-and-coditions.js",
+        "inputFiles": [
+            "www/source/js/terms-and-coditions.js"
+        ]
     },
+    {
+        "outputFileName": "www/build/js/faq.js",
+        "inputFiles": [
+            "www/source/js/faq.js"
+        ]
+    }
     //{
     //  "outputFileName": "www/build/js/layout.js",
     //  "inputFiles": [

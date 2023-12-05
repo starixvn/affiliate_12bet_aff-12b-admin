@@ -11,6 +11,11 @@
     @Html.InlineStyles("~/www/build/styles/css/faq.css")
 }
 
+@section scripts{
+    @Html.InlineScripts("~/www/build/js/pages/faq.js")
+}
+
+
 @model string
 
 <div class="content">
@@ -19,6 +24,4 @@
     </div>
 
     @Html.RenderPartialByLanguage("~/Views/Faq/_Content", Model)
-
-    @RazorHelper.RenderMovingTopButton()
 </div>
