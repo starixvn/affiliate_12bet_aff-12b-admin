@@ -13,6 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
         public AdjustmentResultInfo UpdateMassAdjusment(MassAdjustmentParam param)
         {
             const string SpKey = "Aff_Admin_Adjustment_Upd";
+            var errorList = new List<ErroredAdjustmentInfo>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -21,36 +22,25 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 objectDb.SetParameterValue("Ip", param.Ip);
                 AssignResultOutputParam(objectDb);
 
-                objectDb.ExecuteNonQuery();
-                var result = GetResultInfo(objectDb);
-
-                if (!result.IsSuccessful)
+                using (var reader = objectDb.ExecuteReader())
                 {
-                    using (var reader = objectDb.ExecuteReader())
+                    while (reader.Read())
                     {
-                        var errorList = new List<ErroredAdjustmentInfo>();
-
-                        while (reader.Read())
+                        errorList.Add(new ErroredAdjustmentInfo
                         {
-                            errorList.Add(new ErroredAdjustmentInfo
-                            {
-                                Username = Convert.ToString(reader["Username"]),
-                                Amount = FormatAmount(Convert.ToString(reader["Amount"])),
-                                Reason = Convert.ToString(reader["ErrorMsg"]),
-                            });
-                        }
-
-                        return new AdjustmentResultInfo
-                        {
-                            Result = result,
-                            ErroredAdjustmentInfoList = errorList
-                        };
+                            Username = Convert.ToString(reader["Username"]),
+                            Amount = FormatAmount(Convert.ToString(reader["Amount"])),
+                            Reason = Convert.ToString(reader["ErrorMsg"]),
+                        });
                     }
                 }
 
+                var result = GetResultInfo(objectDb);
+
                 return new AdjustmentResultInfo
                 {
-                    Result = result
+                    Result = result,
+                    ErroredAdjustmentInfoList = errorList
                 };
             }
         }
