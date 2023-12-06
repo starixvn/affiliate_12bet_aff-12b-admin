@@ -377,6 +377,15 @@
     <Content Include="www\build\styles\Images\arrow-2.png" />
     <Content Include="www\build\styles\Images\arrow-3.png" />
     <Content Include="www\build\styles\Images\arrow-4.png" />
+    <Content Include="www\build\styles\Images\comission\arrow-1.png" />
+    <Content Include="www\build\styles\Images\comission\arrow-2.png" />
+    <Content Include="www\build\styles\Images\comission\arrow-3.png" />
+    <Content Include="www\build\styles\Images\comission\arrow-4.png" />
+    <Content Include="www\build\styles\Images\comission\item-1.png" />
+    <Content Include="www\build\styles\Images\comission\item-2.png" />
+    <Content Include="www\build\styles\Images\comission\item-3.png" />
+    <Content Include="www\build\styles\Images\comission\item-4.png" />
+    <Content Include="www\build\styles\Images\comission\item-5.png" />
     <Content Include="www\build\styles\Images\home\item1-mobile.jpg" />
     <Content Include="www\build\styles\Images\home\item2-mobile.jpg" />
     <Content Include="www\build\styles\Images\our-product\casino.png" />
@@ -396,6 +405,18 @@
     <Content Include="www\source\js\lib\swiper.min.js" />
     <Content Include="www\source\js\pages\commission-structure.js" />
     <Content Include="www\source\js\pages\products.js" />
+    <Content Include="www\source\styles\Images\langs\cn.svg" />
+    <Content Include="www\source\styles\Images\langs\eng-bn-bd.svg" />
+    <Content Include="www\source\styles\Images\langs\eng-hi-in.svg" />
+    <Content Include="www\source\styles\Images\langs\eng-us.svg" />
+    <Content Include="www\source\styles\Images\langs\ido.svg" />
+    <Content Include="www\source\styles\Images\langs\japan.svg" />
+    <Content Include="www\source\styles\Images\langs\kh.svg" />
+    <Content Include="www\source\styles\Images\langs\korea.svg" />
+    <Content Include="www\source\styles\Images\langs\list-lang.png" />
+    <Content Include="www\source\styles\Images\langs\taiwan.svg" />
+    <Content Include="www\source\styles\Images\langs\thai.svg" />
+    <Content Include="www\source\styles\Images\langs\vn.svg" />
     <Content Include="www\source\styles\scss\vendors\swiper.min.css" />
     <None Include="Configurations\AppSetting\AppSetting.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

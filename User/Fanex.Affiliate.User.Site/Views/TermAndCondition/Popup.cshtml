@@ -19,6 +19,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@Lang.TermAndCondition</title>
+    <script src="~/www/build/js/lib/jquery-3.3.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('\x3Cscript src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">\x3C/script>')
+    </script>
+
     <link href="~/www/build/styles/css/bootstrap-3.3.7.min.css" rel="stylesheet" />
     @if (sessionService.CurrentLanguage == SystemLanguage.VietNamLanguageCode)
     {
@@ -29,40 +34,23 @@
         <link href="@Url.RenderLink("~/www/build/styles/fonts/montserrat/font.css")" rel="stylesheet" />
     }
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
+    <link href="@Url.RenderLink("~/www/build/styles/css/terms-and-coditions.css")" rel="stylesheet" />
 </head>
 <body>
-    <div class="main-container">
-        <div class="main">
-            <div class="banner-side banner-left">
-                <picture>
-                    <source srcset="~/www/build/styles/Images/left-side-banner.webp" type="image/webp" />
-                    <source srcset="~/www/build/styles/Images/left-side-banner.jpg" type="image/jpeg" />
-                    <img src="~/www/build/styles/Images/left-side-banner.jpg" alt="left banner" />
-                </picture>
+    <div class="main">
+        <div class="main-content">
+            <div class="page-title">
+                <span class="text">@Lang.TermAndCondition</span>
             </div>
-
-            <div class="page-container">
-                <div class="content">
-                    <div class="page-title">
-                        <span class="text">@Lang.TermAndCondition</span>
-                    </div>
-
-                    @Html.RenderPartialByLanguage("~/Views/TermAndCondition/_Content", Model)
-                    @RazorHelper.RenderMovingTopButton()
-                </div>
-            </div>
-
-            <div class="banner-side banner-right">
-                <picture>
-                    <source srcset="~/www/build/styles/Images/right-side-banner.webp" type="image/webp" />
-                    <source srcset="~/www/build/styles/Images/right-side-banner.jpg" type="image/jpeg" />
-                    <img src="~/www/build/styles/Images/right-side-banner.jpg" alt="right banner" />
-                </picture>
+            <div class="content">
+                @Html.RenderPartialByLanguage("~/Views/TermAndCondition/_Content", Model)
+                @RazorHelper.RenderMovingTopButton()
             </div>
         </div>
     </div>
 
     @Html.InlineScripts("~/www/build/js/lib/modernizr-webp.js")
+    @Html.InlineScripts("~/www/build/js/pages/terms-and-coditions.js")
     <script>
         window.onscroll = function () { scrollFunction() };
 
