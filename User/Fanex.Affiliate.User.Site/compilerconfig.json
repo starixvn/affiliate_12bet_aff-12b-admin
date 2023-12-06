@@ -124,6 +124,10 @@
         "inputFile": "www/source/js/pages/home.js"
     },
     {
+        "outputFile": "www/build/js/pages/products.js",
+        "inputFile": "www/source/js/pages/products.js"
+    },
+    {
         "outputFile": "www/build/js/pages/terms-and-coditions.js",
         "inputFile": "www/source/js/pages/terms-and-coditions.js"
     },

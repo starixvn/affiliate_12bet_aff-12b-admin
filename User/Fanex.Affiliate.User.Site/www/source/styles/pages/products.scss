@@ -1,43 +1,304 @@
-﻿.signup-block {
-    margin-top: 15px;
-    margin-bottom: 20px;
+﻿@import '../scss/abstracts/mixins';
 
-    .btn-link {
-        height: 40px;
-        line-height: 40px;
-        margin-right: 0;
+.page-title{
+    margin-bottom : 0;
+}
 
-        &:hover {
-            background-color: #c11b00;
+.block-items-products {
+    .main-items {
+        .wrapper-items {
+            padding: 40px 0;
+            border: 1px solid #F6F6F6;
+
+            &:nth-child(even) {
+                .mask {
+                    flex-direction: row-reverse;
+                    padding: 0 0 0 52px;
+
+                    @include Tablet {
+                        padding: 0 0 0 30px;
+                    }
+
+                    .imgs {
+                        position: absolute;
+                        left: auto;
+                        top: -50px;
+                        right: -65px;
+                        text-align: right;
+
+                        @include Tablet {
+                            right: 0;
+                            top: -40px;
+                        }
+                    }
+                }
+            }
         }
-    }
-    @media screen and (max-width: 374px) {
-        .btn-link {
-            font-size: 11px;
+
+        .items {
+            position: relative;
+            padding: 24px;
+
+
+            @include Tablet {
+                padding: 15px;
+            }
+
+            .mask {
+                border-radius: 12px;
+                background: linear-gradient(90deg, #D90F0F 37.9%, #FF8651 86.09%);
+                padding: 0 52px 0 0;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                @include Tablet {
+                    padding: 0 20px 0 0;
+                }
+
+                @include Mobile {
+                    flex-wrap: wrap;
+                }
+
+                .shape {
+                    display: block;
+                    min-width: 400px;
+
+                    @include Tablet {
+                        min-width: 340px;
+                    }
+                }
+
+                .imgs {
+                    position: absolute;
+                    top: -15px;
+                    left: 25px;
+
+                    img {
+                        max-width: 100%;
+
+                        @include Tablet {
+                            width: 78%;
+                        }
+                    }
+                }
+
+                .group-slider {
+                    color: #FFF;
+                    width: 65%;
+
+                    .heading-slider {
+                        font-size: 1.5vw;
+                        font-weight: 700;
+                        line-height: normal;
+                        letter-spacing: 2.24px;
+                        text-transform: uppercase;
+                        margin-bottom: 7px;
+
+                        @include Tablet {
+                            font-size: 16px;
+                        }
+                    }
+
+                    .text-slider {
+                        text-align: justify;
+                        font-size: 1vw;
+                        font-weight: 500;
+                        line-height: 32px;
+                        margin-bottom: 20px;
+
+                        @include Tablet {
+                            font-size: 12px;
+                            line-height: normal;
+                        }
+                    }
+
+                    .shape-slider {
+                        position: relative;
+                        max-width: 32vw;
+                        margin: 0 auto;
+
+                        @media (max-width : 1200px) {
+                            max-width: 700px;
+                        }
+
+                        @include Tablet {
+                            max-width: 300px;
+                        }
+
+                        .products-slider {
+                            max-width: 27vw;
+                            margin: 0 auto;
+                            position: unset;
+
+                            @include Tablet {
+                                max-width: 220px;
+                            }
+
+                            .swiper-slide {
+                                border-radius: 8px;
+                                background: rgba(197, 84, 36, 0.21);
+                                box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+                                padding: 10px;
+
+                                img {
+                                    width: 140px;
+                                    height: 26px;
+                                    object-fit: contain;
+                                    max-width: 100%;
+
+                                    @include Tablet {
+                                        width: 140px;
+                                        height: 15px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .swiper .swiper-button-next, .swiper .swiper-button-prev {
+                            margin-top: -15px;
+                        }
+
+                        .swiper-pagination {
+                            bottom: -30px;
+
+                            span {
+                                margin: 0 4px;
+                                width: 8px;
+                                height: 8px;
+                                border: 1px solid #fff;
+                                background: transparent;
+                                opacity: 1;
+
+                                &:hover {
+                                    background: #fff;
+                                }
+
+
+
+                                &:hover {
+                                    background: #fff;
+                                }
+                            }
+
+                            .swiper-pagination-bullet-active {
+                                background: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .products-arrow {
+                position: absolute;
+                display: block;
+
+                @include Mobile {
+                    img {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+
+            .arrow-1 {
+                top: 0;
+                left: 0;
+            }
+
+            .arrow-2 {
+                bottom: 0;
+                left: 0;
+            }
+
+            .arrow-3 {
+                top: 0;
+                right: 0;
+            }
+
+            .arrow-4 {
+                bottom: 0;
+                right: 0;
+            }
         }
     }
 }
 
-.table {
-    .game-list {
-        tr {
-            background: transparent;
+.shape-live-casino {
+    height: 362px;
 
-            .game-name {
-                background-color: #ded5d5;
-                border: 3px solid #fff;
-                width: 200px;
-
-                @media (max-width: 1023px) {
-                    width: 100px;
-                }
-            }
-        }
+    @include Tablet {
+        height: 286px;
     }
 
-    .casino-table {
-        tbody > tr:nth-of-type(even) {
-            background-color: #f9f4f4;
+    @include Mobile {
+        display: none;
+    }
+}
+
+.shape-sports {
+    height: 393px;
+
+    @include Tablet {
+        height: 307px;
+    }
+
+    @include Mobile {
+        display: none;
+    }
+}
+
+.shape-slot {
+    height: 420px;
+    @include Tablet {
+        height: 293px;
+    }
+
+    @include Mobile {
+        display: none;
+    }
+}
+
+
+.shape-lotery {
+    height: 420px;
+
+    @include Tablet {
+        height: 293px;
+    }
+
+    @include Mobile {
+        display: none;
+    }
+}
+.imgs-slot {
+    left: -120px !important;
+    top: -30px !important;
+
+    @include Tablet {
+       left: -10px !important;
+    }
+    img{
+        height : 477px;
+        @include Tablet{
+            height : auto;
+        }
+    }
+}
+.imgs-lotery {
+    right: -19px !important;
+    top: -19px !important;
+
+    @include Tablet {
+        top: -15px !important;
+        left: -10px;
+    }
+
+    img {
+        height: 474px;
+
+        @include Tablet {
+            height: auto;
         }
     }
 }

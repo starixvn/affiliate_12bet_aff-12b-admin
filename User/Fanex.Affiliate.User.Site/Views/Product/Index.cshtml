@@ -13,17 +13,14 @@
     @Html.InlineStyles("~/www/build/styles/css/products.css")
 }
 
+@section scripts{
+    @Html.InlineScripts("~/www/build/js/pages/products.js")
+}
+
 <div class="content">
     <div class="page-title">
-        <span class="text">@Lang.Product</span>
+        <span class="text">Our Products</span>
     </div>
-
     @Html.RenderPartialByLanguage("~/Views/Product/_Content", Model.CurrentLanguage)
-    @if (!Model.IsAuthenticated)
-    {
-        <div class="col-sm-offset-3 col-sm-6 signup-block">
-            <a href="@Url.Content("~/SignUp")" class="btn btn-link btn-block nounderline">@Lang.SignUpAffiliateProgramNow</a>
-        </div>
-    }
 </div>
 

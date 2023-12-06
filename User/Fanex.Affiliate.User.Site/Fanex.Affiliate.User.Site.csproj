@@ -362,6 +362,11 @@
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
     <Content Include="www\build\js\commission-structure.js" />
+    <Content Include="www\build\js\pages\products.js" />
+    <Content Include="www\build\js\pages\products.min.js">
+      <DependentUpon>products.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\products.js" />
     <Content Include="www\build\js\promotion.js" />
     <Content Include="www\build\styles\css\commission-structure.css" />
     <Content Include="www\build\styles\css\commission-structure.min.css">
@@ -390,6 +395,7 @@
     <Content Include="www\build\styles\Images\talk.png" />
     <Content Include="www\source\js\lib\swiper.min.js" />
     <Content Include="www\source\js\pages\commission-structure.js" />
+    <Content Include="www\source\js\pages\products.js" />
     <Content Include="www\source\styles\scss\vendors\swiper.min.css" />
     <None Include="Configurations\AppSetting\AppSetting.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

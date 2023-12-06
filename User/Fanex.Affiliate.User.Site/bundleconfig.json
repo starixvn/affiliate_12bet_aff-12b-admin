@@ -23,6 +23,12 @@
             "www/source/js/commission-structure.js"
         ]
     },
+    {
+        "outputFileName": "www/build/js/products.js",
+        "inputFiles": [
+            "www/source/js/products.js"
+        ]
+    },
     //{
     //  "outputFileName": "www/build/js/layout.js",
     //  "inputFiles": [
