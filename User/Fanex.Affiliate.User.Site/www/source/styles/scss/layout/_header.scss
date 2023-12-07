@@ -233,6 +233,28 @@
     }
 }
 
+.after-login {
+    .menu {
+        .menu-item {
+            line-height: 30px;
+            display: block;
+            font-weight: 400;
+            text-decoration: none;
+            border-radius: 5px 5px 0 0 !important;
+            padding: 0 20px !important;
+
+            &.active, &:hover {
+                color: #fff !important;
+                background: -ms-linear-gradient(180deg,#fa6a00 0%,#e15f00 100%) !important;
+                background: -webkit-linear-gradient(180deg,#fa6a00 0%,#e15f00 100%) !important;
+                background: -moz-linear-gradient(180deg,#fa6a00 0%,#e15f00 100%) !important;
+                background: -o-linear-gradient(180deg,#fa6a00 0%,#e15f00 100%) !important;
+                background: linear-gradient(180deg,#fa6a00 0%,#e15f00 100%) !important;
+            }
+        }
+    }
+}
+
 .user-signup {
     display: flex;
     align-items: center;

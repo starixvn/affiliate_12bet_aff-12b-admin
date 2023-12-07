@@ -1,12 +1,12 @@
 ﻿[
-  //{
-  //  "outputFile": "www/build/styles/css/main.css",
-  //  "inputFile": "www/source/styles/scss/main.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/home.css",
-  //  "inputFile": "www/source/styles/pages/home.scss"
-  //},
+  {
+    "outputFile": "www/build/styles/css/main.css",
+    "inputFile": "www/source/styles/scss/main.scss"
+  },
+  {
+    "outputFile": "www/build/styles/css/home.css",
+    "inputFile": "www/source/styles/pages/home.scss"
+  },
   //{
   //  "outputFile": "www/build/styles/css/terms-and-coditions.css",
   //  "inputFile": "www/source/styles/pages/terms-and-coditions.scss"
@@ -147,10 +147,10 @@
   //  "outputFile": "www/build/styles/css/promotion.css",
   //  "inputFile": "www/source/styles/pages/promotion.scss"
   //},
-  //{
-  //  "outputFile": "www/build/styles/css/commission-structure.css",
-  //  "inputFile": "www/source/styles/pages/commission-structure.scss"
-  //},
+  {
+    "outputFile": "www/build/styles/css/commission-structure.css",
+    "inputFile": "www/source/styles/pages/commission-structure.scss"
+  },
   //{
   //  "outputFile": "www/build/styles/css/products.css",
   //  "inputFile": "www/source/styles/pages/products.scss"
