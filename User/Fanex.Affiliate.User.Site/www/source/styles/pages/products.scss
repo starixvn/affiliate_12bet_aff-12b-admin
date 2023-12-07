@@ -59,7 +59,7 @@
 
                             img {
                                 left: auto !important;
-                                right: -25px;
+                                right: -18px;
                             }
                         }
                     }
@@ -167,7 +167,7 @@
                     min-width: 400px;
 
                     @include Tablet {
-                        min-width: 340px;
+                        min-width: 320px;
                     }
 
                     @include MobileLandscape {
@@ -267,8 +267,9 @@
                             font-size: 11px;
                             margin-bottom: 10px;
                         }
-                        @include MobileMiniLandscape{
-                            font-size  : 8px;
+
+                        @include MobileMiniLandscape {
+                            font-size: 8px;
                         }
 
                         @include Mobile {
@@ -290,11 +291,11 @@
 
                         @include Mobile {
                             .img-slot {
-                                left: -30px;
+                                left: -23px;
                             }
 
                             .img-12esporst {
-                                left: -34px;
+                                left: -27px;
                             }
                         }
                     }
@@ -333,6 +334,10 @@
                                 max-width: 190px;
                             }
 
+                            @include TabletLandscape {
+                                max-width: 230px;
+                            }
+
                             @include MobileLandscape {
                                 max-width: 200px;
                             }
@@ -340,8 +345,9 @@
                             @include MobileBigLandscape {
                                 max-width: 230px;
                             }
-                            @include MobileLandscape{
-                                max-width : 165px;
+
+                            @include MobileLandscape {
+                                max-width: 165px;
                             }
 
                             .swiper-slide {
@@ -481,7 +487,7 @@
     top: -30px !important;
 
     @include Tablet {
-        left: -10px !important;
+        left: -86px !important;
     }
 
     @include MobileLandscape {

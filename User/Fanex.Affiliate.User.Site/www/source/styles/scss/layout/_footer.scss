@@ -12,13 +12,11 @@
         text-transform: uppercase;
 
         @include Tablet {
-            font-size: 10px;
+            font-size: 12px;
         }
 
         @include Mobile {
-            border-top: none;
-            font-size: 5px;
-            padding: 0 0 12px;
+            padding: 16px 0;
         }
     }
 
@@ -29,37 +27,34 @@
         justify-content: space-between;
 
         @include Tablet {
-            padding: 18px 0 26px;
             display: inherit;
         }
 
 
         .img-top {
             @include Tablet {
-                margin-bottom: 13px;
+                margin-bottom: 32px;
             }
 
             img {
                 width: 160px;
-
-                @include Mobile {
-                    width: 59px;
-                }
             }
         }
 
         .img-bottom {
             .item {
-                border-left: 1px solid #fff;
+                border-right: 1px solid #fff;
                 padding: 0 30px;
-                &:last-child{
-                    padding-right : 0;
+                margin-bottom: 30px;
+
+                &:last-child {
+                    border-right: none;
                 }
+
                 @include Tablet {
                     padding: 0 13px;
                     display: inline-flex;
-
-                    &:first-child {
+                    /*&:first-child {
                         img {
                             width: 10px;
                         }
@@ -93,11 +88,7 @@
                         img {
                             width: 25px;
                         }
-                    }
-                }
-
-                &:first-child {
-                    border: none;
+                    }*/
                 }
             }
         }

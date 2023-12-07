@@ -40,7 +40,7 @@
         text-align: right !important; }
         .block-items-products .main-items .wrapper-items:nth-child(even) .mask .text-slider img {
           left: auto !important;
-          right: -25px; } }
+          right: -18px; } }
   .block-items-products .main-items .wrapper-items:nth-child(even) .arrow-3, .block-items-products .main-items .wrapper-items:nth-child(even) .arrow-4 {
     display: none; }
   .block-items-products .main-items .wrapper-items:nth-child(odd) .arrow-1, .block-items-products .main-items .wrapper-items:nth-child(odd) .arrow-2 {
@@ -109,7 +109,7 @@
       min-width: 400px; }
       @media screen and (max-width: 1024px) {
         .block-items-products .main-items .items .mask .shape {
-          min-width: 340px; } }
+          min-width: 320px; } }
       @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
         .block-items-products .main-items .items .mask .shape {
           min-width: 240px !important; } }
@@ -202,9 +202,9 @@
               left: -20px; } }
         @media (max-width: 500px) {
           .block-items-products .main-items .items .mask .group-slider .text-slider .img-slot {
-            left: -30px; }
+            left: -23px; }
           .block-items-products .main-items .items .mask .group-slider .text-slider .img-12esporst {
-            left: -34px; } }
+            left: -27px; } }
       .block-items-products .main-items .items .mask .group-slider .shape-slider {
         position: relative;
         max-width: 32vw;
@@ -231,6 +231,9 @@
           @media screen and (max-width: 1024px) {
             .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
               max-width: 190px; } }
+          @media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
+            .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
+              max-width: 230px; } }
           @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
             .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
               max-width: 200px; } }
@@ -334,7 +337,7 @@
   top: -30px !important; }
   @media screen and (max-width: 1024px) {
     .imgs-slot {
-      left: -10px !important; } }
+      left: -86px !important; } }
   @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
     .imgs-slot {
       left: -56px !important; } }

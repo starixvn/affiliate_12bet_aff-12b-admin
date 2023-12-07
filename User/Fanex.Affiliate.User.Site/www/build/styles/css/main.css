@@ -1238,12 +1238,10 @@ input[type="checkbox"], input[type="radio"] {
     text-transform: uppercase; }
     @media screen and (max-width: 1024px) {
       .footer-text {
-        font-size: 10px; } }
+        font-size: 12px; } }
     @media (max-width: 500px) {
       .footer-text {
-        border-top: none;
-        font-size: 5px;
-        padding: 0 0 12px; } }
+        padding: 16px 0; } }
   .footer-img {
     padding: 52px 0;
     display: flex;
@@ -1251,39 +1249,57 @@ input[type="checkbox"], input[type="radio"] {
     justify-content: space-between; }
     @media screen and (max-width: 1024px) {
       .footer-img {
-        padding: 18px 0 26px;
         display: inherit; } }
     @media screen and (max-width: 1024px) {
       .footer-img .img-top {
-        margin-bottom: 13px; } }
+        margin-bottom: 32px; } }
     .footer-img .img-top img {
       width: 160px; }
-      @media (max-width: 500px) {
-        .footer-img .img-top img {
-          width: 59px; } }
     .footer-img .img-bottom .item {
-      border-left: 1px solid #fff;
-      padding: 0 30px; }
+      border-right: 1px solid #fff;
+      padding: 0 30px;
+      margin-bottom: 30px; }
       .footer-img .img-bottom .item:last-child {
-        padding-right: 0; }
+        border-right: none; }
       @media screen and (max-width: 1024px) {
         .footer-img .img-bottom .item {
           padding: 0 13px;
-          display: inline-flex; }
-          .footer-img .img-bottom .item:first-child img {
-            width: 10px; }
-          .footer-img .img-bottom .item:nth-child(2) img {
-            width: 44px; }
-          .footer-img .img-bottom .item:nth-child(3) img {
-            width: 16px; }
-          .footer-img .img-bottom .item:nth-child(4) img {
-            width: 30px; }
-          .footer-img .img-bottom .item:nth-child(5) img {
-            width: 35px; }
-          .footer-img .img-bottom .item:nth-child(6) img {
-            width: 25px; } }
-      .footer-img .img-bottom .item:first-child {
-        border: none; }
+          display: inline-flex;
+          /*&:first-child {
+                        img {
+                            width: 10px;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        img {
+                            width: 44px;
+                        }
+                    }
+
+                    &:nth-child(3) {
+                        img {
+                            width: 16px;
+                        }
+                    }
+
+                    &:nth-child(4) {
+                        img {
+                            width: 30px;
+                        }
+                    }
+
+                    &:nth-child(5) {
+                        img {
+                            width: 35px;
+                        }
+                    }
+
+                    &:nth-child(6) {
+                        img {
+                            width: 25px;
+                        }
+                    }*/ } }
     .footer-img .item {
       display: inline-block; }
 
