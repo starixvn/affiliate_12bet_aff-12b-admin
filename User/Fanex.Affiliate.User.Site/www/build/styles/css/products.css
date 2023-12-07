@@ -4,10 +4,9 @@
 .block-items-products .main-items .wrapper-items {
   padding: 40px 0;
   border-top: 1px solid #F6F6F6; }
-  @media (max-width: 500px) {
-    .block-items-products .main-items .wrapper-items:first-child {
-      padding-top: 0;
-      border: none; } }
+  .block-items-products .main-items .wrapper-items:first-child {
+    padding-top: 0;
+    border: none; }
   .block-items-products .main-items .wrapper-items:nth-child(even) .mask {
     flex-direction: row-reverse;
     padding: 0 0 0 52px; }

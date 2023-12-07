@@ -11,10 +11,8 @@
             border-top: 1px solid #F6F6F6;
 
             &:first-child {
-                @include Mobile {
-                    padding-top: 0;
-                    border: none;
-                }
+                padding-top: 0;
+                border: none;
             }
 
             &:nth-child(even) {

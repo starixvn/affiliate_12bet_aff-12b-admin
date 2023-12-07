@@ -434,7 +434,7 @@
         img {
             min-height: 600px;
             @include Tablet{
-                min-height : 380px;
+                min-height : 240px;
             }
             @include Mobile {
                 min-height: 270px;

@@ -1190,7 +1190,7 @@ input[type="checkbox"], input[type="radio"] {
     min-height: 600px; }
     @media screen and (max-width: 1024px) {
       .top-banner .swiper-slide img {
-        min-height: 380px; } }
+        min-height: 240px; } }
     @media (max-width: 500px) {
       .top-banner .swiper-slide img {
         min-height: 270px; } }
