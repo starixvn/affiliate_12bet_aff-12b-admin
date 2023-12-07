@@ -363,13 +363,9 @@ input[type="checkbox"], input[type="radio"] {
         margin-left: 48px; } }
     .header-top .logo a {
       text-decoration: none; }
-      @media screen and (max-width: 1024px) {
-        .header-top .logo a {
-          display: flex;
-          flex-wrap: wrap; } }
     @media screen and (max-width: 1024px) {
       .header-top .logo img {
-        width: 107px; } }
+        width: 82px; } }
     .header-top .logo .logo-text {
       color: #fff;
       font-weight: 400;
@@ -378,7 +374,8 @@ input[type="checkbox"], input[type="radio"] {
       text-transform: uppercase; }
       @media screen and (max-width: 1024px) {
         .header-top .logo .logo-text {
-          font-size: 12px; } }
+          font-size: 12px;
+          display: block; } }
     @media (max-width: 992px) {
       .header-top .logo {
         text-align: center; } }
@@ -416,17 +413,17 @@ input[type="checkbox"], input[type="radio"] {
     margin: 0;
     padding: 0;
     position: absolute;
-    top: -33px;
-    left: 26px; }
+    top: -45px;
+    left: 15px; }
     @media screen and (max-width: 1024px) {
       .navbar .navbar-toggle {
         display: block; } }
     .navbar .navbar-toggle .icon-bar {
       background: #d90f0f;
-      width: 12px;
-      margin-top: 2px;
+      width: 20px;
+      margin-top: 3px;
       border-radius: 0;
-      height: 1px; }
+      height: 2px; }
   .navbar.navbar-default .navbar-toggle {
     border-color: transparent; }
     .navbar.navbar-default .navbar-toggle:hover, .navbar.navbar-default .navbar-toggle:focus {
@@ -495,6 +492,16 @@ input[type="checkbox"], input[type="radio"] {
 .user-signup {
   display: flex;
   align-items: center; }
+  @media screen and (max-width: 1024px) {
+    .user-signup {
+      margin-right: -50px; } }
+  @media (max-width: 500px) {
+    .user-signup {
+      margin-right: 0; } }
+  @media screen and (max-width: 1024px) {
+    .user-signup a {
+      margin-right: 12px;
+      font-size: 12px; } }
 
 .sign-up {
   display: inline-block;
@@ -539,6 +546,9 @@ input[type="checkbox"], input[type="radio"] {
       display: flex;
       align-items: center;
       font-size: 12px; }
+    @media screen and (max-width: 1024px) {
+      .language-container #selectedLanguage .name-lang, .language-container #selectedLanguage .caret {
+        display: none; } }
     .language-container #selectedLanguage .flag {
       border: 1px solid #D90F0F;
       border-radius: 100px; }
@@ -1553,9 +1563,6 @@ label.require:after {
     background: #000;
     color: #D90F0F;
     cursor: pointer; }
-    @media screen and (max-width: 1024px) {
-      .btn-auth.btn-login {
-        margin-right: 4px; } }
   .btn-auth.btn-signup {
     font-weight: 700;
     border: 1.5px solid #D90F0F; }
@@ -2037,8 +2044,6 @@ input[type="radio"], input[type="checkbox"] {
     max-width: 100%; }
   .info-group .img-ads img {
     width: 100%; }
-  .header-top .login .user-signup {
-    margin-right: 15px; }
   .modal-dialog {
     margin: 30px; }
   .table .game-list tr .game-name {

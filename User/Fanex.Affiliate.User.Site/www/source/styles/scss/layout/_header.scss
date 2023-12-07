@@ -48,16 +48,11 @@
 
         a {
             text-decoration: none;
-
-            @include Tablet {
-                display: flex;
-                flex-wrap: wrap;
-            }
         }
 
         img {
             @include Tablet {
-                width: 107px;
+                width: 82px;
             }
         }
 
@@ -70,6 +65,7 @@
 
             @include Tablet {
                 font-size: 12px;
+                display : block;
             }
         }
 
@@ -122,8 +118,8 @@
         margin: 0;
         padding: 0;
         position: absolute;
-        top: -33px;
-        left: 26px;
+        top: -45px;
+        left: 15px;
 
         @include Tablet {
             display: block;
@@ -131,10 +127,10 @@
 
         .icon-bar {
             background: #d90f0f;
-            width: 12px;
-            margin-top: 2px;
+            width: 20px;
+            margin-top: 3px;
             border-radius: 0;
-            height: 1px;
+            height: 2px;
         }
     }
 
@@ -238,8 +234,22 @@
 }
 
 .user-signup {
-    display  : flex;
-    align-items : center;
+    display: flex;
+    align-items: center;
+
+    @include Tablet {
+        margin-right: -50px;
+    }
+    @include Mobile{
+        margin-right : 0;
+    }
+
+    a {
+        @include Tablet {
+            margin-right: 12px;
+            font-size: 12px;
+        }
+    }
 }
 
 .sign-up {
@@ -303,6 +313,13 @@
             align-items: center;
             font-size: 12px;
         }
+
+        .name-lang, .caret {
+            @include Tablet {
+                display: none;
+            }
+        }
+
 
         .flag {
             border: 1px solid #D90F0F;
@@ -370,7 +387,7 @@
                 i {
                     margin-right: 8px;
                     border: 1px solid #C2C2C2;
-                    border-radius : 100px;
+                    border-radius: 100px;
                 }
 
                 &:hover {
