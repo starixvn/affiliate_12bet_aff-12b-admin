@@ -5,7 +5,8 @@ var Products = (function ($) {
         var swiper = new Swiper(".products-slider", {
             slidesPerView: 3,
             spaceBetween: 12,
-            loop: true,
+            slidesPerGroup: 3,
+            watchOverflow: true,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev"
@@ -17,15 +18,21 @@ var Products = (function ($) {
             breakpoints: {
                 640: {
                     slidesPerView: 2,
-                    spaceBetween: 5
+                    spaceBetween: 5,
+                    slidesPerGroup: 2,
+                    watchOverflow: true
                 },
                 768: {
                     slidesPerView: 2,
-                    spaceBetween: 10
+                    spaceBetween: 10,
+                    slidesPerGroup: 2,
+                    watchOverflow: true
                 },
                 1024: {
                     slidesPerView: 3,
-                    spaceBetween: 12
+                    spaceBetween: 12,
+                    slidesPerGroup: 3,
+                    watchOverflow: true
                 }
             }
         });

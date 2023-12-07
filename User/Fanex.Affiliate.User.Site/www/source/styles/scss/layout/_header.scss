@@ -8,6 +8,23 @@
         padding: 16px 0;
     }
 
+    .page-container {
+        @include MobileLandscape {
+            max-width: 100%;
+            flex-basis: 100%;
+        }
+
+        @include TabletPortrait {
+            max-width: calc(100% - 90px);
+            flex-basis: calc(100% - 90px);
+        }
+
+        @include TabletLandscape {
+            max-width: calc(100% - 90px);
+            flex-basis: calc(100% - 90px);
+        }
+    }
+
     .logo-lang {
         display: flex;
         justify-content: space-between;
@@ -17,7 +34,15 @@
     .logo {
         display: inline-block;
 
-        @include Tablet {
+        @include TabletPortrait {
+            margin-left: 0;
+        }
+
+        @include MobileLandscape {
+            margin-left: 48px;
+        }
+
+        @include Mobile {
             margin-left: 48px;
         }
 
@@ -100,12 +125,16 @@
         top: -33px;
         left: 26px;
 
+        @include Tablet {
+            display: block;
+        }
+
         .icon-bar {
             background: #d90f0f;
             width: 12px;
             margin-top: 2px;
             border-radius: 0;
-            height : 1px;
+            height: 1px;
         }
     }
 
@@ -126,9 +155,33 @@
         display: flex;
         flex-wrap: nowrap;
 
-        @include Mobile {
+        @include Tablet {
             padding: 10px 0;
             display: unset;
+            float : none;
+        }
+
+        li {
+            @include Tablet {
+                width: 100%;
+            }
+        }
+    }
+
+    .page-container {
+        @include MobileLandscape {
+            max-width: 100%;
+            flex-basis: 100%;
+        }
+
+        @include TabletPortrait {
+            max-width: 100%;
+            flex-basis: 100%;
+        }
+
+        @include TabletLandscape {
+            max-width: 100%;
+            flex-basis: 100%;
         }
     }
 }
@@ -138,6 +191,18 @@
 .menu {
     padding-left: 0;
     padding-right: 0;
+
+    &.collapse {
+        @include Tablet {
+            display: none !important;
+        }
+
+        &.in {
+            @include Tablet {
+                display: block !important;
+            }
+        }
+    }
 
     .menu-item {
         position: relative;

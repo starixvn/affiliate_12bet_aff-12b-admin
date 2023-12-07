@@ -42,8 +42,8 @@ $desktop: "(min-width: 1024px)";
     }
 
     .page-container {
-        max-width: 100%;
-        flex-basis: 100%;
+        max-width: calc(100% - 80px);
+        flex-basis: calc(100% - 80px);
     }
 
     .news {
@@ -117,5 +117,12 @@ $desktop: "(min-width: 1024px)";
         /*&::-webkit-scrollbar {
             display: none;
         }*/
+    }
+}
+
+@media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .page-container {
+        max-width: calc(100% - 100px);
+        flex-basis: calc(100% - 100px);
     }
 }

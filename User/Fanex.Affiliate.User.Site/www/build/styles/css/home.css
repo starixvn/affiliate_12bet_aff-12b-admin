@@ -168,6 +168,9 @@
 .block-why-become .block-content {
   display: flex;
   gap: 50px; }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .block-why-become .block-content {
+      gap: 30px; } }
   @media (max-width: 500px) {
     .block-why-become .block-content {
       flex-wrap: wrap;

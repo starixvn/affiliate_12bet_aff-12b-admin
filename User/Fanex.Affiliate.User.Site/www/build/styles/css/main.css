@@ -11,6 +11,9 @@
   .container {
     width: 1500px; } }
 
+.main {
+  overflow-x: hidden; }
+
 ul, ol {
   padding-left: 1.2rem;
   line-height: 1.5; }
@@ -331,13 +334,31 @@ input[type="checkbox"], input[type="radio"] {
   @media screen and (max-width: 1024px) {
     .header-top {
       padding: 16px 0; } }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .header-top .page-container {
+      max-width: 100%;
+      flex-basis: 100%; } }
+  @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+    .header-top .page-container {
+      max-width: calc(100% - 90px);
+      flex-basis: calc(100% - 90px); } }
+  @media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
+    .header-top .page-container {
+      max-width: calc(100% - 90px);
+      flex-basis: calc(100% - 90px); } }
   .header-top .logo-lang {
     display: flex;
     justify-content: space-between;
     align-items: center; }
   .header-top .logo {
     display: inline-block; }
-    @media screen and (max-width: 1024px) {
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+      .header-top .logo {
+        margin-left: 0; } }
+    @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+      .header-top .logo {
+        margin-left: 48px; } }
+    @media (max-width: 500px) {
       .header-top .logo {
         margin-left: 48px; } }
     .header-top .logo a {
@@ -397,6 +418,9 @@ input[type="checkbox"], input[type="radio"] {
     position: absolute;
     top: -33px;
     left: 26px; }
+    @media screen and (max-width: 1024px) {
+      .navbar .navbar-toggle {
+        display: block; } }
     .navbar .navbar-toggle .icon-bar {
       background: #d90f0f;
       width: 12px;
@@ -413,14 +437,36 @@ input[type="checkbox"], input[type="radio"] {
     margin: 0;
     display: flex;
     flex-wrap: nowrap; }
-    @media (max-width: 500px) {
+    @media screen and (max-width: 1024px) {
       .navbar .navbar-nav {
         padding: 10px 0;
-        display: unset; } }
+        display: unset;
+        float: none; } }
+    @media screen and (max-width: 1024px) {
+      .navbar .navbar-nav li {
+        width: 100%; } }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .navbar .page-container {
+      max-width: 100%;
+      flex-basis: 100%; } }
+  @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+    .navbar .page-container {
+      max-width: 100%;
+      flex-basis: 100%; } }
+  @media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
+    .navbar .page-container {
+      max-width: 100%;
+      flex-basis: 100%; } }
 
 .menu {
   padding-left: 0;
   padding-right: 0; }
+  @media screen and (max-width: 1024px) {
+    .menu.collapse {
+      display: none !important; } }
+  @media screen and (max-width: 1024px) {
+    .menu.collapse.in {
+      display: block !important; } }
   .menu .menu-item {
     position: relative;
     padding: 20px 12px;
@@ -1943,8 +1989,8 @@ input[type="radio"], input[type="checkbox"] {
   .banner-side.banner-left, .banner-side.banner-right {
     display: none; }
   .page-container {
-    max-width: 100%;
-    flex-basis: 100%; }
+    max-width: calc(100% - 80px);
+    flex-basis: calc(100% - 80px); }
   .news .item-wrapper {
     flex-basis: 100%;
     max-width: 100%; }
@@ -1995,6 +2041,11 @@ input[type="radio"], input[type="checkbox"] {
     /*&::-webkit-scrollbar {
             display: none;
         }*/ } }
+
+@media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+  .page-container {
+    max-width: calc(100% - 100px);
+    flex-basis: calc(100% - 100px); } }
 
 .login-dialog .modal-content {
   background-color: #000;

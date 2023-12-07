@@ -8,7 +8,14 @@
     .main-items {
         .wrapper-items {
             padding: 40px 0;
-            border: 1px solid #F6F6F6;
+            border-top: 1px solid #F6F6F6;
+
+            &:first-child {
+                @include Mobile {
+                    padding-top: 0;
+                    border: none;
+                }
+            }
 
             &:nth-child(even) {
                 .mask {
@@ -19,6 +26,10 @@
                         padding: 0 0 0 30px;
                     }
 
+                    @include Mobile {
+                        padding: 50px 0 40px 0;
+                    }
+
                     .imgs {
                         position: absolute;
                         left: auto;
@@ -27,10 +38,41 @@
                         text-align: right;
 
                         @include Tablet {
-                            right: 0;
+                            right: -158px;
                             top: -40px;
                         }
+
+                        @include MobileLandscape {
+                            right: -248px;
+                        }
+
+                        @include MobileBigLandscape {
+                            right: -248px;
+                        }
                     }
+
+                    @include Mobile {
+                        .text-slider {
+                            padding-left: 16px !important;
+                            padding-right: 94px !important;
+                            text-align: right !important;
+
+                            img {
+                                left: auto !important;
+                                right: -25px;
+                            }
+                        }
+                    }
+                }
+
+                .arrow-3, .arrow-4 {
+                    display: none;
+                }
+            }
+
+            &:nth-child(odd) {
+                .arrow-1, .arrow-2 {
+                    display: none;
                 }
             }
         }
@@ -42,6 +84,64 @@
 
             @include Tablet {
                 padding: 15px;
+            }
+
+            @include Mobile {
+                margin: 0 17px;
+            }
+
+            .products-arrow {
+                position: absolute;
+                display: block;
+
+                @include MobileLandscape {
+                    img {
+                        width: 25px;
+                    }
+                }
+
+                @include Mobile {
+                    img {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+
+            .arrow-1 {
+                top: 0;
+                left: 0;
+
+                @include Mobile {
+                    display: none;
+                }
+            }
+
+            .arrow-2 {
+                bottom: 0;
+                left: 0;
+
+                @include Mobile {
+                    display: none;
+                }
+            }
+
+            .arrow-3 {
+                top: 0;
+                right: 0;
+
+                @include Mobile {
+                    display: block !important;
+                }
+            }
+
+            .arrow-4 {
+                bottom: 0;
+                right: 0;
+
+                @include Mobile {
+                    display: block !important;
+                }
             }
 
             .mask {
@@ -57,7 +157,9 @@
                 }
 
                 @include Mobile {
-                    flex-wrap: wrap;
+                    min-height: 400px;
+                    padding: 50px 0 40px 0;
+                    border-radius: 8px;
                 }
 
                 .shape {
@@ -67,6 +169,18 @@
                     @include Tablet {
                         min-width: 340px;
                     }
+
+                    @include MobileLandscape {
+                        min-width: 240px !important;
+                    }
+
+                    @include MobileBigLandscape {
+                        min-width: 280px !important;
+                    }
+
+                    @include Mobile {
+                        display: none;
+                    }
                 }
 
                 .imgs {
@@ -74,11 +188,25 @@
                     top: -15px;
                     left: 25px;
 
+                    @include MobileLandscape {
+                        left: 15px;
+                        top: -6px;
+                    }
+
+                    @include Mobile {
+                        top: 35px;
+                        left: -10px;
+                    }
+
                     img {
                         max-width: 100%;
 
                         @include Tablet {
                             width: 78%;
+                        }
+
+                        @include MobileLandscape {
+                            width: 55%;
                         }
                     }
                 }
@@ -86,6 +214,10 @@
                 .group-slider {
                     color: #FFF;
                     width: 65%;
+
+                    @include Mobile {
+                        width: auto;
+                    }
 
                     .heading-slider {
                         font-size: 1.5vw;
@@ -98,6 +230,15 @@
                         @include Tablet {
                             font-size: 16px;
                         }
+
+                        @include Mobile {
+                            padding-left: 94px;
+                            font-size: 20px;
+                        }
+
+                        @include MobileLandscape {
+                            margin-bottom: 0;
+                        }
                     }
 
                     .text-slider {
@@ -108,8 +249,53 @@
                         margin-bottom: 20px;
 
                         @include Tablet {
-                            font-size: 12px;
+                            font-size: 10px;
                             line-height: normal;
+                            text-align: left;
+                        }
+
+                        @include TabletLandscape {
+                            font-size: 12px;
+                        }
+
+                        @include MobileLandscape {
+                            font-size: 9px;
+                            margin-bottom: 10px;
+                        }
+
+                        @include MobileBigLandscape {
+                            font-size: 11px;
+                            margin-bottom: 10px;
+                        }
+                        @include MobileMiniLandscape{
+                            font-size  : 8px;
+                        }
+
+                        @include Mobile {
+                            padding-left: 94px;
+                            font-size: 16px;
+                            padding-right: 16px;
+                        }
+
+                        img {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+
+                            @include Mobile {
+                                top: 62px;
+                                left: -20px;
+                            }
+                        }
+
+                        @include Mobile {
+                            .img-slot {
+                                left: -30px;
+                            }
+
+                            .img-12esporst {
+                                left: -34px;
+                            }
                         }
                     }
 
@@ -126,13 +312,36 @@
                             max-width: 300px;
                         }
 
+                        @include MobileLandscape {
+                            max-width: 265px;
+                        }
+
+                        @include MobileBigLandscape {
+                            max-width: 290px;
+                        }
+
+                        @include Mobile {
+                            max-width: 260px;
+                        }
+
                         .products-slider {
                             max-width: 27vw;
                             margin: 0 auto;
                             position: unset;
 
                             @include Tablet {
-                                max-width: 220px;
+                                max-width: 190px;
+                            }
+
+                            @include MobileLandscape {
+                                max-width: 200px;
+                            }
+
+                            @include MobileBigLandscape {
+                                max-width: 230px;
+                            }
+                            @include MobileLandscape{
+                                max-width : 165px;
                             }
 
                             .swiper-slide {
@@ -162,6 +371,14 @@
                         .swiper-pagination {
                             bottom: -30px;
 
+                            @include MobileLandscape {
+                                bottom: -20px;
+                            }
+
+                            @include MobileMiniLandscape {
+                                bottom: -15px;
+                            }
+
                             span {
                                 margin: 0 4px;
                                 width: 8px;
@@ -169,6 +386,11 @@
                                 border: 1px solid #fff;
                                 background: transparent;
                                 opacity: 1;
+
+                                @include MobileLandscape {
+                                    width: 4px;
+                                    height: 4px;
+                                }
 
                                 &:hover {
                                     background: #fff;
@@ -188,38 +410,6 @@
                     }
                 }
             }
-
-            .products-arrow {
-                position: absolute;
-                display: block;
-
-                @include Mobile {
-                    img {
-                        width: 40px;
-                        height: 40px;
-                    }
-                }
-            }
-
-            .arrow-1 {
-                top: 0;
-                left: 0;
-            }
-
-            .arrow-2 {
-                bottom: 0;
-                left: 0;
-            }
-
-            .arrow-3 {
-                top: 0;
-                right: 0;
-            }
-
-            .arrow-4 {
-                bottom: 0;
-                right: 0;
-            }
         }
     }
 }
@@ -231,8 +421,8 @@
         height: 286px;
     }
 
-    @include Mobile {
-        display: none;
+    @include MobileLandscape {
+        height: 185px;
     }
 }
 
@@ -243,19 +433,20 @@
         height: 307px;
     }
 
-    @include Mobile {
-        display: none;
+    @include MobileLandscape {
+        height: 217px;
     }
 }
 
 .shape-slot {
     height: 420px;
+
     @include Tablet {
         height: 293px;
     }
 
-    @include Mobile {
-        display: none;
+    @include MobileLandscape {
+        height: 193px;
     }
 }
 
@@ -266,22 +457,42 @@
     @include Tablet {
         height: 293px;
     }
-
-    @include Mobile {
-        display: none;
+    @include MobileLandscape{
+        height : 199px;
     }
 }
+
+.shape-12esporst {
+    height: 420px;
+    min-width: 450px !important;
+
+    @include Tablet {
+        height: 262px;
+        min-width: 340px !important;
+    }
+
+    @include MobileLandscape {
+        height: 177px;
+    }
+}
+
 .imgs-slot {
     left: -120px !important;
     top: -30px !important;
 
     @include Tablet {
-       left: -10px !important;
+        left: -10px !important;
     }
-    img{
-        height : 477px;
-        @include Tablet{
-            height : auto;
+
+    @include MobileLandscape {
+        left: -56px !important;
+    }
+
+    img {
+        height: 477px;
+
+        @include Tablet {
+            height: auto;
         }
     }
 }
@@ -291,7 +502,11 @@
 
     @include Tablet {
         top: -15px !important;
-        left: -10px;
+        right: -140px !important;
+    }
+
+    @include MobileLandscape {
+        right: -197px !important;
     }
 
     img {
@@ -300,5 +515,47 @@
         @include Tablet {
             height: auto;
         }
+    }
+}
+
+.imgs-12esporst {
+    left: -105px !important;
+    top: -19px !important;
+
+    @include Tablet {
+        top: -15px !important;
+        left: -68px !important;
+    }
+
+    @include MobileLandscape {
+        left: -43px !important;
+    }
+
+    @include MobileBigLandscape {
+        left: -43px !important;
+    }
+
+    img {
+        height: 474px;
+
+        @include Tablet {
+            height: auto;
+        }
+    }
+}
+
+.show-pc {
+    display: block;
+
+    @include Mobile {
+        display: none;
+    }
+}
+
+.show-mobile {
+    display: none;
+
+    @include Mobile {
+        display: block;
     }
 }
