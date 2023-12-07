@@ -21,15 +21,6 @@ $desktop: "(min-width: 1024px)";
 }
 
 @media #{$tablet-horizontal} {
-    .main .banner-side {
-        flex-basis: 150px;
-        max-width: 18%;
-
-        img {
-            width: 150px;
-        }
-    }
-
     .page-container {
         max-width: calc(100% - 220px);
         flex-basis: calc(100% - 220px);
@@ -37,10 +28,6 @@ $desktop: "(min-width: 1024px)";
 }
 
 @media #{$tablet} {
-    .banner-side.banner-left, .banner-side.banner-right {
-        display: none;
-    }
-
     .page-container {
         max-width: calc(100% - 80px);
         flex-basis: calc(100% - 80px);
@@ -69,10 +56,6 @@ $desktop: "(min-width: 1024px)";
 }
 
 @media #{$phone} {
-    .banner-side.banner-left, .banner-side.banner-right {
-        display: none;
-    }
-
     .page-container {
         max-width: 100%;
         flex-basis: 100%;

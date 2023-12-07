@@ -1,71 +1,236 @@
-﻿@{
-    var bannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion.zh-CN.jpg");
-    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion-mobile.zh-CN.jpg");
-}
-<div class="banner-promotion">
-    <picture>
-        <source media="(max-width:400px)" srcset="@(mobileBannerSrc)" type="image/jpeg" />
-        <source srcset="@(bannerSrc)" type="image/jpeg" />
-        <img class="img-item img-responsive" src="@bannerSrc" alt="@Lang.Promotion" />
-    </picture>
+﻿<div class="swiper top-banner">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <a class="nounderline home-banner-tracking-flat show-pc" target="_blank" href="@Url.Content("~/Promotion")">
+                <picture>
+                    <source srcset="~/www/build/styles/Images/home/item1.webp" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/home/item1.jpg" type="image/jpeg" />
+                    <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item1.jpg" alt="Actived Home Banner" />
+                </picture>
+            </a>
+            <a class="nounderline home-banner-tracking-flat show-mobile" target="_blank" href="@Url.Content("~/Promotion")">
+                <picture>
+                    <source srcset="~/www/build/styles/Images/home/item1-mobile.webp" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/home/item1-mobile.jpg" type="image/jpeg" />
+                    <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item1-mobile.jpg" alt="Actived Home Banner" />
+                </picture>
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a class="nounderline home-banner-tracking-flat show-pc" target="_blank" href="@Url.Content("~/Promotion")">
+                <picture>
+                    <source srcset="~/www/build/styles/Images/home/item2.webp" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/home/item2.jpg" type="image/jpeg" />
+                    <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item2.jpg" alt="Actived Home Banner" />
+                </picture>
+            </a>
+            <a class="nounderline home-banner-tracking-flat show-mobile" target="_blank" href="@Url.Content("~/Promotion")">
+                <picture>
+                    <source srcset="~/www/build/styles/Images/home/item2-mobile.webp" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/home/item2-mobile.jpg" type="image/jpeg" />
+                    <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item2-mobile.jpg" alt="Actived Home Banner" />
+                </picture>
+            </a>
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
 </div>
-<br />
-<div class="info-group">
-    <h3 class="header-underline text-red">12BET 佣金提升</h3>
-    <p><strong>赚取高达50%的佣金！</strong></p>
-    <p>轻松赚取更高的每月佣金比例—只需满足以下要求，即可自动拥有资格。</p>
+
+
+<div class="block block-commission-boost">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="top-title">
+                12BET COMMISSION BOOST
+            </div>
+            <div class="mid-title">
+                Earn up to a whopping 50% Commission!
+            </div>
+            <div class="description">
+                Get higher monthly commission rates with ease - simply meet the requirements below to qualify automatically!
+            </div>
+        </div>
+    </div>
 </div>
-@{ Html.RenderPartial("~/Views/Promotion/_RevenueShareTable.cshtml"); }
-<div class="info-group">
-    <p class="text-header"><strong>备注：</strong></p>
-    <p class="text">
-        <ol>
-            <li>如果合作伙伴在【每月公司利润】和【每月符合资格活跃会员】达到了不同的门槛，佣金支付将根据较低的门槛。例如，如果合作伙伴成员当月的盈亏总额为$46,000，而符合资格活跃会员为7人，则该月的佣金将为35%。</li>
-            <li>仅限邀请 —如果您有独具特色的提议，可以带来巨大的获利（例如：吸引VIP会员），您可以与合作伙伴经理联系，评估该提议并确定资格。</li>
-        </ol>
-    </p>
+
+<div class="block block-table">
+    <div class="page-container">
+        <div class="table-custom table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="20%">Revenue Share</th>
+                        <th width="8%">Tier</th>
+                        <th width="20%">Company Profit For The Month ($)</th>
+                        <th width="20%">Qualified Active Members/ Month</th>
+                        <th width="20%">Commission</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="6" class="text-center">
+                            <p>All Products</p>
+                        </td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">1 - 3,000</td>
+                        <td class="text-center">≥ 7</td>
+                        <td class="text-center">30%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2</td>
+                        <td class="text-center">3,001 - 45,000</td>
+                        <td class="text-center">≥ 7</td>
+                        <td class="text-center">35%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">3</td>
+                        <td class="text-center">45,001 - 200,000</td>
+                        <td class="text-center">≥ 10</td>
+                        <td class="text-center">40%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">4</td>
+                        <td class="text-center">200,001 - 250,000</td>
+                        <td class="text-center">≥ 20</td>
+                        <td class="text-center">45%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">5</td>
+                        <td class="text-center">250,001 - Above</td>
+                        <td class="text-center">≥ 50</td>
+                        <td class="text-center">50%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">6</td>
+                        <td colspan="2" class="text-center">By Invitation only</td>
+                        <td class="text-center">Flat 50%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<div class="info-group">
-    <h3 class="header-underline text-red">首次存款新会员影响力</h3>
-    <p>在12BET，额外的奖励总是有保证的。所需要做的就是满足规定【每月符合资格的活跃会员】要求，并在佣金之外赚取额外的佣金。</p>
+
+<div class="block block-note">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="block-child-title">
+                Note
+            </div>
+            <div class="main-content">
+                <div class="items">
+                    <div class="items-number">01</div>
+                    <div class="items-description">
+                        If the affiliate achieves varying thresholds for [total profit per month] and [qualified active players for a month] then the commission payout will be based on the lower threshold. For instance, if the total Net loss of the affiliate's members for the current month is $46,000, and the Qualified active members are 7, the commission for the period will be <span>35%</span>.
+                    </div>
+                </div>
+                <div class="items">
+                    <div class="items-number">02</div>
+                    <div class="items-description">
+                        By invitation only - If you believe you have a unique proposition that could result in significant Winloss (such as attracting VIP members), you can reach out to the affiliate manager to evaluate the proposition and determine the eligibility.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-@{ Html.RenderPartial("~/Views/Promotion/_FdmTable.cshtml"); }
-<div class="info-group">
-    <p class="text-header"><strong>注意—</strong>每位合作伙伴成员，都会在他们赚取的佣金之外，还有额外佣金比例，无论是常规佣金还是12BET佣金提升优惠。</p>
+
+
+<div class="block block-power">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="block-child-title">
+                FDM's POWER
+            </div>
+            <div class="block-child-description">
+                In 12BET, extra rewards are always guaranteed. All you need to do is fulfil the stated New FDM's requirements and receive an extra commission in addition to your commission.
+            </div>
+        </div>
+        <div class="table-custom table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="22%">NEW FDM's</th>
+                        <th width="26%">TOTAL FDM's DEPOSIT ($)</th>
+                        <th width="26%">EXTRA COMMISSION</th>
+                        <th width="26%">MAX EXTRA COMMISSION ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">5 to 11</td>
+                        <td class="text-center">2,200 - 4,499</td>
+                        <td class="text-center">3%</td>
+                        <td class="text-center">250</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">12 to 24</td>
+                        <td class="text-center">4,500- 10,499</td>
+                        <td class="text-center">5%</td>
+                        <td class="text-center">500</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">25 to 39</td>
+                        <td class="text-center">10,500- 14,999</td>
+                        <td class="text-center">8%</td>
+                        <td class="text-center">1,200</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">40 &amp; Above</td>
+                        <td class="text-center">15,000 &amp; Above</td>
+                        <td class="text-center">12%</td>
+                        <td class="text-center">2,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<div class="info-group">
-    <p class="text-header"><strong>佣金计算实例：</strong></p>
-    <p>举例：“合作伙伴—王先生”的盈亏总额为$35,000，有25名符合资格的活跃会员，和12名首次存款新会员。首次存款新会员的总存款为$3,000。这个人有资格参加两个优惠活动，即12BET佣金提升和首次存款新会员影响力。</p>
-    <p>为了计算佣金，首先采用佣金提升方案，即$35,000的35%，佣金是$12,250</p>
-    <p>接下来，我们将首次存款新会员影响力使用于佣金提升额度，即3%。因此，首次存款新会员影响力奖金是367.5美元，但由于最高奖金是250美元，所以佣金将是$12,250+$250=$12,500。</p>
-    <p>因此，“合作伙伴—王先生”赚取的总佣金为$12,500。</p>
+
+<div class="block block-note">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="block-child-title title-spcing">
+                Note
+            </div>
+            <div class="main-content">
+                <div class="items">
+                    <div class="items-description">
+                        Every affiliate will receive an extra percentage in addition to the commission they earn, regardless of whether it's a Regular Commission or a 12BET Commission Boost promotion.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<h3 class="header-underline text-red">条款与规则</h3>
-<div class="info-group">
-    <p class="text-header"><strong>每月佣金提升</strong></p>
-    <p class="text">
-        <ol>
-            <li>本促销活动适用于所有12BET会员。</li>
-            <li>如果合作伙伴在【每月公司利润】和【每月符合资格活跃会员】达到了不同的门槛，佣金支付将根据较低的门槛。</li>
-            <li>不符资格这个优惠活动的合作伙伴，将按照现有的<a href="@Url.Content("~/CommissionStructure")">常规佣金结构</a>结算佣金。</li>
-            <li>仅限邀请 —如果您有独具特色的提议，可以带来巨大的获利（例如：吸引VIP会员），您可以与合作伙伴经理联系，评估该提议并确定资格。</li>
-            <li>如果合作伙伴会员能够达到上表所示的要求，他们将有资格获得额外的佣金。</li>
-            <li>额外的佣金将使用上个月的最终佣金计算。</li>
-            <li>额外的佣金将在当月的第8-15日内，加入最终佣金。</li>
-            <li>12BET保留在任何时候对全部或部分合作伙伴，取消该优惠活动的所有权利。本优惠活动同时遵守 <a href="@Url.Content("~/TermAndCondition")">12BET 合作伙伴条款及规则准则。</a></li>
-        </ol>
-    </p>
-</div>
-<div class="info-group">
-    <p class="text-header"><strong>首次存款新会员影响力</strong></p>
-    <p class="text">
-        <ol>
-            <li>本促销活动适用于所有12BET会员。</li>
-            <li>如果合作伙伴在【每月公司利润】和【每月符合资格活跃会员】达到了不同的门槛，佣金支付将根据较低的门槛。</li>
-            <li>如果合作伙伴会员能够达到上表所示的要求，他们将有资格获得额外的佣金。</li>
-            <li>额外的佣金将使用上个月的最终佣金计算。</li>
-            <li>额外的佣金将在当月的第8-15日内，加入最终佣金。</li>
-            <li>12BET保留在任何时候对全部或部分合作伙伴，取消该优惠活动的所有权利。本优惠活动同时遵守 <a href="@Url.Content("~/TermAndCondition")">12BET 合作伙伴条款及规则准则。</a></li>
-        </ol>
-    </p>
+
+<div class="block block-faq">
+    <div class="block-content">
+        <div class="group-anwser">
+            <div class="anwser">
+                <div class="anwser-heading">THE COMMISSION CALCULATION EXAMPLE:</div>
+                <div class="anwser-text">
+                    Imagin a ‘Affiliate XYZ’ has a <span class="red-bold">Net win/loss</span> of $35,000, and there are 25 qualified active members and 12 FDMs. The total deposit made by FDMs is $3,000. The individual qualifies for both promotions, which are the 12BET Commission Boost and FDM Power.
+                </div>
+                <div class="anwser-text">
+                    To calculate the commission, we first apply the Commission Boost, which is 35% of $35,000, resulting in $12,250.
+                </div>
+                <div class="anwser-text">
+                    Next, we apply FDM Power to the Commission Boost amount, which is 3%. Therefore, the FDM Power bonus is $367.5, but since the maximum bonus is $250, the commission will be $12,250 + $250 = $12,500.
+                </div>
+                <div class="anwser-text">
+                    Thus, the total commission earned by the Affiliate XYZ is $12,500.
+                </div>
+
+            </div>
+        </div>
+        <div class="group-question">
+            <div class="question">
+                <div class="title">
+                    <span>TERMS AND CONDITIONS</span>
+                </div>
+                <span class="button-toggle"></span>
+            </div>
+        </div>
+    </div>
 </div>

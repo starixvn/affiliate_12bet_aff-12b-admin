@@ -1,71 +1,236 @@
-﻿@{
-    var bannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion.vi-VN.jpg");
-    var mobileBannerSrc = Url.RenderLinkByJsVersion("~/www/build/styles/Images/promotion/promotion-mobile.vi-VN.jpg");
-}
-<div class="banner-promotion">
-    <picture>
-        <source media="(max-width:400px)" srcset="@(mobileBannerSrc)" type="image/jpeg" />
-        <source srcset="@(bannerSrc)" type="image/jpeg" />
-        <img class="img-item img-responsive" src="@bannerSrc" alt="@Lang.Promotion" />
-    </picture>
+﻿<div class="swiper top-banner">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <a class="nounderline home-banner-tracking-flat show-pc" target="_blank" href="@Url.Content("~/Promotion")">
+                <picture>
+                    <source srcset="~/www/build/styles/Images/home/item1.webp" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/home/item1.jpg" type="image/jpeg" />
+                    <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item1.jpg" alt="Actived Home Banner" />
+                </picture>
+            </a>
+            <a class="nounderline home-banner-tracking-flat show-mobile" target="_blank" href="@Url.Content("~/Promotion")">
+                <picture>
+                    <source srcset="~/www/build/styles/Images/home/item1-mobile.webp" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/home/item1-mobile.jpg" type="image/jpeg" />
+                    <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item1-mobile.jpg" alt="Actived Home Banner" />
+                </picture>
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a class="nounderline home-banner-tracking-flat show-pc" target="_blank" href="@Url.Content("~/Promotion")">
+                <picture>
+                    <source srcset="~/www/build/styles/Images/home/item2.webp" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/home/item2.jpg" type="image/jpeg" />
+                    <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item2.jpg" alt="Actived Home Banner" />
+                </picture>
+            </a>
+            <a class="nounderline home-banner-tracking-flat show-mobile" target="_blank" href="@Url.Content("~/Promotion")">
+                <picture>
+                    <source srcset="~/www/build/styles/Images/home/item2-mobile.webp" type="image/webp" />
+                    <source srcset="~/www/build/styles/Images/home/item2-mobile.jpg" type="image/jpeg" />
+                    <img class="img-item img-responsive" src="~/www/build/styles/Images/home/item2-mobile.jpg" alt="Actived Home Banner" />
+                </picture>
+            </a>
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
 </div>
-<br />
-<div class="info-group">
-    <h3 class="header-underline text-red">12BET GIA TĂNG HOA HỒNG</h3>
-    <p><strong>Nhận hoa hồng khủng lên đến 50%!</strong></p>
-    <p>Nhận hoa hồng mỗi tháng cao hơn một cách dễ dàng - chỉ cần đáp ứng các yêu cầu bên dưới!</p>
+
+
+<div class="block block-commission-boost">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="top-title">
+                12BET COMMISSION BOOST
+            </div>
+            <div class="mid-title">
+                Earn up to a whopping 50% Commission!
+            </div>
+            <div class="description">
+                Get higher monthly commission rates with ease - simply meet the requirements below to qualify automatically!
+            </div>
+        </div>
+    </div>
 </div>
-@{ Html.RenderPartial("~/Views/Promotion/_RevenueShareTable.cshtml"); }
-<div class="info-group">
-    <p class="text-header"><strong>Lưu ý -</strong></p>
-    <p class="text">
-        <ol>
-            <li>Nếu đại lý đạt được các yêu cầu khác nhau cho [tổng lợi nhuận ròng mỗi tháng] và [thành viên đủ điều kiện trong một tháng] thì khoản thanh toán hoa hồng sẽ dựa trên cấp thấp hơn. Chẳng hạn, nếu tổng Khoản lỗ ròng của các thành viên dưới Đại lý một tháng hiện tại là 46,000$ và số thành viên Đủ điều kiện là 7, thì hoa hồng trong thời gian này sẽ là 35%.</li>
-            <li>Chỉ cần giới thiệu - Nếu bạn tin rằng mình có một đề xuất hấp dẫn để gia tăng lợi nhuận ròng của mình (chẳng hạn như cách thu hút thành viên VIP), bạn có thể liên hệ với người quản lý Đại lý để đánh giá đề xuất và kiểm tra xem để xuất có đủ điều kiện hay không.</li>
-        </ol>
-    </p>
+
+<div class="block block-table">
+    <div class="page-container">
+        <div class="table-custom table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="20%">Revenue Share</th>
+                        <th width="8%">Tier</th>
+                        <th width="20%">Company Profit For The Month ($)</th>
+                        <th width="20%">Qualified Active Members/ Month</th>
+                        <th width="20%">Commission</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="6" class="text-center">
+                            <p>All Products</p>
+                        </td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">1 - 3,000</td>
+                        <td class="text-center">≥ 7</td>
+                        <td class="text-center">30%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2</td>
+                        <td class="text-center">3,001 - 45,000</td>
+                        <td class="text-center">≥ 7</td>
+                        <td class="text-center">35%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">3</td>
+                        <td class="text-center">45,001 - 200,000</td>
+                        <td class="text-center">≥ 10</td>
+                        <td class="text-center">40%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">4</td>
+                        <td class="text-center">200,001 - 250,000</td>
+                        <td class="text-center">≥ 20</td>
+                        <td class="text-center">45%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">5</td>
+                        <td class="text-center">250,001 - Above</td>
+                        <td class="text-center">≥ 50</td>
+                        <td class="text-center">50%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">6</td>
+                        <td colspan="2" class="text-center">By Invitation only</td>
+                        <td class="text-center">Flat 50%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<div class="info-group">
-    <h3 class="header-underline text-red">THƯỞNG THÀNH VIÊN NẠP MỚI ĐỘC QUYỀN</h3>
-    <p>Tại 12BET, các phần thưởng phụ luôn được đảm bảo. Tất cả những gì bạn cần làm là đáp ứng các yêu cầu Nạp Tiền Lần Đầu của các thành viên mới và nhận thêm hoa hồng của bạn.</p>
+
+<div class="block block-note">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="block-child-title">
+                Note
+            </div>
+            <div class="main-content">
+                <div class="items">
+                    <div class="items-number">01</div>
+                    <div class="items-description">
+                        If the affiliate achieves varying thresholds for [total profit per month] and [qualified active players for a month] then the commission payout will be based on the lower threshold. For instance, if the total Net loss of the affiliate's members for the current month is $46,000, and the Qualified active members are 7, the commission for the period will be <span>35%</span>.
+                    </div>
+                </div>
+                <div class="items">
+                    <div class="items-number">02</div>
+                    <div class="items-description">
+                        By invitation only - If you believe you have a unique proposition that could result in significant Winloss (such as attracting VIP members), you can reach out to the affiliate manager to evaluate the proposition and determine the eligibility.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-@{ Html.RenderPartial("~/Views/Promotion/_FdmTable.cshtml"); }
-<div class="info-group">
-    <p class="text-header"><strong>Lưu ý - </strong>Mỗi đại lý sẽ nhận được một tỷ lệ phần trăm bổ sung bên cạnh hoa hồng họ kiếm được, bất kể đó là Hoa hồng Cố định mỗi tháng hay từ khuyến mãi Tăng hoa hồng của 12BET.</p>
+
+
+<div class="block block-power">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="block-child-title">
+                FDM's POWER
+            </div>
+            <div class="block-child-description">
+                In 12BET, extra rewards are always guaranteed. All you need to do is fulfil the stated New FDM's requirements and receive an extra commission in addition to your commission.
+            </div>
+        </div>
+        <div class="table-custom table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="22%">NEW FDM's</th>
+                        <th width="26%">TOTAL FDM's DEPOSIT ($)</th>
+                        <th width="26%">EXTRA COMMISSION</th>
+                        <th width="26%">MAX EXTRA COMMISSION ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">5 to 11</td>
+                        <td class="text-center">2,200 - 4,499</td>
+                        <td class="text-center">3%</td>
+                        <td class="text-center">250</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">12 to 24</td>
+                        <td class="text-center">4,500- 10,499</td>
+                        <td class="text-center">5%</td>
+                        <td class="text-center">500</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">25 to 39</td>
+                        <td class="text-center">10,500- 14,999</td>
+                        <td class="text-center">8%</td>
+                        <td class="text-center">1,200</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">40 &amp; Above</td>
+                        <td class="text-center">15,000 &amp; Above</td>
+                        <td class="text-center">12%</td>
+                        <td class="text-center">2,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<div class="info-group">
-    <p class="text-header"><strong>Ví dụ Cách tính hoa hồng:</strong></p>
-    <p>Đại lý XYZ' đạt mức lợi nhuận ròng là 35,000$ và có 25 thành viên đủ điều kiện và 12 thành viên nạp mới. Tổng số tiền gửi do Thành viên nạp mới là 3,000$. Đại lý đó đủ điều kiện cho cả hai chương trình khuyến mãi, đó là Hoa hồng khủng và Thưởng nạp mới độc quyền tại 12BET.</p>
-    <p>Để tính hoa hồng, trước tiên áp dụng vào bảng Hoa hồng mỗi tháng là 35% của 35,000$ = 12,250$.</p>
-    <p>Tiếp theo, áp dụng vào bảng Thưởng thành viên nạp mới là 3%. Do đó, tiền thưởng là 367.5$, nhưng vì tiền thưởng tối đa là 250$ nên tiền hoa hồng sẽ là 12,250$ + 250$  = 12,500$.</p>
-    <p>Do đó, tổng hoa hồng mà Đại lý XYZ nhận được là 12,500$ .</p>
+
+<div class="block block-note">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="block-child-title title-spcing">
+                Note
+            </div>
+            <div class="main-content">
+                <div class="items">
+                    <div class="items-description">
+                        Every affiliate will receive an extra percentage in addition to the commission they earn, regardless of whether it's a Regular Commission or a 12BET Commission Boost promotion.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<h3 class="header-underline text-red">ĐIỀU KHOẢN & ĐIỀU KIỆN</h3>
-<div class="info-group">
-    <p class="text-header"><strong>Thưởng Hoa hồng khủng mỗi tháng</strong></p>
-    <p class="text">
-        <ol>
-            <li>Khuyến mãi này áp dụng cho tất cả các Đại Lý của 12BET.</li>
-            <li>Nếu Đại lý liên kết đạt được các cấp độ khác nhau cho [tổng lợi nhuận ròng mỗi tháng] và [thành viên đủ điều kiện trong một tháng] thì khoản thanh toán hoa hồng sẽ dựa trên cấp độ thấp hơn.</li>
-            <li>Những Đại lý không đủ tiêu chuẩn của chương trình khuyến mãi này sẽ vẫn tiếp tục nhận tiền hoa hồng dựa trên <a href="@Url.Content("~/CommissionStructure")">cấu trúc hoa hồng thông thường</a> hiện có.</li>
-            <li>Chỉ cần giới thiệu - Nếu bạn tin rằng mình có một đề xuất để gia tăng lợi nhuận ròng (chẳng hạn như thu hút các thành viên VIP), bạn có thể liên hệ với đội quản lý Đại lý để đánh giá đề xuất và xác định tính đủ điều kiện của đề xuất.</li>
-            <li>Các Đại lý đủ điều kiện nhận thêm hoa hồng nếu họ có thể đạt được các yêu cầu như được nêu trong bảng trên.</li>
-            <li>Hoa hồng thêm sẽ được tính từ hoa hồng tổng kết của tháng trước đó.</li>
-            <li>Hoa hồng bổ sung sẽ được cộng vào khoản hoa hồng cuối cùng trong khoảng ngày 08 - 15 mỗi tháng.</li>
-            <li>12BET có quyền hủy khuyến mãi này bất cứ lúc nào, đối với tất cả các Đại lý hoặc các chi nhánh riêng lẻ và tuân theo <a href="@Url.Content("~/TermAndCondition")">Điều khoản và Điều kiện Đại lý của 12BET.</a></li>
-        </ol>
-    </p>
-</div>
-<div class="info-group">
-    <p class="text-header"><strong>THÀNH VIÊN NẠP MỚI ĐỘC QUYỀN</strong></p>
-    <p class="text">
-        <ol>
-            <li>Khuyến mãi này áp dụng cho tất cả các Đại Lý của 12BET.</li>
-            <li>Nếu [TỔNG SỐ THÀNH VIÊN NẠP MỚI] và [Tổng số tiền gửi của THÀNH VIÊN NẠP MỚI] ở 2 cấp độ khác nhau, thì cấp độ thấp hơn sẽ được sử dụng để tính hoa hồng tương ứng.</li>
-            <li>Các Đại lý đủ điều kiện nhận thêm hoa hồng nếu họ có thể đạt được các yêu cầu như được nêu trong bảng trên.</li>
-            <li>Hoa hồng thêm sẽ được tính từ hoa hồng tổng kết của tháng trước đó.</li>
-            <li>Hoa hồng bổ sung sẽ được cộng vào khoản hoa hồng cuối cùng trong khoảng ngày 08 - 15 mỗi tháng.</li>
-            <li>12BET có quyền hủy khuyến mãi này bất cứ lúc nào, đối với tất cả các Đại lý hoặc các chi nhánh riêng lẻ và tuân theo <a href="@Url.Content("~/TermAndCondition")">Điều khoản và Điều kiện Đại lý của 12BET.</a></li>
-        </ol>
-    </p>
+
+<div class="block block-faq">
+    <div class="block-content">
+        <div class="group-anwser">
+            <div class="anwser">
+                <div class="anwser-heading">THE COMMISSION CALCULATION EXAMPLE:</div>
+                <div class="anwser-text">
+                    Imagin a ‘Affiliate XYZ’ has a <span class="red-bold">Net win/loss</span> of $35,000, and there are 25 qualified active members and 12 FDMs. The total deposit made by FDMs is $3,000. The individual qualifies for both promotions, which are the 12BET Commission Boost and FDM Power.
+                </div>
+                <div class="anwser-text">
+                    To calculate the commission, we first apply the Commission Boost, which is 35% of $35,000, resulting in $12,250.
+                </div>
+                <div class="anwser-text">
+                    Next, we apply FDM Power to the Commission Boost amount, which is 3%. Therefore, the FDM Power bonus is $367.5, but since the maximum bonus is $250, the commission will be $12,250 + $250 = $12,500.
+                </div>
+                <div class="anwser-text">
+                    Thus, the total commission earned by the Affiliate XYZ is $12,500.
+                </div>
+
+            </div>
+        </div>
+        <div class="group-question">
+            <div class="question">
+                <div class="title">
+                    <span>TERMS AND CONDITIONS</span>
+                </div>
+                <span class="button-toggle"></span>
+            </div>
+        </div>
+    </div>
 </div>

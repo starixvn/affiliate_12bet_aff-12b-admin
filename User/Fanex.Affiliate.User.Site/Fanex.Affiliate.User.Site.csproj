@@ -374,6 +374,10 @@
     <Content Include="www\build\js\pages\home.min.js">
       <DependentUpon>home.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\pages\products.js" />
+    <Content Include="www\build\js\pages\products.min.js">
+      <DependentUpon>products.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\pages\promotion.min.js">
       <DependentUpon>promotion.js</DependentUpon>
     </Content>
@@ -424,11 +428,18 @@
     <Content Include="www\build\styles\Images\our-product\genesis.png" />
     <Content Include="www\build\styles\Images\our-product\gpi.png" />
     <Content Include="www\build\styles\Images\our-product\keno.png" />
+    <Content Include="www\build\styles\Images\our-product\live-casino-product-page.png" />
     <Content Include="www\build\styles\Images\our-product\live-casino.png" />
+    <Content Include="www\build\styles\Images\our-product\lottery-product-page.png" />
     <Content Include="www\build\styles\Images\our-product\lottery.png" />
     <Content Include="www\build\styles\Images\our-product\mini-block-1.png" />
     <Content Include="www\build\styles\Images\our-product\mini-block-2.png" />
     <Content Include="www\build\styles\Images\our-product\mini-block-3.png" />
+    <Content Include="www\build\styles\Images\our-product\mobile\mb-1.png" />
+    <Content Include="www\build\styles\Images\our-product\mobile\mb-2.png" />
+    <Content Include="www\build\styles\Images\our-product\mobile\mb-3.png" />
+    <Content Include="www\build\styles\Images\our-product\mobile\mb-4.png" />
+    <Content Include="www\build\styles\Images\our-product\mobile\mb-5.png" />
     <Content Include="www\build\styles\Images\our-product\number-game.png" />
     <Content Include="www\build\styles\Images\our-product\p2p.png" />
     <Content Include="www\build\styles\Images\our-product\sa-gaming.png" />
@@ -438,6 +449,7 @@
     <Content Include="www\build\styles\Images\our-product\sky.png" />
     <Content Include="www\build\styles\Images\our-product\slot.png" />
     <Content Include="www\build\styles\Images\our-product\sp5.png" />
+    <Content Include="www\build\styles\Images\our-product\sports-product-page.png" />
     <Content Include="www\build\styles\Images\our-product\sports.png" />
     <Content Include="www\build\styles\Images\partnership\item1.png" />
     <Content Include="www\build\styles\Images\partnership\item3.png" />
@@ -850,8 +862,6 @@
     <Content Include="www\build\styles\Images\qr-icon.png" />
     <Content Include="www\build\styles\Images\logo.png" />
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
-    <Content Include="www\build\styles\Images\products\bg-casino_affiliate.jpg" />
-    <Content Include="www\build\styles\Images\products\bg-sports_affiliate.jpg" />
     <Content Include="www\build\styles\Images\why-become\15year.png" />
     <Content Include="www\build\styles\Images\why-become\advanced.png" />
     <Content Include="www\build\styles\Images\why-become\highest.png" />
@@ -1110,8 +1120,6 @@
     <Content Include="Views\Signup\_SecurityQuestion.cshtml" />
     <Content Include="www\build\styles\Images\bg-Commission-Structure_Banner.webp" />
     <Content Include="www\build\styles\Images\bg-FAQ_banner.webp" />
-    <Content Include="www\build\styles\Images\products\bg-casino_affiliate.webp" />
-    <Content Include="www\build\styles\Images\products\bg-sports_affiliate.webp" />
     <Content Include="Views\Password\RecoverPasswordResult.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Summary\Index.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Summary\Overview.cshtml" />
