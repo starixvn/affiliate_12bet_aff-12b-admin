@@ -2,14 +2,9 @@
     var _refreshCaptchaTimeoutId = null;
     var REFRESH_CAPTCHA_INTERVAL = 600000;
 
-    function registerRefreshLoginCaptcha(isShowingModal) {
+    function registerRefreshLoginCaptcha() {
         function refreshCaptcha() {
-            if (isShowingModal) {
-                _me.generateDialogCaptcha();
-            }
-            else {
-                _me.generateCaptcha();
-            }
+            _me.generateDialogCaptcha();
             clearTimeout(_refreshCaptchaTimeoutId);
             _refreshCaptchaTimeoutId = setTimeout(refreshCaptcha, REFRESH_CAPTCHA_INTERVAL);
         }
@@ -20,28 +15,23 @@
         }, REFRESH_CAPTCHA_INTERVAL);
     }
 
-    function toggleLoginButton(isEnable, onDialog) {
-        var btnLoginselector = onDialog ? '#btnDialogLogin' : '#btnLogin';
-        $(btnLoginselector).prop('disabled', !isEnable);
+    function toggleLoginButton(isEnable) {
+        $('#btnDialogLogin').prop('disabled', !isEnable);
     }
 
     var _me = {
         initialize: function () {
             _me.registerLoginDialog();
-            _me.initEvent();
             _me.initLoginDialogEvent();
-            registerRefreshLoginCaptcha(false);
         },
         registerLoginDialog: function () {
             $("#loginDialog").on("show.bs.modal", function (e) {
                 _me.generateDialogCaptcha();
-                registerRefreshLoginCaptcha(true);
+                registerRefreshLoginCaptcha();
             })
 
             $("#loginDialog").on("hide.bs.modal", function (e) {
                 $("#loginDialogcaptchaImg").attr("src", "");
-                _me.generateCaptcha();
-                registerRefreshLoginCaptcha(false);
             })
         },
         initLoginDialogEvent: function () {
@@ -55,51 +45,33 @@
             });
 
             $("#btnDialogLogin").on("click", function () {
-                _me.requestSignin(true);
+                _me.requestSignin();
             });
 
             $("#dialogUserInput input").on("keypress", function (e) {
                 if (e.keyCode === 13 && !$('#btnDialogLogin').prop('disabled')) {
-                    _me.requestSignin(true);
+                    _me.requestSignin();
                 }
             });
 
             $("#loginDialogcaptchaImg").on("click", function () {
                 _me.generateDialogCaptcha();
-                registerRefreshLoginCaptcha(true);
-            });
-        },
-        initEvent: function () {
-            $("#btnLogin").on("click", function () {
-                _me.requestSignin();
-            });
-
-            $("#userLogin input").on("keypress", function (e) {
-                if (e.keyCode === 13 && !$('#btnLogin').prop('disabled')) {
-                    _me.requestSignin();
-                }
-            });
-
-            $("#captchaImg").on("click", function () {
-                _me.generateCaptcha();
-                registerRefreshLoginCaptcha(false);
+                registerRefreshLoginCaptcha();
             });
         },
 
-        requestSignin: function (onDialog) {
-            var prefix = onDialog ? "dialog" : "";
-
-            var $username = $("#" + prefix + "txtUsername");
-            var $password = $("#" + prefix + "txtPassword");
-            var $validation = $("#" + prefix + "txtValidation");
+        requestSignin: function () {
+            var $username = $("#dialogtxtUsername");
+            var $password = $("#dialogtxtPassword");
+            var $validation = $("#dialogtxtValidation");
 
             var username = $username.val();
             var password = $password.val();
             var validation = $validation.val();
 
-            var validationResult = _me.validate(username, password, validation, prefix);
+            var validationResult = _me.validate(username, password, validation);
             if (validationResult.isValid) {
-                var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
+                var token = $('input[name="__RequestVerificationToken"]', $("#loginDialog")).val();
                 var publicKey = AuthHelper.base64DecodeUnicode($("#PublicKey").val());
                 var timeStamp = AuthHelper.getUtcUnixTimeStamp();
 
@@ -123,7 +95,7 @@
                     success: function (response) {
                         if (response.IsOk) {
                             var isRedirectToMediaPage = $('#isCLickedBannerLink').val() === "1";
-                            if (onDialog && isRedirectToMediaPage) {
+                            if (isRedirectToMediaPage) {
                                 PageTracking.addTrackingForMediaPage();
 
                                 setTimeout(function () {
@@ -140,28 +112,25 @@
                             }
                             else {
                                 alert(response.Message);
-                                if (onDialog) {
-                                    $username.val("");
-                                    $password.val("");
-                                    $validation.val("");
-                                    _me.generateDialogCaptcha();
-                                    registerRefreshLoginCaptcha(true);
-                                }
-                                else {
-                                    Site.reload();
-                                }
-                                toggleLoginButton(true, onDialog);
+
+                                $username.val("");
+                                $password.val("");
+                                $validation.val("");
+                                _me.generateDialogCaptcha();
+                                registerRefreshLoginCaptcha();
+
+                                toggleLoginButton(true);
                             }
                         }
                     },
                     beforeSend: function () {
                         Site.showLoader();
-                        toggleLoginButton(false, onDialog);
+                        toggleLoginButton(false);
                     },
                     complete: function (jqXHR, textStatus) {
                         Site.hideLoader();
                         if (textStatus === 'error') {
-                            toggleLoginButton(true, onDialog);
+                            toggleLoginButton(true);
                         }
                     }
                 });
@@ -171,7 +140,7 @@
             }
         },
 
-        validate: function (username, password, validationCode, prefix) {
+        validate: function (username, password, validationCode) {
             var empty = "";
             var result = {
                 isValid: false,
@@ -179,19 +148,19 @@
             };
 
             if (username === empty) {
-                $("#" + prefix + "txtUsername").focus();
+                $("#dialogtxtUsername").focus();
                 result.message = validationMessage.enterUserName;
                 return result;
             }
 
             if (password === empty) {
-                $("#" + prefix + "txtPassword").focus();
+                $("#dialogtxtPassword").focus();
                 result.message = validationMessage.enterPassword;
                 return result;
             }
 
             if (validationCode === empty) {
-                $("#" + prefix + "txtValidation").focus();
+                $("#dialogtxtValidation").focus();
                 result.message = validationMessage.enterValidationCode;
                 return result;
             }
@@ -203,10 +172,6 @@
         generateDialogCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#loginDialogcaptchaImg").attr("src", captchaUrl);
-        },
-        generateCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
-            $("#captchaImg").attr("src", captchaUrl);
         }
     };
 

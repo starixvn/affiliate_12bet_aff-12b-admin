@@ -5,32 +5,68 @@
 @model Fanex.Affiliate.User.Core.ViewModels.AuthenticationFormViewModel
 
 <link href="@Url.RenderLink("~/www/build/styles/css/feedback.css")" rel="stylesheet" />
-<div id="userLogin">
-    @if (Model.IsAuthenticated)
-    {
-    <div class="login-after user-login" id="loginAfter">
-        <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @Model.UserName</a>
-        <button class="btn btn-login" id="btnLogout">@Lang.Logout</button>
-    </div>
-        
-    }
-    else
-    {
-        <div class="login-before user-login">
-            <input class="text-field" id="txtUsername" type="text" placeholder="@Lang.Username" />
-            <input class="text-field" id="txtPassword" type="password" placeholder="@Lang.Password" />
-            <input class="text-field validation" id="txtValidation" type="text" placeholder="@Lang.Validation" />
-            <div class="validation-value"><img src="@Url.Content("~/Auth/CaptchaImage")" alt="captcha" id="captchaImg" /></div>
-            <a class="btn btn-forgot" title="@Lang.ForgetPassword" href="@Url.Content("~/Password")">
-                <span class="mdi mdi-account-key"></span>
-            </a>
-            @Html.AntiForgeryToken()
-            @if (!string.IsNullOrEmpty(Model.PublicKey))
-            {
-                @Html.Hidden("PublicKey", Model.PublicKey)
-            }
-            <button class="btn btn-login" id="btnLogin" type="button">@Lang.Login</button>
-        </div>        
-    }
-</div>
+
+@if (Model.IsAuthenticated)
+{
+    <a class="btn-auth btn-login login-after" id="btnLogout">
+        @Lang.Logout
+    </a>
+    <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn-auth btn-signup">@Lang.MyAcc @Model.UserName</a>
+}
+else
+{
+    <a class="btn-auth btn-login" id="mobileLogin">
+        @Lang.Login
+    </a>
+    <a href="@Url.Content("~/Signup")" class="btn-auth btn-signup">@Lang.JoinNowHeader</a>
+    <div class="modal fade login-dialog" tabindex="-1" role="dialog" id="loginDialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-banner">
+                    <img src="~/www/build/styles/Images/logo.png" alt="logo" />
+                    <h2 class="logo-text">@Lang.AffiliateProgram</h2>
+                </div>
+
+                <div class="modal-main-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title">@Lang.AffiliateLogin</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="title-left">@Lang.NotAffiliateMemberYet</h3>
+                                <p id="signUpToAffiliateProgram">@Lang.SignUpToAffiliateProgram</p>
+                                <a href="@Url.Content("~/Signup")" role="button" class="btn btn-submit btn-block text-uppercase">@Lang.JoinNow</a>
+                            </div>
+
+                            <div class="col-md-6 login-side" id="dialogUserInput">
+                                <h3 class="title-right">@Lang.WelcomeBack</h3>
+                                <div class="form-group">
+                                    <input type="text" id="dialogtxtUsername" class="form-control" placeholder="@Lang.Username" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" id="dialogtxtPassword" class="form-control" placeholder="@Lang.Password" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="dialogtxtValidation" class="form-control captcha-input" placeholder="@Lang.Validation" />
+                                    <div class="validation-value">
+                                        <img src="" alt="captcha" id="loginDialogcaptchaImg" />
+                                    </div>
+                                </div>
+                                @Html.AntiForgeryToken()
+                                @if (!string.IsNullOrEmpty(Model.PublicKey))
+                                {
+                                    @Html.Hidden("PublicKey", Model.PublicKey)
+                                }
+                                <button type="button" id="btnDialogLogin" class="btn btn-submit btn-block text-uppercase">@Lang.Login</button>
+                                <a href="@Url.Content("~/Password")" class="link-login-popup">> @Lang.ForgotLoginDetail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
 

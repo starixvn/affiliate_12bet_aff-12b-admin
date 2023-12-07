@@ -18,7 +18,7 @@ var Logout = (function ($) {
                 dataType: "html",
                 cache: false,
                 success: function success(result) {
-                    $("#loginAfter").append('<div id="affFeedback">' + result + '</div>');
+                    $("#btnLogout").append('<div id="affFeedback">' + result + '</div>');
                 },
                 complete: function complete(jqXHR, textStatus) {
                     if (!$("#affFeedbackContainer").length) {

@@ -32,10 +32,8 @@
         window.jQuery || document.write('\x3Cscript src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">\x3C/script>')
     </script>
     <script src="~/www/build/js/lib/bootstrap.min.js"></script>
-    <script src="~/www/build/js/lib/swiper.min.js"></script>
 
     <link href="~/www/build/styles/css/bootstrap-3.3.7.min.css" rel="stylesheet" />
-    <link href="~/www/build/styles/css/swiper.min.css" rel="stylesheet" />
     <link href="~/www/build/styles/fonts/materialdesignicons/font.min.css" rel="stylesheet" type="text/css" />
 
     @if (sessionService.CurrentLanguage == SystemLanguage.VietNamLanguageCode)
@@ -53,7 +51,7 @@
             <link href="~/www/build/styles/fonts/montserrat/font.min.css" rel="stylesheet" />
         }
     }
-    <link href="~/www/build/styles/fonts/myriadPro/font.css" rel="stylesheet" />
+    <link href="~/www/build/styles/fonts/myriadPro/font.min.css" rel="stylesheet" />
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     @RenderSection("styles", required: false)
 </head>
@@ -69,19 +67,12 @@
                 </div>
                 <div class="login">
                     <div class="user-signup">
-                        @if (!HttpContext.Current.User.Identity.IsAuthenticated || userSession == null)
-                        {
-                            <a class="btn-auth btn-login" id="mobileLogin">
-                                @Lang.Login
-                            </a>
-                            <a href="@Url.Content("~/Signup/Index")" class="btn-auth btn-signup">@Lang.JoinNowHeader</a>
-                        }
-
+                        @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTime.UtcNow.Ticks });}
                         <div class="language-container">
                             <div class="language-selection">
                                 @*<button class="select-language" id="selectedLanguage">
-                                    <img src="~/www/build/styles/Images/header/earth-fill.svg" alt="earth-fill" />
-                                </button>*@
+                    <img src="~/www/build/styles/Images/header/earth-fill.svg" alt="earth-fill" />
+                </button>*@
                                 <button class="select-language" id="selectedLanguage">
                                     <span><i class="flag flag-@sessionService.CurrentLanguage"></i>@(currentLanguage)</span>
                                     <i class="caret"></i>

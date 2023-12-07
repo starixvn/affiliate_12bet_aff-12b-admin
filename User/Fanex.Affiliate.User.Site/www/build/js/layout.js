@@ -1,11 +1,6 @@
 var Layout = (function ($) {
     var DEFAULT_SPEED = 5;
 
-    function initSlider() {
-        var $mainBanner = $('#mainBanner');
-        $mainBanner.carousel();
-    }
-
     function createNewUrlByLanguage(url, language) {
         var hasQueryString = url.indexOf('?') !== -1;
         var updatedQueryParam = 'lang=' + language;
@@ -24,7 +19,6 @@ var Layout = (function ($) {
 
     var _me = {
         initialize: function () {
-            initSlider();
             _me.registerAjaxHandlerError();
             _me.initEvent();
             _me.renderHotNews();
