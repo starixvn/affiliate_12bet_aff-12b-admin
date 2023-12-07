@@ -240,8 +240,13 @@
     @include Tablet {
         margin-right: -50px;
     }
-    @include Mobile{
-        margin-right : 0;
+
+    @include MobileLandscape {
+        margin-right: 0;
+    }
+
+    @include Mobile {
+        margin-right: 0;
     }
 
     a {

@@ -122,9 +122,10 @@
             gap: 12px;
         }
 
+
         @include Mobile {
-            grid-template-columns: repeat(2,1fr);
-            gap: 16px;
+            grid-template-columns: repeat(4,1fr);
+            gap: 16px 10px;
         }
 
         .items {
@@ -135,20 +136,32 @@
                 width: 120px;
             }
 
+
+            @include MobileLandscape {
+                width: 100%;
+            }
+
             @include Mobile {
-                width: 140px;
+                width: 70px;
+                padding: 3px;
             }
 
             .mask {
                 border-radius: 2px;
                 background: linear-gradient(39deg, #D90F0F 11.42%, #FF8651 65.58%);
                 padding: 20px 16px;
+
                 @media (max-width : 1440px) {
-                    height : 200px;
+                    height: 200px;
                 }
 
                 @include Tablet {
                     height: 140px;
+                }
+
+                @include Mobile {
+                    height: 95px;
+                    padding: 12px 5px;
                 }
 
                 .icon {
@@ -164,6 +177,11 @@
                             width: 70px;
                             height: 70px;
                         }
+
+                        @include Mobile {
+                            width: 40px;
+                            height: 40px;
+                        }
                     }
                 }
 
@@ -178,6 +196,10 @@
                     @include Tablet {
                         font-size: 10px;
                     }
+
+                    @include Mobile {
+                        font-size: 8px;
+                    }
                 }
 
                 .process-arrow {
@@ -186,8 +208,8 @@
 
                     @include Mobile {
                         img {
-                            width: 40px;
-                            height: 40px;
+                            width: 20px;
+                            height: 20px;
                         }
                     }
                 }
@@ -210,6 +232,91 @@
                 .arrow-4 {
                     bottom: 0;
                     right: 0;
+                }
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                width: 20px;
+                height: 7px;
+                border-radius: 10px;
+                background: #D90F0F;
+                position: absolute;
+                transform: translate(-50%,-50%);
+                left: -18px;
+                top: 50%;
+
+                @include TabletPortrait {
+                    height: 3px;
+                    width: 8px;
+                    left: -6px;
+                }
+
+                @include MobileLandscape {
+                    height: 3px;
+                    width: 8px;
+                    left: -6px;
+                }
+
+                @include Mobile {
+                    height: 3px;
+                    width: 8px;
+                    left: -5px;
+                }
+            }
+
+            &:first-child {
+                &:after {
+                    display: none;
+                }
+            }
+
+            &:last-child {
+                @include Mobile {
+                    grid-column: 2 / 4;
+                    width: 100%;
+                }
+
+                &:after {
+                    @include Mobile {
+                        left: 50%;
+                        top: -3px;
+                    }
+                }
+
+                &:before {
+                    content: '';
+                    display: block;
+                    width: 20px;
+                    height: 7px;
+                    border-radius: 10px;
+                    background: #D90F0F;
+                    position: absolute;
+                    transform: translate(-50%,-50%);
+                    left: -18px;
+                    top: 50%;
+                    margin-top: 12px;
+
+                    @include TabletPortrait {
+                        height: 3px;
+                        width: 8px;
+                        left: -6px;
+                    }
+
+                    @include MobileLandscape {
+                        height: 3px;
+                        width: 8px;
+                        left: -6px;
+                        margin-top: 10px;
+                    }
+                    @include Mobile {
+                        height: 3px;
+                        width: 8px;
+                        margin-top: 5px;
+                        top: -14px;
+                        left: 50%;
+                    }
                 }
             }
         }
