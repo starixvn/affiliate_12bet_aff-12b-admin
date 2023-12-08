@@ -1877,7 +1877,8 @@ input[type="radio"], input[type="checkbox"] {
   position: relative; }
   .login-dialog .modal-dialog .modal-content {
     border-radius: 12px;
-    overflow: hidden; }
+    overflow: hidden;
+    background: transparent; }
     .login-dialog .modal-dialog .modal-content .modal-body {
       padding: 0; }
       .login-dialog .modal-dialog .modal-content .modal-body .close {
@@ -1899,7 +1900,8 @@ input[type="radio"], input[type="checkbox"] {
             background-position: center;
             padding-bottom: 75px; }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item:nth-child(2) {
-            padding-top: 52px; }
+            padding-top: 52px;
+            background: #fff; }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .spacing-bt {
             margin-bottom: 16px; }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .heading-login, .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
