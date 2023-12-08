@@ -82,7 +82,7 @@ var Login = (function ($) {
                 }
             });
 
-            $("#loginDialogcaptchaImg").on("click", function () {
+            $("#loginDialogcaptchaBtn").on("click", function () {
                 _me.generateDialogCaptcha();
                 registerRefreshLoginCaptcha();
             });

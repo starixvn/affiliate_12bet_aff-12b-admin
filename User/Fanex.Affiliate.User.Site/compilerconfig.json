@@ -124,10 +124,6 @@
   //  "inputFile": "www/source/js/pages/faq.js"
   //},
   //{
-  //  "outputFile": "www/build/js/pages/commission-structure.js",
-  //  "inputFile": "www/source/js/pages/commission-structure.js"
-  //},
-  //{
   //  "outputFile": "www/build/js/pages/feedback.js",
   //  "inputFile": "www/source/js/pages/feedback.js"
   //},
@@ -147,10 +143,10 @@
   //  "outputFile": "www/build/styles/css/promotion.css",
   //  "inputFile": "www/source/styles/pages/promotion.scss"
   //},
-  {
-    "outputFile": "www/build/styles/css/commission-structure.css",
-    "inputFile": "www/source/styles/pages/commission-structure.scss"
-  },
+  //{
+  //  "outputFile": "www/build/styles/css/commission-structure.css",
+  //  "inputFile": "www/source/styles/pages/commission-structure.scss"
+  //},
   //{
   //  "outputFile": "www/build/styles/css/products.css",
   //  "inputFile": "www/source/styles/pages/products.scss"

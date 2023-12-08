@@ -63,9 +63,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public byte[] GenerateImageBuffer(string captcha, int width, int height, bool isComplex = false)
         {
-            const int RedNumber = 62;
-            const int GreenNumber = 164;
-            const int BlueNumber = 189;
+            const int RedNumber = 217;
+            const int GreenNumber = 15;
+            const int BlueNumber = 15;
 
             byte[] buffer = null;
 
@@ -87,8 +87,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 else
                 {
                     // Add captcha
-                    var font = new Font("Montserrat", Number.Fourteen);
-                    graphics.DrawString(captcha, font, Brushes.White, random.Next(Number.Two, Number.Ten), random.Next(Number.Zero, Number.Two));
+                    var font = new Font("Montserrat", Number.Fourteen, FontStyle.Bold);
+                    graphics.DrawString(captcha, font, Brushes.White, 0, 0);
                 }
 
                 for (int i = 0; i < Number.Fifty; i++)

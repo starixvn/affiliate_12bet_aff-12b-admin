@@ -55,15 +55,22 @@ else
                                             <input type="text" id="dialogtxtUsername" class="form-control" placeholder="@Lang.Username" />
                                         </div>
                                         <div class="custom-input">
-                                            <input type="password" id="dialogtxtPassword" class="form-control" placeholder="@Lang.Password" />
+                                            <input type="password" id="dialogtxtPassword" class="form-control" autocomplete="off" placeholder="@Lang.Password" />
                                         </div>
                                         <div class="custom-input columns-2">
                                             <input type="text" id="dialogtxtValidation" class="form-control captcha-input" placeholder="@Lang.Validation" />
-                                            <div class="validation-value">
-                                                <span>1832</span>
+                                            <div class="validation-value" id="loginDialogcaptchaBtn">
+                                                @*<span>1832</span>*@
+                                                <img src="" alt="captcha" id="loginDialogcaptchaImg" />
                                             </div>
                                         </div>
                                     </div>
+
+                                    @Html.AntiForgeryToken()
+                                    @if (!string.IsNullOrEmpty(Model.PublicKey))
+                                    {
+                                        @Html.Hidden("PublicKey", Model.PublicKey)
+                                    }
                                     <button type="button" id="btnDialogLogin" class="btn-submit btn-block text-uppercase spacing-bt">@Lang.Login</button>
                                     <a href="@Url.Content("~/Password")" class="link-login-popup">@Lang.ForgotLoginDetail</a>
                                 </form>
