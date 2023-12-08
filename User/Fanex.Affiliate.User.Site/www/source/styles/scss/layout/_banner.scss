@@ -20,6 +20,7 @@
     }
 
     .swiper-pagination {
+
         span {
             margin: 0 4px;
             width: 8px;
@@ -34,16 +35,14 @@
 
             @include Mobile {
                 border: 1px solid #EC828D;
-                background: #EC828D;
-                width: 4px;
-                height: 4px;
+                background: transparent;
             }
 
             &:hover {
                 background: #D90F0F;
 
                 @include Mobile {
-                    background: #EC828D
+                    background: #D90F0F
                 }
             }
         }
@@ -74,7 +73,6 @@
 .top-banner {
     @include Mobile {
         background: #F6F6F6;
-        padding-bottom: 72px;
     }
 
 

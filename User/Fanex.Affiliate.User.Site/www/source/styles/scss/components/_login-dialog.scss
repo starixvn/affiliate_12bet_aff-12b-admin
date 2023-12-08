@@ -1,4 +1,196 @@
 ﻿.login-dialog {
+    .modal-dialog {
+        max-width: 565px;
+        position: relative;
+
+        .modal-content {
+            border-radius: 12px;
+
+            .modal-body {
+                padding: 0;
+
+                .close {
+                    position: absolute;
+                    right: 8px;
+                    top: 8px;
+                    opacity: 1;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                .main-login {
+                    display: flex;
+
+                    .item {
+                        width: 50%;
+                        padding: 24px;
+
+                        &:first-child {
+                            background: url('/www/build/styles/Images/bg-login.png');
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            padding-bottom : 75px;
+                        }
+                        &:nth-child(2){
+                            padding-top :52px;
+                        }
+
+                        .spacing-bt {
+                            margin-bottom: 16px;
+                        }
+
+                        .heading-login {
+                            color: #D90F0F;
+                            text-align: left;
+                            font-size: 14px;
+                            font-weight: 700;
+                            line-height: normal;
+                            text-transform: uppercase;
+                        }
+
+                        .title {
+                            @extend .heading-login;
+                            text-transform: lowercase;
+                            color: #353E5B;
+                        }
+
+                        .custom-input {
+                            margin-bottom: 12px;
+
+                            &:last-child {
+                                margin-bottom: 16px;
+                            }
+
+                            &.columns-2 {
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+
+                                .validation-value {
+                                    padding: 8px 20px;
+                                    border-radius: 100px;
+                                    background: #D90F0F;
+                                    height: 32px;
+                                     margin: 0;
+                                    span {
+                                        display: block;
+                                        color: #FFF;
+                                        font-size: 12px;
+                                        font-style: italic;
+                                        font-weight: 900;
+                                        line-height: normal;
+                                    }
+                                }
+                            }
+
+                            input {
+                                border-radius: 100px;
+                                background: #F5F5F5;
+                                box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25) inset;
+                                outline: none;
+                                border: none;
+                                padding: 8px 20px;
+                                color: #C2C2C2;
+                                font-size: 12px;
+                                font-weight: 600;
+                                height: 32px;
+                                margin-bottom: 0;
+
+                                &::placeholder {
+                                    color: #C2C2C2;
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                    }
+
+                    .btn-submit {
+                        border-radius: 100px;
+                        font-size: 12px;
+                        font-weight: 700;
+                        line-height: normal;
+                        text-transform: uppercase;
+                        padding: 10px 0;
+                        outline: none;
+                        border: none;
+
+                        &:focus {
+                            border: none;
+                        }
+                    }
+
+                    .link-login-popup {
+                        text-align: center;
+                        color: #D90F0F;
+                        font-size: 12px;
+                        font-style: italic;
+                        font-weight: 400;
+                        line-height: normal;
+                        display: block;
+                        text-decoration: none;
+                    }
+
+                    .btn-join {
+                        border: 1.5px solid #D90F0F;
+                        background: #FFF;
+                        color: #D90F0F;;
+                        font-weight : 500;
+                        text-align :center;
+                        text-decoration : none;
+                    }
+
+                    #btnDialogLogin {
+                        background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
+                        color: #FFF;
+                    }
+
+                    .login-login {
+                        text-align: center;
+                        margin-bottom: 40px;
+                    }
+
+                    .logo-text {
+                        color: #FFF;
+                        text-align: center;
+                        font-size: 16px;
+                        font-weight: 700;
+                        line-height: normal;
+                        text-transform: uppercase;
+                        margin-bottom: 40px;
+                    }
+
+                    .group-text {
+                        margin-bottom: 16px;
+
+                        .title-affmember {
+                            color: #FFF;
+                            text-align: left;
+                            font-size: 14px;
+                            font-weight: 700;
+                            line-height: normal;
+                            margin-bottom: 8px;
+                        }
+
+                        #signUpToAffiliateProgram {
+                            @extend .title-affmember;
+                            color: #FFF;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+/*.login-dialog {
     .modal-content {
         background-color: #000;
         padding: 5px;
@@ -95,4 +287,4 @@
             }
         }
     }
-}
+}*/

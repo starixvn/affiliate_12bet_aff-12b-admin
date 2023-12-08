@@ -725,11 +725,9 @@ button.swiper-pagination-bullet {
   padding-bottom: 0;
   margin-top: 0; }
 
-.top-banner .owl-dots {
-  position: absolute;
-  right: 50%;
-  bottom: 16px;
-  transform: translate(50%, -50%); }
+@media (max-width: 500px) {
+  .top-banner .swiper-pagination {
+    bottom: 25px; } }
 
 .block-why-become .block-content {
   display: flex;
