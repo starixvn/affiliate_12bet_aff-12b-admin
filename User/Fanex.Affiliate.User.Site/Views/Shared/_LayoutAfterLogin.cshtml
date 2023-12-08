@@ -15,6 +15,7 @@
     var isShowNewsLetterTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && newsLetterService.HasNewCurrentTime();
     var isShowOfferTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && sessionService.UserSession.OfferPageId != 0;
 }
+@section afterLogin{after-login}
 
 @section styles{
     @RenderSection("styles", required: false)

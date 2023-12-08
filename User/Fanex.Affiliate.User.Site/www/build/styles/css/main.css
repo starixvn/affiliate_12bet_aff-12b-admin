@@ -504,6 +504,12 @@ input[type="checkbox"], input[type="radio"] {
     background: -o-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important;
     background: linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important; }
 
+.after-login .caret {
+  border-top: 5px dashed #fff; }
+
+.after-login .page-container {
+  max-width: 100%; }
+
 .user-signup {
   display: flex;
   align-items: center; }

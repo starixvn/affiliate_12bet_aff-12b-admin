@@ -253,6 +253,14 @@
             }
         }
     }
+
+    .caret {
+        border-top: 5px dashed #fff;
+    }
+
+    .page-container {
+        max-width: 100%;
+    }
 }
 
 .user-signup {

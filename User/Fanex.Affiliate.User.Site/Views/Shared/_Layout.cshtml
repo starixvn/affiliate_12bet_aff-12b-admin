@@ -56,7 +56,7 @@
     @RenderSection("styles", required: false)
 </head>
 <body>
-    <div class="header-top">
+    <div class="header-top @RenderSection("afterLogin", required: false)">
         <div class="page-container">
             <div class="logo-lang">
                 <div class="logo">
@@ -70,9 +70,6 @@
                         @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTime.UtcNow.Ticks });}
                         <div class="language-container">
                             <div class="language-selection">
-                                @*<button class="select-language" id="selectedLanguage">
-                    <img src="~/www/build/styles/Images/header/earth-fill.svg" alt="earth-fill" />
-                </button>*@
                                 <button class="select-language" id="selectedLanguage">
                                     <span><i class="flag flag-@sessionService.CurrentLanguage"></i><span class="name-lang">@(currentLanguage)</span></span>
                                     <i class="caret"></i>
