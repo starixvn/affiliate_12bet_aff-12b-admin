@@ -678,9 +678,12 @@ button.swiper-pagination-bullet {
       @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
         .block-items-products .main-items .items .mask .shape {
           min-width: 240px !important; } }
+      @media only screen and (min-device-width: 510px) and (max-device-width: 690px) and (orientation: landscape) {
+        .block-items-products .main-items .items .mask .shape {
+          min-width: 209px !important; } }
       @media only screen and (min-device-width: 812px) and (max-device-width: 980px) and (orientation: landscape) {
         .block-items-products .main-items .items .mask .shape {
-          min-width: 280px !important; } }
+          min-width: 220px !important; } }
       @media (max-width: 500px) {
         .block-items-products .main-items .items .mask .shape {
           display: none; } }
@@ -782,7 +785,7 @@ button.swiper-pagination-bullet {
             max-width: 300px; } }
         @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
           .block-items-products .main-items .items .mask .group-slider .shape-slider {
-            max-width: 265px; } }
+            max-width: 230px; } }
         @media only screen and (min-device-width: 812px) and (max-device-width: 980px) and (orientation: landscape) {
           .block-items-products .main-items .items .mask .group-slider .shape-slider {
             max-width: 290px; } }
@@ -802,12 +805,12 @@ button.swiper-pagination-bullet {
           @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
             .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
               max-width: 200px; } }
-          @media only screen and (min-device-width: 812px) and (max-device-width: 980px) and (orientation: landscape) {
-            .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
-              max-width: 230px; } }
           @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
             .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
               max-width: 165px; } }
+          @media only screen and (min-device-width: 812px) and (max-device-width: 980px) and (orientation: landscape) {
+            .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
+              max-width: 230px; } }
           .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider .swiper-slide {
             border-radius: 8px;
             background: rgba(197, 84, 36, 0.21);
@@ -917,13 +920,13 @@ button.swiper-pagination-bullet {
   top: -19px !important; }
   @media screen and (max-width: 1024px) {
     .imgs-lotery {
-      top: -15px !important;
+      top: -9px !important;
       right: -140px !important; } }
   @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
     .imgs-lotery {
       right: -197px !important; } }
   .imgs-lotery img {
-    height: 474px; }
+    height: 463px; }
     @media screen and (max-width: 1024px) {
       .imgs-lotery img {
         height: auto; } }

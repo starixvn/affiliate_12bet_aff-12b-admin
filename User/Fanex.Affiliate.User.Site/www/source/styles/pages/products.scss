@@ -173,8 +173,12 @@
                         min-width: 240px !important;
                     }
 
+                    @include MobileMiniLandscape {
+                        min-width: 209px !important;
+                    }
+
                     @include MobileBigLandscape {
-                        min-width: 280px !important;
+                        min-width: 220px !important;
                     }
 
                     @include Mobile {
@@ -313,7 +317,7 @@
                         }
 
                         @include MobileLandscape {
-                            max-width: 265px;
+                            max-width: 230px;
                         }
 
                         @include MobileBigLandscape {
@@ -341,12 +345,12 @@
                                 max-width: 200px;
                             }
 
-                            @include MobileBigLandscape {
-                                max-width: 230px;
-                            }
-
                             @include MobileLandscape {
                                 max-width: 165px;
+                            }
+
+                            @include MobileBigLandscape {
+                                max-width: 230px;
                             }
 
                             .swiper-slide {
@@ -506,7 +510,7 @@
     top: -19px !important;
 
     @include Tablet {
-        top: -15px !important;
+        top: -9px !important;
         right: -140px !important;
     }
 
@@ -515,7 +519,7 @@
     }
 
     img {
-        height: 474px;
+        height: 463px;
 
         @include Tablet {
             height: auto;
