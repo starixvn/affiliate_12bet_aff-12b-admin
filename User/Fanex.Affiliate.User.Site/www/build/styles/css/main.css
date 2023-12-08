@@ -1027,7 +1027,7 @@ input[type="checkbox"], input[type="radio"] {
         font-size: 12px; } }
     @media (max-width: 500px) {
       .footer-text {
-        padding: 16px 0; } }
+        padding: 16px 10px; } }
   .footer-img {
     padding: 52px 0;
     display: flex;
