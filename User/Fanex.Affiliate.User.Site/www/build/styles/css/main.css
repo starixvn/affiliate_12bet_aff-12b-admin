@@ -1876,7 +1876,8 @@ input[type="radio"], input[type="checkbox"] {
   max-width: 565px;
   position: relative; }
   .login-dialog .modal-dialog .modal-content {
-    border-radius: 12px; }
+    border-radius: 12px;
+    overflow: hidden; }
     .login-dialog .modal-dialog .modal-content .modal-body {
       padding: 0; }
       .login-dialog .modal-dialog .modal-content .modal-body .close {

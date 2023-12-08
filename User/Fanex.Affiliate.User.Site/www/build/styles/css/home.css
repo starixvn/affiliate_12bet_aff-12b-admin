@@ -1041,6 +1041,12 @@ button.swiper-pagination-bullet {
         position: relative; }
         .block-partnership .block-content .partnership-banner .swiper-slide .partnership-products {
           display: none; }
+        .block-partnership .block-content .partnership-banner .swiper-slide .img-responsive {
+          -webkit-filter: grayscale(100%);
+          filter: grayscale(100%); }
+        .block-partnership .block-content .partnership-banner .swiper-slide-active .img-responsive {
+          -webkit-filter: grayscale(0);
+          filter: grayscale(0); }
         .block-partnership .block-content .partnership-banner .swiper-slide-active .partnership-products {
           position: absolute;
           display: block; }
