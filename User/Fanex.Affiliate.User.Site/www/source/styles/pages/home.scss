@@ -421,8 +421,9 @@
             padding: 10px 31px;
 
             @include Mobile {
-                font-size: 20px;
-                width: 203px;
+                font-size: 18px;
+                padding: 10px 20px;
+                white-space: nowrap;
             }
         }
     }

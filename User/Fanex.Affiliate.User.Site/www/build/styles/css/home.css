@@ -1023,8 +1023,9 @@ button.swiper-pagination-bullet {
       padding: 10px 31px; }
       @media (max-width: 500px) {
         .block-faq .anwser .custom-button {
-          font-size: 20px;
-          width: 203px; } }
+          font-size: 18px;
+          padding: 10px 20px;
+          white-space: nowrap; } }
 
 .block-partnership {
   padding: 52px 0 83px; }

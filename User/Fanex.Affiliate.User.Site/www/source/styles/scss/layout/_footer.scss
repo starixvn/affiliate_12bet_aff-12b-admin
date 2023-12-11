@@ -45,7 +45,10 @@
             .item {
                 border-right: 1px solid #fff;
                 padding: 0 30px;
-                margin-bottom: 30px;
+
+                @include Mobile {
+                    margin-bottom: 30px;
+                }
 
                 &:last-child {
                     border-right: none;

@@ -188,6 +188,16 @@
     padding-left: 0;
     padding-right: 0;
 
+    @include Tablet {
+        margin: 0 -12px;
+        position: absolute;
+        top: 0;
+        z-index: 9;
+        width: 100%;
+        background: #d90f0f;
+        border-top : none;
+    }
+
     &.collapse {
         @include Tablet {
             display: none !important;

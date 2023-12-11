@@ -459,6 +459,15 @@ input[type="checkbox"], input[type="radio"] {
   padding-left: 0;
   padding-right: 0; }
   @media screen and (max-width: 1024px) {
+    .menu {
+      margin: 0 -12px;
+      position: absolute;
+      top: 0;
+      z-index: 9;
+      width: 100%;
+      background: #d90f0f;
+      border-top: none; } }
+  @media screen and (max-width: 1024px) {
     .menu.collapse {
       display: none !important; } }
   @media screen and (max-width: 1024px) {
@@ -1049,8 +1058,10 @@ input[type="checkbox"], input[type="radio"] {
       width: 160px; }
     .footer-img .img-bottom .item {
       border-right: 1px solid #fff;
-      padding: 0 30px;
-      margin-bottom: 30px; }
+      padding: 0 30px; }
+      @media (max-width: 500px) {
+        .footer-img .img-bottom .item {
+          margin-bottom: 30px; } }
       .footer-img .img-bottom .item:last-child {
         border-right: none; }
       @media screen and (max-width: 1024px) {
