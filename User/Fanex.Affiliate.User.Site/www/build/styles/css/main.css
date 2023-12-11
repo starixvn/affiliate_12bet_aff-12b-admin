@@ -988,7 +988,7 @@ input[type="checkbox"], input[type="radio"] {
       .top-banner .swiper-slide .show-mobile {
         display: block; } }
   .top-banner .swiper-slide img {
-    min-height: 600px; }
+    min-height: 30vw; }
     @media screen and (max-width: 1024px) {
       .top-banner .swiper-slide img {
         min-height: 240px; } }

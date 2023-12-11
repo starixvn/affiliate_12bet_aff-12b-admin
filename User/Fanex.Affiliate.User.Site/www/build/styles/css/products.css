@@ -605,7 +605,11 @@ button.swiper-pagination-bullet {
         text-align: right !important; }
         .block-items-products .main-items .wrapper-items:nth-child(even) .mask .text-slider img {
           left: auto !important;
-          right: -18px; } }
+          right: -18px; }
+      .block-items-products .main-items .wrapper-items:nth-child(even) .mask .heading-slider {
+        padding-right: 94px;
+        text-align: right;
+        padding-left: 0 !important; } }
   .block-items-products .main-items .wrapper-items:nth-child(even) .arrow-3, .block-items-products .main-items .wrapper-items:nth-child(even) .arrow-4 {
     display: none; }
   .block-items-products .main-items .wrapper-items:nth-child(odd) .arrow-1, .block-items-products .main-items .wrapper-items:nth-child(odd) .arrow-2 {

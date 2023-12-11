@@ -96,7 +96,7 @@
         }
 
         img {
-            min-height: 600px;
+            min-height: 30vw;
             @include Tablet{
                 min-height : 240px;
             }
