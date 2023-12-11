@@ -5440,7 +5440,16 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monday - Saturday&lt;br&gt;09:00 am - 06:00 pm&lt;br&gt;(GMT +8).
+        ///   Looks up a localized string similar to MONDAY - FRIDAY.
+        /// </summary>
+        public static string SupportDay {
+            get {
+                return ResourceManager.GetString("SupportDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8.00 AM - 5.00 PM&lt;br /&gt;(GMT +8).
         /// </summary>
         public static string SupportTime {
             get {

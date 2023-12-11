@@ -1939,19 +1939,13 @@ input[type="radio"], input[type="checkbox"] {
               align-items: center;
               gap: 12px; }
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input.columns-2 .validation-value {
+                cursor: pointer;
                 display: flex;
                 padding: 8px 15px 8px 17px;
                 border-radius: 100px;
                 background: #D90F0F;
                 height: 32px;
                 margin: 0; }
-                .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input.columns-2 .validation-value span {
-                  display: block;
-                  color: #FFF;
-                  font-size: 12px;
-                  font-style: italic;
-                  font-weight: 900;
-                  line-height: normal; }
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input input {
               border-radius: 100px;
               background: #F5F5F5;

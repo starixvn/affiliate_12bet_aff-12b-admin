@@ -376,7 +376,7 @@
     <value>Số liên hệ</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>Liên hệ</value>
+    <value>LIÊN HỆ VỚI CHÚNG TÔI</value>
   </data>
   <data name="CookIslands" xml:space="preserve">
     <value>Quần đảo Cook </value>
@@ -1425,25 +1425,25 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Chi tiết các sản phẩm 12BET</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>09:00 - 18:00 (GMT+8)&lt;br&gt;Thứ Hai - Thứ Bảy</value>
+    <value>8:00 SÁNG - 5:00 CHIỀU&lt;br /&gt;(GMT +8)</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Trung</value>
+    <value>Hỗ trợ tiếng Trung Quốc</value>
   </data>
   <data name="IndonesiaSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Bahasa - Indo</value>
+    <value>Hỗ trợ tiếng Indonesia</value>
   </data>
   <data name="ThailandSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Thái</value>
+    <value>Hỗ trợ tiếng Thái Lan</value>
   </data>
   <data name="VietnamSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Việt</value>
+    <value>Hỗ trợ tiếng Việt Nam</value>
   </data>
   <data name="IndianSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Ấn Độ</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>Mọi thắc mắc về chương trình đại lý 12BET, vui lòng gửi về {0} hoặc điền chi tiết vào hộp thư bên dưới:</value>
+    <value>Vui lòng gửi bất kỳ ý kiến hoặc câu hỏi nào đến {0}, hoặc sử dụng biểu mẫu dưới đây.</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>Mã Xác Thực</value>
@@ -1819,7 +1819,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Ưu đãi cho tôi</value>
   </data>
   <data name="KoreaSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Hàn</value>
+    <value>Hỗ trợ tiếng Hàn Quốc</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
     <value>Tiếng Campuchia</value>
@@ -1858,7 +1858,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>MMK</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Cambodia</value>
+    <value>Hỗ trợ tiếng Campuchia</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
     <value>Đăng ký mới</value>
@@ -2210,6 +2210,12 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
     <value>Trải nghiệm sự tiện lợi vô song khi đặt cược trên đội thể thao điện tử ưa thích của bạn với 12BET. Hưởng lợi từ tỷ lệ thanh toán tốt nhất của 12BET và sự phủ sóng cá cược thể thao điện tử toàn diện, bao gồm các trò chơi phổ biến như CS:GO, Dota 2, LoL và nhiều trò chơi khác. Khám phá cách dễ dàng để tận hưởng sự phấn khích của cá cược thể thao điện tử với 12BET.</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>THỨ 2 - THỨ 6</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>Hỗ trợ tiếng Bangladesh</value>
   </data>
   <data name="Skype" xml:space="preserve">
     <value>Tài khoản Skype</value>

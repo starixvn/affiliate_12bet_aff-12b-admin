@@ -1425,7 +1425,7 @@
     <value>ข้อมูลเพิ่มเติมสำหรับผลิตภัณฑ์12BETทั้งหมด</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>วันจันทร์ - วันเสาร์&lt;br&gt;เวลา 08.00 น. - 17.00 น. (เวลาไทย)</value>
+    <value>07.00น. - 16.00น. (เวลาไทย)</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
     <value>ทีมงานภาษาจีน</value>
@@ -1443,7 +1443,7 @@
     <value>ทีมงานภาษาอินเดีย</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>กรุณาส่งข้อแนะนำหรือคำถามมาได้ที่{0}, หรือกรอกแบบฟอร์มตามด้านล่างแล้วส่งให้เราได้เช่นกันค่ะ</value>
+    <value>กรุณาส่งข้อแนะนำหรือคำถามมาได้ที่ {0}, หรือกรอกแบบฟอร์มตามด้านล่างแล้วส่งให้เราได้เช่นกันค่ะ</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>หมายเลขตรวจสอบ</value>
@@ -1867,7 +1867,7 @@
     <value>MMK</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
-    <value>ทีมงานภาษาเขมร</value>
+    <value>ทีมงานภาษากัมพูชา</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
     <value>สมาชิกใหม่</value>
@@ -2207,6 +2207,12 @@
   </data>
   <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
     <value>สัมผัสกับความเหนือชั้นในการเดิมพัน อีสปอร์ต ของคุณกับ 12BET ทีมีอัตราการจ่ายที่ดีที่สุดของ  และความครอบคลุมทุกการเดิมพันในแวดวงอีสปอร์ต  เช่น CS:GO, Dota 2, LoL และอีกมากมาย ด้วยรูปแบบการเดิมพันที่ง่าย สะดวกสะบาย เพลิดเพลินไปกับการเดิมพันอีสปอร์ตได้แล้ววันนี้ ที่ 12BET</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>วันจันทร์ - วันศุกร์</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>ทีมงานภาษาบังกลาเทศ</value>
   </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>

@@ -200,7 +200,8 @@
             margin: 0 25px 12px;
         }
 
-        span {
+        a {
+            text-decoration: none;
             color: #D90F0F;
             font-weight: 700;
         }
@@ -209,7 +210,7 @@
     #mainContent {
         @include Mobile {
             margin: 0 25px;
-            padding : 0 10px;
+            padding: 0 10px;
         }
     }
 
@@ -242,28 +243,22 @@
             }
 
             &.form-columns-button {
-                .items {
-                    display: flex;
-                    align-items: center;
-                    gap: 16px;
+                display: flex;
+                gap: 16px;
 
-                    .form-input {
-                        max-width: 404px;
-                    }
+                .items {
+                    width: 100%;
+                    max-width: 406px;
                 }
 
-                .random-number {
+                .validation-value {
+                    cursor: pointer;
+                    display: flex;
+                    padding: 8px 15px 8px 17px;
                     border-radius: 100px;
                     background: #D90F0F;
-                    color: #FFF;
-                    font-size: 12px;
-                    font-style: italic;
-                    font-weight: 900;
-                    line-height: normal;
-                    text-transform: uppercase;
-                    text-decoration: none;
-                    padding: 9px 20px;
-                    cursor: pointer;
+                    height: 32px;
+                    margin: 0;
                 }
             }
 
@@ -318,21 +313,20 @@
     display: flex;
     gap: 40px;
     margin-top: 40px;
+    max-width: 490px;
 
     @include Mobile {
-        justify-content : center;
         margin-top: 26px;
-        gap: 26px;
     }
-}
 
-.custom-button {
-    outline: none;
-    font-size: 12px;
-    border: none;
-    width: 224px;
+    .custom-button {
+        outline: none;
+        font-size: 12px;
+        border: none;
+        width: calc(50% - 20px);
 
-    @include Mobile {
-        width: 106px;
+        @include Mobile {
+            height: 32px;
+        }
     }
 }

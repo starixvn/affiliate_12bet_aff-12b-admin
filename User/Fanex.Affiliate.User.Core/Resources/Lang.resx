@@ -1620,7 +1620,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <comment>87923</comment>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>Monday - Saturday&lt;br&gt;09:00 am - 06:00 pm&lt;br&gt;(GMT +8)</value>
+    <value>8.00 AM - 5.00 PM&lt;br /&gt;(GMT +8)</value>
     <comment>87923</comment>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
@@ -2330,6 +2330,9 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
     <value>Experience unparalleled convenience in placing bets on your preferred eSports teams with 12BET. Benefit from 12BET's best payout rate and comprehensive eSports betting coverage, which includes popular games like CS:GO, Dota 2, LoL, and many more. Discover how easy it is to enjoy the excitement of eSports betting with 12BET.</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>MONDAY - FRIDAY</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Japan Support</value>

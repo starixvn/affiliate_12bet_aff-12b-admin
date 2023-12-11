@@ -376,7 +376,7 @@
     <value>联络电话号码</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>联系我们</value>
+    <value>最新消息</value>
   </data>
   <data name="CookIslands" xml:space="preserve">
     <value>库克群岛</value>
@@ -1422,7 +1422,7 @@
     <value>更多有关12BET产品信息</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>周一至周六上午 9 时至下午6 时（北京时间）</value>
+    <value>8.00 AM - 5.00 PM&lt;br /&gt;(GMT +8)</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
     <value>中文客服</value>
@@ -1440,7 +1440,7 @@
     <value>印度客服</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>如有任何意见或问题，欢迎电邮至{0}，或填写以下的表单。</value>
+    <value>如有任何意见或问题，欢迎电邮至{0}, 或填写以下的表单。</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>验证码</value>
@@ -2215,6 +2215,12 @@
   </data>
   <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
     <value>在 12BET 投注支持的电竞战队，体验无与伦比的便利。受益于 12BET 的最佳赔率和全面的电竞投注覆盖范围，其中包括 CS:GO、Dota 2、LoL 等热门游戏，通过 12BET ，享受电竞投注的刺激是如此容易。</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>星期一至星期五</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>孟加拉客服</value>
   </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>

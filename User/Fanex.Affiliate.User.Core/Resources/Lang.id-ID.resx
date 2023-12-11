@@ -376,7 +376,7 @@
     <value>Nomor Ponsel</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>Hubungi Kami</value>
+    <value>HUBUNGI KAMI</value>
   </data>
   <data name="CookIslands" xml:space="preserve">
     <value>Kep. Cook </value>
@@ -1425,10 +1425,10 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Info Lengkap Mengenai Produk 12BET</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>Senin - Sabtu&lt;br&gt;8:00 - 17:00 WIB</value>
+    <value>08:00 - 17:00 (WIB)</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
-    <value>Bantuan Dalam Bahasa Cina</value>
+    <value>Bantuan Dalam Bahasa China</value>
   </data>
   <data name="IndonesiaSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Indonesia</value>
@@ -1443,7 +1443,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Bantuan Dalam Bahasa India</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>Silakan kirimkan komentar atau pertanyaan Anda ke alamat email {0} atau dengan mengisi form di bawah ini.</value>
+    <value>Silakan kirimkan komentar atau pertanyaan Anda ke alamat email {0}, atau dengan mengisi form di bawah ini.</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>Validasi</value>
@@ -2213,6 +2213,12 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
     <value>Rasakan kenyamanan tak tertandingi dalam memasang taruhan pada tim eSports pilihan Anda dengan 12BET. Manfaatkan tingkat pembayaran terbaik 12BET dan cakupan taruhan eSports yang komprehensif, yang mencakup permainan populer seperti CS:GO, Dota 2, LoL, dan banyak lagi. Temukan betapa mudahnya menikmati keseruan taruhan eSports dengan 12BET.</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>SENIN - JUMAT</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Bangladesh</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Jepang</value>
