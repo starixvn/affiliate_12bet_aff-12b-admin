@@ -2190,6 +2190,9 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="HomeSignUp" xml:space="preserve">
     <value>Đăng ký</value>
   </data>
+  <data name="TermAndConditionPageTitle" xml:space="preserve">
+    <value>Điều Khoản và Điều Kiện của Đối tác Đại Lý 12BET</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Tài khoản Skype</value>
   </data>

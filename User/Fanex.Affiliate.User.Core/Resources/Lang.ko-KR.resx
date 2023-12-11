@@ -2183,6 +2183,9 @@
   <data name="BangladeshSupport" xml:space="preserve">
     <value>방글라데시 지원</value>
   </data>
+  <data name="TermAndConditionPageTitle" xml:space="preserve">
+    <value>12BET 제휴사 이용 약관</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>

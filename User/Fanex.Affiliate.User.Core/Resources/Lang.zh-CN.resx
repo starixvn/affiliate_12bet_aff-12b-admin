@@ -2195,6 +2195,9 @@
   <data name="HomeSignUp" xml:space="preserve">
     <value>注册</value>
   </data>
+  <data name="TermAndConditionPageTitle" xml:space="preserve">
+    <value>12BET合作伙伴条款与规则</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>

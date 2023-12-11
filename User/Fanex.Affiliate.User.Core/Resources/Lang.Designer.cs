@@ -5548,6 +5548,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliates Terms and Conditions.
+        /// </summary>
+        public static string TermAndConditionPageTitle {
+            get {
+                return ResourceManager.GetString("TermAndConditionPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Text Box.
         /// </summary>
         public static string Text {
