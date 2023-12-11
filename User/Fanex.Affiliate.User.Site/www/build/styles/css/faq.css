@@ -30,7 +30,7 @@
     .group-faq .question .title span {
       background: #F6F6F6;
       position: relative;
-      z-index: 999;
+      z-index: 1;
       padding-right: 24px; }
       @media (max-width: 500px) {
         .group-faq .question .title span {
