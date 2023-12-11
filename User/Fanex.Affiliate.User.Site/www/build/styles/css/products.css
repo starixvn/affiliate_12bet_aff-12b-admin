@@ -731,15 +731,17 @@ button.swiper-pagination-bullet {
           .block-items-products .main-items .items .mask .group-slider .heading-slider {
             margin-bottom: 0; } }
       .block-items-products .main-items .items .mask .group-slider .text-slider {
-        text-align: justify;
+        text-align: left;
         font-size: 1vw;
         font-weight: 500;
-        line-height: 32px;
+        line-height: normal;
         margin-bottom: 20px; }
+        @media (min-width: 1400px) {
+          .block-items-products .main-items .items .mask .group-slider .text-slider {
+            line-height: 24px; } }
         @media screen and (max-width: 1024px) {
           .block-items-products .main-items .items .mask .group-slider .text-slider {
             font-size: 10px;
-            line-height: normal;
             text-align: left; } }
         @media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
           .block-items-products .main-items .items .mask .group-slider .text-slider {
