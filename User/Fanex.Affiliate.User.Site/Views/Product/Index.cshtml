@@ -7,8 +7,6 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
-@model Fanex.Affiliate.User.Core.ViewModels.ProPageViewModel
-
 @section styles{
     @Html.InlineStyles("~/www/build/styles/css/products.css")
 }
@@ -19,8 +17,362 @@
 
 <div class="content">
     <div class="page-title">
-        <span class="text">Our Products</span>
+        <span class="text">@Lang.OurProducts</span>
     </div>
-    @Html.RenderPartialByLanguage("~/Views/Product/_Content", Model.CurrentLanguage)
+
+    <div class="block block-items-products">
+        <div class="main-items">
+            <div class="wrapper-items">
+                <div class="page-container">
+                    <div class="items">
+                        <div class="mask">
+                            <div class="imgs">
+                                <img src="~/www/build/styles/Images/product/sports/banner.png" alt="sports" class="show-pc" />
+                            </div>
+                            <div class="shape shape-sports"></div>
+                            <div class="group-slider">
+                                <div class="heading-slider">@Lang._12Sports</div>
+                                <div class="text-slider">
+                                    <img src="~/www/build/styles/Images/product/sports/banner-mobile.png" alt="sports mobile" class="show-mobile img-sports" />
+                                    @Lang._12BetIsPremireOnline
+                                </div>
+                                <div class="shape-slider">
+                                    <div class="swiper products-slider">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/sports/br-sports.png" alt="BR Sports" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/sports/bti-sports.png" alt="Bti Sports" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/sports/db-gaming.png" alt="DB Gaming" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/sports/panda-sport.png" alt="Panda Sports" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M11.2383 16.4145L14.7583 12.8845L11.2383 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M13.7583 16.4145L10.2383 12.8845L13.7583 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="products-arrow arrow-1">
+                            <img src="~/www/build/styles/Images/arrow-1.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-2">
+                            <img src="~/www/build/styles/Images/arrow-2.png" alt="arrow-4" />
+                        </span>
+                        <span class="products-arrow arrow-3">
+                            <img src="~/www/build/styles/Images/arrow-3.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-4">
+                            <img src="~/www/build/styles/Images/arrow-4.png" alt="arrow-4" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-items">
+                <div class="page-container">
+                    <div class="items">
+                        <div class="mask">
+                            <div class="imgs">
+                                <img src="~/www/build/styles/Images/product/live-casino/banner.png" alt="live casino" class="show-pc" />
+                            </div>
+                            <div class="shape shape-live-casino"></div>
+                            <div class="group-slider">
+                                <div class="heading-slider">
+                                    @Lang.LiveCasino
+                                </div>
+                                <div class="text-slider">
+                                    <img src="~/www/build/styles/Images/product/live-casino/banner-mobile.png" alt="live casino mobile" class="show-mobile img-live-casino" />
+                                    @Lang.ExploreAWide
+                                </div>
+                                <div class="shape-slider">
+                                    <div class="swiper products-slider">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/ag-gaming.png" alt="AG Gaming" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/all-bet.png" alt="All Bet" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/ebet.png" alt="Ebet" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/evolution.png" alt="Evolution" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/gameplay-interactive.png" alt="Gameplay Interative" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/microgaming.png" alt="Microgaming" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/playtech.png" alt="Playtech" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/pragmatic-play.png" alt="Pragmatic Play" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/sa-gaming.png" alt="SA Gaming" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/sexy-game.png" alt="Sexy Gaming" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/live-casino/skywind.png" alt="Skywind" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M11.2383 16.4145L14.7583 12.8845L11.2383 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M13.7583 16.4145L10.2383 12.8845L13.7583 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="products-arrow arrow-1">
+                            <img src="~/www/build/styles/Images/arrow-1.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-2">
+                            <img src="~/www/build/styles/Images/arrow-2.png" alt="arrow-4" />
+                        </span>
+                        <span class="products-arrow arrow-3">
+                            <img src="~/www/build/styles/Images/arrow-3.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-4">
+                            <img src="~/www/build/styles/Images/arrow-4.png" alt="arrow-4" />
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="wrapper-items">
+                <div class="page-container">
+                    <div class="items">
+                        <div class="mask">
+                            <div class="imgs imgs-slot">
+                                <img src="~/www/build/styles/Images/product/slot/banner.png" alt="slot" class="show-pc" />
+                            </div>
+                            <div class="shape shape-slot"></div>
+                            <div class="group-slider">
+                                <div class="heading-slider">@Lang.Slot</div>
+                                <div class="text-slider">
+                                    <img src="~/www/build/styles/Images/product/slot/banner-mobile.png" alt="slot mobile" class="show-mobile img-slot" />
+                                    @Lang.ExploreAWide
+                                </div>
+                                <div class="shape-slider">
+                                    <div class="swiper products-slider">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/advant-play.png" alt="Advant Play" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/betsoft.png" alt="Betsoft" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/flowgaming.png" alt="Flow Gaming" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/gameplay-interactive.png" alt="Gameplay Interactive" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/genesis.png" alt="Genesis" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/microgaming.png" alt="Micro Gaming" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/netent.png" alt="Netent" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/playtech.png" alt="Playtech" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/pragmatic-play.png" alt="Pragmatic Play" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/saba-sports.png" alt="Saba Sports" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/slot/skywind.png" alt="Skywind" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M11.2383 16.4145L14.7583 12.8845L11.2383 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M13.7583 16.4145L10.2383 12.8845L13.7583 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="products-arrow arrow-1">
+                            <img src="~/www/build/styles/Images/arrow-1.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-2">
+                            <img src="~/www/build/styles/Images/arrow-2.png" alt="arrow-4" />
+                        </span>
+                        <span class="products-arrow arrow-3">
+                            <img src="~/www/build/styles/Images/arrow-3.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-4">
+                            <img src="~/www/build/styles/Images/arrow-4.png" alt="arrow-4" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-items">
+                <div class="page-container">
+                    <div class="items">
+                        <div class="mask">
+                            <div class="imgs imgs-lotery">
+                                <img src="~/www/build/styles/Images/product/lottery/banner.png" alt="lottery" class="show-pc" />
+                            </div>
+                            <div class="shape shape-lotery"></div>
+                            <div class="group-slider">
+                                <div class="heading-slider">
+                                    @Lang.Lottery
+                                </div>
+                                <div class="text-slider">
+                                    <img src="~/www/build/styles/Images/product/lottery/banner-mobile.png" alt="lottery mobile" class="show-mobile img-live-lottery" />
+                                    @Lang.OnlineLotteryBetting
+                                </div>
+                                <div class="shape-slider">
+                                    <div class="swiper products-slider">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/lottery/gameplay-interactive.png" alt="Gameplay Interactive" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/lottery/saba-sports.png" alt="Saba Sports" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/lottery/sg-win.png" alt="Sg Win" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M11.2383 16.4145L14.7583 12.8845L11.2383 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M13.7583 16.4145L10.2383 12.8845L13.7583 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="products-arrow arrow-1">
+                            <img src="~/www/build/styles/Images/arrow-1.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-2">
+                            <img src="~/www/build/styles/Images/arrow-2.png" alt="arrow-4" />
+                        </span>
+                        <span class="products-arrow arrow-3">
+                            <img src="~/www/build/styles/Images/arrow-3.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-4">
+                            <img src="~/www/build/styles/Images/arrow-4.png" alt="arrow-4" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-items">
+                <div class="page-container">
+                    <div class="items">
+                        <div class="mask">
+                            <div class="imgs imgs-12esporst">
+                                <img src="~/www/build/styles/Images/product/esports/banner.png" alt="esports" class="show-pc" />
+                            </div>
+                            <div class="shape shape-12esporst"></div>
+                            <div class="group-slider">
+                                <div class="heading-slider">@Lang._12ESports</div>
+                                <div class="text-slider">
+                                    <img src="~/www/build/styles/Images/product/esports/banner-mobile.png" alt="esports mobile" class="show-mobile img-12esporst" />
+                                    @Lang.ExperienceUnparalleledConvenience
+                                </div>
+                                <div class="shape-slider">
+                                    <div class="swiper products-slider">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/esports/saba-sports.png" alt="Saba Sports" />
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/esports/esporsts.png" alt="Esporsts" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M11.2383 16.4145L14.7583 12.8845L11.2383 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M13.7583 16.4145L10.2383 12.8845L13.7583 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="products-arrow arrow-1">
+                            <img src="~/www/build/styles/Images/arrow-1.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-2">
+                            <img src="~/www/build/styles/Images/arrow-2.png" alt="arrow-4" />
+                        </span>
+                        <span class="products-arrow arrow-3">
+                            <img src="~/www/build/styles/Images/arrow-3.png" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-4">
+                            <img src="~/www/build/styles/Images/arrow-4.png" alt="arrow-4" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RazorHelper.RenderMovingTopButton()
 </div>
 

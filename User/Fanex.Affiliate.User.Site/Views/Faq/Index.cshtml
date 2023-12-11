@@ -23,7 +23,7 @@
         <span class="text">@Lang.Faqs</span>
     </div>
 
-    <div class="page-container">
+    @*<div class="page-container">
         <div class="search-input">
             <form>
                 <input type="text" name="search" class="search-term" placeholder="@Lang.Search" />
@@ -34,7 +34,7 @@
                 </button>
             </form>
         </div>
-    </div>
+    </div>*@
 
     @Html.RenderPartialByLanguage("~/Views/Faq/Partial/_Content", Model)
     @RazorHelper.RenderMovingTopButton()

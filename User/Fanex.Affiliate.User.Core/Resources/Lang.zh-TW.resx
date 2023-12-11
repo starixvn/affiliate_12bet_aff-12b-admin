@@ -1124,7 +1124,7 @@
     <value>尺寸</value>
   </data>
   <data name="Slot" xml:space="preserve">
-    <value>考慮機</value>
+    <value>老虎機遊戲</value>
   </data>
   <data name="Slovakia" xml:space="preserve">
     <value>斯洛伐克</value>
@@ -1658,7 +1658,7 @@
     <value>BTi體育</value>
   </data>
   <data name="_12ESports" xml:space="preserve">
-    <value>12電競</value>
+    <value>12電子競技</value>
   </data>
   <data name="ImESports" xml:space="preserve">
     <value>IM電競牛</value>
@@ -2197,6 +2197,24 @@
   </data>
   <data name="TermAndConditionPageTitle" xml:space="preserve">
     <value>12BET合作夥伴條款與規則</value>
+  </data>
+  <data name="OurProducts" xml:space="preserve">
+    <value>產品</value>
+  </data>
+  <data name="_12BetIsPremireOnline" xml:space="preserve">
+    <value>12體育是市場知名的體育博彩，提供廣泛的賽事活動，涵蓋世界各地的各種體育賽事。作為體育博彩愛好者的理想選擇，12BET這是客戶夢寐以求的頂級平台。</value>
+  </data>
+  <data name="ExploreAWide" xml:space="preserve">
+    <value>在12BET 探索百家樂和21點等各種現場遊戲，享受終極遊戲體驗。您可以在家中輕鬆訪問世界一流的真人賭場，毫不費力地沉浸在最高標準的真人娛樂城中。</value>
+  </data>
+  <data name="ExperienceTheWorld" xml:space="preserve">
+    <value>在12BET體驗世界頂級線上老虎機，這裡有大量驚險刺激、引人入勝的老虎機遊戲。這些遊戲擁有卓越的機制、令人驚嘆的視覺效果，還有機會贏得難以置信的大獎。沉浸在難忘的遊戲冒險中，探索最吸引人、最激動人心的線上老虎機遊戲。</value>
+  </data>
+  <data name="OnlineLotteryBetting" xml:space="preserve">
+    <value>線上彩票投注是一種備受追捧的博彩形式，玩家有多種選擇。 12BET的玩家可以享受各種類型的彩票，如 3D/5D 彩票、11x5 彩票和骰子，每種彩票都有不同的投注類型，如大/小、奇/偶、顏色範圍等。準備好與 12BET 一起體驗線上彩票投注的刺激吧。</value>
+  </data>
+  <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
+    <value>在12BET 投注支持的電競戰隊，體驗無與倫比的便利。受益於12BET 的最佳賠率和全面的電競投注覆蓋範圍，其中包括CS:GO、Dota 2、LoL 等熱門遊戲，通過12BET ，享受電競投注的刺激是如此容易。</value>
   </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>

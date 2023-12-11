@@ -29,14 +29,14 @@
     <div class="swiper top-banner">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <a class="nounderline home-banner-tracking-flat show-pc" target="_blank" href="@Url.Content("~/CommissionStructure")">
+                <a class="nounderline home-banner-tracking-flat show-pc" target="_blank" href="@Url.Content("~/Promotion")">
                     <picture>
                         <source srcset="@(bannerSrc).webp" type="image/webp" />
                         <source srcset="@(bannerSrc).jpg" type="image/jpeg" />
                         <img class="img-item img-responsive" src="@(bannerSrc).jpg" alt="Actived Home Banner" />
                     </picture>
                 </a>
-                <a class="nounderline home-banner-tracking-flat show-mobile" target="_blank" href="@Url.Content("~/CommissionStructure")">
+                <a class="nounderline home-banner-tracking-flat show-mobile" target="_blank" href="@Url.Content("~/Promotion")">
                     <picture>
                         <source srcset="@(mobileBannerSrc).webp" type="image/webp" />
                         <source srcset="@(mobileBannerSrc).jpg" type="image/jpeg" />
@@ -49,6 +49,7 @@
     </div>
 
     @Html.RenderPartialByLanguage("~/Views/Home/Partial/_Content", Model.Language)
+    @RazorHelper.RenderMovingTopButton()
 </div>
 
 <input type="hidden" id="shortedLangCode" value="@shortedLangCode" />

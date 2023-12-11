@@ -80,6 +80,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12BET is premire online sport betting destination for sports fans, featuring the highest pay out rate a wide rangr of sports event from around the world. As the ideal choice for sports betting entrusiasts, 12bet offers the best online sports betting experience..
+        /// </summary>
+        public static string _12BetIsPremireOnline {
+            get {
+                return ResourceManager.GetString("_12BetIsPremireOnline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 12BET Player Account.
         /// </summary>
         public static string _12BETPlayerAcc {
@@ -2051,6 +2060,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Experience the world&apos;s top online slots without the need for downloading at 12BET. Discover an extensive collection of thrilling and captivating slot games, complete with exceptional mechanics, stunning visuals, and the chance to win incredible jackpots. Indulge in an unforgettable gaming adventure and explore the most appealing and exciting online slot games available..
+        /// </summary>
+        public static string ExperienceTheWorld {
+            get {
+                return ResourceManager.GetString("ExperienceTheWorld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience unparalleled convenience in placing bets on your preferred eSports teams with 12BET. Benefit from 12BET&apos;s best payout rate and comprehensive eSports betting coverage, which includes popular games like CS:GO, Dota 2, LoL, and many more. Discover how easy it is to enjoy the excitement of eSports betting with 12BET..
+        /// </summary>
+        public static string ExperienceUnparalleledConvenience {
+            get {
+                return ResourceManager.GetString("ExperienceUnparalleledConvenience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Explore a wide variety of live casino games, including baccarat and blackjack, and much more, to enjoy the ultimate gaming experience at 12BET. With the ease of accessing a world-class live casino from the comfort of your home, you can immerse yourself in the highest standard of live casino entertainment effortlessly..
+        /// </summary>
+        public static string ExploreAWide {
+            get {
+                return ResourceManager.GetString("ExploreAWide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EXTRA COMMISSION.
         /// </summary>
         public static string ExtraComm {
@@ -3892,6 +3928,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Online lottery betting is a highly sought-after form of gambling, with players having a wide variety of options to choose from. At 12BET, players can enjoy various types of lotteries such as 3D/5D lottery, 11x5 lottery, and Dice lottery, each of which features distinct betting types such as Big/Small, Odd/Even, Color Range, and more. Get ready to experience the excitement of online lottery betting with 12BET..
+        /// </summary>
+        public static string OnlineLotteryBetting {
+            get {
+                return ResourceManager.GetString("OnlineLotteryBetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operational Fee.
         /// </summary>
         public static string OperationalFee {
@@ -3906,6 +3951,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Original {
             get {
                 return ResourceManager.GetString("Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OUR PRODUCTS.
+        /// </summary>
+        public static string OurProducts {
+            get {
+                return ResourceManager.GetString("OurProducts", resourceCulture);
             }
         }
         
