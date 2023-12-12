@@ -1,0 +1,79 @@
+﻿<div class="block block-revenue">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="top-title">
+                MODEL PEMBAGIAN HASIL
+            </div>
+            <div class="description">
+                Model pembagian hasil dibagi menjadi 2 komponen yaitu Model bagi hasil dibagi berdasarkan setiap komponen produk 12BET. Perhitungan untuk masing-masing produk dipaparkan dalam penjelasan di bawah. Total pendapatan yang dibayarkan kepada afiliasi adalah jumlah semua komponen tersebut.
+            </div>
+            <div class="description">
+                12BET menawarkan model bagi hasil yang menghitung semua pendapatan dari semua produk yang kami tawarkan. Model kumulatif ini akan didasarkan juga pada jumlah pemain aktif yang berhasil Anda rujukkan dalam waktu satu bulan kalender.
+            </div>
+            <div class="slogan">
+                DAPATKAN KOMISI BULANAN HINGGA
+                <span>50%</span>, UNTUK SELENGKAPNYA <span><a href="@Url.Content("~/Promotion")">KLIK DISINI.</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_RegularCommissionStructureTable.cshtml"); }
+
+<div class="block block-text">
+    <div class="page-container">
+        <div class="group-page">
+            Untuk tujuan dari tabel diatas <span class="font-bold">“Keuntungan bersih”</span> berarti jumlah taruhan yang ditempatkan oleh pemain pada calendar bulanan dikurangi : <span>(i)</span> hasil (kemenangan) ; <span>(ii)</span> bonus yang dibayarkan, <span>(iii)</span> Chargebacks dan <span>(iv)</span> jenis pengembalian keuntungan yang dikreditkan, kompensasi atau pengembalian yang diberikan kepada pemain.
+        </div>
+    </div>
+</div>
+
+@{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_RevenueShareOfNetProfit.cshtml"); }
+
+<div class="block block-faq">
+    <div class="page-container">
+        <div class="block-content">
+            <div class="group-faq">
+                <div class="question">
+                    <div class="title">
+                        <span>NEGATIF BALANCE</span>
+                    </div>
+                    <span class="button-toggle"></span>
+                </div>
+                <div class="anwser">
+                    <div class="anwser-text">
+                        Semua negatif saldo untuk bulan tertentu akan dipindahkan pada bulan selanjutnya. Sebagai contoh, jika pada bulan Januari, akun afiliasi anda berakhir dengan -$2,555, jumlah ini akan dipindahkan ke bulan Februari. Jika pada akhir Februari, akun afiliasi anda menghasilkan $3,400, total saldo akan menjadi $845 ($3,400-$2,555).
+                    </div>
+                    <div class="anwser-text">
+                        Namun jika akun anda masih rugi pada bulan Februari, sebagai contoh -$1,600, maka jumlah tersebut akan ditambahkan ke negatif saldo sebelumnya dan dipindahkan pada bulan Maret, sehingga saldo anda pada bulan Maret menjadi -$4,155. Komisi yang didapatkan akan dibayar sesuai dengan tingkatannya.
+                    </div>
+                </div>
+            </div>
+            <div class="group-faq">
+                <div class="question">
+                    <div class="title">
+                        <span>PEMBAYARAN KOMISI</span>
+                    </div>
+                    <span class="button-toggle"></span>
+                </div>
+                <div class="anwser">
+                    <div class="anwser-text">
+                        Anda dapa melakukan permohonan pembayaran dengan jenis mata uang asing selain USD. Mata uang asing yang tersedia adalah <span class="red-bold">RMB, MYR, THB, VND, IDR, INR</span> dan <span class="red-bold">KRW</span>. Nilai mata uang pada tanggal pembayaran berlaku.
+                    </div>
+                    <div class="anwser-text">
+                        Kami menawarkan beberapa metode penarikan:
+                        <ul>
+                            <li>
+                                Melalui 12BET account anda
+                            </li>
+                            <li>Transfer Bank *</li>
+                        </ul>
+                    </div>
+                    <div class="anwser-text">
+                        Afiliasi hanya diperbolehkan untuk memiliki satu permohonan penarikan setiap bulan. Untuk penarikan kedua di bulan yang sama, maka permohonan ini harus disetujui oleh Manager Afiliasi. Walaupun kami menawarkan permohonan penarikan gratis namun kami tidak bertanggungjawab akan adanya potongan dari institusi keuangan atau dompet elektronik pada akun anda. Jumlah minimum permohonan penarikan adalah <span class="red-bold">USD$100</span>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

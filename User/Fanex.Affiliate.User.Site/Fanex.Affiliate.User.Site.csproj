@@ -1157,15 +1157,15 @@
     <Content Include="www\build\styles\fonts\tahoma\Tahoma-Bold.TTF" />
     <Content Include="www\build\styles\fonts\tahoma\TAHOMABD.TTF" />
     <Content Include="www\build\styles\fonts\tahoma\TAHOMA_0.TTF" />
-    <Content Include="Views\CommissionStructure\_Content.en-US.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.hi-IN.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.id-ID.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.ja-JP.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.ko-KR.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.th-TH.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.vi-VN.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.zh-CN.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.zh-TW.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.en-US.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.id-ID.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.ja-JP.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.ko-KR.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.th-TH.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.vi-VN.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.zh-CN.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.zh-TW.cshtml" />
     <Content Include="www\build\styles\fonts\myriadPro\MYRIADPROREGULAR.eot" />
     <Content Include="www\build\styles\fonts\myriadPro\MYRIADPROREGULAR.ttf" />
     <Content Include="www\build\styles\fonts\myriadPro\MYRIADPROREGULAR.woff" />
@@ -1225,11 +1225,11 @@
     <Content Include="Views\Promotion\_Content.vi-VN.cshtml" />
     <Content Include="Views\Promotion\_Content.zh-CN.cshtml" />
     <Content Include="Views\Promotion\_Content.zh-TW.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.km-KH.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.km-KH.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.km-KH.cshtml" />
     <Content Include="Views\Faq\Partial\_Content.km-KH.cshtml" />
     <Content Include="Views\Promotion\_Content.km-KH.cshtml" />
-    <Content Include="Views\CommissionStructure\_Content.bn-BD.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.bn-BD.cshtml" />
     <Content Include="Views\Faq\Partial\_Content.bn-BD.cshtml" />
     <Content Include="Views\Promotion\_Content.bn-BD.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.bn-BD.cshtml" />
@@ -1319,6 +1319,8 @@
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.bn-BD.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.hi-IN.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.hi-IN.webp" />
+    <Content Include="Views\CommissionStructure\Partial\_RegularCommissionStructureTable.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_RevenueShareOfNetProfit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -151,7 +151,7 @@
     <value>ទំព័រដើម</value>
   </data>
   <data name="CommissionStructure" xml:space="preserve">
-    <value>រចនាសម្ព័ន្ធនៃកំរៃជើងសារ</value>
+    <value>រចនាសម្ព័ន្ធកម្រៃជើងសារ</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>ផលិតផល</value>
@@ -249,17 +249,17 @@
   <data name="Reset" xml:space="preserve">
     <value>កំណត់ឡើងវិញ</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
+  <data name="RevenueShare" xml:space="preserve">
     <value>ការបែងចែកប្រាក់ចំណូល</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>ផលិតផលទាំងអស់</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>ព័ត៌មានលម្អិតបន្ថែមអំពីផលិតផល 12BET</value>
+    <value>ព័ត៌មានបន្ថែមអំពីផលិតផល 12BET</value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
-    <value>ក្រុមហ៊ុនឈ្នះសុទ្ធប្រចាំខែ (CNW)($)</value>
+  <data name="CompanyNetWin" xml:space="preserve">
+    <value>ប្រាក់ចំណេញពីក្រុមហ៊ុនឈ្នះសម្រាប់ខែ (CNW) ($)</value>
   </data>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; លើស</value>
@@ -268,7 +268,7 @@
     <value>សមាជិកដែលមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់</value>
   </data>
   <data name="Comm" xml:space="preserve">
-    <value>កំរៃជើងសារ</value>
+    <value>អត្រាកំរៃជើងសារ</value>
   </data>
   <data name="_12Sports" xml:space="preserve">
     <value>12SPORTS</value>
@@ -1005,8 +1005,8 @@
   <data name="Bonus" xml:space="preserve">
     <value>ប្រាក់រង្វាន់</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>ថ្លៃសេវាធនាគារ</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>ថ្លៃសេវា ធនាគារ</value>
   </data>
   <data name="AvailableDomains" xml:space="preserve">
     <value>Domains ដែលអាចប្រើប្រាស់បាន</value>
@@ -1108,7 +1108,7 @@
     <value>កំរៃជើងសារ = (ចាញ់ឈ្នះសរុប - ថ្លៃសេវាវេទិកា - ថ្លៃប្រតិបត្តិការ - ថ្លៃសេវាធនាគារ - ប្រាក់រង្វាន់) x Comm អត្រា</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>ថ្លៃសេវាវេទិកា</value>
+    <value>ថ្លៃសេវា វេទិកា</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>ថ្លៃប្រតិបត្តិការ</value>
@@ -1414,7 +1414,7 @@
     <value>តំណភ្ជាប់អត្ថបទ</value>
   </data>
   <data name="Tier" xml:space="preserve">
-    <value>កម្រិត</value>
+    <value>ចំណាត់ថ្នាក់</value>
   </data>
   <data name="Swaziland" xml:space="preserve">
     <value>Swaziland </value>
@@ -1962,17 +1962,11 @@
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>ប្រូម៉ូសិននេះត្រូវបានផុតកំណត់ សូមរង់ចាំប្រូម៉ូសិនថ្មីៗដែលនឹងមកដល់ក្នុងពេលឆាប់ៗនេះ។</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>ប្រាក់ចំណេញរបស់ក្រុមហ៊ុនសម្រាប់ខែ ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>តាមការអញ្ជើញតែប៉ុណ្ណោះ</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001 - លើសពី</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>សមាជិកសកម្មដែលមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់/ខែ</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>50% ថេរ</value>
@@ -2138,6 +2132,18 @@
   </data>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>ជំនួយភាសាបង់ក្លាដេស</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>រចនាសម្ព័ន្ធកម្រៃជើងសារ</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>សមាជិក ឈ្នះ/ចាញ់</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>ប្រាក់​ចំណេញ​សុទ្ធ</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ជំនួយភាសាជប៉ុន</value>

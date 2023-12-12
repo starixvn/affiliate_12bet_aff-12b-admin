@@ -914,7 +914,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Netherlands" xml:space="preserve">
     <value>Netherlands </value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
+  <data name="CompanyNetWin" xml:space="preserve">
     <value>Company Net Win For The Month (CNW)($)</value>
     <comment>87923</comment>
   </data>
@@ -1531,8 +1531,8 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Uncalculated</value>
     <comment>87923</comment>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>Banking Fees</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>Banking Fee</value>
     <comment>87923</comment>
   </data>
   <data name="CommRate" xml:space="preserve">
@@ -1992,7 +1992,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Above</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
+  <data name="RevenueShare" xml:space="preserve">
     <value>Revenue Share</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
@@ -2157,17 +2157,11 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BET Affiliate Marketing</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>Company Profit For The Month ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>By Invitation only</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001 - Above</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>Qualified Active Members/ Month</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
@@ -2333,6 +2327,18 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="SupportDay" xml:space="preserve">
     <value>MONDAY - FRIDAY</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>Regular Commission Structure</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>CUSTOMER WIN/LOSS</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>Net Profit</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Japan Support</value>

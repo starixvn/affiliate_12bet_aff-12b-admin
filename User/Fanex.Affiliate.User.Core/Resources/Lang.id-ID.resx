@@ -863,8 +863,8 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="Netherlands" xml:space="preserve">
     <value>Belanda </value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
-    <value>Pendapatan Bersih Dalam Sebulan (CNW)($)</value>
+  <data name="CompanyNetWin" xml:space="preserve">
+    <value>PENDAPATAN BERSIH DALAM SEBULAN (CNW) ($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>Kaledonia Baru </value>
@@ -1422,7 +1422,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Semua produk</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>Info Lengkap Mengenai Produk 12BET</value>
+    <value>Info Lengkap mengenai Produk 12BET</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
     <value>08:00 - 17:00 (WIB)</value>
@@ -1518,13 +1518,13 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Gross Win Loss</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>Platform Fee</value>
+    <value>BIAYA PLATFORM</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>Operational Fee</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>Banking Fees</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>BIAYA BANK</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>Comm. Rate</value>
@@ -1845,7 +1845,7 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Keatas</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
+  <data name="RevenueShare" xml:space="preserve">
     <value>Pembagian hasil</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
@@ -2049,17 +2049,11 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>Marketing Afiliasi 12BET</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>Pendapatan bersih dalam sebulan ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>Khusus Undangan</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001 - Lebih</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>Member aktif per bulan</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
@@ -2219,6 +2213,18 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Bangladesh</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>STRUKTUR KOMISI REGULAR</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>MEMBER MENANG/KALAH</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>KEUNTUNGAN BERSIH</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Jepang</value>

@@ -871,8 +871,8 @@
   <data name="Netherlands" xml:space="preserve">
     <value>네덜렌드</value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
-    <value>이달의 회사 NET WIN (CNW)($)</value>
+  <data name="CompanyNetWin" xml:space="preserve">
+    <value>이달의 회사 순 수익CNW)($)</value>
   </data>
   <data name="NewWithExclamationPoint" xml:space="preserve">
     <value>NEW!</value>
@@ -1457,7 +1457,7 @@
     <value>모든 제품</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>자세한 12BET 제품 대하여</value>
+    <value>자세한 12BET 제품</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
     <value>오전 9시 ~ 오후 6시&lt;br /&gt;(한국시간) </value>
@@ -1487,7 +1487,7 @@
     <value>이용약관</value>
   </data>
   <data name="CommissionStructure" xml:space="preserve">
-    <value>커미션 지급</value>
+    <value>커미션 구조</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>제공중인 게임사</value>
@@ -1553,13 +1553,13 @@
     <value>총 윈/로스</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>플랫폼비용</value>
+    <value>플랫폼 사용료</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>운영비</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>뱅킹수수료</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>은행 사용료</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>커미션(%)</value>
@@ -1841,7 +1841,7 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 이상</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
+  <data name="RevenueShare" xml:space="preserve">
     <value>수익 공유</value>
   </data>
   <data name="SuffixProduct12JADE" xml:space="preserve">
@@ -2045,17 +2045,11 @@
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BET 제휴 마케팅</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>이달의 순이익 ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>초대 전용</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001 - Above</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>자격을 갖춘 회원/월</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>고정 50%</value>
@@ -2209,6 +2203,18 @@
   </data>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>방글라데시 지원</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>기본 커미션 구조</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>회원 WIN/LOSS (윈/로스)</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>실제 수익</value>
   </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>

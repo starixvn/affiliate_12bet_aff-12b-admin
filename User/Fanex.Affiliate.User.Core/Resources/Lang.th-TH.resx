@@ -352,7 +352,7 @@
     <value>กัมพูชา</value>
   </data>
   <data name="Comm" xml:space="preserve">
-    <value>คอมมิชชั่นที่ได้รับ</value>
+    <value>คอมมิชชั่น</value>
   </data>
   <data name="Comment" xml:space="preserve">
     <value>คำถาม/ข้อแนะนำ</value>
@@ -863,8 +863,8 @@
   <data name="Netherlands" xml:space="preserve">
     <value>เนเธอแลนด์</value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
-    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลล่าร์ฯ)</value>
+  <data name="CompanyNetWin" xml:space="preserve">
+    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลลาร์ฯ)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>คาเลโดเนีย ใหม่</value>
@@ -1422,7 +1422,7 @@
     <value>ทุกผลิตภัณฑ์เดิมพัน</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>ข้อมูลเพิ่มเติมสำหรับผลิตภัณฑ์12BETทั้งหมด</value>
+    <value>ข้อมูลเพิ่มเติมสำหรับผลิตภัณฑ์ 12BETทั้งหมด</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
     <value>07.00น. - 16.00น. (เวลาไทย)</value>
@@ -1521,13 +1521,13 @@
     <value>ยอดรวมแพ้/ชนะ</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>ค่าธรรมเนียมแพลตฟอร์ม</value>
+    <value>ค่าแพลทฟอร์ม</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>ค่าธรรมเนียมดำเนินการ</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>ค่าธรรมเนียมธุรกรรม</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>ค่าธรรมเนียมธนาคาร</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>เรทคอมมิชชั่น</value>
@@ -1842,7 +1842,7 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; ขึ้นไป</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
+  <data name="RevenueShare" xml:space="preserve">
     <value>ส่วนแบ่งรายได้</value>
   </data>
   <data name="SuffixProduct12JADE" xml:space="preserve">
@@ -2049,17 +2049,11 @@
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BETการตลาดพันธมิตร</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลล่าร์ฯ)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>พันธมิตรที่ได้รับการเชิญชวนเท่านั้น</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001 ขึ้นไป</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>ผู้เล่นที่เข้าเกณฑ์</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>คอมมิชชั่นเริ่มต้น 50%</value>
@@ -2213,6 +2207,18 @@
   </data>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>ทีมงานภาษาบังกลาเทศ</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>โครงสร้างค่าคอมมิชชันปกติ</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลลาร์) ของลูกค้า</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>กำไรสุทธิ</value>
   </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>

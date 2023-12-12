@@ -611,11 +611,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Banking Fees.
+        ///   Looks up a localized string similar to Banking Fee.
         /// </summary>
-        public static string BankingFees {
+        public static string BankingFee {
             get {
-                return ResourceManager.GetString("BankingFees", resourceCulture);
+                return ResourceManager.GetString("BankingFee", resourceCulture);
             }
         }
         
@@ -1241,11 +1241,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company Profit For The Month ($).
+        ///   Looks up a localized string similar to Company Net Win For The Month (CNW)($).
         /// </summary>
-        public static string CompanyProfit {
+        public static string CompanyNetWin {
             get {
-                return ResourceManager.GetString("CompanyProfit", resourceCulture);
+                return ResourceManager.GetString("CompanyNetWin", resourceCulture);
             }
         }
         
@@ -1498,6 +1498,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CurrentNewFdmCommBonus {
             get {
                 return ResourceManager.GetString("CurrentNewFdmCommBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CUSTOMER WIN/LOSS.
+        /// </summary>
+        public static string CustomerWinLoss {
+            get {
+                return ResourceManager.GetString("CustomerWinLoss", resourceCulture);
             }
         }
         
@@ -3622,11 +3631,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company Net Win For The Month (CNW)($).
+        ///   Looks up a localized string similar to Net Profit.
         /// </summary>
-        public static string NetWinLoss {
+        public static string NetProfit {
             get {
-                return ResourceManager.GetString("NetWinLoss", resourceCulture);
+                return ResourceManager.GetString("NetProfit", resourceCulture);
             }
         }
         
@@ -4234,6 +4243,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to +.
+        /// </summary>
+        public static string Plus {
+            get {
+                return ResourceManager.GetString("Plus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Poker.
         /// </summary>
         public static string Poker {
@@ -4603,15 +4621,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qualified Active Members/ Month.
-        /// </summary>
-        public static string QualifiedActiveMembersByMonth {
-            get {
-                return ResourceManager.GetString("QualifiedActiveMembersByMonth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Qualifying Members.
         /// </summary>
         public static string QualifyingMem {
@@ -4720,6 +4729,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Regular Commission Structure.
+        /// </summary>
+        public static string RegularCommissionStructure {
+            get {
+                return ResourceManager.GetString("RegularCommissionStructure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rejected.
         /// </summary>
         public static string Rejected {
@@ -4803,9 +4821,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Revenue Share.
         /// </summary>
-        public static string RevenueShareTitle {
+        public static string RevenueShare {
             get {
-                return ResourceManager.GetString("RevenueShareTitle", resourceCulture);
+                return ResourceManager.GetString("RevenueShare", resourceCulture);
             }
         }
         

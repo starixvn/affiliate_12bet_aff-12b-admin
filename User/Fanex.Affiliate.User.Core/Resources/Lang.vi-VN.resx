@@ -863,8 +863,8 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="Netherlands" xml:space="preserve">
     <value>Hà Lan </value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
-    <value>Lợi nhuận ròng trong tháng (CNW)($)</value>
+  <data name="CompanyNetWin" xml:space="preserve">
+    <value>TỔNG DOANH THU CỦA HỆ THỐNG TRONG THÁNG (CNW) ($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>New Caledonia </value>
@@ -1005,7 +1005,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Qatar </value>
   </data>
   <data name="QualifyingMem" xml:space="preserve">
-    <value>Thành viên đăng ký</value>
+    <value>Số thành viên hợp lệ</value>
   </data>
   <data name="Racebook" xml:space="preserve">
     <value>Đua Ngựa</value>
@@ -1227,7 +1227,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Đây là email do hệ thống tạo tự động, vui lòng không trả lời trực tiếp email này.</value>
   </data>
   <data name="Tier" xml:space="preserve">
-    <value>Cấp</value>
+    <value>Hạng</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>Mật khẩu mới sẽ được gửi tới địa chỉ email mà bạn đã cung cấp.&lt;br /&gt;Nếu bạn gặp thêm bất kỳ khó khăn nào, hãy &lt;a href="{0}"&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
@@ -1419,10 +1419,10 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>12AMBER (BETSOFT)</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>Tất cả sản phẩm</value>
+    <value>Tất cả các sản phẩm</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>Chi tiết các sản phẩm 12BET</value>
+    <value>Chi tiết về các sản phẩm của 12BET</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
     <value>8:00 SÁNG - 5:00 CHIỀU&lt;br /&gt;(GMT +8)</value>
@@ -1521,13 +1521,13 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Tổng Thắng Thua</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>Chi Phí Nền Tảng</value>
+    <value>Phí Hệ Thống</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>Chi Phí Vận Hành</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>Chi Phí Ngân Hàng</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>Phí Ngân Hàng</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>% Hoa Hồng</value>
@@ -1842,8 +1842,8 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; hơn</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
-    <value>Chia sẻ lợi nhuận</value>
+  <data name="RevenueShare" xml:space="preserve">
+    <value>Chia sẻ doanh thu</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
     <value>Tiếng Trung (Phồn Thể)</value>
@@ -2049,17 +2049,11 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>Tiếp thị liên kết nhà cái 12BET</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>Lợi Nhuận Ròng Trong Tháng ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>Chỉ cần giới thiệu</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001+</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>Thành viên đủ điều kiện/ Tháng</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>50% cố định</value>
@@ -2216,6 +2210,18 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Bangladesh</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>Cấu Trúc Hoa Hồng Thông Thường</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>KHÁCH HÀNG THẮNG/THUA</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>Lợi nhuận sau thuế</value>
   </data>
   <data name="Skype" xml:space="preserve">
     <value>Tài khoản Skype</value>
