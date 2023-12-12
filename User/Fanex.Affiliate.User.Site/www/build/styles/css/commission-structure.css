@@ -781,6 +781,11 @@ button.swiper-pagination-bullet {
   .block-commission .table-custom table th {
     padding: 5px 4px; } }
 
+@media (max-width: 500px) {
+  .block-commission .table-custom table tbody tr td {
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff; } }
+
 .block-text .group-page {
   font-size: 20px;
   line-height: 32px; }

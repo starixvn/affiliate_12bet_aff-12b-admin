@@ -55,8 +55,8 @@
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     @RenderSection("styles", required: false)
 </head>
-<body>
-    <div class="header-top @RenderSection("afterLogin", required: false)">
+<body class="@RenderSection("afterLogin", required: false)">
+    <div class="header-top">
         <div class="page-container">
             <div class="logo-lang">
                 <div class="logo">

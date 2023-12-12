@@ -86,6 +86,17 @@
                     padding: 5px 4px;
                 }
             }
+
+            tbody {
+                tr {
+                    td {
+                        @include Mobile {
+                            border-right: 1px solid #fff;
+                            border-bottom: 1px solid #fff;
+                        }
+                    }
+                }
+            }
         }
     }
 }

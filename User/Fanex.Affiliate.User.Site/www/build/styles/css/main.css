@@ -433,11 +433,13 @@ input[type="checkbox"], input[type="radio"] {
   .navbar .navbar-nav {
     margin: 0;
     display: flex;
-    flex-wrap: nowrap; }
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center; }
     @media screen and (max-width: 1024px) {
       .navbar .navbar-nav {
-        padding: 10px 0;
-        display: unset;
+        padding: 20px 0;
+        display: inline-block;
         float: none; } }
     @media screen and (max-width: 1024px) {
       .navbar .navbar-nav li {
@@ -492,26 +494,30 @@ input[type="checkbox"], input[type="radio"] {
     @media screen and (max-width: 1024px) {
       .menu .menu-item {
         padding: 15px 10px;
-        font-size: 10px; } }
+        font-size: 16px;
+        text-align: center; } }
     .menu .menu-item:hover, .menu .menu-item:focus, .menu .menu-item.active {
       color: #808080 !important;
       background: #000 !important;
       transition: none !important; }
 
-.after-login .menu .menu-item {
+.after-login .tab-menu .menu-item, .after-login #mainMenu .menu-item {
   line-height: 30px;
   display: block;
   font-weight: 400;
   text-decoration: none;
   border-radius: 5px 5px 0 0 !important;
   padding: 0 20px !important; }
-  .after-login .menu .menu-item.active, .after-login .menu .menu-item:hover {
+  .after-login .tab-menu .menu-item.active, .after-login .tab-menu .menu-item:hover, .after-login #mainMenu .menu-item.active, .after-login #mainMenu .menu-item:hover {
     color: #fff !important;
     background: -ms-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important;
     background: -webkit-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important;
     background: -moz-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important;
     background: -o-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important;
     background: linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important; }
+
+.after-login .navbar-nav {
+  justify-content: flex-start; }
 
 .after-login .caret {
   border-top: 5px dashed #fff; }
@@ -1580,7 +1586,7 @@ table + .button-group {
     .table-custom {
       border: none;
       width: auto;
-      margin: 0 25px;
+      margin: 0 4px;
       border-radius: 5px 5px 0 0; } }
   .table-custom table {
     border-collapse: collapse;
@@ -1598,7 +1604,8 @@ table + .button-group {
         border-right: 2px solid #fff; }
         @media (max-width: 500px) {
           .table-custom table thead tr th {
-            border-right: 1px solid #fff; } }
+            border-right: 1px solid #fff;
+            font-size: 9px; } }
         .table-custom table thead tr th:last-child {
           border: none; }
     .table-custom table tbody tr {
@@ -1616,19 +1623,19 @@ table + .button-group {
           font-size: 16px; }
           @media (max-width: 500px) {
             .table-custom table tbody tr td .all-products {
-              font-size: 9px; } }
+              font-size: 10px; } }
         .table-custom table tbody tr td .more-detail {
           color: #D90F0F;
           font-size: 14px; }
           @media (max-width: 500px) {
             .table-custom table tbody tr td .more-detail {
-              font-size: 9px; } }
+              font-size: 10px; } }
         @media (max-width: 500px) {
           .table-custom table tbody tr td {
             border-right: 1px solid #F6F6F6;
             border-bottom: 1px solid #F6F6F6;
             padding: 5px 8px;
-            font-size: 8px; } }
+            font-size: 10px; } }
         .table-custom table tbody tr td:last-child {
           color: #FF8651;
           border-right: none !important; }
@@ -1891,6 +1898,10 @@ input[type="radio"], input[type="checkbox"] {
 .login-dialog .modal-dialog {
   max-width: 565px;
   position: relative; }
+  @media (max-width: 500px) {
+    .login-dialog .modal-dialog {
+      max-width: 335px;
+      margin: 20px auto; } }
   .login-dialog .modal-dialog .modal-content {
     border-radius: 12px;
     overflow: hidden;
@@ -1904,20 +1915,43 @@ input[type="radio"], input[type="checkbox"] {
         opacity: 1; }
         .login-dialog .modal-dialog .modal-content .modal-body .close:hover {
           opacity: 1; }
+        .login-dialog .modal-dialog .modal-content .modal-body .close .show-pc {
+          display: block; }
+          @media (max-width: 500px) {
+            .login-dialog .modal-dialog .modal-content .modal-body .close .show-pc {
+              display: none; } }
+        .login-dialog .modal-dialog .modal-content .modal-body .close .show-mobile {
+          display: none; }
+          @media (max-width: 500px) {
+            .login-dialog .modal-dialog .modal-content .modal-body .close .show-mobile {
+              display: block; } }
       .login-dialog .modal-dialog .modal-content .modal-body .main-login {
         display: flex; }
+        @media (max-width: 500px) {
+          .login-dialog .modal-dialog .modal-content .modal-body .main-login {
+            display: unset; } }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .item {
           width: 50%;
           padding: 24px; }
+          @media (max-width: 500px) {
+            .login-dialog .modal-dialog .modal-content .modal-body .main-login .item {
+              width: 100%;
+              padding: 20px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item:first-child {
             background: url("../Images/bg-login.png");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             padding-bottom: 75px; }
+            @media (max-width: 500px) {
+              .login-dialog .modal-dialog .modal-content .modal-body .main-login .item:first-child {
+                padding-bottom: 20px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item:nth-child(2) {
             padding-top: 52px;
             background: #fff; }
+            @media (max-width: 500px) {
+              .login-dialog .modal-dialog .modal-content .modal-body .main-login .item:nth-child(2) {
+                padding-top: 20px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .spacing-bt {
             margin-bottom: 16px; }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .heading-login, .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
@@ -1927,6 +1961,10 @@ input[type="radio"], input[type="checkbox"] {
             font-weight: 700;
             line-height: normal;
             text-transform: uppercase; }
+            @media (max-width: 500px) {
+              .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .heading-login, .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
+                text-align: center;
+                margin-bottom: 12px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
             text-transform: lowercase;
             color: #353E5B; }
@@ -1946,6 +1984,14 @@ input[type="radio"], input[type="checkbox"] {
                 background: #D90F0F;
                 height: 32px;
                 margin: 0; }
+                @media (max-width: 500px) {
+                  .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input.columns-2 .validation-value {
+                    height: 44px;
+                    display: flex;
+                    align-items: center; }
+                    .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input.columns-2 .validation-value img {
+                      height: 17px;
+                      object-fit: cover; } }
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input input {
               border-radius: 100px;
               background: #F5F5F5;
@@ -1958,6 +2004,9 @@ input[type="radio"], input[type="checkbox"] {
               font-weight: 600;
               height: 32px;
               margin-bottom: 0; }
+              @media (max-width: 500px) {
+                .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input input {
+                  height: 44px; } }
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input input::placeholder {
                 color: #C2C2C2;
                 font-weight: 600; }
@@ -1970,6 +2019,9 @@ input[type="radio"], input[type="checkbox"] {
           padding: 10px 0;
           outline: none;
           border: none; }
+          @media (max-width: 500px) {
+            .login-dialog .modal-dialog .modal-content .modal-body .main-login .btn-submit {
+              font-size: 20px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .btn-submit:focus {
             border: none; }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .link-login-popup {
@@ -1994,6 +2046,9 @@ input[type="radio"], input[type="checkbox"] {
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .login-login {
           text-align: center;
           margin-bottom: 40px; }
+          @media (max-width: 500px) {
+            .login-dialog .modal-dialog .modal-content .modal-body .main-login .login-login {
+              margin-bottom: 16px; } }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .logo-text {
           color: #FFF;
           text-align: center;
@@ -2002,8 +2057,14 @@ input[type="radio"], input[type="checkbox"] {
           line-height: normal;
           text-transform: uppercase;
           margin-bottom: 40px; }
+          @media (max-width: 500px) {
+            .login-dialog .modal-dialog .modal-content .modal-body .main-login .logo-text {
+              margin-bottom: 10px; } }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text {
           margin-bottom: 16px; }
+          @media (max-width: 500px) {
+            .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text {
+              margin-bottom: 8px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text .title-affmember, .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
             color: #FFF;
             text-align: left;
@@ -2011,6 +2072,11 @@ input[type="radio"], input[type="checkbox"] {
             font-weight: 700;
             line-height: normal;
             margin-bottom: 8px; }
+            @media (max-width: 500px) {
+              .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text .title-affmember, .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
+                margin-bottom: 4px;
+                font-size: 16px;
+                text-align: center; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
             color: #FFF;
             font-weight: 500; }

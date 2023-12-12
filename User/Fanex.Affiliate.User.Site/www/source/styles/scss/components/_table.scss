@@ -158,7 +158,7 @@ table + .button-group {
     @include Mobile {
         border: none;
         width: auto;
-        margin: 0 25px;
+        margin: 0 4px;
         border-radius: 5px 5px 0 0;
     }
 
@@ -186,6 +186,7 @@ table + .button-group {
 
                     @include Mobile {
                         border-right: 1px solid #fff;
+                        font-size : 9px;
                     }
 
                     &:last-child {
@@ -211,9 +212,8 @@ table + .button-group {
                     .all-products {
                         color: #343434;
                         font-size: 16px;
-
-                        @include Mobile {
-                            font-size: 9px;
+                        @include Mobile{
+                            font-size : 10px;
                         }
                     }
 
@@ -222,7 +222,7 @@ table + .button-group {
                         font-size: 14px;
 
                         @include Mobile {
-                            font-size: 9px;
+                            font-size: 10px;
                         }
                     }
 
@@ -230,7 +230,7 @@ table + .button-group {
                         border-right: 1px solid #F6F6F6;
                         border-bottom: 1px solid #F6F6F6;
                         padding: 5px 8px;
-                        font-size: 8px;
+                        font-size: 10px;
                     }
 
                     &:last-child {

@@ -150,11 +150,12 @@
         margin: 0;
         display: flex;
         flex-wrap: nowrap;
-
+        width: 100%;
+        justify-content : center;
         @include Tablet {
-            padding: 10px 0;
-            display: unset;
-            float : none;
+            padding: 20px 0;
+            display: inline-block;
+            float: none;
         }
 
         li {
@@ -195,7 +196,7 @@
         z-index: 9;
         width: 100%;
         background: #d90f0f;
-        border-top : none;
+        border-top: none;
     }
 
     &.collapse {
@@ -229,10 +230,10 @@
             padding: 20px 40px;
         }
 
-
         @include Tablet {
             padding: 15px 10px;
-            font-size: 10px;
+            font-size: 16px;
+            text-align : center;
         }
 
         &:hover, &:focus, &.active {
@@ -244,7 +245,7 @@
 }
 
 .after-login {
-    .menu {
+    .tab-menu, #mainMenu {
         .menu-item {
             line-height: 30px;
             display: block;
@@ -262,6 +263,10 @@
                 background: linear-gradient(180deg,#fa6a00 0%,#e15f00 100%) !important;
             }
         }
+    }
+
+    .navbar-nav {
+        justify-content: flex-start;
     }
 
     .caret {

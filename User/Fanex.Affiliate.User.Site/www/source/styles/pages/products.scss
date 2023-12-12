@@ -65,7 +65,7 @@
                         .heading-slider {
                             padding-right: 94px;
                             text-align: right;
-                            padding-left : 0 !important;
+                            padding-left: 0 !important;
                         }
                     }
                 }
@@ -252,13 +252,14 @@
 
                     .text-slider {
                         text-align: left;
-                        font-size: 1vw;
+                        font-size: 14px;
                         font-weight: 500;
                         line-height: normal;
                         margin-bottom: 20px;
 
                         @media (min-width : 1400px) {
                             line-height: 24px;
+                            font-size: 16px;
                         }
 
                         @include Tablet {

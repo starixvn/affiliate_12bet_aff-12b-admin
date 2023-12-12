@@ -3,6 +3,11 @@
         max-width: 565px;
         position: relative;
 
+        @include Mobile {
+            max-width: 335px;
+            margin: 20px auto;
+        }
+
         .modal-content {
             border-radius: 12px;
             overflow: hidden;
@@ -20,14 +25,39 @@
                     &:hover {
                         opacity: 1;
                     }
+
+                    .show-pc {
+                        display: block;
+
+                        @include Mobile {
+                            display: none;
+                        }
+                    }
+
+                    .show-mobile {
+                        display: none;
+
+                        @include Mobile {
+                            display: block;
+                        }
+                    }
                 }
 
                 .main-login {
                     display: flex;
 
+                    @include Mobile {
+                        display: unset;
+                    }
+
                     .item {
                         width: 50%;
                         padding: 24px;
+
+                        @include Mobile {
+                            width: 100%;
+                            padding: 20px;
+                        }
 
                         &:first-child {
                             background: url('../../../build/styles/Images/bg-login.png');
@@ -35,11 +65,19 @@
                             background-repeat: no-repeat;
                             background-position: center;
                             padding-bottom: 75px;
+
+                            @include Mobile {
+                                padding-bottom: 20px;
+                            }
                         }
 
                         &:nth-child(2) {
                             padding-top: 52px;
                             background: #fff;
+
+                            @include Mobile {
+                                padding-top: 20px;
+                            }
                         }
 
                         .spacing-bt {
@@ -53,6 +91,11 @@
                             font-weight: 700;
                             line-height: normal;
                             text-transform: uppercase;
+
+                            @include Mobile {
+                                text-align: center;
+                                margin-bottom: 12px;
+                            }
                         }
 
                         .title {
@@ -82,6 +125,17 @@
                                     background: #D90F0F;
                                     height: 32px;
                                     margin: 0;
+
+                                    @include Mobile {
+                                        height: 44px;
+                                        display: flex;
+                                        align-items: center;
+
+                                        img {
+                                            height: 17px;
+                                            object-fit: cover;
+                                        }
+                                    }
                                 }
                             }
 
@@ -97,6 +151,10 @@
                                 font-weight: 600;
                                 height: 32px;
                                 margin-bottom: 0;
+
+                                @include Mobile {
+                                    height: 44px;
+                                }
 
                                 &::placeholder {
                                     color: #C2C2C2;
@@ -115,6 +173,10 @@
                         padding: 10px 0;
                         outline: none;
                         border: none;
+
+                        @include Mobile {
+                            font-size: 20px;
+                        }
 
                         &:focus {
                             border: none;
@@ -136,7 +198,6 @@
                         border: 1.5px solid #D90F0F;
                         background: #FFF;
                         color: #D90F0F;
-                        ;
                         font-weight: 500;
                         text-align: center;
                         text-decoration: none;
@@ -150,6 +211,10 @@
                     .login-login {
                         text-align: center;
                         margin-bottom: 40px;
+
+                        @include Mobile {
+                            margin-bottom: 16px;
+                        }
                     }
 
                     .logo-text {
@@ -160,10 +225,18 @@
                         line-height: normal;
                         text-transform: uppercase;
                         margin-bottom: 40px;
+
+                        @include Mobile {
+                            margin-bottom: 10px;
+                        }
                     }
 
                     .group-text {
                         margin-bottom: 16px;
+
+                        @include Mobile {
+                            margin-bottom: 8px;
+                        }
 
                         .title-affmember {
                             color: #FFF;
@@ -172,6 +245,12 @@
                             font-weight: 700;
                             line-height: normal;
                             margin-bottom: 8px;
+
+                            @include Mobile {
+                                margin-bottom: 4px;
+                                font-size: 16px;
+                                text-align: center;
+                            }
                         }
 
                         #signUpToAffiliateProgram {
