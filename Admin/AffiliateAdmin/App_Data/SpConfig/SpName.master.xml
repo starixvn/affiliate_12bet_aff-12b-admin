@@ -41,7 +41,7 @@
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Upd" SpName="Aff_Admin_AffiliatePaymentRequest_Upd" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
-    <Setting Key="Acc_SiteDBConfigSel" SpName="Acc_SiteDBConfigSel" DbName="DB052.bodb02.bodbAdminNet" />
+    <Setting Key="Acc_SiteDBConfigSel" SpName="Acc_SiteDBConfigSel" DbName="DBEXT.bodb02.bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Approve_DBSite01" SpName="Aff_Admin_AffiliatePaymentRequest_Approve" DbName="DBSite01.bodb02.bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Approve_DBSite02" SpName="Aff_Admin_AffiliatePaymentRequest_Approve" DbName="DBSite02.bodb02.bodbAdminNet" />
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Approve_DBTXN" SpName="Aff_Admin_AffiliatePaymentRequest_Approve" DbName="DBTXN.bodb02.bodbAdminNet" />
