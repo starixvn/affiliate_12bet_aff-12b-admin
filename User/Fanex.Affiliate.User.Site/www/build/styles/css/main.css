@@ -295,8 +295,8 @@ input[type="checkbox"], input[type="radio"] {
         padding-bottom: 10px; } }
 
 .flag {
-  width: 24px;
-  height: 24px;
+  width: 34px;
+  height: 34px;
   margin-right: 5px;
   position: relative;
   top: 0;
@@ -363,12 +363,12 @@ input[type="checkbox"], input[type="radio"] {
         margin-left: 48px; } }
     @media (max-width: 500px) {
       .header-top .logo {
-        margin-left: 48px; } }
+        margin-left: 0; } }
     .header-top .logo a {
       text-decoration: none; }
     @media screen and (max-width: 1024px) {
       .header-top .logo img {
-        width: 82px; } }
+        width: 137px; } }
     .header-top .logo .logo-text {
       color: #fff;
       font-weight: 400;
@@ -378,7 +378,7 @@ input[type="checkbox"], input[type="radio"] {
       @media screen and (max-width: 1024px) {
         .header-top .logo .logo-text {
           font-size: 12px;
-          display: block; } }
+          margin-left: 6px; } }
     @media (max-width: 992px) {
       .header-top .logo {
         text-align: center; } }
@@ -423,10 +423,10 @@ input[type="checkbox"], input[type="radio"] {
         display: block; } }
     .navbar .navbar-toggle .icon-bar {
       background: #d90f0f;
-      width: 20px;
-      margin-top: 3px;
+      width: 27px;
+      margin-top: 4px;
       border-radius: 0;
-      height: 2px; }
+      height: 3px; }
   .navbar.navbar-default .navbar-toggle {
     border-color: transparent; }
     .navbar.navbar-default .navbar-toggle:hover, .navbar.navbar-default .navbar-toggle:focus {
@@ -441,7 +441,7 @@ input[type="checkbox"], input[type="radio"] {
     justify-content: center; }
     @media screen and (max-width: 1024px) {
       .navbar .navbar-nav {
-        padding: 20px 0;
+        padding: 24px 0 12px 0;
         display: inline-block;
         float: none; } }
     @media screen and (max-width: 1024px) {
@@ -496,13 +496,35 @@ input[type="checkbox"], input[type="radio"] {
         padding: 20px 40px; } }
     @media screen and (max-width: 1024px) {
       .header-bottom .menu .menu-item {
-        padding: 15px 10px;
+        padding: 6px 10px;
         font-size: 16px;
-        text-align: center; } }
+        text-align: center;
+        letter-spacing: 1.28px; } }
     .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus, .header-bottom .menu .menu-item.active {
       color: #808080 !important;
       background: #000 !important;
       transition: none !important; }
+
+.header-bottom .logout-btn {
+  display: none; }
+  @media screen and (max-width: 1024px) {
+    .header-bottom .logout-btn {
+      display: block;
+      margin: 0 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      text-align: center;
+      padding: 24px 0; }
+      .header-bottom .logout-btn a {
+        color: #FFF;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 100px;
+        border: 1px solid #FFF;
+        display: inline-block;
+        padding: 10px 20px; } }
 
 .after-login .tab-menu .menu-item, .after-login #mainMenu .menu-item {
   line-height: 30px;
@@ -556,9 +578,17 @@ input[type="checkbox"], input[type="radio"] {
   .after-login .logo {
     margin-left: 48px; } }
 
+@media (max-width: 500px) {
+  .after-login .logo {
+    margin-left: 0; }
+  .after-login .user-signup {
+    margin-right: 0;
+    margin-top: 24px; } }
+
 .user-signup {
   display: flex;
-  align-items: center; }
+  align-items: center;
+  justify-content: flex-end; }
   @media screen and (max-width: 1024px) {
     .user-signup {
       margin-right: -50px; } }
@@ -567,22 +597,40 @@ input[type="checkbox"], input[type="radio"] {
       margin-right: 0; } }
   @media (max-width: 500px) {
     .user-signup {
-      margin-right: 0; } }
+      margin-right: 0;
+      margin-top: 24px; } }
+  .user-signup a {
+    display: inline-block; }
+    @media screen and (max-width: 1024px) {
+      .user-signup a {
+        margin-right: 12px;
+        font-size: 12px;
+        text-transform: uppercase;
+        padding: 10px 20px; } }
   @media screen and (max-width: 1024px) {
-    .user-signup a {
-      margin-right: 12px;
-      font-size: 12px; } }
+    .user-signup .login-after {
+      display: none; } }
 
 .sign-up {
   display: inline-block;
   vertical-align: middle; }
 
+@media (max-width: 500px) {
+  .group-auth-login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 21px; } }
+
 .language-container {
   display: inline-block;
   vertical-align: middle;
   text-align: left;
-  height: 26px;
+  height: 34px;
   position: relative; }
+  @media (max-width: 500px) {
+    .language-container {
+      position: absolute; } }
   .language-container #selectedLanguage {
     height: 100%;
     padding: 0 8px;
@@ -626,7 +674,7 @@ input[type="checkbox"], input[type="radio"] {
     background: transparent;
     color: #fff;
     font-weight: 500;
-    height: 28px;
+    height: 34px;
     text-align: center;
     border-radius: 2px;
     white-space: nowrap;

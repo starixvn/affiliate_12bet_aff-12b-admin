@@ -26,6 +26,7 @@
     .block-content {
         display: flex;
         gap : 50px;
+        justify-content :center;
         @include MobileLandscape{
             gap : 30px;
         }

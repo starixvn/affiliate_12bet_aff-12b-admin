@@ -46,7 +46,7 @@
         }
 
         @include Mobile {
-            margin-left: 48px;
+            margin-left: 0;
         }
 
         a {
@@ -55,7 +55,7 @@
 
         img {
             @include Tablet {
-                width: 82px;
+                width: 137px;
             }
         }
 
@@ -68,7 +68,7 @@
 
             @include Tablet {
                 font-size: 12px;
-                display : block;
+                margin-left : 6px;
             }
         }
 
@@ -130,10 +130,10 @@
 
         .icon-bar {
             background: #d90f0f;
-            width: 20px;
-            margin-top: 3px;
+            width: 27px;
+            margin-top: 4px;
             border-radius: 0;
-            height: 2px;
+            height: 3px;
         }
     }
 
@@ -154,9 +154,10 @@
         display: flex;
         flex-wrap: nowrap;
         width: 100%;
-        justify-content : center;
+        justify-content: center;
+
         @include Tablet {
-            padding: 20px 0;
+            padding: 24px 0 12px 0;
             display: inline-block;
             float: none;
         }
@@ -234,15 +235,41 @@
             }
 
             @include Tablet {
-                padding: 15px 10px;
+                padding: 6px 10px;
                 font-size: 16px;
                 text-align: center;
+                letter-spacing: 1.28px;
             }
 
             &:hover, &:focus, &.active {
                 color: #808080 !important;
                 background: #000 !important;
                 transition: none !important
+            }
+        }
+    }
+
+    .logout-btn {
+        display: none;
+
+        @include Tablet {
+            display: block;
+            margin: 0 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.50);
+            text-align: center;
+            padding: 24px 0;
+
+            a {
+                color: #FFF;
+                font-size: 12px;
+                font-weight: 700;
+                line-height: normal;
+                text-transform: uppercase;
+                text-decoration: none;
+                border-radius: 100px;
+                border: 1px solid #FFF;
+                display : inline-block;
+                padding : 10px 20px;
             }
         }
     }
@@ -289,15 +316,16 @@
                     background: -webkit-linear-gradient(top, #ff7a00, #ffea00);
                     color: #2b2b2b;
                     text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32);
-                    border-radius : 0;
+                    border-radius: 0;
                 }
             }
         }
     }
-    .account-overview{
-        .menu{
-            .menu-item{
-                text-transform : uppercase;
+
+    .account-overview {
+        .menu {
+            .menu-item {
+                text-transform: uppercase;
             }
         }
     }
@@ -305,7 +333,8 @@
     .summary-content {
         .details-section-menu {
             .menu-item {
-                text-transform : uppercase;
+                text-transform: uppercase;
+
                 &.active, &:hover {
                     color: #e46000;
                     border-bottom: 2px solid #e15f00;
@@ -334,11 +363,23 @@
             margin-left: 48px;
         }
     }
+
+    @include Mobile {
+        .logo {
+            margin-left: 0;
+        }
+
+        .user-signup {
+            margin-right: 0;
+            margin-top: 24px;
+        }
+    }
 }
 
 .user-signup {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 
     @include Tablet {
         margin-right: -50px;
@@ -350,12 +391,22 @@
 
     @include Mobile {
         margin-right: 0;
+        margin-top: 24px;
     }
 
     a {
+        display : inline-block;
         @include Tablet {
             margin-right: 12px;
             font-size: 12px;
+            text-transform: uppercase;
+            padding: 10px 20px;
+        }
+    }
+
+    .login-after {
+        @include Tablet {
+            display: none;
         }
     }
 }
@@ -365,12 +416,25 @@
     vertical-align: middle;
 }
 
+.group-auth-login {
+    @include Mobile {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 21px;
+    }
+}
+
 .language-container {
     display: inline-block;
     vertical-align: middle;
     text-align: left;
-    height: 26px;
+    height: 34px;
     position: relative;
+
+    @include Mobile {
+        position: absolute;
+    }
 
     #selectedLanguage {
         height: 100%;
@@ -439,7 +503,7 @@
         background: transparent;
         color: #fff;
         font-weight: 500;
-        height: 28px;
+        height: 34px;
         text-align: center;
         border-radius: 2px;
         white-space: nowrap;

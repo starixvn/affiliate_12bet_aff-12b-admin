@@ -196,6 +196,7 @@
                     position: absolute;
                     top: -15px;
                     left: 25px;
+                    z-index : 0;
 
                     @include MobileLandscape {
                         left: 15px;
@@ -223,6 +224,8 @@
                 .group-slider {
                     color: #FFF;
                     width: 65%;
+                    position: relative;
+                    z-index: 99;
 
                     @include Mobile {
                         width: auto;

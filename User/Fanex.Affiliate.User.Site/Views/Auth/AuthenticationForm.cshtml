@@ -8,17 +8,22 @@
 
 @if (Model.IsAuthenticated)
 {
-    <a class="btn-auth btn-login login-after" id="btnLogout">
-        @Lang.Logout
-    </a>
-    <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn-auth btn-signup">@Lang.MyAcc @Model.UserName</a>
+    <div class="group-auth-login">
+        <a class="btn-auth btn-login login-after" id="btnLogout">
+            @Lang.Logout
+        </a>
+        <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn-auth btn-signup">@Lang.MyAcc @Model.UserName</a>
+    </div>
 }
 else
 {
-    <a class="btn-auth btn-login" id="mobileLogin">
-        @Lang.Login
-    </a>
-    <a href="@Url.Content("~/Signup")" class="btn-auth btn-signup">@Lang.JoinNowHeader</a>
+    <div class="group-auth-login">
+        <a class="btn-auth btn-login" id="mobileLogin">
+            @Lang.Login
+        </a>
+        <a href="@Url.Content("~/Signup")" class="btn-auth btn-signup">@Lang.JoinNowHeader</a>
+    </div>
+    
     <div class="modal fade login-dialog" tabindex="-1" role="dialog" id="loginDialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

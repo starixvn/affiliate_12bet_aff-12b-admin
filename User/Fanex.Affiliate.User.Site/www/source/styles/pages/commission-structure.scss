@@ -153,7 +153,7 @@
             }
 
             @include Mobile {
-                width: 70px;
+                width: 85px;
                 padding: 3px;
             }
 
@@ -161,17 +161,19 @@
                 border-radius: 2px;
                 background: linear-gradient(39deg, #D90F0F 11.42%, #FF8651 65.58%);
                 padding: 20px 16px;
+                min-height: 215px;
 
                 @media (max-width : 1440px) {
                     height: 200px;
                 }
 
                 @include Tablet {
-                    height: 140px;
+                    min-height: unset;
+                    height: 100%;
                 }
 
                 @include Mobile {
-                    height: 95px;
+                    height: 100%;
                     padding: 12px 5px;
                 }
 
@@ -321,6 +323,7 @@
                         left: -6px;
                         margin-top: 10px;
                     }
+
                     @include Mobile {
                         height: 3px;
                         width: 8px;

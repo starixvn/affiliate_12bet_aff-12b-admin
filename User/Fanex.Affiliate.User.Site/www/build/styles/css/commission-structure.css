@@ -822,21 +822,23 @@ button.swiper-pagination-bullet {
         width: 100%; } }
     @media (max-width: 500px) {
       .block-process .main-process .items {
-        width: 70px;
+        width: 85px;
         padding: 3px; } }
     .block-process .main-process .items .mask {
       border-radius: 2px;
       background: linear-gradient(39deg, #D90F0F 11.42%, #FF8651 65.58%);
-      padding: 20px 16px; }
+      padding: 20px 16px;
+      min-height: 215px; }
       @media (max-width: 1440px) {
         .block-process .main-process .items .mask {
           height: 200px; } }
       @media screen and (max-width: 1024px) {
         .block-process .main-process .items .mask {
-          height: 140px; } }
+          min-height: unset;
+          height: 100%; } }
       @media (max-width: 500px) {
         .block-process .main-process .items .mask {
-          height: 95px;
+          height: 100%;
           padding: 12px 5px; } }
       .block-process .main-process .items .mask .icon {
         text-align: center;
