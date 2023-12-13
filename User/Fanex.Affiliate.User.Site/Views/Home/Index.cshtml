@@ -48,7 +48,7 @@
         <div class="swiper-pagination"></div>
     </div>
 
-    @Html.RenderPartialByLanguage("~/Views/Home/Partial/_Content", Model.Language)
+    @Html.RenderPartialByLanguage("~/Views/Home/Partial/_Content", Model.Language, shortedLangCode)
     @RazorHelper.RenderMovingTopButton()
 </div>
 

@@ -1,0 +1,97 @@
+﻿@model string
+
+@{ 
+    var redirectLink = "https://www.12bet.com/" + Model.ToLowerInvariant();
+}
+
+<div class="block-content">
+    <div class="wrapper-block">
+        <div class="items">
+            <a href="@(redirectLink)/sports" class="wrapper-item">
+                <img src="~/www/build/styles/Images/home/our-product/sports.png" alt="@Lang.Sports" class="img-responsive" />
+                <span class="name-item">@Lang.Sports</span>
+            </a>
+        </div>
+        <div class="items">
+            <a href="@(redirectLink)/esports" class="wrapper-item">
+                <img src="~/www/build/styles/Images/home/our-product/esports.png" alt="@Lang.ESports" class="img-responsive" />
+                <span class="name-item">@Lang.ESports</span>
+            </a>
+        </div>
+        <div class="items">
+            <a href="@(redirectLink)/casino" class="wrapper-item">
+                <img src="~/www/build/styles/Images/home/our-product/casino.png" alt="@Lang.Casino" class="img-responsive" />
+                <span class="name-item">@Lang.Casino</span>
+            </a>
+        </div>
+        <div class="items">
+            <a href="@(redirectLink)/livecasino" class="wrapper-item">
+                <img src="~/www/build/styles/Images/home/our-product/live-casino.png" alt="@Lang.LiveCasino" class="img-responsive" />
+                <span class="name-item">@Lang.LiveCasino</span>
+            </a>
+        </div>
+        <div class="items">
+            <a href="@(redirectLink)/p2p" class="wrapper-item">
+                <img src="~/www/build/styles/Images/home/our-product/p2p.png" alt="@Lang.P2P" class="img-responsive" />
+                <span class="name-item">@Lang.P2P</span>
+            </a>
+        </div>
+        <div class="items">
+            <a href="@(redirectLink)/numbergame" class="wrapper-item">
+                <img src="~/www/build/styles/Images/home/our-product/number-game.png" alt="@Lang.NumberGame" class="img-responsive" />
+                <span class="name-item">@Lang.NumberGame</span>
+            </a>
+        </div>
+        <div class="items">
+            <a href="@(redirectLink)/keno" class="wrapper-item">
+                <img src="~/www/build/styles/Images/home/our-product/keno.png" alt="@Lang.Keno" class="img-responsive" />
+                <span class="name-item">@Lang.Keno</span>
+            </a>
+        </div>
+        <div class="items">
+            <a href="@(redirectLink)/lottery" class="wrapper-item">
+                <img src="~/www/build/styles/Images/home/our-product/lottery.png" alt="@Lang.Lottery" class="img-responsive" />
+                <span class="name-item">@Lang.Lottery</span>
+            </a>
+        </div>
+    </div>
+    <span class="arrow-products arrow-1">
+        <img src="~/www/build/styles/Images/arrow-1.png" alt="arrow-1" />
+    </span>
+    <span class="arrow-products arrow-2">
+        <img src="~/www/build/styles/Images/arrow-2.png" alt="arrow-2" />
+    </span>
+    <span class="arrow-products arrow-3">
+        <img src="~/www/build/styles/Images/arrow-3.png" alt="arrow-3" />
+    </span>
+    <span class="arrow-products arrow-4">
+        <img src="~/www/build/styles/Images/arrow-4.png" alt="arrow-4" />
+    </span>
+</div>
+
+<div class="mini-block">
+    <div class="swiper mini-block-banner">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="~/www/build/styles/Images/home/our-product/mini-block-1.png" alt="mini-block-1" />
+            </div>
+            <div class="swiper-slide">
+                <img src="~/www/build/styles/Images/home/our-product/mini-block-2.png" alt="mini-block-2" />
+            </div>
+            <div class="swiper-slide">
+                <img src="~/www/build/styles/Images/home/our-product/mini-block-3.png" alt="mini-block-3" />
+            </div>
+        </div>
+        <div class="swiper-button-next">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
+                <path d="M16.4648 15.8837L10.2773 9.69621L12.0448 7.92871L19.9998 15.8837L12.0448 23.8387L10.2773 22.0712L16.4648 15.8837Z" fill="#D90F0F" />
+            </svg>
+        </div>
+        <div class="swiper-button-prev">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
+                <path d="M13.535 15.8837L19.7225 22.0712L17.955 23.8387L10 15.8837L17.955 7.92871L19.7225 9.69621L13.535 15.8837Z" fill="#D90F0F" />
+            </svg>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>

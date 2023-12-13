@@ -319,31 +319,36 @@
         .items {
             text-align: center;
 
-            img {
+            .wrapper-item {
                 margin: 0 auto;
-                width: 159px;
-                height: 116px;
-                object-fit: contain;
+                display: inline-block;
+                text-decoration: none;
 
-                @include Mobile {
-                    height: 82px;
-                    width: 98px;
-                    object-fit: cover;
+                img {
+                    width: 159px;
+                    height: 116px;
+                    object-fit: contain;
+
+                    @include Mobile {
+                        height: 82px;
+                        width: 98px;
+                        object-fit: cover;
+                    }
                 }
-            }
 
-            .name-item {
-                color: #FFF;
-                text-align: center;
-                font-size: 16px;
-                font-weight: 700;
-                line-height: 24px;
-                text-transform: uppercase;
-                margin-top: 9px;
-                display : block;
-                text-decoration : none;
-                @include Mobile {
-                    font-size: 12px;
+                .name-item {
+                    color: #FFF;
+                    font-size: 16px;
+                    font-weight: 700;
+                    line-height: 24px;
+                    text-transform: uppercase;
+                    margin-top: 9px;
+                    display: block;
+                    text-decoration: none;
+
+                    @include Mobile {
+                        font-size: 12px;
+                    }
                 }
             }
         }
@@ -371,6 +376,7 @@
             border-radius: 12px;
             background: #F6F6F6;
             padding: 12px 0;
+
             img {
                 width: auto;
                 margin: 0 auto;
@@ -391,8 +397,9 @@
 
         .swiper-pagination {
             bottom: -45px;
-            @include Mobile{
-                bottom : -35px;
+
+            @include Mobile {
+                bottom: -35px;
             }
         }
     }

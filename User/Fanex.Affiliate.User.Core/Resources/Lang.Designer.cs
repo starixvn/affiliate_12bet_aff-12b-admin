@@ -2024,7 +2024,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Sports.
+        ///   Looks up a localized string similar to Esports.
         /// </summary>
         public static string ESports {
             get {
@@ -2411,7 +2411,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GPI LOTTERY.
+        ///   Looks up a localized string similar to GPI Lottery.
         /// </summary>
         public static string GpiLottery {
             get {

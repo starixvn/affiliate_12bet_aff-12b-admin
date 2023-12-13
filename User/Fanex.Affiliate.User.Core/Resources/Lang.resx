@@ -1484,7 +1484,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <comment>87923</comment>
   </data>
   <data name="ESports" xml:space="preserve">
-    <value>E-Sports</value>
+    <value>Esports</value>
     <comment>87923</comment>
   </data>
   <data name="RngKeno" xml:space="preserve">
@@ -1853,7 +1853,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Captcha is required</value>
   </data>
   <data name="GpiLottery" xml:space="preserve">
-    <value>GPI LOTTERY</value>
+    <value>GPI Lottery</value>
   </data>
   <data name="PrefixProduct12EMERALD" xml:space="preserve">
     <value>12EMERALD</value>
@@ -2339,6 +2339,15 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>Net Profit</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>Sports</value>
+  </data>
+  <data name="P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>Keno</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Japan Support</value>

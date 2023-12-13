@@ -391,7 +391,7 @@
     <value>ចុះឈ្មោះកម្មវិធីភ្នាក់ងារ 12BET ឥឡូវនេះ!</value>
   </data>
   <data name="LiveCasino" xml:space="preserve">
-    <value>កាស៊ីណូបន្តផ្ទាល់</value>
+    <value>កាស៊ីណូតផ្ទាល់ផ្ទាល់</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>ហ្គេមកាស៊ីណូ</value>
@@ -1342,7 +1342,7 @@
     <value>USD (ដុល្លារអាមេរិក)</value>
   </data>
   <data name="ESports" xml:space="preserve">
-    <value>កីឡាអេឡិចត្រូនិក</value>
+    <value>Esports</value>
   </data>
   <data name="EUR" xml:space="preserve">
     <value>EUR (Euro)</value>
@@ -2144,6 +2144,15 @@
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>ប្រាក់​ចំណេញ​សុទ្ធ</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>កីឡា</value>
+  </data>
+  <data name="P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>គីណូ</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ជំនួយភាសាជប៉ុន</value>
