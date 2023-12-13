@@ -10,6 +10,11 @@ body {
     min-height: 100vh;
 }
 
+.km-KH {
+    line-break: anywhere;
+    word-break: break-word;
+}
+
 @media (min-width: 1700px) {
     .container {
         width: 1500px;

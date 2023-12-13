@@ -536,7 +536,8 @@
         background: #FFF;
         box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.10);
         z-index: 100;
-        width: 241px;
+        min-width: 241px;
+        width : auto;
         padding: 8px 0;
         font-size: 13px;
         top: 40px;
