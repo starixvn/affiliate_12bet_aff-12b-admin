@@ -350,6 +350,9 @@ input[type="checkbox"], input[type="radio"] {
     display: flex;
     justify-content: space-between;
     align-items: center; }
+    @media (max-width: 500px) {
+      .header-top .logo-lang {
+        display: unset; } }
   .header-top .logo {
     display: inline-block; }
     @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
@@ -457,11 +460,11 @@ input[type="checkbox"], input[type="radio"] {
       max-width: 100%;
       flex-basis: 100%; } }
 
-.menu {
+.header-bottom .menu {
   padding-left: 0;
   padding-right: 0; }
   @media screen and (max-width: 1024px) {
-    .menu {
+    .header-bottom .menu {
       margin: 0 -12px;
       position: absolute;
       top: 0;
@@ -470,12 +473,12 @@ input[type="checkbox"], input[type="radio"] {
       background: #d90f0f;
       border-top: none; } }
   @media screen and (max-width: 1024px) {
-    .menu.collapse {
+    .header-bottom .menu.collapse {
       display: none !important; } }
   @media screen and (max-width: 1024px) {
-    .menu.collapse.in {
+    .header-bottom .menu.collapse.in {
       display: block !important; } }
-  .menu .menu-item {
+  .header-bottom .menu .menu-item {
     position: relative;
     padding: 20px 12px;
     line-height: normal;
@@ -486,17 +489,17 @@ input[type="checkbox"], input[type="radio"] {
     letter-spacing: 0.96px;
     white-space: nowrap; }
     @media (min-width: 1200px) {
-      .menu .menu-item {
+      .header-bottom .menu .menu-item {
         padding: 20px 2vw; } }
     @media (min-width: 1360px) {
-      .menu .menu-item {
+      .header-bottom .menu .menu-item {
         padding: 20px 40px; } }
     @media screen and (max-width: 1024px) {
-      .menu .menu-item {
+      .header-bottom .menu .menu-item {
         padding: 15px 10px;
         font-size: 16px;
         text-align: center; } }
-    .menu .menu-item:hover, .menu .menu-item:focus, .menu .menu-item.active {
+    .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus, .header-bottom .menu .menu-item.active {
       color: #808080 !important;
       background: #000 !important;
       transition: none !important; }
@@ -506,15 +509,15 @@ input[type="checkbox"], input[type="radio"] {
   display: block;
   font-weight: 400;
   text-decoration: none;
-  border-radius: 5px 5px 0 0 !important;
-  padding: 0 20px !important; }
+  border-radius: 5px 5px 0 0;
+  padding: 0 20px; }
   .after-login .tab-menu .menu-item.active, .after-login .tab-menu .menu-item:hover, .after-login #mainMenu .menu-item.active, .after-login #mainMenu .menu-item:hover {
-    color: #fff !important;
-    background: -ms-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important;
-    background: -webkit-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important;
-    background: -moz-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important;
-    background: -o-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important;
-    background: linear-gradient(180deg, #fa6a00 0%, #e15f00 100%) !important; }
+    color: #fff;
+    background: -ms-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%);
+    background: -webkit-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%);
+    background: -moz-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%);
+    background: -o-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%);
+    background: linear-gradient(180deg, #fa6a00 0%, #e15f00 100%); }
 
 .after-login .navbar-nav {
   justify-content: flex-start; }
@@ -524,6 +527,34 @@ input[type="checkbox"], input[type="radio"] {
 
 .after-login .page-container {
   max-width: 100%; }
+
+.after-login .content-menu #mainMenu .menu-item.active, .after-login .content-menu #mainMenu .menu-item:hover {
+  background: -webkit-linear-gradient(top, #ff7a00, #ffea00);
+  color: #2b2b2b;
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32);
+  border-radius: 0; }
+
+.after-login .account-overview .menu .menu-item {
+  text-transform: uppercase; }
+
+.after-login .summary-content .details-section-menu .menu-item {
+  text-transform: uppercase; }
+  .after-login .summary-content .details-section-menu .menu-item.active, .after-login .summary-content .details-section-menu .menu-item:hover {
+    color: #e46000;
+    border-bottom: 2px solid #e15f00;
+    background: none; }
+
+@media screen and (max-width: 1024px) {
+  .after-login .user-signup {
+    margin: 0; }
+  .after-login .menu {
+    position: unset;
+    background: none;
+    margin: 0; }
+    .after-login .menu .menu-item {
+      font-size: 12px; }
+  .after-login .logo {
+    margin-left: 48px; } }
 
 .user-signup {
   display: flex;
