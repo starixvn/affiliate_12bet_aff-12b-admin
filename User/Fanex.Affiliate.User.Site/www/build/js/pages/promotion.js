@@ -43,11 +43,9 @@ var Promotion = (function ($) {
                 }, 10);
             });
 
-            $('.button-toggle').addClass("open");
+            $('.block-content .button-toggle').addClass("open");
             $('.button-toggle').click(function () {
-                $('.open').not(this).removeClass('open').parent().next().slideUp(300);
-                $(this).toggleClass('open').parent().parent().prev().find('.anwser').slideToggle(300);
-                $(this).parent().parent().prev().toggleClass('active');
+                $(this).toggleClass('open').parent().next().slideToggle(300);
             });
         }
     };

@@ -1,4 +1,5 @@
 ﻿@import '../scss/abstracts/mixins';
+@import '../scss/components/faq';
 @import '../scss/vendors/swiper';
 
 .block-commission-boost {
@@ -149,7 +150,6 @@
     }
 }
 
-
 .block-power {
     background: #fff;
 
@@ -165,219 +165,51 @@
 
     .block-child-title {
         color: #D90F0F;
-        @include Mobile{
-            margin-bottom : 7px;
+
+        @include Mobile {
+            margin-bottom: 7px;
         }
     }
 }
 
+.block-example {
+    background: #fff;
 
+    .block-child-title {
+        color: #D90F0F;
 
-
-.block-faq {
-    padding: 0;
-
-    .question {
-        position: relative;
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 0 12px;
-
-        @media (min-width : 1365px) {
-            max-width: 1240px;
+        @include Mobile {
+            margin-bottom: 7px;
         }
+    }
 
-        .title {
+    .description {
+        color: #353E5B;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 32px;
+        margin-bottom: 24px;
+
+        .red-bold {
             color: #D90F0F;
-            font-size: 20px;
             font-weight: 700;
-            line-height: 1;
-            text-transform: uppercase;
 
             @include Mobile {
                 font-size: 12px;
+                line-height: normal;
             }
-
-            span {
-                background: #F6F6F6;
-                position: relative;
-                z-index: 999;
-                padding-right: 24px;
-
-                @include Mobile {
-                    padding-right: 7px;
-                }
-            }
-
-            &:after {
-                content: '';
-                display: block;
-                width: 91%;
-                position: absolute;
-                top: 50%;
-                left: 20px;
-                background: #DDD;
-                height: 2px;
-
-                @include Mobile {
-                    width: 78%;
-                }
-            }
-        }
-
-        .button-toggle {
-            display: block;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
-            border-radius: 100px;
-            position: absolute;
-            right: 14px;
-            top: 2px;
-            cursor: pointer;
-
-            @include Mobile {
-                top: -3px;
-            }
-
-            &.open {
-                &:before {
-                    display: none;
-                }
-            }
-
-            &:before, &:after {
-                content: '';
-                display: block;
-                background: #fff;
-                position: absolute;
-            }
-
-            &:after {
-                height: 1px;
-                width: 10px;
-                top: 9px;
-                left: 5px;
-            }
-
-            &:before {
-                height: 10px;
-                width: 1px;
-                top: 5px;
-                left: 9px;
-            }
-        }
-    }
-
-    .anwser {
-        background: #FFF;
-        color: #353E5B;
-        text-align: left;
-        font-size: 20px;
-        line-height: 30px;
-        position: relative;
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 0 12px;
-
-        @media (min-width : 1365px) {
-            max-width: 1240px;
         }
 
         @include Mobile {
             font-size: 12px;
-        }
-
-        &-heading {
-            font-weight: 700;
-            margin-bottom: 20px;
             line-height: normal;
-            color: #D90F0F;
-
-            @include Mobile {
-                margin-bottom: 10px;
-            }
+            margin-bottom: 16px;
         }
 
-        &-text {
-            margin-bottom: 20px;
-
-            @include Mobile {
-                margin-bottom: 10px;
-                line-height: 16px;
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-            }
+        &:last-child {
+            margin-bottom: 0;
         }
-
-        .view-more {
-            position: absolute;
-            bottom: -38px;
-            right: 0;
-
-            img {
-                @include Tablet {
-                    width: 63px;
-                }
-            }
-        }
-    }
-
-    .list-number {
-        font-size: 20px;
-        background: #d90f0f;
-        font-weight: 700;
-        line-height: 30px;
-        color: #fff;
-        border-radius: 100px;
-        width: 30px;
-        height: 30px;
-        display: block;
-        text-align: center;
-        float: left;
-        margin-right: 8px;
-
-        @include Mobile {
-            font-size: 15px;
-            width: 20px;
-            height: 20px;
-            line-height: normal;
-        }
-    }
-
-    .red-bold {
-        color: #D90F0F;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 30px;
-
-        @include Mobile {
-            font-size: 12px;
-            line-height: normal;
-        }
-    }
-}
-
-.group-question {
-    background: #F6F6F6;
-    padding: 52px 0;
-    @include Mobile{
-        padding : 32px 40px;
-    }
-}
-
-.group-anwser {
-    padding: 52px 0;
-
-    &.active {
-        padding: 0;
-    }
-
-    @include Mobile {
-        padding: 32px 40px;
     }
 }
 
@@ -385,5 +217,17 @@
     @include Mobile {
         max-width: 300px;
         margin: 0 auto;
+    }
+}
+
+.block-faq {
+    background: #F6F6F6;
+
+    .group-faq {
+        margin-bottom: 52px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
