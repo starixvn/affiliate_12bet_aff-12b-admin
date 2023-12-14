@@ -445,7 +445,7 @@ input[type="checkbox"], input[type="radio"] {
     justify-content: center; }
     @media screen and (max-width: 1024px) {
       .navbar .navbar-nav {
-        padding: 24px 0 12px 0;
+        padding: 24px 16px 12px;
         display: inline-block;
         float: none; } }
     @media screen and (max-width: 1024px) {
@@ -500,7 +500,7 @@ input[type="checkbox"], input[type="radio"] {
         padding: 20px 40px; } }
     @media screen and (max-width: 1024px) {
       .header-bottom .menu .menu-item {
-        padding: 6px 10px;
+        padding: 12px 10px;
         font-size: 16px;
         text-align: center;
         letter-spacing: 1.28px; } }
@@ -508,6 +508,10 @@ input[type="checkbox"], input[type="radio"] {
       color: #808080 !important;
       background: #000 !important;
       transition: none !important; }
+      @media screen and (max-width: 1024px) {
+        .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus, .header-bottom .menu .menu-item.active {
+          color: #fff !important;
+          border-radius: 24px; } }
 
 .header-bottom .logout-btn {
   display: none; }
@@ -588,10 +592,13 @@ input[type="checkbox"], input[type="radio"] {
     background: #d90f0f;
     border-top: none; }
     .after-login .header-bottom .menu .menu-item {
-      padding: 6px 10px;
+      padding: 12px 10px;
       font-size: 16px;
       text-align: center;
       letter-spacing: 1.28px; }
+      .after-login .header-bottom .menu .menu-item.active {
+        color: #fff !important;
+        border-radius: 24px; }
   .after-login .logo {
     margin-left: 48px; } }
 
@@ -711,7 +718,7 @@ input[type="checkbox"], input[type="radio"] {
     border-radius: 12px;
     background: #FFF;
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
-    z-index: 100;
+    z-index: 1000;
     min-width: 241px;
     width: auto;
     padding: 8px 0;
