@@ -1296,6 +1296,7 @@
     <Content Include="Views\CommissionStructure\Partial\_RevenueShareOfNetProfit.cshtml" />
     <Content Include="Views\Home\Partial\_PartnershipContentBlock.cshtml" />
     <Content Include="Views\Home\Partial\_OurProductContentBlock.cshtml" />
+    <Content Include="www\source\styles\scss\components\_input-custom.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

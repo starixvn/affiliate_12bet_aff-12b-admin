@@ -41,7 +41,68 @@
     <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
 
     <div id="mainContent">
-        <div>
+        <form class="form">
+            <div class="block block-form">
+                <div class="page-container">
+                    <div class="group-text-warn">
+                        <p>@Lang.CompleteForm</p>
+                        <p>@Html.Raw(Lang.RequireInfo)</p>
+                    </div>
+                    <div class="group-faq">
+                        <div class="number">01</div>
+                        <div class="question">
+                            <div class="title">
+                                <span>Contact Information</span>
+                            </div>
+                        </div>
+                        <div class="group-form">
+                            <div class="form-group form-columns form-columns-2">
+                                <div class="items">
+                                    <label class="custom-label">First Name <span class="red-warn">*</span></label>
+                                    @Html.TextBoxFor(p => p.FirstName, new { @class = "form-input" })
+                                    @Html.ValidationMessageFor(x => x.FirstName, string.Empty, new { @class = "validate-input hide" })
+                                </div>
+                                <div class="items">
+                                    <label class="custom-label">Last Name <span class="red-warn">*</span></label>
+                                    @Html.TextBoxFor(p => p.LastName, new { @class = "form-input" })
+                                    @Html.ValidationMessageFor(x => x.LastName, string.Empty, new { @class = "validate-input hide" })
+                                </div>
+                            </div>
+
+                            <div class="form-group form-columns form-columns-2">
+                                <div class="items">
+                                    <label class="custom-label">Email Address <span class="red-warn">*</span></label>
+                                    @Html.TextBoxFor(p => p.Email, new { @class = "form-input emailInput" })
+                                    @Html.ValidationMessageFor(x => x.Email, string.Empty, new { @class = "validate-input hide" })
+                                </div>
+                                <div class="items">
+                                    <label class="custom-label">Verify Email Address <span class="red-warn">*</span></label>
+                                    @Html.TextBoxFor(p => p.VerifyEmail, new { @class = "form-input emailInput" })
+                                    @Html.ValidationMessageFor(x => x.VerifyEmail, string.Empty, new { @class = "validate-input hide" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block block-form">
+                <div class="page-container">
+                    <div class="group-faq">
+                        <div class="number">02</div>
+                        <div class="question">
+                            <div class="title">
+                                <span>Mailing Information</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+
+        @*<div>
             <p>@Lang.CompleteForm</p>
             <p>@Html.Raw(Lang.RequireInfo)</p>
         </div>
@@ -340,6 +401,6 @@
                     </div>
                 </div>
             </div>
-         }
+         }*@
     </div>
 </div>
