@@ -6,7 +6,8 @@
     var systemService = DependencyResolver.Current.GetService<ISystemService>();
     var userSession = sessionService.UserSession;
     var languageList = systemService.GetSystemTargetLanguages().Where(l => !l.LanguageCode.Equals("en-GB"));
-    var currentLanguage = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
+    var currentLanguage = sessionService.CurrentLanguage;
+    var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
     var path = HttpContext.Current.Request.Path;
 }
 
@@ -36,13 +37,13 @@
     <link href="~/www/build/styles/css/bootstrap-3.3.7.min.css" rel="stylesheet" />
     <link href="~/www/build/styles/fonts/materialdesignicons/font.min.css" rel="stylesheet" type="text/css" />
 
-    @if (sessionService.CurrentLanguage == SystemLanguage.VietNamLanguageCode)
+    @if (currentLanguage == SystemLanguage.VietNamLanguageCode)
     {
         <link href="~/www/build/styles/fonts/tahoma/font.min.css" rel="stylesheet" />
     }
     else
     {
-        if (sessionService.CurrentLanguage == SystemLanguage.CambodianLanguageCode)
+        if (currentLanguage == SystemLanguage.CambodianLanguageCode)
         {
             <link href="~/www/build/styles/fonts/nokora/font.min.css" rel="stylesheet" />
         }
@@ -55,7 +56,7 @@
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     @RenderSection("styles", required: false)
 </head>
-<body class="@RenderSection("afterLogin", required: false) @sessionService.CurrentLanguage">
+<body class="@RenderSection("afterLogin", required: false) @currentLanguage">
     <div class="header-top">
         <div class="page-container">
             <div class="logo-lang">
@@ -71,7 +72,7 @@
                         <div class="language-container">
                             <div class="language-selection">
                                 <button class="select-language" id="selectedLanguage">
-                                    <span><i class="flag flag-@sessionService.CurrentLanguage"></i><span class="name-lang">@(currentLanguage)</span></span>
+                                    <span><i class="flag flag-@currentLanguage"></i><span class="name-lang">@(languageNativeName)</span></span>
                                     <i class="caret"></i>
                                 </button>
                                 <div class="language-list-wrapper" id="languageList">
@@ -162,7 +163,7 @@
             <div class="footer-img">
                 <div class="img-top">
                     <a class="item">
-                        <img width="365" src="~/www/build/styles/Images/footer/cr-nosponsor.@(sessionService.CurrentLanguage).png?v=1" alt="sponsors" />
+                        <img width="365" src="~/www/build/styles/Images/footer/cr-nosponsor.@(currentLanguage).png?v=1" alt="sponsors" />
                     </a>
                 </div>
                 <div class="img-bottom">
@@ -207,7 +208,7 @@
     </div>
 
     <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
-    <input type="hidden" id="Language" value="@sessionService.CurrentLanguage" />
+    <input type="hidden" id="Language" value="@currentLanguage" />
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
     <script src="https://cdn.ravenjs.com/3.27.0/raven.min.js" crossorigin="anonymous"></script>
     <script>

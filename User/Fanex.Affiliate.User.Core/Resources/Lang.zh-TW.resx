@@ -139,7 +139,7 @@
     <value>合作夥伴</value>
   </data>
   <data name="AffiliateID" xml:space="preserve">
-    <value>合作夥伴號碼</value>
+    <value>合作夥伴帳號</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>阿爾巴尼亞</value>
@@ -1058,7 +1058,7 @@
     <value>有&lt;font color="red"&gt;*&lt;/font&gt;標記的欄目為必填選項</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>重設</value>
+    <value>重置</value>
   </data>
   <data name="RMB" xml:space="preserve">
     <value>人民币</value>

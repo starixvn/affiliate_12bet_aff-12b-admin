@@ -244,7 +244,7 @@
     <value>អ៊ីមែល​របស់​អ្នក:</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ដាក់ស្នើ</value>
+    <value>បញ្ជូន</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>កំណត់ឡើងវិញ</value>
@@ -541,16 +541,16 @@
     <value>ប្រធានបទ</value>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>មតិយោបល់</value>
+    <value>មតិ</value>
   </data>
   <data name="AffiliateID" xml:space="preserve">
-    <value>IDរបស់ភ្នាក់ងារ</value>
+    <value>លេខសម្គាល់ភ្នាក់ងារ</value>
   </data>
   <data name="Email1" xml:space="preserve">
     <value>អ៊ីមែល</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
-    <value>សុពលភាពលេខកូដ</value>
+    <value>លេខកូដសុពលភាព</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>ឈ្មោះ</value>

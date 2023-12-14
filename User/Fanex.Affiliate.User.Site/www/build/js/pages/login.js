@@ -76,7 +76,7 @@ var Login = (function ($) {
                 _me.requestSignin();
             });
 
-            $("#dialogUserInput input").on("keypress", function (e) {
+            $("#loginDialog input").on("keypress", function (e) {
                 if (e.keyCode === 13 && !$('#btnDialogLogin').prop('disabled')) {
                     _me.requestSignin();
                 }

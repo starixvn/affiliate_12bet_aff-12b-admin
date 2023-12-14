@@ -24,8 +24,16 @@ var Layout = (function ($) {
             _me.renderHotNews();
         },
         initEvent: function () {
-            $("#selectedLanguage").on("click", function () {
-                $(this).focus();
+            $("#selectedLanguage").on("click", function (e) {
+                if ($(this).hasClass('active')) {
+                    $(this).blur();
+                } else {
+                    $(this).addClass("active");
+                }
+            });
+
+            $("#selectedLanguage").on("blur", function (e) {
+                $(this).removeClass("active");
             });
 
             $("#languageList").on("click", ".language-item", function () {

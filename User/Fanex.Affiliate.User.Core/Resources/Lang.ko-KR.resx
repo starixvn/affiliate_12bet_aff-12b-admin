@@ -142,7 +142,7 @@
     <value>제휴</value>
   </data>
   <data name="AffiliateID" xml:space="preserve">
-    <value>제휴 아이디</value>
+    <value>제휴 ID</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>알바니아</value>
@@ -1205,7 +1205,7 @@
     <value>12Bet 제휴 - 귀하의 새로운 비밀번호</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>발송하기</value>
+    <value>제출</value>
   </data>
   <data name="Sudan" xml:space="preserve">
     <value>수단</value>
@@ -1481,7 +1481,7 @@
     <value>기타 문의사항이 있으시면 {0} 로  보내주시거나 아래의 양식을 작성하신 후 제출을 클릭해주세요.</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
-    <value>인증코드</value>
+    <value>보안문자</value>
   </data>
   <data name="TermAndCondition" xml:space="preserve">
     <value>이용약관</value>

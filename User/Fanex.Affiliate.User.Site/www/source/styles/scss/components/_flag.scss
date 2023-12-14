@@ -9,50 +9,46 @@
     background-size: cover;
 
     &-en-US {
-        background-image: url('../Images/langs/eng-us.svg');
+        background-image: url('../../../build/styles/Images/langs/en.svg');
     }
 
     &-zh-CN {
-        background-image: url('../Images/langs/cn.svg');
+        background-image: url('../../../build/styles/Images/langs/cs.svg');
     }
 
     &-zh-TW {
-        background-image: url('../Images/langs/taiwan.svg');
+        background-image: url('../../../build/styles/Images/langs/ch.svg');
     }
 
     &-id-ID {
-        background-image: url('../Images/langs/ido.svg');
+        background-image: url('../../../build/styles/Images/langs/id.svg');
     }
 
     &-vi-VN {
-        background-image: url('../Images/langs/vn.svg');
+        background-image: url('../../../build/styles/Images/langs/vn.svg');
     }
 
     &-th-TH {
-        background-image: url('../Images/langs/thai.svg');
+        background-image: url('../../../build/styles/Images/langs/th.svg');
     }
 
     &-ko-KR {
-        background-image: url('../Images/langs/korea.svg');
-    }
-
-    &-es-ES {
-        background-image: url('../Images/langs/eng-us.svg');
+        background-image: url('../../../build/styles/Images/langs/ko.svg');
     }
 
     &-ja-JP {
-        background-image: url('../Images/langs/japan.svg');
+        background-image: url('../../../build/styles/Images/langs/ja.svg');
     }
 
     &-hi-IN {
-        background-image: url('../Images/langs/eng-hi-in.svg');
+        background-image: url('../../../build/styles/Images/langs/hi.svg');
     }
 
     &-km-KH {
-        background-image: url('../Images/langs/kh.svg');
+        background-image: url('../../../build/styles/Images/langs/kh.svg');
     }
 
     &-bn-BD {
-        background-image: url('../Images/langs/eng-bn-bd.svg');
+        background-image: url('../../../build/styles/Images/langs/bn.svg');
     }
 }

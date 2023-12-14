@@ -2,7 +2,7 @@
   height: 100%; }
 
 body {
-  background: url(../../../source/styles/Images/notify/bgMain.jpg) repeat-x scroll center top #eef3fa;
+  background: url(../Images/notify/bgMain.jpg) repeat-x scroll center top #eef3fa;
   background-size: contain;
   color: #333;
   font-family: "Myriad Pro", Tahoma, REZ, Arial;
@@ -14,7 +14,7 @@ body {
   width: 960px;
   height: 86px;
   margin: auto;
-  background: url(../../../source/styles/Images/notify/logo_e.png) top left no-repeat;
+  background: url(../Images/notify/logo_e.png) top left no-repeat;
   margin-bottom: 30px; }
 
 #center {
@@ -23,13 +23,13 @@ body {
   margin: auto; }
 
 #title {
-  background: url(../../../source/styles/Images/notify/sry.png) right no-repeat;
+  background: url(../Images/notify/sry.png) right no-repeat;
   width: 660px;
   height: 28px;
   margin: auto; }
 
 #titlenf {
-  background: url(../../../source/styles/Images/notify/srynf.png) right no-repeat;
+  background: url(../Images/notify/srynf.png) right no-repeat;
   width: 620px;
   height: 44px;
   margin: auto; }
@@ -46,13 +46,13 @@ body {
   height: 318px; }
 
 #icon {
-  background: url(../../../source/styles/Images/notify/icon.png) left bottom no-repeat;
+  background: url(../Images/notify/icon.png) left bottom no-repeat;
   width: 303px;
   height: 318px;
   float: left; }
 
 #iconnf {
-  background: url(../../../source/styles/Images/notify/iconnf.png) left bottom no-repeat;
+  background: url(../Images/notify/iconnf.png) left bottom no-repeat;
   width: 304px;
   height: 270px;
   float: left; }
