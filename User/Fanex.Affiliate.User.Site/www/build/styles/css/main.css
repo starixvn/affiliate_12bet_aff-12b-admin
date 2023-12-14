@@ -472,7 +472,7 @@ input[type="checkbox"], input[type="radio"] {
       margin: 0 -12px;
       position: absolute;
       top: 0;
-      z-index: 9;
+      z-index: 999;
       width: 100%;
       background: #d90f0f;
       border-top: none; } }
@@ -579,6 +579,19 @@ input[type="checkbox"], input[type="radio"] {
     margin: 0; }
     .after-login .menu .menu-item {
       font-size: 12px; }
+  .after-login .header-bottom .menu {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    background: #d90f0f;
+    border-top: none; }
+    .after-login .header-bottom .menu .menu-item {
+      padding: 6px 10px;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 1.28px; }
   .after-login .logo {
     margin-left: 48px; } }
 
@@ -1478,7 +1491,7 @@ label.require:after {
     padding-right: 6px; }
   .btn-auth.btn-login {
     margin-right: 8px;
-    font-weight: 500;
+    font-weight: 700;
     border: 1.5px solid #D90F0F;
     background: #000;
     color: #D90F0F;

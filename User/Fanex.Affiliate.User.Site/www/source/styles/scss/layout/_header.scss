@@ -197,7 +197,7 @@
             margin: 0 -12px;
             position: absolute;
             top: 0;
-            z-index: 9;
+            z-index: 999;
             width: 100%;
             background: #d90f0f;
             border-top: none;
@@ -356,6 +356,25 @@
 
             .menu-item {
                 font-size: 12px;
+            }
+        }
+
+        .header-bottom {
+            .menu {
+                margin: 0;
+                position: absolute;
+                top: 0;
+                z-index: 999;
+                width: 100%;
+                background: #d90f0f;
+                border-top: none;
+
+                .menu-item {
+                    padding: 6px 10px;
+                    font-size: 16px;
+                    text-align: center;
+                    letter-spacing: 1.28px;
+                }
             }
         }
 

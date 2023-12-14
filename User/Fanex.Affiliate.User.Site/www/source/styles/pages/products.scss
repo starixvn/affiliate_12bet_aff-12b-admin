@@ -58,7 +58,7 @@
 
                             img {
                                 left: auto !important;
-                                right: -18px;
+                                right: -33px;
                             }
                         }
 
@@ -300,18 +300,18 @@
                             left: 0;
 
                             @include Mobile {
-                                top: 62px;
-                                left: -20px;
+                                top: 0;
+                                left: -35px;
                             }
                         }
 
                         @include Mobile {
                             .img-slot {
-                                left: -23px;
+                                left: -38px;
                             }
 
                             .img-12esporst {
-                                left: -27px;
+                                left: -42px;
                             }
                         }
                     }
