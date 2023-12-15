@@ -652,7 +652,8 @@ input[type="checkbox"], input[type="radio"] {
   position: relative; }
   @media (max-width: 500px) {
     .language-container {
-      position: absolute; } }
+      position: absolute;
+      z-index: 999999999; } }
   .language-container #selectedLanguage {
     height: 100%;
     padding: 0 8px;
