@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string _Chinese_LanguageCode = "zh-CN";
         private const string _Taiwan_LanguageCode = "zh-TW";
 
-        private static readonly IDictionary<string, string> _supportedLanguageForGoogleAnalytics = new Dictionary<string, string>
+        private static readonly IReadOnlyDictionary<string, string> _supportedLanguageForGoogleAnalytics = new Dictionary<string, string>
         {
             [_English_LanguageCode] = "en",
             [_Bangladesh_LanguageCode] = "bn",
@@ -46,17 +46,31 @@ namespace Fanex.Affiliate.User.Core.Constants
             [_Korea_LanguageCode] = "ko",
         };
 
-        public static IDictionary<string, string> SupportedLanguage => _supportedLanguageForGoogleAnalytics;
+        public static IReadOnlyDictionary<string, string> SupportedLanguage => _supportedLanguageForGoogleAnalytics;
 
         public const string DefaultLanguageCode = _English_LanguageCode;
 
-        public const string VietNamLanguageCode = _VietNam_LanguageCode;
+        public const string EnglishLanguageCode = _English_LanguageCode;
 
-        public const string CambodianLanguageCode = _Cambodia_LanguageCode;
+        public const string BangladeshLanguageCode = _Bangladesh_LanguageCode;
+
+        public const string IndiaLanguageCode = _India_LanguageCode;
 
         public const string IndonesiaLanguageCode = _Indonesia_LanguageCode;
 
-        public const string IndiaLanguageCode = _India_LanguageCode;
+        public const string JapanLanguageCode = _Japan_LanguageCode;
+
+        public const string CambodianLanguageCode = _Cambodia_LanguageCode;
+
+        public const string KoreaLanguageCode = _Korea_LanguageCode;
+
+        public const string ThailandLanguageCode = _Thailand_LanguageCode;
+
+        public const string VietNamLanguageCode = _VietNam_LanguageCode;
+
+        public const string ChineseLanguageCode = _Chinese_LanguageCode;
+
+        public const string TaiwanLanguageCode = _Taiwan_LanguageCode;
 
         public const string ShortedDefaultCode = "en";
 
