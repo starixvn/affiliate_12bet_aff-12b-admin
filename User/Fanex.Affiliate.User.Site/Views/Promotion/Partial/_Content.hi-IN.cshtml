@@ -14,63 +14,7 @@
     </div>
 </div>
 
-<div class="block block-table">
-    <div class="page-container">
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="20%">Revenue Share</th>
-                        <th width="8%">Tier</th>
-                        <th width="20%">Company Profit For The Month ($)</th>
-                        <th width="20%">Qualified Active Members/ Month</th>
-                        <th width="20%">Commission</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="6" class="text-center">
-                            <p>All Products</p>
-                        </td>
-                        <td class="text-center">1</td>
-                        <td class="text-center">$1 - $3,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">30%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">2</td>
-                        <td class="text-center">$3,001 - $45,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">35%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">3</td>
-                        <td class="text-center">$45,001 - $200,000</td>
-                        <td class="text-center">≥ 10</td>
-                        <td class="text-center">40%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">4</td>
-                        <td class="text-center">$200,001 - $250,000</td>
-                        <td class="text-center">≥ 20</td>
-                        <td class="text-center">45%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">5</td>
-                        <td class="text-center">$250,001 - Above</td>
-                        <td class="text-center">≥ 50</td>
-                        <td class="text-center">50%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">6</td>
-                        <td colspan="2" class="text-center">By Invitation only</td>
-                        <td class="text-center">Flat 50%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+@{ Html.RenderPartial("~/Views/Promotion/Partial/_CommissionBoostTable.cshtml"); }
 
 <div class="block block-note">
     <div class="page-container">
@@ -95,7 +39,6 @@
         </div>
     </div>
 </div>
-
 <div class="block block-power">
     <div class="page-container">
         <div class="group-page">
@@ -106,44 +49,7 @@
                 In 12BET, extra rewards are always guaranteed. All you need to do is fulfil the stated New FDM's requirements and receive an extra commission in addition to your commission.
             </div>
         </div>
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="22%">NEW FDM's</th>
-                        <th width="26%">TOTAL FDM's DEPOSIT ($)</th>
-                        <th width="26%">EXTRA COMMISSION</th>
-                        <th width="26%">MAX EXTRA COMMISSION ($)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center">5 to 11</td>
-                        <td class="text-center">$2,200 - $4,499</td>
-                        <td class="text-center">3%</td>
-                        <td class="text-center">$250</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">12 to 24</td>
-                        <td class="text-center">$4,500 - $10,499</td>
-                        <td class="text-center">5%</td>
-                        <td class="text-center">$500</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">25 to 39</td>
-                        <td class="text-center">$10,500 - $14,999</td>
-                        <td class="text-center">8%</td>
-                        <td class="text-center">$1,200</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">40 & Above</td>
-                        <td class="text-center">$15,000 & Above</td>
-                        <td class="text-center">12%</td>
-                        <td class="text-center">$2,000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_FDMsPowerTable.cshtml"); }
     </div>
 </div>
 
@@ -205,7 +111,7 @@
                         <span class="list-number">2</span> If the affiliate achieves varying thresholds for [total profit per month] and [qualified active players for a month] then the commission payout will be based on the lower threshold.
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">3</span> Non-qualifiers of this promotion will continue to earn commissions based on the existing Regular commission structure.
+                        <span class="list-number">3</span> Non-qualifiers of this promotion will continue to earn commissions based on the existing <a href="@Url.Content("~/CommissionStructure")">Regular commission structure.</a>
                     </div>
                     <div class="anwser-text">
                         <span class="list-number">4</span> By invitation only - If you believe you have a unique proposition that could result in significant Winloss (such as attracting VIP members), you can reach out to the affiliate manager to evaluate the proposition and determine the eligibility.
@@ -220,7 +126,7 @@
                         <span class="list-number">7</span> Extra Commission will be credited with the final commission within the 08th - 15th of the month.
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">8</span> 12BET reserves the right to cancel this promotion at any time, either for all affiliates or individual affiliates and its subject to 12BET Affiliates Terms and Conditions.
+                        <span class="list-number">8</span> 12BET reserves the right to cancel this promotion at any time, either for all affiliates or individual affiliates and its subject to <a href="@Url.Content("~/TermAndCondition")">12BET Affiliates Terms and Conditions.</a>
                     </div>
                 </div>
             </div>
@@ -248,7 +154,7 @@
                         <span class="list-number">5</span> Extra Commission will be credited with the final commission within the 08th - 15th of the month.
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">6</span> 12BET reserves the right to cancel this promotion at any time, either for all affiliates or individual affiliates and its subject to 12BET Affiliates Terms and Conditions.
+                        <span class="list-number">6</span> 12BET reserves the right to cancel this promotion at any time, either for all affiliates or individual affiliates and its subject to <a href="@Url.Content("~/TermAndCondition")">12BET Affiliates Terms and Conditions.</a>
                     </div>
                 </div>
             </div>

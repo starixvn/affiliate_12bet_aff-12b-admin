@@ -14,63 +14,7 @@
     </div>
 </div>
 
-<div class="block block-table">
-    <div class="page-container">
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="20%">佣金分成</th>
-                        <th width="8%">等級</th>
-                        <th width="20%">每月公司盈利 ($)</th>
-                        <th width="20%">每月符合資格的活躍會員</th>
-                        <th width="20%">佣金比例</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="6" class="text-center">
-                            <p>所有產品</p>
-                        </td>
-                        <td class="text-center">1</td>
-                        <td class="text-center">$1 - $3,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">30%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">2</td>
-                        <td class="text-center">$3,001 - $45,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">35%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">3</td>
-                        <td class="text-center">$45,001 - $200,000</td>
-                        <td class="text-center">≥ 10</td>
-                        <td class="text-center">40%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">4</td>
-                        <td class="text-center">$200,001 - $250,000</td>
-                        <td class="text-center">≥ 20</td>
-                        <td class="text-center">45%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">5</td>
-                        <td class="text-center">$250,000 以上</td>
-                        <td class="text-center">≥ 50</td>
-                        <td class="text-center">50%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">6</td>
-                        <td colspan="2" class="text-center">僅限邀請</td>
-                        <td class="text-center"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+@{ Html.RenderPartial("~/Views/Promotion/Partial/_CommissionBoostTable.cshtml"); }
 
 <div class="block block-note">
     <div class="page-container">
@@ -106,44 +50,7 @@
                 在12BET，額外的獎勵總是有保證的。所需要做的就是滿足規定【每月符合資格的活躍會員】要求，並在佣金之外賺取額外的佣金。
             </div>
         </div>
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="22%">首次存款新會員</th>
-                        <th width="26%">首次存款新會員總存款金額 ($)</th>
-                        <th width="26%">額外佣金比例</th>
-                        <th width="26%">最高額外佣金</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center">5名至11名</td>
-                        <td class="text-center">$2,200 - $4,499</td>
-                        <td class="text-center">3%</td>
-                        <td class="text-center">$250</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">12名至24名</td>
-                        <td class="text-center">$4,500 - $10,499</td>
-                        <td class="text-center">5%</td>
-                        <td class="text-center">$500</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">25名至39名</td>
-                        <td class="text-center">$10,500 - $14,999</td>
-                        <td class="text-center">8%</td>
-                        <td class="text-center">$1,200</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">40名及以上</td>
-                        <td class="text-center">$15,000 及以上</td>
-                        <td class="text-center">12%</td>
-                        <td class="text-center">$2,000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_FDMsPowerTable.cshtml"); }
     </div>
 </div>
 
@@ -205,7 +112,7 @@
                         <span class="list-number">2</span> 如果合作夥伴在【每月公司利潤】和【每月符合資格活躍會員】達到了不同的門檻，佣金支付將根據較低的門檻。
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">3</span> 不符資格此優惠活動的合作夥伴，將按照現有的常規佣金結構結算佣金。
+                        <span class="list-number">3</span> 不符資格此優惠活動的合作夥伴，將按照現有的<a href="@Url.Content("~/CommissionStructure")">常規佣金結構</a>結算佣金。
                     </div>
                     <div class="anwser-text">
                         <span class="list-number">4</span> 僅限邀請 —如果您有獨具特色的提議，可以帶來巨大的獲利（例如：吸引VIP會員），可以與合作夥伴經理聯繫，評估該提議並確定資格。
@@ -220,7 +127,7 @@
                         <span class="list-number">7</span> 額外的佣金將在當月的第8-15日內，加入最終佣金。
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">8</span> 12BET保留在任何時候對全部或部分合作夥伴，取消該優惠活動的所有權利。本優惠活動同時遵守 12BET 合作夥伴條款及規則準則。
+                        <span class="list-number">8</span> 12BET保留在任何時候對全部或部分合作夥伴，取消該優惠活動的所有權利。本優惠活動同時遵守 <a href="@Url.Content("~/TermAndCondition")">12BET 合作夥伴條款及規則準則。</a>
                     </div>
                 </div>
             </div>
@@ -248,7 +155,7 @@
                         <span class="list-number">5</span> 額外的佣金將在當月的第8-15日內，加入最終佣金。
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">6</span> 12BET保留在任何時候對全部或部分合作夥伴，取消該優惠活動的所有權利。本優惠活動同時遵守 12BET 合作夥伴條款及規則準則。
+                        <span class="list-number">6</span> 12BET保留在任何時候對全部或部分合作夥伴，取消該優惠活動的所有權利。本優惠活動同時遵守 <a href="@Url.Content("~/TermAndCondition")">12BET 合作夥伴條款及規則準則。</a>
                     </div>
                 </div>
             </div>

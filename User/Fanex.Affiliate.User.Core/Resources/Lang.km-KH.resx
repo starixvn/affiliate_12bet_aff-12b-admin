@@ -250,7 +250,7 @@
     <value>កំណត់ឡើងវិញ</value>
   </data>
   <data name="RevenueShare" xml:space="preserve">
-    <value>ការបែងចែកប្រាក់ចំណូល</value>
+    <value>បែងចែងប្រាក់ចំណូល</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>ផលិតផលទាំងអស់</value>
@@ -268,7 +268,7 @@
     <value>សមាជិកដែលមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់</value>
   </data>
   <data name="Comm" xml:space="preserve">
-    <value>អត្រាកំរៃជើងសារ</value>
+    <value>កម្រៃជើងសារ</value>
   </data>
   <data name="_12Sports" xml:space="preserve">
     <value>12SPORTS</value>
@@ -1963,19 +1963,19 @@
     <value>ប្រូម៉ូសិននេះត្រូវបានផុតកំណត់ សូមរង់ចាំប្រូម៉ូសិនថ្មីៗដែលនឹងមកដល់ក្នុងពេលឆាប់ៗនេះ។</value>
   </data>
   <data name="ByInvitationOnly" xml:space="preserve">
-    <value>តាមការអញ្ជើញតែប៉ុណ្ណោះ</value>
+    <value>តាមរយះការអញ្ជើញតែប៉ុណ្ណោះ</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - លើសពី</value>
+    <value>250,001 - លើស</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>50% ថេរ</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>សមាជិកដាក់ប្រាក់ថ្មី</value>
+    <value>សមាជិកថ្មីដាក់ប្រាក់ដំបូង</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
-    <value>15,000 &amp; លើសពីនេះ</value>
+    <value>15,000 &amp; លើស</value>
   </data>
   <data name="FiveToEleven" xml:space="preserve">
     <value>5 - 11</value>
@@ -1987,16 +1987,16 @@
     <value>25 - 39</value>
   </data>
   <data name="AboveFourty" xml:space="preserve">
-    <value>40 &amp; លើសពីនេះ</value>
+    <value>40 &amp; លើស</value>
   </data>
   <data name="TotalFdmDeposit" xml:space="preserve">
-    <value>ការដាក់ប្រាក់សរុបរបស់សមាជិកថ្មី ($)</value>
+    <value>ចំនួនទឹកប្រាស់សរុបសំរាប់សមាជិកថ្មីដាក់ប្រាក់ ($)</value>
   </data>
   <data name="ExtraComm" xml:space="preserve">
-    <value>បន្ថែមកំរៃជើងសារ</value>
+    <value>កម្រៃជើងសារបន្ថែមជូន</value>
   </data>
   <data name="MaxExtraComm" xml:space="preserve">
-    <value>បន្ថែមកំរៃជើងសារធំបំផុត ($)</value>
+    <value>កម្រៃជើងសារបន្ថែមជូនធំបំផុត​ ($)</value>
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
@@ -2153,6 +2153,12 @@
   </data>
   <data name="Keno" xml:space="preserve">
     <value>គីណូ</value>
+  </data>
+  <data name="CompanyProfitForTheMonth" xml:space="preserve">
+    <value>ប្រាក់ចំណេញរបស់ក្រុមហ៊ុនប្រចាំខែ ($)</value>
+  </data>
+  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
+    <value>សមាជិកសកម្ម/ខែ</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ជំនួយភាសាជប៉ុន</value>

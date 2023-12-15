@@ -1250,6 +1250,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to COMPANY PROFIT FOR THE MONTH ($).
+        /// </summary>
+        public static string CompanyProfitForTheMonth {
+            get {
+                return ResourceManager.GetString("CompanyProfitForTheMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Completed Date.
         /// </summary>
         public static string CompletedDate {
@@ -4617,6 +4626,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string QualifiedActiveMembers {
             get {
                 return ResourceManager.GetString("QualifiedActiveMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QUALIFIED ACTIVE MEMBERS/ MONTH.
+        /// </summary>
+        public static string QualifiedActiveMembersMonth {
+            get {
+                return ResourceManager.GetString("QualifiedActiveMembersMonth", resourceCulture);
             }
         }
         

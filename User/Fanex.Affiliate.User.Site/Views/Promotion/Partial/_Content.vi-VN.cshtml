@@ -14,63 +14,7 @@
     </div>
 </div>
 
-<div class="block block-table">
-    <div class="page-container">
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="20%">Chia Sẻ Doanh Thu</th>
-                        <th width="8%">Hạng</th>
-                        <th width="20%">Lợi nhuận của Đại Lý trong tháng ($)</th>
-                        <th width="20%">Thành viên hoạt động đủ điều kiện/ Tháng</th>
-                        <th width="20%">Hoa hồng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="6" class="text-center">
-                            <p>Tất cả sản phẩm</p>
-                        </td>
-                        <td class="text-center">1</td>
-                        <td class="text-center">$1 - $3,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">30%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">2</td>
-                        <td class="text-center">$3,001 - $45,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">35%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">3</td>
-                        <td class="text-center">$45,001 - $200,000</td>
-                        <td class="text-center">≥ 10</td>
-                        <td class="text-center">40%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">4</td>
-                        <td class="text-center">$200,001 - $250,000</td>
-                        <td class="text-center">≥ 20</td>
-                        <td class="text-center">45%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">5</td>
-                        <td class="text-center">$250,001 - Trở lên</td>
-                        <td class="text-center">≥ 50</td>
-                        <td class="text-center">50%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">6</td>
-                        <td colspan="2" class="text-center">Chỉ các đại lý được mời</td>
-                        <td class="text-center">50% cố định</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+@{ Html.RenderPartial("~/Views/Promotion/Partial/_CommissionBoostTable.cshtml"); }
 
 <div class="block block-note">
     <div class="page-container">
@@ -106,44 +50,7 @@
                 Tại 12BET, phần thưởng thêm luôn được đảm bảo. Bạn chỉ cần đáp ứng đủ các yêu cầu về thành viên nạp lần đầu được nêu ra và sẽ nhận được một khoản hoa hồng bổ sung ngoài hoa hồng của bạn.
             </div>
         </div>
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="22%">THÀNH VIÊN NẠP LẦN ĐẦU</th>
-                        <th width="26%">TỔNG TIỀN NẠP TỪ THÀNH VIÊN NẠP LẦN ĐẦU ($)</th>
-                        <th width="26%">THƯỞNG THÊM HOA HỒNG</th>
-                        <th width="26%">TỐI ĐA THƯỞNG THÊM ($)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center">5 to 11</td>
-                        <td class="text-center">$2,200 - $4,499</td>
-                        <td class="text-center">3%</td>
-                        <td class="text-center">$250</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">12 to 24</td>
-                        <td class="text-center">$4,500 - $10,499</td>
-                        <td class="text-center">5%</td>
-                        <td class="text-center">$500</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">25 to 39</td>
-                        <td class="text-center">$10,500 - $14,999</td>
-                        <td class="text-center">8%</td>
-                        <td class="text-center">$1,200</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">40 & Above</td>
-                        <td class="text-center">15,000 & lớn hơn</td>
-                        <td class="text-center">12%</td>
-                        <td class="text-center">$2,000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_FDMsPowerTable.cshtml"); }
     </div>
 </div>
 
@@ -205,7 +112,7 @@
                         <span class="list-number">2</span> Nếu Đại lý liên kết đạt được các cấp độ khác nhau cho [tổng lợi nhuận ròng mỗi tháng] và [thành viên đủ điều kiện trong một tháng] thì khoản thanh toán hoa hồng sẽ dựa trên cấp độ thấp hơn.
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">3</span> Nếu Đại lý liên kết đạt được các cấp độ khác nhau cho [tổng lợi nhuận ròng mỗi tháng] và [thành viên đủ điều kiện trong một tháng] thì khoản thanh toán hoa hồng sẽ dựa trên cấp độ thấp hơn.
+                        <span class="list-number">3</span> Những Đại lý không đủ điều kiện của chương trình khuyến mãi này vẫn tiếp tục kiếm được hoa hồng dựa trên <a href="@Url.Content("~/CommissionStructure")">cấu trúc hoa hồng thông thường</a> hiện có.
                     </div>
                     <div class="anwser-text">
                         <span class="list-number">4</span> Chỉ cần giới thiệu - Nếu bạn tin rằng mình có một đề xuất để gia tăng lợi nhuận ròng (chẳng hạn như thu hút các thành viên VIP), bạn có thể liên hệ với đội quản lý Đại lý để đánh giá đề xuất và xác định tính đủ điều kiện của đề xuất.
@@ -220,7 +127,7 @@
                         <span class="list-number">7</span> Hoa hồng bổ sung sẽ được cộng vào khoản hoa hồng cuối cùng trong khoảng ngày 08 - 15 mỗi tháng.
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">8</span> 12BET có quyền hủy khuyến mãi này bất cứ lúc nào, đối với tất cả các Đại lý hoặc các chi nhánh riêng lẻ và tuân theo Điều khoản và Điều kiện Đại lý của 12BET.
+                        <span class="list-number">8</span> 12BET có quyền hủy khuyến mãi này bất cứ lúc nào, đối với tất cả các Đại lý hoặc các chi nhánh riêng lẻ và tuân theo <a href="@Url.Content("~/TermAndCondition")">Điều khoản và Điều kiện Đại lý của 12BET.</a>
                     </div>
                 </div>
             </div>
@@ -248,7 +155,7 @@
                         <span class="list-number">5</span> Hoa hồng bổ sung sẽ được cộng vào khoản hoa hồng cuối cùng trong khoảng ngày 08 - 15 mỗi tháng.
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">6</span> 12BET có quyền hủy khuyến mãi này bất cứ lúc nào, đối với tất cả các Đại lý hoặc các chi nhánh riêng lẻ và tuân theo Điều khoản và Điều kiện Đại lý của 12BET.
+                        <span class="list-number">6</span> 12BET có quyền hủy khuyến mãi này bất cứ lúc nào, đối với tất cả các Đại lý hoặc các chi nhánh riêng lẻ và tuân theo <a href="@Url.Content("~/TermAndCondition")">Điều khoản và Điều kiện Đại lý của 12BET.</a>
                     </div>
                 </div>
             </div>

@@ -2053,7 +2053,7 @@
     <value>พันธมิตรที่ได้รับการเชิญชวนเท่านั้น</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 ขึ้นไป</value>
+    <value>250,001 - ขึ้นไป</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>คอมมิชชั่นเริ่มต้น 50%</value>
@@ -2062,7 +2062,7 @@
     <value>ฝากแรก</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
-    <value>15,000 &amp; ขึ้นไป</value>
+    <value>15,000 ขึ้นไป</value>
   </data>
   <data name="FiveToEleven" xml:space="preserve">
     <value>5 - 11</value>
@@ -2074,10 +2074,10 @@
     <value>25 - 39</value>
   </data>
   <data name="AboveFourty" xml:space="preserve">
-    <value>40  ขึ้นไป</value>
+    <value>40 ขึ้นไป</value>
   </data>
   <data name="TotalFdmDeposit" xml:space="preserve">
-    <value>จำนวนเงินฝากทั้งหมด ($)</value>
+    <value>ยอดฝากรวมทั้งหมด ($)</value>
   </data>
   <data name="ExtraComm" xml:space="preserve">
     <value>ค่าคอมมิชชั่นพิเศษ</value>
@@ -2234,6 +2234,12 @@
   </data>
   <data name="Keno" xml:space="preserve">
     <value>คีโน</value>
+  </data>
+  <data name="CompanyProfitForTheMonth" xml:space="preserve">
+    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลลาร์ฯ)</value>
+  </data>
+  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
+    <value>ผู้เล่นที่เข้าเกณฑ์</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ทีมงานภาษาญีปุ่น</value>

@@ -14,63 +14,7 @@
     </div>
 </div>
 
-<div class="block block-table">
-    <div class="page-container">
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="20%">Pembagian Hasil</th>
-                        <th width="8%">Level</th>
-                        <th width="20%">Pendapatan Bersih Dalam Sebulan ($)</th>
-                        <th width="20%">Member Aktif Per Bulan</th>
-                        <th width="20%">Komisi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="6" class="text-center">
-                            <p>Semua Produk</p>
-                        </td>
-                        <td class="text-center">1</td>
-                        <td class="text-center">$1 - $3,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">30%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">2</td>
-                        <td class="text-center">$3,001 - $45,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">35%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">3</td>
-                        <td class="text-center">$45,001 - $200,000</td>
-                        <td class="text-center">≥ 10</td>
-                        <td class="text-center">40%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">4</td>
-                        <td class="text-center">$200,001 - $250,000</td>
-                        <td class="text-center">≥ 20</td>
-                        <td class="text-center">45%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">5</td>
-                        <td class="text-center">$250,001 - Above</td>
-                        <td class="text-center">≥ 50</td>
-                        <td class="text-center">50%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">6</td>
-                        <td colspan="2" class="text-center">Khusus Undangan</td>
-                        <td class="text-center">Flat 50%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+@{ Html.RenderPartial("~/Views/Promotion/Partial/_CommissionBoostTable.cshtml"); }
 
 <div class="block block-note">
     <div class="page-container">
@@ -106,44 +50,7 @@
                 Di 12BET, selalu tersedia hadiah ekstra! Cukup penuhi persyaratan member baru yang telah ditetapkan dan nikmati komisi extra pada komisi bulanan Anda.
             </div>
         </div>
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="22%">MEMBER BARU DEPOSIT</th>
-                        <th width="26%">TOTAL DEPOSIT ($)</th>
-                        <th width="26%">EKSTRA KOMISI</th>
-                        <th width="26%">MAKS. EXTRA KOMISI ($)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center">5 - 11</td>
-                        <td class="text-center">$2,200 - $4,499</td>
-                        <td class="text-center">3%</td>
-                        <td class="text-center">$250</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">12 - 24</td>
-                        <td class="text-center">$4,500 - $10,499</td>
-                        <td class="text-center">5%</td>
-                        <td class="text-center">$500</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">25 - 39</td>
-                        <td class="text-center">$10,500 - $14,999</td>
-                        <td class="text-center">8%</td>
-                        <td class="text-center">$1,200</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">40 & Lebih</td>
-                        <td class="text-center">$15,000 & Lebih</td>
-                        <td class="text-center">12%</td>
-                        <td class="text-center">$2,000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_FDMsPowerTable.cshtml"); }
     </div>
 </div>
 
@@ -205,7 +112,7 @@
                         <span class="list-number">2</span> Jika afiliasi mencapai batas yang berbeda untuk [total keuntungan per bulan] dan [pemain aktif yang memenuhi syarat selama sebulan], maka pembayaran komisi akan didasarkan pada batas yang lebih rendah.
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">3</span> Non-kualifikasi promosi ini akan terus mendapatkan komisi berdasarkan struktur komisi Reguler yang ada.
+                        <span class="list-number">3</span> Non-kualifikasi promosi ini akan terus mendapatkan komisi berdasarkan <a href="@Url.Content("~/CommissionStructure")">struktur komisi Reguler</a> yang ada.
                     </div>
                     <div class="anwser-text">
                         <span class="list-number">4</span> Khusus Undangan - Jika Anda yakin Anda memiliki posisi yang dapat menghasilkan Winloss yang signifikan (seperti menarik member VIP), Anda dapat menghubungi admin afiliasi untuk mengevaluasi posisi tersebut dan menentukan kelayakannya.
@@ -220,7 +127,7 @@
                         <span class="list-number">7</span> Ekstra komisi akan dikreditkan bersamaan dengan komisi akhir pada tanggal 08 - 15 di setiap bulannya.
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">8</span> 12BET berhak membatalkan promosi ini kapan saja baik untuk semua Afiliasi atau individual dan mengacu kepada Syarat dan Ketentuan Umum Afiliasi 12BET.
+                        <span class="list-number">8</span> 12BET berhak membatalkan promosi ini kapan saja baik untuk semua Afiliasi atau individual dan mengacu kepada <a href="@Url.Content("~/TermAndCondition")">Syarat dan Ketentuan Umum Afiliasi 12BET.</a>
                     </div>
                 </div>
             </div>
@@ -248,7 +155,7 @@
                         <span class="list-number">5</span> Ekstra komisi akan dikreditkan bersamaan dengan komisi akhir pada tanggal 08 - 15 di setiap bulannya.
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">6</span> 12BET berhak membatalkan promosi ini kapan saja baik untuk semua Afiliasi atau individual dan mengacu kepada Syarat dan Ketentuan Umum Afiliasi 12BET.
+                        <span class="list-number">6</span> 12BET berhak membatalkan promosi ini kapan saja baik untuk semua Afiliasi atau individual dan mengacu kepada <a href="@Url.Content("~/TermAndCondition")">Syarat dan Ketentuan Umum Afiliasi 12BET.</a>
                     </div>
                 </div>
             </div>

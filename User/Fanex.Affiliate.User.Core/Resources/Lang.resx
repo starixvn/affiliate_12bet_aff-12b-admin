@@ -2349,6 +2349,12 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Keno" xml:space="preserve">
     <value>Keno</value>
   </data>
+  <data name="CompanyProfitForTheMonth" xml:space="preserve">
+    <value>COMPANY PROFIT FOR THE MONTH ($)</value>
+  </data>
+  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
+    <value>QUALIFIED ACTIVE MEMBERS/ MONTH</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Japan Support</value>
   </data>

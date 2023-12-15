@@ -1419,7 +1419,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>12AMBER (BETSOFT)</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>Semua produk</value>
+    <value>Semua Produk</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
     <value>Info Lengkap mengenai Produk 12BET</value>
@@ -2053,7 +2053,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Khusus Undangan</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - Lebih</value>
+    <value>250,001 - Above</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
@@ -2083,7 +2083,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>EKSTRA KOMISI</value>
   </data>
   <data name="MaxExtraComm" xml:space="preserve">
-    <value>MAKS. EKSTRA KOMISI ($)</value>
+    <value>MAKS. EXTRA KOMISI ($)</value>
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
@@ -2225,6 +2225,13 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>KEUNTUNGAN BERSIH</value>
+  </data>
+
+  <data name="CompanyProfitForTheMonth" xml:space="preserve">
+    <value>Pendapatan Bersih Dalam Sebulan ($)</value>
+  </data>
+  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
+    <value>Member Aktif Per Bulan</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Jepang</value>

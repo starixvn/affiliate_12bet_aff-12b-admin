@@ -14,63 +14,7 @@
     </div>
 </div>
 
-<div class="block block-table">
-    <div class="page-container">
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="20%">បែងចែងប្រាក់ចំណូល</th>
-                        <th width="8%">ចំណាត់ថ្នាក់</th>
-                        <th width="20%">ប្រាក់ចំណេញរបស់ក្រុមហ៊ុនប្រចាំខែ ($)</th>
-                        <th width="20%">សមាជិកសកម្ម/ខែ</th>
-                        <th width="20%">កម្រៃជើងសារ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="6" class="text-center">
-                            <p>ផលិតផលទាំងអស់</p>
-                        </td>
-                        <td class="text-center">1</td>
-                        <td class="text-center">$1 - $3,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">30%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">2</td>
-                        <td class="text-center">$3,001 - $45,000</td>
-                        <td class="text-center">≥ 7</td>
-                        <td class="text-center">35%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">3</td>
-                        <td class="text-center">$45,001 - $200,000</td>
-                        <td class="text-center">≥ 10</td>
-                        <td class="text-center">40%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">4</td>
-                        <td class="text-center">$200,001 - $250,000</td>
-                        <td class="text-center">≥ 20</td>
-                        <td class="text-center">45%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">5</td>
-                        <td class="text-center">$250,001 - លើស</td>
-                        <td class="text-center">≥ 50</td>
-                        <td class="text-center">50%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">6</td>
-                        <td colspan="2" class="text-center">តាមរយះការអញ្ជើញតែប៉ុណ្ណោះ</td>
-                        <td class="text-center">50% ថេរ</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+@{ Html.RenderPartial("~/Views/Promotion/Partial/_CommissionBoostTable.cshtml"); }
 
 <div class="block block-note">
     <div class="page-container">
@@ -82,7 +26,7 @@
                 <div class="items">
                     <div class="items-number">01</div>
                     <div class="items-description">
-                        ប្រសិនបើភ្នាក់ងារទទួលបាននូវកម្រិតខុសគ្នាៗសម្រាប់ [ប្រាក់ចំណេញសរុបក្នុងមួយខែ] និង [មានសមាជិកដែលសកម្មសំរាប់មួយខែ] នោះការទូទាត់កម្រៃជើងសារនឹងផ្អែកលើកម្រិតទាប។ ជាឧទាហរណ៍ប្រសិនបើការចាញ់សរុបរបស់សមាជិកភ្នាក់ងារសម្រាប់ខែបច្ចុប្បន្ន $46,000 និងមានសមាជិកសកម្មចំនួន 7 នាក់ នោះកម្រៃជើងសារដែលទទួលបាននោះគឺ 35%។
+                        ប្រសិនបើភ្នាក់ងារទទួលបាននូវកម្រិតខុសគ្នាៗសម្រាប់ [ប្រាក់ចំណេញសរុបក្នុងមួយខែ] និង [មានសមាជិកដែលសកម្មសំរាប់មួយខែ] នោះការទូទាត់កម្រៃជើងសារនឹងផ្អែកលើកម្រិតទាប។ ជាឧទាហរណ៍ប្រសិនបើការចាញ់សរុបរបស់សមាជិកភ្នាក់ងារសម្រាប់ខែបច្ចុប្បន្ន $46,000 និងមានសមាជិកសកម្មចំនួន 7 នាក់ នោះកម្រៃជើងសារដែលទទួលបាននោះគឺ <span>35%</span>។
                     </div>
                 </div>
                 <div class="items">
@@ -107,44 +51,7 @@
                 សំរាប់ 12BET, ប្រាក់រង្វាន់បន្ថែមជូនសំរាប់សមាជិកថ្មីតែងតែមានជានិច្ច អ្វីដែលអ្នកត្រូវធ្វើនោះគឺបំពេញតាមលក្ខខណ្ឌដែលបានចែងអំពីសមាជិកដាក់ប្រាក់ដំបូង ដើម្បីទទួលបានកម្រៃជើងសារបន្ថែមពីលើកម្រៃជើងសារភ្នាក់ងារ។
             </div>
         </div>
-        <div class="table-custom table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th width="21%">សមាជិកថ្មីដាក់ប្រាក់ដំបូង</th>
-                        <th width="27%">ចំនួនទឹកប្រាស់សរុបសំរាប់សមាជិកថ្មីដាក់ប្រាក់ ($)</th>
-                        <th width="26%">កម្រៃជើងសារបន្ថែមជូន</th>
-                        <th width="26%">កម្រៃជើងសារបន្ថែមជូនធំបំផុត​ ($)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center">5 - 11</td>
-                        <td class="text-center">$2,200 - $4,499</td>
-                        <td class="text-center">3%</td>
-                        <td class="text-center">$250</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">12 - 24</td>
-                        <td class="text-center">$4,500 - $10,499</td>
-                        <td class="text-center">5%</td>
-                        <td class="text-center">$500</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">25 - 39</td>
-                        <td class="text-center">$10,500 - $14,999</td>
-                        <td class="text-center">8%</td>
-                        <td class="text-center">$1,200</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">40 & លើស</td>
-                        <td class="text-center">$15,000 & លើស</td>
-                        <td class="text-center">12%</td>
-                        <td class="text-center">$2,000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_FDMsPowerTable.cshtml"); }
     </div>
 </div>
 
@@ -206,7 +113,7 @@
                         <span class="list-number">2</span> ប្រសិនបើភ្នាក់ងារទទួលបាននូវកម្រិតខុសគ្នាៗសម្រាប់ [ប្រាក់ចំណេញសរុបក្នុងមួយខែ] និង [មានសមាជិកដែលសកម្មសំរាប់មួយខែ] នោះការទូទាត់កម្រៃជើងសារនឹងផ្អែកលើកម្រិតទាប។
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">3</span> សំរាប់ភ្នាក់ងារណាដែលមិនមានលក្ខណៈគ្រប់គ្រាន់ដើម្បីទទួលបានពីប្រូម៉ូសិនបន្ថែមជូននេះទេ សូមបន្តការផ្សព្វផ្សាយនិងស្វែងរកសមាជិកថ្មីៗដើម្បីទទួលបានកម្រៃជើងសារដែលមានស្រាប់។
+                        <span class="list-number">3</span> សំរាប់ភ្នាក់ងារណាដែលមិនមានលក្ខណៈគ្រប់គ្រាន់ដើម្បីទទួលបានពីប្រូម៉ូសិនបន្ថែមជូននេះទេ សូមបន្តការផ្សព្វផ្សាយនិងស្វែងរកសមាជិកថ្មីៗដើម្បីទទួលបាន<a href="@Url.Content("~/CommissionStructure")">កម្រៃជើងសារដែលមានស្រាប់</a>។
                     </div>
                     <div class="anwser-text">
                         <span class="list-number">4</span> តាមរយៈការអញ្ជើញតែប៉ុណ្ណោះ
@@ -222,7 +129,7 @@
                         <span class="list-number">7</span> កម្រៃជើងសារបន្ថែមនឹងត្រូវបានបញ្ចូលជូនជាមួយនិងកម្រៃជើងសារចុងក្រោយគេបំផុតពីថ្ងៃទី 08 - 15 នៃខែ។
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">8</span> 12BET សូមរក្សាសិទ្ធិក្នុងការលុបចោលការផ្តល់ជូនពិសេសនេះគ្រប់ពេលវេលាចំពោះភ្នាក់ងារទាំងអស់ ឬបុគ្គលស្រប់តាមលក្ខខណ្ឌរបស់ 12BET។
+                        <span class="list-number">8</span> 12BET សូមរក្សាសិទ្ធិក្នុងការលុបចោលការផ្តល់ជូនពិសេសនេះគ្រប់ពេលវេលាចំពោះភ្នាក់ងារទាំងអស់ ឬបុគ្គល<a href="@Url.Content("~/TermAndCondition")">ស្រប់តាមលក្ខខណ្ឌរបស់ 12BET</a>។
                     </div>
                 </div>
             </div>
@@ -250,7 +157,7 @@
                         <span class="list-number">5</span> កម្រៃជើងសារបន្ថែមនឹងត្រូវបានបញ្ចូលជូនជាមួយនិងកម្រៃជើងសារចុងក្រោយគេបំផុតពីថ្ងៃទី 08 - 15 នៃខែ។
                     </div>
                     <div class="anwser-text">
-                        <span class="list-number">6</span> 12BET សូមរក្សាសិទ្ធិក្នុងការលុបចោលការផ្តល់ជូនពិសេសនេះគ្រប់ពេលវេលាចំពោះភ្នាក់ងារទាំងអស់ ឬបុគ្គលស្រប់តាមលក្ខខណ្ឌរបស់ 12BET។
+                        <span class="list-number">6</span> 12BET សូមរក្សាសិទ្ធិក្នុងការលុបចោលការផ្តល់ជូនពិសេសនេះគ្រប់ពេលវេលាចំពោះភ្នាក់ងារទាំងអស់ ឬបុគ្គល<a href="@Url.Content("~/TermAndCondition")">ស្រប់តាមលក្ខខណ្ឌរបស់ 12BET</a>។
                     </div>
                 </div>
             </div>

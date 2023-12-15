@@ -2058,7 +2058,7 @@
     <value>仅限邀请</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - Above</value>
+    <value>250,000 以上</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>统一50%</value>
@@ -2079,7 +2079,7 @@
     <value>25名至39名</value>
   </data>
   <data name="AboveFourty" xml:space="preserve">
-    <value>40名以上</value>
+    <value>40名及以上</value>
   </data>
   <data name="TotalFdmDeposit" xml:space="preserve">
     <value>首次存款新会员总存款金额 ($)</value>
@@ -2242,6 +2242,12 @@
   </data>
   <data name="Keno" xml:space="preserve">
     <value>快乐彩</value>
+  </data>
+  <data name="CompanyProfitForTheMonth" xml:space="preserve">
+    <value>每月公司盈利 ($)</value>
+  </data>
+  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
+    <value>每月符合资格的活跃会员</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>日本客服</value>
