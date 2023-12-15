@@ -25,6 +25,10 @@
     }
 }
 .block-form {
+    @include Tablet {
+        padding: 40px 0;
+    }
+
     &:nth-child(odd) {
         .group-faq {
             .question {
@@ -39,6 +43,9 @@
 
     &:nth-child(even) {
         background: #F6F6F6;
+        .form-input{
+            background-color : #fff;
+        }
     }
 }
 
@@ -52,7 +59,12 @@
     font-size: 20px;
     font-weight: 500;
     line-height: normal;
-    margin-bottom : 40px;
+    margin-bottom: 40px;
+
+    @include Mobile {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
 }
 .group-faq{
     .question{
@@ -66,4 +78,46 @@
 
 .group-form{
     margin-top : 40px;
+    @include Mobile{
+        margin-top : 16px;
+    }
+}
+
+.form-input {
+    &::placeholder {
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+}
+
+.form-area {
+    resize: block;
+
+    &::placeholder {
+        text-transform: capitalize;
+        font-weight: 600;
+    }
+}
+
+.captcha-group{
+    display : flex;
+    align-items :center;
+    gap : 12px;
+}
+.group-custom-width{
+    max-width : 580px;
+}
+
+.form-text {
+    color: #353E5B;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+    margin-bottom : 24px;
+    @include Mobile{
+        font-size : 16px;
+    }
+}
+.group-button{
+    max-width : 580px;
 }

@@ -67,10 +67,18 @@
             grid-template-columns: repeat(1, 1fr);
             margin: 0 auto;
             max-width: 600px;
+
+            .contact-info {
+                @include Mobile {
+                    width: 100%;
+                    max-width: 140px;
+                    margin: 0 auto;
+                }
+            }
         }
 
         @include Mobile {
-            margin: 0 25px !important;
+            margin: 0 40px !important;
             border-radius: 8px;
         }
 
@@ -211,7 +219,6 @@
     #mainContent {
         @include Mobile {
             margin: 0 25px;
-            padding: 0 10px;
         }
     }
 }
