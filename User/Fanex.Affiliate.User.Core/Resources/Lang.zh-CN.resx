@@ -2249,6 +2249,9 @@
   <data name="QualifiedActiveMembersMonth" xml:space="preserve">
     <value>每月符合资格的活跃会员</value>
   </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>合作伙伴根据佣金结构表赚取净收入的分成。</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>日本客服</value>
   </data>

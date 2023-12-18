@@ -2355,6 +2355,9 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="QualifiedActiveMembersMonth" xml:space="preserve">
     <value>QUALIFIED ACTIVE MEMBERS/ MONTH</value>
   </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>Affiliate earns revenue share of Net profit based on Commission Structure Table.</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Japan Support</value>
   </data>

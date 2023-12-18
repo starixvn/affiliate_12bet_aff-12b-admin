@@ -2160,6 +2160,9 @@
   <data name="QualifiedActiveMembersMonth" xml:space="preserve">
     <value>សមាជិកសកម្ម/ខែ</value>
   </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>ភ្នាក់ងារនិងទទួលបានចំណែកនៃប្រាក់ចំណេញសុទ្ធ ដោយផ្អែកតាមតារាងរចនាសម្ព័ន្ធនៃភ្នាក់ងារ។</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ជំនួយភាសាជប៉ុន</value>
   </data>

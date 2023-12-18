@@ -2229,6 +2229,9 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="QualifiedActiveMembersMonth" xml:space="preserve">
     <value>Thành viên hoạt động đủ điều kiện/ Tháng</value>
   </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>Đại Lý kiếm được phần doanh thu từ lợi nhuận ròng dựa trên Bảng Cơ Cấu Hoa Hồng.</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Tài khoản Skype</value>
   </data>

@@ -269,6 +269,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Affiliate earns revenue share of Net profit based on Commission Structure Table..
+        /// </summary>
+        public static string AffiliateEarnsRevenueShare {
+            get {
+                return ResourceManager.GetString("AffiliateEarnsRevenueShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate ID.
         /// </summary>
         public static string AffiliateID {

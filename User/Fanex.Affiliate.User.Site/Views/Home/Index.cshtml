@@ -9,10 +9,7 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.HomeViewModel
 
-@using Fanex.Affiliate.User.Core.Constants
-
 @{
-    var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(Model.Language);
     var bannerSrc = Url.Content($"~/www/build/styles/Images/home/top-banner/item1/desktop.{Model.Language}");
     var mobileBannerSrc = Url.Content($"~/www/build/styles/Images/home/top-banner/item1/mobile.{Model.Language}");
 }
@@ -48,9 +45,9 @@
         <div class="swiper-pagination"></div>
     </div>
 
-    @Html.RenderPartialByLanguage("~/Views/Home/Partial/_Content", Model.Language, shortedLangCode)
+    @Html.RenderPartialByLanguage("~/Views/Home/Partial/_Content", Model.Language, Model)
     @RazorHelper.RenderMovingTopButton()
 </div>
 
-<input type="hidden" id="shortedLangCode" value="@shortedLangCode" />
+<input type="hidden" id="shortedLangCode" value="@Model.ShortedLanguageCode" />
 <input type="hidden" id="isCLickedBannerLink" value="0" />

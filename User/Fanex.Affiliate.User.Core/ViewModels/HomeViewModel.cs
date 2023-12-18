@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.User.Core.ViewModels
+﻿using Fanex.Affiliate.User.Core.Constants;
+
+namespace Fanex.Affiliate.User.Core.ViewModels
 {
     public class HomeViewModel
     {
@@ -13,5 +15,7 @@
         public string Promotion12BetLink { get; set; }
 
         public string Language { get; set; }
+
+        public string ShortedLanguageCode => SystemLanguage.GetShortedCodeForTracking(Language);
     }
 }

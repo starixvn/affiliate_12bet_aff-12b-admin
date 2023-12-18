@@ -2233,6 +2233,9 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="QualifiedActiveMembersMonth" xml:space="preserve">
     <value>Member Aktif Per Bulan</value>
   </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>Pembagian hasil Afiliasi dari keuntungan bersih berdasarkan Tabel Struktur Komisi.</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Jepang</value>
   </data>

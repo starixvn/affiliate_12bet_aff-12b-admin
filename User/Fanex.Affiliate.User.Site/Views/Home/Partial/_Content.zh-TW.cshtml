@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model Fanex.Affiliate.User.Core.ViewModels.HomeViewModel
 
 <div class="block block-why-become">
     <div class="page-container">
@@ -147,7 +147,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <a href="@Url.Content("~/Signup")" class="custom-button">立即加入</a>
+                <a href="@Url.Content(Model.SignUpLink)" class="custom-button">立即加入</a>
             </div>
         </div>
     </div>
@@ -177,7 +177,7 @@
             </svg>
             <span class="show-pc">的產品和供應商</span>
         </h2>
-        @{ Html.RenderPartial("~/Views/Home/Partial/_OurProductContentBlock.cshtml", Model); }
+        @{ Html.RenderPartial("~/Views/Home/Partial/_OurProductContentBlock.cshtml", Model.ShortedLanguageCode); }
     </div>
 </div>
 

@@ -2241,6 +2241,9 @@
   <data name="QualifiedActiveMembersMonth" xml:space="preserve">
     <value>ผู้เล่นที่เข้าเกณฑ์</value>
   </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>"พันธมิตรได้รับส่วนแบ่งรายได้ของกำไรสุทธิตามตารางโครงสร้างคอมมิชชั่น"</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ทีมงานภาษาญีปุ่น</value>
   </data>

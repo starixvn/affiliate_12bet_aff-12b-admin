@@ -2222,6 +2222,9 @@
   <data name="QualifiedActiveMembersMonth" xml:space="preserve">
     <value>자격을 갖춘 활동 회원/월</value>
   </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>제휴사는 수수료 구조표에 따라 순이익에서 수익을 얻습니다.</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>
