@@ -26,6 +26,17 @@ var WebSite = (function ($) {
             });
         },
 
+        reoderInputSignUpUrl: function (webSiteLabel) {
+            var index = 2;
+            $(".moreWebsiteLabel").each(function (i, item) {
+                var $item = $(item);
+                var labelText = webSiteLabel + ' ' + index + ' <span class="red-warn">*</span>';
+                $item.html(labelText);
+
+                index++;
+            });
+        },
+
         deleteWebsiteUrl: function ($currentItem) {
             var $container = $currentItem.closest(".websiteInput");
             $container.remove();
@@ -35,7 +46,7 @@ var WebSite = (function ($) {
             var currentItemCount = $("#websiteInfo .urlInput").length + 2;
             var name = "MoreUrlInput" + currentItemCount;
             var inputItem = '<div class="form-group websiteInput">' +
-                    '<label class="col-sm-3 control-label require moreWebsiteLabel">' + webSiteLabel + ' ' + currentItemCount + '</label>' +
+                '<label class="col-sm-3 control-label require moreWebsiteLabel"></label>' +
                     '<div class="col-sm-4">' +
                         '<input class="form-control urlInput" type="text" name="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
                     '</div>' +
@@ -49,19 +60,36 @@ var WebSite = (function ($) {
             _me.reoderInputUrl(webSiteLabel);
         },
 
-        handleAddingUrl: function (lang) {
+        buildUrlSignUpInput: function (webSiteLabel, deleteLabel, errorMessage) {
+            var currentItemCount = $("#websiteInfo .urlInput").length + 2;
+            var name = "MoreUrlInput" + currentItemCount;
+            var inputItem =
+                '<div class="input-url websiteInput">' +
+                    '<label class="custom-label moreWebsiteLabel"></label>' +
+                    '<div class="group-input">' +
+                        '<input class="form-input urlInput" type="text" name="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
+                        '<span class="button-toggle button-toggle-close btnDeleteUrl" title="' + deleteLabel + '"></span>' +
+                    '</div>' +
+                    '<span class="field-validation-valid validate-input help-block hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
+                '</div>';
+
+            $("#websiteInfo").append(inputItem);
+            _me.reoderInputSignUpUrl(webSiteLabel);
+        },
+
+        handleAddingUrl: function (lang, isSignUp) {
             var hasWebSite = _me.hasWebSite();
             var isValid = _me.validateWebSiteGroup();
 
             if (hasWebSite && isValid) {
-                _me.addMoreUrl(lang);
+                _me.addMoreUrl(lang, isSignUp);
             }
         },
 
-        addMoreUrl: function (lang) {
+        addMoreUrl: function (lang, isSignUp) {
             var currentItemCount = $("#websiteInfo .urlInput").length + 2;
             var errorMessage = lang.requiredMoreWebSiteUrl.replace("{i}", currentItemCount);
-            _me.buildUrlInput(lang.webSiteUrl, lang.deleteLabel, errorMessage);
+            isSignUp ? _me.buildUrlSignUpInput(lang.webSiteUrl, lang.deleteLabel, errorMessage) : _me.buildUrlInput(lang.webSiteUrl, lang.deleteLabel, errorMessage);
             setFocusForLastInput();
 
             _me.refreshFormValidation();
@@ -253,7 +281,7 @@ var SignUp = (function ($) {
                 deleteLabel: resourceLanguage.deleteLabel
             }
 
-            WebSite.handleAddingUrl(lang);
+            WebSite.handleAddingUrl(lang, true);
         },
 
         refreshCaptcha: function () {

@@ -208,7 +208,7 @@
                         </div>
                         <div class="group-form">
                             <div class="form-group form-columns form-columns-2">
-                                <div class="items">
+                                <div class="items" id="websiteInfo">
                                     <div class="radio-group spacing-bt">
                                         <label class="radio-button">
                                             <input type="radio" name="HasWebSite" value="True" checked id="hasWebSite" />
@@ -217,21 +217,24 @@
                                         </label>
                                     </div>
                                     <div class="input-url">
-                                        <label class="custom-label">Website URL 1 </label>
+                                        <label class="custom-label">@Lang.WebsiteURL <span class="red-warn">*</span></label>
                                         <div class="group-input">
-                                            @Html.TextBoxFor(p => p.SiteUrl, new { @class = "form-input", @placeholder = "Enter website URL" })
-                                            <span class="button-toggle button-toggle-open"></span>
+                                            @Html.TextBoxFor(p => p.SiteUrl, new { @class = "form-input" })
+                                            <span class="button-toggle button-toggle-open" id="btnAddUrl" title="@Lang.AddUrl"></span>
                                         </div>
                                         @Html.ValidationMessageFor(x => x.SiteUrl, string.Empty, new { @class = "validate-input help-block hide" })
                                     </div>
-                                    <div class="input-url">
-                                        <label class="custom-label">Website URL 2 </label>
+
+                                    <input type="hidden" name="MoreSiteUrls" id="MoreSiteUrls" />
+
+                                    @*<div class="input-url">
+                                        <label class="custom-label">@Lang.WebsiteURL 2 </label>
                                         <div class="group-input">
-                                            @Html.TextBoxFor(p => p.SiteUrl, new { @class = "form-input", @placeholder = "Enter website URL" })
+                                            @Html.TextBoxFor(p => p.SiteUrl, new { @class = "form-input", @placeholder = @Lang.WebsiteURL })
                                             <span class="button-toggle button-toggle-close"></span>
                                         </div>
-                                    </div>
-                                    
+                                    </div>*@
+
                                 </div>
                             </div>
                             <div class="form-group form-columns form-columns-2">
