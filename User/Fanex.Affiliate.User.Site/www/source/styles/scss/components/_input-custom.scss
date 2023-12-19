@@ -44,8 +44,8 @@
     cursor: not-allowed;
 }
 .validate-input {
-    margin-top: 8px;
-    color: #D90F0F;
+    margin-top: 8px !important;
+    color: #D90F0F !important;
     display: block;
     font-weight: 400;
     font-size: 14px;
@@ -286,6 +286,12 @@
     @include Mobile {
         font-size: 16px;
         max-width: 250px;
+    }
+}
+
+.has-error {
+    input, select {
+        border: 1px solid #D90F0F;
     }
 }
 
