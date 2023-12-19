@@ -397,6 +397,10 @@
     <Content Include="www\build\styles\css\commission-structure.min.css">
       <DependentUpon>commission-structure.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\forgot-password.css" />
+    <Content Include="www\build\styles\css\forgot-password.min.css">
+      <DependentUpon>forgot-password.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\fonts\montserrat\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
@@ -1318,6 +1322,7 @@
     <Content Include="www\source\styles\scss\components\_input-custom.scss" />
     <Content Include="Views\Promotion\Partial\_FDMsPowerTable.cshtml" />
     <Content Include="Views\Promotion\Partial\_CommissionBoostTable.cshtml" />
+    <Content Include="www\source\styles\pages\forgot-password.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

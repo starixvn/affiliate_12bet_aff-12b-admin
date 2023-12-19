@@ -4,11 +4,7 @@
 }
 
 @section styles {
-    <style>
-        .main{
-            min-height: calc(100vh - 282px)
-        }
-    </style>
+    @Html.InlineStyles("~/www/build/styles/css/forgot-password.css")
 }
 
 @section scripts{
@@ -22,28 +18,37 @@
 
     <div class="alert" role="alert" id="messageResult" style="display: none"></div>
     <div id="mainContent">
-        <p>@Html.Raw(Lang.TitelForgetPass.Replace("{0}", Url.Content("~/ContactUs")))</p>
-
-        <form id="forgotPasswordForm" class="form-horizontal" style="margin-top:30px;">
+        <form id="forgotPasswordForm" class="form">
             @Html.AntiForgeryToken()
-            <div class="form-group" id="emailInputGroup">
-                <label class="col-sm-2 control-label require">@Lang.YourEmail</label>
-                <div class="col-sm-4">
-                    <input class="form-control" name="Email" id="Email" type="text" autocomplete="off"
-                           data-val="true" data-val-email="@Lang.EmailAddressIsInvalid" data-val-required="@Lang.EmailAddressIsRequired" />
-                </div>
-                <div class="col-sm-offset-2 col-sm-10">
-                    <span class="field-validation-valid help-block hide" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+            <div class="block block-form">
+                <div class="page-container">
+                    <div class="group-text-warn group-faq">
+                        <p>@Html.Raw(Lang.TitelForgetPass.Replace("{0}", Url.Content("~/ContactUs")))</p>
+                    </div>
+
+                    <div class="group-faq">
+                        <div class="group-form" id="emailInputGroup">
+                            <div class="form-group form-columns form-columns-2">
+                                <div class="items">
+                                    <label class="custom-label">@Lang.YourEmail <span class="red-warn">*</span></label>
+                                    <input class="form-input" name="Email" id="Email" type="text" autocomplete="off" placeholder="@Lang.Email1"
+                                           data-val="true" data-val-email="@Lang.EmailAddressIsInvalid" data-val-required="@Lang.EmailAddressIsRequired" />
+                                    <span class="field-validation-valid validation-input help-block hide" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-faq">
+                        <div class="group-form group-custom-width">
+                            <div class="form-group group-button">
+                                <button class="custom-button" id="btnSubmit" type="submit">@Lang.Submit</button>
+                                <button class="custom-button" id="btnReset" type="button">@Lang.Reset</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label"></label>
-                <div class="col-sm-4">
-                    <button id="btnSubmit" class="btn btn-submit" type="submit">@Lang.Submit</button>
-                    <button id="btnReset" class="btn btn-submit" type="button">@Lang.Reset</button>
-                </div>
-            </div>
         </form>
     </div>
 </div>

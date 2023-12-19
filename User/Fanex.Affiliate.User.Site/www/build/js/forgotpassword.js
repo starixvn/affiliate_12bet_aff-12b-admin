@@ -31,7 +31,7 @@ var ForgotPassword = (function ($) {
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function success(response) {
-                        _me.handleResponseResult(response);
+                        _me.handleResponseResult('<div class="page-container">' + response + '</div>');
                     },
                     beforeSend: function beforeSend() {
                         Site.showLoader();

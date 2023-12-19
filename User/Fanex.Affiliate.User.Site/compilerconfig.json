@@ -150,5 +150,9 @@
   //{
   //  "outputFile": "www/build/styles/css/products.css",
   //  "inputFile": "www/source/styles/pages/products.scss"
+  //},
+  //{
+  //  "outputFile": "www/build/styles/css/forgot-password.css",
+  //  "inputFile": "www/source/styles/pages/forgot-password.scss"
   //}
 ]

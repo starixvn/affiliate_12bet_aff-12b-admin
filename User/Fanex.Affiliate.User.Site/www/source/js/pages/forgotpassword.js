@@ -29,7 +29,7 @@
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
-                        _me.handleResponseResult(response);
+                        _me.handleResponseResult('<div class="page-container">' + response + '</div>');
                     },
                     beforeSend: function () {
                         Site.showLoader();
