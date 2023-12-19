@@ -9,6 +9,7 @@
     var currentLanguage = sessionService.CurrentLanguage;
     var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
     var path = HttpContext.Current.Request.Path;
+    var isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated && sessionService.UserSession != null;
 }
 
 <!DOCTYPE html>
@@ -146,9 +147,12 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="logout-btn">
-                        <a href="#">logout</a>
-                    </div>
+                    @if (isLoggedIn)
+                    {
+                        <div class="logout-btn" id="btnLogoutMobile">
+                            <a href="#">logout</a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -210,7 +214,7 @@
     <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
     <input type="hidden" id="Language" value="@currentLanguage" />
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
-    <script src="https://cdn.ravenjs.com/3.27.0/raven.min.js" crossorigin="anonymous"></script>
+
     <script>
         window.Lang = {
             All: '@Lang.All',
@@ -223,12 +227,12 @@
     <script src="@Url.RenderLink("~/www/build/js/site.js")"></script>
     <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
 
-    @if (userSession != null)
+    @if (isLoggedIn)
     {
         <script src="@Url.RenderLink("~/www/build/js/pages/logout.js")"></script>
     }
 
-    @if (!settingService.IsLocal && userSession != null)
+    @if (!settingService.IsLocal && isLoggedIn)
     {
         <script src="@Url.RenderLink("~/www/build/js/recheckin.js")"></script>
     }

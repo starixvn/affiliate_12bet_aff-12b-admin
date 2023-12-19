@@ -9,6 +9,10 @@ var Logout = (function ($) {
             $('#btnLogout').on('click', function (event) {
                 _me.handleShowFeedback();
             });
+
+            $('#btnLogoutMobile').on('click', function (event) {
+                _me.handleShowFeedback();
+            });
         },
 
         handleShowFeedback: function handleShowFeedback() {
@@ -18,7 +22,7 @@ var Logout = (function ($) {
                 dataType: "html",
                 cache: false,
                 success: function success(result) {
-                    $("#btnLogout").append('<div id="affFeedback">' + result + '</div>');
+                    $("#btnMyAccount").append('<div id="affFeedback">' + result + '</div>');
                 },
                 complete: function complete(jqXHR, textStatus) {
                     if (!$("#affFeedbackContainer").length) {

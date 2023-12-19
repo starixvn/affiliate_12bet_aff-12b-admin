@@ -7,6 +7,10 @@
             $('#btnLogout').on('click', function (event) {
                 _me.handleShowFeedback();
             })
+
+            $('#btnLogoutMobile').on('click', function (event) {
+                _me.handleShowFeedback();
+            })
         },
 
         handleShowFeedback: function () {
@@ -16,7 +20,7 @@
                 dataType: "html",
                 cache: false,
                 success: function (result) {
-                    $("#btnLogout").append(`<div id="affFeedback">${result}</div>`);
+                    $("#btnMyAccount").append(`<div id="affFeedback">${result}</div>`);
                 },
                 complete: function (jqXHR, textStatus) {
                     if (!($("#affFeedbackContainer").length)) {
