@@ -167,7 +167,7 @@
             </div>
         }
         <div class="col-sm-offset-3 col-sm-9">
-            <span class="field-validation-valid help-block hide"
+            <span class="field-validation-valid validate-input help-block hide"
                   data-valmsg-for="ContactAppList[0].Value" data-valmsg-replace="true"></span>
         </div>
         <input type="hidden" name="ContactAppList[0].Name" value="@firstAppName" />
@@ -185,7 +185,7 @@
                        data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
             </div>
             <div class="col-sm-offset-3 col-sm-9">
-                <span class="field-validation-valid help-block hide"
+                <span class="field-validation-valid validate-input help-block hide"
                       data-valmsg-for="ContactAppList[1].Value" data-valmsg-replace="true"></span>
             </div>
             <input type="hidden" name="ContactAppList[1].Name" value="@secondAppName" />
@@ -202,7 +202,7 @@
                            data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
                 </div>
                 <div class="col-sm-offset-3 col-sm-9">
-                    <span class="field-validation-valid help-block hide"
+                    <span class="field-validation-valid validate-input help-block hide"
                           data-valmsg-for="ContactAppList[2].Value" data-valmsg-replace="true"></span>
                 </div>
                 <input type="hidden" name="ContactAppList[2].Name" value="@thirdAppName" />
@@ -240,7 +240,7 @@
         <input type="text" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
                data-val="true" data-val-requiredifnullorempty-dependentprop="@dependentProp"
                data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
-        <span class="field-validation-valid validate-input help-block hide"
+        <span class="field-validation-valid validate-input validate-input hide"
               data-valmsg-for="ContactAppList[@index].Value" data-valmsg-replace="true"></span>
 
         <input type="hidden" name="ContactAppList[@index].Name" value="@name" />

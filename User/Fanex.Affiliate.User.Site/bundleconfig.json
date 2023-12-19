@@ -137,7 +137,7 @@
       "www/source/js/components/website.js",
       "www/source/js/pages/signup.js"
     ]
-  }
+  },
   //{
   //  "outputFileName": "www/build/js/member.js",
   //  "inputFiles": [
@@ -153,14 +153,14 @@
   //    "www/source/js/pages/myaccount.js"
   //  ]
   //},
-  //{
-  //  "outputFileName": "www/build/js/validation.js",
-  //  "inputFiles": [
-  //    "www/source/js/lib/jquery.validate.min.js",
-  //    "www/source/js/lib/jquery.validate.unobtrusive.min.js",
-  //    "www/source/js/components/validation.custom.js"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/js/validation.js",
+    "inputFiles": [
+      "www/source/js/lib/jquery.validate.min.js",
+      "www/source/js/lib/jquery.validate.unobtrusive.min.js",
+      "www/source/js/components/validation.custom.js"
+    ]
+  }
   //{
   //  "outputFileName": "www/build/styles/fonts/materialdesignicons/font.css",
   //  "inputFiles": [

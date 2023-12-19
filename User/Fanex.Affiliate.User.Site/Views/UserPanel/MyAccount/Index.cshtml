@@ -128,7 +128,7 @@
                             @Html.TextBoxFor(p => p.Phone, new { @class = "form-control", @Value = Model.Phone.ReplaceAHalfOfString(hasAffPersonalInfoPermission) })
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
-                            @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "help-block hide" })
+                            @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "validate-input help-block hide" })
                         </div>
                     </div>
                 }
@@ -172,7 +172,7 @@
                                 </div>
                             }
                             <div class="col-sm-offset-3 col-sm-9">
-                                <span class="field-validation-valid help-block hide"
+                                <span class="field-validation-valid validate-input help-block hide"
                                       data-valmsg-for="ContactAppList[@index].Value"
                                       data-valmsg-replace="true"></span>
                             </div>
@@ -230,7 +230,7 @@
                             </div>
 
                             <div class="col-sm-offset-3 col-sm-9">
-                                @Html.ValidationMessageFor(p => p.SiteUrl, string.Empty, new { @class = "help-block hide" })
+                                @Html.ValidationMessageFor(p => p.SiteUrl, string.Empty, new { @class = "validate-input help-block hide" })
                             </div>
                         </div>
 
@@ -255,7 +255,7 @@
                                         </button>
                                     </div>
                                     <div class="col-sm-offset-3 col-sm-9">
-                                        <span class="field-validation-valid help-block hide" data-valmsg-for="@name" data-valmsg-replace="true"></span>
+                                        <span class="field-validation-valid validate-input help-block hide" data-valmsg-for="@name" data-valmsg-replace="true"></span>
                                     </div>
                                 </div>
 
@@ -290,7 +290,7 @@
                             @Html.TextAreaFor(p => p.NoSiteDesc, textareaAttributes)
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
-                            @Html.ValidationMessageFor(p => p.NoSiteDesc, string.Empty, new { @class = "help-block hide" })
+                            @Html.ValidationMessageFor(p => p.NoSiteDesc, string.Empty, new { @class = "validate-input help-block hide" })
                         </div>
                     </div>
                 </div>
@@ -361,7 +361,7 @@
                             }
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
-                            <span class="field-validation-valid help-block hide" data-valmsg-for="PlayerUsername" data-valmsg-replace="true"></span>
+                            <span class="field-validation-valid validate-input help-block hide" data-valmsg-for="PlayerUsername" data-valmsg-replace="true"></span>
                         </div>
                     </div>
                 </div>

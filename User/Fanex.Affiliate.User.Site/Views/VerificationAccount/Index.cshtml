@@ -38,7 +38,7 @@
                     <label for="Email" class="col-sm-2 control-label require">@Lang.EmailVerification</label>
                     <div class="col-sm-4 col-lg-3">
                         <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.EmailIsRequired" id="Email" name="Email" />
-                        <span class="help-block field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" id="emailValidationMessage"></span>
+                        <span class="validate-input help-block field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" id="emailValidationMessage"></span>
                     </div>
                     <button type="button" class="btn btn-sendcode" id="btnSendCode">@Lang.SendCode</button>
                 </div>
@@ -53,7 +53,7 @@
                         <label for="Usename" class="col-sm-2 control-label require">@Lang.UsernameVerification</label>
                         <div class="col-sm-4 col-lg-3">
                             <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.UsernameIsRequired" id="Usename" name="Usename" />
-                            <span class="field-validation-valid help-block" data-valmsg-for="Usename" data-valmsg-replace="true"></span>
+                            <span class="field-validation-valid validate-input help-block" data-valmsg-for="Usename" data-valmsg-replace="true"></span>
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@
                         <label for="Password" class="col-sm-2 control-label require">@Lang.PasswordVerification</label>
                         <div class="col-sm-4 col-lg-3">
                             <input type="password" class="form-control" data-val="true" data-val-required="@Lang.PasswordIsRequired" id="Password" name="Password" autocomplete="off" />
-                            <span class="field-validation-valid help-block" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                            <span class="field-validation-valid validate-input help-block" data-valmsg-for="Password" data-valmsg-replace="true"></span>
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@
                         <label for="Code" class="col-sm-2 control-label require">@Lang.VerificationCode</label>
                         <div class="col-sm-4 col-lg-3">
                             <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.VerificationCodeIsRequired" id="Code" name="Code" />
-                            <span class="field-validation-valid help-block" data-valmsg-for="Code" data-valmsg-replace="true"></span>
+                            <span class="field-validation-valid validate-input help-block" data-valmsg-for="Code" data-valmsg-replace="true"></span>
                         </div>
                     </div>
 
@@ -77,7 +77,7 @@
                         <label for="Captcha" class="col-sm-2 control-label require">@Lang.Captcha</label>
                         <div class="col-sm-4 col-lg-3">
                             <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.CaptchaIsRequired" id="Captcha" name="Captcha" />
-                            <span class="field-validation-valid help-block" data-valmsg-for="Captcha" data-valmsg-replace="true"></span>
+                            <span class="field-validation-valid validate-input help-block" data-valmsg-for="Captcha" data-valmsg-replace="true"></span>
                         </div>
                         <div class="validation-value">
                             <img style="cursor:pointer" id="captchaVerificationAccount" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />

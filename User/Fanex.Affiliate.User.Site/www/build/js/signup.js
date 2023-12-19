@@ -53,7 +53,7 @@ var WebSite = (function ($) {
                     '<div class="col-sm-1">' +
                         '<button type="button" class="btn btn-submit btnDeleteUrl" title="' + deleteLabel + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>' +
                     '</div>' +
-                    '<div class="col-sm-offset-3 col-sm-9"><span class="field-validation-valid help-block hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
+                    '<div class="col-sm-offset-3 col-sm-9"><span class="field-validation-valid validate-input help-block hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
                 '</div>';
 
             $("#websiteInfo").append(inputItem);
@@ -70,7 +70,7 @@ var WebSite = (function ($) {
                         '<input class="form-input urlInput" type="text" name="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
                         '<span class="button-toggle button-toggle-close btnDeleteUrl" title="' + deleteLabel + '"></span>' +
                     '</div>' +
-                    '<span class="field-validation-valid validate-input help-block hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
+                    '<span class="field-validation-valid validate-input hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
                 '</div>';
 
             $("#websiteInfo").append(inputItem);
