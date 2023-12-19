@@ -376,11 +376,12 @@ input[type="checkbox"], input[type="radio"] {
       font-weight: 400;
       font-size: 24px;
       letter-spacing: 0.84px;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      margin-left: 16px; }
       @media screen and (max-width: 1024px) {
         .header-top .logo .logo-text {
           font-size: 12px;
-          margin-left: 6px; } }
+          margin-left: 12px; } }
     @media (max-width: 992px) {
       .header-top .logo {
         text-align: center; } }
@@ -502,14 +503,18 @@ input[type="checkbox"], input[type="radio"] {
         font-size: 16px;
         text-align: center;
         letter-spacing: 1.28px; } }
-    .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus, .header-bottom .menu .menu-item.active {
+    .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus {
       color: #808080 !important;
       background: #000 !important;
       transition: none !important; }
       @media screen and (max-width: 1024px) {
-        .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus, .header-bottom .menu .menu-item.active {
+        .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus {
           color: #fff !important;
           border-radius: 24px; } }
+    .header-bottom .menu .menu-item.active {
+      color: #fff !important;
+      background: #000 !important;
+      transition: none !important; }
 
 .header-bottom .logout-btn {
   display: none; }
