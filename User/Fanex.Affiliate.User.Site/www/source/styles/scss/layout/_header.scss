@@ -50,10 +50,6 @@
             margin-left: 0;
         }
 
-        a {
-            text-decoration: none;
-        }
-
         img {
             @include Tablet {
                 width: 137px;
@@ -99,7 +95,6 @@
                 color: #fff;
                 display: block;
                 font-size: 13px;
-                text-decoration: none;
                 padding: 2rem;
             }
 
@@ -107,7 +102,6 @@
                 a {
                     color: #fff;
                     transition: color 0.5s ease;
-                    background: transparent;
                 }
             }
         }
@@ -278,7 +272,6 @@
                 font-weight: 700;
                 line-height: normal;
                 text-transform: uppercase;
-                text-decoration: none;
                 border-radius: 100px;
                 border: 1px solid #FFF;
                 display: inline-block;
@@ -295,7 +288,6 @@
             line-height: 30px;
             display: block;
             font-weight: 400;
-            text-decoration: none;
             border-radius: 5px 5px 0 0;
             padding: 0 20px;
 
@@ -491,13 +483,7 @@
             margin-left: 4px;
         }
 
-        &:hover {
-            text-decoration: none;
-        }
-
         &:focus, &:active {
-            outline: none;
-
             & + .language-list-wrapper {
                 display: block;
             }
@@ -604,7 +590,7 @@
 
                 &:hover {
                     color: #262626;
-                    text-decoration: none;
+                    /*text-decoration: none;*/
                     background: #e4dede;
                 }
             }

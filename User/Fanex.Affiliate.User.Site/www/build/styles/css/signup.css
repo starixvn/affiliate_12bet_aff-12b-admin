@@ -36,8 +36,8 @@
   cursor: not-allowed; }
 
 .validate-input {
-  margin-top: 8px !important;
-  color: #D90F0F !important;
+  margin-top: 8px;
+  color: #D90F0F;
   display: block;
   font-weight: 400;
   font-size: 14px;
@@ -392,9 +392,6 @@
 
 .chk-agree {
   padding-left: 15px; }
-
-.help-block {
-  margin-top: 0; }
 
 #websiteInfo .btn-submit {
   font-size: 10px;

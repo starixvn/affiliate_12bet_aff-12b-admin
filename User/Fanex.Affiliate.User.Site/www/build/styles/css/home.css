@@ -951,8 +951,7 @@ button.swiper-pagination-bullet {
       text-align: center; }
       .block-our-product .wrapper-block .items .wrapper-item {
         margin: 0 auto;
-        display: inline-block;
-        text-decoration: none; }
+        display: inline-block; }
         .block-our-product .wrapper-block .items .wrapper-item img {
           width: 159px;
           height: 116px;

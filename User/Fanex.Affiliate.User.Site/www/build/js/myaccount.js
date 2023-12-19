@@ -26,6 +26,17 @@ var WebSite = (function ($) {
             });
         },
 
+        reoderInputSignUpUrl: function (webSiteLabel) {
+            var index = 2;
+            $(".moreWebsiteLabel").each(function (i, item) {
+                var $item = $(item);
+                var labelText = webSiteLabel + ' ' + index + ' <span class="red-warn">*</span>';
+                $item.html(labelText);
+
+                index++;
+            });
+        },
+
         deleteWebsiteUrl: function ($currentItem) {
             var $container = $currentItem.closest(".websiteInput");
             $container.remove();
@@ -35,14 +46,14 @@ var WebSite = (function ($) {
             var currentItemCount = $("#websiteInfo .urlInput").length + 2;
             var name = "MoreUrlInput" + currentItemCount;
             var inputItem = '<div class="form-group websiteInput">' +
-                    '<label class="col-sm-3 control-label require moreWebsiteLabel">' + webSiteLabel + ' ' + currentItemCount + '</label>' +
+                '<label class="col-sm-3 control-label require moreWebsiteLabel"></label>' +
                     '<div class="col-sm-4">' +
                         '<input class="form-control urlInput" type="text" name="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
                     '</div>' +
                     '<div class="col-sm-1">' +
                         '<button type="button" class="btn btn-submit btnDeleteUrl" title="' + deleteLabel + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>' +
                     '</div>' +
-                    '<div class="col-sm-offset-3 col-sm-9"><span class="field-validation-valid help-block hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
+                    '<div class="col-sm-offset-3 col-sm-9"><span class="field-validation-valid validate-input help-block hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
                 '</div>';
 
             $("#websiteInfo").append(inputItem);
@@ -54,16 +65,16 @@ var WebSite = (function ($) {
             var name = "MoreUrlInput" + currentItemCount;
             var inputItem =
                 '<div class="input-url websiteInput">' +
-                    '<label class="custom-label moreWebsiteLabel">' + webSiteLabel + ' ' + currentItemCount + '<span class="red-warn">*</span></label>' +
+                    '<label class="custom-label moreWebsiteLabel"></label>' +
                     '<div class="group-input">' +
                         '<input class="form-input urlInput" type="text" name="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
+                        '<span class="button-toggle button-toggle-close btnDeleteUrl" title="' + deleteLabel + '"></span>' +
                     '</div>' +
-                    '<span class="button-toggle button-toggle-close" title="' + deleteLabel + '"></span>' +
-                    '<span class="field-validation-valid validate-input help-block hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
+                    '<span class="field-validation-valid validate-input hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
                 '</div>';
 
             $("#websiteInfo").append(inputItem);
-            _me.reoderInputUrl(webSiteLabel);
+            _me.reoderInputSignUpUrl(webSiteLabel);
         },
 
         handleAddingUrl: function (lang, isSignUp) {

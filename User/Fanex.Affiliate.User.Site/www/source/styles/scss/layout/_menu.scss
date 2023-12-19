@@ -22,9 +22,6 @@
             transition: all .2s ease;
 
             &:hover, &:focus {
-                text-decoration: none;
-                outline: none;
-
                 & + .submenu-container {
                     display: block;
                 }

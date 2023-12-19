@@ -67,11 +67,11 @@ body {
   margin: 0; }
 
 a {
-  background: transparent; }
-  a:focus {
-    outline: thin dotted; }
-  a:hover, a:active {
-    outline: 0; }
+  background: transparent;
+  text-decoration: none; }
+  a:hover, a:active, a:focus {
+    outline: none;
+    text-decoration: none; }
 
 h1 {
   font-size: 2em;
@@ -366,8 +366,6 @@ input[type="checkbox"], input[type="radio"] {
     @media (max-width: 500px) {
       .header-top .logo {
         margin-left: 0; } }
-    .header-top .logo a {
-      text-decoration: none; }
     @media screen and (max-width: 1024px) {
       .header-top .logo img {
         width: 137px; } }
@@ -405,12 +403,10 @@ input[type="checkbox"], input[type="radio"] {
       color: #fff;
       display: block;
       font-size: 13px;
-      text-decoration: none;
       padding: 2rem; }
     .navbar ul li:hover a, .navbar ul li:focus a, .navbar ul li:visited a {
       color: #fff;
-      transition: color 0.5s ease;
-      background: transparent; }
+      transition: color 0.5s ease; }
   .navbar .nav > li > a:focus {
     background: transparent;
     color: #fe2400;
@@ -531,7 +527,6 @@ input[type="checkbox"], input[type="radio"] {
         font-weight: 700;
         line-height: normal;
         text-transform: uppercase;
-        text-decoration: none;
         border-radius: 100px;
         border: 1px solid #FFF;
         display: inline-block;
@@ -541,7 +536,6 @@ input[type="checkbox"], input[type="radio"] {
   line-height: 30px;
   display: block;
   font-weight: 400;
-  text-decoration: none;
   border-radius: 5px 5px 0 0;
   padding: 0 20px; }
   .after-login .tab-menu .menu-item.active, .after-login .tab-menu .menu-item:hover, .after-login #mainMenu .menu-item.active, .after-login #mainMenu .menu-item:hover {
@@ -674,12 +668,8 @@ input[type="checkbox"], input[type="radio"] {
       .language-container #selectedLanguage {
         padding: 0;
         margin-left: 4px; } }
-    .language-container #selectedLanguage:hover {
-      text-decoration: none; }
-    .language-container #selectedLanguage:focus, .language-container #selectedLanguage:active {
-      outline: none; }
-      .language-container #selectedLanguage:focus + .language-list-wrapper, .language-container #selectedLanguage:active + .language-list-wrapper {
-        display: block; }
+    .language-container #selectedLanguage:focus + .language-list-wrapper, .language-container #selectedLanguage:active + .language-list-wrapper {
+      display: block; }
     .language-container #selectedLanguage + .language-list-wrapper {
       display: none; }
       .language-container #selectedLanguage + .language-list-wrapper:hover, .language-container #selectedLanguage + .language-list-wrapper:focus {
@@ -748,7 +738,7 @@ input[type="checkbox"], input[type="radio"] {
           border-radius: 100px; }
         .language-container .language-list-wrapper .language-list .language-item:hover {
           color: #262626;
-          text-decoration: none;
+          /*text-decoration: none;*/
           background: #e4dede; }
 
 .user-login {
@@ -823,11 +813,8 @@ input[type="checkbox"], input[type="radio"] {
     color: #fff;
     text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
     transition: all .2s ease; }
-    .content-menu .menu .menu-item:hover, .content-menu .menu .menu-item:focus {
-      text-decoration: none;
-      outline: none; }
-      .content-menu .menu .menu-item:hover + .submenu-container, .content-menu .menu .menu-item:focus + .submenu-container {
-        display: block; }
+    .content-menu .menu .menu-item:hover + .submenu-container, .content-menu .menu .menu-item:focus + .submenu-container {
+      display: block; }
     .content-menu .menu .menu-item + .submenu-container {
       display: none; }
       .content-menu .menu .menu-item + .submenu-container:hover, .content-menu .menu .menu-item + .submenu-container:focus {
@@ -1306,11 +1293,6 @@ label.require:after {
 
 .text-block {
   margin: 10px 0; }
-
-.nounderline {
-  text-decoration: none; }
-  .nounderline:hover {
-    text-decoration: none; }
 
 .adv .img-responsive {
   margin: 15px auto; }
@@ -1859,8 +1841,6 @@ input[type="radio"], input[type="checkbox"] {
     animation-delay: 10s; }
     .marquee-container .marquee-content:hover {
       animation-play-state: paused; }
-    .marquee-container .marquee-content a {
-      text-decoration: none; }
 
 /* Move it (define the animation) */
 @-moz-keyframes marqueekey {
@@ -2139,15 +2119,13 @@ input[type="radio"], input[type="checkbox"] {
           font-style: italic;
           font-weight: 400;
           line-height: normal;
-          display: block;
-          text-decoration: none; }
+          display: block; }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .btn-join {
           border: 1.5px solid #D90F0F;
           background: #FFF;
           color: #D90F0F;
           font-weight: 500;
-          text-align: center;
-          text-decoration: none; }
+          text-align: center; }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login #btnDialogLogin {
           background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
           color: #FFF; }

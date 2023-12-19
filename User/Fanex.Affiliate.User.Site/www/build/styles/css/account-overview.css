@@ -106,10 +106,7 @@
   overflow: auto; }
   .account-overview .menu-item {
     display: block;
-    font-weight: 400;
-    text-decoration: none; }
-    .account-overview .menu-item:focus {
-      outline: none; }
+    font-weight: 400; }
 
 .account-overview #account-overview-menu {
   background: #fff; }
