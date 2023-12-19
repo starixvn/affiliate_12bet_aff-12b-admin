@@ -299,8 +299,8 @@ input[type="checkbox"], input[type="radio"] {
         padding-bottom: 10px; } }
 
 .flag {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   margin-right: 5px;
   position: relative;
   top: 0;
@@ -691,7 +691,7 @@ input[type="checkbox"], input[type="radio"] {
     .language-container #selectedLanguage span {
       display: flex;
       align-items: center;
-      font-size: 12px; }
+      font-size: 14px; }
     @media screen and (max-width: 1024px) {
       .language-container #selectedLanguage .name-lang, .language-container #selectedLanguage .caret {
         display: none; } }
@@ -731,14 +731,15 @@ input[type="checkbox"], input[type="radio"] {
     right: 0; }
     .language-container .language-list-wrapper .language-list {
       line-height: 15px;
-      text-align: left; }
+      text-align: left;
+      margin-bottom: 0; }
       .language-container .language-list-wrapper .language-list .language-item {
         padding: 3px 16px;
         width: 100%;
         display: flex;
         align-items: center;
         color: #353E5B;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 500;
         line-height: normal; }
         .language-container .language-list-wrapper .language-list .language-item i {
@@ -1110,9 +1111,8 @@ input[type="checkbox"], input[type="radio"] {
       .top-banner .swiper-slide img {
         min-height: 270px; } }
 
-@media (max-width: 500px) {
-  .top-banner .swiper-pagination {
-    bottom: 30px; } }
+.top-banner .swiper-pagination {
+  bottom: 16px !important; }
 
 .top-banner .swiper-slide-active [data-animate] {
   opacity: 1;

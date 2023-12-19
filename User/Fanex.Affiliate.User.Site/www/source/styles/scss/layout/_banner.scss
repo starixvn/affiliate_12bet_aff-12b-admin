@@ -97,16 +97,15 @@
 
         img {
             min-height: 30vw;
-            @include Tablet{
-                min-height : 240px;
+
+            @include Tablet {
+                min-height: 240px;
             }
+
             @include Mobile {
                 min-height: 270px;
             }
         }
-
-
-
         /*.group-banner-text {
             max-width: 510px;
             position: absolute;
@@ -236,9 +235,7 @@
     }
 
     .swiper-pagination {
-        @include Mobile {
-            bottom: 30px;
-        }
+        bottom: 16px !important;
     }
 }
 

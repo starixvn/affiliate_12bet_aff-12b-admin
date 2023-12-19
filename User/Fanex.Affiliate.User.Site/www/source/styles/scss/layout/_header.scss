@@ -521,7 +521,7 @@
         span {
             display: flex;
             align-items: center;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .name-lang, .caret {
@@ -584,6 +584,7 @@
         .language-list {
             line-height: 15px;
             text-align: left;
+            margin-bottom : 0;
 
             .language-item {
                 padding: 3px 16px;
@@ -591,7 +592,7 @@
                 display: flex;
                 align-items: center;
                 color: #353E5B;
-                font-size: 16px;
+                font-size: 14px;
                 font-weight: 500;
                 line-height: normal;
 

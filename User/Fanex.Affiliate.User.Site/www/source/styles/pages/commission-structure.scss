@@ -17,11 +17,11 @@
 
 .block {
     &:nth-child(odd) {
-        background: #F6F6F6;
+        background : #fff;
     }
 
     &:nth-child(even) {
-        background : #fff;
+        background: #F6F6F6;
     }
 }
 
@@ -90,10 +90,9 @@
             tbody {
                 tr {
                     td {
-                        @include Mobile {
-                            border-right: 1px solid #fff;
-                            border-bottom: 1px solid #fff;
-                        }
+                        border-right: 2px solid #F6F6F6;
+                        border-bottom: 2px solid #F6F6F6;
+                        background : #fff;
                     }
                 }
             }
@@ -352,11 +351,24 @@
     }
 }
 
-.block-faq{
-    .group-faq{
-        margin-bottom : 52px;
-        &:last-child{
-            margin-bottom : 0;
+.block-faq {
+    .group-faq {
+        margin-bottom: 52px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .question {
+            .title {
+                span {
+                    background: #fff;
+                }
+            }
+        }
+
+        .anwser {
+            background: #F6F6F6;
         }
     }
 }
