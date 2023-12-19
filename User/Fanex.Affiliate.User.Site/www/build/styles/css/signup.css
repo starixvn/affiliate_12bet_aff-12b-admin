@@ -468,3 +468,38 @@
 
 .group-button {
   max-width: 580px; }
+
+.input-url {
+  margin-bottom: 16px; }
+  .input-url .group-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px; }
+    .input-url .group-input .button-toggle {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(90deg, #d90f0f 0%, #ff8651 77.6%);
+      border-radius: 5px;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      position: relative; }
+      .input-url .group-input .button-toggle:after, .input-url .group-input .button-toggle:before {
+        content: '';
+        display: block;
+        background: #fff;
+        position: absolute; }
+      .input-url .group-input .button-toggle:after {
+        height: 1px;
+        width: 10px;
+        top: 9px;
+        left: 5px; }
+      .input-url .group-input .button-toggle:before {
+        height: 10px;
+        width: 1px;
+        top: 5px;
+        left: 9px; }
+      .input-url .group-input .button-toggle-close:before {
+        display: none; }

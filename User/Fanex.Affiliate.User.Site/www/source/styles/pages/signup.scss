@@ -121,3 +121,52 @@
 .group-button{
     max-width : 580px;
 }
+
+.input-url {
+    margin-bottom: 16px;
+
+    .group-input {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        .button-toggle {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(90deg,#d90f0f 0%,#ff8651 77.6%);
+            border-radius: 5px;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            position: relative;
+
+            &:after, &:before {
+                content: '';
+                display: block;
+                background: #fff;
+                position: absolute;
+            }
+
+            &:after {
+                height: 1px;
+                width: 10px;
+                top: 9px;
+                left: 5px;
+            }
+
+            &:before {
+                height: 10px;
+                width: 1px;
+                top: 5px;
+                left: 9px;
+            }
+
+            &-close {
+                &:before {
+                    display: none;
+                }
+            }
+        }
+    }
+}
