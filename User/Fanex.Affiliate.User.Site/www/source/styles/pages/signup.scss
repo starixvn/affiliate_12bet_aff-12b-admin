@@ -25,7 +25,7 @@
         padding: 40px 0;
     }
 
-    &:nth-child(odd) {
+    &:nth-child(even) {
         .group-faq {
             .question {
                 .title {
@@ -37,10 +37,11 @@
         }
     }
 
-    &:nth-child(even) {
+    &:nth-child(odd) {
         background: #F6F6F6;
-        .form-input{
-            background-color : #fff;
+
+        .form-input {
+            background-color: #fff;
         }
     }
 }

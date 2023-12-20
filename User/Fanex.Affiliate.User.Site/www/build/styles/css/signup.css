@@ -407,12 +407,12 @@
   .block-form {
     padding: 40px 0; } }
 
-.block-form:nth-child(odd) .group-faq .question .title span {
+.block-form:nth-child(even) .group-faq .question .title span {
   background: #fff; }
 
-.block-form:nth-child(even) {
+.block-form:nth-child(odd) {
   background: #F6F6F6; }
-  .block-form:nth-child(even) .form-input, .block-form:nth-child(even) .form-area {
+  .block-form:nth-child(odd) .form-input, .block-form:nth-child(odd) .form-area {
     background-color: #fff; }
 
 .page-title {
