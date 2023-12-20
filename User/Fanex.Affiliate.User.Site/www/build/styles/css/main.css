@@ -498,7 +498,8 @@ input[type="checkbox"], input[type="radio"] {
         padding: 12px 10px;
         font-size: 16px;
         text-align: center;
-        letter-spacing: 1.28px; } }
+        letter-spacing: 1.28px;
+        border-radius: 24px; } }
     .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus {
       color: #808080 !important;
       background: #000 !important;
