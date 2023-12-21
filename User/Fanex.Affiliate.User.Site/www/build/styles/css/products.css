@@ -739,17 +739,17 @@ button.swiper-pagination-bullet {
             margin-bottom: 0; } }
       .block-items-products .main-items .items .mask .group-slider .text-slider {
         text-align: left;
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 500;
         line-height: normal;
         margin-bottom: 20px; }
         @media (min-width: 1400px) {
           .block-items-products .main-items .items .mask .group-slider .text-slider {
             line-height: 24px;
-            font-size: 16px; } }
+            font-size: 20px; } }
         @media screen and (max-width: 1024px) {
           .block-items-products .main-items .items .mask .group-slider .text-slider {
-            font-size: 10px;
+            font-size: 12px;
             text-align: left; } }
         @media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
           .block-items-products .main-items .items .mask .group-slider .text-slider {

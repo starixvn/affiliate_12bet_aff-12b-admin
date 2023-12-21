@@ -1022,8 +1022,8 @@ button.swiper-pagination-bullet {
       bottom: -18px;
       right: 50%;
       transform: translate(50%, 0);
-      font-size: 12px;
-      padding: 10px 31px; }
+      font-size: 20px;
+      padding: 10px 52px; }
       @media (max-width: 500px) {
         .block-faq .anwser .custom-button {
           font-size: 18px;

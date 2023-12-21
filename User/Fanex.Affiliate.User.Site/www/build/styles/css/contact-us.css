@@ -43,7 +43,7 @@
         display: block; } }
 
 .form-input, .form-area {
-  height: 32px;
+  height: 36px;
   border-radius: 100px;
   background: #F5F5F5;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25) inset;
@@ -54,7 +54,6 @@
   width: 100%; }
   @media (max-width: 500px) {
     .form-input, .form-area {
-      height: 32px;
       padding: 6px 12px; } }
   .form-input::placeholder, .form-area::placeholder {
     color: #70778A;
@@ -80,12 +79,13 @@
   cursor: not-allowed; }
 
 .validate-input {
-  margin-top: 8px;
-  color: #D90F0F;
+  margin-top: 8px !important;
+  color: #D90F0F !important;
   display: block;
   font-weight: 400;
   font-size: 14px;
-  line-height: normal; }
+  line-height: normal;
+  margin-bottom: 0; }
 
 .group-button {
   display: flex;
