@@ -196,7 +196,7 @@
                     position: absolute;
                     top: -15px;
                     left: 25px;
-                    z-index : 0;
+                    z-index: 0;
 
                     @include MobileLandscape {
                         left: 15px;
@@ -370,13 +370,13 @@
                                 border-radius: 8px;
                                 background: rgba(197, 84, 36, 0.21);
                                 box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
-                                padding: 10px;
+                                padding: 6px 8px;
 
                                 img {
-                                    width: 140px;
-                                    height: 26px;
                                     object-fit: contain;
                                     max-width: 100%;
+                                    width: auto;
+                                    height: auto;
 
                                     @include Tablet {
                                         width: 100%;

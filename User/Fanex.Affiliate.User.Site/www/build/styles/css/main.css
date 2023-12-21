@@ -1157,7 +1157,8 @@ input[type="checkbox"], input[type="radio"] {
       .footer-img .img-top {
         margin-bottom: 32px; } }
     .footer-img .img-top img {
-      width: auto; }
+      width: auto;
+      max-width: 100%; }
     .footer-img .img-bottom .item {
       border-right: 1px solid #fff;
       padding: 0 30px; }
@@ -1169,42 +1170,7 @@ input[type="checkbox"], input[type="radio"] {
       @media screen and (max-width: 1024px) {
         .footer-img .img-bottom .item {
           padding: 0 13px;
-          display: inline-flex;
-          /*&:first-child {
-                        img {
-                            width: 10px;
-                        }
-                    }
-
-                    &:nth-child(2) {
-                        img {
-                            width: 44px;
-                        }
-                    }
-
-                    &:nth-child(3) {
-                        img {
-                            width: 16px;
-                        }
-                    }
-
-                    &:nth-child(4) {
-                        img {
-                            width: 30px;
-                        }
-                    }
-
-                    &:nth-child(5) {
-                        img {
-                            width: 35px;
-                        }
-                    }
-
-                    &:nth-child(6) {
-                        img {
-                            width: 25px;
-                        }
-                    }*/ } }
+          display: inline-flex; } }
     .footer-img .item {
       display: inline-block; }
 
