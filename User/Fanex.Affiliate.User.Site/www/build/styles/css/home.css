@@ -932,13 +932,9 @@ button.swiper-pagination-bullet {
         margin: 0 auto;
         display: inline-block; }
         .block-our-product .wrapper-block .items .wrapper-item img {
-          width: 159px;
-          height: 116px;
           object-fit: contain; }
           @media (max-width: 500px) {
             .block-our-product .wrapper-block .items .wrapper-item img {
-              height: 82px;
-              width: 98px;
               object-fit: cover; } }
         .block-our-product .wrapper-block .items .wrapper-item .name-item {
           color: #FFF;

@@ -303,13 +303,8 @@
                 display: inline-block;
 
                 img {
-                    width: 159px;
-                    height: 116px;
                     object-fit: contain;
-
                     @include Mobile {
-                        height: 82px;
-                        width: 98px;
                         object-fit: cover;
                     }
                 }
