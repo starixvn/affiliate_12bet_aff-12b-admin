@@ -103,10 +103,10 @@
   //  "outputFile": "www/build/styles/css/notify.css",
   //  "inputFile": "www/source/styles/pages/notify.scss"
   //},
-  //{
-  //  "outputFile": "www/build/js/forgotpassword.js",
-  //  "inputFile": "www/source/js/pages/forgotpassword.js"
-  //},
+  {
+    "outputFile": "www/build/js/forgotpassword.js",
+    "inputFile": "www/source/js/pages/forgotpassword.js"
+  },
   //{
   //  "outputFile": "www/build/js/jquery.extension.js",
   //  "inputFile": "www/source/js/components/jquery.extension.js"

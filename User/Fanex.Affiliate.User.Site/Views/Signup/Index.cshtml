@@ -36,15 +36,14 @@
     <div class="page-title">
         <span class="text">@Lang.RegisForm</span>
     </div>
-
-    <div class="alert alert-success" role="alert" id="messageSuccess" style="display: none;">
+    <div class="block block-form" id="messageSuccess" style="display: none;">
         <div class="page-container">
-            <p class="text-center">@Html.Raw(Lang.UnderReview)</p>
-            @Html.Raw(string.Format(Lang.RegisSuccess, Url.Content("~/ContactUs")))
+            <div class="alert alert-success" role="alert">
+                <p>@Html.Raw(Lang.UnderReview)</p>
+                @Html.Raw(string.Format(Lang.RegisSuccess, Url.Content("~/ContactUs")))
+            </div>
         </div>
     </div>
-
-    <div class="alert alert-danger" role="alert" id="messageError" style="display: none;"></div>
 
     <div id="mainContent">
         @using (Html.BeginForm("Index", "Signup", FormMethod.Post, new { @id = "accountForm", @class = "form" }))
@@ -52,6 +51,7 @@
             @Html.AntiForgeryToken()
             <div class="block block-form">
                 <div class="page-container">
+                    <div class="alert alert-danger" role="alert" id="messageError" style="display: none;"></div>
                     <div class="group-text-warn group-faq">
                         <p>@Lang.CompleteForm</p>
                         <p>@Html.Raw(Lang.RequireInfo)</p>

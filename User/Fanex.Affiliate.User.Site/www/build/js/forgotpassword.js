@@ -31,7 +31,7 @@ var ForgotPassword = (function ($) {
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function success(response) {
-                        _me.handleResponseResult('<div class="page-container">' + response + '</div>');
+                        _me.handleResponseResult(response);
                     },
                     beforeSend: function beforeSend() {
                         Site.showLoader();
@@ -44,7 +44,8 @@ var ForgotPassword = (function ($) {
         },
 
         handleResponseResult: function handleResponseResult(response) {
-            Site.displayResult(response.IsOk, response.Message);
+            $("#messageSuccess").toggle(response.IsOk);
+            $("#messageError").toggle(!response.IsOk).html(response.Message || resourceLanguage.generalError);
 
             if (response.IsOk) {
                 $("#mainContent").remove();

@@ -4738,7 +4738,12 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for submitting your application.&lt;br/&gt;&lt;br/&gt;Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;&lt;br/&gt;Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;Best Regards,&lt;br /&gt;&lt;br /&gt;The team at 12Bet Affiliates&lt;br/&gt;&lt;br/&gt;For any reason, you do not receive the email, pl [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Thank you for submitting your application.&lt;br/&gt;
+        ///Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;
+        ///Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;
+        ///Best Regards,&lt;br /&gt;
+        ///The team at 12Bet Affiliates&lt;br/&gt;
+        ///For any reason, you do not receive the email, please check  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string RegisSuccess {
             get {

@@ -65,11 +65,9 @@
                 Language = SessionService.CurrentLanguage
             };
 
-            var contactUsForAnyReasonText = Lang.ForAnyReason.Replace("{0}", Url.Content($"~/{ControllerName.ContactUs}"));
             var result = new ResultInfo
             {
-                IsOk = true,
-                Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{contactUsForAnyReasonText}"
+                IsOk = true
             };
             var userInfo = _accountRepository.GetUserInfoByEmail(param);
 

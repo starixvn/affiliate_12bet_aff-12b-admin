@@ -538,7 +538,7 @@ input[type="checkbox"], input[type="radio"] {
   display: block;
   font-weight: 400;
   border-radius: 5px 5px 0 0;
-  padding: 0 20px; }
+  padding: 0 10px; }
   .after-login .tab-menu .menu-item.active, .after-login .tab-menu .menu-item:hover, .after-login #mainMenu .menu-item.active, .after-login #mainMenu .menu-item:hover {
     color: #fff;
     background: -ms-linear-gradient(180deg, #fa6a00 0%, #e15f00 100%);

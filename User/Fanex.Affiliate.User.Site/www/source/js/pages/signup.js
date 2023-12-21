@@ -85,7 +85,8 @@
         handleResponseResult: function (response) {
             _me.refreshCaptcha();
             $("#messageSuccess").toggle(response.IsOk);
-            $("#messageError").toggle(!response.IsOk).html('<div class="page-container">' + response.Message || resourceLanguage.generalError + '</div>');
+            $("#messageError").toggle(!response.IsOk).html(response.Message || resourceLanguage.generalError);
+
             if (response.IsOk) {
                 $("#mainContent").remove();
             }

@@ -29,7 +29,7 @@
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
-                        _me.handleResponseResult('<div class="page-container">' + response + '</div>');
+                        _me.handleResponseResult(response);
                     },
                     beforeSend: function () {
                         Site.showLoader();
@@ -42,7 +42,8 @@
         },
 
         handleResponseResult: function (response) {
-            Site.displayResult(response.IsOk, response.Message);
+            $("#messageSuccess").toggle(response.IsOk);
+            $("#messageError").toggle(!response.IsOk).html(response.Message || resourceLanguage.generalError);
 
             if (response.IsOk) {
                 $("#mainContent").remove();
