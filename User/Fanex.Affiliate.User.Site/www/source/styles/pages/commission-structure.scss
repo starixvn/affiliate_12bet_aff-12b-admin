@@ -3,21 +3,19 @@
 @import '../scss/components/faq';
 @import '../scss/vendors/swiper';
 
-
-.group-page {
-    @include Mobile {
-        max-width: 300px;
-        margin: 0 auto;
-    }
-}
-
 .page-title{
     margin-bottom : 0;
 }
 
+.block-revenue {
+    @include Mobile {
+        padding: 24px 0 40px 0;
+    }
+}
+
 .block {
     &:nth-child(odd) {
-        background : #fff;
+        background: #fff;
     }
 
     &:nth-child(even) {
@@ -34,7 +32,7 @@
     margin-bottom: 24px;
 
     @include Mobile {
-        font-size: 12px;
+        font-size: 16px;
         margin-bottom: 4px;
     }
 }
@@ -49,7 +47,7 @@
     margin-bottom: 24px;
 
     @include Mobile {
-        font-size: 12px;
+        font-size: 16px;
         line-height: normal;
         margin-bottom: 16px;
     }
@@ -64,7 +62,7 @@
     max-width : 650px;
     margin : 0 auto;
     @include Mobile{
-        font-size : 12px;
+        font-size : 16px;
         text-align : left;
     }
     span {
@@ -106,7 +104,7 @@
         line-height: 32px;
 
         @include Mobile {
-            font-size: 12px;
+            font-size: 16px;
             line-height: normal;
         }
 

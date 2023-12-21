@@ -484,7 +484,7 @@ input[type="checkbox"], input[type="radio"] {
     color: #fff;
     text-transform: uppercase;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.96px;
     white-space: nowrap; }
     @media (min-width: 1200px) {
@@ -492,7 +492,7 @@ input[type="checkbox"], input[type="radio"] {
         padding: 20px 2vw; } }
     @media (min-width: 1360px) {
       .header-bottom .menu .menu-item {
-        padding: 20px 40px; } }
+        padding: 20px 32px; } }
     @media screen and (max-width: 1024px) {
       .header-bottom .menu .menu-item {
         padding: 12px 10px;
@@ -1316,7 +1316,7 @@ label.require:after {
     @media (max-width: 500px) {
       .page-title .text {
         text-align: center;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 700;
         line-height: 22px; } }
 
@@ -1643,20 +1643,20 @@ table + .button-group {
     .table-custom {
       border: none;
       width: auto;
-      margin: 0 4px;
       border-radius: 5px 5px 0 0; } }
   .table-custom table {
     border-collapse: collapse;
     margin: 0;
     padding: 0;
-    width: 100%; }
+    width: 100%;
+    background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%); }
     .table-custom table .checkbox-group .label-cbx {
       width: 22px;
       height: 18px;
       margin-bottom: 4px;
       display: inline-block; }
     .table-custom table thead tr {
-      background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%); }
+      background: transparent; }
       .table-custom table thead tr th {
         border-right: 2px solid #fff; }
         @media (max-width: 500px) {
@@ -1694,7 +1694,6 @@ table + .button-group {
             padding: 5px 8px;
             font-size: 10px; } }
         .table-custom table tbody tr td:last-child {
-          color: #FF8651;
           border-right: none !important; }
     .table-custom table tr {
       background: #f5eaea;
@@ -1734,7 +1733,7 @@ table + .button-group {
   @media (max-width: 500px) {
     .heading-table {
       letter-spacing: 0;
-      font-size: 12px;
+      font-size: 20px;
       margin-bottom: 14px; } }
 
 .form-horizontal .control-label, .form-horizontal .radio-inline {
@@ -1840,7 +1839,7 @@ input[type="radio"], input[type="checkbox"] {
   padding: 52px 0; }
   @media screen and (max-width: 1024px) {
     .block {
-      padding: 44px 0; } }
+      padding: 40px 0; } }
   .block-title {
     letter-spacing: 2.24px;
     text-transform: uppercase;
@@ -1920,7 +1919,8 @@ input[type="radio"], input[type="checkbox"] {
 @media (max-width: 767px) {
   .page-container {
     max-width: 100%;
-    flex-basis: 100%; }
+    flex-basis: 100%;
+    padding: 0 16px; }
   .news .item-wrapper {
     flex-basis: 100%;
     max-width: 100%; }

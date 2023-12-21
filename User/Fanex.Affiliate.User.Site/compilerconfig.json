@@ -7,10 +7,10 @@
     "outputFile": "www/build/styles/css/home.css",
     "inputFile": "www/source/styles/pages/home.scss"
   },
-  //{
-  //  "outputFile": "www/build/styles/css/terms-and-coditions.css",
-  //  "inputFile": "www/source/styles/pages/terms-and-coditions.scss"
-  //},
+  {
+    "outputFile": "www/build/styles/css/terms-and-coditions.css",
+    "inputFile": "www/source/styles/pages/terms-and-coditions.scss"
+  },
   //{
   //  "outputFile": "www/build/styles/css/my-account.css",
   //  "inputFile": "www/source/styles/pages/my-account.scss"
@@ -19,14 +19,14 @@
   //  "outputFile": "www/build/styles/css/feedback.css",
   //  "inputFile": "www/source/styles/pages/feedback.scss"
   //},
-  //{
-  //  "outputFile": "www/build/styles/css/faq.css",
-  //  "inputFile": "www/source/styles/pages/faq.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/contact-us.css",
-  //  "inputFile": "www/source/styles/pages/contact-us.scss"
-  //},
+  {
+    "outputFile": "www/build/styles/css/faq.css",
+    "inputFile": "www/source/styles/pages/faq.scss"
+  },
+  {
+    "outputFile": "www/build/styles/css/contact-us.css",
+    "inputFile": "www/source/styles/pages/contact-us.scss"
+  },
   //{
   //  "outputFile": "www/build/styles/css/marketing.css",
   //  "inputFile": "www/source/styles/pages/marketing.scss"
@@ -131,28 +131,28 @@
   //  "outputFile": "www/build/js/pagetracking.js",
   //  "inputFile": "www/source/js/components/pagetracking.js"
   //},
-  //{
-  //  "outputFile": "www/build/styles/css/verification-account.css",
-  //  "inputFile": "www/source/styles/pages/verification-account.scss"
-  //},
+  {
+    "outputFile": "www/build/styles/css/verification-account.css",
+    "inputFile": "www/source/styles/pages/verification-account.scss"
+  },
   //{
   //  "outputFile": "www/build/styles/css/news-letter.css",
   //  "inputFile": "www/source/styles/pages/news-letter.scss"
   //},
-  //{
-  //  "outputFile": "www/build/styles/css/promotion.css",
-  //  "inputFile": "www/source/styles/pages/promotion.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/commission-structure.css",
-  //  "inputFile": "www/source/styles/pages/commission-structure.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/products.css",
-  //  "inputFile": "www/source/styles/pages/products.scss"
-  //},
-  //{
-  //  "outputFile": "www/build/styles/css/forgot-password.css",
-  //  "inputFile": "www/source/styles/pages/forgot-password.scss"
-  //}
+  {
+    "outputFile": "www/build/styles/css/promotion.css",
+    "inputFile": "www/source/styles/pages/promotion.scss"
+  },
+  {
+    "outputFile": "www/build/styles/css/commission-structure.css",
+    "inputFile": "www/source/styles/pages/commission-structure.scss"
+  },
+  {
+    "outputFile": "www/build/styles/css/products.css",
+    "inputFile": "www/source/styles/pages/products.scss"
+  },
+    {
+        "outputFile": "www/build/styles/css/forgot-password.css",
+        "inputFile": "www/source/styles/pages/forgot-password.scss"
+    }
 ]

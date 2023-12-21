@@ -2,6 +2,11 @@
 @import '../scss/components/faq';
 @import '../scss/vendors/swiper';
 
+
+.page-title{
+    margin-bottom : 0;
+}
+
 .block-commission-boost {
     background: #fff;
 
@@ -14,7 +19,7 @@
         margin-bottom: 24px;
 
         @include Mobile {
-            font-size: 12px;
+            font-size: 16px;
         }
     }
 
@@ -23,7 +28,6 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-align: center;
         font-size: 28px;
         font-weight: 700;
         line-height: normal;
@@ -31,7 +35,7 @@
         margin-bottom: 10px;
 
         @include Mobile {
-            font-size: 12px;
+            font-size: 16px;
             margin-bottom: 8px;
         }
     }
@@ -44,7 +48,7 @@
         line-height: 32px;
 
         @include Mobile {
-            font-size: 12px;
+            font-size: 16px;
             line-height: normal;
         }
     }
@@ -87,7 +91,7 @@
             margin-bottom: 10px;
 
             @include Mobile {
-                font-size: 26px;
+                font-size: 28px;
                 text-transform: uppercase;
                 margin-bottom: 0;
             }
@@ -107,7 +111,7 @@
             @include Mobile {
                 font-weight: 400;
                 line-height: normal;
-                font-size: 12px;
+                font-size: 16px;
             }
         }
     }
@@ -122,7 +126,7 @@
     margin-bottom: 24px;
 
     @include Mobile {
-        font-size: 12px;
+        font-size: 16px;
         font-weight: 700;
         margin-bottom: 0;
     }
@@ -143,7 +147,7 @@
 
     @include Mobile {
         color: #343E5C;
-        font-size: 12px;
+        font-size: 16px;
         font-weight: 400;
         line-height: normal;
         margin-bottom: 26px;
@@ -196,13 +200,13 @@
             font-weight: 700;
 
             @include Mobile {
-                font-size: 12px;
+                font-size: 16px;
                 line-height: normal;
             }
         }
 
         @include Mobile {
-            font-size: 12px;
+            font-size: 16px;
             line-height: normal;
             margin-bottom: 16px;
         }
@@ -213,12 +217,6 @@
     }
 }
 
-.group-page {
-    @include Mobile {
-        max-width: 300px;
-        margin: 0 auto;
-    }
-}
 
 .block-faq {
     background: #F6F6F6;

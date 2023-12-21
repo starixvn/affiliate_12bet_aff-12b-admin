@@ -25,15 +25,21 @@
 .block-why-become {
     .block-content {
         display: flex;
-        gap : 50px;
-        justify-content :center;
-        @include MobileLandscape{
-            gap : 30px;
+        gap: 50px;
+        justify-content: center;
+
+        @include Tablet {
+            gap: 30px;
         }
+
+        @include MobileLandscape {
+            gap: 30px;
+        }
+
         @include Mobile {
             flex-wrap: wrap;
             justify-content: center;
-            gap: 26px;
+            gap: 30px;
         }
 
         .items {
@@ -65,13 +71,11 @@
 
                 @include Tablet {
                     margin-top: 14px;
-                    font-size: 12px;
-                    line-height: 20px;
                 }
 
                 @include Mobile {
-                    line-height: 13px;
-                    font-size: 10px;
+                    line-height: normal;
+                    font-size: 14px;
                 }
             }
         }
@@ -80,27 +84,10 @@
 
 .block-about {
     background: #F6F6F6;
-
-    .group-block {
-        @include Tablet {
-            padding: 0 43px;
-        }
-
-        @include Mobile {
-            max-width: 300px;
-            margin: 0 auto;
-            padding: 0;
-        }
-    }
-
     .block-title {
         margin-bottom: 10px;
         @include Tablet {
             text-align: center;
-        }
-
-        @include Mobile {
-            text-align: left;
         }
     }
 
@@ -112,7 +99,7 @@
         line-height: 30px;
 
         @include Tablet {
-            font-size: 12px;
+            font-size: 16px;
             color: #343E5C;
         }
 
@@ -144,12 +131,8 @@
         display: flex;
         justify-content: space-between;
 
-        @include Tablet {
-            padding: 36px 50px 52px 50px;
-        }
-
         @include Mobile {
-            padding: 0 12px;
+            padding: 0;
             background: transparent;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -194,7 +177,7 @@
                 text-transform: uppercase;
 
                 @include Tablet {
-                    font-size: 12px;
+                    font-size: 14px;
                 }
 
                 @include Mobile {
@@ -209,9 +192,6 @@
                 text-transform: capitalize;
                 max-width: 180px;
                 margin: 0 auto;
-                @include Mobile{
-                    max-width : 112px;
-                }
             }
 
             .number {
@@ -260,7 +240,6 @@
         position: relative;
 
         @include Mobile {
-            margin: 0 35px;
             padding: 12px;
         }
 
@@ -346,7 +325,7 @@
                     text-decoration: none;
 
                     @include Mobile {
-                        font-size: 12px;
+                        font-size: 14px;
                     }
                 }
             }
@@ -356,10 +335,6 @@
     .mini-block {
         position: relative;
         margin-top: 28px;
-
-        @include Mobile {
-            padding: 0 30px;
-        }
 
         .mini-block-banner {
             max-width: 1005px;

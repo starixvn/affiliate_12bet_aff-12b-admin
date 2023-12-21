@@ -5,8 +5,9 @@
 
 .block-man-support {
     padding: 22px 0 52px;
-    @include Tablet{
-        padding : 8px 0 44px;
+
+    @include Tablet {
+        padding: 8px 0 44px;
     }
 
     .img-support {
@@ -37,7 +38,7 @@
             text-transform: uppercase;
 
             @include Mobile {
-                font-size: 12px
+                font-size: 16px
             }
         }
 
@@ -48,7 +49,7 @@
             text-transform: uppercase;
 
             @include Mobile {
-                font-size: 12px
+                font-size: 16px
             }
         }
     }
@@ -71,14 +72,13 @@
             .contact-info {
                 @include Mobile {
                     width: 100%;
-                    max-width: 140px;
+                    max-width: 160px;
                     margin: 0 auto;
                 }
             }
         }
 
         @include Mobile {
-            margin: 0 40px !important;
             border-radius: 8px;
         }
 
@@ -91,7 +91,7 @@
             text-align: center;
 
             @include Mobile {
-                padding: 32px 6px;
+                padding: 32px 16px;
             }
 
             .single-flag {
@@ -100,7 +100,7 @@
                 border-radius: 100px;
 
                 @include Mobile {
-                    padding: 5px;
+                    padding: 7px;
                 }
 
                 img {
@@ -109,8 +109,8 @@
                     margin: 0 auto;
 
                     @include Mobile {
-                        width: 60px;
-                        height: 60px;
+                        width: 80px;
+                        height: 80px;
                     }
                 }
             }
@@ -124,7 +124,7 @@
                 line-height: normal;
 
                 @include Mobile {
-                    font-size: 12px;
+                    font-size: 14px;
                     margin-top: 15px;
                 }
 
@@ -160,8 +160,8 @@
 
                     img {
                         @include Mobile {
-                            width: 16px;
-                            height: 16px;
+                            width: 24px;
+                            height: 24px;
                         }
                     }
                 }
@@ -203,20 +203,14 @@
         margin-top: 0;
 
         @include Mobile {
-            font-size: 12px;
+            font-size: 16px;
             text-align: left;
-            margin: 0 25px 12px;
+            margin: 0 0 12px 0;
         }
 
         a {
             color: #D90F0F;
             font-weight: 700;
-        }
-    }
-
-    #mainContent {
-        @include Mobile {
-            margin: 0 25px;
         }
     }
 }

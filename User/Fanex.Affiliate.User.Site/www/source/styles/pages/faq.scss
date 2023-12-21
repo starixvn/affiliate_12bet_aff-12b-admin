@@ -53,11 +53,11 @@
                 padding: 0 0 52px 0;
 
                 @include Tablet {
-                    padding: 0 30px 52px 30px;
+                    padding: 0 30px 40px 30px;
                 }
 
                 @include Mobile {
-                    padding: 12px 30px 52px 30px;
+                    padding: 12px 0 40px 0;
                 }
             }
         }
@@ -79,7 +79,7 @@
                 padding: 40px 0 52px 0;
 
                 @include Tablet {
-                    padding: 12px 30px 52px 30px;
+                    padding: 12px 0 40px 0;
                 }
             }
         }
@@ -110,11 +110,11 @@
             padding: 40px 0 52px 0;
 
             @include Tablet {
-                padding: 40px 30px 52px 30px;
+                padding: 40px 0 40px 0;
             }
 
             @include Mobile {
-                padding: 12px 30px 52px 30px;
+                padding: 12px 0 40px 0;
             }
         }
     }

@@ -30,7 +30,7 @@ var Products = (function ($) {
             breakpoints: {
                 640: {
                     slidesPerView: 2,
-                    spaceBetween: 5,
+                    spaceBetween: 15,
                     slidesPerGroup: 2,
                     watchOverflow: true
                 },

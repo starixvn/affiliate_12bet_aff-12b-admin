@@ -1,8 +1,4 @@
-﻿@media screen and (max-width: 1024px) {
-  .group-faq {
-    padding: 0 30px; } }
-
-.group-faq .number {
+﻿.group-faq .number {
   color: #C2C2C2;
   font-size: 44px;
   font-weight: 700;
@@ -26,7 +22,7 @@
     text-transform: uppercase; }
     @media (max-width: 500px) {
       .group-faq .question .title {
-        font-size: 12px; } }
+        font-size: 14px; } }
     .group-faq .question .title span {
       background: #F6F6F6;
       position: relative;
@@ -34,7 +30,7 @@
       padding-right: 24px; }
       @media (max-width: 500px) {
         .group-faq .question .title span {
-          padding-right: 7px; } }
+          padding-right: 12px; } }
     .group-faq .question .title:after {
       content: '';
       display: block;
@@ -91,10 +87,10 @@
   position: relative; }
   @media (max-width: 500px) {
     .group-faq .anwser {
-      font-size: 12px; } }
+      font-size: 16px; } }
   @media (max-width: 500px) {
     .group-faq .anwser {
-      padding: 20px 16px 40px; } }
+      padding: 16px 16px 40px; } }
   .group-faq .anwser-heading {
     font-weight: 700;
     margin-bottom: 20px;
@@ -107,7 +103,7 @@
     @media (max-width: 500px) {
       .group-faq .anwser-text {
         margin-bottom: 10px;
-        line-height: 16px; } }
+        line-height: normal; } }
     .group-faq .anwser-text:last-child {
       margin-bottom: 0; }
   .group-faq .anwser .view-more {
@@ -149,7 +145,7 @@
   line-height: 30px; }
   @media (max-width: 500px) {
     .group-faq .red-bold {
-      font-size: 12px;
+      font-size: 16px;
       line-height: normal; } }
 
 /**
@@ -718,6 +714,9 @@ button.swiper-pagination-bullet {
 .swiper-container-coverflow .swiper-wrapper {
   -ms-perspective: 1200px; }
 
+.page-title {
+  margin-bottom: 0; }
+
 .block-commission-boost {
   background: #fff; }
   .block-commission-boost .top-title {
@@ -729,13 +728,12 @@ button.swiper-pagination-bullet {
     margin-bottom: 24px; }
     @media (max-width: 500px) {
       .block-commission-boost .top-title {
-        font-size: 12px; } }
+        font-size: 16px; } }
   .block-commission-boost .mid-title {
     background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-align: center;
     font-size: 28px;
     font-weight: 700;
     line-height: normal;
@@ -743,7 +741,7 @@ button.swiper-pagination-bullet {
     margin-bottom: 10px; }
     @media (max-width: 500px) {
       .block-commission-boost .mid-title {
-        font-size: 12px;
+        font-size: 16px;
         margin-bottom: 8px; } }
   .block-commission-boost .description {
     color: #353E5B;
@@ -753,7 +751,7 @@ button.swiper-pagination-bullet {
     line-height: 32px; }
     @media (max-width: 500px) {
       .block-commission-boost .description {
-        font-size: 12px;
+        font-size: 16px;
         line-height: normal; } }
 
 .block-table {
@@ -780,7 +778,7 @@ button.swiper-pagination-bullet {
       margin-bottom: 10px; }
       @media (max-width: 500px) {
         .block-note .items-number {
-          font-size: 26px;
+          font-size: 28px;
           text-transform: uppercase;
           margin-bottom: 0; } }
     .block-note .items-description {
@@ -795,7 +793,7 @@ button.swiper-pagination-bullet {
         .block-note .items-description {
           font-weight: 400;
           line-height: normal;
-          font-size: 12px; } }
+          font-size: 16px; } }
 
 .block-child-title {
   color: #FFF;
@@ -806,7 +804,7 @@ button.swiper-pagination-bullet {
   margin-bottom: 24px; }
   @media (max-width: 500px) {
     .block-child-title {
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 700;
       margin-bottom: 0; } }
   @media (max-width: 500px) {
@@ -822,7 +820,7 @@ button.swiper-pagination-bullet {
   @media (max-width: 500px) {
     .block-child-description {
       color: #343E5C;
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 400;
       line-height: normal;
       margin-bottom: 26px; } }
@@ -858,20 +856,15 @@ button.swiper-pagination-bullet {
       font-weight: 700; }
       @media (max-width: 500px) {
         .block-example .description .red-bold {
-          font-size: 12px;
+          font-size: 16px;
           line-height: normal; } }
     @media (max-width: 500px) {
       .block-example .description {
-        font-size: 12px;
+        font-size: 16px;
         line-height: normal;
         margin-bottom: 16px; } }
     .block-example .description:last-child {
       margin-bottom: 0; }
-
-@media (max-width: 500px) {
-  .group-page {
-    max-width: 300px;
-    margin: 0 auto; } }
 
 .block-faq {
   background: #F6F6F6; }

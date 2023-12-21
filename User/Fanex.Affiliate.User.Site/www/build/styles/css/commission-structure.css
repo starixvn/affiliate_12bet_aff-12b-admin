@@ -1,8 +1,4 @@
-﻿@media screen and (max-width: 1024px) {
-  .group-faq {
-    padding: 0 30px; } }
-
-.group-faq .number {
+﻿.group-faq .number {
   color: #C2C2C2;
   font-size: 44px;
   font-weight: 700;
@@ -26,7 +22,7 @@
     text-transform: uppercase; }
     @media (max-width: 500px) {
       .group-faq .question .title {
-        font-size: 12px; } }
+        font-size: 14px; } }
     .group-faq .question .title span {
       background: #F6F6F6;
       position: relative;
@@ -34,7 +30,7 @@
       padding-right: 24px; }
       @media (max-width: 500px) {
         .group-faq .question .title span {
-          padding-right: 7px; } }
+          padding-right: 12px; } }
     .group-faq .question .title:after {
       content: '';
       display: block;
@@ -91,10 +87,10 @@
   position: relative; }
   @media (max-width: 500px) {
     .group-faq .anwser {
-      font-size: 12px; } }
+      font-size: 16px; } }
   @media (max-width: 500px) {
     .group-faq .anwser {
-      padding: 20px 16px 40px; } }
+      padding: 16px 16px 40px; } }
   .group-faq .anwser-heading {
     font-weight: 700;
     margin-bottom: 20px;
@@ -107,7 +103,7 @@
     @media (max-width: 500px) {
       .group-faq .anwser-text {
         margin-bottom: 10px;
-        line-height: 16px; } }
+        line-height: normal; } }
     .group-faq .anwser-text:last-child {
       margin-bottom: 0; }
   .group-faq .anwser .view-more {
@@ -149,7 +145,7 @@
   line-height: 30px; }
   @media (max-width: 500px) {
     .group-faq .red-bold {
-      font-size: 12px;
+      font-size: 16px;
       line-height: normal; } }
 
 /**
@@ -718,13 +714,12 @@ button.swiper-pagination-bullet {
 .swiper-container-coverflow .swiper-wrapper {
   -ms-perspective: 1200px; }
 
-@media (max-width: 500px) {
-  .group-page {
-    max-width: 300px;
-    margin: 0 auto; } }
-
 .page-title {
   margin-bottom: 0; }
+
+@media (max-width: 500px) {
+  .block-revenue {
+    padding: 24px 0 40px 0; } }
 
 .block:nth-child(odd) {
   background: #fff; }
@@ -741,7 +736,7 @@ button.swiper-pagination-bullet {
   margin-bottom: 24px; }
   @media (max-width: 500px) {
     .top-title {
-      font-size: 12px;
+      font-size: 16px;
       margin-bottom: 4px; } }
 
 .description {
@@ -753,7 +748,7 @@ button.swiper-pagination-bullet {
   margin-bottom: 24px; }
   @media (max-width: 500px) {
     .description {
-      font-size: 12px;
+      font-size: 16px;
       line-height: normal;
       margin-bottom: 16px; } }
 
@@ -768,7 +763,7 @@ button.swiper-pagination-bullet {
   margin: 0 auto; }
   @media (max-width: 500px) {
     .slogan {
-      font-size: 12px;
+      font-size: 16px;
       text-align: left; } }
   .slogan span {
     color: #D90F0F;
@@ -792,7 +787,7 @@ button.swiper-pagination-bullet {
   line-height: 32px; }
   @media (max-width: 500px) {
     .block-text .group-page {
-      font-size: 12px;
+      font-size: 16px;
       line-height: normal; } }
   .block-text .group-page span {
     color: #D90F0F;
