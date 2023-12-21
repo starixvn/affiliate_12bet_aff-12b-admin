@@ -108,6 +108,25 @@
 .red-warn {
   color: #D90F0F; }
 
+.captcha-group {
+  display: flex;
+  align-items: center;
+  gap: 12px; }
+  .captcha-group .btn-sendcode {
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    outline: none;
+    border: none;
+    height: auto;
+    margin: 0; }
+    @media (max-width: 500px) {
+      .captcha-group .btn-sendcode {
+        padding: 10px 20px; } }
+
 .radio-buttons {
   display: flex;
   flex-direction: column;
@@ -447,11 +466,6 @@
   .form-area::placeholder {
     text-transform: capitalize;
     font-weight: 600; }
-
-.captcha-group {
-  display: flex;
-  align-items: center;
-  gap: 12px; }
 
 .group-custom-width {
   max-width: 580px; }

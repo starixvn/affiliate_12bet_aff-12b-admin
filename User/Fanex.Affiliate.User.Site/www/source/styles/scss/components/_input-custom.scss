@@ -135,7 +135,7 @@
                 font-weight: 600;
                 line-height: normal;
                 text-transform: uppercase;
-                margin-bottom : 8px;
+                margin-bottom: 8px;
             }
         }
     }
@@ -143,6 +143,29 @@
 
 .red-warn {
     color: #D90F0F;
+}
+
+.captcha-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .btn-sendcode {
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+        padding: 10px 30px;
+        outline: none;
+        border: none;
+        height: auto;
+        margin: 0;
+
+        @include Mobile {
+            padding: 10px 20px;
+        }
+    }
 }
 
 

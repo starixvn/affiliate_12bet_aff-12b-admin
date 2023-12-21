@@ -15,13 +15,12 @@
     <div class="page-title">
         <span class="text">@Lang.ForgetPassword</span>
     </div>
-
-    <div class="alert" role="alert" id="messageResult" style="display: none"></div>
     <div id="mainContent">
         <form id="forgotPasswordForm" class="form">
             @Html.AntiForgeryToken()
             <div class="block block-form">
                 <div class="page-container">
+                    <div class="alert" role="alert" id="messageResult" style="display: none"></div>
                     <p class="noted-text">@Html.Raw(Lang.TitelForgetPass.Replace("{0}", Url.Content("~/ContactUs")))</p>
                     <div class="form-group form-columns form-columns-2" id="emailInputGroup">
                         <div class="items">

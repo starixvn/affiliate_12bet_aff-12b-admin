@@ -1323,6 +1323,7 @@
     <Content Include="Views\Promotion\Partial\_FDMsPowerTable.cshtml" />
     <Content Include="Views\Promotion\Partial\_CommissionBoostTable.cshtml" />
     <Content Include="www\source\styles\pages\forgot-password.scss" />
+    <Content Include="www\source\styles\scss\components\_alert.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

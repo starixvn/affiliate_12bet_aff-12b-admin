@@ -8,7 +8,9 @@
     var email = Model.Email;
     if (string.IsNullOrEmpty(email))
     {
-        <h4 class="text-danger">@Lang.YouDoNotHaveEmail</h4>
+        <div class="page-container">
+            <h4 class="text-danger">@Lang.YouDoNotHaveEmail</h4>
+        </div>
     }
     else
     {
@@ -28,73 +30,75 @@
             <script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
             @Html.InlineScripts("~/www/build/js/pages/verification-account.js")
         }
-        <div class="content verification-account">
-            <br />
-            <p>@Lang.DearCustomer</p>
-            <p>@Lang.DueTo</p>
-            <p>@Html.Raw(string.Format(Lang.YourRegisterEmail, email))</p>
-            <form id="sendCodeForm">
-                <div class="form-group row" id="emailGroup">
-                    <label for="Email" class="col-sm-2 control-label require">@Lang.EmailVerification</label>
-                    <div class="col-sm-4 col-lg-3">
-                        <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.EmailIsRequired" id="Email" name="Email" />
-                        <span class="validate-input help-block field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" id="emailValidationMessage"></span>
+        <div class="block">
+            <div class="page-container">
+                <div class="verification-account">
+                    <div class="noted-text">
+                        <p>@Lang.DearCustomer</p>
+                        <p>@Lang.DueTo</p>
+                        <p>@Html.Raw(string.Format(Lang.YourRegisterEmail, email))</p>
                     </div>
-                    <button type="button" class="btn btn-sendcode" id="btnSendCode">@Lang.SendCode</button>
+                    <form class="form" id="sendCodeForm">
+
+                        <div class="form-group form-columns form-columns-2" id="emailGroup">
+                            <div class="items">
+                                <label class="custom-label">@Lang.EmailVerification <span class="red-warn">*</span></label>
+                                <div class="captcha-group">
+                                    <input type="text" class="form-input" autocomplete="off" data-val="true" data-val-required="@Lang.EmailIsRequired" id="Email" name="Email" />
+                                    <button type="button" class="btn btn-sendcode custom-button" id="btnSendCode">@Lang.SendCode</button>
+                                </div>
+                                 <span class="validate-input help-block field-validation-error validate-input" data-valmsg-for="Email" data-valmsg-replace="true" id="emailValidationMessage"></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="hide" id="verificationAccountGroup">
+                        <div class="noted-text">
+                            <p>@Lang.AVerificationCode @Html.Raw(string.Format(Lang.ForAnyReason, Url.Content("~/ContactUs")))</p>
+                        </div>
+                        
+                        <form class="form" id="verificationAccountForm">
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group form-columns form-columns-2">
+                                <div class="items">
+                                    <label class="custom-label">@Lang.UsernameVerification <span class="red-warn">*</span></label>
+                                    <input type="text" class="form-input" autocomplete="off" data-val="true" data-val-required="@Lang.UsernameIsRequired" id="Usename" name="Usename" />
+                                    <span class="validate-input help-block field-validation-error validate-input" data-valmsg-for="Usename" data-valmsg-replace="true"></span>
+                                </div>
+
+                                <div class="items">
+                                    <label class="custom-label">@Lang.PasswordVerification <span class="red-warn">*</span></label>
+                                    <input type="password" class="form-input" data-val="true" data-val-required="@Lang.PasswordIsRequired" id="Password" name="Password" autocomplete="off" />
+                                    <span class="help-block field-validation-error validate-input" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group form-columns form-columns-2">
+                                <div class="items">
+                                    <label class="custom-label">@Lang.VerificationCode <span class="red-warn">*</span></label>
+                                    <input type="text" class="form-input" autocomplete="off" data-val="true" data-val-required="@Lang.VerificationCodeIsRequired" id="Code" name="Code" />
+                                    <span class="validate-input help-block field-validation-error validate-input" data-valmsg-for="Code" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="items">
+                                    <label class="custom-label">@Lang.Captcha <span class="red-warn">*</span></label>
+                                    <div class="captcha-group">
+                                        <input type="text" class="form-input" data-val="true" data-val-required="@Lang.CaptchaIsRequired" id="Captcha" name="Captcha" />
+                                        <div class="validation-value">
+                                            <img style="cursor:pointer" id="captchaVerificationAccount" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />
+                                        </div>
+                                    </div>
+                                    <span class="field-validation-valid validate-input help-block" data-valmsg-for="Code" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="captcha-group">
+                                <button type="button" class="btn btn-sendcode custom-button login-button" id="btnLoginVerification">@Lang.Login</button>
+                            </div>
+
+                            @Html.Hidden("VerificationToken")
+                            @Html.Hidden("ActionLink")
+                            @Html.Hidden("ActionToken")
+                        </form>
+                    </div>
                 </div>
-            </form>
-            <div class="hide" id="verificationAccountGroup">
-                <p>@Lang.AVerificationCode</p>
-                <p>@Html.Raw(string.Format(Lang.ForAnyReason, Url.Content("~/ContactUs")))</p>
-                <br />
-                <form id="verificationAccountForm">
-                    @Html.AntiForgeryToken()
-                    <div class="form-group row">
-                        <label for="Usename" class="col-sm-2 control-label require">@Lang.UsernameVerification</label>
-                        <div class="col-sm-4 col-lg-3">
-                            <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.UsernameIsRequired" id="Usename" name="Usename" />
-                            <span class="field-validation-valid validate-input help-block" data-valmsg-for="Usename" data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="Password" class="col-sm-2 control-label require">@Lang.PasswordVerification</label>
-                        <div class="col-sm-4 col-lg-3">
-                            <input type="password" class="form-control" data-val="true" data-val-required="@Lang.PasswordIsRequired" id="Password" name="Password" autocomplete="off" />
-                            <span class="field-validation-valid validate-input help-block" data-valmsg-for="Password" data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="Code" class="col-sm-2 control-label require">@Lang.VerificationCode</label>
-                        <div class="col-sm-4 col-lg-3">
-                            <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.VerificationCodeIsRequired" id="Code" name="Code" />
-                            <span class="field-validation-valid validate-input help-block" data-valmsg-for="Code" data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="Captcha" class="col-sm-2 control-label require">@Lang.Captcha</label>
-                        <div class="col-sm-4 col-lg-3">
-                            <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="@Lang.CaptchaIsRequired" id="Captcha" name="Captcha" />
-                            <span class="field-validation-valid validate-input help-block" data-valmsg-for="Captcha" data-valmsg-replace="true"></span>
-                        </div>
-                        <div class="validation-value">
-                            <img style="cursor:pointer" id="captchaVerificationAccount" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />
-                        </div>
-                    </div>
-
-                    <br />
-                    <div class="form-group row">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-login" id="btnLoginVerification">@Lang.Login</button>
-                        </div>
-                    </div>
-
-                    @Html.Hidden("VerificationToken")
-                    @Html.Hidden("ActionLink")
-                    @Html.Hidden("ActionToken")
-                </form>
             </div>
         </div>
     }
