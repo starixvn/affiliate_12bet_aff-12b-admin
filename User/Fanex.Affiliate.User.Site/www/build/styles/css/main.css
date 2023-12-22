@@ -464,9 +464,9 @@ input[type="checkbox"], input[type="radio"] {
   padding-right: 0; }
   @media screen and (max-width: 1024px) {
     .header-bottom .menu {
-      margin: 0 -12px;
       position: absolute;
       top: 0;
+      left: 0;
       z-index: 999;
       width: 100%;
       background: #d90f0f;

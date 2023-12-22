@@ -33,7 +33,7 @@
         }
 
         @include MobileLandscape {
-            gap: 30px;
+            gap: 12px;
         }
 
         @include Mobile {
@@ -315,7 +315,6 @@
                     font-weight: 700;
                     line-height: 24px;
                     text-transform: uppercase;
-                    margin-top: 9px;
                     display: block;
                     text-decoration: none;
 

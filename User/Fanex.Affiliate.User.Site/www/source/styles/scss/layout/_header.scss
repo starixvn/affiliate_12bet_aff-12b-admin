@@ -190,9 +190,9 @@
         padding-right: 0;
 
         @include Tablet {
-            margin: 0 -12px;
             position: absolute;
             top: 0;
+            left : 0;
             z-index: 999;
             width: 100%;
             background: #d90f0f;
@@ -415,6 +415,7 @@
         margin-right: -50px;
     }
 
+
     @include MobileLandscape {
         margin-right: 0;
     }
@@ -425,7 +426,8 @@
     }
 
     a {
-        display : inline-block;
+        display: inline-block;
+
         @include Tablet {
             margin-right: 12px;
             font-size: 12px;
