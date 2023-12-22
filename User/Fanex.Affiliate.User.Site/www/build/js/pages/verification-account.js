@@ -92,7 +92,7 @@ var VerificationAccount = (function () {
             $("#btnLoginVerification").on("click", function (e) {
                 _me.submitForm();
             });
-            $("#captchaVerificationAccount").on('click', function (e) {
+            $("#verifyAccCaptchaBtn").on('click', function (e) {
                 e.preventDefault();
                 _me.generateCaptcha();
                 registerRefreshCaptcha();
@@ -115,7 +115,7 @@ var VerificationAccount = (function () {
         },
         generateCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());
-            $("#captchaVerificationAccount").attr("src", captchaUrl);
+            $("#verifyAccCaptchaImg").attr("src", captchaUrl);
         },
         sendCode: function () {
             var $form = $("#sendCodeForm");

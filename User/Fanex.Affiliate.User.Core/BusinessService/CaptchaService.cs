@@ -18,6 +18,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private const int RANDOM_END_NUMBER = 9999;
 
         private readonly string[] fontNameList = new[] {
+         "Montserrat",
          "Comic Sans MS",
          "Arial",
          "Times New Roman",
@@ -46,7 +47,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
          HatchStyle.WideDownwardDiagonal, HatchStyle.WideUpwardDiagonal, HatchStyle.ZigZag
         };
 
-        private readonly int[] fontEmSizeList = new[] { 16, 18, 20 };
+        private readonly int[] fontEmSizeList = new[] { 18, 20, 22 };
 
         public CaptchaService(IAppSetting appSetting)
         {
@@ -87,8 +88,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 else
                 {
                     // Add captcha
-                    var font = new Font("Montserrat", Number.Fourteen, FontStyle.Bold);
-                    graphics.DrawString(captcha, font, Brushes.White, 0, 0);
+                    var font = new Font("Montserrat", Number.Twelve, FontStyle.Bold);
+                    graphics.DrawString(captcha, font, Brushes.White, x: Number.Zero, y: Number.Zero);
                 }
 
                 for (int i = 0; i < Number.Fifty; i++)
@@ -108,12 +109,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private void DrawComplexImage(string captcha, int width, int height, Graphics graphics, Random random)
         {
-            var rectangleF = new RectangleF(0, 0, width, height);
+            var rectangle = new Rectangle(0, 0, width, height);
             var brush = new HatchBrush(
                 hatchStyleList[random.Next(hatchStyleList.Length - 1)],
                 CreateRandomColor(random, Number.OneFiveZero, Number.TwoDoubleFive),
                 Color.White);
-            graphics.FillRectangle(brush, rectangleF);
+            graphics.FillPie(brush, rectangle, Number.OneHundred, sweepAngle: Number.OneHundred);
             var matrix = new Matrix();
 
             for (var i = 0; i <= captcha.Length - 1; i++)

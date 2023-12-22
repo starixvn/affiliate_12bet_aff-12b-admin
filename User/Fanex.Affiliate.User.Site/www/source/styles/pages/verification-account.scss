@@ -28,11 +28,12 @@
     }
 }
 
-.validation-value{
-    display : unset;
-    padding : 0;
-    height : auto;
-    background : none;
+.validation-value {
+    padding: 2px 10px;
+
+    img {
+        transform: none;
+    }
 }
 
 .captcha-group {

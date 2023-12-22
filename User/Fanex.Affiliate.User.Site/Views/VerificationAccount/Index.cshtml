@@ -39,7 +39,6 @@
                         <p>@Html.Raw(string.Format(Lang.YourRegisterEmail, email))</p>
                     </div>
                     <form class="form" id="sendCodeForm">
-
                         <div class="form-group form-columns form-columns-2" id="emailGroup">
                             <div class="items">
                                 <label class="custom-label">@Lang.EmailVerification <span class="red-warn">*</span></label>
@@ -82,13 +81,14 @@
                                     <label class="custom-label">@Lang.Captcha <span class="red-warn">*</span></label>
                                     <div class="captcha-group">
                                         <input type="text" class="form-input" data-val="true" data-val-required="@Lang.CaptchaIsRequired" id="Captcha" name="Captcha" />
-                                        <div class="validation-value">
-                                            <img style="cursor:pointer" id="captchaVerificationAccount" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />
+                                        <div class="validation-value" id="verifyAccCaptchaBtn">
+                                            <img id="verifyAccCaptchaImg" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />
                                         </div>
                                     </div>
                                     <span class="field-validation-valid validate-input help-block" data-valmsg-for="Code" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
+
                             <div class="captcha-group">
                                 <button type="button" class="btn btn-sendcode custom-button login-button" id="btnLoginVerification">@Lang.Login</button>
                             </div>

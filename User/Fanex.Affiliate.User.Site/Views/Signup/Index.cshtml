@@ -300,7 +300,9 @@
                                     <label class="custom-label">@Lang.Validation <span class="red-warn">*</span></label>
                                     <div class="captcha-group">
                                         @Html.TextBoxFor(p => p.Captcha, new { @class = "form-input" })
-                                        <div class="validation-value"><img id="signupCaptcha" src="" alt="captcha" /></div>
+                                        <div class="validation-value" id="signupCaptchaBtn">
+                                            <img id="signupCaptchaImg" src="" alt="captcha" />
+                                        </div>
                                     </div>
                                     @Html.ValidationMessageFor(x => x.Captcha, string.Empty, new { @class = "validate-input hide" })
                                 </div>

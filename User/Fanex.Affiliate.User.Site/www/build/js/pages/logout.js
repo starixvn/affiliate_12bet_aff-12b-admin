@@ -22,7 +22,8 @@ var Logout = (function ($) {
                 dataType: "html",
                 cache: false,
                 success: function success(result) {
-                    $("#btnMyAccount").append('<div id="affFeedback">' + result + '</div>');
+                    console.log(result);
+                    $("#groupAuth").append('<div id="affFeedback">' + result + '</div>');
                 },
                 complete: function complete(jqXHR, textStatus) {
                     if (!$("#affFeedbackContainer").length) {

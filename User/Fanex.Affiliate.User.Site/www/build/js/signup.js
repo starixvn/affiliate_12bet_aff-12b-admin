@@ -203,7 +203,7 @@ var SignUp = (function ($) {
                 WebSite.changeWebsiteOption(hasWebSite);
             });
 
-            $("#signupCaptcha").on("click", function () {
+            $("#signupCaptchaBtn").on("click", function () {
                 _me.refreshCaptcha();
             })
         },
@@ -287,7 +287,7 @@ var SignUp = (function ($) {
 
         refreshCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
-            $("#signupCaptcha").attr("src", captchaUrl);
+            $("#signupCaptchaImg").attr("src", captchaUrl);
         }
     };
 

@@ -16,7 +16,7 @@ var ContactUs = (function ($) {
                 _me.reset();
             });
 
-            $("#captchaContactUsBtn").on("click", function () {
+            $("#contactUsCaptchaBtn").on("click", function () {
                 _me.refreshCaptcha();
             });
         },
@@ -105,7 +105,7 @@ var ContactUs = (function ($) {
 
         refreshCaptcha: function refreshCaptcha() {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
-            $("#captchaContactUs").attr("src", captchaUrl);
+            $("#contactUsCaptchaImg").attr("src", captchaUrl);
         }
     };
 

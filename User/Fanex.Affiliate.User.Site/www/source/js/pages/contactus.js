@@ -14,7 +14,7 @@
                 _me.reset();
             });
 
-            $("#captchaContactUsBtn").on("click", function () {
+            $("#contactUsCaptchaBtn").on("click", function () {
                 _me.refreshCaptcha();
             });
         },
@@ -103,7 +103,7 @@
 
         refreshCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
-            $("#captchaContactUs").attr("src", captchaUrl);
+            $("#contactUsCaptchaImg").attr("src", captchaUrl);
         }
     };
 

@@ -64,11 +64,13 @@
 .validation-value {
   cursor: pointer;
   display: flex;
-  padding: 8px 15px 8px 17px;
+  padding: 10px 15px;
   border-radius: 100px;
   background: #D90F0F;
-  height: 32px;
+  height: 36px;
   margin: 0; }
+  .validation-value img {
+    transform: skewX(-10deg); }
 
 .form .form-columns {
   margin-bottom: 24px; }

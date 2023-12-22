@@ -20,7 +20,8 @@
                 dataType: "html",
                 cache: false,
                 success: function (result) {
-                    $("#btnMyAccount").append(`<div id="affFeedback">${result}</div>`);
+                    console.log(result);
+                    $("#groupAuth").append(`<div id="affFeedback">${result}</div>`);
                 },
                 complete: function (jqXHR, textStatus) {
                     if (!($("#affFeedbackContainer").length)) {

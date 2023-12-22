@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = null;
 }
 
@@ -8,11 +8,11 @@
 
 @if (Model.IsAuthenticated)
 {
-    <div class="group-auth-login">
+    <div class="group-auth-login" id="groupAuth">
         <a class="btn-auth btn-login login-after" id="btnLogout">
             @Lang.Logout
         </a>
-        <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn-auth btn-signup" id="btnMyAccount">@Lang.MyAcc @Model.UserName</a>
+        <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn-auth btn-signup">@Lang.MyAcc @Model.UserName</a>
     </div>
 }
 else
@@ -27,11 +27,6 @@ else
     <div class="modal fade login-dialog" tabindex="-1" role="dialog" id="loginDialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                @*<div class="modal-banner">
-                    <img src="~/www/build/styles/Images/logo.png" alt="logo" />
-                    <h2 class="logo-text">@Lang.AffiliateProgram</h2>
-                </div>*@
-
                 <div class="modal-main-content">
                     <div class="modal-body">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -66,7 +61,6 @@ else
                                         <div class="custom-input columns-2">
                                             <input type="text" id="dialogtxtValidation" class="form-control captcha-input" placeholder="@Lang.Validation" />
                                             <div class="validation-value" id="loginDialogcaptchaBtn">
-                                                @*<span>1832</span>*@
                                                 <img src="" alt="captcha" id="loginDialogcaptchaImg" />
                                             </div>
                                         </div>

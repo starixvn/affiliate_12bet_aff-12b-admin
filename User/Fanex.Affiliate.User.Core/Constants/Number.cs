@@ -10,7 +10,7 @@
 
         public const int Ten = 10;
 
-        public const int Fourteen = 14;
+        public const int Twelve = 12;
 
         public const int Fifteen = 15;
 
