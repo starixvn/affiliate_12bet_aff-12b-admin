@@ -83,10 +83,13 @@
     background: #D90F0F;
     height: 36px;
     margin: 0;
+    justify-content: center;
 
     img {
         -webkit-transform: skewX(-10deg);
         transform: skewX(-10deg);
+        align-self: center;
+        max-height: 16px;
     }
 }
 

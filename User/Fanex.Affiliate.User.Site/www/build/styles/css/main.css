@@ -2040,7 +2040,8 @@ input[type="radio"], input[type="checkbox"] {
                 border-radius: 100px;
                 background: #D90F0F;
                 height: 36px;
-                margin: 0; }
+                margin: 0;
+                justify-content: center; }
                 @media (max-width: 500px) {
                   .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input.columns-2 .validation-value {
                     height: 44px;
@@ -2051,7 +2052,9 @@ input[type="radio"], input[type="checkbox"] {
                       object-fit: cover; } }
                 .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input.columns-2 .validation-value img {
                   -webkit-transform: skewX(-10deg);
-                  transform: skewX(-10deg); }
+                  transform: skewX(-10deg);
+                  align-self: center;
+                  max-height: 16px; }
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input input {
               border-radius: 100px;
               background: #F5F5F5;

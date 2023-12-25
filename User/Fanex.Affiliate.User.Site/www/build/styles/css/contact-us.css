@@ -112,10 +112,13 @@
   border-radius: 100px;
   background: #D90F0F;
   height: 36px;
-  margin: 0; }
+  margin: 0;
+  justify-content: center; }
   .validation-value img {
     -webkit-transform: skewX(-10deg);
-    transform: skewX(-10deg); }
+    transform: skewX(-10deg);
+    align-self: center;
+    max-height: 16px; }
 
 .form .form-columns {
   margin-bottom: 24px; }
