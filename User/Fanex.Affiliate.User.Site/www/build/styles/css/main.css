@@ -1315,9 +1315,7 @@ label.require:after {
         letter-spacing: 1px; } }
     @media (max-width: 500px) {
       .page-title .text {
-        text-align: center;
         font-size: 16px;
-        font-weight: 700;
         line-height: 22px; } }
 
 .after-login .page-title {
@@ -1950,6 +1948,9 @@ input[type="radio"], input[type="checkbox"] {
     max-width: calc(100% - 100px);
     flex-basis: calc(100% - 100px); } }
 
+.modal {
+  z-index: 99999999999999999999999 !important; }
+
 .login-dialog .modal-dialog {
   max-width: 565px;
   position: relative; }
@@ -2006,7 +2007,7 @@ input[type="radio"], input[type="checkbox"] {
             background: #fff; }
             @media (max-width: 500px) {
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .item:nth-child(2) {
-                padding-top: 20px; } }
+                padding: 20px 16px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .spacing-bt {
             margin-bottom: 16px; }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .heading-login, .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
@@ -2019,7 +2020,8 @@ input[type="radio"], input[type="checkbox"] {
             @media (max-width: 500px) {
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .heading-login, .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
                 text-align: center;
-                margin-bottom: 12px; } }
+                margin-bottom: 12px;
+                font-size: 16px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
             text-transform: lowercase;
             color: #353E5B; }
@@ -2084,11 +2086,17 @@ input[type="radio"], input[type="checkbox"] {
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .link-login-popup {
           text-align: center;
           color: #D90F0F;
-          font-size: 12px;
+          font-size: 14px;
           font-style: italic;
           font-weight: 400;
           line-height: normal;
-          display: block; }
+          display: block;
+          text-transform: capitalize; }
+          @media (max-width: 500px) {
+            .login-dialog .modal-dialog .modal-content .modal-body .main-login .link-login-popup {
+              margin-right: 0;
+              font-size: 16px;
+              padding: 0; } }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .btn-join {
           border: 1.5px solid #D90F0F;
           background: #FFF;
@@ -2096,6 +2104,10 @@ input[type="radio"], input[type="checkbox"] {
           font-weight: 500;
           text-align: center;
           padding: 8px 0px; }
+          @media (max-width: 500px) {
+            .login-dialog .modal-dialog .modal-content .modal-body .main-login .btn-join {
+              padding: 12px 0px;
+              font-size: 16px; } }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login #btnDialogLogin {
           height: 36px;
           background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
@@ -2140,102 +2152,3 @@ input[type="radio"], input[type="checkbox"] {
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
             color: #FFF;
             font-weight: 500; }
-
-/*.login-dialog {
-    .modal-content {
-        background-color: #000;
-        padding: 5px;
-
-        .modal-banner {
-            margin-top: 15px;
-
-            .logo-text {
-                display: inline-block;
-                margin-left: 15px;
-                color: #fff;
-            }
-        }
-
-        .login-side {
-            border-left: 1px solid #ccc;
-        }
-    }
-
-    .modal-main-content {
-        margin-top: 15px;
-        background-color: #fff;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-
-        .modal-header {
-            background-color: #d43131;
-            color: #fff;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            padding: 8px;
-            text-align: center;
-
-            .modal-title {
-                font-weight: bold;
-            }
-
-            .close {
-                -webkit-appearance: none;
-                position: absolute;
-                right: -15px;
-                top: -10px;
-                border-radius: 50%;
-                font-size: 21px;
-                font-weight: bold;
-                cursor: pointer;
-                border: 0;
-                color: #000;
-                background-color: buttonface;
-                opacity: 1;
-                padding: 1px 6px;
-
-                &:hover {
-                    opacity: 0.8;
-                }
-
-                &:focus {
-                    outline: none;
-                }
-            }
-        }
-    }
-
-    .modal-body {
-        .link-login-popup {
-            color: red;
-            margin-top: 10px;
-            display: inline-block;
-        }
-
-        .btn {
-            margin-top: 10px;
-            height: 28px;
-            line-height: 28px;
-        }
-
-        .captcha-input {
-            display: inline-block;
-            width: 85px;
-        }
-
-        .validation-value {
-            padding-bottom: 4px;
-        }
-
-        .title {
-            &-left {
-                color: red;
-                font-weight: bold;
-            }
-
-            &-right {
-                font-weight: bold;
-            }
-        }
-    }
-}*/
