@@ -54,7 +54,7 @@
                         .text-slider {
                             padding-left: 16px !important;
                             padding-right: 94px !important;
-                            text-align: right !important;
+                            text-align: left !important;
 
                             img {
                                 left: auto !important;
@@ -63,9 +63,7 @@
                         }
 
                         .heading-slider {
-                            padding-right: 94px;
-                            text-align: right;
-                            padding-left: 0 !important;
+                            padding-left: 16px !important;
                         }
                     }
                 }
@@ -92,7 +90,8 @@
             }
 
             @include Mobile {
-                margin: 0 6px;
+                margin: 0 8px;
+                padding: 8px;
             }
 
             .products-arrow {
@@ -255,7 +254,7 @@
 
                     .text-slider {
                         text-align: left;
-                        font-size: 18px;
+                        font-size: 14px;
                         font-weight: 500;
                         line-height: normal;
                         margin-bottom: 20px;
@@ -342,9 +341,13 @@
                         }
 
                         .products-slider {
-                            max-width: 27vw;
+                            max-width: 24vw;
                             margin: 0 auto;
                             position: unset;
+
+                            @media (min-width : 1400px) {
+                                max-width: 27vw;
+                            }
 
                             @include Tablet {
                                 max-width: 190px;

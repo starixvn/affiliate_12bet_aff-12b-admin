@@ -602,14 +602,12 @@ button.swiper-pagination-bullet {
       .block-items-products .main-items .wrapper-items:nth-child(even) .mask .text-slider {
         padding-left: 16px !important;
         padding-right: 94px !important;
-        text-align: right !important; }
+        text-align: left !important; }
         .block-items-products .main-items .wrapper-items:nth-child(even) .mask .text-slider img {
           left: auto !important;
           right: -33px; }
       .block-items-products .main-items .wrapper-items:nth-child(even) .mask .heading-slider {
-        padding-right: 94px;
-        text-align: right;
-        padding-left: 0 !important; } }
+        padding-left: 16px !important; } }
   .block-items-products .main-items .wrapper-items:nth-child(even) .arrow-3, .block-items-products .main-items .wrapper-items:nth-child(even) .arrow-4 {
     display: none; }
   .block-items-products .main-items .wrapper-items:nth-child(odd) .arrow-1, .block-items-products .main-items .wrapper-items:nth-child(odd) .arrow-2 {
@@ -623,7 +621,8 @@ button.swiper-pagination-bullet {
       padding: 15px; } }
   @media (max-width: 500px) {
     .block-items-products .main-items .items {
-      margin: 0 6px; } }
+      margin: 0 8px;
+      padding: 8px; } }
   .block-items-products .main-items .items .products-arrow {
     position: absolute;
     display: block; }
@@ -739,7 +738,7 @@ button.swiper-pagination-bullet {
             margin-bottom: 0; } }
       .block-items-products .main-items .items .mask .group-slider .text-slider {
         text-align: left;
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 500;
         line-height: normal;
         margin-bottom: 20px; }
@@ -803,9 +802,12 @@ button.swiper-pagination-bullet {
           .block-items-products .main-items .items .mask .group-slider .shape-slider {
             max-width: 260px; } }
         .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
-          max-width: 27vw;
+          max-width: 24vw;
           margin: 0 auto;
           position: unset; }
+          @media (min-width: 1400px) {
+            .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
+              max-width: 27vw; } }
           @media screen and (max-width: 1024px) {
             .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
               max-width: 190px; } }

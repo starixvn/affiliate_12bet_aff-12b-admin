@@ -130,7 +130,11 @@
             gap: 12px;
         }
 
-
+        /*@media (max-width : 840px) {
+            grid-template-columns: repeat(4,1fr);
+            gap: 16px 10px;
+        }
+*/
         @include Mobile {
             grid-template-columns: repeat(4,1fr);
             gap: 16px 10px;
