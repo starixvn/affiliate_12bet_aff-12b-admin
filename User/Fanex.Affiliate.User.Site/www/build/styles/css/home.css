@@ -83,7 +83,8 @@
   font-size: 20px;
   line-height: 30px;
   margin-top: 16px;
-  position: relative; }
+  position: relative;
+  font-weight: 500; }
   @media (max-width: 500px) {
     .group-faq .anwser {
       font-size: 16px; } }

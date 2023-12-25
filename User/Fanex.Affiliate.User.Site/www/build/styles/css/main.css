@@ -332,7 +332,7 @@ input[type="checkbox"], input[type="radio"] {
 
 .header-top {
   background: #000;
-  padding: 27px 0; }
+  padding: 20px 0; }
   @media screen and (max-width: 1024px) {
     .header-top {
       padding: 16px 0; } }
@@ -479,7 +479,7 @@ input[type="checkbox"], input[type="radio"] {
       display: block !important; } }
   .header-bottom .menu .menu-item {
     position: relative;
-    padding: 20px 12px;
+    padding: 10px 12px;
     line-height: normal;
     color: #fff;
     text-transform: uppercase;
@@ -489,10 +489,10 @@ input[type="checkbox"], input[type="radio"] {
     white-space: nowrap; }
     @media (min-width: 1200px) {
       .header-bottom .menu .menu-item {
-        padding: 20px 2vw; } }
+        padding: 10px 2vw; } }
     @media (min-width: 1360px) {
       .header-bottom .menu .menu-item {
-        padding: 20px 32px; } }
+        padding: 10px 32px; } }
     @media screen and (max-width: 1024px) {
       .header-bottom .menu .menu-item {
         padding: 12px 10px;
