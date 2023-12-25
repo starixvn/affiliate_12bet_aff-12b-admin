@@ -30,5 +30,9 @@
 
         public const int FourThousand = 4000;
 
+        public const int MinAngle = Fifty;
+
+        public const int MaxAngle = 360;
+
     }
 }

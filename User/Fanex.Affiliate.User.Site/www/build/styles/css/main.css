@@ -1724,8 +1724,8 @@ table + .button-group {
   letter-spacing: 2.24px;
   text-transform: uppercase;
   background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 16px; }
   @media (max-width: 500px) {
@@ -1855,8 +1855,8 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 20px; } }
     .block-title.fill-color {
       background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
-      background-clip: text;
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent; }
       @media (max-width: 500px) {
         .block-title.fill-color .show-pc {
@@ -2050,6 +2050,7 @@ input[type="radio"], input[type="checkbox"] {
                       height: 17px;
                       object-fit: cover; } }
                 .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input.columns-2 .validation-value img {
+                  -webkit-transform: skewX(-10deg);
                   transform: skewX(-10deg); }
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input input {
               border-radius: 100px;

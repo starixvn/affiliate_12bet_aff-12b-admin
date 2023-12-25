@@ -20,8 +20,8 @@
         font-size: 20px; } }
     .block-title.fill-color {
       background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
-      background-clip: text;
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent; }
       @media (max-width: 500px) {
         .block-title.fill-color .show-pc {
@@ -114,6 +114,7 @@
   height: 36px;
   margin: 0; }
   .validation-value img {
+    -webkit-transform: skewX(-10deg);
     transform: skewX(-10deg); }
 
 .form .form-columns {
@@ -245,6 +246,7 @@
   position: relative;
   cursor: pointer;
   font-size: 20px;
+  -webkit-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   margin-top: 24px; }

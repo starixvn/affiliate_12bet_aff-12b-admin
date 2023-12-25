@@ -731,8 +731,8 @@ button.swiper-pagination-bullet {
         font-size: 16px; } }
   .block-commission-boost .mid-title {
     background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
-    background-clip: text;
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 28px;
     font-weight: 700;

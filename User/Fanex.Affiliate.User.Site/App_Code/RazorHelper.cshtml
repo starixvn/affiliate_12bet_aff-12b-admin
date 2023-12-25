@@ -1,7 +1,7 @@
 ﻿@helper RenderMovingTopButton()
 {
     <div class="moving-block">
-        <button type="button" class="btn btn-circle btn-move-top" id="moveToTop" onclick="(function (event) { window.scrollTo({ top: 0, behavior: 'smooth' }); })(event);" style="display: none;">
+        <button type="button" aria-label="Move To Top" class="btn btn-circle btn-move-top" id="moveToTop" onclick="(function (event) { window.scrollTo({ top: 0, behavior: 'smooth' }); })(event);" style="display: none;">
             <i class="glyphicon glyphicon-chevron-up"></i>
         </button>
     </div>
@@ -20,7 +20,7 @@
 @helper RenderDropdownForMarketing(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true, bool isVisible = true)
 {
     <div class="form-group flex-sm-boostrap flex-center @(isVisible ? string.Empty : "hide")">
-        <label class="col-sm-3 col-lg-2 control-label ">@label</label>
+        <label class="col-sm-3 col-lg-2 control-label" for="@id">@label</label>
         <div class="col-sm-4 col-md-5 col-lg-3">
             <select class="form-control" id="@id">
                 @if (hasAllOption)
@@ -40,7 +40,7 @@
 @helper RenderDropdownForMarketingHasNoInfo(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAnyDomain = false)
 {
     <div class="form-group flex-sm-boostrap flex-center">
-        <label class="col-sm-3 col-lg-2 control-label">@label</label>
+        <label class="col-sm-3 col-lg-2 control-label" for="@id">@label</label>
         <div class="col-sm-4 col-md-5 col-lg-3">
             <select class="form-control" id="@id">
                 @if (hasAnyDomain)
@@ -150,7 +150,7 @@
     var hasThirdContactApp = thirdAppContactList.ContainsKey(language);
 
     <div class="form-group">
-        <label class="col-sm-3 control-label @(hasTwoContactApp ? string.Empty : "require")">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(firstAppName) ?? firstAppName)</label>
+        <label for="ContactAppList[0].Value" class="col-sm-3 control-label @(hasTwoContactApp ? string.Empty : "require")">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(firstAppName) ?? firstAppName)</label>
         @if (hasTwoContactApp)
         {
             <div class="col-sm-4">
@@ -178,7 +178,7 @@
     {
         var secondAppName = secondAppContactList[language];
         <div class="form-group">
-            <label class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(secondAppName) ?? secondAppName)</label>
+            <label for="ContactAppList[1].Value" class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(secondAppName) ?? secondAppName)</label>
             <div class="col-sm-4">
                 <input type="text" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-control" value=""
                        data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[0].Value@(hasThirdContactApp ? ",ContactAppList[2].Value" : "" )"
@@ -195,7 +195,7 @@
         {
             var thirdAppName = thirdAppContactList[language];
             <div class="form-group">
-                <label class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(thirdAppName) ?? thirdAppName)</label>
+                <label for="ContactAppList[2].Value" class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(thirdAppName) ?? thirdAppName)</label>
                 <div class="col-sm-4">
                     <input type="text" name="ContactAppList[2].Value" id="ContactAppList[2].Value" class="form-control" value=""
                            data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[0].Value,ContactAppList[1].Value"
@@ -215,7 +215,7 @@
 @helper RenderGenderSignUp()
 {
     <div class="items">
-        <label class="custom-label">@Fanex.Affiliate.User.Core.Resources.Lang.Gender <span class="red-warn">*</span></label>
+        <label class="custom-label" for="male">@Fanex.Affiliate.User.Core.Resources.Lang.Gender <span class="red-warn">*</span></label>
         <div class="radio-group">
             <label class="radio-button">
                 <input type="radio" name="Gender" id="male" value="True" checked />
@@ -236,7 +236,7 @@
     var index = order - 1;
 
     <div class="items">
-        <label class="custom-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(name) ?? name)</label>
+        <label for="ContactAppList[@index].Value" class="custom-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(name) ?? name)</label>
         <input type="text" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
                data-val="true" data-val-requiredifnullorempty-dependentprop="@dependentProp"
                data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />

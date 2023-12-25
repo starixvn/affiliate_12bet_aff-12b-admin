@@ -334,7 +334,7 @@
                         @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.EmailType))
                         {
                             <div class="items">
-                                <input type="text" class="form-input" placeholder="@Lang.Email1" name="Email" id="Email" value="@email" />
+                                <input type="text" class="form-input" placeholder="@Lang.Email1" name="Email" id="Email" value="@email" autocomplete="off" />
                                 <div class="validate-input hide">
                                     @Lang.EmailAddressIsInvalid
                                 </div>

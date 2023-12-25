@@ -21,10 +21,11 @@
             letter-spacing: 0;
             font-size: 20px;
         }
+
         &.fill-color {
             background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
-            background-clip: text;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
 
             .show-pc {

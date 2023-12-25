@@ -45,10 +45,11 @@ var WebSite = (function ($) {
         buildUrlInput: function (webSiteLabel, deleteLabel, errorMessage) {
             var currentItemCount = $("#websiteInfo .urlInput").length + 2;
             var name = "MoreUrlInput" + currentItemCount;
-            var inputItem = '<div class="form-group websiteInput">' +
-                '<label class="col-sm-3 control-label require moreWebsiteLabel"></label>' +
+            var inputItem =
+                '<div class="form-group websiteInput">' +
+                    '<label for="' + name + '" class="col-sm-3 control-label require moreWebsiteLabel"></label>' +
                     '<div class="col-sm-4">' +
-                        '<input class="form-control urlInput" type="text" name="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
+                        '<input class="form-control urlInput" type="text" name="' + name + '" id="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
                     '</div>' +
                     '<div class="col-sm-1">' +
                         '<button type="button" class="btn btn-submit btnDeleteUrl" title="' + deleteLabel + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>' +
@@ -65,9 +66,9 @@ var WebSite = (function ($) {
             var name = "MoreUrlInput" + currentItemCount;
             var inputItem =
                 '<div class="input-url websiteInput">' +
-                    '<label class="custom-label moreWebsiteLabel"></label>' +
+                    '<label for="' + name + '" class="custom-label moreWebsiteLabel"></label>' +
                     '<div class="group-input">' +
-                        '<input class="form-input urlInput" type="text" name="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
+                        '<input class="form-input urlInput" type="text" name="' + name + '" id="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
                         '<span class="button-toggle button-toggle-close btnDeleteUrl" title="' + deleteLabel + '"></span>' +
                     '</div>' +
                     '<span class="field-validation-valid validate-input hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +

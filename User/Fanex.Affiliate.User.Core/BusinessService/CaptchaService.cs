@@ -114,7 +114,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 hatchStyleList[random.Next(hatchStyleList.Length - 1)],
                 CreateRandomColor(random, Number.OneFiveZero, Number.TwoDoubleFive),
                 Color.White);
-            graphics.FillPie(brush, rectangle, Number.OneHundred, sweepAngle: Number.OneHundred);
+            graphics.FillPie(brush, rectangle, random.Next(Number.MinAngle, Number.MaxAngle), sweepAngle: random.Next(Number.MinAngle, Number.MaxAngle));
             var matrix = new Matrix();
 
             for (var i = 0; i <= captcha.Length - 1; i++)

@@ -85,6 +85,7 @@
     margin: 0;
 
     img {
+        -webkit-transform: skewX(-10deg);
         transform: skewX(-10deg);
     }
 }
@@ -255,15 +256,17 @@
 
 .custom-checkbox {
     display: flex;
-    align-items : center;
+    align-items: center;
     position: relative;
     cursor: pointer;
     font-size: 20px;
+    -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    margin-top : 24px;
-    @include Mobile{
-        align-items : flex-start;
+    margin-top: 24px;
+
+    @include Mobile {
+        align-items: flex-start;
     }
 }
 .checkmark {
