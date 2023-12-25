@@ -105,7 +105,6 @@
         border-radius: 12px;
         background: #FFF;
         padding: 52px 66px;
-        color: #353E5B;
         text-align: left;
         font-size: 20px;
         line-height: 30px;
@@ -124,6 +123,7 @@
             font-weight: 700;
             margin-bottom: 20px;
             line-height: normal;
+            color: #353E5B;
 
             @include Mobile {
                 margin-bottom: 10px;
@@ -132,6 +132,7 @@
 
         &-text {
             margin-bottom: 20px;
+            color: #353E5B;
 
             @include Mobile {
                 margin-bottom: 10px;
@@ -154,8 +155,9 @@
                 }
             }
         }
-        ul{
-            padding-left : 30px;
+
+        ul {
+            padding-left: 30px;
         }
     }
 
@@ -169,8 +171,8 @@
         width: 30px;
         height: 30px;
         display: flex;
-        align-items :center;
-        justify-content :center;
+        align-items: center;
+        justify-content: center;
         text-align: center;
         float: left;
         margin-right: 8px;

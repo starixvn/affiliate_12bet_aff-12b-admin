@@ -328,7 +328,8 @@
       font-size: 20px;
       font-weight: 700;
       line-height: normal;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      color: #353E5B; }
       @media (max-width: 500px) {
         .block-man-support .date-time-info .days {
           font-size: 16px; } }
@@ -336,7 +337,8 @@
       font-size: 16px;
       font-weight: 600;
       line-height: normal;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      color: #353E5B; }
       @media (max-width: 500px) {
         .block-man-support .date-time-info .time {
           font-size: 16px; } }
@@ -398,7 +400,8 @@
           margin-top: 15px; } }
       .block-flag-contact .main-flag .items .info .language {
         margin-bottom: 12px;
-        text-transform: uppercase; }
+        text-transform: uppercase;
+        color: #353E5B; }
       .block-flag-contact .main-flag .items .info .contact-info {
         color: #353E5B;
         display: flex;
@@ -415,7 +418,8 @@
               margin-top: 2px;
               margin-left: 4px; } }
           .block-flag-contact .main-flag .items .info .contact-info .number .phone-number {
-            font-weight: 400; }
+            font-weight: 400;
+            color: #353E5B; }
         @media (max-width: 500px) {
           .block-flag-contact .main-flag .items .info .contact-info img {
             width: 24px;

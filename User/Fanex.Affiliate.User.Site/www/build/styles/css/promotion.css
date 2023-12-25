@@ -79,7 +79,6 @@
   border-radius: 12px;
   background: #FFF;
   padding: 52px 66px;
-  color: #353E5B;
   text-align: left;
   font-size: 20px;
   line-height: 30px;
@@ -94,12 +93,14 @@
   .group-faq .anwser-heading {
     font-weight: 700;
     margin-bottom: 20px;
-    line-height: normal; }
+    line-height: normal;
+    color: #353E5B; }
     @media (max-width: 500px) {
       .group-faq .anwser-heading {
         margin-bottom: 10px; } }
   .group-faq .anwser-text {
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    color: #353E5B; }
     @media (max-width: 500px) {
       .group-faq .anwser-text {
         margin-bottom: 10px;
