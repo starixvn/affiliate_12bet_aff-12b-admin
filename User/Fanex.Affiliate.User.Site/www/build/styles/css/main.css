@@ -1266,17 +1266,35 @@ label.require:after {
 
 .moving-block {
   position: fixed;
-  bottom: 15px;
-  right: 135px;
-  z-index: 1; }
-  @media (max-width: 769px) {
+  z-index: 1;
+  bottom: 30%;
+  right: 20px; }
+  @media (max-width: 500px) {
     .moving-block {
-      right: 0; }
+      bottom: 15px;
+      right: 15px; } }
+  .moving-block .btn-move-top {
+    border-radius: 100%;
+    background: #D90F0F;
+    opacity: 0.3;
+    height: 50px;
+    width: 50px;
+    margin-right: 0;
+    border: none;
+    outline: none;
+    padding: 0; }
+    @media (max-width: 500px) {
       .moving-block .btn-move-top {
-        margin-right: 10px; } }
-  @media (max-width: 1199px) and (min-width: 1024px) {
-    .moving-block {
-      right: 85px; } }
+        height: 30px;
+        width: 30px; } }
+    @media (max-width: 500px) {
+      .moving-block .btn-move-top svg {
+        width: 20px;
+        height: 20px; } }
+    .moving-block .btn-move-top:hover {
+      opacity: 1; }
+    .moving-block .btn-move-top:focus {
+      outline: none; }
 
 #mainPanel {
   padding-bottom: 15px;
@@ -1509,15 +1527,6 @@ label.require:after {
   text-align: center;
   font-size: 12px;
   line-height: 1.42857; }
-
-.btn-move-top {
-  background: #dcdc1a;
-  opacity: 0.3; }
-  .btn-move-top:hover {
-    background: #fbfb07;
-    opacity: 1; }
-  .btn-move-top:focus {
-    outline: none; }
 
 .btn-login-mobile {
   display: inline-block;

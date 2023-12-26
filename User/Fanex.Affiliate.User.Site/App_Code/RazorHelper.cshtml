@@ -1,8 +1,17 @@
 ﻿@helper RenderMovingTopButton()
 {
     <div class="moving-block">
-        <button type="button" aria-label="Move To Top" class="btn btn-circle btn-move-top" id="moveToTop" onclick="(function (event) { window.scrollTo({ top: 0, behavior: 'smooth' }); })(event);" style="display: none;">
-            <i class="glyphicon glyphicon-chevron-up"></i>
+        <button type="button" aria-label="Move To Top" class="btn btn-move-top" id="moveToTop" onclick="(function (event) { window.scrollTo({ top: 0, behavior: 'smooth' }); })(event);" style="display: none;">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <g clip-path="url(#clip0_7756_22538)">
+                    <path d="M6.66602 12.0003L8.54602 13.8803L14.666 7.77366V29.3337H17.3327V7.77366L23.4527 13.8937L25.3327 12.0003L15.9993 2.66699L6.66602 12.0003Z" fill="white" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_7756_22538">
+                        <rect width="32" height="32" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg>
         </button>
     </div>
 }
