@@ -431,6 +431,12 @@
                     display: none;
                 }
 
+                img {
+                    max-width: 100%;
+                    width: auto;
+                    margin: 0 auto;
+                }
+
                 .img-responsive {
                     -webkit-filter: grayscale(100%);
                     filter: grayscale(100%);
@@ -455,15 +461,15 @@
 
                         @include Tablet {
                             img {
-                                width: 35px !important;
-                                height: 35px !important;
+                                width: 24px !important;
+                                height: 24px !important;
                             }
                         }
                     }
 
                     .arrow-1 {
-                        top: 8px;
-                        left: 8px;
+                        top: 12px;
+                        left: 12px;
 
                         @include Tablet {
                             top: 5px;
@@ -472,8 +478,8 @@
                     }
 
                     .arrow-2 {
-                        bottom: 8px;
-                        left: 8px;
+                        bottom: 12px;
+                        left: 12px;
 
                         @include Tablet {
                             bottom: 5px;
@@ -482,8 +488,8 @@
                     }
 
                     .arrow-3 {
-                        top: 8px;
-                        right: 8px;
+                        top: 12px;
+                        right: 12px;
 
                         @include Tablet {
                             top: 5px;
@@ -492,8 +498,8 @@
                     }
 
                     .arrow-4 {
-                        bottom: 8px;
-                        right: 8px;
+                        bottom: 12px;
+                        right: 12px;
 
                         @include Tablet {
                             bottom: 5px;

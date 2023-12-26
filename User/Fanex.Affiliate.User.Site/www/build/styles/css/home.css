@@ -1020,6 +1020,10 @@ button.swiper-pagination-bullet {
         position: relative; }
         .block-partnership .block-content .partnership-banner .swiper-slide .partnership-products {
           display: none; }
+        .block-partnership .block-content .partnership-banner .swiper-slide img {
+          max-width: 100%;
+          width: auto;
+          margin: 0 auto; }
         .block-partnership .block-content .partnership-banner .swiper-slide .img-responsive {
           -webkit-filter: grayscale(100%);
           filter: grayscale(100%); }
@@ -1035,32 +1039,32 @@ button.swiper-pagination-bullet {
               height: 35px !important; } }
           @media screen and (max-width: 1024px) {
             .block-partnership .block-content .partnership-banner .swiper-slide-active .partnership-products img {
-              width: 35px !important;
-              height: 35px !important; } }
+              width: 24px !important;
+              height: 24px !important; } }
         .block-partnership .block-content .partnership-banner .swiper-slide-active .arrow-1 {
-          top: 8px;
-          left: 8px; }
+          top: 12px;
+          left: 12px; }
           @media screen and (max-width: 1024px) {
             .block-partnership .block-content .partnership-banner .swiper-slide-active .arrow-1 {
               top: 5px;
               left: 5px; } }
         .block-partnership .block-content .partnership-banner .swiper-slide-active .arrow-2 {
-          bottom: 8px;
-          left: 8px; }
+          bottom: 12px;
+          left: 12px; }
           @media screen and (max-width: 1024px) {
             .block-partnership .block-content .partnership-banner .swiper-slide-active .arrow-2 {
               bottom: 5px;
               left: 5px; } }
         .block-partnership .block-content .partnership-banner .swiper-slide-active .arrow-3 {
-          top: 8px;
-          right: 8px; }
+          top: 12px;
+          right: 12px; }
           @media screen and (max-width: 1024px) {
             .block-partnership .block-content .partnership-banner .swiper-slide-active .arrow-3 {
               top: 5px;
               right: 5px; } }
         .block-partnership .block-content .partnership-banner .swiper-slide-active .arrow-4 {
-          bottom: 8px;
-          right: 8px; }
+          bottom: 12px;
+          right: 12px; }
           @media screen and (max-width: 1024px) {
             .block-partnership .block-content .partnership-banner .swiper-slide-active .arrow-4 {
               bottom: 5px;
