@@ -5,7 +5,8 @@
   background: #fff;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; }
+  min-height: 100vh;
+  overflow-x: hidden; }
 
 .km-KH {
   line-break: anywhere;
@@ -1276,7 +1277,7 @@ label.require:after {
   .moving-block .btn-move-top {
     border-radius: 100%;
     background: #D90F0F;
-    opacity: 0.3;
+    opacity: 0.5;
     height: 50px;
     width: 50px;
     margin-right: 0;
