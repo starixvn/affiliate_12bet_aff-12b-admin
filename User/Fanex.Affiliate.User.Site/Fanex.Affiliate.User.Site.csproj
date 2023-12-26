@@ -470,6 +470,10 @@
     <Content Include="www\build\styles\Images\contact-us\icons\line.png" />
     <Content Include="www\build\styles\Images\contact-us\icons\telegram.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.en-US.png" />
+    <Content Include="www\build\styles\Images\home\get-started\approved.svg" />
+    <Content Include="www\build\styles\Images\home\get-started\earning.svg" />
+    <Content Include="www\build\styles\Images\home\get-started\promote.svg" />
+    <Content Include="www\build\styles\Images\home\get-started\sign-up.svg" />
     <Content Include="www\build\styles\Images\home\our-product\casino.png" />
     <Content Include="www\build\styles\Images\home\our-product\esports.png" />
     <Content Include="www\build\styles\Images\home\our-product\keno.png" />
@@ -522,6 +526,7 @@
     <Content Include="www\build\styles\Images\home\partnership\item3.png" />
     <Content Include="www\build\styles\Images\home\partnership\item1.png" />
     <Content Include="www\build\styles\Images\home\partnership\item2.png" />
+    <Content Include="www\build\styles\Images\logo.svg" />
     <Content Include="www\build\styles\Images\product\esports\esporsts.png" />
     <Content Include="www\build\styles\Images\product\live-casino\banner.png" />
     <Content Include="www\build\styles\Images\product\lottery\banner.png" />

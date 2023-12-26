@@ -308,11 +308,11 @@
             <div class="alert alert-success" role="alert" id="messageSuccess" style="display: none;">
                 @Html.Raw(Lang.MessageSentReview.Replace("{br}", "<br>"))
             </div>
-
-            <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
             <div id="mainContent">
                 <form id="contactForm" class="form" autocomplete="off">
                     @Html.AntiForgeryToken()
+
+                    <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
                     <div class="form-group form-columns form-columns-2">
                         <div class="items">
                             <input type="text" class="form-input" placeholder="@Lang.Name" name="Sender" id="Sender" value="@name" />
