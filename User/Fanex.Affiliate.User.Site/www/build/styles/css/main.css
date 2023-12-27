@@ -1167,7 +1167,8 @@ input[type="checkbox"], input[type="radio"] {
         .footer-img .img-bottom .item {
           margin-bottom: 30px; } }
       .footer-img .img-bottom .item:last-child {
-        border-right: none; }
+        border-right: none;
+        padding-right: 0; }
       @media screen and (max-width: 1024px) {
         .footer-img .img-bottom .item {
           padding: 0 13px;
@@ -1269,29 +1270,24 @@ label.require:after {
   position: fixed;
   z-index: 1;
   bottom: 30%;
-  right: 20px; }
+  right: 135px; }
   @media (max-width: 500px) {
     .moving-block {
-      bottom: 15px;
-      right: 15px; } }
+      bottom: 50px;
+      right: 16px; } }
   .moving-block .btn-move-top {
     border-radius: 100%;
     background: #D90F0F;
     opacity: 0.5;
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     margin-right: 0;
     border: none;
     outline: none;
     padding: 0; }
-    @media (max-width: 500px) {
-      .moving-block .btn-move-top {
-        height: 30px;
-        width: 30px; } }
-    @media (max-width: 500px) {
-      .moving-block .btn-move-top svg {
-        width: 20px;
-        height: 20px; } }
+    .moving-block .btn-move-top svg {
+      width: 20px;
+      height: 20px; }
     .moving-block .btn-move-top:hover {
       opacity: 1; }
     .moving-block .btn-move-top:focus {

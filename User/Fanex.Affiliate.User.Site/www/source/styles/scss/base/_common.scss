@@ -49,34 +49,27 @@ label {
     position: fixed;
     z-index: 1;
     bottom: 30%;
-    right: 20px;
+    right: 135px;
 
     @include Mobile {
-        bottom: 15px;
-        right: 15px;
+        bottom: 50px;
+        right: 16px;
     }
 
     .btn-move-top {
         border-radius: 100%;
         background: #D90F0F;
         opacity: 0.5;
-        height: 50px;
-        width: 50px;
+        height: 30px;
+        width: 30px;
         margin-right: 0;
         border: none;
         outline: none;
         padding: 0;
 
-        @include Mobile {
-            height: 30px;
-            width: 30px;
-        }
-
         svg {
-            @include Mobile {
-                width: 20px;
-                height: 20px;
-            }
+            width: 20px;
+            height: 20px;
         }
 
         &:hover {
