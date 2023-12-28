@@ -732,7 +732,8 @@ input[type="checkbox"], input[type="radio"] {
         color: #353E5B;
         font-size: 14px;
         font-weight: 500;
-        line-height: normal; }
+        line-height: normal;
+        text-transform: capitalize; }
         .language-container .language-list-wrapper .language-list .language-item i {
           margin-right: 8px;
           border: 1px solid #C2C2C2;
