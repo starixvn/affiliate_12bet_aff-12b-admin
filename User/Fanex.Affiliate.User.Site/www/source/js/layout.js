@@ -28,6 +28,7 @@ var Layout = (function ($) {
                 if ($(this).hasClass('active')) {
                     $(this).blur();
                 } else {
+                    $(this).focus();
                     $(this).addClass("active");
                 }
             });

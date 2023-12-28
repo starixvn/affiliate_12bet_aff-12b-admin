@@ -1,3 +1,5 @@
+﻿'use strict';
+
 var Layout = (function ($) {
     var DEFAULT_SPEED = 5;
 
@@ -8,26 +10,24 @@ var Layout = (function ($) {
 
         if (hasQueryString) {
             var regex = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
-            return regex.test(url) ?
-                url.replace(regex, '$1' + key + '=' + language + '$2') :
-                url + '&' + updatedQueryParam;
-        }
-        else {
+            return regex.test(url) ? url.replace(regex, '$1' + key + '=' + language + '$2') : url + '&' + updatedQueryParam;
+        } else {
             return url + '?' + updatedQueryParam;
         }
     }
 
     var _me = {
-        initialize: function () {
+        initialize: function initialize() {
             _me.registerAjaxHandlerError();
             _me.initEvent();
             _me.renderHotNews();
         },
-        initEvent: function () {
+        initEvent: function initEvent() {
             $("#selectedLanguage").on("click", function (e) {
                 if ($(this).hasClass('active')) {
                     $(this).blur();
                 } else {
+                    $(this).focus();
                     $(this).addClass("active");
                 }
             });
@@ -65,7 +65,7 @@ var Layout = (function ($) {
                 }
             });
         },
-        registerAjaxHandlerError: function () {
+        registerAjaxHandlerError: function registerAjaxHandlerError() {
             $(document).ajaxError(function (event, jqXHR) {
                 var status = jqXHR.status;
 
@@ -85,13 +85,13 @@ var Layout = (function ($) {
                 }
             });
         },
-        renderHotNews: function () {
+        renderHotNews: function renderHotNews() {
             $.ajax({
                 type: "GET",
                 url: Site.resolveRelativeUrl("News/LatestHotNews"),
                 dataType: "html",
                 cache: false,
-                success: function (response) {
+                success: function success(response) {
                     var $marquee = $("#marquee");
                     $marquee.html(response);
                     // Time = Distance/Speed
@@ -103,7 +103,7 @@ var Layout = (function ($) {
             });
         },
 
-        changeLanguage: function (selectedLanguage) {
+        changeLanguage: function changeLanguage(selectedLanguage) {
             var hash = window.location.hash;
             var href = window.location.href;
             var actualUrl = !!hash ? href.substring(0, href.indexOf(hash)) : href;
@@ -113,9 +113,10 @@ var Layout = (function ($) {
 
             Site.redirect(url);
         }
-    }
+    };
 
     return _me;
 })(jQuery);
 
 Layout.initialize();
+

@@ -11,13 +11,13 @@
   //  "outputFileName": "www/build/js/lib/jsencrypt-2.3.1.min.js",
   //  "inputFiles": [ "www/source/js/lib/jsencrypt-2.3.1.min.js" ]
   //},
-  {
-    "outputFileName": "www/build/js/pages/home.js",
-    "inputFiles": [
-      "www/source/js/lib/swiper.min.js",
-      "www/source/js/pages/home.js"
-    ]
-  },
+  //{
+  //  "outputFileName": "www/build/js/pages/home.js",
+  //  "inputFiles": [
+  //    "www/source/js/lib/swiper.min.js",
+  //    "www/source/js/pages/home.js"
+  //  ]
+  //},
   //{
   //  "outputFileName": "www/build/js/pages/commission-structure.js",
   //  "inputFiles": [
@@ -37,24 +37,6 @@
   //  "inputFiles": [
   //    "www/source/js/lib/swiper.min.js",
   //    "www/source/js/pages/promotion.js"
-  //  ]
-  //},
-  {
-    "outputFileName": "www/build/js/layout.js",
-    "inputFiles": [
-      "www/source/js/layout.js"
-    ]
-  },
-  //{
-  //  "outputFileName": "www/build/js/user-panel.min.js",
-  //  "inputFiles": [
-  //    "www/source/js/pages/user-panel.js"
-  //  ]
-  //},
-  //{
-  //  "outputFileName": "www/build/js/account-overview.js",
-  //  "inputFiles": [
-  //    "www/source/js/pages/account-overview/account-overview.js"
   //  ]
   //},
   //{
@@ -131,13 +113,13 @@
   //    "www/source/js/pages/messagehistory.js"
   //  ]
   //},
-  {
-    "outputFileName": "www/build/js/signup.js",
-    "inputFiles": [
-      "www/source/js/components/website.js",
-      "www/source/js/pages/signup.js"
-    ]
-  },
+  //{
+  //  "outputFileName": "www/build/js/signup.js",
+  //  "inputFiles": [
+  //    "www/source/js/components/website.js",
+  //    "www/source/js/pages/signup.js"
+  //  ]
+  //},
   //{
   //  "outputFileName": "www/build/js/member.js",
   //  "inputFiles": [
@@ -153,14 +135,14 @@
   //    "www/source/js/pages/myaccount.js"
   //  ]
   //},
-  {
-    "outputFileName": "www/build/js/validation.js",
-    "inputFiles": [
-      "www/source/js/lib/jquery.validate.min.js",
-      "www/source/js/lib/jquery.validate.unobtrusive.min.js",
-      "www/source/js/components/validation.custom.js"
-    ]
-  }
+  //{
+  //  "outputFileName": "www/build/js/validation.js",
+  //  "inputFiles": [
+  //    "www/source/js/lib/jquery.validate.min.js",
+  //    "www/source/js/lib/jquery.validate.unobtrusive.min.js",
+  //    "www/source/js/components/validation.custom.js"
+  //  ]
+  //},
   //{
   //  "outputFileName": "www/build/styles/fonts/materialdesignicons/font.css",
   //  "inputFiles": [
