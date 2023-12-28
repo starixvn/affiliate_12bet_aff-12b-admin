@@ -47,10 +47,10 @@
   //  "outputFile": "www/build/js/test.js",
   //  "inputFile": "www/source/js/pages/test.js"
   //},
-  //{
-  //  "outputFile": "www/build/js/layout.js",
-  //  "inputFile": "www/source/js/layout.js"
-  //},
+  {
+    "outputFile": "www/build/js/layout.js",
+    "inputFile": "www/source/js/layout.js"
+  },
   //{
   //  "outputFile": "www/build/js/site.js",
   //  "inputFile": "www/source/js/site.js"

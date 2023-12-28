@@ -36,6 +36,12 @@ var Layout = (function ($) {
                 $(this).removeClass("active");
             });
 
+            $("#menuMobileBtn").on("blur", function (e) {
+                if (!$(this).hasClass('collapsed')) {
+                    $(this).click();
+                }
+            });
+
             $("#languageList").on("click", ".language-item", function () {
                 var $selectedItem = $(this);
                 _me.changeLanguage($selectedItem.data('option'));
