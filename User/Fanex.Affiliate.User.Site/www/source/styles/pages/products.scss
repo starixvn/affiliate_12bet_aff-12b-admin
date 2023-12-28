@@ -77,6 +77,12 @@
                 .arrow-1, .arrow-2 {
                     display: none;
                 }
+
+                .arrow-3, .arrow-4 {
+                    @include Mobile {
+                        display: block;
+                    }
+                }
             }
         }
 
@@ -117,7 +123,7 @@
                 left: 0;
 
                 @include Mobile {
-                    display: none;
+                    display: block;
                 }
             }
 
@@ -126,7 +132,7 @@
                 left: 0;
 
                 @include Mobile {
-                    display: none;
+                    display: block;
                 }
             }
 
@@ -135,7 +141,7 @@
                 right: 0;
 
                 @include Mobile {
-                    display: block !important;
+                    display: none;
                 }
             }
 
@@ -144,7 +150,7 @@
                 right: 0;
 
                 @include Mobile {
-                    display: block !important;
+                    display: none;
                 }
             }
 
