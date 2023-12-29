@@ -8,6 +8,11 @@
 }
 
 @section scripts{
+    <script>
+        var resourceLanguage = {
+            generalError: '@Error.General'
+        }
+    </script>
     <script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
     @Html.InlineScripts("~/www/build/js/forgotpassword.js")
 }

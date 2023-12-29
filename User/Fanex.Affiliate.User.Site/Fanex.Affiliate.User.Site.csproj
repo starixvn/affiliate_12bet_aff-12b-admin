@@ -407,6 +407,20 @@
     <Content Include="www\build\styles\fonts\myriadPro\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\Images\account-overview\commission.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-copy.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-facebook.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-line.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-qq.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-talk.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-telegram.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-twitter.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-wechat.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-weiboi.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-whatsapp.svg" />
+    <Content Include="www\build\styles\Images\account-overview\icon-zalo.svg" />
+    <Content Include="www\build\styles\Images\account-overview\new-sign-up.svg" />
+    <Content Include="www\build\styles\Images\account-overview\total-deposit.svg" />
     <Content Include="www\build\styles\Images\arrow-1.svg" />
     <Content Include="www\build\styles\Images\arrow-2.svg" />
     <Content Include="www\build\styles\Images\arrow-3.svg" />
@@ -917,20 +931,6 @@
     <Content Include="www\build\styles\fonts\tahoma\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\Images\account-overview\commission.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-copy.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-facebook.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-line.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-qq.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-talk.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-telegram.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-twitter.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-wechat.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-weiboi.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-whatsapp.png" />
-    <Content Include="www\build\styles\Images\account-overview\icon-zalo.png" />
-    <Content Include="www\build\styles\Images\account-overview\new-sign-up.png" />
-    <Content Include="www\build\styles\Images\account-overview\total-deposit.png" />
     <Content Include="www\build\styles\Images\contact-us\japan_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\brazil_lang.png" />
     <Content Include="www\build\styles\Images\feedback\dissatisfaction-active.png" />
