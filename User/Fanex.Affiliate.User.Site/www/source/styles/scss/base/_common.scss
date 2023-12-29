@@ -48,8 +48,12 @@ label {
 .moving-block {
     position: fixed;
     z-index: 1;
-    bottom: 30%;
-    right: 135px;
+    bottom: 28%;
+    right: 80px;
+
+    @media (min-width : 1600px) {
+        right: 260px;
+    }
 
     @include Mobile {
         bottom: 50px;

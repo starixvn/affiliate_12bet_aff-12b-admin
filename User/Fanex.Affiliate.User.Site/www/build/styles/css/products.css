@@ -673,13 +673,14 @@ button.swiper-pagination-bullet {
     @media (max-width: 500px) {
       .block-items-products .main-items .items .mask {
         padding: 24px 0 50px 0;
-        border-radius: 8px; } }
+        border-radius: 8px;
+        display: block; } }
     .block-items-products .main-items .items .mask .shape {
       display: block;
       min-width: 400px; }
       @media screen and (max-width: 1024px) {
         .block-items-products .main-items .items .mask .shape {
-          min-width: 320px; } }
+          min-width: 300px; } }
       @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
         .block-items-products .main-items .items .mask .shape {
           min-width: 240px !important; } }
@@ -715,9 +716,12 @@ button.swiper-pagination-bullet {
             width: 55%; } }
     .block-items-products .main-items .items .mask .group-slider {
       color: #FFF;
-      width: 65%;
+      width: calc(100% - 400px);
       position: relative;
       z-index: 99; }
+      @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+        .block-items-products .main-items .items .mask .group-slider {
+          width: calc(100% - 220px); } }
       @media (max-width: 500px) {
         .block-items-products .main-items .items .mask .group-slider {
           width: auto; } }
@@ -740,7 +744,7 @@ button.swiper-pagination-bullet {
             margin-bottom: 0; } }
       .block-items-products .main-items .items .mask .group-slider .text-slider {
         text-align: left;
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 500;
         line-height: normal;
         margin-bottom: 20px; }
@@ -787,7 +791,8 @@ button.swiper-pagination-bullet {
             left: -42px; } }
       .block-items-products .main-items .items .mask .group-slider .shape-slider {
         position: relative;
-        max-width: 32vw;
+        /*max-width: 32vw;*/
+        max-width: calc(100% - 90px);
         margin: 0 auto; }
         @media (max-width: 1200px) {
           .block-items-products .main-items .items .mask .group-slider .shape-slider {
@@ -795,37 +800,22 @@ button.swiper-pagination-bullet {
         @media screen and (max-width: 1024px) {
           .block-items-products .main-items .items .mask .group-slider .shape-slider {
             max-width: 300px; } }
-        @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
-          .block-items-products .main-items .items .mask .group-slider .shape-slider {
-            max-width: 230px; } }
         @media only screen and (min-device-width: 812px) and (max-device-width: 980px) and (orientation: landscape) {
           .block-items-products .main-items .items .mask .group-slider .shape-slider {
-            max-width: 290px; } }
+            max-width: 100%; } }
+        @media only screen and (min-device-width: 510px) and (max-device-width: 690px) and (orientation: landscape) {
+          .block-items-products .main-items .items .mask .group-slider .shape-slider {
+            max-width: 250px; } }
         @media (max-width: 500px) {
           .block-items-products .main-items .items .mask .group-slider .shape-slider {
-            max-width: 260px; } }
+            max-width: calc(100% - 20px); } }
         .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
-          max-width: 24vw;
+          max-width: calc(100% - 90px);
           margin: 0 auto;
           position: unset; }
-          @media (min-width: 1400px) {
-            .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
-              max-width: 27vw; } }
           @media screen and (max-width: 1024px) {
             .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
-              max-width: 190px; } }
-          @media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
-            .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
-              max-width: 230px; } }
-          @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
-            .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
-              max-width: 200px; } }
-          @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
-            .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
-              max-width: 165px; } }
-          @media only screen and (min-device-width: 812px) and (max-device-width: 980px) and (orientation: landscape) {
-            .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider {
-              max-width: 230px; } }
+              max-width: calc(100% - 60px); } }
           .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider .swiper-slide {
             border-radius: 8px;
             background: rgba(197, 84, 36, 0.21);
@@ -844,7 +834,27 @@ button.swiper-pagination-bullet {
                   width: 100%;
                   height: 100%; } }
         .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-next, .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-prev {
-          margin-top: -15px; }
+          margin-top: -15px;
+          width: auto;
+          height: auto; }
+          @media (max-width: 500px) {
+            .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-next, .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-prev {
+              margin-top: 0;
+              top: 10px;
+              width: 20px;
+              height: 20px; } }
+          @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+            .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-next, .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-prev {
+              margin-top: 0;
+              top: 8px; } }
+          @media (max-width: 500px) {
+            .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-next svg, .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-prev svg {
+              width: 20px;
+              height: 20px; } }
+          @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+            .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-next svg, .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-prev svg {
+              width: 20px;
+              height: 20px; } }
         .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper-pagination {
           bottom: -30px; }
           @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {

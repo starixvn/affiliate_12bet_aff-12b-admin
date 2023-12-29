@@ -169,6 +169,7 @@
                 @include Mobile {
                     padding: 24px 0 50px 0;
                     border-radius: 8px;
+                    display: block;
                 }
 
                 .shape {
@@ -176,7 +177,7 @@
                     min-width: 400px;
 
                     @include Tablet {
-                        min-width: 320px;
+                        min-width: 300px;
                     }
 
                     @include MobileLandscape {
@@ -227,9 +228,13 @@
 
                 .group-slider {
                     color: #FFF;
-                    width: 65%;
+                    width: calc(100% - 400px);
                     position: relative;
                     z-index: 99;
+
+                    @include MobileLandscape {
+                        width: calc(100% - 220px);
+                    }
 
                     @include Mobile {
                         width: auto;
@@ -259,7 +264,7 @@
 
                     .text-slider {
                         text-align: left;
-                        font-size: 14px;
+                        font-size: 18px;
                         font-weight: 500;
                         line-height: normal;
                         margin-bottom: 20px;
@@ -323,7 +328,8 @@
 
                     .shape-slider {
                         position: relative;
-                        max-width: 32vw;
+                        /*max-width: 32vw;*/
+                        max-width: calc(100% - 90px);
                         margin: 0 auto;
 
                         @media (max-width : 1200px) {
@@ -334,45 +340,29 @@
                             max-width: 300px;
                         }
 
-                        @include MobileLandscape {
-                            max-width: 230px;
-                        }
+
 
                         @include MobileBigLandscape {
-                            max-width: 290px;
+                            max-width: 100%;
                         }
 
+                        @include MobileMiniLandscape {
+                            max-width: 250px;
+                        }
+
+
                         @include Mobile {
-                            max-width: 260px;
+                            max-width: calc(100% - 20px);
                         }
 
                         .products-slider {
-                            max-width: 24vw;
+    
+                            max-width: calc(100% - 90px);
                             margin: 0 auto;
                             position: unset;
 
-                            @media (min-width : 1400px) {
-                                max-width: 27vw;
-                            }
-
                             @include Tablet {
-                                max-width: 190px;
-                            }
-
-                            @include TabletLandscape {
-                                max-width: 230px;
-                            }
-
-                            @include MobileLandscape {
-                                max-width: 200px;
-                            }
-
-                            @include MobileLandscape {
-                                max-width: 165px;
-                            }
-
-                            @include MobileBigLandscape {
-                                max-width: 230px;
+                                max-width: calc(100% - 60px);
                             }
 
                             .swiper-slide {
@@ -401,6 +391,32 @@
 
                         .swiper .swiper-button-next, .swiper .swiper-button-prev {
                             margin-top: -15px;
+                            width: auto;
+                            height: auto;
+
+                            @include Mobile {
+                                margin-top: 0;
+                                top: 10px;
+                                width: 20px;
+                                height: 20px;
+                            }
+
+                            @include MobileLandscape {
+                                margin-top: 0;
+                                top: 8px;
+                            }
+
+                            svg {
+                                @include Mobile {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+
+                                @include MobileLandscape {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
                         }
 
                         .swiper-pagination {

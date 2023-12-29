@@ -1269,8 +1269,11 @@ label.require:after {
 .moving-block {
   position: fixed;
   z-index: 1;
-  bottom: 30%;
-  right: 135px; }
+  bottom: 28%;
+  right: 80px; }
+  @media (min-width: 1600px) {
+    .moving-block {
+      right: 260px; } }
   @media (max-width: 500px) {
     .moving-block {
       bottom: 50px;
