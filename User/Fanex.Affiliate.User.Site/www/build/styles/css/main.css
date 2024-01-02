@@ -1139,15 +1139,13 @@ input[type="checkbox"], input[type="radio"] {
     padding: 16px 0;
     letter-spacing: 0.96px;
     line-height: normal;
-    text-transform: uppercase; }
-    @media screen and (max-width: 1024px) {
-      .footer-text {
-        font-size: 12px; } }
+    text-transform: uppercase;
+    font-size: 12px; }
     @media (max-width: 500px) {
       .footer-text {
         padding: 16px 10px; } }
   .footer-img {
-    padding: 52px 0;
+    padding: 24px 0;
     display: flex;
     align-items: center;
     justify-content: space-between; }
@@ -1157,22 +1155,41 @@ input[type="checkbox"], input[type="radio"] {
     @media screen and (max-width: 1024px) {
       .footer-img .img-top {
         margin-bottom: 32px; } }
+    @media (max-width: 500px) {
+      .footer-img .img-top {
+        margin-bottom: 0; } }
     .footer-img .img-top img {
       width: auto;
       max-width: 100%; }
-    .footer-img .img-bottom .item {
-      border-right: 1px solid #fff;
-      padding: 0 30px; }
       @media (max-width: 500px) {
-        .footer-img .img-bottom .item {
-          margin-bottom: 30px; } }
-      .footer-img .img-bottom .item:last-child {
-        border-right: none;
-        padding-right: 0; }
+        .footer-img .img-top img {
+          width: 255px; } }
+    .footer-img .img-bottom {
+      display: flex;
+      justify-content: space-between; }
       @media screen and (max-width: 1024px) {
-        .footer-img .img-bottom .item {
-          padding: 0 13px;
-          display: inline-flex; } }
+        .footer-img .img-bottom {
+          display: block; } }
+      @media (max-width: 500px) {
+        .footer-img .img-bottom {
+          margin-left: -30px;
+          display: block; } }
+      .footer-img .img-bottom .item {
+        border-right: 1px solid #fff;
+        padding: 0 30px; }
+        @media screen and (max-width: 1024px) {
+          .footer-img .img-bottom .item {
+            padding: 0 15px; } }
+        @media (max-width: 500px) {
+          .footer-img .img-bottom .item {
+            margin-top: 24px;
+            padding: 0 30px; } }
+        .footer-img .img-bottom .item:last-child {
+          border-right: none;
+          padding-right: 0; }
+        @media screen and (max-width: 1024px) {
+          .footer-img .img-bottom .item {
+            display: inline-flex; } }
     .footer-img .item {
       display: inline-block; }
 
@@ -1282,15 +1299,15 @@ label.require:after {
     border-radius: 100%;
     background: #D90F0F;
     opacity: 0.5;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     margin-right: 0;
     border: none;
     outline: none;
     padding: 0; }
     .moving-block .btn-move-top svg {
-      width: 20px;
-      height: 20px; }
+      width: 28px;
+      height: 28px; }
     .moving-block .btn-move-top:hover {
       opacity: 1; }
     .moving-block .btn-move-top:focus {
