@@ -791,7 +791,6 @@ button.swiper-pagination-bullet {
             left: -42px; } }
       .block-items-products .main-items .items .mask .group-slider .shape-slider {
         position: relative;
-        /*max-width: 32vw;*/
         max-width: calc(100% - 90px);
         margin: 0 auto; }
         @media (max-width: 1200px) {
@@ -874,8 +873,6 @@ button.swiper-pagination-bullet {
               .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper-pagination span {
                 width: 4px;
                 height: 4px; } }
-            .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper-pagination span:hover {
-              background: #fff; }
             .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper-pagination span:hover {
               background: #fff; }
           .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper-pagination .swiper-pagination-bullet-active {

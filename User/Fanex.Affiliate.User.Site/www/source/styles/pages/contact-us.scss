@@ -5,51 +5,40 @@
 
 .block-man-support {
     padding: 22px 0 52px;
-
     @include Tablet {
         padding: 8px 0 44px;
     }
-
     .img-support {
         width: 225px;
         height: 225px;
         margin: 0 auto;
         border-radius: 50%;
         overflow: hidden;
-
         @include Mobile {
             width: 116px;
             height: 116px;
         }
     }
-
     .date-time-info {
         margin-top: 24px;
         color: #353E5B;
-
         @include Mobile {
             margin-top: 16px;
         }
-
         .days {
             font-size: 20px;
             font-weight: 700;
             line-height: normal;
             text-transform: uppercase;
-            color: #353E5B;
-
             @include Mobile {
                 font-size: 16px
             }
         }
-
         .time {
             font-size: 16px;
             font-weight: 600;
             line-height: normal;
             text-transform: uppercase;
-            color: #353E5B;
-
             @include Mobile {
                 font-size: 16px
             }
@@ -65,7 +54,6 @@
         gap: 1px;
         border-radius: 12px;
         overflow: hidden;
-
         &.one-column {
             grid-template-columns: repeat(1, 1fr);
             margin: 0 auto;
@@ -79,11 +67,9 @@
                 }
             }
         }
-
         @include Mobile {
             border-radius: 8px;
         }
-
         .items {
             padding: 52px 40px;
             display: flex;
@@ -95,7 +81,6 @@
             @include Mobile {
                 padding: 32px 16px;
             }
-
             .single-flag {
                 padding: 8px;
                 border: 1px solid #D90F0F;
@@ -104,7 +89,6 @@
                 @include Mobile {
                     padding: 7px;
                 }
-
                 img {
                     width: 78px;
                     height: 78px;
@@ -116,11 +100,9 @@
                     }
                 }
             }
-
             .info {
                 color: #353E5B;
                 font-size: 16px;
-                font-style: normal;
                 font-weight: 600;
                 margin-top: 12px;
                 line-height: normal;
@@ -150,7 +132,6 @@
                         margin-left: 8px;
                         text-align: left;
                         margin-top: 4px;
-
                         @include Mobile {
                             margin-top: 2px;
                             margin-left: 4px;
@@ -205,7 +186,6 @@
         line-height: normal;
         margin-bottom: 40px;
         margin-top: 0;
-
         @include Mobile {
             font-size: 16px;
             text-align: left;

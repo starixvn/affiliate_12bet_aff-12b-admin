@@ -803,12 +803,7 @@ button.swiper-pagination-bullet {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 35px;
-  justify-content: center;
-  /*@media (max-width : 840px) {
-            grid-template-columns: repeat(4,1fr);
-            gap: 16px 10px;
-        }
-*/ }
+  justify-content: center; }
   @media screen and (max-width: 1024px) {
     .block-process .main-process {
       gap: 12px; } }

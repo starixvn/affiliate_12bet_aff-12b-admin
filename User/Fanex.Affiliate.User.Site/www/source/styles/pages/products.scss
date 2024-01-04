@@ -4,75 +4,61 @@
 .page-title{
     margin-bottom : 0;
 }
-
 .block-items-products {
     .main-items {
         .wrapper-items {
             padding: 40px 0;
             border-top: 1px solid #F6F6F6;
-
             &:first-child {
                 padding-top: 0;
                 border: none;
             }
-
             &:nth-child(even) {
                 .mask {
                     flex-direction: row-reverse;
                     padding: 0 0 0 52px;
-
                     @include Tablet {
                         padding: 0 0 0 30px;
                     }
-
                     @include Mobile {
                         padding: 24px 0 50px 0;
                     }
-
                     .imgs {
                         position: absolute;
                         left: auto;
                         top: -50px;
                         right: -65px;
                         text-align: right;
-
                         @include Tablet {
                             right: -158px;
                             top: -40px;
                         }
-
                         @include MobileLandscape {
                             right: -248px;
                         }
-
                         @include MobileBigLandscape {
                             right: -248px;
                         }
                     }
-
                     @include Mobile {
                         .text-slider {
                             padding-left: 16px !important;
                             padding-right: 94px !important;
                             text-align: left !important;
-
                             img {
                                 left: auto !important;
                                 right: -33px;
                             }
                         }
-
                         .heading-slider {
                             padding-left: 16px !important;
                         }
                     }
                 }
-
                 .arrow-3, .arrow-4 {
                     display: none;
                 }
             }
-
             &:nth-child(odd) {
                 .arrow-1, .arrow-2 {
                     display: none;
@@ -314,7 +300,6 @@
                                 left: -30px;
                             }
                         }
-
                         @include Mobile {
                             .img-slot {
                                 left: -38px;
@@ -325,23 +310,16 @@
                             }
                         }
                     }
-
                     .shape-slider {
                         position: relative;
-                        /*max-width: 32vw;*/
                         max-width: calc(100% - 90px);
                         margin: 0 auto;
-
                         @media (max-width : 1200px) {
                             max-width: 700px;
                         }
-
                         @include Tablet {
                             max-width: 300px;
                         }
-
-
-
                         @include MobileBigLandscape {
                             max-width: 100%;
                         }
@@ -388,7 +366,6 @@
                                 }
                             }
                         }
-
                         .swiper .swiper-button-next, .swiper .swiper-button-prev {
                             margin-top: -15px;
                             width: auto;
@@ -442,13 +419,6 @@
                                     width: 4px;
                                     height: 4px;
                                 }
-
-                                &:hover {
-                                    background: #fff;
-                                }
-
-
-
                                 &:hover {
                                     background: #fff;
                                 }
@@ -467,7 +437,6 @@
 
 .shape-live-casino {
     height: 362px;
-
     @include Tablet {
         height: 286px;
     }

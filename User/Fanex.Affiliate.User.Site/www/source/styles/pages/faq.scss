@@ -5,53 +5,41 @@
     &:not(:last-child) {
         margin-bottom: 2rem;
     }
-
     .question {
         font-weight: 600;
     }
 }
-
 .main{
     overflow : unset;
 }
-
-
 .block {
     padding: 0;
     background: #F6F6F6;
-
     .page-title {
         @include Mobile {
             margin-bottom: 40px;
         }
     }
 }
-
 .group-faq {
     .anwser {
         border-radius: 12px;
         background: #F6F6F6;
     }
 }
-
 .block-content {
     padding: 30px 0;
-
     @include Mobile {
         padding: 20px 0;
     }
-
     &:last-child {
         padding: 30px 0 52px 0;
-
         @include Mobile {
             padding: 20px 0 40px 0;
         }
     }
-
     &.active {
         margin: 0;
-
         &:nth-child(odd) {
             background: #fff;
 
@@ -61,10 +49,8 @@
                 }
             }
         }
-
         &:nth-child(even) {
             background: #F6F6F6;
-
             .anwser {
                 background: #fff;
             }

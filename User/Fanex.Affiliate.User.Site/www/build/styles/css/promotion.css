@@ -748,7 +748,6 @@ button.swiper-pagination-bullet {
   .block-commission-boost .description {
     color: #353E5B;
     font-size: 20px;
-    font-style: normal;
     font-weight: 500;
     line-height: 32px; }
     @media (max-width: 500px) {
@@ -786,7 +785,6 @@ button.swiper-pagination-bullet {
     .block-note .items-description {
       color: #FFF;
       font-size: 20px;
-      font-style: normal;
       font-weight: 500;
       line-height: 32px; }
       .block-note .items-description span {
@@ -849,7 +847,6 @@ button.swiper-pagination-bullet {
   .block-example .description {
     color: #353E5B;
     font-size: 20px;
-    font-style: normal;
     font-weight: 500;
     line-height: 32px;
     margin-bottom: 24px; }

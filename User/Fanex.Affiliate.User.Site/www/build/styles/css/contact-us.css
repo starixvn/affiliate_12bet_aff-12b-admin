@@ -350,8 +350,7 @@
       font-size: 20px;
       font-weight: 700;
       line-height: normal;
-      text-transform: uppercase;
-      color: #353E5B; }
+      text-transform: uppercase; }
       @media (max-width: 500px) {
         .block-man-support .date-time-info .days {
           font-size: 16px; } }
@@ -359,8 +358,7 @@
       font-size: 16px;
       font-weight: 600;
       line-height: normal;
-      text-transform: uppercase;
-      color: #353E5B; }
+      text-transform: uppercase; }
       @media (max-width: 500px) {
         .block-man-support .date-time-info .time {
           font-size: 16px; } }
@@ -412,7 +410,6 @@
     .block-flag-contact .main-flag .items .info {
       color: #353E5B;
       font-size: 16px;
-      font-style: normal;
       font-weight: 600;
       margin-top: 12px;
       line-height: normal; }
