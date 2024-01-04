@@ -45,7 +45,7 @@ var Promotion = (function ($) {
 
             $('.block-content .button-toggle').addClass("open");
             $('.button-toggle').click(function () {
-                $(this).toggleClass('open').parent().next().slideToggle(300);
+                $(this).toggleClass('open').parent().nextAll().slideToggle(300);
             });
         }
     };
