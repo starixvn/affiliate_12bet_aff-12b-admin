@@ -1159,7 +1159,7 @@ input[type="checkbox"], input[type="radio"] {
       .footer-img .img-top {
         margin-bottom: 0; } }
     .footer-img .img-top img {
-      width: auto;
+      /*width: auto;*/
       max-width: 100%; }
       @media (max-width: 500px) {
         .footer-img .img-top img {
