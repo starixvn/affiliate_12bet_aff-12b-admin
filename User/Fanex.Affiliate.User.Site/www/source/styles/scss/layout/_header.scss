@@ -130,6 +130,7 @@
         margin: 0;
         padding: 0;
         position: absolute;
+        z-index: 999;
         top: -45px;
         left: 15px;
 
@@ -206,7 +207,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 999;
+            z-index: 990;
             width: 100%;
             background: #d90f0f;
             border-top: none;
@@ -383,7 +384,7 @@
                 margin: 0;
                 position: absolute;
                 top: 0;
-                z-index: 999;
+                z-index: 990;
                 width: 100%;
                 background: #d90f0f;
                 border-top: none;

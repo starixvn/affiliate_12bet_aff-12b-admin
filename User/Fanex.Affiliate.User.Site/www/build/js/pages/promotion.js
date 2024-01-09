@@ -29,7 +29,7 @@ var Promotion = (function ($) {
     }
     var _me = {
         initialize: function () {
-            topBanner();
+/*            topBanner();*/
             _me.initEvent();
         },
         initEvent: function () {

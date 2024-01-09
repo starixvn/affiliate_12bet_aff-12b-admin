@@ -37,9 +37,9 @@ var Layout = (function ($) {
                 $(this).removeClass("active");
             });
 
-            $("#menuMobileBtn").on("blur", function (e) {
-                if (!$(this).hasClass('collapsed')) {
-                    $(this).click();
+            $("#menuMobileBtn").on("click", function (e) {
+                if ($(this).hasClass('collapsed')) {
+                    window.addEventListener("click", _me.handleCloseMenuPopup, true);
                 }
             });
 
@@ -72,6 +72,17 @@ var Layout = (function ($) {
                 }
             });
         },
+
+        handleCloseMenuPopup: function (e) {
+            var menuBtn = $("#menuMobileBtn");
+            var isOpened = !menuBtn.hasClass('collapsed');
+
+            if (isOpened) {
+                menuBtn.click();
+                window.removeEventListener("click", _me.handleCloseMenuPopup, isOpened);
+            }
+        },
+
         registerAjaxHandlerError: function () {
             $(document).ajaxError(function (event, jqXHR) {
                 var status = jqXHR.status;

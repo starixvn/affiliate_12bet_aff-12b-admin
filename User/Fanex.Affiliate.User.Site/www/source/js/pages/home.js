@@ -82,7 +82,7 @@
 
     var _me = {
         initialize: function () {
-            topBanner();
+/*            topBanner();*/
             partnershipBanner();
             miniBlockBanner();
             _me.initEvent();
