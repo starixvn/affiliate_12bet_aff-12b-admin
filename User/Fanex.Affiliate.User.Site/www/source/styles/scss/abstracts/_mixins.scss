@@ -99,3 +99,8 @@
         @content;
     }
 }
+@mixin screen670 {
+    @media (max-width: 670px) {
+        @content;
+    }
+}

@@ -353,11 +353,17 @@ input[type="checkbox"], input[type="radio"] {
     display: flex;
     justify-content: space-between;
     align-items: center; }
+    @media (max-width: 767px) {
+      .header-top .logo-lang {
+        justify-content: space-around; } }
     @media (max-width: 500px) {
       .header-top .logo-lang {
         display: unset; } }
   .header-top .logo {
     display: inline-block; }
+    @media screen and (max-width: 1024px) {
+      .header-top .logo {
+        margin-left: 10px; } }
     @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
       .header-top .logo {
         margin-left: 0; } }
@@ -368,6 +374,9 @@ input[type="checkbox"], input[type="radio"] {
       .header-top .logo {
         margin-left: 0; } }
     @media screen and (max-width: 1024px) {
+      .header-top .logo img {
+        width: 100px; } }
+    @media (max-width: 500px) {
       .header-top .logo img {
         width: 137px; } }
     .header-top .logo .logo-text {
@@ -625,6 +634,12 @@ input[type="checkbox"], input[type="radio"] {
   .user-signup a {
     display: inline-block; }
     @media screen and (max-width: 1024px) {
+      .user-signup a {
+        margin-right: 5px;
+        font-size: 12px;
+        text-transform: uppercase;
+        padding: 8px 10px; } }
+    @media (max-width: 500px) {
       .user-signup a {
         margin-right: 12px;
         font-size: 12px;
@@ -1924,10 +1939,6 @@ input[type="radio"], input[type="checkbox"] {
   .news .item-wrapper {
     flex-basis: 100%;
     max-width: 100%; }
-  /*    .user-signup {
-        margin-top: 30px;
-    }
-*/
   .content-menu #mainMenu {
     white-space: nowrap;
     /* [1] */

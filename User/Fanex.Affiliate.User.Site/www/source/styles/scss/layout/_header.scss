@@ -30,6 +30,10 @@
         justify-content: space-between;
         align-items: center;
 
+        @media (max-width: 767px) {
+            justify-content: space-around;
+        }
+
         @include Mobile {
             display: unset;
         }
@@ -37,6 +41,11 @@
 
     .logo {
         display: inline-block;
+
+
+        @include Tablet {
+            margin-left: 10px;
+        }
 
         @include TabletPortrait {
             margin-left: 0;
@@ -52,6 +61,10 @@
 
         img {
             @include Tablet {
+                width: 100px;
+            }
+
+            @include Mobile {
                 width: 137px;
             }
         }
@@ -429,6 +442,13 @@
         display: inline-block;
 
         @include Tablet {
+            margin-right: 5px;
+            font-size: 12px;
+            text-transform: uppercase;
+            padding: 8px 10px;
+        }
+
+        @include Mobile {
             margin-right: 12px;
             font-size: 12px;
             text-transform: uppercase;

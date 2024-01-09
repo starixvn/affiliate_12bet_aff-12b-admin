@@ -822,7 +822,7 @@ button.swiper-pagination-bullet {
         width: 100%; } }
     @media (max-width: 500px) {
       .block-process .main-process .items {
-        width: 85px;
+        width: 100%;
         padding: 3px; } }
     .block-process .main-process .items .mask {
       border-radius: 2px;
