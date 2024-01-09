@@ -4,8 +4,8 @@
     margin-top: auto;
 
     &-text {
-        color: #76777D;
-        border-top: 1px solid #2D2E33;
+        color: #fff;
+        border-top: 1px solid #58595D;
         padding: 16px 0;
         letter-spacing: 0.96px;
         line-height: normal;
@@ -23,12 +23,20 @@
         align-items: center;
         justify-content: space-between;
 
+        @media (max-width : 1170px) {
+            display: inherit;
+        }
+
         @include Tablet {
             display: inherit;
         }
 
 
         .img-top {
+            @media (max-width : 1170px) {
+                margin-bottom: 32px;
+            }
+
             @include Tablet {
                 margin-bottom: 32px;
             }
@@ -50,6 +58,10 @@
         .img-bottom {
             display: flex;
             justify-content: space-between;
+
+            @media (max-width : 1170px) {
+                justify-content: center;
+            }
 
             @include Tablet {
                 display: block;

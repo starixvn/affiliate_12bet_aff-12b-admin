@@ -1023,6 +1023,9 @@ button.swiper-pagination-bullet {
           max-width: 100%;
           width: auto;
           margin: 0 auto; }
+          @media screen and (max-width: 1024px) {
+            .block-partnership .block-content .partnership-banner .swiper-slide img {
+              width: 100%; } }
         .block-partnership .block-content .partnership-banner .swiper-slide .img-responsive {
           -webkit-filter: grayscale(100%);
           filter: grayscale(100%); }

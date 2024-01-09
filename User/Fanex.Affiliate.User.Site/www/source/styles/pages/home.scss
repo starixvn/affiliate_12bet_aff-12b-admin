@@ -344,37 +344,51 @@
 
 .block-partnership {
     padding: 52px 0 83px;
+
     .block-title {
         margin-bottom: 35px;
     }
+
     .block-content {
         position: relative;
+
         .partnership-banner {
             max-width: 830px;
             margin: 0 auto;
             position: unset;
+
             @include Tablet {
                 max-width: 530px;
             }
+
             .swiper-slide {
                 position: relative;
+
                 .partnership-products {
                     display: none;
                 }
+
                 img {
                     max-width: 100%;
                     width: auto;
                     margin: 0 auto;
+
+                    @include Tablet {
+                        width: 100%;
+                    }
                 }
+
                 .img-responsive {
                     -webkit-filter: grayscale(100%);
                     filter: grayscale(100%);
                 }
+
                 &-active {
                     .img-responsive {
                         -webkit-filter: grayscale(0);
                         filter: grayscale(0);
                     }
+
                     .partnership-products {
                         position: absolute;
                         display: block;

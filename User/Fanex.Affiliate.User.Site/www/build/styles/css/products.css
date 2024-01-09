@@ -771,6 +771,9 @@ button.swiper-pagination-bullet {
           .block-items-products .main-items .items .mask .group-slider .text-slider {
             line-height: 24px;
             font-size: 20px; } }
+        @media (max-width: 1170px) {
+          .block-items-products .main-items .items .mask .group-slider .text-slider {
+            font-size: 16px; } }
         @media screen and (max-width: 1024px) {
           .block-items-products .main-items .items .mask .group-slider .text-slider {
             font-size: 12px;
