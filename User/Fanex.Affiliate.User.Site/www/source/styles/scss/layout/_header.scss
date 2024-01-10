@@ -506,7 +506,7 @@
             margin-left: 4px;
         }
 
-        &:focus, &:active {
+        &.active {
             & + .language-list-wrapper {
                 display: block;
             }

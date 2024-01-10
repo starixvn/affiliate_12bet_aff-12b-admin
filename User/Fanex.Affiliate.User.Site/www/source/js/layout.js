@@ -1,5 +1,5 @@
 var Layout = (function ($) {
-    var DEFAULT_SPEED = 5;
+    var DEFAULT_SPEED = 27;
 
     function createNewUrlByLanguage(url, language) {
         var hasQueryString = url.indexOf('?') !== -1;
@@ -25,16 +25,12 @@ var Layout = (function ($) {
         },
         initEvent: function () {
             $("#selectedLanguage").on("click", function (e) {
-                if ($(this).hasClass('active')) {
-                    $(this).blur();
-                } else {
-                    $(this).focus();
+                if (!$(this).hasClass('active')) {
                     $(this).addClass("active");
+                    window.addEventListener("click", _me.handleCloseLanguageDropdown, true);
+                } else {
+                    $(this).removeClass("active");
                 }
-            });
-
-            $("#selectedLanguage").on("blur", function (e) {
-                $(this).removeClass("active");
             });
 
             $("#menuMobileBtn").on("click", function (e) {
@@ -83,6 +79,16 @@ var Layout = (function ($) {
             }
         },
 
+        handleCloseLanguageDropdown: function (e) {
+            var languageBtn = $("#selectedLanguage");
+            var isOpened = languageBtn.hasClass('active');
+
+            if (isOpened) {
+                !languageBtn.has(e.target).length && languageBtn.removeClass("active");
+                window.removeEventListener("click", _me.handleCloseLanguageDropdown, isOpened);
+            }
+        },
+
         registerAjaxHandlerError: function () {
             $(document).ajaxError(function (event, jqXHR) {
                 var status = jqXHR.status;
@@ -113,10 +119,10 @@ var Layout = (function ($) {
                     var $marquee = $("#marquee");
                     $marquee.html(response);
                     // Time = Distance/Speed
-                    var containerWith = $("#marqueeContainer").width();
-                    var timeTaken = containerWith / DEFAULT_SPEED;
+                    //var containerWith = $("#marqueeContainer").width();
+                    //var timeTaken = containerWith / DEFAULT_SPEED;
 
-                    $marquee.css("animation-duration", timeTaken + "s");
+                    $marquee.css("animation-duration", DEFAULT_SPEED + "s");
                 }
             });
         },

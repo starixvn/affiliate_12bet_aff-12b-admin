@@ -685,7 +685,7 @@ input[type="checkbox"], input[type="radio"] {
       .language-container #selectedLanguage {
         padding: 0;
         margin-left: 4px; } }
-    .language-container #selectedLanguage:focus + .language-list-wrapper, .language-container #selectedLanguage:active + .language-list-wrapper {
+    .language-container #selectedLanguage.active + .language-list-wrapper {
       display: block; }
     .language-container #selectedLanguage + .language-list-wrapper {
       display: none; }
