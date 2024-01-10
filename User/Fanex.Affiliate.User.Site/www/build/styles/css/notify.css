@@ -1,75 +1,141 @@
-﻿html, body {
-  min-height: 100%; }
+﻿.page-notify {
+  margin: 70px 0; }
+  .page-notify .main-notify {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    align-items: center; }
+    @media screen and (max-width: 1024px) {
+      .page-notify .main-notify {
+        display: block; } }
+    @media screen and (max-width: 1024px) {
+      .page-notify .main-notify .column-left {
+        text-align: center; } }
+    .page-notify .main-notify .column .main-img {
+      max-width: 100%;
+      height: auto; }
+      @media screen and (max-width: 1024px) {
+        .page-notify .main-notify .column .main-img {
+          margin-bottom: 24px; } }
+    .page-notify .main-notify .column ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+      border-radius: 12px;
+      border: 1px solid #FFD4D4;
+      overflow: hidden; }
+      .page-notify .main-notify .column ul li {
+        color: #353E5B;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: normal;
+        padding: 6px 12px;
+        min-height: 45px;
+        display: flex;
+        align-items: center; }
+        .page-notify .main-notify .column ul li img {
+          margin-right: 12px; }
+        .page-notify .main-notify .column ul li:nth-child(odd) {
+          background: #F1F1F1; }
+        .page-notify .main-notify .column ul li:nth-child(even) {
+          background: #FBFBFB; }
+    .page-notify .main-notify .column .title-notify {
+      margin-bottom: 22px;
+      color: #353E5B;
+      font-size: 24px;
+      font-weight: 800;
+      line-height: normal;
+      text-transform: uppercase;
+      text-align: center; }
+    .page-notify .main-notify .column .title-hightlight {
+      color: #D90F0F; }
+
+/*html, body {
+    min-height: 100%;
+}
 
 body {
-  background: url(../Images/notify/bgMain.jpg) repeat-x scroll center top #eef3fa;
-  background-size: contain;
-  color: #333;
-  font-family: "Myriad Pro", Tahoma, REZ, Arial;
-  font-size: 11px;
-  margin: 0;
-  padding: 0; }
+    background: url(../Images/notify/bgMain.jpg) repeat-x scroll center top #eef3fa;
+    background-size: contain;
+    color: #333;
+    font-family: "Myriad Pro", Tahoma, REZ, Arial;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+}
 
 #top {
-  width: 960px;
-  height: 86px;
-  margin: auto;
-  background: url(../Images/notify/logo_e.png) top left no-repeat;
-  margin-bottom: 30px; }
+    width: 960px;
+    height: 86px;
+    margin: auto;
+    background: url(../Images/notify/logo_e.png) top left no-repeat;
+    margin-bottom: 30px;
+}
 
 #center {
-  width: 850px;
-  height: 400px;
-  margin: auto; }
+    width: 850px;
+    height: 400px;
+    margin: auto;
+}
 
 #title {
-  background: url(../Images/notify/sry.png) right no-repeat;
-  width: 660px;
-  height: 28px;
-  margin: auto; }
+    background: url(../Images/notify/sry.png) right no-repeat;
+    width: 660px;
+    height: 28px;
+    margin: auto;
+}
 
 #titlenf {
-  background: url(../Images/notify/srynf.png) right no-repeat;
-  width: 620px;
-  height: 44px;
-  margin: auto; }
+    background: url(../Images/notify/srynf.png) right no-repeat;
+    width: 620px;
+    height: 44px;
+    margin: auto;
+}
 
 #seperator {
-  border-bottom: 1px solid #460e0f;
-  border-top: 1px solid #ee2d28;
-  width: 780px;
-  height: 1px;
-  margin: auto; }
+    border-bottom: 1px solid #460e0f;
+    border-top: 1px solid #ee2d28;
+    width: 780px;
+    height: 1px;
+    margin: auto;
+}
 
 #botcenter {
-  width: 850px;
-  height: 318px; }
+    width: 850px;
+    height: 318px;
+}
 
 #icon {
-  background: url(../Images/notify/icon.png) left bottom no-repeat;
-  width: 303px;
-  height: 318px;
-  float: left; }
+    background: url(../Images/notify/icon.png) left bottom no-repeat;
+    width: 303px;
+    height: 318px;
+    float: left;
+}
 
 #iconnf {
-  background: url(../Images/notify/iconnf.png) left bottom no-repeat;
-  width: 304px;
-  height: 270px;
-  float: left; }
+    background: url(../Images/notify/iconnf.png) left bottom no-repeat;
+    width: 304px;
+    height: 270px;
+    float: left;
+}
 
 #content {
-  font-family: "Myriad Pro", Tahoma, REZ, Arial;
-  font-size: 14px;
-  color: #FFF;
-  float: left; }
+    font-family: "Myriad Pro", Tahoma, REZ, Arial;
+    font-size: 14px;
+    color: #FFF;
+    float: left;
+}
 
 .cont {
-  padding-left: 35px; }
+    padding-left: 35px;
+}
 
 .cont li {
-  border-bottom: #fff dotted 1px;
-  list-style-type: none;
-  padding: 10px; }
+    border-bottom: #fff dotted 1px;
+    list-style-type: none;
+    padding: 10px;
+}
 
 .cont li.end {
-  border: 0; }
+    border: 0;
+}*/
