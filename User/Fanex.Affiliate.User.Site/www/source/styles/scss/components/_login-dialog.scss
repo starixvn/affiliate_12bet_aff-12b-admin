@@ -59,7 +59,7 @@
 
                         @include Mobile {
                             width: 100%;
-                            padding: 20px;
+                            padding: 16px;
                         }
 
                         &:first-child {
@@ -71,6 +71,7 @@
 
                             @include Mobile {
                                 padding-bottom: 20px;
+                                padding-top: 24px;
                             }
                         }
 
@@ -90,7 +91,7 @@
                         .heading-login {
                             color: #D90F0F;
                             text-align: left;
-                            font-size: 14px;
+                            font-size: 20px;
                             font-weight: 700;
                             line-height: normal;
                             text-transform: uppercase;
@@ -104,8 +105,14 @@
 
                         .title {
                             @extend .heading-login;
+                            font-size: 16px;
                             text-transform: lowercase;
                             color: #353E5B;
+                            font-weight: 600;
+
+                            @include Mobile {
+                                font-weight: 500;
+                            }
                         }
 
                         .custom-input {
@@ -126,7 +133,7 @@
                                     padding: 10px 15px;
                                     border-radius: 100px;
                                     background: #D90F0F;
-                                    height: 36px;
+                                    height: 34px;
                                     margin: 0;
                                     justify-content: center;
 
@@ -158,17 +165,19 @@
                                 border: none;
                                 padding: 8px 20px;
                                 color: #C2C2C2;
-                                font-size: 12px;
+                                font-size: 14px;
                                 font-weight: 600;
                                 height: 36px;
                                 margin-bottom: 0;
+                                -webkit-appearance: none;
+                                -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25) inset;
 
                                 @include Mobile {
                                     height: 44px;
                                 }
 
                                 &::placeholder {
-                                    color: #C2C2C2;
+                                    color: #8D8D8D;
                                     font-weight: 600;
                                 }
                             }
@@ -177,7 +186,7 @@
 
                     .btn-submit {
                         border-radius: 100px;
-                        font-size: 12px;
+                        font-size: 14px;
                         font-weight: 700;
                         line-height: normal;
                         text-transform: uppercase;
@@ -215,9 +224,10 @@
                         border: 1.5px solid #D90F0F;
                         background: #FFF;
                         color: #D90F0F;
-                        font-weight: 500;
+                        font-weight: 600;
                         text-align: center;
                         padding: 8px 0px;
+                        font-size: 14px;
 
                         @include Mobile {
                             padding: 12px 0px;
@@ -247,7 +257,7 @@
                     .logo-text {
                         color: #FFF;
                         text-align: center;
-                        font-size: 16px;
+                        font-size: 20px;
                         font-weight: 700;
                         line-height: normal;
                         text-transform: uppercase;
@@ -272,18 +282,25 @@
                             font-weight: 700;
                             line-height: normal;
                             margin-bottom: 8px;
+                            text-transform: uppercase;
 
                             @include Mobile {
                                 margin-bottom: 4px;
                                 font-size: 16px;
                                 text-align: center;
+                                text-transform: capitalize;
                             }
                         }
 
                         #signUpToAffiliateProgram {
                             @extend .title-affmember;
+                            text-transform: initial;
                             color: #FFF;
-                            font-weight: 500;
+                            font-weight: 600;
+
+                            @include Mobile {
+                                font-weight: 500;
+                            }
                         }
                     }
                 }

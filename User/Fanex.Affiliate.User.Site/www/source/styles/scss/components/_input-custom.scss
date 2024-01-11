@@ -6,11 +6,20 @@
     border: none;
     outline: none;
     padding: 6px 20px;
-    color: #70778A;
     width: 100%;
+    -webkit-appearance: none;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    font-size: 14px;
+    color: #8D8D8D;
+    font-weight: 600;
 
     @include Mobile {
         padding: 6px 12px;
+    }
+
+    &.disabled {
+        background: #E1E1E1;
+        cursor: no-drop;
     }
 
     &::placeholder {
@@ -20,7 +29,7 @@
         @include Mobile {
             color: #70778A;
             font-weight: 600;
-            font-size : 14px;
+            font-size: 14px;
         }
     }
 }
@@ -29,6 +38,7 @@
     background-repeat: no-repeat;
     appearance: none;
     background-position: right 5px center;
+    color: #353E5B;
 }
 
 
@@ -46,10 +56,10 @@
     margin-top: 8px !important;
     color: #D90F0F !important;
     display: block;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 14px;
     line-height: normal;
-    margin-bottom : 0;
+    margin-bottom: 0;
 }
 
 .group-button {
@@ -228,7 +238,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid #D90F0F;
+    border: 2px solid #70778A;
     position: relative;
     margin-right: 8px;
 }
@@ -250,6 +260,10 @@
 .radio-button input[type="radio"]:checked + .radio-circle::before {
     transform: translate(-50%, -50%) scale(1);
 }
+.radio-button input[type="radio"]:checked + .radio-circle {
+    border: 2px solid #D90F0F;
+}
+
 
 
 

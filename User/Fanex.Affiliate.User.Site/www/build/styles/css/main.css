@@ -2039,7 +2039,7 @@ input[type="radio"], input[type="checkbox"] {
           @media (max-width: 500px) {
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .item {
               width: 100%;
-              padding: 20px; } }
+              padding: 16px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item:first-child {
             background: url("../Images/bg-login.png");
             background-size: cover;
@@ -2048,7 +2048,8 @@ input[type="radio"], input[type="checkbox"] {
             padding-bottom: 75px; }
             @media (max-width: 500px) {
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .item:first-child {
-                padding-bottom: 20px; } }
+                padding-bottom: 20px;
+                padding-top: 24px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item:nth-child(2) {
             padding-top: 44px;
             background: #fff; }
@@ -2060,7 +2061,7 @@ input[type="radio"], input[type="checkbox"] {
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .heading-login, .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
             color: #D90F0F;
             text-align: left;
-            font-size: 14px;
+            font-size: 20px;
             font-weight: 700;
             line-height: normal;
             text-transform: uppercase; }
@@ -2070,8 +2071,13 @@ input[type="radio"], input[type="checkbox"] {
                 margin-bottom: 12px;
                 font-size: 16px; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
+            font-size: 16px;
             text-transform: lowercase;
-            color: #353E5B; }
+            color: #353E5B;
+            font-weight: 600; }
+            @media (max-width: 500px) {
+              .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
+                font-weight: 500; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input {
             margin-bottom: 12px; }
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input:last-child {
@@ -2086,7 +2092,7 @@ input[type="radio"], input[type="checkbox"] {
                 padding: 10px 15px;
                 border-radius: 100px;
                 background: #D90F0F;
-                height: 36px;
+                height: 34px;
                 margin: 0;
                 justify-content: center; }
                 @media (max-width: 500px) {
@@ -2110,19 +2116,21 @@ input[type="radio"], input[type="checkbox"] {
               border: none;
               padding: 8px 20px;
               color: #C2C2C2;
-              font-size: 12px;
+              font-size: 14px;
               font-weight: 600;
               height: 36px;
-              margin-bottom: 0; }
+              margin-bottom: 0;
+              -webkit-appearance: none;
+              -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25) inset; }
               @media (max-width: 500px) {
                 .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input input {
                   height: 44px; } }
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input input::placeholder {
-                color: #C2C2C2;
+                color: #8D8D8D;
                 font-weight: 600; }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .btn-submit {
           border-radius: 100px;
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 700;
           line-height: normal;
           text-transform: uppercase;
@@ -2152,9 +2160,10 @@ input[type="radio"], input[type="checkbox"] {
           border: 1.5px solid #D90F0F;
           background: #FFF;
           color: #D90F0F;
-          font-weight: 500;
+          font-weight: 600;
           text-align: center;
-          padding: 8px 0px; }
+          padding: 8px 0px;
+          font-size: 14px; }
           @media (max-width: 500px) {
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .btn-join {
               padding: 12px 0px;
@@ -2175,7 +2184,7 @@ input[type="radio"], input[type="checkbox"] {
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .logo-text {
           color: #FFF;
           text-align: center;
-          font-size: 16px;
+          font-size: 20px;
           font-weight: 700;
           line-height: normal;
           text-transform: uppercase;
@@ -2194,12 +2203,18 @@ input[type="radio"], input[type="checkbox"] {
             font-size: 14px;
             font-weight: 700;
             line-height: normal;
-            margin-bottom: 8px; }
+            margin-bottom: 8px;
+            text-transform: uppercase; }
             @media (max-width: 500px) {
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text .title-affmember, .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
                 margin-bottom: 4px;
                 font-size: 16px;
-                text-align: center; } }
+                text-align: center;
+                text-transform: capitalize; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
+            text-transform: initial;
             color: #FFF;
-            font-weight: 500; }
+            font-weight: 600; }
+            @media (max-width: 500px) {
+              .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
+                font-weight: 500; } }
