@@ -109,19 +109,19 @@ label {
 
 .page-title {
     background: #F6F6F6;
-    padding: 30px 0;
+    padding: 15px 0;
     text-align: center;
-    margin-bottom : 36px;
+    margin-bottom: 36px;
+
     @include Tablet {
         padding: 12px 0;
     }
 
     .text {
         color: #D90F0F;
-        font-size: 28px;
+        font-size: 24px;
         font-weight: 700;
         line-height: normal;
-        letter-spacing: 2.24px;
         text-transform: uppercase;
 
         @include Tablet {

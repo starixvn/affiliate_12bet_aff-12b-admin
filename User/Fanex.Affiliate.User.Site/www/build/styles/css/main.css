@@ -1356,7 +1356,7 @@ label.require:after {
 
 .page-title {
   background: #F6F6F6;
-  padding: 30px 0;
+  padding: 15px 0;
   text-align: center;
   margin-bottom: 36px; }
   @media screen and (max-width: 1024px) {
@@ -1364,10 +1364,9 @@ label.require:after {
       padding: 12px 0; } }
   .page-title .text {
     color: #D90F0F;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: 2.24px;
     text-transform: uppercase; }
     @media screen and (max-width: 1024px) {
       .page-title .text {
@@ -1890,10 +1889,9 @@ input[type="radio"], input[type="checkbox"] {
     .block {
       padding: 40px 0; } }
   .block-title {
-    letter-spacing: 2.24px;
     text-transform: uppercase;
     text-align: center;
-    font-size: 28px;
+    font-size: 24px;
     line-height: normal;
     font-weight: 700;
     margin-bottom: 28px;
