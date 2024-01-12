@@ -736,7 +736,7 @@ button.swiper-pagination-bullet {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     line-height: normal;
     text-transform: uppercase;

@@ -15,6 +15,14 @@
                 border: none;
             }
 
+            &:nth-child(odd) {
+                @include Mobile {
+                    .text-slider {
+                        padding-right: 8px;
+                    }
+                }
+            }
+
             &:nth-child(even) {
                 .mask {
                     flex-direction: row-reverse;
@@ -55,18 +63,14 @@
 
                     @include Mobile {
                         .text-slider {
-                            padding-left: 16px !important;
-                            padding-right: 94px !important;
                             text-align: left !important;
+                            flex-direction: row-reverse;
+                            padding-left: 8px;
 
                             img {
                                 left: auto !important;
                                 right: -33px;
                             }
-                        }
-
-                        .heading-slider {
-                            padding-left: 16px !important;
                         }
                     }
                 }
@@ -99,7 +103,7 @@
             }
 
             @include Mobile {
-                margin: 0 8px;
+                margin: 0 -8px;
                 padding: 8px;
             }
 
@@ -277,7 +281,6 @@
                         }
 
                         @include Mobile {
-                            padding-left: 94px;
                             font-size: 20px;
                         }
 
@@ -326,10 +329,11 @@
                         }
 
                         @include Mobile {
-                            padding-left: 94px;
                             font-size: 16px;
-                            padding-right: 16px;
                             min-height: 200px;
+                            display: flex;
+                            align-items: flex-start;
+                            gap: 8px;
                         }
 
                         img {
@@ -338,6 +342,7 @@
                             left: 0;
 
                             @include Mobile {
+                                position: unset;
                                 top: 0;
                                 left: -30px;
                             }
