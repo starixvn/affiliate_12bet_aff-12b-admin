@@ -17,7 +17,7 @@ export const defaultState = {
     isShowMessage: false,
     isSuccess: true,
     message: '',
-    usingTargetCountries: [],
+    usingTargetCountryList: [],
     isExcludedAllTargetCountries: false,
     selectedDomain: null,
     targetCountryList: null
