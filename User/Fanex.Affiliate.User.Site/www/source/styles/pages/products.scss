@@ -425,14 +425,16 @@
 
                             @include Mobile {
                                 margin-top: 0;
-                                top: 10px;
+                                top: 50%;
                                 width: 20px;
                                 height: 20px;
+                                transform: translate(0,-50%);
                             }
 
                             @include MobileLandscape {
                                 margin-top: 0;
-                                top: 8px;
+                                top: 50%;
+                                transform: translate(0,-50%);
                             }
 
                             svg {

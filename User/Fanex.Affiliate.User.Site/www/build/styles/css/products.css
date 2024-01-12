@@ -863,13 +863,15 @@ button.swiper-pagination-bullet {
           @media (max-width: 500px) {
             .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-next, .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-prev {
               margin-top: 0;
-              top: 10px;
+              top: 50%;
               width: 20px;
-              height: 20px; } }
+              height: 20px;
+              transform: translate(0, -50%); } }
           @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
             .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-next, .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-prev {
               margin-top: 0;
-              top: 8px; } }
+              top: 50%;
+              transform: translate(0, -50%); } }
           @media (max-width: 500px) {
             .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-next svg, .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-prev svg {
               width: 20px;
