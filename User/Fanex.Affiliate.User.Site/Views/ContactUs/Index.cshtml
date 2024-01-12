@@ -314,7 +314,7 @@
 
                     <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
                     <div class="form-group form-columns form-columns-2">
-                        <div class="items">
+                        <div class="items validate-group">
                             <input type="text" class="form-input" placeholder="@Lang.Name" name="Sender" id="Sender" value="@name" />
                             <div class="validate-input hide">
                                 @Lang.NameIsInvalid
@@ -325,7 +325,7 @@
                         </div>
                     </div>
                     <div class="form-group form-columns form-columns-2">
-                        <div class="items">
+                        <div class="items validate-group">
                             <input type="text" class="form-input" placeholder="@Lang.Subject" name="Subject" id="Subject" />
                             <div class="validate-input hide">
                                 @Lang.SubjectIsInvalid
@@ -333,7 +333,7 @@
                         </div>
                         @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.EmailType))
                         {
-                            <div class="items">
+                            <div class="items validate-group">
                                 <input type="text" class="form-input" placeholder="@Lang.Email1" name="Email" id="Email" value="@email" autocomplete="off" />
                                 <div class="validate-input hide">
                                     @Lang.EmailAddressIsInvalid
@@ -342,7 +342,7 @@
                         }
                     </div>
                     <div class="form-group form-columns form-columns-1">
-                        <div class="items">
+                        <div class="items validate-group">
                             <textarea rows="4" cols="50" placeholder="@Lang.Comment" class="form-area" name="Content" id="Content"></textarea>
                             <div class="validate-input hide">
                                 @Lang.CommentsIsInvalid
@@ -350,7 +350,7 @@
                         </div>
                     </div>
                     <div class="form-group form-columns form-columns-button">
-                        <div class="items">
+                        <div class="items validate-group">
                             <input type="text" class="form-input" placeholder="@Lang.ValidationCodeLabel" name="Captcha" id="Captcha" />
                             <div class="validate-input hide">
                                 @Lang.ErrmsgEntryValidCode

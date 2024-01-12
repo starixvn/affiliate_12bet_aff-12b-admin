@@ -122,7 +122,7 @@
 
                 @if (hasPhonePermission)
                 {
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
                         <div class="col-sm-4">
                             @Html.TextBoxFor(p => p.Phone, new { @class = "form-control", @Value = Model.Phone.ReplaceAHalfOfString(hasAffPersonalInfoPermission) })
@@ -141,7 +141,7 @@
                     foreach (var item in Model.ContactAppList)
                     {
                         var label = Lang.ResourceManager.GetString(item.Name) ?? item.Name;
-                        <div class="form-group">
+                        <div class="form-group validate-group">
                             <label for="ContactAppList[@index].Value" class="col-sm-3 control-label @(contactAppCount == 1 ? "require" : string.Empty)">@label</label>
                             @if (contactAppCount > 1)
                             {
@@ -198,7 +198,7 @@
                 </div>
 
                 <div class="form-horizontal">
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <div class="col-sm-4">
                             <label class="radio-inline">
                                 <input type="radio" name="HasWebSite" id="hasWebSite" value="True" @(string.IsNullOrEmpty(Model.SiteUrl) ? string.Empty : "checked") /> @Lang.OwnWebsite
@@ -207,7 +207,7 @@
                     </div>
 
                     <div id="websiteInfo">
-                        <div class="form-group">
+                        <div class="form-group validate-group">
                             <label for="SiteUrl" class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
                             <div class="col-sm-4">
                                 @{
@@ -242,7 +242,7 @@
                             foreach (var item in Model.MoreWebsiteUrlList)
                             {
                                 var name = $"MoreUrlInput{index}";
-                                <div class="form-group websiteInput" style="display: @(string.IsNullOrEmpty(Model.SiteUrl) ? "none" : "block")">
+                                <div class="form-group validate-group websiteInput" style="display: @(string.IsNullOrEmpty(Model.SiteUrl) ? "none" : "block")">
                                     <label for="@name" class="col-sm-3 control-label require moreWebsiteLabel">@Lang.WebsiteURL @(index)</label>
                                     <div class="col-sm-4">
                                         <input class="form-control urlInput" name="@name" id="@name"
@@ -264,7 +264,7 @@
                         }
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <div class="col-sm-4">
                             <label class="radio-inline">
                                 <input type="radio" name="HasWebSite" id="hasNoWebSite" value="False" @(string.IsNullOrEmpty(Model.SiteUrl) ? "checked" : string.Empty)> @Lang.NoWebsite
@@ -272,7 +272,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
                         <div class="col-sm-4">
                             @{
@@ -338,7 +338,7 @@
                     <span class="text">@Lang.PaymentInfor</span>
                 </div>
                 <div class="form-horizontal">
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
                         <div class="col-sm-4">
                             <label class="radio-inline">
@@ -347,7 +347,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <label for="PlayerUsername" class="col-sm-3 control-label @(string.IsNullOrEmpty(Model.PlayerUsername) ? "require" : string.Empty)">@Lang.Username</label>
                         <div class="col-sm-4">
                             @if (string.IsNullOrEmpty(Model.PlayerUsername))

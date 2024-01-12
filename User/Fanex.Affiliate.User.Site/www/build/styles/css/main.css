@@ -1348,7 +1348,7 @@ label.require:after {
 .d-inline-block {
   display: inline-block; }
 
-.disabled {
+.disabled, .custom-button[disabled] {
   color: #d1dae1 !important;
   cursor: not-allowed;
   pointer-events: none !important;

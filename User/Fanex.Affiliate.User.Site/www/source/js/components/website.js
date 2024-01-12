@@ -116,8 +116,8 @@
             return isValidMainInfo && isValidMoreUrl;
         },
 
-        changeWebsiteOption: function (hasWebSite) {
-            _me.validateWebSiteGroup();
+        changeWebsiteOption: function (hasWebSite, isClickSubmit) {
+            isClickSubmit && _me.validateWebSiteGroup();
             var $mainUrlInput = $("#SiteUrl");
             $mainUrlInput.prop("disabled", !hasWebSite);
             $(".websiteInput").toggle(hasWebSite);

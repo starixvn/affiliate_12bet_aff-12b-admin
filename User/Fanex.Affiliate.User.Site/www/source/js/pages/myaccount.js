@@ -1,4 +1,6 @@
 ﻿var MyAccount = (function ($) {
+    var _isClickSubmit = false;
+
     function setFocusForLastInput() {
         $("#websiteInfo .urlInput").last().focus();
     }
@@ -20,7 +22,7 @@
 
             $("#accountForm").on("change", "input[name=HasWebSite][type=radio]", function () {
                 var hasWebSite = this.value === "True";
-                WebSite.changeWebsiteOption(hasWebSite);
+                WebSite.changeWebsiteOption(hasWebSite, _isClickSubmit);
             });
 
             $("#btnMyAccountSubmit").on("click", function () {
@@ -33,6 +35,7 @@
         },
 
         submit: function () {
+            _isClickSubmit = true;
             var $form = $("#accountForm");
             var validator = $form.validate();
             var isValidForm = validator.form();

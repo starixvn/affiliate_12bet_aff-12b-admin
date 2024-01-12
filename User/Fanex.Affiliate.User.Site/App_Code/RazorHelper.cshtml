@@ -79,7 +79,7 @@
     {
         displayText = $"{selectedItemCount} selected";
     }
-    <div class="form-group @className" id="@($"{id}")">
+    <div class="form-group validate-group @className" id="@($"{id}")">
         <label>@label</label>
         <div id="@($"{id}-multiple-select")" class="multiple-select-container @(hasSelectedItem ? "" : "multiple-select-wrapper is-invalid")">
             <button id="@($"{id}-multiple-select-label")" type="button" class="form-control multiple-select-default multiple-select-label">
@@ -158,7 +158,7 @@
     var hasTwoContactApp = secondAppContactList.ContainsKey(language);
     var hasThirdContactApp = thirdAppContactList.ContainsKey(language);
 
-    <div class="form-group">
+    <div class="form-group validate-group">
         <label for="ContactAppList[0].Value" class="col-sm-3 control-label @(hasTwoContactApp ? string.Empty : "require")">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(firstAppName) ?? firstAppName)</label>
         @if (hasTwoContactApp)
         {
@@ -186,7 +186,7 @@
     if (hasTwoContactApp)
     {
         var secondAppName = secondAppContactList[language];
-        <div class="form-group">
+        <div class="form-group validate-group">
             <label for="ContactAppList[1].Value" class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(secondAppName) ?? secondAppName)</label>
             <div class="col-sm-4">
                 <input type="text" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-control" value=""
@@ -203,7 +203,7 @@
         if (hasThirdContactApp)
         {
             var thirdAppName = thirdAppContactList[language];
-            <div class="form-group">
+            <div class="form-group validate-group">
                 <label for="ContactAppList[2].Value" class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(thirdAppName) ?? thirdAppName)</label>
                 <div class="col-sm-4">
                     <input type="text" name="ContactAppList[2].Value" id="ContactAppList[2].Value" class="form-control" value=""
@@ -223,7 +223,7 @@
 
 @helper RenderGenderSignUp()
 {
-    <div class="items">
+    <div class="items validate-group">
         <label class="custom-label" for="male">@Fanex.Affiliate.User.Core.Resources.Lang.Gender <span class="red-warn">*</span></label>
         <div class="radio-group">
             <label class="radio-button">
@@ -244,7 +244,7 @@
 {
     var index = order - 1;
 
-    <div class="items">
+    <div class="items validate-group">
         <label for="ContactAppList[@index].Value" class="custom-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(name) ?? name)</label>
         <input type="text" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
                data-val="true" data-val-requiredifnullorempty-dependentprop="@dependentProp"
