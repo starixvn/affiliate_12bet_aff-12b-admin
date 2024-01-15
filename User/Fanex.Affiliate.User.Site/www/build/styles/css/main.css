@@ -1310,7 +1310,7 @@ label.require:after {
 
 .moving-block {
   position: fixed;
-  z-index: 1;
+  z-index: 99999;
   bottom: 28%;
   right: 80px; }
   @media (min-width: 1600px) {
@@ -2212,7 +2212,8 @@ input[type="radio"], input[type="checkbox"] {
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
             text-transform: initial;
             color: #FFF;
-            font-weight: 600; }
+            font-weight: 600;
+            margin-bottom: 24px; }
             @media (max-width: 500px) {
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
                 font-weight: 500; } }
