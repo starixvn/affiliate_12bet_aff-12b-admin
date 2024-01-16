@@ -8,8 +8,8 @@
         "inputFile": "www/source/styles/pages/home.scss"
     },
     {
-        "outputFile": "www/build/styles/css/undermantence.css",
-        "inputFile": "www/source/styles/pages/undermantence.scss"
+        "outputFile": "www/build/styles/css/under-maintenance.css",
+        "inputFile": "www/source/styles/pages/under-maintenance.scss"
     },
     //{
     //  "outputFile": "www/build/styles/css/terms-and-coditions.css",

@@ -401,9 +401,9 @@
     <Content Include="www\build\styles\css\forgot-password.min.css">
       <DependentUpon>forgot-password.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\css\undermantence.css" />
-    <Content Include="www\build\styles\css\undermantence.min.css">
-      <DependentUpon>undermantence.css</DependentUpon>
+    <Content Include="www\build\styles\css\under-maintenance.css" />
+    <Content Include="www\build\styles\css\under-maintenance.min.css">
+      <DependentUpon>under-maintenance.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\fonts\montserrat\font.min.css">
       <DependentUpon>font.css</DependentUpon>
@@ -589,6 +589,8 @@
     <Content Include="www\build\styles\Images\home\why-become\highest.png" />
     <Content Include="www\build\styles\Images\home\why-become\lifetime.png" />
     <Content Include="www\build\styles\Images\home\why-become\workat.png" />
+    <Content Include="www\build\styles\Images\notify\404.svg" />
+    <Content Include="www\build\styles\Images\notify\error.svg" />
     <Content Include="www\build\styles\Images\qr-icon.png" />
     <Content Include="www\build\styles\Images\logo.svg" />
     <Content Include="www\build\styles\Images\product\esports\esporsts.png" />
@@ -1087,12 +1089,6 @@
     <Content Include="www\source\styles\fonts\montserrat\font.css" />
     <Content Include="www\source\styles\fonts\myriadPro\font.css" />
     <Content Include="www\source\styles\fonts\nokora\font.css" />
-    <Content Include="www\build\styles\Images\notify\bgMain.jpg" />
-    <Content Include="www\build\styles\Images\notify\icon.png" />
-    <Content Include="www\build\styles\Images\notify\iconnf.png" />
-    <Content Include="www\build\styles\Images\notify\logo_e.png" />
-    <Content Include="www\build\styles\Images\notify\sry.png" />
-    <Content Include="www\build\styles\Images\notify\srynf.png" />
     <Content Include="Views\Shared\Email\Signup\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.es-ES.cshtml" />
@@ -1339,7 +1335,7 @@
     <Content Include="Views\Promotion\Partial\_CommissionBoostTable.cshtml" />
     <Content Include="www\source\styles\pages\forgot-password.scss" />
     <Content Include="www\source\styles\scss\components\_alert.scss" />
-    <Content Include="www\source\styles\pages\undermantence.scss" />
+    <Content Include="www\source\styles\pages\under-maintenance.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

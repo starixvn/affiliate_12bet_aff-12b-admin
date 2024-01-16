@@ -104,7 +104,9 @@
 
         validateWebSiteGroup: function () {
             var validator = _me.getValidator();
-            var isValidMainInfo = validator.element("#SiteUrl") && validator.element("#NoSiteDesc");
+            var isValidSiteUrl = validator.element("#SiteUrl");
+            var isValidNoSiteDesc = validator.element("#NoSiteDesc");
+            var isValidMainInfo = isValidSiteUrl && isValidNoSiteDesc;
 
             var isValidMoreUrl = true;
             var moreInputUrl = $(".urlInput");
