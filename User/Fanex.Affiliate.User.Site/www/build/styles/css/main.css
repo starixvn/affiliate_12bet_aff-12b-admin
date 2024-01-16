@@ -883,26 +883,21 @@ input[type="checkbox"], input[type="radio"] {
 
 .hot-news {
   display: flex;
-  background: #ffc000; }
+  margin-top: -1px; }
   .hot-news .title {
     position: relative;
-    background: #ec8225;
+    background: linear-gradient(90deg, #D90F0F -18.75%, #FF8651 73.4%);
     color: #fff;
-    padding: 0 10px;
-    height: 26px;
-    line-height: 26px;
-    margin-right: 22px;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 600; }
-    .hot-news .title:after {
-      content: "";
-      border-top: 13px solid transparent;
-      border-bottom: 13px solid transparent;
-      position: absolute;
-      right: -10px;
-      top: 0;
-      border-left: 11px solid #ec8225; }
+    padding: 8px 36px 8px 44px;
+    line-height: normal;
+    margin-right: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%); }
+    @media (max-width: 500px) {
+      .hot-news .title {
+        padding: 8px 36px 8px 16px;
+        margin-right: 12px; } }
   .hot-news .message {
     position: relative;
     -webkit-box-flex: 1;
@@ -911,16 +906,18 @@ input[type="checkbox"], input[type="radio"] {
     max-width: 100%;
     color: #d43131;
     background: #fff;
-    padding: 0 10px;
-    line-height: 26px;
+    padding: 0 10px 0 0;
     font-size: 12px; }
-    .hot-news .message:before {
-      content: "";
-      position: absolute;
-      border-width: 13px 0 13px 11px;
-      border-style: solid;
-      left: -10px;
-      border-color: #fff #fff #fff transparent; }
+    .hot-news .message .marquee-container {
+      display: flex;
+      align-items: center; }
+      .hot-news .message .marquee-container p {
+        margin-bottom: 0; }
+        .hot-news .message .marquee-container p a {
+          color: #E44F1E !important;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: normal; }
 
 .swiper {
   width: 100%;
@@ -1529,6 +1526,9 @@ label.require:after {
   display: inline-block;
   padding: 10px 52px;
   font-size: 20px; }
+  .custom-button:disabled {
+    cursor: not-allowed;
+    pointer-events: unset !important; }
   .custom-button:hover {
     color: #fff;
     text-decoration: none; }
@@ -2073,9 +2073,6 @@ input[type="radio"], input[type="checkbox"] {
             text-transform: lowercase;
             color: #353E5B;
             font-weight: 600; }
-            @media (max-width: 500px) {
-              .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .title {
-                font-weight: 500; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input {
             margin-bottom: 12px; }
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .item .custom-input:last-child {
@@ -2152,7 +2149,6 @@ input[type="radio"], input[type="checkbox"] {
           @media (max-width: 500px) {
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .link-login-popup {
               margin-right: 0;
-              font-size: 16px;
               padding: 0; } }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .btn-join {
           border: 1.5px solid #D90F0F;
@@ -2165,7 +2161,8 @@ input[type="radio"], input[type="checkbox"] {
           @media (max-width: 500px) {
             .login-dialog .modal-dialog .modal-content .modal-body .main-login .btn-join {
               padding: 12px 0px;
-              font-size: 16px; } }
+              font-size: 18px;
+              font-weight: 700; } }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login #btnDialogLogin {
           height: 36px;
           background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
@@ -2207,8 +2204,7 @@ input[type="radio"], input[type="checkbox"] {
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text .title-affmember, .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
                 margin-bottom: 4px;
                 font-size: 16px;
-                text-align: center;
-                text-transform: capitalize; } }
+                text-align: center; } }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
             text-transform: initial;
             color: #FFF;

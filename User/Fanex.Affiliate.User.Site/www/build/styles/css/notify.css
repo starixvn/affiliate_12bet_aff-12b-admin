@@ -1,5 +1,8 @@
 ﻿.page-notify {
   margin: 70px 0; }
+  @media (max-width: 500px) {
+    .page-notify {
+      margin: 40px 0; } }
   .page-notify .main-notify {
     display: flex;
     justify-content: center;
@@ -16,7 +19,7 @@
       height: auto; }
       @media screen and (max-width: 1024px) {
         .page-notify .main-notify .column .main-img {
-          margin-bottom: 24px; } }
+          margin-bottom: 40px; } }
     .page-notify .main-notify .column ul {
       list-style: none;
       padding-left: 0;
@@ -33,6 +36,9 @@
         min-height: 45px;
         display: flex;
         align-items: center; }
+        @media (max-width: 500px) {
+          .page-notify .main-notify .column ul li {
+            padding: 12px; } }
         .page-notify .main-notify .column ul li img {
           margin-right: 12px; }
         .page-notify .main-notify .column ul li:nth-child(odd) {

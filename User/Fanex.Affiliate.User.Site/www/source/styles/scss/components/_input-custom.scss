@@ -22,6 +22,11 @@
         cursor: no-drop;
     }
 
+    &:disabled {
+        background: #E1E1E1;
+        cursor: no-drop;
+    }
+
     &::placeholder {
         color: #70778A;
         text-transform: uppercase;

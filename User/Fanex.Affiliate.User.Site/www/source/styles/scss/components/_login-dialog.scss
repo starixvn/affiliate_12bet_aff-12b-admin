@@ -109,10 +109,6 @@
                             text-transform: lowercase;
                             color: #353E5B;
                             font-weight: 600;
-
-                            @include Mobile {
-                                font-weight: 500;
-                            }
                         }
 
                         .custom-input {
@@ -215,7 +211,6 @@
 
                         @include Mobile {
                             margin-right: 0;
-                            font-size: 16px;
                             padding: 0;
                         }
                     }
@@ -231,7 +226,8 @@
 
                         @include Mobile {
                             padding: 12px 0px;
-                            font-size: 16px;
+                            font-size: 18px;
+                            font-weight: 700;
                         }
                     }
 
@@ -288,7 +284,6 @@
                                 margin-bottom: 4px;
                                 font-size: 16px;
                                 text-align: center;
-                                text-transform: capitalize;
                             }
                         }
 
@@ -297,7 +292,8 @@
                             text-transform: initial;
                             color: #FFF;
                             font-weight: 600;
-                            margin-bottom : 24px;
+                            margin-bottom: 24px;
+
                             @include Mobile {
                                 font-weight: 500;
                             }

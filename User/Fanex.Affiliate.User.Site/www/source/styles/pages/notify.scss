@@ -1,7 +1,9 @@
 ﻿@import '../scss/abstracts/mixins';
 .page-notify {
     margin: 70px 0;
-
+    @include Mobile{
+        margin : 40px 0;
+    }
     .main-notify {
         display: flex;
         justify-content: center;
@@ -23,7 +25,7 @@
                 height: auto;
 
                 @include Tablet {
-                    margin-bottom: 24px;
+                    margin-bottom: 40px;
                 }
             }
 
@@ -44,7 +46,9 @@
                     min-height: 45px;
                     display: flex;
                     align-items: center;
-
+                    @include Mobile{
+                        padding : 12px;
+                    }
                     img {
                         margin-right: 12px;
                     }

@@ -18,6 +18,9 @@
   .form-input.disabled, .disabled.form-area {
     background: #E1E1E1;
     cursor: no-drop; }
+  .form-input:disabled, .form-area:disabled {
+    background: #E1E1E1;
+    cursor: no-drop; }
   .form-input::placeholder, .form-area::placeholder {
     color: #70778A;
     text-transform: uppercase; }
@@ -428,7 +431,7 @@
 .alert {
   margin-bottom: 40px;
   padding: 16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   line-height: normal;
   border-radius: 12px; }
