@@ -401,6 +401,10 @@
     <Content Include="www\build\styles\css\forgot-password.min.css">
       <DependentUpon>forgot-password.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\undermantence.css" />
+    <Content Include="www\build\styles\css\undermantence.min.css">
+      <DependentUpon>undermantence.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\fonts\montserrat\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
@@ -1335,6 +1339,7 @@
     <Content Include="Views\Promotion\Partial\_CommissionBoostTable.cshtml" />
     <Content Include="www\source\styles\pages\forgot-password.scss" />
     <Content Include="www\source\styles\scss\components\_alert.scss" />
+    <Content Include="www\source\styles\pages\undermantence.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

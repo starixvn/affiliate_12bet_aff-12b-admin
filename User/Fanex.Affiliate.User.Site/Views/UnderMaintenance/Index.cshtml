@@ -7,6 +7,7 @@
     var to = ViewBag.UmTimeTo as string;
 }
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,73 +17,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Under Maintenance</title>
     <link href="~/www/build/styles/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/www/build/styles/fonts/montserrat/font.min.css" rel="stylesheet" />
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
-    <style type="text/css">
-        body {
-            background: -ms-linear-gradient(left, #500001, #020518);
-            background: -webkit-linear-gradient(left, #500001, #020518);
-            background: -moz-linear-gradient(left, #500001, #020518);
-            background: -o-linear-gradient(left, #500001, #020518);
-            background: linear-gradient(left, #500001, #020518);
-        }
-
-        .um-container {
-            background: #f5f0f0;
-            padding: 15px;
-            /*width: 100%;*/
-        }
-
-        .info {
-            color: #ff5a00;
-        }
-
-        .um-wrapper a:visited {
-            color: #ff5a00;
-        }
-
-        .um-wrapper a:hover {
-            color: #002aa0;
-        }
-
-        .um-wrapper h1 {
-            font-family: Arial, Helvetica;
-            font-size: 18px;
-            font-weight: bold;
-            color: #ff5a00;
-            _padding-top: 20px;
-            *padding-top: 20px;
-            line-height: 25px;
-            display: inline-block;
-        }
-
-        .um-header {
-            margin-bottom: 10px;
-        }
-
-        .um-header-top {
-            height: 90px;
-            background: url('../../www/build/styles/Images/header-bg.png');
-        }
-
-        .logo{
-            margin-top: 20px;
-            margin-left: 10px;
-        }
-    </style>
+    <link href="@Url.RenderLink("~/www/build/styles/css/undermantence.css")" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
+    <div class="um-body">
         <header class="um-header-top">
-            <img class="logo" src="~/www/build/styles/Images/logo.svg" alt="The logo" />
+            <div class="page-container">
+                <img class="logo" src="~/www/build/styles/Images/logo.svg" alt="The logo" />
+            </div>
         </header>
-    </div>
-    <div class="container main-container">
-        <div class="content">
-            <div class="um-container">
+        <div class="page-container">
+            <div class="um-content">
                 @*EN*@
                 <div class="um-wrapper">
                     <div class="um-header">
-                        <img src="~/www/build/styles/Images/notify/note_icon.gif" width="46" height="46" alt="Note icon" />
+                        <img src="~/www/build/styles/Images/langs/en.svg" alt="eng" />
                         <h1>Under Maintenance</h1>
                     </div>
 
@@ -97,13 +48,10 @@
                         </p>
                     </div>
                 </div>
-
-                <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
-
                 @*CS*@
                 <div class="um-wrapper">
                     <div class="um-header">
-                        <img src="~/www/build/styles/Images/notify/note_icon.gif" width="46" height="46" alt="Note icon" />
+                        <img src="~/www/build/styles/Images/langs/cs.svg" alt="cs" />
                         <h1>伺服器维护</h1>
                     </div>
 
@@ -119,12 +67,12 @@
                     </div>
                 </div>
 
-                <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
+               
 
                 @*CH*@
                 <div class="um-wrapper">
                     <div class="um-header">
-                        <img src="~/www/build/styles/Images/notify/note_icon.gif" width="46" height="46" alt="Note icon" />
+                        <img src="~/www/build/styles/Images/langs/ch.svg" alt="ch" />
                         <h1>伺服器維護</h1>
                     </div>
 
@@ -139,13 +87,10 @@
                         </p>
                     </div>
                 </div>
-
-                <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
-
                 @*TH*@
                 <div class="um-wrapper">
                     <div class="um-header">
-                        <img src="~/www/build/styles/Images/notify/note_icon.gif" width="46" height="46" alt="Note icon" />
+                        <img src="~/www/build/styles/Images/langs/th.svg" alt="th" />
                         <h1>ปรับปรุงระบบ</h1>
                     </div>
 
@@ -162,12 +107,12 @@
                     </div>
                 </div>
 
-                <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
+
 
                 @*VN*@
                 <div class="um-wrapper">
                     <div class="um-header">
-                        <img src="~/www/build/styles/Images/notify/note_icon.gif" width="46" height="46" alt="Note icon" />
+                        <img src="~/www/build/styles/Images/langs/vn.svg" alt="vn" />
                         <h1>Hệ thống bảo trì</h1>
                     </div>
 
@@ -184,12 +129,12 @@
                     </div>
                 </div>
 
-                <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
+
 
                 @*Spanish*@
                 <div class="um-wrapper">
                     <div class="um-header">
-                        <img src="~/www/build/styles/Images/notify/note_icon.gif" width="46" height="46" alt="Note icon" />
+                        <img src="~/www/build/styles/Images/langs/ba.svg" alt="ba" />
                         <h1>Bajo Mantenimiento</h1>
                     </div>
 
@@ -206,12 +151,12 @@
                     </div>
                 </div>
 
-                <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
+
 
                 @*Indo*@
                 <div class="um-wrapper">
                     <div class="um-header">
-                        <img src="~/www/build/styles/Images/notify/note_icon.gif" width="46" height="46" alt="Note icon" />
+                        <img src="~/www/build/styles/Images/langs/id.svg" alt="id" />
                         <h1>Under Maintenance</h1>
                     </div>
 
@@ -228,12 +173,11 @@
                     </div>
                 </div>
 
-                <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
 
                 @*Combodia*@
                 <div class="um-wrapper">
                     <div class="um-header">
-                        <img src="~/www/build/styles/Images/notify/note_icon.gif" width="46" height="46" alt="Note icon" />
+                        <img src="~/www/build/styles/Images/langs/kh.svg" alt="kh" />
                         <h1>ថិតក្នុងការថែទាំ</h1>
                     </div>
 
@@ -253,7 +197,7 @@
         </div>
 
         <div class="footer">
-            <div class="container">
+            <div class="page-container">
                 <div class="footer-text text-center">
                     © Copyright 2018. All Rights Reserved. Designed and Powered by <span class="text-red">12BET.com</span>
                 </div>

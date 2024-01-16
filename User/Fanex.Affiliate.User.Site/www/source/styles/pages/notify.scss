@@ -1,9 +1,11 @@
 ﻿@import '../scss/abstracts/mixins';
 .page-notify {
     margin: 70px 0;
-    @include Mobile{
-        margin : 40px 0;
+
+    @include Mobile {
+        margin: 40px 0;
     }
+
     .main-notify {
         display: flex;
         justify-content: center;
@@ -15,11 +17,23 @@
         }
 
         .column {
-            &-left{
-                @include Tablet{
-                    text-align : center;
+            &-left {
+                width: 40%;
+
+                @include Tablet {
+                    text-align: center;
+                    width: 100%;
                 }
             }
+
+            &-right {
+                width: 60%;
+
+                @include Tablet {
+                    width: 100%;
+                }
+            }
+
             .main-img {
                 max-width: 100%;
                 height: auto;
@@ -42,13 +56,12 @@
                     font-size: 16px;
                     font-weight: 500;
                     line-height: normal;
-                    padding: 6px 12px;
+                    padding: 12px;
                     min-height: 45px;
                     display: flex;
                     align-items: center;
-                    @include Mobile{
-                        padding : 12px;
-                    }
+
+
                     img {
                         margin-right: 12px;
                     }
@@ -78,7 +91,25 @@
             }
         }
     }
+
+    &.page-error {
+        ul {
+            li {
+                color: #D90F0F !important;
+
+                &:nth-child(odd) {
+                    background: #FFE7E7 !important;
+                }
+
+                &:nth-child(even) {
+                    background: #FFF2F2 !important;
+                }
+            }
+        }
+    }
 }
+
+
 /*html, body {
     min-height: 100%;
 }

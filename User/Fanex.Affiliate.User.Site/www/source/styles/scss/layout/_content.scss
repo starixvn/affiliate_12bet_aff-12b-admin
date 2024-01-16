@@ -36,7 +36,7 @@
         padding: 8px 36px 8px 44px;
         line-height: normal;
         margin-right: 20px;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 700;
         clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
 
@@ -55,8 +55,6 @@
         color: #d43131;
         background: #fff;
         padding: 0 10px 0 0;
-        font-size: 12px;
-
         .marquee-container {
             display: flex;
             align-items: center;
@@ -66,11 +64,17 @@
 
                 a {
                     color: #E44F1E !important;
-                    font-size: 16px;
+                    font-size: 15px;
                     font-weight: 500;
                     line-height: normal;
                 }
             }
         }
+    }
+}
+
+.after-login {
+    .hot-news {
+        margin-bottom: 10px;
     }
 }
