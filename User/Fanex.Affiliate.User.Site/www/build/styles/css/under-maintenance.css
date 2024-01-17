@@ -1,6 +1,33 @@
 ﻿body {
   font-family: 'Montserrat',sans-serif; }
 
+.um-body .group-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px; }
+  @media (max-width: 500px) {
+    .um-body .group-logo {
+      flex-direction: column;
+      gap: 12px; } }
+  .um-body .group-logo .text-um {
+    color: #353E5B;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+    max-width: 224px; }
+    @media (max-width: 500px) {
+      .um-body .group-logo .text-um {
+        font-size: 24px;
+        max-width: 100%; } }
+  @media (max-width: 500px) {
+    .um-body .group-logo .main-logo {
+      margin-bottom: 12px; } }
+  .um-body .group-logo img {
+    max-width: 100%;
+    height: auto; }
+
 .um-body .um-header-top {
   margin: 40px 0; }
 
