@@ -1510,7 +1510,7 @@ label.require:after {
   .btn-auth.btn-login {
     margin-right: 8px;
     font-weight: 700;
-    border: 1.5px solid #D90F0F;
+    border: 2px solid #D90F0F;
     background: #000;
     color: #D90F0F;
     cursor: pointer; }
@@ -2114,11 +2114,11 @@ input[type="radio"], input[type="checkbox"] {
               outline: none;
               border: none;
               padding: 8px 20px;
-              color: #C2C2C2;
               font-size: 14px;
               font-weight: 600;
               height: 36px;
               margin-bottom: 0;
+              color: #353E5B;
               -webkit-appearance: none;
               -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25) inset; }
               @media (max-width: 500px) {
