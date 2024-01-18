@@ -128,7 +128,7 @@ export class DomainControlPopup extends PureComponent {
         const { selectedDomainId, affDomainList, redirectDomainList } = this.props;
         const { isInsert, isSuccess, isShowMessage, message, selectedDomain, targetCountryListByDomains } = this.state;
         const isShowPopup = selectedDomainId !== null;
-        const isDisabled = targetCountryListByDomains == null;
+        const isDisabled = !targetCountryListByDomains;
         const title = isInsert ? "Add New Domain Control" : "Edit Domain Control";
         const buttonLabel = isInsert ? "Add" : "Submit";
 

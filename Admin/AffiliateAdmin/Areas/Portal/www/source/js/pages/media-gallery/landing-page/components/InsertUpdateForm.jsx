@@ -44,7 +44,7 @@ export class InsertUpdateForm extends PureComponent {
 
                 const targetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
 
-                if (targetCountryList) {
+                if (targetCountryList && targetCountryList.length) {
                     const excludedTargetCountryList = getExcludedTargetCountryList(targetCountryList);
                     const isExcludedAllTargetCountries = checkExcludedAllTargetCountries(targetCountryList, excludedTargetCountryList);
 

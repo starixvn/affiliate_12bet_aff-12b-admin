@@ -35,7 +35,7 @@ export const setIsGroupByCountry = (data) => {
 }
 
 export const getPageList = () => async () => {
-    const response = await post('Portal/LandingPageStatistics/GetPageList');
+    const response = await post('Portal/UserPanel/LandingPageStatistics/GetPageList');
     return response && response.status === 200 ? response.data : [];
 }
 
