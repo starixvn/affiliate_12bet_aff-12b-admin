@@ -2,8 +2,8 @@
 <Functions SiteId="32" SiteName="12Bet">
   <Function Name="Authorization">
     <Setting Key="Aff_SessionIdSel" SpName="Aff_SessionIdSel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-    <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
     <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_User_Login_ResultUpd_view" SpName="Aff_User_Login_ResultUpd" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
     <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
@@ -17,9 +17,9 @@
   </Function>
 
   <Function Name="AccountInformation">
-    <Setting Key="Aff_User_UserInfoSel" SpName="Aff_User_UserInfoSel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Aff_User_UserInfoSel_view" SpName="Aff_User_UserInfoSel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-    <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_User_UserInfoSel" SpName="Aff_User_UserInfoSel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_User_UserInfoSel_view" SpName="Aff_User_UserInfoSel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_AffiliateUpdPwd" SpName="Aff_AffiliateUpdPwd" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_User_SecretKeyIns" SpName="Aff_User_SecretKeyIns" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
 
@@ -86,7 +86,7 @@
   </Function>
 
   <Function Name="SignUp">
-    <Setting Key="Aff_User_Affiliate_Ins" SpName="Aff_User_Affiliate_Ins_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_User_Affiliate_Ins" SpName="Aff_User_Affiliate_Ins" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
   </Function>
 
   <Function Name="Member">
@@ -109,20 +109,20 @@
     <Setting Key="Aff_User_Overview_Summary_Sel" SpName="Aff_User_Overview_Summary_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_User_LoginInfo_Sel" SpName="Aff_User_LoginInfo_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
 
-    <Setting Key="Aff_TargetProduct_Sel" SpName="Aff_TargetProduct_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_TargetProduct_Sel" SpName="Aff_TargetProduct_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_Admin_AdminUser_Market_Sel" SpName="Aff_Admin_AdminUser_Market_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Aff_User_Domain_Sel" SpName="Aff_User_Domain_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Aff_User_LandingPage_Sel" SpName="Aff_User_LandingPage_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_User_Domain_Sel" SpName="Aff_User_Domain_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_User_LandingPage_Sel" SpName="Aff_User_LandingPage_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
     <Setting Key="Aff_User_BannerStatistics_Ins" SpName="Aff_User_BannerStatistics_Ins" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
 
-    <Setting Key="Aff_TargetProduct_Sel_view" SpName="Aff_TargetProduct_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_TargetProduct_Sel_view" SpName="Aff_TargetProduct_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
     <Setting Key="Aff_Admin_AdminUser_Market_Sel_view" SpName="Aff_Admin_AdminUser_Market_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-    <Setting Key="Aff_Admin_MediaSize_Sel_view" SpName="Aff_Admin_MediaSize_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-    <Setting Key="Aff_User_Domain_Sel_view" SpName="Aff_User_Domain_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-    <Setting Key="Aff_User_LandingPage_Sel_view" SpName="Aff_User_LandingPage_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-    <Setting Key="Aff_Admin_Banner_Sel_view" SpName="Aff_Admin_Banner_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_Admin_MediaSize_Sel_view" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_User_Domain_Sel_view" SpName="Aff_User_Domain_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_User_LandingPage_Sel_view" SpName="Aff_User_LandingPage_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_Admin_Banner_Sel_view" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
   </Function>
 
   <Function Name="NewsLetter">
@@ -140,11 +140,11 @@
   </Function>
 
   <Function Name="TargetCountry">
-    <Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
 
-    <Setting Key="Aff_TargetCountry_Sel_view" SpName="Aff_TargetCountry_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-    <Setting Key="Aff_Language_Sel_view" SpName="Aff_Language_Sel_xtest" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_TargetCountry_Sel_view" SpName="Aff_TargetCountry_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_Language_Sel_view" SpName="Aff_Language_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
   </Function>
 
 </Functions>
