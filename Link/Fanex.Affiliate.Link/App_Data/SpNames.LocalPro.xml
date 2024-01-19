@@ -3,6 +3,6 @@
   <Function Name="Aff-Link">
     <Setting Key="Aff_AffiliateInsClickStatistics_New" SpName="Aff_AffiliateInsClickStatistics_New" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" Plain="0" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" Plain="0" />
-    <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" Plain="0" />
+    <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel_xpre" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" Plain="0" />
   </Function>
 </Functions>
