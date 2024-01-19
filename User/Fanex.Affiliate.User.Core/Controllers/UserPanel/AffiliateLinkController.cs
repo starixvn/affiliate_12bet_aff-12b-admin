@@ -35,14 +35,9 @@
         public ActionResult Index()
         {
             var linkForm = GetLinkFormViewModel();
-            var languageList = SystemService.GetSystemTargetLanguages();
-
-            var selectedLanguage = linkForm.SelectedLanguage;
-            var selectedDomain = linkForm.SelectedDomain;
             var selectedPage = linkForm.MemberSitePageList.FirstOrDefault()?.Value ?? string.Empty;
-            var selectedLanguageList = SystemHelper.GetTargetLanguageList(languageList, selectedLanguage);
 
-            var linkList = GetTextLinkList(linkForm.SelectedTargetCountry, selectedLanguage, selectedPage, selectedDomain, selectedLanguageList);
+            var linkList = GetTextLinkList(linkForm.SelectedTargetCountry, linkForm.SelectedLanguage, selectedPage, linkForm.SelectedDomain, linkForm.LanguageList);
             var qrCodes = GetQrCodes(linkList);
 
             var viewModel = new AffiliateLinkViewModel
@@ -68,7 +63,7 @@
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
 
             var languageList = string.IsNullOrEmpty(selectedLanguage)
-                ? SystemHelper.GetTargetLanguageList(SystemService.GetSystemTargetLanguages(), selectedLanguage)
+                ? SystemHelper.GetTargetLanguageList(SystemService.GetSystemTargetLanguagesByCountry(selectedTargetCountry), selectedLanguage)
                 : null;
 
             var textLinkList = GetTextLinkList(selectedTargetCountry, selectedLanguage, selectedPage, selectedDomain, languageList);

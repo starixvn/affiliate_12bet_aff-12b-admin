@@ -81,11 +81,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var targetLanguageList = _cacheService.Get<IEnumerable<TargetLanguage>>(cacheKey);
             if (targetLanguageList == null)
             {
-                targetLanguageList = _systemRepository.GetTargetLanguageList(isInternal, _sessionService.UserSession?.UserId);
+                targetLanguageList = _systemRepository.GetTargetLanguageListByCountry(isInternal, userId: _sessionService.UserSession?.UserId);
                 _cacheService.Set(cacheKey, targetLanguageList);
             }
 
             return targetLanguageList ?? new List<TargetLanguage>();
+        }
+
+        public IEnumerable<TargetLanguage> GetSystemTargetLanguagesByCountry(string targetCountry)
+        {
+            return _systemRepository.GetTargetLanguageListByCountry(_sessionService.IsInternal, targetCountry, _sessionService.UserSession?.UserId);
         }
 
         public bool IsValid(string langCode, bool isAfterLogin = true)

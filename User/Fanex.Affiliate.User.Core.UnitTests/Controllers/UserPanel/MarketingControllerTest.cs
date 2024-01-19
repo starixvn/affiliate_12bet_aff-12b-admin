@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var controller = CreateMarketingController();
 
             SessionService.UserSession.Returns(Constant.Session);
-            var result = controller.GetLinkTo(string.Empty, string.Empty) as JsonResult;
+            var result = controller.GetLinkTo(string.Empty) as JsonResult;
 
             Assert.NotNull(result.Data);
         }

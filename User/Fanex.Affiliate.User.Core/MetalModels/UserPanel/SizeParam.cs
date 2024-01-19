@@ -13,5 +13,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public string Languages { get; set; }
 
         public string AffType { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string TargetCountry { get; set; }
     }
 }

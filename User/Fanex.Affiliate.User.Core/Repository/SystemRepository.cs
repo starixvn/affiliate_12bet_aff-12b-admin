@@ -26,14 +26,14 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
         }
 
-        public IEnumerable<TargetLanguage> GetTargetLanguageList(bool isInternal, int? userId = null)
+        public IEnumerable<TargetLanguage> GetTargetLanguageListByCountry(bool isInternal, string targetCountryCode = null, int? userId = null)
         {
             const string uSpKey = "Aff_Language_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
             using (var db = _builder.Build(uSpKey, dbMode))
             {
-                return db.Query<TargetLanguage>(new { userId });
+                return db.Query<TargetLanguage>(new { userId, targetCountryCode });
             }
         }
 

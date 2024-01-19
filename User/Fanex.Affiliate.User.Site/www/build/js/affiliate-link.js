@@ -1224,13 +1224,13 @@ var MarketingBase = (function ($) {
             $("#TargetCountry").on("change", function () {
                 _me.getAvailableDomains();
                 _me.getLinkTo();
+                _me.getLanguages();
             });
         },
 
         getLinkTo: function () {
             let param = {
-                targetCountry: $("#TargetCountry").val(),
-                language: $("#Language").val()
+                targetCountry: $("#TargetCountry").val()
             };
 
             $.ajax({
@@ -1293,6 +1293,37 @@ var MarketingBase = (function ($) {
                         if (hasPreviousSelectedDomain) {
                             $("#Domain").val(previousSelectedDomain);
                         }
+                    }
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
+        getLanguages: function () {
+            let param = {
+                targetCountry: $("#TargetCountry").val()
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetLanguagesByTargetCountry"),
+                success: function (response) {
+                    if (response && response.length == 0) {
+                        $("#btnMarketingSubmit").prop("disabled", true);
+                        $("#Language").html("<option value=''>" + langResource.noInfo + "</option>");
+                    } else {
+                        var html = Site.buildOptionList(response, "LanguageCode", "LanguageName", true);
+
+                        $("#Language").html(html);
+                        $("#Language").val(response[0].LanguageCode);
                     }
                 },
                 beforeSend: function () {

@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal)
         {
-            var languageList = _systemService.GetSystemTargetLanguages();
+            var languageList = _systemService.GetSystemTargetLanguagesByCountry(param.TargetCountry);
             param.Languages = GetTargetLanguageName(languageList, param.Language);
 
             return _marketingRepository.GetSizeList(param, isInternal);
@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var linkList = new Dictionary<string, string>();
             var selectedLanguage = linkGenerationParam.SelectedLanguage;
             var languageListFromParam = linkGenerationParam.LanguageList;
-            var languageList = _systemService.GetSystemTargetLanguages();
+            var languageList = _systemService.GetSystemTargetLanguagesByCountry(linkGenerationParam.SelectedTargetCountry);
 
             if (IsSelectedAllLanguages(selectedLanguage) && languageListFromParam != null && languageListFromParam.Any())
             {

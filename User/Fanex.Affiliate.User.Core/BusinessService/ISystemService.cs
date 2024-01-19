@@ -16,5 +16,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         IEnumerable<TargetLanguage> GetSystemTargetLanguages();
 
         IEnumerable<TargetCountry> GetSystemTargetCountries();
+
+        IEnumerable<TargetLanguage> GetSystemTargetLanguagesByCountry(string targetCountry);
     }
 }

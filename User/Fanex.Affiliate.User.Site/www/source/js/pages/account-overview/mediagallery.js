@@ -30,6 +30,10 @@
         },
 
         initEvent: function () {
+            $("#TargetCountry").on("change", function () {
+                _me.getSize();
+            });
+
             $("#TargetProduct").on("change", function () {
                 _me.getSize();
             });
@@ -100,6 +104,7 @@
             let param = {
                 targetProduct: $("#TargetProduct").val(),
                 language: $("#Language").val(),
+                targetCountry: $("#TargetCountry").val(),
             };
 
             $.ajax({

@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.User.Core.Repository
     {
         IEnumerable<Language> GetLanguageList(bool isInternal, int? userId = null);
 
-        IEnumerable<TargetLanguage> GetTargetLanguageList(bool isInternal, int? userId = null);
+        IEnumerable<TargetLanguage> GetTargetLanguageListByCountry(bool isInternal, string targetCountryCode = null, int? userId = null);
 
         IEnumerable<TargetCountry> GetTargetCountryList(bool isInternal, int? userId = null);
     }
