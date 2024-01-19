@@ -8,8 +8,6 @@ namespace Fanex.Affiliate.Link.DataAccess.Interface
     {
         string GetCommGroupByAffId(int affId);
 
-        string GetLanguageCodeByAffId(int affId);
-
-        IEnumerable<TargetCountry> GetSystemTargetCountries();
+        IEnumerable<Language> GetSystemLanguages();
     }
 }

@@ -1211,26 +1211,28 @@ module.exports = closest;
     };
 })(jQuery);
 var MarketingBase = (function ($) {
+    const NO_INFO_OPTION = "<option value=''>" + langResource.noInfo + "</option>";
+
     var _me = {
         initialize: function () {
             _me.initEvent();
         },
 
         initEvent: function () {
-            $("#Language").on("change", function () {
+            $("#Language").on("change", function (e) {
                 _me.getLinkTo();
             });
 
             $("#TargetCountry").on("change", function () {
-                _me.getAvailableDomains();
-                _me.getLinkTo();
-                _me.getLanguages();
+                $("#btnMarketingSubmit").prop("disabled", false);
+                _me.handleChangeTargetCountry();
             });
         },
 
         getLinkTo: function () {
             let param = {
-                targetCountry: $("#TargetCountry").val()
+                targetCountry: $("#TargetCountry").val(),
+                language: $("#Language").val()
             };
 
             $.ajax({
@@ -1266,7 +1268,7 @@ var MarketingBase = (function ($) {
             });
         },
 
-        getAvailableDomains: function () {
+        handleChangeTargetCountry: function () {
             let param = {
                 targetCountry: $("#TargetCountry").val()
             };
@@ -1276,23 +1278,19 @@ var MarketingBase = (function ($) {
                 dataType: "json",
                 cache: false,
                 data: param,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetAvailableDomains"),
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetFiltersByCountry"),
                 success: function (response) {
                     if (response && response.length == 0) {
                         $("#btnMarketingSubmit").prop("disabled", true);
-                        $("#Domain").html("<option value=''>" + langResource.noInfo + "</option>");
+                        $("#Domain").html(NO_INFO_OPTION);
+                        $("#MemberSitePage").html(NO_INFO_OPTION)
+                        $("#Language").html(NO_INFO_OPTION)
                     } else {
-                        $("#MemberSitePage").val() && $("#btnMarketingSubmit").prop("disabled", false);
-                        var html = Site.buildOptionList(response, "DomainId", "DomainName", false);
-                        var previousSelectedDomain = $("#Domain").val();
+                        var { domainList, languageList, pageList } = response;
 
-                        $("#Domain").html(html);
-
-                        var hasPreviousSelectedDomain = response.some(i => i.DomainId == previousSelectedDomain);
-
-                        if (hasPreviousSelectedDomain) {
-                            $("#Domain").val(previousSelectedDomain);
-                        }
+                        _me.updateLanguageDropdown(languageList);
+                        _me.updateAvailableDomainDropdown(domainList);
+                        _me.updateLinkToDropdown(pageList);
                     }
                 },
                 beforeSend: function () {
@@ -1304,35 +1302,60 @@ var MarketingBase = (function ($) {
             });
         },
 
-        getLanguages: function () {
-            let param = {
-                targetCountry: $("#TargetCountry").val()
-            };
+        updateAvailableDomainDropdown: function (availableDomainList) {
+            if (availableDomainList && !availableDomainList.length) {
+                $("#btnMarketingSubmit").prop("disabled", true);
+                $("#Domain").html(NO_INFO_OPTION);
 
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                cache: false,
-                data: param,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetLanguagesByTargetCountry"),
-                success: function (response) {
-                    if (response && response.length == 0) {
-                        $("#btnMarketingSubmit").prop("disabled", true);
-                        $("#Language").html("<option value=''>" + langResource.noInfo + "</option>");
-                    } else {
-                        var html = Site.buildOptionList(response, "LanguageCode", "LanguageName", true);
+                return;
+            }
 
-                        $("#Language").html(html);
-                        $("#Language").val(response[0].LanguageCode);
-                    }
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
-                }
-            });
+            var html = Site.buildOptionList(availableDomainList, "DomainId", "DomainName", false);
+
+            var previousSelectedDomain = $("#Domain").val();
+
+            $("#Domain").html(html);
+
+            var hasPreviousSelectedDomain = availableDomainList.some(i => i.DomainId == previousSelectedDomain);
+
+            if (hasPreviousSelectedDomain) {
+                $("#Domain").val(previousSelectedDomain);
+            }
+        },
+
+        updateLinkToDropdown: function (pageList) {
+            if (pageList && !pageList.length) {
+                $("#btnMarketingSubmit").prop("disabled", true);
+                $("#MemberSitePage").html(NO_INFO_OPTION);
+
+                return;
+            }
+
+            var html = Site.buildOptionList(pageList, "PageCode", "PageName", false);
+
+            var previousSelectedPage = $("#MemberSitePage").val();
+
+            $("#MemberSitePage").html(html);
+
+            var hasPreviousSelectedPage = pageList.some(i => i.PageCode == previousSelectedPage);
+
+            if (hasPreviousSelectedPage) {
+                $("#MemberSitePage").val(previousSelectedPage);
+            }
+        },
+
+        updateLanguageDropdown: function (languageList) {
+            if (languageList && !languageList.length) {
+                $("#btnMarketingSubmit").prop("disabled", true);
+                $("#Language").html(NO_INFO_OPTION);
+
+                return;
+            }
+
+            var html = Site.buildOptionList(languageList, "LanguageCode", "LanguageName", languageList.length > 1);
+
+            $("#Language").html(html);
+            $("#Language").val(languageList[0].LanguageCode);
         }
     };
 

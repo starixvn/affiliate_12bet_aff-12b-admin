@@ -68,11 +68,9 @@ namespace Fanex.Affiliate.Link.Controllers
 
         public ActionResult Link(int affId, string pageCode, string lang)
         {
-            var affLanguageCode = _affiliateService.GetLanguageCodeByAffId(affId);
-            var targetCountryList = _affiliateService.GetSystemTargetCountries();
-            var targetCountryByAffLanguage = targetCountryList.FirstOrDefault(t => IsMatching(t.DefaultLanguageCode, affLanguageCode));
+            var targetCountryCode = _affiliateService.GetTargetCountryCodeByLanguage(lang);
 
-            if(targetCountryByAffLanguage is null)
+            if(targetCountryCode is null)
             {
                 return IvalidLink();
             }
@@ -82,10 +80,10 @@ namespace Fanex.Affiliate.Link.Controllers
             if (isSpecialAff)
             {
                 var defaultLanguageStatistic = ConfigurationManager.AppSettings["DefaultLanguageStatistic"].ToString();
-                return InsertAffiliate(affId, pageCode, defaultLanguageStatistic, targetCountryByAffLanguage.TargetCountryCode, true);
+                return InsertAffiliate(affId, pageCode, defaultLanguageStatistic, targetCountryCode, true, lang);
             }
 
-            return InsertAffiliate(affId, pageCode, lang, targetCountryByAffLanguage.TargetCountryCode);
+            return InsertAffiliate(affId, pageCode, lang, targetCountryCode);
         }
 
         public ActionResult CommonLink(int affId, string pageCode, string lang, string targetCountry)
@@ -96,10 +94,14 @@ namespace Fanex.Affiliate.Link.Controllers
                 return Link(affId, pageCode: $"{pageCode}/{lang}", lang: targetCountry);
             }
 
-            var targetCountryList = _affiliateService.GetSystemTargetCountries();
-            var isValidTargetCountry = targetCountryList.Any(t => IsMatching(t.TargetCountryCode, targetCountry.ToUpperInvariant()));
+            var targetCountryCode = _affiliateService.GetTargetCountryCodeByLanguage(lang);
 
-            return isValidTargetCountry ? InsertAffiliate(affId, pageCode, lang, targetCountry) : IvalidLink();
+            if (targetCountryCode is null || !IsMatching(targetCountry.ToUpperInvariant(), targetCountryCode))
+            {
+                return IvalidLink();
+            }
+
+            return InsertAffiliate(affId, pageCode, lang, targetCountry);
         }
 
         public ActionResult SpecialPageCodeLink(int affId, string pageCodePart1, string pageCodePart2, string lang, string targetCountry)

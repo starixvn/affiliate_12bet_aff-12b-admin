@@ -218,7 +218,7 @@
     <Compile Include="DataAccess\Impl\TrackingSystemDataAccess.cs" />
     <Compile Include="DataAccess\Interface\IAffiliateDataAccess.cs" />
     <Compile Include="DataAccess\Interface\ITrackingSystemDataAccess.cs" />
-    <Compile Include="DTO\TargetCountry.cs" />
+    <Compile Include="DTO\Language.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

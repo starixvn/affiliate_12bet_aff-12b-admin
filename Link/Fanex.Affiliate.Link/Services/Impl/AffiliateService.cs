@@ -3,13 +3,15 @@ using Fanex.Affiliate.Link.DataAccess.Interface;
 using Fanex.Affiliate.Link.DTO;
 using Fanex.Affiliate.Link.Services.Interface;
 using Fanex.Caching.Memory;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Affiliate.Link.Services.Impl
 {
     public class AffiliateService : IAffiliateService
     {
-        private const string TARGET_COUNTRY_LIST_CACHE_KEY = "Affiliate.12B.Go.TargetCountryList";
+        private const string LANGUAGE_LIST_CACHE_KEY = "Affiliate.12B.Go.LanguageList";
 
         private readonly IAffiliateDataAccess _affiliateDataAccess;
         private readonly IMemoryCacheService _cacheService;
@@ -29,21 +31,23 @@ namespace Fanex.Affiliate.Link.Services.Impl
             return _affiliateDataAccess.GetCommGroupByAffId(affId);
         }
 
-        public string GetLanguageCodeByAffId(int affId)
+        public string GetTargetCountryCodeByLanguage(string shortedCode)
         {
-            return _affiliateDataAccess.GetLanguageCodeByAffId(affId);
+            var systemLanguages = GetSystemLanguages();
+
+            return systemLanguages.FirstOrDefault(l => string.Equals(shortedCode, l.ShortedCode, StringComparison.OrdinalIgnoreCase))?.TargetCountryCode ?? string.Empty;
         }
 
-        public IEnumerable<TargetCountry> GetSystemTargetCountries()
+        public IEnumerable<Language> GetSystemLanguages()
         {
-            var targetCountryList = _cacheService.Get<IEnumerable<TargetCountry>>(TARGET_COUNTRY_LIST_CACHE_KEY);
-            if (targetCountryList == null)
+            var systemLanguages = _cacheService.Get<IEnumerable<Language>>(LANGUAGE_LIST_CACHE_KEY);
+            if (systemLanguages == null)
             {
-                targetCountryList = _affiliateDataAccess.GetSystemTargetCountries();
-                _cacheService.Set(TARGET_COUNTRY_LIST_CACHE_KEY, targetCountryList);
+                systemLanguages = _affiliateDataAccess.GetSystemLanguages();
+                _cacheService.Set(LANGUAGE_LIST_CACHE_KEY, systemLanguages);
             }
 
-            return targetCountryList ?? new List<TargetCountry>();
+            return systemLanguages ?? new List<Language>();
         }
     }
 }

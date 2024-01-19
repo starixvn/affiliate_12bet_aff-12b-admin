@@ -3,7 +3,6 @@
     using Constants;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using System.Linq;
     using System.Web.Mvc;
@@ -20,32 +19,24 @@
 
         [HttpGet]
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
-        public ActionResult GetLinkTo(string targetCountry)
+        public ActionResult GetLinkTo(string targetCountry, string language)
         {
-            var targetLanguageListByCountry = SystemService.GetSystemTargetLanguagesByCountry(targetCountry);
-            var targetLanguageCode = targetLanguageListByCountry.FirstOrDefault()?.LanguageCode ?? SystemLanguage.DefaultLanguageCode;
-
-            var landingPages = MarketingService.GetSpecialLandingPageList(targetCountry, SessionService.UserSession.GroupName, targetLanguageCode, SessionService.IsInternal);
+            var landingPages = MarketingService.GetSpecialLandingPageList(targetCountry, SessionService.UserSession.GroupName, language, SessionService.IsInternal);
 
             return Json(landingPages, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
-        public ActionResult GetAvailableDomains(string targetCountry)
+        public ActionResult GetFiltersByCountry(string targetCountry)
         {
-            var landingPages = MarketingService.GetDomainListByTargetCountry(targetCountry, SessionService.IsInternal);
+            var domainList = MarketingService.GetDomainListByTargetCountry(targetCountry, SessionService.IsInternal);
+            var languageList = SystemService.GetSystemTargetLanguagesByCountry(targetCountry);
 
-            return Json(landingPages, JsonRequestBehavior.AllowGet);
-        }
+            var targetLanguageCode = languageList.FirstOrDefault()?.LanguageCode ?? SystemLanguage.DefaultLanguageCode;
+            var pageList = MarketingService.GetSpecialLandingPageList(targetCountry, SessionService.UserSession.GroupName, targetLanguageCode, SessionService.IsInternal);
 
-        [HttpGet]
-        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
-        public ActionResult GetLanguagesByTargetCountry(string targetCountry)
-        {
-            var targetLanguageListByCountry = SystemService.GetSystemTargetLanguagesByCountry(targetCountry);
-
-            return Json(targetLanguageListByCountry, JsonRequestBehavior.AllowGet);
+            return Json(new { domainList, languageList, pageList }, JsonRequestBehavior.AllowGet);
         }
     }
 }

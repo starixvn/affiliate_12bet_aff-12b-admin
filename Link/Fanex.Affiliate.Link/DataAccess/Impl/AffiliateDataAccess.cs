@@ -28,33 +28,13 @@ namespace Fanex.Affiliate.Link.DataAccess.Impl
             }
         }
 
-        public string GetLanguageCodeByAffId(int affId)
+        public IEnumerable<Language> GetSystemLanguages()
         {
-            const string uSpKey = "Aff_User_GeneralInfo_Sel";
+            const string uSpKey = "Aff_Language_Sel";
 
             using (var objectDb = new SqlObjectDb(uSpKey))
             {
-                objectDb.SetParameterValue("AffId", affId);
-
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        return Convert.ToString(reader["PreferredLanguage"]);
-                    }
-
-                    return string.Empty;
-                }
-            }
-        }
-
-        public IEnumerable<TargetCountry> GetSystemTargetCountries()
-        {
-            const string uSpKey = "Aff_TargetCountry_Sel";
-
-            using (var objectDb = new SqlObjectDb(uSpKey))
-            {
-                return objectDb.Query<TargetCountry>();
+                return objectDb.Query<Language>();
             }
         }
     }
