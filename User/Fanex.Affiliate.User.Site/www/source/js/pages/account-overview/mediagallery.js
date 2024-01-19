@@ -30,10 +30,6 @@
         },
 
         initEvent: function () {
-            $("#TargetCountry").on("change", function () {
-                _me.getSize();
-            });
-
             $("#TargetProduct").on("change", function () {
                 _me.getSize();
             });

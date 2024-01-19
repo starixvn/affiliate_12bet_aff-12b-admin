@@ -1269,8 +1269,12 @@ var MarketingBase = (function ($) {
         },
 
         handleChangeTargetCountry: function () {
+            let shouldGetSize = !!$("#Size").length;
+
             let param = {
-                targetCountry: $("#TargetCountry").val()
+                targetProduct: $("#TargetProduct").val(),
+                targetCountry: $("#TargetCountry").val(),
+                shouldGetSize
             };
 
             $.ajax({
@@ -1283,14 +1287,16 @@ var MarketingBase = (function ($) {
                     if (response && response.length == 0) {
                         $("#btnMarketingSubmit").prop("disabled", true);
                         $("#Domain").html(NO_INFO_OPTION);
-                        $("#MemberSitePage").html(NO_INFO_OPTION)
-                        $("#Language").html(NO_INFO_OPTION)
+                        $("#MemberSitePage").html(NO_INFO_OPTION);
+                        $("#Language").html(NO_INFO_OPTION);
+                        shouldGetSize && $("#Size").html(NO_INFO_OPTION);
                     } else {
-                        var { domainList, languageList, pageList } = response;
+                        var { domainList, languageList, pageList, sizeList } = response;
 
                         _me.updateLanguageDropdown(languageList);
                         _me.updateAvailableDomainDropdown(domainList);
                         _me.updateLinkToDropdown(pageList);
+                        shouldGetSize && _me.updateSizeDropdown(sizeList);
                     }
                 },
                 beforeSend: function () {
@@ -1356,6 +1362,19 @@ var MarketingBase = (function ($) {
 
             $("#Language").html(html);
             $("#Language").val(languageList[0].LanguageCode);
+        },
+
+        updateSizeDropdown: function (sizeList) {
+            var html = Site.buildOptionList(sizeList, "Size", "Size", true);
+            var previousSelectedSize = $("#Size").val();
+
+            $("#Size").html(html);
+
+            var hasPreviousSelectedSize = sizeList.some(i => i.Size == previousSelectedSize);
+
+            if (hasPreviousSelectedSize) {
+                $("#Size").val(previousSelectedSize);
+            }
         }
     };
 
@@ -1397,10 +1416,6 @@ var MediaGallery = (function ($) {
         },
 
         initEvent: function () {
-            $("#TargetCountry").on("change", function () {
-                _me.getSize();
-            });
-
             $("#TargetProduct").on("change", function () {
                 _me.getSize();
             });

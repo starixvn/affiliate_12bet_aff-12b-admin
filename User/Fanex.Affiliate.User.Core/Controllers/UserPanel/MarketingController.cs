@@ -3,7 +3,10 @@
     using Constants;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+    using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
     using Filters;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -28,15 +31,18 @@
 
         [HttpGet]
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
-        public ActionResult GetFiltersByCountry(string targetCountry)
+        public ActionResult GetFiltersByCountry(SizeParam param, bool shouldGetSize)
         {
-            var domainList = MarketingService.GetDomainListByTargetCountry(targetCountry, SessionService.IsInternal);
-            var languageList = SystemService.GetSystemTargetLanguagesByCountry(targetCountry);
+            var domainList = MarketingService.GetDomainListByTargetCountry(param.TargetCountry, SessionService.IsInternal);
+            var languageList = SystemService.GetSystemTargetLanguagesByCountry(param.TargetCountry);
 
             var targetLanguageCode = languageList.FirstOrDefault()?.LanguageCode ?? SystemLanguage.DefaultLanguageCode;
-            var pageList = MarketingService.GetSpecialLandingPageList(targetCountry, SessionService.UserSession.GroupName, targetLanguageCode, SessionService.IsInternal);
+            var pageList = MarketingService.GetSpecialLandingPageList(param.TargetCountry, SessionService.UserSession.GroupName, targetLanguageCode, SessionService.IsInternal);
 
-            return Json(new { domainList, languageList, pageList }, JsonRequestBehavior.AllowGet);
+            param.Language = targetLanguageCode;
+            var sizeList = shouldGetSize ? MarketingService.GetSizeList(param, SessionService.IsInternal) : new List<SizeType>();
+
+            return Json(new { domainList, languageList, pageList, sizeList }, JsonRequestBehavior.AllowGet);
         }
     }
 }
