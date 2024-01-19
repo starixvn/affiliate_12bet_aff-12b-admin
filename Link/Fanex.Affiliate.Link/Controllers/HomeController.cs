@@ -19,6 +19,7 @@ namespace Fanex.Affiliate.Link.Controllers
     public class HomeController : Controller
     {
         private const string SIGN_UP_PAGE_CODE = "signup";
+        private const string MALAYSIA_COUNTRY_CODE = "MY";
         private const string SPECIAL_PAGE_CODE = "12sports";
         private readonly string[] SpecialSubPageCodes = new [] { "cricket", "virtualsports" };
 
@@ -68,19 +69,19 @@ namespace Fanex.Affiliate.Link.Controllers
 
         public ActionResult Link(int affId, string pageCode, string lang)
         {
-            var targetCountryCode = _affiliateService.GetTargetCountryCodeByLanguage(lang);
-
-            if(targetCountryCode is null)
-            {
-                return IvalidLink();
-            }
-
             var isSpecialAff = IsSpecialAffiliate(affId, pageCode);
 
             if (isSpecialAff)
             {
                 var defaultLanguageStatistic = ConfigurationManager.AppSettings["DefaultLanguageStatistic"].ToString();
-                return InsertAffiliate(affId, pageCode, defaultLanguageStatistic, targetCountryCode, true, lang);
+                return InsertAffiliate(affId, pageCode, defaultLanguageStatistic, MALAYSIA_COUNTRY_CODE, true, lang);
+            }
+
+            var targetCountryCode = _affiliateService.GetTargetCountryCodeByLanguage(lang);
+
+            if (targetCountryCode is null)
+            {
+                return IvalidLink();
             }
 
             return InsertAffiliate(affId, pageCode, lang, targetCountryCode);
