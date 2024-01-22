@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
     public class TermAndConditionControllerTest
     {
         private readonly ISessionService SessionService;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
 
         public TermAndConditionControllerTest()
         {

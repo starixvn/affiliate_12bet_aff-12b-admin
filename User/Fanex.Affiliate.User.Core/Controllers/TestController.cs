@@ -5,6 +5,7 @@
     using CoreService;
     using DTO;
     using Enum;
+    using Fanex.Affiliate.User.Core.Extensions;
     using Fanex.Affiliate.User.Core.MetalModels;
     using Fanex.Affiliate.User.Core.Resources;
     using Filters;
@@ -49,7 +50,7 @@
         private readonly string _userName;
 
         public TestController(ISessionService sessionService,
-            ILanguageService languageService, IAppSetting appSetting, IMailProcessor mailProcessor) : base(sessionService, languageService)
+            ISystemService languageService, IAppSetting appSetting, IMailProcessor mailProcessor) : base(sessionService, languageService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;
@@ -79,10 +80,10 @@
 
             try
             {
-                LanguageService.SetCulture(criteria.Language);
+                SystemService.SetCulture(criteria.Language);
                 ViewBag.Data = GetEmailContent(criteria);
 
-                LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
+                SystemService.SetCulture(SystemLanguage.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -105,13 +106,13 @@
 
             try
             {
-                LanguageService.SetCulture(criteria.Language);
+                SystemService.SetCulture(criteria.Language);
 
                 var content = GetEmailContent(criteria);
 
                 _mailProcessor.Send(content, criteria.EmailAddress, GetSubject(criteria.Function));
 
-                LanguageService.SetCulture(SystemLanguage.DefaultLanguageCode);
+                SystemService.SetCulture(SystemLanguage.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -168,7 +169,7 @@
             var rootUrl = SiteDomainHelper.GetRootUrl(this, _appSetting);
             var content = string.Empty;
 
-            if (string.Equals(criteria.Function, TemplateString.ContactUs, StringComparison.OrdinalIgnoreCase))
+            if (criteria.Function.MatchWith(TemplateString.ContactUs))
             {
                 content = GetEmailTextContent(criteria.Function, criteria.Language, GetContactUsModel(rootUrl));
             }

@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -14,10 +15,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     public class LandingPageListController : ReadOnlySessionBaseController
     {
         private readonly ILandingPageService _landingPageService;
+        private readonly ISystemService _systemService;
 
-        public LandingPageListController(ISessionService sessionService, ILandingPageService landingPageService) : base(sessionService)
+        public LandingPageListController(
+            ISessionService sessionService,
+            ILandingPageService landingPageService,
+            ISystemService systemService) : base(sessionService)
         {
             _landingPageService = landingPageService;
+            _systemService = systemService;
         }
 
         [HttpGet]
@@ -32,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             return new JsonNetResult
             {
-                Data = _landingPageService.GetLandingPageList()
+                Data = _landingPageService.GetLandingPageList(SessionService.UserId)
             };
         }
 
@@ -42,7 +48,29 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             return new JsonNetResult
             {
-                Data = _landingPageService.GetLandingPageById(pageId)
+                Data = _landingPageService.GetLandingPageById(SessionService.UserId, pageId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetTargetCountryListByUser()
+        {
+            return new JsonNetResult
+            {
+                Data = _systemService.GetTargetCountryListByUser()
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetTargetCountryListByLandingPage(ExcludedTargetCountryParam param)
+        {
+            param.UserId = SessionService.UserId;
+
+            return new JsonNetResult
+            {
+                Data = _landingPageService.GetExcludedTargetCountryList(param)
             };
         }
 
@@ -51,21 +79,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult InsertLandingPage(InsertUpdateLandingPageParam param)
         {
-            if (ModelState.IsValid)
-            {
-                var encodeParam = EncodeParam(param);
-                AssignCommonParam(encodeParam);
-
-                return new JsonNetResult
-                {
-                    Data = _landingPageService.InsertLandingPage(encodeParam)
-                };
-            }
-
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
-            };
+            return HandleSaveLandingPage(param, true);
         }
 
         [HttpPost]
@@ -73,21 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult UpdateLandingPage(InsertUpdateLandingPageParam param)
         {
-            if (ModelState.IsValid)
-            {
-                var encodeParam = EncodeParam(param);
-                AssignCommonParam(encodeParam);
-
-                return new JsonNetResult
-                {
-                    Data = _landingPageService.UpdateLandingPage(encodeParam)
-                };
-            }
-
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
-            };
+            return HandleSaveLandingPage(param);
         }
 
         [HttpPost]
@@ -112,11 +112,39 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             };
         }
 
+        private JsonNetResult HandleSaveLandingPage(InsertUpdateLandingPageParam param, bool isInsert = false)
+        {
+            if (!SystemHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, _systemService.GetTargetCountryListByUser()))
+            {
+                return new JsonNetResult
+                {
+                    Data = ResultInfo.GenerateErr("The target country's info is invalid!")
+                };
+            }
+
+            if (ModelState.IsValid)
+            {
+                var encodeParam = EncodeParam(param);
+                AssignCommonParam(encodeParam);
+
+                return new JsonNetResult
+                {
+                    Data = _landingPageService.HandleSaveLandingPage(encodeParam, isInsert)
+                };
+            }
+
+            return new JsonNetResult
+            {
+                Data = ResultInfo.GenerateErr(string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
+            };
+        }
+
         private InsertUpdateLandingPageParam EncodeParam(InsertUpdateLandingPageParam param)
         {
             return new InsertUpdateLandingPageParam
             {
                 PageId = param.PageId,
+                ExcludedTargetCountries = Server.HtmlEncode(param.ExcludedTargetCountries),
                 PageName = Server.HtmlEncode(param.PageName),
                 PageCode = Server.HtmlEncode(param.PageCode)
             };

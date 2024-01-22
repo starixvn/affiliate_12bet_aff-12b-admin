@@ -14,7 +14,7 @@
             @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.MediaGallery))
             {
                 <li><a href="javascript:;" data-name="AffiliateLink" class="menu-item account-overview-menu-item" id="menuAffiliateLink">@Lang.AffiliateLink</a></li>
-                <li><a href="javascript:;" data-name="MediaGallery" class="menu-item account-overview-menu-item" id="menuMediaGallery">@Lang.Media</a></li>
+                <li><a href="javascript:;" data-name="MediaGallery" class="menu-item account-overview-menu-item" id="menuMediaGallery">@Lang.Banner</a></li>
             }
         </ul>
     </div>
@@ -24,5 +24,12 @@
     </div>
     <div id="account-overview-content"></div>
 </div>
+
+<script>
+    var langResource = {
+        noInfo: '@Lang.NoInfo'
+    }
+</script>
+
 
 <script src="@Url.RenderLink("~/www/build/js/account-overview.js")"></script>

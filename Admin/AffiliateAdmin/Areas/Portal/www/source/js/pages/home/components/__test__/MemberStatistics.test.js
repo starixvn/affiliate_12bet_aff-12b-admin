@@ -26,12 +26,9 @@ describe('home - components - MemberStatistics', () => {
             ClosedAffiliateNumber: 837,
             DisapprovedAffiliateMonthNumber: 0,
             DisapprovedAffiliateNumber: 1016,
-            FlashBannerNumber: 9,
-            ImageBannerNumber: 23,
             PaymentRequestNumber: 1,
             PendingAffiliateMonthNumber: 0,
-            PendingAffiliateNumber: 1024,
-            TextBannerNumber: 13
+            PendingAffiliateNumber: 1024
         },
         pSPToday: 0,
         depositInfo: {

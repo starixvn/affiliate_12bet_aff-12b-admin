@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using Fanex.Data;
@@ -12,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Domain
     public class DomainServiceTest
     {
         [Fact]
-        public void GetMarketList_WhenCall_ReturnCorrectData()
+        public void GetTargetCountryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var service = new Mock<DomainRepository> { CallBase = true };
@@ -21,10 +22,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Domain
             service.Setup(r => r.GetObjectDb("Aff_SupportBlockMarket_Sel", It.IsAny<int>())).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetMarketList(new MarketParam());
+            var result = service.Object.GetTargetCountryList(new TargetCountryParam());
 
             // Assert
-            objectDb.Verify(obj => obj.Query<Market>(It.IsAny<object>(), null), Times.Once);
+            objectDb.Verify(obj => obj.Query<TargetCountry>(It.IsAny<object>(), null), Times.Once);
         }
 
         [Theory]
@@ -175,6 +176,32 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Domain
             // Assert
             Assert.False(result.IsSuccessful);
             Assert.Equal(message, result.Message);
+        }
+
+        private IDictionary<string, object> GetDomainList()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["DomainId"] = 123,
+                ["DomainName"] = "abc.com",
+                ["IsSSL"] = true,
+                ["Creator"] = "sa",
+                ["BlockTargetCountries"] = "",
+                ["CreateDate"] = new DateTime(2019, 10, 25)
+            };
+        }
+
+        private IDictionary<string, object> GetDomainListHasNull()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["DomainId"] = 123,
+                ["DomainName"] = "abc.com",
+                ["IsSSL"] = true,
+                ["Creator"] = "sa",
+                ["BlockTargetCountries"] = "sa",
+                ["CreateDate"] = DBNull.Value
+            };
         }
     }
 }

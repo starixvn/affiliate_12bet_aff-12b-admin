@@ -8,7 +8,7 @@ import Content from './Content';
 import CommissionGroupPopup from '../../../common/components/CommissionGroupPopup';
 import ChangePasswordForm from '../../../common/components/ChangePasswordForm';
 import Loader from '../../../../components/Loader';
-import { setShowPopupPassword, setShowPopupCommGroup, setLanguageList, setCommGroupList } from '../actions'
+import { setShowPopupPassword, setShowPopupCommGroup, setLanguageList, setCommGroupList, setTargetCountryList } from '../actions'
 
 import { convertArrayToObjectProps } from '../../../../modules/utils';
 import { post } from '../../../../modules/ajaxRequest';
@@ -23,9 +23,9 @@ export class AppContainer extends PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        const { languageList, commGroupList } = this.props;
+        const { languageList, commGroupList, targetCountryList } = this.props;
 
-        if (this.isEmptyObject(languageList) && this.isEmptyObject(commGroupList)) {
+        if (this.isEmptyObject(languageList) && this.isEmptyObject(commGroupList) && this.isEmptyObject(targetCountryList)) {
             this.fetchFilter();
         }
     }
@@ -43,8 +43,10 @@ export class AppContainer extends PureComponent {
         if (!!data) {
             const commGroupList = convertArrayToObjectProps(data.CommGroupList, 'Id', 'Name');
             const languageList = convertArrayToObjectProps(data.LanguageList, 'LanguageCode', 'LanguageName');
+            const targetCountryList = convertArrayToObjectProps(data.TargetCountryList, 'TargetCountryCode', 'TargetCountryName');
             this.props.setLanguageList(languageList);
             this.props.setCommGroupList(commGroupList);
+            this.props.setTargetCountryList(targetCountryList);
         }
     }
 
@@ -72,12 +74,12 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList }) {
-    return Object.assign({}, { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList });
+function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList, targetCountryList }) {
+    return Object.assign({}, { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList, targetCountryList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopupPassword, setShowPopupCommGroup, setLanguageList, setCommGroupList }, dispatch);
+    return bindActionCreators({ setShowPopupPassword, setShowPopupCommGroup, setLanguageList, setCommGroupList, setTargetCountryList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)

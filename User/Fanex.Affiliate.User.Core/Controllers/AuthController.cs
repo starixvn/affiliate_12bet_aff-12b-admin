@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService,
+            ISystemService languageService,
             IAuthService authService,
             ICaptchaService captchaService) : base(sessionService, languageService, appSetting, captchaService, authService)
 

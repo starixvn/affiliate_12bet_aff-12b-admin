@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public HomeController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService) : base(sessionService, languageService)
+            ISystemService languageService) : base(sessionService, languageService)
 
         {
             _appSetting = appSetting;

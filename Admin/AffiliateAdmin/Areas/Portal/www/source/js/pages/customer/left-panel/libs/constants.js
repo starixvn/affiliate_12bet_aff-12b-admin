@@ -10,6 +10,7 @@ export const resource = {
     LastName: 'Last Name',
     Gender: 'Gender',
     ContactNumber: 'Contact Number',
+    TargetCountry: 'Target Country',
     Language: 'Language',
     WebsiteUrl: 'Website URL',
     LastLogin: 'Last Login',

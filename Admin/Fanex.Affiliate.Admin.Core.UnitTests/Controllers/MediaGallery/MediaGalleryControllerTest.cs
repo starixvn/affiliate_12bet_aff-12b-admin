@@ -26,19 +26,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var param = new BannerParamFromHome { ImageType = "Image", IsFromHome = true };
-            var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
-            commonMediaGalleryService.Setup(c => c.GetCategoryList(1)).Returns(new List<Category> { new Category { CategoryName = "Category" } });
-            commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
-            commonMediaGalleryService.Setup(c => c.GetImageTypeList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 345, Name = "Image" } });
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
-            commonSettingService.Setup(a => a.GetAffTypeList()).Returns(new List<AffType> { new AffType { AffTypeId = 2, AffTypeName = "Asian" } });
+            var param = new BannerParamFromHome { IsFromHome = true };
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            systemServive.Setup(a => a.GetAffTypeList()).Returns(new List<AffType> { new AffType { AffTypeId = 2, AffTypeName = "Asian" } });
 
             SizeParam passedSizeParam = null;
-            var bannerListService = new Mock<IBannerListService>();
+            var bannerListService = new Mock<IBannerService>();
+            bannerListService.Setup(c => c.GetTargetProductList()).Returns(new List<TargetProduct> { new TargetProduct { TargetProductName = "Category" } });
             bannerListService.Setup(t => t.GetSizeList(It.IsAny<SizeParam>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } }).Callback<SizeParam>(p => passedSizeParam = p);
-            var controller = CreateMediaGalleryController(commonSettingService: commonSettingService.Object, commonMediaGalleryService: commonMediaGalleryService.Object, bannerListService: bannerListService.Object);
+            var controller = CreateMediaGalleryController(systemServive: systemServive.Object, bannerListService: bannerListService.Object);
 
             var urlHelperMock = new Mock<UrlHelper>();
             urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/MediaGallery");
@@ -51,14 +48,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
             // Assert
             Assert.Equal("", viewName);
-            Assert.Single(model.CategoryList);
+            Assert.Single(model.TargetProductList);
             Assert.Single(model.LanguageList);
-            Assert.Single(model.CurrencyList);
-            Assert.Single(model.ImageTypeList);
             Assert.Single(model.SizeList);
             Assert.Single(model.AffTypeList);
             Assert.Equal(param, model.Param);
-            Assert.Equal(param.ImageType, passedSizeParam.ImageType);
         }
 
         [Fact]
@@ -66,12 +60,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var model = new ImageSizeViewModel { Language = "English" };
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
-            var bannerListService = new Mock<IBannerListService>();
+            var bannerListService = new Mock<IBannerService>();
             bannerListService.Setup(t => t.GetSizeList(It.IsAny<SizeParam>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
-            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, commonSettingService: commonSettingService.Object);
+            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, systemServive: systemServive.Object);
 
             // Action
             var result = controller.GetSizeList(model) as JsonNetResult;
@@ -85,12 +79,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var model = new GetBannerViewModel();
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
-            var bannerListService = new Mock<IBannerListService>();
+            var bannerListService = new Mock<IBannerService>();
             bannerListService.Setup(t => t.GetBannerList(It.IsAny<BannerParam>())).Returns(new EntityResult<BannerInfo> { MainData = new List<BannerInfo> { new BannerInfo() }, TotalItem = 1 });
-            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, commonSettingService: commonSettingService.Object);
+            var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object, systemServive: systemServive.Object);
 
             // Action
             var result = controller.GetBannerList(model) as JsonNetResult;
@@ -107,7 +101,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Arrange
             var selectedBannerId = 123;
             var passedParam = 0;
-            var bannerListService = new Mock<IBannerListService>();
+            var bannerListService = new Mock<IBannerService>();
             bannerListService.Setup(s => s.GetBannerDetail(selectedBannerId)).Returns(new BannerInfo { BannerId = 123 }).Callback<int>(p => passedParam = p);
             var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
@@ -124,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void InsertBanner_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var bannerListService = new Mock<IBannerListService>();
+            var bannerListService = new Mock<IBannerService>();
             bannerListService.Setup(s => s.InsertBanner(It.IsAny<HttpPostedFileBase[]>(), It.IsAny<InsertUpdateMultipleBannersParam>())).Returns(new ResultInfo());
             var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
@@ -172,7 +166,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         {
             // Arrange
             var param = new InsertUpdateMultipleBannersParam { BannerId = 123, InputFileNames = "abc.gif" };
-            var bannerListService = new Mock<IBannerListService>();
+            var bannerListService = new Mock<IBannerService>();
             bannerListService.Setup(s => s.UpdateBanner(null, It.IsAny<InsertUpdateMultipleBannersParam>())).Returns(new ResultInfo());
             var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
@@ -239,7 +233,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Arrange
             var param = new DeleteBannerParam { BannerIdList = "123" };
             DeleteBannerParam passedParam = null;
-            var bannerListService = new Mock<IBannerListService>();
+            var bannerListService = new Mock<IBannerService>();
             bannerListService.Setup(s => s.DeleteBanners(It.IsAny<DeleteBannerParam>())).Returns(new ResultInfo()).Callback<DeleteBannerParam>(p => passedParam = p);
             var controller = CreateMediaGalleryController(bannerListService: bannerListService.Object);
 
@@ -270,19 +264,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private MediaGalleryController CreateMediaGalleryController(
         ISessionService sessionService = null,
-        ICommonSettingService commonSettingService = null,
-        ICommonMediaGalleryService commonMediaGalleryService = null,
-        IBannerListService bannerListService = null,
+        ISystemService systemServive = null,
+        IBannerService bannerListService = null,
         IAppSetting appSetting = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
-            var fakeCommonMediaGalleryService = commonMediaGalleryService ?? Mock.Of<ICommonMediaGalleryService>();
-            var fakeBannerListService = bannerListService ?? Mock.Of<IBannerListService>();
+            var fakeCommonService = systemServive ?? Mock.Of<ISystemService>();
+            var fakeBannerListService = bannerListService ?? Mock.Of<IBannerService>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
 
-            var controller = new MediaGalleryController(fakeSessionService, fakeCommonService, fakeCommonMediaGalleryService, fakeBannerListService, fakeAppSetting);
+            var controller = new MediaGalleryController(fakeSessionService, fakeCommonService, fakeBannerListService, fakeAppSetting);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

@@ -1,66 +1,62 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
-
-import {
-    SET_PARAM, SET_PARAM_FROM_HOME, SET_BANNER_DETAIL_URL, SET_CHECKED_BANNERS, SET_SELECTED_BANNER_ID,
-    SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_SIZE_LIST
-} from './types';
+import * as types from './types';
 
 export { toggleLoader, setPagingOption };
 
 export const setParam = (data) => {
     return {
-        type: SET_PARAM,
+        type: types.SET_PARAM,
         data
     }
 }
 
 export const setParamFromHome = (data) => {
     return {
-        type: SET_PARAM_FROM_HOME,
+        type: types.SET_PARAM_FROM_HOME,
         data
     }
 }
 
 export const setBannerDetailUrl = (data) => {
     return {
-        type: SET_BANNER_DETAIL_URL,
+        type: types.SET_BANNER_DETAIL_URL,
         data
     }
 }
 
 export const setSelectedBannerId = (data) => {
     return {
-        type: SET_SELECTED_BANNER_ID,
+        type: types.SET_SELECTED_BANNER_ID,
         data
     }
 }
 
 export const setCheckedBanners = (data) => {
     return {
-        type: SET_CHECKED_BANNERS,
+        type: types.SET_CHECKED_BANNERS,
         data
     }
 }
 
 export const setShouldResetScrollPosition = (data) => {
     return {
-        type: SHOULD_RESET_SCROLL_POSITION,
+        type: types.SHOULD_RESET_SCROLL_POSITION,
         data
     }
 }
 
 export const setGridData = (data) => {
     return {
-        type: SET_GRID_DATA,
+        type: types.SET_GRID_DATA,
         data
     }
 }
 
 export const setSizeList = (data) => {
     return {
-        type: SET_SIZE_LIST,
+        type: types.SET_SIZE_LIST,
         data
     }
 }

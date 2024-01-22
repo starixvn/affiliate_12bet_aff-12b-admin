@@ -16,13 +16,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     public class FeedbackControllerTest
     {
         private readonly ISessionService _sessionService;
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _languageService;
         private readonly IFeedbackService _feedbackService;
 
         public FeedbackControllerTest()
         {
             _sessionService = NSubtituteMockingHelper.FakeSessionService();
-            _languageService = Substitute.For<ILanguageService>();
+            _languageService = Substitute.For<ISystemService>();
             _feedbackService = Substitute.For<IFeedbackService>();
         }
 

@@ -1,5 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using System.Collections.Generic;
 
@@ -40,18 +40,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             new Language { MarketId = "en-US",  DisplayName ="English", MarketName = "English", MarketNativeName = "English", ShortedCode = "us" }
         };
 
-        public static IEnumerable<CategoryType> CategoryList = new List<CategoryType>
+        public static IEnumerable<TargetProduct> TargetProductList = new List<TargetProduct>
         {
-            new CategoryType {Category = "test", SubCategory= "testSub1" },
-            new CategoryType { Category = "test1", SubCategory = "testSub2" },
-            new CategoryType { Category = "Casino", SubCategory = "CasinoClubs" },
-            new CategoryType { Category = "test2" }
-        };
-
-        public static IEnumerable<CurrencyType> CurrencyType = new List<CurrencyType>
-        {
-            new CurrencyType {Currency = "VND", CurrencyId=1 },
-            new CurrencyType { CurrencyId = 2, Currency = "USD" }
+            new TargetProduct { TargetProductId = 1, TargetProductName= "testSub1" },
+            new TargetProduct { TargetProductId = 2, TargetProductName = "testSub2" },
+            new TargetProduct { TargetProductId = 3, TargetProductName = "CasinoClubs" },
+            new TargetProduct { TargetProductId = 4 }
         };
 
         public static IEnumerable<Domain> DomainList = new List<Domain>
@@ -64,12 +58,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         {
             new LandingPage { PageCode = "SignUp", PageName = "SingUp" },
             new LandingPage { PageCode = "Index", PageName = "Index" }
-        };
-
-        public static IEnumerable<BannerType> BannerTypeList = new List<BannerType>
-        {
-            new BannerType {Type = "Image", TypeId = 1 },
-            new BannerType {Type = "test", TypeId = 2 }
         };
 
         public static UserSession Session = new UserSession

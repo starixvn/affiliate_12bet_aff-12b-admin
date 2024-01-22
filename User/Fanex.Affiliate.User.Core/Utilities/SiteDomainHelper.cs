@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.User.Core.Utilities
 {
     using Fanex.Affiliate.User.Core.Constants;
+    using Fanex.Affiliate.User.Core.Extensions;
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
@@ -48,8 +49,7 @@
 
         private static string GetSchemeByRequest(HttpRequestBase request)
         {
-            var isSecure = request.IsSecureConnection ||
-                string.Equals(request.ServerVariables["HTTP_X_FORWARDED_PROTO"], Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase);
+            var isSecure = request.IsSecureConnection || request.ServerVariables["HTTP_X_FORWARDED_PROTO"].MatchWith(Uri.UriSchemeHttps);
 
             return isSecure ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
         }

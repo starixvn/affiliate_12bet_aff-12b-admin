@@ -14,16 +14,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.ReportMenu)]
     public class ReportController : ReadOnlySessionBaseController
     {
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _systemServive;
 
         private readonly IAffiliateReportService _affiliateReportService;
 
         public ReportController(
             ISessionService sessionService,
-            ICommonSettingService commonSettingService,
+            ISystemService systemServive,
             IAffiliateReportService affiliateReportService) : base(sessionService)
         {
-            _commonSettingService = commonSettingService;
+            _systemServive = systemServive;
             _affiliateReportService = affiliateReportService;
         }
 
@@ -33,8 +33,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var viewModel = new AffiliateReportViewModel
             {
-                ProductList = _commonSettingService.GetProductList(),
-                LanguageList = _commonSettingService.GetInChangeMarkets()
+                ProductList = _systemServive.GetProductList(),
+                LanguageList = _systemServive.GetInChangeMarkets()
             };
 
             return View(viewModel);
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 IsGetMonthly = model.IsGetMonthly,
                 PageIndex = model.PageIndex,
                 PageSize = model.PageSize,
-                PreferredLanguages = LanguageHelper.BuildAllowQueryLanguages(model.PreferredLanguage, _commonSettingService.GetInChangeMarkets()),
+                PreferredLanguages = SystemHelper.BuildAllowQueryLanguages(model.PreferredLanguage, _systemServive.GetInChangeMarkets()),
                 ProductIds = model.ProductIds,
                 SortDirectionType = model.SortDirectionType,
                 SortType = model.SortType,

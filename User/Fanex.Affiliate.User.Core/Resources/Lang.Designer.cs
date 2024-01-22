@@ -224,6 +224,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select Affiliate Account Language.
+        /// </summary>
+        public static string AffAccountLanguageErr {
+            get {
+                return ResourceManager.GetString("AffAccountLanguageErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Account Language.
+        /// </summary>
+        public static string AffCountLanguage {
+            get {
+                return ResourceManager.GetString("AffCountLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate Feedback.
         /// </summary>
         public static string AffFeedback {
@@ -2240,6 +2258,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate your unique link!.
+        /// </summary>
+        public static string GenerateYourUniqueLink {
+            get {
+                return ResourceManager.GetString("GenerateYourUniqueLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Georgia .
         /// </summary>
         public static string Georgia {
@@ -2254,6 +2281,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Germany {
             get {
                 return ResourceManager.GetString("Germany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get banner for your target market!.
+        /// </summary>
+        public static string GetBannerForYourTargetMarket {
+            get {
+                return ResourceManager.GetString("GetBannerForYourTargetMarket", resourceCulture);
             }
         }
         
@@ -2992,15 +3028,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string May {
             get {
                 return ResourceManager.GetString("May", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Media Gallery.
-        /// </summary>
-        public static string Media {
-            get {
-                return ResourceManager.GetString("Media", resourceCulture);
             }
         }
         
@@ -4131,15 +4158,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Preference {
             get {
                 return ResourceManager.GetString("Preference", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please select Preferred Language.
-        /// </summary>
-        public static string PreferLangErr {
-            get {
-                return ResourceManager.GetString("PreferLangErr", resourceCulture);
             }
         }
         
@@ -5364,6 +5382,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Tanzania {
             get {
                 return ResourceManager.GetString("Tanzania", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target Country.
+        /// </summary>
+        public static string TargetCountry {
+            get {
+                return ResourceManager.GetString("TargetCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Target Country.
+        /// </summary>
+        public static string TargetCountryErr {
+            get {
+                return ResourceManager.GetString("TargetCountryErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target Product.
+        /// </summary>
+        public static string TargetProduct {
+            get {
+                return ResourceManager.GetString("TargetProduct", resourceCulture);
             }
         }
         

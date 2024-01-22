@@ -41,10 +41,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var commissionGroupRepository = new Mock<ICommissionGroupRepository>();
             commissionGroupRepository.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(new List<SelectItem> { new SelectItem() });
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateAffiliateController(commissionGroupRepository: commissionGroupRepository.Object, commonSettingService: commonSettingService.Object);
+            var controller = CreateAffiliateController(commissionGroupRepository: commissionGroupRepository.Object, systemServive: systemServive.Object);
 
             // Action
             var viewResult = controller.GetFilter() as JsonNetResult;
@@ -61,10 +61,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var affiliateInfoRepository = new Mock<IAffiliateInfoRepository>();
             affiliateInfoRepository.Setup(t => t.GetAffiliateList(It.IsAny<AffiliateInfoParam>())).Returns(new EntityResult<AffiliateInfo> { MainData = new List<AffiliateInfo> { new AffiliateInfo() }, TotalItem = 1 });
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateAffiliateController(affiliateInfoRepository: affiliateInfoRepository.Object, commonSettingService: commonSettingService.Object);
+            var controller = CreateAffiliateController(affiliateInfoRepository: affiliateInfoRepository.Object, systemServive: systemServive.Object);
 
             // Action
             var result = controller.GetAffiliateList(new GetAffiliateViewModel()) as JsonNetResult;
@@ -162,17 +162,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private AffiliateController CreateAffiliateController(
             ISessionService sessionService = null,
-            ICommonSettingService commonSettingService = null,
+            ISystemService systemServive = null,
             IAffiliateInfoRepository affiliateInfoRepository = null,
             ICommissionGroupRepository commissionGroupRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
             var fakeAffiliateInfoRepository = affiliateInfoRepository ?? Mock.Of<IAffiliateInfoRepository>();
             var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommissionGroupRepository>();
 
-            var controller = new AffiliateController(fakeSessionService, fakeAffiliateInfoRepository, fakeCommissionGroupRepository, fakecommonSettingService);
+            var controller = new AffiliateController(fakeSessionService, fakeAffiliateInfoRepository, fakeCommissionGroupRepository, fakesystemServive);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

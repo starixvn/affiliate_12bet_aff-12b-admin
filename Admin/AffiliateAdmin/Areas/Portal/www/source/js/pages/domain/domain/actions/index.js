@@ -49,17 +49,11 @@ export const getDomainById = (domainId, isAffDomain) => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const getMarketListByDomain = (param) => async () => {
-    const url = 'Portal/Domain/GetMarketList';
+export const getTargetCountryListByDomain = (param) => async () => {
+    const url = 'Portal/Domain/GetTargetCountryList';
     const response = await post(url, param);
 
-    return response && response.status === 200 ? getMarketList(response) : null;
-}
-
-const getMarketList = (response) => {
-    var marketList = response.data;
-
-    return marketList && !marketList.length ? null : marketList;
+    return response && response.status === 200 ? response.data : null;
 }
 
 export const insertDomain = (param) => async () => {

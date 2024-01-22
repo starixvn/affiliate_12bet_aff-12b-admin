@@ -801,9 +801,6 @@
   <data name="May" xml:space="preserve">
     <value>Tháng 5</value>
   </data>
-  <data name="Media" xml:space="preserve">
-    <value>Thư viện media</value>
-  </data>
   <data name="Message" xml:space="preserve">
     <value>Tin nhắn</value>
   </data>
@@ -998,7 +995,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="Preference" xml:space="preserve">
     <value>Tham chiếu</value>
   </data>
-  <data name="PreferLangErr" xml:space="preserve">
+  <data name="AffAccountLanguageErr" xml:space="preserve">
     <value>Vui lòng chọn ngôn ngữ bạn thích</value>
   </data>
   <data name="Proccessing" xml:space="preserve">

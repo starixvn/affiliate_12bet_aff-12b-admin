@@ -9,7 +9,7 @@
     public class MainController : BaseController
     {
         public MainController(ISessionService sessionService,
-            ILanguageService languageService) : base(sessionService, languageService)
+            ISystemService languageService) : base(sessionService, languageService)
         {
 
         }

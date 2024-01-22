@@ -1,10 +1,7 @@
-﻿import { deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
-import { globalResource } from '../../../../modules/globalResource';
+﻿import { globalResource } from '../../../../modules/globalResource';
+import { selectedAllProduct } from '../../../../modules/constants';
 
-export { deviceTypes, globalResource, pcLaptop, mobile };
-
-export const Casino = 'Casino';
-export const Sportsbook = 'Sportsbook';
+export { globalResource, selectedAllProduct };
 
 const defaultLanguage = 'Chinese Simplified';
 export const Asian = 2;
@@ -17,17 +14,12 @@ export const headerText = {
     Index: globalResource.Index,
     Images: 'Images',
     FileName: 'File Name',
-    Category: 'Category',
-    SubCategory: 'Sub Category',
+    TargetProduct: 'Target Product',
     Language: 'Language',
-    Currency: 'Currency',
-    Type: 'Type',
     Size: 'Size',
     CopiedFrom: 'Copied From',
     NumberOfCopies: 'Number Of Copies',
-    AffType: 'Affiliate Type',
-    Device: 'Device',
-    ImageType: 'Image Type'
+    AffType: 'Affiliate Type'
 }
 
 export const messages = {

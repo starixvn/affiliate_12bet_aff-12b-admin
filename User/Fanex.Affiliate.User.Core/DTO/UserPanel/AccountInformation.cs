@@ -1,9 +1,8 @@
-﻿using Fanex.Affiliate.User.Core.MetalModels.Attributes;
+﻿using Fanex.Affiliate.User.Core.Extensions;
+using Fanex.Affiliate.User.Core.MetalModels.Attributes;
 using Fanex.Affiliate.User.Core.Resources;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {
@@ -29,13 +28,14 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         public string Phone { get; set; }
 
         [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = true, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "WebsiteURLIsRequired")]
-        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string SiteUrl { get; set; }
 
         public string MoreSiteUrls { get; set; }
 
         [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = false, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "DescWebsite")]
         public string NoSiteDesc { get; set; }
+
+        public string TargetCountryCode { get; set; }
 
         public string PreferredLanguage { get; set; }
 
@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 
         public bool IsRenderState { get; set; }
 
-        public bool IsPlayerAccount => !string.IsNullOrEmpty(PreferredPayment) && PreferredPayment.Equals("Player", StringComparison.OrdinalIgnoreCase);
+        public bool IsPlayerAccount => !string.IsNullOrEmpty(PreferredPayment) && PreferredPayment.MatchWith("Player");
 
         public IEnumerable<string> MoreWebsiteUrlList => string.IsNullOrEmpty(MoreSiteUrls) ? new string[0] : MoreSiteUrls.Split(';');
 

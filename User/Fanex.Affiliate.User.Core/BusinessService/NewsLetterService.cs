@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using System;
@@ -37,8 +38,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var items = Repository.GetNewsLettersByDate(DateTime.Now)
                 .OrderByDescending(n => n.UploadDate);
             var currentLang = SessionService.CurrentLanguage;
-            var item = items.FirstOrDefault(i => string.Equals(currentLang, i.Language, StringComparison.OrdinalIgnoreCase))
-                ?? items.FirstOrDefault(i => string.Equals(SystemLanguage.DefaultLanguageCode, i.Language, StringComparison.OrdinalIgnoreCase))
+            var item = items.FirstOrDefault(i => i.Language.MatchWith(currentLang))
+                ?? items.FirstOrDefault(i => i.Language.MatchWith(SystemLanguage.DefaultLanguageCode))
                 ?? items.FirstOrDefault();
             if (item == null)
             {

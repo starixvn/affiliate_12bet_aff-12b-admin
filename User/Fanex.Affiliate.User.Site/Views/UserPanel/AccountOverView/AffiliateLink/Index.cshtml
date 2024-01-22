@@ -1,37 +1,23 @@
 ﻿@{
     Layout = null;
 }
-@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.MarketingViewModel
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.AffiliateLinkViewModel
 
 @Html.InlineStyles("~/www/build/styles/css/marketing.min.css")
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4 col-lg-3">
-            <div id="searchForm">
-                @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_SearchForm.cshtml", Model.SearchForm); }
-            </div>
-        </div>
-        <div class="col-md-8 col-lg-9">
-            @{
-                 Html.RenderAction("Index", "Marketing");
-             }
-        </div>
-    </div>
-</div>
-
-<div id="dataContainerList">
-    <div class="info-group">
+    <div class="info-group link-group">
         <div class="title">
-            <span class="text">@Lang.Text</span>
+            <span class="text">@Lang.GenerateYourUniqueLink</span>
         </div>
+        @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_GenerateLinkForm.cshtml", Model.LinkForm); }
 
-        <div id="marketingDataList">
-            @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_TextList.cshtml", Model.MarketingDataList); }
+        <div id="textLinkList">
+            @{ Html.RenderPartial("~/Views/UserPanel/AccountOverview/Partial/_QrCodeLinkList.cshtml", Model.QrCodeList); }
         </div>
-
-        <div id="marketingPager"></div>
     </div>
+    @*<script src="~/www/source/js/components/clipboard.min.js"></script>
+        <script src="@Url.RenderLink("~/www/build/js/generated-qrcode.js")"></script>*@
 </div>
 
 <script src="@Url.RenderLink("~/www/build/js/affiliate-link.js")"></script>

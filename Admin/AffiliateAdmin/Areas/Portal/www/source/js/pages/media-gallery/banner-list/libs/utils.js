@@ -33,8 +33,8 @@ export const resizeWidthHeight = (realWidth, realHeight, size = 500) => {
     return { width, height }
 }
 
-export const rearrangeCurrencyAndSizeItems = (arr = []) => {
-    return arr.map(item => {
+export const rearrangeItems = (arr = []) => {
+    return arr?.map(item => {
         return {
             key: item.Name,
             name: item.Name,

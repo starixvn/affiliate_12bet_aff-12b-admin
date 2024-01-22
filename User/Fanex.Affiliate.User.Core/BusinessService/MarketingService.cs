@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
@@ -19,83 +20,55 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly IMarketingRepository _marketingRepository;
 
         private readonly IMemoryCacheService _cacheService;
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _systemService;
         private readonly IAppSetting _appSetting;
+        private readonly IAccountRepository _accountRepository;
 
         public MarketingService(
             IMarketingRepository marketingRepository,
             IMemoryCacheService cacheService,
-            ILanguageService languageService,
-            IAppSetting appSetting)
+            ISystemService systemService,
+            IAppSetting appSetting,
+            IAccountRepository accountRepository)
         {
             _marketingRepository = marketingRepository;
             _cacheService = cacheService;
-            _languageService = languageService;
+            _systemService = systemService;
             _appSetting = appSetting;
+            _accountRepository = accountRepository;
         }
 
-        public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal)
+        public string GetTargetCountryCodeByAff(int affId)
         {
-            var cacheKey = isMediaPage ? CacheKey.BannerCategoryList : CacheKey.TextCategoryList;
-            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(cacheKey);
-            if (categoryList == null)
-            {
-                categoryList = _marketingRepository.GetCategoryList(isMediaPage, isInternal);
+            var affInfo = _accountRepository.GetAccountInfo(affId);
 
-                _cacheService.Set(cacheKey, categoryList);
-            }
-
-            return categoryList ?? new List<CategoryType>();
+            return affInfo?.TargetCountryCode;
         }
 
-        public IEnumerable<Language> GetLanguageList()
-            => _languageService.GetSystemLanguages();
-
-        public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
+        public IEnumerable<TargetProduct> GetTargetProductList(bool isInternal)
         {
-            var currencyList = _cacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList);
-
-            if (currencyList == null)
+            var targetProductList = _cacheService.Get<IEnumerable<TargetProduct>>(CacheKey.TargetProductList);
+            if (targetProductList == null)
             {
-                currencyList = _marketingRepository.GetCurrencyList(isInternal);
-                _cacheService.Set(CacheKey.CurrencyList, currencyList);
+                targetProductList = _marketingRepository.GetTargetProductList(isInternal);
+
+                _cacheService.Set(CacheKey.TargetProductList, targetProductList);
             }
 
-            return currencyList ?? new List<CurrencyType>();
+            return targetProductList ?? new List<TargetProduct>();
         }
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal)
         {
-            var languageList = _languageService.GetSystemLanguages();
-            param.Languages = GetLanguageName(languageList, param.Language);
+            var languageList = _systemService.GetSystemTargetLanguagesByCountry(param.TargetCountry);
+            param.Languages = GetTargetLanguageName(languageList, param.Language);
 
             return _marketingRepository.GetSizeList(param, isInternal);
         }
 
-        public IEnumerable<BannerType> GetBannerTypeList(bool isInternal)
+        public IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, bool isInternal)
         {
-            var bannerTypeList = _cacheService.Get<IEnumerable<BannerType>>(CacheKey.BannerTypeList);
-
-            if (bannerTypeList == null)
-            {
-                bannerTypeList = _marketingRepository.GetBannerTypeList(isInternal);
-                _cacheService.Set(CacheKey.BannerTypeList, bannerTypeList);
-            }
-
-            return bannerTypeList ?? new List<BannerType>();
-        }
-
-        public IEnumerable<Domain> GetDomainList(int affId, bool isInternal)
-        {
-            var domainList = _cacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList);
-
-            if (domainList == null)
-            {
-                domainList = _marketingRepository.GetDomainList(affId, isInternal)?.Where(d => !d.DomainName.Contains("glg46.com"));
-                _cacheService.Set(CacheKey.DomainList, domainList);
-            }
-
-            return domainList ?? new List<Domain>();
+            return _marketingRepository.GetDomainListByTargetCountry(targetCountry, isInternal)?.Where(d => !d.DomainName.Contains("glg46.com"));
         }
 
         public IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam)
@@ -103,11 +76,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var linkList = new Dictionary<string, string>();
             var selectedLanguage = linkGenerationParam.SelectedLanguage;
             var languageListFromParam = linkGenerationParam.LanguageList;
-            var languageList = _languageService.GetSystemLanguages();
+            var languageList = _systemService.GetSystemTargetLanguagesByCountry(linkGenerationParam.SelectedTargetCountry);
 
             if (IsSelectedAllLanguages(selectedLanguage) && languageListFromParam != null && languageListFromParam.Any())
             {
-                if(_appSetting.ODIWorldCupLandingPages.Contains(linkGenerationParam.SelectedPage))
+                if (_appSetting.ODIWorldCupLandingPages.Contains(linkGenerationParam.SelectedPage))
                 {
                     foreach (var item in _appSetting.SupportedODIWorldCupLanguages)
                     {
@@ -122,42 +95,40 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     AddGenerateLinkToList(languageList, linkList, linkGenerationParam, item.Value);
                 }
 
-                var preferredLanguage = languageList.FirstOrDefault(l => l.MarketId.MatchWith(linkGenerationParam.PreferredLanguage));
-                linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, preferredLanguage?.ShortedCode ?? SystemLanguage.ShortedDefaultCode));
-
+                linkList.Add(Lang.Default, GenerateDefaultLinkByTargetCountry(languageList, linkGenerationParam));
             }
             else
             {
-                var language = languageList.FirstOrDefault(l => l.MarketId.MatchWith(selectedLanguage));
+                var language = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(selectedLanguage));
                 if (language != null)
                 {
-                    linkList.Add(language.MarketNativeName, GenerateLink(linkGenerationParam, language.ShortedCode));
+                    linkList.Add(language.NativeLanguage, GenerateLink(linkGenerationParam, language.ShortedCode));
                 }
                 else
                 {
-                    linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, SystemLanguage.ShortedDefaultCode));
+                    linkList.Add(Lang.Default, GenerateDefaultLinkByTargetCountry(languageList, linkGenerationParam));
                 }
             }
 
             return linkList;
         }
 
-        private static void AddGenerateLinkToList(IEnumerable<Language> languageList, Dictionary<string, string> linkList, LinkGenerationParam linkGenerationParam, string marketId)
+        private static void AddGenerateLinkToList(IEnumerable<TargetLanguage> languageList, Dictionary<string, string> linkList, LinkGenerationParam linkGenerationParam, string languageCode)
         {
-            var language = languageList.FirstOrDefault(l => l.MarketId.MatchWith(marketId));
+            var language = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(languageCode));
 
             if (language != null)
             {
-                linkList.Add(language.MarketNativeName, GenerateLink(linkGenerationParam, language.ShortedCode));
+                linkList.Add(language.NativeLanguage, GenerateLink(linkGenerationParam, language.ShortedCode));
             }
         }
 
-        public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        public IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam)
         {
             const int LengthOfSplittingSize = 2;
 
-            var languageList = _languageService.GetSystemLanguages();
-            bannerParam.Languages = GetLanguageName(languageList, bannerParam.Language);
+            var languageList = _systemService.GetSystemTargetLanguages();
+            bannerParam.Languages = GetTargetLanguageName(languageList, bannerParam.Language);
 
             var bannerList = _marketingRepository.GetBannerList(bannerParam);
 
@@ -173,7 +144,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     banner.Height = Convert.ToInt32(sizes[1]);
                 }
 
-                var language = languageList.FirstOrDefault(l => l.MarketName.MatchWith(banner.Language));
+                var language = languageList.FirstOrDefault(l => l.LanguageName.MatchWith(banner.Language));
 
                 banner.RedirectLink = GenerateLink(bannerParam, language?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
             }
@@ -181,69 +152,23 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return bannerList;
         }
 
-        public IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
+        public IEnumerable<LandingPage> GetSpecialLandingPageList(string targetCountry, string commGroupName, string language, bool isInternal)
         {
-            var languageList = _languageService.GetSystemLanguages();
-            textParam.Languages = GetLanguageName(languageList, textParam.Language);
-
-            var textList = _marketingRepository.GetTextList(textParam);
-
-            foreach (var text in textList)
-            {
-                text.Message = HttpContext.Current.Server.HtmlDecode(text.Message.Replace("\r\n", "<br/>"));
-                text.ScriptSrc = textParam.ScriptUrl + text.TextId;
-                var language = languageList.FirstOrDefault(l => l.MarketName.MatchWith(text.Language));
-
-                text.RedirectLink = GenerateLink(textParam, language?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
-            }
-
-            return textList;
-        }
-
-        public IEnumerable<LandingPage> GetSpecialLandingPageList(string commGroupName, string language, bool isInternal)
-        {
-            var landingPages = GetLandingPageList(commGroupName, isInternal);
+            var landingPages = GetLandingPageList(targetCountry, commGroupName, isInternal);
 
             if (string.IsNullOrEmpty(language) || _appSetting.SupportedODIWorldCupLanguages.Contains(language))
             {
                 return landingPages;
             }
 
-            return landingPages.Where(l => !_appSetting.ODIWorldCupLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
+            return landingPages.Where(l => !_appSetting.ODIWorldCupLandingPages.Any(m => m.MatchWith(l.PageCode)));
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal)
+        public IEnumerable<LandingPage> GetLandingPageList(string targetCountry, string commGroupName, bool isInternal)
         {
-            var landingPages = GetCachedLandingPageList(isInternal);
+            var landingPages = _marketingRepository.GetLandingPageListByTargetCountry(targetCountry, isInternal);
 
-            if (_appSetting.MarketingForCommGroups.Any(c => string.Equals(c, commGroupName, StringComparison.OrdinalIgnoreCase)))
-            {
-                return landingPages;
-            }
-
-            return landingPages.Where(l => !_appSetting.MarketingLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
-        }
-
-        public IEnumerable<LandingPage> GetCachedLandingPageList(bool isInternal)
-        {
-            var landingPages = _cacheService.Get<IEnumerable<LandingPage>>(CacheKey.LandingPageList);
-
-            if (landingPages == null)
-            {
-                var landingPageList = _marketingRepository.GetLandingPageList(isInternal);
-
-                landingPages = GetSortedLandingPageList(landingPageList);
-                _cacheService.Set(CacheKey.LandingPageList, landingPages);
-            }
-
-            return landingPages ?? new List<LandingPage>();
-        }
-
-        public IEnumerable<LandingPage> GetSortedLandingPageList(IEnumerable<LandingPage> landingPages)
-        {
-            var excludedODIlangdingPages = landingPages.Where(l => !_appSetting.ODIWorldCupLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
-            var specialLandingPages = landingPages.Where(l => _appSetting.ODIWorldCupLandingPages.Any(m => string.Equals(l.PageCode, m, StringComparison.OrdinalIgnoreCase)));
-            return excludedODIlangdingPages.Concat(specialLandingPages);
+            return StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName);
         }
 
         public ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param)
@@ -261,7 +186,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                                 .Replace("{domain}", selectedDomain.DomainName)
                                 .Replace("{custid}", linkParam.AffId.ToString())
                                 .Replace("{target}", HttpUtility.UrlPathEncode(linkParam.SelectedPage))
-                                .Replace("{lang}", shortedLanguageCode);
+                                .Replace("{lang}", shortedLanguageCode)
+                                .Replace("{country}", linkParam.SelectedTargetCountry.ToLowerInvariant());
 
             return result;
         }
@@ -269,18 +195,27 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private static bool IsSelectedAllLanguages(string selectedLang)
             => string.IsNullOrWhiteSpace(selectedLang);
 
-        private static string GetLanguageName(IEnumerable<Language> languageList, string languageCode)
+        private static string GetTargetLanguageName(IEnumerable<TargetLanguage> languageList, string languageCode)
         {
-            var languageName = languageList.FirstOrDefault(l => l.MarketId.MatchWith(languageCode))?.MarketName;
+            var languageName = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(languageCode))?.LanguageName;
 
             if (string.IsNullOrEmpty(languageName))
             {
-                var allLanguageName = languageList.Select(l => l.MarketName).ToList();
+                var allLanguageName = languageList.Select(l => l.LanguageName).ToList();
 
                 return string.Join(",", allLanguageName);
             }
 
             return languageName;
+        }
+
+        private string GenerateDefaultLinkByTargetCountry(IEnumerable<TargetLanguage> languageList, LinkGenerationParam linkGenerationParam)
+        {
+            var targetCountryList = _systemService.GetSystemTargetCountries();
+            var selectedTargetCountry = targetCountryList.FirstOrDefault(t => t.TargetCountryCode.MatchWith(linkGenerationParam.SelectedTargetCountry));
+            var defaultLanguage = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(selectedTargetCountry.DefaultLanguageCode));
+
+            return GenerateLink(linkGenerationParam, defaultLanguage?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
         }
     }
 }

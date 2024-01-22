@@ -1,10 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using ONEbook.UM.AspNetMVC.Filters;
 using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -12,45 +11,34 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [CheckUMFilter]
     public class CommonSettingController : Controller
     {
-        private readonly ICommonSettingService _commonSettingService;
-        private readonly ILandingPageRepository _landingPageRepository;
+        private readonly ISystemService _systemService;
 
         public CommonSettingController(
-            ICommonSettingService commonSettingService,
-            ILandingPageRepository landingPageRepository
+            ISystemService systemService
             )
         {
-            _commonSettingService = commonSettingService;
-            _landingPageRepository = landingPageRepository;
+            _systemService = systemService;
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
         public ActionResult GetProductList()
         {
             return new JsonNetResult
             {
-                Data = _commonSettingService.GetProductList()
+                Data = _systemService.GetProductList()
             };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetPageList()
-        {
-            return new JsonNetResult
-            {
-                Data = _landingPageRepository.GetLandingPageList()
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
         public ActionResult GetCountryList()
         {
             return new JsonNetResult
             {
-                Data = _commonSettingService.GetCountryList()
+                Data = _systemService.GetCountryList()
             };
         }
     }

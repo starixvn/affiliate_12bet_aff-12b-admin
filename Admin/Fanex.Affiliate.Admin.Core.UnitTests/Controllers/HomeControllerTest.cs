@@ -108,13 +108,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         private HomeController CreateHomeController(
             ISessionService sessionService = null,
             IHomeService homeService = null,
-            ICommonSettingService commonSettingService = null)
+            ISystemService systemServive = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService(Function.HomeMenu, true);
             var fakeHomeService = homeService ?? Mock.Of<IHomeService>();
-            var fakecommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
 
-            return new HomeController(fakeSessionService, fakeHomeService, fakecommonSettingService);
+            return new HomeController(fakeSessionService, fakeHomeService, fakesystemServive);
         }
     }
 }

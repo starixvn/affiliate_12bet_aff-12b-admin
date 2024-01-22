@@ -10,13 +10,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
     [CheckUMFilter]
     public class BaseController : Controller
     {
-        protected readonly ILanguageService LanguageService;
+        protected readonly ISystemService SystemService;
 
-        protected BaseController(ISessionService sessionService,
-            ILanguageService languageService)
+        protected BaseController(
+            ISessionService sessionService,
+            ISystemService systemService)
         {
             SessionService = sessionService;
-            LanguageService = languageService;
+            SystemService = systemService;
         }
 
         protected ISessionService SessionService { get; }
@@ -27,7 +28,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             base.Initialize(requestContext);
 
-            var favoriteLanguage = LanguageService.GetFavoriteLanguage();
+            var favoriteLanguage = SystemService.GetFavoriteLanguage();
             var sessionLang = SessionService.CurrentLanguage;
             if (favoriteLanguage != sessionLang)
             {
@@ -35,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 SessionService.CurrentLanguage = favoriteLanguage;
             }
             DetectUserIdle(requestContext.RouteData.Values);
-            LanguageService.SetCulture(favoriteLanguage);
+            SystemService.SetCulture(favoriteLanguage);
         }
 
         protected RedirectToRouteResult RedirectToFixedAction(string actionName, object routeValue)

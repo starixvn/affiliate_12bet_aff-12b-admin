@@ -38,6 +38,8 @@
             $result.toggleClass("alert-danger", !isSuccess);
             $result.html(message);
             $result.show();
+
+            isSuccess && window.setTimeout(() => $result.hide(), 3000);
         },
         buildOptionList: function (dataList, value, text, hasAllOption) {
             var optionList = dataList.map(function (item) {

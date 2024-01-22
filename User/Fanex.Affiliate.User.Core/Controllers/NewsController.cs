@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         public NewsController(
             ISessionService sessionService,
-            ILanguageService languageService,
+            ISystemService languageService,
             INewsService newsService) : base(sessionService, languageService)
         {
             _newsService = newsService;

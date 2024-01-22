@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.Enum;
+using Fanex.Affiliate.User.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,11 +11,11 @@ namespace Fanex.Affiliate.User.Core.Utilities
     {
         public string Environment => GetValue("Environment");
 
-        public bool IsDev => Environment.Equals("Dev", StringComparison.OrdinalIgnoreCase);
+        public bool IsDev => Environment.MatchWith("Dev");
 
-        public bool IsLocal => Environment.Equals("Local", StringComparison.OrdinalIgnoreCase);
+        public bool IsLocal => Environment.MatchWith("Local");
 
-        public bool IsProduction => Environment.Equals("Production", StringComparison.OrdinalIgnoreCase);
+        public bool IsProduction => Environment.MatchWith("Production");
 
         public int ServerId => Convert.ToInt32(GetValue("ServerId"));
 

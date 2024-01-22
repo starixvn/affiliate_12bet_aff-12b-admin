@@ -1,38 +1,20 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
-using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+﻿using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Data;
-using Moq;
 using NSubstitute;
-using System;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 {
     public class DomainControlServiceTest
     {
-        private readonly IDomainService domainService;
-        private readonly IDomainControlRepository domainControlRepository;
+        private readonly IDomainService _domainService;
+        private readonly IDomainControlRepository _domainControlRepository;
 
         public DomainControlServiceTest()
         {
-            domainService = Substitute.For<IDomainService>();
-            domainControlRepository = Substitute.For<IDomainControlRepository>();
-        }
-
-        [Fact]
-        public void GetVisibleMarketsByUser_WhenCall_Excute()
-        {
-            // Arrange
-            var param = 123;
-            var service = CreateDomainControlService;
-
-            // Action
-            service.GetVisibleMarketsByUser(param);
-
-            // Assert
-            domainService.Received().GetVisibleMarketsByUser(param);
+            _domainService = Substitute.For<IDomainService>();
+            _domainControlRepository = Substitute.For<IDomainControlRepository>();
         }
 
         [Fact]
@@ -46,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.GetDomainControlList(param);
 
             // Assert
-            domainControlRepository.Received().GetDomainControlList(param);
+            _domainControlRepository.Received().GetDomainControlList(param);
         }
 
         [Fact]
@@ -60,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.GetDomainControlById(param);
 
             // Assert
-            domainControlRepository.Received().GetDomainControlById(param);
+            _domainControlRepository.Received().GetDomainControlById(param);
         }
 
         [Fact]
@@ -74,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.InsertDomainControl(param);
 
             // Assert
-            domainControlRepository.Received().InsertDomainControl(param);
+            _domainControlRepository.Received().InsertDomainControl(param);
         }
 
         [Fact]
@@ -88,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.UpdateDomainControl(param);
 
             // Assert
-            domainControlRepository.Received().UpdateDomainControl(param);
+            _domainControlRepository.Received().UpdateDomainControl(param);
         }
 
         [Fact]
@@ -102,10 +84,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             service.DeleteDomainControl(param);
 
             // Assert
-            domainControlRepository.Received().DeleteDomainControl(param);
+            _domainControlRepository.Received().DeleteDomainControl(param);
         }
 
         private DomainControlService CreateDomainControlService
-            => new DomainControlService(domainService, domainControlRepository);
+            => new DomainControlService(_domainControlRepository, _domainService);
     }
 }

@@ -74,7 +74,7 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={35} title={headerText.SSL}>{headerText.SSL}</Cell>
                 <Cell header={true} colWidth={80} title={headerText.Creator}>{headerText.Creator}</Cell>
                 <Cell header={true} colWidth={80} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={320} title={headerText.BlockMarket}>{headerText.BlockMarket}</Cell>
+                <Cell header={true} colWidth={320} title={headerText.ExcludedTargetCountry}>{headerText.ExcludedTargetCountry}</Cell>
                 { isModifiable && <Cell header={true} colWidth={50} title={headerText.Edit}>{headerText.Action}</Cell>}
             </Row>
         );
@@ -102,7 +102,7 @@ export class Content extends PureComponent {
         const domainName = htmlDecode(dataItem.DomainName);
         const creator = htmlDecode(dataItem.Creator);
         const createDate = formatDateTime(dataItem.CreateDate, "MM/dd/yyyy");
-        const blockMarket = htmlDecode(dataItem.BlockMarket).split(',').join(', ');
+        const excludedTargetCountries = htmlDecode(dataItem.ExcludedTargetCountries).split(',').join(', ');
         const { isModifiable } = this.props;
         return (
             <Row key={`dataRow-${index}`}>
@@ -113,7 +113,7 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={createDate}>{createDate}</Cell>
-                <Cell>{blockMarket}</Cell>
+                <Cell title={excludedTargetCountries}>{excludedTargetCountries}</Cell>
                 { isModifiable &&
                     <React.Fragment>
                         <Cell className="text-center">

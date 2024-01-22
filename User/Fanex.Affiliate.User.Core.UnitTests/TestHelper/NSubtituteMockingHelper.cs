@@ -1,10 +1,8 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
@@ -17,17 +15,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         public static IMarketingService FakeMarkengtingService()
         {
             var marketingService = Substitute.For<IMarketingService>();
-            marketingService.GetTextList(Arg.Compat.Any<MarketingTextParam>()).Returns(new List<MarketingItem>
-            {
-                new MarketingItem { BannerId = 1, TextId = 1 }
-            });
-            marketingService.GetCategoryList(Arg.Compat.Any<bool>(), Arg.Compat.Any<bool>()).Returns(Constant.CategoryList);
-            marketingService.GetLanguageList().Returns(Constant.LanguageList);
-            marketingService.GetCurrencyList(Arg.Compat.Any<bool>()).Returns(Constant.CurrencyType);
-            marketingService.GetDomainList(Arg.Compat.Any<int>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
-            marketingService.GetLandingPageList(Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.LandingPageList);
+            marketingService.GetTargetProductList(Arg.Compat.Any<bool>()).Returns(Constant.TargetProductList);
+            marketingService.GetDomainListByTargetCountry(Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
+            marketingService.GetLandingPageList(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.LandingPageList);
             marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
-            marketingService.GetBannerTypeList(Arg.Compat.Any<bool>()).Returns(Constant.BannerTypeList);
 
             return marketingService;
         }
@@ -42,9 +33,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             return service;
         }
 
-        public static ILanguageService FakeLanguageService()
+        public static ISystemService FakeLanguageService()
         {
-            var service = Substitute.For<ILanguageService>();
+            var service = Substitute.For<ISystemService>();
             service.GetFavoriteLanguage().Returns(Constant.DefaultLanguage);
             service.GetSystemLanguages().ReturnsForAnyArgs(Constant.LanguageList);
             return service;

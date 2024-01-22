@@ -8,7 +8,7 @@
     public class PromotionController : BaseController
     {
 
-        public PromotionController(ISessionService sessionService, ILanguageService languageService)
+        public PromotionController(ISessionService sessionService, ISystemService languageService)
             : base(sessionService, languageService)
         {
         }

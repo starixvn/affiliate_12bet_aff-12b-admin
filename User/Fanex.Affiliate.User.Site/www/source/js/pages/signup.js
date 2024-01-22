@@ -35,6 +35,13 @@
                 WebSite.reoderInputUrl(resourceLanguage.webSiteUrl);
             });
 
+            $("#TargetCountryCode").on("change", function () {
+                const selectedOption = $('option:selected', this);
+                const language = selectedOption.data("language");
+
+                $("#PreferredLanguage").val(language || "").trigger('click');
+            });
+
             $("#accountForm").on("change", "input[name=HasWebSite][type=radio]", function () {
                 var hasWebSite = this.value === "True";
                 WebSite.changeWebsiteOption(hasWebSite);

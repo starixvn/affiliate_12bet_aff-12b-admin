@@ -10,6 +10,12 @@ import { claimsPrincipal } from '../../../../reducers/claimReducer';
 
 export const groupId = createReducer(0, {});
 
+export const targetCountryList = createReducer({}, {
+    [type.SET_TARGET_COUNTRY_LIST](prevState, action) {
+        return action.data;
+    }
+});
+
 export const commGroupList = createReducer({}, {
     [type.SET_COMM_GROUP_LIST](prevState, action){
         return action.data;
@@ -68,6 +74,7 @@ export default combineReducers({
     pagingOption,
     reportTitle,
     param,
+    targetCountryList,
     commGroupList,
     languageList,
     isShowLoader,

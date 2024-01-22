@@ -5,6 +5,13 @@ import { setShowPopupPassword } from '../../../common/actions/changePassword';
 
 export { toggleLoader, setPagingOption, setShowPopupPassword };
 
+export const setTargetCountryList = (data) => {
+    return {
+        type: type.SET_TARGET_COUNTRY_LIST,
+        data
+    }
+}
+
 export const setLanguageList = (data) => {
     return{
         type: type.SET_LANGUAGE_LIST,

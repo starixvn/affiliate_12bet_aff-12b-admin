@@ -13,6 +13,8 @@
 
         public string PageCode { get; set; }
 
+        public string TargetCountryCode { get; set; }
+
         public string LanguageCode { get; set; }
 
         public string IP { get; set; }

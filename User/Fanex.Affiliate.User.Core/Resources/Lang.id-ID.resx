@@ -801,9 +801,6 @@
   <data name="May" xml:space="preserve">
     <value>Mei</value>
   </data>
-  <data name="Media" xml:space="preserve">
-    <value>Galeri Media</value>
-  </data>
   <data name="Message" xml:space="preserve">
     <value>Pesan</value>
   </data>
@@ -998,7 +995,7 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="Preference" xml:space="preserve">
     <value>Preferensi</value>
   </data>
-  <data name="PreferLangErr" xml:space="preserve">
+  <data name="AffAccountLanguageErr" xml:space="preserve">
     <value>Pilih preferensi bahasa</value>
   </data>
   <data name="Proccessing" xml:space="preserve">

@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -42,8 +43,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         {
             // Arrange
             var param = new LandingPageStatisticsParam { GroupBy = "Language", LanguageCode = languageCode };
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(c => c.GetInChangeMarkets()).Returns(new List<Language>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(c => c.GetInChangeMarkets()).Returns(new List<Language>
             {
                 new Language
                 {
@@ -52,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             });
             var landingPageStatisticsRepository = new Mock<ILandingPageStatisticsRepository>();
             landingPageStatisticsRepository.Setup(t => t.GetLandingPageStatisticsList(param)).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() });
-            var controller = CreateLandingPageStatisticsController(null, commonSettingService.Object, landingPageStatisticsRepository.Object);
+            var controller = CreateLandingPageStatisticsController(null, systemServive.Object, null, landingPageStatisticsRepository.Object);
 
             // Action
             var result = controller.GetLandingPageStatisticsList(param) as JsonNetResult;
@@ -112,15 +113,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private LandingPageStatisticsController CreateLandingPageStatisticsController(
             ISessionService sessionService = null,
-            ICommonSettingService commonSettingService = null,
+            ISystemService systemServive = null,
+            ILandingPageRepository landingPageRepository = null,
             ILandingPageStatisticsRepository landingPageStatisticsRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeCommonSettingService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
+            var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
             var fakeLandingPageStatisticsRepository = landingPageStatisticsRepository ?? Mock.Of<ILandingPageStatisticsRepository>();
 
-            return new LandingPageStatisticsController(fakeSessionService, fakeCommonSettingService, fakeLandingPageStatisticsRepository);
+            return new LandingPageStatisticsController(fakeSessionService, fakesystemServive, fakeLandingPageRepository, fakeLandingPageStatisticsRepository);
         }
     }
 }

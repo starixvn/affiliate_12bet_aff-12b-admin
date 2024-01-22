@@ -7,7 +7,6 @@ exports[`banner list - components - AppContainer render correctly 1`] = `
   />
   <Connect(Filter) />
   <Connect(Component) />
-  <Connect(EditBannerForm) />
   <Connect(Component) />
 </AppLayout>
 `;

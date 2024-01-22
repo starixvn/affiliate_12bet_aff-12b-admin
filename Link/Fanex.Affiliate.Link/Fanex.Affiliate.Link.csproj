@@ -218,6 +218,7 @@
     <Compile Include="DataAccess\Impl\TrackingSystemDataAccess.cs" />
     <Compile Include="DataAccess\Interface\IAffiliateDataAccess.cs" />
     <Compile Include="DataAccess\Interface\ITrackingSystemDataAccess.cs" />
+    <Compile Include="DTO\Language.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,9 +228,11 @@
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Impl\AffiliateService.cs" />
+    <Compile Include="Services\Impl\MemoryCacheService.cs" />
     <Compile Include="Services\Impl\TrackingSystemService.cs" />
     <Compile Include="Services\Impl\UnderMaintenanceService.cs" />
     <Compile Include="Services\Interface\IAffiliateService.cs" />
+    <Compile Include="Services\Interface\IMemoryCacheService.cs" />
     <Compile Include="Services\Interface\ITrackingSystemService.cs" />
     <Compile Include="Services\Interface\IUnderMaintenanceService.cs" />
   </ItemGroup>
@@ -260,9 +263,7 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>

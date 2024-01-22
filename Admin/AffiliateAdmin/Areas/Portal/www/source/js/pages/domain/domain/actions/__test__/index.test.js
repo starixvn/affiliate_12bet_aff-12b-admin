@@ -177,22 +177,22 @@ describe('domain actions', () => {
         expect(result).toEqual(null);
     })
 
-    it('should create action to getMarketListByDomain successfully', async () => {
-        const expectedResponse = { data: [{ MarketId: 'en-US', MarketName: 'English' }], status: 200 };
+    it('should create action to getTargetCountryListByDomain successfully', async () => {
+        const expectedResponse = { data: [{ TargetCountryCode: 'en-US', TargetCountryName: 'English' }], status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
             DomainId: 123,
             IsAffDomain: false
         };
 
-        const result = await actions['getMarketListByDomain'](param)();
+        const result = await actions['getTargetCountryListByDomain'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Domain/GetMarketList', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Domain/GetTargetCountryList', param);
 
-        expect(result).toEqual([{ MarketId: 'en-US', MarketName: 'English' }]);
+        expect(result).toEqual([{ TargetCountryCode: 'en-US', TargetCountryName: 'English' }]);
     })
 
-    it('should create action to getMarketListByDomain with empty successfully', async () => {
+    it('should create action to getTargetCountryListByDomain with empty successfully', async () => {
         const expectedResponse = { data: [], status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
@@ -200,22 +200,22 @@ describe('domain actions', () => {
             IsAffDomain: false
         };
 
-        const result = await actions['getMarketListByDomain'](param)();
+        const result = await actions['getTargetCountryListByDomain'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Domain/GetMarketList', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Domain/GetTargetCountryList', param);
 
         expect(result).toEqual(null);
     })
 
-    it('should create action to getMarketListByDomain failed', async () => {
+    it('should create action to getTargetCountryListByDomain failed', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
             DomainId: 123,
             IsAffDomain: true
         };
-        const result = await actions['getMarketListByDomain'](param)();
+        const result = await actions['getTargetCountryListByDomain'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Domain/GetMarketList', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Domain/GetTargetCountryList', param);
         expect(result).toEqual(null);
     })
 });

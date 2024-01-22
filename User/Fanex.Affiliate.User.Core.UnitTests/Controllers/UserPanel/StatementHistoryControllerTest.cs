@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     public class StatementHistoryControllerTest
     {
         private readonly ISessionService SessionService;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
         private readonly IAppSetting AppSetting;
         private readonly IStatementHistoryRepository Repo;
 

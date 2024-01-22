@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
@@ -23,17 +22,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private readonly ICommissionGroupRepository _commissionGroupRepository;
 
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _systemService;
 
         public AffiliateController(
             ISessionService sessionService,
             IAffiliateInfoRepository affiliateInfoRepository,
             ICommissionGroupRepository commissionGroupRepository,
-            ICommonSettingService commonSettingService) : base(sessionService)
+            ISystemService systemService) : base(sessionService)
         {
             _commissionGroupRepository = commissionGroupRepository;
             _affiliateInfoRepository = affiliateInfoRepository;
-            _commonSettingService = commonSettingService;
+            _systemService = systemService;
         }
 
         [HttpGet]
@@ -57,7 +56,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = new AffiliateFilterViewModel
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
-                LanguageList = _commonSettingService.GetInChangeMarkets(),
+                LanguageList = _systemService.GetInChangeMarkets(),
+                TargetCountryList = _systemService.GetTargetCountryListByUser()
             };
 
             return new JsonNetResult(viewModel);
@@ -125,8 +125,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private AffiliateInfoParam BuildGetModelToParam(GetAffiliateViewModel viewModel)
         {
-            var supportLanguages = _commonSettingService.GetInChangeMarkets();
-            var queryLangs = LanguageHelper.BuildAllowQueryLanguages(viewModel.Language, supportLanguages);
+            var supportLanguages = _systemService.GetInChangeMarkets();
+            var supportTargetCountries = _systemService.GetTargetCountryListByUser();
+
+            var queryLangs = SystemHelper.BuildAllowQueryLanguages(viewModel.Language, supportLanguages);
+            var queryTargetCountries = SystemHelper.GetVisibleTargetCountryCodes(viewModel.TargetCountry, supportTargetCountries);
+
             return new AffiliateInfoParam
             {
                 AffId = viewModel.AffId,
@@ -136,6 +140,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 IsExportExcel = viewModel.IsExportExcel,
                 PageIndex = viewModel.PageIndex,
                 PageSize = viewModel.PageSize,
+                TargetCountryCodes = queryTargetCountries,
                 PreferenceLanguages = queryLangs,
                 SortBy = viewModel.SortBy,
                 SortDirectionType = viewModel.SortDirectionType,

@@ -43,12 +43,8 @@ describe('banner list actions', () => {
         const param = {
             AffType: 2,
             Category: "",
-            Currency: "",
-            DeviceType: 0,
-            ImageType: "",
             Language: "",
-            Size: "",
-            SubCategory: ""
+            Size: ""
         }
 
         const store = mockStore({ todos: [] });
@@ -68,12 +64,8 @@ describe('banner list actions', () => {
         const param = {
             AffType: 5,
             Category: "",
-            Currency: "",
-            DeviceType: 0,
-            ImageType: "",
             Language: "",
-            Size: "",
-            SubCategory: ""
+            Size: ""
         }
 
         const store = mockStore({ todos: [] });
@@ -89,23 +81,15 @@ describe('banner list actions', () => {
                 MainData: [
                     {
                         BannerId: 2485,
-                        Categories: ["Casino"],
-                        SubCategories: ["Baccarat"],
-                        Currencies: ["EURO"],
-                        DeviceTypes: ["1"],
+                        TargetProducts: ["Casino"],
                         FileName: "CategoryMedia/giphy.gif",
-                        ImageType: "Image",
                         Language: "Chinese Simplified",
                         Size: "500x500"
                     },
                     {
                         BannerId: 2448,
-                        Categories: ["Number Game"],
-                        SubCategories: [""],
-                        Currencies: ["EURO"],
-                        DeviceTypes: ["1"],
+                        TargetProducts: ["Number Game"],
                         FileName: "CategoryMedia/step1.jpg",
-                        ImageType: "Image",
                         Language: "Chinese Simplified",
                         Size: "1655x438"
                     }
@@ -127,14 +111,10 @@ describe('banner list actions', () => {
         const param = {
             AffType: 2,
             Category: "",
-            Currency: "",
-            DeviceType: 0,
-            ImageType: "",
             Language: "",
             PageIndex: 1,
             PageSize: 20,
-            Size: "",
-            SubCategory: ""
+            Size: ""
         }
 
         const store = mockStore({ todos: [] });
@@ -158,14 +138,10 @@ describe('banner list actions', () => {
         const param = {
             AffType: 5,
             Category: "",
-            Currency: "",
-            DeviceType: 0,
-            ImageType: "",
             Language: "",
             PageIndex: 1,
             PageSize: 20,
-            Size: "",
-            SubCategory: ""
+            Size: ""
         }
 
         const store = mockStore({ todos: [] });
@@ -180,10 +156,7 @@ describe('banner list actions', () => {
             data: {
                 BannerId: 2485,
                 Category: "Baccarat",
-                Currency: "EURO",
-                DeviceType: 1,
                 FileName: "CategoryMedia/Casino/Baccarat/giphy.gif",
-                ImageType: "Image",
                 Language: "Chinese Simplified",
                 Size: "500x500"
             }, status: 200

@@ -23,7 +23,7 @@
             ISessionService sessionService,
             IAppSetting appSetting,
             IAccountService accountService,
-            ILanguageService languageService,
+            ISystemService languageService,
             ICaptchaService captchaService,
             ISecurityQuestionService securityQuestionService) : base(sessionService, languageService)
         {
@@ -76,6 +76,7 @@
                     SiteUrl = Server.HtmlEncode(param.SiteUrl),
                     MoreSiteUrls = Server.HtmlEncode(param.MoreSiteUrls),
                     NoSiteDesc = Server.HtmlEncode(param.NoSiteDesc),
+                    TargetCountryCode = Server.HtmlEncode(param.TargetCountryCode),
                     PreferredLanguage = Server.HtmlEncode(param.PreferredLanguage),
                     QuestionId = param.QuestionId,
                     Answer = Server.HtmlEncode(param.Answer),

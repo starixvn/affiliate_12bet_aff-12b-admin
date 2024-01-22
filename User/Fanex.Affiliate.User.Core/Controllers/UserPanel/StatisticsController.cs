@@ -11,7 +11,9 @@
     public class StatisticsController : BaseController
     {
         private readonly IStatisticsService _statisticsService;
-        public StatisticsController(ISessionService sessionService, ILanguageService languageService,
+        public StatisticsController(
+            ISessionService sessionService,
+            ISystemService languageService,
             IStatisticsService statisticsService
             ) : base(sessionService, languageService)
         {

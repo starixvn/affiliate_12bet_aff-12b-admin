@@ -171,36 +171,12 @@ img.qr-code {
 
 #textLinkList {
   padding-top: 10px; }
-  #textLinkList .control-group a {
-    text-decoration: none; }
-    #textLinkList .control-group a:focus {
-      outline: none; }
-  #textLinkList .control-group .copy-link {
-    padding-left: 15px; }
-  #textLinkList .control-group .copy-qr-code {
-    padding: 0 10px; }
   #textLinkList button {
     background-color: transparent;
     border: none;
     color: #2268D1; }
   #textLinkList .marketing-qrcode label {
     text-align: right; }
-
-@media (min-width: 1200px) {
-  #linkForm {
-    padding-right: 0; } }
-
-@media (max-width: 350px) {
-  .control-group {
-    text-align: center; }
-    .control-group .copy-link {
-      padding-left: 0 !important; } }
-
-@media (max-width: 767px) {
-  .control-group {
-    padding-top: 0 !important; }
-  .banner-control-button {
-    display: block !important; } }
 
 .banner-control {
   display: flex;
@@ -230,13 +206,6 @@ img.qr-code {
       .banner-control-button .copy-banner-code img {
         padding-bottom: 3px; }
 
-@media (max-width: 1024px) {
-  .banner-control {
-    display: inline-block;
-    width: 100%; }
-  .banner-link {
-    max-width: 100%; } }
-
 .social-media-button-group {
   display: flex; }
   .social-media-button-group .img-button img {
@@ -246,6 +215,25 @@ img.qr-code {
   .social-media-button-group > a {
     margin-right: 3px; }
 
+.link-group {
+  margin-left: 25px;
+  margin-right: 25px; }
+
 @media (max-width: 1024px) {
+  .banner-control {
+    display: inline-block;
+    width: 100%; }
+  .banner-link {
+    max-width: 100%; }
   .social-media-button-group {
-    flex-wrap: wrap; } }
+    flex-wrap: wrap; }
+  .link-group {
+    margin-left: 15px;
+    margin-right: 15px; } }
+
+@media (max-width: 767px) {
+  .banner-control-button {
+    display: block !important; }
+  .link-group {
+    margin-left: 0px;
+    margin-right: 0px; } }

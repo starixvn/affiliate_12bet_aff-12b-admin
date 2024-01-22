@@ -19,6 +19,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string PaymentInfoType = "[AffPaymentInfo]";
 
+        public const string TargetCountry = "[TargetCountry]";
+
         public const string LanguageAdmendmentType = "[AffMarket]";
 
         public const string WebsiteUrlType = "[AffWebURL]";

@@ -7,28 +7,22 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public interface IMarketingService
     {
-        IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, bool isInternal);
-
-        IEnumerable<Language> GetLanguageList();
-
-        IEnumerable<CurrencyType> GetCurrencyList(bool isInternal);
-
-        IEnumerable<BannerType> GetBannerTypeList(bool isInternal);
+        IEnumerable<TargetProduct> GetTargetProductList(bool isInternal);
 
         IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal);
 
-        IEnumerable<Domain> GetDomainList(int affId, bool isInternal);
+        IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, bool isInternal);
 
         IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam);
 
-        IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
+        IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam);
 
-        IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
+        IEnumerable<LandingPage> GetSpecialLandingPageList(string targetCountry, string commGroupName, string language, bool isInternal);
 
-        IEnumerable<LandingPage> GetSpecialLandingPageList(string commGroupName, string language, bool isInternal);
-
-        IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal);
+        IEnumerable<LandingPage> GetLandingPageList(string targetCountry, string commGroupName, bool isInternal);
 
         ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param);
+
+        string GetTargetCountryCodeByAff(int affId);
     }
 }

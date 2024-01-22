@@ -37,6 +37,13 @@ export const deviceTypes = {
     [mobile]: 1
 }
 
+export const targetCountryStatus = {
+    Normal: 0,
+    Blocked: 1,
+    Excluded: 1,
+    Using: 2
+}
+
 export const regExp = {
     CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
 }

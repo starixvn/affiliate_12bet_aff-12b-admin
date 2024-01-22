@@ -1,5 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO.System;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
@@ -15,13 +17,36 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class StatisticsService : IStatisticsService
     {
         private readonly IStatisticsRepository _statisticsRepository;
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _systemService;
+        private readonly IMemoryCacheService _cacheService;
+        private readonly IAppSetting _appSetting;
+
         public StatisticsService(
             IStatisticsRepository statisticsRepository,
-            ILanguageService languageService)
+            ISystemService systemService,
+            IMemoryCacheService cacheService,
+            IAppSetting appSetting)
         {
             _statisticsRepository = statisticsRepository;
-            _languageService = languageService;
+            _systemService = systemService;
+            _cacheService = cacheService;
+            _appSetting = appSetting;
+        }
+
+        public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal)
+        {
+            var landingPages = _cacheService.Get<IEnumerable<LandingPage>>(CacheKey.LandingPageList);
+
+            if (landingPages == null)
+            {
+                landingPages = _statisticsRepository.GetLandingPageList(isInternal);
+
+                var filteredLandingPageList = StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName);
+
+                _cacheService.Set(CacheKey.LandingPageList, filteredLandingPageList);
+            }
+
+            return landingPages ?? new List<LandingPage>();
         }
 
         public IEnumerable<SelectListItem> GetCountryList(bool isInternal)
@@ -42,7 +67,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             if (!string.Equals(Statistics.ReportByCountry, landingPageStatisticsParam.ReportBy, StringComparison.InvariantCultureIgnoreCase))
             {
-                var languageList = _languageService.GetSystemLanguages();
+                var languageList = _systemService.GetSystemLanguages();
                 landingPageStatisticsParam.LanguageCodes = GetShortedCode(languageList, landingPageStatisticsParam.LanguageCode);
                 landingPageStatisticsParam.CountryCodes = null;
 

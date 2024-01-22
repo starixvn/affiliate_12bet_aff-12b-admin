@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using System.Collections.Generic;
@@ -7,9 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public interface IDomainControlService
     {
-        IEnumerable<Market> GetVisibleMarketsByUser(int userId);
-
-        IEnumerable<DomainControlInfo> GetDomainControlList(string marketIds);
+        IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryCodes);
 
         DomainControlInfo GetDomainControlById(int domainControlId);
 
@@ -18,5 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         ResultInfo UpdateDomainControl(UpdateDomainControlParam param);
 
         ResultInfo DeleteDomainControl(DeleteDomainControlParam param);
+
+        IEnumerable<TargetCountry> GetVisibleTargetCountryListNotBlocked(TargetCountryParam param);
     }
 }

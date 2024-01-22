@@ -254,6 +254,48 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
         ]
       }
     >
+      Target Country
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    />
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
       Language
     </Col>
     <Col
@@ -642,6 +684,48 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
     </Connect(ContactNumber)>
   </Row>
   <Connect(Component) />
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Target Country
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    />
+  </Row>
   <Row
     tag="div"
     widths={
@@ -1063,6 +1147,48 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
     </Connect(ContactNumber)>
   </Row>
   <Connect(Component) />
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Target Country
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    />
+  </Row>
   <Row
     tag="div"
     widths={

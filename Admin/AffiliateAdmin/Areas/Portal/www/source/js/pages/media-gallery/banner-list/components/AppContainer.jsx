@@ -31,7 +31,9 @@ export const AppContainer = (props) => {
                 deleteItems={props.deleteBanners}
             />}
             <Content />
-            <EditBannerForm />
+            {
+                props.isModifiable && <EditBannerForm />
+            }
             <BannerDetailPopup />
         </AppLayout>
     );

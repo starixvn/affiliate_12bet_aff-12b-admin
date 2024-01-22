@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
@@ -22,9 +23,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market() });
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(l => l.GetTargetCountryListByUser()).Returns(new List<TargetCountry> { new TargetCountry() });
+            var controller = CreateDomainControlController(systemService: systemService.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -33,25 +34,27 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.Equal("~/Areas/Portal/Views/Domain/Index.cshtml", viewName);
-            Assert.Single(model.MarketList);
-            Assert.NotNull(JsonConvert.SerializeObject(model.MarketList));
+            Assert.Single(model.TargetCountryList);
+            Assert.NotNull(JsonConvert.SerializeObject(model.TargetCountryList));
         }
 
 
         [Theory]
         [InlineData("")]
         [InlineData("en-US")]
-        public void GetDomainControlList_WhenCallWithValidMarket_ReturnCorrectData(string marketId)
+        public void GetDomainControlList_WhenCallWithValidTargetCountry_ReturnCorrectData(string targetCountryCode)
         {
             // Arrange
             string passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
             domainControlService.Setup(t => t.GetDomainControlList(It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() }).Callback<string>(p => passedParam = p);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(l => l.GetTargetCountryListByUser()).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, systemService.Object);
 
             // Action
-            var result = controller.GetDomainControlList(marketId) as JsonNetResult;
+            var result = controller.GetDomainControlList(targetCountryCode) as JsonNetResult;
             var data = result.Data as List<DomainControlInfo>;
 
             // Assert
@@ -60,14 +63,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         }
 
         [Fact]
-        public void GetDomainControlList_WhenCallWithInvalidMarket_ReturnCorrectData()
+        public void GetDomainControlList_WhenCallWithInvalidTargetCountry_ReturnCorrectData()
         {
             // Arrange
             string passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
             domainControlService.Setup(t => t.GetDomainControlList(It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() }).Callback<string>(p => passedParam = p);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(l => l.GetTargetCountryListByUser()).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, systemService.Object);
 
             // Action
             var result = controller.GetDomainControlList("abc") as JsonNetResult;
@@ -83,9 +88,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         {
             // Arrange
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
-            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { MarketId = "en-US"});
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryCode = "en-US"});
+
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(l => l.GetTargetCountryListByUser()).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, systemService.Object);
 
             // Action
             var result = controller.GetDomainControlById(123) as JsonNetResult;
@@ -101,9 +108,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         {
             // Arrange
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
             domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(null as DomainControlInfo);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(l => l.GetTargetCountryListByUser()).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, systemService.Object);
 
             // Action
             var result = controller.GetDomainControlById(123) as JsonNetResult;
@@ -114,13 +123,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         }
 
         [Fact]
-        public void GetDomainControlById_WhenCallWithInvalidMarket_ReturnNull()
+        public void GetDomainControlById_WhenCallWithInvalidTargetCountry_ReturnNull()
         {
             // Arrange
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(l => l.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = "en-US", MarketName = "English" } });
-            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { MarketId = "abc" });
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryCode = "abc" });
+
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(l => l.GetTargetCountryListByUser()).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, systemService.Object);
 
             // Action
             var result = controller.GetDomainControlById(123) as JsonNetResult;
@@ -134,12 +145,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void InsertDomainControl_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertDomainControlParam { AffDomainId = 1, RedirectDomainId = 2, MarketId = Constant.MarketId, Status = true };
+            var param = new InsertDomainControlParam { AffDomainId = 1, RedirectDomainId = 2, TargetCountryCode = Constant.TargetCountryCode, Status = true };
             InsertDomainControlParam passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(s => s.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = Constant.MarketId } });
             domainControlService.Setup(s => s.InsertDomainControl(It.IsAny<InsertDomainControlParam>())).Returns(new ResultInfo()).Callback<InsertDomainControlParam>(p => passedParam = p);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(l => l.GetTargetCountryListByUser()).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = Constant.TargetCountryCode } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, systemService.Object);
 
             // Action
             var result = controller.InsertDomainControl(param) as JsonNetResult;
@@ -170,12 +183,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void UpdateDomainControl_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new UpdateDomainControlParam { DomainControlId = 123, AffDomainId = 1, RedirectDomainId = 2, MarketId = Constant.MarketId };
+            var param = new UpdateDomainControlParam { DomainControlId = 123, AffDomainId = 1, RedirectDomainId = 2, TargetCountryCode = Constant.TargetCountryCode };
             UpdateDomainControlParam passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(s => s.GetVisibleMarketsByUser(It.IsAny<int>())).Returns(new List<Market> { new Market { MarketId = Constant.MarketId } });
             domainControlService.Setup(s => s.UpdateDomainControl(It.IsAny<UpdateDomainControlParam>())).Returns(new ResultInfo()).Callback<UpdateDomainControlParam>(p => passedParam = p);
-            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(l => l.GetTargetCountryListByUser()).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = Constant.TargetCountryCode } });
+            var controller = CreateDomainControlController(null, domainControlService.Object, systemService.Object);
 
             // Action
             var result = controller.UpdateDomainControl(param) as JsonNetResult;
@@ -240,13 +255,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
         private DomainControlController CreateDomainControlController(
         ISessionService sessionService = null,
-        IDomainControlService domainControlService = null
+        IDomainControlService domainControlService = null,
+        ISystemService systemService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeDomainControlService = domainControlService ?? Mock.Of<IDomainControlService>();
+            var fakeSystemService = systemService ?? Mock.Of<ISystemService>();
 
-            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService);
+            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService, fakeSystemService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

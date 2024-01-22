@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 {
@@ -13,7 +13,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string Creator { get; set; }
 
-        public string BlockMarket { get; set; }
+        [JsonProperty(PropertyName = "ExcludedTargetCountries")]
+        public string BlockTargetCountry { get; set; }
 
         public DateTime? CreateDate { get; set; }
     }

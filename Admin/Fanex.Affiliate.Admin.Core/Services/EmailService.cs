@@ -15,13 +15,13 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _systemServive;
 
-        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ICommonSettingService commonSettingService)
+        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ISystemService systemServive)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;
-            _commonSettingService = commonSettingService;
+            _systemServive = systemServive;
         }
 
         public void SendApprovedEmail(AffInformationEmail emailParam)
@@ -29,11 +29,11 @@ namespace Fanex.Affiliate.Admin.Core.Services
             emailParam.MailContact = _appSetting.MailContact;
             emailParam.ContactInfo = GetContactInfoContent(emailParam);
 
-            _commonSettingService.SetCulture(emailParam.Language);
+            _systemServive.SetCulture(emailParam.Language);
             SendApprovedAffEmail(emailParam);
             SendAffInforEmail(emailParam);
             SendWithdrawalGuidanceEmail(emailParam);
-            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
+            _systemServive.SetCulture(LanguageSystem.DefaultLanguageCode);
         }
 
         private void SendApprovedAffEmail(AffInformationEmail emailParam)
@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public void SendApprovedPaymentRequestEmail(PaymentRequestUpdateEmail emailParam)
         {
-            _commonSettingService.SetCulture(emailParam.Language);
+            _systemServive.SetCulture(emailParam.Language);
             AssignEmailBaseInfo(emailParam);
 
             var content = GetEmailTextContent(TemplateString.PaymentRequestApproved, emailParam.Language, emailParam);
@@ -97,12 +97,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
             var subject = string.Format(Lang.EmailSubjectPaymentRequestApproved, emailParam.TransId);
 
             _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
-            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
+            _systemServive.SetCulture(LanguageSystem.DefaultLanguageCode);
         }
 
         public void SendRejectedPaymentRequestEmail(PaymentRequestUpdateEmail emailParam)
         {
-            _commonSettingService.SetCulture(emailParam.Language);
+            _systemServive.SetCulture(emailParam.Language);
             AssignEmailBaseInfo(emailParam);
 
             var content = GetEmailTextContent(TemplateString.PaymentRequestRejected, emailParam.Language, emailParam);
@@ -112,14 +112,14 @@ namespace Fanex.Affiliate.Admin.Core.Services
             var subject = string.Format(Lang.EmailSubjectPaymentRequestRejected, emailParam.TransId);
 
             _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
-            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
+            _systemServive.SetCulture(LanguageSystem.DefaultLanguageCode);
         }
 
         public void SendDisapprovedEmail(AffInformationEmail emailParam)
         {
-            _commonSettingService.SetCulture(emailParam.Language);
+            _systemServive.SetCulture(emailParam.Language);
             SendDisapprovedAffiliateEmail(emailParam);
-            _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
+            _systemServive.SetCulture(LanguageSystem.DefaultLanguageCode);
         }
 
         private void SendDisapprovedAffiliateEmail(AffInformationEmail emailParam)

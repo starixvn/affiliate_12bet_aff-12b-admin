@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         private readonly IFeedbackService _feedbackService;
         public FeedbackController(
             ISessionService sessionService,
-            ILanguageService languageService,
+            ISystemService languageService,
             IFeedbackService feedbackService) : base(sessionService, languageService)
         {
             _feedbackService = feedbackService;

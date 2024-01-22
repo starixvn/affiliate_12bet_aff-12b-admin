@@ -1,6 +1,7 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using System.Collections.Generic;
@@ -20,34 +21,29 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             _landingPageRepository = landingPageRepository;
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList()
+        public IEnumerable<LandingPage> GetLandingPageList(int userId)
         {
-            return _landingPageRepository.GetLandingPageList();
+            return _landingPageRepository.GetLandingPageList(userId);
         }
 
-        public LandingPage GetLandingPageById(int pageId)
+        public LandingPage GetLandingPageById(int userId, int pageId)
         {
-            return _landingPageRepository.GetLandingPageById(pageId);
+            return _landingPageRepository.GetLandingPageById(userId, pageId);
         }
 
-        public ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param)
+        public IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param)
+        {
+            return _landingPageRepository.GetExcludedTargetCountryList(param).ExcludeEmpty();
+        }
+
+        public ResultInfo HandleSaveLandingPage(InsertUpdateLandingPageParam param, bool isInsert = false)
         {
             if (HasRestrictedCharacter(param.PageCode))
             {
                 return ResultInfo.GenerateErr(RestricedCharacterErrorMessage);
             }
 
-            return _landingPageRepository.InsertLandingPage(param);
-        }
-
-        public ResultInfo UpdateLandingPage(InsertUpdateLandingPageParam param)
-        {
-            if (HasRestrictedCharacter(param.PageCode))
-            {
-                return ResultInfo.GenerateErr(RestricedCharacterErrorMessage);
-            }
-
-            return _landingPageRepository.UpdateLandingPage(param);
+            return isInsert ? _landingPageRepository.InsertLandingPage(param) : _landingPageRepository.UpdateLandingPage(param);
         }
 
         public ResultInfo DeleteLandingPage(DeleteLandingPageParam param)

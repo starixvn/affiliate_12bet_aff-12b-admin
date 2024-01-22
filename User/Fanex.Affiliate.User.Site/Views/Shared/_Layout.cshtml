@@ -3,10 +3,10 @@
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var settingService = DependencyResolver.Current.GetService<IAppSetting>();
-    var languageService = DependencyResolver.Current.GetService<ILanguageService>();
+    var systemService = DependencyResolver.Current.GetService<ISystemService>();
     var userSession = sessionService.UserSession;
-    var languageList = languageService.GetSystemLanguages(false).Where(l => !l.MarketId.Equals("en-GB") && !l.MarketId.Equals("es-ES"));
-    var currentLanguage = languageList.FirstOrDefault(l => l.MarketId.Equals(sessionService.CurrentLanguage))?.MarketNativeName;
+    var languageList = systemService.GetSystemTargetLanguages();
+    var currentLanguage = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
     var path = HttpContext.Current.Request.Path;
 }
 
@@ -85,9 +85,9 @@
                                     <ul class="list-unstyled language-list">
                                         @foreach (var language in languageList)
                                         {
-                                            var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.MarketId) ? SystemLanguage.SupportedLanguage[language.MarketId] : language.ShortedCode;
+                                            var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.LanguageCode) ? SystemLanguage.SupportedLanguage[language.LanguageCode] : language.ShortedCode;
                                             <li>
-                                                <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.MarketId"></i>@language.MarketNativeName</a>
+                                                <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.LanguageCode"></i>@language.NativeLanguage</a>
                                             </li>
                                         }
                                     </ul>

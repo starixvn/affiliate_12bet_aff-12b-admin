@@ -22,18 +22,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _systemService;
 
         public EmailTestingController(
             ISessionService sessionService,
             IMailProcessor mailProcessor,
             IAppSetting appSetting,
-            ICommonSettingService commonSettingService
+            ISystemService systemService
             ) : base(sessionService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;
-            _commonSettingService = commonSettingService;
+            _systemService = systemService;
         }
 
         [HttpGet]
@@ -48,12 +48,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             string result;
             try
             {
-                _commonSettingService.SetCulture(language);
+                _systemService.SetCulture(language);
 
                 (var _, var title) = GetSubjectAndTitle(function);
                 result = GetEmailContent(language, function, format, title);
 
-                _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
+                _systemService.SetCulture(LanguageSystem.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -71,12 +71,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             try
             {
-                _commonSettingService.SetCulture(language);
+                _systemService.SetCulture(language);
                 (var subject, var title) = GetSubjectAndTitle(function);
                 var content = GetEmailContent(language, function, format, title);
 
                 _mailProcessor.Send(content, emailAddress, subject);
-                _commonSettingService.SetCulture(LanguageSystem.DefaultLanguageCode);
+                _systemService.SetCulture(LanguageSystem.DefaultLanguageCode);
             }
             catch (Exception ex)
             {

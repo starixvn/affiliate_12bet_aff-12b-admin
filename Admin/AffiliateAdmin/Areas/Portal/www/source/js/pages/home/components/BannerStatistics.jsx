@@ -9,6 +9,7 @@ import { claimResource } from '../../../modules/claim';
 export const BannerStatistics = (props) => {
 
     const { generalInfo, isShowBannerLink } = props;
+    const bannerNumber = format(generalInfo.BannerNumber);
 
     return (
         <div className="banner-statistics">
@@ -16,31 +17,11 @@ export const BannerStatistics = (props) => {
                 <span className="tbl-icon01"></span>
                 <span className="text-blue">Banner Statistics</span>
             </Row>
-            {
-                isShowBannerLink ? (
-                    <Row className="background-gray border">
-                        <Col sm={12}>
-                            <span>We have <a href={resolveClientUrl("Portal/MediaGallery?IsFromHome=true")}><strong>{format(generalInfo.BannerNumber)}</strong></a> banners in the program</span>
-                        </Col>
-                        <Col sm={12}>
-                            <span>
-                                <a href={resolveClientUrl("Portal/MediaGallery?ImageType=Image&IsFromHome=true")}><strong>{format(generalInfo.ImageBannerNumber)}</strong></a> image banners / <a href={resolveClientUrl("Portal/MediaGallery?ImageType=Flash&IsFromHome=true")}><strong>{generalInfo.FlashBannerNumber}</strong></a> flash banners
-                    </span>
-                        </Col>
-                    </Row>
-                ) : (
-                        <Row className="background-gray border">
-                            <Col sm={12}>
-                                <span>We have <strong>{format(generalInfo.BannerNumber)}</strong>banners in the program</span>
-                            </Col>
-                            <Col sm={12}>
-                                <span>
-                                    <strong>{format(generalInfo.ImageBannerNumber)}</strong> image banners / <strong>{generalInfo.FlashBannerNumber}</strong> flash banners
-                                </span>
-                            </Col>
-                        </Row>
-                    )
-            }
+            <Row className="background-gray border">
+                <Col sm={12}>
+                    <span>We have {isShowBannerLink ? (<a href={resolveClientUrl("Portal/MediaGallery?IsFromHome=true")}><strong>{bannerNumber}</strong></a>) : (<strong>{bannerNumber}</strong>)} banners in the program</span>
+                </Col>
+            </Row>
         </div>
     )
 }

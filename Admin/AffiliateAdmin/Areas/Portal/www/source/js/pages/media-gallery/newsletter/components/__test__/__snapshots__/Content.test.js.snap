@@ -41,7 +41,6 @@ exports[`news letter - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -172,7 +171,6 @@ exports[`news letter - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -303,7 +301,6 @@ exports[`news letter - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              className="text-left"
               header={false}
               onClick={[Function]}
               sortable={false}

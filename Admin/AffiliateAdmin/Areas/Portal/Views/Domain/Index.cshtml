@@ -7,7 +7,7 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
-            marketList: @Html.Raw(Json.Encode(Model.MarketList)),
+            targetCountryList: @Html.Raw(Json.Encode(Model.TargetCountryList)),
             isAffDomain: '@Model.IsAffDomain'.toLowerCase() === 'true',
         }
     </script>

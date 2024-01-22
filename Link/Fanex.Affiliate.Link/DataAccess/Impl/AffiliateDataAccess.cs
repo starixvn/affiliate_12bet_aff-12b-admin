@@ -1,6 +1,8 @@
 ﻿using Fanex.Affiliate.Link.DataAccess.Interface;
+using Fanex.Affiliate.Link.DTO;
 using Fanex.Data.SqlServer;
 using System;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Link.DataAccess.Impl
 {
@@ -23,6 +25,16 @@ namespace Fanex.Affiliate.Link.DataAccess.Impl
 
                     return string.Empty;
                 }
+            }
+        }
+
+        public IEnumerable<Language> GetSystemLanguages()
+        {
+            const string uSpKey = "Aff_Language_Sel";
+
+            using (var objectDb = new SqlObjectDb(uSpKey))
+            {
+                return objectDb.Query<Language>();
             }
         }
     }

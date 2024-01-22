@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using System.Collections.Generic;
@@ -7,13 +8,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 {
     public class DomainRepository : BaseRepository, IDomainRepository
     {
-        public IEnumerable<Market> GetMarketList(MarketParam param)
+        public IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param)
         {
-            const string SpKey = "Aff_SupportBlockMarket_Sel";
+            const string SpKey = "Aff_Domain_BlockTargetCountry_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                return objectDb.Query<Market>(param);
+                return objectDb.Query<TargetCountry>(param);
             }
         }
 

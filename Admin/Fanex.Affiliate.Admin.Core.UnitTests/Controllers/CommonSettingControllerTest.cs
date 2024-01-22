@@ -16,9 +16,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetProductList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
-            var controller = CreateCommonSettingController(commonSettingService: commonSettingService.Object);
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
+            var controller = CreateCommonSettingController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.GetProductList() as JsonNetResult;
@@ -29,28 +29,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void GetPageList_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(s => s.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
-            var controller = CreateCommonSettingController(landingPageRepository: landingPageRepository.Object);
-
-            // Action
-            var result = controller.GetPageList() as JsonNetResult;
-            var data = result.Data as List<LandingPage>;
-
-            // Assert
-            Assert.Single(data);
-        }
-
-        [Fact]
         public void GetCountryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(s => s.GetCountryList()).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
-            var controller = CreateCommonSettingController(commonSettingService.Object);
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(s => s.GetCountryList()).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
+            var controller = CreateCommonSettingController(systemServive.Object);
 
             // Action
             var result = controller.GetCountryList() as JsonNetResult;
@@ -61,14 +45,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         private CommonSettingController CreateCommonSettingController(
-            ICommonSettingService commonSettingService = null,
-            ILandingPageRepository landingPageRepository = null
+            ISystemService systemServive = null
             )
         {
-            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
-            var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
+            var fakeCommonService = systemServive ?? Mock.Of<ISystemService>();
 
-            return new CommonSettingController(fakeCommonService, fakeLandingPageRepository);
+            return new CommonSettingController(fakeCommonService);
         }
     }
 }

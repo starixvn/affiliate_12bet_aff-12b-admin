@@ -67,18 +67,20 @@
     > li {
         padding-top: 8px;
         padding-bottom: 12px;
+
         .link-text {
             width: 100%;
             margin-top: 5px;
         }
+
         border-top: 1px solid #DBDBDB;
-        :first-child{
+
+        :first-child {
             border-top: none;
         }
     }
-}
-.list-content{
-    li:first-child{
+
+    li:first-child {
         border: none;
     }
 }
@@ -157,23 +159,6 @@ img.qr-code{
 #textLinkList {
     padding-top: 10px;
 
-    .control-group {
-        a {
-            text-decoration: none;
-
-            &:focus {
-                outline: none;
-            }
-        }
-
-        .copy-link {
-            padding-left: 15px;
-        }
-
-        .copy-qr-code {
-            padding: 0 10px;
-        }
-    }
     button{
         background-color: transparent;
         border: none;
@@ -185,32 +170,6 @@ img.qr-code{
             text-align: right;
             //margin-right: 5px;
         }
-    }
-}
-
-@media (min-width: 1200px) {
-    #linkForm {
-        padding-right: 0;
-    }
-}
-
-@media (max-width: 350px) {
-    .control-group {
-        text-align: center;
-
-        .copy-link {
-            padding-left: 0 !important;
-        }
-    }
-}
-
-@media (max-width: 767px) {
-    .control-group {
-        padding-top: 0 !important;
-    }
-
-    .banner-control-button {
-        display: block !important;
     }
 }
 
@@ -259,18 +218,6 @@ img.qr-code{
     }
 }
 
-
-@media (max-width: 1024px) {
-    .banner-control {
-        display: inline-block;
-        width: 100%;
-    }
-
-    .banner-link {
-        max-width: 100%;
-    }
-}
-
 .social-media-button-group {
     display: flex;
 
@@ -287,8 +234,38 @@ img.qr-code{
     }
 }
 
+.link-group {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
 @media (max-width: 1024px) {
+    .banner-control {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .banner-link {
+        max-width: 100%;
+    }
+
     .social-media-button-group {
         flex-wrap: wrap;
+    }
+
+    .link-group {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .banner-control-button {
+        display: block !important;
+    }
+
+    .link-group {
+        margin-left: 0px;
+        margin-right: 0px;
     }
 }

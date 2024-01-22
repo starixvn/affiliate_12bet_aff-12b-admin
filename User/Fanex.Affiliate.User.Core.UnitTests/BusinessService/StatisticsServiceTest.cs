@@ -1,8 +1,10 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
 using System.Collections.Generic;
 using Xunit;
@@ -12,11 +14,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
     public class StatisticsServiceTest
     {
         private readonly IStatisticsRepository Repo;
-        private readonly ILanguageService LanguageService;
+        private readonly IAppSetting AppSetting;
+        private readonly IMemoryCacheService CacheService;
+        private readonly ISystemService LanguageService;
 
         public StatisticsServiceTest()
         {
             Repo = Substitute.For<IStatisticsRepository>();
+            AppSetting = Substitute.For<IAppSetting>();
+            CacheService = Substitute.For<IMemoryCacheService>();
             LanguageService = NSubtituteMockingHelper.FakeLanguageService();
         }
 
@@ -127,6 +133,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         private StatisticsService CreateService()
-            => new StatisticsService(Repo, LanguageService);
+            => new StatisticsService(Repo, LanguageService, CacheService, AppSetting);
     }
 }

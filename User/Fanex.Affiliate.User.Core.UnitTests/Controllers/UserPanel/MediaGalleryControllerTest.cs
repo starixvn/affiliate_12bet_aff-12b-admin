@@ -8,6 +8,7 @@ using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Xunit;
 
@@ -17,8 +18,20 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     {
         private readonly ISessionService SessionService;
         private readonly IAppSetting AppSetting;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
         private readonly IMarketingService MarketingService;
+
+        private static IEnumerable<SizeType> SizeTypes => new List<SizeType>
+        {
+            new SizeType { SizeId = 1, Size = "1080x1920" },
+            new SizeType { SizeId = 2, Size = "640x256" },
+        };
+
+        private static IEnumerable<Banner> MarketingItems => new List<Banner>
+        {
+            new Banner {BannerId =1 },
+            new Banner {BannerId  = 2 }
+        };
 
         public MediaGalleryControllerTest()
         {
@@ -40,13 +53,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void Index_WhenCallWithDomainEmpty_ReturnCorrectView()
         {
             var marketingService = Substitute.For<IMarketingService>();
-            marketingService.GetTextList(Arg.Compat.Any<MarketingTextParam>()).Returns(new List<MarketingItem>
-            {
-                new MarketingItem { BannerId = 1, TextId = 1 }
-            });
-            marketingService.GetCategoryList(Arg.Compat.Any<bool>(), Arg.Compat.Any<bool>()).Returns(Constant.CategoryList);
-            marketingService.GetLanguageList().Returns(Constant.LanguageList);
-            marketingService.GetCurrencyList(Arg.Compat.Any<bool>()).Returns(Constant.CurrencyType);
+
+            marketingService.GetTargetProductList(Arg.Compat.Any<bool>()).Returns(Constant.TargetProductList);
             marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
             var controller = new MediaGalleryController(SessionService, AppSetting, LanguageService, marketingService);
 
@@ -69,6 +77,51 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var data = result.Data as ResultInfo;
 
             Assert.Equal(!isInternal, data.IsOk);
+        }
+
+        [Fact]
+        public void GetSize_WhenCall_ReturnCorrectJson()
+        {
+            MarketingService.GetSizeList(Arg.Compat.Any<SizeParam>(), Arg.Compat.Any<bool>())
+                .Returns(SizeTypes);
+            var controller = new MediaGalleryController(SessionService, AppSetting, LanguageService, MarketingService);
+            var param = new SizeParam { Language = Constant.DefaultLanguage };
+
+            var result = controller.GetSize(param) as JsonResult;
+            var model = result.Data as IEnumerable<SizeType>;
+
+            Assert.Collection(model, t => Assert.Contains(SizeTypes, s => s.SizeId == t.SizeId), t => Assert.Contains(SizeTypes, s => s.SizeId == t.SizeId));
+            Assert.Equal(JsonRequestBehavior.AllowGet, result.JsonRequestBehavior);
+        }
+
+        [Fact]
+        public void GetBanner_WhenCallWithNoSelectedDomain_ReturnEmptyModelItem()
+        {
+            MarketingService.GetDomainListByTargetCountry(Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(new List<Domain>());
+            var controller = new MediaGalleryController(SessionService, AppSetting, LanguageService, MarketingService);
+            var param = new MarketingBannerParam();
+
+            var result = controller.GetBanner(param) as ViewResult;
+            var model = result.Model as IEnumerable<Banner>;
+
+            Assert.Contains("AccountOverview/Partial/_BannerList.cshtml", result.ViewName);
+            Assert.Empty(model);
+        }
+
+        [Fact]
+        public void GetBanner_WhenCall_ReturnCorrectModel()
+        {
+            var bannerItems = MarketingItems;
+            MarketingService.GetBannerList(Arg.Compat.Any<MarketingBannerParam>()).Returns(bannerItems);
+            var controller = new MediaGalleryController(SessionService, AppSetting, LanguageService, MarketingService);
+            var domainId = Constant.DomainList.First().DomainId;
+            var param = new MarketingBannerParam { SelectedDomainId = domainId };
+
+            var result = controller.GetBanner(param) as ViewResult;
+            var model = result.Model as IEnumerable<Banner>;
+
+            Assert.Contains("AccountOverview/Partial/_BannerList.cshtml", result.ViewName);
+            Assert.NotEmpty(model);
         }
     }
 }

@@ -83,6 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         [PermissionCheck(Function.SecurityQA)]
         public string Answer { get; set; }
 
+        [PermissionCheck(Function.LanguageAmendment)]
         public string Lang { get; set; }
 
         public bool? MailOption { get; set; }

@@ -6,7 +6,7 @@
     /// <summary>
     /// Route configuration.
     /// </summary>
-    public class RouteConfig
+    public static class RouteConfig
     {
         /// <summary>
         /// Register Routes.
@@ -63,17 +63,37 @@
                });
 
             routes.MapRoute(
-                name: "NewLink",
-                url: "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}/index.html",
+                name: "CommonLink",
+                url: "{affId}/{pageCode}/{lang}/{targetCountry}/index.html", //May be "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}"
                 defaults:
                 new
                 {
                     controller = "Home",
-                    action = "NewLink",
+                    action = "CommonLink",
+                    affId = UrlParameter.Optional,
+                    pageCode = UrlParameter.Optional,
+                    lang = UrlParameter.Optional,
+                    targetCountry = UrlParameter.Optional
+                },
+                constraints:
+                new
+                {
+                    affId = @"\d+"
+                });
+
+            routes.MapRoute(
+                name: "SpecialPageCodeLink",
+                url: "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}/{targetCountry}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "SpecialPageCodeLink",
                     affId = UrlParameter.Optional,
                     pageCodePart1 = UrlParameter.Optional,
                     pageCodePart2 = UrlParameter.Optional,
-                    lang = UrlParameter.Optional
+                    lang = UrlParameter.Optional,
+                    targetCountry = UrlParameter.Optional
                 },
                 constraints:
                 new

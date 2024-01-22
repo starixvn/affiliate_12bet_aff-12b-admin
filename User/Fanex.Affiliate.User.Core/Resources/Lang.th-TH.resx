@@ -801,9 +801,6 @@
   <data name="May" xml:space="preserve">
     <value>พฤษภาคม</value>
   </data>
-  <data name="Media" xml:space="preserve">
-    <value>ที่รวบรวมสื่อโฆษณา</value>
-  </data>
   <data name="Message" xml:space="preserve">
     <value>ข้อความ</value>
   </data>
@@ -998,7 +995,7 @@
   <data name="Preference" xml:space="preserve">
     <value>สิ่งที่ต้องการใช้</value>
   </data>
-  <data name="PreferLangErr" xml:space="preserve">
+  <data name="AffAccountLanguageErr" xml:space="preserve">
     <value>กรุณาเลือกภาษาที่คุณต้องการใช้</value>
   </data>
   <data name="Proccessing" xml:space="preserve">

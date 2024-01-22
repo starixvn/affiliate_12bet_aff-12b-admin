@@ -14,56 +14,18 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         private const int MediaGallery = 2;
 
         [Theory]
-        [InlineData(true, true)]
-        [InlineData(false, false)]
-        public void GetCategoryList_WhenCall_QueryCategory(bool isMediaPage, bool isInternal)
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GetTargetProductList_WhenCall_QueryTargetCountry(bool isInternal)
         {
             const string uSpKey = "Aff_Admin_MediaCategory_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
             var key = uSpKey + dbMode;
-            var typeId = isMediaPage ? AffiliateLink : MediaGallery;
             var repo = CreateRepo();
             var db = Builder.Build(uSpKey, dbMode);
-            db.Query<CategoryType>().ReturnsForAnyArgs(new List<CategoryType> { new CategoryType() });
+            db.Query<TargetProduct>().ReturnsForAnyArgs(new List<TargetProduct> { new TargetProduct() });
 
-            var result = repo.GetCategoryList(isMediaPage, isInternal);
-
-            Assert.Equal(key, db.SettingKey);
-            db.Received().Query<CategoryType>(Arg.Compat.Is<object>(a => CheckPropertyValue(a, "TypeId", typeId)));
-            Assert.NotEmpty(result);
-        }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetCurrencyList_WhenCall_QueryCurrencyType(bool isInternal)
-        {
-            const string uSpKey = "Aff_Admin_MediaCurrency_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var key = uSpKey + dbMode;
-            var repo = CreateRepo();
-            var db = Builder.Build(uSpKey, dbMode);
-            db.Query<CurrencyType>().ReturnsForAnyArgs(new List<CurrencyType> { new CurrencyType() });
-
-            var result = repo.GetCurrencyList(isInternal);
-
-            Assert.Equal(key, db.SettingKey);
-            Assert.NotEmpty(result);
-        }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetBannerTypeList_WhenCall_QueryBannerType(bool isInternal)
-        {
-            const string uSpKey = "Aff_Admin_MediaType_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var key = uSpKey + dbMode;
-            var repo = CreateRepo();
-            var db = Builder.Build(uSpKey, dbMode);
-            db.Query<BannerType>().Returns(new List<BannerType> { new BannerType() });
-
-            var result = repo.GetBannerTypeList(isInternal);
+            var result = repo.GetTargetProductList(isInternal);
 
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result);
@@ -98,9 +60,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var key = uSpKey + dbMode;
             var repo = CreateRepo();
             var db = Builder.Build(uSpKey, dbMode);
-            db.Query<Domain>(Arg.Compat.Is<object>(o => CheckPropertyValue(o, "AffId", 1))).Returns(new List<Domain> { new Domain() });
+            db.Query<Domain>(Arg.Compat.Is<object>(o => CheckPropertyValue(o, "AffId", "123"))).Returns(new List<Domain> { new Domain() });
 
-            var result = repo.GetDomainList(1, isInternal);
+            var result = repo.GetDomainListByTargetCountry("123", isInternal);
 
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result);
@@ -118,7 +80,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var key = uSpKey + dbMode;
             var repo = CreateRepo();
             var db = Builder.Build(uSpKey, dbMode);
-            db.Query<MarketingItem>(param).Returns(new List<MarketingItem> { new MarketingItem() });
+            db.Query<Banner>(param).Returns(new List<Banner> { new Banner() });
 
             var result = repo.GetBannerList(param);
 
@@ -129,36 +91,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void GetTextList_WhenCall_QueryTextList(bool isInternal)
-        {
-            var param = new MarketingTextParam();
-            param.IsInternal = isInternal;
-            const string uSpKey = "Aff_Admin_Text_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var key = uSpKey + dbMode;
-            var repo = CreateRepo();
-            var db = Builder.Build(uSpKey, dbMode);
-            db.Query<MarketingItem>(param).Returns(new List<MarketingItem> { new MarketingItem() });
-
-            var result = repo.GetTextList(param);
-
-            Assert.Equal(key, db.SettingKey);
-            Assert.NotEmpty(result);
-        }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
         public void GetLandingPageList_WhenCall_QueryLandingPage(bool isInternal)
         {
-            const string SpKey = "Aff_Admin_LandingPage_Sel";
+            const string SpKey = "Aff_User_LandingPage_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
             var key = SpKey + dbMode;
             var repo = CreateRepo();
             var db = Builder.Build(SpKey, dbMode);
             db.Query<LandingPage>().Returns(new List<LandingPage> { new LandingPage() });
 
-            var result = repo.GetLandingPageList(isInternal);
+            var result = repo.GetLandingPageListByTargetCountry(string.Empty, isInternal);
 
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result);

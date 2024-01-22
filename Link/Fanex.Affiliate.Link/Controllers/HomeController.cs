@@ -19,6 +19,10 @@ namespace Fanex.Affiliate.Link.Controllers
     public class HomeController : Controller
     {
         private const string SIGN_UP_PAGE_CODE = "signup";
+        private const string MALAYSIA_COUNTRY_CODE = "MY";
+        private const string SPECIAL_PAGE_CODE = "12sports";
+        private readonly string[] SpecialSubPageCodes = new [] { "cricket", "virtualsports" };
+
         private readonly string[] SpecialAffIds;
         private readonly string[] MarketingForCommGroups;
         private readonly string[] MarketingLandingPages;
@@ -70,18 +74,43 @@ namespace Fanex.Affiliate.Link.Controllers
             if (isSpecialAff)
             {
                 var defaultLanguageStatistic = ConfigurationManager.AppSettings["DefaultLanguageStatistic"].ToString();
-                return InsertAffiliate(affId, pageCode, defaultLanguageStatistic, true);
+                return InsertAffiliate(affId, pageCode, defaultLanguageStatistic, MALAYSIA_COUNTRY_CODE, true, lang);
             }
 
-            return InsertAffiliate(affId, pageCode, lang);
+            var targetCountryCode = _affiliateService.GetTargetCountryCodeByLanguage(lang);
+
+            if (targetCountryCode is null)
+            {
+                return IvalidLink();
+            }
+
+            return InsertAffiliate(affId, pageCode, lang, targetCountryCode);
         }
 
-        public ActionResult NewLink(int affId, string pageCodePart1, string pageCodePart2, string lang)
+        public ActionResult CommonLink(int affId, string pageCode, string lang, string targetCountry)
         {
-            return InsertAffiliate(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
+            //Check "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}" case
+            if (IsMatching(pageCode, SPECIAL_PAGE_CODE) && SpecialSubPageCodes.Any(s => IsMatching(s, lang)))
+            {
+                return Link(affId, pageCode: $"{pageCode}/{lang}", lang: targetCountry);
+            }
+
+            var targetCountryCode = _affiliateService.GetTargetCountryCodeByLanguage(lang);
+
+            if (targetCountryCode is null || !IsMatching(targetCountry.ToUpperInvariant(), targetCountryCode))
+            {
+                return IvalidLink();
+            }
+
+            return InsertAffiliate(affId, pageCode, lang, targetCountry);
         }
 
-        private ActionResult InsertAffiliate(int affId, string pageCode, string lang, bool isSpecialAff = false, string replacedLang = null)
+        public ActionResult SpecialPageCodeLink(int affId, string pageCodePart1, string pageCodePart2, string lang, string targetCountry)
+        {
+            return InsertAffiliate(affId, $"{pageCodePart1}/{pageCodePart2}", lang, targetCountry);
+        }
+
+        private ActionResult InsertAffiliate(int affId, string pageCode, string lang, string targetCountry, bool isSpecialAff = false, string replacedLang = null)
         {
 
             if (Request.Url != null)
@@ -102,6 +131,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     AffiliateID = affId,
                     PageCode = pageCode,
                     LanguageCode = lang,
+                    TargetCountryCode = targetCountry.ToUpperInvariant(),
                     DeviceType = GetDeviceType(),
                     IP = Common.GetIPAddressOfClient(),
                     Browser = Request.Browser.Browser,
@@ -130,8 +160,8 @@ namespace Fanex.Affiliate.Link.Controllers
                         return Redirect(customRedirectUrl);
                     }
 
-                    var isMarketingLandingPage = MarketingLandingPages.Any(l => string.Equals(pageCode, l, StringComparison.OrdinalIgnoreCase));
-                    var isODIWorldCupLandingPage = ODIWorldCupLandingPages.Any(l => string.Equals(pageCode, l, StringComparison.OrdinalIgnoreCase));
+                    var isMarketingLandingPage = MarketingLandingPages.Any(l => IsMatching(l, pageCode));
+                    var isODIWorldCupLandingPage = ODIWorldCupLandingPages.Any(l => IsMatching(l, pageCode));
 
                     if (!(isMarketingLandingPage || isODIWorldCupLandingPage))
                     {
@@ -148,9 +178,14 @@ namespace Fanex.Affiliate.Link.Controllers
                         return Redirect(redirectUrl);
                     }
                 }
-
-                ViewBag.Result = "This link does not exists. Please contact administrator!";
             }
+
+            return IvalidLink();
+        }
+
+        private ActionResult IvalidLink()
+        {
+            ViewBag.Result = "This link does not exists. Please contact administrator!";
 
             return View("Link");
         }
@@ -177,29 +212,24 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private bool IsSpecialAffiliate(int affId, string pageCode)
         {  
-            return SpecialAffIds.Contains(affId.ToString()) && string.Equals(SIGN_UP_PAGE_CODE, pageCode, StringComparison.OrdinalIgnoreCase);
+            return SpecialAffIds.Contains(affId.ToString()) && IsMatching(SIGN_UP_PAGE_CODE, pageCode);
         }
 
         private bool IsValidODIWorldCupLink(string languageCode)
         {
-            if (!string.IsNullOrEmpty(languageCode) && SupportedODIWorldCupLanguages.Any(l => string.Equals(languageCode, l, StringComparison.OrdinalIgnoreCase)))
-            {
-                return true;
-            }
-
-            return false;
+            return !string.IsNullOrEmpty(languageCode) && SupportedODIWorldCupLanguages.Any(l => IsMatching(l, languageCode));
         }
         
         private bool IsValidAffMarketing(int affId)
         {
             var commGroup = _affiliateService.GetCommGroupByAffId(affId);
 
-            if (MarketingForCommGroups.Any(c => string.Equals(commGroup, c, StringComparison.OrdinalIgnoreCase)))
-            {
-                return true;
-            }
+            return MarketingForCommGroups.Any(c => IsMatching(c, commGroup));
+        }
 
-            return false;
+        private bool IsMatching(string value, string strToMatch)
+        {
+            return string.Equals(value, strToMatch, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

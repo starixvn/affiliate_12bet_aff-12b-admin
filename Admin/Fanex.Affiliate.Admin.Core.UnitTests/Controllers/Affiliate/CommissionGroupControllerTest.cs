@@ -24,13 +24,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product> { new Product { ProductId = 123, ProductName = "abc" } });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product> { new Product { ProductId = 123, ProductName = "abc" } });
 
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
             commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(new List<Deduction> { new Deduction { DeductionId = 12, DeductionName = "BankingFee", DeductedPercentage = 0.05m } });
 
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object, commGroupCommonService: commGroupCommonService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object, commGroupCommonService: commGroupCommonService.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -47,13 +47,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void FetchInitState_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product> { new Product { ProductId = 123, ProductName = "abc" } });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product> { new Product { ProductId = 123, ProductName = "abc" } });
 
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
             commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(new List<Deduction> { new Deduction { DeductionId = 12, DeductionName = "BankingFee", DeductedPercentage = 0.05m } });
 
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object, commGroupCommonService: commGroupCommonService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object, commGroupCommonService: commGroupCommonService.Object);
 
             // Action
             var viewResult = controller.FetchInitState() as JsonNetResult;
@@ -163,14 +163,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = CreateCommissionGroupSetting();
             param.GroupName = string.Empty;
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 3 },
                 new Product { ProductId = 4 }
             });
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.CreateCommissionGroup(param) as JsonNetResult;
@@ -186,14 +186,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = CreateCommissionGroupSetting();
             param.GroupName = "Create Commission Group When Call With Group Name More Than 100 Characters, Create Commission Group When Call With Group Name More Than 100 Characters";
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 3 },
                 new Product { ProductId = 4 }
             });
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.CreateCommissionGroup(param) as JsonNetResult;
@@ -211,15 +211,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var param = CreateCommissionGroupSetting();
             param.GroupName = "abc";
             param.PlatformFeeList = platformFeeList;
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 2 },
                 new Product { ProductId = 3 }
             });
 
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.CreateCommissionGroup(param) as JsonNetResult;
@@ -235,14 +235,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = CreateCommissionGroupSetting();
             param.GroupName = string.Empty;
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 2 },
                 new Product { ProductId = 3 }
             });
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.CreateCommissionGroup(param) as JsonNetResult;
@@ -257,8 +257,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         {
             // Arrange
             var param = CreateCommissionGroupSetting();
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 3 },
@@ -267,7 +267,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             var commissionGroupService = new Mock<ICommissionGroupService>();
             commissionGroupService.Setup(c => c.CreateCommissionGroup(It.IsAny<CreateUpdateCommissionGroupParam>())).Returns(new ResultInfo());
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object, commissionGroupService: commissionGroupService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object, commissionGroupService: commissionGroupService.Object);
 
             // Action
             var result = controller.CreateCommissionGroup(param) as JsonNetResult;
@@ -283,8 +283,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = CreateCommissionGroupSetting();
             param.Description = null;
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 3 },
@@ -293,7 +293,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             var commissionGroupService = new Mock<ICommissionGroupService>();
             commissionGroupService.Setup(c => c.CreateCommissionGroup(It.IsAny<CreateUpdateCommissionGroupParam>())).Returns(new ResultInfo());
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object, commissionGroupService: commissionGroupService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object, commissionGroupService: commissionGroupService.Object);
 
             // Action
             var result = controller.CreateCommissionGroup(param) as JsonNetResult;
@@ -342,15 +342,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = CreateUpdateCommissionGroupSetting();
             param.GroupName = string.Empty;
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 3 },
                 new Product { ProductId = 4 }
             });
 
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
@@ -367,15 +367,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var param = CreateUpdateCommissionGroupSetting();
             param.GroupName = "Update Commission Group When Call With Group Name More Than 100 Characters, Update Commission Group When Call With Group Name More Than 100 Characters";
 
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 3 },
                 new Product { ProductId = 4 }
             });
 
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
@@ -393,15 +393,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var param = CreateUpdateCommissionGroupSetting();
             param.GroupName = "abc";
             param.PlatformFeeList = platformFeeList;
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 2 },
                 new Product { ProductId = 3 }
             });
 
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
@@ -417,14 +417,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = CreateCommissionGroupSetting();
             param.GroupName = string.Empty;
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 2 },
                 new Product { ProductId = 3 }
             });
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object);
 
             // Action
             var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
@@ -439,8 +439,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         {
             // Arrange
             var param = CreateUpdateCommissionGroupSetting();
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 3 },
@@ -449,7 +449,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             var commissionGroupService = new Mock<ICommissionGroupService>();
             commissionGroupService.Setup(c => c.UpdateCommissionGroup(It.IsAny<CreateUpdateCommissionGroupParam>())).Returns(new ResultInfo());
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object, commissionGroupService: commissionGroupService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object, commissionGroupService: commissionGroupService.Object);
 
             // Action
             var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
@@ -465,8 +465,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = CreateUpdateCommissionGroupSetting();
             param.Description = null;
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 3 },
@@ -475,7 +475,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             var commissionGroupService = new Mock<ICommissionGroupService>();
             commissionGroupService.Setup(c => c.UpdateCommissionGroup(It.IsAny<CreateUpdateCommissionGroupParam>())).Returns(new ResultInfo());
-            var controller = CreateCommissionGroupController(commonSettingService: commonSettingService.Object, commissionGroupService: commissionGroupService.Object);
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object, commissionGroupService: commissionGroupService.Object);
 
             // Action
             var result = controller.UpdateCommissionGroup(param) as JsonNetResult;
@@ -523,13 +523,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         private static CommissionGroupController CreateCommissionGroupController(
             ISessionService sessionService = null,
             ICommissionGroupService commissionGroupService = null,
-            ICommonSettingService commonSettingService = null,
+            ISystemService systemServive = null,
             ICommGroupCommonService commGroupCommonService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeCommissionGroupService = commissionGroupService ?? Mock.Of<ICommissionGroupService>();
-            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakeCommonService = systemServive ?? Mock.Of<ISystemService>();
             var fakecommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();
             var controller = new CommissionGroupController(fakeSessionService, fakeCommissionGroupService, fakeCommonService, fakecommGroupCommonService);
 

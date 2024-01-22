@@ -63,6 +63,20 @@ export const getLandingPageDetail = (selectedLandingPageId) => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
+export const getTargetCountryListByUser = () => async () => {
+    const url = 'Portal/LandingPageList/GetTargetCountryListByUser';
+    const response = await post(url);
+
+    return response && response.status === 200 ? response.data : null;
+}
+
+export const getTargetCountryListByLandingPage = (param) => async () => {
+    const url = 'Portal/LandingPageList/GetTargetCountryListByLandingPage';
+    const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
+}
+
 export const insertLandingPage = (param) => async () => {
     const url = 'Portal/LandingPageList/InsertLandingPage';
     const response = await post(url, param);

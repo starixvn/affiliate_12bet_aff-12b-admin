@@ -1,10 +1,10 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { getPageList, getCountryList } from '../../../customer/user-panel/libs/service';
+import { getCountryList } from '../../../customer/user-panel/libs/service';
 import { setSelectedUserPanel, toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import * as types from '../actions/types';
 
-export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel, getPageList, getCountryList };
+export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel, getCountryList };
 
 export const setSelectedPageDetailFilter = (data) => {
     return {
@@ -32,6 +32,11 @@ export const setIsGroupByCountry = (data) => {
         type: types.SET_IS_GROUP_BY_COUNTRY,
         data
     }
+}
+
+export const getPageList = () => async () => {
+    const response = await post('Portal/UserPanel/LandingPageStatistics/GetPageList');
+    return response && response.status === 200 ? response.data : [];
 }
 
 export const fetchData = (param) => async () => {

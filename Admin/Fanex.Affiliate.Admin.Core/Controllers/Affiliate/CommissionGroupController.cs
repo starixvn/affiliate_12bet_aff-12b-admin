@@ -23,16 +23,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private readonly ICommissionGroupService _commissionGroupService;
 
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _systemService;
 
         public CommissionGroupController(
             ISessionService sessionService,
             ICommissionGroupService commissionService,
-            ICommonSettingService commonSettingService,
+            ISystemService systemService,
             ICommGroupCommonService commGroupCommonService) : base(sessionService)
         {
             _commissionGroupService = commissionService;
-            _commonSettingService = commonSettingService;
+            _systemService = systemService;
             _commGroupCommonService = commGroupCommonService;
         }
 
@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var viewModel = new CommissionGroupViewModel
             {
-                ProductList = _commonSettingService.GetProductList(),
+                ProductList = _systemService.GetProductList(),
                 DeductionList = _commGroupCommonService.GetDeductionList(),
             };
 
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var viewModel = new CommissionGroupViewModel
             {
-                ProductList = _commonSettingService.GetProductList(),
+                ProductList = _systemService.GetProductList(),
                 DeductionList = _commGroupCommonService.GetDeductionList(),
             };
 
@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
 
             var groupNameValidation = ValidateGroupName(commGroup.GroupName);
-            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_commonSettingService, commGroup.PlatformFeeList);
+            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_systemService, commGroup.PlatformFeeList);
 
             if (groupNameValidation.IsSuccessful && platformFeeValidation.IsSuccessful)
             {
@@ -160,7 +160,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
 
             var groupNameValidation = ValidateGroupName(commGroup.GroupName);
-            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_commonSettingService, commGroup.PlatformFeeList);
+            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_systemService, commGroup.PlatformFeeList);
 
             if (groupNameValidation.IsSuccessful && platformFeeValidation.IsSuccessful)
             {

@@ -6,35 +6,24 @@ import AppContainer from './components/AppContainer';
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 import ClaimPrincipal from '../../../modules/claim';
-import { rearrangeCurrencyAndSizeItems } from './libs/utils';
+import { rearrangeItems } from './libs/utils';
 
 export default class App extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        const { categoryList, subCategoryList, languageList, currencyList, imageTypeList, sizeList, affTypeList,
-            paramFromHome, subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl, today } = window.initialState;
+        const { targetProductList, languageList, sizeList, affTypeList,
+            paramFromHome, bannerRootUrl, today } = window.initialState;
 
-        const newCategoryList = categoryList.map(item => {
+        const newTargetProductList = targetProductList.map(item => {
             return {
-                categoryName: item.CategoryName,
-                key: item.CategoryName,
-                name: item.CategoryName,
+                key: item.TargetProductId,
+                name: item.TargetProductName,
                 checked: false
             };
         });
 
-        const newSubCategoryList = subCategoryList.map(item => {
-            return {
-                key: item.SubCategoryName,
-                name: item.SubCategoryName,
-                parentCategoryName: item.CategoryName,
-                checked: false
-            };
-        });
-
-        const newSizeList = rearrangeCurrencyAndSizeItems(sizeList);
-        const newCurrencyList = rearrangeCurrencyAndSizeItems(currencyList);
+        const newSizeList = rearrangeItems(sizeList);
 
         const newAffTypeList = affTypeList.map(item => {
             return {
@@ -46,9 +35,8 @@ export default class App extends React.PureComponent {
 
         const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
         this.store = configureStore({
-            languageList, paramFromHome, categoryList: newCategoryList, subCategoryList: newSubCategoryList,
-            currencyList: newCurrencyList, imageTypeList, sizeList: newSizeList, affTypeList: newAffTypeList,
-            subCategoryCasinoList, subCategorySportsbookList, bannerRootUrl, claimsPrincipal, today
+            languageList, paramFromHome, targetProductList: newTargetProductList, sizeList: newSizeList, affTypeList: newAffTypeList,
+            bannerRootUrl, claimsPrincipal, today
         }, reducer);
     }
 

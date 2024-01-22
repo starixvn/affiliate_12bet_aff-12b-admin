@@ -22,10 +22,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
-            commonSettingService.Setup(s => s.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
-            var controller = CreateReportController(commonSettingService: commonSettingService.Object);
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
+            systemServive.Setup(s => s.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var controller = CreateReportController(systemServive: systemServive.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -43,10 +43,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Arrange
             var affiliateReportService = new Mock<IAffiliateReportService>();
             affiliateReportService.Setup(s => s.GetMainReportData(It.IsAny<AffiliateReportMainParam>())).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 });
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
-            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, commonSettingService: commonSettingService.Object);
+            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, systemServive: systemServive.Object);
 
             // Action
             var result = controller.GetMainData(new GetReportMainDataViewModel { UserName = "test"}) as JsonNetResult;
@@ -62,10 +62,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             // Arrange
             var affiliateReportService = new Mock<IAffiliateReportService>();
             affiliateReportService.Setup(s => s.GetDetailReportData(It.IsAny<AffiliateReportMainParam>())).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 });
-            var commonSettingService = new Mock<ICommonSettingService>();
-            commonSettingService.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
 
-            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, commonSettingService: commonSettingService.Object);
+            var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, systemServive: systemServive.Object);
 
             // Action
             var result = controller.GetDetailData(new GetReportMainDataViewModel()) as JsonNetResult;
@@ -96,12 +96,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
         private ReportController CreateReportController(
             ISessionService sessionService = null,
-            ICommonSettingService commonSettingService = null,
+            ISystemService systemServive = null,
             IAffiliateReportService affiliateReportService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeCommonService = commonSettingService ?? Mock.Of<ICommonSettingService>();
+            var fakeCommonService = systemServive ?? Mock.Of<ISystemService>();
             var fakeAffiliateReportService = affiliateReportService ?? Mock.Of<IAffiliateReportService>();
 
             return new ReportController(fakeSessionService, fakeCommonService, fakeAffiliateReportService);

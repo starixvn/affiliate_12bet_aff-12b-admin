@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using System.Collections.Generic;
@@ -7,11 +8,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public interface IDomainService
     {
-        IEnumerable<Market> GetMarketList(MarketParam param);
+        IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param);
 
-        IEnumerable<Market> GetVisibleMarketsByUser(int userId);
-
-        IEnumerable<Market> GetVisibleMarketsNotUsingByUser(int userId);
+        IEnumerable<TargetCountry> GetVisibleTargetCountryListNotUsing(TargetCountryParam param);
 
         DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true);
 

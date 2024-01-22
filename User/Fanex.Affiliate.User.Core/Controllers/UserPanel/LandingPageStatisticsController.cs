@@ -14,16 +14,14 @@
     public class LandingPageStatisticsController : BaseController
     {
         private readonly IStatisticsService _statisticsService;
-        private readonly IMarketingService _marketingService;
 
-        public LandingPageStatisticsController(ISessionService sessionService,
-            ILanguageService languageService,
-            IStatisticsService statisticsService,
-            IMarketingService marketingService
-            ) : base(sessionService, languageService)
+        public LandingPageStatisticsController(
+            ISessionService sessionService,
+            ISystemService systemService,
+            IStatisticsService statisticsService
+            ) : base(sessionService, systemService)
         {
             _statisticsService = statisticsService;
-            _marketingService = marketingService;
         }
 
 
@@ -47,8 +45,8 @@
 
             var viewModel = new LandingPageStatisticsViewModel
             {
-                LanguageList = MarketingHelper.GetLanguageList(_marketingService.GetLanguageList(), userSession.PreferredLanguage),
-                MemberSitePageList = _marketingService.GetLandingPageList(userSession.GroupName, isInternal),
+                LanguageList = SystemHelper.GetLanguageList(SystemService.GetSystemLanguages(), userSession.PreferredLanguage),
+                MemberSitePageList = _statisticsService.GetLandingPageList(userSession.GroupName, isInternal),
                 CountryList = _statisticsService.GetCountryList(isInternal),
                 ReportBy = Statistics.ReportByCountry,
                 FromDate = landingPageParam.FromDate,

@@ -166,10 +166,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private static MemberController CreateController(
             IMemberRepository memberRepository,
             ISessionService sessionService = null,
-            ILanguageService languageService = null)
+            ISystemService languageService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
-            languageService = languageService ?? Mock.Of<ILanguageService>();
+            languageService = languageService ?? Mock.Of<ISystemService>();
 
             return new MemberController(sessionService, languageService, memberRepository);
         }

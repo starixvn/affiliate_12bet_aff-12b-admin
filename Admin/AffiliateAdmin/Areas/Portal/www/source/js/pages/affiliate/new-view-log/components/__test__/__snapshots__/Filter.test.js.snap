@@ -43,7 +43,6 @@ exports[`new view log - components - Filter render correctly 1`] = `
     >
       <Label
         className="mr-sm-2"
-        for="logActionIds"
         tag="label"
         widths={
           Array [
@@ -57,19 +56,24 @@ exports[`new view log - components - Filter render correctly 1`] = `
       >
         Action
       </Label>
-      <Input
-        id="logActionIds"
-        name="logActionIds"
+      <Select
+        dataSource={
+          Array [
+            Object {
+              "ActionIds": "",
+              "ActionName": "All",
+            },
+          ]
+        }
+        hasInputOption={true}
+        id="log-action"
+        isDisable={false}
+        key=""
+        keyField="ActionIds"
         onChange={[Function]}
-        type="select"
-        value=""
-      >
-        <option
-          value=""
-        >
-          All
-        </option>
-      </Input>
+        selectedKey=""
+        valueField="ActionName"
+      />
     </FormGroup>
     <FormGroup
       className="mr-sm-2 my-2"
@@ -168,7 +172,6 @@ exports[`new view log - components - Filter render correctly with detail 1`] = `
     >
       <Label
         className="mr-sm-2"
-        for="logActionIds"
         tag="label"
         widths={
           Array [
@@ -182,25 +185,28 @@ exports[`new view log - components - Filter render correctly with detail 1`] = `
       >
         Action
       </Label>
-      <Input
-        id="logActionIds"
-        name="logActionIds"
+      <Select
+        dataSource={
+          Array [
+            Object {
+              "ActionIds": "",
+              "ActionName": "All",
+            },
+            Object {
+              "ActionIds": "123",
+              "ActionName": "Test",
+            },
+          ]
+        }
+        hasInputOption={true}
+        id="log-action"
+        isDisable={false}
+        key=""
+        keyField="ActionIds"
         onChange={[Function]}
-        type="select"
-        value=""
-      >
-        <option
-          value=""
-        >
-          All
-        </option>
-        <option
-          key="logAction-123"
-          value="123"
-        >
-          Test
-        </option>
-      </Input>
+        selectedKey=""
+        valueField="ActionName"
+      />
     </FormGroup>
     <FormGroup
       className="mr-sm-2 my-2"

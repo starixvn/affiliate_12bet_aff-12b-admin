@@ -170,10 +170,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private static DailyEarningController CreateController(
              IStatementHistoryRepository statementHistoryRepository = null,
              ISessionService sessionService = null,
-             ILanguageService languageService = null)
+             ISystemService languageService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
             var fakeStatementHistoryRepository = statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>();
             var controller = new DailyEarningController(fakeSessionService, fakeLanguageService, fakeStatementHistoryRepository);
 

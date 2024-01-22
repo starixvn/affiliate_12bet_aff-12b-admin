@@ -12,21 +12,21 @@ export default class App extends React.PureComponent {
 
     _getRenderMenuItems = () => {
         const claims = ClaimPrincipal.currentClaimPrincipal;
-        const renderMenuLst = menus.filter((menu) => menu.renderClaim === undefined || claims.hasClaim(menu.renderClaim));
-        return renderMenuLst;
+        const renderMenuList = menus.filter((menu) => menu.renderClaim === undefined || claims.hasClaim(menu.renderClaim));
+        return renderMenuList;
     }
 
     render() {
-        var renderMenuLst = this._getRenderMenuItems();
+        var renderMenuList = this._getRenderMenuItems();
         const imgSrc = 'Areas/Portal/www/dist/imgs/i_affiliateslist.png';
-        const firstMenu = renderMenuLst[0];
+        const firstMenu = renderMenuList[0];
         return (
             <Router forceRefresh>
                 <MenuList img={imgSrc}
-                    menus={renderMenuLst.map((menu) => { return { label: menu.label, href: menu.href } })} />
+                    menus={renderMenuList.map((menu) => { return { label: menu.label, href: menu.href } })} />
                 <Suspense fallback={null}>
                     <Switch>
-                        {renderMenuLst.map((menu, index) => <Route key={`route_${index}`} path={menu.href} component={menu.component} />)}
+                        {renderMenuList.map((menu, index) => <Route key={`route_${index}`} path={menu.href} component={menu.component} />)}
                         {firstMenu && <Redirect from="/" to={firstMenu.href} />}
                     </Switch>
                 </Suspense>

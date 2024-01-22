@@ -8,7 +8,7 @@
     {
 
         public CommissionStructureController(ISessionService sessionService,
-            ILanguageService languageService) : base(sessionService, languageService)
+            ISystemService languageService) : base(sessionService, languageService)
         {
         }
 

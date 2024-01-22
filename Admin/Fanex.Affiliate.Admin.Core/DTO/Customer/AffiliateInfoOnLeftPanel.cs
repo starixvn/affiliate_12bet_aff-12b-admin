@@ -53,8 +53,14 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public int AffType { get; set; }
 
+        [PermissionCheck(Function.AffTargetCountry)]
+        public string TargetCountryName { get; set; }
+
         [PermissionCheck(Function.LanguageAmendment)]
         public string PreferredLanguage { get; set; }
+
+        [PermissionCheck(Function.LanguageAmendment)]
+        public string PreferredLanguageName { get; set; }
 
         [PermissionCheck(Function.AffPhone)]
         [CensoredPermissionCheck(Function.AffPersonalInfo)]

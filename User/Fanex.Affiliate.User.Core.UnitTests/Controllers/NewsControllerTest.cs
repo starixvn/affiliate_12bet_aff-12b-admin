@@ -270,10 +270,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(Constant.DefaultLanguage, passedParam.Language);
         }
 
-        private static NewsController CreateController(INewsService newsService, ISessionService sessionService = null, ILanguageService languageService = null)
+        private static NewsController CreateController(INewsService newsService, ISessionService sessionService = null, ISystemService languageService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
-            languageService = languageService ?? new Mock<ILanguageService>().Object;
+            languageService = languageService ?? new Mock<ISystemService>().Object;
 
             return new NewsController(sessionService, languageService, newsService);
         }

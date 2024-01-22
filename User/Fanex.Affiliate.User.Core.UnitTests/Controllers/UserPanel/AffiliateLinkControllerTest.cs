@@ -1,12 +1,15 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Controllers.UserPanel;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
+using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
 using NSubstitute;
-using System.Collections.Generic;
+using System;
+using System.Drawing;
+using System.IO;
 using System.Web.Mvc;
 using Xunit;
 
@@ -14,42 +17,92 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
     public class AffiliateLinkControllerTest
     {
+        private readonly ISessionService _sessionService;
+        private readonly IAppSetting _appSetting;
+        private readonly ISystemService _languageService;
+        private readonly IMarketingService _marketingService;
+        private readonly IQrCodeGeneratorService _qrCodeService;
+
+        private const string BASE64_IMAGE = "base64Image";
+
+        private static Image Image => Image.FromStream(new MemoryStream(Convert.FromBase64String(Constant.LogoImageBase64)));
+
+        public AffiliateLinkControllerTest()
+        {
+            _sessionService = NSubtituteMockingHelper.FakeSessionService();
+            _appSetting = Substitute.For<IAppSetting>();
+            _languageService = NSubtituteMockingHelper.FakeLanguageService();
+            _marketingService = NSubtituteMockingHelper.FakeMarkengtingService();
+            _qrCodeService = Substitute.For<IQrCodeGeneratorService>();
+        }
+
         [Fact]
         public void Index_WhenCall_ReturnCorrectView()
         {
-            var sessionService = Substitute.For<ISessionService>();
-            var appSetting = Substitute.For<IAppSetting>();
-            var languageService = Substitute.For<ILanguageService>();
-            var marketingService = NSubtituteMockingHelper.FakeMarkengtingService();
-            var controller = new AffiliateLinkController(sessionService, appSetting, languageService, marketingService);
+            using (var image = Image)
+            {
+                _qrCodeService.GetImage(Arg.Compat.Any<string>()).Returns(image);
+                _qrCodeService.GenerateBase64QrCode(Arg.Compat.Any<string>(), Arg.Compat.Any<Image>(), Arg.Compat.Any<bool>())
+                    .Returns(BASE64_IMAGE);
 
-            sessionService.UserSession.Returns(Constant.Session);
-            var result = controller.Index() as ViewResult;
+                var controller = CreateAffiliateLinkController();
+                var result = controller.Index() as ViewResult;
+                var model = result.Model as AffiliateLinkViewModel;
 
-            Assert.Contains("AffiliateLink/Index.cshtml", result.ViewName);
+                Assert.Contains("~/Views/UserPanel/AccountOverview/AffiliateLink/Index.cshtml", result.ViewName);
+                Assert.Equal(Constant.LinkList.Count, model.QrCodeList.Count);
+            }
         }
 
         [Fact]
         public void Index_WhenCallWithDomainEmpty_ReturnCorrectView()
         {
-            var sessionService = Substitute.For<ISessionService>();
-            var appSetting = Substitute.For<IAppSetting>();
-            var languageService = Substitute.For<ILanguageService>();
-            var marketingService = Substitute.For<IMarketingService>();
-            marketingService.GetTextList(Arg.Compat.Any<MarketingTextParam>()).Returns(new List<MarketingItem>
+            using (var image = Image)
             {
-                new MarketingItem { BannerId = 1, TextId = 1 }
-            });
-            marketingService.GetCategoryList(Arg.Compat.Any<bool>(), Arg.Compat.Any<bool>()).Returns(Constant.CategoryList);
-            marketingService.GetLanguageList().Returns(Constant.LanguageList);
-            marketingService.GetCurrencyList(Arg.Compat.Any<bool>()).Returns(Constant.CurrencyType);
-            marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
-            var controller = new AffiliateLinkController(sessionService, appSetting, languageService, marketingService);
+                var marketingService = Substitute.For<IMarketingService>();
 
-            sessionService.UserSession.Returns(Constant.Session);
-            var result = controller.Index() as ViewResult;
+                marketingService.GetTargetProductList(Arg.Compat.Any<bool>()).Returns(Constant.TargetProductList);
+                marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
 
-            Assert.Contains("AffiliateLink/Index.cshtml", result.ViewName);
+                _qrCodeService.GetImage(Arg.Compat.Any<string>()).Returns(image);
+                _qrCodeService.GenerateBase64QrCode(Arg.Compat.Any<string>(), Arg.Compat.Any<Image>(), Arg.Compat.Any<bool>())
+                    .Returns(BASE64_IMAGE);
+
+                var controller = CreateAffiliateLinkController();
+                var result = controller.Index() as ViewResult;
+                var model = result.Model as AffiliateLinkViewModel;
+
+                Assert.Contains("~/Views/UserPanel/AccountOverview/AffiliateLink/Index.cshtml", result.ViewName);
+                Assert.Empty(model.QrCodeList);
+            }
+        }
+
+        [Theory]
+        [InlineData(default(string), default(string), 123)]
+        [InlineData("EN", "en-US", 123)]
+        [InlineData("", "", null)]
+        public void GenerateLink_WhenCall_ReturnCorrectView(string selectedCountry, string selectedLanguage, int? selectedDomainId)
+        {
+            using (var image = Image)
+            {
+                _qrCodeService.GetImage(Arg.Compat.Any<string>()).Returns(image);
+                _qrCodeService.GenerateBase64QrCode(Arg.Compat.Any<string>(), Arg.Compat.Any<Image>(), Arg.Compat.Any<bool>())
+                    .Returns(BASE64_IMAGE);
+
+                var controller = CreateAffiliateLinkController();
+                var result = controller.GenerateLink(selectedCountry, selectedLanguage, DefaultValue.String, selectedDomainId) as ViewResult;
+
+                Assert.Equal("~/Views/UserPanel/AccountOverview/Partial/_QrCodeLinkList.cshtml", result.ViewName);
+            }
+        }
+
+        private AffiliateLinkController CreateAffiliateLinkController()
+        {
+            var controller = new AffiliateLinkController(_sessionService, _appSetting, _languageService, _marketingService, _qrCodeService);
+            controller = NSubtituteMockingHelper.FakeController(controller) as AffiliateLinkController;
+            controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
+
+            return controller;
         }
     }
 }

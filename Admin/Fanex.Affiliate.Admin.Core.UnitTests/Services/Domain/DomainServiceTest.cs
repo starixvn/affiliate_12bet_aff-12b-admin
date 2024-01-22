@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Domain;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
@@ -18,45 +18,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         }
 
         [Fact]
-        public void GetMarketList_WhenCall_Excute()
+        public void GetTargetCountryList_WhenCall_Excute()
         {
             // Arrange
-            var param = new MarketParam();
+            var param = new TargetCountryParam();
             var service = CreateDomainService;
 
             // Action
-            service.GetMarketList(param);
+            service.GetTargetCountryList(param);
 
             // Assert
-            domainRepository.Received().GetMarketList(param);
-        }
-
-        [Fact]
-        public void GetVisibleMarketsByUser_WhenCall_Excute()
-        {
-            // Arrange
-            var service = CreateDomainService;
-
-            // Action
-            service.GetVisibleMarketsByUser(123);
-
-            // Assert
-            domainRepository.Received().GetMarketList(Arg.Any<MarketParam>());
-        }
-
-        [Fact]
-        public void GetVisibleMarketsNotUsingByUser_WhenCall_Excute()
-        {
-            // Arrange
-            domainRepository.GetMarketList(Arg.Any<MarketParam>()).Returns(new List<Market> { new Market { Status = 1 } });
-            var service = CreateDomainService;
-
-            // Action
-            var result = service.GetVisibleMarketsNotUsingByUser(123);
-
-            // Assert
-            Assert.Single(result);
-            domainRepository.Received().GetMarketList(Arg.Any<MarketParam>());
+            domainRepository.Received().GetTargetCountryList(param);
         }
 
         [Fact]

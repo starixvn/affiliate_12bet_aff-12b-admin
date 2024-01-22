@@ -13,12 +13,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private readonly IAppSetting _appSetting;
         private readonly IMailProcessor _mailProcessor;
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _languageService;
 
         public EmailService(
             IAppSetting appSetting,
             IMailProcessor mailProcessor,
-            ILanguageService languageService)
+            ISystemService languageService)
         {
             _appSetting = appSetting;
             _mailProcessor = mailProcessor;

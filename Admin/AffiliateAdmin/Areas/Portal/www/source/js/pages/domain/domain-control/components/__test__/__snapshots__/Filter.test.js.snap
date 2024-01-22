@@ -14,7 +14,7 @@ exports[`domain control - components - Filter  render correctly 1`] = `
     >
       <Label
         className="mr-sm-2"
-        for="market"
+        for="targetCountryCode"
         tag="label"
         widths={
           Array [
@@ -26,25 +26,25 @@ exports[`domain control - components - Filter  render correctly 1`] = `
           ]
         }
       >
-        Market
+        Target Country
       </Label>
       <Input
-        name="market"
+        id="targetCountryCode"
         onChange={[Function]}
         type="select"
         value=""
       >
         <option
-          key="market-all"
+          key="target-country-all"
           value=""
         >
           All
         </option>
         <option
-          key="market-undefined"
+          key="target-country-undefined"
         />
         <option
-          key="market-undefined"
+          key="target-country-undefined"
         />
       </Input>
     </FormGroup>

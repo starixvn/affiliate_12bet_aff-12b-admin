@@ -1,12 +1,11 @@
 ﻿@using Fanex.Affiliate.User.Core.CoreService
-@using Fanex.Affiliate.User.Core.Constants
 @using Fanex.Affiliate.User.Core.BusinessService
 @{
     ViewBag.Title = Lang.SignUp;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var languageService = DependencyResolver.Current.GetService<ILanguageService>();
+    var systemService = DependencyResolver.Current.GetService<ISystemService>();
     var currentLanguage = sessionService.CurrentLanguage;
 }
 
@@ -240,13 +239,29 @@
                 </div>
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label require">@Lang.Language</label>
+                        <label class="col-sm-3 control-label require">@Lang.TargetCountry</label>
                         <div class="col-sm-4">
-                            <select class="form-control" name="PreferredLanguage" id="PreferredLanguage" data-val="true" data-val-required="@Lang.PreferLangErr">
+                            <select class="form-control" name="TargetCountryCode" id="TargetCountryCode" data-val="true" data-val-required="@Lang.TargetCountryErr">
                                 <option value="">@Lang.SelectOne</option>
-                                @foreach (var item in languageService.GetSystemLanguages(false))
+                                @foreach (var item in systemService.GetSystemTargetCountries())
                                 {
-                                    <option value="@item.MarketId">@item.MarketNativeName</option>
+                                    <option value="@item.TargetCountryCode" data-language="@item.DefaultLanguageCode">@item.TargetCountryName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            @Html.ValidationMessageFor(x => x.TargetCountryCode, string.Empty, new { @class = "help-block hide" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.AffCountLanguage</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="PreferredLanguage" id="PreferredLanguage" data-val="true" data-val-required="@Lang.AffAccountLanguageErr">
+                                <option value="">@Lang.SelectOne</option>
+                                @foreach (var item in systemService.GetSystemTargetLanguages())
+                                {
+                                    <option value="@item.LanguageCode">@item.NativeLanguage</option>
                                 }
                             </select>
                         </div>

@@ -258,6 +258,7 @@
     <Compile Include="Constants\Menu.cs" />
     <Compile Include="Constants\NoteType.cs" />
     <Compile Include="Constants\ProcessingRequestStatus.cs" />
+    <Compile Include="Enum\TargetCountryStatus.cs" />
     <Compile Include="Constants\TransType.cs" />
     <Compile Include="Controllers\Affiliate\FeedbackReportController.cs" />
     <Compile Include="Controllers\Affiliate\MassAdjustmentController.cs" />
@@ -271,7 +272,7 @@
     <Compile Include="Controllers\UserPanel\MarketingNoteController.cs" />
     <Compile Include="Controllers\UserPanel\NoteBaseController.cs" />
     <Compile Include="DTO\CommissionGroup\FdmSetting.cs" />
-    <Compile Include="DTO\Domain\Market.cs" />
+    <Compile Include="DTO\Common\TargetCountry.cs" />
     <Compile Include="DTO\FeedbackReport\FeedbackReportInfo.cs" />
     <Compile Include="DTO\FeedbackReport\RateInfo.cs" />
     <Compile Include="DTO\MassAdjustment\AdjustmentResultInfo.cs" />
@@ -293,8 +294,10 @@
     <Compile Include="DTO\Common\Country.cs" />
     <Compile Include="DTO\UserPanel\LogAction.cs" />
     <Compile Include="Enum\ProcessingRequestStatus.cs" />
+    <Compile Include="Extensions\GenericExtension.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
-    <Compile Include="MetaModels\Domain\MarketParam.cs" />
+    <Compile Include="MetaModels\Domain\TargetCountryParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\ExcludedTargetCountryParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainParam.cs" />
     <Compile Include="MetaModels\FeedbackReport\FeedbackReportParam.cs" />
@@ -318,7 +321,7 @@
     <Compile Include="MetaModels\ProcessingRequest\ProcessingRequestUpdParam.cs" />
     <Compile Include="Repository\Affiliate\IMassAdjustmentRepository.cs" />
     <Compile Include="Repository\Affiliate\MassAdjustmentRepository.cs" />
-    <Compile Include="Repository\ICommonSettingRepository.cs" />
+    <Compile Include="Repository\Common\ISystemRepository.cs" />
     <Compile Include="Repository\Domain\DomainControlRepository.cs" />
     <Compile Include="Repository\Domain\DomainRepository.cs" />
     <Compile Include="Repository\Domain\IDomainControlRepository.cs" />
@@ -331,7 +334,7 @@
     <Compile Include="Repository\MediaGallery\NewsLetterRepository.cs" />
     <Compile Include="Repository\ProcessingRequest\IProcessingRequestRepository.cs" />
     <Compile Include="Repository\ProcessingRequest\ProcessingRequestRepository.cs" />
-    <Compile Include="Repository\CommonSettingRepository.cs" />
+    <Compile Include="Repository\Common\SystemRepository.cs" />
     <Compile Include="Services\FeedbackReport\FeedbackReportService.cs" />
     <Compile Include="Services\FeedbackReport\IFeedbackReportService.cs" />
     <Compile Include="Services\MassAdjustment\IMassAdjustmentService.cs" />
@@ -351,7 +354,7 @@
     <Compile Include="Services\ProcessingRequest\IProcessingRequestService.cs" />
     <Compile Include="Services\ProcessingRequest\ProcessingRequestService.cs" />
     <Compile Include="Utilities\DateTimeHelper.cs" />
-    <Compile Include="Utilities\Domain\MarketHelper.cs" />
+    <Compile Include="Utilities\SystemHelper.cs" />
     <Compile Include="Utilities\IDateTimeHelper.cs" />
     <Compile Include="Utilities\MassAdjustment\MassAdjustmentHelper.cs" />
     <Compile Include="Utilities\Result.cs" />
@@ -386,13 +389,11 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MediaGallery\LandingPageListController.cs" />
     <Compile Include="Controllers\MediaGallery\MediaGalleryController.cs" />
-    <Compile Include="Controllers\MediaGallery\TextListController.cs" />
     <Compile Include="Controllers\Member\ActiveMemberController.cs" />
     <Compile Include="Controllers\Member\MemberController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\Affiliate\PaymentRequestController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\AdjustmentController.cs" />
     <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
@@ -437,7 +438,7 @@
     <Compile Include="DTO\EntityResult.cs" />
     <Compile Include="DTO\ExchangeRate\ExchangeRateInfo.cs" />
     <Compile Include="DTO\Common\Language.cs" />
-    <Compile Include="DTO\MediaGallery\Category.cs" />
+    <Compile Include="DTO\MediaGallery\TargetProduct.cs" />
     <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
     <Compile Include="DTO\Member\ActiveMemberInfo.cs" />
     <Compile Include="DTO\Member\AllMemberEntities.cs" />
@@ -463,11 +464,8 @@
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteBannerParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\DeleteTextParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateMultipleBannersParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\InsertUpdateTextParam.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
-    <Compile Include="DTO\MediaGallery\TextInfo.cs" />
     <Compile Include="DTO\Message\MessageDetail.cs" />
     <Compile Include="DTO\Message\MessageInfo.cs" />
     <Compile Include="DTO\Payment\PaymentRequest.cs" />
@@ -516,7 +514,6 @@
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\SizeParam.cs" />
-    <Compile Include="MetaModels\MediaGallery\TextParam.cs" />
     <Compile Include="MetaModels\Member\ActiveMemberParam.cs" />
     <Compile Include="MetaModels\Member\UpdateMemberStatusParam.cs" />
     <Compile Include="MetaModels\Member\MemberParam.cs" />
@@ -555,8 +552,8 @@
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
-    <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
-    <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
+    <Compile Include="Repository\MediaGallery\BannerRepository.cs" />
+    <Compile Include="Repository\MediaGallery\IBannerRepository.cs" />
     <Compile Include="Repository\Member\ActiveMemberRepository.cs" />
     <Compile Include="Repository\Member\IActiveMemberRepository.cs" />
     <Compile Include="Repository\Member\IMemberRepository.cs" />
@@ -656,19 +653,15 @@
     <Compile Include="Services\IAuthService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
     <Compile Include="Services\IEmailService.cs" />
-    <Compile Include="Services\Common\ICommonSettingService.cs" />
+    <Compile Include="Services\Common\ISystemService.cs" />
     <Compile Include="Services\ISignInService.cs" />
-    <Compile Include="Services\Common\CommonSettingService.cs" />
-    <Compile Include="Services\MediaGallery\BannerListService.cs" />
+    <Compile Include="Services\Common\SystemService.cs" />
+    <Compile Include="Services\MediaGallery\BannerService.cs" />
     <Compile Include="Services\MediaGallery\BannerValidationService.cs" />
-    <Compile Include="Services\MediaGallery\CommonMediaGalleryService.cs" />
-    <Compile Include="Services\MediaGallery\IBannerListService.cs" />
+    <Compile Include="Services\MediaGallery\IBannerService.cs" />
     <Compile Include="Services\MediaGallery\IBannerValidationService.cs" />
-    <Compile Include="Services\MediaGallery\ICommonMediaGalleryService.cs" />
     <Compile Include="Services\MediaGallery\ILandingPageService.cs" />
-    <Compile Include="Services\MediaGallery\ITextListService.cs" />
     <Compile Include="Services\MediaGallery\LandingPageService.cs" />
-    <Compile Include="Services\MediaGallery\TextListService.cs" />
     <Compile Include="Services\Member\ActiveMemberService.cs" />
     <Compile Include="Services\Member\IActiveMemberService.cs" />
     <Compile Include="Services\Member\IMemberService.cs" />
@@ -701,7 +694,6 @@
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\ISystemFile.cs" />
-    <Compile Include="Utilities\LanguageHelper.cs" />
     <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
@@ -717,7 +709,6 @@
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\GetReportMainDataViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\GetBannerViewModel.cs" />
-    <Compile Include="ViewModels\MediaGallery\GetTextLinkViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\ImageSizeViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
     <Compile Include="ViewModels\Domain\DomainViewModel.cs" />
@@ -725,7 +716,6 @@
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\BannerListViewModel.cs" />
     <Compile Include="ViewModels\MediaGallery\NewsLetterViewModel.cs" />
-    <Compile Include="ViewModels\MediaGallery\TextListViewModel.cs" />
     <Compile Include="ViewModels\Member\MemberListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

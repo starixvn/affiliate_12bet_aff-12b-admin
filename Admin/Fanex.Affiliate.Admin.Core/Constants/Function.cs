@@ -72,6 +72,8 @@
 
         public const string AffPhone = "[AffPhone]";
 
+        public const string AffTargetCountry = "[TargetCountry]";
+
         public const string AffPaymentInfo = "[AffPaymentInfo]";
 
         public const string AffWebUrl = "[AffWebURL]";

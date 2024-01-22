@@ -7,13 +7,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 {
     public class DomainControlRepository : BaseRepository, IDomainControlRepository
     {
-        public IEnumerable<DomainControlInfo> GetDomainControlList(string marketIds)
+        public IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryCodes)
         {
             const string SpKey = "Aff_Admin_DomainControl_Sel";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                return objectDb.Query<DomainControlInfo>(new { marketIds });
+                return objectDb.Query<DomainControlInfo>(new { targetCountryCodes });
             }
         }
 

@@ -27,7 +27,7 @@
             IAppSetting appSetting,
             IAccountRepository accountRepository,
             ICryptographyService cryptographyService,
-            ILanguageService languageService,
+            ISystemService languageService,
             IEmailService mailService)
             : base(sessionService, languageService)
         {
@@ -147,7 +147,7 @@
 
             if (isSuccessful)
             {
-                result.IsOk = true; 
+                result.IsOk = true;
                 result.Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.ForAnyReason.Replace("{0}", Url.Content("~/ContactUs"))}";
             }
 

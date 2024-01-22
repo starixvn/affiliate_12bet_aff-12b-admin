@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { setParam, setParamFromHome, getSizeList } from '../actions';
-import { headerText, globalResource, deviceTypes, pcLaptop, Asian, Casino, Sportsbook } from '../libs/constants';
+import { headerText, globalResource, Asian, selectedAllProduct } from '../libs/constants';
 import { handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
 
 const minDate = '7/1/2022';
@@ -14,19 +14,15 @@ export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { paramFromHome, today } = this.props;
+        const { today } = this.props;
         const now = new Date(today);
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
         this.state = {
-            category: '',
-            subCategory: '',
+            targetProductId: selectedAllProduct,
             language: '',
-            currency: '',
-            imageType: paramFromHome && paramFromHome.ImageType ? paramFromHome.ImageType : '',
             affType: Asian,
-            deviceType: deviceTypes[pcLaptop],
             fromDate: `${now.getMonth() + 1}/${1}/${now.getFullYear()}`,
             toDate: this.nowString,
             size: ''
@@ -40,15 +36,6 @@ export class Filter extends PureComponent {
             this._handleSearch();
             this.props.setParamFromHome({ IsFromHome: false });
         }
-    }
-
-    _handleChangeCategory = (event) => {
-        const selectedCategory = event.target.value;
-
-        const param = Object.assign({}, this.state, { category: selectedCategory, subCategory: '' });
-
-        this.props.getSizeList(param);
-        this.setState({ category: selectedCategory, subCategory: '' });
     }
 
     _handleChange = (event) => {
@@ -78,41 +65,23 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList, currencyList, imageTypeList, sizeList, affTypeList } = this.props;
-        const { category, subCategory, language, currency, imageType, affType, deviceType, size, fromDate, toDate } = this.state;
-        const isCategoryCasino = category === Casino;
-        const hasSubCategory = isCategoryCasino || category === Sportsbook;
-        const subCategoryList = hasSubCategory ? (isCategoryCasino ? subCategoryCasinoList : subCategorySportsbookList) : null;
+        const { targetProductList, languageList, sizeList, affTypeList } = this.props;
+        const { targetProductId, language, affType, size, fromDate, toDate } = this.state;
 
         return (
             <div className="filter-container my-2 pb-0">
                 <Form inline tag="div">
                     <FormGroup className="mr-sm-3 pb-2">
-                        <Label for="category" className="mr-sm-2">{headerText.Category}</Label>
-                        <Input type="select" name="category" id="category" value={category} onChange={this._handleChangeCategory}>
-                            <option key={'category-all'} value={''}>{globalResource.All}</option>
+                        <Label for="targetProductId" className="mr-sm-2">{headerText.TargetProduct}</Label>
+                        <Input type="select" name="targetProductId" id="targetProductId" value={targetProductId} onChange={this._handleChange}>
+                            <option key={'targetProduct-all'} value={''}>{globalResource.All}</option>
                             {
-                                categoryList && categoryList.map(item => {
-                                    return (<option key={`category-${item.name}`} value={item.name}>{item.name}</option>)
+                                targetProductList && targetProductList.map(item => {
+                                    return (<option key={`targetProduct-${item.name}`} value={item.key}>{item.name}</option>)
                                 })
                             }
                         </Input>
                     </FormGroup>
-                    {
-                        subCategoryList && (
-                            <FormGroup className="mr-sm-3 pb-2">
-                                <Label for="subCategory" className="mr-sm-2">{headerText.SubCategory}</Label>
-                                <Input type="select" name="subCategory" id="subCategory" value={subCategory} onChange={this._handleChange}>
-                                    <option key={'subCategory-all'} value={''}>{globalResource.All}</option>
-                                    {
-                                        subCategoryList.map(item => {
-                                            return (<option key={`subCategory-${item.SubCategoryName}`} value={item.SubCategoryName}>{item.SubCategoryName}</option>)
-                                        })
-                                    }
-                                </Input>
-                            </FormGroup>
-                        )
-                    }
                     <FormGroup className="mr-sm-3 pb-2">
                         <Label for="language" className="mr-sm-2">{headerText.Language}</Label>
                         <Input type="select" name="language" id="language" value={language} onChange={this._handleChange}>
@@ -120,28 +89,6 @@ export class Filter extends PureComponent {
                             {
                                 languageList && languageList.map(item => {
                                     return (<option key={`language-${item.LanguageName}`} value={item.LanguageName}>{item.LanguageName}</option>)
-                                })
-                            }
-                        </Input>
-                    </FormGroup>
-                    <FormGroup className="mr-sm-3 pb-2">
-                        <Label for="currency" className="mr-sm-2">{headerText.Currency}</Label>
-                        <Input type="select" name="currency" id="currency" value={currency} onChange={this._handleChange}>
-                            <option key={'currency-all'} value={''}>{globalResource.All}</option>
-                            {
-                                currencyList && currencyList.map(item => {
-                                    return (<option key={`currency-${item.name}`} value={item.name}>{item.name}</option>)
-                                })
-                            }
-                        </Input>
-                    </FormGroup>
-                    <FormGroup className="mr-sm-3 pb-2">
-                        <Label for="imageType" className="mr-sm-2">{headerText.Type}</Label>
-                        <Input type="select" name="imageType" id="imageType" value={imageType} onChange={this._handleChange}>
-                            <option key={'imageType-all'} value={''}>{globalResource.All}</option>
-                            {
-                                imageTypeList && imageTypeList.map(item => {
-                                    return (<option key={`imageType-${item.Name}`} value={item.Name}>{item.Name}</option>)
                                 })
                             }
                         </Input>
@@ -160,16 +107,6 @@ export class Filter extends PureComponent {
                             </FormGroup>
                         )
                     }
-                    <FormGroup className="mr-sm-3 pb-2">
-                        <Label for="deviceType" className="mr-sm-2">{headerText.Device}</Label>
-                        <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this._handleChange}>
-                            {
-                                Object.keys(deviceTypes).map(key => {
-                                    return (<option key={`deviceType-${key}`} value={deviceTypes[key]}>{key}</option>)
-                                })
-                            }
-                        </Input>
-                    </FormGroup>
                     <FormGroup className="mr-sm-3 pb-2">
                         <Label for="size" className="mr-sm-2">{headerText.Size}</Label>
                         <Input type="select" name="size" id="size" value={size} onChange={(e) => this.setState({ size: e.target.value })}>
@@ -202,12 +139,10 @@ export class Filter extends PureComponent {
     }
 }
 
-function mapStateToProps({ categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList,
-    currencyList, imageTypeList, sizeList, affTypeList, pagingOption, paramFromHome, today }) {
+function mapStateToProps({ targetProductList, languageList, sizeList, affTypeList, pagingOption, paramFromHome, today }) {
 
     return Object.assign({}, {
-        categoryList, subCategoryCasinoList, subCategorySportsbookList, languageList,
-        currencyList, imageTypeList, sizeList, affTypeList, pagingOption, paramFromHome, today
+        targetProductList, languageList, sizeList, affTypeList, pagingOption, paramFromHome, today
     });
 }
 

@@ -16,15 +16,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     [FunctionAuthorize(FunctionName = Function.ProcessingRequest)]
     public class ProcessingRequestController : ReadOnlySessionBaseController
     {
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _systemService;
         private readonly IProcessingRequestService _processingRequestService;
 
         public ProcessingRequestController(
             IProcessingRequestService processingRequestService,
-            ICommonSettingService commonSettingService,
+            ISystemService systemService,
             ISessionService sessionService) : base(sessionService)
         {
-            _commonSettingService = commonSettingService;
+            _systemService = systemService;
             _processingRequestService = processingRequestService;
         }
 
@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [AllowByPassFunctionAuthorize]
         public ActionResult Index(string userName)
         {
-            var languageList = _commonSettingService.GetInChangeMarkets();
+            var languageList = _systemService.GetTargetLanguageListByUser();
             ViewBag.Languages = languageList;
             ViewBag.UserName = userName;
             return View("~/Areas/Portal/Views/Affiliate/ProcessingRequest.cshtml");
@@ -45,8 +45,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         {
             if (ModelState.IsValid)
             {
-                var supportLanguages = _commonSettingService.GetInChangeMarkets();
-                var queryLangs = LanguageHelper.BuildAllowQueryLanguages(null, supportLanguages);
+                var supportLanguages = _systemService.GetInChangeMarkets();
+                var queryLangs = SystemHelper.BuildAllowQueryLanguages(null, supportLanguages);
                 param.PreferredLanguages = queryLangs;
                 return new JsonNetResult
                 {

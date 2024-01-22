@@ -1,31 +1,34 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
+using Fanex.Affiliate.Admin.Core.Enum;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public class DomainControlService : IDomainControlService
     {
-        private readonly IDomainService _domainService;
         private readonly IDomainControlRepository _domainControlRepository;
+        private readonly IDomainService _domainService;
         public DomainControlService(
-            IDomainService domainService,
-            IDomainControlRepository domainControlRepository)
+            IDomainControlRepository domainControlRepository,
+            IDomainService domainService)
         {
             _domainService = domainService;
             _domainControlRepository = domainControlRepository;
         }
 
-        public IEnumerable<Market> GetVisibleMarketsByUser(int userId)
+        public IEnumerable<TargetCountry> GetVisibleTargetCountryListNotBlocked(TargetCountryParam param)
         {
-            return _domainService.GetVisibleMarketsByUser(userId);
+            return _domainService.GetTargetCountryList(param)?.Where(m => m.Status != (byte)TargetCountryStatus.Blocked);
         }
 
-        public IEnumerable<DomainControlInfo> GetDomainControlList(string marketIds)
+        public IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryCodes)
         {
-            return _domainControlRepository.GetDomainControlList(marketIds);
+            return _domainControlRepository.GetDomainControlList(targetCountryCodes);
         }
 
         public DomainControlInfo GetDomainControlById(int domainControlId)

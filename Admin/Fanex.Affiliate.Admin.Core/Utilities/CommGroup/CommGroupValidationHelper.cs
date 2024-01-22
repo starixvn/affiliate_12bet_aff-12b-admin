@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 {
     public static class CommGroupValidationHelper
     {
-        public static ResultInfo ValidatePlatformFeeList(ICommonSettingService commonSettingService, IEnumerable<DeductionSetting> platformFeeList)
+        public static ResultInfo ValidatePlatformFeeList(ISystemService systemServive, IEnumerable<DeductionSetting> platformFeeList)
         {
             var result = ResultInfo.GenerateErr(CommGroupErrorMessage.InvalidPlatformFee);
 
@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
                 return result;
             }
 
-            var productIdOfDB = commonSettingService.GetProductList().Select(p => p.ProductId.ToString());
+            var productIdOfDB = systemServive.GetProductList().Select(p => p.ProductId.ToString());
             var productIdOfPlatform = string.Join(",", platformFeeList.Select(p => p.ProductIds.Replace(" ", "")))
                                         .Split(new[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
 

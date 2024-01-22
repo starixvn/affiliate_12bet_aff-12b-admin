@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using System.Collections.Generic;
@@ -7,13 +8,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public interface ILandingPageService
     {
-        IEnumerable<LandingPage> GetLandingPageList();
+        IEnumerable<LandingPage> GetLandingPageList(int userId);
 
-        LandingPage GetLandingPageById(int pageId);
+        LandingPage GetLandingPageById(int userId, int pageId);
 
-        ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param);
+        IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param);
 
-        ResultInfo UpdateLandingPage(InsertUpdateLandingPageParam param);
+        ResultInfo HandleSaveLandingPage(InsertUpdateLandingPageParam param, bool isInsert = false);
 
         ResultInfo DeleteLandingPage(DeleteLandingPageParam param);
     }

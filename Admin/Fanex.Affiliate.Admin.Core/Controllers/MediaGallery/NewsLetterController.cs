@@ -18,21 +18,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
     public class NewsLetterController : ReadOnlySessionBaseController
     {
-        private ICommonSettingService CommonSettingService { get; }
-        private INewsLetterService NewsLetterService { get; }
-        private IAppSetting AppSetting { get; }
+        private readonly ISystemService _systemService;
+        private readonly INewsLetterService _newsLetterService;
+        private readonly IAppSetting _appSetting;
 
-        public NewsLetterController(INewsLetterService newsLetterService, ISessionService sessionService, ICommonSettingService commonSettingService, IAppSetting appSetting) : base(sessionService)
+        public NewsLetterController(INewsLetterService newsLetterService, ISessionService sessionService, ISystemService systemService, IAppSetting appSetting) : base(sessionService)
         {
-            CommonSettingService = commonSettingService;
-            NewsLetterService = newsLetterService;
-            AppSetting = appSetting;
+            _systemService = systemService;
+            _newsLetterService = newsLetterService;
+            _appSetting = appSetting;
         }
 
         public ActionResult Index()
         {
-            ViewBag.PreviewUrl = $"{AppSetting.AsianAffSiteUrl}/UserPanel/NewsLetter/Preview";
-            ViewBag.Languages = CommonSettingService.GetInChangeMarkets();
+            ViewBag.PreviewUrl = $"{_appSetting.AsianAffSiteUrl}/UserPanel/NewsLetter/Preview";
+            ViewBag.Languages = _systemService.GetTargetLanguageListByUser();
             return View("~/Areas/Portal/Views/MediaGallery/Common.cshtml");
         }
 
@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
                 return new JsonNetResult
                 {
-                    Data = NewsLetterService.AddNewsLetter(file, param)
+                    Data = _newsLetterService.AddNewsLetter(file, param)
                 };
             }
 
@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
                 return new JsonNetResult
                 {
-                    Data = NewsLetterService.UpdateNewsLetter(file, param)
+                    Data = _newsLetterService.UpdateNewsLetter(file, param)
                 };
             }
 
@@ -109,7 +109,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [ValidateAntiForgeryHeader]
         public ActionResult GetNewsLetterList(PagingParam param)
         {
-            var data = NewsLetterService.GetNewsLetters(param);
+            var data = _newsLetterService.GetNewsLetters(param);
             var models = data.MainData.Select(i => new NewsLetterViewModel
             {
                 FileName = i.FileName,
@@ -146,7 +146,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
             return new JsonNetResult
             {
-                Data = NewsLetterService.DeleteNewsLetters(param)
+                Data = _newsLetterService.DeleteNewsLetters(param)
             };
         }
 
@@ -154,7 +154,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [ValidateAntiForgeryHeader]
         public ActionResult GetNewsLetterDetailById(int id)
         {
-            var item = NewsLetterService.GetNewsLetterById(id);
+            var item = _newsLetterService.GetNewsLetterById(id);
             var model = new NewsLetterViewModel
             {
                 FileName = item.FileName,

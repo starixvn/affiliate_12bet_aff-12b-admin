@@ -28,18 +28,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private readonly IAffiliateService _affiliateService;
 
-        private readonly ICommonSettingService _commonSettingService;
+        private readonly ISystemService _systemService;
 
         public CommGroupAssignmentController(
             ISessionService sessionService,
-            ICommonSettingService commonSettingService,
+            ISystemService systemService,
             IAffiliateService affiliateService,
             ICommGroupAssignmentService commGroupAssignmentService,
             ICommGroupCommonService commGroupCommonService) : base(sessionService)
         {
             _affiliateService = affiliateService;
             _commGroupAssignmentService = commGroupAssignmentService;
-            _commonSettingService = commonSettingService;
+            _systemService = systemService;
             _commGroupCommonService = commGroupCommonService;
         }
 
@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = affId >= Validation.MinId ?
                 new AssignPrivateGroupViewModel
                 {
-                    ProductList = _commonSettingService.GetProductList(),
+                    ProductList = _systemService.GetProductList(),
                     DeductionList = _commGroupCommonService.GetDeductionList(),
                     AffInfo = _affiliateService.GetAffiliateBasicInfo(affId)
                 } :
@@ -115,7 +115,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 return CreateErrorResult();
             }
 
-            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_commonSettingService, commGroup.PlatformFeeList);
+            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_systemService, commGroup.PlatformFeeList);
             if (platformFeeValidation.IsSuccessful)
             {
                 var assignParam = new CreateUpdateCommissionGroupParam

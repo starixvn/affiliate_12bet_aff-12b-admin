@@ -36,23 +36,7 @@ namespace Fanex.Affiliate.User.Core.Repository
 
             using (var db = _builder.Build(spKey, dbMode))
             {
-                db.SetParameterValue("UserName", userName);
-
-                using (var reader = db.ExecuteReader())
-                {
-                    return reader.Read() ? new AuthorizedUserInfo
-                    {
-                        AffId = reader.ToInt("AffId"),
-                        UserName = reader.ToString("UserName"),
-                        Password = reader.ToString("Password"),
-                        GroupName = reader.ToString("GroupName"),
-                        AffType = reader.ToString("AffType"),
-                        IsClosed = reader.ToBool("IsClosed"),
-                        Status = reader.ToString("Status"),
-                        PreferredLanguage = reader.ToString("PreferredLanguage"),
-                        OfferPageId = reader.ToInt("OfferPageId")
-                    } : null;
-                }
+                return db.QueryEntity<AuthorizedUserInfo>(new { userName });
             }
         }
 

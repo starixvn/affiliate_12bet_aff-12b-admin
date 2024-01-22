@@ -169,11 +169,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
         private static SummaryController CreateController(
         ISessionService sessionService = null,
-        ILanguageService languageService = null,
+        ISystemService languageService = null,
         IAccountOverviewRepository accountOverviewRepository = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
-            languageService = languageService ?? Mock.Of<ILanguageService>();
+            languageService = languageService ?? Mock.Of<ISystemService>();
             accountOverviewRepository = accountOverviewRepository ?? Mock.Of<IAccountOverviewRepository>();
 
             return new SummaryController(sessionService, languageService, accountOverviewRepository);

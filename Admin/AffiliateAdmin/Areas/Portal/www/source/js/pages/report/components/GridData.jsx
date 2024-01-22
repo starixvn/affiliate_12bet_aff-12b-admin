@@ -82,7 +82,7 @@ export class GridData extends PureComponent {
             return [];
         }
 
-        const firstColName = isCheckedDatePicker ? headerText.UserName : headerText.MonthDateString;
+        const firstColName = isMainView ? headerText.UserName : headerText.MonthDateString;
         const h1 = AggregateHeader.convertColsToObject(headerConfig.getHeaderCols(0));
         const h2 = AggregateHeader.convertColsToObject(headerConfig.getHeaderCols(1));
 
@@ -207,7 +207,7 @@ export class GridData extends PureComponent {
 
         return (
             <React.Fragment>
-                { header[reportKey.PreferredLanguage].isVisable && <Cell className="text-left" title={language}>{language}</Cell>}
+                { header[reportKey.PreferredLanguage].isVisable && <Cell title={language}>{language}</Cell>}
                 { header[reportKey.TotalClick].isVisable && <Cell className="text-right" title={totalClick}>{totalClick}</Cell>}
                 { header[reportKey.UniqueClick].isVisable &&  <Cell className="text-right" title={uniqueClick}>{uniqueClick}</Cell>}
                 { header[reportKey.Signup].isVisable && <Cell className="text-right" title={signup}>{signup}</Cell>}
