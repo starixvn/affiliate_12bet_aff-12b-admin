@@ -235,7 +235,7 @@
                                         <label class="radio-button">
                                             <input type="radio" name="HasWebSite" value="False" />
                                             <span class="radio-circle"></span>
-                                            <span class="radio-label">@Lang.NoWebsite <span class="red-warn">*</span></span>
+                                            <span class="radio-label">@Lang.NoWebsite</span>
                                         </label>
                                     </div>
                                     @Html.TextAreaFor(p => p.NoSiteDesc, new { @class = "form-area", @rows = 5, @disabled = "disabled", @placeholder = Lang.DescWebsite })
@@ -321,7 +321,7 @@
                                 <span>@Lang.PaymentInfor</span>
                             </div>
                         </div>
-                        <div class="form-group group-form group-custom-width">
+                        <div class="form-group form-columns group-form group-custom-width">
                             <div class="form-text">
                                 @Lang.PaymentMethod
                             </div>
@@ -333,7 +333,8 @@
                                 </label>
                             </div>
                             <div class="items validate-group">
-                                @Html.TextBoxFor(p => p.Player_UserName, new { @class = "form-input", @autocomplete = "off", @placeholder = $"{Lang.UsernameSignUp} ({Lang.NonDeposited})" })
+                                <label for="Player_UserName" class="custom-label">@Lang.UsernameSignUp <span class="red-warn">* (@Lang.NonDeposited)</span></label>
+                                @Html.TextBoxFor(p => p.Player_UserName, new { @class = "form-input", @autocomplete = "off" })
                                 @Html.ValidationMessageFor(x => x.Player_UserName, string.Empty, new { @class = "validate-input hide" })
                             </div>
                             <label class="custom-checkbox">
