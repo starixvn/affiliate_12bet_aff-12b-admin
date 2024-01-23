@@ -309,27 +309,27 @@ input[type="checkbox"], input[type="radio"] {
   -webkit-font-smoothing: antialiased;
   background-size: cover; }
   .flag-en-US {
-    background-image: url("../Images/langs/en.svg"); }
+    background-image: url("../Images/langs/en.png"); }
   .flag-zh-CN {
-    background-image: url("../Images/langs/cs.svg"); }
+    background-image: url("../Images/langs/cs.png"); }
   .flag-zh-TW {
-    background-image: url("../Images/langs/ch.svg"); }
+    background-image: url("../Images/langs/ch.png"); }
   .flag-id-ID {
-    background-image: url("../Images/langs/id.svg"); }
+    background-image: url("../Images/langs/id.png"); }
   .flag-vi-VN {
-    background-image: url("../Images/langs/vn.svg"); }
+    background-image: url("../Images/langs/vn.png"); }
   .flag-th-TH {
-    background-image: url("../Images/langs/th.svg"); }
+    background-image: url("../Images/langs/th.png"); }
   .flag-ko-KR {
-    background-image: url("../Images/langs/ko.svg"); }
+    background-image: url("../Images/langs/ko.png"); }
   .flag-ja-JP {
-    background-image: url("../Images/langs/ja.svg"); }
+    background-image: url("../Images/langs/ja.png"); }
   .flag-hi-IN {
-    background-image: url("../Images/langs/hi.svg"); }
+    background-image: url("../Images/langs/hi.png"); }
   .flag-km-KH {
-    background-image: url("../Images/langs/kh.svg"); }
+    background-image: url("../Images/langs/kh.png"); }
   .flag-bn-BD {
-    background-image: url("../Images/langs/bn.svg"); }
+    background-image: url("../Images/langs/bn.png"); }
 
 .header-top {
   background: #000;
