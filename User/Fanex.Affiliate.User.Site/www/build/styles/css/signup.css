@@ -435,6 +435,9 @@
   font-weight: 500;
   line-height: normal;
   border-radius: 12px; }
+  @media (max-width: 500px) {
+    .alert {
+      font-size: 16px; } }
   .alert-success {
     color: #5A7252;
     border: 1px solid #B5CDA9;
