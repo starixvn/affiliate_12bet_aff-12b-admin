@@ -2292,4 +2292,10 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="GetBannerForYourTargetMarket" xml:space="preserve">
     <value>Get banner for your target market!</value>
   </data>
+  <data name="Hindi" xml:space="preserve">
+    <value>'हिन्दी (India)</value>
+  </data>
+  <data name="Telugu" xml:space="preserve">
+    <value>తెలుగు (India)</value>
+  </data>
 </root>

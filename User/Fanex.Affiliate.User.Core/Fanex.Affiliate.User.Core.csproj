@@ -329,7 +329,6 @@
     <Compile Include="DTO\DBMode.cs" />
     <Compile Include="DTO\ExtraUserInfo.cs" />
     <Compile Include="DTO\InternalPermission.cs" />
-    <Compile Include="DTO\System\Language.cs" />
     <Compile Include="DTO\LatestHotNews.cs" />
     <Compile Include="DTO\LoginResultInfo.cs" />
     <Compile Include="DTO\Payment.cs" />

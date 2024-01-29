@@ -2052,4 +2052,10 @@
   <data name="TotalCommission" xml:space="preserve">
     <value>កម្រៃជើងសារសរុប</value>
   </data>
+  <data name="Hindi" xml:space="preserve">
+    <value>'हिन्दी (India)</value>
+  </data>
+  <data name="Telugu" xml:space="preserve">
+    <value>తెలుగు (India)</value>
+  </data>
 </root>

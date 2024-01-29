@@ -2393,6 +2393,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;हिन्दी (India).
+        /// </summary>
+        public static string Hindi {
+            get {
+                return ResourceManager.GetString("Hindi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -5418,6 +5427,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Teenpatti {
             get {
                 return ResourceManager.GetString("Teenpatti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to తెలుగు (India).
+        /// </summary>
+        public static string Telugu {
+            get {
+                return ResourceManager.GetString("Telugu", resourceCulture);
             }
         }
         

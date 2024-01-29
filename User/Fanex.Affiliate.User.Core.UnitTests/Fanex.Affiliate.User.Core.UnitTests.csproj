@@ -227,7 +227,6 @@
     <Compile Include="Repository\AuthRepositoryTest.cs" />
     <Compile Include="Repository\EmailHistoryRepositoryTest.cs" />
     <Compile Include="Repository\GetSecurityQuestionsTest.cs" />
-    <Compile Include="Repository\LanguageRepositoryTest.cs" />
     <Compile Include="Repository\RepositoryTestBase.cs" />
     <Compile Include="Repository\UserPanel\AccountOverviewRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\AccountRepositoryTest.cs" />

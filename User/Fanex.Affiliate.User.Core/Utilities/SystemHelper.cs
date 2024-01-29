@@ -9,19 +9,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 {
     public static class SystemHelper
     {
-        public static IEnumerable<SelectListItem> GetLanguageList(IEnumerable<Language> languageList, string preferredLanguage)
-        {
-            var dataList = languageList.Select(l => new SelectListItem
-            {
-                Value = l.MarketId,
-                Text = SystemLanguage.GetLanguageText(l.MarketName),
-                Selected = l.MarketId.MatchWith(preferredLanguage)
-            });
-
-            return dataList;
-        }
-
-        public static IEnumerable<SelectListItem> GetTargetLanguageList(IEnumerable<TargetLanguage> targetLanguageList, string targetLanguageCode)
+        public static IEnumerable<SelectListItem> GetTargetLanguageList(IEnumerable<TargetLanguage> targetLanguageList, string targetLanguageCode = null)
         {
             var dataList = targetLanguageList.Select(l => new SelectListItem
             {
@@ -33,7 +21,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
             return dataList;
         }
 
-        public static IEnumerable<SelectListItem> GetTargetCountryList(IEnumerable<TargetCountry> targetCountryList, string targetCountryCode)
+        public static IEnumerable<SelectListItem> GetTargetCountryList(IEnumerable<TargetCountry> targetCountryList, string targetCountryCode = null)
         {
             var dataList = targetCountryList.Select(l => new SelectListItem
             {

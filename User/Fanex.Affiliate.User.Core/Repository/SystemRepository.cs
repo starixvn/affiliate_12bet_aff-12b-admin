@@ -14,18 +14,6 @@ namespace Fanex.Affiliate.User.Core.Repository
             _builder = builder;
         }
 
-        public IEnumerable<Language> GetLanguageList(bool isInternal, int? userId = null)
-        {
-            const string uSpKey = "Aff_Admin_AdminUser_Market_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                var languageList = db.Query<Language>(new { CustId = userId });
-                return languageList.Where(l => l.Status);
-            }
-        }
-
         public IEnumerable<TargetLanguage> GetTargetLanguageListByCountry(bool isInternal, string targetCountryCode = null, int? userId = null)
         {
             const string uSpKey = "Aff_Language_Sel";

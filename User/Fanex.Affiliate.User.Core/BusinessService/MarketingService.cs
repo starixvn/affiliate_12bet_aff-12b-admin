@@ -127,7 +127,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             const int LengthOfSplittingSize = 2;
 
-            var languageList = _systemService.GetSystemTargetLanguages();
+            var languageList = _systemService.GetSystemTargetLanguagesByCountry(bannerParam.SelectedTargetCountry);
             bannerParam.Languages = GetTargetLanguageName(languageList, bannerParam.Language);
 
             var bannerList = _marketingRepository.GetBannerList(bannerParam);

@@ -64,7 +64,7 @@
             }
 
             var preferredLanguage = accountInformation.PreferredLanguage;
-            var languageName = SystemService.GetSystemLanguages().FirstOrDefault(l => l.MarketId.Equals(preferredLanguage))?.MarketName ?? preferredLanguage;
+            var languageName = SystemService.GetSystemTargetLanguages().FirstOrDefault(l => l.LanguageCode.Equals(preferredLanguage))?.LanguageName ?? preferredLanguage;
             accountInformation.LanguageName = SystemLanguage.GetLanguageText(languageName);
 
             return View("~/Views/UserPanel/MyAccount/index.cshtml", accountInformation);
