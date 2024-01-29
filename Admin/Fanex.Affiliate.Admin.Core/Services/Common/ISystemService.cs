@@ -9,6 +9,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         IEnumerable<Language> GetInChangeMarkets();
 
+        IEnumerable<Language> GetAllInChangeMarkets();
+
         IEnumerable<Product> GetProductList();
 
         IEnumerable<AffType> GetAffTypeList();
@@ -18,5 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         IEnumerable<TargetCountry> GetTargetCountryListByUser();
 
         IEnumerable<Language> GetTargetLanguageListByUser();
+
+        IEnumerable<Language> GetAllTargetLanguageListByUser();
     }
 }

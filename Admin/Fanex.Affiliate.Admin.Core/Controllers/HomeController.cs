@@ -83,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private string GetCurrentInChargeMarkets()
         {
-            var supportLanguages = _systemService.GetInChangeMarkets();
+            var supportLanguages = _systemService.GetAllInChangeMarkets();
             return SystemHelper.BuildAllowQueryLanguages(string.Empty, supportLanguages);
 
         }

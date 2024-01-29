@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
             var dataList = targetCountryList.Select(l => new SelectListItem
             {
                 Value = l.TargetCountryCode,
-                Text = SystemLanguage.GetLanguageText(l.TargetCountryName),
+                Text = l.TargetCountryName,
                 Selected = l.TargetCountryCode.MatchWith(targetCountryCode)
             });
 

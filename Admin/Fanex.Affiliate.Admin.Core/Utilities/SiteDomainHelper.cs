@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
         private static bool IsSecure(HttpRequestBase request)
         {
-            return request.IsSecureConnection || String.Equals(request.ServerVariables["HTTP_X_FORWARDED_PROTO"], "https", StringComparison.OrdinalIgnoreCase);
+            return request.IsSecureConnection || string.Equals(request.ServerVariables["HTTP_X_FORWARDED_PROTO"], "https", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

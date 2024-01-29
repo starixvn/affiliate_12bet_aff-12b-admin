@@ -1,10 +1,10 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { getCountryList } from '../../../customer/user-panel/libs/service';
+import { getCountryList, getAllTargetLanguageList } from '../../../customer/user-panel/libs/service';
 import { setSelectedUserPanel, toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import * as types from '../actions/types';
 
-export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel, getCountryList };
+export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel, getCountryList, getAllTargetLanguageList };
 
 export const setSelectedPageDetailFilter = (data) => {
     return {
