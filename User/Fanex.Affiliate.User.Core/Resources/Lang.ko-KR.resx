@@ -204,9 +204,6 @@
   <data name="Baccarat" xml:space="preserve">
     <value>바카라</value>
   </data>
-  <data name="Back" xml:space="preserve">
-    <value>뒤로</value>
-  </data>
   <data name="Bahamas" xml:space="preserve">
     <value>바하마</value>
   </data>
@@ -217,7 +214,7 @@
     <value>이월액</value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
-    <value>방글라데시</value>
+    <value>방글라데시어</value>
   </data>
   <data name="BankAddress" xml:space="preserve">
     <value>은행 주소</value>
@@ -295,7 +292,7 @@
     <value>부룬디</value>
   </data>
   <data name="Cambodia" xml:space="preserve">
-    <value>캄보디아</value>
+    <value>캄보디아어</value>
   </data>
   <data name="Cameroon" xml:space="preserve">
     <value>카메룬</value>
@@ -494,10 +491,10 @@
     <value>이메일 주소 입력</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>영어</value>
   </data>
-  <data name="EnglishEU" xml:space="preserve">
-    <value>English_Euro</value>
+  <data name="EnglishEurope" xml:space="preserve">
+    <value>영어(유럽)</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
     <value>영어 상담</value>
@@ -668,13 +665,13 @@
     <value>중요</value>
   </data>
   <data name="India" xml:space="preserve">
-    <value>인디아</value>
+    <value>인도어</value>
   </data>
   <data name="Indonesia" xml:space="preserve">
-    <value>인도네시아</value>
+    <value>인도네시아어</value>
   </data>
   <data name="Indonesian" xml:space="preserve">
-    <value>Indonesian</value>
+    <value>인도네시아어</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
@@ -701,10 +698,10 @@
     <value>1월</value>
   </data>
   <data name="Japan" xml:space="preserve">
-    <value>일본</value>
+    <value>일본어</value>
   </data>
   <data name="Japanese" xml:space="preserve">
-    <value>日本</value>
+    <value>일본어</value>
   </data>
   <data name="Jordan" xml:space="preserve">
     <value>요르단</value>
@@ -785,7 +782,7 @@
     <value>말라위</value>
   </data>
   <data name="Malaysia" xml:space="preserve">
-    <value>말레이시아</value>
+    <value>말레이시아어</value>
   </data>
   <data name="Maldives" xml:space="preserve">
     <value>몰디브</value>
@@ -810,12 +807,6 @@
   </data>
   <data name="May" xml:space="preserve">
     <value>5월</value>
-  </data>
-  <data name="MemberWithdrawalInfo" xml:space="preserve">
-    <value>회원 탈퇴 정보</value>
-  </data>
-  <data name="MemDepositInfo" xml:space="preserve">
-    <value>회원 입금 정보</value>
   </data>
   <data name="Message" xml:space="preserve">
     <value>메세지</value>
@@ -926,7 +917,7 @@
     <value>웹사이트가 없습니다.</value>
   </data>
   <data name="NumberGame" xml:space="preserve">
-    <value>라이브 빙고 </value>
+    <value>빙고</value>
   </data>
   <data name="October" xml:space="preserve">
     <value>10월</value>
@@ -1123,9 +1114,6 @@
   <data name="Search" xml:space="preserve">
     <value>검색</value>
   </data>
-  <data name="SelectDate" xml:space="preserve">
-    <value>날짜를 선택합니다</value>
-  </data>
   <data name="SelectOne" xml:space="preserve">
     <value>하나를 선택하시오</value>
   </data>
@@ -1250,7 +1238,7 @@
     <value>텍스트 링크</value>
   </data>
   <data name="Thai" xml:space="preserve">
-    <value>ภาษาไทย</value>
+    <value>태국어</value>
   </data>
   <data name="Thailand" xml:space="preserve">
     <value>태국</value>
@@ -1348,11 +1336,11 @@
   <data name="Venezuela" xml:space="preserve">
     <value>베네수엘라</value>
   </data>
-  <data name="VietNam" xml:space="preserve">
+  <data name="Vietnam" xml:space="preserve">
     <value>베트남</value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
-    <value>Tiếng Việt</value>
+    <value>베트남어</value>
   </data>
   <data name="WebsiteInfor" xml:space="preserve">
     <value>웹사이트 정보</value>
@@ -1508,7 +1496,7 @@
     <value>가상 스포츠 </value>
   </data>
   <data name="ESports" xml:space="preserve">
-    <value>E스포츠 </value>
+    <value>E-스포츠</value>
   </data>
   <data name="RngKeno" xml:space="preserve">
     <value>키노</value>
@@ -1596,15 +1584,6 @@
   </data>
   <data name="PCDevice" xml:space="preserve">
     <value>PC / 랜탑</value>
-  </data>
-  <data name="result" xml:space="preserve">
-    <value>결과</value>
-  </data>
-  <data name="Note2" xml:space="preserve">
-    <value>비고</value>
-  </data>
-  <data name="SystemParlayDetailNote" xml:space="preserve">
-    <value>참고용으로 윈/로스를 반올림하였습니다. 실제 윈/로스의 합산에 따라서 총 금액이 다를 수 있습니다.</value>
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>죄송합니다! 현재 도메인을 이용할 수 없습니다.</value>
@@ -1842,7 +1821,7 @@
     <value>한국어 지원</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
-    <value>ខ្មែរ</value>
+    <value>캄보디아어</value>
   </data>
   <data name="AffFeedback" xml:space="preserve">
     <value>제휴사 피드백</value>
@@ -1875,10 +1854,10 @@
     <value>Teenpatti</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
-    <value>繁體中文</value>
+    <value>중국어</value>
   </data>
   <data name="ChineseSimplified" xml:space="preserve">
-    <value>简体中文</value>
+    <value>중국어(간체)</value>
   </data>
   <data name="IN" xml:space="preserve">
     <value>IN</value>
@@ -2154,9 +2133,54 @@
     <value>총 커미션</value>
   </data>
   <data name="Hindi" xml:space="preserve">
-    <value>'हिन्दी (India)</value>
+    <value>흰디어</value>
   </data>
   <data name="Telugu" xml:space="preserve">
-    <value>తెలుగు (India)</value>
+    <value>텔구루어</value>
+  </data>
+  <data name="EnglishBangladesh" xml:space="preserve">
+    <value>영어(방글라데시)</value>
+  </data>
+  <data name="EnglishIndia" xml:space="preserve">
+    <value>영어(인도)</value>
+  </data>
+  <data name="SouthKorea" xml:space="preserve">
+    <value>한국</value>
+  </data>
+  <data name="China" xml:space="preserve">
+    <value>중국</value>
+  </data>
+  <data name="GenerateYourUniqueLink" xml:space="preserve">
+    <value>고유 링크를 생성하세요!</value>
+  </data>
+  <data name="TargetCountry" xml:space="preserve">
+    <value>해당 국가</value>
+  </data>
+  <data name="TargetProduct" xml:space="preserve">
+    <value>해당 제품</value>
+  </data>
+  <data name="GetBannerForYourTargetMarket" xml:space="preserve">
+    <value>해당 타겟에 배너를 거세요</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>스포츠</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Exchange</value>
+  </data>
+  <data name="Playtech" xml:space="preserve">
+    <value>플레이텍</value>
+  </data>
+  <data name="Arcade" xml:space="preserve">
+    <value>아케이드</value>
+  </data>
+  <data name="P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>키노</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>방글라데시 지원</value>
   </data>
 </root>

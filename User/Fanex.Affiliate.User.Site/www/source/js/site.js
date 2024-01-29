@@ -1,7 +1,7 @@
 ﻿var Site = (function ($) {
     var _rootUrl = null;
     var _language = null;
-    var optionAll = "<option value=''>All</option>";
+    var optionAll = "<option value=''>" + window.Lang.All + "</option>";
 
     var _me = {
         initialize: function () {

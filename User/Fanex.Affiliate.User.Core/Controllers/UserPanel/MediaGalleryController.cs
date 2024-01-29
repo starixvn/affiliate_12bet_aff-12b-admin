@@ -137,7 +137,7 @@
                 DomainList = linkModel.DomainList,
                 MemberSitePageList = linkModel.MemberSitePageList,
                 TargetProductList = targetProductList.Select(i =>
-                    new SelectListItem { Value = i.TargetProductId.ToString(), Text = Lang.ResourceManager.GetString(i.TargetProductName) ?? i.TargetProductName }),
+                    new SelectListItem { Value = i.TargetProductId.ToString(), Text = SystemHelper.GetProductText(i.TargetProductName) }),
                 SizeList = sizeList.Select(i => new SelectListItem { Value = i.Size, Text = i.Size })
             };
         }

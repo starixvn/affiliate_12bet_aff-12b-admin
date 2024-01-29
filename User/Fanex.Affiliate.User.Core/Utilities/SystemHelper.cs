@@ -1,6 +1,6 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO.System;
+﻿using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.Extensions;
+using Fanex.Affiliate.User.Core.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
             var dataList = targetLanguageList.Select(l => new SelectListItem
             {
                 Value = l.LanguageCode,
-                Text = SystemLanguage.GetLanguageText(l.LanguageName),
+                Text = GetLanguageText(l.LanguageName),
                 Selected = l.LanguageCode.MatchWith(targetLanguageCode)
             });
 
@@ -26,11 +26,22 @@ namespace Fanex.Affiliate.User.Core.Utilities
             var dataList = targetCountryList.Select(l => new SelectListItem
             {
                 Value = l.TargetCountryCode,
-                Text = l.TargetCountryName,
+                Text = Lang.ResourceManager.GetString(l.TargetCountryName.Replace(" ", "")) ?? l.TargetCountryName,
                 Selected = l.TargetCountryCode.MatchWith(targetCountryCode)
             });
 
             return dataList;
+        }
+
+        public static string GetLanguageText(string value)
+        {
+            return (value.Contains("(") ? Lang.ResourceManager.GetString(value.Replace(" (", "").Replace(")", ""))
+                  : Lang.ResourceManager.GetString(value.Replace(" ", ""))) ?? value;
+        }
+
+        public static string GetProductText(string value)
+        {
+            return (value.Contains("-") ? Lang.ResourceManager.GetString(value.Replace("-", "")) : Lang.ResourceManager.GetString(value.Replace(" ", ""))) ?? value;
         }
     }
 }

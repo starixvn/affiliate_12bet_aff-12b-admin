@@ -207,9 +207,6 @@
   <data name="Baccarat" xml:space="preserve">
     <value>Baccarat</value>
   </data>
-  <data name="Back" xml:space="preserve">
-    <value>Back</value>
-  </data>
   <data name="Bahamas" xml:space="preserve">
     <value>Bahamas </value>
   </data>
@@ -361,10 +358,10 @@
     <value>China (People's Rep) </value>
   </data>
   <data name="ChineseSimplified" xml:space="preserve">
-    <value>简体中文</value>
+    <value>Chinese Simplified</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
-    <value>繁體中文</value>
+    <value>Chinese Traditional</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
@@ -521,8 +518,8 @@
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
-  <data name="EnglishEU" xml:space="preserve">
-    <value>English_Euro</value>
+  <data name="EnglishEurope" xml:space="preserve">
+    <value>English (Europe)</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
     <value>English Support</value>
@@ -738,7 +735,7 @@
     <value>Japan </value>
   </data>
   <data name="Japanese" xml:space="preserve">
-    <value>日本</value>
+    <value>Japanese</value>
   </data>
   <data name="Jordan" xml:space="preserve">
     <value>Jordan </value>
@@ -753,7 +750,7 @@
     <value>Kenya </value>
   </data>
   <data name="Korean" xml:space="preserve">
-    <value>한국어</value>
+    <value>Korean</value>
   </data>
   <data name="KoreaRep" xml:space="preserve">
     <value>Korea (Rep) </value>
@@ -845,14 +842,6 @@
   </data>
   <data name="May" xml:space="preserve">
     <value>May</value>
-  </data>
-  <data name="MemberWithdrawalInfo" xml:space="preserve">
-    <value>Member withdrawal information</value>
-    <comment>87923</comment>
-  </data>
-  <data name="MemDepositInfo" xml:space="preserve">
-    <value>Member deposit information</value>
-    <comment>87923</comment>
   </data>
   <data name="Message" xml:space="preserve">
     <value>Message</value>
@@ -973,10 +962,6 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>Sorry! You are not allowed to login on this domain.</value>
     <comment>87923</comment>
-  </data>
-  <data name="Note2" xml:space="preserve">
-    <value>Note</value>
-    <comment>78976</comment>
   </data>
   <data name="November" xml:space="preserve">
     <value>November</value>
@@ -1152,10 +1137,6 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Reset</value>
     <comment>87923</comment>
   </data>
-  <data name="result" xml:space="preserve">
-    <value>Results</value>
-    <comment>87923</comment>
-  </data>
   <data name="RMB" xml:space="preserve">
     <value>RMB (Ren Min Bi)</value>
   </data>
@@ -1191,10 +1172,6 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
-  </data>
-  <data name="SelectDate" xml:space="preserve">
-    <value>Select Date</value>
-    <comment>87923</comment>
   </data>
   <data name="SelectOne" xml:space="preserve">
     <value>Select One</value>
@@ -1307,10 +1284,6 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Switzerland" xml:space="preserve">
     <value>Switzerland </value>
   </data>
-  <data name="SystemParlayDetailNote" xml:space="preserve">
-    <value>Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts.</value>
-    <comment>78976</comment>
-  </data>
   <data name="Taiwan" xml:space="preserve">
     <value>Taiwan </value>
   </data>
@@ -1327,7 +1300,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Text Link</value>
   </data>
   <data name="Thai" xml:space="preserve">
-    <value>ภาษาไทย</value>
+    <value>Thai</value>
   </data>
   <data name="Thailand" xml:space="preserve">
     <value>Thailand </value>
@@ -1435,11 +1408,11 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Venezuela" xml:space="preserve">
     <value>Venezuela </value>
   </data>
-  <data name="VietNam" xml:space="preserve">
+  <data name="Vietnam" xml:space="preserve">
     <value>Viet Nam </value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
-    <value>Tiếng Việt</value>
+    <value>Vietnamese</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
     <value>Virtual Sports</value>
@@ -1999,7 +1972,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Korea Support</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
-    <value>ខ្មែរ</value>
+    <value>Cambodian</value>
   </data>
   <data name="AffFeedback" xml:space="preserve">
     <value>Affiliate Feedback</value>
@@ -2293,9 +2266,39 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Get banner for your target market!</value>
   </data>
   <data name="Hindi" xml:space="preserve">
-    <value>'हिन्दी (India)</value>
+    <value>Hindi</value>
   </data>
   <data name="Telugu" xml:space="preserve">
-    <value>తెలుగు (India)</value>
+    <value>Telugu</value>
+  </data>
+  <data name="EnglishBangladesh" xml:space="preserve">
+    <value>English (Bangladesh)</value>
+  </data>
+  <data name="EnglishIndia" xml:space="preserve">
+    <value>English (India)</value>
+  </data>
+  <data name="SouthKorea" xml:space="preserve">
+    <value>South Korea</value>
+  </data>
+  <data name="China" xml:space="preserve">
+    <value>China</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>Sports</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Exchange</value>
+  </data>
+  <data name="Playtech" xml:space="preserve">
+    <value>Playtech</value>
+  </data>
+  <data name="Arcade" xml:space="preserve">
+    <value>Arcade</value>
+  </data>
+  <data name="P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>Keno</value>
   </data>
 </root>

@@ -201,9 +201,6 @@
   <data name="Baccarat" xml:space="preserve">
     <value>บาคาร่า</value>
   </data>
-  <data name="Back" xml:space="preserve">
-    <value>ย้อนกลับ</value>
-  </data>
   <data name="Bahamas" xml:space="preserve">
     <value>บาฮามาส</value>
   </data>
@@ -313,7 +310,7 @@
     <value>เคพ เวิร์ด</value>
   </data>
   <data name="Casino" xml:space="preserve">
-    <value>อัตราค่าตอบแทนจากหน้าคาสิโน</value>
+    <value>คาสิโน</value>
   </data>
   <data name="CasinoBonus" xml:space="preserve">
     <value>คาสิโนโบนัส</value>
@@ -484,10 +481,10 @@
     <value>ต้องระบุอีเมล์แอดเดรสค่ะ</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>ภาษาอังกฤษ</value>
   </data>
-  <data name="EnglishEU" xml:space="preserve">
-    <value>English_Euro</value>
+  <data name="EnglishEurope" xml:space="preserve">
+    <value>อังกฤษ (ยุโรป)</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
     <value>ทีมงานภาษาอังกฤษ</value>
@@ -664,7 +661,7 @@
     <value>อินโดนีเซีย</value>
   </data>
   <data name="Indonesian" xml:space="preserve">
-    <value>Indonesian</value>
+    <value>อินโดนีเซีย</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
@@ -694,7 +691,7 @@
     <value>ญี่ปุ่น</value>
   </data>
   <data name="Japanese" xml:space="preserve">
-    <value>日本</value>
+    <value>ญี่ปุ่น</value>
   </data>
   <data name="Jordan" xml:space="preserve">
     <value>จอร์แดน</value>
@@ -709,7 +706,7 @@
     <value>เคนยา</value>
   </data>
   <data name="Korean" xml:space="preserve">
-    <value>한국어</value>
+    <value>เกาหลี</value>
   </data>
   <data name="KoreaRep" xml:space="preserve">
     <value>เกาหลีใต้</value>
@@ -1202,10 +1199,6 @@
   <data name="Switzerland" xml:space="preserve">
     <value>สวิสเซอร์แลนด์</value>
   </data>
-  <data name="SystemParlayDetailNote" xml:space="preserve">
-    <value>ยอดแพ้/ชนะที่อ้างอิงจะมีการปัดเศษให้เต็มจำนวนไว้ ดังนั้นยอดรวมที่แสดงในระบบอาจแตกต่างจากบ้าง เมื่อทำการคำนวณยอดแพ้/ชนะตามยอดเป็นจริง</value>
-    <comment>78976</comment>
-  </data>
   <data name="Taiwan" xml:space="preserve">
     <value>ไต้หวัน</value>
   </data>
@@ -1222,10 +1215,10 @@
     <value>ลิ้งค์ข้อความ</value>
   </data>
   <data name="Thai" xml:space="preserve">
-    <value>ภาษาไทย</value>
+    <value>ไทย</value>
   </data>
   <data name="Thailand" xml:space="preserve">
-    <value>ประเทศไทย</value>
+    <value>ไทย</value>
   </data>
   <data name="THB" xml:space="preserve">
     <value>THB (Thai Baht)</value>
@@ -1317,11 +1310,11 @@
   <data name="Venezuela" xml:space="preserve">
     <value>เวเนซุเอล่า</value>
   </data>
-  <data name="VietNam" xml:space="preserve">
+  <data name="Vietnam" xml:space="preserve">
     <value>เวียดนาม</value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
-    <value>Tiếng Việt</value>
+    <value>เวียดนาม</value>
   </data>
   <data name="WebsiteInfor" xml:space="preserve">
     <value>รายละเอียดเกี่ยวกับเว็บไซต์</value>
@@ -1474,7 +1467,7 @@
     <value>คีโน</value>
   </data>
   <data name="Lottery" xml:space="preserve">
-    <value>ล็อตเตอร์รี่</value>
+    <value>หวย</value>
   </data>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>สมัครร่วมโปรแกรมพันธมิตร12BETเลยสิคะ!</value>
@@ -1554,9 +1547,6 @@
   <data name="ServerError" xml:space="preserve">
     <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ! โปรดติดต่อผู้ดูแลระบบ</value>
   </data>
-  <data name="MemDepositInfo" xml:space="preserve">
-    <value>ข้อมูลฝากเงินของสมาชิก</value>
-  </data>
   <data name="AccountNumber" xml:space="preserve">
     <value>หมายเลขบัญชี</value>
   </data>
@@ -1574,12 +1564,6 @@
   </data>
   <data name="USDEqv" xml:space="preserve">
     <value>เทียบเท่าUSD</value>
-  </data>
-  <data name="MemberWithdrawalInfo" xml:space="preserve">
-    <value>ข้อมูลถอนเงินของสมาชิก</value>
-  </data>
-  <data name="SelectDate" xml:space="preserve">
-    <value>วันที่เลือก</value>
   </data>
   <data name="Device" xml:space="preserve">
     <value>อุปกรณ์ที่แสดงผลแบนเนอร์</value>
@@ -1602,14 +1586,8 @@
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
   </data>
-  <data name="result" xml:space="preserve">
-    <value>ผลเดิมพัน</value>
-  </data>
   <data name="SubCategory" xml:space="preserve">
     <value>ประเภท</value>
-  </data>
-  <data name="Note2" xml:space="preserve">
-    <value>Note</value>
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>ขออภัยค่ะ! คุณไม่สามารถเข้าสู่ระบบจากโดเมนนี้</value>
@@ -1844,7 +1822,7 @@
     <value>ทีมงานภาษาเกาหลี</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
-    <value>ខ្មែរ</value>
+    <value>กัมพูชา</value>
   </data>
   <data name="AffFeedback" xml:space="preserve">
     <value>ข้อเสนอแนะจากพันธมิตร</value>
@@ -1877,10 +1855,10 @@
     <value>Teenpatti</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
-    <value>繁體中文</value>
+    <value>จีนดั้งเดิม</value>
   </data>
   <data name="ChineseSimplified" xml:space="preserve">
-    <value>简体中文</value>
+    <value>จีนตัวย่อ</value>
   </data>
   <data name="IN" xml:space="preserve">
     <value>IN</value>
@@ -2159,9 +2137,54 @@
     <value>ค่าคอมมิชชั่นทั้งหมด</value>
   </data>
   <data name="Hindi" xml:space="preserve">
-    <value>'हिन्दी (India)</value>
+    <value>ฮินดี</value>
   </data>
   <data name="Telugu" xml:space="preserve">
-    <value>తెలుగు (India)</value>
+    <value>เตลูกู</value>
+  </data>
+  <data name="EnglishBangladesh" xml:space="preserve">
+    <value>อังกฤษ (บังกลาเทศ)</value>
+  </data>
+  <data name="EnglishIndia" xml:space="preserve">
+    <value>อังกฤษ (อินเดีย)</value>
+  </data>
+  <data name="SouthKorea" xml:space="preserve">
+    <value>เกาหลีใต้</value>
+  </data>
+  <data name="China" xml:space="preserve">
+    <value>จีน</value>
+  </data>
+  <data name="GenerateYourUniqueLink" xml:space="preserve">
+    <value>สร้างลิงค์ที่ไม่ซ้ำใครของคุณ!</value>
+  </data>
+  <data name="TargetCountry" xml:space="preserve">
+    <value>ประเทศเป้าหมาย</value>
+  </data>
+  <data name="TargetProduct" xml:space="preserve">
+    <value>ผลิตภัณฑ์เป้าหมาย</value>
+  </data>
+  <data name="GetBannerForYourTargetMarket" xml:space="preserve">
+    <value>รับแบนเนอร์ตลาดเป้าหมายของคุณ!</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>กีฬา</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>แลกเปลี่ยน</value>
+  </data>
+  <data name="Playtech" xml:space="preserve">
+    <value>เพลย์เทค</value>
+  </data>
+  <data name="Arcade" xml:space="preserve">
+    <value>อาร์เคด</value>
+  </data>
+  <data name="P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>คีโน</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>ทีมงานภาษาบังกลาเทศ</value>
   </data>
 </root>

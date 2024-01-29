@@ -201,9 +201,6 @@
   <data name="Baccarat" xml:space="preserve">
     <value>Baccarat</value>
   </data>
-  <data name="Back" xml:space="preserve">
-    <value>Quay lại</value>
-  </data>
   <data name="Bahamas" xml:space="preserve">
     <value>Bahamas </value>
   </data>
@@ -484,10 +481,10 @@
     <value>Bạn cần điền Địa chỉ eMail.</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>Tiếng Anh</value>
   </data>
-  <data name="EnglishEU" xml:space="preserve">
-    <value>English_Euro</value>
+  <data name="EnglishEurope" xml:space="preserve">
+    <value>Tiếng Anh (Châu Âu)</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Anh</value>
@@ -661,10 +658,10 @@
     <value>Ấn Độ </value>
   </data>
   <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia </value>
+    <value>Indo</value>
   </data>
   <data name="Indonesian" xml:space="preserve">
-    <value>Indonesian</value>
+    <value>Tiếng Indo</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
@@ -694,7 +691,7 @@
     <value>Nhật Bản </value>
   </data>
   <data name="Japanese" xml:space="preserve">
-    <value>日本</value>
+    <value>Tiếng Nhật</value>
   </data>
   <data name="Jordan" xml:space="preserve">
     <value>Jordan </value>
@@ -709,7 +706,7 @@
     <value>Kenya </value>
   </data>
   <data name="Korean" xml:space="preserve">
-    <value>한국어</value>
+    <value>Tiếng Hàn</value>
   </data>
   <data name="KoreaRep" xml:space="preserve">
     <value>Hàn Quốc </value>
@@ -1218,7 +1215,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Liên kết url</value>
   </data>
   <data name="Thai" xml:space="preserve">
-    <value>ภาษาไทย</value>
+    <value>Tiếng Thái</value>
   </data>
   <data name="Thailand" xml:space="preserve">
     <value>Thái Lan </value>
@@ -1313,7 +1310,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="Venezuela" xml:space="preserve">
     <value>Venezuela </value>
   </data>
-  <data name="VietNam" xml:space="preserve">
+  <data name="Vietnam" xml:space="preserve">
     <value>Việt Nam </value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
@@ -1380,7 +1377,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>12BET CASINO CLUBS</value>
   </data>
   <data name="LiveCasino" xml:space="preserve">
-    <value>Live Casino</value>
+    <value>Casino trực tuyến</value>
   </data>
   <data name="Dragon" xml:space="preserve">
     <value>Dragon/Tiger</value>
@@ -1464,13 +1461,13 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Thể Thao Ảo</value>
   </data>
   <data name="ESports" xml:space="preserve">
-    <value>Esports</value>
+    <value>Thể Thao Điện Tử</value>
   </data>
   <data name="RngKeno" xml:space="preserve">
     <value>RNG KENO</value>
   </data>
   <data name="Lottery" xml:space="preserve">
-    <value>XỔ SỐ</value>
+    <value>Xổ Số</value>
   </data>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>Đăng Ký Tham Gia Chương Trình Đại Lý 12BET</value>
@@ -1550,9 +1547,6 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="ServerError" xml:space="preserve">
     <value>Đã xảy ra lỗi khi xử lý yêu cầu của bạn! Vui lòng liên hệ với Quản trị viên.</value>
   </data>
-  <data name="MemDepositInfo" xml:space="preserve">
-    <value>Thông tin Gửi tiền của Thành viên</value>
-  </data>
   <data name="AccountNumber" xml:space="preserve">
     <value>Số tài khoản (Acc. No.)</value>
   </data>
@@ -1570,12 +1564,6 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="USDEqv" xml:space="preserve">
     <value>Quy đổi USD</value>
-  </data>
-  <data name="MemberWithdrawalInfo" xml:space="preserve">
-    <value>Thông Tin Rút Tiền của Thành viên</value>
-  </data>
-  <data name="SelectDate" xml:space="preserve">
-    <value>Chọn Ngày</value>
   </data>
   <data name="Device" xml:space="preserve">
     <value>Thiết bị</value>
@@ -1598,17 +1586,8 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Chưa Gửi Tiền</value>
   </data>
-  <data name="result" xml:space="preserve">
-    <value>Kết Quả</value>
-  </data>
   <data name="SubCategory" xml:space="preserve">
     <value>Loại</value>
-  </data>
-  <data name="Note2" xml:space="preserve">
-    <value>Ghi Chú</value>
-  </data>
-  <data name="SystemParlayDetailNote" xml:space="preserve">
-    <value>Thắng Thua là số nguyên chỉ mang tính tham khảo. Do đó, số tiền thực có thể sẽ khác với Tổng Thắng Thua khi hệ thống tính Tổng Thắng Thua thực.</value>
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>Xin lỗi. Bạn không thể đăng nhập tài khoản này.</value>
@@ -1843,7 +1822,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Hỗ trợ tiếng Hàn</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
-    <value>ខ្មែរ</value>
+    <value>Tiếng Campuchia</value>
   </data>
   <data name="AffFeedback" xml:space="preserve">
     <value>Phản Hồi Từ Đại Lý</value>
@@ -1867,10 +1846,10 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Chia sẻ lợi nhuận</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
-    <value>繁體中文</value>
+    <value>Tiếng Trung (Phồn Thể)</value>
   </data>
   <data name="ChineseSimplified" xml:space="preserve">
-    <value>简体中文</value>
+    <value>Tiếng Trung (Giản Thể)</value>
   </data>
   <data name="IN" xml:space="preserve">
     <value>IN</value>
@@ -2158,9 +2137,54 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Tổng hoa hồng</value>
   </data>
   <data name="Hindi" xml:space="preserve">
-    <value>'हिन्दी (India)</value>
+    <value>Tiếng Hindi</value>
   </data>
   <data name="Telugu" xml:space="preserve">
-    <value>తెలుగు (India)</value>
+    <value>Tiếng Telugu</value>
+  </data>
+  <data name="EnglishBangladesh" xml:space="preserve">
+    <value>Tiếng Anh (Bangladesh)</value>
+  </data>
+  <data name="EnglishIndia" xml:space="preserve">
+    <value>Tiếng Anh (Ấn Độ)</value>
+  </data>
+  <data name="SouthKorea" xml:space="preserve">
+    <value>Hàn Quốc</value>
+  </data>
+  <data name="China" xml:space="preserve">
+    <value>Trung Quốc</value>
+  </data>
+  <data name="GenerateYourUniqueLink" xml:space="preserve">
+    <value>Tạo Link Liên Kết Duy Nhất</value>
+  </data>
+  <data name="TargetCountry" xml:space="preserve">
+    <value>Thị Trường</value>
+  </data>
+  <data name="TargetProduct" xml:space="preserve">
+    <value>Sản phẩm hướng tới</value>
+  </data>
+  <data name="GetBannerForYourTargetMarket" xml:space="preserve">
+    <value>Tải banner cho thị trường mục tiêu của bạn!</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>Thể Thao</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Exchange</value>
+  </data>
+  <data name="Playtech" xml:space="preserve">
+    <value>Playtech</value>
+  </data>
+  <data name="Arcade" xml:space="preserve">
+    <value>Arcade</value>
+  </data>
+  <data name="P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>Keno</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>Hỗ trợ tiếng Bangladesh</value>
   </data>
 </root>

@@ -43,7 +43,13 @@
             param.Language = targetLanguageCode;
             var sizeList = shouldGetSize ? MarketingService.GetSizeList(param, SessionService.IsInternal) : new List<SizeType>();
 
-            return Json(new { domainList, languageList = SystemHelper.GetTargetLanguageList(languageList), pageList, sizeList }, JsonRequestBehavior.AllowGet);
+            return Json(
+                new {
+                    domainList,
+                    languageList = SystemHelper.GetTargetLanguageList(languageList),
+                    pageList,
+                    sizeList
+                }, JsonRequestBehavior.AllowGet);
         }
     }
 }
