@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             if (!string.Equals(Statistics.ReportByCountry, landingPageStatisticsParam.ReportBy, StringComparison.InvariantCultureIgnoreCase))
             {
-                var languageList = _systemService.GetSystemLanguages();
+                var languageList = _systemService.GetAllSystemTargetLanguages();
                 landingPageStatisticsParam.LanguageCodes = GetShortedCode(languageList, landingPageStatisticsParam.LanguageCode);
                 landingPageStatisticsParam.CountryCodes = null;
 
@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 {
                     var language = languageList.FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
 
-                    item.Language = language == null ? item.LanguageCode : language.MarketNativeName;
+                    item.Language = language == null ? item.LanguageCode : language.NativeLanguage;
                 }
 
                 return dataList;
@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _statisticsRepository.GetStatisticsDetailBySite(statisticsDetailParam);
         }
 
-        private static string GetShortedCode(IEnumerable<Language> languageList, string languageCode)
+        private static string GetShortedCode(IEnumerable<TargetLanguage> languageList, string languageCode)
         {
             if (string.IsNullOrEmpty(languageCode))
             {
@@ -105,7 +105,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 return string.Join(",", allShortedCode);
             }
 
-            var shortedCode = languageList.FirstOrDefault(l => l.MarketId.MatchWith(languageCode))?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
+            var shortedCode = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(languageCode))?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
 
             return shortedCode;
         }

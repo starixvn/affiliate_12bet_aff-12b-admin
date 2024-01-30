@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 var language = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(selectedLanguage));
                 if (language != null)
                 {
-                    linkList.Add(language.NativeLanguage, GenerateLink(linkGenerationParam, language.ShortedCode));
+                    linkList.Add(language.LanguageName, GenerateLink(linkGenerationParam, language.ShortedCode));
                 }
                 else
                 {
@@ -119,7 +119,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (language != null)
             {
-                linkList.Add(language.NativeLanguage, GenerateLink(linkGenerationParam, language.ShortedCode));
+                linkList.Add(language.LanguageName, GenerateLink(linkGenerationParam, language.ShortedCode));
             }
         }
 
@@ -127,7 +127,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             const int LengthOfSplittingSize = 2;
 
-            var languageList = _systemService.GetSystemTargetLanguages();
+            var languageList = _systemService.GetSystemTargetLanguagesByCountry(bannerParam.SelectedTargetCountry);
             bannerParam.Languages = GetTargetLanguageName(languageList, bannerParam.Language);
 
             var bannerList = _marketingRepository.GetBannerList(bannerParam);

@@ -92,10 +92,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
 
         public ResultInfo UpdateLanguage(UpdateLanguageParam param)
         {
-            var userId = _sessionService.UserId;
-            return _authService.IsUserHasPermissionOnAff(userId, param.AffId)
-                ? _customerLeftPanelRepository.UpdateLanguage(param)
-                : Result.NotHavePermissionOnAff;
+            if(_systemService.GetInChangeMarkets().Any(m => string.Equals(m.LanguageCode, param.PreferredLanguage, StringComparison.OrdinalIgnoreCase)))
+            {
+                var userId = _sessionService.UserId;
+                return _authService.IsUserHasPermissionOnAff(userId, param.AffId)
+                    ? _customerLeftPanelRepository.UpdateLanguage(param)
+                    : Result.NotHavePermissionOnAff;
+            }
+
+            return ResultInfo.GenerateErr("The selected language is invalid!");
         }
 
         public ResultInfo UpdateStatus(UpdateStatusParam param, AffInformationEmail emailParam)

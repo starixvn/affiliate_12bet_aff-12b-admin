@@ -7,24 +7,17 @@ import MultipleSelect from '../../../../components/multiple-select';
 
 import { getDateRange } from '../../../../modules/utils';
 import { headerTitle, deviceTypes, globalResource, minDateOfClickStatistics, groupByCountry, groupByList } from '../libs/constants';
-import { setSelectedPageDetailFilter, setParam, setShortCodeLanguageList, getPageList, getCountryList, setIsGroupByCountry } from '../actions';
+import { setSelectedPageDetailFilter, setParam, setShortCodeLanguageList, getPageList, getCountryList, setIsGroupByCountry, getAllTargetLanguageList } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Filter extends React.Component {
     constructor(props) {
         super(props);
 
-        const { today, languageList } = this.props;
+        const { today } = this.props;
         const now = new Date(today);
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-
-        const shortCodeLanguageList = {};
-        for (let languageItem of languageList) {
-            const shortCode = languageItem.ShortedCode;
-            shortCodeLanguageList[shortCode] = languageItem.LanguageName;
-        }
-        this.props.setShortCodeLanguageList(shortCodeLanguageList);
 
         this.state = {
             groupBy: groupByCountry,
@@ -37,7 +30,8 @@ export class Filter extends React.Component {
             toDate: this.nowString,
             deviceType: 0,
             pageList: null,
-            countryList: null
+            countryList: null,
+            languageList: null
         };
     }
 
@@ -48,6 +42,10 @@ export class Filter extends React.Component {
 
         if (!this.state.countryList) {
             this.handleCountryList();
+        }
+
+        if (!this.state.languageList) {
+            this.handleLanguageList();
         }
     }
 
@@ -62,6 +60,19 @@ export class Filter extends React.Component {
         const initialCountries = countryList.filter(r => r.Checked).map(r => r.CountryCode).join(',');
 
         this.setState({ initialCountries, selectedCountries: initialCountries, countryList, initialCountryList: countryList });
+    }
+
+    handleLanguageList = async () => {
+        const languageList = await this.props.getAllTargetLanguageList();
+
+        const shortCodeLanguageList = {};
+        for (let languageItem of languageList) {
+            const shortCode = languageItem.ShortedCode;
+            shortCodeLanguageList[shortCode] = languageItem.LanguageName;
+        }
+
+        this.setState({ languageList });
+        this.props.setShortCodeLanguageList(shortCodeLanguageList);
     }
 
     handleChangeCountry = (item, selectedCountries) => {
@@ -160,7 +171,7 @@ export class Filter extends React.Component {
                                 <Input type="select" name="languageCode" id="languageCode" value={languageCode} onChange={this.handleChange}>
                                     <option value="">{globalResource.All}</option>
                                     {
-                                        Object.keys(shortCodeLanguageList).map(key => {
+                                        shortCodeLanguageList && Object.keys(shortCodeLanguageList).map(key => {
                                             return (<option key={`language-${key}`} value={key}>{shortCodeLanguageList[key]}</option>)
                                         })
                                     }
@@ -199,19 +210,18 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, languageList, landingPageStatistics }) {
+function mapStateToProps({ today, affCommonInfo, landingPageStatistics }) {
     const { affId } = affCommonInfo;
     const { shortCodeLanguageList } = landingPageStatistics;
     return Object.assign({}, {
         today,
         affId,
-        languageList,
         shortCodeLanguageList
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedPageDetailFilter, setParam, setShortCodeLanguageList, getPageList, getCountryList, setIsGroupByCountry }, dispatch);
+    return bindActionCreators({ setSelectedPageDetailFilter, setParam, setShortCodeLanguageList, getPageList, getCountryList, setIsGroupByCountry, getAllTargetLanguageList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

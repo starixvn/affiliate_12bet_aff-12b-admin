@@ -41,5 +41,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 Data = _systemService.GetCountryList()
             };
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
+        public ActionResult GetAllTargetLanguageList()
+        {
+            return new JsonNetResult
+            {
+                Data = _systemService.GetAllTargetLanguageListByUser()
+            };
+        }
     }
 }

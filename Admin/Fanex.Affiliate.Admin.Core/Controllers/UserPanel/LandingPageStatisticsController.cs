@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 if(!string.Equals("Country", param.GroupBy, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    param.LanguageCode = GetShortedCode(_systemServive.GetInChangeMarkets(), param.LanguageCode);
+                    param.LanguageCode = GetShortedCode(_systemServive.GetAllInChangeMarkets(), param.LanguageCode);
                 }
 
                 return new JsonNetResult

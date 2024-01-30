@@ -20,6 +20,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         public IEnumerable<Language> GetInChangeMarkets()
         {
+            return GetAllInChangeMarkets().Where(l => !l.LanguageCode.Equals("hi") && !l.LanguageCode.Equals("te-IN"));
+        }
+
+        public IEnumerable<Language> GetAllInChangeMarkets()
+        {
             var languages = _systemService.GetLanguageList();
             var inChangeMarket = _sessionService.UserClaim.FindAll(Constants.Function.InChargeMarket).Select(c => c.Value);
             return languages.Where(l => inChangeMarket.Contains(l.LanguageCode));
@@ -46,6 +51,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         }
 
         public IEnumerable<Language> GetTargetLanguageListByUser()
+        {
+            return GetAllTargetLanguageListByUser().Where(l => !l.LanguageCode.Equals("hi") && !l.LanguageCode.Equals("te-IN"));
+        }
+
+        public IEnumerable<Language> GetAllTargetLanguageListByUser()
         {
             return _systemService.GetTargetLanguageList(_sessionService.UserId);
         }

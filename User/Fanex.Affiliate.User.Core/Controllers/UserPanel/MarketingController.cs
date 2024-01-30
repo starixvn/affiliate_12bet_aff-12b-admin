@@ -5,6 +5,7 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
     using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using System.Collections.Generic;
     using System.Linq;
@@ -42,7 +43,13 @@
             param.Language = targetLanguageCode;
             var sizeList = shouldGetSize ? MarketingService.GetSizeList(param, SessionService.IsInternal) : new List<SizeType>();
 
-            return Json(new { domainList, languageList, pageList, sizeList }, JsonRequestBehavior.AllowGet);
+            return Json(
+                new {
+                    domainList,
+                    languageList = SystemHelper.GetTargetLanguageList(languageList),
+                    pageList,
+                    sizeList
+                }, JsonRequestBehavior.AllowGet);
         }
     }
 }

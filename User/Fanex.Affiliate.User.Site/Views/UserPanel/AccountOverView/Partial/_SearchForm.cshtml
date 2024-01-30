@@ -17,7 +17,7 @@
     <div class="form-horizontal">
         @RazorHelper.RenderDropdownForMarketing("TargetCountry", Lang.TargetCountry, Model.TargetCountryList, false)
 
-        @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, Model.LanguageList)
+        @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, Model.LanguageList, Model.LanguageList.Count() > 1)
 
         @RazorHelper.RenderDropdownForMarketing("TargetProduct", Lang.TargetProduct, Model.TargetProductList)
 

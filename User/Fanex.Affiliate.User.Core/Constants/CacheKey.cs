@@ -14,6 +14,10 @@
 
         public const string InternalTargetLanguageList = "Affiliate.12Bet.InternalTargetLanguageList";
 
+        public const string AllTargetLanguageList = "Affiliate.12Bet.AllTargetLanguageList";
+
+        public const string InternalAllTargetLanguageList = "Affiliate.12Bet.InternalAllTargetLanguageList";
+
         public const string LanguageList = "Affiliate.12Bet.LanguageList";
 
         public const string InternalLanguageList = "Affiliate.12Bet.InternalLanguageList";

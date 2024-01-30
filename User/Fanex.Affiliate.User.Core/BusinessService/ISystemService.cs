@@ -11,9 +11,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         bool IsValid(string langCode, bool isAfterLogin = true);
 
-        IEnumerable<Language> GetSystemLanguages(bool isAfterLogin = true);
-
         IEnumerable<TargetLanguage> GetSystemTargetLanguages();
+
+        IEnumerable<TargetLanguage> GetAllSystemTargetLanguages();
 
         IEnumerable<TargetCountry> GetSystemTargetCountries();
 

@@ -201,9 +201,6 @@
   <data name="Baccarat" xml:space="preserve">
     <value>Bakarat</value>
   </data>
-  <data name="Back" xml:space="preserve">
-    <value>Kembali</value>
-  </data>
   <data name="Bahamas" xml:space="preserve">
     <value>Bahama </value>
   </data>
@@ -286,7 +283,7 @@
     <value>Burundi </value>
   </data>
   <data name="Cambodia" xml:space="preserve">
-    <value>Kamboja </value>
+    <value>Kamboja</value>
   </data>
   <data name="Cameroon" xml:space="preserve">
     <value>Kamerun </value>
@@ -313,7 +310,7 @@
     <value>Cape Verde </value>
   </data>
   <data name="Casino" xml:space="preserve">
-    <value>Casino</value>
+    <value>Kasino</value>
   </data>
   <data name="CasinoBonus" xml:space="preserve">
     <value>Bonus Kasino</value>
@@ -484,10 +481,10 @@
     <value>Alamat e-mail diperlukan.</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>Inggris</value>
   </data>
-  <data name="EnglishEU" xml:space="preserve">
-    <value>English_Euro</value>
+  <data name="EnglishEurope" xml:space="preserve">
+    <value>Inggris (Eropa)</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Inggris</value>
@@ -664,7 +661,7 @@
     <value>Indonesia </value>
   </data>
   <data name="Indonesian" xml:space="preserve">
-    <value>Bahasa Indonesia</value>
+    <value>Indonesia</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
@@ -691,10 +688,10 @@
     <value>Januari</value>
   </data>
   <data name="Japan" xml:space="preserve">
-    <value>Jepang </value>
+    <value>Jepang</value>
   </data>
   <data name="Japanese" xml:space="preserve">
-    <value>日本</value>
+    <value>Jepang</value>
   </data>
   <data name="Jordan" xml:space="preserve">
     <value>Yordania </value>
@@ -709,7 +706,7 @@
     <value>Kenya </value>
   </data>
   <data name="Korean" xml:space="preserve">
-    <value>한국어</value>
+    <value>Korea</value>
   </data>
   <data name="KoreaRep" xml:space="preserve">
     <value>Korea (Rep) </value>
@@ -906,7 +903,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Sayang sekali, saya tidak punya situs web (website)</value>
   </data>
   <data name="NumberGame" xml:space="preserve">
-    <value>PERMAINAN ANGKA</value>
+    <value>Permainan Angka</value>
   </data>
   <data name="October" xml:space="preserve">
     <value>Oktober</value>
@@ -1218,7 +1215,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Tautan Teks</value>
   </data>
   <data name="Thai" xml:space="preserve">
-    <value>ภาษาไทย</value>
+    <value>Thailand</value>
   </data>
   <data name="Thailand" xml:space="preserve">
     <value>Thailand </value>
@@ -1313,11 +1310,11 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="Venezuela" xml:space="preserve">
     <value>Venezuela </value>
   </data>
-  <data name="VietNam" xml:space="preserve">
+  <data name="Vietnam" xml:space="preserve">
     <value>Viet Nam </value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
-    <value>Tiếng Việt</value>
+    <value>Vietnam</value>
   </data>
   <data name="WebsiteInfor" xml:space="preserve">
     <value>Informasi Situs Web (Website)</value>
@@ -1380,7 +1377,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>12BET CASINO CLUBS</value>
   </data>
   <data name="LiveCasino" xml:space="preserve">
-    <value>Live Casino</value>
+    <value>Live Kasino</value>
   </data>
   <data name="Dragon" xml:space="preserve">
     <value>Dragon/Tiger</value>
@@ -1461,13 +1458,13 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>PRODUK/PERMAINAN</value>
   </data>
   <data name="ESports" xml:space="preserve">
-    <value>ESPORTS</value>
+    <value>E-Sports</value>
   </data>
   <data name="RngKeno" xml:space="preserve">
     <value>RNG KENO</value>
   </data>
   <data name="Lottery" xml:space="preserve">
-    <value>LOTERE</value>
+    <value>Lotere</value>
   </data>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>DAFTAR PROGRAM AFILIASI 12BET SEKARANG!</value>
@@ -1547,9 +1544,6 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="ServerError" xml:space="preserve">
     <value>Kesalahan terjadi saat memproses permintaan Anda! Silakan hubungi Administrator.</value>
   </data>
-  <data name="MemDepositInfo" xml:space="preserve">
-    <value>Informasi Deposit Member</value>
-  </data>
   <data name="AccountNumber" xml:space="preserve">
     <value>Nomor Rekening</value>
   </data>
@@ -1567,12 +1561,6 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="USDEqv" xml:space="preserve">
     <value>USD Eqv</value>
-  </data>
-  <data name="MemberWithdrawalInfo" xml:space="preserve">
-    <value>Informasi Penarikan Member</value>
-  </data>
-  <data name="SelectDate" xml:space="preserve">
-    <value>Pilih Tanggal</value>
   </data>
   <data name="Device" xml:space="preserve">
     <value>Device</value>
@@ -1595,17 +1583,8 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
   </data>
-  <data name="result" xml:space="preserve">
-    <value>Results</value>
-  </data>
   <data name="SubCategory" xml:space="preserve">
     <value>Sub Category</value>
-  </data>
-  <data name="Note2" xml:space="preserve">
-    <value>Note</value>
-  </data>
-  <data name="SystemParlayDetailNote" xml:space="preserve">
-    <value>Win Loss dibulatkan hanya untuk referensi. Maka jumlah Sub Total mungkin berbeda dengan jumlah Win Loss saat menghitung jumlah Win Loss yg sebenarnya</value>
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>Maaf! Anda tidak diijinkan masuk dengan domain ini.</value>
@@ -1846,7 +1825,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Bantuan Dalam Bahasa Korea</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
-    <value>ខ្មែរ</value>
+    <value>Kamboja</value>
   </data>
   <data name="AffFeedback" xml:space="preserve">
     <value>Saran Afiliasi</value>
@@ -1885,10 +1864,10 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Teenpatti</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
-    <value>繁體中文</value>
+    <value>Cina (Tradisional)</value>
   </data>
   <data name="ChineseSimplified" xml:space="preserve">
-    <value>简体中文</value>
+    <value>Cina (Simplified)</value>
   </data>
   <data name="MKK" xml:space="preserve">
     <value>MMK</value>
@@ -2156,5 +2135,56 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="TotalCommission" xml:space="preserve">
     <value>Total komisi</value>
+  </data>
+  <data name="Hindi" xml:space="preserve">
+    <value>Hindi</value>
+  </data>
+  <data name="Telugu" xml:space="preserve">
+    <value>Telugu</value>
+  </data>
+  <data name="EnglishBangladesh" xml:space="preserve">
+    <value>Inggris (Bangladesh)</value>
+  </data>
+  <data name="EnglishIndia" xml:space="preserve">
+    <value>Inggris (India)</value>
+  </data>
+  <data name="SouthKorea" xml:space="preserve">
+    <value>Korea Selatan</value>
+  </data>
+  <data name="China" xml:space="preserve">
+    <value>China</value>
+  </data>
+  <data name="GenerateYourUniqueLink" xml:space="preserve">
+    <value>Buat link khusus Anda!</value>
+  </data>
+  <data name="TargetCountry" xml:space="preserve">
+    <value>Target Negara</value>
+  </data>
+  <data name="TargetProduct" xml:space="preserve">
+    <value>Sasaran Produk</value>
+  </data>
+  <data name="GetBannerForYourTargetMarket" xml:space="preserve">
+    <value>Dapatkan banner untuk target Anda!</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>Olahraga</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>Exchange</value>
+  </data>
+  <data name="Playtech" xml:space="preserve">
+    <value>Playtech</value>
+  </data>
+  <data name="Arcade" xml:space="preserve">
+    <value>Arcade</value>
+  </data>
+  <data name="P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>Keno</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Bangladesh</value>
   </data>
 </root>

@@ -1358,10 +1358,10 @@ var MarketingBase = (function ($) {
                 return;
             }
 
-            var html = Site.buildOptionList(languageList, "LanguageCode", "LanguageName", languageList.length > 1);
+            var html = Site.buildOptionList(languageList, "Value", "Text", languageList.length > 1);
 
             $("#Language").html(html);
-            $("#Language").val(languageList[0].LanguageCode);
+            $("#Language").val(languageList[0].Value);
         },
 
         updateSizeDropdown: function (sizeList) {

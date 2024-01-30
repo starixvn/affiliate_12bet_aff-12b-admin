@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cambodian" xml:space="preserve">
-    <value>ខ្មែរ</value>
+    <value>ភាសាខ្មែរ</value>
   </data>
   <data name="Affiliate" xml:space="preserve">
     <value>ភ្នាក់ងារ</value>
@@ -391,7 +391,7 @@
     <value>ចុះឈ្មោះកម្មវិធីភ្នាក់ងារ 12BET ឥឡូវនេះ!</value>
   </data>
   <data name="LiveCasino" xml:space="preserve">
-    <value>កាស៊ីណូផ្សាយផ្ទាល់</value>
+    <value>កាស៊ីណូបន្តផ្ទាល់</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>ហ្គេមកាស៊ីណូ</value>
@@ -565,28 +565,28 @@
     <value>IP</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
-    <value>繁體中文</value>
+    <value>ចិន (បុរាណ)</value>
   </data>
   <data name="ChineseSimplified" xml:space="preserve">
-    <value>简体中文</value>
+    <value>ចិន</value>
   </data>
   <data name="Japanese" xml:space="preserve">
-    <value>日本</value>
+    <value>ជប៉ុន</value>
   </data>
   <data name="Korean" xml:space="preserve">
-    <value>한국어</value>
+    <value>ភាសាកូរ៉េ</value>
   </data>
   <data name="IN" xml:space="preserve">
     <value>IN</value>
   </data>
   <data name="Thai" xml:space="preserve">
-    <value>ภาษาไทย</value>
+    <value>ថៃ</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>អង់គ្លេស</value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
-    <value>Tiếng Việt</value>
+    <value>វៀតណាម</value>
   </data>
   <data name="MKK" xml:space="preserve">
     <value>MMK</value>
@@ -595,7 +595,7 @@
     <value>PSP</value>
   </data>
   <data name="Indonesian" xml:space="preserve">
-    <value>Indonesian</value>
+    <value>ភាសាឥណ្ឌូនេស៊ី</value>
   </data>
   <data name="Copyright" xml:space="preserve">
     <value>រក្សាសិទ្ធិ © 2008 - {0} | 12BET.com សូមរក្សាសិទ្ធគ្រប់យ៉ាង ។ | 18+</value>
@@ -1279,10 +1279,10 @@
     <value>Guinea</value>
   </data>
   <data name="India" xml:space="preserve">
-    <value>India</value>
+    <value>ឥណ្ឌា</value>
   </data>
   <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia </value>
+    <value>ឥណ្ឌូនេស៊ី</value>
   </data>
   <data name="Iran" xml:space="preserve">
     <value>Iran </value>
@@ -1335,9 +1335,6 @@
   <data name="RMB" xml:space="preserve">
     <value>RMB (Ren Min Bi)</value>
   </data>
-  <data name="Back" xml:space="preserve">
-    <value>ត្រឡប់វិញ</value>
-  </data>
   <data name="Image" xml:space="preserve">
     <value>រូបភាព</value>
   </data>
@@ -1350,8 +1347,8 @@
   <data name="EUR" xml:space="preserve">
     <value>EUR (Euro)</value>
   </data>
-  <data name="EnglishEU" xml:space="preserve">
-    <value>English_Euro</value>
+  <data name="EnglishEurope" xml:space="preserve">
+    <value>អង់គ្លេស (អឺរ៉ុប)</value>
   </data>
   <data name="February" xml:space="preserve">
     <value>ខែកុម្ភៈ</value>
@@ -1423,7 +1420,7 @@
     <value>Swaziland </value>
   </data>
   <data name="Thailand" xml:space="preserve">
-    <value>Thailand </value>
+    <value>ថៃ</value>
   </data>
   <data name="Pakistan" xml:space="preserve">
     <value>Pakistan</value>
@@ -1624,7 +1621,7 @@
     <value>Ecuador </value>
   </data>
   <data name="Malaysia" xml:space="preserve">
-    <value>Malaysia </value>
+    <value>ម៉ាឡេស៊ី</value>
   </data>
   <data name="QualifyingMembers" xml:space="preserve">
     <value>≥ 5 </value>
@@ -1651,7 +1648,7 @@
     <value>Lao People's Dem Rep </value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
-    <value>Bangladesh </value>
+    <value>បង់ក្លាដែស</value>
   </data>
   <data name="Poland" xml:space="preserve">
     <value>Poland </value>
@@ -1705,7 +1702,7 @@
     <value>Yugoslavia </value>
   </data>
   <data name="Japan" xml:space="preserve">
-    <value>Japan </value>
+    <value>ជប៉ុន</value>
   </data>
   <data name="Zambia" xml:space="preserve">
     <value>Zambia </value>
@@ -1747,7 +1744,7 @@
     <value>Bhutan </value>
   </data>
   <data name="Cambodia" xml:space="preserve">
-    <value>Cambodia </value>
+    <value>កម្ពុជា</value>
   </data>
   <data name="Cameroon" xml:space="preserve">
     <value>Cameroon </value>
@@ -1839,8 +1836,8 @@
   <data name="Malta" xml:space="preserve">
     <value>Malta </value>
   </data>
-  <data name="VietNam" xml:space="preserve">
-    <value>Viet Nam </value>
+  <data name="Vietnam" xml:space="preserve">
+    <value>វៀតណាម</value>
   </data>
   <data name="BruneiDarussalam" xml:space="preserve">
     <value>Brunei Darussalam </value>
@@ -1942,7 +1939,7 @@
     <value>ក្លាយជាដៃគូអាជីវកម្មរបស់ 12BET | កម្មវិធីភ្នាក់ងារ - 12BET។</value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>ភ្នាក់ងារ​ 12Bet  – គណនីថ្មី {0} កំពុងរង់ចាំការយល់ព្រម</value>
+    <value>ភ្នាក់ងារ​12Bet  – គណនីថ្មី {0} កំពុងរង់ចាំការយល់ព្រម</value>
   </data>
   <data name="errExistAccount" xml:space="preserve">
     <value>អ្នកប្រើប្រាស់មានគណនី IBC រួចហើយ។</value>
@@ -2051,5 +2048,62 @@
   </data>
   <data name="TotalCommission" xml:space="preserve">
     <value>កម្រៃជើងសារសរុប</value>
+  </data>
+  <data name="Hindi" xml:space="preserve">
+    <value>ហិណ្ឌូ</value>
+  </data>
+  <data name="Telugu" xml:space="preserve">
+    <value>តេលូហ្គូ</value>
+  </data>
+  <data name="EnglishBangladesh" xml:space="preserve">
+    <value>អង់គ្លេស (បង់ក្លាដែស)</value>
+  </data>
+  <data name="EnglishIndia" xml:space="preserve">
+    <value>អង់គ្លេស (ឥណ្ឌា)</value>
+  </data>
+  <data name="SouthKorea" xml:space="preserve">
+    <value>កូរ៉េខាងត្បូង</value>
+  </data>
+  <data name="China" xml:space="preserve">
+    <value>ចិន</value>
+  </data>
+  <data name="GenerateYourUniqueLink" xml:space="preserve">
+    <value>បង្កើតតំណពិសេសរបស់អ្នក!</value>
+  </data>
+  <data name="TargetCountry" xml:space="preserve">
+    <value>ប្រទេសគោលដៅ</value>
+  </data>
+  <data name="TargetProduct" xml:space="preserve">
+    <value>ផលិតផលគោលដៅ</value>
+  </data>
+  <data name="GetBannerForYourTargetMarket" xml:space="preserve">
+    <value>ទទួលបានបដាផ្សព្វផ្សាយសំរាប់ទីផ្សាររបស់អ្នក!</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>កីឡា</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>ផ្លាស់ប្តូរ</value>
+  </data>
+  <data name="Playtech" xml:space="preserve">
+    <value>Playtech</value>
+  </data>
+  <data name="Arcade" xml:space="preserve">
+    <value>Arcade</value>
+  </data>
+  <data name="P2P" xml:space="preserve">
+    <value>P2P</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>គីណូ</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>ជំនួយភាសាបង់ក្លាដេស</value>
+  </data>
+  <data name="Winlost" xml:space="preserve">
+    <value>ប្រចាំខែ</value>
+  </data>
+  <data name="HomeHeaderTitle" xml:space="preserve">
+    <value>ភ្នាក់ងារ​12BET</value>
   </data>
 </root>

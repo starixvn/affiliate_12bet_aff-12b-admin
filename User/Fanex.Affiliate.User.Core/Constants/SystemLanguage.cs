@@ -74,12 +74,6 @@ namespace Fanex.Affiliate.User.Core.Constants
             return ShortedDefaultCode.ToUpperInvariant();
         }
 
-        public static string GetLanguageText(string value)
-        {
-            return value.MatchWith("english (europe)") ? Lang.EnglishEU
-                  : Lang.ResourceManager.GetString(value.Replace(" ", "")) ?? value;
-        }
-
         public static string GetSEOHtmlTagLangAttribute()
         {
             var currentCulture = Thread.CurrentThread.CurrentCulture;

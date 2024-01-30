@@ -42,21 +42,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
         }
 
-        public IEnumerable<Language> GetSystemLanguages(bool isAfterLogin = true)
-        {
-            var isInternal = _sessionService.IsInternal;
-            var cacheKey = isAfterLogin && isInternal ? CacheKey.InternalLanguageList : CacheKey.LanguageList;
-
-            var languageList = _cacheService.Get<IEnumerable<Language>>(cacheKey);
-            if (languageList == null)
-            {
-                languageList = _systemRepository.GetLanguageList(isInternal, _sessionService.UserSession?.UserId);
-                _cacheService.Set(cacheKey, languageList);
-            }
-
-            return languageList ?? new List<Language>();
-        }
-
         public IEnumerable<TargetCountry> GetSystemTargetCountries()
         {
             var isInternal = _sessionService.IsInternal;
@@ -81,6 +66,22 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var targetLanguageList = _cacheService.Get<IEnumerable<TargetLanguage>>(cacheKey);
             if (targetLanguageList == null)
             {
+                targetLanguageList = GetAllSystemTargetLanguages().Where(l => !l.LanguageCode.Equals("hi") && !l.LanguageCode.Equals("te-IN"));
+                _cacheService.Set(cacheKey, targetLanguageList);
+            }
+
+            return targetLanguageList ?? new List<TargetLanguage>();
+        }
+
+        public IEnumerable<TargetLanguage> GetAllSystemTargetLanguages()
+        {
+            var isInternal = _sessionService.IsInternal;
+            var cacheKey = isInternal ? CacheKey.InternalAllTargetLanguageList : CacheKey.AllTargetLanguageList;
+
+
+            var targetLanguageList = _cacheService.Get<IEnumerable<TargetLanguage>>(cacheKey);
+            if (targetLanguageList == null)
+            {
                 targetLanguageList = _systemRepository.GetTargetLanguageListByCountry(isInternal, userId: _sessionService.UserSession?.UserId);
                 _cacheService.Set(cacheKey, targetLanguageList);
             }
@@ -94,7 +95,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
         public bool IsValid(string langCode, bool isAfterLogin = true)
-            => !string.IsNullOrWhiteSpace(langCode) && GetSystemLanguages(isAfterLogin).Any(l => Equals(l.MarketId, langCode));
+            => !string.IsNullOrWhiteSpace(langCode) && GetSystemTargetLanguages().Any(l => Equals(l.LanguageCode, langCode));
 
 
         public void SetCulture(string languageCode)

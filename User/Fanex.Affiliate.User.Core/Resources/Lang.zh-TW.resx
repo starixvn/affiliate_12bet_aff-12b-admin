@@ -148,7 +148,7 @@
     <value>阿爾及利亞 </value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>全部</value>
+    <value>全選</value>
   </data>
   <data name="Amount" xml:space="preserve">
     <value>金額</value>
@@ -200,9 +200,6 @@
   </data>
   <data name="Baccarat" xml:space="preserve">
     <value>百家樂</value>
-  </data>
-  <data name="Back" xml:space="preserve">
-    <value>返回</value>
   </data>
   <data name="Bahrain" xml:space="preserve">
     <value>巴林</value>
@@ -481,10 +478,10 @@
     <value>請填寫電郵地址</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>英語</value>
   </data>
-  <data name="EnglishEU" xml:space="preserve">
-    <value>English_Euro</value>
+  <data name="EnglishEurope" xml:space="preserve">
+    <value>英語（歐洲）</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
     <value>英文客服</value>
@@ -658,10 +655,10 @@
     <value>印度</value>
   </data>
   <data name="Indonesia" xml:space="preserve">
-    <value>印尼</value>
+    <value>印度尼西亞</value>
   </data>
   <data name="Indonesian" xml:space="preserve">
-    <value>Indonesian</value>
+    <value>印尼語</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
@@ -691,7 +688,7 @@
     <value>日本</value>
   </data>
   <data name="Japanese" xml:space="preserve">
-    <value>日本</value>
+    <value>日語</value>
   </data>
   <data name="Jordan" xml:space="preserve">
     <value>約旦</value>
@@ -706,7 +703,7 @@
     <value>肯亞</value>
   </data>
   <data name="Korean" xml:space="preserve">
-    <value>한국어</value>
+    <value>韓語</value>
   </data>
   <data name="KoreaRep" xml:space="preserve">
     <value>韓國</value>
@@ -1204,10 +1201,6 @@
   <data name="Switzerland" xml:space="preserve">
     <value>瑞士</value>
   </data>
-  <data name="SystemParlayDetailNote" xml:space="preserve">
-    <value>盈虧金額計算四捨五入僅供參考，當總計所有實際損失金額時，小計金額可能與盈虧總和有差異。</value>
-    <comment>78976</comment>
-  </data>
   <data name="Taiwan" xml:space="preserve">
     <value>台灣</value>
   </data>
@@ -1224,7 +1217,7 @@
     <value>文本鏈接</value>
   </data>
   <data name="Thai" xml:space="preserve">
-    <value>ภาษาไทย</value>
+    <value>泰語</value>
   </data>
   <data name="Thailand" xml:space="preserve">
     <value>泰國</value>
@@ -1319,11 +1312,11 @@
   <data name="Venezuela" xml:space="preserve">
     <value>委內瑞拉</value>
   </data>
-  <data name="VietNam" xml:space="preserve">
+  <data name="Vietnam" xml:space="preserve">
     <value>越南</value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
-    <value>Tiếng Việt</value>
+    <value>越南語</value>
   </data>
   <data name="WebsiteInfor" xml:space="preserve">
     <value>網站資料</value>
@@ -1556,9 +1549,6 @@
   <data name="ServerError" xml:space="preserve">
     <value>在處理您的請求時發生問題，請與管理員聯繫。</value>
   </data>
-  <data name="MemDepositInfo" xml:space="preserve">
-    <value>會員存款訊息</value>
-  </data>
   <data name="AccountNumber" xml:space="preserve">
     <value>銀行帳號</value>
   </data>
@@ -1576,12 +1566,6 @@
   </data>
   <data name="USDEqv" xml:space="preserve">
     <value>USD價值</value>
-  </data>
-  <data name="MemberWithdrawalInfo" xml:space="preserve">
-    <value>會員提款訊息</value>
-  </data>
-  <data name="SelectDate" xml:space="preserve">
-    <value>選擇日期</value>
   </data>
   <data name="Device" xml:space="preserve">
     <value>設備</value>
@@ -1604,14 +1588,8 @@
   <data name="Non_Deposit" xml:space="preserve">
     <value>無存款紀錄</value>
   </data>
-  <data name="result" xml:space="preserve">
-    <value>投注結果</value>
-  </data>
   <data name="SubCategory" xml:space="preserve">
     <value>附屬分類</value>
-  </data>
-  <data name="Note2" xml:space="preserve">
-    <value>注意事項</value>
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>很抱歉！您無法在此網域登錄。</value>
@@ -1849,7 +1827,7 @@
     <value>韓國客服</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
-    <value>ខ្មែរ</value>
+    <value>柬埔寨語</value>
   </data>
   <data name="AffFeedback" xml:space="preserve">
     <value>合作夥伴意見回饋</value>
@@ -1888,7 +1866,7 @@
     <value>繁體中文</value>
   </data>
   <data name="ChineseSimplified" xml:space="preserve">
-    <value>简体中文</value>
+    <value>簡體中文</value>
   </data>
   <data name="IN" xml:space="preserve">
     <value>IN</value>
@@ -2162,5 +2140,56 @@
   </data>
   <data name="TotalCommission" xml:space="preserve">
     <value>總佣金</value>
+  </data>
+  <data name="Hindi" xml:space="preserve">
+    <value>印地語</value>
+  </data>
+  <data name="Telugu" xml:space="preserve">
+    <value>泰盧固語</value>
+  </data>
+  <data name="EnglishBangladesh" xml:space="preserve">
+    <value>英語（孟加拉）</value>
+  </data>
+  <data name="EnglishIndia" xml:space="preserve">
+    <value>英語（印度）</value>
+  </data>
+  <data name="SouthKorea" xml:space="preserve">
+    <value>韓國</value>
+  </data>
+  <data name="China" xml:space="preserve">
+    <value>中國</value>
+  </data>
+  <data name="GenerateYourUniqueLink" xml:space="preserve">
+    <value>產生您的專屬連結！</value>
+  </data>
+  <data name="TargetCountry" xml:space="preserve">
+    <value>目標國家</value>
+  </data>
+  <data name="TargetProduct" xml:space="preserve">
+    <value>目標產品</value>
+  </data>
+  <data name="GetBannerForYourTargetMarket" xml:space="preserve">
+    <value>目標市場專屬橫幅廣告！</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>體育</value>
+  </data>
+  <data name="Exchange" xml:space="preserve">
+    <value>EXCHANGE</value>
+  </data>
+  <data name="Playtech" xml:space="preserve">
+    <value>PT 翡翠廳</value>
+  </data>
+  <data name="Arcade" xml:space="preserve">
+    <value>街機遊戲</value>
+  </data>
+  <data name="P2P" xml:space="preserve">
+    <value>棋牌</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>快樂彩</value>
+  </data>
+  <data name="BangladeshSupport" xml:space="preserve">
+    <value>孟加拉客服</value>
   </data>
 </root>

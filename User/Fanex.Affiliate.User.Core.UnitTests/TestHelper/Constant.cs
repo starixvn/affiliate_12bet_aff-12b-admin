@@ -33,11 +33,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 
         public const string GroupName = "No Commission";
 
-        public static IEnumerable<Language> LanguageList = new List<Language>
+        public static IEnumerable<TargetLanguage> LanguageList = new List<TargetLanguage>
         {
-            new Language { MarketId = "en-UK", DisplayName = "English", MarketName = "English", MarketNativeName = "English", ShortedCode = "en" },
-            new Language { MarketId = "vi-VN", DisplayName = "VietNam", MarketName = "VietNamese", MarketNativeName = "Tieng viet", ShortedCode = "vn" },
-            new Language { MarketId = "en-US",  DisplayName ="English", MarketName = "English", MarketNativeName = "English", ShortedCode = "us" }
+            new TargetLanguage { LanguageCode = "en-UK", DisplayName = "English", LanguageName = "English", NativeLanguage = "English", ShortedCode = "en" },
+            new TargetLanguage { LanguageCode = "vi-VN", DisplayName = "VietNam", LanguageName = "VietNamese", NativeLanguage = "Tieng viet", ShortedCode = "vn" },
+            new TargetLanguage { LanguageCode = "en-US",  DisplayName ="English", LanguageName = "English", NativeLanguage = "English", ShortedCode = "us" }
         };
 
         public static IEnumerable<TargetProduct> TargetProductList = new List<TargetProduct>

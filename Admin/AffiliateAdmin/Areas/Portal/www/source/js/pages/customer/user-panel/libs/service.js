@@ -14,6 +14,11 @@ export const getCountryList = () => async () => {
     return response && response.status === 200 ? convertCountryList(response.data) : [];
 }
 
+export const getAllTargetLanguageList = () => async () => {
+    const response = await post('Portal/CommonSetting/GetAllTargetLanguageList');
+    return response && response.status === 200 ? response.data : [];
+}
+
 const convertCountryList = (data) => {
     return data.map(item => ({ ...item, Checked: true }));
 }

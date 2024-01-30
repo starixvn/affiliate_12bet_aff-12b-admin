@@ -88,7 +88,7 @@
                 var qrCode = _qrCodeGeneratorService.GenerateBase64QrCode(textLink, icon, true);
                 return new QrCodeLinkModel
                 {
-                    Language = language,
+                    Language = SystemHelper.GetLanguageText(language),
                     Link = textLink,
                     QrCode = qrCode
                 };

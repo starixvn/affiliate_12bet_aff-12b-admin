@@ -45,7 +45,7 @@
 
             var viewModel = new LandingPageStatisticsViewModel
             {
-                LanguageList = SystemHelper.GetLanguageList(SystemService.GetSystemLanguages(), userSession.PreferredLanguage),
+                LanguageList = SystemHelper.GetTargetLanguageList(SystemService.GetAllSystemTargetLanguages(), userSession.PreferredLanguage),
                 MemberSitePageList = _statisticsService.GetLandingPageList(userSession.GroupName, isInternal),
                 CountryList = _statisticsService.GetCountryList(isInternal),
                 ReportBy = Statistics.ReportByCountry,
