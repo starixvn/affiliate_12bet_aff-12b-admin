@@ -138,11 +138,11 @@
   </Function>
 
   <Function Name="TargetCountry">
-    <Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel_xpre" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel_xpre" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
+    <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
 
-    <Setting Key="Aff_TargetCountry_Sel_view" SpName="Aff_TargetCountry_Sel_xpre" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
-    <Setting Key="Aff_Language_Sel_view" SpName="Aff_Language_Sel_xpre" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_TargetCountry_Sel_view" SpName="Aff_TargetCountry_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
+    <Setting Key="Aff_Language_Sel_view" SpName="Aff_Language_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
   </Function>
 
 </Functions>
