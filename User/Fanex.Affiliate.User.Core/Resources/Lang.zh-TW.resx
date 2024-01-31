@@ -312,9 +312,6 @@
   <data name="CasinoBonus" xml:space="preserve">
     <value>娛樂城紅利</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>種類</value>
-  </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>開曼群島</value>
   </data>
@@ -1588,9 +1585,6 @@
   <data name="Non_Deposit" xml:space="preserve">
     <value>無存款紀錄</value>
   </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>附屬分類</value>
-  </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>很抱歉！您無法在此網域登錄。</value>
   </data>
@@ -2186,9 +2180,6 @@
   <data name="BangladeshSupport" xml:space="preserve">
     <value>孟加拉客服</value>
   </data>
-  <data name="HomeSignUp" xml:space="preserve">
-    <value>註冊</value>
-  </data>
   <data name="TermAndConditionPageTitle" xml:space="preserve">
     <value>12BET合作夥伴條款與規則</value>
   </data>
@@ -2213,9 +2204,6 @@
   <data name="SupportDay" xml:space="preserve">
     <value>星期一至星期五</value>
   </data>
-  <data name="BangladeshSupport" xml:space="preserve">
-    <value>孟加拉客服</value>
-  </data>
   <data name="RegularCommissionStructure" xml:space="preserve">
     <value>常規佣金結構</value>
   </data>
@@ -2228,20 +2216,11 @@
   <data name="NetProfit" xml:space="preserve">
     <value>淨盈利</value>
   </data>
-  <data name="Sports" xml:space="preserve">
-    <value>體育</value>
-  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
-  </data>
-  <data name="P2P" xml:space="preserve">
-    <value>棋牌</value>
-  </data>
-  <data name="Keno" xml:space="preserve">
-    <value>快樂彩</value>
   </data>
   <data name="CompanyProfitForTheMonth" xml:space="preserve">
     <value>每月公司盈利 ($)</value>

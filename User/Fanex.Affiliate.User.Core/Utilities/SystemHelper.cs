@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
             var dataList = targetCountryList.Select(l => new SelectListItem
             {
                 Value = l.TargetCountryCode,
-                Text = Lang.ResourceManager.GetString(l.TargetCountryName.Replace(" ", "")) ?? l.TargetCountryName,
+                Text = GetTargetCountryText(l.TargetCountryName),
                 Selected = l.TargetCountryCode.MatchWith(targetCountryCode)
             });
 
@@ -42,6 +42,11 @@ namespace Fanex.Affiliate.User.Core.Utilities
         public static string GetProductText(string value)
         {
             return (value.Contains("-") ? Lang.ResourceManager.GetString(value.Replace("-", "")) : Lang.ResourceManager.GetString(value.Replace(" ", ""))) ?? value;
+        }
+
+        public static string GetTargetCountryText(string value)
+        {
+            return Lang.ResourceManager.GetString(value.Replace(" ", "")) ?? value;
         }
     }
 }

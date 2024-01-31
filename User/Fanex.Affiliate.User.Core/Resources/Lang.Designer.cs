@@ -1034,15 +1034,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
-        /// </summary>
-        public static string Category {
-            get {
-                return ResourceManager.GetString("Category", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cayman Islands .
         /// </summary>
         public static string CaymanIslands {
@@ -2524,15 +2515,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string HomeHeaderTitle {
             get {
                 return ResourceManager.GetString("HomeHeaderTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sign Up.
-        /// </summary>
-        public static string HomeSignUp {
-            get {
-                return ResourceManager.GetString("HomeSignUp", resourceCulture);
             }
         }
         
@@ -5306,15 +5288,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sub Category.
-        /// </summary>
-        public static string SubCategory {
-            get {
-                return ResourceManager.GetString("SubCategory", resourceCulture);
             }
         }
         

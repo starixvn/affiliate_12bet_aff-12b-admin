@@ -1022,12 +1022,6 @@
   <data name="GenerateLink" xml:space="preserve">
     <value>បង្កើតតំណ</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>ប្រភេទ</value>
-  </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>Sub Category</value>
-  </data>
   <data name="Currency" xml:space="preserve">
     <value>រូបិយប័ណ្ណ</value>
   </data>
@@ -2135,9 +2129,6 @@
   <data name="SupportDay" xml:space="preserve">
     <value>ថ្ងៃច័ន្ទ - សុក្រ</value>
   </data>
-  <data name="BangladeshSupport" xml:space="preserve">
-    <value>ជំនួយភាសាបង់ក្លាដេស</value>
-  </data>
   <data name="RegularCommissionStructure" xml:space="preserve">
     <value>រចនាសម្ព័ន្ធកម្រៃជើងសារ</value>
   </data>
@@ -2149,15 +2140,6 @@
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>ប្រាក់​ចំណេញ​សុទ្ធ</value>
-  </data>
-  <data name="Sports" xml:space="preserve">
-    <value>កីឡា</value>
-  </data>
-  <data name="P2P" xml:space="preserve">
-    <value>P2P</value>
-  </data>
-  <data name="Keno" xml:space="preserve">
-    <value>គីណូ</value>
   </data>
   <data name="CompanyProfitForTheMonth" xml:space="preserve">
     <value>ប្រាក់ចំណេញរបស់ក្រុមហ៊ុនប្រចាំខែ ($)</value>

@@ -315,9 +315,6 @@
   <data name="CasinoBonus" xml:space="preserve">
     <value>คาสิโนโบนัส</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>หัวข้อ</value>
-  </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>เกาะ เคแมน</value>
   </data>
@@ -1591,9 +1588,6 @@
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
   </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>ประเภท</value>
-  </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>ขออภัยค่ะ! คุณไม่สามารถเข้าสู่ระบบจากโดเมนนี้</value>
   </data>
@@ -2210,9 +2204,6 @@
   <data name="SupportDay" xml:space="preserve">
     <value>วันจันทร์ - วันศุกร์</value>
   </data>
-  <data name="BangladeshSupport" xml:space="preserve">
-    <value>ทีมงานภาษาบังกลาเทศ</value>
-  </data>
   <data name="RegularCommissionStructure" xml:space="preserve">
     <value>โครงสร้างค่าคอมมิชชันปกติ</value>
   </data>
@@ -2225,20 +2216,11 @@
   <data name="NetProfit" xml:space="preserve">
     <value>กำไรสุทธิ</value>
   </data>
-  <data name="Sports" xml:space="preserve">
-    <value>กีฬา</value>
-  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
-  </data>
-  <data name="P2P" xml:space="preserve">
-    <value>P2P</value>
-  </data>
-  <data name="Keno" xml:space="preserve">
-    <value>คีโน</value>
   </data>
   <data name="CompanyProfitForTheMonth" xml:space="preserve">
     <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลลาร์ฯ)</value>

@@ -324,9 +324,6 @@
   <data name="CasinoBonus" xml:space="preserve">
     <value>카지노 보너스</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>카테고리</value>
-  </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>케이멘 제도</value>
   </data>
@@ -1190,9 +1187,6 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>현황</value>
-  </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>카테고리 분류</value>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>제목</value>
@@ -2202,9 +2196,6 @@
   </data>
   <data name="SupportDay" xml:space="preserve">
     <value>월요일~금요일</value>
-  </data>
-  <data name="BangladeshSupport" xml:space="preserve">
-    <value>방글라데시 지원</value>
   </data>
   <data name="RegularCommissionStructure" xml:space="preserve">
     <value>기본 커미션 구조</value>

@@ -306,7 +306,6 @@
     <Compile Include="BusinessService\IMarketingService.cs" />
     <Compile Include="BusinessService\SystemService.cs" />
     <Compile Include="BusinessService\MarketingService.cs" />
-    <Compile Include="Constants\BannerTypeName.cs" />
     <Compile Include="Constants\SystemLanguage.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -462,7 +461,6 @@
     <Compile Include="MetalModels\UserPanel\LinkBaseParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGenerationParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingBannerParam.cs" />
-    <Compile Include="MetalModels\UserPanel\MarketingTextParam.cs" />
     <Compile Include="MetalModels\UserPanel\ReferrerStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsBySiteBaseParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsDetailBySiteParam.cs" />

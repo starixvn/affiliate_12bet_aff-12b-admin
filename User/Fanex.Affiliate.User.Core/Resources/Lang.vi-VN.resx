@@ -315,9 +315,6 @@
   <data name="CasinoBonus" xml:space="preserve">
     <value>Tiền thưởng Casino</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>Loại hình ảnh</value>
-  </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>Quần đảo Cayman </value>
   </data>
@@ -1591,9 +1588,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="Non_Deposit" xml:space="preserve">
     <value>Chưa Gửi Tiền</value>
   </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>Loại</value>
-  </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>Xin lỗi. Bạn không thể đăng nhập tài khoản này.</value>
   </data>
@@ -2186,9 +2180,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="BangladeshSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Bangladesh</value>
   </data>
-  <data name="HomeSignUp" xml:space="preserve">
-    <value>Đăng ký</value>
-  </data>
   <data name="TermAndConditionPageTitle" xml:space="preserve">
     <value>Điều Khoản và Điều Kiện của Đối tác Đại Lý 12BET</value>
   </data>
@@ -2212,9 +2203,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   </data>
   <data name="SupportDay" xml:space="preserve">
     <value>THỨ 2 - THỨ 6</value>
-  </data>
-  <data name="BangladeshSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Bangladesh</value>
   </data>
   <data name="RegularCommissionStructure" xml:space="preserve">
     <value>Cấu Trúc Hoa Hồng Thông Thường</value>

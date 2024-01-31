@@ -315,9 +315,6 @@
   <data name="CasinoBonus" xml:space="preserve">
     <value>Bonus Kasino</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>Kategori</value>
-  </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>Kep. Cayman </value>
   </data>
@@ -1588,9 +1585,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
   </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>Sub Category</value>
-  </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>Maaf! Anda tidak diijinkan masuk dengan domain ini.</value>
   </data>
@@ -2216,9 +2210,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="SupportDay" xml:space="preserve">
     <value>SENIN - JUMAT</value>
   </data>
-  <data name="BangladeshSupport" xml:space="preserve">
-    <value>Bantuan Dalam Bahasa Bangladesh</value>
-  </data>
   <data name="RegularCommissionStructure" xml:space="preserve">
     <value>STRUKTUR KOMISI REGULAR</value>
   </data>
@@ -2231,7 +2222,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="NetProfit" xml:space="preserve">
     <value>KEUNTUNGAN BERSIH</value>
   </data>
-
   <data name="CompanyProfitForTheMonth" xml:space="preserve">
     <value>Pendapatan Bersih Dalam Sebulan ($)</value>
   </data>

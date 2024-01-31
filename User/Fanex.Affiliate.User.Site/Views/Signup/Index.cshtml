@@ -1,6 +1,8 @@
 @using Fanex.Affiliate.User.Core.Constants
 @using Fanex.Affiliate.User.Core.CoreService
 @using Fanex.Affiliate.User.Core.BusinessService
+@using Fanex.Affiliate.User.Core.Utilities
+
 @{
     ViewBag.Title = Lang.SignUp;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
@@ -264,7 +266,7 @@
                                         <option value="">@Lang.SelectOne</option>
                                         @foreach (var item in systemService.GetSystemTargetCountries())
                                         {
-                                            <option value="@item.TargetCountryCode" data-language="@item.DefaultLanguageCode">@item.TargetCountryName</option>
+                                            <option value="@item.TargetCountryCode" data-language="@item.DefaultLanguageCode">@SystemHelper.GetTargetCountryText(item.TargetCountryName)</option>
                                         }
                                     </select>
                                     @Html.ValidationMessageFor(x => x.TargetCountryCode, string.Empty, new { @class = "validate-input hide" })
@@ -276,7 +278,7 @@
                                         <option value="">@Lang.SelectOne</option>
                                         @foreach (var item in systemService.GetSystemTargetLanguages())
                                         {
-                                            <option value="@item.LanguageCode">@item.NativeLanguage</option>
+                                            <option value="@item.LanguageCode">@SystemHelper.GetLanguageText(item.LanguageName)</option>
                                         }
                                     </select>
                                     @Html.ValidationMessageFor(x => x.PreferredLanguage, string.Empty, new { @class = "validate-input hide" })
