@@ -746,7 +746,7 @@
     <value>លុប</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>សូមជ្រើសរើសភាសាដែលពេញចិត្ត</value>
+    <value>សូមជ្រើសរើសភាសាគណនីសំរាប់ភ្នាក់ងារ</value>
   </data>
   <data name="errSecQuestionEmpty" xml:space="preserve">
     <value>សូមជ្រើសរើសសំណួរសុវត្ថិភាព</value>
@@ -2149,6 +2149,96 @@
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>ភ្នាក់ងារនិងទទួលបានចំណែកនៃប្រាក់ចំណេញសុទ្ធ ដោយផ្អែកតាមតារាងរចនាសម្ព័ន្ធនៃភ្នាក់ងារ។</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>ភាសាគណនីសំរាប់ភ្នាក់ងារ</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>សូមជ្រើសរើសប្រទេសគោលដៅ</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>ក្លាយជាភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="ContactUsHeaderTitle" xml:space="preserve">
+    <value>ទីផ្សារភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="PromotionHeaderTitle" xml:space="preserve">
+    <value>ក្លាយជាភ្នាក់ងារ 12BET ឥឡូវនេះ</value>
+  </data>
+  <data name="FAQsHeaderTitle" xml:space="preserve">
+    <value>ចូលរួមជាមួយភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="TermAndConditionHeaderTitle" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="ProductHeaderTitle" xml:space="preserve">
+    <value>12BET ផលិតផលភ្នាក់ងារ</value>
+  </data>
+  <data name="CommissionStructureHeaderTitle" xml:space="preserve">
+    <value>12BET កម្រៃជើងសារ</value>
+  </data>
+  <data name="MetaContactUsKeywords" xml:space="preserve">
+    <value>ភ្នាក់ងារ​ 12BET ជាកម្មវិធីភ្នាក់ងារ, ទីផ្សារភ្នាក់ងារ, គេហទំព័រភ្នាល់ល្អបំផុត។</value>
+  </data>
+  <data name="MetaContactUsDescription" xml:space="preserve">
+    <value>ទទួលបានបទពិសោធន៍ពីកម្មវិធីទីផ្សារភ្នាក់ងារដ៏ល្អបំផុត ហើយក្លាយជាដៃគូដើម្បីផ្សព្វផ្សាយកីឡាជាមួយ 12BET។</value>
+  </data>
+  <data name="MetaContactUsTitle" xml:space="preserve">
+    <value>ភ្នាក់ងារ 12Bet ដែលជាកម្មវិធីភ្នាក់ងារដែលត្រូវបានរចនាឡើងសម្រាប់អនាគត។</value>
+  </data>
+  <data name="MetaPromotionKeywords" xml:space="preserve">
+    <value>កីឡា, កាស៊ីណូ, កាស៊ីណូអនឡាញ, បណ្តាញទីផ្សារភ្នាក់ងារកាស៊ីណូ, បណ្តាញការភ្នាល់ទីផ្សារភ្នាក់ងារ, កីឡា, គេហទំព័រភ្នាល់ដែលល្អជាងគេ។</value>
+  </data>
+  <data name="MetaPromotionDescription" xml:space="preserve">
+    <value>12BET ផ្តល់ជូននូវទីផ្សារសម្ព័ន្ធលំដាប់ពិភពលោកសម្រាប់ដៃគូដើម្បីគាំទ្រកាស៊ីណូ 12BET និងការភ្នាល់កីឡានៅទូទាំងពិភពលោក និងទទួលបានកម្រៃជើងសារ 50%។</value>
+  </data>
+  <data name="MetaPromotionTitle" xml:space="preserve">
+    <value>ចាប់ផ្តើមភាពជោគជ័យរបស់អ្នកឥឡូវនេះជាមួយកម្មវិធី ភ្នាក់ងារ 12BET។</value>
+  </data>
+  <data name="MetaFAQsKeywords" xml:space="preserve">
+    <value>12BET គឺជាគេហទំព័រភ្នាល់ដ៏ល្អបំផុតនៅអាស៊ី និងជាវេទិកាដែលកំពុងកើនឡើងនៅក្នុងពិភពលោក ដែលផ្តល់ជូននូវកម្មវិធីភ្នាក់ងារដែលងាយស្រួល និងសុវត្ថិភាព និងផ្តល់ជូនលោកអ្នកនូវប្រាក់ចំណេញ។</value>
+  </data>
+  <data name="MetaFAQsDescription" xml:space="preserve">
+    <value>ជាឱកាសដ៏ល្អមួយសម្រាប់ភ្នាក់ងារទាំងអស់ ដើម្បីរកប្រាក់ចំណូលបានកាន់តែច្រើន។</value>
+  </data>
+  <data name="MetaFAQsTitle" xml:space="preserve">
+    <value>គេហទំព័រភ្នាល់ដែលធំបំផុតនៅអាស៊ី និងបានបើកដំណើរការកម្មវិធីភ្នាក់ងារ។</value>
+  </data>
+  <data name="MetaTermAndConditionKeywords" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងារ 12BET ទីផ្សារភ្នាក់ងារ, កម្មវិធីកាស៊ីណូ, ទីផ្សារភ្នាក់ងារ, វេទិការកីឡា, កាស៊ីណូ។</value>
+  </data>
+  <data name="MetaTermAndConditionDescription" xml:space="preserve">
+    <value>12BET គឺជាគេហទំព័រភ្នាល់ដ៏ល្អបំផុតនៅអាស៊ី និងជាវេទិកាដែលកំពុងកើនឡើងនៅក្នុងពិភពលោក ដែលផ្តល់ជូននូវកម្មវិធីសម្ព័ន្ធងាយស្រួល និងសុវត្ថិភាព ហើយប្រាកដជាផ្តល់ឱ្យអ្នកនូវប្រាក់ចំណេញ។</value>
+  </data>
+  <data name="MetaTermAndConditionTitle" xml:space="preserve">
+    <value>ទទួលបានបទពិសោធន៍ជោគជ័យសំរាប់ទីផ្សារភ្នាក់ងារជាមួយ 12BET។</value>
+  </data>
+  <data name="MetaProductKeywords" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងារ 12BET ទីផ្សារភ្នាក់ងារ, កម្មវិធីកាស៊ីណូ, ទីផ្សារភ្នាក់ងារ, វេទិការកីឡា, កាស៊ីណូ។</value>
+  </data>
+  <data name="MetaProductDescription" xml:space="preserve">
+    <value>កម្មវិធីសំរាប់កាស៊ីណូដែលមាននៅទូទាំងពិភពលោក ជាវេទិការកីឡាដែលជាទីទុកចិត្តបំផុត។</value>
+  </data>
+  <data name="MetaProductTitle" xml:space="preserve">
+    <value>លោកអ្នកនិងទទួលបានភាពរីករាយជាមួយនិងកម្មវិធីភ្នាក់ងារ 12BET។</value>
+  </data>
+  <data name="MetaCommissionStructureKeywords" xml:space="preserve">
+    <value>កម្រៃជើងសារល្អបំផុត, ទីផ្សារភ្នាក់ងារ, អត្រាប្រាក់កម្រៃជើងសារ, កម្មវិធីភ្នាក់ងារ, គេហទំព័រភ្នាល់ល្អដាច់គេ។</value>
+  </data>
+  <data name="MetaCommissionStructureDescription" xml:space="preserve">
+    <value>12BET ផ្តល់ជូននូវកម្មវិធីភ្នាក់ងារផ្តាច់មុខមួយស្របតាម FIFA World Cup 2022 ដែលផ្តល់ជូននូវអត្រាកំរៃជើងសារធំរហូតដល់ 50%។</value>
+  </data>
+  <data name="MetaCommissionStructureTitle" xml:space="preserve">
+    <value>ធ្វើឱ្យគេហទំព័ររបស់អ្នកទទួលបានកម្រៃជើងសារល្អបំផុតជាមួយនឹងកម្មវិធីភ្នាក់ងារ 12BET។</value>
+  </data>
+  <data name="MetaHomeKeywords" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងាររបស់12Bet, កីឡា, កាស៊ីណូ, គេហទំព័រភ្នាល់ល្អបំផុត, ទីផ្សារភ្នាក់ងារ។</value>
+  </data>
+  <data name="MetaHomeDescription" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងាររបស់12Bet គឺជាគេហទំព័រភ្នាល់អនឡ្ាញដែលដាច់គេ និងមានប្រូម៉ូសិនជាច្រើនមានដូចជា: កាស៊ីណូ ភ្នាល់កីឡា ដែលលោកអ្នកអាចរកលេងបាននៅក្នុងគេហទំព័រ។</value>
+  </data>
+  <data name="MetaHomeTitle" xml:space="preserve">
+    <value>ភ្នាក់ងារ 12Bet – ជាកម្មវិធីភ្នាក់ងារដែលល្អបំផុត។</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ជំនួយភាសាជប៉ុន</value>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -990,7 +990,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Tham chiếu</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>Vui lòng chọn ngôn ngữ bạn thích</value>
+    <value>Vui lòng chọn ngôn ngữ thị trường</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>Đang xử lý</value>
@@ -2224,6 +2224,15 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>Đại Lý kiếm được phần doanh thu từ lợi nhuận ròng dựa trên Bảng Cơ Cấu Hoa Hồng.</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>Ngôn ngữ thị trường</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>Vui lòng chọn thị trường</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>Trở Thành Đại Lý 12Bet</value>
   </data>
   <data name="Skype" xml:space="preserve">
     <value>Tài khoản Skype</value>

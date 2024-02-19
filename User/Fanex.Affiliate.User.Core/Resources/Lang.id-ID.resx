@@ -990,7 +990,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Preferensi</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>Pilih preferensi bahasa</value>
+    <value>Pilih Bahasa Akun Afiliasi</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>Memproses</value>
@@ -2230,6 +2230,15 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>Pembagian hasil Afiliasi dari keuntungan bersih berdasarkan Tabel Struktur Komisi.</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>Bahasa Akun Afiliasi</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>Pilih Negara Target</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>Jadilah Afiliasi 12BET</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Jepang</value>

@@ -987,7 +987,7 @@
     <value>首選</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>請選擇語言</value>
+    <value>請選擇主要推广国家</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value> 處理中 </value>
@@ -2230,6 +2230,15 @@
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>合作夥伴根據佣金結構表賺取淨收入的分成。</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>主要推广国家</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>主要推廣國家</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>成為12BET合作夥伴</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>日本客服</value>

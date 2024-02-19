@@ -683,6 +683,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Become a 12Bet Affiliate.
+        /// </summary>
+        public static string BecomeA12BetAff {
+            get {
+                return ResourceManager.GetString("BecomeA12BetAff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Belarus .
         /// </summary>
         public static string Belarus {

@@ -2344,6 +2344,9 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>Affiliate earns revenue share of Net profit based on Commission Structure Table.</value>
   </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>Become a 12Bet Affiliate</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Japan Support</value>
   </data>

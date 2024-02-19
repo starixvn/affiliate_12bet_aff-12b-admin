@@ -990,7 +990,7 @@
     <value>สิ่งที่ต้องการใช้</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>กรุณาเลือกภาษาที่คุณต้องการใช้</value>
+    <value>กรุณาเลือกภาษา</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>กำลังดำเนินการ</value>
@@ -2230,6 +2230,15 @@
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>"พันธมิตรได้รับส่วนแบ่งรายได้ของกำไรสุทธิตามตารางโครงสร้างคอมมิชชั่น"</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>เลือกภาษา</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>เลือกประเทศ</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>เข้าร่วมโปรแกรมพันธมิตรกับ 12BET</value>
   </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ทีมงานภาษาญีปุ่น</value>
