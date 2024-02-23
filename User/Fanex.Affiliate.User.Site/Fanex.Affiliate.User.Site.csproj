@@ -527,6 +527,10 @@
     <Content Include="www\build\styles\Images\home\our-product\live-casino.png" />
     <Content Include="www\build\styles\Images\home\our-product\lottery.png" />
     <Content Include="www\build\styles\Images\home\our-product\provider\item1.png" />
+    <Content Include="www\build\styles\Images\home\our-product\provider\item22.png" />
+    <Content Include="www\build\styles\Images\home\our-product\provider\item23.png" />
+    <Content Include="www\build\styles\Images\home\our-product\provider\item24.png" />
+    <Content Include="www\build\styles\Images\home\our-product\provider\item25.png" />
     <Content Include="www\build\styles\Images\home\our-product\provider\item3.png" />
     <Content Include="www\build\styles\Images\home\our-product\provider\item11.png" />
     <Content Include="www\build\styles\Images\home\our-product\provider\item12.png" />
@@ -670,6 +674,8 @@
     <Content Include="www\build\styles\Images\product\slot\pragmatic-play.png" />
     <Content Include="www\build\styles\Images\product\slot\saba-sports.png" />
     <Content Include="www\build\styles\Images\product\slot\skywind.png" />
+    <Content Include="www\build\styles\Images\product\sports\banner-mobile.png" />
+    <Content Include="www\build\styles\Images\product\sports\banner.png" />
     <Content Include="www\build\styles\Images\product\sports\bet-radar.png" />
     <Content Include="www\build\styles\Images\product\sports\br-sports.png" />
     <Content Include="www\build\styles\Images\product\sports\bti-sports.png" />
@@ -693,8 +699,6 @@
     <Content Include="www\build\styles\Images\product\slot\banner.png" />
     <Content Include="www\build\styles\Images\product\esports\banner.png" />
     <Content Include="www\build\styles\Images\product\live-casino\banner-mobile.png" />
-    <Content Include="www\build\styles\Images\product\sports\banner-mobile.png" />
-    <Content Include="www\build\styles\Images\product\sports\banner.png" />
     <Content Include="www\build\styles\Images\talk.svg" />
     <Content Include="www\build\styles\Images\under-maintenance\banner-um.svg" />
     <Content Include="www\source\js\lib\jquery-3.3.1.min.js" />
