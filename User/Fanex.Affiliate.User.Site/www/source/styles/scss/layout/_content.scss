@@ -16,14 +16,14 @@
 
 .main {
     $bg-main: #660000, #00008e;
+    overflow-x: hidden;
 
     &.after-login {
+        overflow-x: unset;
         flex-direction: column;
         background: $bg-main-color;
     }
 }
-
-
 
 .hot-news {
     display: flex;

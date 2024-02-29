@@ -63,6 +63,7 @@
   //  "outputFileName": "www/build/js/mediagallery.js",
   //  "inputFiles": [
   //    "www/source/js/components/pager.js",
+  //    "www/source/js/pages/account-overview/marketingbase.js",
   //    "www/source/js/pages/account-overview/mediagallery.js"
   //  ]
   //},
@@ -70,14 +71,9 @@
   //  "outputFileName": "www/build/js/affiliate-link.js",
   //  "inputFiles": [
   //    "www/source/js/components/pager.js",
-  //    "www/source/js/pages/account-overview/affiliate-link.js"
-  //  ]
-  //},
-  //{
-  //  "outputFileName": "www/build/js/generated-qrcode.js",
-  //  "inputFiles": [
   //    "www/source/js/components/clipboard.js",
-  //    "www/source/js/pages/account-overview/marketingbase.js"
+  //    "www/source/js/pages/account-overview/marketingbase.js",
+  //    "www/source/js/pages/account-overview/affiliate-link.js"
   //  ]
   //},
   //{

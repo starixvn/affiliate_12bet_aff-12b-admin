@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 var Layout = (function ($) {
-    var DEFAULT_SPEED = 27;
+    var DEFAULT_SPEED = 39;
 
     function createNewUrlByLanguage(url, language) {
         var hasQueryString = url.indexOf('?') !== -1;
@@ -118,10 +118,10 @@ var Layout = (function ($) {
                     var $marquee = $("#marquee");
                     $marquee.html(response);
                     // Time = Distance/Speed
-                    //var containerWith = $("#marqueeContainer").width();
-                    //var timeTaken = containerWith / DEFAULT_SPEED;
+                    var containerWith = $("#marquee").width();
+                    var timeTaken = containerWith / DEFAULT_SPEED;
 
-                    $marquee.css("animation-duration", DEFAULT_SPEED + "s");
+                    $marquee.css("animation-duration", timeTaken + "s");
                 }
             });
         },

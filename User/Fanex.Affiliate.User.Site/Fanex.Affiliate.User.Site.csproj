@@ -838,10 +838,6 @@
     <Content Include="www\build\js\forgotpassword.min.js">
       <DependentUpon>forgotpassword.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\generated-qrcode.js" />
-    <Content Include="www\build\js\generated-qrcode.min.js">
-      <DependentUpon>generated-qrcode.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\jquery.extension.js" />
     <Content Include="www\build\js\jquery.extension.min.js">
       <DependentUpon>jquery.extension.js</DependentUpon>

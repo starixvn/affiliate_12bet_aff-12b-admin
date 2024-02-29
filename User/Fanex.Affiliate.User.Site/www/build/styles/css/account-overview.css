@@ -243,6 +243,7 @@
           .summary-content .details-section-content .table table thead tr th {
             background: #CF1F21 !important;
             position: sticky;
+            position: -webkit-sticky;
             top: 43px; }
           .summary-content .details-section-content .table table thead tr.overview-table-total {
             background: #FFC000 !important; }

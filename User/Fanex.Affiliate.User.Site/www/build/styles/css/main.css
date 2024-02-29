@@ -16,9 +16,6 @@
   .container {
     width: 1500px; } }
 
-.main {
-  overflow-x: hidden; }
-
 ul, ol {
   padding-left: 1.2rem;
   line-height: 1.5; }
@@ -470,79 +467,79 @@ input[type="checkbox"], input[type="radio"] {
       max-width: 100%;
       flex-basis: 100%; } }
 
-.header-bottom .menu {
-  padding-left: 0;
-  padding-right: 0; }
-  @media screen and (max-width: 1024px) {
-    .header-bottom .menu {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 990;
-      width: 100%;
-      background: #d90f0f;
-      border-top: none; } }
-  @media screen and (max-width: 1024px) {
-    .header-bottom .menu.collapse {
-      display: none !important; } }
-  @media screen and (max-width: 1024px) {
-    .header-bottom .menu.collapse.in {
-      display: block !important; } }
-  .header-bottom .menu .menu-item {
-    position: relative;
-    padding: 10px 12px;
-    line-height: normal;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 0.96px;
-    white-space: nowrap; }
-    @media (min-width: 1200px) {
-      .header-bottom .menu .menu-item {
-        padding: 10px 2vw; } }
-    @media (min-width: 1360px) {
-      .header-bottom .menu .menu-item {
-        padding: 10px 32px; } }
+.header-bottom {
+  z-index: 990; }
+  .header-bottom .menu {
+    padding-left: 0;
+    padding-right: 0; }
     @media screen and (max-width: 1024px) {
-      .header-bottom .menu .menu-item {
-        padding: 12px 10px;
-        font-size: 16px;
-        text-align: center;
-        letter-spacing: 1.28px;
-        border-radius: 24px; } }
-    .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus {
-      color: #808080 !important;
-      background: #000 !important;
-      transition: none !important; }
+      .header-bottom .menu {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        background: #d90f0f;
+        border-top: none; } }
+    @media screen and (max-width: 1024px) {
+      .header-bottom .menu.collapse {
+        display: none !important; } }
+    @media screen and (max-width: 1024px) {
+      .header-bottom .menu.collapse.in {
+        display: block !important; } }
+    .header-bottom .menu .menu-item {
+      position: relative;
+      padding: 10px 12px;
+      line-height: normal;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.96px;
+      white-space: nowrap; }
+      @media (min-width: 1200px) {
+        .header-bottom .menu .menu-item {
+          padding: 10px 2vw; } }
+      @media (min-width: 1360px) {
+        .header-bottom .menu .menu-item {
+          padding: 10px 32px; } }
       @media screen and (max-width: 1024px) {
-        .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus {
-          color: #fff !important;
+        .header-bottom .menu .menu-item {
+          padding: 12px 10px;
+          font-size: 16px;
+          text-align: center;
+          letter-spacing: 1.28px;
           border-radius: 24px; } }
-    .header-bottom .menu .menu-item.active {
-      color: #fff !important;
-      background: #000 !important;
-      transition: none !important; }
-
-.header-bottom .logout-btn {
-  display: none; }
-  @media screen and (max-width: 1024px) {
-    .header-bottom .logout-btn {
-      display: block;
-      margin: 0 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.5);
-      text-align: center;
-      padding: 24px 0; }
-      .header-bottom .logout-btn a {
-        color: #FFF;
-        font-size: 12px;
-        font-weight: 700;
-        line-height: normal;
-        text-transform: uppercase;
-        border-radius: 100px;
-        border: 1px solid #FFF;
-        display: inline-block;
-        padding: 10px 20px; } }
+      .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus {
+        color: #808080 !important;
+        background: #000 !important;
+        transition: none !important; }
+        @media screen and (max-width: 1024px) {
+          .header-bottom .menu .menu-item:hover, .header-bottom .menu .menu-item:focus {
+            color: #fff !important;
+            border-radius: 24px; } }
+      .header-bottom .menu .menu-item.active {
+        color: #fff !important;
+        background: #000 !important;
+        transition: none !important; }
+  .header-bottom .logout-btn {
+    display: none; }
+    @media screen and (max-width: 1024px) {
+      .header-bottom .logout-btn {
+        display: block;
+        margin: 0 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        text-align: center;
+        padding: 24px 0; }
+        .header-bottom .logout-btn a {
+          color: #FFF;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: normal;
+          text-transform: uppercase;
+          border-radius: 100px;
+          border: 1px solid #FFF;
+          display: inline-block;
+          padding: 10px 20px; } }
 
 .after-login .tab-menu .menu-item, .after-login #mainMenu .menu-item {
   line-height: 30px;
@@ -595,7 +592,7 @@ input[type="checkbox"], input[type="radio"] {
   .after-login .header-bottom .menu {
     margin: 0;
     position: absolute;
-    top: 0;
+    top: -1px;
     z-index: 990;
     width: 100%;
     background: #d90f0f;
@@ -877,9 +874,12 @@ input[type="checkbox"], input[type="radio"] {
     .page-container {
       max-width: 1240px; } }
 
-.main.after-login {
-  flex-direction: column;
-  background: #fff; }
+.main {
+  overflow-x: hidden; }
+  .main.after-login {
+    overflow-x: unset;
+    flex-direction: column;
+    background: #fff; }
 
 .hot-news {
   display: flex;
