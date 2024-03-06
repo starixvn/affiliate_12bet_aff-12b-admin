@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             [SystemLanguage.CambodianLanguageCode] = "Facebook",
             [SystemLanguage.KoreaLanguageCode] = Telegram,
             [SystemLanguage.ThailandLanguageCode] = "Line",
-            [SystemLanguage.VietNamLanguageCode] = "Zalo",
+            [SystemLanguage.VietNamLanguageCode] = Telegram,
             [SystemLanguage.ChineseLanguageCode] = "QQ",
             [SystemLanguage.TaiwanLanguageCode] = "QQ",
         };
