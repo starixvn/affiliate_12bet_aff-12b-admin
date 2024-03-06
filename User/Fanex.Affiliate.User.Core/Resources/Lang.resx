@@ -2301,4 +2301,10 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Keno" xml:space="preserve">
     <value>Keno</value>
   </data>
+  <data name="Skype" xml:space="preserve">
+    <value>Skype</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
 </root>

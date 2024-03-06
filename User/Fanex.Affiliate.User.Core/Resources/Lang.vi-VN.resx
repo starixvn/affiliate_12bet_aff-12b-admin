@@ -2187,4 +2187,10 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Bangladesh</value>
   </data>
+  <data name="Skype" xml:space="preserve">
+    <value>Tài khoản Skype</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>Tài khoản Telegram</value>
+  </data>
 </root>

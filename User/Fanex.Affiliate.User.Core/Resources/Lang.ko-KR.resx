@@ -2183,4 +2183,10 @@
   <data name="BangladeshSupport" xml:space="preserve">
     <value>방글라데시 지원</value>
   </data>
+  <data name="Skype" xml:space="preserve">
+    <value>Skype</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
 </root>

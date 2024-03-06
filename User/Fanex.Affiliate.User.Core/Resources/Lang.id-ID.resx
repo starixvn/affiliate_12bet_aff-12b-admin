@@ -2187,4 +2187,10 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Bangladesh</value>
   </data>
+  <data name="Skype" xml:space="preserve">
+    <value>Skype</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
 </root>

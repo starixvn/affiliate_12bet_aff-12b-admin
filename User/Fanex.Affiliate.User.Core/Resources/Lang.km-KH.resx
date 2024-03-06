@@ -2106,4 +2106,10 @@
   <data name="HomeHeaderTitle" xml:space="preserve">
     <value>ភ្នាក់ងារ​12BET</value>
   </data>
+  <data name="Skype" xml:space="preserve">
+    <value>Skype</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
 </root>

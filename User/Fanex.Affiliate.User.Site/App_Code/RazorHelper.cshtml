@@ -149,7 +149,7 @@
         ["bn-BD"] = "WhatsApp",
         ["zh-CN"] = "QQ",
         ["zh-TW"] = "QQ",
-        ["vi-VN"] = "Zalo",
+        ["vi-VN"] = "Telegram",
         ["th-TH"] = "Line",
         ["id-ID"] = "WhatsApp",
         ["hi-IN"] = "WhatsApp",
@@ -169,7 +169,7 @@
     var hasThirdContactApp = thirdAppContactList.ContainsKey(language);
 
     <div class="form-group">
-        <label class="col-sm-3 control-label @(hasTwoContactApp ? string.Empty : "require")">@firstAppName</label>
+        <label class="col-sm-3 control-label @(hasTwoContactApp ? string.Empty : "require")">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(firstAppName) ?? firstAppName)</label>
         @if (hasTwoContactApp)
         {
             <div class="col-sm-4">
@@ -197,7 +197,7 @@
     {
         var secondAppName = secondAppContactList[language];
         <div class="form-group">
-            <label class="col-sm-3 control-label">@secondAppName</label>
+            <label class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(secondAppName) ?? secondAppName)</label>
             <div class="col-sm-4">
                 <input type="text" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-control" value=""
                        data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[0].Value@(hasThirdContactApp ? ",ContactAppList[2].Value" : "" )"
@@ -214,7 +214,7 @@
         {
             var thirdAppName = thirdAppContactList[language];
             <div class="form-group">
-                <label class="col-sm-3 control-label">@thirdAppName</label>
+                <label class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(thirdAppName) ?? thirdAppName)</label>
                 <div class="col-sm-4">
                     <input type="text" name="ContactAppList[2].Value" id="ContactAppList[2].Value" class="form-control" value=""
                            data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[0].Value,ContactAppList[1].Value"
