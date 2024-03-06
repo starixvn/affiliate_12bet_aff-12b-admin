@@ -140,7 +140,7 @@
 
                     foreach (var item in Model.ContactAppList)
                     {
-                        var label = isCsLanguage && item.Name.Equals("Telegram") ? "纸飞机(Telegram)" : item.Name;
+                        var label = Lang.ResourceManager.GetString(item.Name) ?? item.Name;
                         <div class="form-group">
                             <label class="col-sm-3 control-label @(contactAppCount == 1 ? "require" : string.Empty)">@label</label>
                             @if (contactAppCount > 1)

@@ -2192,4 +2192,10 @@
   <data name="BangladeshSupport" xml:space="preserve">
     <value>孟加拉客服</value>
   </data>
+  <data name="Skype" xml:space="preserve">
+    <value>Skype</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>纸飞机(Telegram)</value>
+  </data>
 </root>
