@@ -91,46 +91,12 @@
             $('.home-banner-tracking').on('click', function (event) {
                 event.preventDefault();
                 var redirectLink = $(this).attr('href');
-                PageTracking.addTrackingForSignUpPage();
+                PageTracking.addTrackingForHomeBanner();
 
                 setTimeout(function () {
                     Site.redirect(redirectLink);
                 }, 10);
             })
-
-            $('.media-link-tracking').on('click', function (event) {
-                event.preventDefault();
-                var $this = $(this);
-                var isLoggedIn = !$this.hasClass('mediaLoginLink');
-
-                if (isLoggedIn) {
-                    PageTracking.addTrackingForMediaPage();
-
-                    setTimeout(function () {
-                        Site.redirect($this.attr('href'));
-                    }, 10);
-                }
-            })
-
-            $('.home-banner-tracking-flat').on('click', function (event) {
-                event.preventDefault();
-                var redirectLink = $(this).attr('href');
-                PageTracking.addTrackingForHomeBanAFFFlat50();
-
-                setTimeout(function () {
-                    Site.redirect(redirectLink);
-                }, 10);
-            })
-
-            $('.home-banner-tracking-smart').on('click', function (event) {
-                event.preventDefault();
-                var redirectLink = $(this).attr('href');
-                PageTracking.addTrackingForSmartBanAFFFlat50();
-
-                setTimeout(function () {
-                    Site.redirect(redirectLink);
-                }, 10);
-            });
 
             $('.group-faq:not(:first-of-type) .anwser').css("display", "none");
             $('.group-faq:first-of-type .button-toggle').addClass("open");
@@ -138,10 +104,6 @@
                 $('.open').not(this).removeClass('open').parent().next().slideUp(300);
                 $(this).toggleClass('open').parent().next().slideToggle(300);
             });
-
-
-         
-
         }
     };
 

@@ -19,6 +19,16 @@
             _me.initEvent();
         },
         initEvent: function () {
+            $('.commission-structure-banner-tracking').on('click', function (event) {
+                event.preventDefault();
+                var redirectLink = $(this).attr('href');
+                PageTracking.addTrackingForHomeBanner();
+
+                setTimeout(function () {
+                    Site.redirect(redirectLink);
+                }, 10);
+            });
+
             $('.group-faq:first-of-type .button-toggle').addClass("open");
             $('.block-content .button-toggle').addClass("open");
             $('.button-toggle').click(function () {

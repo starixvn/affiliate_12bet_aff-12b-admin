@@ -19,10 +19,10 @@
             _me.initEvent();
         },
         initEvent: function () {
-            $('.btn-join-affiliate').on('click', function (event) {
+            $('.promotion-banner-tracking').on('click', function (event) {
                 event.preventDefault();
-                PageTracking.addTrackingForSignUpFromPromotion();
                 var redirectLink = $(this).attr('href');
+                PageTracking.addTrackingForHomeBanner();
 
                 setTimeout(function () {
                     Site.redirect(redirectLink);

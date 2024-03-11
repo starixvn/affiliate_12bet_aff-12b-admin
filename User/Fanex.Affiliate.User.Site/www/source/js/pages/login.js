@@ -96,7 +96,7 @@
                         if (response.IsOk) {
                             var isRedirectToMediaPage = $('#isCLickedBannerLink').val() === "1";
                             if (isRedirectToMediaPage) {
-                                PageTracking.addTrackingForMediaPage();
+                                PageTracking.addTrackingForLogin();
 
                                 setTimeout(function () {
                                     Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview#MediaGallery"));

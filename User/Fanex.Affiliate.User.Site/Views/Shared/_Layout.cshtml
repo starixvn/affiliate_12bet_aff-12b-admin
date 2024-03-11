@@ -58,6 +58,21 @@
     <link href="~/www/build/styles/fonts/myriadPro/font.min.css" rel="stylesheet" />
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     @RenderSection("styles", required: false)
+
+    @if (!settingService.IsProduction)
+    {
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S16RTPV0W"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+                }
+            
+            gtag('js', new Date());
+            gtag('config', 'G-9S16RTPV0W');
+        </script>
+    }
 </head>
 <body class="@RenderSection("afterLogin", required: false) @currentLanguage">
     <div class="header-top">
