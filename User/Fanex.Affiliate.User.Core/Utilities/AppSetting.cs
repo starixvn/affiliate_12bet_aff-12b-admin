@@ -69,6 +69,10 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string AppMailAddress => GetValue("app_mail_address");
 
+        public IEnumerable<string> SupportedODIWorldCupLanguages => GetValue("SupportedODIWorldCupLanguages").Split(',');
+
+        public string AppMailId => GetValue("app_mail_id");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }
