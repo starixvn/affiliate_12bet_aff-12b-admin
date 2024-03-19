@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitlePasswordRecovery, preferredLanguage, emailParam.RootDomain);
             }
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectForgetPass, emailParam.MailBcc, emailParam.MailCc);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectForgetPass);
             _languageService.SetCulture(emailParam.CurrentLanguage);
         }
 
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitleNewPassword, preferredLanguage, emailParam.RootDomain);
             }
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectNewPass, emailParam.MailBcc, emailParam.MailCc);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectNewPass);
             _languageService.SetCulture(emailParam.CurrentLanguage);
         }
 
@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
 
             var subject = Lang.PaymentSubject.Replace("{transid}", emailParam.TransId.ToString());
-            _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, subject);
             _languageService.SetCulture(emailParam.CurrentLanguage);
         }
 
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitleSignUp, preferredLanguage, emailParam.RootDomain);
             }
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.RegisSubject, emailParam.MailBcc, emailParam.MailCc);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.RegisSubject);
             _languageService.SetCulture(emailParam.CurrentLanguage);
         }
 
@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var emailContent = GetEmailTextContent(TemplateString.Csd, SystemLanguage.DefaultLanguageCode, emailParam);
             var subject = string.Format(Lang.CsdSubject, emailParam.UserName);
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, subject);
         }
 
         public void SendContactUsEmail(EmailBaseParam emailParam, ContactUsParam model)
@@ -103,7 +103,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var emailContent = GetEmailTextContent(TemplateString.ContactUs, SystemLanguage.DefaultLanguageCode, model);
             var subject = $"12Bet Affiliates - Contact Us - {model.Subject}";
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, subject);
         }
 
         public void SendVerificationEmail(VerificationAccountEmailParam emailParam)
@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTittleVerificationAccount, preferredLanguage, emailParam.RootDomain);
             }
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectVerificationAccount, emailParam.MailBcc, emailParam.MailCc);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectVerificationAccount);
             _languageService.SetCulture(emailParam.CurrentLanguage);
         }
 

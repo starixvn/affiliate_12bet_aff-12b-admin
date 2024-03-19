@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Logging;
 using Moq;
 using NSubstitute;
 using System;
@@ -56,6 +57,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
                  HttpCookieMode.AutoDetect,
                  SessionStateMode.InProc, false);
             SessionStateUtility.AddHttpSessionStateToContext(HttpContext.Current, sessionContainer);
+        }
+
+        public static void SetUpLogEngineEnviroment()
+        {
+            var logEngine = Substitute.For<ILogEngine>();
+
+            LogManager.SetDefaultLogCategory("Tests")
+                .Use(new List<ILogEngine>
+                {
+                    logEngine
+                });
         }
     }
 }

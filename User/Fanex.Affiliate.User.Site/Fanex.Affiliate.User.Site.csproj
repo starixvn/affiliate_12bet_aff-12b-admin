@@ -68,12 +68,11 @@
       <HintPath>..\..\packages\EasyNetQ.2.3.3\lib\net451\EasyNetQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Caching, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Caching.2.2.1\lib\net461\Fanex.Caching.dll</HintPath>
+    <Reference Include="Fanex.Caching, Version=2.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Caching.2.2.3\lib\net461\Fanex.Caching.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Data, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.4.2.2\lib\net461\Fanex.Data.dll</HintPath>
@@ -93,9 +92,11 @@
       <HintPath>..\..\packages\Fanex.Logging.Sentry.RavenClient.1.0.1\lib\net461\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.MailDeliver.MailClient.1.0.0.3\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.MailDeliver.MailClient.2.0.8\lib\net461\Fanex.MailDeliver.MailClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.MailDeliver.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.MailDeliver.Utility.1.0.3\lib\net461\Fanex.MailDeliver.Utility.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -162,9 +163,8 @@
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ONEbook.UM, Version=3.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ONEbook.UM.3.1.3\lib\net461\ONEbook.UM.dll</HintPath>
@@ -303,9 +303,6 @@
     <Content Include="App_Data\SpConfig\SpName.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.master.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
     <Content Include="App_Data\SpConfig\SpName.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
@@ -328,13 +325,7 @@
     <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.backupmnl.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.local.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.master.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.production.config">
@@ -346,13 +337,7 @@
     <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.uat.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.backupmnl.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.local.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.master.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.production.config">
@@ -398,14 +383,10 @@
     <Content Include="Views\Password\Update.cshtml" />
     <Content Include="Views\Auth\AuthenticationForm.cshtml" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.master.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.uat.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.sit.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.production.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.backupmnl.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.backupmnl.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.master.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.production.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.sit.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.uat.config" />
@@ -425,14 +406,6 @@
     <Content Include="Configurations\Web\Transform\euro.production.config" />
     <Content Include="Configurations\Web\Transform\euro.sit.config" />
     <Content Include="Configurations\Web\Transform\euro.uat.config" />
-    <Content Include="Configurations\Web\Transform\asian.master.config" />
-    <Content Include="Configurations\Web\Transform\asian.backupmnl.config" />
-    <Content Include="Configurations\Web\Transform\euro.master.config" />
-    <Content Include="Configurations\Web\Transform\euro.backupmnl.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.backupmnl.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.master.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.backupmnl.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.master.config" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.es-ES.cshtml" />
@@ -1352,13 +1325,7 @@
     <Content Include="ConnectionString.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.backupmnl.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\Web\Web.12betuser-asian.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.master.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\Web\Web.12betuser-asian.production.config">
@@ -1370,13 +1337,7 @@
     <Content Include="Configurations\Web\Web.12betuser-asian.uat.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.backupmnl.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\Web\Web.12betuser-euro.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.master.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\Web\Web.12betuser-euro.production.config">

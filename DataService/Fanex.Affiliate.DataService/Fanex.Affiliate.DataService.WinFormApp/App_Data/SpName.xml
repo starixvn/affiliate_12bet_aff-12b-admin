@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Affiliate - Data Services - Import 12Bet Special Product">
-    <Setting Key="Task_APIProduct_ImportQueue" SpName="Task_APIProduct_ImportQueue" DbName="DBAFF.Affiliate_12bet.bodbAdminNet" />
+    <Setting Key="Task_APIProduct_ImportQueue" SpName="Task_APIProduct_ImportQueue" DbName="DBAFF.Affiliate_12bet.wsv_aff" />
   </Function>
 
 </Functions>

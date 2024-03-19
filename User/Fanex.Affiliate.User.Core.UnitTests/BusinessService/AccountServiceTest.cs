@@ -434,10 +434,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             return new EmailSignUpParam
             {
-                MailCc = Constant.DefaultMailCc,
                 MailContact = Constant.DefaultMailContact,
                 RootDomain = Constant.DefaultRootDomain,
-                MailBcc = string.Empty
             };
         }
     }

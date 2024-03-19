@@ -170,7 +170,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
             var expectedParam = JsonConvert.SerializeObject(new EmailBaseParam
             {
-                MailCc = Constant.DefaultMailCc,
                 MailTo = Constant.DefaultMailContact
             });
 

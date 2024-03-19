@@ -1,5 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Utilities
 {
+    using Fanex.Affiliate.Admin.Core.Configurations;
+    using Fanex.MailDeliver.MailClient;
     using Fanex.MailDeliver.MailClient.API;
     using MailDeliver.Model;
     using RazorEngine;
@@ -8,6 +10,12 @@
 
     public class MailProcessor : IMailProcessor
     {
+        private readonly IAppSetting _appSetting;
+        public MailProcessor(IAppSetting appSetting)
+        {
+            _appSetting = appSetting;
+        }
+
         public string BuildTemplateContent(string path, string pathBackup, object model)
         {
             try
@@ -21,16 +29,19 @@
             }
         }
 
-        public void Send(string content, string mailTo, string subject, string mailBcc = "", string mailCc = "")
+        public void Send(string content, string mailTo, string subject)
         {
             var mailItem = new MailRecord
             {
                 MailTo = mailTo,
                 Subject = subject,
                 Body = content,
-                MailBcc = mailBcc,
-                MailCc = mailCc
+                MailBcc = _appSetting.BccMail,
+                MailCc = _appSetting.CcMail
             };
+
+            AppSettings.AppMailId = _appSetting.AppMailId;
+            AppSettings.AppMailAddress = _appSetting.AppMailAddress;
 
             using (var client = new MailDeliver())
             {

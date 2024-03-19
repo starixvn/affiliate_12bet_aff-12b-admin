@@ -121,6 +121,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             OfferPageRepository.Setup(s => s.InsertOfferPage(It.IsAny<InsertHtmlFileParam>())).Throws(new Exception());
             var controller = CreateOfferPageService(OfferPageRepository.Object, htmlFileService.Object);
             MockingHelper.SetUpEnviroment();
+            MockingHelper.SetUpLogEngineEnviroment();
 
             // Action
             using (var memoryStream = new MemoryStream(new byte[3] { 1, 2, 3 }))

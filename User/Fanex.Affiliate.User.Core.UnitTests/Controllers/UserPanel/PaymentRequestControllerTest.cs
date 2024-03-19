@@ -518,8 +518,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             return new PaymentEmailParam
             {
                 Amount = 100m,
-                MailBcc = "",
-                MailCc = Constant.DefaultMailCc,
                 MailContact = Constant.DefaultMailContact,
                 RequestDate = new DateTime(2018, 6, 12),
                 RootDomain = Constant.DefaultRootDomain + "/",

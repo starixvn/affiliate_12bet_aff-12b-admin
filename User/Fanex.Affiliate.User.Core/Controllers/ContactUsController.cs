@@ -87,8 +87,7 @@
 
                 var emailParam = new EmailBaseParam
                 {
-                    MailTo = _appSetting.MailContact,
-                    MailCc = _appSetting.MailCc
+                    MailTo = _appSetting.MailContact
                 };
 
                 result = _contactService.SendRequest(param, emailParam);

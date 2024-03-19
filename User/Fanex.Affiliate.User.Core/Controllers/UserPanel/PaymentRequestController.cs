@@ -72,9 +72,7 @@
 
                 var emailParam = new PaymentEmailParam
                 {
-                    MailCc = _appSetting.MailCc,
                     MailContact = _appSetting.MailContact,
-                    MailBcc = _appSetting.MailBcc,
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     CurrentLanguage = SessionService.CurrentLanguage
                 };
@@ -108,9 +106,7 @@
 
                 var emailParam = new PaymentEmailParam
                 {
-                    MailCc = _appSetting.MailCc,
                     MailContact = _appSetting.MailContact,
-                    MailBcc = _appSetting.MailBcc,
                     RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
                     Amount = cancelParam.Amount,
                     RequestDate = cancelParam.RequestDate,

@@ -10,7 +10,7 @@
 	var manager = TemplateFileManager.Create(this);
 
 	const string SpNameTemplate = "SpName=\"{0}\"";
-	var environments = new string[] { "dev", "master", "local", "sit", "uat", "production" };
+	var environments = new string[] { "dev", "local", "sit", "uat", "production" };
 
 	var originalSpName = System.IO.File.ReadAllText(@"AffiliateAdmin\App_Data\SpConfig\_SpNameOriginal.xml");
 	var configXml = System.Xml.Linq.XDocument.Load(@"AffiliateAdmin\App_Data\SpConfig\_SpNameConfig.xml");

@@ -6,5 +6,4 @@
 // D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.uat.xml
 // D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.sit.xml
 // D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.local.xml
-// D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.master.xml
 // D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.xml
