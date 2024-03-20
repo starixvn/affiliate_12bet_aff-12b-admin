@@ -27,7 +27,7 @@
     <Setting Key="Aff_User_GeneralInfo_Sel_view" SpName="Aff_User_GeneralInfo_Sel" DbName="DBAFF.Affiliate_12bet.bodbDownlineNetView" />
 
     <Setting Key="Aff_CustomerCheck12BetPlayerAccountActivated" SpName="Aff_CustomerCheck12BetPlayerAccountActivated" DbName="DBAFF.Affiliate_12bet.bodbDownlineNet" />
-    <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="DBCUST.CustDB.bodbDownlineNet" />
+    <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="DBCUST.CustDB.wsv_aff" />
   </Function>
 
   <Function Name="DepositInformation">
