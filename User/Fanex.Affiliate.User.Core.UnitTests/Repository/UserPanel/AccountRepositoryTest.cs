@@ -275,27 +275,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             Assert.True(result.IsOk);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetommissionSettingList_WhenCall_QueryInfo(bool isInternal)
-        {
-            const string uSpKey = "Aff_User_CommSetting_Sel";
-            var mode = isInternal ? DBMode.View : DBMode.Main;
-            var key = uSpKey + mode;
-            var repo = CreateRepo();
-            var db = Builder.Build(null, null);
-            db.Query<CommissionSetting>().ReturnsForAnyArgs(new List<CommissionSetting>
-            {
-                new CommissionSetting {Commission = 100, MaxAmount = 1000, MaxQm = 3, MinAmount =10, MinQm =1 , TierId=2 }
-            });
-
-            var result = repo.GetCommissionSettingList(1, isInternal);
-
-            Assert.Equal(key, db.SettingKey);
-            Assert.NotEmpty(result);
-        }
-
         [Fact]
         public void CreateSecretKey_WhenReceiveNoExistErrorCode_ReturnSuccessCode()
         {

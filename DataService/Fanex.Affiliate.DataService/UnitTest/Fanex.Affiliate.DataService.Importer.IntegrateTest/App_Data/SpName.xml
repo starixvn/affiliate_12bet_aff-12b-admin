@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Affiliate - Data Services - Import 12Bet Special Product">
-    <Setting Key="Task_APIProduct_ImportQueue" SpName="Task_APIProduct_ImportQueue" DbName="DBAFF.Affiliate_12bet.wsv_aff" />
+    <Setting Key="Task_APIProduct_ImportQueue" SpName="Task_APIProduct_ImportQueue" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
   </Function>
 
   <Function Name="Affiliate - Data Services - Time Tracker">
-    <Setting Key="Task_APIProduct_CallTimeIns" SpName="Task_APIProduct_CallTimeIns" DbName="DBAFF.Affiliate_12bet.wsv_aff" />
-    <Setting Key="Task_APIProduct_CallTimeByProductSel" SpName="Task_APIProduct_CallTimeByProductSel" DbName="DBAFF.Affiliate_12bet.wsv_aff" />
+    <Setting Key="Task_APIProduct_CallTimeIns" SpName="Task_APIProduct_CallTimeIns" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
+    <Setting Key="Task_APIProduct_CallTimeByProductSel" SpName="Task_APIProduct_CallTimeByProductSel" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
   </Function>
 </Functions>

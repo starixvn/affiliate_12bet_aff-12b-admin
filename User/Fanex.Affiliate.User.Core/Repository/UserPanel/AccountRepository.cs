@@ -3,7 +3,6 @@ using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
@@ -205,17 +204,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 IsOk = signUpParam.ErrCode == 0,
                 Message = signUpParam.ErrMsg
             };
-        }
-
-        public IEnumerable<CommissionSetting> GetCommissionSettingList(int affId, bool isInternal)
-        {
-            const string uSpKey = "Aff_User_CommSetting_Sel";
-            var mode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, mode))
-            {
-                return db.Query<CommissionSetting>(new { affId });
-            }
         }
 
         public int CreateSecretKey(int affId, string secretKey)
