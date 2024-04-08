@@ -159,6 +159,7 @@
 
         getSportCode: function () {
             let param = {
+                targetCountry: "",
                 language: $("#Language").val()
             };
 

@@ -21,6 +21,8 @@ namespace Fanex.Affiliate.Link.Controllers
         private const string SIGN_UP_PAGE_CODE = "signup";
         private const string MALAYSIA_COUNTRY_CODE = "MY";
         private const string SPECIAL_PAGE_CODE = "12sports";
+        private const string OLD_MKT_SIGNUP_PAGE_CODE = "inrsignup";
+        private const string NEW_MKT_SIGNUP_PAGE_CODE = "mktsignup";
         private readonly string[] SpecialSubPageCodes = new [] { "cricket", "virtualsports" };
 
         private readonly string[] SpecialAffIds;
@@ -129,7 +131,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 {
                     AffDomain = affDomain,
                     AffiliateID = affId,
-                    PageCode = pageCode,
+                    PageCode = IsMatching(pageCode, OLD_MKT_SIGNUP_PAGE_CODE) ? NEW_MKT_SIGNUP_PAGE_CODE : pageCode,
                     LanguageCode = lang,
                     TargetCountryCode = targetCountry.ToUpperInvariant(),
                     DeviceType = GetDeviceType(),

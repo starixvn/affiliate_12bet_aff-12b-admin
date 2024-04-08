@@ -1710,6 +1710,7 @@ var LandingPageStatistics = (function ($) {
 
         getSportCode: function () {
             let param = {
+                targetCountry: "",
                 language: $("#Language").val()
             };
 
