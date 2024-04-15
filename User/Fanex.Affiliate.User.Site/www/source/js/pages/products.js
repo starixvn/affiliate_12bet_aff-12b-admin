@@ -5,6 +5,12 @@
             spaceBetween: 12,
             slidesPerGroup: 3,
             watchOverflow: true,
+            loop: true,
+            speed: 700,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",

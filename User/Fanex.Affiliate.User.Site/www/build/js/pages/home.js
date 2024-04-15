@@ -143,6 +143,12 @@ var Home = (function ($) {
             slidesPerView: 3,
             spaceBetween: 75,
             slidesPerGroup: 3,
+            loop: true,
+            speed: 700,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
