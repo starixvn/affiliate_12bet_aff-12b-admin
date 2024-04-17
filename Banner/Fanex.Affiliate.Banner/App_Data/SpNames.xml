@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions>
   <Function Name="Aff">
-    <Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel" DbName="DBAFF.Affiliate_12bet.wsv_aff" Plain="0" />
+    <Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel" DbName="DBAFF.Affiliate_12bet.wsv_afinet" Plain="0" />
   </Function>
 </Functions>

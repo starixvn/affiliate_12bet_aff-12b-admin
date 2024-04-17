@@ -390,7 +390,6 @@
     <Compile Include="DTO\UserPanel\MediaGallery\LandingPage.cs" />
     <Compile Include="DTO\UserPanel\Statistics\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\Banner.cs" />
-    <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\Domain.cs" />
     <Compile Include="DTO\UserPanel\Member.cs" />
     <Compile Include="DTO\UserPanel\MessageHistory.cs" />
