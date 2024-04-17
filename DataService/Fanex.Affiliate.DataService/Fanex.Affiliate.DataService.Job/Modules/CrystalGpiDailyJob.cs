@@ -39,11 +39,11 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     JobType = 1
                 };
 
-                Logger.Info($"{ServiceName} - Get data from {param.StartTime} to {param.EndTime}");
+                Logger.Info($"{ServiceName} - Import data from {param.StartTime} to {param.EndTime}");
 
                 _crystalGpiService.Import(param);
 
-                Logger.Info($"{ServiceName} - Finished get data");
+                Logger.Info($"{ServiceName} - Finished import data");
             }
             return Task.CompletedTask;
         }

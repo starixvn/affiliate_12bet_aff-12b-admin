@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
         {
             var startUtcTime = startTime.ToUniversalTime();
             var endUtcTime = endTime.ToUniversalTime();
-            Logger.Info($"{ServiceName} - Get data from {startUtcTime} to {endUtcTime}");
+            Logger.Info($"{ServiceName} - Import data from {startUtcTime} to {endUtcTime}");
 
             await _service.ImportAsync(startUtcTime, endUtcTime);
 
@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 CallTime = endTime
             };
             _timeTracker.SaveTime(saveTimeTrackerParam);
-            Logger.Info($"{ServiceName} - Finished get data");
+            Logger.Info($"{ServiceName} - Finished import data");
         }
     }
 }

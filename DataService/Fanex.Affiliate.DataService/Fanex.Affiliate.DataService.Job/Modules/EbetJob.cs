@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                             PageSize = pageSize,
                         };
 
-                        Logger.Info($"{ServiceName} - Get data from {param.StartTime} to {param.EndTime}");
+                        Logger.Info($"{ServiceName} - Import data from {param.StartTime} to {param.EndTime}");
                         _ebetService.Import(param);
 
                         var saveTimeParam = new InsertTimeTrackerParam
@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                             CallTime = param.EndTime
                         };
                         _timeTracker.SaveTime(saveTimeParam);
-                        Logger.Info("Finished get data");
+                        Logger.Info("Finished import data");
                     }
                 }
             }

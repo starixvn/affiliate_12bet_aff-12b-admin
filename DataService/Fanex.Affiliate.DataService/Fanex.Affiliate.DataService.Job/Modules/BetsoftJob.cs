@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         EndDate = DateTime.Compare(endTimeByBatch, endTime) > 0 ? endTime : endTimeByBatch
                     };
                     var nextStartTime = betSoftParam.EndDate;
-                    Logger.Info($"{ServiceName} - Get data from {betSoftParam.StartDate} to {betSoftParam.EndDate}");
+                    Logger.Info($"{ServiceName} - Import data from {betSoftParam.StartDate} to {betSoftParam.EndDate}");
                     _betSoftService.Import(betSoftParam);
 
                     var saveTimeTrackerParam = new InsertTimeTrackerParam
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         CallTime = nextStartTime
                     };
                     _timeTracker.SaveTime(saveTimeTrackerParam);
-                    Logger.Info($"{ServiceName} - Finished get data");
+                    Logger.Info($"{ServiceName} - Finished import data");
                 }
             }
             return Task.CompletedTask;
