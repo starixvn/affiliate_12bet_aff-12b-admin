@@ -15,6 +15,7 @@ namespace AffiliateAdmin
             MvcHandler.DisableMvcResponseHeader = true;
 
             IoCConfig.Register();
+            LoggingConfig.RegisterSentry();
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
             DbSettingProviderManager
@@ -24,7 +25,6 @@ namespace AffiliateAdmin
 
 
             AreaRegistration.RegisterAllAreas();
-            LoggingConfig.RegisterSentry();
         }
 
         void Application_End(object sender, EventArgs e)

@@ -19,6 +19,7 @@ namespace Fanex.Affiliate.User.Site
         {
             var env = ConfigurationManager.AppSettings["Environment"];
             IoCConfig.Register();
+            LoggingConfig.RegisterSentry();
             AreaRegistration.RegisterAllAreas();
 
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -37,8 +38,6 @@ namespace Fanex.Affiliate.User.Site
               .StartNewSession()
               .WithSqlServer("~/App_Data/SpConfig/SpName.xml")
               .Run();
-
-            LoggingConfig.RegisterSentry();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

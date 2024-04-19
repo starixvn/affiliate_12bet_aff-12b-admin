@@ -13,6 +13,7 @@
     {
         protected void Application_Start()
         {
+            LoggingConfig.RegisterSentry();
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -22,7 +23,6 @@
                 .StartNewSession()
                 .WithSqlServer("~/App_Data/SpNames.xml")
                 .Run();
-            LoggingConfig.RegisterSentry();
         }
 
         /// <summary>
