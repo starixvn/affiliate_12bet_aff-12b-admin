@@ -31,8 +31,8 @@
   </Function>
 
   <Function Name="DepositInformation">
-    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="DBDEPOSIT.Deposit_DB.bodbAffiliateNet" />
-    <Setting Key="Deposit_MemberIBCDetail" SpName="Deposit_MemberIBCDetail" DbName="DBDEPOSIT.Deposit_DB.bodbAffiliateNet" />
+    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="DBDEPOSIT.Deposit_DB.vn_Aff_link" />
+    <Setting Key="Deposit_MemberIBCDetail" SpName="Deposit_MemberIBCDetail" DbName="DBDEPOSIT.Deposit_DB.vn_Aff_link" />
   </Function>
 
   <Function Name="Statistics">
