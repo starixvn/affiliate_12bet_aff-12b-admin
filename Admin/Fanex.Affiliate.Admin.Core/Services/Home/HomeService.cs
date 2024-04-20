@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
         public decimal GetPSPToday()
         {
-            const string SpKey = "DEP_AffiliateGetPSP";
+            const string SpKey = "Aff_DEP_AffiliateGetPSP";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
         public DepositInfo GetDepositInfo()
         {
-            const string SpKey = "DEP_AffiliateGeneralInfo";
+            const string SpKey = "Aff_DEP_AffiliateGeneralInfo";
             DepositInfo result = null;
 
             using (var objectDb = GetObjectDb(SpKey))

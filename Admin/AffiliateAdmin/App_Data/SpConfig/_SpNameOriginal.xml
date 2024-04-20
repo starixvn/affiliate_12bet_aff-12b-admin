@@ -114,9 +114,9 @@
     <Setting Key="Aff_Admin_Member_RemoveStatus_Upd" SpName="Aff_Admin_Member_RemoveStatus_Upd" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
     <Setting Key="Aff_WriteLog" SpName="Aff_WriteLog" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
     <Setting Key="Aff_Admin_ActiveMember_CheckStatus" SpName="Aff_Admin_ActiveMember_CheckStatus" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
-    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserNames" SpName="Deposit_GetCustDataForCreateIBCACByUserNames" DbName="DBDEPOSIT.Deposit_DB.vn_Aff_link" />
+    <Setting Key="Aff_Deposit_GetCustDataForCreateIBCACByUserNames" SpName="Aff_Deposit_GetCustDataForCreateIBCACByUserNames" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
     <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="DBCUST.CustDB.wsv_afinet" />
-    <Setting Key="Deposit_MemberIBCDetail" SpName="Deposit_MemberIBCDetail" DbName="DBDEPOSIT.Deposit_DB.vn_Aff_link" />
+    <Setting Key="Aff_Deposit_MemberIBCDetail" SpName="Aff_Deposit_MemberIBCDetail" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
     <Setting Key="Aff_Admin_RegisteredMember_Sel" SpName="Aff_Admin_RegisteredMember_Sel" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
   </Function>
   <Function Name="ChangeAdminPassword">
@@ -138,8 +138,8 @@
     <Setting Key="Aff_Domain_BlockTargetCountry_Sel" SpName="Aff_Domain_BlockTargetCountry_Sel" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
   </Function>
   <Function Name="Home">
-    <Setting Key="DEP_AffiliateGetPSP" SpName="DEP_AffiliateGetPSP" DbName="DBDEPOSIT.Deposit_DB.vn_Aff_link" />
-    <Setting Key="DEP_AffiliateGeneralInfo" SpName="DEP_AffiliateGeneralInfo" DbName="DBDEPOSIT.Deposit_DB.vn_Aff_link" />
+    <Setting Key="Aff_DEP_AffiliateGetPSP" SpName="Aff_DEP_AffiliateGetPSP" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
+    <Setting Key="Aff_DEP_AffiliateGeneralInfo" SpName="Aff_DEP_AffiliateGeneralInfo" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
     <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
     <Setting Key="Aff_Admin_GeneralInfo_Sel" SpName="Aff_Admin_GeneralInfo_Sel" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
   </Function>

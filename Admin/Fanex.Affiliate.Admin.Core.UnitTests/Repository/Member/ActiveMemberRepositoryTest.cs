@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
 
             ReaderHelper.MapReaderData(dataReader, Get12BetPlayersDepositInfo());
             objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            repository.Setup(r => r.GetObjectDb("Deposit_GetCustDataForCreateIBCACByUserNames", 120)).Returns(objectDb.Object);
+            repository.Setup(r => r.GetObjectDb("Aff_Deposit_GetCustDataForCreateIBCACByUserNames", 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.Get12BetPlayersDepositInfo("abc");
@@ -170,7 +170,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrorCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrorMsg")).Returns(null);
-            repository.Setup(re => re.GetObjectDb("Deposit_MemberIBCDetail", 120)).Returns(objectDb.Object);
+            repository.Setup(re => re.GetObjectDb("Aff_Deposit_MemberIBCDetail", 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.Update12BetPlayerStatusToDeposit("abc", 123, "xyz");
@@ -188,7 +188,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrorCode")).Returns(-999);
             objectDb.Setup(obj => obj.GetParameterValue("ErrorMsg")).Returns("Update is failed");
-            repository.Setup(re => re.GetObjectDb("Deposit_MemberIBCDetail", 120)).Returns(objectDb.Object);
+            repository.Setup(re => re.GetObjectDb("Aff_Deposit_MemberIBCDetail", 120)).Returns(objectDb.Object);
 
             // Action
             var result = repository.Object.Update12BetPlayerStatusToDeposit("abc", 123, "xyz");

@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             var objectDb = new Mock<IObjectDb>();
 
             objectDb.Setup(obj => obj.GetParameterValue("PSP")).Returns(isDBNull ? DBNull.Value : (object)1.23);
-            service.Setup(r => r.GetObjectDb("DEP_AffiliateGetPSP", 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb("Aff_DEP_AffiliateGetPSP", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetPSPToday();
@@ -110,7 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
 
             ReaderHelper.MapReaderData(dataReader, GetDepositInfo());
             objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("DEP_AffiliateGeneralInfo", 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb("Aff_DEP_AffiliateGeneralInfo", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetDepositInfo();
@@ -129,7 +129,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             dataReader.SetupSequence(d => d.Read()).Returns(false);
 
             objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("DEP_AffiliateGeneralInfo", 120)).Returns(objectDb.Object);
+            service.Setup(r => r.GetObjectDb("Aff_DEP_AffiliateGeneralInfo", 120)).Returns(objectDb.Object);
 
             // Action
             var result = service.Object.GetDepositInfo();
