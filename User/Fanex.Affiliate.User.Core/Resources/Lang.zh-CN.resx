@@ -373,7 +373,7 @@
     <value>联络电话号码</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>最新消息</value>
+    <value>联系我们</value>
   </data>
   <data name="CookIslands" xml:space="preserve">
     <value>库克群岛</value>
@@ -1515,13 +1515,13 @@
     <value>总盈亏</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>平台 手续费</value>
+    <value>平台手续费</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>营运费</value>
   </data>
   <data name="BankingFee" xml:space="preserve">
-    <value>存款 手续费</value>
+    <value>存款手续费</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>佣金比例</value>
@@ -2211,7 +2211,7 @@
     <value>以上</value>
   </data>
   <data name="CustomerWinLoss" xml:space="preserve">
-    <value>会员 赢/输</value>
+    <value>会员赢/输</value>
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>净盈利</value>

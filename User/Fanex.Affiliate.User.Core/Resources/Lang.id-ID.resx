@@ -2052,13 +2052,13 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Khusus Undangan</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - Above</value>
+    <value>$250,001 &amp; Lebih</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>MEMBER BARU DEPOSIT</value>
+    <value>MEMBER DEPOSIT PERTAMA</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; Lebih</value>
@@ -2199,7 +2199,7 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Jelajahi beragam permainan live kasino live, termasuk bakarat dan blackjack, dan masih banyak lagi, untuk menikmati pengalaman bermain terbaik di 12BET. Dengan kemudahan untuk akses Live Kasino kelas dunia dari kenyamanan rumah Anda dan nikmati hiburan diri dengan live kasino berstandar tertinggi lebih mudah.</value>
   </data>
   <data name="ExperienceTheWorld" xml:space="preserve">
-    <value>Rasakan slot online top dunia tanpa perlu mengunduh di 12BET. Temukan beragam koleksi permainan slot yang seru dan menawan, lengkap dengan mekanisme luar biasa, visual memukau, dan peluang memenangkan jackpot luar biasa. Nikmati petualangan bermain game yang tak terlupakan dan jelajahi permainan slot online paling menarik dan mengasyikkan yang tersedia.</value>
+    <value>Rasakan pengalaman bermain slot online top dunia di 12BET tanpa perlu mengunduh. Temukan beragam koleksi permainan slot yang seru dan menawan, lengkap dengan mekanisme yang luar biasa, visual yang memukau, dan peluang untuk memenangkan jackpot yang menakjubkan. Nikmati petualangan bermain game yang tak terlupakan dan jelajahi permainan slot online paling menarik dan mengasyikkan yang tersedia.</value>
   </data>
   <data name="OnlineLotteryBetting" xml:space="preserve">
     <value>Taruhan Lotere online adalah permainan judi yang sangat dicari, dengan pemain memiliki beragam pilihan untuk dipilih. Di 12BET, pemain dapat menikmati berbagai jenis lotere seperti lotere 3D/5D, lotere 11x5, dan lotere Dadu, yang masing-masing menampilkan jenis taruhan berbeda seperti Besar/Kecil, Ganjil/Genap, Rentang Warna, dan banyak lagi. Bersiaplah untuk merasakan keseruan taruhan Lotere online bersama 12BET.</value>
@@ -2226,10 +2226,10 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Pendapatan Bersih Dalam Sebulan ($)</value>
   </data>
   <data name="QualifiedActiveMembersMonth" xml:space="preserve">
-    <value>Member Aktif Per Bulan</value>
+    <value>MEMBER AKTIF TERKUALIFIKASI DALAM SEBULAN</value>
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
-    <value>Pembagian hasil Afiliasi dari keuntungan bersih berdasarkan Tabel Struktur Komisi.</value>
+    <value>Afiliasi  mendapatkan sebagian penghasilan dari Pendapatan Bersih berdasarkan Tabel Struktur Komisi.</value>
   </data>
   <data name="AffCountLanguage" xml:space="preserve">
     <value>Bahasa Akun Afiliasi</value>

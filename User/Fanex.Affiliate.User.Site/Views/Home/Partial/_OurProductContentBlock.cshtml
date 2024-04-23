@@ -1,55 +1,51 @@
 ﻿@model string
 
-@{ 
-    var redirectLink = "https://www.12bet.com/" + Model.ToLowerInvariant();
-}
-
 <div class="block-content">
     <div class="wrapper-block">
         <div class="items">
-            <a href="@(redirectLink)/sports" class="wrapper-item">
+            <a href="@Url.Content("~/Product#Sports")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/sports.png" alt="@Lang.Sports" class="img-responsive" />
                 <span class="name-item">@Lang.Sports</span>
             </a>
         </div>
         <div class="items">
-            <a href="@(redirectLink)/esports" class="wrapper-item">
+            <a href="@Url.Content("~/Product#Esports")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/esports.png" alt="@Lang.ESports" class="img-responsive" />
                 <span class="name-item">@Lang.ESports</span>
             </a>
         </div>
         <div class="items">
-            <a href="@(redirectLink)/casino" class="wrapper-item">
+            <a href="@Url.Content("~/Product#LiveCasino")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/casino.png" alt="@Lang.Casino" class="img-responsive" />
                 <span class="name-item">@Lang.Casino</span>
             </a>
         </div>
         <div class="items">
-            <a href="@(redirectLink)/livecasino" class="wrapper-item">
+            <a href="@Url.Content("~/Product#LiveCasino")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/live-casino.png" alt="@Lang.LiveCasino" class="img-responsive" />
                 <span class="name-item">@Lang.LiveCasino</span>
             </a>
         </div>
         <div class="items">
-            <a href="@(redirectLink)/p2p" class="wrapper-item">
+            <a href="@Url.Content("~/Product#LiveCasino")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/p2p.png" alt="@Lang.P2P" class="img-responsive" />
                 <span class="name-item">@Lang.P2P</span>
             </a>
         </div>
         <div class="items">
-            <a href="@(redirectLink)/numbergame" class="wrapper-item">
+            <a href="@Url.Content("~/Product#Lottery")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/number-game.png" alt="@Lang.NumberGame" class="img-responsive" />
                 <span class="name-item">@Lang.NumberGame</span>
             </a>
         </div>
         <div class="items">
-            <a href="@(redirectLink)/keno" class="wrapper-item">
+            <a href="@Url.Content("~/Product#Lottery")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/keno.png" alt="@Lang.Keno" class="img-responsive" />
                 <span class="name-item">@Lang.Keno</span>
             </a>
         </div>
         <div class="items">
-            <a href="@(redirectLink)/lottery" class="wrapper-item">
+            <a href="@Url.Content("~/Product#Lottery")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/lottery.png" alt="@Lang.Lottery" class="img-responsive" />
                 <span class="name-item">@Lang.Lottery</span>
             </a>

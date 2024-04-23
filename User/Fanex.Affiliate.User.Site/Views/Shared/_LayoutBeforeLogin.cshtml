@@ -38,7 +38,6 @@
 <div class="main">
     <h1 class="hidden">@(string.IsNullOrEmpty(ViewBag.HeaderTitle) ? Lang.HomeHeaderTitle : ViewBag.HeaderTitle)</h1>
     <div class="main-content">
-        @RazorHelper.RenderHotNews()
         @RenderBody()
     </div>
 </div>

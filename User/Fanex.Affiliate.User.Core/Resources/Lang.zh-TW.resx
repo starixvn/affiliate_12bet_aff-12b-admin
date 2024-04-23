@@ -1520,13 +1520,13 @@
     <value>總盈虧</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>平台 手續費</value>
+    <value>平台手續費</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>營運費</value>
   </data>
   <data name="BankingFee" xml:space="preserve">
-    <value>存款 手續費</value>
+    <value>存款手續費</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>傭金比例</value>
@@ -2211,7 +2211,7 @@
     <value>以上</value>
   </data>
   <data name="CustomerWinLoss" xml:space="preserve">
-    <value>會員 贏/輸</value>
+    <value>會員贏/輸</value>
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>淨盈利</value>
