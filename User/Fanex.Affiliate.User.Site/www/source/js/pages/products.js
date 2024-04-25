@@ -1,4 +1,9 @@
 ﻿var Products = (function ($) {
+    function handleScroll() {
+        $('html, body').stop().animate({
+            scrollTop: $('html, body').scrollTop() - $('.header').outerHeight()
+        }, 400);
+    }
     function productsSlider() {
         var swiper = new Swiper(".products-slider", {
             slidesPerView: 3,
@@ -45,9 +50,9 @@
         initialize: function () {
             productsSlider();
             _me.initEvent();
+            $(window).ready(handleScroll);
         },
         initEvent: function () {
-            
         }
     };
 
