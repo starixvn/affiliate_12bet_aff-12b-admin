@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 CallTime = endTime
             };
             _timeTracker.SaveTime(saveTimeTrackerParam);
-            Logger.Info($"{ServiceName} - Finished import data");
+            Logger.Info($"{ServiceName} - Finished import data from {startTimeServer} to {endTimeServer}");
         }
     }
 }

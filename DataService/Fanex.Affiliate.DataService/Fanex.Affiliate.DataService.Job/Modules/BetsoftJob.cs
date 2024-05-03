@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         CallTime = nextStartTime
                     };
                     _timeTracker.SaveTime(saveTimeTrackerParam);
-                    Logger.Info($"{ServiceName} - Finished import data");
+                    Logger.Info($"{ServiceName} - Finished import data from {betSoftParam.StartDate} to {betSoftParam.EndDate}");
                 }
             }
             return Task.CompletedTask;
