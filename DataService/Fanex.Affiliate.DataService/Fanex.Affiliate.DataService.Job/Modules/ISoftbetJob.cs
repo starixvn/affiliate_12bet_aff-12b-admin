@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         PageNumber = 1
                     };
                     var nextStartTime = isoftbetParam.EndTime;
-                    Logger.Info($"{ServiceName} - Get data from {isoftbetParam.StartTime} to {isoftbetParam.EndTime}");
+                    Logger.Info($"{ServiceName} - Import data from {isoftbetParam.StartTime} to {isoftbetParam.EndTime}");
                     _isoftbetService.Import(isoftbetParam);
 
                     var saveTimeParam = new InsertTimeTrackerParam
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                         CallTime = nextStartTime
                     };
                     _timeTracker.SaveTime(saveTimeParam);
-                    Logger.Info($"{ServiceName} - Finished get data");
+                    Logger.Info($"{ServiceName} - Finished import data");
                 }
             }
 

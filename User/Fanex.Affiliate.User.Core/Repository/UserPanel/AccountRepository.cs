@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public DepositAccountInfo GetDepositPlayerAccount(string playerUserName)
         {
-            const string uSpKey = "Deposit_GetCustDataForCreateIBCACByUserName";
+            const string uSpKey = "Aff_Deposit_GetCustDataForCreateIBCACByUserName";
 
             using (var db = _builder.Build(uSpKey))
             {
@@ -176,7 +176,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public ResultInfo UpdatePlayerAccountStatusForDeposit(DepositPlayerAccountParam account)
         {
-            const string uSpKey = "Deposit_MemberIBCDetail";
+            const string uSpKey = "Aff_Deposit_MemberIBCDetail";
 
             using (var db = _builder.Build(uSpKey))
             {

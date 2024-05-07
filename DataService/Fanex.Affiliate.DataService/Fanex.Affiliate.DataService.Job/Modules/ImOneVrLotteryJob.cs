@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             var startTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(startTime, TimeZoneId.GmtPlus8);
             var endTimeServer = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(endTime, TimeZoneId.GmtPlus8);
 
-            Logger.Info($"{ServiceName} - Get data from {startTimeServer} to {endTimeServer}");
+            Logger.Info($"{ServiceName} - Import data from {startTimeServer} to {endTimeServer}");
             await _service.ImportAsync(startTimeServer, endTimeServer);
 
             var saveTimeTrackerParam = new InsertTimeTrackerParam

@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
         public IEnumerable<DepositCustomerInfo> Get12BetPlayersDepositInfo(string userNames)
         {
-            const string Spkey = "Deposit_GetCustDataForCreateIBCACByUserNames";
+            const string Spkey = "Aff_Deposit_GetCustDataForCreateIBCACByUserNames";
             var result = new List<DepositCustomerInfo>();
 
             using (var objectDb = GetObjectDb(Spkey))
@@ -163,7 +163,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
         public ResultInfo Update12BetPlayerStatusToDeposit(string depositUserName, int ibcCustid, string ibcUserName)
         {
-            const string SpKey = "Deposit_MemberIBCDetail";
+            const string SpKey = "Aff_Deposit_MemberIBCDetail";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -196,7 +196,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                 objectDb.SetParameterValue("Creator", param.UserId);
                 objectDb.SetParameterValue("IP", param.Ip);
                 objectDb.SetParameterValue("Typename", "Member");
-                objectDb.SetParameterValue("SPName", "Deposit_MemberIBCDetail");
+                objectDb.SetParameterValue("SPName", "Aff_Deposit_MemberIBCDetail");
                 objectDb.SetParameterValue("Details", $"Update 12Bet player status to deposit DepositCustID={ibcCustId}");
 
                 objectDb.SetParameterValue("RefNo", DefaultValue.Int);

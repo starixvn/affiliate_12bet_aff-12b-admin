@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Fact]
         public void GetDepositPlayerAccount_WhenCall_QueryDepositInfo()
         {
-            const string uSpKey = "Deposit_GetCustDataForCreateIBCACByUserName";
+            const string uSpKey = "Aff_Deposit_GetCustDataForCreateIBCACByUserName";
             var repo = CreateRepo();
             var db = Builder.Build(null, null);
             db.QueryEntity<DepositAccountInfo>().ReturnsForAnyArgs(CreateDepositAccountInfo());
@@ -203,7 +203,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Fact]
         public void UpdatePlayerAccountStatusForDeposit_WhenUpdateSuccess_ReturnSuccess()
         {
-            const string uSpKey = "Deposit_MemberIBCDetail";
+            const string uSpKey = "Aff_Deposit_MemberIBCDetail";
             var repo = CreateRepo();
             var param = new DepositPlayerAccountParam { DepUserName = "1", ErrorCode = 101, ErrorMsg = "", IbcCustId = 1 };
             var db = Builder.Build(null, null);
