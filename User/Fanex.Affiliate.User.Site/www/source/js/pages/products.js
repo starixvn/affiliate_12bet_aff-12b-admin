@@ -5,17 +5,11 @@
         }, 400);
     }
     function productsSlider() {
-        var swiper = new Swiper(".products-slider", {
+        let swiperSetting = {
             slidesPerView: 3,
             spaceBetween: 12,
             slidesPerGroup: 3,
             watchOverflow: true,
-            loop: true,
-            speed: 700,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-            },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -44,7 +38,18 @@
                     watchOverflow: true
                 },
             },
-        });
+        };
+        
+        var manualSwiper = new Swiper(".manual-slider", swiperSetting);
+
+        var autoSwiper = new Swiper(".auto-slider", Object.assign({
+            loop: true,
+            speed: 700,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false
+            }
+        }, swiperSetting));
     }
     var _me = {
         initialize: function () {
