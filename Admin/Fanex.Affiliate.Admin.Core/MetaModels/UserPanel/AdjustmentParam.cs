@@ -7,6 +7,9 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public decimal Amount { get; set; }
 
         public string Description { get; set; }
+
+        public string AffDescription { get; set; }
+
         public bool IsValid(decimal absBalanceBf)
         {
             return Amount != 0 && Amount - absBalanceBf > Money.MinValue

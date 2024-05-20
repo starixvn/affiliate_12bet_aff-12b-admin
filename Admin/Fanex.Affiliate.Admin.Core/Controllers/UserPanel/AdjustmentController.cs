@@ -60,7 +60,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                         UserId = SessionService.UserId,
                         Ip = Request.UserHostAddress,
                         Amount = param.Amount,
-                        Description = Server.HtmlEncode(param.Description)
+                        Description = Server.HtmlEncode(param.Description),
+                        AffDescription = Server.HtmlEncode(param.Description)
                     };
 
                     return Json(_adjustmentService.InsertAdjustment(adjustmentParam));

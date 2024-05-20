@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository;
 using System;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
@@ -36,6 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 objectDb.SetParameterValue("UserID", param.UserId);
                 objectDb.SetParameterValue("Amount", param.Amount);
                 objectDb.SetParameterValue("transdesc", param.Description);
+                objectDb.SetParameterValue("transaffdesc", param.AffDescription);
                 objectDb.SetParameterValue("IP", param.Ip);
 
                 AssignResultOutputParam(objectDb);
