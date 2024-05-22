@@ -166,7 +166,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<LandingPage> GetLandingPageList(string targetCountry, string commGroupName, bool isInternal)
         {
-            var landingPages = _marketingRepository.GetLandingPageListByTargetCountry(targetCountry, isInternal);
+            var landingPages = _marketingRepository.GetLandingPageListByTargetCountry(targetCountry ?? string.Empty, isInternal);
 
             return StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName);
         }
