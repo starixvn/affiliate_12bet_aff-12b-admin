@@ -791,6 +791,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brazil Support.
+        /// </summary>
+        public static string BrazilSupport {
+            get {
+                return ResourceManager.GetString("BrazilSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brunei Darussalam .
         /// </summary>
         public static string BruneiDarussalam {
@@ -2686,6 +2695,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Japanese {
             get {
                 return ResourceManager.GetString("Japanese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Japan Support.
+        /// </summary>
+        public static string JapanSupport {
+            get {
+                return ResourceManager.GetString("JapanSupport", resourceCulture);
             }
         }
         

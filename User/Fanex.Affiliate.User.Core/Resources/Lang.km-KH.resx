@@ -2112,4 +2112,10 @@
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="JapanSupport" xml:space="preserve">
+    <value>ជំនួយភាសាជប៉ុន</value>
+  </data>
+  <data name="BrazilSupport" xml:space="preserve">
+    <value>ជំនួយភាសាប្រេស៊ីល</value>
+  </data>
 </root>
