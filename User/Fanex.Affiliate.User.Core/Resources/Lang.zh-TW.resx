@@ -2198,4 +2198,10 @@
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="JapanSupport" xml:space="preserve">
+    <value>日本客服</value>
+  </data>
+  <data name="BrazilSupport" xml:space="preserve">
+    <value>巴西客服</value>
+  </data>
 </root>

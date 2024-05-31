@@ -2189,4 +2189,10 @@
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="JapanSupport" xml:space="preserve">
+    <value>일본 지원</value>
+  </data>
+  <data name="BrazilSupport" xml:space="preserve">
+    <value>브라질 지원</value>
+  </data>
 </root>

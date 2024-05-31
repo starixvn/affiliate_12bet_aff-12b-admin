@@ -2307,4 +2307,10 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="JapanSupport" xml:space="preserve">
+    <value>Japan Support</value>
+  </data>
+  <data name="BrazilSupport" xml:space="preserve">
+    <value>Brazil Support</value>
+  </data>
 </root>

@@ -1858,7 +1858,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>MMK</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
-    <value>Hỗ trợ Tiếng Cambodia</value>
+    <value>Hỗ trợ tiếng Cambodia</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
     <value>Đăng ký mới</value>
@@ -2192,5 +2192,11 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>Tài khoản Telegram</value>
+  </data>
+  <data name="JapanSupport" xml:space="preserve">
+    <value>Hỗ trợ tiếng Nhật Bản</value>
+  </data>
+  <data name="BrazilSupport" xml:space="preserve">
+    <value>Hỗ trợ tiếng Brazil</value>
   </data>
 </root>

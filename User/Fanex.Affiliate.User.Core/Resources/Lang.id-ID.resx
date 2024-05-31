@@ -2193,4 +2193,10 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="JapanSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Jepang</value>
+  </data>
+  <data name="BrazilSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Brasil</value>
+  </data>
 </root>
