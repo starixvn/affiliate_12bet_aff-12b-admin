@@ -58,8 +58,7 @@
                 return View("~/Views/UserPanel/AccountOverview/Partial/_QrCodeLinkList.cshtml", new Dictionary<string, QrCodeLinkModel>());
             }
 
-            var selectedDomain = MarketingService
-                .GetDomainListByTargetCountry(selectedTargetCountry, SessionService.IsInternal)
+            var selectedDomain = GetDomainListByTargetCountry(selectedTargetCountry, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
 
             var languageList = string.IsNullOrEmpty(selectedLanguage)

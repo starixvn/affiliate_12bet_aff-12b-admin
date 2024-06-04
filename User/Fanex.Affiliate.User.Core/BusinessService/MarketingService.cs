@@ -66,9 +66,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _marketingRepository.GetSizeList(param, isInternal);
         }
 
-        public IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, bool isInternal)
+        public IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, int affId, bool isInternal)
         {
-            return _marketingRepository.GetDomainListByTargetCountry(targetCountry, isInternal)?.Where(d => !d.DomainName.Contains("glg46.com"));
+            var domainList = _marketingRepository.GetDomainListByTargetCountry(targetCountry, isInternal)?.Where(d => !d.DomainName.Contains("glg46.com"));
+            
+            if (_appSetting.Aff16000Id.MatchWith(affId.ToString()))
+            {
+                var aff16000DomainList = new List<Domain> { new Domain { DomainId = affId, DomainName = _appSetting.Aff16000GoDomain, IsSsl = true } };
+                aff16000DomainList.AddRange(domainList.Where(d => !d.DomainName.MatchWith(_appSetting.Aff16000GoDomain)));
+
+                return aff16000DomainList;
+            }
+            return domainList;
         }
 
         public IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam)

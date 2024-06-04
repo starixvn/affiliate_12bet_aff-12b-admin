@@ -82,7 +82,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).ReturnsNull();
             Repo.GetDomainListByTargetCountry(Arg.Any<string>(), false).ReturnsForAnyArgs(Constant.DomainList);
 
-            var result = service.GetDomainListByTargetCountry(string.Empty, false);
+            var result = service.GetDomainListByTargetCountry(string.Empty, 968222, false);
 
             Repo.Received().GetDomainListByTargetCountry(string.Empty, false);
             CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).ReturnsNull();
             Repo.GetDomainListByTargetCountry(string.Empty, false).ReturnsForAnyArgs(new List<Domain>());
 
-            var result = service.GetDomainListByTargetCountry(string.Empty, false);
+            var result = service.GetDomainListByTargetCountry(string.Empty, 123, false);
 
             Repo.Received().GetDomainListByTargetCountry(string.Empty, false);
             CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
@@ -109,7 +109,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreateService();
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).Returns(Constant.DomainList);
 
-            var result = service.GetDomainListByTargetCountry(string.Empty, false);
+            var result = service.GetDomainListByTargetCountry(string.Empty, 123, false);
 
             Repo.DidNotReceive().GetDomainListByTargetCountry(string.Empty, false);
             CacheService.DidNotReceive().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);

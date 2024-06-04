@@ -25,7 +25,7 @@
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetFiltersByCountry(SizeParam param, bool shouldGetSize)
         {
-            var domainList = MarketingService.GetDomainListByTargetCountry(param.TargetCountry, SessionService.IsInternal);
+            var domainList = GetDomainListByTargetCountry(param.TargetCountry, SessionService.IsInternal);
             var languageList = SystemService.GetSystemTargetLanguagesByCountry(param.TargetCountry);
 
             var targetLanguageCode = languageList.FirstOrDefault()?.LanguageCode ?? SystemLanguage.DefaultLanguageCode;

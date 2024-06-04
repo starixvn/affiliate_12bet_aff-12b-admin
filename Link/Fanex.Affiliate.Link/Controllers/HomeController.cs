@@ -147,6 +147,8 @@ namespace Fanex.Affiliate.Link.Controllers
 
                 };
 
+                HandleFakeToCheckAff16000OnLocal(command);
+
                 var redirectUrl = _trackingSystemService.InsertStatistic(command);
 
                 if (!string.IsNullOrEmpty(redirectUrl))
@@ -205,6 +207,26 @@ namespace Fanex.Affiliate.Link.Controllers
         private bool IsSpecialAffiliate(int affId, string pageCode)
         {  
             return SpecialAffIds.Contains(affId.ToString()) && IsMatching(SIGN_UP_PAGE_CODE, pageCode);
+        }
+
+        private void HandleFakeToCheckAff16000OnLocal(TrackingSystemCommand param)
+        {
+            var env = ConfigurationManager.AppSettings["Environment"].ToString();
+
+            if(IsMatching(env, "local"))
+            {
+                var aff16000Id = ConfigurationManager.AppSettings["Aff16000Id"].ToString();
+                var aff16000GoDomain = ConfigurationManager.AppSettings["Aff16000GoDomain"].ToString();
+                var affId = param.AffiliateID.ToString();
+
+                if (IsMatching(affId, aff16000Id) && param.AffDomain.Contains(aff16000GoDomain))
+                {
+                    var aff16000RealInfo = ConfigurationManager.AppSettings["Aff16000RealInfo"].ToString().Split(',');
+
+                    param.AffiliateID = Convert.ToInt32(aff16000RealInfo[0]);
+                    param.AffDomain = param.AffDomain.Replace(aff16000GoDomain, aff16000RealInfo[1]);
+                }
+            }
         }
         
         private bool IsValidAffMarketing(int affId)

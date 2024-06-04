@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         {
             var marketingService = Substitute.For<IMarketingService>();
             marketingService.GetTargetProductList(Arg.Compat.Any<bool>()).Returns(Constant.TargetProductList);
-            marketingService.GetDomainListByTargetCountry(Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
+            marketingService.GetDomainListByTargetCountry(Arg.Compat.Any<string>(), Arg.Compat.Any<int>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
             marketingService.GetLandingPageList(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.LandingPageList);
             marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
 
