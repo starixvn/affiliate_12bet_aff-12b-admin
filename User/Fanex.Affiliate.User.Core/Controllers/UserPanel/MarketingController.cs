@@ -23,22 +23,13 @@
 
         [HttpGet]
         [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
-        public ActionResult GetLinkTo(string targetCountry, string language)
-        {
-            var landingPages = MarketingService.GetSpecialLandingPageList(targetCountry, SessionService.UserSession.GroupName, language, SessionService.IsInternal);
-
-            return Json(landingPages, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
         public ActionResult GetFiltersByCountry(SizeParam param, bool shouldGetSize)
         {
             var domainList = MarketingService.GetDomainListByTargetCountry(param.TargetCountry, SessionService.IsInternal);
             var languageList = SystemService.GetSystemTargetLanguagesByCountry(param.TargetCountry);
 
             var targetLanguageCode = languageList.FirstOrDefault()?.LanguageCode ?? SystemLanguage.DefaultLanguageCode;
-            var pageList = MarketingService.GetSpecialLandingPageList(param.TargetCountry, SessionService.UserSession.GroupName, targetLanguageCode, SessionService.IsInternal);
+            var pageList = MarketingService.GetLandingPageList(param.TargetCountry, SessionService.UserSession.GroupName, SessionService.IsInternal);
 
             param.Language = targetLanguageCode;
             var sizeList = shouldGetSize ? MarketingService.GetSizeList(param, SessionService.IsInternal) : new List<SizeType>();

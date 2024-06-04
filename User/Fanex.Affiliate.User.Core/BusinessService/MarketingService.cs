@@ -80,16 +80,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (IsSelectedAllLanguages(selectedLanguage) && languageListFromParam != null && languageListFromParam.Any())
             {
-                if (_appSetting.ODIWorldCupLandingPages.Contains(linkGenerationParam.SelectedPage))
-                {
-                    foreach (var item in _appSetting.SupportedODIWorldCupLanguages)
-                    {
-                        AddGenerateLinkToList(languageList, linkList, linkGenerationParam, item);
-                    }
-
-                    return linkList;
-                }
-
                 foreach (var item in languageListFromParam)
                 {
                     AddGenerateLinkToList(languageList, linkList, linkGenerationParam, item.Value);
@@ -150,18 +140,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
 
             return bannerList;
-        }
-
-        public IEnumerable<LandingPage> GetSpecialLandingPageList(string targetCountry, string commGroupName, string language, bool isInternal)
-        {
-            var landingPages = GetLandingPageList(targetCountry, commGroupName, isInternal);
-
-            if (string.IsNullOrEmpty(language) || _appSetting.SupportedODIWorldCupLanguages.Contains(language))
-            {
-                return landingPages;
-            }
-
-            return landingPages.Where(l => !_appSetting.ODIWorldCupLandingPages.Any(m => m.MatchWith(l.PageCode)));
         }
 
         public IEnumerable<LandingPage> GetLandingPageList(string targetCountry, string commGroupName, bool isInternal)

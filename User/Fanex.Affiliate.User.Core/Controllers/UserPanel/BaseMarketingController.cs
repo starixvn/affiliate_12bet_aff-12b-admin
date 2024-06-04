@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                 TargetCountryList = SystemHelper.GetTargetCountryList(targetCountryList, targetCountryCode),
                 LanguageList = SystemHelper.GetTargetLanguageList(targetLanguageListByCountry, targetLanguageCode),
                 DomainList = domainList.Select(i => new SelectListItem { Value = i.DomainId.ToString(), Text = i.DomainName }),
-                MemberSitePageList = MarketingService.GetSpecialLandingPageList(targetCountryCode, userSession.GroupName, targetLanguageCode, isInternal)
+                MemberSitePageList = MarketingService.GetLandingPageList(targetCountryCode, userSession.GroupName, isInternal)
                 .Select(i => new SelectListItem { Value = i.PageCode, Text = i.PageName })
             };
 

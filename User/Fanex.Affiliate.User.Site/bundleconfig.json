@@ -54,7 +54,7 @@
       "www/source/js/pages/account-overview/marketingbase.js",
       "www/source/js/pages/account-overview/affiliate-link.js"
     ]
-  }
+  },
   //{
   //  "outputFileName": "www/build/js/statistics/referrerstatistics.js",
   //  "inputFiles": [
@@ -64,15 +64,15 @@
   //    "www/source/js/pages/statistics/referrerstatistics.js"
   //  ]
   //},
-  //{
-  //  "outputFileName": "www/build/js/statistics/landingpagestatistics.js",
-  //  "inputFiles": [
-  //    "www/source/js/lib/pikaday.js",
-  //    "www/source/js/components/pager.js",
-  //    "www/source/js/components/multiple-select.js",
-  //    "www/source/js/pages/statistics/landingpagestatistics.js"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/js/statistics/landingpagestatistics.js",
+    "inputFiles": [
+      "www/source/js/lib/pikaday.js",
+      "www/source/js/components/pager.js",
+      "www/source/js/components/multiple-select.js",
+      "www/source/js/pages/statistics/landingpagestatistics.js"
+    ]
+  }
   //{
   //  "outputFileName": "www/build/js/statement-history.js",
   //  "inputFiles": [
