@@ -367,7 +367,7 @@
     <value>คองโก</value>
   </data>
   <data name="ContactInfo" xml:space="preserve">
-    <value>รายละเอียดที่ใช้ในการติดต่อ</value>
+    <value>ข้อมูลส่วนตัว</value>
   </data>
   <data name="ContactNumber" xml:space="preserve">
     <value>หมายเลขโทรศัพท์ที่ใช้ติดต่อ</value>
@@ -544,7 +544,7 @@
     <value>กุมภาพันธ์</value>
   </data>
   <data name="Female" xml:space="preserve">
-    <value>ผู้หญิง</value>
+    <value>หญิง</value>
   </data>
   <data name="Fiji" xml:space="preserve">
     <value>ฟิจิ</value>
@@ -745,7 +745,7 @@
     <value>นามสกุล</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>ล็อคอิน</value>
+    <value>เข้าสู่ระบบ</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>ล๊อคเอ๊าท์</value>
@@ -763,7 +763,7 @@
     <value>มาร์ดากัสการ์</value>
   </data>
   <data name="MailingInfor" xml:space="preserve">
-    <value>รายละเอียดเกี่ยวกับการส่งเมลล์</value>
+    <value>ที่อยู่ผู้สมัคร</value>
   </data>
   <data name="Malawi" xml:space="preserve">
     <value>มาลาวี</value>
@@ -775,7 +775,7 @@
     <value>มัลดีฟ</value>
   </data>
   <data name="Male" xml:space="preserve">
-    <value>ผู้ชาย</value>
+    <value>ชาย</value>
   </data>
   <data name="Mali" xml:space="preserve">
     <value>มาลี</value>
@@ -945,7 +945,7 @@
     <value>การเปลี่ยนรหัสผ่านเสร็จสมบูรณ์เรียบร้อยแล้ว</value>
   </data>
   <data name="PaymentInfor" xml:space="preserve">
-    <value>รายละเอียดการถอนเงิน</value>
+    <value>ข้อมูลสำหรับการถอนค่าคอมมิชชัน</value>
   </data>
   <data name="PaymentMethod" xml:space="preserve">
     <value>วิธีการจ่ายเงิน</value>
@@ -987,7 +987,7 @@
     <value>วันที่ได้ลงรายการไว้</value>
   </data>
   <data name="Preference" xml:space="preserve">
-    <value>สิ่งที่ต้องการใช้</value>
+    <value>รายละเอียดเพิ่มเติม</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
     <value>กรุณาเลือกภาษา</value>
@@ -1058,7 +1058,7 @@
     <value>กรุณากรอกทุกช่องที่มีเครื่องหมาย &lt;font color="red"&gt;*&lt;/font&gt; ระบุไว้</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>ลบข้อความ</value>
+    <value>ล้างข้อมูล</value>
   </data>
   <data name="RMB" xml:space="preserve">
     <value>RMB (Ren Min Bi)</value>
@@ -1184,7 +1184,7 @@
     <value>พันธมิตร 12bet - รหัสผ่านตัวใหม่ของคุณ</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ส่ง</value>
+    <value>สมัคร</value>
   </data>
   <data name="Sudan" xml:space="preserve">
     <value>ซูดาน</value>
@@ -1319,7 +1319,7 @@
     <value>เวียดนาม</value>
   </data>
   <data name="WebsiteInfor" xml:space="preserve">
-    <value>รายละเอียดเกี่ยวกับเว็บไซต์</value>
+    <value>คุณมีเว็บไซต์หรือไม่</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
     <value>ระบุลิ้งค์ที่ใช้เข้าเว็บไซต์</value>
@@ -1361,7 +1361,7 @@
     <value>12BET</value>
   </data>
   <data name="_12BETPlayerAcc" xml:space="preserve">
-    <value>บัญชีที่ใช้เล่นใน 12BET</value>
+    <value>ยูสเซอร์ที่จะใช้ถอนค่าคอมมิชชั่น</value>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
     <value>รหัสผ่านตัวใหม่ของคุณ</value>
@@ -1655,7 +1655,7 @@
     <value>หน้ากีฬา BTi</value>
   </data>
   <data name="_12ESports" xml:space="preserve">
-    <value>12อีสปอร์ต</value>
+    <value>ESPORTS</value>
   </data>
   <data name="ImESports" xml:space="preserve">
     <value>IM อีสปอร์ต (อีสปอร์ตบลู)</value>
