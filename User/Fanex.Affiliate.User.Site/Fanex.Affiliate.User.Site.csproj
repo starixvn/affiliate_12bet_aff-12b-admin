@@ -491,11 +491,13 @@
     <Content Include="www\build\styles\Images\contact-us\icons\whatsapp.svg" />
     <Content Include="www\build\styles\Images\contact-us\icons\zalo.svg" />
     <Content Include="www\build\styles\Images\contact-us\markets\bangladesh.svg" />
+    <Content Include="www\build\styles\Images\contact-us\markets\brazil.svg" />
     <Content Include="www\build\styles\Images\contact-us\markets\cambodia.svg" />
     <Content Include="www\build\styles\Images\contact-us\markets\china.svg" />
     <Content Include="www\build\styles\Images\contact-us\markets\english.svg" />
     <Content Include="www\build\styles\Images\contact-us\markets\india.svg" />
     <Content Include="www\build\styles\Images\contact-us\markets\indonesian.svg" />
+    <Content Include="www\build\styles\Images\contact-us\markets\japan.svg" />
     <Content Include="www\build\styles\Images\contact-us\markets\korea.svg" />
     <Content Include="www\build\styles\Images\contact-us\markets\thailand.svg" />
     <Content Include="www\build\styles\Images\contact-us\markets\vietnam.svg" />
@@ -996,8 +998,6 @@
     <Content Include="www\build\styles\fonts\tahoma\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\Images\contact-us\japan_lang.png" />
-    <Content Include="www\build\styles\Images\contact-us\brazil_lang.png" />
     <Content Include="www\build\styles\Images\feedback\dissatisfaction-active.png" />
     <Content Include="www\build\styles\Images\feedback\dissatisfaction.png" />
     <Content Include="www\build\styles\Images\feedback\letter-icon.png" />
