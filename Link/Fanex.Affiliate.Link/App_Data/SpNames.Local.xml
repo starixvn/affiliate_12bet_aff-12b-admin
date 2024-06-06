@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions>
   <Function Name="Aff-Link">
-    <Setting Key="Aff_AffiliateInsClickStatistics_New" SpName="Aff_AffiliateInsClickStatistics_New_xpre" DbName="DBAFF.Affiliate_12bet.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_AffiliateInsClickStatistics_New" SpName="Aff_AffiliateInsClickStatistics_New" DbName="DBAFF.Affiliate_12bet.wsv_afinet" Plain="0" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="DBAFF.Affiliate_12bet.wsv_afinetv" Plain="0" />
     <Setting Key="Aff_Language_Sel" SpName="Aff_Language_Sel" DbName="DBAFF.Affiliate_12bet.wsv_afinetv" Plain="0" />
   </Function>
