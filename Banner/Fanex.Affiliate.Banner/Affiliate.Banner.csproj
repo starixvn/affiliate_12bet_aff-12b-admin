@@ -199,10 +199,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="12monitor.aspx" />
-    <Content Include="App_Data\SpNames.xml" />
+    <Content Include="App_Data\SpName.12betbanner.local.xml">
+      <DependentUpon>SpName.xml</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.12betbanner.production.xml">
+      <DependentUpon>SpName.xml</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.12betbanner.uat.xml">
+      <DependentUpon>SpName.xml</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpName.xml" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\affiliate.text.js" />
     <Content Include="Scripts\SwfVersDetection.js" />
+    <Content Include="Web.12betbanner.local.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -210,6 +222,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Web.12betbanner.production.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.12betbanner.uat.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -222,16 +240,7 @@
     <Content Include="Deployment.ignore" />
     <Content Include="Affiliate.Banner.ruleset" />
     <None Include="Properties\PublishProfiles\a.pubxml" />
-    <Content Include="Web.12betbanner.uat.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.12betbanner.local.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Views\Home\Error.cshtml" />
-    <Content Include="Web.12betbanner.production.config">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
@@ -262,7 +271,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateAssemblyVersion="True" />
+      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -294,24 +294,36 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
     <Content Include="12monitor.aspx" />
+    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.local.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.production.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.sit.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.uat.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.local.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.production.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.sit.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.uat.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpConfig\_SpName.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
-    <Content Include="App_Data\SpConfig\SpName.local.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.production.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.sit.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.uat.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
     <Content Include="App_Data\SpConfig\SpName.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
