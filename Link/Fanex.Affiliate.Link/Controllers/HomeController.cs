@@ -18,6 +18,7 @@ namespace Fanex.Affiliate.Link.Controllers
     [CheckUMFilter]
     public class HomeController : Controller
     {
+        private const string LOCAL_ENV = "LOCAL";
         private const string SIGN_UP_PAGE_CODE = "signup";
         private const string MALAYSIA_COUNTRY_CODE = "MY";
         private const string SPECIAL_PAGE_CODE = "12sports";
@@ -25,9 +26,12 @@ namespace Fanex.Affiliate.Link.Controllers
         private const string NEW_MKT_SIGNUP_PAGE_CODE = "mktsignup";
         private readonly string[] SpecialSubPageCodes = new [] { "cricket", "virtualsports" };
 
-        private readonly string[] SpecialAffIds;
-        private readonly string[] MarketingForCommGroups;
-        private readonly string[] MarketingLandingPages;
+        private static readonly string[] SpecialAffIds = ConfigurationManager.AppSettings["SpecialAffIds"].ToString().Split(',');
+        private static readonly string[] MarketingForCommGroups = ConfigurationManager.AppSettings["MarketingForCommGroups"].ToString().Split(',');
+        private static readonly string[] MarketingLandingPages = ConfigurationManager.AppSettings["MarketingLandingPages"].ToString().Split(',');
+        private static readonly bool IsRemovePortFromUrl = string.Equals(ConfigurationManager.AppSettings["RemovePortFromUrl"].ToString(), "1", StringComparison.OrdinalIgnoreCase);
+        private static readonly bool IsLocal = string.Equals(ConfigurationManager.AppSettings["Environment"].ToString(), LOCAL_ENV, StringComparison.OrdinalIgnoreCase);
+        
         #region Services
 
         private readonly ITrackingSystemService _trackingSystemService;
@@ -41,9 +45,6 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             _trackingSystemService = new TrackingSystemService();
             _affiliateService = new AffiliateService();
-            SpecialAffIds = ConfigurationManager.AppSettings["SpecialAffIds"].ToString().Split(',');
-            MarketingForCommGroups = ConfigurationManager.AppSettings["MarketingForCommGroups"].ToString().Split(',');
-            MarketingLandingPages = ConfigurationManager.AppSettings["MarketingLandingPages"].ToString().Split(',');
         }
 
         #endregion Constructor
@@ -186,7 +187,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private string GetFullAffDomain(string url, int affId)
         {
-            if (byte.Parse(ConfigurationManager.AppSettings["RemovePortFromUrl"]) == 1)
+            if (IsRemovePortFromUrl)
             {
                 var uri = new Uri(url);
                 url = url.Replace(":" + uri.Port, string.Empty);
@@ -211,9 +212,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private void HandleFakeToCheckAff16000OnLocal(TrackingSystemCommand param)
         {
-            var env = ConfigurationManager.AppSettings["Environment"].ToString();
-
-            if(IsMatching(env, "local"))
+            if(IsLocal)
             {
                 var aff16000Id = ConfigurationManager.AppSettings["Aff16000Id"].ToString();
                 var aff16000GoDomain = ConfigurationManager.AppSettings["Aff16000GoDomain"].ToString();
