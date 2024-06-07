@@ -11,13 +11,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal);
 
-        IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, bool isInternal);
+        IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, int affId, bool isInternal);
 
         IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam);
 
         IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam);
-
-        IEnumerable<LandingPage> GetSpecialLandingPageList(string targetCountry, string commGroupName, string language, bool isInternal);
 
         IEnumerable<LandingPage> GetLandingPageList(string targetCountry, string commGroupName, bool isInternal);
 

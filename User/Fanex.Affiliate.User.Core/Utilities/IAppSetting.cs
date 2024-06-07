@@ -57,16 +57,20 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string ResourceDomain { get; }
 
-        IEnumerable<string> MarketingForCommGroups { get; }
         string CcMail { get; }
 
-        IEnumerable<string> MarketingLandingPages { get; }
         string BccMail { get; }
 
-        IEnumerable<string> ODIWorldCupLandingPages { get; }
         string AppMailId { get; }
 
-        IEnumerable<string> SupportedODIWorldCupLanguages { get; }
         string AppMailAddress { get; }
+
+        IEnumerable<string> MarketingForCommGroups { get; }
+
+        IEnumerable<string> MarketingLandingPages { get; }
+
+        string Aff16000Id { get; }
+
+        string Aff16000GoDomain { get; }
     }
 }

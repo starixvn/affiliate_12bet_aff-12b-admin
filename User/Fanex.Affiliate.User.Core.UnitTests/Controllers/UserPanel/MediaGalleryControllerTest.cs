@@ -97,7 +97,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         [Fact]
         public void GetBanner_WhenCallWithNoSelectedDomain_ReturnEmptyModelItem()
         {
-            MarketingService.GetDomainListByTargetCountry(Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(new List<Domain>());
+            MarketingService.GetDomainListByTargetCountry(Arg.Compat.Any<string>(), Arg.Compat.Any<int>(), Arg.Compat.Any<bool>()).Returns(new List<Domain>());
             var controller = new MediaGalleryController(SessionService, AppSetting, LanguageService, MarketingService);
             var param = new MarketingBannerParam();
 

@@ -1219,52 +1219,9 @@ var MarketingBase = (function ($) {
         },
 
         initEvent: function () {
-            $("#Language").on("change", function (e) {
-                _me.getLinkTo();
-            });
-
             $("#TargetCountry").on("change", function () {
                 $("#btnMarketingSubmit").prop("disabled", false);
                 _me.handleChangeTargetCountry();
-            });
-        },
-
-        getLinkTo: function () {
-            let param = {
-                targetCountry: $("#TargetCountry").val(),
-                language: $("#Language").val()
-            };
-
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                cache: false,
-                data: param,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetLinkTo"),
-                success: function (response) {
-                    if (response && response.length == 0) {
-                        $("#btnMarketingSubmit").prop("disabled", true);
-                        $("#MemberSitePage").html("<option value=''>" + langResource.noInfo + "</option>")
-                    } else {
-                        $("#Domain").val() && $("#btnMarketingSubmit").prop("disabled", false);
-                        var html = Site.buildOptionList(response, "PageCode", "PageName", false);
-                        var previousSelectedPage = $("#MemberSitePage").val();
-
-                        $("#MemberSitePage").html(html);
-
-                        var hasPreviousSelectedPage = response.some(i => i.PageCode == previousSelectedPage);
-
-                        if (hasPreviousSelectedPage) {
-                            $("#MemberSitePage").val(previousSelectedPage);
-                        }
-                    }
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
-                }
             });
         },
 

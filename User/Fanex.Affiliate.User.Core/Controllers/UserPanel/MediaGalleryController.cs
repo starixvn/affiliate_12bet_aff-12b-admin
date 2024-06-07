@@ -69,8 +69,7 @@
         public ActionResult GetBanner(MarketingBannerParam bannerParam)
         {
             var userSession = SessionService.UserSession;
-            var selectedDomain = MarketingService
-                .GetDomainListByTargetCountry(bannerParam.SelectedTargetCountry, SessionService.IsInternal)
+            var selectedDomain = GetDomainListByTargetCountry(bannerParam.SelectedTargetCountry, SessionService.IsInternal)
                 .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
 
             bannerParam.AffId = userSession.AffId;

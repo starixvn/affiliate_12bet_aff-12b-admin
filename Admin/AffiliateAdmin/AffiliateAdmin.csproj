@@ -237,16 +237,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="12monitor.aspx" />
-    <Content Include="App_Data\SpConfig\SpName.local.xml">
+    <Content Include="App_Data\SpConfig\SpName.12betadmin.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.production.xml">
+    <Content Include="App_Data\SpConfig\SpName.12betadmin.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.sit.xml">
+    <Content Include="App_Data\SpConfig\SpName.12betadmin.sit.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.uat.xml">
+    <Content Include="App_Data\SpConfig\SpName.12betadmin.uat.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="App_Data\SpConfig\SpName.xml">
@@ -1269,7 +1269,12 @@
     <Content Include="AppSettings.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Web.12betadmin.sit.config" />
+    <Content Include="Web.12betadmin.local.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.12betadmin.production.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
     <Content Include="Areas\Portal\Views\Web.config" />
     <Content Include="AffiliateAdmin.ruleset" />
     <Content Include="Areas\Portal\www\source\js\layouts\AppLayout.jsx" />
@@ -1566,13 +1571,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Web.12betadmin.sit.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.12betadmin.uat.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
     <Content Include="WebWorkbench.mswwsettings" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Web.12betadmin.local.config" />
-    <Content Include="Web.12betadmin.production.config" />
-    <Content Include="Web.12betadmin.uat.config" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

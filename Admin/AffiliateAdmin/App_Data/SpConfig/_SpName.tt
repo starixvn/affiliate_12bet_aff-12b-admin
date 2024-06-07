@@ -18,7 +18,7 @@
 
 	foreach(var env in environments)
 	{
-		var fileName = env == "dev" ? "SpName.xml" : string.Format("SpName.{0}.xml", env);
+		var fileName = env == "dev" ? "SpName.xml" : string.Format("SpName.12betadmin.{0}.xml", env);
 		var spContent = originalSpName;
 		manager.StartNewFile(fileName);
 

@@ -21,7 +21,7 @@
 
             DbSettingProviderManager
                 .StartNewSession()
-                .WithSqlServer("~/App_Data/SpNames.xml")
+                .WithSqlServer("~/App_Data/SpName.xml")
                 .Run();
         }
 
