@@ -651,6 +651,9 @@
     <Content Include="www\build\styles\Images\langs\vn.svg" />
     <Content Include="www\build\styles\Images\product\esports\esporsts.png" />
     <Content Include="www\build\styles\Images\product\esports\saba-esports.png" />
+    <Content Include="www\build\styles\Images\product\keno\banner.png" />
+    <Content Include="www\build\styles\Images\product\keno\banner-mobile.png" />
+    <Content Include="www\build\styles\Images\product\keno\saba-sports.png" />
     <Content Include="www\build\styles\Images\product\live-casino\ag-gaming.png" />
     <Content Include="www\build\styles\Images\product\live-casino\all-bet.png" />
     <Content Include="www\build\styles\Images\product\live-casino\ebet.png" />
@@ -665,6 +668,13 @@
     <Content Include="www\build\styles\Images\product\lottery\gameplay-interactive.png" />
     <Content Include="www\build\styles\Images\product\lottery\saba-sports.png" />
     <Content Include="www\build\styles\Images\product\lottery\sg-win.png" />
+    <Content Include="www\build\styles\Images\product\number-game\banner.png" />
+    <Content Include="www\build\styles\Images\product\number-game\banner-mobile.png" />
+    <Content Include="www\build\styles\Images\product\number-game\saba-sports.png" />
+    <Content Include="www\build\styles\Images\product\p2p\banner.png" />
+    <Content Include="www\build\styles\Images\product\p2p\banner-mobile.png" />
+    <Content Include="www\build\styles\Images\product\p2p\ky.png" />
+    <Content Include="www\build\styles\Images\product\p2p\saba-sports.png" />
     <Content Include="www\build\styles\Images\product\slot\advant-play.png" />
     <Content Include="www\build\styles\Images\product\slot\betsoft.png" />
     <Content Include="www\build\styles\Images\product\slot\flowgaming.png" />

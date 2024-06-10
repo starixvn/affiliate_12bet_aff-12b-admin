@@ -914,7 +914,7 @@
     <value>웹사이트가 없습니다.</value>
   </data>
   <data name="NumberGame" xml:space="preserve">
-    <value>빙고</value>
+    <value>라이브 빙고</value>
   </data>
   <data name="October" xml:space="preserve">
     <value>10월</value>
@@ -2238,5 +2238,14 @@
   </data>
   <data name="BrazilSupport" xml:space="preserve">
     <value>브라질 지원</value>
+  </data>
+  <data name="_12betKenoIsAStraightforwardGame" xml:space="preserve">
+    <value>12벳 키노는 숫자를 선택하고 추첨을 통해 당첨이 되는 간단한 게임입니다. 특별한 기술이나 전략이 필요하지 않기 때문에 누구나 쉽게 즐길 수 있는 게임입니다.</value>
+  </data>
+  <data name="InP2PGames" xml:space="preserve">
+    <value>P2P 게임은 하우스나 딜러가 아닌 다른 플레이어와 함께하는 게임입니다. 보다 사회적이고 경쟁적인 환경으로 인해 플레이어들이 하우스나 카지노에서 플레이하는 것처럼 다양한 게임에서 서로 경쟁할 수 있는 매력으로 흥미진진하게 즐길 수 있는 12Bet P2P 게임입니다.</value>
+  </data>
+  <data name="_12BetNumberGame" xml:space="preserve">
+    <value>12Bet 라이브 빙고는 복권, 빙고, 키노(Keno)와 유사하게 숫자를 선택하고 당첨되는 방식의 다양한 게임을 제공합니다. 이러한 유형의 게임은 단순함과 높은 배당으로 큰 당첨금을 얻을 수 있기에 인기가 많습니다. 만약 여러분이 12Bet의 라이브 빙고에 관심이 있다면 플레이하시길 추천합니다.</value>
   </data>
 </root>

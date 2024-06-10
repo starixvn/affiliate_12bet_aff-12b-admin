@@ -14,7 +14,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            return View("~/Views/Product/Index.cshtml");
+            return View("~/Views/Product/Index.cshtml", model: SessionService.CurrentLanguage);
         }
     }
 }

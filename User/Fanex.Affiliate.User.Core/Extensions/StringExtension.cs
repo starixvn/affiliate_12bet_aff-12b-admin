@@ -1,4 +1,8 @@
-﻿namespace Fanex.Affiliate.User.Core.Extensions
+﻿using Fanex.Affiliate.User.Core.Constants;
+using System;
+using System.Linq;
+
+namespace Fanex.Affiliate.User.Core.Extensions
 {
     public static class StringExtension
     {
@@ -28,6 +32,11 @@
             var convertedValue = value.Remove(halfLength).Insert(halfLength, stringReplace);
 
             return convertedValue;
+        }
+
+        public static bool IsSupportedP2pProduct(this string value)
+        {
+            return !SystemLanguage.UnsupportedP2pProductLanguages.Any(l => string.Equals(l, value, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

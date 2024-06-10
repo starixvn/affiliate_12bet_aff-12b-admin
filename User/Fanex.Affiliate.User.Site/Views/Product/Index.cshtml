@@ -6,6 +6,11 @@
     ViewBag.HeaderTitle = Lang.ProductHeaderTitle;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
+@model string
+
+@{ 
+    var isSupportedP2P = Model.IsSupportedP2pProduct();
+}
 
 @section styles{
     @Html.InlineStyles("~/www/build/styles/css/products.css")
@@ -289,7 +294,7 @@
                                 </div>
                                 <div class="text-slider">
                                     <img src="~/www/build/styles/Images/product/lottery/banner-mobile.png" alt="lottery mobile" class="show-mobile img-live-lottery" />
- 
+
                                     <div class="text-heading">
                                         <div class="heading-slider show-mobile">
                                             @Lang.Lottery
@@ -354,7 +359,7 @@
                                 <div class="heading-slider show-pc">@Lang._12ESports</div>
                                 <div class="text-slider">
                                     <img src="~/www/build/styles/Images/product/esports/banner-mobile.png" alt="esports mobile" class="show-mobile img-12esporst" />
-                                    
+
                                     <div class="text-heading">
                                         <div class="heading-slider show-mobile">
                                             @Lang._12ESports
@@ -370,6 +375,190 @@
                                             </div>
                                             <div class="swiper-slide">
                                                 <img src="~/www/build/styles/Images/product/esports/esporsts.png" alt="Esporsts" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M11.2383 16.4145L14.7583 12.8845L11.2383 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M13.7583 16.4145L10.2383 12.8845L13.7583 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="products-arrow arrow-1">
+                            <img src="~/www/build/styles/Images/arrow-1.svg" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-2">
+                            <img src="~/www/build/styles/Images/arrow-2.svg" alt="arrow-4" />
+                        </span>
+                        <span class="products-arrow arrow-3">
+                            <img src="~/www/build/styles/Images/arrow-3.svg" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-4">
+                            <img src="~/www/build/styles/Images/arrow-4.svg" alt="arrow-4" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-items" id="Keno">
+                <div class="page-container">
+                    <div class="items">
+                        <div class="mask">
+                            <div class="imgs imgs-keno">
+                                <img src="~/www/build/styles/Images/product/keno/banner.png" alt="keno" class="show-pc" />
+                            </div>
+                            <div class="shape shape-keno"></div>
+                            <div class="group-slider">
+                                <div class="heading-slider show-pc">
+                                    @Lang.Keno
+                                </div>
+                                <div class="text-slider">
+                                    <img src="~/www/build/styles/Images/product/keno/banner-mobile.png?v=002" alt="keno mobile" class="show-mobile img-keno" />
+
+                                    <div class="text-heading">
+                                        <div class="heading-slider show-mobile">
+                                            @Lang.Keno
+                                        </div>
+                                        @Lang._12betKenoIsAStraightforwardGame
+                                    </div>
+                                </div>
+                                <div class="shape-slider">
+                                    <div class="swiper products-slider manual-slider">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/keno/saba-sports.png" alt="Saba Sports" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M11.2383 16.4145L14.7583 12.8845L11.2383 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev">
+                                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M13.7583 16.4145L10.2383 12.8845L13.7583 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="products-arrow arrow-1">
+                            <img src="~/www/build/styles/Images/arrow-1.svg" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-2">
+                            <img src="~/www/build/styles/Images/arrow-2.svg" alt="arrow-4" />
+                        </span>
+                        <span class="products-arrow arrow-3">
+                            <img src="~/www/build/styles/Images/arrow-3.svg" alt="arrow-3" />
+                        </span>
+                        <span class="products-arrow arrow-4">
+                            <img src="~/www/build/styles/Images/arrow-4.svg" alt="arrow-4" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+            @if (isSupportedP2P)
+            {
+                <div class="wrapper-items" id="P2P">
+                    <div class="page-container">
+                        <div class="items">
+                            <div class="mask">
+                                <div class="imgs imgs-p2p">
+                                    <img src="~/www/build/styles/Images/product/p2p/banner.png" alt="p2p" class="show-pc" />
+                                </div>
+                                <div class="shape shape-p2p"></div>
+                                <div class="group-slider">
+                                    <div class="heading-slider show-pc">@Lang.P2P</div>
+                                    <div class="text-slider">
+                                        <img src="~/www/build/styles/Images/product/p2p/banner-mobile.png?v=002" alt="p2p mobile" class="show-mobile img-p2p" />
+
+                                        <div class="text-heading">
+                                            <div class="heading-slider show-mobile">
+                                                @Lang.P2P
+                                            </div>
+                                            @Lang.InP2PGames
+                                        </div>
+                                    </div>
+                                    <div class="shape-slider">
+                                        <div class="swiper products-slider manual-slider">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide" style="max-width:80px">
+                                                    <img src="~/www/build/styles/Images/product/p2p/ky.png" alt="KY" />
+                                                </div>
+                                            </div>
+                                            <div class="swiper-button-next">
+                                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                    <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M11.2383 16.4145L14.7583 12.8845L11.2383 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+                                            <div class="swiper-button-prev">
+                                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                                    <path d="M12.5 22.8843C18.0228 22.8843 22.5 18.4071 22.5 12.8843C22.5 7.36143 18.0228 2.88428 12.5 2.88428C6.97715 2.88428 2.5 7.36143 2.5 12.8843C2.5 18.4071 6.97715 22.8843 12.5 22.8843Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M13.7583 16.4145L10.2383 12.8845L13.7583 9.35449" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+                                            <div class="swiper-pagination"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="products-arrow arrow-1">
+                                <img src="~/www/build/styles/Images/arrow-1.svg" alt="arrow-3" />
+                            </span>
+                            <span class="products-arrow arrow-2">
+                                <img src="~/www/build/styles/Images/arrow-2.svg" alt="arrow-4" />
+                            </span>
+                            <span class="products-arrow arrow-3">
+                                <img src="~/www/build/styles/Images/arrow-3.svg" alt="arrow-3" />
+                            </span>
+                            <span class="products-arrow arrow-4">
+                                <img src="~/www/build/styles/Images/arrow-4.svg" alt="arrow-4" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="wrapper-items" id="NumberGame">
+                <div class="page-container">
+                    <div class="items">
+                        <div class="mask">
+                            <div class="imgs @(isSupportedP2P ? "imgs-numbergame" : "imgs-numbergame-left")">
+                                <img src="~/www/build/styles/Images/product/number-game/banner.png" alt="numbergame" class="show-pc" />
+                            </div>
+                            <div class="shape shape-numbergame"></div>
+                            <div class="group-slider">
+                                <div class="heading-slider show-pc">
+                                    @Lang.NumberGame
+                                </div>
+                                <div class="text-slider">
+                                    <img src="~/www/build/styles/Images/product/number-game/banner-mobile.png?v=002" alt="numbergame mobile" class="show-mobile img-numbergame" />
+
+                                    <div class="text-heading">
+                                        <div class="heading-slider show-mobile">
+                                            @Lang.NumberGame
+                                        </div>
+                                        @Lang._12BetNumberGame
+                                    </div>
+                                </div>
+                                <div class="shape-slider">
+                                    <div class="swiper products-slider manual-slider">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="~/www/build/styles/Images/product/number-game/saba-sports.png" alt="Saba Sports" />
                                             </div>
                                         </div>
                                         <div class="swiper-button-next">

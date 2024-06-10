@@ -89,6 +89,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12bet keno is a straightforward game where players choose numbers and wait for a draw to see if their numbers are selected. It&apos;s a game of chance, requiring no specific skills or strategies, making it accessible to everyone..
+        /// </summary>
+        public static string _12betKenoIsAStraightforwardGame {
+            get {
+                return ResourceManager.GetString("_12betKenoIsAStraightforwardGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Number Game refers to a variety of games that involved selecting and guessing numbers, similar to  lotteries, bingo, or keno. These types of games are popular for their simplicity and potential for large payouts. If you&apos;re interested in 12Bet&apos;s Number Game or considered trying it out..
+        /// </summary>
+        public static string _12BetNumberGame {
+            get {
+                return ResourceManager.GetString("_12BetNumberGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 12BET Player Account.
         /// </summary>
         public static string _12BETPlayerAcc {
@@ -2668,6 +2686,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string IndonesiaSupport {
             get {
                 return ResourceManager.GetString("IndonesiaSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In P2P games, you&apos;re playing against other people, not a house or dealer. This creates a more social and competitive environment, which can be more engaging and exciting where players can compete against each other in various games, rather than playing against a house or casino. Here are some positive aspects of 12Bet P2P games.
+        /// </summary>
+        public static string InP2PGames {
+            get {
+                return ResourceManager.GetString("InP2PGames", resourceCulture);
             }
         }
         

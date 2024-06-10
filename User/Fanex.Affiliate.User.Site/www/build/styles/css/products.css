@@ -812,6 +812,8 @@ button.swiper-pagination-bullet {
           .block-items-products .main-items .items .mask .group-slider .text-slider .img-slot {
             left: -38px; }
           .block-items-products .main-items .items .mask .group-slider .text-slider .img-12esporst {
+            left: -42px; }
+          .block-items-products .main-items .items .mask .group-slider .text-slider .img-p2p {
             left: -42px; } }
       .block-items-products .main-items .items .mask .group-slider .shape-slider {
         position: relative;
@@ -856,6 +858,8 @@ button.swiper-pagination-bullet {
                 .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider .swiper-slide img {
                   width: 100%;
                   height: 100%; } }
+          .block-items-products .main-items .items .mask .group-slider .shape-slider .products-slider.manual-slider .swiper-wrapper {
+            justify-content: center; }
         .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-next, .block-items-products .main-items .items .mask .group-slider .shape-slider .swiper .swiper-button-prev {
           margin-top: -15px;
           width: auto;
@@ -951,6 +955,35 @@ button.swiper-pagination-bullet {
     .shape-12esporst {
       height: 177px; } }
 
+.shape-keno {
+  height: 420px; }
+  @media screen and (max-width: 1024px) {
+    .shape-keno {
+      height: 293px; } }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .shape-keno {
+      height: 199px; } }
+
+.shape-p2p {
+  height: 420px;
+  min-width: 450px !important; }
+  @media screen and (max-width: 1024px) {
+    .shape-p2p {
+      height: 262px;
+      min-width: 340px !important; } }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .shape-p2p {
+      height: 177px; } }
+
+.shape-numbergame {
+  height: 420px; }
+  @media screen and (max-width: 1024px) {
+    .shape-numbergame {
+      height: 293px; } }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .shape-numbergame {
+      height: 199px; } }
+
 .imgs-slot {
   left: -120px !important;
   top: -30px !important; }
@@ -999,6 +1032,79 @@ button.swiper-pagination-bullet {
     height: 474px; }
     @media screen and (max-width: 1024px) {
       .imgs-12esporst img {
+        height: auto; } }
+
+.imgs-keno {
+  right: -23px !important;
+  top: -19px !important; }
+  @media screen and (max-width: 1024px) {
+    .imgs-keno {
+      top: -14px !important;
+      right: -120px !important; } }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .imgs-keno {
+      top: -13px !important;
+      right: -217px !important; } }
+  .imgs-keno img {
+    height: 463px; }
+    @media screen and (max-width: 1024px) {
+      .imgs-keno img {
+        height: auto; } }
+
+.imgs-p2p {
+  left: -80px !important;
+  top: -30px !important; }
+  @media screen and (max-width: 1024px) {
+    .imgs-p2p {
+      top: -11px !important;
+      left: -48px !important; } }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .imgs-p2p {
+      left: -43px !important; } }
+  @media only screen and (min-device-width: 812px) and (max-device-width: 980px) and (orientation: landscape) {
+    .imgs-p2p {
+      left: -30px !important; } }
+  .imgs-p2p img {
+    height: 474px; }
+    @media screen and (max-width: 1024px) {
+      .imgs-p2p img {
+        height: auto; } }
+
+.imgs-numbergame {
+  right: -19px !important;
+  top: -18px !important; }
+  @media screen and (max-width: 1024px) {
+    .imgs-numbergame {
+      top: 7px !important;
+      right: -111px !important; } }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .imgs-numbergame {
+      top: 2px !important;
+      right: -205px !important; } }
+  .imgs-numbergame img {
+    height: 463px; }
+    @media screen and (max-width: 1024px) {
+      .imgs-numbergame img {
+        height: auto; } }
+
+.imgs-numbergame-left {
+  left: -120px !important;
+  top: -18px !important; }
+  @media screen and (max-width: 1024px) {
+    .imgs-numbergame-left {
+      top: 7px !important;
+      left: -75px !important; } }
+  @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .imgs-numbergame-left {
+      left: -50px !important; } }
+  @media only screen and (min-device-width: 812px) and (max-device-width: 980px) and (orientation: landscape) {
+    .imgs-numbergame-left {
+      top: 2px !important;
+      left: -50px !important; } }
+  .imgs-numbergame-left img {
+    height: 463px; }
+    @media screen and (max-width: 1024px) {
+      .imgs-numbergame-left img {
         height: auto; } }
 
 .show-pc {

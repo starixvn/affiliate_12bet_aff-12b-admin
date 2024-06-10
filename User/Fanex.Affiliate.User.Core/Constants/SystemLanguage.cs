@@ -46,7 +46,11 @@ namespace Fanex.Affiliate.User.Core.Constants
             [_Korea_LanguageCode] = "ko",
         };
 
+        private static readonly IList<string> _unsupportedP2pProductLanguages = new List<string> { _Bangladesh_LanguageCode, _India_LanguageCode, _Cambodia_LanguageCode }; 
+
         public static IReadOnlyDictionary<string, string> SupportedLanguage => _supportedLanguageForGoogleAnalytics;
+
+        public static IList<string> UnsupportedP2pProductLanguages => _unsupportedP2pProductLanguages;
 
         public const string DefaultLanguageCode = _English_LanguageCode;
 

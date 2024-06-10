@@ -1,5 +1,9 @@
 ﻿@model string
 
+@{
+    var isSupportedP2P = Model.IsSupportedP2pProduct();
+}
+
 <div class="block-content">
     <div class="wrapper-block">
         <div class="items">
@@ -27,19 +31,19 @@
             </a>
         </div>
         <div class="items">
-            <a href="@Url.Content("~/Product#LiveCasino")" class="wrapper-item">
+            <a href="@Url.Content(isSupportedP2P ? "~/Product#P2P" : "~/Product#NumberGame")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/p2p.png" alt="@Lang.P2P" class="img-responsive" />
                 <span class="name-item">@Lang.P2P</span>
             </a>
         </div>
         <div class="items">
-            <a href="@Url.Content("~/Product#Lottery")" class="wrapper-item">
+            <a href="@Url.Content("~/Product#NumberGame")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/number-game.png" alt="@Lang.NumberGame" class="img-responsive" />
                 <span class="name-item">@Lang.NumberGame</span>
             </a>
         </div>
         <div class="items">
-            <a href="@Url.Content("~/Product#Lottery")" class="wrapper-item">
+            <a href="@Url.Content("~/Product#Keno")" class="wrapper-item">
                 <img src="~/www/build/styles/Images/home/our-product/keno.png" alt="@Lang.Keno" class="img-responsive" />
                 <span class="name-item">@Lang.Keno</span>
             </a>
