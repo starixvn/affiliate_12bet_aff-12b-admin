@@ -34,8 +34,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 objectDb.SetParameterValue("AffID", param.AffId);
                 objectDb.SetParameterValue("UserID", param.UserId);
                 objectDb.SetParameterValue("Amount", param.Amount);
-                objectDb.SetParameterValue("transdesc", param.Description);
-                objectDb.SetParameterValue("transaffdesc", param.AffDescription);
+                objectDb.SetParameterValue("AdminDesc", param.Description);
+                objectDb.SetParameterValue("AffDesc", param.AffDescription);
                 objectDb.SetParameterValue("IP", param.Ip);
 
                 AssignResultOutputParam(objectDb);
@@ -47,3 +47,4 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         }
     }
 }
+ 
