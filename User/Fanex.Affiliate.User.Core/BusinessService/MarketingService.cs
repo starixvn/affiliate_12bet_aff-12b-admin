@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, int affId, bool isInternal)
         {
-            var domainList = _marketingRepository.GetDomainListByTargetCountry(targetCountry, isInternal)?.Where(d => !d.DomainName.Contains("glg46.com"));
+            var domainList = _marketingRepository.GetDomainListByTargetCountry(targetCountry, isInternal);
             
             if (_appSetting.Aff16000Id.MatchWith(affId.ToString()))
             {
