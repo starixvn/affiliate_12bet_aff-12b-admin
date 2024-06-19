@@ -187,14 +187,9 @@
 
     .red-bold {
         color: #D90F0F;
-        font-size: 20px;
-        font-style: normal;
+        font-size: 16px;
         font-weight: 700;
-        line-height: 30px;
+        line-height: normal;
 
-        @include Mobile {
-            font-size: 16px;
-            line-height: normal;
-        }
     }
 }

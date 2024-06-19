@@ -141,14 +141,9 @@
 
 .group-faq .red-bold {
   color: #D90F0F;
-  font-size: 20px;
-  font-style: normal;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 30px; }
-  @media (max-width: 500px) {
-    .group-faq .red-bold {
-      font-size: 16px;
-      line-height: normal; } }
+  line-height: normal; }
 
 .search-input {
   text-align: right;

@@ -109,7 +109,7 @@ label {
 
 .page-title {
     background: #F6F6F6;
-    padding: 15px 0;
+    padding: 14px 0;
     text-align: center;
     margin-bottom: 36px;
 
@@ -119,13 +119,13 @@ label {
 
     .text {
         color: #D90F0F;
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 700;
         line-height: normal;
         text-transform: uppercase;
 
         @include Tablet {
-            font-size: 24px;
+            font-size: 22px;
             letter-spacing: 1px;
         }
 

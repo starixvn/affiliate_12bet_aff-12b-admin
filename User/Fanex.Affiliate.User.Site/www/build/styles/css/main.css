@@ -556,10 +556,10 @@ input[type="checkbox"], input[type="radio"] {
     position: relative;
     background: linear-gradient(90deg, #D90F0F -18.75%, #FF8651 73.4%);
     color: #fff;
-    padding: 8px 36px 8px 44px;
+    padding: 6px 36px 6px 44px;
     line-height: normal;
     margin-right: 20px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%); }
     @media (max-width: 500px) {
@@ -1363,7 +1363,7 @@ label.require:after {
 
 .page-title {
   background: #F6F6F6;
-  padding: 15px 0;
+  padding: 14px 0;
   text-align: center;
   margin-bottom: 36px; }
   @media screen and (max-width: 1024px) {
@@ -1371,13 +1371,13 @@ label.require:after {
       padding: 12px 0; } }
   .page-title .text {
     color: #D90F0F;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     line-height: normal;
     text-transform: uppercase; }
     @media screen and (max-width: 1024px) {
       .page-title .text {
-        font-size: 24px;
+        font-size: 22px;
         letter-spacing: 1px; } }
     @media (max-width: 500px) {
       .page-title .text {
@@ -1780,10 +1780,9 @@ table + .button-group {
 
 .heading-table {
   text-align: center;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: 2.24px;
   text-transform: uppercase;
   background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
   -webkit-background-clip: text;
