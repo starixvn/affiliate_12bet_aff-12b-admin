@@ -1,17 +1,20 @@
 ﻿.block {
-  padding: 52px 0; }
+  padding: 32px 0; }
   @media screen and (max-width: 1024px) {
     .block {
       padding: 40px 0; } }
   .block-title {
     text-transform: uppercase;
-    text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     line-height: normal;
     font-weight: 700;
     margin-bottom: 28px;
     margin-top: 0;
-    color: #353e5b; }
+    color: #353e5b;
+    text-align: center; }
+    .block-title img {
+      display: inline-block;
+      width: 90px; }
     @media screen and (max-width: 1024px) {
       .block-title {
         color: #343E5C;

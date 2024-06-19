@@ -1,5 +1,5 @@
 ﻿.block {
-    padding: 52px 0;
+    padding: 32px 0;
 
     @include Tablet {
         padding: 40px 0;
@@ -7,13 +7,18 @@
 
     &-title {
         text-transform: uppercase;
-        text-align: center;
-        font-size: 24px;
+        font-size: 22px;
         line-height: normal;
         font-weight: 700;
         margin-bottom: 28px;
         margin-top: 0;
         color: #353e5b;
+        text-align : center;
+
+        img {
+            display: inline-block;
+            width: 90px;
+        }
 
         @include Tablet {
             color: #343E5C;

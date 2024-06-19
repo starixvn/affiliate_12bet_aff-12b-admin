@@ -508,7 +508,7 @@ input[type="checkbox"], input[type="radio"] {
           padding: 10px 2vw; } }
       @media (min-width: 1360px) {
         .header-bottom .menu .menu-item {
-          padding: 10px 32px; } }
+          padding: 10px 30px; } }
       @media screen and (max-width: 1024px) {
         .header-bottom .menu .menu-item {
           padding: 12px 10px;
@@ -920,7 +920,7 @@ input[type="checkbox"], input[type="radio"] {
   padding: 0 12px; }
   @media (min-width: 1365px) {
     .page-container {
-      max-width: 1240px; } }
+      max-width: 1224px; } }
 
 .main {
   overflow-x: hidden; }
@@ -1115,7 +1115,7 @@ input[type="checkbox"], input[type="radio"] {
       .top-banner .swiper-slide .show-mobile {
         display: block; } }
   .top-banner .swiper-slide img {
-    min-height: 30vw; }
+    min-height: 25vw; }
     @media screen and (max-width: 1024px) {
       .top-banner .swiper-slide img {
         min-height: 240px; } }
@@ -1536,8 +1536,8 @@ label.require:after {
   text-transform: uppercase;
   text-decoration: none;
   display: inline-block;
-  padding: 10px 52px;
-  font-size: 20px; }
+  padding: 7px 52px;
+  font-size: 18px; }
   .custom-button:disabled {
     cursor: not-allowed;
     pointer-events: unset !important; }
@@ -1896,19 +1896,22 @@ input[type="radio"], input[type="checkbox"] {
     transform: translateX(-100%); } }
 
 .block {
-  padding: 52px 0; }
+  padding: 32px 0; }
   @media screen and (max-width: 1024px) {
     .block {
       padding: 40px 0; } }
   .block-title {
     text-transform: uppercase;
-    text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     line-height: normal;
     font-weight: 700;
     margin-bottom: 28px;
     margin-top: 0;
-    color: #353e5b; }
+    color: #353e5b;
+    text-align: center; }
+    .block-title img {
+      display: inline-block;
+      width: 90px; }
     @media screen and (max-width: 1024px) {
       .block-title {
         color: #343E5C;

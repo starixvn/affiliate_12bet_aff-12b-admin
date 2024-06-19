@@ -20,50 +20,69 @@
             bottom: 25px;
         }
     }
+
+    .page-container{
+        @include Mobile{
+            padding : 0;
+        }
+    }
 }
 .block-why-become {
+    .block-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+    }
+
     .block-content {
         display: flex;
         gap: 50px;
         justify-content: center;
+
         @include Tablet {
             gap: 30px;
         }
+
         @include MobileLandscape {
             gap: 12px;
         }
+
         @include Mobile {
             flex-wrap: wrap;
             justify-content: center;
             gap: 30px;
         }
+
         .items {
             text-align: center;
+
             @include Tablet {
                 width: 110px;
             }
+
             @include Mobile {
                 width: 93px;
             }
+
             img {
                 display: inline-block;
             }
+
             .wrap {
                 display: block;
             }
+
             .heading-items {
-                font-size: 16px;
+                font-size: 14px;
                 color: #353E5B;
-                line-height: 24px;
+                line-height: normal;
                 font-weight: 700;
                 max-width: 200px;
-                margin-top: 28px;
+                margin-top: 16px;
+
                 @include Tablet {
                     margin-top: 14px;
-                }
-                @include Mobile {
-                    line-height: normal;
-                    font-size: 14px;
                 }
             }
         }
@@ -71,29 +90,32 @@
 }
 .block-about {
     background: #F6F6F6;
+
     .block-title {
         margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+
         @include Tablet {
             text-align: center;
         }
     }
+
     .block-content {
         color: #353E5B;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 500;
-        line-height: 30px;
+        line-height: normal;
+
         @include Tablet {
             font-size: 16px;
             color: #343E5C;
         }
+
         p {
-            margin-bottom: 20px;
-            @include Tablet {
-                margin-bottom: 10px;
-            }
-            &:last-child {
-                margin-bottom: 0;
-            }
+            margin-bottom: 0;
         }
     }
 }
@@ -184,7 +206,7 @@
         position: relative;
         .custom-button {
             position: absolute;
-            bottom: -22px;
+            bottom: -15px;
             right: 50%;
             transform: translate(50%, 0);
             @include Mobile {
@@ -235,10 +257,10 @@
     .wrapper-block {
         border-radius: 12px;
         background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
-        padding: 44px 58px;
+        padding: 24px 90px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 52px 0;
+        gap: 16px 0;
         @include Tablet {
             padding: 44px 25px;
         }
@@ -317,7 +339,7 @@
 }
 .block-faq {
     background: #F6F6F6;
-    padding: 52px 0 70px;
+    padding: 32px 0 70px;
     .block-title {
         margin-bottom: 16px;
         @include Mobile {
@@ -331,10 +353,7 @@
             bottom: -18px;
             right: 50%;
             transform: translate(50%, 0);
-            font-size: 20px;
-            padding: 10px 52px;
             @include Mobile {
-                font-size: 18px;
                 padding: 10px 20px;
                 white-space: nowrap;
             }
@@ -353,7 +372,7 @@
         position: relative;
 
         .partnership-banner {
-            max-width: 830px;
+            max-width: 1000px;
             margin: 0 auto;
             position: unset;
 

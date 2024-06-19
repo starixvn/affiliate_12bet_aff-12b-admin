@@ -15,8 +15,8 @@
     }
     function partnershipBanner() {
         var swiper = new Swiper(".partnership-banner", {
-            slidesPerView: 3,
-            spaceBetween: 100,
+            slidesPerView: 5,
+            spaceBetween: 33,
             centeredSlides: true,
             loop: true,
             speed: 300,
@@ -51,9 +51,9 @@
 
     function miniBlockBanner() {
         var swiper = new Swiper(".mini-block-banner", {
-            slidesPerView: 3,
-            spaceBetween: 75,
-            slidesPerGroup: 3,
+            slidesPerView: 4,
+            spaceBetween: 26,
+            slidesPerGroup: 4,
             loop: true,
             speed: 700,
             autoplay: {

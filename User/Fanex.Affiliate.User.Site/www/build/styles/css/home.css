@@ -1,11 +1,11 @@
 ﻿.group-faq .number {
   color: #C2C2C2;
-  font-size: 44px;
+  font-size: 42px;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 3.52px;
   text-transform: uppercase;
-  margin-bottom: 8px; }
+  margin-bottom: 16px; }
   @media (max-width: 500px) {
     .group-faq .number {
       font-size: 26px;
@@ -16,7 +16,7 @@
   position: relative; }
   .group-faq .question .title {
     color: #D90F0F;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 1;
     text-transform: uppercase; }
@@ -78,10 +78,10 @@
 .group-faq .anwser {
   border-radius: 12px;
   background: #FFF;
-  padding: 52px 66px;
+  padding: 52px 56px;
   text-align: left;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 16px;
+  line-height: normal;
   margin-top: 16px;
   position: relative;
   font-weight: 500; }
@@ -93,7 +93,7 @@
       padding: 16px 16px 40px; } }
   .group-faq .anwser-heading {
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     line-height: normal;
     color: #353E5B; }
     @media (max-width: 500px) {
@@ -728,6 +728,16 @@ button.swiper-pagination-bullet {
   .top-banner .swiper-pagination {
     bottom: 25px; } }
 
+@media (max-width: 500px) {
+  .top-banner .page-container {
+    padding: 0; } }
+
+.block-why-become .block-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px; }
+
 .block-why-become .block-content {
   display: flex;
   gap: 50px;
@@ -756,43 +766,38 @@ button.swiper-pagination-bullet {
     .block-why-become .block-content .items .wrap {
       display: block; }
     .block-why-become .block-content .items .heading-items, .block-why-become .block-get-started .block-content .items .description, .block-get-started .block-why-become .block-content .items .description {
-      font-size: 16px;
+      font-size: 14px;
       color: #353E5B;
-      line-height: 24px;
+      line-height: normal;
       font-weight: 700;
       max-width: 200px;
-      margin-top: 28px; }
+      margin-top: 16px; }
       @media screen and (max-width: 1024px) {
         .block-why-become .block-content .items .heading-items, .block-why-become .block-get-started .block-content .items .description, .block-get-started .block-why-become .block-content .items .description {
           margin-top: 14px; } }
-      @media (max-width: 500px) {
-        .block-why-become .block-content .items .heading-items, .block-why-become .block-get-started .block-content .items .description, .block-get-started .block-why-become .block-content .items .description {
-          line-height: normal;
-          font-size: 14px; } }
 
 .block-about {
   background: #F6F6F6; }
   .block-about .block-title {
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; }
     @media screen and (max-width: 1024px) {
       .block-about .block-title {
         text-align: center; } }
   .block-about .block-content {
     color: #353E5B;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
-    line-height: 30px; }
+    line-height: normal; }
     @media screen and (max-width: 1024px) {
       .block-about .block-content {
         font-size: 16px;
         color: #343E5C; } }
     .block-about .block-content p {
-      margin-bottom: 20px; }
-      @media screen and (max-width: 1024px) {
-        .block-about .block-content p {
-          margin-bottom: 10px; } }
-      .block-about .block-content p:last-child {
-        margin-bottom: 0; }
+      margin-bottom: 0; }
 
 .block-get-started {
   background: #F6F6F6;
@@ -873,7 +878,7 @@ button.swiper-pagination-bullet {
     position: relative; }
     .block-get-started .wrapper-block .custom-button {
       position: absolute;
-      bottom: -22px;
+      bottom: -15px;
       right: 50%;
       transform: translate(50%, 0); }
       @media (max-width: 500px) {
@@ -914,10 +919,10 @@ button.swiper-pagination-bullet {
   .block-our-product .wrapper-block {
     border-radius: 12px;
     background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
-    padding: 44px 58px;
+    padding: 24px 90px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 52px 0; }
+    gap: 16px 0; }
     @media screen and (max-width: 1024px) {
       .block-our-product .wrapper-block {
         padding: 44px 25px; } }
@@ -981,7 +986,7 @@ button.swiper-pagination-bullet {
 
 .block-faq {
   background: #F6F6F6;
-  padding: 52px 0 70px; }
+  padding: 32px 0 70px; }
   .block-faq .block-title {
     margin-bottom: 16px; }
     @media (max-width: 500px) {
@@ -993,12 +998,9 @@ button.swiper-pagination-bullet {
       position: absolute;
       bottom: -18px;
       right: 50%;
-      transform: translate(50%, 0);
-      font-size: 20px;
-      padding: 10px 52px; }
+      transform: translate(50%, 0); }
       @media (max-width: 500px) {
         .block-faq .anwser .custom-button {
-          font-size: 18px;
           padding: 10px 20px;
           white-space: nowrap; } }
 
@@ -1009,7 +1011,7 @@ button.swiper-pagination-bullet {
   .block-partnership .block-content {
     position: relative; }
     .block-partnership .block-content .partnership-banner {
-      max-width: 830px;
+      max-width: 1000px;
       margin: 0 auto;
       position: unset; }
       @media screen and (max-width: 1024px) {
