@@ -45,13 +45,13 @@
         display: block; } }
 
 .form-input, .form-area {
-  height: 36px;
+  height: 28px;
   border-radius: 100px;
   background: #F5F5F5;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25) inset;
   border: none;
   outline: none;
-  padding: 6px 20px;
+  padding: 0 20px;
   width: 100%;
   -webkit-appearance: none;
   -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25) inset;
@@ -60,7 +60,8 @@
   font-weight: 600; }
   @media (max-width: 500px) {
     .form-input, .form-area {
-      padding: 6px 12px; } }
+      padding: 6px 12px;
+      height: 36px; } }
   .form-input.disabled, .disabled.form-area {
     background: #E1E1E1;
     cursor: no-drop; }
@@ -96,14 +97,14 @@
   color: #D90F0F !important;
   display: block;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   line-height: normal;
   margin-bottom: 0; }
 
 .group-button {
   display: flex;
   gap: 40px;
-  margin-top: 40px;
+  margin-top: 24px;
   max-width: 490px; }
   @media (max-width: 500px) {
     .group-button {
@@ -111,7 +112,7 @@
       gap: 16px; } }
   .group-button .custom-button {
     outline: none;
-    font-size: 14px;
+    font-size: 18px;
     border: none;
     width: 50%; }
     @media (max-width: 500px) {
@@ -124,9 +125,12 @@
   padding: 10px 15px;
   border-radius: 100px;
   background: #D90F0F;
-  height: 36px;
+  height: 28px;
   margin: 0;
   justify-content: center; }
+  @media (max-width: 500px) {
+    .validation-value {
+      height: 36px; } }
   .validation-value img {
     -webkit-transform: skewX(-10deg);
     transform: skewX(-10deg);
@@ -134,7 +138,7 @@
     max-height: 16px; }
 
 .form .form-columns {
-  margin-bottom: 24px; }
+  margin-bottom: 16px; }
   @media (max-width: 500px) {
     .form .form-columns {
       margin-bottom: 0; } }
@@ -162,11 +166,14 @@
       margin-bottom: 12px; } }
   .form .form-columns .items .custom-label {
     color: #70778A;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     line-height: normal;
     text-transform: uppercase;
     margin-bottom: 8px; }
+    @media (max-width: 500px) {
+      .form .form-columns .items .custom-label {
+        font-size: 14px; } }
 
 .red-warn {
   color: #D90F0F; }
@@ -199,22 +206,19 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-right: 24px; }
-  @media (max-width: 500px) {
-    .radio-button {
-      margin-bottom: 0; } }
+  margin-right: 24px;
+  margin-bottom: 0 !important; }
 
 .radio-button input[type="radio"] {
   display: none; }
 
 .radio-label {
   color: #353E5B;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 32px; }
+  line-height: normal; }
   @media (max-width: 500px) {
     .radio-label {
-      font-size: 16px;
       line-height: normal; } }
 
 .radio-group {
@@ -310,13 +314,12 @@
 
 .text-checkbox {
   color: #353E5B;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   line-height: normal;
   margin-left: 8px; }
   @media (max-width: 500px) {
     .text-checkbox {
-      font-size: 16px;
       max-width: 250px; } }
 
 .has-error input, .has-error select {
@@ -344,43 +347,42 @@
     color: #0064FF;
     text-decoration: underline; }
 
-.block-man-support {
-  padding: 22px 0 52px; }
-  @media screen and (max-width: 1024px) {
-    .block-man-support {
-      padding: 8px 0 44px; } }
-  .block-man-support .img-support {
-    width: 225px;
-    height: 225px;
-    margin: 0 auto;
-    border-radius: 50%;
-    overflow: hidden; }
+.page-title {
+  margin-bottom: 0; }
+
+.block-man-support .img-support {
+  width: 225px;
+  height: 225px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden; }
+  @media (max-width: 500px) {
+    .block-man-support .img-support {
+      width: 116px;
+      height: 116px; } }
+
+.block-man-support .date-time-info {
+  margin-top: 24px;
+  color: #353E5B; }
+  @media (max-width: 500px) {
+    .block-man-support .date-time-info {
+      margin-top: 16px; } }
+  .block-man-support .date-time-info .days {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase; }
     @media (max-width: 500px) {
-      .block-man-support .img-support {
-        width: 116px;
-        height: 116px; } }
-  .block-man-support .date-time-info {
-    margin-top: 24px;
-    color: #353E5B; }
+      .block-man-support .date-time-info .days {
+        font-size: 16px; } }
+  .block-man-support .date-time-info .time {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase; }
     @media (max-width: 500px) {
-      .block-man-support .date-time-info {
-        margin-top: 16px; } }
-    .block-man-support .date-time-info .days {
-      font-size: 20px;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: uppercase; }
-      @media (max-width: 500px) {
-        .block-man-support .date-time-info .days {
-          font-size: 16px; } }
-    .block-man-support .date-time-info .time {
-      font-size: 16px;
-      font-weight: 600;
-      line-height: normal;
-      text-transform: uppercase; }
-      @media (max-width: 500px) {
-        .block-man-support .date-time-info .time {
-          font-size: 16px; } }
+      .block-man-support .date-time-info .time {
+        font-size: 16px; } }
 
 .block-flag-contact .main-flag {
   max-width: 1200px;
@@ -419,8 +421,8 @@
         .block-flag-contact .main-flag .items .single-flag {
           padding: 7px; } }
       .block-flag-contact .main-flag .items .single-flag img {
-        width: 78px;
-        height: 78px;
+        width: 68px;
+        height: 68px;
         margin: 0 auto; }
         @media (max-width: 500px) {
           .block-flag-contact .main-flag .items .single-flag img {
@@ -428,13 +430,12 @@
             height: 80px; } }
     .block-flag-contact .main-flag .items .info {
       color: #353E5B;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       margin-top: 12px;
       line-height: normal; }
       @media (max-width: 500px) {
         .block-flag-contact .main-flag .items .info {
-          font-size: 14px;
           margin-top: 15px; } }
       .block-flag-contact .main-flag .items .info .language {
         margin-bottom: 12px;

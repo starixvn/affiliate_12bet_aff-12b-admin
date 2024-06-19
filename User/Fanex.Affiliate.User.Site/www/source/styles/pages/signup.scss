@@ -28,6 +28,11 @@
 
     &:nth-child(even) {
         .group-faq {
+            .number {
+                font-family: Montserrat;
+                font-weight: 800;
+            }
+
             .question {
                 .title {
                     span {
@@ -54,14 +59,12 @@
 
 .group-text-warn {
     color: #353E5B;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     line-height: normal;
-    margin-bottom: 40px;
-
-    @include Mobile {
-        font-size: 16px;
-        margin-bottom: 16px;
+    margin-bottom: 16px; 
+    p{
+        margin-bottom : 0;
     }
 }
 .group-faq{
@@ -75,10 +78,7 @@
 }
 
 .group-form{
-    margin-top : 40px;
-    @include Mobile{
-        margin-top : 16px;
-    }
+    margin-top : 16px;
 }
 
 .form-input {
@@ -90,6 +90,7 @@
 
 .form-area {
     resize: block;
+    padding: 12px 20px;
 
     &::placeholder {
         text-transform: capitalize;
@@ -104,14 +105,15 @@
     color: #353E5B;
     font-size: 20px;
     font-weight: 700;
-    line-height: 32px;
+    line-height: normal;
     margin-bottom : 24px;
     @include Mobile{
         font-size : 16px;
+        margin-bottom : 16px;
     }
 }
-.group-button{
-    max-width : 580px;
+.group-button {
+    max-width: 488px;
 }
 
 .input-url {
