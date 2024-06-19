@@ -211,8 +211,8 @@
 
                 .imgs {
                     position: absolute;
-                    top: -15px;
-                    left: 25px;
+                    top: -3px;
+                    left: -50px;
                     z-index: 0;
 
                     @include MobileLandscape {
@@ -291,19 +291,10 @@
 
                     .text-slider {
                         text-align: left;
-                        font-size: 18px;
+                        font-size: 16px;
                         font-weight: 500;
                         line-height: normal;
                         margin-bottom: 20px;
-
-                        @media (min-width : 1400px) {
-                            line-height: 24px;
-                            font-size: 20px;
-                        }
-
-                        @media (max-width : 1170px) {
-                            font-size: 16px;
-                        }
 
                         @include Tablet {
                             font-size: 12px;
@@ -537,7 +528,7 @@
 
 
 .shape-lotery {
-    height: 420px;
+    height: 366px;
 
     @include Tablet {
         height: 293px;
@@ -563,7 +554,7 @@
 }
 
 .shape-keno {
-    height: 420px;
+    height: 302px;
 
     @include Tablet {
         height: 293px;
@@ -623,12 +614,12 @@
 }
 
 .imgs-lotery {
-    right: -19px !important;
+    right: -70px !important;
     top: -19px !important;
 
     @include Tablet {
-        top: -9px !important;
-        right: -72px !important;
+        top: -42px !important;
+        right: -188px !important;
     }
 
     @include MobileLandscape {
@@ -672,10 +663,10 @@
 
 .imgs-keno {
     right: -23px !important;
-    top: -19px !important;
+    top: -93px !important;
 
     @include Tablet {
-        top: -14px !important;
+        top: -20px !important;
         right: -120px !important;
     }
 
@@ -685,7 +676,7 @@
     }
 
     img {
-        height: 463px;
+        height: 419px;
 
         @include Tablet {
             height: auto;

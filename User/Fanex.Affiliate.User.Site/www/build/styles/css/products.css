@@ -703,8 +703,8 @@ button.swiper-pagination-bullet {
           display: none; } }
     .block-items-products .main-items .items .mask .imgs {
       position: absolute;
-      top: -15px;
-      left: 25px;
+      top: -3px;
+      left: -50px;
       z-index: 0; }
       @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
         .block-items-products .main-items .items .mask .imgs {
@@ -763,17 +763,10 @@ button.swiper-pagination-bullet {
             margin-bottom: 0; } }
       .block-items-products .main-items .items .mask .group-slider .text-slider {
         text-align: left;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 500;
         line-height: normal;
         margin-bottom: 20px; }
-        @media (min-width: 1400px) {
-          .block-items-products .main-items .items .mask .group-slider .text-slider {
-            line-height: 24px;
-            font-size: 20px; } }
-        @media (max-width: 1170px) {
-          .block-items-products .main-items .items .mask .group-slider .text-slider {
-            font-size: 16px; } }
         @media screen and (max-width: 1024px) {
           .block-items-products .main-items .items .mask .group-slider .text-slider {
             font-size: 12px;
@@ -936,7 +929,7 @@ button.swiper-pagination-bullet {
       height: 193px; } }
 
 .shape-lotery {
-  height: 420px; }
+  height: 366px; }
   @media screen and (max-width: 1024px) {
     .shape-lotery {
       height: 293px; } }
@@ -956,7 +949,7 @@ button.swiper-pagination-bullet {
       height: 177px; } }
 
 .shape-keno {
-  height: 420px; }
+  height: 302px; }
   @media screen and (max-width: 1024px) {
     .shape-keno {
       height: 293px; } }
@@ -1000,12 +993,12 @@ button.swiper-pagination-bullet {
         height: auto; } }
 
 .imgs-lotery {
-  right: -19px !important;
+  right: -70px !important;
   top: -19px !important; }
   @media screen and (max-width: 1024px) {
     .imgs-lotery {
-      top: -9px !important;
-      right: -72px !important; } }
+      top: -42px !important;
+      right: -188px !important; } }
   @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
     .imgs-lotery {
       right: -197px !important; } }
@@ -1036,17 +1029,17 @@ button.swiper-pagination-bullet {
 
 .imgs-keno {
   right: -23px !important;
-  top: -19px !important; }
+  top: -93px !important; }
   @media screen and (max-width: 1024px) {
     .imgs-keno {
-      top: -14px !important;
+      top: -20px !important;
       right: -120px !important; } }
   @media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
     .imgs-keno {
       top: -13px !important;
       right: -217px !important; } }
   .imgs-keno img {
-    height: 463px; }
+    height: 419px; }
     @media screen and (max-width: 1024px) {
       .imgs-keno img {
         height: auto; } }

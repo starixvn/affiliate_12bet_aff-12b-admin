@@ -8,41 +8,42 @@
 }
 .block-commission-boost {
     background: #fff;
+
     .top-title {
         color: #D90F0F;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
         line-height: normal;
         text-transform: uppercase;
         margin-bottom: 24px;
+
         @include Mobile {
             font-size: 16px;
         }
     }
+
     .mid-title {
         background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 700;
         line-height: normal;
         text-transform: uppercase;
         margin-bottom: 10px;
+
         @include Mobile {
             font-size: 16px;
             margin-bottom: 8px;
         }
     }
+
     .description {
         color: #353E5B;
-        font-size: 20px;
+        font-size: 16px;
+        line-height: normal;
         font-weight: 500;
-        line-height: 32px;
-        @include Mobile {
-            font-size: 16px;
-            line-height: normal;
-        }
     }
 }
 
@@ -64,6 +65,7 @@
 
 .block-note {
     background: linear-gradient(90deg, #D90F0F 37.9%, #FF8651 86.09%) !important;
+    padding : 52px 0;
     .items {
         margin-bottom: 24px;
         &:last-child {
@@ -71,10 +73,9 @@
         }
         &-number {
             color: #FE8751;
-            font-size: 44px;
+            font-size: 42px;
             font-weight: 700;
             line-height: normal;
-            letter-spacing: 3.52px;
             text-transform: uppercase;
             margin-bottom: 10px;
             @include Mobile {
@@ -85,16 +86,14 @@
         }
         &-description {
             color: #FFF;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 500;
-            line-height: 32px;
+            line-height: normal;
             span {
                 font-weight: 700;
             }
             @include Mobile {
                 font-weight: 400;
-                line-height: normal;
-                font-size: 16px;
             }
         }
     }
@@ -102,7 +101,7 @@
 
 .block-child-title {
     color: #FFF;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     line-height: normal;
     text-transform: uppercase;
@@ -110,7 +109,6 @@
 
     @include Mobile {
         font-size: 16px;
-        font-weight: 700;
         margin-bottom: 0;
     }
 
@@ -123,16 +121,15 @@
 
 .block-child-description {
     color: #353E5B;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
-    line-height: 32px;
+    line-height: normal;
     margin-bottom: 52px;
 
     @include Mobile {
         color: #343E5C;
         font-size: 16px;
         font-weight: 400;
-        line-height: normal;
         margin-bottom: 26px;
     }
 }
@@ -172,24 +169,16 @@
 
     .description {
         color: #353E5B;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 500;
-        line-height: 32px;
+        line-height: normal;
         margin-bottom: 24px;
-
         .red-bold {
             color: #D90F0F;
             font-weight: 700;
-
-            @include Mobile {
-                font-size: 16px;
-                line-height: normal;
-            }
         }
 
         @include Mobile {
-            font-size: 16px;
-            line-height: normal;
             margin-bottom: 16px;
         }
 
@@ -209,5 +198,11 @@
         &:last-child {
             margin-bottom: 0;
         }
+    }
+    .anwser-heading{
+        margin-bottom : 20px;
+    }
+    .anwser-text{
+        line-height : 30px;
     }
 }

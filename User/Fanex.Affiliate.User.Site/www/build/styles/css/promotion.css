@@ -718,7 +718,7 @@ button.swiper-pagination-bullet {
   background: #fff; }
   .block-commission-boost .top-title {
     color: #D90F0F;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     line-height: normal;
     text-transform: uppercase;
@@ -731,7 +731,7 @@ button.swiper-pagination-bullet {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     line-height: normal;
     text-transform: uppercase;
@@ -742,13 +742,9 @@ button.swiper-pagination-bullet {
         margin-bottom: 8px; } }
   .block-commission-boost .description {
     color: #353E5B;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 32px; }
-    @media (max-width: 500px) {
-      .block-commission-boost .description {
-        font-size: 16px;
-        line-height: normal; } }
+    font-size: 16px;
+    line-height: normal;
+    font-weight: 500; }
 
 .block-table {
   background: #F6F6F6; }
@@ -759,17 +755,17 @@ button.swiper-pagination-bullet {
       border-bottom: 2px solid #F6F6F6; }
 
 .block-note {
-  background: linear-gradient(90deg, #D90F0F 37.9%, #FF8651 86.09%) !important; }
+  background: linear-gradient(90deg, #D90F0F 37.9%, #FF8651 86.09%) !important;
+  padding: 52px 0; }
   .block-note .items {
     margin-bottom: 24px; }
     .block-note .items:last-child {
       margin-bottom: 0; }
     .block-note .items-number {
       color: #FE8751;
-      font-size: 44px;
+      font-size: 42px;
       font-weight: 700;
       line-height: normal;
-      letter-spacing: 3.52px;
       text-transform: uppercase;
       margin-bottom: 10px; }
       @media (max-width: 500px) {
@@ -779,20 +775,18 @@ button.swiper-pagination-bullet {
           margin-bottom: 0; } }
     .block-note .items-description {
       color: #FFF;
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 500;
-      line-height: 32px; }
+      line-height: normal; }
       .block-note .items-description span {
         font-weight: 700; }
       @media (max-width: 500px) {
         .block-note .items-description {
-          font-weight: 400;
-          line-height: normal;
-          font-size: 16px; } }
+          font-weight: 400; } }
 
 .block-child-title {
   color: #FFF;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   line-height: normal;
   text-transform: uppercase;
@@ -800,7 +794,6 @@ button.swiper-pagination-bullet {
   @media (max-width: 500px) {
     .block-child-title {
       font-size: 16px;
-      font-weight: 700;
       margin-bottom: 0; } }
   @media (max-width: 500px) {
     .block-child-title.title-spcing {
@@ -808,16 +801,15 @@ button.swiper-pagination-bullet {
 
 .block-child-description {
   color: #353E5B;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
-  line-height: 32px;
+  line-height: normal;
   margin-bottom: 52px; }
   @media (max-width: 500px) {
     .block-child-description {
       color: #343E5C;
       font-size: 16px;
       font-weight: 400;
-      line-height: normal;
       margin-bottom: 26px; } }
 
 .block-power {
@@ -841,21 +833,15 @@ button.swiper-pagination-bullet {
         margin-bottom: 7px; } }
   .block-example .description {
     color: #353E5B;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
-    line-height: 32px;
+    line-height: normal;
     margin-bottom: 24px; }
     .block-example .description .red-bold {
       color: #D90F0F;
       font-weight: 700; }
-      @media (max-width: 500px) {
-        .block-example .description .red-bold {
-          font-size: 16px;
-          line-height: normal; } }
     @media (max-width: 500px) {
       .block-example .description {
-        font-size: 16px;
-        line-height: normal;
         margin-bottom: 16px; } }
     .block-example .description:last-child {
       margin-bottom: 0; }
@@ -866,3 +852,7 @@ button.swiper-pagination-bullet {
     margin-bottom: 52px; }
     .block-faq .group-faq:last-child {
       margin-bottom: 0; }
+  .block-faq .anwser-heading {
+    margin-bottom: 20px; }
+  .block-faq .anwser-text {
+    line-height: 30px; }

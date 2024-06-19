@@ -1,11 +1,11 @@
 ﻿.group-faq .number {
   color: #C2C2C2;
-  font-size: 44px;
+  font-size: 42px;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 3.52px;
   text-transform: uppercase;
-  margin-bottom: 8px; }
+  margin-bottom: 16px; }
   @media (max-width: 500px) {
     .group-faq .number {
       font-size: 26px;
@@ -16,7 +16,7 @@
   position: relative; }
   .group-faq .question .title {
     color: #D90F0F;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 1;
     text-transform: uppercase; }
@@ -78,10 +78,10 @@
 .group-faq .anwser {
   border-radius: 12px;
   background: #FFF;
-  padding: 52px 66px;
+  padding: 52px 56px;
   text-align: left;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 16px;
+  line-height: normal;
   margin-top: 16px;
   position: relative;
   font-weight: 500; }
@@ -93,7 +93,7 @@
       padding: 16px 16px 40px; } }
   .group-faq .anwser-heading {
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     line-height: normal;
     color: #353E5B; }
     @media (max-width: 500px) {
@@ -141,14 +141,9 @@
 
 .group-faq .red-bold {
   color: #D90F0F;
-  font-size: 20px;
-  font-style: normal;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 30px; }
-  @media (max-width: 500px) {
-    .group-faq .red-bold {
-      font-size: 16px;
-      line-height: normal; } }
+  line-height: normal; }
 
 .search-input {
   text-align: right;
