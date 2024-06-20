@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public string GetFavoriteLanguage()
         {
-            var preferedUrlLang = HttpContext.Current.Request["lang"]?.Trim();
+            var preferedUrlLang = HttpContext.Current.Request.RequestContext.RouteData.Values["lang"]?.ToString();
             var preferedLang = SystemLanguage.SupportedLanguage.FirstOrDefault(i => i.Value.MatchWith(preferedUrlLang)).Key;
 
             if (IsValid(preferedLang))

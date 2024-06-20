@@ -1,19 +1,22 @@
 var Layout = (function ($) {
     var DEFAULT_SPEED = 39;
+    let regexLangPartten = /\/\w{2}\//g;
+    let regexLang = new RegExp(regexLangPartten);
 
-    function createNewUrlByLanguage(url, language) {
-        var hasQueryString = url.indexOf('?') !== -1;
-        var updatedQueryParam = 'lang=' + language;
-        var key = 'lang';
+    function createNewUrlByLanguage(language) {
+        let href = window.location.href;
+        let pathItems = window.location.pathname.split('/');
+        let langIndex = pathItems.findIndex(i => regexLang.test("/" + i + "/"));
 
-        if (hasQueryString) {
-            var regex = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
-            return regex.test(url) ?
-                url.replace(regex, '$1' + key + '=' + language + '$2') :
-                url + '&' + updatedQueryParam;
+        if (langIndex != -1) {
+            pathItems[langIndex] = language;
+            var newPathName = pathItems.join('/');
+
+            return href.replace(window.location.pathname, newPathName);
         }
         else {
-            return url + '?' + updatedQueryParam;
+            var host = window.location.host + $("#RootUrl").val().replace(/\/$/, '');
+            return href.replace(host, host + "/" + language)
         }
     }
 
@@ -128,14 +131,9 @@ var Layout = (function ($) {
         },
 
         changeLanguage: function (selectedLanguage) {
-            var hash = window.location.hash;
-            var href = window.location.href;
-            var actualUrl = !!hash ? href.substring(0, href.indexOf(hash)) : href;
-            var newActualUrl = createNewUrlByLanguage(actualUrl, selectedLanguage);
+            var newUrl = createNewUrlByLanguage(selectedLanguage).replace(/\/$/, '');
 
-            var url = newActualUrl + hash;
-
-            Site.redirect(url);
+            Site.redirect(newUrl);
         }
     }
 

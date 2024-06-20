@@ -626,6 +626,8 @@
     <Content Include="www\build\styles\Images\home\why-become\advanced.png" />
     <Content Include="www\build\styles\Images\home\why-become\highest.png" />
     <Content Include="www\build\styles\Images\home\why-become\lifetime.png" />
+    <Content Include="www\build\styles\Images\home\why-become\title-about.svg" />
+    <Content Include="www\build\styles\Images\home\why-become\title.svg" />
     <Content Include="www\build\styles\Images\home\why-become\workat.png" />
     <Content Include="www\build\styles\Images\langs\bn.png" />
     <Content Include="www\build\styles\Images\langs\bn.svg" />
