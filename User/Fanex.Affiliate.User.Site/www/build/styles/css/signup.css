@@ -24,7 +24,8 @@
     cursor: no-drop; }
   .form-input::placeholder, .form-area::placeholder {
     color: #70778A;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    font-size: 12px; }
     @media (max-width: 500px) {
       .form-input::placeholder, .form-area::placeholder {
         color: #70778A;
@@ -427,15 +428,12 @@
   line-height: normal; }
 
 .alert {
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   padding: 16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   line-height: normal;
   border-radius: 12px; }
-  @media (max-width: 500px) {
-    .alert {
-      font-size: 16px; } }
   .alert-success {
     color: #5A7252;
     border: 1px solid #B5CDA9;

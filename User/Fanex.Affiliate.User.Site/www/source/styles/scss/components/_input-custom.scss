@@ -15,7 +15,7 @@
 
     @include Mobile {
         padding: 6px 12px;
-        height : 36px;
+        height: 36px;
     }
 
     &.disabled {
@@ -31,7 +31,7 @@
     &::placeholder {
         color: #70778A;
         text-transform: uppercase;
-
+        font-size: 12px;
         @include Mobile {
             color: #70778A;
             font-weight: 600;
