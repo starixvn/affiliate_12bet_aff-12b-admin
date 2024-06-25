@@ -420,8 +420,8 @@
         .block-flag-contact .main-flag .items .single-flag {
           padding: 7px; } }
       .block-flag-contact .main-flag .items .single-flag img {
-        width: 68px;
-        height: 68px;
+        width: 53px;
+        height: 53px;
         margin: 0 auto; }
         @media (max-width: 500px) {
           .block-flag-contact .main-flag .items .single-flag img {
@@ -444,7 +444,7 @@
         color: #353E5B;
         display: flex;
         align-items: flex-start;
-        margin-bottom: 6px; }
+        margin-bottom: 4px; }
         .block-flag-contact .main-flag .items .info .contact-info:last-child {
           margin-bottom: 0; }
         .block-flag-contact .main-flag .items .info .contact-info .number {
@@ -476,14 +476,13 @@
 .block-contact-form .contact-title {
   color: #353E5B;
   text-align: center;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   line-height: normal;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   margin-top: 0; }
   @media (max-width: 500px) {
     .block-contact-form .contact-title {
-      font-size: 16px;
       text-align: left;
       margin: 0 0 12px 0; } }
   .block-contact-form .contact-title a {
