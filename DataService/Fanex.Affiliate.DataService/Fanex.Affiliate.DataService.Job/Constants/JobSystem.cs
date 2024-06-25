@@ -14,12 +14,12 @@ namespace Fanex.Affiliate.DataService.Job.Constants
                 return new Dictionary<string, Lazy<IJobScheduler>>(StringComparer.InvariantCultureIgnoreCase)
                 {
                     { "Betsoft", new Lazy<IJobScheduler>(() => new BetsoftScheduler()) },
-                    { "Topaz", new Lazy<IJobScheduler>(() => new TopazScheduler()) },
-                    { "GpiLottery", new Lazy<IJobScheduler>(() => new GpiLotteryScheduler()) },
+                    //{ "Topaz", new Lazy<IJobScheduler>(() => new TopazScheduler()) },
+                    //{ "GpiLottery", new Lazy<IJobScheduler>(() => new GpiLotteryScheduler()) },
                     //{ "Playtech", new Lazy<IJobScheduler>(() => new PlaytechCasinoScheduler()) },
                     //{ "Ebet", new Lazy<IJobScheduler>(() => new EbetScheduler()) },
-                    //{ "CrystalGpi", new Lazy<IJobScheduler>(() => new CrystalGpiScheduler()) },
-                    //{ "CrystalGpiDaily", new Lazy<IJobScheduler>(() => new CrystalGpiDailyScheduler()) },
+                    { "CrystalGpi", new Lazy<IJobScheduler>(() => new CrystalGpiScheduler()) },
+                    { "CrystalGpiDaily", new Lazy<IJobScheduler>(() => new CrystalGpiDailyScheduler()) },
                     //{ "VrLottery", new Lazy<IJobScheduler>(() => new ImOneVrLotteryScheduler()) },
                     //{ "LBKeno", new Lazy<IJobScheduler>(() => new LBKenoScheduler()) },
                     //{ "KYGaming", new Lazy<IJobScheduler>(() => new KYGamingScheduler()) },
