@@ -37,10 +37,10 @@
       overflow: hidden; }
       .page-notify .main-notify .column ul li {
         color: #353E5B;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 500;
         line-height: normal;
-        padding: 12px;
+        padding: 6px 12px;
         min-height: 45px;
         display: flex;
         align-items: center; }
