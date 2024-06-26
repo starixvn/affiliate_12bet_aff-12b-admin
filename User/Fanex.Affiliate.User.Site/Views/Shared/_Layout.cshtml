@@ -29,7 +29,7 @@
     <meta name="robots" content="index,follow,archive" />
     <meta name="title" content="@Lang.MetaTitle" />
 
-    <link rel="canonical" href="@(string.IsNullOrEmpty(ViewBag.CanonicalLink) ? SiteDomainHelper.GenCanonialSeoLink(String.Empty) : ViewBag.CanonicalLink)" />
+    @RenderSection("alternateAndCanonicalTags", required: false)
 
     <script src="~/www/build/js/lib/jquery-3.3.1.min.js"></script>
     <script>
@@ -67,8 +67,8 @@
             window.dataLayer = window.dataLayer || [];
             function gtag() {
                 dataLayer.push(arguments);
-                }
-            
+            }
+
             gtag('js', new Date());
             gtag('config', 'G-9S16RTPV0W');
         </script>

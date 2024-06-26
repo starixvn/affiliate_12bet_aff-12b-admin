@@ -1,6 +1,6 @@
 var Layout = (function ($) {
     var DEFAULT_SPEED = 39;
-    let regexLangPartten = /\/\w{2}\//g;
+    let regexLangPartten = /\/(\w{2}|hien|hitg)\//g;
     let regexLang = new RegExp(regexLangPartten);
 
     function createNewUrlByLanguage(language) {
@@ -15,7 +15,7 @@ var Layout = (function ($) {
             return href.replace(window.location.pathname, newPathName);
         }
         else {
-            var host = window.location.host + $("#RootUrl").val().replace(/\/$/, '');
+            var host = window.location.host + $("#RootUrl").val().replace(/\/+$/, '');
             return href.replace(host, host + "/" + language)
         }
     }
@@ -131,7 +131,7 @@ var Layout = (function ($) {
         },
 
         changeLanguage: function (selectedLanguage) {
-            var newUrl = createNewUrlByLanguage(selectedLanguage).replace(/\/$/, '');
+            var newUrl = createNewUrlByLanguage(selectedLanguage).replace(/\/+$/, '');
 
             Site.redirect(newUrl);
         }

@@ -37,6 +37,7 @@
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.CurrentLanguage = SessionService.CurrentLanguage;
             if (SessionService.UserSession == null)
             {
                 return View();

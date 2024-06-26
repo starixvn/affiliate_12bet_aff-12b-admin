@@ -2,7 +2,6 @@
     ViewBag.Title = Lang.MetaPromotionTitle;
     ViewBag.MetaDescription = Lang.MetaPromotionDescription;
     ViewBag.MetaKeywords = Lang.MetaPromotionKeywords;
-    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.Promotion);
     ViewBag.HeaderTitle = Lang.PromotionHeaderTitle;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
@@ -11,6 +10,10 @@
 @{
     var bannerSrc = Url.Content($"~/www/build/styles/Images/home/top-banner/item1/desktop.{Model.CurrentLanguage}");
     var mobileBannerSrc = Url.Content($"~/www/build/styles/Images/home/top-banner/item1/mobile.{Model.CurrentLanguage}");
+}
+
+@section alternateAndCanonicalTags{
+    @RazorHelper.RenderAlternateAndCanonicalLinks("promotion", Model.CurrentLanguage)
 }
 
 @section styles{
@@ -35,14 +38,14 @@
                         <picture>
                             <source srcset="@(bannerSrc).webp" type="image/webp" />
                             <source srcset="@(bannerSrc).jpg" type="image/jpeg" />
-                            <img class="img-item img-responsive" src="@(bannerSrc).jpg" alt="Actived Home Banner" />
+                            <img class="img-item img-responsive" src="@(bannerSrc).jpg" alt="12Bet commission boost promo" />
                         </picture>
                     </a>
                     <a class="nounderline promotion-banner-tracking show-mobile" target="_self" href="javascript:void(0)">
                         <picture>
                             <source srcset="@(mobileBannerSrc).webp" type="image/webp" />
                             <source srcset="@(mobileBannerSrc).jpg" type="image/jpeg" />
-                            <img class="img-item img-responsive" src="@(mobileBannerSrc).jpg" alt="Actived Home Banner" />
+                            <img class="img-item img-responsive" src="@(mobileBannerSrc).jpg" alt="12Bet commission boost promo" />
                         </picture>
                     </a>
                 </div>

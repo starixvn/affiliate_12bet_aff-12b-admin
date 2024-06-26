@@ -3,7 +3,6 @@
     ViewBag.Title = Lang.MetaCommissionStructureTitle;
     ViewBag.MetaDescription = Lang.MetaCommissionStructureDescription;
     ViewBag.MetaKeywords = Lang.MetaCommissionStructureKeywords;
-    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.CommissionStructure);
     ViewBag.HeaderTitle = Lang.CommissionStructureHeaderTitle;
 }
 
@@ -12,6 +11,10 @@
 @{
     var bannerSrc = Url.Content($"~/www/build/styles/Images/commission/top-banner/item1/desktop.{Model}");
     var mobileBannerSrc = Url.Content($"~/www/build/styles/Images/commission/top-banner/item1/mobile.{Model}");
+}
+
+@section alternateAndCanonicalTags{
+    @RazorHelper.RenderAlternateAndCanonicalLinks("CommissionStructure", Model)
 }
 
 @section styles{

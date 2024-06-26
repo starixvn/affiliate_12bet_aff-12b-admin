@@ -2,7 +2,7 @@
 
 var Layout = (function ($) {
     var DEFAULT_SPEED = 39;
-    var regexLangPartten = /\/\w{2}\//g;
+    var regexLangPartten = /\/(\w{2}|hien|hitg)\//g;
     var regexLang = new RegExp(regexLangPartten);
 
     function createNewUrlByLanguage(language) {
@@ -18,7 +18,7 @@ var Layout = (function ($) {
 
             return href.replace(window.location.pathname, newPathName);
         } else {
-            var host = window.location.host + $("#RootUrl").val().replace(/\/$/, '');
+            var host = window.location.host + $("#RootUrl").val().replace(/\/+$/, '');
             return href.replace(host, host + "/" + language);
         }
     }
@@ -134,7 +134,7 @@ var Layout = (function ($) {
         },
 
         changeLanguage: function changeLanguage(selectedLanguage) {
-            var newUrl = createNewUrlByLanguage(selectedLanguage).replace(/\/$/, '');
+            var newUrl = createNewUrlByLanguage(selectedLanguage).replace(/\/+$/, '');
 
             Site.redirect(newUrl);
         }

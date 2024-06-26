@@ -256,3 +256,21 @@
         <input type="hidden" name="ContactAppList[@index].Order" value="@order" />
     </div>
 }
+
+@helper RenderAlternateAndCanonicalLinks(string function, string language)
+{
+    if (Fanex.Affiliate.User.Core.Constants.SystemLanguage.SupportedAlternateLanguages.TryGetValue(language, out var alternateLanguages))
+    {
+        foreach (var al in alternateLanguages)
+        {
+            if (string.IsNullOrEmpty(al.Value))
+            {
+                <link rel="canonical" href="https://www.12betaffiliate.com/@(al.Key)/@(function)" />
+            }
+            else
+            {
+                <link rel="alternate" href="https://www.12betaffiliate.com/@(al.Key)/@(function)" hreflang="@al.Value" />
+            }
+        }
+    }
+}

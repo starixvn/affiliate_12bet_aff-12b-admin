@@ -3,7 +3,6 @@
     ViewBag.Title = Lang.MetaHomeTitle;
     ViewBag.MetaDescription = Lang.MetaHomeDescription;
     ViewBag.MetaKeywords = Lang.MetaHomeKeywords;
-    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(String.Empty);
     ViewBag.HeaderTitle = Lang.HomeHeaderTitle;
 }
 
@@ -12,6 +11,10 @@
 @{
     var bannerSrc = Url.Content($"~/www/build/styles/Images/home/top-banner/item1/desktop.{Model.Language}");
     var mobileBannerSrc = Url.Content($"~/www/build/styles/Images/home/top-banner/item1/mobile.{Model.Language}");
+}
+
+@section alternateAndCanonicalTags{
+    @RazorHelper.RenderAlternateAndCanonicalLinks("home", Model.Language)
 }
 
 @section styles{

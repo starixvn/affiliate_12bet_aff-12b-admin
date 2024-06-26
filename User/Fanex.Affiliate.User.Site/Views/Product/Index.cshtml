@@ -2,14 +2,17 @@
     ViewBag.Title = Lang.MetaProductTitle;
     ViewBag.MetaDescription = Lang.MetaProductDescription;
     ViewBag.MetaKeywords = Lang.MetaProductKeywords;
-    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.Product);
     ViewBag.HeaderTitle = Lang.ProductHeaderTitle;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 @model string
 
-@{ 
+@{
     var isSupportedP2P = Model.IsSupportedP2pProduct();
+}
+
+@section alternateAndCanonicalTags{
+    @RazorHelper.RenderAlternateAndCanonicalLinks("product", Model)
 }
 
 @section styles{

@@ -361,6 +361,7 @@
     <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.uat.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
+    <Content Include="sitemap.xml" />
     <Content Include="www\build\js\lib\bootstrap.min.js" />
     <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\build\js\overview.min.js">

@@ -9,6 +9,10 @@
     var settingService = DependencyResolver.Current.GetService<IAppSetting>();
 }
 
+@section alternateAndCanonicalTags{
+    @RenderSection("alternateAndCanonicalTags", required: false)
+}
+
 @section styles{
     @RenderSection("styles", required: false)
 }

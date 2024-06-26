@@ -3,7 +3,6 @@
     ViewBag.Title = Lang.MetaContactUsTitle;
     ViewBag.MetaDescription = Lang.MetaContactUsDescription;
     ViewBag.MetaKeywords = Lang.MetaContactUsKeywords;
-    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.ContactUs);
     ViewBag.HeaderTitle = Lang.ContactUsHeaderTitle;
 }
 
@@ -18,6 +17,11 @@
     var appSetting = new AppSetting();
     var mailContact = appSetting.MailContact;
     var isMobile = Request.Browser.IsMobileDevice;
+    var currentLanguage = ViewBag.CurrentLanguage;
+}
+
+@section alternateAndCanonicalTags{
+    @RazorHelper.RenderAlternateAndCanonicalLinks("ContactUs", currentLanguage)
 }
 
 @section styles{
@@ -41,7 +45,7 @@
     <div class="block block-man-support ">
         <div class="page-container">
             <div class="img-support">
-                <img class="img-responsive" src="~/www/build/styles/Images/contact-us/support_girl.svg" alt="The support girl" />
+                <img class="img-responsive" src="~/www/build/styles/Images/contact-us/support_girl.svg" alt="12Bet contact support" />
             </div>
             <div class="date-time-info text-center">
                 <p class="days">
@@ -57,7 +61,7 @@
             <div class="main-flag">
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/english.svg" alt="England's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/english.svg" alt="12Bet contact English support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.EnglishSupport</p>
@@ -72,7 +76,7 @@
                 </div>
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/china.svg" alt="China's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/china.svg" alt="12Bet contact China support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.ChinaSupport</p>
@@ -99,7 +103,7 @@
             <div class="main-flag">
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/vietnam.svg" alt="Vietnam's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/vietnam.svg" alt="12Bet contact Vietnam support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.VietnamSupport</p>
@@ -120,7 +124,7 @@
                 </div>
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/thailand.svg" alt="Thailand's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/thailand.svg" alt="12Bet contact Thailand support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.ThailandSupport</p>
@@ -148,7 +152,7 @@
             <div class="main-flag">
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/indonesian.svg" alt="Indonesia's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/indonesian.svg" alt="12Bet contact Indonesia support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.IndonesiaSupport</p>
@@ -170,7 +174,7 @@
                 </div>
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/india.svg" alt="India's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/india.svg" alt="12Bet contact Indian support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.IndianSupport</p>
@@ -198,7 +202,7 @@
             <div class="main-flag">
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/korea.svg" alt="Korea's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/korea.svg" alt="12Bet contact Korea support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.KoreaSupport</p>
@@ -218,7 +222,7 @@
                 </div>
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/cambodia.svg" alt="Cambodia's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/cambodia.svg" alt="12Bet contact Cambodia support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.CambodiaSupport</p>
@@ -245,7 +249,7 @@
             <div class="main-flag">
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/bangladesh.svg" alt="Bangladesh's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/bangladesh.svg" alt="12Bet contact Bangladesh support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.BangladeshSupport</p>
@@ -266,7 +270,7 @@
                 </div>
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/japan.svg" alt="Japan's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/japan.svg" alt="12Bet contact Japan support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.JapanSupport</p>
@@ -286,7 +290,7 @@
             <div class="main-flag one-column">
                 <div class="items">
                     <div class="single-flag">
-                        <img src="~/www/build/styles/Images/contact-us/markets/brazil.svg" alt="Brazil's flag" />
+                        <img src="~/www/build/styles/Images/contact-us/markets/brazil.svg" alt="12Bet contact Brazil support" />
                     </div>
                     <div class="info">
                         <p class="language">@Lang.BrazilSupport</p>

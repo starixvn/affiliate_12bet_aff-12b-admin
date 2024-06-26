@@ -1,12 +1,28 @@
 ﻿@{ 
     var altList = new Dictionary<string, string>
     {
-        ["Partnership1"] = "Leincester City Partner - 12bet",
-        ["Partnership2"] = "Wolves Partner - 12bet",
-        ["Partnership3"] = "Arsenal Partner- 12bet",
-        ["Partnership4"] = "Yonex All England Partner- 12bet",
-        ["Partnership5"] = "Asia Fighting Champion Partner- 12bet",
-        ["Partnership22"] = "World Pool Partner - 12bet",
+        ["Partnership1"] = "12Bet Partner Leincester City FC",
+        ["Partnership2"] = "12Bet Partner Wolves",
+        ["Partnership3"] = "12Bet Partner Arsenal",
+        ["Partnership4"] = "12Bet partner Yonex All England",
+        ["Partnership5"] = "12Bet partner Asia Fighting Champion",
+        ["Partnership6"] = "12Bet partner BWF",
+        ["Partnership7"] = "12Bet Partner Birmingham City FC",
+        ["Partnership8"] = "12Bet Partner Coventry City FC",
+        ["Partnership9"] = "12Bet Partner Crystal Palace FC",
+        ["Partnership10"] = "12Bet Partner Hull City",
+        ["Partnership11"] = "Leeds United Partner Hull City",
+        ["Partnership12"] = "12Bet partner Newcastle United FC",
+        ["Partnership13"] = "12Bet partner Sevilla FC",
+        ["Partnership14"] = "12Bet Partner WST",
+        ["Partnership15"] = "12Bet UK Championship",
+        ["Partnership16"] = "12Bet Partner Swansea City AFC",
+        ["Partnership17"] = "12Bet Partner ITTF World Cup",
+        ["Partnership18"] = "12Bet partner World Taekwondo GP",
+        ["Partnership19"] = "12Bet partner Triton Poker",
+        ["Partnership20"] = "12Bet partner West Bromwich Albion FC",
+        ["Partnership21"] = "12Bet partner Wigan Athletic FC",
+        ["Partnership22"] = "12Bet partner World Cup of Pool",
     };
 }
 <div class="block-content">
@@ -17,7 +33,7 @@
                 var key = $"Partnership{i}";
 
                 <div class="swiper-slide">
-                    <img src="~/www/build/styles/Images/home/partnership/item@(i).png" alt="@(altList.ContainsKey(key) ? altList[$"Partnership{i}"] : key)" class="img-responsive" />
+                    <img src="~/www/build/styles/Images/home/partnership/item@(i).png" alt="@(altList.ContainsKey(key) ? altList[key] : key)" class="img-responsive" />
                     <span class="partnership-products arrow-1">
                         <img src="~/www/build/styles/Images/arrow-1.svg" alt="arrow-1" />
                     </span>
