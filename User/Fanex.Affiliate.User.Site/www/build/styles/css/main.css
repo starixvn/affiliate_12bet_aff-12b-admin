@@ -977,133 +977,7 @@ input[type="checkbox"], input[type="radio"] {
     background: #F6F6F6; } }
 
 .top-banner .swiper-slide {
-  position: relative;
-  /*.group-banner-text {
-            max-width: 510px;
-            position: absolute;
-            top: 50%;
-            left: 17.7vw;
-            transform: translate(0,-50%);
-
-            @include Tablet {
-                left: 5%;
-                max-width: 350px;
-            }
-
-            @include Mobile {
-                position: unset;
-                max-width: 303px;
-                margin: 0 auto;
-                text-align: center;
-                transform: translate(0,0);
-            }
-
-            .heading-banner {
-                color: #343434;
-                font-weight: 700;
-                line-height: normal;
-                text-transform: uppercase;
-                font-size: 20px;
-                margin-bottom: 8px;
-
-                @include Tablet {
-                    font-size: 18px;
-                    margin-bottom: 4px;
-                }
-
-                @include Mobile {
-                    font-size: 13px;
-                }
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-
-                .single-text {
-                    text-transform: lowercase;
-                }
-
-                &.heading-banner-top {
-
-                    @include Mobile {
-                        font-size: 13px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-
-                        svg {
-                            width: 50px;
-                            margin: 0 4px;
-                        }
-                    }
-                }
-
-                &.heading-red {
-                    color: #D90F0F;
-                    font-size: 2.3vw;
-                    font-style: normal;
-                    font-weight: 900;
-                    line-height: 45px;
-                    transition-delay: 0.8s;
-
-                    @include Tablet {
-                        font-size: 18px;
-                        line-height: normal;
-                    }
-
-                    @include Mobile {
-                        font-size: 27px;
-                    }
-                }
-
-                &.heading-red-black {
-                    font-size: 18px;
-
-                    @include Tablet {
-                        font-size: 16px;
-                    }
-
-                    @include Tablet {
-                        font-size: 18px;
-                    }
-
-                    span {
-                        color: #D90F0F;
-                        font-size: 24px;
-                        font-weight: 900;
-                        line-height: normal;
-                        text-transform: uppercase;
-
-                        @include Tablet {
-                            font-size: 20px;
-                        }
-                    }
-                }
-            }
-
-            .view-more {
-                text-align: left;
-
-                @include Mobile {
-                    text-align: center;
-                }
-
-                .custom-button {
-                    padding: 10px 31px;
-                    margin-top: 18px;
-                    font-size: 1.05vw;
-
-                    @include Tablet {
-                        font-size: 16px;
-                    }
-
-                    @include Mobile {
-                        padding: 10px 37px;
-                        font-size: 16px;
-                    }
-                }
-            }
-        }*/ }
+  position: relative; }
   .top-banner .swiper-slide .show-pc {
     display: block; }
     @media (max-width: 500px) {
@@ -1125,6 +999,10 @@ input[type="checkbox"], input[type="radio"] {
 
 .top-banner .swiper-pagination {
   bottom: 16px !important; }
+
+@media (max-width: 500px) {
+  .top-banner .page-container {
+    padding: 0; } }
 
 .top-banner .swiper-slide-active [data-animate] {
   opacity: 1;
