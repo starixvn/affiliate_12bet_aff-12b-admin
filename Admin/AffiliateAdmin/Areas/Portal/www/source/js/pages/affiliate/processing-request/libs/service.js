@@ -38,19 +38,35 @@ const validateRequireField = (selectedRequest) => {
 const validateMaxLength = (selectedRequest) => {
     const messageList = [];
     let isValid = true;
-    const textAreaNames =['AgentName', 'PromotionMethod', 'Remark', 'ServerCountry', 'TargetMarket', 'WebAdvAff', 'WebRank', 'WebRegDate', 'WebSMLanguage', 'WebSMQuality', 'WebSMType'];
+    const textAreaWithLimit = {
+        ChangeFirstName: 100,
+        ChangeLastName: 100,
+        AgentName: 1000,
+        PromotionMethod: 1000,
+        Remark: 1000,
+        ServerCountry: 1000,
+        TargetMarket: 1000,
+        WebAdvAff: 1000,
+        WebRank: 1000,
+        WebRegDate: 1000,
+        WebSMLanguage: 1000,
+        WebSMQuality: 1000,
+        WebSMType: 1000
+    }
     const userName = trimText(selectedRequest && selectedRequest.UserName);
+
     let isExceed = checkExceedMaxLength(userName, 30);
     if (isExceed)
     {
         messageList.push("- Affiliate");
     }
 
-    textAreaNames.forEach(name => {
+    Object.keys(textAreaWithLimit).map(name => {
         let text = trimText(selectedRequest && selectedRequest[name]);
-        if (checkExceedMaxLength(text, 1000))
+        if (checkExceedMaxLength(text, textAreaWithLimit[name]))
             messageList.push(`- ${field[name]}`);
-    })
+    });
+
     if (messageList.length > 0)
     {
         isValid = false;

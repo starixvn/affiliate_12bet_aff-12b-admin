@@ -1,16 +1,18 @@
-﻿using System;
-
-namespace Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest
+﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest
 {
     public class ProcessingRequestBaseParam : UserInfoParam
     {
-        public DateTime DeadLine { get; set; }
+        public System.DateTime DeadLine { get; set; }
 
         public string MarketId { get; set; }
 
         public string PreferredPayment { get; set; }
 
         public string Player_Username { get; set; }
+
+        public string ChangeFirstName { get; set; }
+
+        public string ChangeLastName { get; set; }
 
         public string PromotionMethod { get; set; }
 

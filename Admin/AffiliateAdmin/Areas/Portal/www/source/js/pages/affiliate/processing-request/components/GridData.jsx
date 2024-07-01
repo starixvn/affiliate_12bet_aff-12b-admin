@@ -97,7 +97,7 @@ export class GridData extends Component {
         const deadlineDate = new Date(deadline);
         const isShowWarnning = deadlineDate.getTime() < todayTime
         const isViewOnly = !claimsPrincipal.hasWriteClaim(claimResource.ProcRequest)
-            || (claimsPrincipal.hasWriteClaim(claimResource.ProcRequestMarketingRole) && (!claimsPrincipal.hasWriteClaim(claimResource.ProcRequestManagementRole)) && dataItem.Status !== 'Draft')
+            || (claimsPrincipal.hasWriteClaim(claimResource.ProcRequestMarketingRole) && (!claimsPrincipal.hasWriteClaim(claimResource.ProcRequestManagementRole)) && (dataItem.Status !== 'Draft' && dataItem.Status !== 'KIV'))
 
         const creationDate = dataItem.CreationDate && formatDateTime(dataItem.CreationDate, defaultDatetimeFormat);
         const lastModifiedDate = dataItem.LastModified && formatDateTime(dataItem.LastModified, defaultDatetimeFormat);

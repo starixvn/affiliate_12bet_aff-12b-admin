@@ -1,5 +1,4 @@
-﻿
-namespace Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest
 {
     public class ProcessingRequestDetailInfo : ProcessingRequestBasicInfo
     {
@@ -10,6 +9,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest
         public string PreferredPayment { get; set; }
 
         public string Player_UserName { get; set; }
+
+        public string ChangeFirstName { get; set; }
+
+        public string ChangeLastName { get; set; }
 
         public string PromotionMethod { get; set; }
 

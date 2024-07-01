@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Repository.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using System.Net;
 
 namespace Fanex.Affiliate.Admin.Core.Services.ProcessingRequest
 {
