@@ -89,11 +89,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12bet keno is a straightforward game where players choose numbers and wait for a draw to see if their numbers are selected. It&apos;s a game of chance, requiring no specific skills or strategies, making it accessible to everyone..
+        ///   Looks up a localized string similar to 12Bet Keno is a straightforward game where players choose numbers and wait for a draw to see if their numbers are selected. It&apos;s a game of chance, requiring no specific skills or strategies, making it accessible to everyone..
         /// </summary>
-        public static string _12betKenoIsAStraightforwardGame {
+        public static string _12BetKenoIsAStraightforwardGame {
             get {
-                return ResourceManager.GetString("_12betKenoIsAStraightforwardGame", resourceCulture);
+                return ResourceManager.GetString("_12BetKenoIsAStraightforwardGame", resourceCulture);
             }
         }
         
