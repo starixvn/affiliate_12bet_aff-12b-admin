@@ -33,6 +33,17 @@
         align-items: center;
         justify-content: center;
         gap: 7px;
+
+        @include Mobile {
+            display: block;
+        }
+
+        img {
+            @include Mobile {
+                width: 82px;
+                margin-top: -3px;
+            }
+        }
     }
 
     .block-content {

@@ -732,6 +732,13 @@ button.swiper-pagination-bullet {
   align-items: center;
   justify-content: center;
   gap: 7px; }
+  @media (max-width: 500px) {
+    .block-why-become .block-title {
+      display: block; } }
+  @media (max-width: 500px) {
+    .block-why-become .block-title img {
+      width: 82px;
+      margin-top: -3px; } }
 
 .block-why-become .block-content {
   display: flex;
