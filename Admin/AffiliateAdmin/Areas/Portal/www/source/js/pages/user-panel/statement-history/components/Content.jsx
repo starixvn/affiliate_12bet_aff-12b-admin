@@ -135,7 +135,8 @@ export class Content extends PureComponent {
 
         const status = isPending ? "Processing" : dataItem.Status;
         const creator = htmlDecode(dataItem.Creator);
-        const description = htmlDecode(dataItem.DescriptionDisplay);
+        const description = dataItem.DescriptionDisplay;
+        const titleDesc = description.replace('<br>', '\n');
         const isTotalRow = transType === MONTHLY_TOTAL && !!dataItem.Children.length;
         const transTypeString = isTotalRow && dataItem.Description === 'Monthly Total' ? dataItem.Description : transTypeList[transType];
 
@@ -164,9 +165,9 @@ export class Content extends PureComponent {
                     <Cell title={status} className="text-center">{isPending ?
                         <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
                             {status}
-                            </Button> : status}</Cell>
+                        </Button> : status}</Cell>
                     <Cell title={creator} className="text-center">{creator}</Cell>
-                    <Cell title={description}>{description}</Cell>
+                    <Cell title={htmlDecode(titleDesc)}>{<span dangerouslySetInnerHTML={{ __html: description }} />}</Cell>
                 </Row>
                 {
                     isTotalRow && isExpand && dataItem.Children.map(item => {

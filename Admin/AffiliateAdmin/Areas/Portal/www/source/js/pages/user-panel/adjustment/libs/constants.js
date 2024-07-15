@@ -8,6 +8,8 @@ export const resource = {
     Amount: 'Amount',
     Description: 'Description',
     Submit: 'Submit',
+    VisibleAdmin: 'Visible only to admin',
+    VisibleAffiliate: 'Visible also to affiliate'
 }
 
 export const message = {

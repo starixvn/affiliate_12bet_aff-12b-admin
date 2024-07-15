@@ -37,10 +37,7 @@
         </td>
         <td class="text-center">@item.DisplayStatus</td>
         <td>
-            @if (item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Adjustment)
-            {
-                @Html.Raw(item.DescriptionDisplay)
-            }
+            @Html.Raw(item.DescriptionDisplay)
         </td>
     </tr>
 }
