@@ -140,6 +140,7 @@ export class Content extends PureComponent {
                             <Col sm={11} className='text-right pr-0'>
                                 <b>
                                     <span>Status count:</span>
+                                    <span className='text-warning pl-3'>{dataSummary.KIV + ' KIV'}</span>
                                     <span className='pl-3'>{dataSummary.Draft + ' Draft'}</span>
                                     <span className='text-primary pl-3'>{dataSummary.Submitted + ' Submitted'}</span>
                                     <span className='text-success pl-3'>{dataSummary.Approved + ' Approved'}</span>

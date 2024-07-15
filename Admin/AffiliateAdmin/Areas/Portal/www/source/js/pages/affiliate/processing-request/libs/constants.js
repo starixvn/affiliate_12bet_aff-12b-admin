@@ -3,6 +3,7 @@
 export { globalResource };
 
 export const colorByStatus = {
+    KIV: "#FFC107",
     Draft: "#000000",
     Submitted: "#0000FF",
     Approved: "#008000",
@@ -10,10 +11,11 @@ export const colorByStatus = {
 }
 
 export const statusList = {
-    'Draft': { value: 1, shouldShow: (status) => !status || status === 'Draft' },
-    'Submitted': { value: 2, shouldShow: (status) => !status || status === 'Draft' || status === 'Submitted' },
-    'Approved': { value: 3, shouldShow: (status) => !!status && status !== 'Draft' },
-    'Rejected': { value: 4, shouldShow: (status) => !!status && status !== 'Draft' },
+    'KIV': { value: 1, shouldShow: (status) => !status || status === 'Draft' || status === 'KIV' },
+    'Draft': { value: 2, shouldShow: (status) => !status || status === 'Draft' || status === 'KIV' },
+    'Submitted': { value: 3, shouldShow: (status) => !status || status === 'Draft' || status === 'KIV' || status === 'Submitted' },
+    'Approved': { value: 4, shouldShow: (status) => !!status && status !== 'Draft' && status !== 'KIV' },
+    'Rejected': { value: 5, shouldShow: (status) => !!status && status !== 'Draft' && status !== 'KIV' },
 }
 
 export const headerText = {
@@ -46,12 +48,14 @@ export const resource = {
 }
 
 export const field = {
+    'ChangeFirstName': 'Change First Name',
+    'ChangeLastName': 'Change Last Name',
     'AgentName': 'Agent Name',
     'PromotionMethod': 'Promotion Method',
     'Remark': 'Remark',
     'ServerCountry': 'Country (Server)',
-    'TargetMarket' : 'Target Market',
-    'WebAdvAff' : 'Adv/Aff on the Website/SM',
+    'TargetMarket': 'Target Market',
+    'WebAdvAff': 'Adv/Aff on the Website/SM',
     'WebRank': 'Website Rank',
     'WebRegDate': 'Website Register Date',
     'WebSMLanguage': 'Website/SM Language',

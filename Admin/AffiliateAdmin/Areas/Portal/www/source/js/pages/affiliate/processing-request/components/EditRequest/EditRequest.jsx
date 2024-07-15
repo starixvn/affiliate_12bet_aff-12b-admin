@@ -115,7 +115,7 @@ export class EditRequest extends React.PureComponent {
         return result.isValid;
     }
 
-    renderTextArea = (fieldName, labelName, value, isReadOnly, isRequired) => {
+    renderTextArea = (fieldName, labelName, value, isReadOnly, isRequired, maxLength = 1000) => {
         const {isSubmit } = this.state;
         var text = trimText(value);
         const classRequired = isRequired ? "required" : "";
@@ -124,13 +124,13 @@ export class EditRequest extends React.PureComponent {
                 <Label sm={3} for={fieldName} className={classRequired}>{labelName}</Label>
                 <Col sm={9}>
                     <Input type='textarea' id={fieldName} name={fieldName} value={text} onChange={this.handleChange}
-                        invalid={isSubmit && (this.validateMaxLength(text, 1000) || (isRequired && this.validateRequire(text)))}
+                        invalid={isSubmit && (this.validateMaxLength(text, maxLength) || (isRequired && this.validateRequire(text)))}
                         required={isRequired}
                         disabled={isReadOnly}>
 
                         </Input>
                     {isRequired && isSubmit && this.validateRequire(text) && <FormFeedback>{resource.FieldRequeired}</FormFeedback>}
-                    {this.validateMaxLength(text, 1000) && <FormFeedback>{resource.ExceedMaxLength + ' 1000'}</FormFeedback>}
+                    {this.validateMaxLength(text, maxLength) && <FormFeedback>{resource.ExceedMaxLength + ` ${maxLength}`}</FormFeedback>}
                 </Col>
             </FormGroup>
         )
@@ -233,6 +233,8 @@ export class EditRequest extends React.PureComponent {
                     </fieldset>
                     <fieldset>
                         <legend><h6>Affiliate Promotion Method & Details</h6></legend>
+                        {this.renderTextArea('ChangeFirstName', 'Change First Name', selectedRequest && selectedRequest.ChangeFirstName, isReadOnly, false, 100)}
+                        {this.renderTextArea('ChangeLastName', 'Change Last Name', selectedRequest && selectedRequest.ChangeLastName, isReadOnly, false, 100)}
                         {this.renderTextArea('PromotionMethod', 'Promotion Method', selectedRequest && selectedRequest.PromotionMethod, isReadOnly)}
                         {this.renderTextArea('WebRank', 'Website Rank', selectedRequest && selectedRequest.WebRank, isReadOnly)}
                         {this.renderTextArea('WebRegDate', 'Website Register Date', selectedRequest && selectedRequest.WebRegDate, isReadOnly)}

@@ -12,6 +12,7 @@ export const statusList = {
 }
 
 export const processingStatusList = {
+    KIV: 'KIV',
     Draft: 'Draft',
     Submitted: 'Submitted',
     Approved: 'Approved',
@@ -70,7 +71,8 @@ export const resource = {
     AZ: 'A-Z',
     Apostrophe: "'",
     NA: 'N/A',
-    DisplayedColumns: 'Displayed Columns'
+    DisplayedColumns: 'Displayed Columns',
+    processingStatusString: 'KIV/Draft/Submitted/Approved/Rejected'
 }
 
 export const regExp = {
