@@ -30,18 +30,18 @@
         <div class="page-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <a class="nounderline home-banner-tracking show-pc" target="_self" href="@Url.Content("~/Promotion")">
+                    <a class="nounderline home-banner-tracking show-pc" target="_self" href="@Url.RenderLanguageContent("~/Promotion")">
                         <picture>
-                            <source srcset="@(bannerSrc).webp" type="image/webp" />
-                            <source srcset="@(bannerSrc).jpg" type="image/jpeg" />
-                            <img class="img-item img-responsive" src="@(bannerSrc).jpg" alt="12Bet Partner" />
+                            <source srcset="@(bannerSrc).webp?v=001" type="image/webp" />
+                            <source srcset="@(bannerSrc).jpg?v=001" type="image/jpeg" />
+                            <img class="img-item img-responsive" src="@(bannerSrc).jpg?v=001" alt="12Bet Partner" />
                         </picture>
                     </a>
-                    <a class="nounderline home-banner-tracking show-mobile" target="_self" href="@Url.Content("~/Promotion")">
+                    <a class="nounderline home-banner-tracking show-mobile" target="_self" href="@Url.RenderLanguageContent("~/Promotion")">
                         <picture>
-                            <source srcset="@(mobileBannerSrc).webp" type="image/webp" />
-                            <source srcset="@(mobileBannerSrc).jpg" type="image/jpeg" />
-                            <img class="img-item img-responsive" src="@(mobileBannerSrc).jpg" alt="12Bet Partner" />
+                            <source srcset="@(mobileBannerSrc).webp?v=001" type="image/webp" />
+                            <source srcset="@(mobileBannerSrc).jpg?v=001" type="image/jpeg" />
+                            <img class="img-item img-responsive" src="@(mobileBannerSrc).jpg?v=001" alt="12Bet Partner" />
                         </picture>
                     </a>
                 </div>

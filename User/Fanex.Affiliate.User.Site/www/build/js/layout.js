@@ -18,7 +18,7 @@ var Layout = (function ($) {
 
             return href.replace(window.location.pathname, newPathName);
         } else {
-            var host = window.location.host + $("#RootUrl").val().replace(/\/+$/, '');
+            var host = window.location.host + $("#RootUrl").val().replace(/\/\w{2}\//, '');
             return href.replace(host, host + "/" + language);
         }
     }

@@ -363,7 +363,7 @@
                             </div>
                         </div>
                         <div class="validation-value" id="contactUsCaptchaBtn">
-                            <img id="contactUsCaptchaImg" src="@Url.Content("~/Auth/CaptchaImage?type=1&_v="+DateTime.Now.ToLongTimeString())" alt="captcha" />
+                            <img id="contactUsCaptchaImg" src="@Url.RenderLanguageContent("~/Auth/CaptchaImage?type=1&_v="+DateTime.Now.ToLongTimeString())" alt="captcha" />
                         </div>
                     </div>
                     <div class="form-group group-button">

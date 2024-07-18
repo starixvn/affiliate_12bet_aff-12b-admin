@@ -225,5 +225,10 @@ namespace Fanex.Affiliate.User.Core.Constants
                 : ShortedDefaultCode;
             return canonicalLangName;
         }
+
+        public static string GetCurrentShortedLanguage(string currentLanguage)
+        {
+            return _supportedLanguageForGoogleAnalytics.ContainsKey(currentLanguage) ? _supportedLanguageForGoogleAnalytics[currentLanguage] : currentLanguage;
+        }
     }
 }

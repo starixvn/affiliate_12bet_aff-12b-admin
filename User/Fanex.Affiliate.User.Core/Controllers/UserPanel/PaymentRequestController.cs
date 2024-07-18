@@ -81,7 +81,7 @@
 
                 if (resultInfo.IsOk)
                 {
-                    resultInfo.Message = $"{Lang.RequestPayoutSucc}<br>{Lang.AConfirmationEmail}<br>{Lang.ForAnyReason.Replace("{0}", Url.Content("~/ContactUs"))}";
+                    resultInfo.Message = $"{Lang.RequestPayoutSucc}<br>{Lang.AConfirmationEmail}<br>{Lang.ForAnyReason.Replace("{0}", Url.RenderLanguageContent("~/ContactUs"))}";
                 }
             }
 
@@ -118,7 +118,7 @@
 
                 if (resultInfo.IsOk)
                 {
-                    resultInfo.Message = $"{Lang.CancelPayoutSucc}<br>{Lang.AConfirmationEmail}<br>{Lang.ForAnyReason.Replace("{0}", Url.Content("~/ContactUs"))}";
+                    resultInfo.Message = $"{Lang.CancelPayoutSucc}<br>{Lang.AConfirmationEmail}<br>{Lang.ForAnyReason.Replace("{0}", Url.RenderLanguageContent("~/ContactUs"))}";
                 }
             }
 

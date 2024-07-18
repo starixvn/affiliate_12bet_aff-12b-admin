@@ -42,7 +42,7 @@
         <div class="page-container">
             <div class="alert alert-success" role="alert">
                 <p>@Html.Raw(Lang.UnderReview)</p>
-                @Html.Raw(string.Format(Lang.RegisSuccess, Url.Content("~/ContactUs")))
+                @Html.Raw(string.Format(Lang.RegisSuccess, Url.RenderLanguageContent("~/ContactUs")))
             </div>
         </div>
     </div>

@@ -52,7 +52,7 @@
                     </form>
                     <div class="hide" id="verificationAccountGroup">
                         <div class="noted-text">
-                            <p>@Lang.AVerificationCode @Html.Raw(string.Format(Lang.ForAnyReason, Url.Content("~/ContactUs")))</p>
+                            <p>@Lang.AVerificationCode @Html.Raw(string.Format(Lang.ForAnyReason, Url.RenderLanguageContent("~/ContactUs")))</p>
                         </div>
                         
                         <form class="form" id="verificationAccountForm">
@@ -82,7 +82,7 @@
                                     <div class="captcha-group">
                                         <input type="text" class="form-input" data-val="true" data-val-required="@Lang.CaptchaIsRequired" id="Captcha" name="Captcha" />
                                         <div class="validation-value" id="verifyAccCaptchaBtn">
-                                            <img id="verifyAccCaptchaImg" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />
+                                            <img id="verifyAccCaptchaImg" src="@Url.RenderLanguageContent("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />
                                         </div>
                                     </div>
                                     <span class="validate-input help-block field-validation-valid" data-valmsg-for="Code" data-valmsg-replace="true"></span>

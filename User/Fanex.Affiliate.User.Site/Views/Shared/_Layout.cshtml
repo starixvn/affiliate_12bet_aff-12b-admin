@@ -80,7 +80,7 @@
             <div class="page-container">
                 <div class="logo-lang">
                     <div class="logo">
-                        <a href="@Url.Content("~")">
+                        <a href="@Url.RenderLanguageContent("~/Home")">
                             <img src="~/www/build/styles/Images/logo.svg" alt="logo" />
                             <span class="logo-text">@Lang.Affiliate</span>
                         </a>
@@ -130,37 +130,37 @@
                                 var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
                             }
                             <li>
-                                <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Home")">
+                                <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/Home")">
                                     @Lang.Home
                                 </a>
                             </li>
                             <li>
-                                <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.Content("~/CommissionStructure")">
+                                <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/CommissionStructure")">
                                     @Lang.CommissionStructure
                                 </a>
                             </li>
                             <li>
-                                <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.Content("~/Product")">
+                                <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/Product")">
                                     @Lang.Product
                                 </a>
                             </li>
                             <li>
-                                <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.Content("~/TermAndCondition")">
+                                <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/TermAndCondition")">
                                     @Lang.TermAndCondition
                                 </a>
                             </li>
                             <li>
-                                <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.Content("~/FAQ")">
+                                <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/FAQ")">
                                     @Lang.Faqs
                                 </a>
                             </li>
                             <li>
-                                <a class="menu-item @(controllerName == "Promotion" ? "active" : string.Empty)" href="@Url.Content("~/Promotion")">
+                                <a class="menu-item @(controllerName == "Promotion" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/Promotion")">
                                     @Lang.Promotion
                                 </a>
                             </li>
                             <li>
-                                <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.Content("~/ContactUs")">
+                                <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/ContactUs")">
                                     @Lang.ContactUs
                                 </a>
                             </li>
@@ -231,7 +231,7 @@
         </div>
     </div>
 
-    <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
+    <input type="hidden" id="RootUrl" value="@Url.RenderLanguageContent("~/")" />
     <input type="hidden" id="Language" value="@currentLanguage" />
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
 

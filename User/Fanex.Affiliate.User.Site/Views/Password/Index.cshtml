@@ -23,7 +23,7 @@
     <div class="block block-form" id="messageSuccess" style="display: none;">
         <div class="page-container">
             <div class="alert alert-success" role="alert">
-                @Html.Raw(string.Format($"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.ForAnyReason}", Url.Content("~/ContactUs")))
+                @Html.Raw(string.Format($"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.ForAnyReason}", Url.RenderLanguageContent("~/ContactUs")))
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
             <div class="block block-form">
                 <div class="page-container">
                     <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
-                    <p class="noted-text">@Html.Raw(Lang.TitelForgetPass.Replace("{0}", Url.Content("~/ContactUs")))</p>
+                    <p class="noted-text">@Html.Raw(Lang.TitelForgetPass.Replace("{0}", Url.RenderLanguageContent("~/ContactUs")))</p>
                     <div class="form-group form-columns form-columns-2" id="emailInputGroup">
                         <div class="items validate-group">
                             <label for="Email" class="custom-label">@Lang.YourEmail <span class="red-warn">*</span></label>

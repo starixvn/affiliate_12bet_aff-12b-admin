@@ -20,7 +20,7 @@
             var requestUrl = controller.Request.Url;
 
             return GetScheme(controller.Request, setting.IsProduction) + Uri.SchemeDelimiter + requestUrl.Host +
-                (requestUrl.IsDefaultPort || isUatOrProEnv ? string.Empty : ":" + requestUrl.Port) + controller.Url.Content("~/");
+                (requestUrl.IsDefaultPort || isUatOrProEnv ? string.Empty : ":" + requestUrl.Port) + controller.Url.RenderLanguageContent("~/");
         }
 
         public static string GenCanonialSeoLink(string path)

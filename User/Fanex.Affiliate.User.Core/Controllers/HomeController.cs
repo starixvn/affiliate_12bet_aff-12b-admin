@@ -1,5 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.Extensions;
+using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using System.Web.Mvc;
@@ -20,6 +22,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
+        [LanguageRouteChecking]
         public ActionResult Index()
         {
             var isAuthenticated = Request.IsAuthenticated && SessionService.UserSession != null;
@@ -28,8 +31,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
             {
                 IsAuthenticated = isAuthenticated,
                 Language = SessionService.CurrentLanguage,
-                SignUpLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Content("~/SignUp"),
-                BannerLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#MediaGallery") : "javascript:;",
+                SignUpLink = isAuthenticated ? Url.RenderLanguageContent("~/UserPanel/Main/#AccountOverView") : Url.RenderLanguageContent("~/SignUp"),
+                BannerLink = isAuthenticated ? Url.RenderLanguageContent("~/UserPanel/Main/#MediaGallery") : "javascript:;",
                 Promotion12BetLink = GetPromotionLink()
             };
 

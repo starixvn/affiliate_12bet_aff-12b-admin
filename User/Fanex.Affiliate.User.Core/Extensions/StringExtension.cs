@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.Extensions
 
         public static bool MatchWith(this string value, string strToMatch)
         {
-            return string.Equals(value, strToMatch, System.StringComparison.OrdinalIgnoreCase);
+            return string.Equals(value, strToMatch, StringComparison.OrdinalIgnoreCase);
         }
 
         public static string ReplaceAHalfOfString(this string value, bool hasPermission = true, char character = Asterisks)

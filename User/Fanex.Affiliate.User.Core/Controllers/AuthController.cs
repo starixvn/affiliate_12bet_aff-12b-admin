@@ -2,6 +2,7 @@
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Resources;
@@ -106,7 +107,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             DoSignOut();
 
-            return Redirect("~/Home");
+            return Redirect(Url.RenderLanguageContent("~/Home"));
         }
 
         [HttpGet]
@@ -151,7 +152,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
                         LogHelper.WriteInfo(message.ToString());
 
-                        return Redirect(Url.Content("~/Notify/PageNotFound"));
+                        return Redirect(Url.RenderLanguageContent("~/Notify/PageNotFound"));
                     }
                 }
                 else
@@ -161,10 +162,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     message.AppendLine($"HashedPassword: {hashedPassword}");
 
                     LogHelper.WriteInfo(message.ToString());
-                    return Redirect(Url.Content("~/Notify/PageNotFound"));
+                    return Redirect(Url.RenderLanguageContent("~/Notify/PageNotFound"));
                 }
             }
-            return Redirect(Url.Content("~/UserPanel/Main/#AccountOverView"));
+            return Redirect(Url.RenderLanguageContent("~/UserPanel/Main/#AccountOverView"));
         }
 
         [HttpGet]
