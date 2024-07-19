@@ -226,6 +226,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="12monitor.aspx" />
     <Content Include="App_Data\OpusData\opus_1.xml" />
     <Content Include="App_Data\OpusData\opus_2.xml" />
     <Content Include="App_Data\OpusData\opus_3.xml" />
