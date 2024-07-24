@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.DataService.Job.Services
         {
             var latestTimeSuccess = _timeTrackerRepository.GetLastTimeCallSuccess(param);
 
-            return latestTimeSuccess.HasValue ? latestTimeSuccess.Value : defaultValue;
+            return latestTimeSuccess.HasValue && DateTime.Compare(latestTimeSuccess.Value, defaultValue) > 0 ? latestTimeSuccess.Value : defaultValue;
         }
 
         public void SaveTime(InsertTimeTrackerParam param)

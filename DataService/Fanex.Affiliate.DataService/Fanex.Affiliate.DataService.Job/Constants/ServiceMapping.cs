@@ -7,11 +7,12 @@ namespace Fanex.Affiliate.DataService.Job.Constants
         public static IDictionary<string, string> ServiceFullName => new Dictionary<string, string>
         {
             {"Betsoft", "Fanex.Affiliate.DataService.Job.Modules.BetsoftJob" },
-            {"Topaz", "Fanex.Affiliate.DataService.Job.Modules.TopazJob" },
-            {"GpiLottery", "Fanex.Affiliate.DataService.Job.Modules.GpiLotteryJob" },
+            //{"Topaz", "Fanex.Affiliate.DataService.Job.Modules.TopazJob" },
+            //{"GpiLottery", "Fanex.Affiliate.DataService.Job.Modules.GpiLotteryJob" },
             //{"Playtech", "Fanex.Affiliate.DataService.Job.Modules.PlaytechCasinoJob" },
             //{"Ebet", "Fanex.Affiliate.DataService.Job.Modules.EbetJob" },
-            //{"CrystalGpi", "Fanex.Affiliate.DataService.Job.Modules.CrystalGpiJob" },
+            {"CrystalGpi", "Fanex.Affiliate.DataService.Job.Modules.CrystalGpiJob" },
+            {"CrystalGpiDaily", "Fanex.Affiliate.DataService.Job.Modules.CrystalGpiDailyJob" },
             //{"VrLottery", "Fanex.Affiliate.DataService.Job.Modules.ImOneVrLotteryJob" },
             //{"LBKeno", "Fanex.Affiliate.DataService.Job.Modules.LBKenoJob" },
             //{"KYGaming", "Fanex.Affiliate.DataService.Job.Modules.KYGamingJob" },
@@ -26,7 +27,6 @@ namespace Fanex.Affiliate.DataService.Job.Constants
             //{"BTiDaily", "Fanex.Affiliate.DataService.Job.Modules.BTiDailyJob" },
             //{"SkywindDaily", "Fanex.Affiliate.DataService.Job.Modules.SkywindDailyJob" },
             //{"ISoftbetDaily", "Fanex.Affiliate.DataService.Job.Modules.ISoftbetDailyJob" },
-            //{"CrystalGpiDaily", "Fanex.Affiliate.DataService.Job.Modules.CrystalGpiDailyJob" },
         };
     }
 }
