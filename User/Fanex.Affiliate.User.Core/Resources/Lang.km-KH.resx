@@ -1962,7 +1962,7 @@
     <value>ប្រូម៉ូសិននេះត្រូវបានផុតកំណត់ សូមរង់ចាំប្រូម៉ូសិនថ្មីៗដែលនឹងមកដល់ក្នុងពេលឆាប់ៗនេះ។</value>
   </data>
   <data name="ByInvitationOnly" xml:space="preserve">
-    <value>តាមរយះការអញ្ជើញតែប៉ុណ្ណោះ</value>
+    <value>តាមការអញ្ជើញតែប៉ុណ្ណោះ</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001 - លើស</value>
@@ -1971,7 +1971,7 @@
     <value>50% ថេរ</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>សមាជិកថ្មីដាក់ប្រាក់ដំបូង</value>
+    <value>សមាជិកថ្មី ការដាក់ប្រាក់ដំបូង (FDM)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; លើស</value>

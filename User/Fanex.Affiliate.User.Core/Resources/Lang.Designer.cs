@@ -890,7 +890,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By Invitation only.
+        ///   Looks up a localized string similar to By Invitation Only.
         /// </summary>
         public static string ByInvitationOnly {
             get {
@@ -3712,7 +3712,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NEW FDM&apos;s.
+        ///   Looks up a localized string similar to NEW MEMBER FIRST DEPOSIT (FDM).
         /// </summary>
         public static string NewFDMs {
             get {

@@ -2042,7 +2042,7 @@
     <value>12BET 제휴 마케팅</value>
   </data>
   <data name="ByInvitationOnly" xml:space="preserve">
-    <value>초대 회원</value>
+    <value>초대 전용</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001 - 이상</value>
@@ -2051,7 +2051,7 @@
     <value>고정 50%</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>첫입금한 신규회원</value>
+    <value>신규 회원 첫 입금 (FDM)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; 이상</value>

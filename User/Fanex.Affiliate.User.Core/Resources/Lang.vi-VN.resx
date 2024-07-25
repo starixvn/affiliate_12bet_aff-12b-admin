@@ -2049,7 +2049,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Tiếp thị liên kết nhà cái 12BET</value>
   </data>
   <data name="ByInvitationOnly" xml:space="preserve">
-    <value>Chỉ các đại lý được mời</value>
+    <value>Chỉ Dành Cho Những Ai Được Mời</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001 - Trở lên</value>
@@ -2058,7 +2058,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>50% cố định</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>THÀNH VIÊN NẠP LẦN ĐẦU</value>
+    <value>LỆNH NẠP ĐẦU CHO THÀNH VIÊN MỚI (FDM)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; lớn hơn</value>

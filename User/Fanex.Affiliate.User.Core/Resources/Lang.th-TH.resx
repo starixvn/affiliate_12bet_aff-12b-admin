@@ -2049,7 +2049,7 @@
     <value>12BETการตลาดพันธมิตร</value>
   </data>
   <data name="ByInvitationOnly" xml:space="preserve">
-    <value>พันธมิตรที่ได้รับการเชิญชวนเท่านั้น</value>
+    <value>สำหรับผู้ได้รับเชิญเท่านั้น</value>
   </data>
   <data name="AboveTwoThousand" xml:space="preserve">
     <value>250,001 - ขึ้นไป</value>
@@ -2058,7 +2058,7 @@
     <value>คอมมิชชั่นเริ่มต้น 50%</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>ฝากแรก</value>
+    <value>สมาชิกใหม่ฝากเงินครั้งแรก (FDM)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 ขึ้นไป</value>
