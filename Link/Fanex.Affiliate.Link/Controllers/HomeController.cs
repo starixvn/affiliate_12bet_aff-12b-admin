@@ -19,14 +19,11 @@ namespace Fanex.Affiliate.Link.Controllers
     public class HomeController : Controller
     {
         private const string LOCAL_ENV = "LOCAL";
-        private const string SIGN_UP_PAGE_CODE = "signup";
-        private const string MALAYSIA_COUNTRY_CODE = "MY";
         private const string SPECIAL_PAGE_CODE = "12sports";
         private const string OLD_MKT_SIGNUP_PAGE_CODE = "inrsignup";
         private const string NEW_MKT_SIGNUP_PAGE_CODE = "mktsignup";
         private readonly string[] SpecialSubPageCodes = new [] { "cricket", "virtualsports" };
 
-        private static readonly string[] SpecialAffIds = ConfigurationManager.AppSettings["SpecialAffIds"].ToString().Split(',');
         private static readonly string[] MarketingForCommGroups = ConfigurationManager.AppSettings["MarketingForCommGroups"].ToString().Split(',');
         private static readonly string[] MarketingLandingPages = ConfigurationManager.AppSettings["MarketingLandingPages"].ToString().Split(',');
         private static readonly bool IsRemovePortFromUrl = string.Equals(ConfigurationManager.AppSettings["RemovePortFromUrl"].ToString(), "1", StringComparison.OrdinalIgnoreCase);
@@ -68,14 +65,6 @@ namespace Fanex.Affiliate.Link.Controllers
 
         public ActionResult Link(int affId, string pageCode, string lang)
         {
-            var isSpecialAff = IsSpecialAffiliate(affId, pageCode);
-
-            if (isSpecialAff)
-            {
-                var defaultLanguageStatistic = ConfigurationManager.AppSettings["DefaultLanguageStatistic"].ToString();
-                return InsertAffiliate(affId, pageCode, defaultLanguageStatistic, MALAYSIA_COUNTRY_CODE, true, lang);
-            }
-
             var targetCountryCode = _affiliateService.GetTargetCountryCodeByLanguage(lang);
 
             if (targetCountryCode is null)
@@ -109,7 +98,7 @@ namespace Fanex.Affiliate.Link.Controllers
             return InsertAffiliate(affId, $"{pageCodePart1}/{pageCodePart2}", lang, targetCountry);
         }
 
-        private ActionResult InsertAffiliate(int affId, string pageCode, string lang, string targetCountry, bool isSpecialAff = false, string replacedLang = null)
+        private ActionResult InsertAffiliate(int affId, string pageCode, string lang, string targetCountry)
         {
 
             if (Request.Url != null)
@@ -134,7 +123,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     DeviceType = GetDeviceType(),
                     IP = Common.GetIPAddressOfClient(),
                     Browser = Request.Browser.Browser,
-                    URLReferrer = isSpecialAff ? urlReferrer?.Replace($"/{replacedLang}/", $"/{lang}/") : urlReferrer,
+                    URLReferrer = urlReferrer,
                     DomainReferrer = domainReferrer,
                     OS = Common.GetOsName(Request.UserAgent),
                     Device = Common.GetDeviceName(Request.UserAgent),
@@ -154,13 +143,6 @@ namespace Fanex.Affiliate.Link.Controllers
 
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {
-                    if (isSpecialAff)
-                    {
-                        var customRedirectUrl = redirectUrl.Replace($"/{lang}/", "/");
-
-                        return Redirect(customRedirectUrl);
-                    }
-
                     var isMarketingLandingPage = MarketingLandingPages.Any(l => IsMatching(l, pageCode));
 
                     if (!isMarketingLandingPage)
@@ -203,11 +185,6 @@ namespace Fanex.Affiliate.Link.Controllers
         private byte GetDeviceType()
         {
             return (byte)(Common.IsMobile() ? 1 : 0);
-        }
-
-        private bool IsSpecialAffiliate(int affId, string pageCode)
-        {  
-            return SpecialAffIds.Contains(affId.ToString()) && IsMatching(SIGN_UP_PAGE_CODE, pageCode);
         }
 
         private void HandleFakeToCheckAff16000OnLocal(TrackingSystemCommand param)
