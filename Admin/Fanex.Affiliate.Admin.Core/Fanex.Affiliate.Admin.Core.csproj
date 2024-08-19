@@ -239,6 +239,7 @@
     <Compile Include="Attributes\ClaimAuthorizeAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
+    <Compile Include="Attributes\MultiFunctionsAuthorizeAttribute.cs" />
     <Compile Include="Attributes\PermissionCheckAttribute.cs" />
     <Compile Include="Attributes\CensoredPermissionCheckAttribute.cs" />
     <Compile Include="Attributes\UpdateUnauthorizedPropertyAttribute.cs" />

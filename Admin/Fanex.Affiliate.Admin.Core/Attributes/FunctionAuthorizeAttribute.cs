@@ -2,6 +2,7 @@
 using System;
 using System.Net;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
@@ -11,21 +12,20 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
     {
         public string FunctionName { get; set; }
 
+        public string FunctionNameOption { get; set; }
+
         public bool IsHost { get; set; }
+
+        public string ClaimValue => IsHost ? Function.WritePermission : string.Empty;
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var context = filterContext.HttpContext;
             var skipCheckAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowByPassFunctionAuthorizeAttribute), true);
 
-            if (!(string.IsNullOrEmpty(FunctionName) || skipCheckAuthorization))
+            if (!(skipCheckAuthorization || string.IsNullOrEmpty(FunctionName)))
             {
-                var claimValue = IsHost ? Function.WritePermission : string.Empty;
-                var hasPerimission = false;
-                if (filterContext.HttpContext.User is ClaimsPrincipal claims)
-                {
-                    hasPerimission = IsHost ? claims.HasClaim(FunctionName, claimValue) : claims.HasClaim(c => c.Type == FunctionName);
-                }
+                var hasPerimission = HasPerimission(filterContext.HttpContext.User);
 
                 if (!hasPerimission)
                 {
@@ -47,6 +47,26 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             }
 
             base.OnActionExecuting(filterContext);
+        }
+
+        private bool HasPerimission(IPrincipal principal)
+        {
+            if (principal is ClaimsPrincipal claims)
+            {
+                if (string.IsNullOrEmpty(FunctionNameOption))
+                {
+                    return HasClaim(claims, FunctionName);
+                }
+
+                return HasClaim(claims, FunctionName) || HasClaim(claims, FunctionNameOption);
+            }
+
+            return false;
+        }
+
+        private bool HasClaim(ClaimsPrincipal claimsPrincipal, string funcName)
+        {
+            return IsHost ? claimsPrincipal.HasClaim(funcName, ClaimValue) : claimsPrincipal.HasClaim(c => c.Type == funcName);
         }
     }
 }

@@ -117,25 +117,32 @@ export class SettingPanel extends PureComponent {
     }
 
     render() {
-        const { affiliateInfo, isApproved, isStatusShowable, isStatusModifiable } = this.props;
+        const { affiliateInfo, isApproved, isStatusShowable, isStatusModifiable, isCommModifiable, isAffTypeModifiable, isManagePendingAffModifiable } = this.props;
         const { isChangingAffType, isChangingAffStatus, isAssignCommissionGroup, messageNotification, isConfirmPopup } = this.state;
-        const isReadOnly = isStatusShowable && !isStatusModifiable;
+        const isReadOnly = isStatusShowable && !isStatusModifiable && !isManagePendingAffModifiable;
+
         return (
             <Panel heading={resource.Setting}>
                 <Row>
                     <Col>{resource.AffiliateType}</Col>
-                    <Col className="text-right text-primary">
-                        <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
-                            onChange={this.handleChangeAffType} onBlur={() => this.toggleChangingAffType(false)} ref={this.affTypeDropdown}>
-                            {
-                                Object.keys(affType).map((key, index) => {
-                                    return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
-                                })
-                            }
-                        </select>
-                        <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={() => this.toggleChangingAffType(true)}>
-                            {affType[affiliateInfo.AffType]}
-                        </Button>
+                    <Col className="text-right">
+                        {
+                            isAffTypeModifiable ? (
+                                <div className="text-primary">
+                                    <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
+                                        onChange={this.handleChangeAffType} onBlur={() => this.toggleChangingAffType(false)} ref={this.affTypeDropdown}>
+                                        {
+                                            Object.keys(affType).map((key, index) => {
+                                                return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
+                                            })
+                                        }
+                                    </select>
+                                    <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={() => this.toggleChangingAffType(true)}>
+                                        {affType[affiliateInfo.AffType]}
+                                    </Button>
+                                </div>
+                            ) : affType[affiliateInfo.AffType]
+                        }
                     </Col>
                 </Row>
                 { isStatusShowable &&
@@ -151,7 +158,9 @@ export class SettingPanel extends PureComponent {
                                                 onChange={this._handleChangeStatus}
                                                 onBlur={() => this.toggleChangingAffStatus(false)}
                                                 ref={this.affStatusDropdown}>
-                                                <option value="Approved">Approved</option>
+                                                {
+                                                    (isCommModifiable || isManagePendingAffModifiable) && <option value="Approved">Approved</option>
+                                                }
                                                 <option value="Disapproved">Disapproved</option>
                                                 <option value="Pending">Pending</option>
                                             </select>
@@ -166,6 +175,7 @@ export class SettingPanel extends PureComponent {
                                 showPopupCommGroup={isAssignCommissionGroup}
                                 isPrivateGroup={false}
                                 isNewAffiliate={true}
+                                isManagePendingAffModifiable={isManagePendingAffModifiable}
                                 affName={affiliateInfo.AffName}
                                 affId={affiliateInfo.AffId}
                                 setShowPopupCommGroup={this.toggleAssignCommissionPopup}
@@ -203,8 +213,14 @@ export class SettingPanel extends PureComponent {
 function mapStateToProps({ leftPanel, claimsPrincipal, today }) {
     const { affiliateInfo, affName } = leftPanel;
     const isStatusModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffAccountStatus);
-    const isStatusShowable = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
-    return Object.assign({}, { affiliateInfo, affName, isStatusShowable, isStatusModifiable, today });
+    const isCommModifiable = claimsPrincipal.hasWriteClaim(claimResource.AssignCommGroup);
+    const isAffTypeModifiable = claimsPrincipal.hasWriteClaim(claimResource.EditAffiliate);
+    const isStatusShowable = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus) || claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
+
+    const isPendingAffStatus = affiliateInfo.Status.toLowerCase() === status.Pending;
+    const isManagePendingAffModifiable = isPendingAffStatus && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
+
+    return Object.assign({}, { affiliateInfo, affName, isStatusShowable, isStatusModifiable, today, isCommModifiable, isAffTypeModifiable, isManagePendingAffModifiable });
 };
 
 function mapDispatchToProps(dispatch) {

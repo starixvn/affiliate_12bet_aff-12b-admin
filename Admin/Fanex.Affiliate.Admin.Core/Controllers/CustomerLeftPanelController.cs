@@ -2,17 +2,13 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
-using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using Newtonsoft.Json;
 using ONEbook.UM.AspNetMVC.Filters;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
@@ -94,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.CustomerMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.EditAffiliate, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
         {

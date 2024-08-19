@@ -26,16 +26,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpGet]
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index()
         {
-            return View();
-        }
-
-        [HttpGet]
-        [AllowByPassFunctionAuthorize]
-        public ActionResult RedirectMenu()
-        {
             var permissions = SessionService.ClaimIdentities.SelectMany(i => i.Claims);
+
+            if (permissions.Any(p => p.Type == Function.HomeMenu))
+            {
+                return View();
+            }
+
             var activeMenus = Menu.MainMenus.Where(m => string.IsNullOrEmpty(m.Value) || permissions.Any(p => p.Type == m.Value)).Select(m => m.Key);
             var redirect = activeMenus.FirstOrDefault();
 

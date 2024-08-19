@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var viewResult = controller.Index() as RedirectResult;
 
             // Assert
-            Assert.Equal("~/Portal/Home/RedirectMenu", viewResult.Url);
+            Assert.Equal("~/Portal/Home", viewResult.Url);
         }
     }
 }

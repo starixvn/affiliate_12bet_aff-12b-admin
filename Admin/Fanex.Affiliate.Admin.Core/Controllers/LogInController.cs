@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             if(isAuthorized)
             {
-                return Redirect("~/Portal/Home/RedirectMenu");
+                return Redirect("~/Portal/Home");
             }
 
             return View();

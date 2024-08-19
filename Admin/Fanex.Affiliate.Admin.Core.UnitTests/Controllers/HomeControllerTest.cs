@@ -30,19 +30,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void RedirectMenu_WhenCall_RedirectCorrect()
-        {
-            // Arrange
-            var controller = CreateHomeController();
-
-            // Action
-            var viewResult = controller.RedirectMenu() as RedirectResult;
-
-            // Assert
-            Assert.Equal("~/Portal/Home", viewResult.Url);
-        }
-
-        [Fact]
         public void GetPSPToday_WhenCall_ReturnCorrectData()
         {
             // Arrange

@@ -94,6 +94,8 @@
 
         public const string MarketingTeamNote = "[MarketingTeamNote]";
 
+        public const string ManagePendingAff = "[ManagePendingAffiliate]";
+
         // Export excel
 
         public const string ExportAffInfoExcel = "[ExportAffInfoExcel]";
