@@ -2051,9 +2051,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>Khusus Undangan</value>
   </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 &amp; Lebih</value>
-  </data>
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
@@ -2221,12 +2218,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>KEUNTUNGAN BERSIH</value>
-  </data>
-  <data name="CompanyProfitForTheMonth" xml:space="preserve">
-    <value>Pendapatan Bersih Dalam Sebulan ($)</value>
-  </data>
-  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
-    <value>MEMBER AKTIF TERKUALIFIKASI DALAM SEBULAN</value>
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>Afiliasi  mendapatkan sebagian penghasilan dari Pendapatan Bersih berdasarkan Tabel Struktur Komisi.</value>

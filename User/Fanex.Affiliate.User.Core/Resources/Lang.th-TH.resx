@@ -2051,9 +2051,6 @@
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>สำหรับผู้ได้รับเชิญเท่านั้น</value>
   </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - ขึ้นไป</value>
-  </data>
   <data name="Flat50" xml:space="preserve">
     <value>คอมมิชชั่นเริ่มต้น 50%</value>
   </data>
@@ -2221,12 +2218,6 @@
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
-  </data>
-  <data name="CompanyProfitForTheMonth" xml:space="preserve">
-    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลลาร์ฯ)</value>
-  </data>
-  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
-    <value>ผู้เล่นที่เข้าเกณฑ์</value>
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>"พันธมิตรได้รับส่วนแบ่งรายได้ของกำไรสุทธิตามตารางโครงสร้างคอมมิชชั่น"</value>

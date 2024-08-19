@@ -2051,9 +2051,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>Chỉ Dành Cho Những Ai Được Mời</value>
   </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - Trở lên</value>
-  </data>
   <data name="Flat50" xml:space="preserve">
     <value>50% cố định</value>
   </data>
@@ -2215,12 +2212,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>Lợi nhuận sau thuế</value>
-  </data>
-  <data name="CompanyProfitForTheMonth" xml:space="preserve">
-    <value>Lợi nhuận của Đại Lý trong tháng ($)</value>
-  </data>
-  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
-    <value>Thành viên hoạt động đủ điều kiện/ Tháng</value>
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>Đại Lý kiếm được phần doanh thu từ lợi nhuận ròng dựa trên Bảng Cơ Cấu Hoa Hồng.</value>

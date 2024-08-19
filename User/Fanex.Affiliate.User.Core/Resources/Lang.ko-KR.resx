@@ -2044,9 +2044,6 @@
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>초대 전용</value>
   </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - 이상</value>
-  </data>
   <data name="Flat50" xml:space="preserve">
     <value>고정 50%</value>
   </data>
@@ -2208,12 +2205,6 @@
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>실제 수익</value>
-  </data>
-  <data name="CompanyProfitForTheMonth" xml:space="preserve">
-    <value>이번 달 회사 이익($)</value>
-  </data>
-  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
-    <value>자격을 갖춘 활동 회원/월</value>
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>제휴사는 수수료 구조표에 따라 순이익에서 수익을 얻습니다.</value>

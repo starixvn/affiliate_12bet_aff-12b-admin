@@ -2158,9 +2158,6 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>By Invitation Only</value>
   </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - Above</value>
-  </data>
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
@@ -2334,12 +2331,6 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>Net Profit</value>
-  </data>
-  <data name="CompanyProfitForTheMonth" xml:space="preserve">
-    <value>COMPANY PROFIT FOR THE MONTH ($)</value>
-  </data>
-  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
-    <value>QUALIFIED ACTIVE MEMBERS/ MONTH</value>
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>Affiliate earns revenue share of Net profit based on Commission Structure Table.</value>

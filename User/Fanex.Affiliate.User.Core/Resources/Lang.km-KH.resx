@@ -1964,9 +1964,6 @@
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>តាមការអញ្ជើញតែប៉ុណ្ណោះ</value>
   </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - លើស</value>
-  </data>
   <data name="Flat50" xml:space="preserve">
     <value>50% ថេរ</value>
   </data>
@@ -2140,12 +2137,6 @@
   </data>
   <data name="NetProfit" xml:space="preserve">
     <value>ប្រាក់​ចំណេញ​សុទ្ធ</value>
-  </data>
-  <data name="CompanyProfitForTheMonth" xml:space="preserve">
-    <value>ប្រាក់ចំណេញរបស់ក្រុមហ៊ុនប្រចាំខែ ($)</value>
-  </data>
-  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
-    <value>សមាជិកសកម្ម/ខែ</value>
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>ភ្នាក់ងារនិងទទួលបានចំណែកនៃប្រាក់ចំណេញសុទ្ធ ដោយផ្អែកតាមតារាងរចនាសម្ព័ន្ធនៃភ្នាក់ងារ។</value>

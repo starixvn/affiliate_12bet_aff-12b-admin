@@ -2051,9 +2051,6 @@
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>仅限邀请</value>
   </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,000 以上</value>
-  </data>
   <data name="Flat50" xml:space="preserve">
     <value>统一50%</value>
   </data>
@@ -2221,12 +2218,6 @@
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>纸飞机(Telegram)</value>
-  </data>
-  <data name="CompanyProfitForTheMonth" xml:space="preserve">
-    <value>每月公司盈利 ($)</value>
-  </data>
-  <data name="QualifiedActiveMembersMonth" xml:space="preserve">
-    <value>每月符合资格的活跃会员</value>
   </data>
   <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
     <value>合作伙伴根据佣金结构表赚取净收入的分成。</value>

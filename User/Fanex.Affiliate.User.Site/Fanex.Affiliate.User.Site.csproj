@@ -1348,7 +1348,6 @@
     <Content Include="Views\Home\Partial\_OurProductContentBlock.cshtml" />
     <Content Include="www\source\styles\scss\components\_input-custom.scss" />
     <Content Include="Views\Promotion\Partial\_FDMsPowerTable.cshtml" />
-    <Content Include="Views\Promotion\Partial\_CommissionBoostTable.cshtml" />
     <Content Include="www\source\styles\pages\forgot-password.scss" />
     <Content Include="www\source\styles\scss\components\_alert.scss" />
     <Content Include="www\source\styles\pages\under-maintenance.scss" />

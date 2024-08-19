@@ -152,15 +152,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 250,001 - Above.
-        /// </summary>
-        public static string AboveTwoThousand {
-            get {
-                return ResourceManager.GetString("AboveTwoThousand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Account Information.
         /// </summary>
         public static string AccInfo {
@@ -1273,15 +1264,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CompanyNetWin {
             get {
                 return ResourceManager.GetString("CompanyNetWin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to COMPANY PROFIT FOR THE MONTH ($).
-        /// </summary>
-        public static string CompanyProfitForTheMonth {
-            get {
-                return ResourceManager.GetString("CompanyProfitForTheMonth", resourceCulture);
             }
         }
         
@@ -4653,15 +4635,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string QualifiedActiveMembers {
             get {
                 return ResourceManager.GetString("QualifiedActiveMembers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to QUALIFIED ACTIVE MEMBERS/ MONTH.
-        /// </summary>
-        public static string QualifiedActiveMembersMonth {
-            get {
-                return ResourceManager.GetString("QualifiedActiveMembersMonth", resourceCulture);
             }
         }
         
