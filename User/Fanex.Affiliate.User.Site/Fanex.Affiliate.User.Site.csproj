@@ -630,7 +630,6 @@
     <Content Include="www\build\styles\Images\langs\th.svg" />
     <Content Include="www\build\styles\Images\langs\vn.png" />
     <Content Include="www\build\styles\Images\langs\vn.svg" />
-    <Content Include="www\build\styles\Images\product\esports\esporsts.png" />
     <Content Include="www\build\styles\Images\product\esports\saba-esports.png" />
     <Content Include="www\build\styles\Images\product\keno\banner.png" />
     <Content Include="www\build\styles\Images\product\keno\banner-mobile.png" />
@@ -640,7 +639,6 @@
     <Content Include="www\build\styles\Images\product\live-casino\ebet.png" />
     <Content Include="www\build\styles\Images\product\live-casino\evolution.png" />
     <Content Include="www\build\styles\Images\product\live-casino\gameplay-interactive.png" />
-    <Content Include="www\build\styles\Images\product\live-casino\microgaming.png" />
     <Content Include="www\build\styles\Images\product\live-casino\playtech.png" />
     <Content Include="www\build\styles\Images\product\live-casino\pragmatic-play.png" />
     <Content Include="www\build\styles\Images\product\live-casino\sa-gaming.png" />
@@ -648,7 +646,6 @@
     <Content Include="www\build\styles\Images\product\live-casino\skywind.png" />
     <Content Include="www\build\styles\Images\product\lottery\gameplay-interactive.png" />
     <Content Include="www\build\styles\Images\product\lottery\saba-sports.png" />
-    <Content Include="www\build\styles\Images\product\lottery\sg-win.png" />
     <Content Include="www\build\styles\Images\product\number-game\banner.png" />
     <Content Include="www\build\styles\Images\product\number-game\banner-mobile.png" />
     <Content Include="www\build\styles\Images\product\number-game\saba-sports.png" />
@@ -660,8 +657,6 @@
     <Content Include="www\build\styles\Images\product\slot\betsoft.png" />
     <Content Include="www\build\styles\Images\product\slot\flowgaming.png" />
     <Content Include="www\build\styles\Images\product\slot\gameplay-interactive.png" />
-    <Content Include="www\build\styles\Images\product\slot\genesis.png" />
-    <Content Include="www\build\styles\Images\product\slot\microgaming.png" />
     <Content Include="www\build\styles\Images\product\slot\netent.png" />
     <Content Include="www\build\styles\Images\product\slot\playtech.png" />
     <Content Include="www\build\styles\Images\product\slot\pragmatic-play.png" />
@@ -672,9 +667,6 @@
     <Content Include="www\build\styles\Images\product\sports\bet-radar.png" />
     <Content Include="www\build\styles\Images\product\sports\br-sports.png" />
     <Content Include="www\build\styles\Images\product\sports\bti-sports.png" />
-    <Content Include="www\build\styles\Images\product\sports\db-gaming.png" />
-    <Content Include="www\build\styles\Images\product\sports\panda-sport.png" />
-    <Content Include="www\build\styles\Images\product\sports\pm-sport.png" />
     <Content Include="www\build\styles\Images\product\sports\saba-sports.png" />
     <Content Include="www\build\styles\Images\under-maintenance\logo-um.svg" />
     <Content Include="www\build\styles\Images\notify\404.svg" />
