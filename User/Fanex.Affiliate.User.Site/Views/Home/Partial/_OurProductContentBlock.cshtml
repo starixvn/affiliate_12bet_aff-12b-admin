@@ -2,33 +2,27 @@
 
 @{
     var isSupportedP2P = Model.IsSupportedP2pProduct();
-    var altList = new Dictionary<string, string>
+    var productList = new Dictionary<string, string>
     {
-        ["Provider1"] = "12Bet provider Asia Gaming",
-        ["Provider2"] = "12Bet provider SA Gaming",
-        ["Provider3"] = "12Bet provider Sexy",
-        ["Provider4"] = "12Bet provider Evolution",
-        ["Provider5"] = "12Bet provider Gameplay Interactive",
-        ["Provider6"] = "12Bet provider Microgaming",
-        ["Provider7"] = "12Bet provider Playtech",
-        ["Provider8"] = "12Bet provider Pragmatic Play",
-        ["Provider9"] = "12Bet provider Allbet",
-        ["Provider10"] = "12Bet provider ebet",
-        ["Provider11"] = "12Bet provider Skywind Group",
-        ["Provider12"] = "12Bet provider AdvantPlay",
-        ["Provider13"] = "12Bet provider Saba Sports",
-        ["Provider14"] = "12Bet provider SG-Win",
-        ["Provider15"] = "12Bet provider Betsoft",
-        ["Provider16"] = "12Bet provider Flow Gaming",
-        ["Provider17"] = "12Bet provider Genesis Gaming",
-        ["Provider18"] = "12Bet provider Netent",
-        ["Provider19"] = "12Bet provider Bti",
-        ["Provider20"] = "12Bet provider BR Sports",
-        ["Provider21"] = "12Bet provider PM",
-        ["Provider22"] = "12Bet provider betradar",
-        ["Provider23"] = "12Bet provider DB Gaming",
-        ["Provider24"] = "12Bet provider Panda Sports",
-        ["Provider25"] = "12Bet provider Saba Esports",
+        ["asia-gaming"] = "12Bet provider Asia Gaming",
+        ["sa-gaming"] = "12Bet provider SA Gaming",
+        ["sexy"] = "12Bet provider Sexy",
+        ["evolution"] = "12Bet provider Evolution",
+        ["gameplay"] = "12Bet provider Gameplay Interactive",
+        ["playtech"] = "12Bet provider Playtech",
+        ["pragmatic-play"] = "12Bet provider Pragmatic Play",
+        ["allbet"] = "12Bet provider Allbet",
+        ["ebet"] = "12Bet provider Ebet",
+        ["skywind"] = "12Bet provider Skywind Group",
+        ["advantplay"] = "12Bet provider AdvantPlay",
+        ["saba-sports"] = "12Bet provider Saba Sports",
+        ["betsoft"] = "12Bet provider Betsoft",
+        ["flow-gaming"] = "12Bet provider Flow Gaming",
+        ["nentent"] = "12Bet provider Netent",
+        ["bti"] = "12Bet provider Bti",
+        ["br-sports"] = "12Bet provider BR Sports",
+        ["betradar"] = "12Bet provider Betradar",
+        ["saba-esports"] = "12Bet provider Saba Esports",
     };
 }
 
@@ -100,12 +94,10 @@
 <div class="mini-block">
     <div class="swiper mini-block-banner">
         <div class="swiper-wrapper" style="align-items:center;">
-            @for (var i = 1; i <= 25; i++)
+            @foreach (var product in productList)
             {
-                var key = $"Provider{i}";
-
                 <div class="swiper-slide">
-                    <img src="~/www/build/styles/Images/home/our-product/provider/item@(i).png?v=001" alt="@(altList.ContainsKey(key) ? altList[key] : key)" class="img-responsive" />
+                    <img src="~/www/build/styles/Images/home/our-product/provider/@(product.Key).png?v=002" alt="@(product.Value)" class="img-responsive" />
                 </div>
             }
         </div>
