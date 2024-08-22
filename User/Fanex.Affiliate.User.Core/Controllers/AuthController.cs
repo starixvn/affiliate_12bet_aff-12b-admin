@@ -40,6 +40,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             var viewModel = new AuthenticationFormViewModel
             {
+                CurrentLanguage = SessionService.CurrentLanguage,
                 IsAuthenticated = User.Identity.IsAuthenticated && SessionService.UserSession != null
             };
 

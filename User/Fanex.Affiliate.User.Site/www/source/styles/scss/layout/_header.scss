@@ -65,7 +65,7 @@
             margin-left: 0;
         }
 
-        img {
+        .12b {
             @include Tablet {
                 width: 100px;
             }
@@ -82,6 +82,7 @@
             letter-spacing: 0.84px;
             text-transform: uppercase;
             margin-left: 16px;
+            vertical-align: middle;
 
             @include Tablet {
                 font-size: 12px;

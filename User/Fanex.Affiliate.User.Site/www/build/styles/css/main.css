@@ -377,10 +377,10 @@ input[type="checkbox"], input[type="radio"] {
       .header-top .logo {
         margin-left: 0; } }
     @media screen and (max-width: 1024px) {
-      .header-top .logo img {
+      .header-top .logo .12b {
         width: 100px; } }
     @media (max-width: 500px) {
-      .header-top .logo img {
+      .header-top .logo .12b {
         width: 137px; } }
     .header-top .logo .logo-text {
       color: #fff;
@@ -388,7 +388,8 @@ input[type="checkbox"], input[type="radio"] {
       font-size: 24px;
       letter-spacing: 0.84px;
       text-transform: uppercase;
-      margin-left: 16px; }
+      margin-left: 16px;
+      vertical-align: middle; }
       @media screen and (max-width: 1024px) {
         .header-top .logo .logo-text {
           font-size: 12px;

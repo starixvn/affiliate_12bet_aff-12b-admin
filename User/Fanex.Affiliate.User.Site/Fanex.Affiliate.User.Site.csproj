@@ -412,6 +412,9 @@
     <Content Include="www\build\styles\fonts\myriadPro\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\Images\logo-original.svg" />
+    <Content Include="www\build\styles\Images\logo.svg" />
+    <Content Include="www\build\styles\Images\partner.png" />
     <Content Include="www\build\styles\Images\account-overview\commission.svg" />
     <Content Include="www\build\styles\Images\account-overview\icon-copy.svg" />
     <Content Include="www\build\styles\Images\account-overview\icon-facebook.svg" />
@@ -644,7 +647,6 @@
     <Content Include="www\build\styles\Images\notify\404.svg" />
     <Content Include="www\build\styles\Images\notify\error.svg" />
     <Content Include="www\build\styles\Images\qr-icon.png" />
-    <Content Include="www\build\styles\Images\logo.svg" />
     <Content Include="www\build\styles\Images\product\live-casino\banner.png" />
     <Content Include="www\build\styles\Images\product\lottery\banner.png" />
     <Content Include="www\build\styles\Images\home\our-product\mini-block-1.png" />

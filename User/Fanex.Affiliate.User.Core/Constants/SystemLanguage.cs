@@ -230,5 +230,10 @@ namespace Fanex.Affiliate.User.Core.Constants
         {
             return _supportedLanguageForGoogleAnalytics.ContainsKey(currentLanguage) ? _supportedLanguageForGoogleAnalytics[currentLanguage] : currentLanguage;
         }
+
+        public static bool ShouldUsingLogoOriginal(string currentLanguage)
+        {
+            return currentLanguage.Equals(EnglishLanguageCode) || currentLanguage.Equals(ChineseLanguageCode) || currentLanguage.Equals(TaiwanLanguageCode);
+        }
     }
 }

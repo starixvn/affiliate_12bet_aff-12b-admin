@@ -81,7 +81,8 @@
                 <div class="logo-lang">
                     <div class="logo">
                         <a href="@Url.RenderLanguageContent("~/Home")">
-                            <img src="~/www/build/styles/Images/logo.svg" alt="logo" />
+                            <img class="12b" src="~/www/build/styles/Images/@(SystemLanguage.ShouldUsingLogoOriginal(currentLanguage) ? "logo-original" : "logo").svg?v=001" alt="logo" />
+                            <img class="partner" src="~/www/build/styles/Images/partner.png" alt="partner" width="50" />
                             <span class="logo-text">@Lang.Affiliate</span>
                         </a>
                     </div>
