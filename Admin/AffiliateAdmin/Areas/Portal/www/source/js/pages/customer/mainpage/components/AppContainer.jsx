@@ -14,7 +14,7 @@ export const CustomerStatistics = React.lazy(() =>
 
 export const AppContainer = (props) => {
     const { affId, selectedUserPanel, status, isShowLoader } = props;
-    const isPending = status && (status.toLowerCase() === 'pending' || status.toLowerCase() === 'disapproved');
+    const isWaitingApproval = status && (status.toLowerCase() === 'pending' || status.toLowerCase() === 'disapproved');
 
     return (
         <AppLayout>
@@ -29,7 +29,7 @@ export const AppContainer = (props) => {
                             <div className="right-panel mx-2">
                                 <div className="customer-statistics">
                                     {
-                                        !isPending &&
+                                        !isWaitingApproval &&
                                         <Suspense fallback={null}>
                                             <CustomerStatistics />
                                         </Suspense>
@@ -39,7 +39,7 @@ export const AppContainer = (props) => {
                                     {
                                         selectedUserPanel &&
                                         <Suspense fallback={null}>
-                                            <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={props.setSelectedUserPanel} isPending={isPending} />
+                                            <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={props.setSelectedUserPanel} isWaitingApproval={isWaitingApproval} />
                                         </Suspense>
                                     }
                                 </div>

@@ -1,7 +1,8 @@
 import { post } from '../../../../modules/ajaxRequest';
+import { userPanelMenuKey as menuKey } from '../../common/libs/constants';
 
 export const isActiveMenu = (selectedMenu, menuItem) => {
-    return selectedMenu && (selectedMenu.key === menuItem.key || selectedMenu.parent === menuItem.key);
+    return selectedMenu && (selectedMenu.key === menuItemenu.key || selectedMenu.parent === menuItemenu.key);
 }
 
 export const getProductList = () => async() => {
@@ -21,4 +22,11 @@ export const getAllTargetLanguageList = () => async () => {
 
 const convertCountryList = (data) => {
     return data.map(item => ({ ...item, Checked: true }));
+}
+
+export const isValidMenuByRenderClaim = (claimsPrincipal, menu, isPending) => {
+    if (menu.key === menuKey.edit) {
+
+    }
+    return menu.renderClaim == undefined || claimsPrincipal.hasClaim(menu.renderClaim) || (Array.isArray(menu.renderClaim) && menu.renderClaimenu.some(claim => claimsPrincipal.hasClaim(claim)));
 }

@@ -62,9 +62,9 @@ export default class CommissionGroupPopup extends PureComponent {
 
     render() {
         const { isUsingPrivateGroup } = this.state;
-        const { showPopupCommGroup, affName, affId, isPrivateGroup, isNewAffiliate, isSpeccialAssignComm } = this.props;
+        const { showPopupCommGroup, affName, affId, isPrivateGroup, isNewAffiliate, isCommGroupVisible } = this.props;
 
-        const isPrivate = !isSpeccialAssignComm && (isPrivateGroup || isUsingPrivateGroup);
+        const isPrivate = isCommGroupVisible && (isPrivateGroup || isUsingPrivateGroup);
         const assignTitle = isNewAffiliate ? 'Assign Commission Group For New Affiliate' : `Change Commission Group for ${affName}`;
         const title = isPrivateGroup ? `Edit Commission Group for ${affName}` : assignTitle;
 
@@ -83,7 +83,7 @@ export default class CommissionGroupPopup extends PureComponent {
                             isPrivate ? (<div className="modal-body-wrapper embed-responsive embed-responsive-4by3" style={{ height: 635 }}>
                                 <iframe className="embed-responsive-item" src={url}></iframe>
                             </div>) : (
-                                    <div className="modal-body-wrapper" style={{ height: 280, padding: 0 }}>
+                                    <div className="modal-body-wrapper" style={{ height: isCommGroupVisible ? 280 : 240, padding: 0 }}>
                                         <iframe src={url} width="100%" height="100%" frameBorder="0"></iframe>
                                     </div>
                                 )

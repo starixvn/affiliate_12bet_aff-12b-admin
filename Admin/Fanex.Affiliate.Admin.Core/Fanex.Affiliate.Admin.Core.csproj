@@ -257,6 +257,7 @@
     <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
+    <Compile Include="Constants\ManageCommGroup.cs" />
     <Compile Include="Constants\Menu.cs" />
     <Compile Include="Constants\NoteType.cs" />
     <Compile Include="Constants\ProcessingRequestStatus.cs" />
@@ -295,7 +296,6 @@
     <Compile Include="DTO\UserPanel\CensoredContactApp.cs" />
     <Compile Include="DTO\Common\Country.cs" />
     <Compile Include="DTO\UserPanel\LogAction.cs" />
-    <Compile Include="Enum\ProcessingRequestStatus.cs" />
     <Compile Include="Extensions\GenericExtension.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
     <Compile Include="MetaModels\Domain\TargetCountryParam.cs" />

@@ -18,6 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class CustomerLeftPanelController : Controller
     {
+        private bool IsPendingAff;
         private readonly ICustomerLeftPanelService _customerLeftPanelService;
         private readonly ISessionService _sessionService;
 
@@ -41,10 +42,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
 
             _sessionService.AffName = affUsername;
+            var affInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, _sessionService.OnUserId.ToString(), Session.SessionID);
+            this.IsPendingAff = affInfo.Status?.ToLowerInvariant() == "pending";
 
             return new JsonNetResult
             {
-                Data = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, _sessionService.OnUserId.ToString(), Session.SessionID)
+                Data = affInfo
             };
         }
 

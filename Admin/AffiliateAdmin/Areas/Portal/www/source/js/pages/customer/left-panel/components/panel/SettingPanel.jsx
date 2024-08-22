@@ -117,9 +117,9 @@ export class SettingPanel extends PureComponent {
     }
 
     render() {
-        const { affiliateInfo, isApproved, isStatusShowable, isStatusModifiable, isCommModifiable, isAffTypeModifiable, isManagePendingAffModifiable } = this.props;
+        const { affiliateInfo, isApproved, isStatusVisible, isStatusModifiable, isCommGroupVisible, isAffTypeModifiable, isManagePendingAffVisible, isManagePendingAffModifiable } = this.props;
         const { isChangingAffType, isChangingAffStatus, isAssignCommissionGroup, messageNotification, isConfirmPopup } = this.state;
-        const isReadOnly = isStatusShowable && !isStatusModifiable && !isManagePendingAffModifiable;
+        const isReadOnly = isStatusVisible && !isStatusModifiable && !isManagePendingAffModifiable;
 
         return (
             <Panel heading={resource.Setting}>
@@ -145,7 +145,7 @@ export class SettingPanel extends PureComponent {
                         }
                     </Col>
                 </Row>
-                { isStatusShowable &&
+                { isStatusVisible &&
                     <Row>
                         <Col>{resource.Status}</Col>
                         <Col className="text-right">
@@ -159,7 +159,7 @@ export class SettingPanel extends PureComponent {
                                                 onBlur={() => this.toggleChangingAffStatus(false)}
                                                 ref={this.affStatusDropdown}>
                                                 {
-                                                    (isCommModifiable || isManagePendingAffModifiable) && <option value="Approved">Approved</option>
+                                                (isCommGroupVisible || isManagePendingAffVisible) && <option value="Approved">Approved</option>
                                                 }
                                                 <option value="Disapproved">Disapproved</option>
                                                 <option value="Pending">Pending</option>
@@ -171,21 +171,23 @@ export class SettingPanel extends PureComponent {
                                         </div>
                                     )
                             }
-                            <CommissionGroupPopup
-                                showPopupCommGroup={isAssignCommissionGroup}
-                                isPrivateGroup={false}
-                                isNewAffiliate={true}
-                                isManagePendingAffModifiable={isManagePendingAffModifiable}
-                                affName={affiliateInfo.AffName}
-                                affId={affiliateInfo.AffId}
-                                setShowPopupCommGroup={this.toggleAssignCommissionPopup}
-                                getAffiliateInfo={this.props.getAffiliateInfo}
-                            />
+                            {
+                                (isCommGroupVisible || isManagePendingAffVisible) && <CommissionGroupPopup
+                                    showPopupCommGroup={isAssignCommissionGroup}
+                                    isPrivateGroup={false}
+                                    isNewAffiliate={true}
+                                    isCommGroupVisible={isCommGroupVisible}
+                                    affName={affiliateInfo.AffName}
+                                    affId={affiliateInfo.AffId}
+                                    setShowPopupCommGroup={this.toggleAssignCommissionPopup}
+                                    getAffiliateInfo={this.props.getAffiliateInfo}
+                                />
+                            }
                         </Col>
                     </Row>
                 }
                 {
-                    isApproved && isStatusShowable && (
+                    isApproved && isStatusVisible && (
                         <Row>
                             <Col>{resource.Closed}</Col>
                             { isStatusModifiable
@@ -213,14 +215,15 @@ export class SettingPanel extends PureComponent {
 function mapStateToProps({ leftPanel, claimsPrincipal, today }) {
     const { affiliateInfo, affName } = leftPanel;
     const isStatusModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffAccountStatus);
-    const isCommModifiable = claimsPrincipal.hasWriteClaim(claimResource.AssignCommGroup);
+    const isCommGroupVisible = claimsPrincipal.hasReadClaim(claimResource.CommissionGroup);
     const isAffTypeModifiable = claimsPrincipal.hasWriteClaim(claimResource.EditAffiliate);
-    const isStatusShowable = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus) || claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
-
+    
     const isPendingAffStatus = affiliateInfo.Status.toLowerCase() === status.Pending;
+    const isManagePendingAffVisible = isPendingAffStatus && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
     const isManagePendingAffModifiable = isPendingAffStatus && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
+    const isStatusVisible = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus) || isManagePendingAffVisible;
 
-    return Object.assign({}, { affiliateInfo, affName, isStatusShowable, isStatusModifiable, today, isCommModifiable, isAffTypeModifiable, isManagePendingAffModifiable });
+    return Object.assign({}, { affiliateInfo, affName, isStatusVisible, isStatusModifiable, today, isCommGroupVisible, isAffTypeModifiable, isManagePendingAffVisible, isManagePendingAffModifiable });
 };
 
 function mapDispatchToProps(dispatch) {

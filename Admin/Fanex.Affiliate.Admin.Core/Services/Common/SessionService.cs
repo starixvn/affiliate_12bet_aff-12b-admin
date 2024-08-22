@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
 using System.Web;
 using static Fanex.Affiliate.Admin.Core.Constants.SessionKey;
@@ -59,6 +58,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             set
             {
                 HttpContext.Current.Session[AffNameKey] = value;
+            }
+        }
+
+        public bool IsPendingAff
+        {
+            get
+            {
+                var temp = HttpContext.Current.Session[IsPendingAffKey];
+
+                return temp != null && (bool)temp;
+            }
+            set
+            {
+                HttpContext.Current.Session[IsPendingAffKey] = value;
             }
         }
 

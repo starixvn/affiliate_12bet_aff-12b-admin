@@ -10,11 +10,12 @@ export default class AssignGroup extends Component {
     constructor(props) {
         super(props);
 
-        let { commGroupList, selectedGroup, affInfo } = window.initialState;
+        let { commGroupList, selectedGroup, affInfo, hasCommGroupPermission } = window.initialState;
         if (selectedGroup === 0) {
             selectedGroup = commGroupList && commGroupList.length ? Number(commGroupList[0].Id) : 0
         }
 
+        this.hasCommGroupPermission = hasCommGroupPermission;
         this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, {
             isPrivateGroup: false,
             isShowLoader: false,
@@ -31,7 +32,7 @@ export default class AssignGroup extends Component {
 
     handleCheck = (event) => {
         const { checked } = event.target;
-        this.setState({ isPrivateGroup: checked });
+        this.hasCommGroupPermission && this.setState({ isPrivateGroup: checked });
     }
 
     handleSave = async () => {
@@ -109,17 +110,19 @@ export default class AssignGroup extends Component {
                             </select>
                         </Col>
                     </FormGroup>
-                    <FormGroup row>
-                        <Label className="font-weight-bold" for="isPrivateGroup" xs="4">Use private group: </Label>
-                        <Col xs="5">
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" id="isPrivateGroup" style={{ marginTop: -5 }}
-                                        onChange={this.handleCheck} checked={isPrivateGroup} />
-                                </Label>
-                            </FormGroup>
-                        </Col>
-                    </FormGroup>
+                    {
+                        this.hasCommGroupPermission && <FormGroup row>
+                            <Label className="font-weight-bold" for="isPrivateGroup" xs="4">Use private group: </Label>
+                            <Col xs="5">
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input type="checkbox" id="isPrivateGroup" style={{ marginTop: -5 }}
+                                            onChange={this.handleCheck} checked={isPrivateGroup} />
+                                    </Label>
+                                </FormGroup>
+                            </Col>
+                        </FormGroup>
+                    }
                 </fieldset>
                 <Button type="button" className="my-2 btn btn-success" onClick={this.handleSave}>SAVE</Button>
             </div>

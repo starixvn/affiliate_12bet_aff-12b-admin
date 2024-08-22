@@ -7,11 +7,11 @@ import { userPanelMenuKey } from '../../common/libs/constants';
 import { spinnerLoaderWidth, spinnerLoaderUserPanelHeight } from '../../../../modules/constants';
 
 export const UserPanel = (props) => {
-    const { selectedUserPanel, onClickMenu, isPending, isShowLoader, claimsPrincipal } = props;
-    const menuList = isPending ? userPanelPendingMenuList : userPanelMenuList;
+    const { selectedUserPanel, onClickMenu, isWaitingApproval, isShowLoader, claimsPrincipal, isPending } = props;
+    const menuList = isWaitingApproval ? userPanelPendingMenuList : userPanelMenuList;
 
     useEffect(() => {
-        if (isPending && selectedUserPanel === userPanelMenuKey.statementHistory) {
+        if (isWaitingApproval && selectedUserPanel === userPanelMenuKey.statementHistory) {
             const firstMenu = menuList.find(m => m.renderClaim == undefined || claimsPrincipal.hasClaim(m.renderClaim) || (Array.isArray(m.renderClaim) && m.renderClaim.some(claim => claimsPrincipal.hasClaim(claim))));
 
             firstMenu && props.onClickMenu(firstMenu.key);
@@ -25,7 +25,7 @@ export const UserPanel = (props) => {
     return (
         <div className="user-panel-container">
             <Loader show={isShowLoader} style={{ top: spinnerLoaderUserPanelHeight, left: spinnerLoaderWidth }}/>
-            <UserPanelMenu selectedUserPanel={selectedUserPanel} onClickMenu={onClickMenu} isPending={isPending} menuList={filterByClaimMenuList} />
+            <UserPanelMenu selectedUserPanel={selectedUserPanel} onClickMenu={onClickMenu} isWaitingApproval={isWaitingApproval} menuList={filterByClaimMenuList} />
 
             <div className="user-panel-content-container">
                 {
@@ -39,8 +39,10 @@ export const UserPanel = (props) => {
     )
 }
 
-function mapStateToProps({ isShowLoaderUserPanel, claimsPrincipal }) {
-    return Object.assign({}, { isShowLoader: isShowLoaderUserPanel, claimsPrincipal });
+function mapStateToProps({ isShowLoaderUserPanel, claimsPrincipal, affCommonInfo }) {
+    const isPending = affCommonInfo && affCommonInfo.status && affCommonInfo.status.toLowerCase() === 'pending';
+
+    return Object.assign({}, { isShowLoader: isShowLoaderUserPanel, claimsPrincipal, isPending });
 }
 
 export default connect(mapStateToProps)(React.memo(UserPanel));

@@ -13,6 +13,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         string AffName { get; set; }
 
+        bool IsPendingAff { get; set; }
+
         IEnumerable<ClaimsIdentity> ClaimIdentities { get; set; }
 
         ClaimsPrincipal UserClaim { get; }

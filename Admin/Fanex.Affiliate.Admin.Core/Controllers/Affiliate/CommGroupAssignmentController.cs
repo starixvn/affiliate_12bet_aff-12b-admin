@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.Enum;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Services;
@@ -17,7 +18,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.AssignCommGroup)]
+    [FunctionAuthorize(FunctionName = Function.AssignCommGroup, FunctionNameOption = Function.ManagePendingAff)]
     public class CommGroupAssignmentController : ReadOnlySessionBaseController
     {
         private const string PrivateGroupName = "[None]";
@@ -50,13 +51,24 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
             if (affId >= Validation.MinId)
             {
+                var permissions = SessionService.ClaimIdentities.SelectMany(i => i.Claims);
+                var affInfo = _affiliateService.GetAffiliateBasicInfo(affId);
+                var hasCommGroupPermission = permissions.Any(p => p.Type == Function.CommissionGroup);
+
+                if (!hasCommGroupPermission && !affInfo.Status.MatchWith(AffStatus.Pending))
+                {
+                    return Redirect("~/Portal/AccessDenied");
+                }
+
                 var param = new GetGroupListParam { AffId = affId };
-                var commGroupList = _commGroupAssignmentService.GetNormalCommGroupList(param);
+                var commGroupList = hasCommGroupPermission ? _commGroupAssignmentService.GetNormalCommGroupList(param)
+                                        : ManageCommGroup.NormalItems;
 
                 viewModel = new AssignNormalGroupViewModel
                 {
                     CommGroupList = commGroupList,
                     SelectedGroup = param.GroupId,
+                    HasCommGroupPermission = hasCommGroupPermission,
                     AffInfo = _affiliateService.GetAffiliateBasicInfo(affId)
                 };
             }

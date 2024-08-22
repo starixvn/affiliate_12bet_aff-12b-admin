@@ -11,7 +11,7 @@ describe('customer - user-panel - components - UserPanel', () => {
         isShowLoader: true,
         onClickMenu: jest.fn(),
         claimsPrincipal: { hasClaim: jest.fn(() => true) },
-        isPending: false
+        isWaitingApproval: false
     }
 
     it('Should render correctly with is pending', () => {
@@ -21,14 +21,14 @@ describe('customer - user-panel - components - UserPanel', () => {
     });
 
     it('Should render correctly with not pending', () => {
-        const props = Object.assign({}, defaultProps, { isPending: true });
+        const props = Object.assign({}, defaultProps, { isWaitingApproval: true });
         const wrapper = shallow(<UserPanel {...props}/>);
 
         expect(wrapper).toMatchSnapshot();
     });
 
     it('useEffect - should call onClickMenu', () => {
-        const props = Object.assign({}, defaultProps, { isPending: true });
+        const props = Object.assign({}, defaultProps, { isWaitingApproval: true });
         mount(<UserPanel {...props} />);
 
         expect(props.onClickMenu).toHaveBeenCalledWith('edit');

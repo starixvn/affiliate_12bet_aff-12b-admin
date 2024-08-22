@@ -11,5 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels
         public int SelectedGroup { get; set; }
 
         public AffiliateBasicInfo AffInfo { get; set; }
+
+        public bool HasCommGroupPermission { get; set; }
     }
 }

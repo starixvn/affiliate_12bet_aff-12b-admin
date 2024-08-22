@@ -8,7 +8,8 @@
 
         public const string UserIdKey = "__CustID";
         public const string OnUserIDKey = "__OnUserIDKey";
-        public const string AffIdKey = "AffId";
-        public const string AffNameKey = "AffName";
+        public const string AffIdKey = "__AffId";
+        public const string AffNameKey = "__AffName";
+        public const string IsPendingAffKey = "__IsPendingAff";
     }
 }
