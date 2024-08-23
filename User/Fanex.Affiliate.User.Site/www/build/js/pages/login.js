@@ -190,7 +190,7 @@ var Login = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("Auth/SignIn"),
+                    url: Site.resolveRelativeLangUrl("Auth/SignIn"),
                     data: postData,
                     dataType: "json",
                     cache: false,
@@ -202,16 +202,16 @@ var Login = (function ($) {
                                 PageTracking.addTrackingForLogin();
 
                                 setTimeout(function () {
-                                    Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview#MediaGallery"));
+                                    Site.redirect(Site.resolveRelativeLangUrl("UserPanel/Main/#AccountOverview#MediaGallery"));
                                 }, 10);
                             }
                             else {
-                                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
+                                Site.redirect(Site.resolveRelativeLangUrl("UserPanel/Main/#AccountOverview"));
                             }
                         }
                         else {
                             if (response.ShouldVerifyAccount) {
-                                Site.redirect(Site.resolveRelativeUrl('VerificationAccount'));
+                                Site.redirect(Site.resolveRelativeLangUrl('VerificationAccount'));
                             }
                             else {
                                 alert(response.Message);
@@ -273,7 +273,7 @@ var Login = (function ($) {
         },
 
         generateDialogCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
+            var captchaUrl = Site.resolveRelativeLangUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#loginDialogcaptchaImg").attr("src", captchaUrl);
         }
     };

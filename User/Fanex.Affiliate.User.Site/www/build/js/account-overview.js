@@ -43,7 +43,7 @@ var AccountOverview = (function ($) {
                 type: "GET",
                 dataType: "html",
                 cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/" + actionName),
+                url: Site.resolveRelativeLangUrl("UserPanel/" + actionName),
                 success: function success(response) {
                     $("#account-overview-content").html(response);
                 },

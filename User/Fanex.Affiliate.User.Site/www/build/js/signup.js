@@ -54,7 +54,7 @@ var WebSite = (function ($) {
                     '<div class="col-sm-1">' +
                         '<button type="button" class="btn btn-submit btnDeleteUrl" title="' + deleteLabel + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>' +
                     '</div>' +
-                    '<div class="col-sm-offset-3 col-sm-9"><span class="field-validation-valid validate-input help-block hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
+                    '<div class="col-sm-offset-3 col-sm-9"><span class="field-validation-error validate-input hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
                 '</div>';
 
             $("#websiteInfo").append(inputItem);
@@ -71,7 +71,7 @@ var WebSite = (function ($) {
                         '<input class="form-input urlInput" type="text" name="' + name + '" id="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
                         '<span class="button-toggle button-toggle-close btnDeleteUrl" title="' + deleteLabel + '"></span>' +
                     '</div>' +
-                    '<span class="field-validation-valid validate-input hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
+                    '<span class="field-validation-error validate-input hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
                 '</div>';
 
             $("#websiteInfo").append(inputItem);
@@ -181,7 +181,7 @@ var SignUp = (function ($) {
                 $("#btnSubmit").prop("disabled", !this.checked);
                 if (this.checked && !_isReadTermAndCondition) {
                     _isReadTermAndCondition = true;
-                    window.open(Site.resolveRelativeUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
+                    window.open(Site.resolveRelativeLangUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
                 }
             });
 
@@ -226,7 +226,7 @@ var SignUp = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("Signup/Index"),
+                    url: Site.resolveRelativeLangUrl("Signup/Index"),
                     data: postData,
                     dataType: "json",
                     cache: false,
@@ -291,7 +291,7 @@ var SignUp = (function ($) {
         },
 
         refreshCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
+            var captchaUrl = Site.resolveRelativeLangUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
             $("#signupCaptchaImg").attr("src", captchaUrl);
         }
     };

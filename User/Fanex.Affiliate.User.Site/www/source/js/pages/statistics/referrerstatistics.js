@@ -84,7 +84,7 @@
                 dataType: "html",
                 cache: false,
                 data: JSON.stringify(params),
-                url: Site.resolveRelativeUrl("UserPanel/ReferrersStatistics"),
+                url: Site.resolveRelativeLangUrl("UserPanel/ReferrersStatistics"),
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     $("#statisticsTable").html(response);
@@ -108,7 +108,7 @@
                 dataType: "html",
                 cache: false,
                 data: JSON.stringify(params),
-                url: Site.resolveRelativeUrl("UserPanel/Statistics/StatisticsDetailBySite"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Statistics/StatisticsDetailBySite"),
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     $("#statisticsDetailTable").html(response);

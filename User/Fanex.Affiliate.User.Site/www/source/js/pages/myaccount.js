@@ -30,7 +30,7 @@
             });
 
             $("#btnCancel").on("click", function () {
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverView"));
+                Site.redirect(Site.resolveRelativeLangUrl("UserPanel/Main/#AccountOverView"));
             });
         },
 
@@ -46,7 +46,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("UserPanel/MyAccount"),
+                    url: Site.resolveRelativeLangUrl("UserPanel/MyAccount"),
                     data: postData,
                     dataType: "json",
                     cache: false,

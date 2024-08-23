@@ -1649,7 +1649,7 @@ var LandingPageStatistics = (function ($) {
                 dataType: "html",
                 cache: false,
                 data: JSON.stringify(params),
-                url: Site.resolveRelativeUrl("UserPanel/LandingPageStatistics"),
+                url: Site.resolveRelativeLangUrl("UserPanel/LandingPageStatistics"),
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     $("#statisticsTable").html(response);
@@ -1673,7 +1673,7 @@ var LandingPageStatistics = (function ($) {
                 dataType: "html",
                 cache: false,
                 data: JSON.stringify(params),
-                url: Site.resolveRelativeUrl("UserPanel/Statistics/StatisticsDetailBySite"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Statistics/StatisticsDetailBySite"),
                 contentType: "application/json; charset=UTF-8",
 
                 success: function (response) {

@@ -79,7 +79,7 @@
                     dataType: "json",
                     cache: false,
                     data: { bannerId },
-                    url: Site.resolveRelativeUrl("UserPanel/MediaGallery/CountNumberOfCopies"),
+                    url: Site.resolveRelativeLangUrl("UserPanel/MediaGallery/CountNumberOfCopies"),
                     success: function (response) {
                     },
                     beforeSend: function () {
@@ -108,7 +108,7 @@
                 dataType: "json",
                 cache: false,
                 data: param,
-                url: Site.resolveRelativeUrl("UserPanel/MediaGallery/GetSize"),
+                url: Site.resolveRelativeLangUrl("UserPanel/MediaGallery/GetSize"),
                 success: function (response) {
                     var html = Site.buildOptionList(response, "Size", "Size", true);
                     var previousSelectedSize = $("#Size").val();
@@ -149,7 +149,7 @@
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/MediaGallery/GetBanner"),
+                url: Site.resolveRelativeLangUrl("UserPanel/MediaGallery/GetBanner"),
                 success: function (response) {
                     $("#marketingDataList").html(response);
                     onSuccess && onSuccess();

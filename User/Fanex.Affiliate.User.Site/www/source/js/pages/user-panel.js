@@ -75,7 +75,7 @@ var UserPanel = (function ($) {
             var actionName = actionUrl.split('?')[0];
             _me.activeMenu(actionName);
 
-            var url = Site.resolveRelativeUrl("UserPanel/" + actionUrl);
+            var url = Site.resolveRelativeLangUrl("UserPanel/" + actionUrl);
 
             if (_ajaxRequest !== null) {
                 _ajaxRequest.abort();

@@ -54,7 +54,7 @@
                 dataType: "html",
                 cache: false,
                 data: JSON.stringify(params),
-                url: Site.resolveRelativeUrl("UserPanel/Summary/DashBoard"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Summary/DashBoard"),
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     $("#dashboard-section").html(response);
@@ -82,7 +82,7 @@
                 dataType: "html",
                 cache: false,
                 data: JSON.stringify(params),
-                url: Site.resolveRelativeUrl("UserPanel/Summary/" + actionName),
+                url: Site.resolveRelativeLangUrl("UserPanel/Summary/" + actionName),
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     $("#details-section-content").html(response);

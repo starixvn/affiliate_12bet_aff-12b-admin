@@ -51,7 +51,7 @@
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/AffiliateLink/GenerateLink"),
+                url: Site.resolveRelativeLangUrl("UserPanel/AffiliateLink/GenerateLink"),
                 success: function (response) {
                     $("#textLinkList").html(response);
                     that.resiterQrcodeEvent();

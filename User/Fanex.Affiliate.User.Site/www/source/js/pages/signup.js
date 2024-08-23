@@ -22,7 +22,7 @@
                 $("#btnSubmit").prop("disabled", !this.checked);
                 if (this.checked && !_isReadTermAndCondition) {
                     _isReadTermAndCondition = true;
-                    window.open(Site.resolveRelativeUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
+                    window.open(Site.resolveRelativeLangUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
                 }
             });
 
@@ -67,7 +67,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("Signup/Index"),
+                    url: Site.resolveRelativeLangUrl("Signup/Index"),
                     data: postData,
                     dataType: "json",
                     cache: false,
@@ -132,7 +132,7 @@
         },
 
         refreshCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
+            var captchaUrl = Site.resolveRelativeLangUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
             $("#signupCaptchaImg").attr("src", captchaUrl);
         }
     };

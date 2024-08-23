@@ -58,7 +58,7 @@
             var year = $("#year").val();
             $.ajax({
                 type: "POST",
-                url: Site.resolveRelativeUrl("UserPanel/CommissionReport"),
+                url: Site.resolveRelativeLangUrl("UserPanel/CommissionReport"),
                 data: JSON.stringify({ "year": year }),
                 dataType: "json",
                 cache: false,

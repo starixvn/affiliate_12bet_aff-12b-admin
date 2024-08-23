@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
     public class VerificationAccountController : AuthBaseController
     {
         private const int CaptchaImgWidth = 74;
-        private const int CaptchaImgHeight = 32;
+        private const int CaptchaImgHeight = 26;
 
         private readonly IAccountRepository _accountRepository;
         private readonly IVerificationService _verificationService;

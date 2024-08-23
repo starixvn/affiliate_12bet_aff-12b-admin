@@ -35,7 +35,7 @@
                 var postData = $form.serializeObject();
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("ContactUs/Index"),
+                    url: Site.resolveRelativeLangUrl("ContactUs/Index"),
                     data: postData,
                     dataType: "json",
                     cache: false,
@@ -102,7 +102,7 @@
         },
 
         refreshCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
+            var captchaUrl = Site.resolveRelativeLangUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
             $("#contactUsCaptchaImg").attr("src", captchaUrl);
         }
     };

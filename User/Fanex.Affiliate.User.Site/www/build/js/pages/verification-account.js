@@ -114,7 +114,7 @@ var VerificationAccount = (function () {
             });
         },
         generateCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());
+            var captchaUrl = Site.resolveRelativeLangUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());
             $("#verifyAccCaptchaImg").attr("src", captchaUrl);
         },
         sendCode: function () {
@@ -134,7 +134,7 @@ var VerificationAccount = (function () {
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("VerificationAccount/SendCode"),
+                    url: Site.resolveRelativeLangUrl("VerificationAccount/SendCode"),
                     data: { __RequestVerificationToken: token, email: email },
                     dataType: "json",
                     cache: false,
@@ -217,7 +217,7 @@ var VerificationAccount = (function () {
                     success: function (response) {
                         if (response.IsOk) {
                             Site.showLoader();
-                            Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
+                            Site.redirect(Site.resolveRelativeLangUrl("UserPanel/Main/#AccountOverview"));
                         }
                         else if (response.IsExpired) {
                             alert($("<div/>").html(resource.verificationFailed).text());

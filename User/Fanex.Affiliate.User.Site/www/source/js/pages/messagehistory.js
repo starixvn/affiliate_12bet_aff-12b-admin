@@ -80,7 +80,7 @@
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("News/GetMessageHistory"),
+                url: Site.resolveRelativeLangUrl("News/GetMessageHistory"),
                 success: function (response) {
                     $("#messageDataList").html(response);
                     onSuccess && onSuccess();

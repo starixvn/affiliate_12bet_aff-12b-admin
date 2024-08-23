@@ -1239,7 +1239,7 @@ var MarketingBase = (function ($) {
                 dataType: "json",
                 cache: false,
                 data: param,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetFiltersByCountry"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetFiltersByCountry"),
                 success: function (response) {
                     if (response && response.length == 0) {
                         $("#btnMarketingSubmit").prop("disabled", true);
@@ -1394,7 +1394,7 @@ var AffiliateLink = (function ($) {
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/AffiliateLink/GenerateLink"),
+                url: Site.resolveRelativeLangUrl("UserPanel/AffiliateLink/GenerateLink"),
                 success: function (response) {
                     $("#textLinkList").html(response);
                     that.resiterQrcodeEvent();

@@ -46,7 +46,7 @@
                                     <input type="text" class="form-input" autocomplete="off" data-val="true" data-val-required="@Lang.EmailIsRequired" id="Email" name="Email" />
                                     <button type="button" class="btn btn-sendcode custom-button" id="btnSendCode">@Lang.SendCode</button>
                                 </div>
-                                 <span class="validate-input help-block field-validation-error" data-valmsg-for="Email" data-valmsg-replace="true" id="emailValidationMessage"></span>
+                                 <span class="validate-input field-validation-error hide" data-valmsg-for="Email" data-valmsg-replace="true" id="emailValidationMessage"></span>
                             </div>
                         </div>
                     </form>
@@ -62,20 +62,20 @@
                                 <div class="items validate-group">
                                     <label for="Usename" class="custom-label">@Lang.UsernameVerification <span class="red-warn">*</span></label>
                                     <input type="text" class="form-input" autocomplete="off" data-val="true" data-val-required="@Lang.UsernameIsRequired" id="Usename" name="Usename" />
-                                    <span class="validate-input help-block field-validation-error" data-valmsg-for="Usename" data-valmsg-replace="true"></span>
+                                    <span class="validate-input field-validation-error hide" data-valmsg-for="Usename" data-valmsg-replace="true"></span>
                                 </div>
 
                                 <div class="items validate-group">
                                     <label for="Password" class="custom-label">@Lang.PasswordVerification <span class="red-warn">*</span></label>
                                     <input type="password" class="form-input" data-val="true" data-val-required="@Lang.PasswordIsRequired" id="Password" name="Password" autocomplete="off" />
-                                    <span class="validate-input help-block field-validation-error" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                                    <span class="validate-input field-validation-error hide" data-valmsg-for="Password" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
                             <div class="form-group form-columns form-columns-2">
                                 <div class="items validate-group">
                                     <label for="Code" class="custom-label">@Lang.VerificationCode <span class="red-warn">*</span></label>
                                     <input type="text" class="form-input" autocomplete="off" data-val="true" data-val-required="@Lang.VerificationCodeIsRequired" id="Code" name="Code" />
-                                    <span class="validate-input help-block field-validation-error" data-valmsg-for="Code" data-valmsg-replace="true"></span>
+                                    <span class="validate-input field-validation-error hide" data-valmsg-for="Code" data-valmsg-replace="true"></span>
                                 </div>
                                 <div class="items validate-group">
                                     <label for="Captcha" class="custom-label">@Lang.Captcha <span class="red-warn">*</span></label>
@@ -85,7 +85,7 @@
                                             <img id="verifyAccCaptchaImg" src="@Url.RenderLanguageContent("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />
                                         </div>
                                     </div>
-                                    <span class="validate-input help-block field-validation-valid" data-valmsg-for="Code" data-valmsg-replace="true"></span>
+                                    <span class="validate-input field-validation-error hide" data-valmsg-for="Code" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
 

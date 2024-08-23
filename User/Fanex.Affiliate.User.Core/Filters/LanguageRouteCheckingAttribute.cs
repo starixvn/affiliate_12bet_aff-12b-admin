@@ -1,10 +1,8 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Controllers;
-using Fanex.Affiliate.User.Core.Extensions;
 using System;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Filters
@@ -15,9 +13,8 @@ namespace Fanex.Affiliate.User.Core.Filters
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var preferedUrlLang = filterContext.RouteData.Values["lang"]?.ToString();
-
             if (!filterContext.HttpContext.Request.IsAjaxRequest() &&
-                (string.IsNullOrEmpty(preferedUrlLang) || Regex.IsMatch(filterContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath, "~/((\\w{2}|hien|hitg)/?)?$")))
+                (string.IsNullOrEmpty(preferedUrlLang) || Regex.IsMatch(filterContext.HttpContext.Request.RawUrl, "/((\\w{2}|hien|hitg)/?)?$")))
             {
                 var systemService = DependencyResolver.Current.GetService<ISystemService>();
                 var favoriteLanguage = systemService.GetFavoriteLanguage();

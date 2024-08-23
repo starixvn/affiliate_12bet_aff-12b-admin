@@ -99,10 +99,10 @@ var Layout = (function ($) {
                 switch (status) {
                     case 401:
                     case 403:
-                        window.location.href = Site.resolveRelativeUrl("");
+                        window.location.href = Site.resolveRelativeLangUrl("Home");
                         break;
                     case 404:
-                        window.location.href = Site.resolveRelativeUrl("Notify/PageNotFound");
+                        window.location.href = Site.resolveRelativeLangUrl("Notify/PageNotFound");
                         break;
                     case 500:
                         alert($("<div/>").html(window.Lang.ServerError).text());
@@ -115,7 +115,7 @@ var Layout = (function ($) {
         renderHotNews: function () {
             $.ajax({
                 type: "GET",
-                url: Site.resolveRelativeUrl("News/LatestHotNews"),
+                url: Site.resolveRelativeLangUrl("News/LatestHotNews"),
                 dataType: "html",
                 cache: false,
                 success: function (response) {

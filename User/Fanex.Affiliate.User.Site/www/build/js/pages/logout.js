@@ -17,7 +17,7 @@ var Logout = (function ($) {
 
         handleShowFeedback: function handleShowFeedback() {
             $.ajax({
-                url: Site.resolveRelativeUrl("UserPanel/Feedback/Index?isClickLogout=true"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Feedback/Index?isClickLogout=true"),
                 type: "GET",
                 dataType: "html",
                 cache: false,
@@ -28,7 +28,7 @@ var Logout = (function ($) {
                 complete: function complete(jqXHR, textStatus) {
                     if (!$("#affFeedbackContainer").length) {
                         $("#affFeedback").remove();
-                        window.location.href = Site.resolveRelativeUrl("Auth/SignOut");
+                        window.location.href = Site.resolveRelativeLangUrl("Auth/SignOut");
                     }
                 }
             });

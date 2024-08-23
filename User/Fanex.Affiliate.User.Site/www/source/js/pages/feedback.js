@@ -59,7 +59,7 @@
             }
 
             $.ajax({
-                url: Site.resolveRelativeUrl("UserPanel/Feedback/CloseFeedback"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Feedback/CloseFeedback"),
                 type: "POST",
                 dataType: "json",
                 cache: false,
@@ -77,7 +77,7 @@
                 Message: $('#feedbackMessage').val().trim()
             }
             $.ajax({
-                url: Site.resolveRelativeUrl("UserPanel/Feedback/Insert"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Feedback/Insert"),
                 type: "POST",
                 dataType: "json",
                 cache: false,
@@ -110,7 +110,7 @@
             window.removeEventListener("resize", _me.adjustAffFeedbackRemovePosition);
 
             if (window.feedback.isClickLogout) {
-                window.location.href = Site.resolveRelativeUrl("Auth/SignOut");
+                window.location.href = Site.resolveRelativeLangUrl("Auth/SignOut");
             }
         },
 
