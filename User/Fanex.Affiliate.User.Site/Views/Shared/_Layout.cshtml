@@ -6,7 +6,7 @@
     var systemService = DependencyResolver.Current.GetService<ISystemService>();
     var userSession = sessionService.UserSession;
     var languageList = systemService.GetSystemTargetLanguages()
-                                        .Where(l => !l.LanguageCode.Equals("en-GB") && !l.LanguageCode.Equals("hi") && !l.LanguageCode.Equals("te-IN"));
+                                        .Where(l => !l.LanguageCode.Equals("en-GB") && !l.LanguageCode.Equals("te-IN"));
     var currentLanguage = sessionService.CurrentLanguage;
     var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
     var path = HttpContext.Current.Request.Path;
