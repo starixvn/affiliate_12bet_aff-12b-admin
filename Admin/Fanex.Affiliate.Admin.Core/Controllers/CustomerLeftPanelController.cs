@@ -91,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [MultiFunctionAuthorize(FunctionName = Function.EditAffiliate, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
+        [MultiFunctionAuthorize(FunctionName = Function.AffiliateInfo, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
         {
@@ -110,7 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [MultiFunctionAuthorize(FunctionName = Function.AffAccountStatus, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
+        [MultiFunctionAuthorize(FunctionName = Function.AffiliateInfo, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateStatus(UpdateStatusParam param)
         {
@@ -141,7 +141,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffAccountStatus, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AffiliateInfo, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateClosedStatus(UpdateClosedStatusParam param)
         {

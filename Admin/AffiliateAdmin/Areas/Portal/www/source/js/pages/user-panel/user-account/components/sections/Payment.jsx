@@ -98,13 +98,15 @@ export class Payment extends PureComponent {
                 }
             </Form>
         )
+
+        return null;
     }
 }
 
-function mapStateToProps({ edit, claimsPrincipal }) {
+function mapStateToProps({ affCommonInfo, edit, claimsPrincipal }) {
     const { userAccountInfo, hasWriteEditAffClaim, hasWriteManagePendingAffClaim } = edit;
     const hasReadClaim = claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo)
-        || (userAccountInfo.IsPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff));
+        || (affCommonInfo.isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff));
     const hasWriteClaim = (claimsPrincipal.hasWriteClaim(claimResource.AffPaymentInfo) && hasWriteEditAffClaim) || hasWriteManagePendingAffClaim;
 
     return Object.assign({}, { userAccountInfo, hasReadClaim, hasWriteClaim });

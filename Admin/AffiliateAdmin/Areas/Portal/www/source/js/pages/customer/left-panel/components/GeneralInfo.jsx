@@ -96,9 +96,9 @@ export const GeneralInfo = (props) => {
 
 function mapStateToProps({ leftPanel, claimsPrincipal }) {
     const { affiliateInfo } = leftPanel;
-    const isPendingAffStatus = affiliateInfo.IsPendingAff;
-    const isManagePendingAffVisible = isPendingAffStatus && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
-    const isManagePendingAffModifiable = isPendingAffStatus && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
+    const isPendingAff = affiliateInfo.IsPendingAff;
+    const isManagePendingAffVisible = isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
+    const isManagePendingAffModifiable = isPendingAff && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
     return Object.assign({}, { affiliateInfo, claimsPrincipal, isManagePendingAffVisible, isManagePendingAffModifiable });
 }
 

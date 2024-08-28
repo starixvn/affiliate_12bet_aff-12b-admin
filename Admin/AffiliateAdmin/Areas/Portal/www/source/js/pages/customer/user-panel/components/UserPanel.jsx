@@ -41,7 +41,7 @@ export const UserPanel = (props) => {
 }
 
 function mapStateToProps({ isShowLoaderUserPanel, claimsPrincipal, affCommonInfo }) {
-    const isPendingAff = affCommonInfo && affCommonInfo.isPendingAff;
+    const isPendingAff = affCommonInfo.isPendingAff;
 
     return Object.assign({}, { isShowLoader: isShowLoaderUserPanel, claimsPrincipal, isPendingAff });
 }

@@ -216,14 +216,14 @@ export class SettingPanel extends PureComponent {
 
 function mapStateToProps({ leftPanel, claimsPrincipal, today }) {
     const { affiliateInfo, affName } = leftPanel;
-    const isStatusModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffAccountStatus);
+    const isStatusModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffiliateInfo);
     const isAssignCommGroupVisible = claimsPrincipal.hasReadClaim(claimResource.AssignCommGroup);
     const isCommGroupVisible = claimsPrincipal.hasReadClaim(claimResource.CommissionGroup);
-    const isAffTypeModifiable = claimsPrincipal.hasReadClaim(claimResource.EditAffiliate);
+    const isAffTypeModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffiliateInfo);
     
-    const isPendingAffStatus = affiliateInfo.IsPendingAff;
-    const isManagePendingAffVisible = isPendingAffStatus && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
-    const isManagePendingAffModifiable = isPendingAffStatus && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
+    const isPendingAff = affiliateInfo.IsPendingAff;
+    const isManagePendingAffVisible = isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
+    const isManagePendingAffModifiable = isPendingAff && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
     const isStatusVisible = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus) || isManagePendingAffVisible;
 
     return Object.assign({}, {

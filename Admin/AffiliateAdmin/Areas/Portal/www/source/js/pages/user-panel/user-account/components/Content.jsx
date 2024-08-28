@@ -114,7 +114,6 @@ export class Content extends PureComponent {
     render() {
         const { isSuccess, isShowMessage, message } = this.state;
         const { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim, hasReadManagePendingAffClaim } = this.props;
-        console.log(hasReadManagePendingAffClaim);
 
         const hasReadEditAffClaim = userAccountInfo && (claimsPrincipal.hasReadClaim(claimResource.EditAffiliate) || hasReadManagePendingAffClaim);
 
