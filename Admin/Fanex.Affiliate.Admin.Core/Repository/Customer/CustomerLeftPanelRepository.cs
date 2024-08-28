@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Customer
@@ -90,16 +89,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                 objectDb.SetParameterValue("AffType", param.AffType);
                 objectDb.SetParameterValue("IP", param.Ip);
 
-                objectDb.SetParameterValue("ErrCode", DefaultValue.Int);
+
+                AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
 
-                var code = objectDb.GetParameterValue("ErrCode");
-
-                return new ResultInfo
-                {
-                    Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
-                };
+                return GetResultInfo(objectDb);
             }
         }
 

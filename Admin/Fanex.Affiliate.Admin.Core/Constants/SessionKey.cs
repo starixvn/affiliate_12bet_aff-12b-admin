@@ -10,6 +10,5 @@
         public const string OnUserIDKey = "__OnUserIDKey";
         public const string AffIdKey = "__AffId";
         public const string AffNameKey = "__AffName";
-        public const string IsPendingAffKey = "__IsPendingAff";
     }
 }

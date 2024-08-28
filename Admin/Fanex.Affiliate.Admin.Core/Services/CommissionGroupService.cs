@@ -21,6 +21,11 @@ namespace Fanex.Affiliate.Admin.Core.Services
             _commGroupCommonService = commGroupCommonService;
         }
 
+        public IEnumerable<Deduction> GetDeductionList()
+        {
+            return _commGroupRepository.GetDeductionList();
+        }
+
         public IEnumerable<CommissionGroupSetting> GetCommissionGroupList(GetCommissionGroupParam param)
         {
             var rawData = _commGroupRepository.GetCommissionGroupList(param);

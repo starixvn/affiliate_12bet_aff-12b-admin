@@ -61,20 +61,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             }
         }
 
-        public bool IsPendingAff
-        {
-            get
-            {
-                var temp = HttpContext.Current.Session[IsPendingAffKey];
-
-                return temp != null && (bool)temp;
-            }
-            set
-            {
-                HttpContext.Current.Session[IsPendingAffKey] = value;
-            }
-        }
-
         public IEnumerable<ClaimsIdentity> ClaimIdentities
         {
             get => HttpContext.Current.Session[ClaimSessionKey] as IEnumerable<ClaimsIdentity>;

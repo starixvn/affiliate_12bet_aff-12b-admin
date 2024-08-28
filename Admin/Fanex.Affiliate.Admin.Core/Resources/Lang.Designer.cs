@@ -348,6 +348,24 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not authorized for this affiliate..
+        /// </summary>
+        public static string NotAuthorizedAff {
+            get {
+                return ResourceManager.GetString("NotAuthorizedAff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function..
+        /// </summary>
+        public static string NotAuthorizedFunction {
+            get {
+                return ResourceManager.GetString("NotAuthorizedFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter the content of message, one language at least..
         /// </summary>
         public static string PleaseEnterContent {
@@ -380,15 +398,6 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string Text12BetDomains {
             get {
                 return ResourceManager.GetString("Text12BetDomains", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update is failed!.
-        /// </summary>
-        public static string UpdateIsFailed {
-            get {
-                return ResourceManager.GetString("UpdateIsFailed", resourceCulture);
             }
         }
         

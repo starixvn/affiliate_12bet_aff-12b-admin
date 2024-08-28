@@ -10,12 +10,12 @@ export default class AssignGroup extends Component {
     constructor(props) {
         super(props);
 
-        let { commGroupList, selectedGroup, affInfo, hasCommGroupPermission } = window.initialState;
+        let { commGroupList, selectedGroup, affInfo, hasCommGroupVisible } = window.initialState;
         if (selectedGroup === 0) {
             selectedGroup = commGroupList && commGroupList.length ? Number(commGroupList[0].Id) : 0
         }
 
-        this.hasCommGroupPermission = hasCommGroupPermission;
+        this.hasCommGroupVisible = hasCommGroupVisible;
         this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, {
             isPrivateGroup: false,
             isShowLoader: false,
@@ -32,7 +32,7 @@ export default class AssignGroup extends Component {
 
     handleCheck = (event) => {
         const { checked } = event.target;
-        this.hasCommGroupPermission && this.setState({ isPrivateGroup: checked });
+        this.hasCommGroupVisible && this.setState({ isPrivateGroup: checked });
     }
 
     handleSave = async () => {
@@ -111,7 +111,7 @@ export default class AssignGroup extends Component {
                         </Col>
                     </FormGroup>
                     {
-                        this.hasCommGroupPermission && <FormGroup row>
+                        this.hasCommGroupVisible && <FormGroup row>
                             <Label className="font-weight-bold" for="isPrivateGroup" xs="4">Use private group: </Label>
                             <Col xs="5">
                                 <FormGroup check>

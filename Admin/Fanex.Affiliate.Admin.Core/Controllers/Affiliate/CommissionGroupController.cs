@@ -1,12 +1,15 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 using System.Linq;
@@ -19,9 +22,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     {
         private const int MaxLength = 100;
 
-        private readonly ICommGroupCommonService _commGroupCommonService;
+        private const string PrivateGroupName = "[None]";
 
         private readonly ICommissionGroupService _commissionGroupService;
+
+        private readonly ICommGroupAssignmentService _commGroupAssignmentService;
 
         private readonly ISystemService _systemService;
 
@@ -29,11 +34,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             ISessionService sessionService,
             ICommissionGroupService commissionService,
             ISystemService systemService,
-            ICommGroupCommonService commGroupCommonService) : base(sessionService)
+            ICommGroupAssignmentService commGroupAssignmentService) : base(sessionService)
         {
             _commissionGroupService = commissionService;
             _systemService = systemService;
-            _commGroupCommonService = commGroupCommonService;
+            _commGroupAssignmentService = commGroupAssignmentService;
         }
 
         [HttpGet]
@@ -43,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var viewModel = new CommissionGroupViewModel
             {
                 ProductList = _systemService.GetProductList(),
-                DeductionList = _commGroupCommonService.GetDeductionList(),
+                DeductionList = _commissionGroupService.GetDeductionList(),
             };
 
             return View("~/Areas/Portal/Views/Affiliate/Index.cshtml", viewModel);
@@ -56,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var viewModel = new CommissionGroupViewModel
             {
                 ProductList = _systemService.GetProductList(),
-                DeductionList = _commGroupCommonService.GetDeductionList(),
+                DeductionList = _commissionGroupService.GetDeductionList(),
             };
 
             return new JsonNetResult(viewModel);
@@ -114,7 +119,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return CreateErrorResult();
+                return ModelState.GenerateErrorResult();
             }
 
             var groupNameValidation = ValidateGroupName(commGroup.GroupName);
@@ -156,7 +161,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (!ModelState.IsValid || commGroup.GroupId < Validation.MinId)
             {
-                return CreateErrorResult();
+                return ModelState.GenerateErrorResult();
             }
 
             var groupNameValidation = ValidateGroupName(commGroup.GroupName);
@@ -199,7 +204,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return CreateErrorResult();
+                return ModelState.GenerateErrorResult();
             }
 
             param.UserId = SessionService.UserId;
@@ -211,11 +216,64 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             };
         }
 
-        private ActionResult CreateErrorResult()
+        [HttpGet]
+        public ActionResult AssignPrivateGroup(int affId)
         {
+            var viewModel = affId >= Validation.MinId ?
+                new AssignPrivateGroupViewModel
+                {
+                    ProductList = _systemService.GetProductList(),
+                    DeductionList = _commissionGroupService.GetDeductionList(),
+                    AffInfo = _commGroupAssignmentService.GetAffiliateBasicInfo(affId)
+                } :
+                new AssignPrivateGroupViewModel();
+
+            return View("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewModel);
+        }
+
+        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult AssignPrivateGroup(CommissionGroupSetting commGroup, AffiliateBasicInfo affInfo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return ModelState.GenerateErrorResult();
+            }
+
+            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_systemService, commGroup.PlatformFeeList);
+            if (platformFeeValidation.IsSuccessful)
+            {
+                var assignParam = new CreateUpdateCommissionGroupParam
+                {
+                    UserId = SessionService.UserId,
+                    GroupId = affInfo.AffId,
+                    GroupName = affInfo.UserName,
+                    Description = PrivateGroupName,
+                    QmTurnover = commGroup.QmTurnover,
+                    IsApplyBonus = commGroup.IsApplyBonus,
+                    TierSettingList = commGroup.TierSettingList,
+                    FdmSettingList = commGroup.FdmSettingList,
+                    PlatformFeeList = commGroup.PlatformFeeList,
+                    OperationalFee = commGroup.OperationalFee,
+                    BankingFee = commGroup.BankingFee,
+                    Ip = Request.UserHostAddress
+                };
+
+                var emailParam = new AffInformationEmail
+                {
+                    RootUrl = SiteDomainHelper.GetRootUrl(this)
+                };
+
+                return new JsonNetResult
+                {
+                    Data = _commGroupAssignmentService.AssignPrivateGroup(assignParam, affInfo, emailParam)
+                };
+            }
+
             return new JsonNetResult
             {
-                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
+                Data = ResultInfo.GenerateErr(platformFeeValidation.Message)
             };
         }
 

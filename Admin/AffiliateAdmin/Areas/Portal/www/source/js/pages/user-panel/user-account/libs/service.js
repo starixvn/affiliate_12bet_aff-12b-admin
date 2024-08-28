@@ -47,27 +47,29 @@ export const renderSelectionForm = (name, label, items, selectedKey, isDisabled,
     )
 }
 
-export const renderClaimBaseInputForm = (claimPrincipal, hasWriteParentClaim, claimName, name, label, inputValue, isRequired, changeHandler) => {
-    const hasReadClaim = claimPrincipal.hasReadClaim(claimName);
-    const hasWriteClaim = claimPrincipal.hasWriteClaim(claimName);
+export const renderClaimBaseInputForm = (userClaims, claimName, name, label, inputValue, isRequired, changeHandler) => {
+    const { claimsPrincipal, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim } = userClaims;
+    const hasReadClaim = claimsPrincipal.hasReadClaim(claimName);
+    const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimName);
 
-    if (!hasReadClaim)
+    if (!hasReadClaim && !hasReadManagePendingAffClaim)
         return null;
     else {
-        const isDisabled = !hasWriteClaim || !hasWriteParentClaim;
+        const isDisabled = !(hasWriteClaim && hasWriteEditAffClaim) && !hasWriteManagePendingAffClaim;
 
         return renderInputForm(name, label, inputValue, isDisabled, isRequired, changeHandler);
     }
 }
 
-export const renderClaimBaseSelectionForm = (claimPrincipal, hasWriteParentClaim, claimName, name, label, items, selectedKey, isRequired, changeHandler, defaultOption) => {
-    const hasReadClaim = claimPrincipal.hasReadClaim(claimName);
-    const hasWriteClaim = claimPrincipal.hasWriteClaim(claimName);
+export const renderClaimBaseSelectionForm = (userClaims, claimName, name, label, items, selectedKey, isRequired, changeHandler, defaultOption) => {
+    const { claimsPrincipal, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim } = userClaims;
+    const hasReadClaim = claimsPrincipal.hasReadClaim(claimName);
+    const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimName);
 
-    if (!hasReadClaim)
+    if (!hasReadClaim && !hasReadManagePendingAffClaim)
         return null;
     else {
-        const isDisabled = !hasWriteClaim || !hasWriteParentClaim;
+        const isDisabled = !(hasWriteClaim && hasWriteEditAffClaim) && !hasWriteManagePendingAffClaim;
 
         return renderSelectionForm(name, label, items, selectedKey, isDisabled, isRequired, changeHandler, defaultOption);
     }

@@ -135,12 +135,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             }
         }
 
-        private static IEnumerable<DTO.CommissionGroup.CommGroup> GetCommGroupList(IDataReader reader)
+        private static IEnumerable<CommGroup> GetCommGroupList(IDataReader reader)
         {
-            var commGroupList = new List<DTO.CommissionGroup.CommGroup>();
+            var commGroupList = new List<CommGroup>();
             while (reader.Read())
             {
-                commGroupList.Add(new DTO.CommissionGroup.CommGroup
+                commGroupList.Add(new CommGroup
                 {
                     RowIdx = Convert.ToInt32(reader["RowIDX"]),
                     GroupId = Convert.ToInt32(reader[Field.GroupId]),

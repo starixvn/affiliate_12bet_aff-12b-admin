@@ -20,8 +20,22 @@ export const hasWriteEditAffClaim = createReducer(false, {
     }
 });
 
+export const hasReadManagePendingAffClaim = createReducer(false, {
+    [types.SET_HAS_READ_MANAGE_PENDING_AFF_CLAIM](prevState, action) {
+        return action.data;
+    }
+});
+
+export const hasWriteManagePendingAffClaim = createReducer(false, {
+    [types.SET_HAS_WRITE_MANAGE_PENDING_AFF_CLAIM](prevState, action) {
+        return action.data;
+    }
+});
+
 export default combineReducers({
     userAccountInfo,
     moreSiteUrlsList,
-    hasWriteEditAffClaim
+    hasWriteEditAffClaim,
+    hasReadManagePendingAffClaim,
+    hasWriteManagePendingAffClaim
 });

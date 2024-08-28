@@ -26,6 +26,20 @@ export const setHasWriteEditAffClaim = (data) => {
     }
 }
 
+export const setHasWriteManagePendingAffClaim = (data) => {
+    return {
+        type: types.SET_HAS_WRITE_MANAGE_PENDING_AFF_CLAIM,
+        data
+    }
+}
+
+export const setHasReadManagePendingAffClaim = (data) => {
+    return {
+        type: types.SET_HAS_READ_MANAGE_PENDING_AFF_CLAIM,
+        data
+    }
+}
+
 export const getUserAccountInfo = (affId) => async (dispatch) => {
     dispatch(toggleLoaderUserPanel(true));
     const url = 'Portal/UserPanel/UserAccount/GetUserAccountInfo';

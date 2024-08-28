@@ -8,13 +8,15 @@ import LeftPanel from '../../left-panel/components/AppContainer';
 import UserPanel from '../../user-panel/components/UserPanel';
 import { setSelectedUserPanel } from '../../user-panel/actions';
 import Loader from '../../../../components/Loader';
+import { status } from '../../common/libs/constants';
 
 export const CustomerStatistics = React.lazy(() =>
     import(/* webpackChunkName: "customer-statistics" */ '../../customer-statistics/components/AppContainer'));
 
 export const AppContainer = (props) => {
-    const { affId, selectedUserPanel, status, isShowLoader } = props;
-    const isWaitingApproval = status && (status.toLowerCase() === 'pending' || status.toLowerCase() === 'disapproved');
+    const { selectedUserPanel, affCommonInfo, isShowLoader } = props;
+    const statusLowerCase = affCommonInfo && affCommonInfo.status && affCommonInfo.status.toLowerCase();
+    const isWaitingApproval = statusLowerCase === status.Pending || statusLowerCase === status.Disapproved;
 
     return (
         <AppLayout>
@@ -25,7 +27,7 @@ export const AppContainer = (props) => {
                         <LeftPanel />
                     </div>
                     {
-                        affId && (
+                        affCommonInfo && affCommonInfo.affId && (
                             <div className="right-panel mx-2">
                                 <div className="customer-statistics">
                                     {
@@ -53,9 +55,7 @@ export const AppContainer = (props) => {
 }
 
 function mapStateToProps({ selectedUserPanel, affCommonInfo, isShowLoader }) {
-    const { affId, status } = affCommonInfo || { affId: null, status: null }
-
-    return Object.assign({}, { selectedUserPanel, affId, status, isShowLoader });
+    return Object.assign({}, { selectedUserPanel, affCommonInfo, isShowLoader });
 }
 
 function mapDispatchToProps(dispatch) {

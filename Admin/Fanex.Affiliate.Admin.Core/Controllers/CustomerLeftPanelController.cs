@@ -18,7 +18,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class CustomerLeftPanelController : Controller
     {
-        private bool IsPendingAff;
         private readonly ICustomerLeftPanelService _customerLeftPanelService;
         private readonly ISessionService _sessionService;
 
@@ -27,8 +26,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             ICustomerLeftPanelService customerLeftPanelService
             )
         {
-            _customerLeftPanelService = customerLeftPanelService;
             _sessionService = sessionService;
+            _customerLeftPanelService = customerLeftPanelService;
         }
 
         [ValidateAntiForgeryHeader]
@@ -43,7 +42,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             _sessionService.AffName = affUsername;
             var affInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, _sessionService.OnUserId.ToString(), Session.SessionID);
-            this.IsPendingAff = affInfo.Status?.ToLowerInvariant() == "pending";
 
             return new JsonNetResult
             {
@@ -67,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LanguageAmendment, IsHost = true)]
+        [MultiFunctionAuthorize(FunctionName = Function.LanguageAmendment, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateLanguage(UpdateLanguageParam param)
         {
@@ -93,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.EditAffiliate, IsHost = true)]
+        [MultiFunctionAuthorize(FunctionName = Function.EditAffiliate, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
         {
@@ -112,7 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffAccountStatus, IsHost = true)]
+        [MultiFunctionAuthorize(FunctionName = Function.AffAccountStatus, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateStatus(UpdateStatusParam param)
         {

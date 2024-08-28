@@ -285,9 +285,6 @@
   <data name="MaxLenghtOfFileName" xml:space="preserve">
     <value>The maximum length of file name is 50. Please either choose another file name or select another file.</value>
   </data>
-  <data name="UpdateIsFailed" xml:space="preserve">
-    <value>Update is failed!</value>
-  </data>
   <data name="EmailTitleAffDisapproved" xml:space="preserve">
     <value>Your Application</value>
   </data>
@@ -346,5 +343,11 @@
   </data>
   <data name="FileNameMustNotContain" xml:space="preserve">
     <value>File name must not contain \ / : * ? $ \" &lt; &gt; | characters</value>
+  </data>
+  <data name="NotAuthorizedFunction" xml:space="preserve">
+    <value>You are not authorized on this function.</value>
+  </data>
+  <data name="NotAuthorizedAff" xml:space="preserve">
+    <value>You are not authorized for this affiliate.</value>
   </data>
 </root>

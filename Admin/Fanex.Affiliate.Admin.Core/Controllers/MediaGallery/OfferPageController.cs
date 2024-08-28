@@ -63,10 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 };
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))
-            };
+            return ModelState.GenerateErrorResult();
         }
 
         [HttpPost]
@@ -85,10 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 };
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))
-            };
+            return ModelState.GenerateErrorResult();
         }
 
         [HttpPost]

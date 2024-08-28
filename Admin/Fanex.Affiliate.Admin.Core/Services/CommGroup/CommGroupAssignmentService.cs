@@ -1,37 +1,42 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 {
-    public class CommGroupAssignmentService : ICommGroupAssignmentService
+    public class CommGroupAssignmentService : ManagePermissionService, ICommGroupAssignmentService
     {
         private readonly ICommissionGroupRepository _commGroupRepository;
-
-        private readonly IAffiliateService _affiliateService;
 
         private readonly IEmailService _emailService;
 
         private readonly ICommGroupCommonService _commGroupCommonService;
 
         public CommGroupAssignmentService(
+            IAuthService authService,
             ICommissionGroupRepository commGroupRepository,
             IAffiliateService affiliateService,
             IEmailService emailService,
-            ICommGroupCommonService commGroupCommonService)
+            ICommGroupCommonService commGroupCommonService,
+            ISessionService sessionService) : base(authService, sessionService, affiliateService)
         {
             _commGroupRepository = commGroupRepository;
-            _affiliateService = affiliateService;
             _emailService = emailService;
             _commGroupCommonService = commGroupCommonService;
+        }
+
+        public AffiliateBasicInfo GetAffiliateBasicInfo(int affId)
+        {
+            return AffiliateService.GetAffiliateBasicInfo(affId);
         }
 
         public IEnumerable<SelectItem> GetNormalCommGroupList(GetGroupListParam param)
@@ -41,11 +46,24 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
         public ResultInfo AssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
         {
-            return ProcessAssignGroup(param, affInfo, emailParam);
+            var hasHostPermission = HasHostFunctionPermission(Function.AssignCommGroup)
+                || (HasHostManagePendingAffPermission(param.AffId) && ManageCommGroup.IsValidManageCommGroup(param.GroupId));
+
+            if (hasHostPermission && AuthService.IsUserHasPermissionOnAff(UserId, param.AffId))
+            {
+                return ProcessAssignGroup(param, affInfo, emailParam);
+            }
+
+            return NotHavePermissionOnAffResult;
         }
 
         public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
         {
+            if (!AuthService.IsUserHasPermissionOnAff(UserId, affInfo.AffId))
+            {
+                return NotHavePermissionOnAffResult;
+            }
+
             var result = CommGroupValidationHelper.ValidateMultiSettingsList(param.TierSettingList, param.FdmSettingList);
 
             if (result.IsSuccessful)
@@ -110,7 +128,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 Status = "Approved"
             };
 
-            return _affiliateService.ApproveAffiliate(approveParam);
+            return AffiliateService.ApproveAffiliate(approveParam);
         }
 
         private void SendEmailApprove(AffInformationEmail emailParam, AffiliateBasicInfo affInfo, string password)

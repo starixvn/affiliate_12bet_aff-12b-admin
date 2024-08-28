@@ -68,7 +68,7 @@ export class AssignPrivateGroup extends React.Component {
             const commGroup = { ...selectedGroup, PlatformFeeList: platformFeeList };
             const param = { commGroup, affInfo };
 
-            const response = await post('Portal/CommGroupAssignment/AssignPrivateGroup', param);
+            const response = await post('Portal/CommissionGroup/AssignPrivateGroup', param);
             if (response && response.status === 200) {
                 const result = response.data;
 

@@ -17,5 +17,6 @@ namespace Fanex.Affiliate.Admin.Core.Constants
         public const string FirstName = "FirstName";
         public const string LastName = "LastName";
         public const string CustId = "CustId";
+        public const string IsPendingAff = "IsPendingAff";
     }
 }

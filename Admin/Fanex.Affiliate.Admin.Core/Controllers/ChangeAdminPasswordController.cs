@@ -45,10 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 };
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
-            };
+            return ModelState.GenerateErrorResult();
         }
     }
 }

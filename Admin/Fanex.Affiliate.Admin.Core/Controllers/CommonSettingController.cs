@@ -9,6 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [CustomAuthorize]
     [CheckUMFilter]
+    [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
     public class CommonSettingController : Controller
     {
         private readonly ISystemService _systemService;
@@ -22,7 +23,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
         public ActionResult GetProductList()
         {
             return new JsonNetResult
@@ -33,7 +33,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
         public ActionResult GetCountryList()
         {
             return new JsonNetResult
@@ -44,7 +43,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
         public ActionResult GetAllTargetLanguageList()
         {
             return new JsonNetResult

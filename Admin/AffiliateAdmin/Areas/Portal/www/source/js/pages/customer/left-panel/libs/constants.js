@@ -1,8 +1,6 @@
-export const status = {
-    Approved: 'approved',
-    Disapproved: 'disapproved',
-    Pending: 'pending'
-}
+import { status } from '../../common/libs/constants';
+
+export { status };
 
 export const resource = {
     Affiliate: 'Affiliate',
@@ -46,7 +44,6 @@ export const messages = {
     statusUpdatedSuccess: 'The status has been updated successfully!',
     areYouChangeLanguage: 'Are you sure you want to change language for this affiliate?',
     languageUpdatedSuccess: 'The Language has been updated successfully!',
-    affTypeUpdatedFail: 'Occur an error when updating affiliate type!',
     userNotOnline: 'This user is not online',
     contactNumberUpdatedSuccess: 'Contact number update successfully!',
     closedAffOnSpecialDate: '<p class="text-danger">Closing an affiliate from 1st to 5th of each month will prevent the affiliate from being commissioned for the previous month.</p>',

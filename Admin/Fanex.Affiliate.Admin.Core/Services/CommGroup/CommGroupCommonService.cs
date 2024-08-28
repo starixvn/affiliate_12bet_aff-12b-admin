@@ -52,11 +52,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             return result;
         }
 
-        public IEnumerable<Deduction> GetDeductionList()
-        {
-            return _commGroupRepository.GetDeductionList();
-        }
-
         private static string BuildTierSettingXml(IEnumerable<TierSetting> tierSettingList)
         {
             var result = new StringBuilder();

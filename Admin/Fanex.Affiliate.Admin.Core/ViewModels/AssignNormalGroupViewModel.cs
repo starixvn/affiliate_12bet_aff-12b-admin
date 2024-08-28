@@ -12,6 +12,6 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels
 
         public AffiliateBasicInfo AffInfo { get; set; }
 
-        public bool HasCommGroupPermission { get; set; }
+        public bool HasCommGroupVisible { get; set; }
     }
 }
