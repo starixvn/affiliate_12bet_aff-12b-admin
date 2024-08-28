@@ -1,5 +1,10 @@
 ﻿.table-medium {
     width: 70%;
+
+    @include Mobile {
+        width: 100%;
+        min-width: 320px;
+    }
 }
 
 .table {
