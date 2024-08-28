@@ -1,12 +1,11 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Controllers.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
@@ -19,7 +18,6 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
-using Fanex.Affiliate.Admin.Core.Services;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {

@@ -47,4 +47,3 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         }
     }
 }
- 

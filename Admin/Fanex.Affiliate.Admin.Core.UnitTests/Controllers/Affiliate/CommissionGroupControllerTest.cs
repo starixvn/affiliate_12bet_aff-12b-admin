@@ -1,8 +1,13 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Services;
@@ -15,11 +20,6 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
-using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.Configurations;
-using Autofac;
-using Autofac.Integration.Mvc;
-using Fanex.Affiliate.Admin.Core.DTO.Email;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             var commissionGroupService = new Mock<ICommissionGroupService>();
             commissionGroupService.Setup(c => c.GetDeductionList()).Returns(new List<Deduction> { new Deduction { DeductionId = 12, DeductionName = "BankingFee", DeductedPercentage = 0.05m } });
-            
+
             var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object, systemServive: systemServive.Object);
 
             // Action

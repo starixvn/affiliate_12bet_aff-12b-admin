@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         {
             // Arrange
             var commonSettingRepository = new Mock<ISystemRepository>();
-            commonSettingRepository.Setup(l => l.GetProductList()).Returns(new List<Product> { new Product () });
+            commonSettingRepository.Setup(l => l.GetProductList()).Returns(new List<Product> { new Product() });
 
             var service = CreateCommonService(commonSettingRepository.Object);
 

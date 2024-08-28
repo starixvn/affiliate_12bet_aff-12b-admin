@@ -57,8 +57,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
             if (description.Contains("Uncalculated"))
             {
                 return "Uncalculated Month";
-            }  
-            
+            }
+
             return "Monthly Total";
         }
     }

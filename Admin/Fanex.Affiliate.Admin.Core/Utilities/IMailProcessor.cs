@@ -1,6 +1,4 @@
-﻿using Fanex.MailDeliver.Model;
-
-namespace Fanex.Affiliate.Admin.Core.Utilities
+﻿namespace Fanex.Affiliate.Admin.Core.Utilities
 {
     public interface IMailProcessor
     {

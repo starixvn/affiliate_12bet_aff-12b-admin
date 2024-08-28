@@ -30,11 +30,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                     {
                         var item = BuildLandingPageStatisticsItem(reader);
                         item.Page = Convert.ToString(reader["Page"]);
-                        if(string.Equals("Country", param.GroupBy, StringComparison.OrdinalIgnoreCase))
+                        if (string.Equals("Country", param.GroupBy, StringComparison.OrdinalIgnoreCase))
                         {
                             item.Country = Convert.ToString(reader["Country"]);
                             item.CountryCode = Convert.ToString(reader["CountryCode"]);
-                        } else
+                        }
+                        else
                         {
                             item.Language = Convert.ToString(reader["Language"]);
                             item.LanguageCode = Convert.ToString(reader["LanguageCode"]);

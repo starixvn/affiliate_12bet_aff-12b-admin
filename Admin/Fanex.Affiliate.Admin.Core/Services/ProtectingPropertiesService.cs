@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public ProtectingPropertiesService(
             IAuthService authService,
             ISessionService sessionService,
-            IAffiliateService affiliateService) : base(authService, sessionService, affiliateService){  }
+            IAffiliateService affiliateService) : base(authService, sessionService, affiliateService) { }
 
         protected void SetNullForPropertiesNotHavePermission(object param)
         {

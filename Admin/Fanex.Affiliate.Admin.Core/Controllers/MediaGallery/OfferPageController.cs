@@ -9,7 +9,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -44,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
         public ActionResult InsertOfferPage(HttpPostedFileBase file, InsertHtmlFileParam param)
         {
-            if(file == null)
+            if (file == null)
             {
                 return new JsonNetResult
                 {

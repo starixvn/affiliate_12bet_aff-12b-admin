@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
-using NSubstitute;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;

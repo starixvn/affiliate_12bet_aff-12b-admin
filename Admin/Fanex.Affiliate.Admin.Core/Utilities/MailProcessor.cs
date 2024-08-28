@@ -22,7 +22,8 @@
             {
                 var templateContent = File.ReadAllText(path);
                 return Engine.Razor.RunCompile(templateContent, path, model: model);
-            } catch
+            }
+            catch
             {
                 var templateContentBackup = File.ReadAllText(pathBackup);
                 return Engine.Razor.RunCompile(templateContentBackup, pathBackup, model: model);

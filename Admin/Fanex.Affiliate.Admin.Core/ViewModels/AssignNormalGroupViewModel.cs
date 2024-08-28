@@ -1,5 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels

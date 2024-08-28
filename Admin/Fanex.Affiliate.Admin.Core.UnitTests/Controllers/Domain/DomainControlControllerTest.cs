@@ -88,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         {
             // Arrange
             var domainControlService = new Mock<IDomainControlService>();
-            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryCode = "en-US"});
+            domainControlService.Setup(t => t.GetDomainControlById(It.IsAny<int>())).Returns(new DomainControlInfo { TargetCountryCode = "en-US" });
 
             var systemService = new Mock<ISystemService>();
             systemService.Setup(l => l.GetTargetCountryListByUser()).Returns(new List<TargetCountry> { new TargetCountry { TargetCountryCode = "en-US", TargetCountryName = "English" } });

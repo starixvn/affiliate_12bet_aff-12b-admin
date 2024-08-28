@@ -1,6 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
-using Fanex.Affiliate.Admin.Core.MetaModels.FeedbackReport;
-using Fanex.Affiliate.Admin.Core.Services;
+﻿using Fanex.Affiliate.Admin.Core.MetaModels.FeedbackReport;
 using Fanex.Affiliate.Admin.Core.Services.FeedbackReport;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;

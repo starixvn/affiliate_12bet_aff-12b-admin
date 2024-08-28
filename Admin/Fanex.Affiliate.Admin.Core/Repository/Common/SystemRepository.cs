@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+using System;
 using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Common
 {

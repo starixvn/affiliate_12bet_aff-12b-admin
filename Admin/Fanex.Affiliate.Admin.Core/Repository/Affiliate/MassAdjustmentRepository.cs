@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO.MassAdjustment;
 using Fanex.Affiliate.Admin.Core.MetaModels.MassAdjustment;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {

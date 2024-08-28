@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Data;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {

@@ -134,7 +134,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var claims = SessionService.UserClaim;
             var hasManagerRole = claims.HasClaim(Function.ProcessingRequestManagementRole, Function.WritePermission);
             var hasMarketingRole = claims.HasClaim(Function.ProcessingRequestMarketingRole, Function.WritePermission);
-            return hasManagerRole 
+            return hasManagerRole
                    || (hasMarketingRole && (string.Equals(currentRequestDetail.Status, ProcessingRequestStatus.DRAFT) || string.Equals(currentRequestDetail.Status, ProcessingRequestStatus.KIV)));
         }
     }

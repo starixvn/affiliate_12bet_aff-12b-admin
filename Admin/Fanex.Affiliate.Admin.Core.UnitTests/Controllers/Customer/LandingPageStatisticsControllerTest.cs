@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void GetLandingPageStatistics_WhenCallWithValidParamByCountry_ExcuteWithCorrectData()
         {
             // Arrange
-            var param = new LandingPageStatisticsParam { GroupBy = "Country"};
+            var param = new LandingPageStatisticsParam { GroupBy = "Country" };
             LandingPageStatisticsParam passedParam = null;
             var landingPageStatisticsRepository = new Mock<ILandingPageStatisticsRepository>();
             landingPageStatisticsRepository.Setup(t => t.GetLandingPageStatisticsList(param)).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() }).Callback<LandingPageStatisticsParam>(p => passedParam = p);

@@ -118,7 +118,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
                 }
 
                 return approvedResult;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
 
@@ -129,7 +130,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
             }
         }
 
-        private void HandleRollbackApprovePaymentRequest(ResultInfo approveResult,string detailXml)
+        private void HandleRollbackApprovePaymentRequest(ResultInfo approveResult, string detailXml)
         {
             var result = _paymentRequestRepository.RollbackApprovePaymentRequest(approveResult, detailXml);
 

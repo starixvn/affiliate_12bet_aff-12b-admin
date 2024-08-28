@@ -69,7 +69,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             //Arrange
             var repository = new Mock<IProcessingRequestRepository>();
-            repository.Setup(re => re.GetProcessingRequestList(It.IsAny<ProcessingRequestSelParam>())).Returns(new ProcessingRequestEntity {
+            repository.Setup(re => re.GetProcessingRequestList(It.IsAny<ProcessingRequestSelParam>())).Returns(new ProcessingRequestEntity
+            {
                 MainData = new List<ProcessingRequestBasicInfo> { fixture.Create<ProcessingRequestBasicInfo>() },
                 Summary = fixture.Create<ProcessingRequestSummaryInfo>(),
                 TotalItem = 1

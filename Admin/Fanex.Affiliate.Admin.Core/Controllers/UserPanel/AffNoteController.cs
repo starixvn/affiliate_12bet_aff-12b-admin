@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    using System.Web.Mvc;
     using Fanex.Affiliate.Admin.Core.Attributes;
     using Fanex.Affiliate.Admin.Core.Constants;
     using Fanex.Affiliate.Admin.Core.MetaModels;
     using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
     using Fanex.Affiliate.Admin.Core.Services.Common;
     using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+    using System.Web.Mvc;
 
     [FunctionAuthorize(FunctionName = Function.Note)]
     public class AffNoteController : NoteBaseController

@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
@@ -36,12 +35,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         private static ResultInfo ValidateAffNames(string affNames)
         {
             var regex = new Regex("[^0-9a-zA-Z,]");
-            if(regex.IsMatch(affNames))
+            if (regex.IsMatch(affNames))
             {
                 return ResultInfo.GenerateErr("Affiliate(s) must be letters and digits, separated by [Comma]");
             }
 
-            if(affNames.Split(',').Length > MaxAffiliates)
+            if (affNames.Split(',').Length > MaxAffiliates)
             {
                 return ResultInfo.GenerateErr("The function can only create assignment for up to 500 affiliates per request.");
             }

@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
                         Commission = 0.2m
                     }
                 }
-                
+
             };
             var commGroupRepository = new Mock<ICommissionGroupRepository>();
             commGroupRepository.Setup(comm => comm.GetCommissionGroupList(param)).Returns(commissionGroupResultEntity);

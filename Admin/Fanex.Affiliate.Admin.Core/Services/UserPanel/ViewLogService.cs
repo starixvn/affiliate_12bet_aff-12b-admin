@@ -5,7 +5,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {

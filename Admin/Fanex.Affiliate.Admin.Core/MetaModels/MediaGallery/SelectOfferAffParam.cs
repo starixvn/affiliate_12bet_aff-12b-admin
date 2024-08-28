@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 {
-    public class SelectOfferAffParam: PagingParam
+    public class SelectOfferAffParam : PagingParam
     {
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string AffName { get; set; }

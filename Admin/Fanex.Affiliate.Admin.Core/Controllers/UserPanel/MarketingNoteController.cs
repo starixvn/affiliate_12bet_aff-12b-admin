@@ -1,19 +1,19 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    using System.Web.Mvc;
     using Fanex.Affiliate.Admin.Core.Attributes;
     using Fanex.Affiliate.Admin.Core.Constants;
     using Fanex.Affiliate.Admin.Core.MetaModels;
     using MetaModels.UserPanel;
     using Services.Common;
     using Services.UserPanel;
+    using System.Web.Mvc;
 
     [FunctionAuthorize(FunctionName = Function.MarketingTeamNote)]
     public class MarketingNoteController : NoteBaseController
     {
         public MarketingNoteController(
             ISessionService sessionService,
-            INoteServiceBase noteService) : base(sessionService, noteService, NoteType.MarketingNote) 
+            INoteServiceBase noteService) : base(sessionService, noteService, NoteType.MarketingNote)
         { }
 
         [HttpPost]

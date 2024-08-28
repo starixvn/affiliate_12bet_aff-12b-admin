@@ -32,7 +32,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.FeedbackReport
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(new FeedbackReportInfo {
+                        dataList.Add(new FeedbackReportInfo
+                        {
                             AffName = Convert.ToString(reader["UserName"]),
                             RateName = Convert.ToString(reader["RateName"]),
                             Message = Convert.ToString(reader["Message"]),
