@@ -1,7 +1,8 @@
 ﻿.table-medium {
     width: 70%;
 
-    @include Mobile {
+    @include Tablet {
+        overflow: scroll;
         width: 100%;
         min-width: 320px;
     }

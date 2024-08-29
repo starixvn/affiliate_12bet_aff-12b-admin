@@ -1455,8 +1455,9 @@ label.require:after {
 
 .table-medium {
   width: 70%; }
-  @media (max-width: 500px) {
+  @media screen and (max-width: 1024px) {
     .table-medium {
+      overflow: scroll;
       width: 100%;
       min-width: 320px; } }
 
