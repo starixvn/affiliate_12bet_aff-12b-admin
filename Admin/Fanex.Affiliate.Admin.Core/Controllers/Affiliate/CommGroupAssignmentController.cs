@@ -34,13 +34,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
             var affInfo = _commGroupAssignmentService.GetAffiliateBasicInfo(affId);
             var hasHostAssignCommGroupPermission = _commGroupAssignmentService.HasHostFunctionPermission(Function.AssignCommGroup);
+            var hasReadAssignCommGroupPermission = _commGroupAssignmentService.HasReadFunctionPermission(Function.AssignCommGroup);
             var hasHostManagePendingAffPermission = _commGroupAssignmentService.HasHostManagePendingAffPermission(affId, affInfo.Status);
             var param = new GetGroupListParam { AffId = affId };
             var commGroupList = _commGroupAssignmentService.GetNormalCommGroupList(param);
 
             var viewModel = new AssignNormalGroupViewModel
             {
-                CommGroupList = (hasHostManagePendingAffPermission && !hasHostAssignCommGroupPermission) ? ManageCommGroup.GetManageCommGroups(commGroupList) : commGroupList,
+                CommGroupList = (!hasReadAssignCommGroupPermission ||(hasHostManagePendingAffPermission && !hasHostAssignCommGroupPermission))
+                                    ? ManageCommGroup.GetManageCommGroups(commGroupList) : commGroupList,
                 SelectedGroup = param.GroupId,
                 HasCommGroupVisible = _commGroupAssignmentService.HasReadFunctionPermission(Function.CommissionGroup),
                 AffInfo = affInfo
