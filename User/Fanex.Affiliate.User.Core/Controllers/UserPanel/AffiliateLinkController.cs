@@ -63,7 +63,7 @@
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
 
             var languageList = string.IsNullOrEmpty(selectedLanguage)
-                ? SystemHelper.GetTargetLanguageList(SystemService.GetSystemTargetLanguagesByCountry(selectedTargetCountry), selectedLanguage).ToList()
+                ? SystemHelper.GetTargetLanguageList(SystemService.GetSystemTargetLanguagesByCountry(selectedTargetCountry), selectedLanguage)
                 : null;
 
             var textLinkList = GetTextLinkList(selectedTargetCountry, selectedLanguage, selectedPage, selectedDomain, languageList);
@@ -96,7 +96,7 @@
 
         private Image GetQrCodeIcon(string selectedLanguage)
         {
-            var qrIconFileName = string.Format(_appSetting.QrCodeIcon, selectedLanguage);
+            var qrIconFileName = string.Format(_appSetting.QrCodeIconPathTemplate, selectedLanguage);
             var path = HttpContext.Server.MapPath($"~/www/build/styles/Images/{qrIconFileName}");
             return _qrCodeGeneratorService.GetImage(path);
         }

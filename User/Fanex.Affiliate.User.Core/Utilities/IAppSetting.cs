@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string SymmetricSalt { get; }
 
-        string QrCodeIcon { get; }
+        string QrCodeIconPathTemplate { get; }
 
         string ResourceDomain { get; }
 

@@ -92,47 +92,40 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 foreach (var item in languageListFromParam)
                 {
-                    AddGenerateLinkToList(languageList, linkList, linkGenerationParam, item.Value);
+                    AddGenerateLanguageLinkToList(languageList, linkList, linkGenerationParam, item.Value);
                 }
 
-                linkList.Add(new AffiliateLink
-                {
-                    Language = Lang.Default,
-                    Link = GenerateDefaultLinkByTargetCountry(languageList, linkGenerationParam),
-                    LanguageCode = "en-US"
-                });
+                AddGenerateDefaultLinkToList(languageList, linkList, linkGenerationParam);
             }
             else
             {
-                var language = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(selectedLanguage));
-                if (language != null)
+                var isValidLanguage = AddGenerateLanguageLinkToList(languageList, linkList, linkGenerationParam, selectedLanguage);
+
+                if (!isValidLanguage)
                 {
-                    linkList.Add(new AffiliateLink
-                    {
-                        Language = language.LanguageName,
-                        Link = GenerateLink(linkGenerationParam, language.ShortedCode),
-                        LanguageCode = language.LanguageCode
-                    });
-                }
-                else
-                {
-                    linkList.Add(new AffiliateLink
-                    {
-                        Language = Lang.Default,
-                        Link = GenerateDefaultLinkByTargetCountry(languageList, linkGenerationParam),
-                        LanguageCode = "en-US"
-                    });
+                    AddGenerateDefaultLinkToList(languageList, linkList, linkGenerationParam);
                 }
             }
 
             return linkList;
         }
 
-        private static void AddGenerateLinkToList(IEnumerable<TargetLanguage> languageList, List<AffiliateLink> linkList, LinkGenerationParam linkGenerationParam, string languageCode)
+        private void AddGenerateDefaultLinkToList(IEnumerable<TargetLanguage> languageList, List<AffiliateLink> linkList, LinkGenerationParam linkGenerationParam)
+        {
+            linkList.Add(new AffiliateLink
+            {
+                Language = Lang.Default,
+                Link = GenerateDefaultLinkByTargetCountry(languageList, linkGenerationParam),
+                LanguageCode = SystemLanguage.DefaultLanguageCode
+            });
+        }
+
+        private static bool AddGenerateLanguageLinkToList(IEnumerable<TargetLanguage> languageList, List<AffiliateLink> linkList, LinkGenerationParam linkGenerationParam, string languageCode)
         {
             var language = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(languageCode));
+            var isValidLanguage = language != null;
 
-            if (language != null)
+            if (isValidLanguage)
             {
                 linkList.Add(new AffiliateLink
                 {
@@ -141,6 +134,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     LanguageCode = language.LanguageCode
                 });
             }
+
+            return isValidLanguage;
         }
 
         public IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam)
