@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 {
+    using DTO.UserPanel.AccountOverview;
+
     public static class Constant
     {
         public const string DefaultLanguage = "en-US";
@@ -70,10 +72,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             UserName = "test"
         };
 
-        public static IDictionary<string, string> LinkList = new Dictionary<string, string>
+        public static IEnumerable<AffiliateLink> LinkList = new List<AffiliateLink>
         {
-            {"abc", "http:\\abc.com" },
-            {"123", "http:\\123.com" }
+            new AffiliateLink { Language = "abc", Link = "http:\\abc.com" },
+            new AffiliateLink { Language = "123", Link = "http:\\123.com" }
         };
 
         public static string LogoImageBase64 = @"iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAACJNJREFUeNq0WGlsVNcVvm

@@ -1,5 +1,10 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Web.Mvc;
+    using DTO.UserPanel.AccountOverview;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
@@ -7,10 +12,6 @@
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.Linq;
-    using System.Web.Mvc;
     using ViewModels.UserPanel.Marketing;
 
     public sealed class AffiliateLinkController : BaseMarketingController
@@ -62,28 +63,27 @@
                 .FirstOrDefault(d => d.DomainId == selectedDomainId);
 
             var languageList = string.IsNullOrEmpty(selectedLanguage)
-                ? SystemHelper.GetTargetLanguageList(SystemService.GetSystemTargetLanguagesByCountry(selectedTargetCountry), selectedLanguage)
+                ? SystemHelper.GetTargetLanguageList(SystemService.GetSystemTargetLanguagesByCountry(selectedTargetCountry), selectedLanguage).ToList()
                 : null;
 
             var textLinkList = GetTextLinkList(selectedTargetCountry, selectedLanguage, selectedPage, selectedDomain, languageList);
-
             var qrCodeParamsDic = GetQrCodes(textLinkList);
 
             return View("~/Views/UserPanel/AccountOverview/Partial/_QrCodeLinkList.cshtml", qrCodeParamsDic);
         }
 
-        private IDictionary<string, QrCodeLinkModel> GetQrCodes(IDictionary<string, string> txtLinkList)
+        private IDictionary<string, QrCodeLinkModel> GetQrCodes(IEnumerable<AffiliateLink> txtLinkList)
         {
             var qrCodeLinks = txtLinkList.Select(link => GetQrCodeParam(link));
             return qrCodeLinks.ToDictionary(itm => itm.Language);
         }
 
-        private QrCodeLinkModel GetQrCodeParam(KeyValuePair<string, string> link)
+        private QrCodeLinkModel GetQrCodeParam(AffiliateLink link)
         {
-            using (var icon = GetQrCodeIcon())
+            using (var icon = GetQrCodeIcon(link.LanguageCode))
             {
-                var language = link.Key;
-                var textLink = link.Value;
+                var language = link.Language;
+                var textLink = link.Link;
                 var qrCode = _qrCodeGeneratorService.GenerateBase64QrCode(textLink, icon, true);
                 return new QrCodeLinkModel
                 {
@@ -94,19 +94,19 @@
             }
         }
 
-        private Image GetQrCodeIcon()
+        private Image GetQrCodeIcon(string selectedLanguage)
         {
-            var qrIconFileName = _appSetting.QrCodeIcon;
+            var qrIconFileName = string.Format(_appSetting.QrCodeIcon, selectedLanguage);
             var path = HttpContext.Server.MapPath($"~/www/build/styles/Images/{qrIconFileName}");
             return _qrCodeGeneratorService.GetImage(path);
         }
 
-        private IDictionary<string, string> GetTextLinkList(string selectedTargetCountry, string selectedLanguage, string selectedPage,
+        private IEnumerable<AffiliateLink> GetTextLinkList(string selectedTargetCountry, string selectedLanguage, string selectedPage,
             Domain selectedDomain, IEnumerable<SelectListItem> languageList)
         {
             if (selectedDomain == null)
             {
-                return new Dictionary<string, string>();
+                return new List<AffiliateLink>();
             }
 
             var userSession = SessionService.UserSession;

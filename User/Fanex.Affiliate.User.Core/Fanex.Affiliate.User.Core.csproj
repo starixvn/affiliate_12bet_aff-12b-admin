@@ -337,6 +337,7 @@
     <Compile Include="DTO\InternalLoginInfo.cs" />
     <Compile Include="DTO\System\TargetCountry.cs" />
     <Compile Include="DTO\System\TargetLanguage.cs" />
+    <Compile Include="DTO\UserPanel\AccountOverview\AffiliateLink.cs" />
     <Compile Include="DTO\UserPanel\Offer.cs" />
     <Compile Include="DTO\UserPanel\HtmlFileInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverview\LastLoginInfo.cs" />

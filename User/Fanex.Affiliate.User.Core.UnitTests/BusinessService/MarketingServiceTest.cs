@@ -1,4 +1,10 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
@@ -8,11 +14,6 @@ using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Web;
-using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -142,7 +143,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             var result = service.GenerateLinkList(param);
 
-            Assert.Equal(1, result.Count);
+            Assert.Equal(1, result.Count());
         }
 
         [Theory]

@@ -1,4 +1,9 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Controllers.UserPanel;
 using Fanex.Affiliate.User.Core.CoreService;
@@ -7,10 +12,6 @@ using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
 using NSubstitute;
-using System;
-using System.Drawing;
-using System.IO;
-using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
@@ -50,7 +51,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 var model = result.Model as AffiliateLinkViewModel;
 
                 Assert.Contains("~/Views/UserPanel/AccountOverview/AffiliateLink/Index.cshtml", result.ViewName);
-                Assert.Equal(Constant.LinkList.Count, model.QrCodeList.Count);
+                Assert.Equal(Constant.LinkList.Count(), model.QrCodeList.Count);
             }
         }
 

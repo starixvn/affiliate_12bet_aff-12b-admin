@@ -1,7 +1,8 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
+﻿using System.Collections.Generic;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using System.Collections.Generic;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -13,7 +14,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, int affId, bool isInternal);
 
-        IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam);
+        IEnumerable<AffiliateLink> GenerateLinkList(LinkGenerationParam linkGenerationParam);
 
         IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam);
 
