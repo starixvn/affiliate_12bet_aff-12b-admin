@@ -12,6 +12,7 @@ import { setShowPopupPassword, setShowPopupCommGroup, setLanguageList, setCommGr
 
 import { convertArrayToObjectProps } from '../../../../modules/utils';
 import { post } from '../../../../modules/ajaxRequest';
+import { claimResource } from '../../../../modules/claim';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -51,31 +52,39 @@ export class AppContainer extends PureComponent {
     }
 
     render() {
-        const { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup } = this.props;
+        const { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, isCommGroupVisible, isPwdChangeable } = this.props;
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
                 <Filter />
                 <Content />
-                <CommissionGroupPopup
-                    showPopupCommGroup={showPopupCommGroup}
-                    isPrivateGroup={true}
-                    affId={affId}
-                    affName={commGroup}
-                    setShowPopupCommGroup={this.props.setShowPopupCommGroup}
-                />
-                <ChangePasswordForm
-                    showPopupPassword={showPopupPassword}
-                    selectedId={affId}
-                    setShowPopupPassword={this.props.setShowPopupPassword}
-                />
+                {
+                    isCommGroupVisible && <CommissionGroupPopup
+                        showPopupCommGroup={showPopupCommGroup}
+                        isPrivateGroup={true}
+                        isCommGroupVisible={true}
+                        affId={affId}
+                        affName={commGroup}
+                        setShowPopupCommGroup={this.props.setShowPopupCommGroup}
+                    />
+                }
+                {
+                    isPwdChangeable && <ChangePasswordForm
+                        showPopupPassword={showPopupPassword}
+                        selectedId={affId}
+                        setShowPopupPassword={this.props.setShowPopupPassword}
+                    />
+                }
             </AppLayout>
         );
     }
 }
 
-function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList, targetCountryList }) {
-    return Object.assign({}, { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList, targetCountryList });
+function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList, targetCountryList, claimsPrincipal }) {
+    const isCommGroupVisible = claimsPrincipal.hasReadClaim(claimResource.CommissionGroup);
+    const isPwdChangeable = claimsPrincipal.hasWriteClaim(claimResource.AffPassword);
+
+    return Object.assign({}, { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup, languageList, commGroupList, targetCountryList, isCommGroupVisible, isPwdChangeable });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -7,6 +7,8 @@ namespace Fanex.Affiliate.Admin.Core.Services
 {
     public interface ICommissionGroupService
     {
+        IEnumerable<Deduction> GetDeductionList();
+
         IEnumerable<CommissionGroupSetting> GetCommissionGroupList(GetCommissionGroupParam param);
 
         ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param);

@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Common.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
@@ -27,6 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                         {
                             AffId = Convert.ToInt32(reader["AffId"]),
                             AffName = Convert.ToString(reader["UserName"]),
+                            Status = Convert.ToString(reader["Status"]),
                             FirstName = Convert.ToString(reader["FirstName"]),
                             LastName = Convert.ToString(reader["LastName"]),
                             Gender = reader["Gender"] == DBNull.Value ? (bool?)null : Convert.ToBoolean(reader["Gender"]),
@@ -53,7 +53,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             Question = Convert.ToString(reader["Question"]),
                             QuestionId = reader["QuestionId"] == DBNull.Value ? (int?)null : reader.ToInt("QuestionId"),
                             Answer = Convert.ToString(reader["Answer"]),
-                            Lang = reader.ToString("PreferredLanguage"),
                             MailOption = reader["MailOption"] == DBNull.Value ? (bool?)null : Convert.ToBoolean(reader["MailOption"])
                         };
                     }

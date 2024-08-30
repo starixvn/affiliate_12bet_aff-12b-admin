@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Home;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -26,17 +25,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpGet]
+        [AllowByPassFunctionAuthorize]
         public ActionResult Index()
         {
-            return View();
-        }
+            var userClaim = SessionService.UserClaim;
 
-        [HttpGet]
-        [AllowByPassFunctionAuthorize]
-        public ActionResult RedirectMenu()
-        {
-            var permissions = SessionService.ClaimIdentities.SelectMany(i => i.Claims);
-            var activeMenus = Menu.MainMenus.Where(m => string.IsNullOrEmpty(m.Value) || permissions.Any(p => p.Type == m.Value)).Select(m => m.Key);
+            if (userClaim.HasClaim(Function.HomeMenu))
+            {
+                return View();
+            }
+
+            var activeMenus = Menu.MainMenus.Where(m => string.IsNullOrEmpty(m.Value) || userClaim.HasClaim(m.Value)).Select(m => m.Key);
             var redirect = activeMenus.FirstOrDefault();
 
             return Redirect($"~/Portal/{redirect}");

@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
 {
-    public class DateTimeHelper: IDateTimeHelper
+    public class DateTimeHelper : IDateTimeHelper
     {
         public DateTime GetNowDateTime()
         {

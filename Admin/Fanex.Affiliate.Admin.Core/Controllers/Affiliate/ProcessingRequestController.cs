@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -135,7 +134,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var claims = SessionService.UserClaim;
             var hasManagerRole = claims.HasClaim(Function.ProcessingRequestManagementRole, Function.WritePermission);
             var hasMarketingRole = claims.HasClaim(Function.ProcessingRequestMarketingRole, Function.WritePermission);
-            return hasManagerRole 
+            return hasManagerRole
                    || (hasMarketingRole && (string.Equals(currentRequestDetail.Status, ProcessingRequestStatus.DRAFT) || string.Equals(currentRequestDetail.Status, ProcessingRequestStatus.KIV)));
         }
     }

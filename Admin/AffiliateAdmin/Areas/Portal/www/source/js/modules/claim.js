@@ -35,6 +35,7 @@ export const claimResource = {
     AffTargetCountry: '[TargetCountry]',
     LanguageAmendment: '[AffMarket]',
     AffPersonalInfo: "[AffPersonalInfo]",
+    ManagePendingAff: "[ManagePendingAffiliate]",
     ProcRequest: "[ProcessingRequest]",
     ProcRequestMarketingRole: '[ProcessingRequestMarketingRole]',
     ProcRequestManagementRole: "[ProcessingRequestManagementRole]",

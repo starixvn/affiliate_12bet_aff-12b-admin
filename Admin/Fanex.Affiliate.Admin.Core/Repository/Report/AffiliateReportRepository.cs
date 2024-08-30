@@ -145,11 +145,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
             {
                 affReport.PreviousBalanceBf = Convert.ToDecimal(reader["PreviousBFF"]);
 
-                if(!isTotal)
+                if (!isTotal)
                 {
                     affReport.MonthDate = Convert.ToDateTime(reader["MonthDate"]);
                     affReport.Description = Convert.ToString(reader["Description"]);
-                }    
+                }
             }
             else
             {

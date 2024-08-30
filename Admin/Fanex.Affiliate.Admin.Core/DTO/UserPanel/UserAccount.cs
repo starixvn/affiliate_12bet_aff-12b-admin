@@ -13,16 +13,20 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string AffName { get; set; }
 
+        public string Status { get; set; }
+
+        public bool IsPendingAff => AffStatus.IsPendingAff(Status);
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
         public bool? Gender { get; set; }
 
-        [PermissionCheck(Function.AffEmail)]
+        [ManagePermissionCheck(Function.AffEmail)]
         public string Email { get; set; }
 
-        [PermissionCheck(Function.AffPhone)]
+        [ManagePermissionCheck(Function.AffPhone)]
         public string Phone { get; set; }
 
         [JsonIgnore]
@@ -38,53 +42,50 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Country { get; set; }
 
-        [PermissionCheck(Function.AffWebUrl)]
+        [ManagePermissionCheck(Function.AffWebUrl)]
         public string SiteUrl { get; set; }
 
-        [PermissionCheck(Function.AffWebUrl)]
+        [ManagePermissionCheck(Function.AffWebUrl)]
         public string MoreSiteUrls { get; set; }
 
-        [PermissionCheck(Function.AffWebUrl)]
+        [ManagePermissionCheck(Function.AffWebUrl)]
         public string NoSiteDescription { get; set; }
 
-        [PermissionCheck(Function.AffPaymentInfo)]
+        [ManagePermissionCheck(Function.AffPaymentInfo)]
         public string PreferredPayment { get; set; }
 
-        [PermissionCheck(Function.AffPaymentInfo)]
+        [ManagePermissionCheck(Function.AffPaymentInfo)]
         public string PlayerUsername { get; set; }
 
-        [PermissionCheck(Function.AffPaymentInfo)]
+        [ManagePermissionCheck(Function.AffPaymentInfo)]
         public string NetellerAccountId { get; set; }
 
-        [PermissionCheck(Function.AffPaymentInfo)]
+        [ManagePermissionCheck(Function.AffPaymentInfo)]
         public string MoneybookersEmail { get; set; }
 
-        [PermissionCheck(Function.AffPaymentInfo)]
+        [ManagePermissionCheck(Function.AffPaymentInfo)]
         public string BankName { get; set; }
 
-        [PermissionCheck(Function.AffPaymentInfo)]
+        [ManagePermissionCheck(Function.AffPaymentInfo)]
         public string BankAddress { get; set; }
 
-        [PermissionCheck(Function.AffPaymentInfo)]
+        [ManagePermissionCheck(Function.AffPaymentInfo)]
         public string BankCode { get; set; }
 
-        [PermissionCheck(Function.AffPaymentInfo)]
+        [ManagePermissionCheck(Function.AffPaymentInfo)]
         public string BankAccountName { get; set; }
 
-        [PermissionCheck(Function.AffPaymentInfo)]
+        [ManagePermissionCheck(Function.AffPaymentInfo)]
         public string BankAccountNumber { get; set; }
 
-        [PermissionCheck(Function.SecurityQA)]
+        [ManagePermissionCheck(Function.SecurityQA)]
         public string Question { get; set; }
 
-        [PermissionCheck(Function.SecurityQA)]
+        [ManagePermissionCheck(Function.SecurityQA)]
         public int? QuestionId { get; set; }
 
-        [PermissionCheck(Function.SecurityQA)]
+        [ManagePermissionCheck(Function.SecurityQA)]
         public string Answer { get; set; }
-
-        [PermissionCheck(Function.LanguageAmendment)]
-        public string Lang { get; set; }
 
         public bool? MailOption { get; set; }
 

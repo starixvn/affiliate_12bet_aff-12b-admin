@@ -9,7 +9,6 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using ONEbook.UM.AspNetMVC.Filters;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Web.Mvc;
 
@@ -83,10 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                 };
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
-            };
+            return ModelState.GenerateErrorResult();
         }
 
         [HttpPost]
@@ -121,10 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                 };
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
-            };
+            return ModelState.GenerateErrorResult();
         }
 
         [HttpPost]
@@ -173,10 +166,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
                 };
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
-            };
+            return ModelState.GenerateErrorResult();
         }
 
         private void GetUserInfoParam(AdminInfoParam param)

@@ -11,7 +11,7 @@ import ContactNumber from './general-info/ContactNumber';
 import { claimResource } from '../../../../modules/claim';
 
 export const GeneralInfo = (props) => {
-    const { affiliateInfo, claimsPrincipal } = props;
+    const { affiliateInfo, claimsPrincipal, isManagePendingAffVisible, isManagePendingAffModifiable } = props;
     const isApproved = affiliateInfo.Status && affiliateInfo.Status.toLowerCase() === status.Approved;
     const siteUrl = affiliateInfo.SiteUrl && (affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl);
 
@@ -41,7 +41,7 @@ export const GeneralInfo = (props) => {
                 <Col sm={7} className='text-right'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender ? resource.Male : resource.Female)}</Col>
             </Row>
             {
-                claimsPrincipal.hasReadClaim(claimResource.AffPhone) &&
+                (claimsPrincipal.hasReadClaim(claimResource.AffPhone) || isManagePendingAffVisible) &&
                 <Row>
                     <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
                     <ContactNumber sm={7} className='text-right' isStatic={true}>{affiliateInfo.Phone}</ContactNumber>
@@ -49,19 +49,23 @@ export const GeneralInfo = (props) => {
             }
             <ContactApp />
             {
-                claimsPrincipal.hasReadClaim(claimResource.AffTargetCountry) &&
+                (claimsPrincipal.hasReadClaim(claimResource.AffTargetCountry) || isManagePendingAffVisible) &&
                 <Row>
                     <Col sm={5}>{resource.TargetCountry}</Col>
                     <Col sm={7} className='text-right'>{affiliateInfo.TargetCountryName}</Col>
                 </Row>
             }
-            { claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment) &&
+            {
+                (claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment) || isManagePendingAffVisible) &&
                 <Row>
                     <Col sm={5}>{resource.Language}</Col>
-                    <Col sm={7} className='text-right'><Language isStatic={!claimsPrincipal.hasWriteClaim(claimResource.LanguageAmendment)} /></Col>
+                    <Col sm={7} className='text-right'>
+                        <Language isStatic={!(claimsPrincipal.hasWriteClaim(claimResource.LanguageAmendment) || isManagePendingAffModifiable)} />
+                    </Col>
                 </Row>
             }
-            { claimsPrincipal.hasReadClaim(claimResource.AffWebUrl) &&
+            {
+                (claimsPrincipal.hasReadClaim(claimResource.AffWebUrl) || isManagePendingAffVisible) &&
                 <Row>
                     <Col sm={5}>{resource.WebsiteUrl}</Col>
                     <Col sm={7} className='text-right text-truncate'>
@@ -92,7 +96,10 @@ export const GeneralInfo = (props) => {
 
 function mapStateToProps({ leftPanel, claimsPrincipal }) {
     const { affiliateInfo } = leftPanel;
-    return Object.assign({}, { affiliateInfo, claimsPrincipal });
+    const isPendingAff = affiliateInfo.IsPendingAff;
+    const isManagePendingAffVisible = isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
+    const isManagePendingAffModifiable = isPendingAff && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
+    return Object.assign({}, { affiliateInfo, claimsPrincipal, isManagePendingAffVisible, isManagePendingAffModifiable });
 }
 
 export default connect(mapStateToProps)(React.memo(GeneralInfo));

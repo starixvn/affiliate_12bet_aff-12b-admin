@@ -6,8 +6,6 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MassAdjustment;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MassAdjustment;
-using System;
-using System.IO;
 using System.Web;
 using System.Web.Mvc;
 

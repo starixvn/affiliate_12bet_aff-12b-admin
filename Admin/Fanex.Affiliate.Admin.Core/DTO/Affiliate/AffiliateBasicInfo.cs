@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Data;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
@@ -18,6 +19,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         [Range(Validation.MinAffType, Validation.MaxAffType, ErrorMessage = "AffType is incorrect!")]
         public int AffType { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string Status { get; set; }
 
         [Required(ErrorMessage = "Email is required!")]
         public string Email { get; set; }

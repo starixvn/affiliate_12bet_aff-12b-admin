@@ -148,8 +148,8 @@ export class WebSite extends PureComponent {
 }
 
 function mapStateToProps({ edit, claimsPrincipal }) {
-    const { userAccountInfo, moreSiteUrlsList, hasWriteEditAffClaim } = edit;
-    const hasWriteClaim = claimsPrincipal.hasWriteClaim(claimResource.AffWebUrl) && hasWriteEditAffClaim;
+    const { userAccountInfo, moreSiteUrlsList, hasWriteEditAffClaim, hasWriteManagePendingAffClaim } = edit;
+    const hasWriteClaim = (claimsPrincipal.hasWriteClaim(claimResource.AffWebUrl) && hasWriteEditAffClaim) || hasWriteManagePendingAffClaim;
 
     return Object.assign({}, { userAccountInfo, moreSiteUrlsList, hasWriteClaim });
 }

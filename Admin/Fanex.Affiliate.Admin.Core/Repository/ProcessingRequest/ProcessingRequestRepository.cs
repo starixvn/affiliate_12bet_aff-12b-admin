@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.ProcessingRequest
         {
             const string spKey = "Aff_Admin_ProcessingRequestDetail_Sel";
 
-            using(var objectDb = GetObjectDb(spKey))
+            using (var objectDb = GetObjectDb(spKey))
             {
                 return objectDb.QueryEntity<ProcessingRequestDetailInfo>(new { RequestId = processingRequestId });
             }

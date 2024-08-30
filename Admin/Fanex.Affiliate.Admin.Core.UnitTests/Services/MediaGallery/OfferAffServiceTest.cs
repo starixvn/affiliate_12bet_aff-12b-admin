@@ -21,14 +21,18 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var param = new SelectOfferAffParam { AffName = "", FileName = "" };
             PagingParam passedParam = null;
             var OfferAffRepository = new Mock<IOfferAffRepository>();
-            OfferAffRepository.Setup(s => s.GetOfferAffList(param)).Returns(new EntityResult<OfferAff> { MainData = new List<OfferAff> { new OfferAff {
+            OfferAffRepository.Setup(s => s.GetOfferAffList(param)).Returns(new EntityResult<OfferAff>
+            {
+                MainData = new List<OfferAff> { new OfferAff {
                 FileName = "abc.html",
                 AffId = 123,
                 EffectiveFromDate = new DateTime(2022, 02, 01),
                 EffectiveToDate = new DateTime(2022, 03, 01),
                 UserName = "UserName",
                 PageId = 234
-            } }, TotalItem = 1 }).Callback<PagingParam>(p => passedParam = p);
+            } },
+                TotalItem = 1
+            }).Callback<PagingParam>(p => passedParam = p);
             var service = CreateOfferAffService(OfferAffRepository.Object);
 
             // Action
@@ -59,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var controller = CreateOfferAffService();
             StringBuilder affNames = new StringBuilder("affname,affname,affname");
-            for(int i = 0; i < 170; i++)
+            for (int i = 0; i < 170; i++)
             {
                 affNames.Append(",affname,affname,affname");
             }

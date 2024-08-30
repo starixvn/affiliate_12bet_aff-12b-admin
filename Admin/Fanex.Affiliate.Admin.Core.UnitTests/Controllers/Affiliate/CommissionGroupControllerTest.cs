@@ -1,8 +1,13 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Services;
@@ -27,10 +32,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var systemServive = new Mock<ISystemService>();
             systemServive.Setup(p => p.GetProductList()).Returns(new List<Product> { new Product { ProductId = 123, ProductName = "abc" } });
 
-            var commGroupCommonService = new Mock<ICommGroupCommonService>();
-            commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(new List<Deduction> { new Deduction { DeductionId = 12, DeductionName = "BankingFee", DeductedPercentage = 0.05m } });
+            var commissionGroupService = new Mock<ICommissionGroupService>();
+            commissionGroupService.Setup(c => c.GetDeductionList()).Returns(new List<Deduction> { new Deduction { DeductionId = 12, DeductionName = "BankingFee", DeductedPercentage = 0.05m } });
 
-            var controller = CreateCommissionGroupController(systemServive: systemServive.Object, commGroupCommonService: commGroupCommonService.Object);
+            var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object, systemServive: systemServive.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -50,10 +55,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var systemServive = new Mock<ISystemService>();
             systemServive.Setup(p => p.GetProductList()).Returns(new List<Product> { new Product { ProductId = 123, ProductName = "abc" } });
 
-            var commGroupCommonService = new Mock<ICommGroupCommonService>();
-            commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(new List<Deduction> { new Deduction { DeductionId = 12, DeductionName = "BankingFee", DeductedPercentage = 0.05m } });
+            var commissionGroupService = new Mock<ICommissionGroupService>();
+            commissionGroupService.Setup(c => c.GetDeductionList()).Returns(new List<Deduction> { new Deduction { DeductionId = 12, DeductionName = "BankingFee", DeductedPercentage = 0.05m } });
 
-            var controller = CreateCommissionGroupController(systemServive: systemServive.Object, commGroupCommonService: commGroupCommonService.Object);
+            var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object, systemServive: systemServive.Object);
 
             // Action
             var viewResult = controller.FetchInitState() as JsonNetResult;
@@ -520,18 +525,142 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             Assert.True(resultInfo.IsSuccessful);
         }
 
+        [Fact]
+        public void AssignPrivateGroup_WhenCallWithInvalidAffId_ReturnViewWithEmptyModel()
+        {
+            // Arrange
+            var controller = CreateCommissionGroupController();
+
+            // Action
+            var viewResult = controller.AssignPrivateGroup(0) as ViewResult;
+
+            // Assert
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewResult.ViewName);
+        }
+
+        [Fact]
+        public void AssignPrivateGroup_WhenCall_ReturnView()
+        {
+            // Arrange
+            int affId = 1271808;
+            var productList = new List<Product> { new Product { ProductId = 123, ProductName = "Casino" } };
+            var deductionList = new List<Deduction> { new Deduction { DeductionId = 12, DeductionName = "BankingFee", DeductedPercentage = 0.05m } };
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(productList);
+            var commissionGroupService = new Mock<ICommissionGroupService>();
+            commissionGroupService.Setup(c => c.GetDeductionList()).Returns(deductionList);
+
+            var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object, systemServive: systemServive.Object);
+            var expectModel = new AssignPrivateGroupViewModel
+            {
+                ProductList = productList,
+                DeductionList = deductionList
+            };
+            // Action
+            var viewResult = controller.AssignPrivateGroup(affId) as ViewResult;
+            var model = viewResult.Model as AssignPrivateGroupViewModel;
+
+            // Assert
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewResult.ViewName);
+            Assert.Equal(expectModel.ProductList, model.ProductList);
+            Assert.Equal(expectModel.DeductionList, model.DeductionList);
+        }
+
+        [Fact]
+        public void AssignPrivateGroup_WhenCallPostWithInvalidParam_ReturnError()
+        {
+            // Arrange
+            var commGroup = new CommissionGroupSetting();
+            var affInfo = new AffiliateBasicInfo();
+            const string ErrorMessage1 = "ErrorMessage1";
+            var controller = CreateCommissionGroupController();
+            controller.ModelState.AddModelError("Error01", ErrorMessage1);
+            var expectResult = ResultInfo.GenerateErr(ErrorMessage1);
+            // Action
+            var jsonNetResult = controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
+            var resultInfo = jsonNetResult.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal(expectResult.Code, resultInfo.Code);
+            Assert.Equal(expectResult.Message, resultInfo.Message);
+        }
+
+        [Theory]
+        [MemberData(nameof(TestCase.TestData), MemberType = typeof(TestCase))]
+        public void AssignPrivateGroup_WhenCallWithInvalidPlatformFee_ExcuteIncorrect(List<DeductionSetting> platformFeeList)
+        {
+            // Arrange
+            var commGroup = CreateCommissionGroupSetting();
+            commGroup.PlatformFeeList = platformFeeList;
+            var affInfo = new AffiliateBasicInfo { AffId = 1271808 };
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 2 },
+                new Product { ProductId = 3 }
+            });
+
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object);
+
+            // Action
+            var result = controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
+        public void AssignPrivateGroup_WhenCall_ExcuteCorrectly()
+        {
+            // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.Environment).Returns("LOCAL");
+            appSetting.Setup(a => a.IsProduction).Returns(false);
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            var _scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            DependencyResolver.SetResolver(resolver);
+
+            var commGroup = CreateCommissionGroupSetting();
+            var affInfo = new AffiliateBasicInfo { AffId = 1271808 };
+            var systemServive = new Mock<ISystemService>();
+            systemServive.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 3 },
+                new Product { ProductId = 4 }
+            });
+            var commGroupAssignmentService = new Mock<ICommGroupAssignmentService>();
+            commGroupAssignmentService.Setup(c => c.AssignPrivateGroup(It.IsAny<CreateUpdateCommissionGroupParam>(), affInfo, It.IsAny<AffInformationEmail>())).Returns(new ResultInfo());
+            var controller = CreateCommissionGroupController(systemServive: systemServive.Object, commGroupAssignmentService: commGroupAssignmentService.Object);
+
+            // Action
+            var result = controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.True(resultInfo.IsSuccessful);
+        }
+
         private static CommissionGroupController CreateCommissionGroupController(
             ISessionService sessionService = null,
             ICommissionGroupService commissionGroupService = null,
             ISystemService systemServive = null,
-            ICommGroupCommonService commGroupCommonService = null
+            ICommGroupAssignmentService commGroupAssignmentService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeCommissionGroupService = commissionGroupService ?? Mock.Of<ICommissionGroupService>();
             var fakeCommonService = systemServive ?? Mock.Of<ISystemService>();
-            var fakecommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();
-            var controller = new CommissionGroupController(fakeSessionService, fakeCommissionGroupService, fakeCommonService, fakecommGroupCommonService);
+            var fakecommGroupAssignmentService = commGroupAssignmentService ?? Mock.Of<ICommGroupAssignmentService>();
+            var controller = new CommissionGroupController(fakeSessionService, fakeCommissionGroupService, fakeCommonService, fakecommGroupAssignmentService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

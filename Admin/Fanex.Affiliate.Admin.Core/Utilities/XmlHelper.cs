@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Payment;
-using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
+﻿using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using Newtonsoft.Json;
 using System;
 using System.Xml;

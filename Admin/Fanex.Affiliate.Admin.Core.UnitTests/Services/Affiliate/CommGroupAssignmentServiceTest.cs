@@ -2,15 +2,16 @@
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
@@ -329,15 +330,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             ICommissionGroupRepository commGroupRepository = null,
             IAffiliateService affiliateService = null,
             IEmailService emailService = null,
-            ICommGroupCommonService commGroupCommonService = null)
+            ICommGroupCommonService commGroupCommonService = null,
+            IAuthService authService = null,
+            ISessionService sessionService = null)
         {
 
+            var fakeIAuthService = authService ?? Mock.Of<IAuthService>();
+            var fakeISessionService = sessionService ?? Mock.Of<ISessionService>();
             var fakeCommGroupRepository = commGroupRepository ?? Mock.Of<ICommissionGroupRepository>();
             var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
             var fakeCommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();
 
-            return new CommGroupAssignmentService(fakeCommGroupRepository, fakeAffiliateService, fakeEmailService, fakeCommGroupCommonService);
+            return new CommGroupAssignmentService(fakeIAuthService, fakeCommGroupRepository, fakeAffiliateService, fakeEmailService, fakeCommGroupCommonService, fakeISessionService);
         }
 
         private static CreateUpdateCommissionGroupParam CreateValidCreateUpdateCommissionGroupParam()

@@ -40,7 +40,8 @@ export class Additional extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim } = this.props;
+        const { userAccountInfo, userClaims } = this.props;
+        const { hasWriteEditAffClaim } = userClaims;
 
         return (
             <Form tag="div">
@@ -49,16 +50,18 @@ export class Additional extends PureComponent {
                 {renderInputForm('state', 'State', userAccountInfo.State, !hasWriteEditAffClaim, false, this.handleChange)}
                 {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, !hasWriteEditAffClaim, true, this.handleChange)}
                 {this._renderCountry(userAccountInfo.Country, !hasWriteEditAffClaim)}
-                {renderClaimBaseSelectionForm(claimsPrincipal, hasWriteEditAffClaim, claimResource.SecurityQA, 'questionId', 'Security Question', userAccountInfo.SecurityQuestions, userAccountInfo.QuestionId, false, this.handleChange, userAccountInfo.Question)}
-                {renderClaimBaseInputForm(claimsPrincipal, hasWriteEditAffClaim, claimResource.SecurityQA, 'answer', 'Answer', userAccountInfo.Answer, false, this.handleChange)}
+                {renderClaimBaseSelectionForm(userClaims, claimResource.SecurityQA, 'questionId', 'Security Question', userAccountInfo.SecurityQuestions, userAccountInfo.QuestionId, false, this.handleChange, userAccountInfo.Question)}
+                {renderClaimBaseInputForm(userClaims, claimResource.SecurityQA, 'answer', 'Answer', userAccountInfo.Answer, false, this.handleChange)}
             </Form>
         )
     }
 }
 
 function mapStateToProps({ edit, claimsPrincipal }) {
-    const { userAccountInfo, hasWriteEditAffClaim } = edit;
-    return Object.assign({}, { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim });
+    const { userAccountInfo, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim } = edit;
+    const userClaims = { claimsPrincipal, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim }
+
+    return Object.assign({}, { userAccountInfo, userClaims });
 }
 
 function mapDispatchToProps(dispatch) {

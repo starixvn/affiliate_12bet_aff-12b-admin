@@ -160,7 +160,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var paymentRequestRepository = new Mock<IPaymentRequestRepository>();
             paymentRequestRepository.Setup(l => l.GetPaymentRequestDetail(It.IsAny<long>())).Returns(new PaymentRequestDetail { Status = "pending" });
             paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentUpdateParam>())).Returns(new PaymentUpdateResult { DetailXml = detailXml });
-            paymentRequestRepository.Setup(l => l.RollbackApprovePaymentRequest(It.IsAny<ResultInfo>(), It.IsAny<string>())).Returns(new ResultInfo { Code = string.IsNullOrEmpty(detailXml) ? 0 : Code.GeneralErrorCode});
+            paymentRequestRepository.Setup(l => l.RollbackApprovePaymentRequest(It.IsAny<ResultInfo>(), It.IsAny<string>())).Returns(new ResultInfo { Code = string.IsNullOrEmpty(detailXml) ? 0 : Code.GeneralErrorCode });
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });
 
@@ -229,7 +229,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             paymentRequestRepository.Setup(l => l.GetPaymentRequestDetail(It.IsAny<long>())).Returns(new PaymentRequestDetail { Status = "pending" });
             paymentRequestRepository.Setup(l => l.UpdatePaymentRequest(It.IsAny<PaymentUpdateParam>())).Returns(new PaymentUpdateResult { DetailXml = detailXml });
             paymentRequestRepository.Setup(l => l.RollbackApprovePaymentRequest(It.IsAny<ResultInfo>(), It.IsAny<string>())).Returns(new ResultInfo());
-            paymentRequestRepository.Setup(l => l.GetSiteDBConfigInfoByCustId(It.IsAny<string>())).Returns(new SiteDBConfigInfo { LinkedServerName = "DBTXN"});
+            paymentRequestRepository.Setup(l => l.GetSiteDBConfigInfoByCustId(It.IsAny<string>())).Returns(new SiteDBConfigInfo { LinkedServerName = "DBTXN" });
             paymentRequestRepository.Setup(l => l.ApprovePaymentRequest(It.IsAny<PaymentApproveParam>())).Returns(new ResultInfo { Code = errCode, Message = errMessage });
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { AffType = 2 });

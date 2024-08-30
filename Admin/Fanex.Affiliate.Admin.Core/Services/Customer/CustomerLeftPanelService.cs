@@ -16,13 +16,10 @@ using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
-    public class CustomerLeftPanelService : ICustomerLeftPanelService
+    public class CustomerLeftPanelService : ManagePermissionService, ICustomerLeftPanelService
     {
         private readonly IEmailService _emailService;
-        private readonly IAffiliateService _affiliateService;
         private readonly ICustomerLeftPanelRepository _customerLeftPanelRepository;
-        private readonly IAuthService _authService;
-        private readonly ISessionService _sessionService;
         private readonly ISystemService _systemService;
 
         public CustomerLeftPanelService(
@@ -31,22 +28,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             IAuthService authService,
             ISessionService sessionService,
             ICustomerLeftPanelRepository customerLeftPanelRepository,
-            ISystemService systemService)
+            ISystemService systemService) : base(authService, sessionService, affiliateService)
         {
             _emailService = emailService;
-            _affiliateService = affiliateService;
             _customerLeftPanelRepository = customerLeftPanelRepository;
-            _sessionService = sessionService;
-            _authService = authService;
             _systemService = systemService;
         }
 
         public AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accOnId, string sessionId)
         {
             var affiliateInfo = _customerLeftPanelRepository.GetAffiliateInfoOnLeftPanel(affUserName);
-            var userId = _sessionService.UserId;
 
-            if (affiliateInfo == null || !_authService.IsUserHasPermissionOnAff(userId, affiliateInfo.AffId))
+            if (affiliateInfo == null || !AuthService.IsUserHasPermissionOnAff(UserId, affiliateInfo.AffId))
             {
                 return null;
             }
@@ -64,10 +57,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
         public IEnumerable<OnlineList> GetOnlineList(string affUserName)
         {
             var affiliateInfo = _customerLeftPanelRepository.GetAffiliateInfoOnLeftPanel(affUserName);
-            var userId = _sessionService.UserId;
             IEnumerable<OnlineList> onlineList = new List<OnlineList>();
 
-            if (affiliateInfo != null && _authService.IsUserHasPermissionOnAff(userId, affiliateInfo.AffId))
+            if (affiliateInfo != null && AuthService.IsUserHasPermissionOnAff(UserId, affiliateInfo.AffId))
             {
                 onlineList = _customerLeftPanelRepository.GetOnlineList(affUserName);
             }
@@ -76,28 +68,25 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
 
         public ResultInfo UpdateAffType(UpdateAffTypeParam param)
         {
-            var userId = _sessionService.UserId;
-            return _authService.IsUserHasPermissionOnAff(userId, param.AffId)
+            return HasHostMultiPermissions(param.AffId, Function.EditAffiliate)
                 ? _customerLeftPanelRepository.UpdateAffType(param)
-                : Result.NotHavePermissionOnAff;
+                : NotHavePermissionOnAffResult;
         }
 
         public ResultInfo UpdateClosedStatus(UpdateClosedStatusParam param)
         {
-            var userId = _sessionService.UserId;
-            return _authService.IsUserHasPermissionOnAff(userId, param.AffId)
+            return AuthService.IsUserHasPermissionOnAff(UserId, param.AffId)
                 ? _customerLeftPanelRepository.UpdateClosedStatus(param)
-                : Result.NotHavePermissionOnAff;
+                : NotHavePermissionOnAffResult;
         }
 
         public ResultInfo UpdateLanguage(UpdateLanguageParam param)
         {
-            if(_systemService.GetInChangeMarkets().Any(m => string.Equals(m.LanguageCode, param.PreferredLanguage, StringComparison.OrdinalIgnoreCase)))
+            if (_systemService.GetInChangeMarkets().Any(m => string.Equals(m.LanguageCode, param.PreferredLanguage, StringComparison.OrdinalIgnoreCase)))
             {
-                var userId = _sessionService.UserId;
-                return _authService.IsUserHasPermissionOnAff(userId, param.AffId)
+                return HasHostMultiPermissions(param.AffId, Function.LanguageAmendment)
                     ? _customerLeftPanelRepository.UpdateLanguage(param)
-                    : Result.NotHavePermissionOnAff;
+                    : NotHavePermissionOnAffResult;
             }
 
             return ResultInfo.GenerateErr("The selected language is invalid!");
@@ -105,17 +94,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
 
         public ResultInfo UpdateStatus(UpdateStatusParam param, AffInformationEmail emailParam)
         {
-            var userId = _sessionService.UserId;
-            if (!_authService.IsUserHasPermissionOnAff(userId, param.AffId))
+            if (!HasHostMultiPermissions(param.AffId, Function.AffAccountStatus))
             {
-                return Result.NotHavePermissionOnAff;
+                return NotHavePermissionOnAffResult;
             }
 
             var result = _customerLeftPanelRepository.UpdateStatus(param);
 
             if (result.IsSuccessful && string.Equals(param.Status, AffStatus.Disapproved, StringComparison.InvariantCultureIgnoreCase))
             {
-                var affInfo = _affiliateService.GetAffiliateBasicInfo(param.AffId);
+                var affInfo = AffiliateService.GetAffiliateBasicInfo(param.AffId);
 
                 SendDisapprovedEmail(emailParam, affInfo);
             }

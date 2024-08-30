@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Button, Row, Col, Alert } from 'reactstrap';
 
-import { getUserAccountInfo, updateUserAccount, getAffiliateInfo, setHasWriteEditAffClaim } from '../actions';
+import { getUserAccountInfo, updateUserAccount, getAffiliateInfo, setHasWriteEditAffClaim, setHasReadManagePendingAffClaim, setHasWriteManagePendingAffClaim } from '../actions';
 import { validateUserAccount } from '../libs/validation';
 import { userPanelMenuKey } from '../libs/constants';
 
@@ -27,11 +27,16 @@ export class Content extends PureComponent {
     }
 
     componentDidMount() {
-        const { affId, claimsPrincipal } = this.props;
-        const hasWriteEditAffClaim = claimsPrincipal.hasWriteClaim(claimResource.EditAffiliate);
+        const { affId, isPendingAff, claimsPrincipal } = this.props;
+        const hasReadManagePendingAffClaim = isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
+        const hasWriteManagePendingAffClaim = isPendingAff && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
+        const hasWriteEditAffClaim = claimsPrincipal.hasWriteClaim(claimResource.EditAffiliate) || hasWriteManagePendingAffClaim;
 
         affId && this.props.getUserAccountInfo(affId);
+
         hasWriteEditAffClaim && this.props.setHasWriteEditAffClaim(hasWriteEditAffClaim);
+        hasReadManagePendingAffClaim && this.props.setHasReadManagePendingAffClaim(hasReadManagePendingAffClaim);
+        hasWriteManagePendingAffClaim && this.props.setHasWriteManagePendingAffClaim(hasWriteManagePendingAffClaim);
     }
 
     handleGetMoreSiteUrls = (moreSiteUrlsList) => {
@@ -108,9 +113,9 @@ export class Content extends PureComponent {
 
     render() {
         const { isSuccess, isShowMessage, message } = this.state;
-        const { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim } = this.props;
+        const { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim, hasReadManagePendingAffClaim } = this.props;
 
-        const hasReadEditAffClaim = userAccountInfo && claimsPrincipal.hasReadClaim(claimResource.EditAffiliate);
+        const hasReadEditAffClaim = userAccountInfo && (claimsPrincipal.hasReadClaim(claimResource.EditAffiliate) || hasReadManagePendingAffClaim);
 
         return hasReadEditAffClaim && (
             <Container fluid={true} className="user-account-container">
@@ -138,7 +143,8 @@ export class Content extends PureComponent {
                     </Col>
                 </Row>
 
-                {claimsPrincipal.hasReadClaim(claimResource.AffWebUrl) && (
+                {
+                    (claimsPrincipal.hasReadClaim(claimResource.AffWebUrl) || hasReadManagePendingAffClaim) && (
                     <Row>
                         <Col xs="12" className="px-0">
                             <Section title="Website Information">
@@ -150,7 +156,8 @@ export class Content extends PureComponent {
                     </Row>
                 )}
 
-                {claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo) && (
+                {
+                    (claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo) || hasReadManagePendingAffClaim) && (
                     <Row>
                         <Col xs="12" className="px-0">
                             <Section title="Payment Information">
@@ -171,14 +178,17 @@ export class Content extends PureComponent {
 }
 
 function mapStateToProps({ affCommonInfo, edit, claimsPrincipal }) {
-    const { affId, affName } = affCommonInfo;
-    const { userAccountInfo, moreSiteUrlsList, hasWriteEditAffClaim } = edit;
+    const { affId, affName, isPendingAff } = affCommonInfo;
+    const { userAccountInfo, moreSiteUrlsList, hasWriteEditAffClaim, hasReadManagePendingAffClaim } = edit;
 
-    return Object.assign({}, { affId, affName, userAccountInfo, moreSiteUrlsList, claimsPrincipal, hasWriteEditAffClaim });
+    return Object.assign({}, {
+        affId, affName, isPendingAff, hasReadManagePendingAffClaim,
+        userAccountInfo, moreSiteUrlsList, claimsPrincipal, hasWriteEditAffClaim
+    });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getUserAccountInfo, updateUserAccount, getAffiliateInfo, setHasWriteEditAffClaim }, dispatch);
+    return bindActionCreators({ getUserAccountInfo, updateUserAccount, getAffiliateInfo, setHasWriteEditAffClaim, setHasReadManagePendingAffClaim, setHasWriteManagePendingAffClaim }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

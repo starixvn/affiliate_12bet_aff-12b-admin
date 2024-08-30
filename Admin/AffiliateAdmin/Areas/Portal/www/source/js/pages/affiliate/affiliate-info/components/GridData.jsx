@@ -116,7 +116,7 @@ export class GridData extends Component {
     }
 
     _buildDataRow(dataItem, index, selectedColumnList) {
-        const { targetCountryList, languageList, isAssignCommGroup, isPwdChangeable } = this.props;
+        const { targetCountryList, languageList, isCommGroupVisible, isPwdChangeable } = this.props;
         const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
         const isApproved = status == "approved";
         const commissionGroupName = htmlDecode(dataItem.CommissionGroup);
@@ -136,7 +136,7 @@ export class GridData extends Component {
         const language = languageList[dataItem.Language];
         const targetCountry = targetCountryList[dataItem.TargetCountryCode];
         const commissionGroup = dataItem.CommissionGroup ? (
-            commissionGroupName === dataItem.UserName && isAssignCommGroup ? (
+            commissionGroupName === dataItem.UserName && isCommGroupVisible ? (
                 <Button color="link"
                     onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
                     {commissionGroupName}
@@ -284,10 +284,10 @@ export class GridData extends Component {
 }
 
 function mapStateToProps({ pagingOption, targetCountryList, languageList, param, columnList, claimsPrincipal, isClickSearch }) {
-    const isAssignCommGroup = claimsPrincipal.hasReadClaim(claimResource.CommissionGroup);
+    const isCommGroupVisible = claimsPrincipal.hasReadClaim(claimResource.CommissionGroup);
 
     const isPwdChangeable = claimsPrincipal.hasWriteClaim(claimResource.AffPassword);
-    return Object.assign({}, { pagingOption, targetCountryList, languageList, param, columnList, isAssignCommGroup, isPwdChangeable, isClickSearch });
+    return Object.assign({}, { pagingOption, targetCountryList, languageList, param, columnList, isCommGroupVisible, isPwdChangeable, isClickSearch });
 }
 
 function mapDispatchToProps(dispatch) {

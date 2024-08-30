@@ -147,9 +147,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 Status = viewModel.Status,
                 UserId = viewModel.UserId,
                 UserName = viewModel.UserName,
-                ProcessingStatus = viewModel.ProcessingStatus,                
+                ProcessingStatus = viewModel.ProcessingStatus,
             };
         }
     }
 }
- 

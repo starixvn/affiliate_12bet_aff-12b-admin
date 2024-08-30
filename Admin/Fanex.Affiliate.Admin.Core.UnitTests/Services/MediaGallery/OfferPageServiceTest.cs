@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var DateTimeHelper = new Mock<IDateTimeHelper>();
             DateTimeHelper.Setup(d => d.GetNowDateTime()).Returns(new DateTime(2021, 12, 12));
             var OfferPageRepository = new Mock<IOfferPageRepository>();
-            OfferPageRepository.Setup(s => s.GetOfferPageList(It.IsAny<PagingParam>())).Returns(new EntityResult<OfferPage> { MainData = new List<OfferPage> { new OfferPage { EffectiveToDate = new DateTime(2022, 01, 01)} }, TotalItem = 1 });
+            OfferPageRepository.Setup(s => s.GetOfferPageList(It.IsAny<PagingParam>())).Returns(new EntityResult<OfferPage> { MainData = new List<OfferPage> { new OfferPage { EffectiveToDate = new DateTime(2022, 01, 01) } }, TotalItem = 1 });
             var service = CreateOfferPageService(OfferPageRepository.Object, null, DateTimeHelper.Object);
 
             // Action

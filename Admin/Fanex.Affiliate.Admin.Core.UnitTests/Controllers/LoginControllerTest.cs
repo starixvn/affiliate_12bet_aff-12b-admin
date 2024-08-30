@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
-using NSubstitute;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -50,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var viewResult = controller.Index() as RedirectResult;
 
             // Assert
-            Assert.Equal("~/Portal/Home/RedirectMenu", viewResult.Url);
+            Assert.Equal("~/Portal/Home", viewResult.Url);
         }
     }
 }

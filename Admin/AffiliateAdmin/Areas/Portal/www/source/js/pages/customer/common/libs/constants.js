@@ -12,3 +12,9 @@ export const userPanelMenuKey = {
     clickStatistics: 'clickStatistics',
     landingPageStatistics: 'landingPageStatistics'
 }
+
+export const status = {
+    Approved: 'approved',
+    Disapproved: 'disapproved',
+    Pending: 'pending'
+}

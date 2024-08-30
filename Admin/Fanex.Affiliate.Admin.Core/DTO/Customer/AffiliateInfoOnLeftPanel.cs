@@ -26,13 +26,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
         [JsonIgnore]
         public string ContactApps { get; set; }
 
-        [PermissionCheck(Function.AffWebUrl)]
+        [ManagePermissionCheck(Function.AffWebUrl)]
         public string SiteUrl { get; set; }
 
-        [PermissionCheck(Function.AffWebUrl)]
+        [ManagePermissionCheck(Function.AffWebUrl)]
         public string MoreSiteUrl { get; set; }
 
-        [PermissionCheck(Function.AffWebUrl)]
+        [ManagePermissionCheck(Function.AffWebUrl)]
         public string NoSiteDescription { get; set; }
 
         [JsonIgnore]
@@ -42,27 +42,30 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public string LastLoginIp { get; set; }
 
-        [PermissionCheck(Function.AssignCommGroup)]
+        [ManagePermissionCheck(Function.AssignCommGroup)]
         public string CommGroupName { get; set; }
 
         public decimal BalanceBf { get; set; }
 
         public string Status { get; set; }
 
+        public bool IsPendingAff => AffStatus.IsPendingAff(Status);
+
+        [ManagePermissionCheck(Function.AffAccountStatus)]
         public bool IsClosed { get; set; }
 
         public int AffType { get; set; }
 
-        [PermissionCheck(Function.AffTargetCountry)]
+        [ManagePermissionCheck(Function.AffTargetCountry)]
         public string TargetCountryName { get; set; }
 
-        [PermissionCheck(Function.LanguageAmendment)]
+        [ManagePermissionCheck(Function.LanguageAmendment)]
         public string PreferredLanguage { get; set; }
 
-        [PermissionCheck(Function.LanguageAmendment)]
+        [ManagePermissionCheck(Function.LanguageAmendment)]
         public string PreferredLanguageName { get; set; }
 
-        [PermissionCheck(Function.AffPhone)]
+        [ManagePermissionCheck(Function.AffPhone)]
         [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Phone { get; set; }
 

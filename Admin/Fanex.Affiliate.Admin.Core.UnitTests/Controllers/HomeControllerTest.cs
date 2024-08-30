@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Home;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Home;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -27,19 +26,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
             // Assert
             Assert.Equal("", viewResult.ViewName);
-        }
-
-        [Fact]
-        public void RedirectMenu_WhenCall_RedirectCorrect()
-        {
-            // Arrange
-            var controller = CreateHomeController();
-
-            // Action
-            var viewResult = controller.RedirectMenu() as RedirectResult;
-
-            // Assert
-            Assert.Equal("~/Portal/Home", viewResult.Url);
         }
 
         [Fact]

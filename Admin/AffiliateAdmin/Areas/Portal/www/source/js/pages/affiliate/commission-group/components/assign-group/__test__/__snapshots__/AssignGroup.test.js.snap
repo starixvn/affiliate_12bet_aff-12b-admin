@@ -6,6 +6,7 @@ AssignGroup {
   "handleChange": [Function],
   "handleCheck": [Function],
   "handleSave": [Function],
+  "hasCommGroupVisible": undefined,
   "hideMessage": [Function],
   "props": undefined,
   "refs": Object {},
@@ -167,72 +168,6 @@ exports[`commission group - AssignGroup Should render correctly with isSuccess s
             CG22124
           </option>
         </select>
-      </Col>
-    </FormGroup>
-    <FormGroup
-      row={true}
-      tag="div"
-    >
-      <Label
-        className="font-weight-bold"
-        for="isPrivateGroup"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-        xs="4"
-      >
-        Use private group: 
-      </Label>
-      <Col
-        tag="div"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-        xs="5"
-      >
-        <FormGroup
-          check={true}
-          tag="div"
-        >
-          <Label
-            check={true}
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <Input
-              checked={false}
-              id="isPrivateGroup"
-              onChange={[Function]}
-              style={
-                Object {
-                  "marginTop": -5,
-                }
-              }
-              type="checkbox"
-            />
-          </Label>
-        </FormGroup>
       </Col>
     </FormGroup>
   </fieldset>

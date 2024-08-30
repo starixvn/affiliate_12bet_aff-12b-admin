@@ -123,7 +123,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                return objectDb.QueryEntity<SiteDBConfigInfo>( new { Custid = playerIbcCustId });
+                return objectDb.QueryEntity<SiteDBConfigInfo>(new { Custid = playerIbcCustId });
             }
         }
 

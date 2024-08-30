@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (ModelState.IsValid)
             {
-                if(!string.Equals("Country", param.GroupBy, StringComparison.InvariantCultureIgnoreCase))
+                if (!string.Equals("Country", param.GroupBy, StringComparison.InvariantCultureIgnoreCase))
                 {
                     param.LanguageCode = GetShortedCode(_systemServive.GetAllInChangeMarkets(), param.LanguageCode);
                 }

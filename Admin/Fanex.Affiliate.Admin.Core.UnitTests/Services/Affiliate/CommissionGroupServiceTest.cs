@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
                         Commission = 0.2m
                     }
                 }
-                
+
             };
             var commGroupRepository = new Mock<ICommissionGroupRepository>();
             commGroupRepository.Setup(comm => comm.GetCommissionGroupList(param)).Returns(commissionGroupResultEntity);
@@ -154,6 +154,29 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
 
             // Assert
             Assert.Equal(result, expectedResult);
+        }
+
+
+        [Fact]
+        public void GetDeductionList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var commGroupRepository = new Mock<ICommissionGroupRepository>();
+            var expectedResult = new List<Deduction>
+                    {
+                        new Deduction
+                        {
+                            DeductedPercentage= 0, DeductionId= 12, DeductionName = "BankingFee"
+                        }
+                    };
+            commGroupRepository.Setup(comm => comm.GetDeductionList()).Returns(expectedResult);
+            var service = CreateCommissionGroupService(commGroupRepository.Object);
+
+            // Action
+            var result = service.GetDeductionList();
+
+            // Assert
+            Assert.Single(result);
         }
 
         private static CommissionGroupService CreateCommissionGroupService(

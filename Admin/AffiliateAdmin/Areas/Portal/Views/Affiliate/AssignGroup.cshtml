@@ -12,6 +12,7 @@
         window.initialState = {
             commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
             selectedGroup: @Model.SelectedGroup,
+            hasCommGroupVisible: '@Model.HasCommGroupVisible'.toLowerCase() === 'true',
             affInfo: @Html.Raw(Json.Encode(Model.AffInfo)),
         }
     </script>

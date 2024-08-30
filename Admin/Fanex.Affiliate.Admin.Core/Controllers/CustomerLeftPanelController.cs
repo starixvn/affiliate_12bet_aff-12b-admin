@@ -2,17 +2,13 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
-using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using Newtonsoft.Json;
 using ONEbook.UM.AspNetMVC.Filters;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
@@ -30,8 +26,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             ICustomerLeftPanelService customerLeftPanelService
             )
         {
-            _customerLeftPanelService = customerLeftPanelService;
             _sessionService = sessionService;
+            _customerLeftPanelService = customerLeftPanelService;
         }
 
         [ValidateAntiForgeryHeader]
@@ -45,10 +41,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             }
 
             _sessionService.AffName = affUsername;
+            var affInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, _sessionService.OnUserId.ToString(), Session.SessionID);
 
             return new JsonNetResult
             {
-                Data = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, _sessionService.OnUserId.ToString(), Session.SessionID)
+                Data = affInfo
             };
         }
 
@@ -68,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LanguageAmendment, IsHost = true)]
+        [MultiFunctionAuthorize(FunctionName = Function.LanguageAmendment, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateLanguage(UpdateLanguageParam param)
         {
@@ -94,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.CustomerMenu, IsHost = true)]
+        [MultiFunctionAuthorize(FunctionName = Function.AffiliateInfo, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
         {
@@ -113,7 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffAccountStatus, IsHost = true)]
+        [MultiFunctionAuthorize(FunctionName = Function.AffiliateInfo, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateStatus(UpdateStatusParam param)
         {
@@ -144,7 +141,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffAccountStatus, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AffiliateInfo, IsHost = true)]
         [HttpPost]
         public ActionResult UpdateClosedStatus(UpdateClosedStatusParam param)
         {

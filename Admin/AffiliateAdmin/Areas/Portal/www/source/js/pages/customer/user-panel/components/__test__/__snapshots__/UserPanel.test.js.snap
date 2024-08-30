@@ -14,7 +14,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     }
   />
   <Memo(UserPanelMenu)
-    isPending={false}
+    isWaitingApproval={false}
     menuList={
       Array [
         Object {
@@ -210,7 +210,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     }
   />
   <Memo(UserPanelMenu)
-    isPending={true}
+    isWaitingApproval={true}
     menuList={
       Array [
         Object {

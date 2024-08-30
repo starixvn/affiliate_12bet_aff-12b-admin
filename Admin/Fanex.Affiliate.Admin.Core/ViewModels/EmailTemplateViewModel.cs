@@ -1,7 +1,4 @@
-﻿
-using Fanex.Affiliate.Admin.Core.Constants;
-
-namespace Fanex.Affiliate.Admin.Core.ViewModels
+﻿namespace Fanex.Affiliate.Admin.Core.ViewModels
 {
     public class EmailTemplateViewModel
     {

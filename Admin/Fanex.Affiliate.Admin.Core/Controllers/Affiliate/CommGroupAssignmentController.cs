@@ -1,77 +1,62 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Fanex.Affiliate.Admin.Core.ViewModels;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.AssignCommGroup)]
+    [MultiFunctionAuthorize(FunctionName = Function.AssignCommGroup, FunctionNameOption = Function.ManagePendingAff)]
     public class CommGroupAssignmentController : ReadOnlySessionBaseController
     {
-        private const string PrivateGroupName = "[None]";
-
-        private readonly ICommGroupCommonService _commGroupCommonService;
-
         private readonly ICommGroupAssignmentService _commGroupAssignmentService;
-
-        private readonly IAffiliateService _affiliateService;
-
-        private readonly ISystemService _systemService;
 
         public CommGroupAssignmentController(
             ISessionService sessionService,
-            ISystemService systemService,
-            IAffiliateService affiliateService,
-            ICommGroupAssignmentService commGroupAssignmentService,
-            ICommGroupCommonService commGroupCommonService) : base(sessionService)
+            ICommGroupAssignmentService commGroupAssignmentService) : base(sessionService)
         {
-            _affiliateService = affiliateService;
             _commGroupAssignmentService = commGroupAssignmentService;
-            _systemService = systemService;
-            _commGroupCommonService = commGroupCommonService;
         }
 
         [HttpGet]
         public ActionResult AssignGroup(int affId)
         {
-            var viewModel = new AssignNormalGroupViewModel();
-
-            if (affId >= Validation.MinId)
+            if (!_commGroupAssignmentService.HasReadFunctionOrManagePendingAffPermission(affId, Function.AssignCommGroup))
             {
-                var param = new GetGroupListParam { AffId = affId };
-                var commGroupList = _commGroupAssignmentService.GetNormalCommGroupList(param);
-
-                viewModel = new AssignNormalGroupViewModel
-                {
-                    CommGroupList = commGroupList,
-                    SelectedGroup = param.GroupId,
-                    AffInfo = _affiliateService.GetAffiliateBasicInfo(affId)
-                };
+                return Redirect("~/Portal/AccessDenied");
             }
+
+            var affInfo = _commGroupAssignmentService.GetAffiliateBasicInfo(affId);
+            var hasHostAssignCommGroupPermission = _commGroupAssignmentService.HasHostFunctionPermission(Function.AssignCommGroup);
+            var hasHostManagePendingAffPermission = _commGroupAssignmentService.HasHostManagePendingAffPermission(affId, affInfo.Status);
+            var param = new GetGroupListParam { AffId = affId };
+            var commGroupList = _commGroupAssignmentService.GetNormalCommGroupList(param);
+
+            var viewModel = new AssignNormalGroupViewModel
+            {
+                CommGroupList = (hasHostManagePendingAffPermission && !hasHostAssignCommGroupPermission) ? ManageCommGroup.GetManageCommGroups(commGroupList) : commGroupList,
+                SelectedGroup = param.GroupId,
+                HasCommGroupVisible = _commGroupAssignmentService.HasReadFunctionPermission(Function.CommissionGroup),
+                AffInfo = affInfo
+            };
 
             return View("~/Areas/Portal/Views/Affiliate/AssignGroup.cshtml", viewModel);
         }
 
-        [FunctionAuthorize(FunctionName = Function.AssignCommGroup, IsHost = true)]
+        [MultiFunctionAuthorize(FunctionName = Function.AssignCommGroup, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult AssignGroup(AssignGroupParam assignParam, AffiliateBasicInfo affInfo)
         {
             if (!ModelState.IsValid || assignParam.GroupId < Validation.MinId)
             {
-                return CreateErrorResult();
+                return ModelState.GenerateErrorResult();
             }
 
             assignParam.UserId = SessionService.UserId;
@@ -86,76 +71,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             return new JsonNetResult
             {
                 Data = _commGroupAssignmentService.AssignGroup(assignParam, affInfo, emailParam)
-            };
-        }
-
-        [FunctionAuthorize(FunctionName = Function.CommissionGroup)]
-        [HttpGet]
-        public ActionResult AssignPrivateGroup(int affId)
-        {
-            var viewModel = affId >= Validation.MinId ?
-                new AssignPrivateGroupViewModel
-                {
-                    ProductList = _systemService.GetProductList(),
-                    DeductionList = _commGroupCommonService.GetDeductionList(),
-                    AffInfo = _affiliateService.GetAffiliateBasicInfo(affId)
-                } :
-                new AssignPrivateGroupViewModel();
-
-            return View("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewModel);
-        }
-
-        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult AssignPrivateGroup(CommissionGroupSetting commGroup, AffiliateBasicInfo affInfo)
-        {
-            if (!ModelState.IsValid)
-            {
-                return CreateErrorResult();
-            }
-
-            var platformFeeValidation = CommGroupValidationHelper.ValidatePlatformFeeList(_systemService, commGroup.PlatformFeeList);
-            if (platformFeeValidation.IsSuccessful)
-            {
-                var assignParam = new CreateUpdateCommissionGroupParam
-                {
-                    UserId = SessionService.UserId,
-                    GroupId = affInfo.AffId,
-                    GroupName = affInfo.UserName,
-                    Description = PrivateGroupName,
-                    QmTurnover = commGroup.QmTurnover,
-                    IsApplyBonus = commGroup.IsApplyBonus,
-                    TierSettingList = commGroup.TierSettingList,
-                    FdmSettingList = commGroup.FdmSettingList,
-                    PlatformFeeList = commGroup.PlatformFeeList,
-                    OperationalFee = commGroup.OperationalFee,
-                    BankingFee = commGroup.BankingFee,
-                    Ip = Request.UserHostAddress
-                };
-
-                var emailParam = new AffInformationEmail
-                {
-                    RootUrl = SiteDomainHelper.GetRootUrl(this)
-                };
-
-                return new JsonNetResult
-                {
-                    Data = _commGroupAssignmentService.AssignPrivateGroup(assignParam, affInfo, emailParam)
-                };
-            }
-
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(platformFeeValidation.Message)
-            };
-        }
-
-        private ActionResult CreateErrorResult()
-        {
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
             };
         }
     }

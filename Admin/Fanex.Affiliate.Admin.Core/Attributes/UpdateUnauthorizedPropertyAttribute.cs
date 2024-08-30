@@ -1,5 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Utilities;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +15,8 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
     {
         public string PermissionName { get; }
         private IEnumerable<Claim> Claims { get; set; }
+
+        private bool IsPendingAff { get; set; }
 
         public UpdateUnauthorizedPropertyAttribute(string permissionName = null)
         {
@@ -66,6 +68,11 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             else
             {
                 var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                if (!IsPendingAff)
+                {
+                    CheckPendingAff(data, properties);
+                }
+
                 foreach (var pro in properties)
                 {
                     var value = UpdateData(data, pro);
@@ -76,10 +83,11 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
 
         private object UpdateData(object data, PropertyInfo pro)
         {
-            if (IsNeedResetPro(pro))
+            if (IsNeedResetPro(pro) || IsNeedResetProMultiPermissions(pro))
             {
                 pro.SetValue(data, null, null);
-            } else
+            }
+            else
             {
                 if (IsNeedCensoredPro(pro))
                 {
@@ -98,10 +106,21 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             return attribute != null && !HasPermission(attribute.PermissionName);
         }
 
+        private bool IsNeedResetProMultiPermissions(PropertyInfo pro)
+        {
+            var attribute = pro.GetCustomAttribute<ManagePermissionCheckAttribute>();
+            return attribute != null && !(HasPermission(attribute.PermissionName) || (IsPendingAff && HasPermission(attribute.PermissionNameOption)));
+        }
+
         private bool IsNeedCensoredPro(PropertyInfo pro)
         {
             var attribute = pro.GetCustomAttribute<CensoredPermissionCheckAttribute>();
             return attribute != null && !HasPermission(attribute.PermissionName);
+        }
+
+        private void CheckPendingAff(object data, PropertyInfo[] props)
+        {
+            IsPendingAff = Convert.ToBoolean(props.FirstOrDefault(p => p.Name.MatchWith(Field.IsPendingAff))?.GetValue(data, null) ?? false);
         }
 
         private bool HasPermission(string permissionName)

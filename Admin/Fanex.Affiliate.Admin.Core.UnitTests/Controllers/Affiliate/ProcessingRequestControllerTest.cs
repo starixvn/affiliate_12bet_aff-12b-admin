@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.ProcessingRequest;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.ProcessingRequest;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -143,7 +142,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             //Arrange
             var sessionService = MockingHelper.GetSessionService(permissionName, true, true);
             var processingRequestService = new Mock<IProcessingRequestService>();
-            processingRequestService.Setup(l => l.GetProcessingRequestDetail(It.IsAny<int>())).Returns(new ProcessingRequestDetailInfo{ Status = ProcessingRequestStatus.DRAFT });
+            processingRequestService.Setup(l => l.GetProcessingRequestDetail(It.IsAny<int>())).Returns(new ProcessingRequestDetailInfo { Status = ProcessingRequestStatus.DRAFT });
             processingRequestService.Setup(l => l.UpdateProcessingRequest(It.IsAny<ProcessingRequestUpdParam>())).Returns(new ResultInfo());
 
             var controller = CreateProcessingRequestController(processingRequestService.Object, sessionService: sessionService);
@@ -192,7 +191,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private ProcessingRequestController CreateProcessingRequestController(
             IProcessingRequestService processingRequestService = null,
- 			ISystemService systemServive = null,
+             ISystemService systemServive = null,
             ISessionService sessionService = null
             )
         {

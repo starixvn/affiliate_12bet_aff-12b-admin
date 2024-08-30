@@ -11,6 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string UserName { get; set; }
 
+        [PermissionCheck(Function.AffAccountStatus)]
         public string Status { get; set; }
 
         public string ProcessingStatus { get; set; }

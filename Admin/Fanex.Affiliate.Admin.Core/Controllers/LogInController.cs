@@ -11,9 +11,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var isAuthorized = HttpContext.Request.IsAuthenticated && HttpContext.User.Identity.IsAuthenticated;
 
-            if(isAuthorized)
+            if (isAuthorized)
             {
-                return Redirect("~/Portal/Home/RedirectMenu");
+                return Redirect("~/Portal/Home");
             }
 
             return View();

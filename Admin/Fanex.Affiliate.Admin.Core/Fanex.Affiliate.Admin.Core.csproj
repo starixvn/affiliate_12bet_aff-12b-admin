@@ -239,6 +239,8 @@
     <Compile Include="Attributes\ClaimAuthorizeAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
+    <Compile Include="Attributes\MultiFunctionAuthorizeAttribute.cs" />
+    <Compile Include="Attributes\ManagePermissionCheckAttribute.cs" />
     <Compile Include="Attributes\PermissionCheckAttribute.cs" />
     <Compile Include="Attributes\CensoredPermissionCheckAttribute.cs" />
     <Compile Include="Attributes\UpdateUnauthorizedPropertyAttribute.cs" />
@@ -256,9 +258,12 @@
     <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
+    <Compile Include="Constants\ManageCommGroup.cs" />
     <Compile Include="Constants\Menu.cs" />
     <Compile Include="Constants\NoteType.cs" />
     <Compile Include="Constants\ProcessingRequestStatus.cs" />
+    <Compile Include="Services\ProtectingPropertiesService.cs" />
+    <Compile Include="Services\ManagePermissionService.cs" />
     <Compile Include="Enum\TargetCountryStatus.cs" />
     <Compile Include="Constants\TransType.cs" />
     <Compile Include="Controllers\Affiliate\FeedbackReportController.cs" />
@@ -294,7 +299,7 @@
     <Compile Include="DTO\UserPanel\CensoredContactApp.cs" />
     <Compile Include="DTO\Common\Country.cs" />
     <Compile Include="DTO\UserPanel\LogAction.cs" />
-    <Compile Include="Enum\ProcessingRequestStatus.cs" />
+    <Compile Include="Extensions\ErrorExtension.cs" />
     <Compile Include="Extensions\GenericExtension.cs" />
     <Compile Include="MetaModels\AdminRole\UpdatePasswordParam.cs" />
     <Compile Include="MetaModels\Domain\TargetCountryParam.cs" />
@@ -358,7 +363,6 @@
     <Compile Include="Utilities\SystemHelper.cs" />
     <Compile Include="Utilities\IDateTimeHelper.cs" />
     <Compile Include="Utilities\MassAdjustment\MassAdjustmentHelper.cs" />
-    <Compile Include="Utilities\Result.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />
     <Compile Include="Constants\SessionKey.cs" />
@@ -624,7 +628,6 @@
     <Compile Include="Services\AdminRole\IRolePermissionService.cs" />
     <Compile Include="Services\AffiliateService.cs" />
     <Compile Include="Services\AuthService.cs" />
-    <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordService.cs" />
     <Compile Include="Services\ChangeAdminPassword\IChangeAdminPasswordService.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentService.cs" />

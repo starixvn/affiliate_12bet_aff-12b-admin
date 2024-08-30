@@ -1,3 +1,4 @@
+/// <reference path="../../../common/libs/constants.js" />
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -21,7 +22,7 @@ export class SettingPanel extends PureComponent {
         this.state = {
             isChangingAffType: false,
             isChangingAffStatus: false,
-            isAssignCommissionGroup: false,
+            isAssignCommGroup: false,
             selectedStatus: '',
             isClosed: false,
             messageNotification: '',
@@ -39,7 +40,7 @@ export class SettingPanel extends PureComponent {
     }
 
     toggleAssignCommissionPopup = (isChanging) => {
-        this.setState({ isAssignCommissionGroup: isChanging })
+        this.setState({ isAssignCommGroup: isChanging })
     }
 
     handleCloseNotificationPopup = (confirmResult) => {
@@ -61,7 +62,7 @@ export class SettingPanel extends PureComponent {
 
     _changeStatus = async (selectedStatus) => {
         if (selectedStatus && selectedStatus.toLowerCase() === status.Approved) {
-            this.setState({ isAssignCommissionGroup: true });
+            this.setState({ isAssignCommGroup: true });
         } else {
             const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: selectedStatus });
             const result = await this.props.updateStatus(param);
@@ -112,33 +113,41 @@ export class SettingPanel extends PureComponent {
             this.toggleChangingAffType(false);
         }
         else {
-            this.setState({ messageNotification: messages.affTypeUpdatedFail, isConfirmPopup: false });
+            this.setState({ messageNotification: result.Message, isConfirmPopup: false });
         }
     }
 
     render() {
-        const { affiliateInfo, isApproved, isStatusShowable, isStatusModifiable } = this.props;
-        const { isChangingAffType, isChangingAffStatus, isAssignCommissionGroup, messageNotification, isConfirmPopup } = this.state;
-        const isReadOnly = isStatusShowable && !isStatusModifiable;
+        const { affiliateInfo, isApproved, isStatusVisible, isStatusModifiable,
+            isAssignCommGroupVisible, isCommGroupVisible, isAffTypeModifiable, isManagePendingAffVisible, isManagePendingAffModifiable } = this.props;
+        const { isChangingAffType, isChangingAffStatus, isAssignCommGroup, messageNotification, isConfirmPopup } = this.state;
+        const isReadOnly = isStatusVisible && !isStatusModifiable && !isManagePendingAffModifiable;
+
         return (
             <Panel heading={resource.Setting}>
                 <Row>
                     <Col>{resource.AffiliateType}</Col>
-                    <Col className="text-right text-primary">
-                        <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
-                            onChange={this.handleChangeAffType} onBlur={() => this.toggleChangingAffType(false)} ref={this.affTypeDropdown}>
-                            {
-                                Object.keys(affType).map((key, index) => {
-                                    return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
-                                })
-                            }
-                        </select>
-                        <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={() => this.toggleChangingAffType(true)}>
-                            {affType[affiliateInfo.AffType]}
-                        </Button>
+                    <Col className="text-right">
+                        {
+                            (isAffTypeModifiable || isManagePendingAffModifiable) ? (
+                                <div className="text-primary">
+                                    <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
+                                        onChange={this.handleChangeAffType} onBlur={() => this.toggleChangingAffType(false)} ref={this.affTypeDropdown}>
+                                        {
+                                            Object.keys(affType).map((key, index) => {
+                                                return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
+                                            })
+                                        }
+                                    </select>
+                                    <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={() => this.toggleChangingAffType(true)}>
+                                        {affType[affiliateInfo.AffType]}
+                                    </Button>
+                                </div>
+                            ) : affType[affiliateInfo.AffType]
+                        }
                     </Col>
                 </Row>
-                { isStatusShowable &&
+                { isStatusVisible &&
                     <Row>
                         <Col>{resource.Status}</Col>
                         <Col className="text-right">
@@ -151,7 +160,9 @@ export class SettingPanel extends PureComponent {
                                                 onChange={this._handleChangeStatus}
                                                 onBlur={() => this.toggleChangingAffStatus(false)}
                                                 ref={this.affStatusDropdown}>
-                                                <option value="Approved">Approved</option>
+                                                {
+                                                (isAssignCommGroupVisible || isManagePendingAffVisible) && <option value="Approved">Approved</option>
+                                                }
                                                 <option value="Disapproved">Disapproved</option>
                                                 <option value="Pending">Pending</option>
                                             </select>
@@ -162,20 +173,23 @@ export class SettingPanel extends PureComponent {
                                         </div>
                                     )
                             }
-                            <CommissionGroupPopup
-                                showPopupCommGroup={isAssignCommissionGroup}
-                                isPrivateGroup={false}
-                                isNewAffiliate={true}
-                                affName={affiliateInfo.AffName}
-                                affId={affiliateInfo.AffId}
-                                setShowPopupCommGroup={this.toggleAssignCommissionPopup}
-                                getAffiliateInfo={this.props.getAffiliateInfo}
-                            />
+                            {
+                                (isAssignCommGroupVisible || isManagePendingAffVisible) && <CommissionGroupPopup
+                                    showPopupCommGroup={isAssignCommGroup}
+                                    isPrivateGroup={false}
+                                    isNewAffiliate={true}
+                                    isCommGroupVisible={isCommGroupVisible}
+                                    affName={affiliateInfo.AffName}
+                                    affId={affiliateInfo.AffId}
+                                    setShowPopupCommGroup={this.toggleAssignCommissionPopup}
+                                    getAffiliateInfo={this.props.getAffiliateInfo}
+                                />
+                            }
                         </Col>
                     </Row>
                 }
                 {
-                    isApproved && isStatusShowable && (
+                    isApproved && isStatusVisible && (
                         <Row>
                             <Col>{resource.Closed}</Col>
                             { isStatusModifiable
@@ -202,9 +216,20 @@ export class SettingPanel extends PureComponent {
 
 function mapStateToProps({ leftPanel, claimsPrincipal, today }) {
     const { affiliateInfo, affName } = leftPanel;
-    const isStatusModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffAccountStatus);
-    const isStatusShowable = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus);
-    return Object.assign({}, { affiliateInfo, affName, isStatusShowable, isStatusModifiable, today });
+    const isStatusModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffiliateInfo);
+    const isAssignCommGroupVisible = claimsPrincipal.hasReadClaim(claimResource.AssignCommGroup);
+    const isCommGroupVisible = claimsPrincipal.hasReadClaim(claimResource.CommissionGroup);
+    const isAffTypeModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffiliateInfo);
+    
+    const isPendingAff = affiliateInfo.IsPendingAff;
+    const isManagePendingAffVisible = isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
+    const isManagePendingAffModifiable = isPendingAff && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
+    const isStatusVisible = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus) || isManagePendingAffVisible;
+
+    return Object.assign({}, {
+        affiliateInfo, affName, isStatusVisible, isStatusModifiable, today,
+        isAssignCommGroupVisible, isCommGroupVisible, isAffTypeModifiable, isManagePendingAffVisible, isManagePendingAffModifiable
+    });
 };
 
 function mapDispatchToProps(dispatch) {

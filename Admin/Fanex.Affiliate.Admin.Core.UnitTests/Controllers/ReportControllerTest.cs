@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -49,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var controller = CreateReportController(affiliateReportService: affiliateReportService.Object, systemServive: systemServive.Object);
 
             // Action
-            var result = controller.GetMainData(new GetReportMainDataViewModel { UserName = "test"}) as JsonNetResult;
+            var result = controller.GetMainData(new GetReportMainDataViewModel { UserName = "test" }) as JsonNetResult;
             var data = result.Data as EntityResult<AffiliateReport>;
 
             // Assert

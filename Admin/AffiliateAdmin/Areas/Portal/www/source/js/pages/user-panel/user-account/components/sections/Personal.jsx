@@ -62,7 +62,8 @@ export class Personal extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim } = this.props;
+        const { userAccountInfo, userClaims } = this.props;
+        const { hasWriteEditAffClaim } = userClaims;
 
         return (
             <Form tag="div">
@@ -70,8 +71,8 @@ export class Personal extends PureComponent {
                 {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, !hasWriteEditAffClaim, true, this.handleChange)}
                 {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, !hasWriteEditAffClaim, true, this.handleChange)}
                 {this._renderGenderForm(userAccountInfo.Gender, !hasWriteEditAffClaim)}
-                {renderClaimBaseInputForm(claimsPrincipal, hasWriteEditAffClaim, claimResource.AffEmail, 'email', 'Email Address', userAccountInfo.Email, true, this.handleChange)}
-                {renderClaimBaseInputForm(claimsPrincipal, hasWriteEditAffClaim, claimResource.AffPhone, 'phone', 'Contact Number', userAccountInfo.Phone, true, this.handleChange)}
+                {renderClaimBaseInputForm(userClaims, claimResource.AffEmail, 'email', 'Email Address', userAccountInfo.Email, true, this.handleChange)}
+                {renderClaimBaseInputForm(userClaims, claimResource.AffPhone, 'phone', 'Contact Number', userAccountInfo.Phone, true, this.handleChange)}
                 {
                     this.arrayContactApps && this.arrayContactApps.map(contactApp => {
                         return (
@@ -85,8 +86,10 @@ export class Personal extends PureComponent {
 }
 
 function mapStateToProps({ edit, claimsPrincipal }) {
-    const { userAccountInfo, hasWriteEditAffClaim } = edit;
-    return Object.assign({}, { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim });
+    const { userAccountInfo, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim } = edit;
+    const userClaims = { claimsPrincipal, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim }
+
+    return Object.assign({}, { userAccountInfo, userClaims });
 }
 
 function mapDispatchToProp(dispatch) {

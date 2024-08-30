@@ -7,12 +7,9 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
     {
         public string PermissionType { get; }
 
-        public string PermissionValue { get; }
-
-        public SpParamProtectingAttribute(string permissionType, string permissionValue)
+        public SpParamProtectingAttribute(string permissionType)
         {
             PermissionType = permissionType;
-            PermissionValue = permissionValue;
         }
     }
 }

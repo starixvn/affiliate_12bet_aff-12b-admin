@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
@@ -157,7 +156,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal(Lang.UpdateIsFailed, result.Message);
+            Assert.Equal("The payment method is invalid!", result.Message);
         }
 
         [Fact]
@@ -178,13 +177,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         private static UserAccountService CreateUserAccountService(
             IUserAccountRepository userAccountRepository = null,
             IAuthService authService = null,
-            ISessionService sessionService = null)
+            ISessionService sessionService = null,
+            IAffiliateService affiliateService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeAuthService = authService ?? Mock.Of<IAuthService>();
             var fakeUserAccountRepository = userAccountRepository ?? Mock.Of<IUserAccountRepository>();
+            var fakeIAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
 
-            return new UserAccountService(fakeUserAccountRepository, fakeAuthService, fakeSessionService);
+            return new UserAccountService(fakeUserAccountRepository, fakeAuthService, fakeSessionService, fakeIAffiliateService);
         }
 
         private static UserAccountParam GetUserAccountParam()

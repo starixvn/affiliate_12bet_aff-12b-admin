@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -10,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Extensions
     public static class ClaimPrincipalExtension
     {
         public static bool HasClaim(this ClaimsPrincipal claims, string claimType)
-            => claims.HasClaim(c => c.Type.Equals(claimType, StringComparison.OrdinalIgnoreCase));
+            => claims.HasClaim(c => c.Type.MatchWith(claimType));
 
         public static bool HasWriteClaim(this ClaimsPrincipal claims, string claimType)
             => claims.HasClaim(claimType, Function.WritePermission);
