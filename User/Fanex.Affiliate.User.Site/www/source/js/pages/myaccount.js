@@ -1,4 +1,6 @@
 ﻿var MyAccount = (function ($) {
+    var _isClickSubmit = false;
+
     function setFocusForLastInput() {
         $("#websiteInfo .urlInput").last().focus();
     }
@@ -20,7 +22,7 @@
 
             $("#accountForm").on("change", "input[name=HasWebSite][type=radio]", function () {
                 var hasWebSite = this.value === "True";
-                WebSite.changeWebsiteOption(hasWebSite);
+                WebSite.changeWebsiteOption(hasWebSite, _isClickSubmit);
             });
 
             $("#btnMyAccountSubmit").on("click", function () {
@@ -28,11 +30,12 @@
             });
 
             $("#btnCancel").on("click", function () {
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverView"));
+                Site.redirect(Site.resolveRelativeLangUrl("UserPanel/Main/#AccountOverView"));
             });
         },
 
         submit: function () {
+            _isClickSubmit = true;
             var $form = $("#accountForm");
             var validator = $form.validate();
             var isValidForm = validator.form();
@@ -43,7 +46,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("UserPanel/MyAccount"),
+                    url: Site.resolveRelativeLangUrl("UserPanel/MyAccount"),
                     data: postData,
                     dataType: "json",
                     cache: false,

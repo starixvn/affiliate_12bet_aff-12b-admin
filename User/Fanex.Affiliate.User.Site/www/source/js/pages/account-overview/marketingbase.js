@@ -27,7 +27,7 @@
                 dataType: "json",
                 cache: false,
                 data: param,
-                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetFiltersByCountry"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetFiltersByCountry"),
                 success: function (response) {
                     if (response && response.length == 0) {
                         $("#btnMarketingSubmit").prop("disabled", true);

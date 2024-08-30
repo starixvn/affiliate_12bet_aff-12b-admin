@@ -21,29 +21,16 @@ $desktop: "(min-width: 1024px)";
 }
 
 @media #{$tablet-horizontal} {
-    .main .banner-side {
-        flex-basis: 150px;
-        max-width: 18%;
-
-        img {
-            width: 150px;
-        }
-    }
-
     .page-container {
-        max-width: calc(100% - 300px);
-        flex-basis: calc(100% - 300px);
+        max-width: calc(100% - 220px);
+        flex-basis: calc(100% - 220px);
     }
 }
 
 @media #{$tablet} {
-    .banner-side.banner-left, .banner-side.banner-right {
-        display: none;
-    }
-
     .page-container {
-        max-width: 100%;
-        flex-basis: 100%;
+        max-width: calc(100% - 80px);
+        flex-basis: calc(100% - 80px);
     }
 
     .news {
@@ -53,14 +40,11 @@ $desktop: "(min-width: 1024px)";
         }
     }
 
-    .user-signup {
-        margin-top: 30px;
-    }
-
     .content-menu #mainMenu {
         white-space: nowrap; /* [1] */
         overflow-x: auto; /* [2] */
-        -webkit-overflow-scrolling: touch; /* [3] */
+        /*-webkit-overflow-scrolling: touch;*/
+        /* [3] */
         -ms-overflow-style: -ms-autohiding-scrollbar; /* [4] */
         &::-webkit-scrollbar {
             display: none;
@@ -69,13 +53,10 @@ $desktop: "(min-width: 1024px)";
 }
 
 @media #{$phone} {
-    .banner-side.banner-left, .banner-side.banner-right {
-        display: none;
-    }
-
     .page-container {
         max-width: 100%;
         flex-basis: 100%;
+        padding : 0 16px;
     }
 
     .news {
@@ -88,17 +69,6 @@ $desktop: "(min-width: 1024px)";
     .info-group .img-ads img {
         width: 100%;
     }
-
-    .header-top .login {
-        padding: 0;
-        text-align: center;
-        padding-bottom: 8px;
-
-        .user-signup {
-            text-align: center;
-        }
-    }
-
     .modal-dialog {
         margin: 30px;
     }
@@ -114,12 +84,20 @@ $desktop: "(min-width: 1024px)";
     .content-menu #mainMenu {
         white-space: nowrap; /* [1] */
         overflow-x: auto; /* [2] */
-        -webkit-overflow-scrolling: touch; /* [3] */
+        /*-webkit-overflow-scrolling: touch;*/
+        /* [3] */
         -ms-overflow-style: -ms-autohiding-scrollbar; /* [4] */
         
 
         /*&::-webkit-scrollbar {
             display: none;
         }*/
+    }
+}
+
+@media only screen and (min-device-width: 480px) and (max-device-width: 980px) and (orientation: landscape) {
+    .page-container {
+        max-width: calc(100% - 100px);
+        flex-basis: calc(100% - 100px);
     }
 }

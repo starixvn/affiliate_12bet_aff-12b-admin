@@ -1,4 +1,4 @@
-﻿@import "../scss/components/monthpicker";
+@import "../scss/components/monthpicker";
 @import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
 @import "../scss/components/pager";
@@ -12,11 +12,6 @@
         &-item {
             display: block;
             font-weight: 400;
-            text-decoration: none;
-
-            &:focus {
-                outline: none;
-            }
         }
     }
 
@@ -226,6 +221,7 @@
                                 th {
                                     background: #CF1F21 !important;
                                     position: sticky;
+                                    position: -webkit-sticky;
                                     top: 43px;
                                 }
 

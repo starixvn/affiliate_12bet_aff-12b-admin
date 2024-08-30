@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test-dev": "node_modules/.bin/karma start karma.conf.js --no-single-run",
-    "test": "node_modules/.bin/karma start karma.conf.js --single-run"
   },
   "keywords": [],
   "author": "",

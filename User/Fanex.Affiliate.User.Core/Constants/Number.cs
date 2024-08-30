@@ -10,7 +10,7 @@
 
         public const int Ten = 10;
 
-        public const int Fourteen = 14;
+        public const int Twelve = 12;
 
         public const int Fifteen = 15;
 
@@ -29,6 +29,10 @@
         public const int TwoDoubleFive = 255;
 
         public const int FourThousand = 4000;
+
+        public const int MinAngle = Fifty;
+
+        public const int MaxAngle = 360;
 
     }
 }

@@ -1560,7 +1560,7 @@ var Member = (function ($) {
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/Member/GetMemberList"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Member/GetMemberList"),
                 success: function (response) {
                     $("#dataList").html(response);
                     onSuccess && onSuccess();

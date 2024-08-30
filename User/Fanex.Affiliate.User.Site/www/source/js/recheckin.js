@@ -1,7 +1,7 @@
 ﻿var ReCheckIn = (function ($) {
     var _timeInterval = 30000;
     var _handler;
-    var _url = Site.resolveRelativeUrl("Auth/ReCheckin");
+    var _url = Site.resolveRelativeLangUrl("Auth/ReCheckin");
 
     var _me = {
         initialize: function () {
@@ -31,13 +31,13 @@
             alert($("<div/>").html(message).text());
 
             setTimeout(function () {
-                window.location.href = Site.resolveRelativeUrl("");
+                window.location.href = Site.resolveRelativeLangUrl("");
             }, 500);
         },
 
         handleShowFeedback: function () {
             $.ajax({
-                url: Site.resolveRelativeUrl("UserPanel/Feedback/Index"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Feedback/Index"),
                 type: "GET",
                 dataType: "html",
                 cache: false,

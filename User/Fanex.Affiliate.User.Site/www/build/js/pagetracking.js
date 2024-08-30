@@ -20,32 +20,39 @@ var PageTracking = (function ($) {
         return $('#shortedLangCode').val() || _defaultShortedLanguageCode;
     }
 
-    function _getShortedLangCodeUpperCase() {
-        var shortedLangCode = $('#shortedLangCode').val();
-
-        return _shortedLanguageCodes[shortedLangCode] || _defaultShortedLanguageCode;
-    }
-
     var _me = {
-        addTrackingForMediaPage: function addTrackingForMediaPage() {
+        addTrackingForLogin: function addTrackingForLogin() {
             if (window.gtag) {
                 var trackingAction = 'AffNewSeasonMedia-' + _getShortedLangCode();
                 window.gtag('event', trackingAction, {
-                    'event_category': 'AFFiliatePage',
-                    'event_label': 'AFFBigBanner'
+                    'send_to': 'UA-5160706-44',
+                    'event_category': 'AFFiliateLogin',
+                    'event_label': 'AFFLogin'
                 });
             }
         },
-        addTrackingForSignUpPage: function addTrackingForSignUpPage() {
+        addTrackingForHomeBanner: function addTrackingForHomeBanner() {
             if (window.gtag) {
-                var actionName = 'AffJoinJuly40Com-' + _getShortedLangCode();
-                window.gtag('event', actionName, {
+                var trackingAction = 'AffHomeBanner-' + _getShortedLangCode();
+                window.gtag('event', trackingAction, {
+                    'send_to': 'UA-5160706-44',
                     'event_category': 'AFFiliatePage',
-                    'event_label': 'AFFBigBanner'
+                    'event_label': 'AFFHomeBanner'
                 });
             }
         },
-        addTrackingForSignUpFromPromotion: function addTrackingForSignUpFromPromotion() {
+        addTrackingForCommissionBanner: function addTrackingForCommissionBanner() {
+            if (window.gtag) {
+                var trackingAction = 'AffCommissionStructureBanner-' + _getShortedLangCode();
+                window.gtag('event', trackingAction, {
+                    'send_to': 'UA-5160706-44',
+                    'event_category': 'AFFiliatePage',
+                    'event_label': 'AFFCommissionStructureBanner'
+                });
+            }
+        },
+
+        addTrackingForPromotionBanner: function addTrackingForPromotionBanner() {
             //analytics.js
             //_gaq.push(['_trackEvent', eventCategory, eventAction, eventLabel, eventValue]);
 
@@ -56,28 +63,11 @@ var PageTracking = (function ($) {
             //  'value': <value>
             //});
             if (window.gtag) {
-                var actionName = 'PreAFFSignUpNewPage' + _getShortedLangCode();
+                var actionName = 'AffPromotionBanner' + _getShortedLangCode();
                 window.gtag('event', actionName, {
+                    'send_to': 'UA-5160706-44',
                     'event_category': 'AFFiliatePage',
-                    'event_label': 'NavigationButton'
-                });
-            }
-        },
-        addTrackingForHomeBanAFFFlat50: function addTrackingForHomeBanAFFFlat50() {
-            if (window.gtag) {
-                var trackingAction = 'HomeBanAFFFlat50-' + _getShortedLangCodeUpperCase();
-                window.gtag('event', trackingAction, {
-                    'event_category': 'HomePage',
-                    'event_label': 'Banner'
-                });
-            }
-        },
-        addTrackingForSmartBanAFFFlat50: function addTrackingForSmartBanAFFFlat50() {
-            if (window.gtag) {
-                var trackingAction = 'SmartBanAFFFlat50-' + _getShortedLangCodeUpperCase();
-                window.gtag('event', trackingAction, {
-                    'event_category': 'HomePage',
-                    'event_label': 'Banner'
+                    'event_label': 'AffPromotionBanner'
                 });
             }
         }

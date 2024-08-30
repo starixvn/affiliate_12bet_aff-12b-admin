@@ -259,6 +259,7 @@
     <Compile Include="BusinessService\UnderMaintenanceService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
     <Compile Include="Constants\ActionName.cs" />
+    <Compile Include="Constants\AppContact.cs" />
     <Compile Include="Constants\CacheKey.cs" />
     <Compile Include="Constants\ClaimConstant.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
@@ -305,7 +306,6 @@
     <Compile Include="BusinessService\IMarketingService.cs" />
     <Compile Include="BusinessService\SystemService.cs" />
     <Compile Include="BusinessService\MarketingService.cs" />
-    <Compile Include="Constants\BannerTypeName.cs" />
     <Compile Include="Constants\SystemLanguage.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -349,6 +349,7 @@
     <Compile Include="DTO\UserPanel\RateInfo.cs" />
     <Compile Include="DTO\UserPanel\Statistics\Country.cs" />
     <Compile Include="Filters\AddOnClaimAuthFilter.cs" />
+    <Compile Include="Filters\LanguageRouteCheckingAttribute.cs" />
     <Compile Include="Infrastructure\DateTimeProvider.cs" />
     <Compile Include="Infrastructure\HttpRequestParserHandler.cs" />
     <Compile Include="Infrastructure\IDateTimeProvider.cs" />
@@ -367,6 +368,11 @@
     <Compile Include="Repository\UserPanel\IOfferRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsLetterRepository.cs" />
     <Compile Include="Repository\UserPanel\NewsLetterRepository.cs" />
+    <Compile Include="Resources\Lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\ClaimUtitlity.cs" />
     <Compile Include="Utilities\Helper.cs" />
     <Compile Include="Utilities\HttpClientUtility.cs" />
@@ -456,7 +462,6 @@
     <Compile Include="MetalModels\UserPanel\LinkBaseParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGenerationParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingBannerParam.cs" />
-    <Compile Include="MetalModels\UserPanel\MarketingTextParam.cs" />
     <Compile Include="MetalModels\UserPanel\ReferrerStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsBySiteBaseParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsDetailBySiteParam.cs" />
@@ -526,11 +531,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Error.zh-TW.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Lang.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Lang.ko-KR.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -45,7 +45,7 @@
             $("#btnLoginVerification").on("click", function (e) {
                 _me.submitForm();
             });
-            $("#captchaVerificationAccount").on('click', function (e) {
+            $("#verifyAccCaptchaBtn").on('click', function (e) {
                 e.preventDefault();
                 _me.generateCaptcha();
                 registerRefreshCaptcha();
@@ -67,8 +67,8 @@
             });
         },
         generateCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());
-            $("#captchaVerificationAccount").attr("src", captchaUrl);
+            var captchaUrl = Site.resolveRelativeLangUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());
+            $("#verifyAccCaptchaImg").attr("src", captchaUrl);
         },
         sendCode: function () {
             var $form = $("#sendCodeForm");
@@ -87,7 +87,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("VerificationAccount/SendCode"),
+                    url: Site.resolveRelativeLangUrl("VerificationAccount/SendCode"),
                     data: { __RequestVerificationToken: token, email: email },
                     dataType: "json",
                     cache: false,
@@ -139,7 +139,7 @@
             var isValidForm = validator.form();
 
             if (isValidForm) {
-                var csrfToken = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
+                var csrfToken = $('input[name="__RequestVerificationToken"]', $("#loginDialog")).val();
                 var publicKey = AuthHelper.base64DecodeUnicode($("#PublicKey").val());
                 var timeStamp = AuthHelper.getUtcUnixTimeStamp();
 
@@ -170,7 +170,7 @@
                     success: function (response) {
                         if (response.IsOk) {
                             Site.showLoader();
-                            Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
+                            Site.redirect(Site.resolveRelativeLangUrl("UserPanel/Main/#AccountOverview"));
                         }
                         else if (response.IsExpired) {
                             alert($("<div/>").html(resource.verificationFailed).text());

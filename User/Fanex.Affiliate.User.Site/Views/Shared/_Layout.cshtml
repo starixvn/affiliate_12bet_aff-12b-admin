@@ -5,9 +5,12 @@
     var settingService = DependencyResolver.Current.GetService<IAppSetting>();
     var systemService = DependencyResolver.Current.GetService<ISystemService>();
     var userSession = sessionService.UserSession;
-    var languageList = systemService.GetSystemTargetLanguages().Where(l => !l.LanguageCode.Equals("en-GB"));
-    var currentLanguage = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
+    var languageList = systemService.GetSystemTargetLanguages()
+                                        .Where(l => !l.LanguageCode.Equals("en-GB") && !l.LanguageCode.Equals("te-IN"));
+    var currentLanguage = sessionService.CurrentLanguage;
+    var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
     var path = HttpContext.Current.Request.Path;
+    var isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated && sessionService.UserSession != null;
 }
 
 <!DOCTYPE html>
@@ -15,7 +18,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*<meta name="viewport" content="width=device-width, initial-scale=1">*@
+    <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
     <title>@(string.IsNullOrEmpty(ViewBag.Title) ? Lang.MetaHomeTitle : ViewBag.Title)</title>
     <link rel="icon" href="~/favicon.ico?v=1">
     <meta name="google-site-verification" content="iFkj5nsimoERnX2jd-9krswREsacSaFCr3Q22CJtQe0" />
@@ -25,142 +29,152 @@
     <meta name="robots" content="index,follow,archive" />
     <meta name="title" content="@Lang.MetaTitle" />
 
-    <link rel="canonical" href="@(string.IsNullOrEmpty(ViewBag.CanonicalLink) ? SiteDomainHelper.GenCanonialSeoLink(String.Empty) : ViewBag.CanonicalLink)" />
+    @RenderSection("alternateAndCanonicalTags", required: false)
 
     <script src="~/www/build/js/lib/jquery-3.3.1.min.js"></script>
     <script>
         window.jQuery || document.write('\x3Cscript src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">\x3C/script>')
     </script>
     <script src="~/www/build/js/lib/bootstrap.min.js"></script>
+
     <link href="~/www/build/styles/css/bootstrap-3.3.7.min.css" rel="stylesheet" />
+    <link href="~/www/build/styles/fonts/materialdesignicons/font.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="~/www/build/styles/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
-
-    @if (sessionService.CurrentLanguage == SystemLanguage.VietNamLanguageCode)
+    @if (currentLanguage == SystemLanguage.VietNamLanguageCode)
     {
-        <link href="@Url.RenderLink("~/www/build/styles/fonts/tahoma/font.css")" rel="stylesheet" />
+        <link href="~/www/build/styles/fonts/tahoma/font.min.css" rel="stylesheet" />
     }
     else
     {
-        if (sessionService.CurrentLanguage == SystemLanguage.CambodianLanguageCode)
+        if (currentLanguage == SystemLanguage.CambodianLanguageCode)
         {
-            <link href="@Url.RenderLink("~/www/build/styles/fonts/nokora/font.css")" rel="stylesheet" />
+            <link href="~/www/build/styles/fonts/nokora/font.min.css" rel="stylesheet" />
         }
         else
         {
-            <link href="@Url.RenderLink("~/www/build/styles/fonts/Montserrat/font.css")" rel="stylesheet" />
+            <link href="~/www/build/styles/fonts/montserrat/font.min.css" rel="stylesheet" />
         }
     }
-    <link href="~/www/build/styles/fonts/myriadPro/font.css" rel="stylesheet" />
+    <link href="~/www/build/styles/fonts/myriadPro/font.min.css" rel="stylesheet" />
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     @RenderSection("styles", required: false)
+
+    @if (!settingService.IsProduction)
+    {
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S16RTPV0W"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+            gtag('config', 'G-9S16RTPV0W');
+        </script>
+    }
 </head>
-<body>
-    <div class="header-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 col-sm-5 col-md-5 logo">
-                    <a href="@Url.Content("~")"><img src="~/www/build/styles/Images/logo.png" alt="logo" /><span class="logo-text">@Lang.Affiliate</span></a>
-                </div>
-                <div class="col-xs-12 col-sm-7 col-md-7 login">
-                    <div class="user-signup">
-                        @if (!HttpContext.Current.User.Identity.IsAuthenticated || userSession == null)
-                        {
-                            <a class="btn btn-login-mobile" id="mobileLogin">
-                                <span>@Lang.Login</span>
-                            </a>
-                            <div class="sign-up">
-                                <a href="@Url.Content("~/Signup/Index")" class="btn btn-signup"><span class="icon glyphicon glyphicon-pencil"></span>@Lang.SignUpAffiliate</a>
-                            </div>
-                        }
-
-                        <div class="language-container">
-                            <div class="language-selection">
-                                <button class="select-language" id="selectedLanguage">
-                                    <span><i class="flag flag-@sessionService.CurrentLanguage"></i>@(currentLanguage)</span>
-                                    <i class="caret"></i>
-                                </button>
-
-                                <div class="language-list-wrapper" id="languageList">
-                                    <ul class="list-unstyled language-list">
-                                        @foreach (var language in languageList)
-                                        {
-                                            var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.LanguageCode) ? SystemLanguage.SupportedLanguage[language.LanguageCode] : language.ShortedCode;
-                                            <li>
-                                                <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.LanguageCode"></i>@language.NativeLanguage</a>
-                                            </li>
-                                        }
-                                    </ul>
+<body class="@RenderSection("afterLogin", required: false) @currentLanguage">
+    <div class="header">
+        <div class="header-top">
+            <div class="page-container">
+                <div class="logo-lang">
+                    <div class="logo">
+                        <a href="@Url.RenderLanguageContent("~/Home")">
+                            <img class="12b" src="~/www/build/styles/Images/logo/@(currentLanguage).png?v=001" alt="logo"  width="230"/>
+                        </a>
+                    </div>
+                    <div class="login">
+                        <div class="user-signup">
+                            @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTime.UtcNow.Ticks });}
+                            <div class="language-container">
+                                <div class="language-selection">
+                                    <button class="select-language" id="selectedLanguage">
+                                        <span><i class="flag flag-@currentLanguage"></i><span class="name-lang">@(languageNativeName)</span></span>
+                                        <i class="caret"></i>
+                                    </button>
+                                    <div class="language-list-wrapper" id="languageList">
+                                        <ul class="list-unstyled language-list">
+                                            @foreach (var language in languageList)
+                                            {
+                                                var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.LanguageCode) ? SystemLanguage.SupportedLanguage[language.LanguageCode] : language.ShortedCode;
+                                                <li>
+                                                    <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.LanguageCode"></i>@language.NativeLanguage</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTime.UtcNow.Ticks });}
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="header-bottom">
-        <div class="navbar">
-            <div class="@RenderSection("classNav", required: false)">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                @{
-                                    var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
-                                }
-                                <li>
-                                    <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Home")">
-                                        @Lang.Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.Content("~/CommissionStructure")">
-                                        @Lang.CommissionStructure
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.Content("~/Product")">
-                                        @Lang.Product
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.Content("~/TermAndCondition")">
-                                        @Lang.TermAndCondition
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.Content("~/FAQ")">
-                                        @Lang.Faqs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "Promotion" ? "active" : string.Empty)" href="@Url.Content("~/Promotion")">
-                                        @Lang.Promotion
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.Content("~/ContactUs")">
-                                        @Lang.ContactUs
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+        <div class="header-bottom">
+            <div class="navbar">
+                <div class="@RenderSection("classNav", required: false)">
+                    <div class="navbar-header">
+                        <button type="button" id="menuMobileBtn" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            @{
+                                var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
+                            }
+                            <li>
+                                <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/Home")">
+                                    @Lang.Home
+                                </a>
+                            </li>
+                            <li>
+                                <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/CommissionStructure")">
+                                    @Lang.CommissionStructure
+                                </a>
+                            </li>
+                            <li>
+                                <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/Product")">
+                                    @Lang.Product
+                                </a>
+                            </li>
+                            <li>
+                                <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/TermAndCondition")">
+                                    @Lang.TermAndCondition
+                                </a>
+                            </li>
+                            <li>
+                                <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/FAQ")">
+                                    @Lang.Faqs
+                                </a>
+                            </li>
+                            <li>
+                                <a class="menu-item @(controllerName == "Promotion" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/Promotion")">
+                                    @Lang.Promotion
+                                </a>
+                            </li>
+                            <li>
+                                <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.RenderLanguageContent("~/ContactUs")">
+                                    @Lang.ContactUs
+                                </a>
+                            </li>
+                        </ul>
+                        @if (isLoggedIn)
+                        {
+                            <div class="logout-btn">
+                                <a href="#" id="btnLogoutMobile">logout</a>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
+        @RazorHelper.RenderHotNews()
     </div>
 
     <div class="main-container">
@@ -168,35 +182,37 @@
     </div>
 
     <div class="footer">
-        <div class="footer-img">
-            <div class="img-top">
-                <a class="item">
-                    <img width="250" src="~/www/build/styles/Images/footer/cr-nosponsor.@(sessionService.CurrentLanguage).png?v=002" alt="sponsors" />
-                </a>
+        <div class="page-container">
+            <div class="footer-img">
+                <div class="img-top">
+                    <a class="item">
+                        <img width="250" src="~/www/build/styles/Images/footer/cr-nosponsor.@(currentLanguage).png?v=001" alt="sponsors" />
+                    </a>
+                </div>
+                <div class="img-bottom">
+                    <a class="item">
+                        <img width="28" src="@Url.Content("~/www/build/styles/Images/footer/cr-18.png")" alt="cr-18-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-gamleaware.png")" alt="cr-gamleaware-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-tst.png")" alt="cr-tst-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-thawte.png")" alt="cr-thawte-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-playtech.png")" alt="cr-playtech-logo" />
+                    </a>
+                    <a class="item">
+                        <img src="@Url.Content("~/www/build/styles/Images/footer/cr-safe&secure.png")" alt="cr-safe&secure-logo" />
+                    </a>
+                </div>
             </div>
-            <div class="img-bottom">
-                <a class="item">
-                    <img width="28" src="@Url.Content("~/www/build/styles/Images/footer/cr-18.png")" alt="cr-18-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-gamleaware.png")" alt="cr-gamleaware-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-tst.png")" alt="cr-tst-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-thawte.png")" alt="cr-thawte-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-playtech.png")" alt="cr-playtech-logo" />
-                </a>
-                <a class="item">
-                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-safe&secure.png")" alt="cr-safe&secure-logo" />
-                </a>
+            <div class="footer-text">
+                @Lang.Copyright.Replace("{0}", DateTime.Now.Year.ToString())
             </div>
-        </div>
-        <div class="footer-text">
-            @Lang.Copyright.Replace("{0}", DateTime.Now.Year.ToString())
         </div>
     </div>
 
@@ -215,9 +231,10 @@
     </div>
 
     <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
-    <input type="hidden" id="Language" value="@sessionService.CurrentLanguage" />
+    <input type="hidden" id="RootLangUrl" value="@Url.RenderLanguageContent("~/")" />
+    <input type="hidden" id="Language" value="@currentLanguage" />
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
-    <script src="https://cdn.ravenjs.com/3.27.0/raven.min.js" crossorigin="anonymous"></script>
+
     <script>
         window.Lang = {
             All: '@Lang.All',
@@ -229,12 +246,13 @@
     @Html.InlineScripts("~/www/build/js/jquery.extension.js")
     <script src="@Url.RenderLink("~/www/build/js/site.js")"></script>
     <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
-    @if (userSession != null)
+
+    @if (isLoggedIn)
     {
         <script src="@Url.RenderLink("~/www/build/js/pages/logout.js")"></script>
     }
 
-    @if (!settingService.IsLocal && userSession != null)
+    @if (!settingService.IsLocal && isLoggedIn)
     {
         <script src="@Url.RenderLink("~/www/build/js/recheckin.js")"></script>
     }

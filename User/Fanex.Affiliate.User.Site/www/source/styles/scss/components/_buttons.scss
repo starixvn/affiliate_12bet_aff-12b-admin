@@ -24,15 +24,26 @@
     padding-top: 20px;
 }
 
-.btn-signup, .btn-login, .btn-link, .btn-login-mobile {
-    background: #fe2400;
+.btn-auth {
+    background: #D80F0F;
     font-size: 13px;
     color: #fff;
     line-height: 22px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none !important;
+    text-transform: uppercase;
 
     &:hover, &:focus {
         color: #fff;
         background: darken(#fe2400, 5%);
+    }
+
+    @include Tablet {
+        font-size: 6px;
+        line-height: 1;
+        text-transform: capitalize;
     }
 
     &:focus {
@@ -44,7 +55,51 @@
         line-height: 1;
         padding-right: 6px;
     }
+
+    &.btn-login {
+        margin-right: 8px;
+        font-weight: 700;
+        border: 2px solid #D90F0F;
+        background: #000;
+        color: #D90F0F;
+        cursor: pointer;
+    }
+
+    &.btn-signup {
+        font-weight: 700;
+        border: 1.5px solid #D90F0F;
+    }
 }
+
+.custom-button {
+    border-radius: 100px;
+    background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
+    color: #FFF;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding: 7px 52px;
+    font-size: 18px;
+
+    &:disabled {
+        cursor: not-allowed;
+        pointer-events : unset !important;
+    }
+
+    &:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    @include Mobile {
+        font-size: 22px;
+        padding: 6px 31px;
+    }
+}
+
 
 .btn-submit {
     $bg-submit: #b8491f, #ee6736;
@@ -80,19 +135,7 @@
     line-height: 1.42857;
 }
 
-.btn-move-top {
-    background: #dcdc1a;
-    opacity: 0.3;
 
-    &:hover {
-        background: #fbfb07;
-        opacity: 1;
-    }
-
-    &:focus {
-        outline: none;
-    }
-}
 
 .btn-login-mobile {
     display: inline-block;

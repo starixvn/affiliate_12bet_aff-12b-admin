@@ -315,9 +315,6 @@
   <data name="CasinoBonus" xml:space="preserve">
     <value>คาสิโนโบนัส</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>หัวข้อ</value>
-  </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>เกาะ เคแมน</value>
   </data>
@@ -352,7 +349,7 @@
     <value>กัมพูชา</value>
   </data>
   <data name="Comm" xml:space="preserve">
-    <value>คอมมิชชั่นที่ได้รับ</value>
+    <value>คอมมิชชั่น</value>
   </data>
   <data name="Comment" xml:space="preserve">
     <value>คำถาม/ข้อแนะนำ</value>
@@ -370,7 +367,7 @@
     <value>คองโก</value>
   </data>
   <data name="ContactInfo" xml:space="preserve">
-    <value>รายละเอียดที่ใช้ในการติดต่อ</value>
+    <value>ข้อมูลส่วนตัว</value>
   </data>
   <data name="ContactNumber" xml:space="preserve">
     <value>หมายเลขโทรศัพท์ที่ใช้ติดต่อ</value>
@@ -547,7 +544,7 @@
     <value>กุมภาพันธ์</value>
   </data>
   <data name="Female" xml:space="preserve">
-    <value>ผู้หญิง</value>
+    <value>หญิง</value>
   </data>
   <data name="Fiji" xml:space="preserve">
     <value>ฟิจิ</value>
@@ -748,7 +745,7 @@
     <value>นามสกุล</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>ล็อคอิน</value>
+    <value>เข้าสู่ระบบ</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>ล๊อคเอ๊าท์</value>
@@ -766,7 +763,7 @@
     <value>มาร์ดากัสการ์</value>
   </data>
   <data name="MailingInfor" xml:space="preserve">
-    <value>รายละเอียดเกี่ยวกับการส่งเมลล์</value>
+    <value>ที่อยู่ผู้สมัคร</value>
   </data>
   <data name="Malawi" xml:space="preserve">
     <value>มาลาวี</value>
@@ -778,7 +775,7 @@
     <value>มัลดีฟ</value>
   </data>
   <data name="Male" xml:space="preserve">
-    <value>ผู้ชาย</value>
+    <value>ชาย</value>
   </data>
   <data name="Mali" xml:space="preserve">
     <value>มาลี</value>
@@ -863,8 +860,8 @@
   <data name="Netherlands" xml:space="preserve">
     <value>เนเธอแลนด์</value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
-    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลล่าร์ฯ)</value>
+  <data name="CompanyNetWin" xml:space="preserve">
+    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลลาร์ฯ)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>คาเลโดเนีย ใหม่</value>
@@ -903,7 +900,7 @@
     <value>ไม่มีเว็บไซต์</value>
   </data>
   <data name="NumberGame" xml:space="preserve">
-    <value>เกมหมายเลข</value>
+    <value>เกมส์หมายเลข</value>
   </data>
   <data name="October" xml:space="preserve">
     <value>ตุลาคม</value>
@@ -948,7 +945,7 @@
     <value>การเปลี่ยนรหัสผ่านเสร็จสมบูรณ์เรียบร้อยแล้ว</value>
   </data>
   <data name="PaymentInfor" xml:space="preserve">
-    <value>รายละเอียดการถอนเงิน</value>
+    <value>ข้อมูลสำหรับการถอนค่าคอมมิชชัน</value>
   </data>
   <data name="PaymentMethod" xml:space="preserve">
     <value>วิธีการจ่ายเงิน</value>
@@ -990,10 +987,10 @@
     <value>วันที่ได้ลงรายการไว้</value>
   </data>
   <data name="Preference" xml:space="preserve">
-    <value>สิ่งที่ต้องการใช้</value>
+    <value>รายละเอียดเพิ่มเติม</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>กรุณาเลือกภาษาที่คุณต้องการใช้</value>
+    <value>กรุณาเลือกภาษา</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>กำลังดำเนินการ</value>
@@ -1032,7 +1029,12 @@
     <value>พันธมิตร 12bet - การสมัครของคุณ</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>ขอบคุณที่ส่งใบสมัครของคุณมายัง พันธมิตร 12BET &lt;br/&gt;&lt;br/&gt; เมื่อทางเราได้พิจารณาเนื้อหาเวบไซด์และข้อมูล ว่าเหมาะสม เราจะทำการแจ้งคุณถึงสถานะ &lt;br/&gt;&lt;br/&gt; ภายใน 5 วันทำการ และคุณจะสามารถเข้าใช้ระบบพันธมิตรของเราได้คะ &lt;br/&gt;&lt;br/&gt; ด้วยความนับถือ &lt;br/&gt;&lt;br/&gt; ทีมงานพันธมิตร 12BET.&lt;br/&gt;&lt;br/&gt;ไม่ว่ากรณีใดก็ตาม หากคุณยังไม่ได้รับอีเมลโปรดตรวจสอบที่กล่องจดหมายขยะก่อน หรือ&lt;a href='{0}'&gt;ติดต่อเจ้าหน้าที่เพื่อการช่วยเหลือ&lt;/a&gt;</value>
+    <value>ขอบคุณที่ส่งใบสมัครของคุณมายัง พันธมิตร 12BET &lt;br/&gt;
+เมื่อทางเราได้พิจารณาเนื้อหาเวบไซด์และข้อมูล ว่าเหมาะสม เราจะทำการแจ้งคุณถึงสถานะ &lt;br/&gt;
+ภายใน 5 วันทำการ และคุณจะสามารถเข้าใช้ระบบพันธมิตรของเราได้คะ &lt;br/&gt;&lt;br/&gt;
+ด้วยความนับถือ &lt;br/&gt;
+ ทีมงานพันธมิตร 12BET.&lt;br/&gt;
+ไม่ว่ากรณีใดก็ตาม หากคุณยังไม่ได้รับอีเมลโปรดตรวจสอบที่กล่องจดหมายขยะก่อน หรือ&lt;a href='{0}'&gt;ติดต่อเจ้าหน้าที่เพื่อการช่วยเหลือ&lt;/a&gt;</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>ถูกปฏิเสธแล้ว</value>
@@ -1056,7 +1058,7 @@
     <value>กรุณากรอกทุกช่องที่มีเครื่องหมาย &lt;font color="red"&gt;*&lt;/font&gt; ระบุไว้</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>ลบข้อความ</value>
+    <value>ล้างข้อมูล</value>
   </data>
   <data name="RMB" xml:space="preserve">
     <value>RMB (Ren Min Bi)</value>
@@ -1182,7 +1184,7 @@
     <value>พันธมิตร 12bet - รหัสผ่านตัวใหม่ของคุณ</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ส่งมอบ</value>
+    <value>สมัคร</value>
   </data>
   <data name="Sudan" xml:space="preserve">
     <value>ซูดาน</value>
@@ -1317,7 +1319,7 @@
     <value>เวียดนาม</value>
   </data>
   <data name="WebsiteInfor" xml:space="preserve">
-    <value>รายละเอียดเกี่ยวกับเว็บไซต์</value>
+    <value>คุณมีเว็บไซต์หรือไม่</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
     <value>ระบุลิ้งค์ที่ใช้เข้าเว็บไซต์</value>
@@ -1359,7 +1361,7 @@
     <value>12BET</value>
   </data>
   <data name="_12BETPlayerAcc" xml:space="preserve">
-    <value>บัญชีที่ใช้เล่นใน 12BET</value>
+    <value>ยูสเซอร์ที่จะใช้ถอนค่าคอมมิชชั่น</value>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
     <value>รหัสผ่านตัวใหม่ของคุณ</value>
@@ -1422,10 +1424,10 @@
     <value>ทุกผลิตภัณฑ์เดิมพัน</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>ข้อมูลเพิ่มเติมสำหรับผลิตภัณฑ์12BETทั้งหมด</value>
+    <value>ข้อมูลเพิ่มเติมสำหรับผลิตภัณฑ์ 12BETทั้งหมด</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>วันจันทร์ - วันเสาร์&lt;br&gt;เวลา 08.00 น. - 17.00 น. (เวลาไทย)</value>
+    <value>07.00น. - 16.00น. (เวลาไทย)</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
     <value>ทีมงานภาษาจีน</value>
@@ -1443,7 +1445,7 @@
     <value>ทีมงานภาษาอินเดีย</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>กรุณาส่งข้อแนะนำหรือคำถามมาได้ที่{0}, หรือกรอกแบบฟอร์มตามด้านล่างแล้วส่งให้เราได้เช่นกันค่ะ</value>
+    <value>กรุณาส่งข้อแนะนำหรือคำถามมาได้ที่ {0}, หรือกรอกแบบฟอร์มตามด้านล่างแล้วส่งให้เราได้เช่นกันค่ะ</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>หมายเลขตรวจสอบ</value>
@@ -1472,8 +1474,8 @@
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>สมัครร่วมโปรแกรมพันธมิตร12BETเลยสิคะ!</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>สมัครร่วมเป็นพันธมิตร</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>สมัครตอนนี้</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>สมัครพันธมิตร12BET</value>
@@ -1521,13 +1523,13 @@
     <value>ยอดรวมแพ้/ชนะ</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>ค่าธรรมเนียมแพลตฟอร์ม</value>
+    <value>ค่าแพลทฟอร์ม</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>ค่าธรรมเนียมดำเนินการ</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>ค่าธรรมเนียมธุรกรรม</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>ค่าธรรมเนียมธนาคาร</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>เรทคอมมิชชั่น</value>
@@ -1585,9 +1587,6 @@
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
-  </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>ประเภท</value>
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>ขออภัยค่ะ! คุณไม่สามารถเข้าสู่ระบบจากโดเมนนี้</value>
@@ -1650,13 +1649,13 @@
     <value>อีเมลล์แอดเดรส</value>
   </data>
   <data name="_12Sports" xml:space="preserve">
-    <value>หน้ากีฬา 12BET</value>
+    <value>หน้ากีฬา12BET</value>
   </data>
   <data name="BTiSports" xml:space="preserve">
     <value>หน้ากีฬา BTi</value>
   </data>
   <data name="_12ESports" xml:space="preserve">
-    <value>12อีสปอร์ต</value>
+    <value>ESPORTS</value>
   </data>
   <data name="ImESports" xml:space="preserve">
     <value>IM อีสปอร์ต (อีสปอร์ตบลู)</value>
@@ -1842,7 +1841,7 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; ขึ้นไป</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
+  <data name="RevenueShare" xml:space="preserve">
     <value>ส่วนแบ่งรายได้</value>
   </data>
   <data name="SuffixProduct12JADE" xml:space="preserve">
@@ -1867,7 +1866,7 @@
     <value>MMK</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
-    <value>ทีมงานภาษาเขมร</value>
+    <value>ทีมงานภาษากัมพูชา</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
     <value>สมาชิกใหม่</value>
@@ -2049,26 +2048,17 @@
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BETการตลาดพันธมิตร</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลล่าร์ฯ)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
-    <value>พันธมิตรที่ได้รับการเชิญชวนเท่านั้น</value>
-  </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 ขึ้นไป</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>ผู้เล่นที่เข้าเกณฑ์</value>
+    <value>สำหรับผู้ได้รับเชิญเท่านั้น</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>คอมมิชชั่นเริ่มต้น 50%</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>ฝากแรก</value>
+    <value>สมาชิกใหม่ฝากเงินครั้งแรก (FDM)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
-    <value>15,000 &amp; ขึ้นไป</value>
+    <value>15,000 ขึ้นไป</value>
   </data>
   <data name="FiveToEleven" xml:space="preserve">
     <value>5 - 11</value>
@@ -2080,10 +2070,10 @@
     <value>25 - 39</value>
   </data>
   <data name="AboveFourty" xml:space="preserve">
-    <value>40  ขึ้นไป</value>
+    <value>40 ขึ้นไป</value>
   </data>
   <data name="TotalFdmDeposit" xml:space="preserve">
-    <value>จำนวนเงินฝากทั้งหมด ($)</value>
+    <value>ยอดฝากรวมทั้งหมด ($)</value>
   </data>
   <data name="ExtraComm" xml:space="preserve">
     <value>ค่าคอมมิชชั่นพิเศษ</value>
@@ -2187,16 +2177,73 @@
   <data name="BangladeshSupport" xml:space="preserve">
     <value>ทีมงานภาษาบังกลาเทศ</value>
   </data>
+  <data name="TermAndConditionPageTitle" xml:space="preserve">
+    <value>กติกาและเงื่อนไขพันธมิตร12BET</value>
+  </data>
+  <data name="OurProducts" xml:space="preserve">
+    <value>ผลิตภัณฑ์ที่ให้บริการ</value>
+  </data>
+  <data name="_12BetIsPremireOnline" xml:space="preserve">
+    <value>12BET คือปลายทางของการเดิมพันกีฬาออนไลน์ เราคือแพลตฟอร์มรับเดิมพันระดับแนวหน้าของแฟนกีฬาทั่วโลก เราให้อัตราจ่ายเงินที่สูงที่สุดในตลาดรับเดิมพัน และยังมีการแข่งขันกีฬาที่หลากหลายจากทั่วทุกมุมโลกให้เดิมพันด้วยประเภทการเดิมพันที่หลากหลาย  เราจึงเป็นตัวเลือกที่ดีที่สุดสำหรับผู้ชื่นชอบกีฬา 12BET จะมอบประสบการณ์การเดิมพันกีฬาออนไลน์ที่ดีที่สุดให้แก่คุณ</value>
+  </data>
+  <data name="ExploreAWide" xml:space="preserve">
+    <value>ให้บริการเกมคาสิโนสดที่หลากหลาย บาคาร่าและแบล็คแจ็ค และอื่นๆ อีกมากมาย เพื่อให้คุณได้เพลิดเพลินไปกับประสบการณ์การเดิมพันเกมคาสิโนสดชั้นยอดที่ 12BET ด้วยความสะดวกในการเข้าถึงคาสิโนสดระดับโลกจากความสะดวกสบายในทุกสถาที่ของคุณ  ด้วยมาตรฐานสูงสุดของเราที่ได้มอบความบันเทิงของการเดิมพันคาสิโนสดกับความสะดวกสบายแก่คุณ</value>
+  </data>
+  <data name="ExperienceTheWorld" xml:space="preserve">
+    <value>สัมผัสประสบการณ์สล็อตออนไลน์ระดับแนวหน้าของโลก เล่นได้เลยไม่ต้องดาวน์โหลดที่ 12BET พบกับคอลเลกชันเกมสล็อตสุดตื่นเต้นมากมาย ไปกับเกมส์ที่ยอดเยี่ยม ภาพที่น่าทึ่ง และโอกาสชนะรางวัลแจ็คพอตที่ทุกคนคว้าได้ ผจญภัยไปกับเกมที่ยากจะลืมเลือน พบเกมสล็อตที่น่าดึงดูดและตื่นเต้นที่ดีสุดเท่าที่มีอยู่ในตลาดการเดิมพันสล็อตไปกับเรา</value>
+  </data>
+  <data name="OnlineLotteryBetting" xml:space="preserve">
+    <value>การเดิมพันลอตเตอรีหรือหวยออนไลน์เป็นการเดิมพันที่มีความนิยมสุงสุดในไทย โดยผู้เล่นมีตัวเลือกการเดิมให้เลือกมากมาย ที่เว็บไซต์ 12BET ผู้เล่นสามารถสนุกไปกับการเดิมพันลอตเตอรี่หรือหวยออนไลน์ได้หลากหลายประเภท เช่น หวยรัฐบาล ลอตเตอรี 3D/5D ลอตเตอรี 11x5 และลอตเตอรี่ลูกเต๋า ซึ่งแต่ละประเภทมีประเภทการเดิมพันที่แตกต่างกัน เช่น สูง/ต่ำ คี่/คู่ ช่วงสี และอื่นๆ อีกหลายประเภทการเดิมพัน เตรียมพร้อมและเข้ามาสัมผัสประสบการณ์การเดิมพันที่น่าตื่นตาตื่นใจกับการเดิมพันลอตเตอรีออนไลน์กับ 12BET</value>
+  </data>
+  <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
+    <value>สัมผัสกับความเหนือชั้นในการเดิมพัน อีสปอร์ต ของคุณกับ 12BET ทีมีอัตราการจ่ายที่ดีที่สุดของ  และความครอบคลุมทุกการเดิมพันในแวดวงอีสปอร์ต  เช่น CS:GO, Dota 2, LoL และอีกมากมาย ด้วยรูปแบบการเดิมพันที่ง่าย สะดวกสะบาย เพลิดเพลินไปกับการเดิมพันอีสปอร์ตได้แล้ววันนี้ ที่ 12BET</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>วันจันทร์ - วันศุกร์</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>โครงสร้างค่าคอมมิชชันปกติ</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>ยอดเล่นเสียสุทธิ/เดือน (ดอลลาร์) ของลูกค้า</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>กำไรสุทธิ</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>"พันธมิตรได้รับส่วนแบ่งรายได้ของกำไรสุทธิตามตารางโครงสร้างคอมมิชชั่น"</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>เลือกภาษา</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>เลือกประเทศ</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>เข้าร่วมโปรแกรมพันธมิตรกับ 12BET</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ทีมงานภาษาญีปุ่น</value>
   </data>
   <data name="BrazilSupport" xml:space="preserve">
     <value>ทีมงานภาษาบราซิล</value>
+  </data>
+  <data name="_12BetKenoIsAStraightforwardGame" xml:space="preserve">
+    <value>12Bet Keno เป็นเกมส์ที่ผู้เล่นเลือกหมายเลขและรอการจับฉลากเพื่อดูว่าหมายเลขของผู้เล่นจะถูกเลือกหรือไม่ซึ่งไม่จำเป็นต้องใช้ทักษหรือกลยุทธ์เฉพาะจึงทำให้ทุกคนสามารถเข้าถึงได้</value>
+  </data>
+  <data name="InP2PGames" xml:space="preserve">
+    <value>ในเกมส์ P2P ผู้เล่นกำลังเล่นกับคนอื่น ไม่ใช่เจ้าบ้านหรือเจ้ามือ สิ่งเหล่านี้สร้างสภาพแวดล้อมทางสังคมและการแข่งขันมากขึ้น ซึ่งผู้เล่นสามารถมีส่วนร่วมและน่าตื่นเต้นมากขึ้นโดยที่ผู้เล่นสามารถแข่งขันกันเองในเกมส์ต่าง ๆ แทนที่จะเล่นกับ บ้านหรือคาสิโน นี่คือข้อดีบางประการของเกมส์ 12Bet P2P</value>
+  </data>
+  <data name="_12BetNumberGame" xml:space="preserve">
+    <value>เกมหมายเลข 12Bet หมายถึงเกมส์ที่เกี่ยวข้องกับการเลือกและการทายหมายเลขที่มีอยู่หลากหลาย คล้ายกับลอตเตอรี่ บิงโก หรือคีโน เกมส์ประเภทนี้ได้รับความนิยมเนื่องจากมีความเรียบง่ายและมีศักยภาพในการจ่ายเงินจำนวนมาก หากคุณสนใจเกมส์หมายเลขของ 12Bet หรืออยากลองเล่นดู</value>
   </data>
 </root>

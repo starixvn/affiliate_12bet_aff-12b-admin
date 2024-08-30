@@ -1,9 +1,11 @@
+﻿"use strict";
+
 var AccountOverview = (function ($) {
     var DEFAULT_ACTION_OF_ACCOUNT_OVERVIEW = 'Summary';
     var allowedActionListOfAccountOverview = ["Summary", "AffiliateLink", "MediaGallery"];
 
     var _me = {
-        initialize: function () {
+        initialize: function initialize() {
             var hash = window.location.hash;
             var actionUrl = hash.split('#')[2];
 
@@ -11,7 +13,7 @@ var AccountOverview = (function ($) {
             _me.renderView(actionUrl);
         },
 
-        initEvent: function () {
+        initEvent: function initEvent() {
             $('#account-overview-menu').on('click', '.account-overview-menu-item', function () {
                 var name = $(this).data('name');
                 history.pushState({
@@ -22,13 +24,13 @@ var AccountOverview = (function ($) {
             });
         },
 
-        activeMenu: function (actionName) {
+        activeMenu: function activeMenu(actionName) {
             var activeClassName = "active";
             $(".account-overview-menu-item").removeClass(activeClassName);
             $("#menu" + actionName).addClass(activeClassName);
         },
 
-        renderView: function (actionName) {
+        renderView: function renderView(actionName) {
             if (allowedActionListOfAccountOverview.indexOf(actionName) === -1) {
                 actionName = DEFAULT_ACTION_OF_ACCOUNT_OVERVIEW;
             }
@@ -41,21 +43,22 @@ var AccountOverview = (function ($) {
                 type: "GET",
                 dataType: "html",
                 cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/" + actionName),
-                success: function (response) {
+                url: Site.resolveRelativeLangUrl("UserPanel/" + actionName),
+                success: function success(response) {
                     $("#account-overview-content").html(response);
                 },
-                beforeSend: function () {
+                beforeSend: function beforeSend() {
                     Site.showLoader();
                 },
-                complete: function () {
+                complete: function complete() {
                     Site.hideLoader();
                 }
             });
-        },
+        }
     };
 
     return _me;
 })(jQuery);
 
 AccountOverview.initialize();
+

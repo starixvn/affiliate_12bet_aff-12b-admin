@@ -43,9 +43,23 @@ namespace Fanex.Affiliate.User.Site
             routes.Add(encryptedRoute);
 
             routes.MapRoute(
+              name: "UserPanelHasLang",
+              url: "{lang}/UserPanel/{controller}/{action}/{id}",
+              constraints: new { lang = @"(\w{2}|hien|hitg)" },
+              defaults: new { controller = "AccountOverview", action = IndexAction, id = UrlParameter.Optional, lang = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
               name: "UserPanel",
               url: "UserPanel/{controller}/{action}/{id}",
               defaults: new { controller = "AccountOverview", action = IndexAction, id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "DefaultHasLang",
+                url: "{lang}/{controller}/{action}/{id}",
+                constraints: new { lang = @"(\w{2}|hien|hitg)" },
+                defaults: new { controller = "Home", action = IndexAction, id = UrlParameter.Optional, lang = UrlParameter.Optional }
             );
 
             routes.MapRoute(

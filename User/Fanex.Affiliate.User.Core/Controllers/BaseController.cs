@@ -2,6 +2,7 @@
 using Fanex.Affiliate.User.Core.CoreService;
 using ONEbook.UM.AspNetMVC.Filters;
 using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -48,6 +49,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
             };
             var result = RedirectToRoute(RouteName, routeDic);
             return result;
+        }
+
+        public RedirectResult RedirectToAbsolutePath(string path)
+        {
+            var absolutePath = VirtualPathUtility.ToAbsolute(path);
+            return Redirect(absolutePath);
         }
 
         private void DetectUserIdle(RouteValueDictionary values)

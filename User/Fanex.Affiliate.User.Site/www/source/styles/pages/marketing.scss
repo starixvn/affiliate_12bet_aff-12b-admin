@@ -1,4 +1,4 @@
-﻿@import "../scss/components/pager";
+@import "../scss/components/pager";
 
 .alert-media {
     display: block;
@@ -187,14 +187,6 @@ img.qr-code{
 
     span {
         display: block;
-    }
-
-    a {
-        text-decoration: none;
-
-        &:focus {
-            outline: none;
-        }
     }
 
     .banner-size {

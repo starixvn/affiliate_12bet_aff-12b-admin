@@ -80,6 +80,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12BET is premire online sport betting destination for sports fans, featuring the highest pay out rate a wide rangr of sports event from around the world. As the ideal choice for sports betting entrusiasts, 12bet offers the best online sports betting experience..
+        /// </summary>
+        public static string _12BetIsPremireOnline {
+            get {
+                return ResourceManager.GetString("_12BetIsPremireOnline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Keno is a straightforward game where players choose numbers and wait for a draw to see if their numbers are selected. It&apos;s a game of chance, requiring no specific skills or strategies, making it accessible to everyone..
+        /// </summary>
+        public static string _12BetKenoIsAStraightforwardGame {
+            get {
+                return ResourceManager.GetString("_12BetKenoIsAStraightforwardGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Number Game refers to a variety of games that involved selecting and guessing numbers, similar to  lotteries, bingo, or keno. These types of games are popular for their simplicity and potential for large payouts. If you&apos;re interested in 12Bet&apos;s Number Game or considered trying it out..
+        /// </summary>
+        public static string _12BetNumberGame {
+            get {
+                return ResourceManager.GetString("_12BetNumberGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 12BET Player Account.
         /// </summary>
         public static string _12BETPlayerAcc {
@@ -121,15 +148,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string AboveOneThousand {
             get {
                 return ResourceManager.GetString("AboveOneThousand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 250,001 - Above.
-        /// </summary>
-        public static string AboveTwoThousand {
-            get {
-                return ResourceManager.GetString("AboveTwoThousand", resourceCulture);
             }
         }
         
@@ -256,6 +274,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Affiliate {
             get {
                 return ResourceManager.GetString("Affiliate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate earns revenue share of Net profit based on Commission Structure Table..
+        /// </summary>
+        public static string AffiliateEarnsRevenueShare {
+            get {
+                return ResourceManager.GetString("AffiliateEarnsRevenueShare", resourceCulture);
             }
         }
         
@@ -602,11 +629,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Banking Fees.
+        ///   Looks up a localized string similar to Banking Fee.
         /// </summary>
-        public static string BankingFees {
+        public static string BankingFee {
             get {
-                return ResourceManager.GetString("BankingFees", resourceCulture);
+                return ResourceManager.GetString("BankingFee", resourceCulture);
             }
         }
         
@@ -661,6 +688,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string BDT {
             get {
                 return ResourceManager.GetString("BDT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Become a 12Bet Affiliate.
+        /// </summary>
+        public static string BecomeA12BetAff {
+            get {
+                return ResourceManager.GetString("BecomeA12BetAff", resourceCulture);
             }
         }
         
@@ -845,7 +881,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By Invitation only.
+        ///   Looks up a localized string similar to By Invitation Only.
         /// </summary>
         public static string ByInvitationOnly {
             get {
@@ -1012,15 +1048,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CasinoHold {
             get {
                 return ResourceManager.GetString("CasinoHold", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Category.
-        /// </summary>
-        public static string Category {
-            get {
-                return ResourceManager.GetString("Category", resourceCulture);
             }
         }
         
@@ -1232,11 +1259,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company Profit For The Month ($).
+        ///   Looks up a localized string similar to Company Net Win For The Month (CNW)($).
         /// </summary>
-        public static string CompanyProfit {
+        public static string CompanyNetWin {
             get {
-                return ResourceManager.GetString("CompanyProfit", resourceCulture);
+                return ResourceManager.GetString("CompanyNetWin", resourceCulture);
             }
         }
         
@@ -1489,6 +1516,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CurrentNewFdmCommBonus {
             get {
                 return ResourceManager.GetString("CurrentNewFdmCommBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CUSTOMER WIN/LOSS.
+        /// </summary>
+        public static string CustomerWinLoss {
+            get {
+                return ResourceManager.GetString("CustomerWinLoss", resourceCulture);
             }
         }
         
@@ -2006,7 +2042,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Sports.
+        ///   Looks up a localized string similar to Esports.
         /// </summary>
         public static string ESports {
             get {
@@ -2047,6 +2083,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Exchange {
             get {
                 return ResourceManager.GetString("Exchange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience the world&apos;s top online slots without the need for downloading at 12BET. Discover an extensive collection of thrilling and captivating slot games, complete with exceptional mechanics, stunning visuals, and the chance to win incredible jackpots. Indulge in an unforgettable gaming adventure and explore the most appealing and exciting online slot games available..
+        /// </summary>
+        public static string ExperienceTheWorld {
+            get {
+                return ResourceManager.GetString("ExperienceTheWorld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience unparalleled convenience in placing bets on your preferred eSports teams with 12BET. Benefit from 12BET&apos;s best payout rate and comprehensive eSports betting coverage, which includes popular games like CS:GO, Dota 2, LoL, and many more. Discover how easy it is to enjoy the excitement of eSports betting with 12BET..
+        /// </summary>
+        public static string ExperienceUnparalleledConvenience {
+            get {
+                return ResourceManager.GetString("ExperienceUnparalleledConvenience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Explore a wide variety of live casino games, including baccarat and blackjack, and much more, to enjoy the ultimate gaming experience at 12BET. With the ease of accessing a world-class live casino from the comfort of your home, you can immerse yourself in the highest standard of live casino entertainment effortlessly..
+        /// </summary>
+        public static string ExploreAWide {
+            get {
+                return ResourceManager.GetString("ExploreAWide", resourceCulture);
             }
         }
         
@@ -2366,7 +2429,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GPI LOTTERY.
+        ///   Looks up a localized string similar to GPI Lottery.
         /// </summary>
         public static string GpiLottery {
             get {
@@ -2609,6 +2672,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In P2P games, you&apos;re playing against other people, not a house or dealer. This creates a more social and competitive environment, which can be more engaging and exciting where players can compete against each other in various games, rather than playing against a house or casino. Here are some positive aspects of 12Bet P2P games.
+        /// </summary>
+        public static string InP2PGames {
+            get {
+                return ResourceManager.GetString("InP2PGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IP.
         /// </summary>
         public static string IP {
@@ -2713,6 +2785,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string JoinNow {
             get {
                 return ResourceManager.GetString("JoinNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join Now.
+        /// </summary>
+        public static string JoinNowHeader {
+            get {
+                return ResourceManager.GetString("JoinNowHeader", resourceCulture);
             }
         }
         
@@ -3568,11 +3649,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company Net Win For The Month (CNW)($).
+        ///   Looks up a localized string similar to Net Profit.
         /// </summary>
-        public static string NetWinLoss {
+        public static string NetProfit {
             get {
-                return ResourceManager.GetString("NetWinLoss", resourceCulture);
+                return ResourceManager.GetString("NetProfit", resourceCulture);
             }
         }
         
@@ -3613,7 +3694,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NEW FDM&apos;s.
+        ///   Looks up a localized string similar to NEW MEMBER FIRST DEPOSIT (FDM).
         /// </summary>
         public static string NewFDMs {
             get {
@@ -3874,6 +3955,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Online lottery betting is a highly sought-after form of gambling, with players having a wide variety of options to choose from. At 12BET, players can enjoy various types of lotteries such as 3D/5D lottery, 11x5 lottery, and Dice lottery, each of which features distinct betting types such as Big/Small, Odd/Even, Color Range, and more. Get ready to experience the excitement of online lottery betting with 12BET..
+        /// </summary>
+        public static string OnlineLotteryBetting {
+            get {
+                return ResourceManager.GetString("OnlineLotteryBetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operational Fee.
         /// </summary>
         public static string OperationalFee {
@@ -3888,6 +3978,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Original {
             get {
                 return ResourceManager.GetString("Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OUR PRODUCTS.
+        /// </summary>
+        public static string OurProducts {
+            get {
+                return ResourceManager.GetString("OurProducts", resourceCulture);
             }
         }
         
@@ -4158,6 +4257,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string PleaseLeaveYourFeedback {
             get {
                 return ResourceManager.GetString("PleaseLeaveYourFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +.
+        /// </summary>
+        public static string Plus {
+            get {
+                return ResourceManager.GetString("Plus", resourceCulture);
             }
         }
         
@@ -4531,15 +4639,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qualified Active Members/ Month.
-        /// </summary>
-        public static string QualifiedActiveMembersByMonth {
-            get {
-                return ResourceManager.GetString("QualifiedActiveMembersByMonth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Qualifying Members.
         /// </summary>
         public static string QualifyingMem {
@@ -4630,7 +4729,12 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for submitting your application.&lt;br/&gt;&lt;br/&gt;Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;&lt;br/&gt;Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;Best Regards,&lt;br /&gt;&lt;br /&gt;The team at 12Bet Affiliates&lt;br/&gt;&lt;br/&gt;For any reason, you do not receive the email, pl [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Thank you for submitting your application.&lt;br/&gt;
+        ///Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;
+        ///Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;
+        ///Best Regards,&lt;br /&gt;
+        ///The team at 12Bet Affiliates&lt;br/&gt;
+        ///For any reason, you do not receive the email, please check  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string RegisSuccess {
             get {
@@ -4644,6 +4748,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string RegisteredDate {
             get {
                 return ResourceManager.GetString("RegisteredDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular Commission Structure.
+        /// </summary>
+        public static string RegularCommissionStructure {
+            get {
+                return ResourceManager.GetString("RegularCommissionStructure", resourceCulture);
             }
         }
         
@@ -4731,9 +4844,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Revenue Share.
         /// </summary>
-        public static string RevenueShareTitle {
+        public static string RevenueShare {
             get {
-                return ResourceManager.GetString("RevenueShareTitle", resourceCulture);
+                return ResourceManager.GetString("RevenueShare", resourceCulture);
             }
         }
         
@@ -4963,15 +5076,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign Up Affiliate.
-        /// </summary>
-        public static string SignUpAffiliate {
-            get {
-                return ResourceManager.GetString("SignUpAffiliate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to SIGN UP 12BET AFFILIATE PROGRAM NOW!.
         /// </summary>
         public static string SignUpAffiliateProgramNow {
@@ -5197,15 +5301,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sub Category.
-        /// </summary>
-        public static string SubCategory {
-            get {
-                return ResourceManager.GetString("SubCategory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Subject.
         /// </summary>
         public static string Subject {
@@ -5377,7 +5472,16 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monday - Saturday&lt;br&gt;09:00 am - 06:00 pm&lt;br&gt;(GMT +8).
+        ///   Looks up a localized string similar to MONDAY - FRIDAY.
+        /// </summary>
+        public static string SupportDay {
+            get {
+                return ResourceManager.GetString("SupportDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8.00 AM - 5.00 PM&lt;br /&gt;(GMT +8).
         /// </summary>
         public static string SupportTime {
             get {
@@ -5535,6 +5639,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string TermAndConditionHeaderTitle {
             get {
                 return ResourceManager.GetString("TermAndConditionHeaderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliates Terms and Conditions.
+        /// </summary>
+        public static string TermAndConditionPageTitle {
+            get {
+                return ResourceManager.GetString("TermAndConditionPageTitle", resourceCulture);
             }
         }
         

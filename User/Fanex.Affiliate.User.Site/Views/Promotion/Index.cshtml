@@ -2,21 +2,56 @@
     ViewBag.Title = Lang.MetaPromotionTitle;
     ViewBag.MetaDescription = Lang.MetaPromotionDescription;
     ViewBag.MetaKeywords = Lang.MetaPromotionKeywords;
-    ViewBag.CanonicalLink = SiteDomainHelper.GenCanonialSeoLink(ControllerName.Promotion);
     ViewBag.HeaderTitle = Lang.PromotionHeaderTitle;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 @model Fanex.Affiliate.User.Core.ViewModels.ProPageViewModel
 
+@{
+    var bannerSrc = Url.Content($"~/www/build/styles/Images/commission/top-banner/item1/desktop.{Model.CurrentLanguage}");
+    var mobileBannerSrc = Url.Content($"~/www/build/styles/Images/commission/top-banner/item1/mobile.{Model.CurrentLanguage}");
+}
+
+@section alternateAndCanonicalTags{
+    @RazorHelper.RenderAlternateAndCanonicalLinks("promotion", Model.CurrentLanguage)
+}
+
 @section styles{
     <link rel="stylesheet" href="@Url.Content("~/www/build/styles/css/promotion.css")" />
 }
 
+@section scripts{
+    @Html.InlineScripts("~/www/build/js/pages/promotion.js")
+}
+
 <div class="content">
     <div class="page-title">
-        <span class="text">@Lang.Promotion</span>
+        <span class="text">
+            @Lang.BecomeA12BetAff
+        </span>
+    </div>
+    <div class="swiper top-banner">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a class="nounderline promotion-banner-tracking show-pc" target="_self" href="javascript:void(0)">
+                    <picture>
+                        <source srcset="@(bannerSrc).webp?v=0.02" type="image/webp" />
+                        <source srcset="@(bannerSrc).png?v=0.02" type="image/png" />
+                        <img class="img-item img-responsive" src="@(bannerSrc).jpg?v=0.02" alt="12Bet commission boost promo" />
+                    </picture>
+                </a>
+                <a class="nounderline promotion-banner-tracking show-mobile" target="_self" href="javascript:void(0)">
+                    <picture>
+                        <source srcset="@(mobileBannerSrc).webp?v=0.02" type="image/webp" />
+                        <source srcset="@(mobileBannerSrc).png?v=0.02" type="image/png" />
+                        <img class="img-item img-responsive" src="@(mobileBannerSrc).png?v=0.02" alt="12Bet commission boost promo" />
+                    </picture>
+                </a>
+            </div>
+        </div>
+        @*<div class="swiper-pagination"></div>*@
     </div>
 
-    @Html.RenderPartialByLanguage("~/Views/Promotion/_Content", Model.CurrentLanguage, Model.IsAuthenticated)
+    @Html.RenderPartialByLanguage("~/Views/Promotion/Partial/_Content", Model.CurrentLanguage, Model.IsAuthenticated)
     @RazorHelper.RenderMovingTopButton()
 </div>

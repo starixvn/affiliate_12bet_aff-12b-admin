@@ -26,6 +26,17 @@ var WebSite = (function ($) {
             });
         },
 
+        reoderInputSignUpUrl: function (webSiteLabel) {
+            var index = 2;
+            $(".moreWebsiteLabel").each(function (i, item) {
+                var $item = $(item);
+                var labelText = webSiteLabel + ' ' + index + ' <span class="red-warn">*</span>';
+                $item.html(labelText);
+
+                index++;
+            });
+        },
+
         deleteWebsiteUrl: function ($currentItem) {
             var $container = $currentItem.closest(".websiteInput");
             $container.remove();
@@ -34,34 +45,52 @@ var WebSite = (function ($) {
         buildUrlInput: function (webSiteLabel, deleteLabel, errorMessage) {
             var currentItemCount = $("#websiteInfo .urlInput").length + 2;
             var name = "MoreUrlInput" + currentItemCount;
-            var inputItem = '<div class="form-group websiteInput">' +
-                    '<label class="col-sm-3 control-label require moreWebsiteLabel">' + webSiteLabel + ' ' + currentItemCount + '</label>' +
+            var inputItem =
+                '<div class="form-group websiteInput">' +
+                    '<label for="' + name + '" class="col-sm-3 control-label require moreWebsiteLabel"></label>' +
                     '<div class="col-sm-4">' +
-                        '<input class="form-control urlInput" type="text" name="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
+                        '<input class="form-control urlInput" type="text" name="' + name + '" id="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
                     '</div>' +
                     '<div class="col-sm-1">' +
                         '<button type="button" class="btn btn-submit btnDeleteUrl" title="' + deleteLabel + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>' +
                     '</div>' +
-                    '<div class="col-sm-offset-3 col-sm-9"><span class="field-validation-valid help-block hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
+                    '<div class="col-sm-offset-3 col-sm-9"><span class="field-validation-error validate-input hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
                 '</div>';
 
             $("#websiteInfo").append(inputItem);
             _me.reoderInputUrl(webSiteLabel);
         },
 
-        handleAddingUrl: function (lang) {
+        buildUrlSignUpInput: function (webSiteLabel, deleteLabel, errorMessage) {
+            var currentItemCount = $("#websiteInfo .urlInput").length + 2;
+            var name = "MoreUrlInput" + currentItemCount;
+            var inputItem =
+                '<div class="input-url websiteInput">' +
+                    '<label for="' + name + '" class="custom-label moreWebsiteLabel"></label>' +
+                    '<div class="group-input">' +
+                        '<input class="form-input urlInput" type="text" name="' + name + '" id="' + name + '" data-val="true" data-val-required="' + errorMessage + '" value="" />' +
+                        '<span class="button-toggle button-toggle-close btnDeleteUrl" title="' + deleteLabel + '"></span>' +
+                    '</div>' +
+                    '<span class="field-validation-error validate-input hide" data-valmsg-for="' + name + '" data-valmsg-replace="true"></span></div>' +
+                '</div>';
+
+            $("#websiteInfo").append(inputItem);
+            _me.reoderInputSignUpUrl(webSiteLabel);
+        },
+
+        handleAddingUrl: function (lang, isSignUp) {
             var hasWebSite = _me.hasWebSite();
             var isValid = _me.validateWebSiteGroup();
 
             if (hasWebSite && isValid) {
-                _me.addMoreUrl(lang);
+                _me.addMoreUrl(lang, isSignUp);
             }
         },
 
-        addMoreUrl: function (lang) {
+        addMoreUrl: function (lang, isSignUp) {
             var currentItemCount = $("#websiteInfo .urlInput").length + 2;
             var errorMessage = lang.requiredMoreWebSiteUrl.replace("{i}", currentItemCount);
-            _me.buildUrlInput(lang.webSiteUrl, lang.deleteLabel, errorMessage);
+            isSignUp ? _me.buildUrlSignUpInput(lang.webSiteUrl, lang.deleteLabel, errorMessage) : _me.buildUrlInput(lang.webSiteUrl, lang.deleteLabel, errorMessage);
             setFocusForLastInput();
 
             _me.refreshFormValidation();
@@ -75,7 +104,9 @@ var WebSite = (function ($) {
 
         validateWebSiteGroup: function () {
             var validator = _me.getValidator();
-            var isValidMainInfo = validator.element("#SiteUrl") && validator.element("#NoSiteDesc");
+            var isValidSiteUrl = validator.element("#SiteUrl");
+            var isValidNoSiteDesc = validator.element("#NoSiteDesc");
+            var isValidMainInfo = isValidSiteUrl && isValidNoSiteDesc;
 
             var isValidMoreUrl = true;
             var moreInputUrl = $(".urlInput");
@@ -87,8 +118,8 @@ var WebSite = (function ($) {
             return isValidMainInfo && isValidMoreUrl;
         },
 
-        changeWebsiteOption: function (hasWebSite) {
-            _me.validateWebSiteGroup();
+        changeWebsiteOption: function (hasWebSite, isClickSubmit) {
+            isClickSubmit && _me.validateWebSiteGroup();
             var $mainUrlInput = $("#SiteUrl");
             $mainUrlInput.prop("disabled", !hasWebSite);
             $(".websiteInput").toggle(hasWebSite);
@@ -128,6 +159,7 @@ var WebSite = (function ($) {
 })(jQuery);
 var SignUp = (function ($) {
     var _isReadTermAndCondition = false;
+    var _isClickSubmit = false;
 
     var _me = {
         initialize: function () {
@@ -149,7 +181,7 @@ var SignUp = (function ($) {
                 $("#btnSubmit").prop("disabled", !this.checked);
                 if (this.checked && !_isReadTermAndCondition) {
                     _isReadTermAndCondition = true;
-                    window.open(Site.resolveRelativeUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
+                    window.open(Site.resolveRelativeLangUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
                 }
             });
 
@@ -172,15 +204,16 @@ var SignUp = (function ($) {
 
             $("#accountForm").on("change", "input[name=HasWebSite][type=radio]", function () {
                 var hasWebSite = this.value === "True";
-                WebSite.changeWebsiteOption(hasWebSite);
+                WebSite.changeWebsiteOption(hasWebSite, _isClickSubmit);
             });
 
-            $("#signupCaptcha").on("click", function () {
+            $("#signupCaptchaBtn").on("click", function () {
                 _me.refreshCaptcha();
             })
         },
 
         submit: function () {
+            _isClickSubmit = true;
             var agree = $("#chkAgree").prop("checked");
             var $form = $("#accountForm");
             var validator = $form.validate();
@@ -193,7 +226,7 @@ var SignUp = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("Signup/Index"),
+                    url: Site.resolveRelativeLangUrl("Signup/Index"),
                     data: postData,
                     dataType: "json",
                     cache: false,
@@ -214,6 +247,7 @@ var SignUp = (function ($) {
             _me.refreshCaptcha();
             $("#messageSuccess").toggle(response.IsOk);
             $("#messageError").toggle(!response.IsOk).html(response.Message || resourceLanguage.generalError);
+
             if (response.IsOk) {
                 $("#mainContent").remove();
             }
@@ -253,12 +287,12 @@ var SignUp = (function ($) {
                 deleteLabel: resourceLanguage.deleteLabel
             }
 
-            WebSite.handleAddingUrl(lang);
+            WebSite.handleAddingUrl(lang, true);
         },
 
         refreshCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
-            $("#signupCaptcha").attr("src", captchaUrl);
+            var captchaUrl = Site.resolveRelativeLangUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
+            $("#signupCaptchaImg").attr("src", captchaUrl);
         }
     };
 

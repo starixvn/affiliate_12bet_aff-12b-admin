@@ -1,15 +1,20 @@
 ﻿var Site = (function ($) {
     var _rootUrl = null;
+    var _rootLangUrl = null;
     var _language = null;
     var optionAll = "<option value=''>" + window.Lang.All + "</option>";
 
     var _me = {
         initialize: function () {
             _rootUrl = $("#RootUrl").val();
+            _rootLangUrl = $("#RootLangUrl").val();
             _language = $("#Language").val();
         },
         resolveRelativeUrl: function (url) {
             return _rootUrl + url;
+        },
+        resolveRelativeLangUrl: function (url) {
+            return _rootLangUrl + url;
         },
         getCurrentLanguage: function () {
             return _language;

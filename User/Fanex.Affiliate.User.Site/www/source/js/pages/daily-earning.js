@@ -23,7 +23,7 @@
                 dataType: "html",
                 contentType: "application/json; charset=UTF-8",
                 cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/DailyEarning"),
+                url: Site.resolveRelativeLangUrl("UserPanel/DailyEarning"),
                 success: function (response) {
                     $("#dailyEarningContent").html(response);
                 },

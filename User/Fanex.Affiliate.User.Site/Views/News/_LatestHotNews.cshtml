@@ -8,7 +8,7 @@
     {
         if (Model.IsImportant && ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.HotNewsType))
         {
-            var url = Model.IsAuthenticated ? Url.Content("~/News/MessageHistory") : "javascript:;";
+            var url = Model.IsAuthenticated ? Url.RenderLanguageContent("~/News/MessageHistory") : "javascript:;";
             <a href="@url" style="color: #ff0000">@HttpUtility.HtmlDecode(selectedHotNews)</a>
         }
         else

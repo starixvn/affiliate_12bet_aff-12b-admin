@@ -9,21 +9,26 @@ var Logout = (function ($) {
             $('#btnLogout').on('click', function (event) {
                 _me.handleShowFeedback();
             });
+
+            $('#btnLogoutMobile').on('click', function (event) {
+                _me.handleShowFeedback();
+            });
         },
 
         handleShowFeedback: function handleShowFeedback() {
             $.ajax({
-                url: Site.resolveRelativeUrl("UserPanel/Feedback/Index?isClickLogout=true"),
+                url: Site.resolveRelativeLangUrl("UserPanel/Feedback/Index?isClickLogout=true"),
                 type: "GET",
                 dataType: "html",
                 cache: false,
                 success: function success(result) {
-                    $("#loginAfter").append('<div id="affFeedback">' + result + '</div>');
+                    console.log(result);
+                    $("#groupAuth").append('<div id="affFeedback">' + result + '</div>');
                 },
                 complete: function complete(jqXHR, textStatus) {
                     if (!$("#affFeedbackContainer").length) {
                         $("#affFeedback").remove();
-                        window.location.href = Site.resolveRelativeUrl("Auth/SignOut");
+                        window.location.href = Site.resolveRelativeLangUrl("Auth/SignOut");
                     }
                 }
             });

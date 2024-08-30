@@ -29,8 +29,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public string GetFavoriteLanguage()
         {
-            var preferedUrlLang = HttpContext.Current.Request["lang"]?.Trim();
-            var preferedLang = SystemLanguage.SupportedLanguage.FirstOrDefault(i => i.Value.MatchWith(preferedUrlLang)).Key;
+            var preferedUrlLang = HttpContext.Current.Request.RequestContext.RouteData.Values["lang"]?.ToString();
+            var preferedLang = SystemLanguage.SupportedFavoriteLanguages.FirstOrDefault(i => i.Key.MatchWith(preferedUrlLang)).Value;
 
             if (IsValid(preferedLang))
             {
@@ -73,6 +73,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return targetLanguageList ?? new List<TargetLanguage>();
         }
 
+
         public IEnumerable<TargetLanguage> GetAllSystemTargetLanguages()
         {
             var isInternal = _sessionService.IsInternal;
@@ -96,7 +97,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public bool IsValid(string langCode, bool isAfterLogin = true)
             => !string.IsNullOrWhiteSpace(langCode) && GetSystemTargetLanguages().Any(l => Equals(l.LanguageCode, langCode));
-
 
         public void SetCulture(string languageCode)
         {

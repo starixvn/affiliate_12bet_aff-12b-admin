@@ -315,9 +315,6 @@
   <data name="CasinoBonus" xml:space="preserve">
     <value>Bonus Kasino</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>Kategori</value>
-  </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>Kep. Cayman </value>
   </data>
@@ -376,7 +373,7 @@
     <value>Nomor Ponsel</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>Hubungi Kami</value>
+    <value>HUBUNGI KAMI</value>
   </data>
   <data name="CookIslands" xml:space="preserve">
     <value>Kep. Cook </value>
@@ -469,7 +466,7 @@
     <value>Alamat e-mail</value>
   </data>
   <data name="Email1" xml:space="preserve">
-    <value>Alamat Email</value>
+    <value>Email</value>
   </data>
   <data name="Emailaddressest" xml:space="preserve">
     <value>Alamat Email yang Anda masukkan tidak cocok.</value>
@@ -863,8 +860,8 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="Netherlands" xml:space="preserve">
     <value>Belanda </value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
-    <value>Pendapatan Bersih Dalam Sebulan (CNW)($)</value>
+  <data name="CompanyNetWin" xml:space="preserve">
+    <value>PENDAPATAN BERSIH DALAM SEBULAN (CNW) ($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>Kaledonia Baru </value>
@@ -993,7 +990,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Preferensi</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>Pilih preferensi bahasa</value>
+    <value>Pilih Bahasa Akun Afiliasi</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>Memproses</value>
@@ -1032,7 +1029,12 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Afiliasi 12Bet - Permohonan Anda</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>Terima kasih telah mengajukan permohonan Anda.&lt;br/&gt;&lt;br/&gt;Rincian situs web dan permohonan Anda akan ditinjau ulang oleh tim Afiliasi 12Bet untuk memastikan bahwa konten dimaksud sesuai untuk mempromosikan produk kami.&lt;br/&gt;&lt;br/&gt;Dalam 5 hari kami akan memberitahu mengenai keputusan atas permohonan Anda. Jika disetujui, Anda dapat menikmati akses penuh ke program afiliasi kami.&lt;br /&gt;&lt;br /&gt;Salam Hormat,&lt;br /&gt;&lt;br /&gt;Tim Afiliasi 12Bet.&lt;br/&gt;&lt;br/&gt;Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;Hubungi Kami&lt;/a&gt; untuk bantuan lebih lanjut. </value>
+    <value>Terima kasih telah mengajukan permohonan Anda.&lt;br/&gt;
+Rincian situs web dan permohonan Anda akan ditinjau ulang oleh tim Afiliasi 12Bet untuk memastikan bahwa konten dimaksud sesuai untuk mempromosikan produk kami.&lt;br/&gt;
+Dalam 5 hari kami akan memberitahu mengenai keputusan atas permohonan Anda. Jika disetujui, Anda dapat menikmati akses penuh ke program afiliasi kami.&lt;br /&gt;&lt;br /&gt;
+Salam Hormat,&lt;br /&gt;
+Tim Afiliasi 12Bet.&lt;br/&gt;
+Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;Hubungi Kami&lt;/a&gt; untuk bantuan lebih lanjut. </value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Ditolak</value>
@@ -1182,7 +1184,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Afiliasi 12Bet - Kata sandi baru Anda</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Cek</value>
+    <value>Kirim</value>
   </data>
   <data name="Sudan" xml:space="preserve">
     <value>Sudan </value>
@@ -1419,16 +1421,16 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>12AMBER (BETSOFT)</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>Semua produk</value>
+    <value>Semua Produk</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>Info Lengkap Mengenai Produk 12BET</value>
+    <value>Info Lengkap mengenai Produk 12BET</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>Senin - Sabtu&lt;br&gt;8:00 - 17:00 WIB</value>
+    <value>08:00 - 17:00 (WIB)</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
-    <value>Bantuan Dalam Bahasa Cina</value>
+    <value>Bantuan Dalam Bahasa China</value>
   </data>
   <data name="IndonesiaSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Indonesia</value>
@@ -1443,10 +1445,10 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Bantuan Dalam Bahasa India</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>Silakan kirimkan komentar atau pertanyaan Anda ke alamat email {0} atau dengan mengisi form di bawah ini.</value>
+    <value>Silakan kirimkan komentar atau pertanyaan Anda ke alamat email {0}, atau dengan mengisi form di bawah ini.</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
-    <value>Validasi</value>
+    <value>Kode Validasi</value>
   </data>
   <data name="TermAndCondition" xml:space="preserve">
     <value>SYARAT DAN KETENTUAN</value>
@@ -1469,8 +1471,8 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>DAFTAR PROGRAM AFILIASI 12BET SEKARANG!</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>PENDAFTARAN AFILIASI</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>DAFTAR SEKARANG</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>Pendaftaran Afiliasi 12BET</value>
@@ -1518,13 +1520,13 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Gross Win Loss</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>Platform Fee</value>
+    <value>BIAYA PLATFORM</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>Operational Fee</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>Banking Fees</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>BIAYA BANK</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>Comm. Rate</value>
@@ -1582,9 +1584,6 @@ Tim Dukungan Afiliasi 12BET</value>
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
-  </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>Sub Category</value>
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>Maaf! Anda tidak diijinkan masuk dengan domain ini.</value>
@@ -1722,7 +1721,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Captcha diperlukan</value>
   </data>
   <data name="GpiLottery" xml:space="preserve">
-    <value>GPI LOTTERY</value>
+    <value>GPI Lotere</value>
   </data>
   <data name="PrefixProduct12EMERALD" xml:space="preserve">
     <value>12EMERALD</value>
@@ -1845,7 +1844,7 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Keatas</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
+  <data name="RevenueShare" xml:space="preserve">
     <value>Pembagian hasil</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
@@ -2049,23 +2048,14 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>Marketing Afiliasi 12BET</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>Pendapatan bersih dalam sebulan ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>Khusus Undangan</value>
-  </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - Lebih</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>Member aktif per bulan</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>MEMBER BARU DEPOSIT</value>
+    <value>Deposit Member Baru (FDM)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; Lebih</value>
@@ -2089,7 +2079,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>EKSTRA KOMISI</value>
   </data>
   <data name="MaxExtraComm" xml:space="preserve">
-    <value>MAKS. EKSTRA KOMISI ($)</value>
+    <value>MAKS. EXTRA KOMISI ($)</value>
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
@@ -2187,16 +2177,73 @@ Tim Dukungan Afiliasi 12BET</value>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Bangladesh</value>
   </data>
+  <data name="TermAndConditionPageTitle" xml:space="preserve">
+    <value>Syarat dan Ketentuan Afiliasi 12BET</value>
+  </data>
+  <data name="OurProducts" xml:space="preserve">
+    <value>PRODUK KAMI</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="_12BetIsPremireOnline" xml:space="preserve">
+    <value>12BET adalah situs taruhan olahraga online utama bagi para penggemar olahraga, menampilkan tingkat pembayaran tertinggi di berbagai acara olahraga dari seluruh dunia. Sebagai pilihan ideal bagi penggemar taruhan olahraga, 12BET menawarkan pengalaman taruhan olahraga online terbaik.</value>
+  </data>
+  <data name="ExploreAWide" xml:space="preserve">
+    <value>Jelajahi beragam permainan live kasino live, termasuk bakarat dan blackjack, dan masih banyak lagi, untuk menikmati pengalaman bermain terbaik di 12BET. Dengan kemudahan untuk akses Live Kasino kelas dunia dari kenyamanan rumah Anda dan nikmati hiburan diri dengan live kasino berstandar tertinggi lebih mudah.</value>
+  </data>
+  <data name="ExperienceTheWorld" xml:space="preserve">
+    <value>Rasakan pengalaman bermain slot online top dunia di 12BET tanpa perlu mengunduh. Temukan beragam koleksi permainan slot yang seru dan menawan, lengkap dengan mekanisme yang luar biasa, visual yang memukau, dan peluang untuk memenangkan jackpot yang menakjubkan. Nikmati petualangan bermain game yang tak terlupakan dan jelajahi permainan slot online paling menarik dan mengasyikkan yang tersedia.</value>
+  </data>
+  <data name="OnlineLotteryBetting" xml:space="preserve">
+    <value>Taruhan Lotere online adalah permainan judi yang sangat dicari, dengan pemain memiliki beragam pilihan untuk dipilih. Di 12BET, pemain dapat menikmati berbagai jenis lotere seperti lotere 3D/5D, lotere 11x5, dan lotere Dadu, yang masing-masing menampilkan jenis taruhan berbeda seperti Besar/Kecil, Ganjil/Genap, Rentang Warna, dan banyak lagi. Bersiaplah untuk merasakan keseruan taruhan Lotere online bersama 12BET.</value>
+  </data>
+  <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
+    <value>Rasakan kenyamanan tak tertandingi dalam memasang taruhan pada tim eSports pilihan Anda dengan 12BET. Manfaatkan tingkat pembayaran terbaik 12BET dan cakupan taruhan eSports yang komprehensif, yang mencakup permainan populer seperti CS:GO, Dota 2, LoL, dan banyak lagi. Temukan betapa mudahnya menikmati keseruan taruhan eSports dengan 12BET.</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>SENIN - JUMAT</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>STRUKTUR KOMISI REGULAR</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>MEMBER MENANG/KALAH</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>KEUNTUNGAN BERSIH</value>
+  </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>Afiliasi  mendapatkan sebagian penghasilan dari Pendapatan Bersih berdasarkan Tabel Struktur Komisi.</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>Bahasa Akun Afiliasi</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>Pilih Negara Target</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>Jadilah Afiliasi 12BET</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Jepang</value>
   </data>
   <data name="BrazilSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa Brasil</value>
+  </data>
+  <data name="_12BetKenoIsAStraightforwardGame" xml:space="preserve">
+    <value>12Bet Keno adalah permainan yang sederhana di mana pemain memilih nomor dan menunggu hasil undian untuk melihat apakah nomor mereka terpilih. Ini adalah permainan keberuntungan, tidak memerlukan keterampilan atau strategi tertentu, sehingga dapat diakses oleh semua orang.</value>
+  </data>
+  <data name="InP2PGames" xml:space="preserve">
+    <value>Dalam permainan P2P, Anda bermain melawan orang lain, bukan melawan dealer. Ini menciptakan lingkungan yang lebih kompetitif, lebih menarik dan seru di mana pemain dapat bersaing satu sama lain dalam berbagai permainan, daripada bermain melawan dealer atau kasino. Berikut adalah beberapa aspek positif dari permainan P2P 12Bet:</value>
+  </data>
+  <data name="_12BetNumberGame" xml:space="preserve">
+    <value>Permainan Angka 12Bet merujuk pada berbagai jenis permainan yang melibatkan pemilihan dan menebak angka, mirip dengan lotere, bingo, atau keno. Jenis permainan ini populer karena kesederhanaannya dan potensi menang besar. Jika Anda tertarik dengan Permainan Angka 12Bet, silahkan untuk langsung mencobanya.</value>
   </data>
 </root>

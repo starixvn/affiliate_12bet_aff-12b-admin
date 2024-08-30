@@ -1,36 +1,85 @@
-﻿@{
+@{
     Layout = null;
 }
 
 @model Fanex.Affiliate.User.Core.ViewModels.AuthenticationFormViewModel
 
 <link href="@Url.RenderLink("~/www/build/styles/css/feedback.css")" rel="stylesheet" />
-<div id="userLogin">
-    @if (Model.IsAuthenticated)
-    {
-    <div class="login-after user-login" id="loginAfter">
-        <a href="@Url.Content("~/UserPanel/Main/#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @Model.UserName</a>
-        <button class="btn btn-login" id="btnLogout">@Lang.Logout</button>
+
+@if (Model.IsAuthenticated)
+{
+    <div class="group-auth-login" id="groupAuth">
+        <a class="btn-auth btn-login login-after" id="btnLogout">
+            @Lang.Logout
+        </a>
+        <a href="@Url.RenderLanguageContent("~/UserPanel/Main/#AccountOverview")" class="btn-auth btn-signup">@Lang.MyAcc @Model.UserName</a>
     </div>
-        
-    }
-    else
-    {
-        <div class="login-before user-login">
-            <input class="text-field" id="txtUsername" type="text" placeholder="@Lang.Username" />
-            <input class="text-field" id="txtPassword" type="password" placeholder="@Lang.Password" />
-            <input class="text-field validation" id="txtValidation" type="text" placeholder="@Lang.Validation" />
-            <div class="validation-value"><img src="@Url.Content("~/Auth/CaptchaImage")" alt="captcha" id="captchaImg" /></div>
-            <a class="btn btn-forgot" title="@Lang.ForgetPassword" href="@Url.Content("~/Password")">
-                <span class="mdi mdi-account-key"></span>
-            </a>
-            @Html.AntiForgeryToken()
-            @if (!string.IsNullOrEmpty(Model.PublicKey))
-            {
-                @Html.Hidden("PublicKey", Model.PublicKey)
-            }
-            <button class="btn btn-login" id="btnLogin" type="button">@Lang.Login</button>
-        </div>        
-    }
-</div>
+}
+else
+{
+    <div class="group-auth-login">
+        <a class="btn-auth btn-login" id="mobileLogin">
+            @Lang.Login
+        </a>
+        <a href="@Url.RenderLanguageContent("~/Signup")" class="btn-auth btn-signup">@Lang.JoinNowHeader</a>
+    </div>
+    
+    <div class="modal fade login-dialog" tabindex="-1" role="dialog" id="loginDialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-main-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <img src="~/www/build/styles/Images/close-line.svg" alt="close-line" class="show-pc"/>
+                            <img src="~/www/build/styles/Images/close-line-mobile.svg" alt="close-line" class="show-mobile"/>
+                        </button>
+                        <div class="main-login">
+                            <div class="item">
+                                <div class="login-login">
+                                    <img src="~/www/build/styles/Images/logo/@(Model.CurrentLanguage).png?v=0.001" alt="logo" width="230"/>
+                                </div>
+                                
+                                <h2 class="logo-text">@Lang.AffiliateProgram</h2>
+                                <div class="group-text">
+                                    <h3 class="title-affmember">@Lang.NotAffiliateMemberYet</h3>
+                                    <p id="signUpToAffiliateProgram">@Lang.SignUpToAffiliateProgram</p>
+                                </div>
+                                <a href="@Url.RenderLanguageContent("~/Signup")" role="button" class="btn-join btn-submit btn-block text-uppercase">@Lang.JoinNow</a>
+                            </div>
+
+                            <div class="item">
+                                <div class="heading-login spacing-bt">@Lang.AffiliateLogin</div>
+                                <form class="form-login">
+                                    <h3 class="title spacing-bt">@Lang.WelcomeBack</h3>
+                                    <div class="spacing-bt">
+                                        <div class="custom-input">
+                                            <input type="text" id="dialogtxtUsername" class="form-control" placeholder="@Lang.Username" />
+                                        </div>
+                                        <div class="custom-input">
+                                            <input type="password" id="dialogtxtPassword" class="form-control" autocomplete="off" placeholder="@Lang.Password" />
+                                        </div>
+                                        <div class="custom-input columns-2">
+                                            <input type="text" id="dialogtxtValidation" class="form-control captcha-input" placeholder="@Lang.Validation" />
+                                            <div class="validation-value" id="loginDialogcaptchaBtn">
+                                                <img src="" alt="captcha" id="loginDialogcaptchaImg" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @Html.AntiForgeryToken()
+                                    @if (!string.IsNullOrEmpty(Model.PublicKey))
+                                    {
+                                        @Html.Hidden("PublicKey", Model.PublicKey)
+                                    }
+                                    <button type="button" id="btnDialogLogin" class="btn-submit btn-block text-uppercase spacing-bt">@Lang.Login</button>
+                                    <a href="@Url.RenderLanguageContent("~/Password")" class="link-login-popup">@Lang.ForgotLoginDetail</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 

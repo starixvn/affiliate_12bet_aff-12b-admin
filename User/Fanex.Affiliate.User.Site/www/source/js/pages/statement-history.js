@@ -56,7 +56,7 @@
                     isOnlyContent: false
                 };
                 _me.setStatementHistoryParamIntoStorage();
-                Site.redirect(Site.resolveRelativeUrl(`${url}?${$.param(params)}`));
+                Site.redirect(Site.resolveRelativeLangUrl(`${url}?${$.param(params)}`));
             });
 
             $("#statementDataList").on("click", ".btn.btn-transparent", function () {
@@ -130,7 +130,7 @@
                 cache: false,
                 data: JSON.stringify(params),
                 contentType: "application/json; charset=UTF-8",
-                url: Site.resolveRelativeUrl("UserPanel/StatementHistory"),
+                url: Site.resolveRelativeLangUrl("UserPanel/StatementHistory"),
                 success: function (response) {
                     $("#statementDataList").html(response);
 

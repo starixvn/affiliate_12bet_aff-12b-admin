@@ -41,7 +41,7 @@
                 type: "GET",
                 dataType: "html",
                 cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/" + actionName),
+                url: Site.resolveRelativeLangUrl("UserPanel/" + actionName),
                 success: function (response) {
                     $("#account-overview-content").html(response);
                 },

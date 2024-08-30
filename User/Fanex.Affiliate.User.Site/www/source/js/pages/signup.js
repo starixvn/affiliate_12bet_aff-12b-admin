@@ -1,5 +1,6 @@
 ﻿var SignUp = (function ($) {
     var _isReadTermAndCondition = false;
+    var _isClickSubmit = false;
 
     var _me = {
         initialize: function () {
@@ -21,7 +22,7 @@
                 $("#btnSubmit").prop("disabled", !this.checked);
                 if (this.checked && !_isReadTermAndCondition) {
                     _isReadTermAndCondition = true;
-                    window.open(Site.resolveRelativeUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
+                    window.open(Site.resolveRelativeLangUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
                 }
             });
 
@@ -44,15 +45,16 @@
 
             $("#accountForm").on("change", "input[name=HasWebSite][type=radio]", function () {
                 var hasWebSite = this.value === "True";
-                WebSite.changeWebsiteOption(hasWebSite);
+                WebSite.changeWebsiteOption(hasWebSite, _isClickSubmit);
             });
 
-            $("#signupCaptcha").on("click", function () {
+            $("#signupCaptchaBtn").on("click", function () {
                 _me.refreshCaptcha();
             })
         },
 
         submit: function () {
+            _isClickSubmit = true;
             var agree = $("#chkAgree").prop("checked");
             var $form = $("#accountForm");
             var validator = $form.validate();
@@ -65,7 +67,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("Signup/Index"),
+                    url: Site.resolveRelativeLangUrl("Signup/Index"),
                     data: postData,
                     dataType: "json",
                     cache: false,
@@ -86,6 +88,7 @@
             _me.refreshCaptcha();
             $("#messageSuccess").toggle(response.IsOk);
             $("#messageError").toggle(!response.IsOk).html(response.Message || resourceLanguage.generalError);
+
             if (response.IsOk) {
                 $("#mainContent").remove();
             }
@@ -125,12 +128,12 @@
                 deleteLabel: resourceLanguage.deleteLabel
             }
 
-            WebSite.handleAddingUrl(lang);
+            WebSite.handleAddingUrl(lang, true);
         },
 
         refreshCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
-            $("#signupCaptcha").attr("src", captchaUrl);
+            var captchaUrl = Site.resolveRelativeLangUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
+            $("#signupCaptchaImg").attr("src", captchaUrl);
         }
     };
 

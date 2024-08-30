@@ -4,6 +4,7 @@
     using Constants;
     using CoreService;
     using DTO;
+    using Fanex.Affiliate.User.Core.Extensions;
     using Filters;
     using MetalModels;
     using MetalModels.Email;
@@ -38,6 +39,7 @@
         }
 
         [HttpGet]
+        [LanguageRouteChecking]
         public ActionResult Index()
         {
             return View();
@@ -65,11 +67,9 @@
                 Language = SessionService.CurrentLanguage
             };
 
-            var contactUsForAnyReasonText = Lang.ForAnyReason.Replace("{0}", Url.Content($"~/{ControllerName.ContactUs}"));
             var result = new ResultInfo
             {
-                IsOk = true,
-                Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{contactUsForAnyReasonText}"
+                IsOk = true
             };
             var userInfo = _accountRepository.GetUserInfoByEmail(param);
 
@@ -77,7 +77,7 @@
             {
                 result.IsOk = false;
                 result.Message = Common.GetErrorMessage("ForgotPassword", param.ErrCode)
-                    ?.Replace("{0}", Url.Content($"~/{ControllerName.ContactUs}"));
+                    ?.Replace("{0}", Url.RenderLanguageContent($"~/{ControllerName.ContactUs}"));
             }
             else
             {
@@ -148,7 +148,7 @@
             if (isSuccessful)
             {
                 result.IsOk = true;
-                result.Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.ForAnyReason.Replace("{0}", Url.Content("~/ContactUs"))}";
+                result.Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.ForAnyReason.Replace("{0}", Url.RenderLanguageContent("~/ContactUs"))}";
             }
 
             return View(result);

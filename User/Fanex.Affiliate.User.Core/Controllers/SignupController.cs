@@ -3,6 +3,7 @@
     using BusinessService;
     using CoreService;
     using DTO;
+    using Fanex.Affiliate.User.Core.Filters;
     using MetalModels;
     using MetalModels.Email;
     using Newtonsoft.Json;
@@ -34,6 +35,7 @@
         }
 
         [HttpGet]
+        [LanguageRouteChecking]
         public ActionResult Index()
         {
             return View(new UserSignUpParam());

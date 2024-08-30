@@ -14,7 +14,7 @@
                 _me.reset();
             });
 
-            $("#captchaContactUs").on("click", function () {
+            $("#contactUsCaptchaBtn").on("click", function () {
                 _me.refreshCaptcha();
             });
         },
@@ -35,7 +35,7 @@
                 var postData = $form.serializeObject();
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("ContactUs/Index"),
+                    url: Site.resolveRelativeLangUrl("ContactUs/Index"),
                     data: postData,
                     dataType: "json",
                     cache: false,
@@ -72,7 +72,7 @@
                     var $element = $(element);
                     var hasValue = !!$element.val();
 
-                    var $container = $element.closest(".group");
+                    var $container = $element.closest(".items");
                     _me.toggleErrorMessage($container, hasValue);
 
                     if (isValid && !hasValue) {
@@ -90,7 +90,7 @@
             var $email = $("#Email");
             var isValid = pattern.test($email.val());
 
-            var $container = $email.closest(".group");
+            var $container = $email.closest(".items");
             _me.toggleErrorMessage($container, isValid);
 
             return isValid;
@@ -98,12 +98,12 @@
 
         toggleErrorMessage: function ($container, isValid) {
             $container.toggleClass("has-error", !isValid);
-            $container.find(".help-block").toggleClass("hide", isValid);
+            $container.find(".validate-input").toggleClass("hide", isValid);
         },
 
         refreshCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
-            $("#captchaContactUs").attr("src", captchaUrl);
+            var captchaUrl = Site.resolveRelativeLangUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
+            $("#contactUsCaptchaImg").attr("src", captchaUrl);
         }
     };
 

@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">@Lang.Password</label>
                     <div class="col-sm-4">
-                        <p class="form-control-static"><a href="@Url.Content("~/Password/Update")">@Lang.Change</a></p>
+                        <p class="form-control-static"><a href="@Url.RenderLanguageContent("~/Password/Update")">@Lang.Change</a></p>
                     </div>
                 </div>
             </div>
@@ -122,13 +122,13 @@
 
                 @if (hasPhonePermission)
                 {
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
                         <div class="col-sm-4">
                             @Html.TextBoxFor(p => p.Phone, new { @class = "form-control", @Value = Model.Phone.ReplaceAHalfOfString(hasAffPersonalInfoPermission) })
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
-                            @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "help-block hide" })
+                            @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "validate-input hide" })
                         </div>
                     </div>
                 }
@@ -141,8 +141,8 @@
                     foreach (var item in Model.ContactAppList)
                     {
                         var label = Lang.ResourceManager.GetString(item.Name) ?? item.Name;
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label @(contactAppCount == 1 ? "require" : string.Empty)">@label</label>
+                        <div class="form-group validate-group">
+                            <label for="ContactAppList[@index].Value" class="col-sm-3 control-label @(contactAppCount == 1 ? "require" : string.Empty)">@label</label>
                             @if (contactAppCount > 1)
                             {
                                 StringBuilder dependentField = new StringBuilder();
@@ -172,7 +172,7 @@
                                 </div>
                             }
                             <div class="col-sm-offset-3 col-sm-9">
-                                <span class="field-validation-valid help-block hide"
+                                <span class="field-validation-error validate-input hide"
                                       data-valmsg-for="ContactAppList[@index].Value"
                                       data-valmsg-replace="true"></span>
                             </div>
@@ -198,7 +198,7 @@
                 </div>
 
                 <div class="form-horizontal">
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <div class="col-sm-4">
                             <label class="radio-inline">
                                 <input type="radio" name="HasWebSite" id="hasWebSite" value="True" @(string.IsNullOrEmpty(Model.SiteUrl) ? string.Empty : "checked") /> @Lang.OwnWebsite
@@ -207,8 +207,8 @@
                     </div>
 
                     <div id="websiteInfo">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
+                        <div class="form-group validate-group">
+                            <label for="SiteUrl" class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
                             <div class="col-sm-4">
                                 @{
                                     var attributes = new Dictionary<string, object>
@@ -230,7 +230,7 @@
                             </div>
 
                             <div class="col-sm-offset-3 col-sm-9">
-                                @Html.ValidationMessageFor(p => p.SiteUrl, string.Empty, new { @class = "help-block hide" })
+                                @Html.ValidationMessageFor(p => p.SiteUrl, string.Empty, new { @class = "validate-input hide" })
                             </div>
                         </div>
 
@@ -242,10 +242,10 @@
                             foreach (var item in Model.MoreWebsiteUrlList)
                             {
                                 var name = $"MoreUrlInput{index}";
-                                <div class="form-group websiteInput" style="display: @(string.IsNullOrEmpty(Model.SiteUrl) ? "none" : "block")">
-                                    <label class="col-sm-3 control-label require moreWebsiteLabel">@Lang.WebsiteURL @(index)</label>
+                                <div class="form-group validate-group websiteInput" style="display: @(string.IsNullOrEmpty(Model.SiteUrl) ? "none" : "block")">
+                                    <label for="@name" class="col-sm-3 control-label require moreWebsiteLabel">@Lang.WebsiteURL @(index)</label>
                                     <div class="col-sm-4">
-                                        <input class="form-control urlInput" name="@name"
+                                        <input class="form-control urlInput" name="@name" id="@name"
                                                data-val="true" data-val-required="@Lang.WebsiteUrli.Replace("{i}", index.ToString())"
                                                type="text" value="@item" />
                                     </div>
@@ -255,7 +255,7 @@
                                         </button>
                                     </div>
                                     <div class="col-sm-offset-3 col-sm-9">
-                                        <span class="field-validation-valid help-block hide" data-valmsg-for="@name" data-valmsg-replace="true"></span>
+                                        <span class="field-validation-error validate-input hide" data-valmsg-for="@name" data-valmsg-replace="true"></span>
                                     </div>
                                 </div>
 
@@ -264,7 +264,7 @@
                         }
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <div class="col-sm-4">
                             <label class="radio-inline">
                                 <input type="radio" name="HasWebSite" id="hasNoWebSite" value="False" @(string.IsNullOrEmpty(Model.SiteUrl) ? "checked" : string.Empty)> @Lang.NoWebsite
@@ -272,7 +272,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
                         <div class="col-sm-4">
                             @{
@@ -290,7 +290,7 @@
                             @Html.TextAreaFor(p => p.NoSiteDesc, textareaAttributes)
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
-                            @Html.ValidationMessageFor(p => p.NoSiteDesc, string.Empty, new { @class = "help-block hide" })
+                            @Html.ValidationMessageFor(p => p.NoSiteDesc, string.Empty, new { @class = "validate-input hide" })
                         </div>
                     </div>
                 </div>
@@ -338,7 +338,7 @@
                     <span class="text">@Lang.PaymentInfor</span>
                 </div>
                 <div class="form-horizontal">
-                    <div class="form-group">
+                    <div class="form-group validate-group">
                         <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
                         <div class="col-sm-4">
                             <label class="radio-inline">
@@ -347,8 +347,8 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label @(string.IsNullOrEmpty(Model.PlayerUsername) ? "require" : string.Empty)">@Lang.Username</label>
+                    <div class="form-group validate-group">
+                        <label for="PlayerUsername" class="col-sm-3 control-label @(string.IsNullOrEmpty(Model.PlayerUsername) ? "require" : string.Empty)">@Lang.Username</label>
                         <div class="col-sm-4">
                             @if (string.IsNullOrEmpty(Model.PlayerUsername))
                             {
@@ -357,11 +357,11 @@
                             }
                             else
                             {
-                                <p class="form-control-static">@Model.PlayerUsername</p>
+                                <p class="form-control-static" id="PlayerUsername">@Model.PlayerUsername</p>
                             }
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
-                            <span class="field-validation-valid help-block hide" data-valmsg-for="PlayerUsername" data-valmsg-replace="true"></span>
+                            <span class="field-validation-error validate-input hide" data-valmsg-for="PlayerUsername" data-valmsg-replace="true"></span>
                         </div>
                     </div>
                 </div>

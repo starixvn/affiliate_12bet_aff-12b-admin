@@ -76,7 +76,7 @@
             var postData = $form.serializeObject();
             $.ajax({
                 type: "POST",
-                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest/" + action),
+                url: Site.resolveRelativeLangUrl("UserPanel/PaymentRequest/" + action),
                 data: postData,
                 dataType: "json",
                 cache: false,
@@ -96,7 +96,7 @@
         refreshPage: function (result) {
             $.ajax({
                 type: "GET",
-                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest/PaymentRequestPartial"),
+                url: Site.resolveRelativeLangUrl("UserPanel/PaymentRequest/PaymentRequestPartial"),
                 dataType: "html",
                 cache: false,
                 success: function (response) {
@@ -110,7 +110,7 @@
             var year = $("#year").val();
             $.ajax({
                 type: "POST",
-                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest/GetPaymentListByYear"),
+                url: Site.resolveRelativeLangUrl("UserPanel/PaymentRequest/GetPaymentListByYear"),
                 data: JSON.stringify({ "year": year }),
                 dataType: "html",
                 cache: false,

@@ -2,6 +2,7 @@
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
@@ -17,8 +18,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class VerificationAccountController : AuthBaseController
     {
-        private const int CaptchaImgWidth = 100;
-        private const int CaptchaImgHeight = 28;
+        private const int CaptchaImgWidth = 74;
+        private const int CaptchaImgHeight = 26;
 
         private readonly IAccountRepository _accountRepository;
         private readonly IVerificationService _verificationService;
@@ -37,12 +38,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
+        [LanguageRouteChecking]
         public ActionResult Index()
         {
             var verificationSession = SessionService.VerificationSession;
             if (verificationSession == null)
             {
-                return Redirect(Url.Content("~/Home"));
+                return Redirect(Url.RenderLanguageContent("~/Home"));
             }
 
             var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);

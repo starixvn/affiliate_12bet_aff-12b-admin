@@ -2,7 +2,6 @@
 @import 'abstracts/mixins';
 
 @import 'base/base';
-//@import 'base/font';
 @import "base/normalize";
 @import 'base/typography';
 @import "base/pureicon";
@@ -19,5 +18,6 @@
 @import 'components/table';
 @import "components/form-control";
 @import "components/marquee";
+@import 'components/block';
 @import 'base/media.scss';
 @import "components/login-dialog";

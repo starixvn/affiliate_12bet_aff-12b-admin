@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -139,7 +139,7 @@
     <value>CHƯƠNG TRÌNH ĐẠI LÝ</value>
   </data>
   <data name="AffiliateID" xml:space="preserve">
-    <value>Mã Số Đại Lý </value>
+    <value>Mã Đối Tác Đại Lý </value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>Albania</value>
@@ -315,9 +315,6 @@
   <data name="CasinoBonus" xml:space="preserve">
     <value>Tiền thưởng Casino</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>Loại hình ảnh</value>
-  </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>Quần đảo Cayman </value>
   </data>
@@ -376,7 +373,7 @@
     <value>Số liên hệ</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>Liên hệ</value>
+    <value>LIÊN HỆ VỚI CHÚNG TÔI</value>
   </data>
   <data name="CookIslands" xml:space="preserve">
     <value>Quần đảo Cook </value>
@@ -846,7 +843,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>MYR (Đồng Ringgit của Malaysia)</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Họ Tên</value>
+    <value>Tên</value>
   </data>
   <data name="NameIsInvalid" xml:space="preserve">
     <value>Tên không hợp lệ</value>
@@ -863,8 +860,8 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="Netherlands" xml:space="preserve">
     <value>Hà Lan </value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
-    <value>Lợi nhuận ròng trong tháng (CNW)($)</value>
+  <data name="CompanyNetWin" xml:space="preserve">
+    <value>TỔNG DOANH THU CỦA HỆ THỐNG TRONG THÁNG (CNW) ($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>New Caledonia </value>
@@ -993,7 +990,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Tham chiếu</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>Vui lòng chọn ngôn ngữ bạn thích</value>
+    <value>Vui lòng chọn ngôn ngữ thị trường</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>Đang xử lý</value>
@@ -1005,7 +1002,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Qatar </value>
   </data>
   <data name="QualifyingMem" xml:space="preserve">
-    <value>Thành viên đăng ký</value>
+    <value>Số thành viên hợp lệ</value>
   </data>
   <data name="Racebook" xml:space="preserve">
     <value>Đua Ngựa</value>
@@ -1032,7 +1029,12 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Đại lý 12Bet - Đơn của bạn</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>Cảm ơn bạn đã gửi đơn.&lt;br/&gt;&lt;br/&gt;Các trang web và thông tin về đơn của bạn sẽ được nhóm 12Bet Affiliate xem xét để đảm bảo rằng nội dung là phù hợp để quảng cáo sản phẩm của chúng tôi.&lt;br/&gt;&lt;br/&gt;Trong vòng 5 ngày, chúng tôi sẽ có thể cung cấp cho bạn quyết định liên quan đến đơn của bạn. Nếu bạn được chấp thuận, bạn sẽ có toàn quyền truy cập vào chương trình hội viên của chúng tôi.&lt;br /&gt;&lt;br /&gt;Trân trọng!&lt;br /&gt;&lt;br /&gt;Nhóm quản lý hội viên 12BET.&lt;br/&gt;&lt;br/&gt;Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm tra hộp Thư rác của bạn hoặc &lt;a href='{0}'&gt;liên hệ với chúng tôi&lt;/a&gt; và chúng tôi sẽ sẵn sàng hỗ trợ bạn.</value>
+    <value>Cảm ơn bạn đã gửi đơn.&lt;br/&gt;
+Các trang web và thông tin về đơn của bạn sẽ được nhóm 12Bet Affiliate xem xét để đảm bảo rằng nội dung là phù hợp để quảng cáo sản phẩm của chúng tôi.&lt;br/&gt;
+Trong vòng 5 ngày, chúng tôi sẽ có thể cung cấp cho bạn quyết định liên quan đến đơn của bạn. Nếu bạn được chấp thuận, bạn sẽ có toàn quyền truy cập vào chương trình hội viên của chúng tôi.&lt;br /&gt;&lt;br /&gt;
+Trân trọng!&lt;br /&gt;
+Nhóm quản lý hội viên 12BET.&lt;br/&gt;
+Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm tra hộp Thư rác của bạn hoặc &lt;a href='{0}'&gt;liên hệ với chúng tôi&lt;/a&gt; và chúng tôi sẽ sẵn sàng hỗ trợ bạn.</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Bị từ chối</value>
@@ -1056,7 +1058,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Các trường có dấu &lt;font color="red"&gt;*&lt;/font&gt; phải được hoàn tất</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Xóa</value>
+    <value>Đặt Lại</value>
   </data>
   <data name="RMB" xml:space="preserve">
     <value>RMB (Ren Min Bi)</value>
@@ -1170,7 +1172,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Trạng thái</value>
   </data>
   <data name="Subject" xml:space="preserve">
-    <value>Tiêu Đề</value>
+    <value>Chủ Đề</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
     <value>Đại lý 12Bet - Chi tiết đăng nhập của bạn</value>
@@ -1227,7 +1229,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Đây là email do hệ thống tạo tự động, vui lòng không trả lời trực tiếp email này.</value>
   </data>
   <data name="Tier" xml:space="preserve">
-    <value>Cấp</value>
+    <value>Hạng</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>Mật khẩu mới sẽ được gửi tới địa chỉ email mà bạn đã cung cấp.&lt;br /&gt;Nếu bạn gặp thêm bất kỳ khó khăn nào, hãy &lt;a href="{0}"&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
@@ -1422,28 +1424,28 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Tất cả sản phẩm</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>Chi tiết các sản phẩm 12BET</value>
+    <value>Chi tiết về các sản phẩm của 12BET</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>09:00 - 18:00 (GMT+8)&lt;br&gt;Thứ Hai - Thứ Bảy</value>
+    <value>8:00 SÁNG - 5:00 CHIỀU&lt;br /&gt;(GMT +8)</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Trung</value>
+    <value>Hỗ trợ tiếng Trung Quốc</value>
   </data>
   <data name="IndonesiaSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Bahasa - Indo</value>
+    <value>Hỗ trợ tiếng Indonesia</value>
   </data>
   <data name="ThailandSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Thái</value>
+    <value>Hỗ trợ tiếng Thái Lan</value>
   </data>
   <data name="VietnamSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Việt</value>
+    <value>Hỗ trợ tiếng Việt Nam</value>
   </data>
   <data name="IndianSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Ấn Độ</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>Mọi thắc mắc về chương trình đại lý 12BET, vui lòng gửi về {0} hoặc điền chi tiết vào hộp thư bên dưới:</value>
+    <value>Vui lòng gửi bất kỳ ý kiến hoặc câu hỏi nào đến {0}, hoặc sử dụng biểu mẫu dưới đây.</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>Mã Xác Thực</value>
@@ -1472,8 +1474,8 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>Đăng Ký Tham Gia Chương Trình Đại Lý 12BET</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>ĐĂNG KÝ ĐẠI LÝ</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>ĐĂNG KÝ</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>Tham Gia Đại Lý 12BET</value>
@@ -1521,13 +1523,13 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Tổng Thắng Thua</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>Chi Phí Nền Tảng</value>
+    <value>Phí Hệ Thống</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>Chi Phí Vận Hành</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>Chi Phí Ngân Hàng</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>Phí Ngân Hàng</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>% Hoa Hồng</value>
@@ -1585,9 +1587,6 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Chưa Gửi Tiền</value>
-  </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>Loại</value>
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>Xin lỗi. Bạn không thể đăng nhập tài khoản này.</value>
@@ -1656,7 +1655,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>BTi THỂ THAO</value>
   </data>
   <data name="_12ESports" xml:space="preserve">
-    <value>12ESPORT</value>
+    <value>12ESPORTS</value>
   </data>
   <data name="ImESports" xml:space="preserve">
     <value>IM ESPORTS (ESPORTS BULL)</value>
@@ -1819,7 +1818,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Ưu đãi cho tôi</value>
   </data>
   <data name="KoreaSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Hàn</value>
+    <value>Hỗ trợ tiếng Hàn Quốc</value>
   </data>
   <data name="Cambodian" xml:space="preserve">
     <value>Tiếng Campuchia</value>
@@ -1842,8 +1841,8 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; hơn</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
-    <value>Chia sẻ lợi nhuận</value>
+  <data name="RevenueShare" xml:space="preserve">
+    <value>Chia Sẻ Doanh Thu</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
     <value>Tiếng Trung (Phồn Thể)</value>
@@ -1858,7 +1857,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>MMK</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
-    <value>Hỗ trợ tiếng Cambodia</value>
+    <value>Hỗ trợ tiếng Campuchia</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
     <value>Đăng ký mới</value>
@@ -2049,26 +2048,17 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>Tiếp thị liên kết nhà cái 12BET</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>Lợi Nhuận Ròng Trong Tháng ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
-    <value>Chỉ cần giới thiệu</value>
-  </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001+</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>Thành viên đủ điều kiện/ Tháng</value>
+    <value>Chỉ Dành Cho Những Ai Được Mời</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>50% cố định</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>THÀNH VIÊN NẠP MỚI</value>
+    <value>LỆNH NẠP ĐẦU CHO THÀNH VIÊN MỚI (FDM)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
-    <value>15,000 &amp; Hơn</value>
+    <value>15,000 &amp; lớn hơn</value>
   </data>
   <data name="FiveToEleven" xml:space="preserve">
     <value>5 đến 11</value>
@@ -2080,16 +2070,16 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>25 đến 39</value>
   </data>
   <data name="AboveFourty" xml:space="preserve">
-    <value>40 &amp; Hơn</value>
+    <value>40 &amp; lớn hơn</value>
   </data>
   <data name="TotalFdmDeposit" xml:space="preserve">
-    <value>TỔNG GIÁ TRỊ NẠP MỚI ($)</value>
+    <value>TỔNG TIỀN NẠP TỪ THÀNH VIÊN NẠP LẦN ĐẦU ($)</value>
   </data>
   <data name="ExtraComm" xml:space="preserve">
-    <value>HOA HỒNG THÊM</value>
+    <value>THƯỞNG THÊM HOA HỒNG ($)</value>
   </data>
   <data name="MaxExtraComm" xml:space="preserve">
-    <value>MỨC HOA HỒNG CAO NHẤT ($)</value>
+    <value>TỐI ĐA THƯỞNG THÊM ($)</value>
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
@@ -2187,6 +2177,54 @@ Nhóm hỗ trợ hội viên 12BET</value>
   <data name="BangladeshSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Bangladesh</value>
   </data>
+  <data name="TermAndConditionPageTitle" xml:space="preserve">
+    <value>Điều Khoản và Điều Kiện của Đối tác Đại Lý 12BET</value>
+  </data>
+  <data name="OurProducts" xml:space="preserve">
+    <value>SẢN PHẨM CỦA CHÚNG TÔI</value>
+  </data>
+  <data name="_12BetIsPremireOnline" xml:space="preserve">
+    <value>12BET là điểm đến cá cược thể thao trực tuyến hàng đầu dành cho các người hâm mộ thể thao, với tỷ lệ thanh toán cao nhất và một loạt sự kiện thể thao từ khắp nơi trên thế giới. Là sự lựa chọn lý tưởng cho những người yêu thể thao, 12BET mang đến trải nghiệm cá cược thể thao trực tuyến tốt nhất.</value>
+  </data>
+  <data name="ExploreAWide" xml:space="preserve">
+    <value>Khám phá một loạt các trò chơi sòng bài trực tuyến, như baccarat và blackjack, và nhiều trò chơi khác nữa, để tận hưởng trải nghiệm chơi game tốt nhất tại 12BET. Với sự thuận tiện khi truy cập sòng bạc trực tiếp đẳng cấp thế giới ngay tại ngôi nhà của bạn, bạn có thể đắm chìm vào thế giới giải trí sòng bạc trực tuyến với tiêu chuẩn cao nhất một cách dễ dàng.</value>
+  </data>
+  <data name="ExperienceTheWorld" xml:space="preserve">
+    <value>Trải nghiệm các trò chơi SLOT trực tuyến hàng đầu trên thế giới mà không cần phải tải xuống tại 12BET. Khám phá một bộ sưu tập đa dạng các trò chơi máy đặt cược hấp dẫn và cuốn hút, đầy cơ hội để giành được các jackpot khủng. Hãy tận hưởng cuộc phiêu lưu chơi game không thể quên và khám phá những trò chơi SLOT tuyến hấp dẫn và thú vị nhất.</value>
+  </data>
+  <data name="OnlineLotteryBetting" xml:space="preserve">
+    <value>Cá cược xổ số trực tuyến là một hình thức đặt cược rất được ưa chuộng, với người chơi có nhiều lựa chọn khác nhau để chọn. Tại 12BET, người chơi có thể tham gia vào nhiều loại xổ số khác nhau như xổ số 3D/5D, xổ số 11x5 và xổ số xúc xắc, mỗi loại có các loại cược riêng biệt như Lớn/Nhỏ, Chẵn/ Lẻ, Khoảng màu, và nhiều loại cược khác. Hãy sẵn sàng trải nghiệm sự hồi hộp của cá cược xổ số trực tuyến với 12BET.</value>
+  </data>
+  <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
+    <value>Trải nghiệm sự tiện lợi vô song khi đặt cược trên đội thể thao điện tử ưa thích của bạn với 12BET. Hưởng lợi từ tỷ lệ thanh toán tốt nhất của 12BET và sự phủ sóng cá cược thể thao điện tử toàn diện, bao gồm các trò chơi phổ biến như CS:GO, Dota 2, LoL và nhiều trò chơi khác. Khám phá cách dễ dàng để tận hưởng sự phấn khích của cá cược thể thao điện tử với 12BET.</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>THỨ 2 - THỨ 6</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>Cấu Trúc Hoa Hồng Thông Thường</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>KHÁCH HÀNG THẮNG/THUA</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>Lợi nhuận sau thuế</value>
+  </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>Đại Lý kiếm được phần doanh thu từ lợi nhuận ròng dựa trên Bảng Cơ Cấu Hoa Hồng.</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>Ngôn ngữ thị trường</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>Vui lòng chọn thị trường</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>Trở Thành Đại Lý 12Bet</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Tài khoản Skype</value>
   </data>
@@ -2198,5 +2236,14 @@ Nhóm hỗ trợ hội viên 12BET</value>
   </data>
   <data name="BrazilSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Brazil</value>
+  </data>
+  <data name="_12BetKenoIsAStraightforwardGame" xml:space="preserve">
+    <value>12BET Keno là một trò chơi đơn giản, trong đó người chơi chọn số và chờ rút thăm để xem số của họ có được chọn hay không. Đây là một trò chơi may rủi, không yêu cầu kỹ năng hay chiến lược cụ thể nên mọi người đều có thể chơi được.</value>
+  </data>
+  <data name="InP2PGames" xml:space="preserve">
+    <value>Trong trò chơi P2P, bạn đang chơi với những người chơi khác chứ không phải nhà cái hay với máy. Điều này tạo ra một môi trường mang tính tương tác xã hội , hấp dẫn và thú vị hơn, vì những người chơi có thể cạnh tranh trực tiếp với nhau trong nhiều trò chơi, thay vì đấu với nhà cái. hoặc sòng bạc Đây là một số khía cạnh tích cực của trò chơi 12BET P2P.</value>
+  </data>
+  <data name="_12BetNumberGame" xml:space="preserve">
+    <value>Number Game 12BET là tổ hợp các trò chơi liên quan đến việc chọn và đoán số, tương tự như Xổ Số, Bingo hoặc Keno. Những loại trò chơi này phổ biến vì tính đơn giản và khả năng thanh toán lớn. Bạn nên thử trải nghiệm sự thú vị của Number Game12BET. </value>
   </data>
 </root>

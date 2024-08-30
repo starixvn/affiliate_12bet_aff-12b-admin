@@ -25,7 +25,7 @@ var ForgotPassword = (function ($) {
                 var postData = $form.serializeObject();
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("Password/Forgot"),
+                    url: Site.resolveRelativeLangUrl("Password/Forgot"),
                     data: postData,
                     dataType: "json",
                     cache: false,
@@ -44,7 +44,8 @@ var ForgotPassword = (function ($) {
         },
 
         handleResponseResult: function handleResponseResult(response) {
-            Site.displayResult(response.IsOk, response.Message);
+            $("#messageSuccess").toggle(response.IsOk);
+            $("#messageError").toggle(!response.IsOk).html(response.Message || resourceLanguage.generalError);
 
             if (response.IsOk) {
                 $("#mainContent").remove();

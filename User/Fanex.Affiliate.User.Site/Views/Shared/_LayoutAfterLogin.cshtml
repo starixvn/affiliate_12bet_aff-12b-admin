@@ -15,6 +15,7 @@
     var isShowNewsLetterTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && newsLetterService.HasNewCurrentTime();
     var isShowOfferTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && sessionService.UserSession.OfferPageId != 0;
 }
+@section afterLogin{after-login}
 
 @section styles{
     @RenderSection("styles", required: false)
@@ -31,38 +32,37 @@
 }
 
 <div class="main after-login">
-    @RazorHelper.RenderHotNews()
     <div class="content-menu">
         <ul class="menu list-unstyled" id="mainMenu">
-            <li><a class="menu-item" id="menuAccountOverview" href="@Url.Content("~/UserPanel/Main/#AccountOverview")">@Lang.AccOverview</a></li>
+            <li><a class="menu-item" id="menuAccountOverview" href="@Url.RenderLanguageContent("~/UserPanel/Main/#AccountOverview")">@Lang.AccOverview</a></li>
             @if (string.Equals(groupName, CommGroupName.KoreanAgentComm))
             {
-                <li><a class="menu-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Member" ? "active" : string.Empty)" id="menuYourCustomer" href="@(Url.Content("~/UserPanel/Member/Index"))">@Lang.YourCustomers</a></li>
+                <li><a class="menu-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Member" ? "active" : string.Empty)" id="menuYourCustomer" href="@(Url.RenderLanguageContent("~/UserPanel/Member/Index"))">@Lang.YourCustomers</a></li>
             }
-            <li><a class="menu-item" id="menuStatementHistory" href="@Url.Content("~/UserPanel/Main/#StatementHistory")">@Lang.StatementHistory</a></li>
-            <li><a class="menu-item" id="menuMyAccount" href="@Url.Content("~/UserPanel/Main/#MyAccount")">@Lang.MyAccount</a></li>
+            <li><a class="menu-item" id="menuStatementHistory" href="@Url.RenderLanguageContent("~/UserPanel/Main/#StatementHistory")">@Lang.StatementHistory</a></li>
+            <li><a class="menu-item" id="menuMyAccount" href="@Url.RenderLanguageContent("~/UserPanel/Main/#MyAccount")">@Lang.MyAccount</a></li>
             @if (hasPaymentRequestPermission)
             {
-                <li><a class="menu-item" id="menuPaymentRequest" href="@Url.Content("~/UserPanel/Main/#PaymentRequest")">@Lang.PaymentRequest</a></li>
+                <li><a class="menu-item" id="menuPaymentRequest" href="@Url.RenderLanguageContent("~/UserPanel/Main/#PaymentRequest")">@Lang.PaymentRequest</a></li>
             }
             @if (hasCommissionReportPermission)
             {
-                <li><a class="menu-item" id="menuCommissionReport" href="@Url.Content("~/UserPanel/Main/#CommissionReport")">@Lang.CommissionReport</a></li>
+                <li><a class="menu-item" id="menuCommissionReport" href="@Url.RenderLanguageContent("~/UserPanel/Main/#CommissionReport")">@Lang.CommissionReport</a></li>
             }
             <li class="parent">
                 <a class="menu-item" href="javascript:;">@Lang.Statistics <i class="caret"></i></a>
                 <ul class="menu submenu-container list-unstyled">
-                    <li><a class="menu-item" id="menuReferrersStatistics" href="@Url.Content("~/UserPanel/Main/#ReferrersStatistics")">@Lang.Referrals</a></li>
-                    <li><a class="menu-item" id="menuLandingPageStatistics" href="@Url.Content("~/UserPanel/Main/#LandingPageStatistics")">@Lang.LandingPages</a></li>
+                    <li><a class="menu-item" id="menuReferrersStatistics" href="@Url.RenderLanguageContent("~/UserPanel/Main/#ReferrersStatistics")">@Lang.Referrals</a></li>
+                    <li><a class="menu-item" id="menuLandingPageStatistics" href="@Url.RenderLanguageContent("~/UserPanel/Main/#LandingPageStatistics")">@Lang.LandingPages</a></li>
                 </ul>
             </li>
             @if (isShowNewsLetterTab)
             {
-                <li><a class="menu-item" id="menuNewsLetter" href="@Url.Content("~/UserPanel/Main/#NewsLetter")">@Lang.WhatNewThisMonth</a></li>
+                <li><a class="menu-item" id="menuNewsLetter" href="@Url.RenderLanguageContent("~/UserPanel/Main/#NewsLetter")">@Lang.WhatNewThisMonth</a></li>
             }
             @if (isShowOfferTab)
             {
-                <li><a class="menu-item" id="menuOffersForMe" href="@Url.Content("~/UserPanel/Main/#OffersForMe")">@Lang.OffersForMe</a></li>
+                <li><a class="menu-item" id="menuOffersForMe" href="@Url.RenderLanguageContent("~/UserPanel/Main/#OffersForMe")">@Lang.OffersForMe</a></li>
             }
         </ul>
     </div>

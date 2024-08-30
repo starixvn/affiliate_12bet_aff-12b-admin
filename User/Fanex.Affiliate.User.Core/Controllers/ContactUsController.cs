@@ -3,6 +3,7 @@
     using BusinessService;
     using CoreService;
     using DTO;
+    using Fanex.Affiliate.User.Core.Filters;
     using MetalModels;
     using MetalModels.Email;
     using Repository.UserPanel;
@@ -35,8 +36,10 @@
         }
 
         [HttpGet]
+        [LanguageRouteChecking]
         public ActionResult Index()
         {
+            ViewBag.CurrentLanguage = SessionService.CurrentLanguage;
             if (SessionService.UserSession == null)
             {
                 return View();

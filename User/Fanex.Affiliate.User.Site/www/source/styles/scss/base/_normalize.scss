@@ -131,20 +131,14 @@ body {
 
 a {
     // 1
-    
+
     background: transparent;
+    text-decoration: none;
 
     // 2
-
-    &:focus {
-        outline: thin dotted;
-    }
-
-    // 3
-
-    &:hover,
-    &:active {
-        outline: 0;
+    &:hover, &:active, &:focus {
+        outline: none;
+        text-decoration: none;
     }
 }
 

@@ -15,7 +15,7 @@
             if (!method.MatchWith("Player"))
             {
                 return Error.PaymentMethodInvalid.Replace("{0}", method)
-                            .Replace("{1}", Url.Content("~/UserPanel/Main/#MyAccount"));
+                            .Replace("{1}", Url.RenderLanguageContent("~/UserPanel/Main/#MyAccount"));
             }
 
             if (!Model.IsValidAmount)
@@ -65,8 +65,8 @@
                     <p class="form-control-static">@Model.MinAmount.ToStringMoneyWithSymbol()</p>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.RequestAmt</label>
+            <div class="form-group validate-group">
+                <label for="Amount" class="col-sm-3 control-label">@Lang.RequestAmt</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" name="Amount" id="Amount" @(canRequest ? string.Empty : "disabled") autocomplete="off" />
                 </div>

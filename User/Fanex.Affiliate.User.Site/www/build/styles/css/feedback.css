@@ -1,4 +1,4 @@
-﻿.login-after .aff-feedback {
+﻿#groupAuth .aff-feedback {
   display: block;
   position: fixed;
   width: 100%;
@@ -9,7 +9,7 @@
   left: 0;
   bottom: 0;
   right: 0; }
-  .login-after .aff-feedback-container {
+  #groupAuth .aff-feedback-container {
     position: fixed;
     text-align: center;
     top: 10%;
@@ -20,9 +20,9 @@
     z-index: 1;
     border-radius: 8px; }
     @media (max-width: 1023px) {
-      .login-after .aff-feedback-container {
+      #groupAuth .aff-feedback-container {
         width: 90%; } }
-  .login-after .aff-feedback-remove .alert-glyphicon-remove {
+  #groupAuth .aff-feedback-remove .alert-glyphicon-remove {
     width: 30px;
     height: 30px;
     color: #FFFFFF;
@@ -35,22 +35,22 @@
     right: 31%;
     cursor: pointer;
     border: 2px solid #FFFFFF; }
-  .login-after .aff-feedback-header {
+  #groupAuth .aff-feedback-header {
     height: 120px;
     background: linear-gradient(180deg, #FA6A00 0%, #E15F00 100%);
     border-radius: 8px 8px 0px 0px; }
-    .login-after .aff-feedback-header .letter-icon {
+    #groupAuth .aff-feedback-header .letter-icon {
       max-width: 175px;
       padding-top: 25px;
       padding-right: 15px; }
-  .login-after .aff-feedback-content {
+  #groupAuth .aff-feedback-content {
     padding: 65px 15px 35px; }
-    .login-after .aff-feedback-content .text-bold {
+    #groupAuth .aff-feedback-content .text-bold {
       font-weight: 600;
       font-size: 13px;
       line-height: 25px;
       color: #545454; }
-    .login-after .aff-feedback-content .title-text {
+    #groupAuth .aff-feedback-content .title-text {
       color: #BF5100;
       font-size: 20px;
       font-weight: 600;
@@ -58,7 +58,7 @@
       padding-bottom: 5px;
       text-transform: uppercase;
       text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25); }
-    .login-after .aff-feedback-content .feedback-title .aff-name {
+    #groupAuth .aff-feedback-content .feedback-title .aff-name {
       color: #BF5100;
       width: 150px;
       height: 40px;
@@ -70,9 +70,9 @@
       background: #FFE2CD;
       border: 1px solid #BF5100;
       border-radius: 4px; }
-    .login-after .aff-feedback-content .feedback-rate {
+    #groupAuth .aff-feedback-content .feedback-rate {
       padding: 10px 0px; }
-      .login-after .aff-feedback-content .feedback-rate .group-icons {
+      #groupAuth .aff-feedback-content .feedback-rate .group-icons {
         display: flex;
         justify-content: space-between;
         width: 280px;
@@ -82,56 +82,56 @@
         margin: auto;
         border: 1px solid #DBDBDB;
         border-radius: 8px; }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .feedback-checkbox {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .feedback-checkbox {
           position: absolute;
           opacity: 0;
           height: 0;
           width: 0; }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .checkmark {
           cursor: pointer;
           height: 40px;
           width: 40px; }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-1 .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-1 .checkmark {
           background: url("../Images/feedback/dissatisfaction.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-1:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-1 .feedback-checkbox:checked ~ .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-1:hover .checkmark, #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-1 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/dissatisfaction-active.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-2 .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-2 .checkmark {
           background: url("../Images/feedback/unsatisfied.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-2:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-2 .feedback-checkbox:checked ~ .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-2:hover .checkmark, #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-2 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/unsatisfied-active.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-3 .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-3 .checkmark {
           background: url("../Images/feedback/neutral.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-3:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-3 .feedback-checkbox:checked ~ .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-3:hover .checkmark, #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-3 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/neutral-active.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-4 .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-4 .checkmark {
           background: url("../Images/feedback/satisfied.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-4:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-4 .feedback-checkbox:checked ~ .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-4:hover .checkmark, #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-4 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/satisfied-active.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-5 .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-5 .checkmark {
           background: url("../Images/feedback/very-please.png"); }
-        .login-after .aff-feedback-content .feedback-rate .group-icons .icon-5:hover .checkmark, .login-after .aff-feedback-content .feedback-rate .group-icons .icon-5 .feedback-checkbox:checked ~ .checkmark {
+        #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-5:hover .checkmark, #groupAuth .aff-feedback-content .feedback-rate .group-icons .icon-5 .feedback-checkbox:checked ~ .checkmark {
           background: url("../Images/feedback/very-please-active.png"); }
-    .login-after .aff-feedback-content .feedback-message {
+    #groupAuth .aff-feedback-content .feedback-message {
       margin: auto;
       display: flex;
       flex-wrap: wrap;
       width: calc(100% - 155px); }
       @media (max-width: 637px) {
-        .login-after .aff-feedback-content .feedback-message {
+        #groupAuth .aff-feedback-content .feedback-message {
           width: calc(90% - 10px); } }
       @media (max-width: 545px) {
-        .login-after .aff-feedback-content .feedback-message {
+        #groupAuth .aff-feedback-content .feedback-message {
           width: 100%; } }
-      .login-after .aff-feedback-content .feedback-message .message {
+      #groupAuth .aff-feedback-content .feedback-message .message {
         width: 100%;
         background: #F9F9F9;
         border: 1px solid #ECECEC;
         border-radius: 8px; }
-      .login-after .aff-feedback-content .feedback-message .submit-feedback {
+      #groupAuth .aff-feedback-content .feedback-message .submit-feedback {
         width: 100%;
         text-align: end;
         padding-top: 20px; }
-        .login-after .aff-feedback-content .feedback-message .submit-feedback .btn-submit {
+        #groupAuth .aff-feedback-content .feedback-message .submit-feedback .btn-submit {
           color: #FFFFFF;
           font-weight: 700;
           font-size: 13px;
@@ -142,6 +142,6 @@
           /*                        &:hover {
                             background: #E8C6A2;
                         }*/ }
-          .login-after .aff-feedback-content .feedback-message .submit-feedback .btn-submit:disabled {
+          #groupAuth .aff-feedback-content .feedback-message .submit-feedback .btn-submit:disabled {
             opacity: 0.4;
             background: linear-gradient(180deg, #D41F1F 0%, #B01A1A 100%); }

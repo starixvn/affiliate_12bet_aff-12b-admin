@@ -2,6 +2,7 @@
 {
     using CoreService;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Filters;
     using Fanex.Affiliate.User.Core.ViewModels;
     using System.Web.Mvc;
 
@@ -14,6 +15,7 @@
         }
 
         [HttpGet]
+        [LanguageRouteChecking]
         public ActionResult Index()
         {
             var viewModel = new ProPageViewModel

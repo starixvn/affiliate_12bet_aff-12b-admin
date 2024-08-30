@@ -1,37 +1,48 @@
+﻿"use strict";
+
 var Layout = (function ($) {
-    var DEFAULT_SPEED = 5;
+    var DEFAULT_SPEED = 39;
+    var regexLangPartten = /\/(\w{2}|hien|hitg)\//g;
+    var regexLang = new RegExp(regexLangPartten);
 
-    function initSlider() {
-        var $mainBanner = $('#mainBanner');
-        $mainBanner.carousel();
-    }
+    function createNewUrlByLanguage(language) {
+        var href = window.location.href;
+        var pathItems = window.location.pathname.split('/');
+        var langIndex = pathItems.findIndex(function (i) {
+            return regexLang.test("/" + i + "/");
+        });
 
-    function createNewUrlByLanguage(url, language) {
-        var hasQueryString = url.indexOf('?') !== -1;
-        var updatedQueryParam = 'lang=' + language;
-        var key = 'lang';
+        if (langIndex != -1) {
+            pathItems[langIndex] = language;
+            var newPathName = pathItems.join('/');
 
-        if (hasQueryString) {
-            var regex = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
-            return regex.test(url) ?
-                url.replace(regex, '$1' + key + '=' + language + '$2') :
-                url + '&' + updatedQueryParam;
-        }
-        else {
-            return url + '?' + updatedQueryParam;
+            return href.replace(window.location.pathname, newPathName);
+        } else {
+            var host = window.location.host + $("#RootUrl").val().replace(/\/\w{2}\//, '');
+            return href.replace(host, host + "/" + language);
         }
     }
 
     var _me = {
-        initialize: function () {
-            initSlider();
+        initialize: function initialize() {
             _me.registerAjaxHandlerError();
             _me.initEvent();
             _me.renderHotNews();
         },
-        initEvent: function () {
-            $("#selectedLanguage").on("click", function () {
-                $(this).focus();
+        initEvent: function initEvent() {
+            $("#selectedLanguage").on("click", function (e) {
+                if (!$(this).hasClass('active')) {
+                    $(this).addClass("active");
+                    window.addEventListener("click", _me.handleCloseLanguageDropdown, true);
+                } else {
+                    $(this).removeClass("active");
+                }
+            });
+
+            $("#menuMobileBtn").on("click", function (e) {
+                if ($(this).hasClass('collapsed')) {
+                    window.addEventListener("click", _me.handleCloseMenuPopup, true);
+                }
             });
 
             $("#languageList").on("click", ".language-item", function () {
@@ -63,17 +74,38 @@ var Layout = (function ($) {
                 }
             });
         },
-        registerAjaxHandlerError: function () {
+
+        handleCloseMenuPopup: function handleCloseMenuPopup(e) {
+            var menuBtn = $("#menuMobileBtn");
+            var isOpened = !menuBtn.hasClass('collapsed');
+
+            if (isOpened) {
+                menuBtn.click();
+                window.removeEventListener("click", _me.handleCloseMenuPopup, isOpened);
+            }
+        },
+
+        handleCloseLanguageDropdown: function handleCloseLanguageDropdown(e) {
+            var languageBtn = $("#selectedLanguage");
+            var isOpened = languageBtn.hasClass('active');
+
+            if (isOpened) {
+                !languageBtn.has(e.target).length && languageBtn.removeClass("active");
+                window.removeEventListener("click", _me.handleCloseLanguageDropdown, isOpened);
+            }
+        },
+
+        registerAjaxHandlerError: function registerAjaxHandlerError() {
             $(document).ajaxError(function (event, jqXHR) {
                 var status = jqXHR.status;
 
                 switch (status) {
                     case 401:
                     case 403:
-                        window.location.href = Site.resolveRelativeUrl("");
+                        window.location.href = Site.resolveRelativeLangUrl("Home");
                         break;
                     case 404:
-                        window.location.href = Site.resolveRelativeUrl("Notify/PageNotFound");
+                        window.location.href = Site.resolveRelativeLangUrl("Notify/PageNotFound");
                         break;
                     case 500:
                         alert($("<div/>").html(window.Lang.ServerError).text());
@@ -83,17 +115,17 @@ var Layout = (function ($) {
                 }
             });
         },
-        renderHotNews: function () {
+        renderHotNews: function renderHotNews() {
             $.ajax({
                 type: "GET",
-                url: Site.resolveRelativeUrl("News/LatestHotNews"),
+                url: Site.resolveRelativeLangUrl("News/LatestHotNews"),
                 dataType: "html",
                 cache: false,
-                success: function (response) {
+                success: function success(response) {
                     var $marquee = $("#marquee");
                     $marquee.html(response);
                     // Time = Distance/Speed
-                    var containerWith = $("#marqueeContainer").width();
+                    var containerWith = $("#marquee").width();
                     var timeTaken = containerWith / DEFAULT_SPEED;
 
                     $marquee.css("animation-duration", timeTaken + "s");
@@ -101,19 +133,15 @@ var Layout = (function ($) {
             });
         },
 
-        changeLanguage: function (selectedLanguage) {
-            var hash = window.location.hash;
-            var href = window.location.href;
-            var actualUrl = !!hash ? href.substring(0, href.indexOf(hash)) : href;
-            var newActualUrl = createNewUrlByLanguage(actualUrl, selectedLanguage);
+        changeLanguage: function changeLanguage(selectedLanguage) {
+            var newUrl = createNewUrlByLanguage(selectedLanguage).replace(/\/+$/, '');
 
-            var url = newActualUrl + hash;
-
-            Site.redirect(url);
+            Site.redirect(newUrl);
         }
-    }
+    };
 
     return _me;
 })(jQuery);
 
 Layout.initialize();
+

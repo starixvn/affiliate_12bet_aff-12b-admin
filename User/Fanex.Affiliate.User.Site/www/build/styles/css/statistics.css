@@ -340,6 +340,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
   align-items: center;
   padding: 3px;
   text-indent: 4px;
+  -webkit-user-select: none;
   user-select: none; }
   .multiple-select-item input[type=checkbox] {
     cursor: pointer; }
@@ -379,6 +380,10 @@ http://nicolasgallagher.com/micro-clearfix-hack/
   margin-top: 30px; }
   #statisticsDetailPager + #statisticsDetailTable {
     margin-top: 0; }
+  @media screen and (max-width: 1024px) {
+    #statisticsDetailPager {
+      width: 100%;
+      min-width: 320px; } }
 
 .date-wrapper {
   display: inline-block; }

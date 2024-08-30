@@ -189,10 +189,6 @@ img.qr-code {
     padding: 5px 10px; }
   .banner-control span {
     display: block; }
-  .banner-control a {
-    text-decoration: none; }
-    .banner-control a:focus {
-      outline: none; }
   .banner-control .banner-size {
     font-size: 15px;
     line-height: 18px; }

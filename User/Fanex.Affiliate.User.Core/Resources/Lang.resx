@@ -330,9 +330,6 @@
   <data name="CasinoBonus" xml:space="preserve">
     <value>Casino Bonus</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>Category</value>
-  </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>Cayman Islands </value>
   </data>
@@ -914,7 +911,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Netherlands" xml:space="preserve">
     <value>Netherlands </value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
+  <data name="CompanyNetWin" xml:space="preserve">
     <value>Company Net Win For The Month (CNW)($)</value>
     <comment>87923</comment>
   </data>
@@ -1106,7 +1103,12 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>12Bet Affiliates - Your Application</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>Thank you for submitting your application.&lt;br/&gt;&lt;br/&gt;Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;&lt;br/&gt;Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;Best Regards,&lt;br /&gt;&lt;br /&gt;The team at 12Bet Affiliates&lt;br/&gt;&lt;br/&gt;For any reason, you do not receive the email, please check your Spam box or &lt;a href='{0}'&gt;Contact Us&lt;/a&gt; and we will glad to assist you.</value>
+    <value>Thank you for submitting your application.&lt;br/&gt;
+Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products.&lt;br/&gt;
+Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program.&lt;br /&gt;&lt;br /&gt;
+Best Regards,&lt;br /&gt;
+The team at 12Bet Affiliates&lt;br/&gt;
+For any reason, you do not receive the email, please check your Spam box or &lt;a href='{0}'&gt;Contact Us&lt;/a&gt; and we will glad to assist you.</value>
   </data>
   <data name="RegisteredDate" xml:space="preserve">
     <value>Registered Date</value>
@@ -1247,10 +1249,6 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
-  </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>Sub Category</value>
-    <comment>87923</comment>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Subject</value>
@@ -1484,7 +1482,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <comment>87923</comment>
   </data>
   <data name="ESports" xml:space="preserve">
-    <value>E-Sports</value>
+    <value>Esports</value>
     <comment>87923</comment>
   </data>
   <data name="RngKeno" xml:space="preserve">
@@ -1503,8 +1501,8 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Terms And Conditions</value>
     <comment>87923</comment>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>Sign Up Affiliate</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>Join Now</value>
     <comment>87923</comment>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
@@ -1531,8 +1529,8 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Uncalculated</value>
     <comment>87923</comment>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>Banking Fees</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>Banking Fee</value>
     <comment>87923</comment>
   </data>
   <data name="CommRate" xml:space="preserve">
@@ -1620,7 +1618,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <comment>87923</comment>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>Monday - Saturday&lt;br&gt;09:00 am - 06:00 pm&lt;br&gt;(GMT +8)</value>
+    <value>8.00 AM - 5.00 PM&lt;br /&gt;(GMT +8)</value>
     <comment>87923</comment>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
@@ -1853,7 +1851,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Captcha is required</value>
   </data>
   <data name="GpiLottery" xml:space="preserve">
-    <value>GPI LOTTERY</value>
+    <value>GPI Lottery</value>
   </data>
   <data name="PrefixProduct12EMERALD" xml:space="preserve">
     <value>12EMERALD</value>
@@ -1992,7 +1990,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; Above</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
+  <data name="RevenueShare" xml:space="preserve">
     <value>Revenue Share</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
@@ -2157,23 +2155,14 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BET Affiliate Marketing</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>Company Profit For The Month ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
-    <value>By Invitation only</value>
-  </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - Above</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>Qualified Active Members/ Month</value>
+    <value>By Invitation Only</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>NEW FDM's</value>
+    <value>NEW MEMBER FIRST DEPOSIT (FDM)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; Above</value>
@@ -2301,16 +2290,67 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
   <data name="Keno" xml:space="preserve">
     <value>Keno</value>
   </data>
+  <data name="TermAndConditionPageTitle" xml:space="preserve">
+    <value>12BET Affiliates Terms and Conditions</value>
+  </data>
+  <data name="OurProducts" xml:space="preserve">
+    <value>OUR PRODUCTS</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="_12BetIsPremireOnline" xml:space="preserve">
+    <value>12BET is premire online sport betting destination for sports fans, featuring the highest pay out rate a wide rangr of sports event from around the world. As the ideal choice for sports betting entrusiasts, 12bet offers the best online sports betting experience.</value>
+  </data>
+  <data name="ExploreAWide" xml:space="preserve">
+    <value>Explore a wide variety of live casino games, including baccarat and blackjack, and much more, to enjoy the ultimate gaming experience at 12BET. With the ease of accessing a world-class live casino from the comfort of your home, you can immerse yourself in the highest standard of live casino entertainment effortlessly.</value>
+  </data>
+  <data name="ExperienceTheWorld" xml:space="preserve">
+    <value>Experience the world's top online slots without the need for downloading at 12BET. Discover an extensive collection of thrilling and captivating slot games, complete with exceptional mechanics, stunning visuals, and the chance to win incredible jackpots. Indulge in an unforgettable gaming adventure and explore the most appealing and exciting online slot games available.</value>
+  </data>
+  <data name="OnlineLotteryBetting" xml:space="preserve">
+    <value>Online lottery betting is a highly sought-after form of gambling, with players having a wide variety of options to choose from. At 12BET, players can enjoy various types of lotteries such as 3D/5D lottery, 11x5 lottery, and Dice lottery, each of which features distinct betting types such as Big/Small, Odd/Even, Color Range, and more. Get ready to experience the excitement of online lottery betting with 12BET.</value>
+  </data>
+  <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
+    <value>Experience unparalleled convenience in placing bets on your preferred eSports teams with 12BET. Benefit from 12BET's best payout rate and comprehensive eSports betting coverage, which includes popular games like CS:GO, Dota 2, LoL, and many more. Discover how easy it is to enjoy the excitement of eSports betting with 12BET.</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>MONDAY - FRIDAY</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>Regular Commission Structure</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>CUSTOMER WIN/LOSS</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>Net Profit</value>
+  </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>Affiliate earns revenue share of Net profit based on Commission Structure Table.</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>Become a 12Bet Affiliate</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>Japan Support</value>
   </data>
   <data name="BrazilSupport" xml:space="preserve">
     <value>Brazil Support</value>
+  </data>
+  <data name="_12BetKenoIsAStraightforwardGame" xml:space="preserve">
+    <value>12Bet Keno is a straightforward game where players choose numbers and wait for a draw to see if their numbers are selected. It's a game of chance, requiring no specific skills or strategies, making it accessible to everyone.</value>
+  </data>
+  <data name="InP2PGames" xml:space="preserve">
+    <value>In P2P games, you're playing against other people, not a house or dealer. This creates a more social and competitive environment, which can be more engaging and exciting where players can compete against each other in various games, rather than playing against a house or casino. Here are some positive aspects of 12Bet P2P games</value>
+  </data>
+  <data name="_12BetNumberGame" xml:space="preserve">
+    <value>12Bet Number Game refers to a variety of games that involved selecting and guessing numbers, similar to  lotteries, bingo, or keno. These types of games are popular for their simplicity and potential for large payouts. If you're interested in 12Bet's Number Game or considered trying it out.</value>
   </data>
 </root>

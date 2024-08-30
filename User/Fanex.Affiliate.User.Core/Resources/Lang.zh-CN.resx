@@ -139,7 +139,7 @@
     <value>合作伙伴</value>
   </data>
   <data name="AffiliateID" xml:space="preserve">
-    <value>合作伙伴号码</value>
+    <value>合作伙伴账号</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>阿尔巴尼亚</value>
@@ -314,9 +314,6 @@
   </data>
   <data name="CasinoBonus" xml:space="preserve">
     <value>娱乐城红利</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>种类</value>
   </data>
   <data name="CaymanIslands" xml:space="preserve">
     <value>开曼群岛</value>
@@ -855,7 +852,7 @@
   <data name="Netherlands" xml:space="preserve">
     <value>荷兰</value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
+  <data name="CompanyNetWin" xml:space="preserve">
     <value>每月盈亏总额 (CNW)($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
@@ -985,7 +982,7 @@
     <value>首选</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>请选择语言</value>
+    <value>请选择合作伙伴帐户语言</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
     <value>处理中</value>
@@ -1024,11 +1021,11 @@
     <value>12BET合作伙伴 - 您的申请</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>感谢您提交申请。&lt;br /&gt;&lt;br /&gt;
-我们12Bet合作伙伴团队将会就您的网站和申请详情进行审核，以确认相关内容是否适合推广我们的产品。&lt;br /&gt;&lt;br /&gt;
+    <value>感谢您提交申请。&lt;br /&gt;
+我们12Bet合作伙伴团队将会就您的网站和申请详情进行审核，以确认相关内容是否适合推广我们的产品。&lt;br /&gt;
 我们将在5天内回复您的申请。一旦您的申请被核准，您将立即获得全权参与进入我们的合作伙伴项目。&lt;br /&gt;&lt;br /&gt;
-致以敬意，&lt;br /&gt;&lt;br /&gt;
-12Bet合作伙伴团队。&lt;br /&gt;&lt;br /&gt;
+致以敬意，&lt;br /&gt;
+12Bet合作伙伴团队。&lt;br /&gt;
 如您未收到任何邮件，请检查您的垃圾邮件或&lt;a href='{0}'&gt;联系在线客服&lt;/a&gt;寻找协助。</value>
   </data>
   <data name="Rejected" xml:space="preserve">
@@ -1053,7 +1050,7 @@
     <value>有&lt;font color="red"&gt;*&lt;/font&gt;标记的栏目为必填选项</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>重设</value>
+    <value>重置</value>
   </data>
   <data name="RMB" xml:space="preserve">
     <value>人民幣</value>
@@ -1119,7 +1116,7 @@
     <value>尺寸</value>
   </data>
   <data name="Slot" xml:space="preserve">
-    <value>老虎机</value>
+    <value>老虎机游戏</value>
   </data>
   <data name="Slovakia" xml:space="preserve">
     <value>斯洛伐克</value>
@@ -1167,7 +1164,7 @@
     <value>状态</value>
   </data>
   <data name="Subject" xml:space="preserve">
-    <value>主题</value>
+    <value>主旨</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
     <value>12BET合作伙伴 - 您的登录详情</value>
@@ -1422,7 +1419,7 @@
     <value>更多有关12BET产品信息</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>周一至周六上午 9 时至下午6 时（北京时间）</value>
+    <value>8.00 AM - 5.00 PM&lt;br /&gt;(GMT +8)</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
     <value>中文客服</value>
@@ -1440,7 +1437,7 @@
     <value>印度客服</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>如有任何意见或问题，欢迎电邮至{0}，或填写以下的表单。</value>
+    <value>如有任何意见或问题，欢迎电邮至{0}, 或填写以下的表单。</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>验证码</value>
@@ -1469,8 +1466,8 @@
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>立即注册为合作伙伴！</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>立即注册</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>立即加入</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
     <value>申请12BET合作伙伴</value>
@@ -1518,13 +1515,13 @@
     <value>总盈亏</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>平台费</value>
+    <value>平台手续费</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>营运费</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>银行手续费</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>存款手续费</value>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>佣金比例</value>
@@ -1582,9 +1579,6 @@
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>无存款纪录</value>
-  </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>附属分类</value>
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>很抱歉！您无法在此网域登录。</value>
@@ -1653,7 +1647,7 @@
     <value>BTi 体育</value>
   </data>
   <data name="_12ESports" xml:space="preserve">
-    <value>12电竞</value>
+    <value>12电子竞技</value>
   </data>
   <data name="ImESports" xml:space="preserve">
     <value>IM电竞牛</value>
@@ -1842,7 +1836,7 @@
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1及以上</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
+  <data name="RevenueShare" xml:space="preserve">
     <value>佣金分成</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
@@ -2054,23 +2048,14 @@
   <data name="ContactUsHeaderTitle" xml:space="preserve">
     <value>12BET合作伙伴市场推广</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>每月公司盈利 ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>仅限邀请</value>
-  </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - Above</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>每月符合资格的活跃会员</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>统一50%</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>首次存款新会员</value>
+    <value>新会员首次存款</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 及以上</value>
@@ -2085,7 +2070,7 @@
     <value>25名至39名</value>
   </data>
   <data name="AboveFourty" xml:space="preserve">
-    <value>40名以上</value>
+    <value>40名及以上</value>
   </data>
   <data name="TotalFdmDeposit" xml:space="preserve">
     <value>首次存款新会员总存款金额 ($)</value>
@@ -2192,16 +2177,73 @@
   <data name="BangladeshSupport" xml:space="preserve">
     <value>孟加拉客服</value>
   </data>
+  <data name="TermAndConditionPageTitle" xml:space="preserve">
+    <value>12BET合作伙伴条款与规则</value>
+  </data>
+  <data name="OurProducts" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="_12BetIsPremireOnline" xml:space="preserve">
+    <value>12体育是市场知名的体育博彩，提供广泛的赛事活动，涵盖世界各地的各种体育赛事。作为体育博彩爱好者的理想选择，12BET这是客户梦寐以求的顶级平台。</value>
+  </data>
+  <data name="ExploreAWide" xml:space="preserve">
+    <value>在12BET 探索百家乐和21点等各种现场游戏，享受终极游戏体验。您可以在家中轻松访问世界一流的真人赌场，毫不费力地沉浸在最高标准的真人娱乐城中。</value>
+  </data>
+  <data name="ExperienceTheWorld" xml:space="preserve">
+    <value>在12BET体验世界顶级在线老虎机，这里有大量惊险刺激、引人入胜的老虎机游戏。这些游戏拥有卓越的机制、令人惊叹的视觉效果，还有机会赢得难以置信的大奖。沉浸在难忘的游戏冒险中，探索最吸引人、最激动人心的在线老虎机游戏。</value>
+  </data>
+  <data name="OnlineLotteryBetting" xml:space="preserve">
+    <value>在线彩票投注是一种备受追捧的博彩形式，玩家有多种选择。12BET的玩家可以享受各种类型的彩票，如 3D/5D 彩票、11x5 彩票和骰子，每种彩票都有不同的投注类型，如大/小、奇/偶、颜色范围等。准备好与 12BET 一起体验在线彩票投注的刺激吧。</value>
+  </data>
+  <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
+    <value>在 12BET 投注支持的电竞战队，体验无与伦比的便利。受益于 12BET 的最佳赔率和全面的电竞投注覆盖范围，其中包括 CS:GO、Dota 2、LoL 等热门游戏，通过 12BET ，享受电竞投注的刺激是如此容易。</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>星期一至星期五</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>常规佣金结构</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>以上</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>会员赢/输</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>净盈利</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>纸飞机(Telegram)</value>
   </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>合作伙伴根据佣金结构表赚取净收入的分成。</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>合作伙伴帐户语言</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>合作夥伴帳戶語言</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>成为12BET合作伙伴</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>日本客服</value>
   </data>
   <data name="BrazilSupport" xml:space="preserve">
     <value>巴西客服</value>
+  </data>
+  <data name="_12BetKenoIsAStraightforwardGame" xml:space="preserve">
+    <value>「12BET快乐彩 」是一种简单明了的游戏，玩家选择号码后等待开奖，看自己的号码是否被选中。这是一种机会游戏，不需要特定的技能或策略，因此适合所有玩家。</value>
+  </data>
+  <data name="InP2PGames" xml:space="preserve">
+    <value>在棋牌游戏中，玩家是与其他玩家对战，而不是与庄家或经销商对战。这营造了更具社交性和竞争性的环境，这样的游戏体验更加引人入胜且刺激，玩家可以在各种游戏中相互竞争，而非经销商或系统对战。以下是12BET 棋牌游戏的亮点</value>
+  </data>
+  <data name="_12BetNumberGame" xml:space="preserve">
+    <value>「12BET百练赛」指的是涉及选择和猜测数字的各种游戏，类似于彩票、宾果或快乐彩，这些类型的游戏因其简单性和潜在的高额奖金而广受欢迎。如果对12BET百练赛感到好奇，或许可以考虑尝试一下。</value>
   </data>
 </root>

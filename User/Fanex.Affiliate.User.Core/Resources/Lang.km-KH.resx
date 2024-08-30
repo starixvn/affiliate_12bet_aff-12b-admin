@@ -123,8 +123,8 @@
   <data name="Affiliate" xml:space="preserve">
     <value>ភ្នាក់ងារ</value>
   </data>
-  <data name="SignUpAffiliate" xml:space="preserve">
-    <value>ចុះឈ្មោះចូលជាភ្នាក់ងារ</value>
+  <data name="JoinNowHeader" xml:space="preserve">
+    <value>ចូលរួមឥឡូវនេះ</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>ឈ្មោះ​ប្រើប្រាស់</value>
@@ -151,7 +151,7 @@
     <value>ទំព័រដើម</value>
   </data>
   <data name="CommissionStructure" xml:space="preserve">
-    <value>រចនាសម្ព័ន្ធនៃកំរៃជើងសារ</value>
+    <value>រចនាសម្ព័ន្ធកម្រៃជើងសារ</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>ផលិតផល</value>
@@ -244,31 +244,31 @@
     <value>អ៊ីមែល​របស់​អ្នក:</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ដាក់ស្នើ</value>
+    <value>បញ្ជូន</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>កំណត់ឡើងវិញ</value>
   </data>
-  <data name="RevenueShareTitle" xml:space="preserve">
-    <value>ការបែងចែកប្រាក់ចំណូល</value>
+  <data name="RevenueShare" xml:space="preserve">
+    <value>បែងចែងប្រាក់ចំណូល</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>ផលិតផលទាំងអស់</value>
   </data>
   <data name="MoreDetailProduct" xml:space="preserve">
-    <value>ព័ត៌មានលម្អិតបន្ថែមអំពីផលិតផល 12BET</value>
+    <value>ព័ត៌មានបន្ថែមអំពីផលិតផល 12BET</value>
   </data>
-  <data name="NetWinLoss" xml:space="preserve">
-    <value>ក្រុមហ៊ុនឈ្នះសុទ្ធប្រចាំខែ (CNW)($)</value>
+  <data name="CompanyNetWin" xml:space="preserve">
+    <value>ប្រាក់ចំណេញដែលក្រុមហ៊ុនឈ្នះនៅក្នុងខែ (CNW) ($)</value>
   </data>
   <data name="OneUsdAndAbove" xml:space="preserve">
     <value>$1 &amp; លើស</value>
   </data>
   <data name="QualifyingMem" xml:space="preserve">
-    <value>សមាជិកដែលមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់</value>
+    <value>អតិថិជនសកម្ម</value>
   </data>
   <data name="Comm" xml:space="preserve">
-    <value>កំរៃជើងសារ</value>
+    <value>កម្រៃជើងសារ</value>
   </data>
   <data name="_12Sports" xml:space="preserve">
     <value>12SPORTS</value>
@@ -391,7 +391,7 @@
     <value>ចុះឈ្មោះកម្មវិធីភ្នាក់ងារ 12BET ឥឡូវនេះ!</value>
   </data>
   <data name="LiveCasino" xml:space="preserve">
-    <value>កាស៊ីណូបន្តផ្ទាល់</value>
+    <value>កាស៊ីណូតផ្ទាល់ផ្ទាល់</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>ហ្គេមកាស៊ីណូ</value>
@@ -529,28 +529,28 @@
     <value>ខ្ញុំយល់ព្រមនឹងលក្ខខណ្ឌភ្នាក់ងារ 12BET</value>
   </data>
   <data name="SupportTime" xml:space="preserve">
-    <value>ច័ន្ទ - សៅរ៍&lt;br&gt;09:00 ព្រឹក - 06:00 ល្ងាច&lt;br&gt;(GMT +8)</value>
+    <value>8.00 ព្រឹក - 5.00 ល្ងាច&lt;br /&gt;(GMT +8)</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
-    <value>ជំនួយការ​សំរាប់ទីផ្សារកម្ពុជា</value>
+    <value>ជំនួយភាសាខ្មែរ</value>
   </data>
   <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>សូមណែនាំមតិយោបល់ ឬសំណួរណាមួយទៅកាន់ {0} ឬដោយប្រើទម្រង់ខាងក្រោម</value>
+    <value>សូមផ្តល់នូវសំណួរណាមួយទៅកាន់ {0}, ឬប្រើទម្រង់ខាងក្រោម</value>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>ប្រធានបទ</value>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>មតិយោបល់</value>
+    <value>មតិ</value>
   </data>
   <data name="AffiliateID" xml:space="preserve">
-    <value>IDរបស់ភ្នាក់ងារ</value>
+    <value>លេខសម្គាល់ភ្នាក់ងារ</value>
   </data>
   <data name="Email1" xml:space="preserve">
     <value>អ៊ីមែល</value>
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
-    <value>សុពលភាពលេខកូដ</value>
+    <value>លេខកូដសុពលភាព</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>ឈ្មោះ</value>
@@ -746,7 +746,7 @@
     <value>លុប</value>
   </data>
   <data name="AffAccountLanguageErr" xml:space="preserve">
-    <value>សូមជ្រើសរើសភាសាដែលពេញចិត្ត</value>
+    <value>សូមជ្រើសរើសភាសាគណនីសំរាប់ភ្នាក់ងារ</value>
   </data>
   <data name="errSecQuestionEmpty" xml:space="preserve">
     <value>សូមជ្រើសរើសសំណួរសុវត្ថិភាព</value>
@@ -770,28 +770,33 @@
     <value>ពាក្យស្នើសុំកំពុងថិតក្នុង​ការត្រួត​ពិនិត្យ</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
-    <value>សូមអរគុណចំពោះការដាក់ពាក្យស្នើសុំរបស់អ្នក.&lt;br/&gt;&lt;br/&gt;គេហទំព័រ និងព័ត៌មានលម្អិតនៃកម្មវិធីរបស់អ្នកនឹងត្រូវបានពិនិត្យដោយក្រុមការងារភ្នាក់ងារ12Bet ដើម្បីធានាបានថាខ្លឹមសារគឺសមរម្យសំរាប់ការផ្សព្វផ្សាយផលិតផលរបស់យើង។&lt;br/&gt;&lt;br/&gt;យើងនិងជូនដំណឹងទៅអ្នកវិញក្នុងរយះពេល5ថ្ងៃ ប្រសិនបើត្រូវបានយល់ព្រម អ្នកនិងអាចចូលទៅដំណើរការយ៉ាងពេញលេញក្នុងកម្មវិធីជាភ្នាក់ងាររបស់យើង។&lt;br /&gt;&lt;br /&gt;ដោយក្តីគោរព!&lt;br /&gt;&lt;br /&gt;ពីក្រុមភ្នាក់ងារ 12Bet&lt;br/&gt;&lt;br/&gt;សម្រាប់ហេតុផលណាមួយដែលអ្នកមិនអាចទទួលបានអ៊ីមែល សូមពិនិត្យមើលប្រអប់សារ Spam របស់អ្នក ឬ &lt;a href='{0}'&gt;ទាក់ទងយើង&lt;/a&gt; ហើយយើងនឹងរីករាយក្នុងការជួយអ្នក។</value>
+    <value>សូមអរគុណចំពោះការដាក់ពាក្យស្នើសុំរបស់អ្នក.&lt;br/&gt;
+គេហទំព័រ និងព័ត៌មានលម្អិតនៃកម្មវិធីរបស់អ្នកនឹងត្រូវបានពិនិត្យដោយក្រុមការងារភ្នាក់ងារ12Bet ដើម្បីធានាបានថាខ្លឹមសារគឺសមរម្យសំរាប់ការផ្សព្វផ្សាយផលិតផលរបស់យើង។&lt;br/&gt;
+យើងនិងជូនដំណឹងទៅអ្នកវិញក្នុងរយះពេល5ថ្ងៃ ប្រសិនបើត្រូវបានយល់ព្រម អ្នកនិងអាចចូលទៅដំណើរការយ៉ាងពេញលេញក្នុងកម្មវិធីជាភ្នាក់ងាររបស់យើង។&lt;br /&gt;&lt;br /&gt;
+ដោយក្តីគោរព!&lt;br /&gt;
+ពីក្រុមភ្នាក់ងារ 12Bet&lt;br/&gt;
+សម្រាប់ហេតុផលណាមួយដែលអ្នកមិនអាចទទួលបានអ៊ីមែល សូមពិនិត្យមើលប្រអប់សារ Spam របស់អ្នក ឬ &lt;a href='{0}'&gt;ទាក់ទងយើង&lt;/a&gt; ហើយយើងនឹងរីករាយក្នុងការជួយអ្នក។</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
-    <value>អ្នកផ្តល់ជំនួយភាសាអង់គ្លេស</value>
+    <value>ជំនួយភាសាអង់គ្លេស</value>
   </data>
   <data name="ChinaSupport" xml:space="preserve">
-    <value>អ្នកផ្តល់ជំនួយភាសាចិន</value>
+    <value>ជំនួយភាសាចិន</value>
   </data>
   <data name="VietnamSupport" xml:space="preserve">
-    <value>អ្នកផ្តល់ជំនួយភាសាវៀតណាម</value>
+    <value>ជំនួយភាសាវៀតណាម</value>
   </data>
   <data name="ThailandSupport" xml:space="preserve">
-    <value>អ្នកផ្តល់ជំនួយភាសាថៃ</value>
+    <value>ជំនួយភាសាថៃ</value>
   </data>
   <data name="IndonesiaSupport" xml:space="preserve">
-    <value>អ្នកផ្តល់ជំនួយភាសាឥណ្ឌូនេស៊ី</value>
+    <value>ជំនួយភាសាឥណ្ឌូណេស៊ី</value>
   </data>
   <data name="IndianSupport" xml:space="preserve">
-    <value>អ្នកផ្តល់ជំនួយភាសាឥណ្ឌា</value>
+    <value>ជំនួយភាសាឥណ្ឌា</value>
   </data>
   <data name="KoreaSupport" xml:space="preserve">
-    <value>អ្នកផ្តល់ជំនួយភាសាកូរ៉េ</value>
+    <value>ជំនួយភាសាកូរ៉េ</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
     <value>សូមអរគុណសម្រាប់ការទាក់ទងមកយើងខ្ញុំ &lt;br /&gt;
@@ -1005,8 +1010,8 @@
   <data name="Bonus" xml:space="preserve">
     <value>ប្រាក់រង្វាន់</value>
   </data>
-  <data name="BankingFees" xml:space="preserve">
-    <value>ថ្លៃសេវាធនាគារ</value>
+  <data name="BankingFee" xml:space="preserve">
+    <value>ថ្លៃសេវា ធនាគារ</value>
   </data>
   <data name="AvailableDomains" xml:space="preserve">
     <value>Domains ដែលអាចប្រើប្រាស់បាន</value>
@@ -1016,12 +1021,6 @@
   </data>
   <data name="GenerateLink" xml:space="preserve">
     <value>បង្កើតតំណ</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>ប្រភេទ</value>
-  </data>
-  <data name="SubCategory" xml:space="preserve">
-    <value>Sub Category</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>រូបិយប័ណ្ណ</value>
@@ -1108,7 +1107,7 @@
     <value>កំរៃជើងសារ = (ចាញ់ឈ្នះសរុប - ថ្លៃសេវាវេទិកា - ថ្លៃប្រតិបត្តិការ - ថ្លៃសេវាធនាគារ - ប្រាក់រង្វាន់) x Comm អត្រា</value>
   </data>
   <data name="PlatformFee" xml:space="preserve">
-    <value>ថ្លៃសេវាវេទិកា</value>
+    <value>ថ្លៃសេវា វេទិកា</value>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>ថ្លៃប្រតិបត្តិការ</value>
@@ -1342,7 +1341,7 @@
     <value>USD (ដុល្លារអាមេរិក)</value>
   </data>
   <data name="ESports" xml:space="preserve">
-    <value>កីឡាអេឡិចត្រូនិក</value>
+    <value>Esports</value>
   </data>
   <data name="EUR" xml:space="preserve">
     <value>EUR (Euro)</value>
@@ -1414,7 +1413,7 @@
     <value>តំណភ្ជាប់អត្ថបទ</value>
   </data>
   <data name="Tier" xml:space="preserve">
-    <value>កម្រិត</value>
+    <value>ចំណាត់ថ្នាក់</value>
   </data>
   <data name="Swaziland" xml:space="preserve">
     <value>Swaziland </value>
@@ -1962,26 +1961,17 @@
   <data name="ThisPromotionIsExpired" xml:space="preserve">
     <value>ប្រូម៉ូសិននេះត្រូវបានផុតកំណត់ សូមរង់ចាំប្រូម៉ូសិនថ្មីៗដែលនឹងមកដល់ក្នុងពេលឆាប់ៗនេះ។</value>
   </data>
-  <data name="CompanyProfit" xml:space="preserve">
-    <value>ប្រាក់ចំណេញរបស់ក្រុមហ៊ុនសម្រាប់ខែ ($)</value>
-  </data>
   <data name="ByInvitationOnly" xml:space="preserve">
     <value>តាមការអញ្ជើញតែប៉ុណ្ណោះ</value>
-  </data>
-  <data name="AboveTwoThousand" xml:space="preserve">
-    <value>250,001 - លើសពី</value>
-  </data>
-  <data name="QualifiedActiveMembersByMonth" xml:space="preserve">
-    <value>សមាជិកសកម្មដែលមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់/ខែ</value>
   </data>
   <data name="Flat50" xml:space="preserve">
     <value>50% ថេរ</value>
   </data>
   <data name="NewFDMs" xml:space="preserve">
-    <value>សមាជិកដាក់ប្រាក់ថ្មី</value>
+    <value>សមាជិកថ្មី ការដាក់ប្រាក់ដំបូង (FDM)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
-    <value>15,000 &amp; លើសពីនេះ</value>
+    <value>15,000 &amp; លើស</value>
   </data>
   <data name="FiveToEleven" xml:space="preserve">
     <value>5 - 11</value>
@@ -1993,16 +1983,16 @@
     <value>25 - 39</value>
   </data>
   <data name="AboveFourty" xml:space="preserve">
-    <value>40 &amp; លើសពីនេះ</value>
+    <value>40 &amp; លើស</value>
   </data>
   <data name="TotalFdmDeposit" xml:space="preserve">
-    <value>ការដាក់ប្រាក់សរុបរបស់សមាជិកថ្មី ($)</value>
+    <value>ចំនួនទឹកប្រាស់សរុបសំរាប់សមាជិកថ្មីដាក់ប្រាក់ ($)</value>
   </data>
   <data name="ExtraComm" xml:space="preserve">
-    <value>បន្ថែមកំរៃជើងសារ</value>
+    <value>កម្រៃជើងសារបន្ថែមជូន</value>
   </data>
   <data name="MaxExtraComm" xml:space="preserve">
-    <value>បន្ថែមកំរៃជើងសារធំបំផុត ($)</value>
+    <value>កម្រៃជើងសារបន្ថែមជូនធំបំផុត​ ($)</value>
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
@@ -2106,16 +2096,151 @@
   <data name="HomeHeaderTitle" xml:space="preserve">
     <value>ភ្នាក់ងារ​12BET</value>
   </data>
+  <data name="TermAndConditionPageTitle" xml:space="preserve">
+    <value>លក្ខខណ្ឌភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="OurProducts" xml:space="preserve">
+    <value>ផលិតផល​របស់​ពួក​យើង</value>
+  </data>
   <data name="Skype" xml:space="preserve">
     <value>Skype</value>
   </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="_12BetIsPremireOnline" xml:space="preserve">
+    <value>12BET គឺជាទំព័រកីឡាអនឡាញដំបូងគេសម្រាប់អ្នកគាំទ្រកីឡា ដែលបង្ហាញពីអត្រាការប្រាក់ខ្ពស់បំផុតនៃព្រឹត្តិការណ៍កីឡាជាច្រើននៅលើជុំវិញពិភពលោក ជាជម្រើសដ៏ល្អសម្រាប់អ្នកដែលចូលចិត្តភ្នាល់កីឡាដែលផ្តល់នូវបទពិសោធន៍ដ៏ល្អបំផុត។</value>
+  </data>
+  <data name="ExploreAWide" xml:space="preserve">
+    <value>ស្វែងយល់ពីហ្គេមកាស៊ីណូបន្តផ្ទាល់ជាច្រើនប្រភេទ រួមទាំងបាការ៉ាត់ និង Blackjack និងជាច្រើនទៀត ដើម្បីរីករាយជាមួយបទពិសោធន៍លេងហ្គេមចុងក្រោយនៅ 12BET។ ជាមួយនឹងភាពងាយស្រួលនៃការចូលទៅកាន់កាស៊ីណូបន្តផ្ទាល់លំដាប់ពិភពលោកភ្លាមៗដោយគ្រាន់តែភ្នាល់កម្សាន្តពីក្នុងផ្ទះរបស់អ្នក។ អ្នកអាចយកខ្លួនអ្នកទៅក្នុងពិភពកម្សាន្តកាស៊ីណូអនឡាញដែលមានស្តង់ដារខ្ពស់បំផុតដោយភាពងាយស្រួល។</value>
+  </data>
+  <data name="ExperienceTheWorld" xml:space="preserve">
+    <value>ទទួលបានបទពិសោធន៍ជាមួយស្លត់ហ្គេមអនឡាញកំពូលៗរបស់ពិភពលោកដោយគ្រាន់តែទាញយកវានៅ 12BET។ ស្វែងរកស្លត់ហ្គេមដ៏អស្ចារ្យ និងគួរឱ្យចាប់អារម្មណ៍ ជាមួយនឹងម៉ាស៊ីនពិសេស ដែលមានរូបភាពគួរឱ្យទាក់ទាញ និងឱកាសដើម្បីឈ្នះរង្វាន់ Jackpot ដែលមិនគួរឱ្យជឿ។ រីករាយនឹងការផ្សងព្រេងហ្គេមដែលមិនអាចបំភ្លេចបាន។</value>
+  </data>
+  <data name="OnlineLotteryBetting" xml:space="preserve">
+    <value>ការភ្នាល់ឆ្នោតតាមអ៊ីនធឺណិតគឺជាទម្រង់នៃការលេងល្បែងស៊ីសងដែលចង់បានយ៉ាងខ្លាំង ដោយអ្នកលេងមានជម្រើសជាច្រើនសម្រាប់ជ្រើសរើស។ នៅ 12BET អ្នកលេងអាចរីករាយជាមួយប្រភេទឆ្នោតផ្សេងៗដូចជា ឆ្នោត 3D/5D ឆ្នោត 11x5 និងឆ្នោតគ្រាប់ឡុកឡាក់។ ដែលនីមួយៗមានប្រភេទភ្នាល់ផ្សេងៗគ្នាដូចជា ធំ/តូច សេស/គូ ជួរពណ៌ និងច្រើនទៀត។ ត្រៀមខ្លួនដើម្បីទទួលបានបទពិសោធន៍ដ៏រំភើបនៃការភ្នាល់ឆ្នោតអនឡាញជាមួយ 12BET។</value>
+  </data>
+  <data name="ExperienceUnparalleledConvenience" xml:space="preserve">
+    <value>ទទួលបានបទពិសោធន៍ពីភាពងាយស្រួលដែលមិនអាចប្រៀបផ្ទឹមបានក្នុងការដាក់ភ្នាល់លើក្រុម eSports ដែលអ្នកពេញចិត្តជាមួយ 12BET។ ទទួលបានអត្ថប្រយោជន៍ពីអត្រាការប្រាក់ដ៏ល្អបំផុតរបស់ 12BET និងការគ្របដណ្តប់លើការភ្នាល់ eSports ដ៏ទូលំទូលាយ ដែលរួមមានហ្គេមពេញនិយមដូចជា CS:GO, Dota 2, LoL និងច្រើនទៀត។ ស្វែងយល់ថាតើវាងាយស្រួលប៉ុណ្ណា។ ដើម្បីរីករាយនឹងភាពរំភើបនៃការភ្នាល់ eSports ជាមួយ 12BET។</value>
+  </data>
+  <data name="SupportDay" xml:space="preserve">
+    <value>ថ្ងៃច័ន្ទ - សុក្រ</value>
+  </data>
+  <data name="RegularCommissionStructure" xml:space="preserve">
+    <value>រចនាសម្ព័ន្ធកម្រៃជើងសារ</value>
+  </data>
+  <data name="Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CustomerWinLoss" xml:space="preserve">
+    <value>សមាជិក ឈ្នះ/ចាញ់</value>
+  </data>
+  <data name="NetProfit" xml:space="preserve">
+    <value>ប្រាក់​ចំណេញ​សុទ្ធ</value>
+  </data>
+  <data name="AffiliateEarnsRevenueShare" xml:space="preserve">
+    <value>ភ្នាក់ងារនិងទទួលបានចំណែកនៃប្រាក់ចំណេញសុទ្ធ ដោយផ្អែកតាមតារាងរចនាសម្ព័ន្ធនៃភ្នាក់ងារ។</value>
+  </data>
+  <data name="AffCountLanguage" xml:space="preserve">
+    <value>ភាសាគណនីសំរាប់ភ្នាក់ងារ</value>
+  </data>
+  <data name="TargetCountryErr" xml:space="preserve">
+    <value>សូមជ្រើសរើសប្រទេសគោលដៅ</value>
+  </data>
+  <data name="BecomeA12BetAff" xml:space="preserve">
+    <value>ក្លាយជាភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="ContactUsHeaderTitle" xml:space="preserve">
+    <value>ទីផ្សារភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="PromotionHeaderTitle" xml:space="preserve">
+    <value>ក្លាយជាភ្នាក់ងារ 12BET ឥឡូវនេះ</value>
+  </data>
+  <data name="FAQsHeaderTitle" xml:space="preserve">
+    <value>ចូលរួមជាមួយភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="TermAndConditionHeaderTitle" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងារ 12BET</value>
+  </data>
+  <data name="ProductHeaderTitle" xml:space="preserve">
+    <value>12BET ផលិតផលភ្នាក់ងារ</value>
+  </data>
+  <data name="CommissionStructureHeaderTitle" xml:space="preserve">
+    <value>12BET កម្រៃជើងសារ</value>
+  </data>
+  <data name="MetaContactUsKeywords" xml:space="preserve">
+    <value>ភ្នាក់ងារ​ 12BET ជាកម្មវិធីភ្នាក់ងារ, ទីផ្សារភ្នាក់ងារ, គេហទំព័រភ្នាល់ល្អបំផុត។</value>
+  </data>
+  <data name="MetaContactUsDescription" xml:space="preserve">
+    <value>ទទួលបានបទពិសោធន៍ពីកម្មវិធីទីផ្សារភ្នាក់ងារដ៏ល្អបំផុត ហើយក្លាយជាដៃគូដើម្បីផ្សព្វផ្សាយកីឡាជាមួយ 12BET។</value>
+  </data>
+  <data name="MetaContactUsTitle" xml:space="preserve">
+    <value>ភ្នាក់ងារ 12Bet ដែលជាកម្មវិធីភ្នាក់ងារដែលត្រូវបានរចនាឡើងសម្រាប់អនាគត។</value>
+  </data>
+  <data name="MetaPromotionKeywords" xml:space="preserve">
+    <value>កីឡា, កាស៊ីណូ, កាស៊ីណូអនឡាញ, បណ្តាញទីផ្សារភ្នាក់ងារកាស៊ីណូ, បណ្តាញការភ្នាល់ទីផ្សារភ្នាក់ងារ, កីឡា, គេហទំព័រភ្នាល់ដែលល្អជាងគេ។</value>
+  </data>
+  <data name="MetaPromotionDescription" xml:space="preserve">
+    <value>12BET ផ្តល់ជូននូវទីផ្សារសម្ព័ន្ធលំដាប់ពិភពលោកសម្រាប់ដៃគូដើម្បីគាំទ្រកាស៊ីណូ 12BET និងការភ្នាល់កីឡានៅទូទាំងពិភពលោក និងទទួលបានកម្រៃជើងសារ 50%។</value>
+  </data>
+  <data name="MetaPromotionTitle" xml:space="preserve">
+    <value>ចាប់ផ្តើមភាពជោគជ័យរបស់អ្នកឥឡូវនេះជាមួយកម្មវិធី ភ្នាក់ងារ 12BET។</value>
+  </data>
+  <data name="MetaFAQsKeywords" xml:space="preserve">
+    <value>12BET គឺជាគេហទំព័រភ្នាល់ដ៏ល្អបំផុតនៅអាស៊ី និងជាវេទិកាដែលកំពុងកើនឡើងនៅក្នុងពិភពលោក ដែលផ្តល់ជូននូវកម្មវិធីភ្នាក់ងារដែលងាយស្រួល និងសុវត្ថិភាព និងផ្តល់ជូនលោកអ្នកនូវប្រាក់ចំណេញ។</value>
+  </data>
+  <data name="MetaFAQsDescription" xml:space="preserve">
+    <value>ជាឱកាសដ៏ល្អមួយសម្រាប់ភ្នាក់ងារទាំងអស់ ដើម្បីរកប្រាក់ចំណូលបានកាន់តែច្រើន។</value>
+  </data>
+  <data name="MetaFAQsTitle" xml:space="preserve">
+    <value>គេហទំព័រភ្នាល់ដែលធំបំផុតនៅអាស៊ី និងបានបើកដំណើរការកម្មវិធីភ្នាក់ងារ។</value>
+  </data>
+  <data name="MetaTermAndConditionKeywords" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងារ 12BET ទីផ្សារភ្នាក់ងារ, កម្មវិធីកាស៊ីណូ, ទីផ្សារភ្នាក់ងារ, វេទិការកីឡា, កាស៊ីណូ។</value>
+  </data>
+  <data name="MetaTermAndConditionDescription" xml:space="preserve">
+    <value>12BET គឺជាគេហទំព័រភ្នាល់ដ៏ល្អបំផុតនៅអាស៊ី និងជាវេទិកាដែលកំពុងកើនឡើងនៅក្នុងពិភពលោក ដែលផ្តល់ជូននូវកម្មវិធីសម្ព័ន្ធងាយស្រួល និងសុវត្ថិភាព ហើយប្រាកដជាផ្តល់ឱ្យអ្នកនូវប្រាក់ចំណេញ។</value>
+  </data>
+  <data name="MetaTermAndConditionTitle" xml:space="preserve">
+    <value>ទទួលបានបទពិសោធន៍ជោគជ័យសំរាប់ទីផ្សារភ្នាក់ងារជាមួយ 12BET។</value>
+  </data>
+  <data name="MetaProductKeywords" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងារ 12BET ទីផ្សារភ្នាក់ងារ, កម្មវិធីកាស៊ីណូ, ទីផ្សារភ្នាក់ងារ, វេទិការកីឡា, កាស៊ីណូ។</value>
+  </data>
+  <data name="MetaProductDescription" xml:space="preserve">
+    <value>កម្មវិធីសំរាប់កាស៊ីណូដែលមាននៅទូទាំងពិភពលោក ជាវេទិការកីឡាដែលជាទីទុកចិត្តបំផុត។</value>
+  </data>
+  <data name="MetaProductTitle" xml:space="preserve">
+    <value>លោកអ្នកនិងទទួលបានភាពរីករាយជាមួយនិងកម្មវិធីភ្នាក់ងារ 12BET។</value>
+  </data>
+  <data name="MetaCommissionStructureKeywords" xml:space="preserve">
+    <value>កម្រៃជើងសារល្អបំផុត, ទីផ្សារភ្នាក់ងារ, អត្រាប្រាក់កម្រៃជើងសារ, កម្មវិធីភ្នាក់ងារ, គេហទំព័រភ្នាល់ល្អដាច់គេ។</value>
+  </data>
+  <data name="MetaCommissionStructureDescription" xml:space="preserve">
+    <value>12BET ផ្តល់ជូននូវកម្មវិធីភ្នាក់ងារផ្តាច់មុខមួយស្របតាម FIFA World Cup 2022 ដែលផ្តល់ជូននូវអត្រាកំរៃជើងសារធំរហូតដល់ 50%។</value>
+  </data>
+  <data name="MetaCommissionStructureTitle" xml:space="preserve">
+    <value>ធ្វើឱ្យគេហទំព័ររបស់អ្នកទទួលបានកម្រៃជើងសារល្អបំផុតជាមួយនឹងកម្មវិធីភ្នាក់ងារ 12BET។</value>
+  </data>
+  <data name="MetaHomeKeywords" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងាររបស់12Bet, កីឡា, កាស៊ីណូ, គេហទំព័រភ្នាល់ល្អបំផុត, ទីផ្សារភ្នាក់ងារ។</value>
+  </data>
+  <data name="MetaHomeDescription" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងាររបស់12Bet គឺជាគេហទំព័រភ្នាល់អនឡ្ាញដែលដាច់គេ និងមានប្រូម៉ូសិនជាច្រើនមានដូចជា: កាស៊ីណូ ភ្នាល់កីឡា ដែលលោកអ្នកអាចរកលេងបាននៅក្នុងគេហទំព័រ។</value>
+  </data>
+  <data name="MetaHomeTitle" xml:space="preserve">
+    <value>ភ្នាក់ងារ 12Bet – ជាកម្មវិធីភ្នាក់ងារដែលល្អបំផុត។</value>
+  </data>
   <data name="JapanSupport" xml:space="preserve">
     <value>ជំនួយភាសាជប៉ុន</value>
   </data>
   <data name="BrazilSupport" xml:space="preserve">
     <value>ជំនួយភាសាប្រេស៊ីល</value>
+  </data>
+  <data name="_12BetKenoIsAStraightforwardGame" xml:space="preserve">
+    <value>12Bet គីណូ គឺជាហ្គេមដ៏សាមញ្ញមួយដែលអ្នកអាចជ្រើសរើសលេខ ហើយរង់ចាំការចាប់ឆ្នោតដើម្បីមើលថាតើលេខដែលអ្នកបានជ្រើសរើសនោះត្រឹមត្រូវដែរឬទេ។ វា​ជា​ហ្គេម​ដែលងាយ​ស្រួល​លេងបំផុតដែល​មិន​តម្រូវ​ឱ្យ​មាន​ជំនាញ​ឬ​យុទ្ធ​សា​ស្រ្តណា​មួយ​ឡើង ហើយ​វាអាច​ចូលលេងបានគ្រប់ៗគ្នា។</value>
+  </data>
+  <data name="_12BetNumberGame" xml:space="preserve">
+    <value>ហ្គេមលេខរបស់ 12Bet សំដៅលើហ្គេមជាច្រើនដែលពាក់ព័ន្ធនឹងការជ្រើសរើស និងទាយលេខ ស្រដៀងទៅនឹងឆ្នោត ប៊ីងហ្គោ ឬគីណូដែរ។ ប្រភេទហ្គេមទាំងនេះពេញនិយមនិងសាមញ្ញបំផុត សក្តានុពលនៃការឈ្នះមកវិញក៏ធំផងដែរ ប្រសិនបើអ្នកចាប់អារម្មណ៍លើហ្គេមលេខ 12Bet ក៏អាចសាកល្បងវាបានដែរ។</value>
   </data>
 </root>

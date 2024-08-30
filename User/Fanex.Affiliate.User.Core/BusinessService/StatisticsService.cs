@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 {
                     var language = languageList.FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
 
-                    item.Language = language == null ? item.LanguageCode : language.NativeLanguage;
+                    item.Language = language == null ? item.LanguageCode : SystemHelper.GetLanguageText(language.LanguageName);
                 }
 
                 return dataList;

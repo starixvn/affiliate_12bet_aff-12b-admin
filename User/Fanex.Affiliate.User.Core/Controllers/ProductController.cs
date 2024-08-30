@@ -2,8 +2,8 @@
 {
     using CoreService;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Filters;
     using System.Web.Mvc;
-    using ViewModels;
 
     public class ProductController : BaseController
     {
@@ -13,15 +13,10 @@
         }
 
         [HttpGet]
+        [LanguageRouteChecking]
         public ActionResult Index()
         {
-            var viewModel = new ProPageViewModel
-            {
-                CurrentLanguage = SessionService.CurrentLanguage,
-                IsAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null
-            };
-
-            return View("~/Views/Product/Index.cshtml", viewModel);
+            return View("~/Views/Product/Index.cshtml", model: SessionService.CurrentLanguage);
         }
     }
 }

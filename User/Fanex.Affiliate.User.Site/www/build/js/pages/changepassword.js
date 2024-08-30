@@ -34,7 +34,7 @@ var ChangePassword = (function ($) {
 
         initEvent: function () {
             $("#btnCancel").on("click", function () {
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#MyAccount"));
+                Site.redirect(Site.resolveRelativeLangUrl("UserPanel/Main/#MyAccount"));
             });
 
             $("#updatePasswordForm").on("submit", function (e) {
@@ -73,7 +73,7 @@ var ChangePassword = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("Password/Update"),
+                    url: Site.resolveRelativeLangUrl("Password/Update"),
                     data: postData,
                     dataType: "json",
                     cache: false,

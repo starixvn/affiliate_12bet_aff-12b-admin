@@ -11,13 +11,13 @@
 <div>
     <div class="breadcrumb-container">
         <ol class="breadcrumb" id="dailyEarningBreadcrumb">
-            <li><a href="@Url.Content("~/UserPanel/Main/#StatementHistory?isClickBreadcumb=true")">@Lang.StatementHistory</a></li>
+            <li><a href="@Url.RenderLanguageContent("~/UserPanel/Main/#StatementHistory?isClickBreadcumb=true")">@Lang.StatementHistory</a></li>
         </ol>
     </div>
 
     <div class="form-inline form-filter">
         <div class="form-group">
-            <label class="w100">@Lang.ProductType:</label>
+            <label for="ProductId" class="w100">@Lang.ProductType:</label>
             <select class="form-control" id="ProductId">
                 <option value="0">@Lang.All</option>
 

@@ -26,18 +26,88 @@ var AuthHelper = (function ($) {
 
     return _me;
 })(jQuery);
+var PageTracking = (function ($) {
+    const _defaultShortedLanguageCode = "EN"
+    const _shortedLanguageCodes = {
+        "bn": "BN",
+        "en": "EN",
+        "cs": "CS",
+        "ch": "CH",
+        "hi": "HIEN",
+        "id": "ID",
+        "kh": "KH",
+        "ko": "KO",
+        "jp": "JP",
+        "th": "TH",
+        "vn": "VN"
+    };
+
+    function _getShortedLangCode() {
+        return $('#shortedLangCode').val() || _defaultShortedLanguageCode;
+    }
+
+    var _me = {
+        addTrackingForLogin: function () {
+            if (window.gtag) {
+                var trackingAction = 'AffNewSeasonMedia-' + _getShortedLangCode();
+                window.gtag('event', trackingAction, {
+                    'send_to': 'UA-5160706-44',
+                    'event_category': 'AFFiliateLogin',
+                    'event_label': 'AFFLogin'
+                });
+            }
+        },
+        addTrackingForHomeBanner: function () {
+            if (window.gtag) {
+                var trackingAction = 'AffHomeBanner-' + _getShortedLangCode();
+                window.gtag('event', trackingAction, {
+                    'send_to': 'UA-5160706-44',
+                    'event_category': 'AFFiliatePage',
+                    'event_label': 'AFFHomeBanner'
+                });
+            }
+        },
+        addTrackingForCommissionBanner: function () {
+            if (window.gtag) {
+                var trackingAction = 'AffCommissionStructureBanner-' + _getShortedLangCode();
+                window.gtag('event', trackingAction, {
+                    'send_to': 'UA-5160706-44',
+                    'event_category': 'AFFiliatePage',
+                    'event_label': 'AFFCommissionStructureBanner'
+                });
+            }
+        },
+
+        addTrackingForPromotionBanner: function () {
+            //analytics.js
+            //_gaq.push(['_trackEvent', eventCategory, eventAction, eventLabel, eventValue]);
+
+            //gtag.js
+            //gtag('event', <event_action>, {
+            //  'event_category': <event_category>,
+            //  'event_label': <event_label>,
+            //  'value': <value>
+            //});
+            if (window.gtag) {
+                var actionName = 'AffPromotionBanner' + _getShortedLangCode();
+                window.gtag('event', actionName, {
+                    'send_to': 'UA-5160706-44',
+                    'event_category': 'AFFiliatePage',
+                    'event_label': 'AffPromotionBanner'
+                });
+            }
+        }
+    }
+
+    return _me;
+})(jQuery)
 var Login = (function ($) {
     var _refreshCaptchaTimeoutId = null;
     var REFRESH_CAPTCHA_INTERVAL = 600000;
 
-    function registerRefreshLoginCaptcha(isShowingModal) {
+    function registerRefreshLoginCaptcha() {
         function refreshCaptcha() {
-            if (isShowingModal) {
-                _me.generateDialogCaptcha();
-            }
-            else {
-                _me.generateCaptcha();
-            }
+            _me.generateDialogCaptcha();
             clearTimeout(_refreshCaptchaTimeoutId);
             _refreshCaptchaTimeoutId = setTimeout(refreshCaptcha, REFRESH_CAPTCHA_INTERVAL);
         }
@@ -48,28 +118,23 @@ var Login = (function ($) {
         }, REFRESH_CAPTCHA_INTERVAL);
     }
 
-    function toggleLoginButton(isEnable, onDialog) {
-        var btnLoginselector = onDialog ? '#btnDialogLogin' : '#btnLogin';
-        $(btnLoginselector).prop('disabled', !isEnable);
+    function toggleLoginButton(isEnable) {
+        $('#btnDialogLogin').prop('disabled', !isEnable);
     }
 
     var _me = {
         initialize: function () {
             _me.registerLoginDialog();
-            _me.initEvent();
             _me.initLoginDialogEvent();
-            registerRefreshLoginCaptcha(false);
         },
         registerLoginDialog: function () {
             $("#loginDialog").on("show.bs.modal", function (e) {
                 _me.generateDialogCaptcha();
-                registerRefreshLoginCaptcha(true);
+                registerRefreshLoginCaptcha();
             })
 
             $("#loginDialog").on("hide.bs.modal", function (e) {
                 $("#loginDialogcaptchaImg").attr("src", "");
-                _me.generateCaptcha();
-                registerRefreshLoginCaptcha(false);
             })
         },
         initLoginDialogEvent: function () {
@@ -83,51 +148,33 @@ var Login = (function ($) {
             });
 
             $("#btnDialogLogin").on("click", function () {
-                _me.requestSignin(true);
-            });
-
-            $("#dialogUserInput input").on("keypress", function (e) {
-                if (e.keyCode === 13 && !$('#btnDialogLogin').prop('disabled')) {
-                    _me.requestSignin(true);
-                }
-            });
-
-            $("#loginDialogcaptchaImg").on("click", function () {
-                _me.generateDialogCaptcha();
-                registerRefreshLoginCaptcha(true);
-            });
-        },
-        initEvent: function () {
-            $("#btnLogin").on("click", function () {
                 _me.requestSignin();
             });
 
-            $("#userLogin input").on("keypress", function (e) {
-                if (e.keyCode === 13 && !$('#btnLogin').prop('disabled')) {
+            $("#loginDialog input").on("keypress", function (e) {
+                if (e.keyCode === 13 && !$('#btnDialogLogin').prop('disabled')) {
                     _me.requestSignin();
                 }
             });
 
-            $("#captchaImg").on("click", function () {
-                _me.generateCaptcha();
-                registerRefreshLoginCaptcha(false);
+            $("#loginDialogcaptchaBtn").on("click", function () {
+                _me.generateDialogCaptcha();
+                registerRefreshLoginCaptcha();
             });
         },
 
-        requestSignin: function (onDialog) {
-            var prefix = onDialog ? "dialog" : "";
-
-            var $username = $("#" + prefix + "txtUsername");
-            var $password = $("#" + prefix + "txtPassword");
-            var $validation = $("#" + prefix + "txtValidation");
+        requestSignin: function () {
+            var $username = $("#dialogtxtUsername");
+            var $password = $("#dialogtxtPassword");
+            var $validation = $("#dialogtxtValidation");
 
             var username = $username.val();
             var password = $password.val();
             var validation = $validation.val();
 
-            var validationResult = _me.validate(username, password, validation, prefix);
+            var validationResult = _me.validate(username, password, validation);
             if (validationResult.isValid) {
-                var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
+                var token = $('input[name="__RequestVerificationToken"]', $("#loginDialog")).val();
                 var publicKey = AuthHelper.base64DecodeUnicode($("#PublicKey").val());
                 var timeStamp = AuthHelper.getUtcUnixTimeStamp();
 
@@ -143,7 +190,7 @@ var Login = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("Auth/SignIn"),
+                    url: Site.resolveRelativeLangUrl("Auth/SignIn"),
                     data: postData,
                     dataType: "json",
                     cache: false,
@@ -151,45 +198,42 @@ var Login = (function ($) {
                     success: function (response) {
                         if (response.IsOk) {
                             var isRedirectToMediaPage = $('#isCLickedBannerLink').val() === "1";
-                            if (onDialog && isRedirectToMediaPage) {
-                                PageTracking.addTrackingForMediaPage();
+                            if (isRedirectToMediaPage) {
+                                PageTracking.addTrackingForLogin();
 
                                 setTimeout(function () {
-                                    Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview#MediaGallery"));
+                                    Site.redirect(Site.resolveRelativeLangUrl("UserPanel/Main/#AccountOverview#MediaGallery"));
                                 }, 10);
                             }
                             else {
-                                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
+                                Site.redirect(Site.resolveRelativeLangUrl("UserPanel/Main/#AccountOverview"));
                             }
                         }
                         else {
                             if (response.ShouldVerifyAccount) {
-                                Site.redirect(Site.resolveRelativeUrl('VerificationAccount'));
+                                Site.redirect(Site.resolveRelativeLangUrl('VerificationAccount'));
                             }
                             else {
                                 alert(response.Message);
-                                if (onDialog) {
-                                    $username.val("");
-                                    $password.val("");
-                                    $validation.val("");
-                                    _me.generateDialogCaptcha();
-                                    registerRefreshLoginCaptcha(true);
-                                }
-                                else {
-                                    Site.reload();
-                                }
-                                toggleLoginButton(true, onDialog);
+
+                                $username.val("");
+                                $password.val("");
+                                $validation.val("");
+                                _me.generateDialogCaptcha();
+                                registerRefreshLoginCaptcha();
+
+                                toggleLoginButton(true);
                             }
                         }
                     },
                     beforeSend: function () {
                         Site.showLoader();
-                        toggleLoginButton(false, onDialog);
+                        toggleLoginButton(false);
                     },
                     complete: function (jqXHR, textStatus) {
                         Site.hideLoader();
                         if (textStatus === 'error') {
-                            toggleLoginButton(true, onDialog);
+                            toggleLoginButton(true);
                         }
                     }
                 });
@@ -199,7 +243,7 @@ var Login = (function ($) {
             }
         },
 
-        validate: function (username, password, validationCode, prefix) {
+        validate: function (username, password, validationCode) {
             var empty = "";
             var result = {
                 isValid: false,
@@ -207,19 +251,19 @@ var Login = (function ($) {
             };
 
             if (username === empty) {
-                $("#" + prefix + "txtUsername").focus();
+                $("#dialogtxtUsername").focus();
                 result.message = validationMessage.enterUserName;
                 return result;
             }
 
             if (password === empty) {
-                $("#" + prefix + "txtPassword").focus();
+                $("#dialogtxtPassword").focus();
                 result.message = validationMessage.enterPassword;
                 return result;
             }
 
             if (validationCode === empty) {
-                $("#" + prefix + "txtValidation").focus();
+                $("#dialogtxtValidation").focus();
                 result.message = validationMessage.enterValidationCode;
                 return result;
             }
@@ -229,12 +273,8 @@ var Login = (function ($) {
         },
 
         generateDialogCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
+            var captchaUrl = Site.resolveRelativeLangUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#loginDialogcaptchaImg").attr("src", captchaUrl);
-        },
-        generateCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
-            $("#captchaImg").attr("src", captchaUrl);
         }
     };
 
