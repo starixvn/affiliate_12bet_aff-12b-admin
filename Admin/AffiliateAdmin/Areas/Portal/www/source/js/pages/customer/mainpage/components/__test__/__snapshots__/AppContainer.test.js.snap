@@ -23,31 +23,6 @@ exports[`customer - mainpage - components - AppContainer Should render correctly
       >
         <Connect(Component) />
       </div>
-      <div
-        className="right-panel mx-2"
-      >
-        <div
-          className="customer-statistics"
-        >
-          <Suspense
-            fallback={null}
-          >
-            <lazy />
-          </Suspense>
-        </div>
-        <div
-          className="user-panel"
-        >
-          <Suspense
-            fallback={null}
-          >
-            <Connect(Component)
-              isPending={false}
-              selectedUserPanel="statementHistory"
-            />
-          </Suspense>
-        </div>
-      </div>
     </Row>
   </div>
 </AppLayout>
@@ -75,25 +50,6 @@ exports[`customer - mainpage - components - AppContainer Should render correctly
         className="left-panel"
       >
         <Connect(Component) />
-      </div>
-      <div
-        className="right-panel mx-2"
-      >
-        <div
-          className="customer-statistics"
-        />
-        <div
-          className="user-panel"
-        >
-          <Suspense
-            fallback={null}
-          >
-            <Connect(Component)
-              isPending={true}
-              selectedUserPanel="statementHistory"
-            />
-          </Suspense>
-        </div>
       </div>
     </Row>
   </div>

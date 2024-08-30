@@ -76,6 +76,11 @@ exports[`processing request - components - Content -  should render correctly 1`
             Status count:
           </span>
           <span
+            className="text-warning pl-3"
+          >
+            undefined KIV
+          </span>
+          <span
             className="pl-3"
           >
             2 Draft

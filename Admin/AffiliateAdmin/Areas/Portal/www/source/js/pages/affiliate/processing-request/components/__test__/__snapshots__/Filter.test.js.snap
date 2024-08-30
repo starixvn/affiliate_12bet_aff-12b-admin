@@ -53,6 +53,12 @@ exports[`processing request - components - Filter -  render correctly 1`] = `
           All Statuses
         </option>
         <option
+          key="sortBy-KIV"
+          value="KIV"
+        >
+          KIV
+        </option>
+        <option
           key="sortBy-Draft"
           value="Draft"
         >

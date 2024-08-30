@@ -250,6 +250,7 @@ exports[`left panel - components - panel - CommissionPanel render correctly with
       <CommissionGroupPopup
         affId={1271808}
         affName="12BETAFF226"
+        isCommGroupVisible={true}
         isPrivateGroup={false}
         setShowPopupCommGroup={[Function]}
         showPopupCommGroup={false}

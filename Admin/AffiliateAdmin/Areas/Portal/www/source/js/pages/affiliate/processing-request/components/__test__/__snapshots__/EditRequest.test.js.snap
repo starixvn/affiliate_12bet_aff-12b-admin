@@ -267,6 +267,96 @@ exports[`processing request - components - EditRequest -  render correctly 1`] =
       >
         <Label
           className=""
+          for="ChangeFirstName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Change First Name
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ChangeFirstName"
+            invalid={false}
+            name="ChangeFirstName"
+            onChange={[Function]}
+            required={false}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ChangeLastName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Change Last Name
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ChangeLastName"
+            invalid={false}
+            name="ChangeLastName"
+            onChange={[Function]}
+            required={false}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
           for="PromotionMethod"
           sm={3}
           tag="label"
@@ -795,6 +885,12 @@ exports[`processing request - components - EditRequest -  render correctly 1`] =
             type="select"
             value="Draft"
           >
+            <option
+              key="KIV"
+              value="KIV"
+            >
+              KIV
+            </option>
             <option
               key="Draft"
               value="Draft"
@@ -1144,6 +1240,96 @@ exports[`processing request - components - EditRequest -  render correctly when 
       >
         <Label
           className=""
+          for="ChangeFirstName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Change First Name
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ChangeFirstName"
+            invalid={false}
+            name="ChangeFirstName"
+            onChange={[Function]}
+            required={false}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ChangeLastName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Change Last Name
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ChangeLastName"
+            invalid={false}
+            name="ChangeLastName"
+            onChange={[Function]}
+            required={false}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
           for="PromotionMethod"
           sm={3}
           tag="label"
@@ -1664,6 +1850,12 @@ exports[`processing request - components - EditRequest -  render correctly when 
             value="Draft"
           >
             <option
+              key="KIV"
+              value="KIV"
+            >
+              KIV
+            </option>
+            <option
               key="Draft"
               value="Draft"
             >
@@ -2010,6 +2202,96 @@ exports[`processing request - components - EditRequest -  render correctly when 
           Affiliate Promotion Method & Details
         </h6>
       </legend>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ChangeFirstName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Change First Name
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ChangeFirstName"
+            invalid={false}
+            name="ChangeFirstName"
+            onChange={[Function]}
+            required={false}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
+      <FormGroup
+        row={true}
+        tag="div"
+      >
+        <Label
+          className=""
+          for="ChangeLastName"
+          sm={3}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Change Last Name
+        </Label>
+        <Col
+          sm={9}
+          tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            id="ChangeLastName"
+            invalid={false}
+            name="ChangeLastName"
+            onChange={[Function]}
+            required={false}
+            type="textarea"
+            value=""
+          />
+        </Col>
+      </FormGroup>
       <FormGroup
         row={true}
         tag="div"
