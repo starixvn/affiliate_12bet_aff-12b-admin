@@ -1,17 +1,18 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.System;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -69,7 +70,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, int affId, bool isInternal)
         {
             var domainList = _marketingRepository.GetDomainListByTargetCountry(targetCountry, isInternal);
-            
+
             if (_appSetting.Aff16000Id.MatchWith(affId.ToString()))
             {
                 var aff16000DomainList = new List<Domain> { new Domain { DomainId = affId, DomainName = _appSetting.Aff16000GoDomain, IsSsl = true } };
@@ -80,9 +81,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return domainList;
         }
 
-        public IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam)
+        public IEnumerable<AffiliateLink> GenerateLinkList(LinkGenerationParam linkGenerationParam)
         {
-            var linkList = new Dictionary<string, string>();
+            var linkList = new List<AffiliateLink>();
             var selectedLanguage = linkGenerationParam.SelectedLanguage;
             var languageListFromParam = linkGenerationParam.LanguageList;
             var languageList = _systemService.GetSystemTargetLanguagesByCountry(linkGenerationParam.SelectedTargetCountry);
@@ -91,35 +92,50 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 foreach (var item in languageListFromParam)
                 {
-                    AddGenerateLinkToList(languageList, linkList, linkGenerationParam, item.Value);
+                    AddGenerateLanguageLinkToList(languageList, linkList, linkGenerationParam, item.Value);
                 }
 
-                linkList.Add(Lang.Default, GenerateDefaultLinkByTargetCountry(languageList, linkGenerationParam));
+                AddGenerateDefaultLinkToList(languageList, linkList, linkGenerationParam);
             }
             else
             {
-                var language = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(selectedLanguage));
-                if (language != null)
+                var isValidLanguage = AddGenerateLanguageLinkToList(languageList, linkList, linkGenerationParam, selectedLanguage);
+
+                if (!isValidLanguage)
                 {
-                    linkList.Add(language.LanguageName, GenerateLink(linkGenerationParam, language.ShortedCode));
-                }
-                else
-                {
-                    linkList.Add(Lang.Default, GenerateDefaultLinkByTargetCountry(languageList, linkGenerationParam));
+                    AddGenerateDefaultLinkToList(languageList, linkList, linkGenerationParam);
                 }
             }
 
             return linkList;
         }
 
-        private static void AddGenerateLinkToList(IEnumerable<TargetLanguage> languageList, Dictionary<string, string> linkList, LinkGenerationParam linkGenerationParam, string languageCode)
+        private void AddGenerateDefaultLinkToList(IEnumerable<TargetLanguage> languageList, List<AffiliateLink> linkList, LinkGenerationParam linkGenerationParam)
+        {
+            linkList.Add(new AffiliateLink
+            {
+                Language = Lang.Default,
+                Link = GenerateDefaultLinkByTargetCountry(languageList, linkGenerationParam),
+                LanguageCode = SystemLanguage.DefaultLanguageCode
+            });
+        }
+
+        private static bool AddGenerateLanguageLinkToList(IEnumerable<TargetLanguage> languageList, List<AffiliateLink> linkList, LinkGenerationParam linkGenerationParam, string languageCode)
         {
             var language = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(languageCode));
+            var isValidLanguage = language != null;
 
-            if (language != null)
+            if (isValidLanguage)
             {
-                linkList.Add(language.LanguageName, GenerateLink(linkGenerationParam, language.ShortedCode));
+                linkList.Add(new AffiliateLink
+                {
+                    Language = language.LanguageName,
+                    Link = GenerateLink(linkGenerationParam, language.ShortedCode),
+                    LanguageCode = language.LanguageCode
+                });
             }
+
+            return isValidLanguage;
         }
 
         public IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam)

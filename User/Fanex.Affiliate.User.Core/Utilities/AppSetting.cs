@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string SymmetricSalt => GetValue("SymmetricSalt");
 
-        public string QrCodeIcon => GetValue("QrCodeIcon");
+        public string QrCodeIconPathTemplate => GetValue("QrCodeIconPathTemplate");
 
         public string ResourceDomain => GetValue("ResourceDomain");
 
