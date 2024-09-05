@@ -99,10 +99,10 @@ var Layout = (function ($) {
                 switch (status) {
                     case 401:
                     case 403:
-                        window.location.href = Site.resolveRelativeLangUrl("Home");
+                        window.location.href = _me.handleResolveRelativeLangUrl("Home");
                         break;
                     case 404:
-                        window.location.href = Site.resolveRelativeLangUrl("Notify/PageNotFound");
+                        window.location.href = _me.handleResolveRelativeLangUrl("Notify/PageNotFound");
                         break;
                     case 500:
                         alert($("<div/>").html(window.Lang.ServerError).text());
@@ -115,7 +115,7 @@ var Layout = (function ($) {
         renderHotNews: function () {
             $.ajax({
                 type: "GET",
-                url: Site.resolveRelativeLangUrl("News/LatestHotNews"),
+                url: _me.handleResolveRelativeLangUrl("News/LatestHotNews"),
                 dataType: "html",
                 cache: false,
                 success: function (response) {
@@ -134,6 +134,14 @@ var Layout = (function ($) {
             var newUrl = createNewUrlByLanguage(selectedLanguage).replace(/\/+$/, '');
 
             Site.redirect(newUrl);
+        },
+
+        handleResolveRelativeLangUrl: function (url) {
+            if (typeof (Site) === "undefined" || !Site.resolveRelativeLangUrl) {
+                return $("#RootLangUrl").val() + url;
+            }
+
+            return Site.resolveRelativeLangUrl(url);
         }
     }
 
