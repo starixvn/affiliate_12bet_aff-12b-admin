@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.Services.Member;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -61,17 +62,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Member
         }
 
         [Fact]
-        public void ActiveMember_WhenCallWithValidParam_ActiveSuccessful()
+        public async Task ActiveMember_WhenCallWithValidParam_ActiveSuccessful()
         {
             // Arrange
             var param = new ActiveMemberParam();
             ActiveMemberParam passedParam = null;
             var activeMemberService = new Mock<IActiveMemberService>();
-            activeMemberService.Setup(s => s.ActiveMember(param)).Returns(new ResultInfo()).Callback<ActiveMemberParam>(p => passedParam = p);
+            activeMemberService.Setup(s => s.ActiveMemberAsync(param)).Returns(Task.FromResult(new ResultInfo())).Callback<ActiveMemberParam>(p => passedParam = p);
             var controller = CreateActiveMemberController(activeMemberService: activeMemberService.Object);
 
             // Action
-            var result = controller.ActiveMember(param) as JsonNetResult;
+            var result = await controller.ActiveMember(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -80,14 +81,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Member
         }
 
         [Fact]
-        public void ActiveMember_WhenCallWithInvalidParam_ReturnError()
+        public async Task ActiveMember_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
             var controller = CreateActiveMemberController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.ActiveMember(new ActiveMemberParam()) as JsonNetResult;
+            var result = await controller.ActiveMember(new ActiveMemberParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert

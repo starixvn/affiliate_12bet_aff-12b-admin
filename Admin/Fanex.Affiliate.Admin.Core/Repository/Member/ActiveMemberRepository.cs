@@ -90,15 +90,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                         result.Add(new DepositCustomerInfo
                         {
                             DepositUserName = Convert.ToString(reader[Field.UserName]),
-                            FirstName = Convert.ToString(reader[Field.FirstName]),
-                            LastName = Convert.ToString(reader[Field.LastName]),
-                            Email = Convert.ToString(reader["Email"]),
                             Password = Convert.ToString(reader["Password"]),
                             OddsType = Convert.ToString(reader["OddsType"]),
                             AffiliateId = reader.GetVal<int>("AffiliateId"),
                             Country = Convert.ToString(reader["Country"]),
                             AgentId = reader.GetVal<int>("AgentId"),
-                            BonusCode = Convert.ToString(reader["BonusCode"]),
                             DepositUserId = Convert.ToInt32(reader["DepositUserId"])
                         });
                     }
@@ -106,40 +102,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
             }
 
             return result;
-        }
-
-        public ResultInfo Add12BetPlayerAccountToIBC(DepositCustomerInfo param)
-        {
-            const string SpKey = "Dot_Dep_CustomerInsMember_Ag_Cust";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.SetParameterValue(Field.FirstName, param.FirstName);
-                objectDb.SetParameterValue(Field.LastName, param.LastName);
-                objectDb.SetParameterValue("email", param.Email);
-                objectDb.SetParameterValue("depositusername", param.DepositUserName);
-                objectDb.SetParameterValue("deposituserid", param.DepositUserId);
-                objectDb.SetParameterValue("password", param.Password);
-                objectDb.SetParameterValue("oddstype", param.OddsType);
-                objectDb.SetParameterValue("agentid", param.AgentId);
-                objectDb.SetParameterValue("affiliateid", param.AffiliateId);
-                objectDb.SetParameterValue("bonuscode", param.BonusCode);
-                objectDb.SetParameterValue("Country", param.Country);
-
-                objectDb.SetParameterValue("custid", DefaultValue.Int);
-                objectDb.SetParameterValue(Field.UserName, DefaultValue.String);
-
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery();
-
-                var userId = objectDb.GetParameterValue("custid");
-
-                param.UserId = userId == DBNull.Value ? 0 : Convert.ToInt32(userId);
-                param.UserName = Convert.ToString(objectDb.GetParameterValue(Field.UserName));
-
-                return GetResultInfo(objectDb);
-            }
         }
 
         public void WriteLogAfterAdd12BetPlayerAccountToIBCSuccefully(ActiveMemberParam param, int depositUserId)

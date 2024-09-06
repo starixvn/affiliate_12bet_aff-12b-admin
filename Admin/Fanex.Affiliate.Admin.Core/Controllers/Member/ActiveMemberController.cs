@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Member;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Member;
 using Fanex.Affiliate.Admin.Core.ViewModels.Member;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Member
@@ -43,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         [FunctionAuthorize(FunctionName = Function.ActiveMembers, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult ActiveMember(ActiveMemberParam param)
+        public async Task<ActionResult> ActiveMember(ActiveMemberParam param)
         {
             if (ModelState.IsValid)
             {
@@ -52,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
 
                 return new JsonNetResult
                 {
-                    Data = _activeMemberService.ActiveMember(param)
+                    Data = await _activeMemberService.ActiveMemberAsync(param)
                 };
             }
 

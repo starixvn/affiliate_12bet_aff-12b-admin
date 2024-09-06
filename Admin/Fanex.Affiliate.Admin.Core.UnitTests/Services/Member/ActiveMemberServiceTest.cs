@@ -1,10 +1,13 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Apis;
 using Fanex.Affiliate.Admin.Core.DTO.Member;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
 using Fanex.Affiliate.Admin.Core.Repository.Member;
+using Fanex.Affiliate.Admin.Core.Services.Apis;
 using Fanex.Affiliate.Admin.Core.Services.Member;
 using Moq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
@@ -37,37 +40,42 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         }
 
         [Fact]
-        public void ActiveMember_WhenCall_ReturnCorrectData()
+        public async Task ActiveMember_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var activeMemberRepository = new Mock<IActiveMemberRepository>();
             activeMemberRepository.Setup(t => t.Get12BetPlayersDepositInfo(It.IsAny<string>())).Returns(new List<DepositCustomerInfo> { new DepositCustomerInfo() });
-            activeMemberRepository.Setup(t => t.Add12BetPlayerAccountToIBC(It.IsAny<DepositCustomerInfo>())).Returns(new ResultInfo());
             activeMemberRepository.Setup(t => t.WriteLogAfterAdd12BetPlayerAccountToIBCSuccefully(It.IsAny<ActiveMemberParam>(), It.IsAny<int>()));
             activeMemberRepository.Setup(t => t.Update12BetPlayerStatusToDeposit(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<string>())).Returns(new ResultInfo());
             activeMemberRepository.Setup(t => t.WriteLogAfterAdd12BetPlayerAccountToIBCSuccefully(It.IsAny<ActiveMemberParam>(), It.IsAny<int>()));
-            var service = CreateActiveMemberService(activeMemberRepository.Object);
+
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(t => t.Insert12BetPlayerAccountToIBCAsync(It.IsAny<DepositCustomerInfo>())).Returns(Task.FromResult(new LicenseeCustDbApiResult { Result = new CustInfo() }));
+
+            var service = CreateActiveMemberService(activeMemberRepository.Object, licenseeCustDbApiService.Object);
 
             // Action
-            var result = service.ActiveMember(new ActiveMemberParam());
+            var result = await service.ActiveMemberAsync(new ActiveMemberParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
         }
 
         [Fact]
-        public void ActiveMember_WhenCall_ReturnErrorCode102()
+        public async Task ActiveMember_WhenCall_ReturnErrorCode102()
         {
             // Arrange
             var activeMemberRepository = new Mock<IActiveMemberRepository>();
             activeMemberRepository.Setup(t => t.Get12BetPlayersDepositInfo(It.IsAny<string>())).Returns(new List<DepositCustomerInfo> { new DepositCustomerInfo { DepositUserName = "abc" } });
-            activeMemberRepository.Setup(t => t.Add12BetPlayerAccountToIBC(It.IsAny<DepositCustomerInfo>())).Returns(new ResultInfo());
             activeMemberRepository.Setup(t => t.WriteLogAfterAdd12BetPlayerAccountToIBCSuccefully(It.IsAny<ActiveMemberParam>(), It.IsAny<int>()));
             activeMemberRepository.Setup(t => t.Update12BetPlayerStatusToDeposit(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<string>())).Returns(new ResultInfo { Code = 102 });
-            var service = CreateActiveMemberService(activeMemberRepository.Object);
+            
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(t => t.Insert12BetPlayerAccountToIBCAsync(It.IsAny<DepositCustomerInfo>())).Returns(Task.FromResult(new LicenseeCustDbApiResult { Result = new CustInfo() }));
+            var service = CreateActiveMemberService(activeMemberRepository.Object, licenseeCustDbApiService.Object);
 
             // Action
-            var result = service.ActiveMember(new ActiveMemberParam());
+            var result = await service.ActiveMemberAsync(new ActiveMemberParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -75,18 +83,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         }
 
         [Fact]
-        public void ActiveMember_WhenCall_ReturnErrorCode101()
+        public async Task ActiveMember_WhenCall_ReturnErrorCode101()
         {
             // Arrange
             var activeMemberRepository = new Mock<IActiveMemberRepository>();
             activeMemberRepository.Setup(t => t.Get12BetPlayersDepositInfo(It.IsAny<string>())).Returns(new List<DepositCustomerInfo> { new DepositCustomerInfo { DepositUserName = "abc" } });
-            activeMemberRepository.Setup(t => t.Add12BetPlayerAccountToIBC(It.IsAny<DepositCustomerInfo>())).Returns(new ResultInfo());
             activeMemberRepository.Setup(t => t.WriteLogAfterAdd12BetPlayerAccountToIBCSuccefully(It.IsAny<ActiveMemberParam>(), It.IsAny<int>()));
             activeMemberRepository.Setup(t => t.Update12BetPlayerStatusToDeposit(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<string>())).Returns(new ResultInfo { Code = 101 });
-            var service = CreateActiveMemberService(activeMemberRepository.Object);
+
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(t => t.Insert12BetPlayerAccountToIBCAsync(It.IsAny<DepositCustomerInfo>())).Returns(Task.FromResult(new LicenseeCustDbApiResult { Result = new CustInfo() }));
+            var service = CreateActiveMemberService(activeMemberRepository.Object, licenseeCustDbApiService.Object);
 
             // Action
-            var result = service.ActiveMember(new ActiveMemberParam());
+            var result = await service.ActiveMemberAsync(new ActiveMemberParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -94,17 +104,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         }
 
         [Fact]
-        public void ActiveMember_WhenCall_UpdateStatusIsFailed()
+        public async Task ActiveMember_WhenCall_UpdateStatusIsFailed()
         {
             // Arrange
             var activeMemberRepository = new Mock<IActiveMemberRepository>();
             activeMemberRepository.Setup(t => t.Get12BetPlayersDepositInfo(It.IsAny<string>())).Returns(new List<DepositCustomerInfo> { new DepositCustomerInfo { DepositUserName = "abc" } });
-            activeMemberRepository.Setup(t => t.Add12BetPlayerAccountToIBC(It.IsAny<DepositCustomerInfo>())).Returns(new ResultInfo { Code = -999, Message = "user not exist" });
 
-            var service = CreateActiveMemberService(activeMemberRepository.Object);
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(t => t.Insert12BetPlayerAccountToIBCAsync(It.IsAny<DepositCustomerInfo>())).Returns(Task.FromResult(new LicenseeCustDbApiResult { ErrorCode = -999, ErrorMessage = "user not exist" }));
+
+            var service = CreateActiveMemberService(activeMemberRepository.Object, licenseeCustDbApiService.Object);
 
             // Action
-            var result = service.ActiveMember(new ActiveMemberParam());
+            var result = await service.ActiveMemberAsync(new ActiveMemberParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -112,7 +124,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         }
 
         [Fact]
-        public void ActiveMember_WhenCall_ReturnEmpty()
+        public async Task ActiveMember_WhenCall_ReturnEmpty()
         {
             // Arrange
             var activeMemberRepository = new Mock<IActiveMemberRepository>();
@@ -121,18 +133,21 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
             var service = CreateActiveMemberService(activeMemberRepository.Object);
 
             // Action
-            var result = service.ActiveMember(new ActiveMemberParam());
+            var result = await service.ActiveMemberAsync(new ActiveMemberParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
             Assert.Equal("Deposit User Name(s) is incorrect", result.Message);
         }
 
-        private static ActiveMemberService CreateActiveMemberService(IActiveMemberRepository activeMemberRepository = null)
+        private static ActiveMemberService CreateActiveMemberService(
+            IActiveMemberRepository activeMemberRepository = null,
+            ILicenseeCustDbApiService licenseeCustDbApiService = null)
         {
             var fakeActiveMemberRepository = activeMemberRepository ?? Mock.Of<IActiveMemberRepository>();
+            var fakeILicenseeCustDbApiService = licenseeCustDbApiService ?? Mock.Of<ILicenseeCustDbApiService>();
 
-            return new ActiveMemberService(fakeActiveMemberRepository);
+            return new ActiveMemberService(fakeActiveMemberRepository, fakeILicenseeCustDbApiService);
         }
     }
 }

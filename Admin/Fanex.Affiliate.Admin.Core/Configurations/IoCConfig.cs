@@ -1,12 +1,17 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Fanex.Affiliate.Admin.Core.Apis;
 using Fanex.Caching;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.NETFramework;
 using ONEbook.UM.Transport;
+using Refit;
 using System;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Web.Compilation;
 using System.Web.Mvc;
@@ -24,6 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterAssemblyTypes(asselmblyList).AsImplementedInterfaces();
 
             builder.RegisterDependencies();
+            builder.RegisterMemberSiteApi();
             // Register your MVC controllers. (MvcApplication is the name of
             // the class in Global.asax.)
             builder.RegisterControllers(asselmblyList);
@@ -64,6 +70,29 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<IPHelperImpl>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UMRestClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<HttpContextHelper>().AsImplementedInterfaces().SingleInstance();
+
+        }
+
+
+        private static void RegisterMemberSiteApi(this ContainerBuilder builder)
+        {
+            var licenseeCustDbApiUrl = ConfigurationManager.AppSettings["LicenseeCustDbApiUrl"];
+            var licenseeCustDbApiProxyUrl = ConfigurationManager.AppSettings["LicenseeCustDbApiProxyUrl"];
+            var isUseProxyToGetLicenseeCustDbApi = ConfigurationManager.AppSettings["IsUseProxyToGetLicenseeCustDbApi"];
+
+            HttpClientHandler defaultFuncHttpHandler() => new HttpClientHandler
+            {
+                Proxy = Convert.ToBoolean(isUseProxyToGetLicenseeCustDbApi)
+                  ? new WebProxy(new Uri(licenseeCustDbApiProxyUrl))
+                  : null,
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            };
+
+            builder.RegisterInstance(RestService.For<ILicenseeCustDbApi>(
+                new HttpClient(defaultFuncHttpHandler())
+                {
+                    BaseAddress = new Uri(licenseeCustDbApiUrl)
+                }));
         }
     }
 }
