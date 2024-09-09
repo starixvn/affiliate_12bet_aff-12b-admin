@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var sessionLang = SessionService.CurrentLanguage;
             if (favoriteLanguage != sessionLang)
             {
-                requestContext.HttpContext.Response.Cookies.Add(new System.Web.HttpCookie("afffavoritelang", favoriteLanguage) { HttpOnly = true });
+                requestContext.HttpContext.Response.Cookies.Add(new HttpCookie("afffavoritelang", favoriteLanguage) { HttpOnly = true });
                 SessionService.CurrentLanguage = favoriteLanguage;
             }
             DetectUserIdle(requestContext.RouteData.Values);
