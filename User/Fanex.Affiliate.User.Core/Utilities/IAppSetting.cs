@@ -68,9 +68,5 @@ namespace Fanex.Affiliate.User.Core.Utilities
         IEnumerable<string> MarketingForCommGroups { get; }
 
         IEnumerable<string> MarketingLandingPages { get; }
-
-        string Aff16000Id { get; }
-
-        string Aff16000GoDomain { get; }
     }
 }

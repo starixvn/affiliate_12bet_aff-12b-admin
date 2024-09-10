@@ -71,10 +71,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public IEnumerable<string> MarketingLandingPages => GetValue("MarketingLandingPages").Split(',');
 
-        public string Aff16000Id => GetValue("Aff16000Id");
-
-        public string Aff16000GoDomain => GetValue("Aff16000GoDomain");
-
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }
