@@ -71,6 +71,14 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public IEnumerable<string> MarketingLandingPages => GetValue("MarketingLandingPages").Split(',');
 
+        public string LicenseeCustDbApiUrl => GetValue("LicenseeCustDbApiUrl");
+
+        public bool IsUseProxyToGetLicenseeCustDbApi => Convert.ToBoolean(GetValue("IsUseProxyToGetLicenseeCustDbApi"));
+
+        public string LicenseeCustDbApiProxyUrl => GetValue("LicenseeCustDbApiProxyUrl");
+
+        public string LicenseeCustDbApiAuthenKey => GetValue("LicenseeCustDbApiAuthenKey");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

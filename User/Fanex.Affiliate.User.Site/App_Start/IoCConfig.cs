@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Fanex.Affiliate.User.Core.Apis;
 using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.BusinessService.Apis;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.MemberInfoWebService;
@@ -13,8 +15,12 @@ using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.NETFramework;
 using ONEbook.UM.Transport;
+using Refit;
 using System;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Web.Compilation;
 using System.Web.Mvc;
@@ -27,6 +33,7 @@ namespace Fanex.Affiliate.User.Site
         {
             var builder = new ContainerBuilder();
             //Register repository
+            builder.RegisterLicenseeCustDbApi();
             RegisterDependencies(builder);
 
             var asselmblyList = GetExecutingAssembly();
@@ -115,6 +122,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<FeedbackRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterType<QrCodeGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<LicenseeCustDbApiService>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterType<ObjectDBBuilder>().AsImplementedInterfaces().UsingConstructor().InstancePerLifetimeScope();
             builder.RegisterType<SystemRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -125,6 +133,26 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<OfferService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<OfferRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<HttpClientUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
+        }
+
+        private static void RegisterLicenseeCustDbApi(this ContainerBuilder builder)
+        {
+            var licenseeCustDbApiUrl = ConfigurationManager.AppSettings["LicenseeCustDbApiUrl"];
+            var licenseeCustDbApiProxyUrl = ConfigurationManager.AppSettings["LicenseeCustDbApiProxyUrl"];
+            var isUseProxyToGetLicenseeCustDbApi = ConfigurationManager.AppSettings["IsUseProxyToGetLicenseeCustDbApi"];
+            var defaultFuncHttpHandler = new HttpClientHandler
+            {
+                Proxy = Convert.ToBoolean(isUseProxyToGetLicenseeCustDbApi)
+                  ? new WebProxy(new Uri(licenseeCustDbApiProxyUrl))
+                  : null,
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            };
+
+            builder.RegisterInstance(RestService.For<ILicenseeCustDbApi>(
+                new HttpClient(defaultFuncHttpHandler)
+                {
+                    BaseAddress = new Uri(licenseeCustDbApiUrl)
+                }));
         }
     }
 }

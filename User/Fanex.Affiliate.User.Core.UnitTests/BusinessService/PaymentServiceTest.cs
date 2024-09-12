@@ -11,6 +11,7 @@ using Moq;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -129,7 +130,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void CreatePaymentRequest_IsLocalTest_ReturnCorrectResultInfo()
+        public async Task CreatePaymentRequest_IsLocalTest_ReturnCorrectResultInfo()
         {
             // Arrange
             var param = new PaymentCreationParam
@@ -144,7 +145,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreatePaymentService(dateTimeProvider: dateTimeProvider.Object);
 
             // Action
-            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+            var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
 
             // Assert
             Assert.False(result.IsOk);
@@ -152,7 +153,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void CreatePaymentRequest_InvalidAmount_ReturnCorrectResultInfo()
+        public async Task CreatePaymentRequest_InvalidAmount_ReturnCorrectResultInfo()
         {
             // Arrange
             var param = new PaymentCreationParam
@@ -166,7 +167,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreatePaymentService();
 
             // Action
-            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+            var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
 
             // Assert
             Assert.False(result.IsOk);
@@ -174,19 +175,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void CreatePaymentRequest_PlayerAccountIsNotActived_ReturnCorrectResultInfo()
+        public async Task CreatePaymentRequest_PlayerAccountIsNotActived_ReturnCorrectResultInfo()
         {
             // Arrange
             var param = CreateValidPaymentCreationParam();
             const string ErrorMessage = "Player Account Is Not Actived";
 
             var accountService = new Mock<IAccountService>();
-            accountService.Setup(a => a.CheckPlayerAccountIsActived(param.AffId, param.Language)).Returns(new ResultInfo { Message = ErrorMessage });
+            accountService.Setup(a => a.CheckPlayerAccountIsActivedAsync(param.AffId, param.Language)).Returns(Task.FromResult(new ResultInfo { Message = ErrorMessage }));
 
             var service = CreatePaymentService(accountService: accountService.Object);
 
             // Action
-            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+            var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
 
             // Assert
             Assert.False(result.IsOk);
@@ -194,14 +195,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void CreatePaymentRequest_ValidParamButCreatePaymentFailed_ReturnCorrectResultInfo()
+        public async Task CreatePaymentRequest_ValidParamButCreatePaymentFailed_ReturnCorrectResultInfo()
         {
             // Arrange
             var param = CreateValidPaymentCreationParam();
             const string ErrorMessage = "Create Payment Failed";
 
             var accountService = new Mock<IAccountService>();
-            accountService.Setup(a => a.CheckPlayerAccountIsActived(param.AffId, param.Language)).Returns(new ResultInfo { IsOk = true });
+            accountService.Setup(a => a.CheckPlayerAccountIsActivedAsync(param.AffId, param.Language)).Returns(Task.FromResult(new ResultInfo { IsOk = true }));
 
             var paymentRepository = new Mock<IPaymentRepository>();
             paymentRepository.Setup(p => p.CreatePaymentRequest(param)).Returns(new ResultInfo { Message = ErrorMessage });
@@ -209,7 +210,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreatePaymentService(paymentRepository: paymentRepository.Object, accountService: accountService.Object);
 
             // Action
-            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+            var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
 
             // Assert
             Assert.False(result.IsOk);
@@ -217,14 +218,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void CreatePaymentRequest_ValidParamAndSendEmail_ReturnCorrectResultAndEmailParamAssignCorrectly()
+        public async Task CreatePaymentRequest_ValidParamAndSendEmail_ReturnCorrectResultAndEmailParamAssignCorrectly()
         {
             // Arrange
             PaymentEmailParam passedEmailParam = null;
             var param = CreateValidPaymentCreationParam();
 
             var accountService = new Mock<IAccountService>();
-            accountService.Setup(a => a.CheckPlayerAccountIsActived(param.AffId, param.Language)).Returns(new ResultInfo { IsOk = true });
+            accountService.Setup(a => a.CheckPlayerAccountIsActivedAsync(param.AffId, param.Language)).Returns(Task.FromResult(new ResultInfo { IsOk = true }));
 
             var paymentRepository = new Mock<IPaymentRepository>();
             paymentRepository.Setup(p => p.CreatePaymentRequest(param)).Returns(new ResultInfo { IsOk = true });
@@ -258,7 +259,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
 
             // Action
-            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+            var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
 
             // Assert
             Assert.True(result.IsOk);
@@ -267,14 +268,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void CreatePaymentRequest_ValidParamButNotSendEmail_ReturnCorrectResultButEmailParamNotAssign()
+        public async Task CreatePaymentRequest_ValidParamButNotSendEmail_ReturnCorrectResultButEmailParamNotAssign()
         {
             // Arrange
             PaymentEmailParam passedEmailParam = null;
             var param = CreateValidPaymentCreationParam();
 
             var accountService = new Mock<IAccountService>();
-            accountService.Setup(a => a.CheckPlayerAccountIsActived(param.AffId, param.Language)).Returns(new ResultInfo { IsOk = true });
+            accountService.Setup(a => a.CheckPlayerAccountIsActivedAsync(param.AffId, param.Language)).Returns(Task.FromResult(new ResultInfo { IsOk = true }));
 
             var paymentRepository = new Mock<IPaymentRepository>();
             paymentRepository.Setup(p => p.CreatePaymentRequest(param)).Returns(new ResultInfo { IsOk = true });
@@ -288,7 +289,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 emailService: emailService.Object);
 
             // Action
-            var result = service.CreatePaymentRequest(param, new PaymentEmailParam());
+            var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
 
             // Assert
             Assert.True(result.IsOk);

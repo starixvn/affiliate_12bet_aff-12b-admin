@@ -27,13 +27,13 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public DepositAccountInfo GetDepositPlayerAccount(string playerUserName)
+        public DepositCustomerInfo GetDepositPlayerAccount(string playerUserName)
         {
             const string uSpKey = "Aff_Deposit_GetCustDataForCreateIBCACByUserName";
 
             using (var db = _builder.Build(uSpKey))
             {
-                return db.QueryEntity<DepositAccountInfo>(new { deposit_username = playerUserName });
+                return db.QueryEntity<DepositCustomerInfo>(new { deposit_username = playerUserName });
             }
         }
 
@@ -131,44 +131,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 result.IsOk = parameterSet.Result;
                 result.Message = parameterSet.ErrMsg;
                 result.PlayerUserName = db.GetParameterValue("12BetPlayerUserName") as string;
-            }
-
-            return result;
-        }
-
-
-        public IbcPlayerAccountInsertResult InsertPlayerAccountForIbc(DepositAccountInfo accountInfo)
-        {
-            const string uSpKey = "Dot_Dep_CustomerInsMember_Ag_Cust";
-            var result = new IbcPlayerAccountInsertResult();
-            var parameterSet = new
-            {
-                accountInfo.FirstName,
-                accountInfo.LastName,
-                accountInfo.Email,
-                accountInfo.DepositUserName,
-                accountInfo.DepositUserId,
-                accountInfo.Password,
-                accountInfo.OddsType,
-                accountInfo.AgentId,
-                accountInfo.AffiliateId,
-                accountInfo.BonusCode,
-                accountInfo.Country,
-                CustId = 0,
-                UserName = string.Empty,
-                ErrCode = 0,
-                ErrMsg = string.Empty
-            };
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                db.ExecuteNonQuery(parameterSet);
-
-                result.IsOk = parameterSet.ErrCode == 0;
-                result.Message = parameterSet.ErrMsg;
-
-                result.CustId = parameterSet.CustId;
-                result.UserName = parameterSet.UserName;
             }
 
             return result;

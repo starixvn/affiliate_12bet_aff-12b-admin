@@ -6,6 +6,7 @@ using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -62,13 +63,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return resultInfo;
         }
 
-        public ResultInfo CreatePaymentRequest(PaymentCreationParam paymentCreationParam, PaymentEmailParam emailParam)
+        public async Task<ResultInfo> CreatePaymentRequestAsync(PaymentCreationParam paymentCreationParam, PaymentEmailParam emailParam)
         {
             var resultInfo = ValidatePaymentRequest(paymentCreationParam);
 
             if (resultInfo.IsOk)
             {
-                resultInfo = _accountService.CheckPlayerAccountIsActived(paymentCreationParam.AffId, paymentCreationParam.Language);
+                resultInfo = await _accountService.CheckPlayerAccountIsActivedAsync(paymentCreationParam.AffId, paymentCreationParam.Language);
                 if (resultInfo.IsOk)
                 {
                     resultInfo = _paymentRepository.CreatePaymentRequest(paymentCreationParam);

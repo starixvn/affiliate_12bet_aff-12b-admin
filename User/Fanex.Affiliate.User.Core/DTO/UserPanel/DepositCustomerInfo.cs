@@ -2,16 +2,10 @@
 
 namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {
-    public class DepositAccountInfo
+    public class DepositCustomerInfo
     {
         [SpParam(Ignored = true)]
         public int Success { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Email { get; set; }
 
         public string DepositUserName { get; set; }
 
@@ -24,8 +18,6 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         public int AgentId { get; set; }
 
         public int AffiliateId { get; set; }
-
-        public string BonusCode { get; set; }
 
         public string Country { get; set; }
 

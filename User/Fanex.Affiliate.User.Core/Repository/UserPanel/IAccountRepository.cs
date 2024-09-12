@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         AccountInformation GetAccountInfo(int affId);
 
-        DepositAccountInfo GetDepositPlayerAccount(string playerUserName);
+        DepositCustomerInfo GetDepositPlayerAccount(string playerUserName);
 
         ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam);
 
@@ -22,8 +22,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         UserInfo GetUserInfoById(int affId, bool isInternal);
 
         PlayerAccountCheckingResult CheckPlayerAccountIsActived(int affId, string language);
-
-        IbcPlayerAccountInsertResult InsertPlayerAccountForIbc(DepositAccountInfo accountInfo);
 
         ResultInfo UpdatePlayerAccountStatusForDeposit(DepositPlayerAccountParam account);
 

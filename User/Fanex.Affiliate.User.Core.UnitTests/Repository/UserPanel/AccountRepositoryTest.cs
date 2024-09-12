@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             const string uSpKey = "Aff_Deposit_GetCustDataForCreateIBCACByUserName";
             var repo = CreateRepo();
             var db = Builder.Build(null, null);
-            db.QueryEntity<DepositAccountInfo>().ReturnsForAnyArgs(CreateDepositAccountInfo());
+            db.QueryEntity<DepositCustomerInfo>().ReturnsForAnyArgs(CreateDepositAccountInfo());
 
             var result = repo.GetDepositPlayerAccount("userName");
 
@@ -167,37 +167,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             Assert.Equal(isOk, result.IsOk);
             Assert.Equal(message, result.Message);
             Assert.Equal(playerUserName, result.PlayerUserName);
-        }
-
-        [Fact]
-        public void InsertPlayerAcocuntForIbc_WhenReceiveErrorCode_ReturnFailInsertResult()
-        {
-            const string uSpKey = "Dot_Dep_CustomerInsMember_Ag_Cust";
-            var errorCode = 101;
-            var message = "error";
-            var userName = "playerName";
-            var cusId = 10;
-            var repo = CreateRepo();
-            var param = CreateDepositAccountInfo();
-            var db = Builder.Build(null, null);
-
-            db.When(d => d.ExecuteNonQuery(Arg.Compat.Any<object>()))
-                .Do(c =>
-                {
-                    var arg = c.Args()[0];
-                    SetObjectPropetyValue(arg, "ErrCode", errorCode);
-                    SetObjectPropetyValue(arg, "ErrMsg", message);
-                    SetObjectPropetyValue(arg, "CustId", cusId);
-                    SetObjectPropetyValue(arg, "UserName", userName);
-                });
-
-            var result = repo.InsertPlayerAccountForIbc(param);
-
-            Assert.Equal(uSpKey, db.SettingKey);
-            Assert.False(result.IsOk);
-            Assert.Equal(message, result.Message);
-            Assert.Equal(cusId, result.CustId);
-            Assert.Equal(userName, result.UserName);
         }
 
         [Fact]
@@ -347,18 +316,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
                 UserName = "name"
             };
 
-        private static DepositAccountInfo CreateDepositAccountInfo()
-            => new DepositAccountInfo
+        private static DepositCustomerInfo CreateDepositAccountInfo()
+            => new DepositCustomerInfo
             {
                 AffiliateId = 1,
                 AgentId = 1,
-                BonusCode = "",
                 Country = "",
                 DepositUserId = 1,
                 DepositUserName = "aff1",
-                Email = "",
-                FirstName = "",
-                LastName = "",
                 OddsType = "hongkong",
                 Password = "",
                 Success = 1

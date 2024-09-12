@@ -1,5 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.BusinessService.Apis;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.Apis;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
@@ -10,6 +12,7 @@ using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Moq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -17,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
     public class AccountServiceTest
     {
         [Fact]
-        public void CheckPlayerAccountIsActived_AcountIsActived_ReturnResultCorrectly()
+        public async Task CheckPlayerAccountIsActived_AcountIsActived_ReturnResultCorrectly()
         {
             // Arrange
             var expectedResult = new PlayerAccountCheckingResult { IsOk = true, Message = string.Empty };
@@ -27,7 +30,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
-            var result = accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
+            var result = await accountService.CheckPlayerAccountIsActivedAsync(Constant.DefaultAffId, Constant.DefaultLanguage);
 
             // Assert
             Assert.Equal(expectedResult.IsOk, result.IsOk);
@@ -35,7 +38,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void CheckPlayerAccountIsActived_AcountIsNotActived_CallGetDepositPlayerAccountWithCorrectParam()
+        public async Task CheckPlayerAccountIsActived_AcountIsNotActived_CallGetDepositPlayerAccountWithCorrectParam()
         {
             // Arrange
             var expectedResult = new PlayerAccountCheckingResult { IsOk = false, PlayerUserName = Constant.DefaultUserName };
@@ -43,22 +46,27 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             accountRepository.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
                             .Returns(expectedResult);
 
-            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(new DepositAccountInfo());
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(new DepositCustomerInfo());
             var depositAccount = GetDepositAccount();
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
-            accountRepository.Setup(ac => ac.InsertPlayerAccountForIbc(depositAccount)).Returns(new IbcPlayerAccountInsertResult());
+            var insertingResult = new LicenseeCustDbApiResult
+            {
+                Result = new CustInfo()
+            };
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(ac => ac.Insert12BetPlayerAccountToIBCAsync(depositAccount)).Returns(Task.FromResult(insertingResult));
 
             var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
-            accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
+            await accountService.CheckPlayerAccountIsActivedAsync(Constant.DefaultAffId, Constant.DefaultLanguage);
 
             // Assert
             accountRepository.Verify(ac => ac.GetDepositPlayerAccount(expectedResult.PlayerUserName), Times.Once);
         }
 
         [Fact]
-        public void CheckPlayerAccountIsActived_IsNotActivedAndCanNotGetDepositAccount_ReturnResultCorrectly()
+        public async Task CheckPlayerAccountIsActived_IsNotActivedAndCanNotGetDepositAccount_ReturnResultCorrectly()
         {
             // Arrange
             var expectedCheckingResult = new PlayerAccountCheckingResult { IsOk = false, PlayerUserName = Constant.DefaultUserName };
@@ -66,7 +74,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             accountRepository.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
                             .Returns(expectedCheckingResult);
 
-            var depositAccount = new DepositAccountInfo { Success = 1 };
+            var depositAccount = new DepositCustomerInfo { Success = 1 };
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
 
             var accountService = CreateAccountService(accountRepository.Object);
@@ -78,7 +86,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
 
             // Action
-            var result = accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
+            var result = await accountService.CheckPlayerAccountIsActivedAsync(Constant.DefaultAffId, Constant.DefaultLanguage);
 
             // Assert
             Assert.Equal(expectedResult.IsOk, result.IsOk);
@@ -86,7 +94,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void CheckPlayerAccountIsActived_IsNotActivedAndGetDepositAccountSuccessfully_CallInsertPlayerAccountForIbcWithCorrectParam()
+        public async Task CheckPlayerAccountIsActived_IsNotActivedAndGetDepositAccountSuccessfully_CallInsertPlayerAccountForIbcWithCorrectParam()
         {
             // Arrange
             var expectedCheckingResult = new PlayerAccountCheckingResult { IsOk = false, PlayerUserName = Constant.DefaultUserName };
@@ -96,68 +104,81 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             var depositAccount = GetDepositAccount();
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
-            accountRepository.Setup(ac => ac.InsertPlayerAccountForIbc(depositAccount)).Returns(new IbcPlayerAccountInsertResult());
-
-            var accountService = CreateAccountService(accountRepository.Object);
-
-            // Action
-            accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
-
-            // Assert
-            accountRepository.Verify(ac => ac.InsertPlayerAccountForIbc(depositAccount), Times.Once);
-        }
-
-        [Fact]
-        public void CheckPlayerAccountIsActived_IsNotActivedAndInsertPlayerAccountForIbcFailed_ReturnInsertingResultCorrectly()
-        {
-            // Arrange
-            var expectedCheckingResult = new PlayerAccountCheckingResult { IsOk = false, PlayerUserName = Constant.DefaultUserName };
-            var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
-                            .Returns(expectedCheckingResult);
-
-            var depositAccount = GetDepositAccount();
-            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
-
-            var insertingResult = new IbcPlayerAccountInsertResult { IsOk = false, Message = "Insert Failed" };
-            accountRepository.Setup(ac => ac.InsertPlayerAccountForIbc(depositAccount)).Returns(insertingResult);
-
-            var accountService = CreateAccountService(accountRepository.Object);
-
-            // Action
-            var result = accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
-
-            // Assert
-            Assert.Equal(insertingResult, result);
-        }
-
-        [Fact]
-        public void CheckPlayerAccountIsActived_IsNotActivedAndGetDepositAccountSuccessfully_CallUpdatePlayerAccountStatusForDepositWithCorrectParam()
-        {
-            // Arrange
-            var expectedCheckingResult = new PlayerAccountCheckingResult { IsOk = false, PlayerUserName = Constant.DefaultUserName };
-            var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
-                            .Returns(expectedCheckingResult);
-
-            var depositAccount = GetDepositAccount();
-            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
-
-            var insertingResult = new IbcPlayerAccountInsertResult
+            
+            var insertingResult = new LicenseeCustDbApiResult
             {
-                IsOk = true,
-                Message = string.Empty,
-                CustId = 100,
-                UserName = "ibcUsername"
+                Result = new CustInfo()
             };
-            accountRepository.Setup(ac => ac.InsertPlayerAccountForIbc(depositAccount)).Returns(insertingResult);
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(ac => ac.Insert12BetPlayerAccountToIBCAsync(depositAccount)).Returns(Task.FromResult(insertingResult));
+
+            var accountService = CreateAccountService(accountRepository.Object);
+
+            // Action
+            await accountService .CheckPlayerAccountIsActivedAsync(Constant.DefaultAffId, Constant.DefaultLanguage);
+
+            // Assert
+            licenseeCustDbApiService.Verify(ac => ac.Insert12BetPlayerAccountToIBCAsync(depositAccount), Times.Once);
+        }
+
+        [Fact]
+        public async Task CheckPlayerAccountIsActived_IsNotActivedAndInsertPlayerAccountForIbcFailed_ReturnInsertingResultCorrectly()
+        {
+            // Arrange
+            var expectedCheckingResult = new PlayerAccountCheckingResult { IsOk = false, PlayerUserName = Constant.DefaultUserName };
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
+                            .Returns(expectedCheckingResult);
+
+            var depositAccount = GetDepositAccount();
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
+
+            var insertingResult = new LicenseeCustDbApiResult
+            {
+                ErrorCode = 999,
+                ErrorMessage = "Insert Failed"
+            };
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(ac => ac.Insert12BetPlayerAccountToIBCAsync(depositAccount)).Returns(Task.FromResult(insertingResult));
+
+            var accountService = CreateAccountService(accountRepository.Object);
+
+            // Action
+            var result = await accountService.CheckPlayerAccountIsActivedAsync(Constant.DefaultAffId, Constant.DefaultLanguage);
+
+            // Assert
+            Assert.False(result.IsOk);
+        }
+
+        [Fact]
+        public async Task CheckPlayerAccountIsActived_IsNotActivedAndGetDepositAccountSuccessfully_CallUpdatePlayerAccountStatusForDepositWithCorrectParam()
+        {
+            // Arrange
+            var expectedCheckingResult = new PlayerAccountCheckingResult { IsOk = false, PlayerUserName = Constant.DefaultUserName };
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
+                            .Returns(expectedCheckingResult);
+
+            var depositAccount = GetDepositAccount();
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
+
+            var insertingResult = new LicenseeCustDbApiResult
+            {
+                Result = new CustInfo
+                {
+                    CustID = 100,
+                    Username = "ibcUsername"
+                }
+            };
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(ac => ac.Insert12BetPlayerAccountToIBCAsync(depositAccount)).Returns(Task.FromResult(insertingResult));
 
             DepositPlayerAccountParam passedAccountParam = null;
             var depositAccountParam = new DepositPlayerAccountParam
             {
                 DepUserName = Constant.DefaultUserName,
-                IbcCustId = insertingResult.CustId,
-                IbcUserName = insertingResult.UserName
+                IbcCustId = insertingResult.Result.CustID,
+                IbcUserName = insertingResult.Result.Username
             };
             accountRepository.Setup(ac => ac.UpdatePlayerAccountStatusForDeposit(It.IsAny<DepositPlayerAccountParam>()))
                                             .Callback<DepositPlayerAccountParam>(p => passedAccountParam = p);
@@ -166,7 +187,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var expectedResult = JsonConvert.SerializeObject(depositAccountParam);
 
             // Action
-            accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
+            await accountService.CheckPlayerAccountIsActivedAsync (Constant.DefaultAffId, Constant.DefaultLanguage);
             var result = JsonConvert.SerializeObject(passedAccountParam);
 
             // Assert
@@ -174,7 +195,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void CheckPlayerAccountIsActived_IsNotActivedAndUpdateAccountStatusSuccessfully_ReturnResultCorrectly()
+        public async Task CheckPlayerAccountIsActived_IsNotActivedAndUpdateAccountStatusSuccessfully_ReturnResultCorrectly()
         {
             // Arrange
             var expectedCheckingResult = new PlayerAccountCheckingResult { IsOk = false, PlayerUserName = Constant.DefaultUserName };
@@ -185,14 +206,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var depositAccount = GetDepositAccount();
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
 
-            var insertingResult = new IbcPlayerAccountInsertResult
+            var insertingResult = new LicenseeCustDbApiResult
             {
-                IsOk = true,
-                Message = string.Empty,
-                CustId = 100,
-                UserName = "ibcUsername"
+                Result = new CustInfo
+                {
+                    CustID = 100,
+                    Username = "ibcUsername"
+                }
             };
-            accountRepository.Setup(ac => ac.InsertPlayerAccountForIbc(depositAccount)).Returns(insertingResult);
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(ac => ac.Insert12BetPlayerAccountToIBCAsync(depositAccount)).Returns(Task.FromResult(insertingResult));
 
             var expectedUpdateResult = new ResultInfo();
             accountRepository.Setup(ac => ac.UpdatePlayerAccountStatusForDeposit(It.IsAny<DepositPlayerAccountParam>()))
@@ -201,7 +224,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
-            var result = accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
+            var result = await accountService.CheckPlayerAccountIsActivedAsync(Constant.DefaultAffId, Constant.DefaultLanguage);
 
             // Assert
             Assert.Equal(expectedUpdateResult, result);
@@ -210,7 +233,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         [Theory]
         [InlineData(101)]
         [InlineData(102)]
-        public void CheckPlayerAccountIsActived_IsNotActivedAndUpdateAccountStatusFailed_ReturnErrorMessageByCodeCorrectly(int errCode)
+        public async Task CheckPlayerAccountIsActived_IsNotActivedAndUpdateAccountStatusFailed_ReturnErrorMessageByCodeCorrectly(int errCode)
         {
             // Arrange
             var expectedCheckingResult = new PlayerAccountCheckingResult { IsOk = false, PlayerUserName = Constant.DefaultUserName };
@@ -221,14 +244,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var depositAccount = GetDepositAccount();
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
 
-            var insertingResult = new IbcPlayerAccountInsertResult
+            var insertingResult = new LicenseeCustDbApiResult
             {
-                IsOk = true,
-                Message = string.Empty,
-                CustId = 100,
-                UserName = "ibcUsername"
+                Result = new CustInfo
+                {
+                    CustID = 100,
+                    Username = "ibcUsername"
+                }
             };
-            accountRepository.Setup(ac => ac.InsertPlayerAccountForIbc(depositAccount)).Returns(insertingResult);
+            var licenseeCustDbApiService = new Mock<ILicenseeCustDbApiService>();
+            licenseeCustDbApiService.Setup(ac => ac.Insert12BetPlayerAccountToIBCAsync(depositAccount)).Returns(Task.FromResult(insertingResult));
             accountRepository.Setup(ac => ac.UpdatePlayerAccountStatusForDeposit(It.IsAny<DepositPlayerAccountParam>()))
                                             .Returns(new ResultInfo())
                                             .Callback<DepositPlayerAccountParam>(p => p.ErrorCode = errCode);
@@ -243,7 +268,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var expectedUpdateResult = new ResultInfo { IsOk = false, Message = messageByCode[errCode] };
 
             // Action
-            var result = accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
+            var result = await accountService.CheckPlayerAccountIsActivedAsync(Constant.DefaultAffId, Constant.DefaultLanguage);
 
             // Assert
             Assert.Equal(expectedUpdateResult.IsOk, result.IsOk);
@@ -258,7 +283,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             var signUpParam = new UserSignUpParam { IsLocal = isLocalTest };
             var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(It.IsAny<string>())).Returns(new DepositAccountInfo { Success = 0 });
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(It.IsAny<string>())).Returns(new DepositCustomerInfo { Success = 0 });
             accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(new ResultInfo());
 
             var accountService = CreateAccountService(accountRepository.Object);
@@ -277,7 +302,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             // Arrange
             const string PlayerUserName = "player";
-            var depositAccount = new DepositAccountInfo { Success = 1 };
+            var depositAccount = new DepositCustomerInfo { Success = 1 };
             var signUpParam = new UserSignUpParam { Player_UserName = PlayerUserName };
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(depositAccount);
@@ -298,7 +323,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             var signUpParam = new UserSignUpParam { IsLocal = false };
             var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(It.IsAny<string>())).Returns(new DepositAccountInfo { Success = 1 });
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(It.IsAny<string>())).Returns(new DepositCustomerInfo { Success = 1 });
             accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(new ResultInfo { IsOk = false, Message = "Failed" });
 
             var accountService = CreateAccountService(accountRepository.Object);
@@ -392,25 +417,24 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.Equal(Constant.DefaultUserName, passedParam.UserName);
         }
 
-        private static AccountService CreateAccountService(IAccountRepository repository, IEmailService emailService = null)
+        private static AccountService CreateAccountService(
+            IAccountRepository repository,
+            IEmailService emailService = null,
+            ILicenseeCustDbApiService licenseeCustDbApiService = null)
         {
-            return new AccountService(repository, emailService ?? Mock.Of<IEmailService>());
+            return new AccountService(repository, emailService ?? Mock.Of<IEmailService>(), licenseeCustDbApiService ?? Mock.Of<ILicenseeCustDbApiService>());
         }
 
-        private DepositAccountInfo GetDepositAccount()
+        private DepositCustomerInfo GetDepositAccount()
         {
-            return new DepositAccountInfo
+            return new DepositCustomerInfo
             {
                 Success = 0,
                 AffiliateId = Constant.DefaultAffId,
                 AgentId = 1,
-                BonusCode = "Code",
                 Country = "Brazil",
                 DepositUserId = 2,
                 DepositUserName = Constant.DefaultUserName,
-                Email = Constant.DefaultMailUser,
-                FirstName = "test",
-                LastName = "test",
                 OddsType = "OddsType",
                 Password = "1234aa"
             };
