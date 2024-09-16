@@ -271,6 +271,7 @@
     <Compile Include="Constants\Page.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\Product.cs" />
+    <Compile Include="Constants\SpecificDomain.cs" />
     <Compile Include="Constants\Statistics.cs" />
     <Compile Include="Constants\RouteName.cs" />
     <Compile Include="Constants\SessionKey.cs" />

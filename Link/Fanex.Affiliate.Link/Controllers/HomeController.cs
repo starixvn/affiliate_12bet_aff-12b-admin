@@ -7,6 +7,7 @@ namespace Fanex.Affiliate.Link.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using Commands;
+    using Fanex.Affiliate.Link.Constants;
     using Helpers;
     using ONEbook.UM.AspNetMVC.Filters;
     using Services.Impl;
@@ -137,7 +138,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
                 };
 
-                HandleFakeToCheckAff16000OnLocal(command);
+                HandleFakeSpecificDomainOnLocal(command);
 
                 var redirectUrl = _trackingSystemService.InsertStatistic(command);
 
@@ -187,20 +188,25 @@ namespace Fanex.Affiliate.Link.Controllers
             return (byte)(Common.IsMobile() ? 1 : 0);
         }
 
-        private void HandleFakeToCheckAff16000OnLocal(TrackingSystemCommand param)
+        private void HandleFakeSpecificDomainOnLocal(TrackingSystemCommand param)
         {
             if(IsLocal)
             {
-                var aff16000Id = ConfigurationManager.AppSettings["Aff16000Id"].ToString();
-                var aff16000GoDomain = ConfigurationManager.AppSettings["Aff16000GoDomain"].ToString();
                 var affId = param.AffiliateID.ToString();
 
-                if (IsMatching(affId, aff16000Id) && param.AffDomain.Contains(aff16000GoDomain))
+                if (SpecificDomain.FakeSpecificDomainByAffOnLocal.TryGetValue(affId, out string fakeInfo))
                 {
-                    var aff16000RealInfo = ConfigurationManager.AppSettings["Aff16000RealInfo"].ToString().Split(',');
+                    var infos = fakeInfo.Split(',');
+                    var fakeDomain = infos[0];
 
-                    param.AffiliateID = Convert.ToInt32(aff16000RealInfo[0]);
-                    param.AffDomain = param.AffDomain.Replace(aff16000GoDomain, aff16000RealInfo[1]);
+                    if(param.AffDomain.Contains(fakeDomain))
+                    {
+                        var realAffId = infos[1];
+                        var realDomain = infos[2];
+
+                        param.AffiliateID = Convert.ToInt32(realAffId);
+                        param.AffDomain = param.AffDomain.Replace(fakeDomain, realDomain);
+                    }    
                 }
             }
         }

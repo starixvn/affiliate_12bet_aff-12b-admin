@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Controllers;
 using System;
 using System.Text.RegularExpressions;
@@ -17,12 +16,10 @@ namespace Fanex.Affiliate.User.Core.Filters
                 (string.IsNullOrEmpty(preferedUrlLang) || Regex.IsMatch(filterContext.HttpContext.Request.RawUrl, "/((\\w{2}|hien|hitg)/?)?$")))
             {
                 var systemService = DependencyResolver.Current.GetService<ISystemService>();
-                var favoriteLanguage = systemService.GetFavoriteLanguage();
-                var shortedLanguageCode = SystemLanguage.GetCurrentShortedLanguage(favoriteLanguage);
+                var favoriteShortedLanguage = systemService.GetFavoriteShortedLanguage();
 
-                var path = $"~/{shortedLanguageCode}/{filterContext.RouteData.Values["controller"]}";
+                var path = $"~/{favoriteShortedLanguage}/{filterContext.RouteData.Values["controller"]}";
 
-                
                 var controller = (BaseController)filterContext.Controller;
                 filterContext.Result = controller.RedirectToAbsolutePath(path);
             }

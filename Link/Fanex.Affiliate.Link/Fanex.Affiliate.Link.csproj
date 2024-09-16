@@ -211,6 +211,7 @@
     <Compile Include="App_Start\LoggingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UMConfig.cs" />
+    <Compile Include="Constants\SpecificDomain.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Commands\TrackingSystemCommand.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />

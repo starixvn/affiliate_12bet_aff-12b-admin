@@ -39,7 +39,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             var langCookie = HttpContext.Current.Request.Cookies["afffavoritelang"]?.Value;
 
-            return IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
+            return IsValid(langCookie) ? langCookie : _sessionService.CurrentLanguage;
+        }
+
+        public string GetFavoriteShortedLanguage()
+        {
+            var favoriteLanguage = GetFavoriteLanguage();
+
+            return SystemLanguage.GetCurrentShortedLanguage(favoriteLanguage);
         }
 
         public IEnumerable<TargetCountry> GetSystemTargetCountries()

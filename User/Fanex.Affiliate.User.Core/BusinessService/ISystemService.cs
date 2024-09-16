@@ -9,6 +9,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         string GetFavoriteLanguage();
 
+        string GetFavoriteShortedLanguage();
+
         bool IsValid(string langCode, bool isAfterLogin = true);
 
         IEnumerable<TargetLanguage> GetSystemTargetLanguages();

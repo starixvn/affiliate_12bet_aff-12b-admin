@@ -70,13 +70,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, int affId, bool isInternal)
         {
             var domainList = _marketingRepository.GetDomainListByTargetCountry(targetCountry, isInternal);
+            var specificDomains = (_appSetting.IsDev || _appSetting.IsLocal) ?
+                                    SpecificDomain.SpecificDomainByAffOnLocal : SpecificDomain.SpecificDomainByAffOnPro;
 
-            if (_appSetting.Aff16000Id.MatchWith(affId.ToString()))
+            if (specificDomains.TryGetValue(affId.ToString(), out string domainName))
             {
-                var aff16000DomainList = new List<Domain> { new Domain { DomainId = affId, DomainName = _appSetting.Aff16000GoDomain, IsSsl = true } };
-                aff16000DomainList.AddRange(domainList.Where(d => !d.DomainName.MatchWith(_appSetting.Aff16000GoDomain)));
+                var specificDomainList = new List<Domain> { new Domain { DomainId = affId, DomainName = domainName, IsSsl = true } };
+                specificDomainList.AddRange(domainList.Where(d => !d.DomainName.MatchWith(domainName)));
 
-                return aff16000DomainList;
+                return specificDomainList;
             }
             return domainList;
         }

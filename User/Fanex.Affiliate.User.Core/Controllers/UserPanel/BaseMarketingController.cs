@@ -53,7 +53,8 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         protected IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountryCode, bool isInternal)
         {
-            return MarketingService.GetDomainListByTargetCountry(targetCountryCode, SessionService.UserSession.AffId, isInternal);
+            var userSession = SessionService.UserSession;
+            return MarketingService.GetDomainListByTargetCountry(targetCountryCode, userSession.AffId, isInternal);
         }
     }
 }

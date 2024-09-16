@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Utilities;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
@@ -9,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Extensions
     public static class UrlHelperExtension
     {
         private static readonly IAppSetting appSetting = DependencyResolver.Current.GetService<IAppSetting>();
-        private static readonly ISessionService sessionService = DependencyResolver.Current.GetService<ISessionService>();
+        private static readonly ISystemService systemService = DependencyResolver.Current.GetService<ISystemService>();
 
         public static string RenderLink(this UrlHelper urlHelper, string bundleVirtualPath)
         {
@@ -26,10 +25,9 @@ namespace Fanex.Affiliate.User.Core.Extensions
 
         public static string RenderLanguageContent(this UrlHelper urlHelper, string bundleVirtualPath)
         {
-            var currentLanguage = sessionService.CurrentLanguage;
-            var shortedCode = SystemLanguage.GetCurrentShortedLanguage(currentLanguage);
-            
-            return urlHelper.Content(Regex.Replace(bundleVirtualPath, @"^\~/", $"~/{shortedCode}/"));
+            var favoriteShortedLanguage = systemService.GetFavoriteShortedLanguage();
+
+            return urlHelper.Content(Regex.Replace(bundleVirtualPath, @"^\~/", $"~/{favoriteShortedLanguage}/"));
         }
     }
 }
