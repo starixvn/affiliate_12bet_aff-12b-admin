@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         {
             ["92043088"] = "join.best5689.com", //12BETAFF16000
             ["92043193"] = "go.12real.com", //12BETAFF16105
-            ["92043274"] = "go.12real.com", //12BETAFF16186
+            ["92043274"] = "join.best5689.com", //12BETAFF16186
         };
 
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnLocal = new Dictionary<string, string>
