@@ -412,6 +412,10 @@
     <Content Include="www\build\styles\fonts\myriadPro\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.zh-CN.png" />
+    <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.zh-CN.png" />
+    <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.zh-CN.png" />
+    <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.zh-CN.png" />
     <Content Include="www\build\styles\Images\logo-original.svg" />
     <Content Include="www\build\styles\Images\logo.svg" />
     <Content Include="www\build\styles\Images\logo\bn-BD.png" />
@@ -466,7 +470,6 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.ko-KR.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.th-TH.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.vi-VN.png" />
-    <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.zh-CN.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.zh-TW.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.bn-BD.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.en-US.png" />
@@ -477,7 +480,6 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.ko-KR.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.th-TH.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.vi-VN.png" />
-    <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.zh-CN.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.zh-TW.png" />
     <Content Include="www\build\styles\Images\contact-us\icons\line.svg" />
     <Content Include="www\build\styles\Images\contact-us\icons\skype.svg" />
@@ -575,7 +577,6 @@
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.ko-KR.png" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.th-TH.png" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.vi-VN.png" />
-    <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.zh-CN.png" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.zh-TW.png" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.bn-BD.png" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.en-US.png" />
@@ -586,7 +587,6 @@
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.ko-KR.png" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.th-TH.png" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.vi-VN.png" />
-    <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.zh-CN.png" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.zh-TW.png" />
     <Content Include="www\build\styles\Images\home\why-become\15year.png" />
     <Content Include="www\build\styles\Images\home\why-become\advanced.png" />
@@ -1351,7 +1351,6 @@
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.ko-KR.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.th-TH.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.vi-VN.webp" />
-    <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.zh-CN.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.zh-TW.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.bn-BD.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.en-US.webp" />
@@ -1362,7 +1361,6 @@
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.ko-KR.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.th-TH.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.vi-VN.webp" />
-    <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.zh-CN.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.zh-TW.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.bn-BD.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.en-US.webp" />
@@ -1373,7 +1371,6 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.ko-KR.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.th-TH.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.vi-VN.webp" />
-    <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.zh-CN.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.zh-TW.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.bn-BD.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.en-US.webp" />
@@ -1384,8 +1381,11 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.ko-KR.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.th-TH.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.vi-VN.webp" />
-    <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.zh-CN.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.zh-TW.webp" />
+    <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.zh-CN.webp" />
+    <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.zh-CN.webp" />
+    <Content Include="www\build\styles\Images\commission\top-banner\item1\desktop.zh-CN.webp" />
+    <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.zh-CN.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

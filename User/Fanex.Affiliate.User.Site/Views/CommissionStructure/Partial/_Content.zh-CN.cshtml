@@ -14,7 +14,34 @@
     </div>
 </div>
 
-@{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_RegularCommissionStructureTable.cshtml"); }
+<div class="block block-commission">
+    <div class="page-container">
+        <div class="heading-table">
+            @Lang.RegularCommissionStructure
+        </div>
+        <div class="table-custom table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="50%">@Lang.RevenueShare</th>
+                        <th width="25%">@Lang.QualifyingMem</th>
+                        <th width="25%">@Lang.Comm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            <p class="all-products">@Lang.AllProducts</p>
+                            <p><a class="more-detail" href="@Url.RenderLanguageContent("~/Product")">&gt; @Lang.MoreDetailProduct</a></p>
+                        </td>
+                        <td rowspan="5" class="text-center word">≥ 5 </td>
+                        <td class="text-center">50%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <div class="block block-text">
     <div class="page-container">
