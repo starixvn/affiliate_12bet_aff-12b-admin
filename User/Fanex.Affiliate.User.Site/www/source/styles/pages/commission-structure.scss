@@ -61,16 +61,21 @@
                     padding: 5px 4px;
                 }
             }
+
             tbody {
                 tr {
                     td {
                         border-right: 2px solid #F6F6F6;
                         border-bottom: 2px solid #F6F6F6;
-                        background : #fff;
+                        background: #fff;
                     }
                 }
             }
         }
+    }
+
+    .bottom-text {
+        font-style: italic;
     }
 }
 
@@ -270,6 +275,9 @@
             }
         }
     }
+}
+
+.block-commission, .block-process {
     .bottom-text {
         margin-top: 40px;
         color: #353E5B;
