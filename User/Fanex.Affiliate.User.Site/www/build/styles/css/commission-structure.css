@@ -858,6 +858,9 @@ button.swiper-pagination-bullet {
   border-bottom: 2px solid #F6F6F6;
   background: #fff; }
 
+.block-commission .bottom-text {
+  font-style: italic; }
+
 .block-text .group-page {
   color: #353E5B;
   font-size: 16px;
@@ -1023,7 +1026,7 @@ button.swiper-pagination-bullet {
           top: -14px;
           left: 50%; } }
 
-.block-process .bottom-text {
+.block-commission .bottom-text, .block-process .bottom-text {
   margin-top: 40px;
   color: #353E5B;
   text-align: center;
@@ -1031,7 +1034,7 @@ button.swiper-pagination-bullet {
   font-weight: 500;
   line-height: normal; }
   @media (max-width: 500px) {
-    .block-process .bottom-text {
+    .block-commission .bottom-text, .block-process .bottom-text {
       font-weight: 400; } }
 
 .block-faq .group-faq {
