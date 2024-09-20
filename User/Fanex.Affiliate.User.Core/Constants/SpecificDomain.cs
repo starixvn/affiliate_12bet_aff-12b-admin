@@ -4,18 +4,32 @@ namespace Fanex.Affiliate.User.Core.Constants
 {
     public static class SpecificDomain
     {
+        private const string DOMAIN_GO_LOCAL = "aff-12bet.nexdev.net/12BetGo";
+        private const string DOMAIN_GO_12REAL_PRO = "go.12real.com";
+        private const string DOMAIN_GO_JOIN_BEST5689_PRO = "join.best5689.com";
+
+        private const string AFF16000_ID = "92043088";
+        private const string AFF16186_ID = "92043274";
+        private const string AFF16096_ID = "92043184";
+        private const string AFF16097_ID = "92043185";
+
+        private const string AFF16105_ID = "92043193";
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnPro = new Dictionary<string, string>
         {
-            ["92043088"] = "join.best5689.com", //12BETAFF16000
-            ["92043193"] = "go.12real.com", //12BETAFF16105
-            ["92043274"] = "join.best5689.com", //12BETAFF16186
+            [AFF16105_ID] = DOMAIN_GO_12REAL_PRO,
+            [AFF16000_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
+            [AFF16186_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
+            [AFF16096_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
+            [AFF16097_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
         };
 
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnLocal = new Dictionary<string, string>
         {
-            ["927841"] = "aff-12bet.nexdev.net/12BetGo", //12BETAFF001
-            ["968222"] = "aff-12bet.nexdev.net/12BetGo", //12BETAFF002
-            ["989900"] = "aff-12bet.nexdev.net/12BetGo", //12BETAFF003
+            [AFF16105_ID] = DOMAIN_GO_LOCAL,
+            [AFF16000_ID] = DOMAIN_GO_LOCAL,
+            [AFF16186_ID] = DOMAIN_GO_LOCAL,
+            [AFF16096_ID] = DOMAIN_GO_LOCAL,
+            [AFF16097_ID] = DOMAIN_GO_LOCAL,
         };
     }
 }
