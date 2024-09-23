@@ -201,10 +201,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
                     if(param.AffDomain.Contains(fakeDomain))
                     {
-                        var realAffId = infos[1];
-                        var realDomain = infos[2];
-
-                        param.AffiliateID = Convert.ToInt32(realAffId);
+                        var realDomain = infos[1];
                         param.AffDomain = param.AffDomain.Replace(fakeDomain, realDomain);
                     }    
                 }
