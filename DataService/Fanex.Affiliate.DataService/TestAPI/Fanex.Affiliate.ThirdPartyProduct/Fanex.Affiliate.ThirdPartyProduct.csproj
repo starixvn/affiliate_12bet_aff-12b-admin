@@ -151,6 +151,7 @@
     <Compile Include="Controllers\BgFishController.cs" />
     <Compile Include="Controllers\BTiController.cs" />
     <Compile Include="Controllers\CrystalGpiController.cs" />
+    <Compile Include="Controllers\BetsoftImporterController.cs" />
     <Compile Include="Controllers\DbImporterController.cs" />
     <Compile Include="Controllers\EbetController.cs" />
     <Compile Include="Controllers\ExchangeSummaryTransctionController.cs" />

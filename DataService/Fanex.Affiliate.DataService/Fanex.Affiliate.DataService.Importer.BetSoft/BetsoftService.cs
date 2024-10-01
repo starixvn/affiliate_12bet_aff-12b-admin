@@ -128,10 +128,12 @@ namespace Fanex.Affiliate.DataService.Importer
 
             for (var start = startDate; DateTime.Compare(start, endDate) < 0; start = start.AddHours(1))
             {
+                LogHelper.Info($"Importing from {start} to {endDate}");
                 var paramByBatch = BuildParamByBatch(start, endDate);
                 var rawData = GetRawData(paramByBatch);
                 CheckRawData(rawData);
                 Import(rawData);
+                LogHelper.Info($"Finished from {start} to {endDate}");
             }
         }
 

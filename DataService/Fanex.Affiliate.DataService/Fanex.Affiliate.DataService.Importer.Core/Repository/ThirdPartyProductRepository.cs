@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.DataService.Importer.Core.Repository
             var dic = new Dictionary<string, object>(8);
             dic.Add("ProductId", productId);
             dic.Add("XmlData", xmlData);
-            dic.Add("JobType", jobType);
+            //dic.Add("JobType", jobType);
             dic.Add("ErrCode", RespositoryResponse.Success);
             dic.Add("ErrMsg", RespositoryResponse.SuccessMessage);
             return dic;
