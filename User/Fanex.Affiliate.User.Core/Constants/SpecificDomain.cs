@@ -8,15 +8,21 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string DOMAIN_GO_12REAL_PRO = "go.12real.com";
         private const string DOMAIN_GO_JOIN_BEST5689_PRO = "join.best5689.com";
 
+        private const string AFF16105_ID = "92043193";
+        private const string AFF16204_ID = "92043292";
+        private const string AFF16205_ID = "92043293";
+        
         private const string AFF16000_ID = "92043088";
         private const string AFF16186_ID = "92043274";
         private const string AFF16096_ID = "92043184";
         private const string AFF16097_ID = "92043185";
-
-        private const string AFF16105_ID = "92043193";
+        
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnPro = new Dictionary<string, string>
         {
             [AFF16105_ID] = DOMAIN_GO_12REAL_PRO,
+            [AFF16204_ID] = DOMAIN_GO_12REAL_PRO,
+            [AFF16205_ID] = DOMAIN_GO_12REAL_PRO,
+            
             [AFF16000_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
             [AFF16186_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
             [AFF16096_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
@@ -26,6 +32,9 @@ namespace Fanex.Affiliate.User.Core.Constants
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnLocal = new Dictionary<string, string>
         {
             [AFF16105_ID] = DOMAIN_GO_LOCAL,
+            [AFF16204_ID] = DOMAIN_GO_LOCAL,
+            [AFF16205_ID] = DOMAIN_GO_LOCAL,
+            
             [AFF16000_ID] = DOMAIN_GO_LOCAL,
             [AFF16186_ID] = DOMAIN_GO_LOCAL,
             [AFF16096_ID] = DOMAIN_GO_LOCAL,
