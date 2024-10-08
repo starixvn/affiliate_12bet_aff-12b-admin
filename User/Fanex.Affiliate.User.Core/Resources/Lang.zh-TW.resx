@@ -2079,7 +2079,7 @@
     <value>額外佣金比例</value>
   </data>
   <data name="MaxExtraComm" xml:space="preserve">
-    <value>最高額外佣金</value>
+    <value>最高額外佣金 ($)</value>
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>

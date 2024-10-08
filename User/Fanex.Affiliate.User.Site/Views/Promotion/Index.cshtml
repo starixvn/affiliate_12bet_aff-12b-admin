@@ -10,6 +10,9 @@
 @{
     var bannerSrc = Url.Content($"~/www/build/styles/Images/commission/top-banner/item1/desktop.{Model.CurrentLanguage}");
     var mobileBannerSrc = Url.Content($"~/www/build/styles/Images/commission/top-banner/item1/mobile.{Model.CurrentLanguage}");
+
+    var banner2Src = Url.Content($"~/www/build/styles/Images/commission/top-banner/item2/desktop.{Model.CurrentLanguage}");
+    var mobileBanner2Src = Url.Content($"~/www/build/styles/Images/commission/top-banner/item2/mobile.{Model.CurrentLanguage}");
 }
 
 @section alternateAndCanonicalTags{
@@ -35,21 +38,37 @@
             <div class="swiper-slide">
                 <a class="nounderline promotion-banner-tracking show-pc" target="_self" href="javascript:void(0)">
                     <picture>
-                        <source srcset="@(bannerSrc).webp?v=0.02" type="image/webp" />
-                        <source srcset="@(bannerSrc).png?v=0.02" type="image/png" />
-                        <img class="img-item img-responsive" src="@(bannerSrc).jpg?v=0.02" alt="12Bet commission boost promo" />
+                        <source srcset="@(bannerSrc).webp?v=0.01" type="image/webp" />
+                        <source srcset="@(bannerSrc).png?v=0.01" type="image/png" />
+                        <img class="img-item img-responsive" src="@(bannerSrc).jpg?v=0.01" alt="12Bet commission boost promo" />
                     </picture>
                 </a>
                 <a class="nounderline promotion-banner-tracking show-mobile" target="_self" href="javascript:void(0)">
                     <picture>
-                        <source srcset="@(mobileBannerSrc).webp?v=0.02" type="image/webp" />
-                        <source srcset="@(mobileBannerSrc).png?v=0.02" type="image/png" />
-                        <img class="img-item img-responsive" src="@(mobileBannerSrc).png?v=0.02" alt="12Bet commission boost promo" />
+                        <source srcset="@(mobileBannerSrc).webp?v=0.01" type="image/webp" />
+                        <source srcset="@(mobileBannerSrc).png?v=0.01" type="image/png" />
+                        <img class="img-item img-responsive" src="@(mobileBannerSrc).png?v=0.01" alt="12Bet commission boost promo" />
+                    </picture>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a class="nounderline promotion-banner-tracking show-pc" target="_self" href="javascript:void(0)">
+                    <picture>
+                        <source srcset="@(banner2Src).webp?v=0.01" type="image/webp" />
+                        <source srcset="@(banner2Src).png?v=0.01" type="image/png" />
+                        <img class="img-item img-responsive" src="@(banner2Src).jpg?v=0.01" alt="12Bet commission boost promo" />
+                    </picture>
+                </a>
+                <a class="nounderline promotion-banner-tracking show-mobile" target="_self" href="javascript:void(0)">
+                    <picture>
+                        <source srcset="@(mobileBanner2Src).webp?v=0.01" type="image/webp" />
+                        <source srcset="@(mobileBanner2Src).png?v=0.01" type="image/png" />
+                        <img class="img-item img-responsive" src="@(mobileBanner2Src).png?v=0.01" alt="12Bet commission boost promo" />
                     </picture>
                 </a>
             </div>
         </div>
-        @*<div class="swiper-pagination"></div>*@
+        <div class="swiper-pagination"></div>
     </div>
 
     @Html.RenderPartialByLanguage("~/Views/Promotion/Partial/_Content", Model.CurrentLanguage, Model.IsAuthenticated)

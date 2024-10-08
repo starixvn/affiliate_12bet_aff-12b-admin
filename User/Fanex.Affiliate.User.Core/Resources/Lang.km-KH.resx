@@ -2243,4 +2243,40 @@
   <data name="_12BetNumberGame" xml:space="preserve">
     <value>ហ្គេមលេខរបស់ 12Bet សំដៅលើហ្គេមជាច្រើនដែលពាក់ព័ន្ធនឹងការជ្រើសរើស និងទាយលេខ ស្រដៀងទៅនឹងឆ្នោត ប៊ីងហ្គោ ឬគីណូដែរ។ ប្រភេទហ្គេមទាំងនេះពេញនិយមនិងសាមញ្ញបំផុត សក្តានុពលនៃការឈ្នះមកវិញក៏ធំផងដែរ ប្រសិនបើអ្នកចាប់អារម្មណ៍លើហ្គេមលេខ 12Bet ក៏អាចសាកល្បងវាបានដែរ។</value>
   </data>
+  <data name="Prizes" xml:space="preserve">
+    <value>រង្វាន់</value>
+  </data>
+  <data name="RequirementsFor3Months" xml:space="preserve">
+    <value>តំរូវការសំរាប់ដំណាក់កាល 3 ខែ</value>
+  </data>
+  <data name="SignupEnglandCalling" xml:space="preserve">
+    <value>ចុះឈ្មោះ</value>
+  </data>
+  <data name="FdmEnglandCalling" xml:space="preserve">
+    <value>សមាជិកដាក់ប្រាក់ដំបូង</value>
+  </data>
+  <data name="WinlossInUSD" xml:space="preserve">
+    <value>ឈ្នះចាញ់ ($)</value>
+  </data>
+  <data name="LCFC" xml:space="preserve">
+    <value>សំបុត្រទស្សនាការប្រកួត LCFC VS NEWCASTLE&lt;br/&gt;+ ហ្វ្រីកន្លែងស្នាក់នៅសម្រាប់ 2 នាក់</value>
+  </data>
+  <data name="SignedLCFCJersey" xml:space="preserve">
+    <value>អាវក្រុមកីឡា LCFC + បាល់ទាត់ + $4,000</value>
+  </data>
+  <data name="SignedLCFCJersey1000" xml:space="preserve">
+    <value>រង្វាន់ចុះហត្ថលេខាលើអាវយឺត LCFC + $1,000</value>
+  </data>
+  <data name="MacbookPro" xml:space="preserve">
+    <value>MACBOOK PRO 16' M3 PRO</value>
+  </data>
+  <data name="IPhone16Pro" xml:space="preserve">
+    <value>IPHONE 16 PRO MAX 1TB</value>
+  </data>
+  <data name="SignedLCFCFootball" xml:space="preserve">
+    <value>រង្វាន់ចុះហត្ថលេខាលើបាល់ទាត់ LCFC + $1,000</value>
+  </data>
+  <data name="ContactAffManager" xml:space="preserve">
+    <value>សូមទាក់ទងអ្នកគ្រប់គ្រងផ្នែកភ្នាក់ងារ</value>
+  </data>
 </root>

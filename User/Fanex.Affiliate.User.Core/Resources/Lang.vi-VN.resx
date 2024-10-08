@@ -2246,4 +2246,37 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="_12BetNumberGame" xml:space="preserve">
     <value>Number Game 12BET là tổ hợp các trò chơi liên quan đến việc chọn và đoán số, tương tự như Xổ Số, Bingo hoặc Keno. Những loại trò chơi này phổ biến vì tính đơn giản và khả năng thanh toán lớn. Bạn nên thử trải nghiệm sự thú vị của Number Game12BET. </value>
   </data>
+  <data name="Prizes" xml:space="preserve">
+    <value>GIẢI THƯỞNG</value>
+  </data>
+  <data name="RequirementsFor3Months" xml:space="preserve">
+    <value>YÊU CẦU TRONG THỜI GIAN 3 THÁNG</value>
+  </data>
+  <data name="SignupEnglandCalling" xml:space="preserve">
+    <value>ĐĂNG KÝ</value>
+  </data>
+  <data name="FdmEnglandCalling" xml:space="preserve">
+    <value>LỆNH NẠP ĐẦU</value>
+  </data>
+  <data name="WinlossInUSD" xml:space="preserve">
+    <value>THẮNG/THUA ($)</value>
+  </data>
+  <data name="LCFC" xml:space="preserve">
+    <value>VÉ XEM TRẬN ĐẤU LCFC VS NEWCASTLE&lt;br/&gt;+ MIỄN PHÍ CHỖ Ở CHO 2 NGƯỜI</value>
+  </data>
+  <data name="SignedLCFCJersey" xml:space="preserve">
+    <value>ÁO ĐẤU CÓ CHỮ KÝ CỦA LCFC + BÓNG ĐÁ + $4.000</value>
+  </data>
+  <data name="SignedLCFCJersey1000" xml:space="preserve">
+    <value>ÁO ĐẤU CÓ CHỮ KÝ CỦA LCFC + $1.000</value>
+  </data>
+  <data name="IPhone16Pro" xml:space="preserve">
+    <value>IPHONE 16 PRO MAX 1TB</value>
+  </data>
+  <data name="SignedLCFCFootball" xml:space="preserve">
+    <value>BÓNG ĐÁ CÓ CHỮ KÝ CỦA LCFC + $1.000</value>
+  </data>
+  <data name="ContactAffManager" xml:space="preserve">
+    <value>LIÊN HỆ VỚI QUẢN LÝ ĐẠI LÝ</value>
+  </data>
 </root>

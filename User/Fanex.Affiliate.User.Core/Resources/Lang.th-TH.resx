@@ -2246,4 +2246,40 @@
   <data name="_12BetNumberGame" xml:space="preserve">
     <value>เกมหมายเลข 12Bet หมายถึงเกมส์ที่เกี่ยวข้องกับการเลือกและการทายหมายเลขที่มีอยู่หลากหลาย คล้ายกับลอตเตอรี่ บิงโก หรือคีโน เกมส์ประเภทนี้ได้รับความนิยมเนื่องจากมีความเรียบง่ายและมีศักยภาพในการจ่ายเงินจำนวนมาก หากคุณสนใจเกมส์หมายเลขของ 12Bet หรืออยากลองเล่นดู</value>
   </data>
+  <data name="Prizes" xml:space="preserve">
+    <value>รางวัล</value>
+  </data>
+  <data name="RequirementsFor3Months" xml:space="preserve">
+    <value>ข้อกำหนดสำหรับระยะ 3 เดือน</value>
+  </data>
+  <data name="SignupEnglandCalling" xml:space="preserve">
+    <value>สมัคร</value>
+  </data>
+  <data name="FdmEnglandCalling" xml:space="preserve">
+    <value>ฝากเงินครั้งแรก</value>
+  </data>
+  <data name="WinlossInUSD" xml:space="preserve">
+    <value>แพ้/ชนะ ($)</value>
+  </data>
+  <data name="LCFC" xml:space="preserve">
+    <value>ตั๋วแมตช์ระหว่าง LCFC กับ นิวคาสเซิล&lt;br/&gt;+ ฟรีที่พักสำหรับ 2 ท่าน</value>
+  </data>
+  <data name="SignedLCFCJersey" xml:space="preserve">
+    <value>เสื้อทีม LCFC พร้อมลายเซ็น + ฟุตบอล + $4,000</value>
+  </data>
+  <data name="SignedLCFCJersey1000" xml:space="preserve">
+    <value>เสื้อทีมพร้อมลายเซ็น + $1,000</value>
+  </data>
+  <data name="MacbookPro" xml:space="preserve">
+    <value>MACBOOK PRO 16' M3 PRO</value>
+  </data>
+  <data name="IPhone16Pro" xml:space="preserve">
+    <value>IPHONE 16 PRO MAX 1TB</value>
+  </data>
+  <data name="SignedLCFCFootball" xml:space="preserve">
+    <value>บอล LCFC พร้อมลายเซ็น + $1,000</value>
+  </data>
+  <data name="ContactAffManager" xml:space="preserve">
+    <value>ติดต่อผู้จัดการพันธมิตร</value>
+  </data>
 </root>

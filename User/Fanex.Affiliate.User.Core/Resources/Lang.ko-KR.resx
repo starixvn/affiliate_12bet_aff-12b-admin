@@ -2239,4 +2239,40 @@
   <data name="_12BetNumberGame" xml:space="preserve">
     <value>12Bet 라이브 빙고는 복권, 빙고, 키노(Keno)와 유사하게 숫자를 선택하고 당첨되는 방식의 다양한 게임을 제공합니다. 이러한 유형의 게임은 단순함과 높은 배당으로 큰 당첨금을 얻을 수 있기에 인기가 많습니다. 만약 여러분이 12Bet의 라이브 빙고에 관심이 있다면 플레이하시길 추천합니다.</value>
   </data>
+  <data name="Prizes" xml:space="preserve">
+    <value>상품</value>
+  </data>
+  <data name="RequirementsFor3Months" xml:space="preserve">
+    <value>3개월 단계 요구 사항</value>
+  </data>
+  <data name="SignupEnglandCalling" xml:space="preserve">
+    <value>가입</value>
+  </data>
+  <data name="FdmEnglandCalling" xml:space="preserve">
+    <value>FDM</value>
+  </data>
+  <data name="WinlossInUSD" xml:space="preserve">
+    <value>승리손실 ($)</value>
+  </data>
+  <data name="LCFC" xml:space="preserve">
+    <value>LCFC VS 뉴캐슬 경기 티켓&lt;br/&gt;+ 2인 숙박</value>
+  </data>
+  <data name="SignedLCFCJersey" xml:space="preserve">
+    <value>LCFC 사인 유니폼 + 축구공 + $4,000</value>
+  </data>
+  <data name="SignedLCFCJersey1000" xml:space="preserve">
+    <value>LCFC 사인 유니폼 + $1,000</value>
+  </data>
+  <data name="MacbookPro" xml:space="preserve">
+    <value>맥북 프로 16' M3 프로</value>
+  </data>
+  <data name="IPhone16Pro" xml:space="preserve">
+    <value>아이폰 16 프로 맥스 1TB</value>
+  </data>
+  <data name="SignedLCFCFootball" xml:space="preserve">
+    <value>LCFC 사인 축구공 + $1,000</value>
+  </data>
+  <data name="ContactAffManager" xml:space="preserve">
+    <value>제휴 관리자에게 문의하세요</value>
+  </data>
 </root>

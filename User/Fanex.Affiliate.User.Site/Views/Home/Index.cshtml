@@ -11,6 +11,9 @@
 @{
     var bannerSrc = Url.Content($"~/www/build/styles/Images/home/top-banner/item1/desktop.{Model.Language}");
     var mobileBannerSrc = Url.Content($"~/www/build/styles/Images/home/top-banner/item1/mobile.{Model.Language}");
+
+    var banner2Src = Url.Content($"~/www/build/styles/Images/home/top-banner/item2/desktop.{Model.Language}");
+    var mobileBanner2Src = Url.Content($"~/www/build/styles/Images/home/top-banner/item2/mobile.{Model.Language}");
 }
 
 @section alternateAndCanonicalTags{
@@ -32,20 +35,36 @@
                 <a class="nounderline home-banner-tracking show-pc" target="_self" href="@Url.RenderLanguageContent("~/Promotion")">
                     <picture>
                         <source srcset="@(bannerSrc).webp?v=0.03" type="image/webp" />
-                        <source srcset="@(bannerSrc).png?v=0.03" type="image/jpeg" />
+                        <source srcset="@(bannerSrc).jpg?v=0.03" type="image/jpeg" />
                         <img class="img-item img-responsive" src="@(bannerSrc).jpg?v=0.03" alt="12Bet Partner" />
                     </picture>
                 </a>
                 <a class="nounderline home-banner-tracking show-mobile" target="_self" href="@Url.RenderLanguageContent("~/Promotion")">
                     <picture>
                         <source srcset="@(mobileBannerSrc).webp?v=0.03" type="image/webp" />
-                        <source srcset="@(mobileBannerSrc).png?v=0.03" type="image/jpeg" />
-                        <img class="img-item img-responsive" src="@(mobileBannerSrc).png?v=0.03" alt="12Bet Partner" />
+                        <source srcset="@(mobileBannerSrc).jpg?v=0.03" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(mobileBannerSrc).jpg?v=0.03" alt="12Bet Partner" />
+                    </picture>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a class="nounderline home-banner-tracking show-pc" target="_self" href="@Url.RenderLanguageContent("~/Promotion")">
+                    <picture>
+                        <source srcset="@(banner2Src).webp?v=0.01" type="image/webp" />
+                        <source srcset="@(banner2Src).jpg?v=0.01" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(banner2Src).jpg?v=0.01" alt="12Bet Partner" />
+                    </picture>
+                </a>
+                <a class="nounderline home-banner-tracking show-mobile" target="_self" href="@Url.RenderLanguageContent("~/Promotion")">
+                    <picture>
+                        <source srcset="@(mobileBanner2Src).webp?v=0.01" type="image/webp" />
+                        <source srcset="@(mobileBanner2Src).jpg?v=0.01" type="image/jpeg" />
+                        <img class="img-item img-responsive" src="@(mobileBanner2Src).jpg?v=0.01" alt="12Bet Partner" />
                     </picture>
                 </a>
             </div>
         </div>
-        @*<div class="swiper-pagination"></div>*@
+        <div class="swiper-pagination"></div>
     </div>
 
     @Html.RenderPartialByLanguage("~/Views/Home/Partial/_Content", Model.Language, Model)

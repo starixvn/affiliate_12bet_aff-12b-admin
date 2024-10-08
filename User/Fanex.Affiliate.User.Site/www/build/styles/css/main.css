@@ -310,7 +310,7 @@ input[type="checkbox"], input[type="radio"] {
   .flag-zh-CN {
     background-image: url("../Images/langs/cs.png"); }
   .flag-zh-TW {
-    background-image: url("../Images/langs/ch.png"); }
+    background-image: url("../Images/langs/ch.png?v=0.001"); }
   .flag-id-ID {
     background-image: url("../Images/langs/id.png"); }
   .flag-vi-VN {
