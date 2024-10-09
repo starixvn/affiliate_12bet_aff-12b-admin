@@ -1,4 +1,6 @@
-﻿<div class="block block-england-calling">
+﻿@model string
+
+<div class="block block-england-calling">
     <div class="page-container">
         <div class="group-page">
             <div class="block-child-title">
@@ -8,10 +10,7 @@
                 Leicester City FC invites the best 12BET affiliates to experience the thrills of being part of the Blue Army from the center podium of the iconic King Power Stadium. Feel the matchday like a VIP in premium seats and enjoy many more perks! Drive more members and boost your activity today! Join the action and get this exclusive deals only for 12BET Affiliates. Promo period: October 1 - December 31, 2024.
             </div>
         </div>
-        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml"); }
-        <div class="group-contact-btn">
-            <a href="https://api.whatsapp.com/send?phone=639454311641" class="custom-button">@Lang.ContactAffManager</a>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml", Model); }
     </div>
 </div>
 
@@ -26,6 +25,7 @@
                     <span class="button-toggle"></span>
                 </div>
                 <div class="anwser">
+                    <div class="anwser-heading">ENGLAND’S CALLING</div>
                     <div class="anwser-text">
                         <span class="list-number">1</span> This promotion applies to all Affiliates.
                     </div>

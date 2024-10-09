@@ -1,4 +1,6 @@
-﻿<div class="block block-england-calling">
+﻿@model string
+
+<div class="block block-england-calling">
     <div class="page-container">
         <div class="group-page">
             <div class="block-child-title">
@@ -9,9 +11,6 @@
             </div>
         </div>
         @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml"); }
-        <div class="group-contact-btn">
-            <a href="skype:live:.cid.304e37e2b32cf7ac?chat" class="custom-button">@Lang.ContactAffManager</a>
-        </div>
     </div>
 </div>
 
@@ -26,6 +25,7 @@
                     <span class="button-toggle"></span>
                 </div>
                 <div class="anwser">
+                    <div class="anwser-heading">ENGLAND’S CALLING</div>
                     <div class="anwser-text">
                         <span class="list-number">1</span> This promotion applies to all Affiliates.
                     </div>

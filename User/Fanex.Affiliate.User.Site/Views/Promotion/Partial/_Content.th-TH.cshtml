@@ -1,6 +1,5 @@
-﻿@{ 
-    var contactUrl = "https://line.me/R/ti/p/@124asbwp?oat_content=url";
-}
+﻿@model string
+
 <div class="block block-england-calling">
     <div class="page-container">
         <div class="group-page">
@@ -11,10 +10,7 @@
                 สโมสรฟุตบอลเลสเตอร์ซิตี้ขอเชิญพันธมิตรที่ดีที่สุดของ 12BET มาสัมผัสประสบการณ์ความตื่นเต้นในการเป็นส่วนหนึ่งของ Blue Army จากแท่นกลางของสนาม King Power อันโด่งดัง สัมผัสถึงวันแข่งขันเหมือนเป็นวีไอพีในที่นั่งระดับพรีเมียมและเพลิดเพลินไปกับสิทธิประโยชน์อื่นๆ อีกมากมาย! เพิ่มสมาชิกและกิจกรรมของคุณวันนี้! เข้าร่วมการดำเนินการและรับข้อเสนอสุดพิเศษสำหรับพันธมิตร 12BET เท่านั้น ระยะเวลาโปรโมชั่น: 1 ตุลาคม - 31 ธันวาคม 2567
             </div>
         </div>
-        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml"); }
-        <div class="group-contact-btn">
-            <a href="@contactUrl" class="custom-button">@Lang.ContactAffManager</a>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml", Model); }
     </div>
 </div>
 
@@ -29,6 +25,7 @@
                     <span class="button-toggle"></span>
                 </div>
                 <div class="anwser">
+                    <div class="anwser-heading">อังกฤษกำลังรอคุณ!</div>
                     <div class="anwser-text">
                         <span class="list-number">1</span> โปรโมชั่นนี้ใช้กับพันธมิตรทั้งหมด
                     </div>

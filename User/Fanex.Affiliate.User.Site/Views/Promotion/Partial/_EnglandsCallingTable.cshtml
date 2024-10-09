@@ -1,4 +1,6 @@
-﻿<div class="table-custom table-responsive">
+﻿@model string
+
+<div class="table-custom table-responsive">
     <table>
         <thead>
             <tr>
@@ -7,7 +9,7 @@
             </tr>
             <tr class="table-custom-thead">
                 <th width="15%">@Lang.SignupEnglandCalling</th>
-                <th width="15%">@Lang.FDM</th>
+                <th width="15%">@Lang.FdmEnglandCalling</th>
                 <th width="20%">@Lang.WinlossInUSD</th>
             </tr>
         </thead>
@@ -50,4 +52,8 @@
             </tr>
         </tbody>
     </table>
+</div>
+
+<div class="group-contact-btn">
+    <a href="@SystemLanguage.GetAffManagerContactInfo(Model)" class="custom-button">@Lang.ContactAffManager</a>
 </div>

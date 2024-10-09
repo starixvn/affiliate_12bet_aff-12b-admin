@@ -10,7 +10,7 @@
     var languageList = systemService.GetSystemTargetLanguages()
                                         .Where(l => !l.LanguageCode.Equals("en-GB") && !l.LanguageCode.Equals("te-IN"));
     var currentLanguage = sessionService.CurrentLanguage;
-    var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
+    var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(currentLanguage))?.NativeLanguage;
     var path = HttpContext.Current.Request.Path;
     var isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated && sessionService.UserSession != null;
 
@@ -241,6 +241,26 @@
             </div>
             <div class="footer-text">
                 @Lang.Copyright.Replace("{0}", DateTime.Now.Year.ToString())
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade contact-manager-dialog" tabindex="-1" role="dialog" id="contactManagerDialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-main-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <a href="@SystemLanguage.GetAffManagerContactInfo(currentLanguage)" class="contact-manager-dialog-group">
+                            <img class="contact-manager-dialog-img" src="~/www/build/styles/Images/contact-manager/@(currentLanguage).jpg" alt="Contact Affiliate Manager" />
+                            <div class="contact-manager-dialog-btn">
+                                <span class="custom-button">@Lang.ContactAffManager</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

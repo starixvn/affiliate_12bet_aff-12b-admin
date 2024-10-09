@@ -1,4 +1,6 @@
-﻿<div class="block block-england-calling">
+﻿@model string
+
+<div class="block block-england-calling">
     <div class="page-container">
         <div class="group-page">
             <div class="block-child-title">
@@ -8,10 +10,7 @@
                 Leicester City FC mengundang afiliasi terbaik 12BET untuk menjadi bagian dari Blue Army dari podium tengah King Power Stadium yang ikonik. Tonton pertandingan seperti VIP dari kursi premium dan nikmati lebih banyak keuntungan! Ajak lebih banyak member dan tingkatkan aktivitas Anda mulai hari ini! Bergabunglah dan dapatkan penawaran eksklusif hanya untuk Afiliasi 12BET. Periode promo: 1 Oktober - 31 Desember 2024.
             </div>
         </div>
-        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml"); }
-        <div class="group-contact-btn">
-            <a href="https://api.whatsapp.com/send?phone=639276842457" class="custom-button">@Lang.ContactAffManager</a>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml", Model); }
     </div>
 </div>
 
@@ -26,6 +25,7 @@
                     <span class="button-toggle"></span>
                 </div>
                 <div class="anwser">
+                    <div class="anwser-heading">INGGRIS MEMANGGIL!</div>
                     <div class="anwser-text">
                         <span class="list-number">1</span> Promosi ini berlaku untuk semua member Afiliasi
                     </div>

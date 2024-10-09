@@ -1,4 +1,6 @@
-﻿<div class="block block-england-calling">
+﻿@model string
+
+<div class="block block-england-calling">
     <div class="page-container">
         <div class="group-page">
             <div class="block-child-title">
@@ -8,10 +10,7 @@
                 រីករាយជាមួយអត្ថប្រយោជន៍ជាច្រើន! ទទួលបានបទពិសោធន៍ថ្មីជាមួយក្លឹបបាល់ទាត់ Leicester City FC ដែលជាអ្នកប្រយទ្ធលើទីលានបៃតងដ៏អស្ចារ្យបំផុត។ លោកអ្នកនិងទទួលបាននូវអារម្មណ៍ពិសេសលក្ខណះ VIP! ទាក់ទាញសមាជិកអោយបានច្រើន និងធ្វើសកម្មភាពរបស់អ្នកនៅថ្ងៃនេះ! ចូលរួមធ្វើជាភ្នាក់ងារ 12BET ទទួលបានអត្ថប្រយោជន៍ជាច្រើនពីប្រូម៉ូសិនចាប់ផ្តើមពីថ្ងៃទី 1 ខែតុលា - 31 ខែធ្នូ ឆ្នាំ 2024។
             </div>
         </div>
-        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml"); }
-        <div class="group-contact-btn">
-            <a href="https://t.me/aff12kh" class="custom-button">@Lang.ContactAffManager</a>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml", Model); }
     </div>
 </div>
 
@@ -26,6 +25,7 @@
                     <span class="button-toggle"></span>
                 </div>
                 <div class="anwser">
+                    <div class="anwser-heading">ប្រទេស​អង់គ្លេស​កំពុងរងចាំអ្នក!</div>
                     <div class="anwser-text">
                         <span class="list-number">1</span> ប្រូម៉ូសិននេះអនុវត្តចំពោះភ្នាក់ងារទាំងអស់។
                     </div>

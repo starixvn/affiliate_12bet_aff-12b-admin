@@ -1,4 +1,6 @@
-﻿<div class="block block-england-calling">
+﻿@model string
+
+<div class="block block-england-calling">
     <div class="page-container">
         <div class="group-page">
             <div class="block-child-title">
@@ -8,10 +10,7 @@
                 CLB bóng đá Leicester City trân trọng mời các đối tác 12BET hàng đầu trải nghiệm cảm giác phấn khích khi trở thành một phần của Blue Army từ vị trí trung tâm tại sân vận động huyền thoại King Power. Hãy cảm nhận không khí ngày trận đấu như một VIP trong những chỗ ngồi sang trọng và thưởng thức hàng loạt đặc quyền hấp dẫn khác! Thu hút thêm thành viên và gia tăng hoạt động của bạn ngay hôm nay! Tham gia hành động và nhận được ưu đãi độc quyền chỉ dành cho Đại Lý 12BET. Thời gian khuyến mãi từ ngày 01 tháng 10 - 31 tháng 12 năm 2024.
             </div>
         </div>
-        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml"); }
-        <div class="group-contact-btn">
-            <a href="https://t.me/affvn12b" class="custom-button">@Lang.ContactAffManager</a>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml", Model); }
     </div>
 </div>
 
@@ -26,6 +25,7 @@
                     <span class="button-toggle"></span>
                 </div>
                 <div class="anwser">
+                    <div class="anwser-heading">NƯỚC ANH GỌI TÊN BẠN!</div>
                     <div class="anwser-text">
                         <span class="list-number">1</span> Khuyến mãi áp dụng cho tất cả các đại lý
                     </div>

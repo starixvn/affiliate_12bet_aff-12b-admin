@@ -1,4 +1,6 @@
-﻿<div class="block block-england-calling">
+﻿@model string
+
+<div class="block block-england-calling">
     <div class="page-container">
         <div class="group-page">
             <div class="block-child-title">
@@ -8,10 +10,7 @@
                 레스터 시티 FC가 12BET 최고 제휴사를 초대하며 상징적인 킹 파워 스타디움의 중앙 포디움에서 블루 아미의 일원이 되는 스릴을 선사합니다. 프리미엄 좌석에서 VIP가 되어 실시간 시청 체험과 더 많은 혜택을 누리세요! 지금 더 많은 회원을 유치하고 활동을 강화하세요! 이벤트에 참여하셔서 12BET 제휴사 독점 혜택을 받으세요. 프로모션 기간: 2024년 10월 1일 - 12월 31일.
             </div>
         </div>
-        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml"); }
-        <div class="group-contact-btn">
-            <a href="https://t.me/aff12kor" class="custom-button">@Lang.ContactAffManager</a>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml", Model); }
     </div>
 </div>
 
@@ -26,6 +25,7 @@
                     <span class="button-toggle"></span>
                 </div>
                 <div class="anwser">
+                    <div class="anwser-heading">잉글랜드 투어</div>
                     <div class="anwser-text">
                         <span class="list-number">1</span> 본 프로모션은 모든 제휴사에게 적용됩니다.
                     </div>

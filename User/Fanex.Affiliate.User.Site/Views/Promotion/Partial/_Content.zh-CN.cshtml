@@ -1,17 +1,16 @@
-﻿<div class="block block-england-calling">
+﻿@model string
+
+<div class="block block-england-calling">
     <div class="page-container">
         <div class="group-page">
             <div class="block-child-title">
                 英格兰正在呼唤您！
             </div>
             <div class="block-child-description">
-                莱斯特城足球俱乐部诚邀 12BET 最佳合作伙伴，从象征性的王权球场中央看台，亲身体验成为蓝军一员的激动时刻。以VIP的身份感受比赛日，享受顶级座位及更多专属礼遇！ 立即提升会员数量以及活跃度！加入活动，领取 12BET 合作伙伴专属的优惠。活动期间：2024年10月1日至12月31日。
+                莱斯特城足球俱乐部诚邀 12BET 最佳合作伙伴，从象征性的王权球场中央看台，亲身体验成为蓝军一员的激动时刻。以VIP的身份感受比赛日，享受顶级座位及更多专属礼遇！立即提升会员数量以及活跃度！加入活动，领取 12BET 合作伙伴专属的优惠。活动期间：2024年10月1日至12月31日。
             </div>
         </div>
-        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml"); }
-        <div class="group-contact-btn">
-            <a href="https://t.me/aff12bzhifeiji" class="custom-button">@Lang.ContactAffManager</a>
-        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml", Model); }
     </div>
 </div>
 
@@ -26,6 +25,7 @@
                     <span class="button-toggle"></span>
                 </div>
                 <div class="anwser">
+                    <div class="anwser-heading">英格兰正在呼唤您！</div>
                     <div class="anwser-text">
                         <span class="list-number">1</span> 此优惠活动仅适⽤于所有合作伙伴会员。
                     </div>
