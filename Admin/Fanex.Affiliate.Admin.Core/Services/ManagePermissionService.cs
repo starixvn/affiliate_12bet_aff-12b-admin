@@ -63,8 +63,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public bool HasHostFunctionOrManagePendingAffPermission(int affId, string function)
         {
-            var a = HasHostManagePendingAffPermission(affId);
-            var b = HasHostFunctionPermission(function);
             return HasHostManagePendingAffPermission(affId) || HasHostFunctionPermission(function);
         }
 
@@ -76,7 +74,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public bool HasHostMultiPermissions(int affId, string function)
         {
-            var c = AuthService.IsUserHasPermissionOnAff(UserId, affId);
             return HasHostFunctionOrManagePendingAffPermission(affId, function)
                     && AuthService.IsUserHasPermissionOnAff(UserId, affId);
         }
