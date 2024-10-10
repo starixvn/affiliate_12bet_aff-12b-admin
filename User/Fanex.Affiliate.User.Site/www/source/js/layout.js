@@ -123,7 +123,7 @@ var Layout = (function ($) {
                     var $marquee = $("#marquee");
                     $marquee.html(response);
                     // Time = Distance/Speed
-                    var containerWith = $("#marquee").width();
+                    var containerWith = $marquee.width();
                     var timeTaken = containerWith / DEFAULT_SPEED;
 
                     $marquee.css("animation-duration", timeTaken + "s");
@@ -137,9 +137,19 @@ var Layout = (function ($) {
                 let isShowLoginDialog = $("#loginDialog").is(":visible");
 
                 if (!hasDialogCookie && !isShowLoginDialog) {
-                    $("#contactManagerDialog").modal({ backdrop: "static" });
+                    $.ajax({
+                        type: "GET",
+                        url: _me.handleResolveRelativeLangUrl("ContactUs/AffiliateManager"),
+                        dataType: "html",
+                        cache: false,
+                        success: function (response) {
+                            $("#contactAffManager").html(response);
 
-                    document.cookie = "__Contact_Dialog=false; path=/";
+                            $("#contactManagerDialog").modal({ backdrop: "static" });
+
+                            document.cookie = "__Contact_Dialog=false; path=/";
+                        }
+                    });
                 }
             }, 30000);
         },

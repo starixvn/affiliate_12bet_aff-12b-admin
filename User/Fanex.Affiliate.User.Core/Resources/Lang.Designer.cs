@@ -1295,7 +1295,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CONTACT AFFILIATE MANAGER.
+        ///   Looks up a localized string similar to Contact Affiliate Manager.
         /// </summary>
         public static string ContactAffManager {
             get {

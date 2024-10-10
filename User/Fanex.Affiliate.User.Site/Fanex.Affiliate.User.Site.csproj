@@ -1487,6 +1487,7 @@
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.zh-TW.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.zh-TW.webp" />
     <Content Include="www\source\styles\scss\components\_contact-manager-dialog.scss" />
+    <Content Include="Views\ContactUs\AffManagerPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

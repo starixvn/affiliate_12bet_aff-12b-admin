@@ -245,25 +245,7 @@
         </div>
     </div>
 
-    <div class="modal fade contact-manager-dialog" tabindex="-1" role="dialog" id="contactManagerDialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-main-content">
-                    <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <a href="@SystemLanguage.GetAffManagerContactInfo(currentLanguage)" class="contact-manager-dialog-group">
-                            <img class="contact-manager-dialog-img" src="~/www/build/styles/Images/contact-manager/@(currentLanguage).jpg" alt="Contact Affiliate Manager" />
-                            <div class="contact-manager-dialog-btn">
-                                <span class="custom-button">@Lang.ContactAffManager</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="contactAffManager"></div>
 
     <div class="blocker" id="blocker" style="display: none;">
         <div class="sk-cube-grid">
