@@ -1,5 +1,7 @@
 ﻿@using Fanex.Affiliate.User.Core.CoreService
 @using Fanex.Affiliate.User.Core.BusinessService
+@using Fanex.Affiliate.User.Core.Extensions
+
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var settingService = DependencyResolver.Current.GetService<IAppSetting>();
@@ -11,6 +13,9 @@
     var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
     var path = HttpContext.Current.Request.Path;
     var isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated && sessionService.UserSession != null;
+
+    var isProduction = settingService.IsProduction;
+    var shouldApplyGoogleTag = HttpContext.Current.Request.Url.Host.MatchWith("www.12betaffiliate.com");
 }
 
 <!DOCTYPE html>
@@ -59,8 +64,23 @@
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     @RenderSection("styles", required: false)
 
-    @if (!settingService.IsProduction)
+    @if (isProduction)
     {
+        if (shouldApplyGoogleTag)
+        {
+            <!-- Google Tag Manager -->
+            <script>
+                (function (w, d, s, l, i) {
+                    w[l] = w[l] || []; w[l].push({
+                        'gtm.start': new Date().getTime(), event: 'gtm.js'
+                    });
+
+                    var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=&#39;+i+dl;f.parentNode.insertBefore(j,f)';
+                })(window, document, 'script', 'dataLayer', 'GTM-THVXX27Z');
+            </script>
+            <!-- End Google Tag Manager -->
+        }
+
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-9S16RTPV0W"></script>
         <script>
@@ -75,13 +95,22 @@
     }
 </head>
 <body class="@RenderSection("afterLogin", required: false) @currentLanguage">
+    @if (isProduction && shouldApplyGoogleTag)
+    {
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THVXX27Z" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    }
+
     <div class="header">
         <div class="header-top">
             <div class="page-container">
                 <div class="logo-lang">
                     <div class="logo">
                         <a href="@Url.RenderLanguageContent("~/Home")">
-                            <img class="12b" src="~/www/build/styles/Images/logo/@(currentLanguage).png?v=001" alt="logo"  width="230"/>
+                            <img class="12b" src="~/www/build/styles/Images/logo/@(currentLanguage).png?v=001" alt="logo" width="230" />
                         </a>
                     </div>
                     <div class="login">
