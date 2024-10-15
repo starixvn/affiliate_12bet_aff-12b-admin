@@ -71,7 +71,7 @@
 
             var validationResult = _me.validate(username, password, validation);
             if (validationResult.isValid) {
-                var token = $('input[name="__RequestVerificationToken"]', $("#loginDialog")).val();
+                var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
                 var publicKey = AuthHelper.base64DecodeUnicode($("#PublicKey").val());
                 var timeStamp = AuthHelper.getUtcUnixTimeStamp();
 

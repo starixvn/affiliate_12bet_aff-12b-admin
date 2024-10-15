@@ -1,4 +1,80 @@
-﻿<div class="block block-power">
+﻿@model string
+
+<div class="block block-england-calling">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="block-child-title">
+                INGGRIS MEMANGGIL!
+            </div>
+            <div class="block-child-description">
+                Leicester City FC mengundang afiliasi terbaik 12BET untuk menjadi bagian dari Blue Army dari podium tengah King Power Stadium yang ikonik. Tonton pertandingan seperti VIP dari kursi premium dan nikmati lebih banyak keuntungan! Ajak lebih banyak member dan tingkatkan aktivitas Anda mulai hari ini! Bergabunglah dan dapatkan penawaran eksklusif hanya untuk Afiliasi 12BET. Periode promo: 1 Oktober - 31 Desember 2024.
+            </div>
+        </div>
+        @{ Html.RenderPartial("~/Views/Promotion/Partial/_EnglandsCallingTable.cshtml", Model); }
+    </div>
+</div>
+
+<div class="block block-faq">
+    <div class="block-content">
+        <div class="page-container">
+            <div class="group-faq">
+                <div class="question">
+                    <div class="title">
+                        <span>SYARAT & KETENTUAN</span>
+                    </div>
+                    <span class="button-toggle"></span>
+                </div>
+                <div class="anwser">
+                    <div class="anwser-heading">INGGRIS MEMANGGIL!</div>
+                    <div class="anwser-text">
+                        <span class="list-number">1</span> Promosi ini berlaku untuk semua member Afiliasi
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">2</span> Promo berlaku mulai 1 Oktober pukul 00:00:00 (GMT+8) hingga 31 Desember 2024 pukul 23:59:59 (GMT+8)
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">3</span> Afiliasi diharuskan untuk mencapai persyaratan Registrasi, NDP, dan Winloss yang terakumulasi selama periode promo untuk mendapatkan hadiah.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">4</span> Setiap afiliasi hanya dapat memenangkan 1 hadiah dalam promosi ini.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">5</span> Hadiah tidak dapat ditukar ke hadiah lainnya.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">6</span> Hadiah utama adalah menonton langsung pertandingan Leicester City FC vs Newcastle United di Stadion King Power pada tanggal 5 April 2025 dan pemenang harus memberikan informasi pribadi yang benar untuk keperluan akomodasi di Inggris.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">7</span> Jersey & Bola yang ditandatangani beserta gadget akan diproses setelah berhasil menghubungi afiliasi untuk alamat pengiriman dan info kontak yang valid.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">8</span> Pemenang bertanggung jawab untuk mengurus Visa Perjalanan sendiri, asuransi perjalanan, dan makanan tidak ditanggung dalam paket perjalanan.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">9</span> Foto dan video yang diambil selama tur, perjalanan, atau transfer dapat digunakan oleh 12BET untuk keperluan promosi apa pun. Dengan mengklaim paket kami, anggota dengan ini setuju untuk mengizinkan 12BET menggunakan foto dan video ini dan tidak akan ada perselisihan dalam keadaan apa pun.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">10</span> Semua pajak, biaya, dan biaya tambahan pengiriman hadiah menjadi tanggung jawab pemenang sepenuhnya. 12BET tidak bertanggung jawab atas kehilangan atau kerusakan apa pun dalam pengiriman hadiah yang disebabkan oleh informasi yang tidak lengkap/salah yang diberikan oleh pemenang.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">11</span> Apabila pemenang menolak atau tidak dapat dihubungi dalam waktu 10 hari setelah pengumuman pemenang, hadiah akan secara otomatis diberikan kepada pemenang berikutnya.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">12</span> Hadiah uang tunai akan diberikan bersama dengan pembayaran komisi.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">13</span> Penerbangan, tiket pertandingan, dan akomodasi akan diatur dan ditanggung sepenuhnya oleh 12BET.
+                    </div>
+                    <div class="anwser-text">
+                        <span class="list-number">14</span> 12BET berhak untuk membatalkan promosi ini kapan saja, baik untuk semua pemain atau pemain individu dan tunduk pada <a href="@Url.RenderLanguageContent("~/TermAndCondition")"><span class="red-bold">Syarat dan Ketentuan Promosi Standar 12BET</span></a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block block-power">
     <div class="page-container">
         <div class="group-page">
             <div class="block-child-title">
@@ -57,7 +133,7 @@
             <div class="group-faq">
                 <div class="question">
                     <div class="title">
-                        <span>SYARAT DAN KETENTUAN</span>
+                        <span>SYARAT & KETENTUAN</span>
                     </div>
                     <span class="button-toggle"></span>
                 </div>

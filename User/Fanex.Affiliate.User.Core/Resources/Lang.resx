@@ -2353,4 +2353,40 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
   <data name="_12BetNumberGame" xml:space="preserve">
     <value>12Bet Number Game refers to a variety of games that involved selecting and guessing numbers, similar to  lotteries, bingo, or keno. These types of games are popular for their simplicity and potential for large payouts. If you're interested in 12Bet's Number Game or considered trying it out.</value>
   </data>
+  <data name="Prizes" xml:space="preserve">
+    <value>Prizes</value>
+  </data>
+  <data name="RequirementsFor3Months" xml:space="preserve">
+    <value>REQUIREMENT FOR 3 MONTHS PHASE</value>
+  </data>
+  <data name="SignupEnglandCalling" xml:space="preserve">
+    <value>SIGNUP</value>
+  </data>
+  <data name="WinlossInUSD" xml:space="preserve">
+    <value>Winloss ($)</value>
+  </data>
+  <data name="LCFC" xml:space="preserve">
+    <value>LCFC VS NEWCASTLE MATCH TICKETS&lt;br/&gt;+ FREE ACCOMODATIONS FOR 2</value>
+  </data>
+  <data name="SignedLCFCJersey" xml:space="preserve">
+    <value>SIGNED LCFC JERSEY + FOOTBALL + $4,000</value>
+  </data>
+  <data name="MacbookPro" xml:space="preserve">
+    <value>MACBOOK PRO 16' M3 PRO</value>
+  </data>
+  <data name="IPhone16Pro" xml:space="preserve">
+    <value>IPHONE 16 PRO MAX 1TB</value>
+  </data>
+  <data name="SignedLCFCJersey1000" xml:space="preserve">
+    <value>SIGNED LCFC JERSEY + $1,000</value>
+  </data>
+  <data name="SignedLCFCFootball" xml:space="preserve">
+    <value>SIGNED LCFC FOOTBALL + $1,000</value>
+  </data>
+  <data name="ContactAffManager" xml:space="preserve">
+    <value>Contact Affiliate Manager</value>
+  </data>
+  <data name="FdmEnglandCalling" xml:space="preserve">
+    <value>FDM</value>
+  </data>
 </root>

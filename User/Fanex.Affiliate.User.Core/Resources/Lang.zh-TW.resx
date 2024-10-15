@@ -2079,7 +2079,7 @@
     <value>額外佣金比例</value>
   </data>
   <data name="MaxExtraComm" xml:space="preserve">
-    <value>最高額外佣金</value>
+    <value>最高額外佣金 ($)</value>
   </data>
   <data name="BDT" xml:space="preserve">
     <value>BDT</value>
@@ -2245,5 +2245,41 @@
   </data>
   <data name="_12BetNumberGame" xml:space="preserve">
     <value>「12BET百練賽」指的是涉及選擇和猜測數字的各種遊戲，類似於彩票、賓果或快樂彩，這些類型的遊戲因其簡單性和潛在的高額獎金而廣受歡迎。如果對12BET百練賽感到好奇，或許可以考慮嘗試一下。</value>
+  </data>
+  <data name="Prizes" xml:space="preserve">
+    <value>獎品</value>
+  </data>
+  <data name="RequirementsFor3Months" xml:space="preserve">
+    <value>每階段（三個月）的目標與要求</value>
+  </data>
+  <data name="SignupEnglandCalling" xml:space="preserve">
+    <value>註冊</value>
+  </data>
+  <data name="FdmEnglandCalling" xml:space="preserve">
+    <value>首次存款新會員</value>
+  </data>
+  <data name="WinlossInUSD" xml:space="preserve">
+    <value>盈虧（$）</value>
+  </data>
+  <data name="LCFC" xml:space="preserve">
+    <value>【李斯特城 vs 紐卡素聯】比賽門票&lt;br/&gt;+ 2人免費住宿</value>
+  </data>
+  <data name="SignedLCFCJersey" xml:space="preserve">
+    <value>李斯特城簽名球衣+足球+ $4,000</value>
+  </data>
+  <data name="SignedLCFCJersey1000" xml:space="preserve">
+    <value>李斯特城簽名球衣+ $1,000</value>
+  </data>
+  <data name="SignedLCFCFootball" xml:space="preserve">
+    <value>李斯特城簽名足球+ $1,000</value>
+  </data>
+  <data name="MacbookPro" xml:space="preserve">
+    <value>MACBOOK PRO 16' M3 PRO</value>
+  </data>
+  <data name="IPhone16Pro" xml:space="preserve">
+    <value>IPHONE 16 PRO MAX 1TB</value>
+  </data>
+  <data name="ContactAffManager" xml:space="preserve">
+    <value>聯繫合作夥伴經理</value>
   </data>
 </root>

@@ -1295,6 +1295,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact Affiliate Manager.
+        /// </summary>
+        public static string ContactAffManager {
+            get {
+                return ResourceManager.GetString("ContactAffManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Information.
         /// </summary>
         public static string ContactInfo {
@@ -2168,6 +2177,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FDM.
+        /// </summary>
+        public static string FdmEnglandCalling {
+            get {
+                return ResourceManager.GetString("FdmEnglandCalling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FDM Extra Comm.
         /// </summary>
         public static string FdmExtraComm {
@@ -2690,6 +2708,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IPHONE 16 PRO MAX 1TB.
+        /// </summary>
+        public static string IPhone16Pro {
+            get {
+                return ResourceManager.GetString("IPhone16Pro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iran .
         /// </summary>
         public static string Iran {
@@ -2960,6 +2987,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LCFC VS NEWCASTLE MATCH TICKETS&lt;br/&gt;+ FREE ACCOMODATIONS FOR 2.
+        /// </summary>
+        public static string LCFC {
+            get {
+                return ResourceManager.GetString("LCFC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lesotho .
         /// </summary>
         public static string Lesotho {
@@ -3055,6 +3091,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Macao {
             get {
                 return ResourceManager.GetString("Macao", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MACBOOK PRO 16&apos; M3 PRO.
+        /// </summary>
+        public static string MacbookPro {
+            get {
+                return ResourceManager.GetString("MacbookPro", resourceCulture);
             }
         }
         
@@ -4432,6 +4477,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prizes.
+        /// </summary>
+        public static string Prizes {
+            get {
+                return ResourceManager.GetString("Prizes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Processing.
         /// </summary>
         public static string Proccessing {
@@ -4833,6 +4887,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to REQUIREMENT FOR 3 MONTHS PHASE.
+        /// </summary>
+        public static string RequirementsFor3Months {
+            get {
+                return ResourceManager.GetString("RequirementsFor3Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         public static string Reset {
@@ -5067,6 +5130,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SIGNED LCFC FOOTBALL + $1,000.
+        /// </summary>
+        public static string SignedLCFCFootball {
+            get {
+                return ResourceManager.GetString("SignedLCFCFootball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SIGNED LCFC JERSEY + FOOTBALL + $4,000.
+        /// </summary>
+        public static string SignedLCFCJersey {
+            get {
+                return ResourceManager.GetString("SignedLCFCJersey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SIGNED LCFC JERSEY + $1,000.
+        /// </summary>
+        public static string SignedLCFCJersey1000 {
+            get {
+                return ResourceManager.GetString("SignedLCFCJersey1000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign up.
         /// </summary>
         public static string SignUp {
@@ -5081,6 +5171,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SignUpAffiliateProgramNow {
             get {
                 return ResourceManager.GetString("SignUpAffiliateProgramNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SIGNUP.
+        /// </summary>
+        public static string SignupEnglandCalling {
+            get {
+                return ResourceManager.GetString("SignupEnglandCalling", resourceCulture);
             }
         }
         
@@ -6296,6 +6395,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string WinAndLoss {
             get {
                 return ResourceManager.GetString("WinAndLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Winloss ($).
+        /// </summary>
+        public static string WinlossInUSD {
+            get {
+                return ResourceManager.GetString("WinlossInUSD", resourceCulture);
             }
         }
         

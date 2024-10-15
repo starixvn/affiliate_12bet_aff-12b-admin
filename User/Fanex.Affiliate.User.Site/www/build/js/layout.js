@@ -28,6 +28,7 @@ var Layout = (function ($) {
             _me.registerAjaxHandlerError();
             _me.initEvent();
             _me.renderHotNews();
+            _me.renderContactManagerDialog();
         },
         initEvent: function initEvent() {
             $("#selectedLanguage").on("click", function (e) {
@@ -125,12 +126,35 @@ var Layout = (function ($) {
                     var $marquee = $("#marquee");
                     $marquee.html(response);
                     // Time = Distance/Speed
-                    var containerWith = $("#marquee").width();
+                    var containerWith = $marquee.width();
                     var timeTaken = containerWith / DEFAULT_SPEED;
 
                     $marquee.css("animation-duration", timeTaken + "s");
                 }
             });
+        },
+
+        renderContactManagerDialog: function renderContactManagerDialog() {
+            window.setTimeout(function () {
+                var hasDialogCookie = _me.getCookie("__Contact_Dialog");
+                var isShowLoginDialog = $("#loginDialog").is(":visible");
+
+                if (!hasDialogCookie && !isShowLoginDialog) {
+                    $.ajax({
+                        type: "GET",
+                        url: _me.handleResolveRelativeLangUrl("ContactUs/AffiliateManager"),
+                        dataType: "html",
+                        cache: false,
+                        success: function success(response) {
+                            $("#contactAffManager").html(response);
+
+                            $("#contactManagerDialog").modal({ backdrop: "static" });
+
+                            document.cookie = "__Contact_Dialog=false; path=/";
+                        }
+                    });
+                }
+            }, 30000);
         },
 
         changeLanguage: function changeLanguage(selectedLanguage) {
@@ -145,6 +169,42 @@ var Layout = (function ($) {
             }
 
             return Site.resolveRelativeLangUrl(url);
+        },
+
+        getCookie: function getCookie(cookieName) {
+            var name = cookieName + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookies = decodedCookie.split(';');
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = cookies[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var cookie = _step.value;
+
+                    var cookieAfterTrim = cookie.trim();
+
+                    if (cookieAfterTrim.indexOf(name) == 0) {
+                        return cookieAfterTrim.substring(name.length, cookieAfterTrim.length);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator["return"]) {
+                        _iterator["return"]();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return "";
         }
     };
 

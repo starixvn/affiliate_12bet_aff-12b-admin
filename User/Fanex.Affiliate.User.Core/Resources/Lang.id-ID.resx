@@ -2246,4 +2246,40 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="_12BetNumberGame" xml:space="preserve">
     <value>Permainan Angka 12Bet merujuk pada berbagai jenis permainan yang melibatkan pemilihan dan menebak angka, mirip dengan lotere, bingo, atau keno. Jenis permainan ini populer karena kesederhanaannya dan potensi menang besar. Jika Anda tertarik dengan Permainan Angka 12Bet, silahkan untuk langsung mencobanya.</value>
   </data>
+  <data name="Prizes" xml:space="preserve">
+    <value>HADIAH</value>
+  </data>
+  <data name="RequirementsFor3Months" xml:space="preserve">
+    <value>PERSYARATAN UNTUK 3 BULAN</value>
+  </data>
+  <data name="SignupEnglandCalling" xml:space="preserve">
+    <value>REGISTRASI</value>
+  </data>
+  <data name="FdmEnglandCalling" xml:space="preserve">
+    <value>NDP</value>
+  </data>
+  <data name="WinlossInUSD" xml:space="preserve">
+    <value>WINLOSS ($)</value>
+  </data>
+  <data name="LCFC" xml:space="preserve">
+    <value>TIKET PERTANDINGAN LCFC VS NEWCASTLE&lt;br/&gt;+ GRATIS AKOMODASI UNTUK 2 ORANG</value>
+  </data>
+  <data name="SignedLCFCJersey" xml:space="preserve">
+    <value>JERSEY + BOLA LCFC BERTANDA TANGAN + $4,000</value>
+  </data>
+  <data name="SignedLCFCJersey1000" xml:space="preserve">
+    <value>JERSEY LCFC BERTANDA TANGAN + $1,000</value>
+  </data>
+  <data name="MacbookPro" xml:space="preserve">
+    <value>MACBOOK PRO 16' M3 PRO</value>
+  </data>
+  <data name="IPhone16Pro" xml:space="preserve">
+    <value>IPHONE 16 PRO MAX 1TB</value>
+  </data>
+  <data name="SignedLCFCFootball" xml:space="preserve">
+    <value>BOLA LCFC BERTANDA TANGAN + $1,000</value>
+  </data>
+  <data name="ContactAffManager" xml:space="preserve">
+    <value>Hubungi Manajer Afiliasi</value>
+  </data>
 </root>

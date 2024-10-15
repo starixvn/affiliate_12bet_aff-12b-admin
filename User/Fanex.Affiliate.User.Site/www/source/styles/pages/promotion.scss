@@ -7,11 +7,9 @@
 .page-title{
     margin-bottom : 0;
 }
-.block-commission-boost {
-    background: #fff;
-
-    .top-title {
-        color: #D90F0F;
+.block {
+    .block-child-title {
+        color: #FFF;
         font-size: 18px;
         font-weight: 700;
         line-height: normal;
@@ -20,46 +18,26 @@
 
         @include Mobile {
             font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        &.title-spcing {
+            @include Mobile {
+                margin-bottom: 13px;
+            }
         }
     }
 
-    .mid-title {
-        background: linear-gradient(90deg, #D90F0F 0%, #FF8651 77.6%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 22px;
-        font-weight: 700;
+    .block-child-description {
+        color: #353E5B;
+        font-size: 18px;
+        font-weight: 500;
         line-height: normal;
-        text-transform: uppercase;
-        margin-bottom: 10px;
+        margin-bottom: 52px;
 
         @include Mobile {
             font-size: 16px;
-            margin-bottom: 8px;
-        }
-    }
-
-    .description {
-        color: #353E5B;
-        font-size: 16px;
-        line-height: normal;
-        font-weight: 500;
-    }
-}
-
-.block-table {
-    background: #F6F6F6;
-    .table-custom {
-        tbody {
-            tr {
-                background: #fff;
-
-                td {
-                    border-right: 2px solid #F6F6F6;
-                    border-bottom: 2px solid #F6F6F6;
-                }
-            }
+            margin-bottom: 26px;
         }
     }
 }
@@ -100,42 +78,7 @@
     }
 }
 
-.block-child-title {
-    color: #FFF;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: normal;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-
-    @include Mobile {
-        font-size: 16px;
-        margin-bottom: 0;
-    }
-
-    &.title-spcing {
-        @include Mobile {
-            margin-bottom: 13px;
-        }
-    }
-}
-
-.block-child-description {
-    color: #353E5B;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: normal;
-    margin-bottom: 52px;
-
-    @include Mobile {
-        color: #343E5C;
-        font-size: 16px;
-        font-weight: 400;
-        margin-bottom: 26px;
-    }
-}
-
-.block-power {
+.block-england-calling, .block-power {
     background: #fff;
 
     .table-custom {
@@ -153,6 +96,26 @@
 
         @include Mobile {
             margin-bottom: 7px;
+        }
+    }
+}
+
+.block-england-calling {
+    .table-custom {
+        .table-custom-thead > th {
+            border-top: 2px solid #fff !important;
+        }
+    }
+
+    .group-contact-btn {
+        margin-top: 32px;
+        text-align: center;
+
+        .custom-button {
+            @include Mobile {
+                font-size: 14px;
+                padding: 10px 32px;
+            }
         }
     }
 }

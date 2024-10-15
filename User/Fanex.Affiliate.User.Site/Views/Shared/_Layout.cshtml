@@ -10,7 +10,7 @@
     var languageList = systemService.GetSystemTargetLanguages()
                                         .Where(l => !l.LanguageCode.Equals("en-GB") && !l.LanguageCode.Equals("te-IN"));
     var currentLanguage = sessionService.CurrentLanguage;
-    var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(sessionService.CurrentLanguage))?.NativeLanguage;
+    var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(currentLanguage))?.NativeLanguage;
     var path = HttpContext.Current.Request.Path;
     var isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated && sessionService.UserSession != null;
 
@@ -244,6 +244,8 @@
             </div>
         </div>
     </div>
+
+    <div id="contactAffManager"></div>
 
     <div class="blocker" id="blocker" style="display: none;">
         <div class="sk-cube-grid">
