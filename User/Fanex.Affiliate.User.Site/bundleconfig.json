@@ -34,14 +34,14 @@
   //    "www/source/js/pages/products.js"
   //  ]
   //},
-  //{
-  //  "outputFileName": "www/build/js/pages/promotion.js",
-  //  "inputFiles": [
-  //    "www/source/js/lib/swiper.min.js",
-  //    "www/source/js/components/pagetracking.js",
-  //    "www/source/js/pages/promotion.js"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/js/pages/promotion.js",
+    "inputFiles": [
+      "www/source/js/lib/swiper.min.js",
+      "www/source/js/components/pagetracking.js",
+      "www/source/js/pages/promotion.js"
+    ]
+  },
   //{
   //  "outputFileName": "www/build/js/summary.js",
   //  "inputFiles": [

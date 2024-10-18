@@ -133,10 +133,10 @@ var Layout = (function ($) {
 
         renderContactManagerDialog: function () {
             window.setTimeout(function () {
-                let hasDialogCookie = _me.getCookie("__Contact_Dialog");
+                let hasDialogStorage = window.sessionStorage.getItem("__Contact_Dialog");
                 let isShowLoginDialog = $("#loginDialog").is(":visible");
 
-                if (!hasDialogCookie && !isShowLoginDialog) {
+                if (!hasDialogStorage && !isShowLoginDialog) {
                     $.ajax({
                         type: "GET",
                         url: _me.handleResolveRelativeLangUrl("ContactUs/AffiliateManager"),
@@ -147,7 +147,7 @@ var Layout = (function ($) {
 
                             $("#contactManagerDialog").modal({ backdrop: "static" });
 
-                            document.cookie = "__Contact_Dialog=false; path=/";
+                            window.sessionStorage.setItem("__Contact_Dialog", "true");
                         }
                     });
                 }
@@ -166,20 +166,6 @@ var Layout = (function ($) {
             }
 
             return Site.resolveRelativeLangUrl(url);
-        },
-
-        getCookie: function (cookieName) {
-            const name = cookieName + "=";
-            const decodedCookie = decodeURIComponent(document.cookie);
-            const cookies = decodedCookie.split(';');
-            for (const cookie of cookies) {
-                const cookieAfterTrim = cookie.trim();
-
-                if (cookieAfterTrim.indexOf(name) == 0) {
-                    return cookieAfterTrim.substring(name.length, cookieAfterTrim.length);
-                }
-            }
-            return "";
         }
     }
 
