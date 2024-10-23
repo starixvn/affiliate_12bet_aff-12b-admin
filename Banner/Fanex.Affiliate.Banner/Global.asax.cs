@@ -14,7 +14,7 @@
         protected void Application_Start()
         {
             LoggingConfig.RegisterSentry();
-            UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
