@@ -46,5 +46,13 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         string AppMailId { get; }
 
         string AppMailAddress { get; }
+
+        string LicenseeCustDbApiUrl { get; }
+
+        bool IsUseProxyToGetLicenseeCustDbApi { get; }
+
+        string LicenseeCustDbApiProxyUrl { get; }
+
+        string LicenseeCustDbApiAuthenKey { get; }
     }
 }

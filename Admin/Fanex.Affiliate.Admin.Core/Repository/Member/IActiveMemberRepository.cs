@@ -11,8 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
 
         IEnumerable<DepositCustomerInfo> Get12BetPlayersDepositInfo(string userNames);
 
-        ResultInfo Add12BetPlayerAccountToIBC(DepositCustomerInfo param);
-
         void WriteLogAfterAdd12BetPlayerAccountToIBCSuccefully(ActiveMemberParam param, int depositUserId);
 
         ResultInfo Update12BetPlayerStatusToDeposit(string depositUserName, int ibcCustid, string ibcUserName);

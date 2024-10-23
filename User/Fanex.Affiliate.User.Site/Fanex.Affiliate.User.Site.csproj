@@ -186,6 +186,9 @@
       <HintPath>..\..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Refit, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2f9b1262776509f5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Refit.5.0.23\lib\net461\Refit.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
       <Private>True</Private>
@@ -1633,9 +1636,11 @@
     <Error Condition="!Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets'))" />
     <Error Condition="!Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets'))" />
     <Error Condition="!Exists('..\..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Refit.5.0.23\build\net461\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Refit.5.0.23\build\net461\refit.targets'))" />
   </Target>
   <Import Project="..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets" Condition="Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" />
   <Import Project="..\..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets" Condition="Exists('..\..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets')" />
+  <Import Project="..\..\packages\Refit.5.0.23\build\net461\refit.targets" Condition="Exists('..\..\packages\Refit.5.0.23\build\net461\refit.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

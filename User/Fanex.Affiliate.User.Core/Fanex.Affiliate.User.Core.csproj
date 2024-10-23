@@ -144,6 +144,9 @@
       <HintPath>..\..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Refit, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2f9b1262776509f5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Refit.5.0.23\lib\net461\Refit.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
       <Private>True</Private>
@@ -221,7 +224,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apis\ILicenseeCustDbApi.cs" />
     <Compile Include="BusinessService\AccountService.cs" />
+    <Compile Include="BusinessService\Apis\ILicenseeCustDbApiService.cs" />
+    <Compile Include="BusinessService\Apis\LicenseeCustDbApiService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
     <Compile Include="BusinessService\CaptchaService.cs" />
     <Compile Include="BusinessService\CommissionReportService.cs" />
@@ -325,6 +331,7 @@
     <Compile Include="Controllers\UserPanel\StatisticsController.cs" />
     <Compile Include="CoreService\ISessionService.cs" />
     <Compile Include="CoreService\SessionService.cs" />
+    <Compile Include="DTO\Apis\LicenseeCustDbApiResult.cs" />
     <Compile Include="DTO\ContactApp.cs" />
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
     <Compile Include="DTO\DBMode.cs" />
@@ -356,6 +363,7 @@
     <Compile Include="Infrastructure\HttpRequestParserHandler.cs" />
     <Compile Include="Infrastructure\IDateTimeProvider.cs" />
     <Compile Include="Infrastructure\IHttpRequestParserHandler.cs" />
+    <Compile Include="MetalModels\Apis\LicenseeCustDbApiParam.cs" />
     <Compile Include="MetalModels\Email\EmailSignUpParam.cs" />
     <Compile Include="MetalModels\UserPanel\CopiedBannerCounterParam.cs" />
     <Compile Include="MetalModels\UserPanel\FeedbackParam.cs" />
@@ -393,8 +401,7 @@
     <Compile Include="DTO\UserPanel\AffiliateCommission.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
-    <Compile Include="DTO\UserPanel\DepositAccountInfo.cs" />
-    <Compile Include="DTO\UserPanel\IbcPlayerAccountInsertResult.cs" />
+    <Compile Include="DTO\UserPanel\DepositCustomerInfo.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\LandingPage.cs" />
     <Compile Include="DTO\UserPanel\Statistics\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\Banner.cs" />
@@ -709,4 +716,11 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\packages\Refit.5.0.23\build\net461\refit.targets" Condition="Exists('..\..\packages\Refit.5.0.23\build\net461\refit.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Refit.5.0.23\build\net461\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Refit.5.0.23\build\net461\refit.targets'))" />
+  </Target>
 </Project>

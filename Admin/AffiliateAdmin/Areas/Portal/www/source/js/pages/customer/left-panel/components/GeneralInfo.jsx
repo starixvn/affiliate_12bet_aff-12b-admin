@@ -13,7 +13,7 @@ import { claimResource } from '../../../../modules/claim';
 export const GeneralInfo = (props) => {
     const { affiliateInfo, claimsPrincipal, isManagePendingAffVisible, isManagePendingAffModifiable } = props;
     const isApproved = affiliateInfo.Status && affiliateInfo.Status.toLowerCase() === status.Approved;
-    const siteUrl = affiliateInfo.SiteUrl && (affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl);
+    const siteUrl = affiliateInfo.SiteUrl && htmlDecode(affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl);
 
     return (
         <div className="general-info pt-2">
@@ -44,7 +44,7 @@ export const GeneralInfo = (props) => {
                 (claimsPrincipal.hasReadClaim(claimResource.AffPhone) || isManagePendingAffVisible) &&
                 <Row>
                     <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
-                    <ContactNumber sm={7} className='text-right' isStatic={true}>{affiliateInfo.Phone}</ContactNumber>
+                    <ContactNumber sm={7} className='text-right' isStatic={true}>{htmlDecode(affiliateInfo.Phone)}</ContactNumber>
                 </Row>
             }
             <ContactApp />
@@ -69,8 +69,8 @@ export const GeneralInfo = (props) => {
                 <Row>
                     <Col sm={5}>{resource.WebsiteUrl}</Col>
                     <Col sm={7} className='text-right text-truncate'>
-                        <a target='_blank' title={htmlDecode(siteUrl)} href={`http://anonym.to/?${htmlDecode(siteUrl)}`}>
-                            {affiliateInfo.SiteUrl.replace('http://', '').replace('www.', '')}
+                        <a target='_blank' title={siteUrl} href={`http://anonym.to/?${siteUrl}`}>
+                            {affiliateInfo.SiteUrl && htmlDecode(affiliateInfo.SiteUrl.replace('http://', '').replace('www.', ''))}
                         </a>
                     </Col>
                 </Row>

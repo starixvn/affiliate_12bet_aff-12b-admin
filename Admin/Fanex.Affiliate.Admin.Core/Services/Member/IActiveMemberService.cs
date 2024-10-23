@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Member;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Member
 {
@@ -8,6 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
     {
         AllMemberEntities GetAllMembers(string userNames);
 
-        ResultInfo ActiveMember(ActiveMemberParam param);
+        Task<ResultInfo> ActiveMemberAsync(ActiveMemberParam param);
     }
 }

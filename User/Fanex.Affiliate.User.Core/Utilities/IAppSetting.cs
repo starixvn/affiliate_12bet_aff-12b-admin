@@ -68,5 +68,13 @@ namespace Fanex.Affiliate.User.Core.Utilities
         IEnumerable<string> MarketingForCommGroups { get; }
 
         IEnumerable<string> MarketingLandingPages { get; }
+
+        string LicenseeCustDbApiUrl { get; }
+
+        bool IsUseProxyToGetLicenseeCustDbApi { get; }
+
+        string LicenseeCustDbApiProxyUrl { get; }
+
+        string LicenseeCustDbApiAuthenKey { get; }
     }
 }

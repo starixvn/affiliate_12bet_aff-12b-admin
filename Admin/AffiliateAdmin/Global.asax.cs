@@ -18,6 +18,7 @@ namespace AffiliateAdmin
             MvcHandler.DisableMvcResponseHeader = true;
 
             IoCConfig.Register();
+            SslConfig.RegisterHttpSecurityProtocol();
             LoggingConfig.RegisterSentry();
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 

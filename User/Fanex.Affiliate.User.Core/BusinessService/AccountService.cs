@@ -1,10 +1,12 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.BusinessService.Apis;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -14,16 +16,22 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private readonly IEmailService _emailService;
 
+        private readonly ILicenseeCustDbApiService _licenseeCustDbApiService;
+
         private static readonly IDictionary<int, string> MessageByCode = new Dictionary<int, string>
         {
             [101] = Lang.errUserNotFound,
             [102] = Lang.errExistAccount
         };
 
-        public AccountService(IAccountRepository accountRepository, IEmailService emailService)
+        public AccountService(
+            IAccountRepository accountRepository,
+            IEmailService emailService,
+            ILicenseeCustDbApiService licenseeCustDbApiService)
         {
             _accountRepository = accountRepository;
             _emailService = emailService;
+            _licenseeCustDbApiService = licenseeCustDbApiService;
         }
 
         public ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailSignUpParam emailParam)
@@ -72,19 +80,19 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         /// CodeReview:
         /// clean code
         /// </summary>
-        public ResultInfo CheckPlayerAccountIsActived(int affId, string language)
+        public async Task<ResultInfo> CheckPlayerAccountIsActivedAsync(int affId, string language)
         {
             var checkingResult = _accountRepository.CheckPlayerAccountIsActived(affId, language);
 
             if (!checkingResult.IsOk)
             {
-                return ActivePlayerAccount(checkingResult.PlayerUserName);
+                return await ActivePlayerAccountAsync(checkingResult.PlayerUserName);
             }
 
             return checkingResult;
         }
 
-        private ResultInfo ActivePlayerAccount(string playerUserName)
+        private async Task<ResultInfo> ActivePlayerAccountAsync(string playerUserName)
         {
             var depositAccount = _accountRepository.GetDepositPlayerAccount(playerUserName);
 
@@ -97,13 +105,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 };
             }
 
-            var insertingResult = _accountRepository.InsertPlayerAccountForIbc(depositAccount);
-            if (insertingResult.IsOk)
+            var insertingResult = await _licenseeCustDbApiService.Insert12BetPlayerAccountToIBCAsync(depositAccount);
+            if (!insertingResult.IsSuccessful)
             {
-                return UpdatePlayerAccountStatus(playerUserName, insertingResult.CustId, insertingResult.UserName);
+                return new ResultInfo
+                {
+                    IsOk = insertingResult.IsSuccessful,
+                    Message = Lang.errDepositDBConnectFailed
+                };
             }
-
-            return insertingResult;
+            return UpdatePlayerAccountStatus(playerUserName, insertingResult.Result.CustID, insertingResult.Result.Username);
         }
 
         private ResultInfo UpdatePlayerAccountStatus(string playerUserName, int custId, string ibcUserName)

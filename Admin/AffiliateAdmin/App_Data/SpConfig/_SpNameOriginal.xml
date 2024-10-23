@@ -115,7 +115,6 @@
     <Setting Key="Aff_WriteLog" SpName="Aff_WriteLog" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
     <Setting Key="Aff_Admin_ActiveMember_CheckStatus" SpName="Aff_Admin_ActiveMember_CheckStatus" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
     <Setting Key="Aff_Deposit_GetCustDataForCreateIBCACByUserNames" SpName="Aff_Deposit_GetCustDataForCreateIBCACByUserNames" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
-    <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="DBCUST.CustDB.wsv_afinet" />
     <Setting Key="Aff_Deposit_MemberIBCDetail" SpName="Aff_Deposit_MemberIBCDetail" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
     <Setting Key="Aff_Admin_RegisteredMember_Sel" SpName="Aff_Admin_RegisteredMember_Sel" DbName="DBAFF.Affiliate_12bet.wsv_afinet" />
   </Function>

@@ -11,6 +11,7 @@
     using Resources;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel;
@@ -52,7 +53,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePaymentRequest(PaymentCreationParam paymentCreationParam)
+        public async Task<ActionResult> CreatePaymentRequest(PaymentCreationParam paymentCreationParam)
         {
             var resultInfo = new ResultInfo { IsOk = true };
 
@@ -77,7 +78,7 @@
                     CurrentLanguage = SessionService.CurrentLanguage
                 };
 
-                resultInfo = _paymentService.CreatePaymentRequest(paymentCreationParam, emailParam);
+                resultInfo = await _paymentService.CreatePaymentRequestAsync(paymentCreationParam, emailParam);
 
                 if (resultInfo.IsOk)
                 {

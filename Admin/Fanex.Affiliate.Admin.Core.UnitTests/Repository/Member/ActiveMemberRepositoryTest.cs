@@ -106,47 +106,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Member
         }
 
         [Fact]
-        public void Add12BetPlayerAccountToIBC_WhenCallWithValidParam_AddSuccessfully()
-        {
-            // Arrange
-            var repository = new Mock<ActiveMemberRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            objectDb.Setup(obj => obj.GetParameterValue("custid")).Returns(123);
-            objectDb.Setup(obj => obj.GetParameterValue("username")).Returns(DBNull.Value);
-            repository.Setup(re => re.GetObjectDb("Dot_Dep_CustomerInsMember_Ag_Cust", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.Add12BetPlayerAccountToIBC(new DepositCustomerInfo());
-
-            // Assert
-            Assert.True(result.IsSuccessful);
-        }
-
-        [Fact]
-        public void Add12BetPlayerAccountToIBC_WhenCallWithValidParam_AddIsFailed()
-        {
-            // Arrange
-            var repository = new Mock<ActiveMemberRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("Add is failed");
-            objectDb.Setup(obj => obj.GetParameterValue("custid")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("username")).Returns("abc");
-            repository.Setup(re => re.GetObjectDb("Dot_Dep_CustomerInsMember_Ag_Cust", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.Add12BetPlayerAccountToIBC(new DepositCustomerInfo());
-
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal("Add is failed", result.Message);
-        }
-
-        [Fact]
         public void WriteLogAfterAdd12BetPlayerAccountToIBCSuccefully_WhenCallWithValidParam_ExcuteCorrectly()
         {
             // Arrange
