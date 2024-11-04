@@ -48,8 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Member
         {
             if (ModelState.IsValid)
             {
-                param.UserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
+                AssignUserInfoParam(param);
 
                 return new JsonNetResult
                 {

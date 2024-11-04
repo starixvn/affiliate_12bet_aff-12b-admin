@@ -1,4 +1,5 @@
-﻿using Fanex.Data;
+﻿using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Data;
 using Fanex.Logging;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                    .AppendLine("BrowserVer: " + request.Browser.Version)
                    .AppendLine("Agent: " + request.UserAgent)
                    .AppendLine("IP Address: " + request.UserHostAddress)
+                   .AppendLine("Actual IP Address: " + request.GetClientIP())
                    .AppendLine($"Source:{exception.Source}")
                    .AppendLine($"TargetSite:{exception.TargetSite}");
 

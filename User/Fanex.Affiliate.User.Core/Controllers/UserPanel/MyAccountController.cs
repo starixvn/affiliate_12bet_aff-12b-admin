@@ -5,6 +5,7 @@
     using DTO.UserPanel;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Extensions;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
@@ -107,7 +108,7 @@
                 NoSiteDesc = Server.HtmlEncode(model.NoSiteDesc ?? string.Empty),
                 TargetCountryCode = Server.HtmlEncode(model.TargetCountryCode),
                 Player_UserName = model.PlayerUsername,
-                Ip = RequestHelper.GetClientIPAddress(Request),
+                Ip = Request.GetClientIP(),
                 Language = _sessionService.CurrentLanguage,
                 ContactApps = JsonConvert.SerializeObject(model.ContactAppList.Select(p => new ContactApp
                 {

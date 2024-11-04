@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, _systemService.GetTargetCountryListByUser()))
             {
                 var encodeParam = EncodeParam(param);
-                GetUserInfoParam(encodeParam);
+                AssignUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
@@ -105,7 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 var serializedParent = JsonConvert.SerializeObject(encodeParam);
                 UpdateDomainParam newParam = JsonConvert.DeserializeObject<UpdateDomainParam>(serializedParent);
                 newParam.DomainId = param.DomainId;
-                GetUserInfoParam(newParam);
+                AssignUserInfoParam(newParam);
 
                 return new JsonNetResult
                 {
@@ -126,7 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             if (ModelState.IsValid)
             {
-                GetUserInfoParam(param);
+                AssignUserInfoParam(param);
 
                 return new JsonNetResult
                 {
@@ -149,12 +149,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 IsSSL = param.IsSSL,
                 IsAffDomain = param.IsAffDomain
             };
-        }
-
-        private void GetUserInfoParam(UserInfoParam param)
-        {
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
         }
 
         private IEnumerable<TargetCountry> GetVisibleTargetCountryListNotUsingByUser(bool isAffDomain, int domainId)

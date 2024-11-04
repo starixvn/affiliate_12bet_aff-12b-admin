@@ -3,6 +3,7 @@
     using BusinessService;
     using CoreService;
     using DTO;
+    using Fanex.Affiliate.User.Core.Extensions;
     using Fanex.Affiliate.User.Core.Filters;
     using MetalModels;
     using MetalModels.Email;
@@ -72,7 +73,7 @@
             {
                 result.Message = Lang.ErrAuthorized;
             }
-            else if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, RequestHelper.GetClientIPAddress(Request)))
+            else if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.GetClientIP()))
             {
                 result.Message = Lang.ValidationCode;
             }
@@ -84,7 +85,7 @@
                 param.Subject = Server.HtmlEncode(param.Subject);
                 param.Content = Server.HtmlEncode(param.Content);
                 param.Creator = SessionService.UserSession == null ? -1 : SessionService.UserSession.AffId;
-                param.Ip = RequestHelper.GetClientIPAddress(Request);
+                param.Ip = Request.GetClientIP();
                 param.SessionId = Session.SessionID;
                 param.Browser = Request.Browser.Browser;
 

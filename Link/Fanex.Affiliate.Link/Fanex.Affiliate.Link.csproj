@@ -211,6 +211,7 @@
     <Compile Include="App_Start\LoggingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UMConfig.cs" />
+    <Compile Include="Constants\HeaderKey.cs" />
     <Compile Include="Constants\SpecificDomain.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Commands\TrackingSystemCommand.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="DataAccess\Interface\IAffiliateDataAccess.cs" />
     <Compile Include="DataAccess\Interface\ITrackingSystemDataAccess.cs" />
     <Compile Include="DTO\Language.cs" />
+    <Compile Include="Extensions\HttpRequestExtension.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

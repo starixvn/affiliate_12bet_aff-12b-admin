@@ -78,13 +78,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 var paymentRequestUpdateParam = new PaymentUpdateParam
                 {
-                    UserId = SessionService.UserId,
-                    Ip = Request.UserHostAddress,
                     TransId = param.TransId,
                     IsApproved = param.IsApproved,
                     AdminDesc = Server.HtmlEncode(param.AdminDesc),
                     AffDesc = Server.HtmlEncode(param.AffDesc)
                 };
+                AssignUserInfoParam(paymentRequestUpdateParam);
 
                 var emailParam = new PaymentRequestUpdateEmail
                 {

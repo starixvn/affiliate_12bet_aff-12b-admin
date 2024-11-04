@@ -113,7 +113,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             if (ModelState.IsValid && files != null)
             {
                 var encodeParam = EncodeParam(param);
-                GetUserInfoParam(encodeParam);
+                AssignUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
@@ -136,7 +136,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             if (ModelState.IsValid && isValidBannerId && (!string.IsNullOrEmpty(param.InputFileNames) || files != null))
             {
                 var encodeParam = EncodeParam(param);
-                GetUserInfoParam(encodeParam);
+                AssignUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
@@ -157,7 +157,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         {
             if (ModelState.IsValid)
             {
-                GetUserInfoParam(param);
+                AssignUserInfoParam(param);
 
                 return new JsonNetResult
                 {
@@ -192,12 +192,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 Language = Server.HtmlEncode(param.Language),
                 AffTypes = param.AffTypes
             };
-        }
-
-        private void GetUserInfoParam(UserInfoParam param)
-        {
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
         }
     }
 }

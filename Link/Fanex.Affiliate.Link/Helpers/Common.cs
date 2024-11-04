@@ -15,7 +15,6 @@
     public static class Common
     {
         private const int ValidLength = 4;
-        private const string IpRegex = "((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}";
 
         /// <summary>
         /// Contains all operating system mapping.
@@ -100,43 +99,6 @@
             {
                 return null;
             }
-        }
-
-        /// <summary>
-        /// Get IP address from client request.
-        /// </summary>
-        /// <returns>String of IP address.</returns>
-        public static string GetIPAddressOfClient()
-        {
-            string ips = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-            string ip = GetForwardedIPAddress(ips) ?? HttpContext.Current.Request.UserHostAddress;
-
-            if (ip == "::1")
-            {
-                ip = "127.0.0.1";
-            }
-
-            return ip;
-        }
-
-        private static string GetForwardedIPAddress(string ips)
-        {
-            if (string.IsNullOrEmpty(ips))
-            {
-                return null;
-            }
-
-            var ipList = ips.Split(',');
-
-            foreach (var ip in ipList)
-            {
-                if (Regex.IsMatch(ip, IpRegex))
-                {
-                    return ip;
-                }
-            }
-
-            return null;
         }
 
         /// <summary>

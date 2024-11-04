@@ -273,6 +273,7 @@
     <Compile Include="Constants\ControllerName.cs" />
     <Compile Include="Constants\DbParam.cs" />
     <Compile Include="Constants\DefaultValue.cs" />
+    <Compile Include="Constants\HeaderKey.cs" />
     <Compile Include="Constants\Number.cs" />
     <Compile Include="Constants\Page.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
@@ -357,6 +358,7 @@
     <Compile Include="DTO\UserPanel\AccountOverview\PlayerDetail.cs" />
     <Compile Include="DTO\UserPanel\RateInfo.cs" />
     <Compile Include="DTO\UserPanel\Statistics\Country.cs" />
+    <Compile Include="Extensions\HttpRequestExtension.cs" />
     <Compile Include="Filters\AddOnClaimAuthFilter.cs" />
     <Compile Include="Filters\LanguageRouteCheckingAttribute.cs" />
     <Compile Include="Infrastructure\DateTimeProvider.cs" />
@@ -590,7 +592,6 @@
     <Compile Include="CoreService\MemoryCacheService.cs" />
     <Compile Include="Utilities\SystemHelper.cs" />
     <Compile Include="Utilities\Parser.cs" />
-    <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="DTO\UserPanel\AccountInformation.cs" />
     <Compile Include="Utilities\SymmetricEncryptionUtility.cs" />

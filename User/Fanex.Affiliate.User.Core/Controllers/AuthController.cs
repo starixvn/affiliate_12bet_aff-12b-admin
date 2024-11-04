@@ -72,7 +72,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Json(requestValidation);
             }
 
-            userParam.LoginIp = RequestHelper.GetClientIPAddress(Request);
+            userParam.LoginIp = Request.GetClientIP();
             userParam.Language = SessionService.CurrentLanguage;
             userParam.UserAgent = Request.UserAgent;
             userParam.IsVerifyingAccount = false;
@@ -121,7 +121,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 if (admin != null && string.Equals(loginParam.AccKey, hashedPassword))
                 {
                     var internalClaims = AuthService.GetInternalLoginClaim(admin.UserId);
-                    var clientIpAddress = RequestHelper.GetClientIPAddress(Request);
+                    var clientIpAddress = Request.GetClientIP();
                     var userLoginParam = new UserLoginParam
                     {
                         UserName = loginParam.CustName,

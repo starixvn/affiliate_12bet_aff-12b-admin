@@ -130,7 +130,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 var createParam = new CreateUpdateCommissionGroupParam
                 {
                     UserId = SessionService.UserId,
-                    Ip = Request.UserHostAddress,
+                    Ip = Request.GetClientIP(),
                     GroupName = Server.HtmlEncode(commGroup.GroupName.Trim()),
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     QmTurnover = commGroup.QmTurnover,
@@ -174,7 +174,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     UserId = SessionService.UserId,
                     GroupId = commGroup.GroupId,
                     GroupName = Server.HtmlEncode(commGroup.GroupName.Trim()),
-                    Ip = Request.UserHostAddress,
+                    Ip = Request.GetClientIP(),
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     QmTurnover = commGroup.NextQmTurnover,
                     IsApplyBonus = commGroup.NextIsApplyBonus,
@@ -207,8 +207,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 return ModelState.GenerateErrorResult();
             }
 
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
+            AssignUserInfoParam(param);
 
             return new JsonNetResult
             {
@@ -257,7 +256,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     PlatformFeeList = commGroup.PlatformFeeList,
                     OperationalFee = commGroup.OperationalFee,
                     BankingFee = commGroup.BankingFee,
-                    Ip = Request.UserHostAddress
+                    Ip = Request.GetClientIP()
                 };
 
                 var emailParam = new AffInformationEmail
