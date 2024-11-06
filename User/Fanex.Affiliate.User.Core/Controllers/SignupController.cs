@@ -3,6 +3,7 @@
     using BusinessService;
     using CoreService;
     using DTO;
+    using Fanex.Affiliate.User.Core.Extensions;
     using Fanex.Affiliate.User.Core.Filters;
     using MetalModels;
     using MetalModels.Email;
@@ -55,7 +56,7 @@
         public ActionResult Index(UserSignUpParam param)
         {
             var result = new ResultInfo { IsOk = false };
-            if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, RequestHelper.GetClientIPAddress(Request)))
+            if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.GetClientIP()))
             {
                 result.Message = Lang.ValidationCode;
             }
@@ -93,7 +94,7 @@
                     State = Server.HtmlEncode(param.State),
                     Language = SessionService.CurrentLanguage,
                     AffType = _appSetting.AllowedAffiliateTypes.FirstOrDefault(),
-                    Ip = RequestHelper.GetClientIPAddress(Request),
+                    Ip = Request.GetClientIP(),
                     IsLocal = _appSetting.IsLocal
                 };
 

@@ -99,8 +99,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 {
                     IsPendingAff = param.IsPendingAff,
                     AffId = param.AffId,
-                    UserId = SessionService.UserId,
-                    Ip = Request.UserHostAddress,
                     FirstName = Server.HtmlEncode(param.FirstName),
                     LastName = Server.HtmlEncode(param.LastName),
                     Gender = param.Gender,
@@ -128,6 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     Answer = param.Answer,
                     HasWebSite = param.HasWebSite
                 };
+                AssignUserInfoParam(userAccountParam);
 
                 if (param.ContactAppList == null || param.ContactAppList.All(c => string.IsNullOrEmpty(c.Value)))
                 {

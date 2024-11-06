@@ -33,8 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 param.OldPassword = CryptographyHelper.Encrypt(param.OldPassword.Trim());
                 param.NewPassword = CryptographyHelper.Encrypt(param.NewPassword.Trim());
-                param.UserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
+                AssignUserInfoParam(param);
 
                 return new JsonNetResult
                 {

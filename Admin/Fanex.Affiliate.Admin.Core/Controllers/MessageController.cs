@@ -74,7 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             if (param.IsValid())
             {
                 var encodeParam = EncodeParam(param);
-                GetUserInfoParam(encodeParam);
+                AssignUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
@@ -97,7 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             if (param.IsValid() && isValidMessageId)
             {
                 var encodeParam = EncodeParam(param);
-                GetUserInfoParam(encodeParam);
+                AssignUserInfoParam(encodeParam);
 
                 return new JsonNetResult
                 {
@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                GetUserInfoParam(param);
+                AssignUserInfoParam(param);
 
                 return new JsonNetResult
                 {
@@ -150,12 +150,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 MessageContentKr = Server.HtmlEncode(param.MessageContentKr),
                 MessageContentJp = Server.HtmlEncode(param.MessageContentJp)
             };
-        }
-
-        private void GetUserInfoParam(UserInfoParam param)
-        {
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             if (ModelState.IsValid)
             {
                 param.ByUserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
+                param.Ip = Request.GetClientIP();
 
                 return new JsonNetResult
                 {

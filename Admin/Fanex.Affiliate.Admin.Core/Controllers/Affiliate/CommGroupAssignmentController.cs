@@ -61,8 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 return ModelState.GenerateErrorResult();
             }
 
-            assignParam.UserId = SessionService.UserId;
-            assignParam.Ip = Request.UserHostAddress;
+            AssignUserInfoParam(assignParam);
             assignParam.AffId = affInfo.AffId;
 
             var emailParam = new AffInformationEmail

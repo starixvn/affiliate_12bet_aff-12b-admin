@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
@@ -54,7 +55,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                 {
                     param.AffId = SessionService.UserSession.AffId;
                     param.Message = string.IsNullOrEmpty(param.Message) ? string.Empty : Server.HtmlEncode(param.Message.Trim());
-                    param.Ip = RequestHelper.GetClientIPAddress(Request);
+                    param.Ip = Request.GetClientIP();
 
                     return Json(_feedbackService.Insert(param));
                 }
@@ -75,7 +76,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                 {
                     RateId = ClosedFeedback,
                     AffId = SessionService.UserSession.AffId,
-                    Ip = RequestHelper.GetClientIPAddress(Request)
+                    Ip = Request.GetClientIP()
                 };
 
                 return Json(_feedbackService.Insert(param));

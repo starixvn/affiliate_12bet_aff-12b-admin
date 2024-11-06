@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 var param = new MassAdjustmentParam
                 {
                     UserId = SessionService.UserId,
-                    Ip = Request.UserHostAddress
+                    Ip = Request.GetClientIP()
                 };
                 var data = _massAdjustmentService.UpdateMassAdjusment(file, param);
                 return new JsonNetResult

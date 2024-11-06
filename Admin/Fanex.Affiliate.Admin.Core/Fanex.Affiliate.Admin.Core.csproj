@@ -264,12 +264,14 @@
     <Compile Include="Constants\DeductionId.cs" />
     <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
+    <Compile Include="Constants\HeaderKey.cs" />
     <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\ManageCommGroup.cs" />
     <Compile Include="Constants\Menu.cs" />
     <Compile Include="Constants\NoteType.cs" />
     <Compile Include="Constants\ProcessingRequestStatus.cs" />
     <Compile Include="DTO\Apis\LicenseeCustDbApiResult.cs" />
+    <Compile Include="Extensions\HttpRequestExtension.cs" />
     <Compile Include="MetaModels\Apis\LicenseeCustDbApiParam.cs" />
     <Compile Include="Services\Apis\ILicenseeCustDbApiService.cs" />
     <Compile Include="Services\Apis\LicenseeCustDbApiService.cs" />

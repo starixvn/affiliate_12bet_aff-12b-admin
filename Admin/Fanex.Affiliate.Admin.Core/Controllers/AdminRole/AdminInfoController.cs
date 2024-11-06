@@ -172,7 +172,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         private void GetUserInfoParam(AdminInfoParam param)
         {
             param.ByUserId = _sessionService.UserId;
-            param.Ip = Request.UserHostAddress;
+            param.Ip = Request.GetClientIP();
         }
 
         private void UpdateClaims(bool isSuccessful, AdminInfoParam param)

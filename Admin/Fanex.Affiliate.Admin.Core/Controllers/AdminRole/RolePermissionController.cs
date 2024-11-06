@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.AdminRole;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -48,8 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         {
             if (ModelState.IsValid)
             {
-                param.UserId = _sessionService.UserId;
-                param.Ip = Request.UserHostAddress;
+                AssignUserInfoParam(param);
 
                 var result = _rolePermissionService.UpdatePermissionInfo(param);
 
@@ -69,8 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
         {
             if (ModelState.IsValid)
             {
-                param.UserId = _sessionService.UserId;
-                param.Ip = Request.UserHostAddress;
+                AssignUserInfoParam(param);
 
                 var result = _rolePermissionService.UpdateMarketInfoList(param);
 
@@ -81,6 +80,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.AdminRole
             }
 
             return ModelState.GenerateErrorResult();
+        }
+
+        private void AssignUserInfoParam(UserInfoParam param)
+        {
+            param.UserId = _sessionService.UserId;
+            param.Ip = Request.GetClientIP();
         }
     }
 }

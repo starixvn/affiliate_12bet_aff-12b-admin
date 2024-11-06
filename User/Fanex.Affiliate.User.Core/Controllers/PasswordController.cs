@@ -62,7 +62,7 @@
             var param = new UserInfoByEmailParam
             {
                 Email = email.Trim(),
-                Ip = RequestHelper.GetClientIPAddress(),
+                Ip = Request.GetClientIP(),
                 ValidCode = code,
                 Language = SessionService.CurrentLanguage
             };
@@ -110,7 +110,7 @@
                 AffId = uid,
                 ValidCode = vid,
                 NewPassword = CryptographyHelper.Encrypt(newPassword),
-                Ip = RequestHelper.GetClientIPAddress(Request),
+                Ip = Request.GetClientIP(),
                 Language = SessionService.CurrentLanguage
             };
 
@@ -191,7 +191,7 @@
                 param.OldPassword = _cryptographyService.EncryptPassword(_appSetting.RsaPrivateKey, param.OldPassword);
 
                 param.AffId = SessionService.UserSession.AffId;
-                param.Ip = RequestHelper.GetClientIPAddress();
+                param.Ip = Request.GetClientIP();
                 param.Language = SessionService.CurrentLanguage;
 
                 var updateResult = _accountRepository.UpdatePassword(param);

@@ -74,10 +74,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 var updateLanguageParam = new UpdateLanguageParam
                 {
                     AffId = param.AffId,
-                    UserId = _sessionService.UserId,
-                    Ip = Request.UserHostAddress,
                     PreferredLanguage = Server.HtmlEncode(param.PreferredLanguage)
                 };
+                AssignParam(param);
 
                 return new JsonNetResult
                 {
@@ -119,10 +118,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 var updateStatusParam = new UpdateStatusParam
                 {
                     AffId = param.AffId,
-                    UserId = _sessionService.UserId,
-                    Ip = Request.UserHostAddress,
                     Status = Server.HtmlEncode(param.Status)
                 };
+                AssignParam(updateStatusParam);
 
                 var emailParam = new AffInformationEmail
                 {
@@ -162,7 +160,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         private void AssignParam(AffiliateBasicInfoParam param)
         {
             param.UserId = _sessionService.UserId;
-            param.Ip = Request.UserHostAddress;
+            param.Ip = Request.GetClientIP();
         }
     }
 }

@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesNotBlockedByUser(param.AffDomainId, param.RedirectDomainId)))
             {
-                GetUserInfoParam(param);
+                AssignUserInfoParam(param);
 
                 return new JsonNetResult
                 {
@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesNotBlockedByUser(param.AffDomainId, param.RedirectDomainId)))
             {
-                GetUserInfoParam(param);
+                AssignUserInfoParam(param);
 
                 return new JsonNetResult
                 {
@@ -113,7 +113,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         {
             if (ModelState.IsValid)
             {
-                GetUserInfoParam(param);
+                AssignUserInfoParam(param);
 
                 return new JsonNetResult
                 {
@@ -125,12 +125,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             {
                 Data = ResultInfo.GenerateErr("The Domain Control is incorrect!")
             };
-        }
-
-        private void GetUserInfoParam(UserInfoParam param)
-        {
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
         }
 
         private IEnumerable<TargetCountry> GetVisibleTargetCountriesNotBlockedByUser(int affDomainId, int redirectDomainId)

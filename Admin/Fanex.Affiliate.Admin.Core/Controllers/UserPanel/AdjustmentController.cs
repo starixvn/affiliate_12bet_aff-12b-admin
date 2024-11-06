@@ -57,12 +57,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     var adjustmentParam = new AdjustmentParam
                     {
                         AffId = param.AffId,
-                        UserId = SessionService.UserId,
-                        Ip = Request.UserHostAddress,
                         Amount = param.Amount,
                         Description = Server.HtmlEncode(param.Description),
                         AffDescription = Server.HtmlEncode(param.AffDescription)
                     };
+                    AssignUserInfoParam(adjustmentParam);
 
                     return Json(_adjustmentService.InsertAdjustment(adjustmentParam));
                 }
