@@ -1,4 +1,4 @@
-﻿namespace Affiliate.Banner.App_Start
+﻿namespace Affiliate.Banner
 {
     using Fanex.Logging;
     using Fanex.Logging.Sentry.RavenClient;
@@ -18,7 +18,7 @@
             var category = appSetting.Get("LoggingCategory");
             var isRegisterSentry = string.Equals(appSetting.Get("IsRegisterSentry"), "true", StringComparison.CurrentCultureIgnoreCase);
 
-            if(isRegisterSentry && !string.IsNullOrEmpty(backEndDsn))
+            if (isRegisterSentry && !string.IsNullOrEmpty(backEndDsn))
             {
                 LogManager.SetDefaultLogCategory(category).Use(new List<ILogEngine>
                 {
