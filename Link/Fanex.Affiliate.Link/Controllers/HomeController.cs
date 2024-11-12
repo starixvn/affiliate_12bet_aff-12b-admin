@@ -2,17 +2,17 @@
 
 namespace Fanex.Affiliate.Link.Controllers
 {
-    using System;
-    using System.Globalization;
-    using System.Linq;
-    using System.Web.Mvc;
     using Commands;
-    using Fanex.Affiliate.Link.Constants;
+    using Fanex.Affiliate.Link.DataAccess.Impl;
+    using Fanex.Affiliate.Link.DataAccess.Interface;
     using Fanex.Affiliate.Link.Extensions;
+    using Fanex.Logging;
     using Helpers;
     using ONEbook.UM.AspNetMVC.Filters;
     using Services.Impl;
     using Services.Interface;
+    using System;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Home controller for affiliate link.
@@ -20,21 +20,16 @@ namespace Fanex.Affiliate.Link.Controllers
     [CheckUMFilter]
     public class HomeController : Controller
     {
-        private const string LOCAL_ENV = "LOCAL";
-        private const string SPECIAL_PAGE_CODE = "12sports";
-        private const string OLD_MKT_SIGNUP_PAGE_CODE = "inrsignup";
-        private const string NEW_MKT_SIGNUP_PAGE_CODE = "mktsignup";
-        private readonly string[] SpecialSubPageCodes = new [] { "cricket", "virtualsports" };
-
-        private static readonly string[] MarketingForCommGroups = ConfigurationManager.AppSettings["MarketingForCommGroups"].ToString().Split(',');
-        private static readonly string[] MarketingLandingPages = ConfigurationManager.AppSettings["MarketingLandingPages"].ToString().Split(',');
-        private static readonly bool IsRemovePortFromUrl = string.Equals(ConfigurationManager.AppSettings["RemovePortFromUrl"].ToString(), "1", StringComparison.OrdinalIgnoreCase);
-        private static readonly bool IsLocal = string.Equals(ConfigurationManager.AppSettings["Environment"].ToString(), LOCAL_ENV, StringComparison.OrdinalIgnoreCase);
-        
         #region Services
 
         private readonly ITrackingSystemService _trackingSystemService;
-        private readonly IAffiliateService _affiliateService;
+        private readonly IGeneralAffiliateInfoDataAccess _generalAffiliateInfoDataAccess;
+
+        private const string BENGALI_SHORTED_CODE = "bn";
+        private const string BENGALI_COUNTRY_CODE = "bd";
+
+        private const string LinkIsInvalidMessage = "This link does not exists. Please contact administrator!";
+        private const string LinkIsIncorrectMessage = "This link is incorrect. Please contact administrator!";
 
         #endregion Services
 
@@ -43,7 +38,7 @@ namespace Fanex.Affiliate.Link.Controllers
         public HomeController()
         {
             _trackingSystemService = new TrackingSystemService();
-            _affiliateService = new AffiliateService();
+            _generalAffiliateInfoDataAccess = new GeneralAffiliateInfoDataAccess();
         }
 
         #endregion Constructor
@@ -65,47 +60,50 @@ namespace Fanex.Affiliate.Link.Controllers
             return View();
         }
 
-        public ActionResult Link(int affId, string pageCode, string lang)
+        public ActionResult OldLink(int affId, string pageId, string lang = null)
         {
-            var targetCountryCode = _affiliateService.GetTargetCountryCodeByLanguage(lang);
-
-            if (targetCountryCode is null)
+            try
             {
-                return IvalidLink();
-            }
+                var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
+                var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affId: affId);
 
-            return InsertAffiliate(affId, pageCode, lang, targetCountryCode);
+                if (string.IsNullOrEmpty(affInfo.affCode))
+                {
+                    ViewBag.Result = LinkIsInvalidMessage;
+
+                    return View("Link");
+                }
+
+                return InsertAffiliate(affInfo.affCode, pageId, lang, affDomain);
+            }
+            catch (Exception ex)
+            {
+                LogService.Error($"{ex.Message}", ex);
+                ViewBag.Result = LinkIsIncorrectMessage;
+                return View("Link");
+            }
         }
 
-        public ActionResult CommonLink(int affId, string pageCode, string lang, string targetCountry)
+        public ActionResult Link(string pageId, string affCode = null, string lang = null)
         {
-            //Check "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}" case
-            if (IsMatching(pageCode, SPECIAL_PAGE_CODE) && SpecialSubPageCodes.Any(s => IsMatching(s, lang)))
+            try
             {
-                return Link(affId, pageCode: $"{pageCode}/{lang}", lang: targetCountry);
+                var affDomain = GetFullAffDomain(GetOriginalUrl(), pageId);
+
+                return InsertAffiliate(affCode, pageId, lang, affDomain);
             }
-
-            var targetCountryCode = _affiliateService.GetTargetCountryCodeByLanguage(lang);
-
-            if (targetCountryCode is null || !IsMatching(targetCountry.ToUpperInvariant(), targetCountryCode))
+            catch (Exception ex)
             {
-                return IvalidLink();
+                LogService.Error($"{ex.Message}", ex);
+                ViewBag.Result = LinkIsIncorrectMessage;
+                return View("Link");
             }
-
-            return InsertAffiliate(affId, pageCode, lang, targetCountry);
         }
 
-        public ActionResult SpecialPageCodeLink(int affId, string pageCodePart1, string pageCodePart2, string lang, string targetCountry)
+        private ActionResult InsertAffiliate(string affCode, string pageId, string lang, string affDomain)
         {
-            return InsertAffiliate(affId, $"{pageCodePart1}/{pageCodePart2}", lang, targetCountry);
-        }
-
-        private ActionResult InsertAffiliate(int affId, string pageCode, string lang, string targetCountry)
-        {
-
             if (Request.Url != null)
             {
-                var affDomain = GetFullAffDomain(Request.Url.ToString(), affId);
                 var urlReferrer = Request.UrlReferrer?.AbsoluteUri;
                 var domainReferrer = Request.UrlReferrer?.Host;
 
@@ -118,10 +116,9 @@ namespace Fanex.Affiliate.Link.Controllers
                 var command = new TrackingSystemCommand
                 {
                     AffDomain = affDomain,
-                    AffiliateID = affId,
-                    PageCode = IsMatching(pageCode, OLD_MKT_SIGNUP_PAGE_CODE) ? NEW_MKT_SIGNUP_PAGE_CODE : pageCode,
+                    AffCode = affCode,
+                    PageCode = pageId,
                     LanguageCode = lang,
-                    TargetCountryCode = targetCountry.ToUpperInvariant(),
                     DeviceType = GetDeviceType(),
                     IP = Request.GetClientIP(),
                     Browser = Request.Browser.Browser,
@@ -136,42 +133,27 @@ namespace Fanex.Affiliate.Link.Controllers
                                               : Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"],
                     UserAgent = Request.UserAgent,
                     Country = Common.GetCountry(),
-
+                    AffMediaLink = GetOriginalUrl()
                 };
-
-                HandleFakeSpecificDomainOnLocal(command);
 
                 var redirectUrl = _trackingSystemService.InsertStatistic(command);
 
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {
-                    var isMarketingLandingPage = MarketingLandingPages.Any(l => IsMatching(l, pageCode));
+                    var result = HandleRedirectUrl(redirectUrl, pageId, command.LanguageCode, affCode);
 
-                    if (!isMarketingLandingPage)
-                    {
-                        return Redirect(redirectUrl);
-                    }
-
-                    if (isMarketingLandingPage && IsValidAffMarketing(affId))
-                    {
-                        return Redirect(redirectUrl);
-                    }
+                    return Redirect(result);
                 }
+
+                ViewBag.Result = LinkIsInvalidMessage;
             }
-
-            return IvalidLink();
-        }
-
-        private ActionResult IvalidLink()
-        {
-            ViewBag.Result = "This link does not exists. Please contact administrator!";
 
             return View("Link");
         }
 
-        private string GetFullAffDomain(string url, int affId)
+        private static string GetFullAffDomain(string url, string endPointOfAffDomain)
         {
-            if (IsRemovePortFromUrl)
+            if (byte.Parse(ConfigurationManager.AppSettings["RemovePortFromUrl"]) == 1)
             {
                 var uri = new Uri(url);
                 url = url.Replace(":" + uri.Port, string.Empty);
@@ -179,46 +161,51 @@ namespace Fanex.Affiliate.Link.Controllers
 
             const string slashString = "://";
             var pos1 = url.IndexOf(slashString, 0, StringComparison.OrdinalIgnoreCase);
-            var pos2 = url.IndexOf("/" + affId.ToString(CultureInfo.InvariantCulture), 0, StringComparison.OrdinalIgnoreCase);
+            var pos2 = url.IndexOf("/" + endPointOfAffDomain, 0, StringComparison.OrdinalIgnoreCase);
 
             return url.Substring(pos1 + slashString.Length, pos2 - (pos1 + slashString.Length));
         }
 
-        private byte GetDeviceType()
+        private string GetOriginalUrl()
+        {
+            var host = Request.Headers["Host"] ?? Request.Url.Host;
+            var scheme = GetOriginalProtocol();
+            var path = Request.Url.AbsolutePath;
+            return $"{scheme}://{host}{path}";
+        }
+
+        private static byte GetDeviceType()
         {
             return (byte)(Common.IsMobile() ? 1 : 0);
         }
 
-        private void HandleFakeSpecificDomainOnLocal(TrackingSystemCommand param)
+        private static string HandleRedirectUrl(string redirectUrl, string pageId, string languageCode, string affCode)
         {
-            if(IsLocal)
+            var customLanguageCode = languageCode;
+            if (string.Equals(BENGALI_SHORTED_CODE, languageCode, StringComparison.OrdinalIgnoreCase))
             {
-                var affId = param.AffiliateID.ToString();
-
-                if (SpecificDomain.FakeSpecificDomainByAffOnLocal.TryGetValue(affId, out string fakeInfo))
-                {
-                    var infos = fakeInfo.Split(',');
-                    var fakeDomain = infos[0];
-
-                    if(param.AffDomain.Contains(fakeDomain))
-                    {
-                        var realDomain = infos[1];
-                        param.AffDomain = param.AffDomain.Replace(fakeDomain, realDomain);
-                    }    
-                }
+                customLanguageCode = BENGALI_COUNTRY_CODE;
             }
-        }
-        
-        private bool IsValidAffMarketing(int affId)
-        {
-            var commGroup = _affiliateService.GetCommGroupByAffId(affId);
 
-            return MarketingForCommGroups.Any(c => IsMatching(c, commGroup));
+            var redirectPattern = ConfigurationManager.AppSettings[$"Redirect_{pageId.ToLowerInvariant()}_pattern"];
+
+            if (!string.IsNullOrEmpty(redirectPattern))
+            {
+                var redirectUri = new Uri(redirectUrl);
+                var pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode).Replace("#affCode#", affCode);
+                return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}";
+            }
+
+            return redirectUrl.Replace($"/{languageCode}/", $"/{customLanguageCode}/");
         }
 
-        private bool IsMatching(string value, string strToMatch)
+        private string GetOriginalProtocol()
         {
-            return string.Equals(value, strToMatch, StringComparison.OrdinalIgnoreCase);
+            var refLink = Request["Referer"];
+            var url = string.IsNullOrWhiteSpace(refLink) ? Request.Url : new Uri(refLink);
+            var protos = Request.ServerVariables["HTTP_X_FORWARDED_PROTO"]?.Split(',');
+            var origProto = protos != null && protos.Length > 0 ? protos[0].Trim() : url.Scheme;
+            return origProto;
         }
     }
 }

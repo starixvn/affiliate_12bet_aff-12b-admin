@@ -16,6 +16,7 @@
         protected void Application_Start()
         {
             LoggingConfig.RegisterSentry();
+
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -23,7 +24,7 @@
 
             DbSettingProviderManager
                 .StartNewSession()
-                .WithSqlServer("~/App_Data/SpName.xml")
+                .WithSqlServer("~/App_Data/SpNames.xml")
                 .Run();
         }
 

@@ -3,17 +3,15 @@
     using Data.Repository;
 
     /// <summary>
-    /// Tracking System Criteria.
+    /// Tracking System Command.
     /// </summary>
     public class TrackingSystemCommand : NonQueryCommand
     {
-        public int AffiliateID { get; set; }
+        public string AffCode { get; set; }
 
         public string AffDomain { get; set; }
 
         public string PageCode { get; set; }
-
-        public string TargetCountryCode { get; set; }
 
         public string LanguageCode { get; set; }
 
@@ -49,9 +47,11 @@
 
         public string ErrMsg { get; set; }
 
+        public string AffMediaLink { get; set; }
+
         public override string GetSettingKey()
         {
-            return "Aff_AffiliateInsClickStatistics_New";
+            return "Aff_AffiliateInsClickStatistics";
         }
 
         public override bool IsValid()

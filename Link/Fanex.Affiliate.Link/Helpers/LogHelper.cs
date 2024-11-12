@@ -114,7 +114,8 @@ namespace Fanex.Affiliate.Link.Helpers
 
             if (exception.InnerException != null && limitedInnerException > 0)
             {
-                AddExceptionInfo(builder, exception.InnerException, --limitedInnerException);
+                var innerExceptionLevel = limitedInnerException - 1;
+                AddExceptionInfo(builder, exception.InnerException, innerExceptionLevel);
             }
         }
     }

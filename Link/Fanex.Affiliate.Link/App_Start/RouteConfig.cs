@@ -17,23 +17,6 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-               name: "LinkNoLanguage",
-               url: "{affId}/{pageCode}/index.html",
-               defaults:
-               new
-               {
-                   controller = "Home",
-                   action = "Link",
-                   affId = UrlParameter.Optional,
-                   pageCode = UrlParameter.Optional
-               },
-               constraints:
-               new
-               {
-                   affId = @"\d+"
-               });
-
-            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults:
@@ -45,61 +28,49 @@
                 });
 
             routes.MapRoute(
-               name: "Link",
-               url: "{affId}/{pageCode}/{lang}/index.html",
+                name: "OldLink",
+                url: "{affId}/{pageId}/{lang}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "OldLink",
+                    affId = UrlParameter.Optional,
+                    pageCode = UrlParameter.Optional,
+                    lang = UrlParameter.Optional
+                },
+                constraints:
+                new
+                {
+                    affId = @"\d+"
+                });
+
+            routes.MapRoute(
+               name: "ChannelLink",
+               url: "{pageId}/{affCode}/{lang}/{channel}/index.html",
                defaults:
                new
                {
                    controller = "Home",
                    action = "Link",
-                   affId = UrlParameter.Optional,
-                   pageCode = UrlParameter.Optional,
-                   lang = UrlParameter.Optional
-               },
-               constraints:
-               new
-               {
-                   affId = @"\d+"
+                   pageId = UrlParameter.Optional,
+                   affCode = UrlParameter.Optional,
+                   lang = UrlParameter.Optional,
+                   channel = UrlParameter.Optional
                });
 
             routes.MapRoute(
-                name: "CommonLink",
-                url: "{affId}/{pageCode}/{lang}/{targetCountry}/index.html", //May be "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}"
-                defaults:
-                new
-                {
-                    controller = "Home",
-                    action = "CommonLink",
-                    affId = UrlParameter.Optional,
-                    pageCode = UrlParameter.Optional,
-                    lang = UrlParameter.Optional,
-                    targetCountry = UrlParameter.Optional
-                },
-                constraints:
-                new
-                {
-                    affId = @"\d+"
-                });
-
-            routes.MapRoute(
-                name: "SpecialPageCodeLink",
-                url: "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}/{targetCountry}/index.html",
-                defaults:
-                new
-                {
-                    controller = "Home",
-                    action = "SpecialPageCodeLink",
-                    affId = UrlParameter.Optional,
-                    pageCodePart1 = UrlParameter.Optional,
-                    pageCodePart2 = UrlParameter.Optional,
-                    lang = UrlParameter.Optional,
-                    targetCountry = UrlParameter.Optional
-                },
-                constraints:
-                new
-                {
-                    affId = @"\d+"
-                });
+               name: "Link",
+               url: "{pageId}/{affCode}/{lang}/index.html",
+               defaults:
+               new
+               {
+                   controller = "Home",
+                   action = "Link",
+                   pageId = UrlParameter.Optional,
+                   affCode = UrlParameter.Optional,
+                   lang = UrlParameter.Optional
+               });
 
             routes.IgnoreRoute("go");
         }
