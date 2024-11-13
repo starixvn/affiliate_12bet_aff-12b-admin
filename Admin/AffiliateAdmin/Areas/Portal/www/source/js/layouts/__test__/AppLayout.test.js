@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
 
-import AppLayout from '../AppLayout'
+import AppLayout from '../AppLayout';
 
 const defaultProps = {
    children: '<h1>App Layout</h1>'
@@ -9,8 +9,8 @@ const defaultProps = {
 
 describe('AppLayout ', () => {
    it('render - content match with snapshot', () => {
-       const appLayout = shallow(<AppLayout {...defaultProps} />);
+      const appLayout = shallow(<AppLayout {...defaultProps} />);
 
-       expect(appLayout).toMatchSnapshot();
+      expect(appLayout).toMatchSnapshot();
    })
 })

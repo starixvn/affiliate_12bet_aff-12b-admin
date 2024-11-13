@@ -1,10 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -17,10 +15,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
     public class LandingPageStatisticsControllerTest
     {
         [Fact]
-        public void GetLandingPageStatistics_WhenCallWithValidParamByCountry_ExcuteWithCorrectData()
+        public void GetLandingPageStatistics_WhenCallWithValidParam_ExcuteWithCorrectData()
         {
             // Arrange
-            var param = new LandingPageStatisticsParam { GroupBy = "Country" };
+            var param = new LandingPageStatisticsParam();
             LandingPageStatisticsParam passedParam = null;
             var landingPageStatisticsRepository = new Mock<ILandingPageStatisticsRepository>();
             landingPageStatisticsRepository.Setup(t => t.GetLandingPageStatisticsList(param)).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() }).Callback<LandingPageStatisticsParam>(p => passedParam = p);
@@ -33,34 +31,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Assert
             Assert.Single(entityResult);
             Assert.Equal(param, passedParam);
-        }
-
-        [Theory]
-        [InlineData("")]
-        [InlineData("ab")]
-        [InlineData("en")]
-        public void GetLandingPageStatistics_WhenCallWithValidParamByLanguage_ExcuteWithCorrectData(string languageCode)
-        {
-            // Arrange
-            var param = new LandingPageStatisticsParam { GroupBy = "Language", LanguageCode = languageCode };
-            var systemServive = new Mock<ISystemService>();
-            systemServive.Setup(c => c.GetInChangeMarkets()).Returns(new List<Language>
-            {
-                new Language
-                {
-                    ShortedCode = "en"
-                }
-            });
-            var landingPageStatisticsRepository = new Mock<ILandingPageStatisticsRepository>();
-            landingPageStatisticsRepository.Setup(t => t.GetLandingPageStatisticsList(param)).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() });
-            var controller = CreateLandingPageStatisticsController(null, systemServive.Object, null, landingPageStatisticsRepository.Object);
-
-            // Action
-            var result = controller.GetLandingPageStatisticsList(param) as JsonNetResult;
-            var entityResult = result.Data as IEnumerable<LandingPageStatistics>;
-
-            // Assert
-            Assert.Single(entityResult);
         }
 
         [Fact]
@@ -113,17 +83,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private LandingPageStatisticsController CreateLandingPageStatisticsController(
             ISessionService sessionService = null,
-            ISystemService systemServive = null,
-            ILandingPageRepository landingPageRepository = null,
             ILandingPageStatisticsRepository landingPageStatisticsRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
-            var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
             var fakeLandingPageStatisticsRepository = landingPageStatisticsRepository ?? Mock.Of<ILandingPageStatisticsRepository>();
 
-            return new LandingPageStatisticsController(fakeSessionService, fakesystemServive, fakeLandingPageRepository, fakeLandingPageStatisticsRepository);
+            return new LandingPageStatisticsController(fakeSessionService, fakeLandingPageStatisticsRepository);
         }
     }
 }

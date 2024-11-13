@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.ChangeAdminPassword;
 using Fanex.Affiliate.Admin.Core.Services.ChangeAdminPassword;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -35,13 +34,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 param.NewPassword = CryptographyHelper.Encrypt(param.NewPassword.Trim());
                 AssignUserInfoParam(param);
 
-                return new JsonNetResult
-                {
-                    Data = _changeAdminPasswordService.ChangePassword(param)
-                };
+                return GenerateJsonNetResult(_changeAdminPasswordService.ChangePassword(param));
             }
 
-            return ModelState.GenerateErrorResult();
+            return GenerateModelStateErrResult();
         }
     }
 }

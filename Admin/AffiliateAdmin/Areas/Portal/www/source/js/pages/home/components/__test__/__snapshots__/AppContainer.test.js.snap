@@ -6,7 +6,7 @@ exports[`home - components - AppContainer render correctly 1`] = `
     show={true}
   />
   <div
-    className="ml-4 my-2 pl-3"
+    className="pt-2 pb-2"
   >
     Below you see tasks that are waiting for your approval and overview of the affiliate program
   </div>
@@ -22,7 +22,7 @@ exports[`home - components - AppContainer render correctly 1`] = `
         "xl",
       ]
     }
-    xl={6}
+    xl={7}
   >
     <Row
       tag="div"

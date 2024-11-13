@@ -28,16 +28,31 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         }
 
         [Fact]
-        public void UpdateMemberStatus_WhenCall_ReturnCorrectData()
+        public void GetMemberDetail_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new UpdateMemberStatusParam();
             var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(comm => comm.UpdateMemberStatus(param)).Returns(new ResultInfo());
+            memberRepository.Setup(comm => comm.GetMemberDetail(It.IsAny<int>())).Returns(new PlayerActionInfo());
             var service = CreateMemberService(memberRepository.Object);
 
             // Action
-            var result = service.UpdateMemberStatus(param);
+            var result = service.GetMemberDetail(123);
+
+            // Assert
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void UpdateMember_WhenCall_UpdateSuccessfully()
+        {
+            // Arrange
+            var param = new UpdateMemberParam();
+            var memberRepository = new Mock<IMemberRepository>();
+            memberRepository.Setup(comm => comm.UpdateMember(param)).Returns(ResultInfo.Success);
+            var service = CreateMemberService(memberRepository.Object);
+
+            // Action
+            var result = service.UpdateMember(param);
 
             // Assert
             Assert.True(result.IsSuccessful);

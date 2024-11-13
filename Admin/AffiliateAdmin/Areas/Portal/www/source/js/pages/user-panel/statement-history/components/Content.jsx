@@ -6,9 +6,9 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
-import { setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning, setExpandMonthDateList } from '../actions';
-import { headerText, globalResource, transTypeList, monthlyEarning, MONTHLY_EARNING, PAYMENT_REQUEST, MONTHLY_TOTAL, selectedAllProduct, maxWidth } from '../libs/constants';
-import { getScrollTopPosition, setScrollTop } from '../libs/utils';
+import { setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning, setExpandMonthDateList, redirectToSubAffiliate } from '../actions';
+import { headerText, globalResource, transTypeList, monthlyEarning, MONTHLY_TOTAL, MONTHLY_EARNING, PAYMENT_REQUEST, SUBAFFILIATE, selectedAllProduct, maxWidth, CalculatedMonth } from '../modules/constants';
+import { getScrollTopPosition, setScrollTop } from '../modules/utils';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -24,11 +24,10 @@ export class Content extends PureComponent {
 
     componentDidUpdate(prevProps) {
         const { pagingOption, param, affId } = this.props;
-        const isChangedAffId = affId !== prevProps.affId;
 
-        if (param !== prevProps.param || isChangedAffId) {
+        if (param !== prevProps.param || affId !== prevProps.affId) {
             const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
-            this.fetchData(newParam, isChangedAffId);
+            this.fetchData(newParam, affId !== prevProps.affId);
         }
     }
 
@@ -38,12 +37,12 @@ export class Content extends PureComponent {
         const { affId } = this.props;
         const { isGetAll, fromDate, toDate, pageIndex, pageSize } = param;
 
-        const postParam = { isGetAll, fromDate, toDate, affId, pageIndex, pageSize };
+        const postParam = isGetAll ? { fromDate: null, toDate: null, affId, pageIndex, pageSize } : { fromDate, toDate, affId, pageIndex, pageSize  };
 
         const data = await this.props.fetchData(postParam);
 
         this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
-        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: pageIndex, PageSize: pageSize });
 
         this.props.toggleLoaderUserPanel(false);
         !param.isBack || isChangedAffId ? this.props.setExpandMonthDateList({}) : setScrollTop(param.scrollTop);
@@ -77,7 +76,7 @@ export class Content extends PureComponent {
             }
         }
         else {
-            dataRows.push(<Row>
+            dataRows.push(<Row key="no-info">
                 <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
             </Row>);
         }
@@ -108,12 +107,19 @@ export class Content extends PureComponent {
         return this.props.redirectToDailyEarning(dailyEarningParam);
     }
 
+    _handleRedirectToSubAffiliate = (dataItem) => {
+        const subAffiliateParam = this.getRedirectParam(dataItem);
+
+        return this.props.redirectToSubAffiliate(subAffiliateParam);
+    }
+
     _getClickHandlerByTransType() {
         return {
             [PAYMENT_REQUEST]: (dataItem) => () => {
                 return this.handleSetTransactionId(dataItem.TransId);
             },
-            [MONTHLY_EARNING]: (dataItem) => () => this._handleRedirectToDailyEarning(dataItem)
+            [MONTHLY_EARNING]: (dataItem) => () => this._handleRedirectToDailyEarning(dataItem),
+            [SUBAFFILIATE]: (dataItem) => () => this._handleRedirectToSubAffiliate(dataItem)
         }
     }
 
@@ -130,15 +136,14 @@ export class Content extends PureComponent {
         const amount = formatDecimalWithCurrencySymbol(dataItem.Amount)
         const transType = dataItem.TransType;
         const clickHandler = this.transTypeClickHandler[transType];
+        const status = dataItem.Status;
 
-        const isPending = dataItem.Status && dataItem.Status.toLowerCase() === 'pending';
+        const isProcessing = status && status.toLowerCase() === 'processing';
 
-        const status = isPending ? "Processing" : dataItem.Status;
         const creator = htmlDecode(dataItem.Creator);
-        const description = dataItem.DescriptionDisplay;
-        const titleDesc = description.replace('<br>', '\n');
-        const isTotalRow = transType === MONTHLY_TOTAL && !!dataItem.Children.length;
-        const transTypeString = isTotalRow && dataItem.Description === 'Monthly Total' ? dataItem.Description : transTypeList[transType];
+        const description = htmlDecode(dataItem.DescriptionDisplay);
+        const isTotalRow = transType === MONTHLY_TOTAL;
+        const transTypeString = isTotalRow && dataItem.CalculatedType == CalculatedMonth ? 'Monthly Total' : transTypeList[transType];
 
         return (
             <React.Fragment key={`dataRow-${dataItem.TransId}-${dataItem.DateText}-${dataItem.TransType}`}>
@@ -154,7 +159,7 @@ export class Content extends PureComponent {
                             </Button>
                         ) : dataItem.DateText
                     }</Cell>
-                    <Cell title={transType} className="text-center">{transTypeString || monthlyEarning}</Cell>
+                    <Cell title={transTypeString || monthlyEarning} className="text-center">{transTypeString || monthlyEarning}</Cell>
                     <Cell title={amount} className="text-right">
                         {clickHandler ?
                             (<Button className="p-0" color="link" onClick={clickHandler(dataItem)}>
@@ -162,12 +167,12 @@ export class Content extends PureComponent {
                             </Button>) :
                             amount}
                     </Cell>
-                    <Cell title={status} className="text-center">{isPending ?
+                    <Cell title={status} className="text-center">{isProcessing ?
                         <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
                             {status}
                         </Button> : status}</Cell>
                     <Cell title={creator} className="text-center">{creator}</Cell>
-                    <Cell title={htmlDecode(titleDesc)}>{<span dangerouslySetInnerHTML={{ __html: description }} />}</Cell>
+                    <Cell title={description}>{description}</Cell>
                 </Row>
                 {
                     isTotalRow && isExpand && dataItem.Children.map(item => {
@@ -216,13 +221,14 @@ export class Content extends PureComponent {
 
 function mapStateToProps({ affCommonInfo, statementHistory }) {
     const { pagingOption, param, expandMonthDateList } = statementHistory;
+
     const { affId } = affCommonInfo;
 
     return Object.assign({}, { affId, pagingOption, param, expandMonthDateList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning, setExpandMonthDateList }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData, setTransactionId, redirectToDailyEarning, setExpandMonthDateList, redirectToSubAffiliate }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

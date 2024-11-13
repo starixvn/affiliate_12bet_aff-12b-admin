@@ -3,12 +3,13 @@ using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
     public interface ICustomerLeftPanelService
     {
-        AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accOnId, string sessionId);
+        AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accId, string accOnId, string sessionId);
 
         IEnumerable<OnlineList> GetOnlineList(string affUserName);
 
@@ -16,8 +17,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
 
         ResultInfo UpdateAffType(UpdateAffTypeParam param);
 
-        ResultInfo UpdateStatus(UpdateStatusParam param, AffInformationEmail emailParam);
+        Task<ResultInfo> UpdateStatus(UpdateStatusParam param, AffInformationEmail emailParam);
 
-        ResultInfo UpdateClosedStatus(UpdateClosedStatusParam param);
+        TransferLimitSettingInfo GetTransferLimitSetting(int affId);
+
+        ResultInfo UpdateTransferLimitSetting(TransferLimitSettingParam param);
     }
 }

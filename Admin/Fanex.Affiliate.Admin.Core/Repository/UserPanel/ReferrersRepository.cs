@@ -2,8 +2,8 @@
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Common.Extensions;
 using Fanex.Data;
-using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -19,18 +19,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
-                objectDb.SetParameterValue("CountryCodes", param.SelectedCountries);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var item = BuildReferrersItem(reader);
-                        item.SiteUrl = Convert.ToString(reader["SiteUrls"]);
-                        item.Country = Convert.ToString(reader["Country"]);
-                        item.CountryCode = Convert.ToString(reader["CountryCode"]);
-
-                        result.Add(item);
+                        result.Add(BuildReferrersItem(reader, true));
                     }
                 }
             }
@@ -48,7 +42,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 AssignCommonParam(objectDb, param);
                 objectDb.SetParameterValue("Domain", param.SelectedSiteUrl);
-                objectDb.SetParameterValue("CountryCode", param.SelectedCountry);
                 objectDb.SetParameterValue("PageIndex", param.PageIndex);
                 objectDb.SetParameterValue("PageSize", param.PageSize);
 
@@ -58,14 +51,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        var item = BuildReferrersItem(reader);
-                        item.WebsiteUrl = Convert.ToString(reader["URLReferrer"]);
-
-                        dataList.Add(item);
+                        dataList.Add(BuildReferrersItem(reader, false));
                     }
                 }
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
             }
 
             return result;
@@ -79,14 +69,16 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             objectDb.SetParameterValue("DeviceType", param.DeviceType);
         }
 
-        private static Referrers BuildReferrersItem(IDataReader reader)
+        private static Referrers BuildReferrersItem(IDataReader reader, bool isGetReferrersList)
         {
             return new Referrers
             {
-                TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
-                UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"]),
-                Signups = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),
-                Fdm = reader["FDM"] == DBNull.Value ? 0 : Convert.ToInt32(reader["FDM"]),
+                SiteUrl = isGetReferrersList ? (reader.ToString("DomainReferrer")) : string.Empty,
+                WebsiteUrl = isGetReferrersList ? string.Empty : (reader.ToString("URLReferrer")),
+                TotalClick = reader.ToInt("TotalClick"),
+                UniqueClick = reader.ToInt("UniqueClick"),
+                Signups = reader.ToInt("Signups"),
+                Fdm = reader.ToInt("FDM"),
             };
         }
     }

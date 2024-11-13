@@ -15,16 +15,16 @@ describe('statement history - AppContainer - connect', () => {
                 transactionId: '123'
             },
             affCommonInfo: { affName: 'ABC' },
-            claimsPrincipal: {}
+            licenseeName: 'XYZ'
         }
         store = mockStore(initialState)
         wrapper = shallow(<AppContainer store={store} />).dive()
     })
 
     it('should show correct value', () => {
-        const { transactionId, param, affName  } = wrapper.props();
+        const { transactionId, affName, licenseeName } = wrapper.props();
+        expect(licenseeName).toEqual('XYZ')
         expect(affName).toEqual('ABC')
         expect(transactionId).toEqual('123')
-        expect(param).toEqual({})
     })
 })

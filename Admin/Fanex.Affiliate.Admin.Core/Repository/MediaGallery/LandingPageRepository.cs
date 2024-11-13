@@ -1,8 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using Fanex.Common.Extensions;
 using Fanex.Data;
 using System.Collections.Generic;
 
@@ -10,34 +10,54 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
     public class LandingPageRepository : BaseRepository, ILandingPageRepository
     {
-        public IEnumerable<LandingPage> GetLandingPageList(int userId)
+        public IEnumerable<LandingPage> GetLandingPageList()
         {
             const string SpKey = "Aff_Admin_LandingPage_Sel";
+            var result = new List<LandingPage>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                return objectDb.Query<LandingPage>(new { userId });
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new LandingPage
+                        {
+                            PageId = reader.ToInt(Field.PageId),
+                            PageName = reader.ToString("PageName"),
+                            PageCode = reader.ToString("PageCode")
+                        });
+                    }
+                }
             }
+
+            return result;
         }
 
-        public LandingPage GetLandingPageById(int userId, int pageId)
+        public LandingPage GetLandingPageById(int pageId)
         {
             const string SpKey = "Aff_Admin_LandingPage_Sel";
+            LandingPage result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                return objectDb.QueryEntity<LandingPage>(new { pageId, userId });
-            }
-        }
+                objectDb.SetParameterValue(Field.PageId, pageId);
 
-        public IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param)
-        {
-            const string SpKey = "Aff_LandingPage_ExcludedTargetCountry_Sel";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                return objectDb.Query<TargetCountry>(param);
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result = new LandingPage
+                        {
+                            PageId = reader.ToInt(Field.PageId),
+                            PageName = reader.ToString("PageName"),
+                            PageCode = reader.ToString("PageCode")
+                        };
+                    }
+                }
             }
+
+            return result;
         }
 
         public ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param)
@@ -61,8 +81,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue(Field.PageId, param.PageId);
                 AssignCommonParam(objectDb, param);
+                objectDb.SetParameterValue(Field.PageId, param.PageId);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
@@ -93,7 +113,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
             objectDb.SetParameterValue("UserId", param.UserId);
             objectDb.SetParameterValue("PageName", param.PageName);
             objectDb.SetParameterValue("PageCode", param.PageCode);
-            objectDb.SetParameterValue("ExcludedTargetCountry", param.ExcludedTargetCountries);
             objectDb.SetParameterValue("Ip", param.Ip);
         }
     }

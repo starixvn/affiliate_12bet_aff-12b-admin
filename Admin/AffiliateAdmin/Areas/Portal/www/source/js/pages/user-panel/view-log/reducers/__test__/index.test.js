@@ -1,5 +1,5 @@
-﻿import * as types from '../../actions/types'
-import * as reducers from '../index'
+﻿import * as types from '../../actions/types';
+import * as reducers from '../index';
 
 const runTestReducer = ({ name, value, action, expectedResult }) => {
     it(`should handle ${name} reducer with type ${action.type}`, () => {
@@ -13,7 +13,7 @@ const testCaseList = [
     { name: 'param', value: {}, action: { type: types.SET_PARAM, data: { productId: 123, content: 'abc' } }, expectedResult: { productId: 123, content: 'abc' } }
 ]
 
-describe('new log reducers', () => {
+describe('statement history reducers', () => {
     testCaseList.forEach((item) => {
         runTestReducer(item);
     })

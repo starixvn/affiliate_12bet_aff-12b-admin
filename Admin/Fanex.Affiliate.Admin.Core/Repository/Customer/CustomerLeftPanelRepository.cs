@@ -2,9 +2,9 @@
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
+using Fanex.Common.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 {
@@ -25,26 +25,35 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                     {
                         result = new AffiliateInfoOnLeftPanel
                         {
-                            AffId = Convert.ToInt32(reader[Field.AffId]),
-                            GroupId = Convert.ToInt32(reader["GroupId"]),
-                            AffName = Convert.ToString(reader["UserName"]),
-                            FirstName = HttpUtility.HtmlDecode(Convert.ToString(reader["FirstName"])),
-                            LastName = HttpUtility.HtmlDecode(Convert.ToString(reader["LastName"])),
-                            TargetCountryName = Convert.ToString(reader["TargetCountryName"]),
-                            PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
-                            AffType = Convert.ToByte(reader["AffType"]),
-                            BalanceBf = Convert.ToDecimal(reader["BalBroughtForward"]),
-                            CommGroupName = Convert.ToString(reader["GroupName"]),
-                            ContactApps = HttpUtility.HtmlDecode(Convert.ToString(reader["ContactApps"])),
-                            Gender = Convert.ToBoolean(reader["Gender"]),
-                            IsClosed = Convert.ToBoolean(reader["Closed"]),
-                            LastLoginDate = reader["LastLoginDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["LastLoginDate"]),
-                            LastLoginIp = Convert.ToString(reader["LastLoginIp"]),
-                            MoreSiteUrl = Convert.ToString(reader["MoreSiteUrls"]),
-                            SiteUrl = Convert.ToString(reader["SiteUrl"]),
-                            NoSiteDescription = Convert.ToString(reader["NoSiteDesc"]),
-                            Status = Convert.ToString(reader["Status"]),
-                            Phone = HttpUtility.HtmlDecode(Convert.ToString(reader["Phone"]))
+                            ParentAffId = reader["ParentAffId"] == DBNull.Value ? (int?)null : reader.ToInt("ParentAffId"),
+                            ParentAffName = reader.ToString("ParentAffName"),
+                            AffId = reader.ToInt(Field.AffId),
+                            AffCode = reader.ToString("AffCode"),
+                            GroupId = reader.ToInt("GroupId"),
+                            GroupTypeId = reader.ToInt("GroupTypeId"),
+                            AffName = reader.ToString("UserName"),
+                            FirstName = reader.ToString("FirstName"),
+                            LastName = reader.ToString("LastName"),
+                            PreferredLanguage = reader.ToString("PreferredLanguage"),
+                            AffType = reader.ToByte("AffType"),
+                            BalanceBf = reader.ToDecimal("BalBroughtForward"),
+                            CommGroupName = reader.ToString("GroupName"),
+                            ContactApps = reader.ToString("ContactApps"),
+                            Gender = reader.ToBool("Gender"),
+                            LastLoginDate = reader["LastLoginDate"] == DBNull.Value ? (DateTime?)null : reader.ToDateTime("LastLoginDate"),
+                            LastLoginIp = reader.ToString("LastLoginIp"),
+                            MoreSiteUrl = reader.ToString("MoreSiteUrls"),
+                            SiteUrl = reader.ToString("SiteUrl"),
+                            NoSiteDescription = reader.ToString("NoSiteDesc"),
+                            Status = reader.ToString("Status"),
+                            Phone = reader.ToString("Phone"),
+                            IsUsingPrivateCommGroup = (reader["IsPrivate"] != DBNull.Value) && reader.ToBool("IsPrivate"),
+                            ApprovedBy = reader.ToString("ApprovedBy"),
+                            IsDepositFeePercent = reader.ToBool("Dep_IsDeductedPercent"),
+                            IsWithdrawalFeePercent = reader.ToBool("Wit_IsDeductedPercent"),
+                            IsDisabledTransfer = reader.ToBool("DisabledTransfer"),
+                            PlayerCurrency = reader.ToString("PlayerCurrency"),
+                            TransferLimit = reader.ToDecimal("TransferLimit"),
                         };
                     }
                 }
@@ -68,9 +77,37 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                     {
                         result.Add(new OnlineList
                         {
-                            Ip = Convert.ToString(reader["Ip"]),
-                            ReloadTime = Convert.ToDateTime(reader["ReloadTime"])
+                            Ip = reader.ToString("Ip"),
+                            ReloadTime = reader.ToDateTime("ReloadTime")
                         });
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public TransferLimitSettingInfo GetTransferLimitSetting(int affId)
+        {
+            const string SpKey = "Aff_Admin_TransferLimit_Sel";
+            TransferLimitSettingInfo result = null;
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.SetParameterValue(Field.AffId, affId);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result = new TransferLimitSettingInfo
+                        {
+                            PlayerCustId = reader.ToInt("PlayerCustId"),
+                            PlayerUsername = reader.ToString("PlayerUsername"),
+                            PlayerCurrency = reader.ToString("PlayerCurrency"),
+                            TransferLimit = reader.ToDecimal("TransferLimit"),
+                            IsDisabledTransfer = reader.ToBool("DisabledTransfer"),
+                        };
                     }
                 }
             }
@@ -89,31 +126,16 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                 objectDb.SetParameterValue("AffType", param.AffType);
                 objectDb.SetParameterValue("IP", param.Ip);
 
-
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
-        }
-
-        public ResultInfo UpdateClosedStatus(UpdateClosedStatusParam param)
-        {
-            const string SpKey = "Aff_Admin_AffiliateClosed_Upd";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.SetParameterValue(Field.AffId, param.AffId);
-                objectDb.SetParameterValue(Field.UserId, param.UserId);
-                objectDb.SetParameterValue("IsClosed", param.IsClosed);
-                objectDb.SetParameterValue("IP", param.Ip);
-
-                AssignResultOutputParam(objectDb);
+                objectDb.SetParameterValue("ErrCode", DefaultValue.Int);
 
                 objectDb.ExecuteNonQuery();
 
-                return GetResultInfo(objectDb);
+                var code = objectDb.GetParameterValue("ErrCode");
+
+                return new ResultInfo
+                {
+                    Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
+                };
             }
         }
 
@@ -131,21 +153,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
-        }
-
-        public ResultInfo UpdateContactNumber(UpdateContactNumberParam param)
-        {
-            const string SpKey = "Aff_Admin_AffiliatePhoneNumber_Upd";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery(param);
 
                 return GetResultInfo(objectDb);
             }
@@ -170,6 +177,23 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
             }
         }
 
+        public ResultInfo UpdateTransferLimitSetting(TransferLimitSettingParam param)
+        {
+            const string SpKey = "Aff_Admin_TransferLimit_Upd";
 
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.SetParameterValue(Field.AffId, param.AffId);
+                objectDb.SetParameterValue(Field.UserId, param.UserId);
+                objectDb.SetParameterValue("DisabledTransfer", param.DisabledTransfer);
+                objectDb.SetParameterValue("TransferLimit", param.TransferLimit);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
     }
 }

@@ -1,13 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Member
 {
-    public class MemberInfo
+    public class MemberInfo : PlayerActionInfo
     {
         public int MemberId { get; set; }
-
-        public string UserName { get; set; }
 
         public string IbcUserName { get; set; }
 
@@ -15,15 +12,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Member
 
         public string LastName { get; set; }
 
-        public string CurrentBalance { get; set; }
-
-        [JsonIgnore]
         public DateTime? CreatedDate { get; set; }
 
         public string AffName { get; set; }
-
-        public bool IsRemoved { get; set; }
-
-        public string CreatedDateText => CreatedDate?.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

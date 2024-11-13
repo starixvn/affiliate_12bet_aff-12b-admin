@@ -1,6 +1,7 @@
 ﻿import * as actions from '../index';
 import * as types from '../types';
 import * as ajaxRequest from '../../../../../modules/ajaxRequest';
+import { submitFail } from "../../../../../modules/constants";
 
 const runTestAction = ({ name, type, data }) => {
     it(`should create action to ${name}`, () => {
@@ -16,7 +17,7 @@ const actionList = [
     { name: 'toggleLoaderLeftPanel', type: types.TOGGLE_LOADER_LEFT_PANEL, data: true },
 ]
 
-describe('left panel actions', () => {
+describe('left panel - actions', () => {
     actionList.forEach(item => {
         runTestAction(item);
     });
@@ -86,44 +87,7 @@ describe('left panel actions', () => {
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/UpdateLanguage', param);
 
-        expect(result).toEqual(null);
-    })
-
-    it('should create action to updateContactNumber with correct parameter', async () => {
-        const expectedResponse = {
-            data: {
-                Code: 0,
-                IsSuccessful: true,
-                Message: ""
-            },
-            status: 200
-        };
-
-        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
-
-        const param = {
-            AffId: 1271808,
-            ContactNumbert: "123456789"
-        }
-
-        const result = await actions['updateContactNumber'](param)();
-
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/UpdateContactNumber', param);
-        expect(result).toEqual(expectedResponse.data);
-    })
-
-    it('should create action to updateContactNumber with error respone', async () => {
-        ajaxRequest.post = jest.fn();
-        const param = {
-            AffId: 1271808,
-            ContactNumbert: "123456789"
-        }
-
-        const result = await actions['updateContactNumber'](param)();
-
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/UpdateContactNumber', param);
-
-        expect(result).toEqual(null);
+        expect(result).toEqual(submitFail);
     })
 
     it('should create action to updateAffType with correct parameter', async () => {
@@ -160,7 +124,7 @@ describe('left panel actions', () => {
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/UpdateAffType', param);
 
-        expect(result).toEqual(null);
+        expect(result).toEqual(submitFail);
     })
 
     it('should create action to updateStatus with correct parameter', async () => {
@@ -197,10 +161,41 @@ describe('left panel actions', () => {
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/UpdateStatus', param);
 
+        expect(result).toEqual(submitFail);
+    })
+
+    it('should create action to getTransferLimitSetting with correct parameter', async () => {
+        const expectedResponse = {
+            data: [],
+            status: 200
+        };
+
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+
+        const param = {
+            affId: 123
+        }
+
+        const result = await actions['getTransferLimitSetting'](param.affId)();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/GetTransferLimitSetting', param);
+        expect(result).toEqual(expectedResponse.data);
+    })
+
+    it('should create action to getTransferLimitSetting with incorrect parameter', async () => {
+        ajaxRequest.post = jest.fn();
+        const param = {
+            affId: 123
+        }
+
+        const result = await actions['getTransferLimitSetting'](param.affId)();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/GetTransferLimitSetting', param);
+
         expect(result).toEqual(null);
     })
 
-    it('should create action to updateClosedStatus with correct parameter', async () => {
+    it('should create action to updateTransferLimitSetting with correct parameter', async () => {
         const expectedResponse = {
             data: {
                 Code: 0,
@@ -213,27 +208,27 @@ describe('left panel actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const param = {
-            AffId: 1271808,
-            IsClosed: true
+            Amount: 1271808,
+            IsEnable: true
         }
 
-        const result = await actions['updateClosedStatus'](param)();
+        const result = await actions['updateTransferLimitSetting'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/UpdateClosedStatus', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/UpdateTransferLimitSetting', param);
         expect(result).toEqual(expectedResponse.data);
     })
 
-    it('should create action to updateClosedStatus with incorrect parameter', async () => {
+    it('should create action to updateTransferLimitSetting with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
-            AffId: 123456,
-            IsClosed: true
+            Amount: 123456,
+            IsEnable: true
         }
 
-        const result = await actions['updateClosedStatus'](param)();
+        const result = await actions['updateTransferLimitSetting'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/UpdateClosedStatus', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerLeftPanel/UpdateTransferLimitSetting', param);
 
-        expect(result).toEqual(null);
+        expect(result).toEqual(submitFail);
     })
 });

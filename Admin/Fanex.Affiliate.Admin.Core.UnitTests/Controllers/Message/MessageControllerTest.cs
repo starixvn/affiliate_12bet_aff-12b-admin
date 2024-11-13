@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Message;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Message;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Message;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -111,7 +112,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void InsertMessage_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageContentEn = "abc" };
+            var param = new InsertUpdateMessageParam { MessageContenten = "abc" };
             InsertUpdateMessageParam passedParam = null;
             var messageSevice = new Mock<IMessageService>();
             messageSevice.Setup(s => s.InsertMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
@@ -146,26 +147,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void UpdateMessage_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageId = 1, MessageContentVi = "abc" };
-            InsertUpdateMessageParam passedParam = null;
-            var messageSevice = new Mock<IMessageService>();
-            messageSevice.Setup(s => s.UpdateMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
-            var controller = CreateMessageController(messageSevice: messageSevice.Object);
-
-            // Action
-            var result = controller.UpdateMessage(param) as JsonNetResult;
-            var resultInfo = result.Data as ResultInfo;
-
-            // Assert
-            Assert.True(resultInfo.IsSuccessful);
-            Assert.Equal(param.MessageId, passedParam.MessageId);
-        }
-
-        [Fact]
-        public void UpdateMessage_WhenCallWithValidParamBn_InsertSuccessful()
-        {
-            // Arrange
-            var param = new InsertUpdateMessageParam { MessageId = 1, MessageContentBn = "xyz" };
+            var param = new InsertUpdateMessageParam { MessageId = 1, MessageContentvn = "abc" };
             InsertUpdateMessageParam passedParam = null;
             var messageSevice = new Mock<IMessageService>();
             messageSevice.Setup(s => s.UpdateMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
@@ -200,7 +182,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void UpdateMessage_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageContentEn = "abc" };
+            var param = new InsertUpdateMessageParam { MessageContenten = "abc" };
             var controller = CreateMessageController();
 
             // Action
@@ -249,13 +231,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
 
         private MessageController CreateMessageController(
             ISessionService sessionService = null,
-            IMessageService messageSevice = null
+            IMessageService messageSevice = null,
+            ILanguageService languageService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeMessageSevice = messageSevice ?? Mock.Of<IMessageService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
 
-            var controller = new MessageController(fakeSessionService, fakeMessageSevice);
+            var controller = new MessageController(fakeSessionService, fakeMessageSevice, fakeLanguageService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

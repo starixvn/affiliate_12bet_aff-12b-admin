@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var controller = CreateChangeAdminPasswordController(changeAdminPasswordService: changeAdminPasswordService.Object);
 
             // Action
-            var result = controller.ChangePassword(new ChangeAdminPasswordParam { OldPassword = "123", NewPassword = "234", ConfirmPassword = "234" }) as JsonNetResult;
+            var result = controller.ChangePassword(new ChangeAdminPasswordParam { OldPassword = "123456789012345678901234567890", NewPassword = "234", ConfirmPassword = "234" }) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert

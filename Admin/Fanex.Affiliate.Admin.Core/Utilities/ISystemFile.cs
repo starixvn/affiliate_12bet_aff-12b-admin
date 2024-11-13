@@ -1,14 +1,11 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using System.Drawing;
-using System.IO;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
 {
     public interface ISystemFile
     {
         void UploadFile(Bitmap bitmap, string filePath);
-
-        ResultInfo UploadFile(Stream file, string filePath);
 
         void MoveFile(string serverPath, string newFilePath, string oldFilePath);
 

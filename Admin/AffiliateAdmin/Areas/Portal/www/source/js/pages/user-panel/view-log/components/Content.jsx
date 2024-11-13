@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource, maxWidth } from '../libs/constants';
+import { headerText, globalResource, maxWidth } from '../modules/constants';
 import { setPagingOption, toggleLoaderUserPanel, setShowIdList, fetchData } from '../actions';
 
 export class Content extends PureComponent {
@@ -21,7 +21,7 @@ export class Content extends PureComponent {
     componentDidUpdate(prevProps) {
         const { pagingOption, param } = this.props;
 
-        if (param && param !== prevProps.param) {
+        if (param !== prevProps.param) {
             const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
             this.fetchData(newParam);
         }
@@ -86,7 +86,7 @@ export class Content extends PureComponent {
             }
         }
         else {
-            dataRows.push(<Row>
+            dataRows.push(<Row key="no-info">
                 <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
             </Row>);
         }

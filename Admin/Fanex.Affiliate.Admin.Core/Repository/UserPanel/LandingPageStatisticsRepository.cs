@@ -2,8 +2,8 @@
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Common.Extensions;
 using Fanex.Data;
-using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -20,28 +20,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 AssignCommonParam(objectDb, param);
 
-                objectDb.SetParameterValue("ReportBy", param.GroupBy);
-                objectDb.SetParameterValue("CountryCodes", param.SelectedCountries);
-                objectDb.SetParameterValue("LanguageCodes", param.LanguageCode);
-
                 using (var reader = objectDb.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var item = BuildLandingPageStatisticsItem(reader);
-                        item.Page = Convert.ToString(reader["Page"]);
-                        if (string.Equals("Country", param.GroupBy, StringComparison.OrdinalIgnoreCase))
-                        {
-                            item.Country = Convert.ToString(reader["Country"]);
-                            item.CountryCode = Convert.ToString(reader["CountryCode"]);
-                        }
-                        else
-                        {
-                            item.Language = Convert.ToString(reader["Language"]);
-                            item.LanguageCode = Convert.ToString(reader["LanguageCode"]);
-                        }
-
-                        result.Add(item);
+                        result.Add(BuildLandingPageStatisticsItem(reader, true));
                     }
                 }
             }
@@ -59,8 +42,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 AssignCommonParam(objectDb, param);
 
-                objectDb.SetParameterValue("CountryCode", param.SelectedCountry);
-                objectDb.SetParameterValue("LanguageCode", param.LanguageCode);
                 objectDb.SetParameterValue("PageIndex", param.PageIndex);
                 objectDb.SetParameterValue("PageSize", param.PageSize);
 
@@ -70,14 +51,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        var item = BuildLandingPageStatisticsItem(reader);
-                        item.WebsiteUrl = Convert.ToString(reader["URLReferrer"]);
-
-                        dataList.Add(item);
+                        dataList.Add(BuildLandingPageStatisticsItem(reader, false));
                     }
                 }
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
             }
 
             return result;
@@ -89,17 +67,21 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             objectDb.SetParameterValue("FromDate", param.FromDate);
             objectDb.SetParameterValue("ToDate", param.ToDate);
             objectDb.SetParameterValue("SportCode", param.SelectedPage);
+            objectDb.SetParameterValue("LanguageCode", param.LanguageCode);
             objectDb.SetParameterValue("DeviceType", param.DeviceType);
         }
 
-        private static LandingPageStatistics BuildLandingPageStatisticsItem(IDataReader reader)
+        private static LandingPageStatistics BuildLandingPageStatisticsItem(IDataReader reader, bool isGetLandingPageStatisticsList)
         {
             return new LandingPageStatistics
             {
-                TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
-                UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"]),
-                Signups = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),
-                Fdm = reader["FDM"] == DBNull.Value ? 0 : Convert.ToInt32(reader["FDM"]),
+                Page = isGetLandingPageStatisticsList ? (reader.ToString("SportCode")) : string.Empty,
+                LanguageCode = isGetLandingPageStatisticsList ? (reader.ToString("LanguageCode")) : string.Empty,
+                WebsiteUrl = isGetLandingPageStatisticsList ? string.Empty : (reader.ToString("URLReferrer")),
+                TotalClick = reader.ToInt("TotalClick"),
+                UniqueClick = reader.ToInt("UniqueClick"),
+                Signups = reader.ToInt("Signups"),
+                Fdm = reader.ToInt("FDM"),
             };
         }
     }

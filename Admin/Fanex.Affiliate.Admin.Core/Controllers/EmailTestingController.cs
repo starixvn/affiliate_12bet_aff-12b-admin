@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.AdminRoleMenu)]
+    [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class EmailTestingController : ReadOnlySessionBaseController
     {
         private const int _transId = 123;
@@ -22,18 +23,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ISystemService _systemService;
+        private readonly ILanguageService _languageService;
 
         public EmailTestingController(
             ISessionService sessionService,
             IMailProcessor mailProcessor,
             IAppSetting appSetting,
-            ISystemService systemService
+            ILanguageService languageService
             ) : base(sessionService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;
-            _systemService = systemService;
+            _languageService = languageService;
         }
 
         [HttpGet]
@@ -48,12 +49,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             string result;
             try
             {
-                _systemService.SetCulture(language);
+                _languageService.SetCulture(language);
 
                 (var _, var title) = GetSubjectAndTitle(function);
                 result = GetEmailContent(language, function, format, title);
 
-                _systemService.SetCulture(LanguageSystem.DefaultLanguageCode);
+                _languageService.SetCulture(_appSetting.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -71,12 +72,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             try
             {
-                _systemService.SetCulture(language);
+                _languageService.SetCulture(language);
                 (var subject, var title) = GetSubjectAndTitle(function);
                 var content = GetEmailContent(language, function, format, title);
 
                 _mailProcessor.Send(content, emailAddress, subject);
-                _systemService.SetCulture(LanguageSystem.DefaultLanguageCode);
+                _languageService.SetCulture(_appSetting.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -108,7 +109,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         private string GetEmailTextContent(string function, string language, object model)
         {
             var viewPath = string.Format(TemplateString.EmailTemplatePath, function, language);
-            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, function, LanguageSystem.DefaultLanguageCode);
+            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, function, _appSetting.DefaultLanguageCode);
             var physicalPath = Server.MapPath(viewPath);
             var physicalPathBackup = Server.MapPath(viewPathBackup);
 

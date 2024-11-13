@@ -2,11 +2,11 @@
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
+using Fanex.Common.Extensions;
 using Fanex.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                     }
                 }
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
             }
             return result;
         }
@@ -66,14 +66,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         private static void AssignAffiliateInfoParam(IObjectDb objectDb, AffiliateInfoParam param)
         {
-            objectDb.SetParameterValue(Field.AffId, param.AffIdNumber);
+            objectDb.SetParameterValue("AffCode", param.AffCode);
             objectDb.SetParameterValue("UserId", param.UserId);
-            objectDb.SetParameterValue("GroupID", param.GroupId);
-            objectDb.SetParameterValue("TargetCountryCodes", param.TargetCountryCodes);
-            objectDb.SetParameterValue("PreferredLanguages", param.PreferenceLanguages);
+            objectDb.SetParameterValue("GroupIds", param.GroupIds);
+            objectDb.SetParameterValue("PreferredLanguage", param.Language);
             objectDb.SetParameterValue("Status", param.Status);
-            objectDb.SetParameterValue("ProcessingStatus", param.ProcessingStatus);
+            objectDb.SetParameterValue("ParentAffName", param.ParentAffName);
             objectDb.SetParameterValue("UserName", param.UserName);
+            objectDb.SetParameterValue("Player_UserName", param.AffPlayer);
             objectDb.SetParameterValue("Email", param.Email);
             objectDb.SetParameterValue("SortType", param.SortBy);
             objectDb.SetParameterValue("SortDirectionType", param.SortDirectionType);
@@ -83,32 +83,34 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             objectDb.SetParameterValue("NRows", DefaultValue.Int);
         }
-
         private static AffiliateInfo BuildAffiliateInfoItem(IDataReader reader)
         {
             return new AffiliateInfo
             {
-                AffId = Convert.ToInt32(reader[Field.AffId]),
-                UserName = Convert.ToString(reader["Username"]),
-                Status = Convert.ToString(reader["Status"]),
-                FirstName = HttpUtility.HtmlDecode(Convert.ToString(reader["FirstName"])),
-                LastName = HttpUtility.HtmlDecode(Convert.ToString(reader["LastName"])),
-                TargetCountryCode = Convert.ToString(reader["TargetCountryCode"]),
-                Language = Convert.ToString(reader["PreferredLanguage"]),
-                Email = Convert.ToString(reader["Email"]),
-                RegistrationDate = Convert.ToDateTime(reader["RegisteredDate"]),
-                ApprovalDate = reader["ApprovedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["ApprovedDate"]),
-                CasinoDate = reader["CasinoJoinedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CasinoJoinedDate"]),
-                CommissionGroup = Convert.ToString(reader["GroupName"]),
-                BalanceBf = reader["BFF"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["BFF"]),
-                Member = reader["NoOfMember"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["NoOfMember"]),
+                AffId = reader.ToInt(Field.AffId),
+                AffCode = reader.ToInt("AffCode"),
+                UserName = reader.ToString("Username"),
+                Status = reader.ToString("Status"),
+                FirstName = reader.ToString("FirstName"),
+                LastName = reader.ToString("LastName"),
+                Language = reader.ToString("PreferredLanguage"),
+                Email = reader.ToString("Email"),
+                RegistrationDate = reader.ToDateTime("RegisteredDate"),
+                ApprovalDate = reader["ApprovedDate"] == DBNull.Value ? (DateTime?)null : reader.ToDateTime("ApprovedDate"),
+                BalanceBf = reader["BFF"] == DBNull.Value ? (decimal?)null : reader.ToDecimal("BFF"),
+                Member = reader["NoOfMember"] == DBNull.Value ? (int?)null : reader.ToInt("NoOfMember"),
+                CommissionGroup = reader["GroupName"] == DBNull.Value ? "N/A" : reader.ToString("GroupName"),
+                GroupTypeId = reader.ToInt(Field.GroupTypeId),
                 IsFavorite = Convert.ToBoolean(reader["IsFavorite"]),
-                IsClosed = Convert.ToBoolean(reader["IsClosed"]),
-                Currency = Convert.ToString(reader["Currency"]),
-                PlayerCurrency = Convert.ToString(reader["PlayerCurrency"]),
-                Phone = HttpUtility.HtmlDecode(Convert.ToString(reader["Phone"])),
-                PlayerUserName = Convert.ToString(reader["Player_Username"]),
-                ProcessingStatus = Convert.ToString(reader["ProcessingStatus"])
+                Currency = reader.ToString("Currency"),
+                PlayerCurrency = reader.ToString("PlayerCurrency"),
+                Phone = reader.ToString("Phone"),
+                PlayerUserName = reader.ToString("Player_Username"),
+                IsUsingPrivateCommGroup = (reader["IsPrivate"] != DBNull.Value) && reader.ToBool("IsPrivate"),
+                ParentAffId = reader["ParentAffId"] == DBNull.Value ? (int?)null : reader.ToInt("ParentAffId"),
+                ParentAffName = reader.ToString("ParentAffName"),
+                NoOfSubAff = reader["NoOfSubAff"] == DBNull.Value ? (int?)null : reader.ToInt("NoOfSubAff"),
+                ApprovedBy = reader.ToString("ApprovedBy")
             };
         }
 

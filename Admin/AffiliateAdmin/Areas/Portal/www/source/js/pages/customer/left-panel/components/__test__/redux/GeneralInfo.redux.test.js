@@ -2,6 +2,7 @@
 import GeneralInfo from '../../GeneralInfo'
 import { shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
+import { SET_AFF_NAME } from '../../../actions/types'
 
 const mockStore = configureMockStore()
 
@@ -12,8 +13,7 @@ describe('customer - left panel - GeneralInfo - connect', () => {
         const initialState = {
             leftPanel: {
                 affiliateInfo: {}
-            },
-            claimsPrincipal: {}
+            }
         }
         store = mockStore(initialState)
         wrapper = shallow(<GeneralInfo store={store} />).dive()
@@ -21,6 +21,12 @@ describe('customer - left panel - GeneralInfo - connect', () => {
 
     it('should show correct value', () => {
         expect(wrapper.props().affiliateInfo ).toEqual({})
-        expect(wrapper.props().claimsPrincipal ).toEqual({})
+    })
+
+    it('should call correct action', () => {
+        wrapper.props().setAffName('ABC')
+
+        const actions = store.getActions();
+        expect(actions).toEqual([{ type: SET_AFF_NAME, data: 'ABC' }])
     })
 })

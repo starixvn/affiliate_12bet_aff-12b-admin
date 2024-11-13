@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
+using Fanex.Common.Extensions;
 using Fanex.Data;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,21 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
 {
     public class AffiliateReportRepository : BaseRepository, IAffiliateReportRepository
     {
-        private const int OneHundred = 100;
-        private const int NumberOfDigits = 2;
+        private const int PercentageUnit = 100;
 
-        public EntityResult<AffiliateReport> GetMainReportData(AffiliateReportMainParam param)
+        public DateTime GetReportCutOffDate()
+        {
+            const string SpKey = "Task_Aff_GetSetting";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.SetParameterValue("SName", "Report_CutOffDate");
+
+                return objectDb.QueryEntity<DateTime>();
+            }
+        }
+
+        public EntityResult<AffiliateReport> GetMainReportData(AffiliateReportParam param)
         {
             const string SpKey = "Aff_Admin_AffiliateReport_Sel";
             var result = new EntityResult<AffiliateReport>();
@@ -23,30 +35,42 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
+                objectDb.SetParameterValue("GroupIds", param.GroupIds);
+                objectDb.SetParameterValue("PreferredLanguage", param.PreferredLanguage);
+                objectDb.SetParameterValue("PaymentCurrencies", param.PaymentCurrencyIds);
+                objectDb.SetParameterValue("IsExcludeNegvBBF", param.IsExcludeNegvBBF);
+                objectDb.SetParameterValue("IsExcludeNegvCurrentBBF", param.IsExcludeNegvCurrentBBF);
                 objectDb.SetParameterValue("IsGetMonthly", param.IsGetMonthly);
-                objectDb.SetParameterValue("PreferredLanguages", param.PreferredLanguages);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildDataItem(reader));
+                        var item = BuildDataItem(reader);
+                        item.AffId = reader.ToInt("AffId");
+                        item.UserName = reader.ToString("Username");
+                        item.PaymentCurrency = reader.ToString("PaymentCurrency");
+                        item.IsMultiGroupProduct = reader.ToBool("IsMultiGroupProduct");
+                        item.CurrentBBF = reader.ToDecimal("CurrentBFF");
+
+                        dataList.Add(item);
                     }
 
                     if (reader.NextResult() && reader.Read())
                     {
-                        result.Total = BuildDataItem(reader, true);
+                        result.Total = BuildDataItem(reader);
+                        result.Total.CurrentBBF = reader.ToDecimal("CurrentBFF");
                     }
                 }
 
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
             }
 
             return result;
         }
 
-        public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportMainParam param)
+        public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportParam param)
         {
             const string SpKey = "Aff_Admin_AffiliateReport_Detail_Sel";
             var result = new EntityResult<AffiliateReport>();
@@ -56,50 +80,35 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
+                objectDb.SetParameterValue("EarningType", param.EarningBy);
                 objectDb.SetParameterValue("IsGetAll", param.IsGetAll);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildDataItem(reader, isDetail: true));
+                        var item = BuildDataItem(reader);
+                        item.EarningBy = reader.ToString("EarningBy");
+                        item.MonthDate = reader.ToDateTime("MonthDate");
+                        item.Description = reader.ToString("Description");
+
+                        dataList.Add(item);
                     }
 
                     if (reader.NextResult() && reader.Read())
                     {
-                        result.Total = BuildDataItem(reader, true, true);
+                        result.Total = BuildDataItem(reader);
                     }
                 }
 
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
             }
 
             return result;
         }
 
-        public IList<string> SearchAffiliateList(string userName)
-        {
-            const string SpKey = "Aff_AffiliateUsername_SearchEx";
-            var result = new List<string>();
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.SetParameterValue("UserName", userName);
-
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(Convert.ToString(reader["UserName"]));
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        private static void AssignCommonParam(IObjectDb objectDb, AffiliateReportMainParam param)
+        private static void AssignCommonParam(IObjectDb objectDb, AffiliateReportParam param)
         {
             objectDb.SetParameterValue("Username", param.UserName);
             objectDb.SetParameterValue("FromDate", param.FromDate);
@@ -110,58 +119,40 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
             objectDb.SetParameterValue("PageIndex", param.PageIndex);
             objectDb.SetParameterValue("PageSize", param.PageSize);
             objectDb.SetParameterValue("IsExportExcel", param.IsExportExcel);
-
+            objectDb.SetParameterValue("BaseCurrency", param.BaseCurrencyId);
+            objectDb.SetParameterValue("Currencies", param.CurrencyIds);
             objectDb.SetParameterValue("NRows", DefaultValue.Int);
         }
 
-        private static AffiliateReport BuildDataItem(IDataReader reader, bool isTotal = false, bool isDetail = false)
+        private static AffiliateReport BuildDataItem(IDataReader reader)
         {
-            var affReport = new AffiliateReport
+            return new AffiliateReport
             {
-                TotalClick = Convert.ToInt32(reader["TotalClick"]),
-                UniqueClick = Convert.ToInt32(reader["UniqueClick"]),
-                Signup = Convert.ToInt32(reader["Signup"]),
-                Fdm = Convert.ToInt32(reader["FDM"]),
-                ActiveMember = Convert.ToInt32(reader["ActiveMember"]),
-                QualifiedMember = Convert.ToInt32(reader["QualifiedMember"]),
-                Deposit = Convert.ToDecimal(reader["Deposit"]),
-                Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
-                Turnover = Convert.ToDecimal(reader["Turnover"]),
-                Winlost = Convert.ToDecimal(reader["Winlost"]),
-                Bonus = Convert.ToDecimal(reader["Bonus"]),
-                PlatformFee = Convert.ToDecimal(reader["PlatformFee"]),
-                OperationalFee = Convert.ToDecimal(reader["OperationalFee"]),
-                BankingFee = Convert.ToDecimal(reader["BankingFee"]),
-                TotalFee = Convert.ToDecimal(reader["TotalFee"]),
-                CommissionRate = decimal.Round(OneHundred * Convert.ToDecimal(reader["CommissionRate"]), NumberOfDigits),
-                Earning = Convert.ToDecimal(reader["Earning"]),
-                NewFdmEarning = Convert.ToDecimal(reader["FDMEarning"]),
-                AffWithdrawal = Convert.ToDecimal(reader["AffWithdrawal"]),
-                AffAdjustment = Convert.ToDecimal(reader["AffAdjustment"]),
-                BalanceBf = Convert.ToDecimal(reader["BFF"])
+                TotalClick = reader.ToInt("TotalClick"),
+                UniqueClick = reader.ToInt("UniqueClick"),
+                Signup = reader.ToInt("Signup"),
+                Fdm = reader.ToInt("FDM"),
+                ActiveMember = reader.ToInt("ActivePlayer"),
+                Deposit = reader.ToDecimal("Deposit"),
+                Withdrawal = reader.ToDecimal("Withdrawal"),
+                Turnover = reader.ToDecimal("Turnover"),
+                Ggr = reader.ToDecimal("Ggr"),
+                Bonus = reader.ToDecimal("Bonus"),
+                Rebate = reader.ToDecimal("Rebate"),
+                PlatformFee = reader.ToDecimal("PlatformFee"),
+                DepositFee = reader.ToDecimal("DepositFee"),
+                WithdrawalFee = reader.ToDecimal("WithdrawalFee"),
+                TotalFee = reader.ToDecimal("TotalFee"),
+                CommissionRate = PercentageUnit * reader.ToDecimal("CommissionRate"),
+                Earning = reader.ToDecimal("Earning"),
+                AffWithdrawal = reader.ToDecimal("AffWithdrawal"),
+                AffAdjustment = reader.ToDecimal("AffAdjustment"),
+                BalanceBf = reader.ToDecimal("BFF"),
+                NoOfSubAff = reader.ToInt("NoOfSubAff"),
+                SubAffEarning = reader.ToDecimal("SubAffEarning"),
+                P2pEarning = reader.ToDecimal("P2PEarning"),
+                TotalDeposit = reader.ToInt("TotalDeposit"),
             };
-
-            if (isDetail)
-            {
-                affReport.PreviousBalanceBf = Convert.ToDecimal(reader["PreviousBFF"]);
-
-                if (!isTotal)
-                {
-                    affReport.MonthDate = Convert.ToDateTime(reader["MonthDate"]);
-                    affReport.Description = Convert.ToString(reader["Description"]);
-                }
-            }
-            else
-            {
-                if (!isTotal)
-                {
-                    affReport.AffId = Convert.ToInt32(reader["AffId"]);
-                    affReport.UserName = Convert.ToString(reader["Username"]);
-                    affReport.PreferredLanguage = Convert.ToString(reader["Language"]);
-                }
-            }
-
-            return affReport;
         }
     }
 }

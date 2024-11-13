@@ -19,11 +19,11 @@ describe('domain - DomainPopup - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            selectedDomainId: 123,
+            selectedDomain: { domainId: 123 },
             isAffDomain: true
         };
         const state = {
-            selectedDomainId: 123,
+            selectedDomain: { domainId: 123 },
             isAffDomain: true,
             anotherProp: "Not included"
         };
@@ -38,12 +38,10 @@ describe('domain - DomainPopup - connect', () => {
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
             insertDomain: actions['insertDomain'],
-            getDomainById: actions['getDomainById'],
-            getTargetCountryListByDomain: actions['getTargetCountryListByDomain'],
             fetchData: actions['fetchData'],
             updateDomain: actions['updateDomain'],
             toggleLoader: actions['toggleLoader'],
-            setSelectedDomainId: actions['setSelectedDomainId']
+            setSelectedDomain: actions['setSelectedDomain']
         }
 
         const dispatch = {};

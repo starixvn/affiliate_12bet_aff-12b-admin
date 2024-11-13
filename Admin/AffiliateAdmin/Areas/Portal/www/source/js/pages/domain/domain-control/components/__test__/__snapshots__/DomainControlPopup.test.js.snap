@@ -26,6 +26,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -96,6 +97,59 @@ exports[`domain control - components - DomainControlPopup  render correctly with
             tag="div"
           >
             <Label
+              htmlFor="marketId"
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Market
+            </Label>
+            <Col
+              sm={8}
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <Input
+                className="mt-1"
+                name="marketId"
+                onChange={[Function]}
+                type="select"
+                value="en-GB"
+              >
+                <option
+                  key="market-en-GB"
+                  value="en-GB"
+                />
+                <option
+                  key="market-vi-VN"
+                  value="vi-VN"
+                />
+              </Input>
+            </Col>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              htmlFor="affDomainId"
               sm={4}
               tag="label"
               widths={
@@ -123,27 +177,26 @@ exports[`domain control - components - DomainControlPopup  render correctly with
                 ]
               }
             >
-              <Select
-                dataSource={
-                  Array [
-                    Object {
-                      "DomainId": 21,
-                      "DomainName": "10.18.200.209:7613/12BetGo",
-                    },
-                    Object {
-                      "DomainId": 34,
-                      "DomainName": "go.test.com",
-                    },
-                  ]
-                }
-                hasInputOption={true}
-                id="affDomain"
-                isDisable={false}
-                keyField="DomainId"
+              <Input
+                className="mt-1"
+                name="affDomainId"
                 onChange={[Function]}
-                selectedKey={21}
-                valueField="DomainName"
-              />
+                type="select"
+                value={21}
+              >
+                <option
+                  key="affDomain-21"
+                  value={21}
+                >
+                  10.18.200.209:7613/B2CGo
+                </option>
+                <option
+                  key="affDomain-34"
+                  value={34}
+                >
+                  go.test.com
+                </option>
+              </Input>
             </Col>
           </FormGroup>
           <FormGroup
@@ -152,6 +205,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
             tag="div"
           >
             <Label
+              htmlFor="redirectDomainId"
               sm={4}
               tag="label"
               widths={
@@ -179,75 +233,24 @@ exports[`domain control - components - DomainControlPopup  render correctly with
                 ]
               }
             >
-              <Select
-                dataSource={
-                  Array [
-                    Object {
-                      "DomainId": 46,
-                      "DomainName": "smart.123.vn",
-                    },
-                    Object {
-                      "DomainId": 60,
-                      "DomainName": "12liammobile",
-                    },
-                  ]
-                }
-                hasInputOption={true}
-                id="redirectDomain"
-                isDisable={false}
-                keyField="DomainId"
-                onChange={[Function]}
-                selectedKey={46}
-                valueField="DomainName"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={4}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Target Country
-            </Label>
-            <Col
-              sm={8}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
               <Input
                 className="mt-1"
-                disabled="true"
-                name="targetCountryCode"
-                title="All target countries are blocked for these domains!"
+                name="redirectDomainId"
+                onChange={[Function]}
                 type="select"
-                value=""
+                value={46}
               >
                 <option
-                  key="target-country-none"
-                  value=""
+                  key="redirectDomain-46"
+                  value={46}
                 >
-                  Please select!
+                  smart.123.vn
+                </option>
+                <option
+                  key="redirectDomain-60"
+                  value={60}
+                >
+                  12liammobile
                 </option>
               </Input>
             </Col>
@@ -286,7 +289,9 @@ exports[`domain control - components - DomainControlPopup  render correctly with
               }
             >
               <input
-                name="status"
+                checked={false}
+                className="mt-2"
+                name="isUsed"
                 onChange={[Function]}
                 type="checkbox"
               />
@@ -296,7 +301,6 @@ exports[`domain control - components - DomainControlPopup  render correctly with
         <Button
           className="mr-3"
           color="success"
-          disabled={true}
           onClick={[Function]}
           tag="button"
           type="button"
@@ -345,6 +349,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -415,6 +420,59 @@ exports[`domain control - components - DomainControlPopup  render correctly with
             tag="div"
           >
             <Label
+              htmlFor="marketId"
+              sm={4}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Market
+            </Label>
+            <Col
+              sm={8}
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <Input
+                className="mt-1"
+                name="marketId"
+                onChange={[Function]}
+                type="select"
+                value="vi-VN"
+              >
+                <option
+                  key="market-en-GB"
+                  value="en-GB"
+                />
+                <option
+                  key="market-vi-VN"
+                  value="vi-VN"
+                />
+              </Input>
+            </Col>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              htmlFor="affDomainId"
               sm={4}
               tag="label"
               widths={
@@ -442,27 +500,26 @@ exports[`domain control - components - DomainControlPopup  render correctly with
                 ]
               }
             >
-              <Select
-                dataSource={
-                  Array [
-                    Object {
-                      "DomainId": 21,
-                      "DomainName": "10.18.200.209:7613/12BetGo",
-                    },
-                    Object {
-                      "DomainId": 34,
-                      "DomainName": "go.test.com",
-                    },
-                  ]
-                }
-                hasInputOption={true}
-                id="affDomain"
-                isDisable={false}
-                keyField="DomainId"
+              <Input
+                className="mt-1"
+                name="affDomainId"
                 onChange={[Function]}
-                selectedKey={34}
-                valueField="DomainName"
-              />
+                type="select"
+                value={34}
+              >
+                <option
+                  key="affDomain-21"
+                  value={21}
+                >
+                  10.18.200.209:7613/B2CGo
+                </option>
+                <option
+                  key="affDomain-34"
+                  value={34}
+                >
+                  go.test.com
+                </option>
+              </Input>
             </Col>
           </FormGroup>
           <FormGroup
@@ -471,6 +528,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
             tag="div"
           >
             <Label
+              htmlFor="redirectDomainId"
               sm={4}
               tag="label"
               widths={
@@ -498,75 +556,24 @@ exports[`domain control - components - DomainControlPopup  render correctly with
                 ]
               }
             >
-              <Select
-                dataSource={
-                  Array [
-                    Object {
-                      "DomainId": 46,
-                      "DomainName": "smart.123.vn",
-                    },
-                    Object {
-                      "DomainId": 60,
-                      "DomainName": "12liammobile",
-                    },
-                  ]
-                }
-                hasInputOption={true}
-                id="redirectDomain"
-                isDisable={false}
-                keyField="DomainId"
-                onChange={[Function]}
-                selectedKey={60}
-                valueField="DomainName"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={4}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Target Country
-            </Label>
-            <Col
-              sm={8}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
               <Input
                 className="mt-1"
-                disabled="true"
-                name="targetCountryCode"
-                title="All target countries are blocked for these domains!"
+                name="redirectDomainId"
+                onChange={[Function]}
                 type="select"
-                value=""
+                value={60}
               >
                 <option
-                  key="target-country-none"
-                  value=""
+                  key="redirectDomain-46"
+                  value={46}
                 >
-                  Please select!
+                  smart.123.vn
+                </option>
+                <option
+                  key="redirectDomain-60"
+                  value={60}
+                >
+                  12liammobile
                 </option>
               </Input>
             </Col>
@@ -605,7 +612,9 @@ exports[`domain control - components - DomainControlPopup  render correctly with
               }
             >
               <input
-                name="status"
+                checked={true}
+                className="mt-2"
+                name="isUsed"
                 onChange={[Function]}
                 type="checkbox"
               />
@@ -615,7 +624,6 @@ exports[`domain control - components - DomainControlPopup  render correctly with
         <Button
           className="mr-3"
           color="success"
-          disabled={true}
           onClick={[Function]}
           tag="button"
           type="button"

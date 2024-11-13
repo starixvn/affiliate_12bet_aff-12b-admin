@@ -1,10 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Newtonsoft.Json;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
-    public class CommGroup
+    public class CommGroup : CommGroupType
     {
         public int RowIdx { get; set; }
 
@@ -12,24 +11,19 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 
         public string GroupName { get; set; }
 
+        [JsonIgnore]
         public DateTime CreatedDate { get; set; }
 
         public string Creator { get; set; }
 
-        [MaxLength(Validation.MaxLengthCommGroupDescription, ErrorMessage = "Description should shorter than 100 characters!")]
         public string Description { get; set; }
 
-        [Range(0, (double)Money.MaxValue, ErrorMessage = "QmTurnover not valid!")]
-        public decimal QmTurnover { get; set; }
-
-        [Range(0, (double)Money.MaxValue, ErrorMessage = "NextQmTurnover not valid!")]
-        public decimal NextQmTurnover { get; set; }
-
-        [Range(0, Validation.MaxId, ErrorMessage = "NoAffs not valid!")]
         public int NoAffs { get; set; }
 
-        public bool IsApplyBonus { get; set; }
+        public decimal SubAffCommRate { get; set; }
 
-        public bool NextIsApplyBonus { get; set; }
+        public bool IsActivePlayerSum { get; set; }
+
+        public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

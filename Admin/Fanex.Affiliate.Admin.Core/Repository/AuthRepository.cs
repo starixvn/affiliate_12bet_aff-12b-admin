@@ -2,9 +2,12 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
+using Fanex.Common.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
@@ -23,14 +26,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                     {
                         result.Add(new UserPermission
                         {
-                            FunctionName = reader["FuncName"].ToString(),
+                            FunctionName = reader.ToString("FuncName"),
                             IsHost = Convert.ToBoolean(reader["Host"])
                         });
                     }
                 }
             }
 
-            return result;
+            return result.Where(p => !p.FunctionName.Contains("TransferPlayer")).ToList(); //Hide Transfer Player
         }
 
         public bool ReCheckin(int onUserId)
@@ -40,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.SetParameterValue(Field.OnUserId, onUserId);
-                objectDb.SetParameterValue("iskickedout", DefaultValue.Bool);
+                objectDb.SetParameterValue("iskickedout", DefaultValue.Int);
                 objectDb.ExecuteNonQuery();
                 var isKickedOut = objectDb.GetParameterValue("iskickedout");
 
@@ -108,21 +111,16 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             }
         }
 
-        public bool CheckIfAffBeInChargeByUser(int userId, int affId)
+        public ResultInfo CheckPermission(CheckPermissionParam param)
         {
-            const string SpKey = "Aff_Check_AffBelongToUser";
-            var param = new
+            const string spName = "Aff_Con_CheckPermission";
+            using (var objectDb = GetObjectDb(spName))
             {
-                UserId = userId,
-                Affid = affId,
-                IsBelongTo = false
-            };
+                AssignResultOutputParam(objectDb);
 
-            using (var objectDb = GetObjectDb(SpKey))
-            {
                 objectDb.ExecuteNonQuery(param);
 
-                return param.IsBelongTo;
+                return GetResultInfo(objectDb);
             }
         }
     }

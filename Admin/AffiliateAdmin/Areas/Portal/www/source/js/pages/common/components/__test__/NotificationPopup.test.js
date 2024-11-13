@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import NotificationPopup from '../NotificationPopup';
 import { shallow } from 'enzyme';
-import { Modal, ModalHeader } from 'reactstrap';
+import { Modal } from 'reactstrap';
 
 describe('common - components - NotificationPopup', () => {
     const defaultProps = { onClose: jest.fn() };
@@ -42,16 +42,9 @@ describe('common - components - NotificationPopup', () => {
         expect(props.onClose).toHaveBeenCalledWith(false);
     });
 
-    it('onClose - should be called when click Modal toggle', () => {
+    it('onClose - should be called when click toggle', () => {
         const result = shallow(<NotificationPopup {...defaultProps} />);
         result.find(Modal).props().toggle();
-
-        expect(defaultProps.onClose).toHaveBeenCalled();
-    });
-
-    it('onClose - should be called when click ModalHeader toggle', () => {
-        const result = shallow(<NotificationPopup {...defaultProps} />);
-        result.find(ModalHeader).props().toggle();
 
         expect(defaultProps.onClose).toHaveBeenCalled();
     });

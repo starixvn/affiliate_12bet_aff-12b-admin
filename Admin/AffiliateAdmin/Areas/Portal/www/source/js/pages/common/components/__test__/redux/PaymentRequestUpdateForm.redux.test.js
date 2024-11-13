@@ -1,28 +1,38 @@
-﻿import React from 'react'
-import PaymentRequestUpdateForm from '../../PaymentRequestUpdateForm'
-import { shallow } from 'enzyme'
-import configureMockStore from 'redux-mock-store'
-
-const mockStore = configureMockStore()
+﻿jest.mock('redux');
+jest.mock('react-redux');
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../../actions/paymentRequestUpdate';
 
 describe('common - PaymentRequestUpdateForm - connect', () => {
-    let wrapper, store
+    let mapDispatchToProps;
+    const connectMock = jest.fn();
 
-    beforeEach(() => {
-        const initialState = {
-            claimsPrincipal: {
-                hasWriteClaim: jest.fn(() => true),
-                hasReadClaim: jest.fn(() => true)
-            }
+    beforeAll(() => {
+        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
+            mapDispatchToProps = mapDispatchToPropsFunc;
+            return connectMock;
+        });
+        require('../../PaymentRequestUpdateForm').default;
+    });
+
+    it('bindActionCreators should be called with correct parameter', () => {
+        const mockBindAction = jest.fn();
+        bindActionCreators.mockImplementationOnce(mockBindAction);
+        const expectedActionCreator = {
+            getPaymentRequestDetail: actions['getPaymentRequestDetail'],
+            updatePaymentRequest: actions['updatePaymentRequest']
         }
-        store = mockStore(initialState)
-        wrapper = shallow(<PaymentRequestUpdateForm store={store} />).dive()
+
+        const dispatch = {};
+        mapDispatchToProps(dispatch);
+
+        expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
     })
 
-    it('should show correct value', () => {
-        const { isUpdatable, isShowEmail, isShowPaymentInfo } = wrapper.props();
-        expect(isUpdatable).toBeTruthy()
-        expect(isShowEmail).toBeTruthy()
-        expect(isShowPaymentInfo).toBeTruthy()
+    it('returned function of connect should be called with correct parameter', () => {
+        const PaymentRequestUpdateForm = require('../../PaymentRequestUpdateForm').PaymentRequestUpdateForm;
+
+        expect(connectMock).toHaveBeenCalledWith(PaymentRequestUpdateForm);
     })
 })

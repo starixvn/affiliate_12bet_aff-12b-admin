@@ -1,4 +1,5 @@
 import { post } from '../../../../modules/ajaxRequest';
+import { submitFail } from "../../../../modules/constants";
 import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
 import { SET_AFF_NAME, SET_IS_VALID_USERNAME, TOGGLE_LOADER_LEFT_PANEL } from './types';
 
@@ -35,35 +36,37 @@ export const getOnLineList = (affName) => async (dispatch) => {
 
 export const updateLanguage = (param) => async () => {
     const url = 'Portal/CustomerLeftPanel/UpdateLanguage';
-    const response = await post(url, param);
 
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const updateContactNumber = (param) => async () => {
-    const url = 'Portal/CustomerLeftPanel/UpdateContactNumber';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
+    return await handleRequestUpdate(url, param);
 }
 
 export const updateAffType = (param) => async () => {
     const url = 'Portal/CustomerLeftPanel/UpdateAffType';
-    const response = await post(url, param);
 
-    return response && response.status === 200 ? response.data : null;
+    return await handleRequestUpdate(url, param);
 }
 
 export const updateStatus = (param) => async () => {
     const url = 'Portal/CustomerLeftPanel/UpdateStatus';
-    const response = await post(url, param);
+
+    return await handleRequestUpdate(url, param);
+}
+
+export const getTransferLimitSetting = (affId) => async () => {
+    const url = 'Portal/CustomerLeftPanel/GetTransferLimitSetting';
+    const response = await post(url, { affId });
 
     return response && response.status === 200 ? response.data : null;
 }
 
-export const updateClosedStatus = (param) => async () => {
-    const url = 'Portal/CustomerLeftPanel/UpdateClosedStatus';
+export const updateTransferLimitSetting = (param) => async () => {
+    const url = 'Portal/CustomerLeftPanel/UpdateTransferLimitSetting';
+
+    return await handleRequestUpdate(url, param);
+}
+
+export const handleRequestUpdate = async (url, param) => {
     const response = await post(url, param);
 
-    return response && response.status === 200 ? response.data : null;
+    return response && response.status === 200 ? response.data : submitFail;
 }

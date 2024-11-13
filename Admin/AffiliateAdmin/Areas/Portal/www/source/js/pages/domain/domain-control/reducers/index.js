@@ -2,43 +2,42 @@
 
 import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
-import * as types from '../actions/types';
-import { claimsPrincipal } from '../../../../reducers/claimReducer';
+import { SET_SELECTED_MARKET, SET_SELECTED_DOMAIN, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_AFF_DOMAIN_LIST, SET_REDIRECT_DOMAIN } from '../actions/types';
 
-const targetCountryList = createReducer(null, {})
+const marketList = createReducer(null, {})
 
 export const shouldResetScrollPosition = createReducer(true, {
-    [types.SHOULD_RESET_SCROLL_POSITION](prevState, action) {
+    [SHOULD_RESET_SCROLL_POSITION](prevState, action) {
         return action.data;
     }
 })
 
 export const gridData = createReducer(null, {
-    [types.SET_GRID_DATA](prevState, action) {
+    [SET_GRID_DATA](prevState, action) {
         return action.data;
     }
 })
 
-export const selectedTargetCountryCode = createReducer('', {
-    [types.SET_SELECTED_TARGET_COUNTRY_CODE](prevState, action) {
+export const selectedMarket = createReducer('', {
+    [SET_SELECTED_MARKET](prevState, action) {
         return action.data;
     }
 })
 
-export const selectedDomainId = createReducer(null, {
-    [types.SET_SELECTED_DOMAIN_ID](prevState, action) {
+export const selectedDomain = createReducer(null, {
+    [SET_SELECTED_DOMAIN](prevState, action) {
         return action.data;
     }
 })
 
 export const affDomainList = createReducer(null, {
-    [types.SET_AFF_DOMAIN_LIST](prevState, action) {
+    [SET_AFF_DOMAIN_LIST](prevState, action) {
         return action.data;
     }
 })
 
 export const redirectDomainList = createReducer(null, {
-    [types.SET_REDIRECT_DOMAIN_LIST](prevState, action) {
+    [SET_REDIRECT_DOMAIN](prevState, action) {
         return action.data;
     }
 })
@@ -46,11 +45,10 @@ export const redirectDomainList = createReducer(null, {
 export default combineReducers({
     gridData,
     isShowLoader,
-    targetCountryList,
-    selectedTargetCountryCode,
-    selectedDomainId,
+    marketList,
+    selectedMarket,
+    selectedDomain,
     affDomainList,
     redirectDomainList,
-    shouldResetScrollPosition,
-    claimsPrincipal
+    shouldResetScrollPosition
 });

@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetOnlineList("en-US", 1, 20);
+            var result = service.Object.GetOnlineList(1, 20);
             var item = result.MainData.FirstOrDefault();
 
             // Assert
@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetOnlineList("en-US", 1, 20);
+            var result = service.Object.GetOnlineList(1, 20);
             var item = result.MainData.FirstOrDefault();
 
             // Assert
@@ -74,68 +74,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetOnlineList("en-US", 1, 20);
+            var result = service.Object.GetOnlineList(1, 20);
 
             // Assert
             Assert.Equal(0, result.TotalItem);
-        }
-
-        [Theory]
-        [InlineData(false, 1.23)]
-        [InlineData(true, 0)]
-        public void GetPSPToday_WhenCall_ReturnCorrectData(bool isDBNull, decimal expectedResult)
-        {
-            // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-
-            objectDb.Setup(obj => obj.GetParameterValue("PSP")).Returns(isDBNull ? DBNull.Value : (object)1.23);
-            service.Setup(r => r.GetObjectDb("Aff_DEP_AffiliateGetPSP", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetPSPToday();
-
-            // Assert
-            Assert.Equal(expectedResult, result);
-        }
-
-        [Fact]
-        public void GetDepositInfo_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetDepositInfo());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_DEP_AffiliateGeneralInfo", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetDepositInfo();
-
-            // Assert
-            Assert.Equal(34, result.AllMemberDepositUpToNow);
-        }
-
-        [Fact]
-        public void GetDepositInfo_WhenCall_ReturnNull()
-        {
-            // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(false);
-
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_DEP_AffiliateGeneralInfo", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetDepositInfo();
-
-            // Assert
-            Assert.Null(result);
         }
 
         [Fact]
@@ -152,7 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_Admin_GeneralInfo_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetGeneralInfo(string.Empty);
+            var result = service.Object.GetGeneralInfo();
 
             // Assert
             Assert.Equal(1, result.PaymentRequestNumber);
@@ -171,7 +113,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             service.Setup(r => r.GetObjectDb("Aff_Admin_GeneralInfo_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = service.Object.GetGeneralInfo(string.Empty);
+            var result = service.Object.GetGeneralInfo();
 
             // Assert
             Assert.Null(result);
@@ -201,45 +143,42 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             };
         }
 
-        private IDictionary<string, object> GetDepositInfo()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["MemInProAllNum"] = 34,
-                ["MemInProMonthNum"] = 12
-            };
-        }
-
         private IDictionary<string, object> GetGeneralInfo()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
                 ["PaymentReqNum"] = 1,
                 ["BannerNum"] = 2,
-                ["ImageBannerNum"] = 3,
-                ["FlashBannerNum"] = 4,
+                ["PlayerBannerNum"] = 3,
+                ["AffiliateBannerNum"] = 4,
                 ["AffInProAllNum"] = 1,
                 ["PendingAllNum"] = 2,
                 ["ApprovedAllNum"] = 3,
                 ["DisapprovedAllNum"] = 4,
-                ["ClosedAllNum"] = 5,
+                ["SuspendedAllNum"] = 4,
                 ["DepositMemAllNum"] = 1,
                 ["DepositAll"] = 2,
-                ["WinlostAll"] = 3,
+                ["GgrAll"] = 3,
                 ["BonusAll"] = 4,
+                ["RebateAll"] = 2,
                 ["PSPFeeAll"] = 5,
                 ["NetWinlostAll"] = 1,
                 ["AffInProMonthNum"] = 2,
                 ["PendingMonthNum"] = 3,
                 ["ApprovedMonthNum"] = 4,
                 ["DisapprovedMonthNum"] = 5,
-                ["ClosedMonthNum"] = 1,
+                ["SuspendedMonthNum"] = 5,
                 ["DepositMemMonthNum"] = 2,
                 ["DepositMonth"] = 3,
-                ["WinlostMonth"] = 4,
+                ["GgrMonth"] = 4,
                 ["BonusMonth"] = 5,
+                ["RebateMonth"] = 3,
                 ["PSPFeeMonth"] = 4,
-                ["NetWinlostMonth"] = 5
+                ["NetWinlostMonth"] = 5,
+                ["MemAllNum"] = 4,
+                ["NonDepositMemAllNum"] = 3,
+                ["MemMonthNum"] = 4,
+                ["NonDepositMemMonthNum"] = 3
             };
         }
     }

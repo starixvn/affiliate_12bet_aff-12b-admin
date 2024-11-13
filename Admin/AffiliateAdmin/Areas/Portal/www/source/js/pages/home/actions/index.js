@@ -1,8 +1,8 @@
 ﻿import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { setPagingOption } from '../../../actions/pagingAction';
-import { defaultGeneralInfo, defaultDepositInfo } from '../libs/constants';
-import { SET_ONLINE_LIST, SET_PSP_TODAY, SET_DEPOSIT_INFO, SET_GENERAL_INFO } from './types';
+import { defaultGeneralInfo } from '../libs/constants';
+import { SET_ONLINE_LIST, SET_GENERAL_INFO } from './types';
 
 export { setPagingOption };
 
@@ -13,43 +13,11 @@ export const setOnlineList = (data) => {
     }
 }
 
-export const setPSPToday = (data) => {
-    return {
-        type: SET_PSP_TODAY,
-        data
-    }
-}
-
-export const setDepositInfo = (data) => {
-    return {
-        type: SET_DEPOSIT_INFO,
-        data
-    }
-}
-
 export const setGeneralInfo = (data) => {
     return {
         type: SET_GENERAL_INFO,
         data
     }
-}
-
-export const getPSPToday = () => async (dispatch) => {
-    const url = 'Portal/Home/GetPSPToday';
-    const response = await post(url);
-
-    const data = response && response.status === 200 ? response.data : 0;
-
-    dispatch(setPSPToday(data));
-}
-
-export const getDepositInfo = () => async (dispatch) => {
-    const url = 'Portal/Home/GetDepositInfo';
-    const response = await post(url);
-
-    const data = response && response.status === 200 ? response.data : defaultDepositInfo;
-
-    dispatch(setDepositInfo(data));
 }
 
 export const getGeneralInfo = () => async (dispatch) => {

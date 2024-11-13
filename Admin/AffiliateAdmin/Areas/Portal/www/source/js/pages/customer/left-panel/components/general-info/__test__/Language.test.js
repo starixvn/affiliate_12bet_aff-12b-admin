@@ -3,10 +3,6 @@ import { Language } from '../Language';
 import { shallow } from 'enzyme';
 
 describe('left panel - components - general-info - Language', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-
     const affiliateInfo = {
         AffId: 1271808,
         AffLink: "http://localhost:55690/Auth/AdminLogin?chalengeStr=esh5u7&accKey=E16156C28&custName=12BETAFF226&accId=1000000026&accOnId=8405",
@@ -18,7 +14,6 @@ describe('left panel - components - general-info - Language', () => {
         FirstName: "bb",
         Gender: true,
         GroupId: 102,
-        IsClosed: false,
         LastLoginDateText: "04/11/2019 22:24:00",
         LastLoginIp: "10.18.200.125",
         LastName: "12BETAFF226",
@@ -26,7 +21,7 @@ describe('left panel - components - general-info - Language', () => {
         NoSiteDescription: "",
         Phone: "abc",
         PreferredLanguage: "vi-VN",
-        SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+        SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
         Status: "Approved"
     };
 
@@ -44,22 +39,19 @@ describe('left panel - components - general-info - Language', () => {
     const defaultProps = {
         affiliateInfo,
         languageList,
-        isStatic: false,
         affName: '12BETAFF226'
     }
 
     it('render correctly with isChangingLanguage is false', () => {
         const result = shallow(<Language {...defaultProps} />);
-        result.setState({ messageNotification: 'message' });
 
         expect(result).toMatchSnapshot();
     });
 
     it('render correctly with isChangingLanguage is true', () => {
-        const props = Object.assign({}, defaultProps, { isStatic: true });
-        const result = shallow(<Language {...props} />);
+        const result = shallow(<Language {...defaultProps} />);
 
-        result.instance().setState({ isChangingLanguage: true });
+        result.setState({ isChangingLanguage: true });
 
         expect(result).toMatchSnapshot();
     });
@@ -90,7 +82,7 @@ describe('left panel - components - general-info - Language', () => {
         wrapper.setState({ isChangingLanguage: true });
         wrapper.setState = jest.fn();
 
-        wrapper.find('select').simulate('change', { target: { value: 'en-US' }});
+        wrapper.find('select').simulate('change', { target: { value: 'en-US' } });
 
         expect(wrapper.setState).toHaveBeenCalledWith({ messageNotification: "Are you sure you want to change language for this affiliate?", isConfirmPopup: true, preferredLanguage: 'en-US' });
     });
@@ -128,7 +120,7 @@ describe('left panel - components - general-info - Language', () => {
 
     it('handleCloseNotificationPopup - should call setState and _changeLanguage', async () => {
         const wrapper = shallow(<Language {...defaultProps} />);
-        wrapper.setState({ preferredLanguage: 'en-US'});
+        wrapper.setState({ preferredLanguage: 'en-US' });
         wrapper.setState = jest.fn();
         const instance = wrapper.instance();
         instance._changeLanguage = jest.fn();

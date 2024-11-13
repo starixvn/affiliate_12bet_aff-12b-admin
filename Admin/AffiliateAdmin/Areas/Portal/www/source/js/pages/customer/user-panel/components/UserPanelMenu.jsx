@@ -1,5 +1,5 @@
 import React from 'react';
-import { isActiveMenu } from '../libs/service';
+import { isActiveMenu } from '../modules/service';
 import UserPanelMenuItem from './UserPanelMenuItem';
 
 export const UserPanelMenu = (props) => {

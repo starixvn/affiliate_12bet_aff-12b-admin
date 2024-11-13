@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Newtonsoft.Json;
 using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
@@ -10,21 +9,32 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string UserName { get; set; }
 
-        public DateTime RegisteredDate { get; set; }
+        [JsonIgnore]
+        public DateTime? RegisteredDate { get; set; }
 
         public decimal Deposit { get; set; }
 
         public decimal Withdrawal { get; set; }
 
-        public decimal BankingFee { get; set; }
+        public decimal DepositFee { get; set; }
+
+        public decimal WithdrawalFee { get; set; }
 
         public decimal Bonus { get; set; }
 
-        [PermissionCheck(Function.Turnover)]
+        public decimal Rebate { get; set; }
+
         public decimal Turnover { get; set; }
 
-        public decimal Winloss { get; set; }
+        public decimal Ggr { get; set; }
 
-        public string RegisteredDateText => RegisteredDate.ToString("MM/dd/yyyy HH:mm:ss");
+        public decimal? FirstDepositAmount { get; set; }
+
+        [JsonIgnore]
+        public DateTime? FirstDepositDate { get; set; }
+
+        public string FirstDepositDateText => FirstDepositDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? string.Empty;
+
+        public string RegisteredDateText => RegisteredDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? string.Empty;
     }
 }

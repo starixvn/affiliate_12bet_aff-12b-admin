@@ -23,8 +23,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         [JsonIgnore]
         public string Description { get; set; }
 
-        public string DateText => (TransType == Constants.TransType.Adjustment || TransType == Constants.TransType.PaymentRequest)
-                                    ? Date.ToString("dd-MMM-yyyy") : Date.ToString("MMM-yyyy");
+        public byte? CalculatedType { get; set; }
+
+        public string DateText => (TransType == Constants.TransType.MonthlyEarning || TransType == Constants.TransType.MonthlyTotal
+            || TransType == Constants.TransType.SubAffiliate) ? Date.ToString("MMM-yyyy") : Date.ToString("dd-MMM-yyyy");
 
         public string NormalizeDateText => Date.ToString("yyyy-MM-dd");
 
@@ -34,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
             {
                 if (TransType == Constants.TransType.MonthlyTotal)
                 {
-                    return GetMonthlyTotalDescription(Description);
+                    return GetMonthlyTotalDescription(CalculatedType);
                 }
 
                 return Description;
@@ -43,23 +45,17 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public IEnumerable<StatementHistory> Children { get; set; } = new List<StatementHistory>();
 
-        private static string GetMonthlyTotalDescription(string description)
+        private static string GetMonthlyTotalDescription(byte? calculatedType)
         {
-            if (string.IsNullOrWhiteSpace(description))
+            switch (calculatedType)
             {
-                return "Monthly Total";
+                case Constants.CalculatedType.CalculatedMonth:
+                    return "Monthly Total";
+                case Constants.CalculatedType.UnCalculatedMonth:
+                    return "Uncalculated Month";
+                default:
+                    return "Current Month Statistics";
             }
-
-            if (description.Contains("Current"))
-            {
-                return "Current Month Statistics";
-            }
-            if (description.Contains("Uncalculated"))
-            {
-                return "Uncalculated Month";
-            }
-
-            return "Monthly Total";
         }
     }
 }

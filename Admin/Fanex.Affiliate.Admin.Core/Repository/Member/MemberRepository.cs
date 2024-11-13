@@ -1,8 +1,9 @@
-﻿using DNAide.Core;
-using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Member;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
+using Fanex.Common.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -32,52 +33,70 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
                     {
                         dataList.Add(new MemberInfo
                         {
-                            MemberId = Convert.ToInt32(reader["IBCCustID"]),
-                            UserName = Convert.ToString(reader["UserName"]),
-                            IbcUserName = Convert.ToString(reader["IBCUserName"]),
-                            FirstName = Convert.ToString(reader["FirstName"]),
-                            LastName = Convert.ToString(reader["LastName"]),
-                            CreatedDate = reader["CreatedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreatedDate"]),
-                            AffName = Convert.ToString(reader["AffUserName"]),
-                            IsRemoved = Convert.ToBoolean(reader["IsRemoved"]),
-                            CurrentBalance = FormatNumber(reader["CurrBalance"])
+                            MemberId = reader.ToInt("CustID"),
+                            UserName = reader.ToString("UserName"),
+                            IbcUserName = reader.ToString("IBCUserName"),
+                            FirstName = reader.ToString("FirstName"),
+                            LastName = reader.ToString("LastName"),
+                            CreatedDate = reader.GetVal<DateTime?>("RegisteredDate"),
+                            LastActionDate = reader.GetVal<DateTime?>("LastAction"),
+                            IsInclude = reader.GetVal<bool>("IsInclude"),
+                            IsRemoved = reader.GetVal<bool>("IsRemoved"),
+                            AffName = reader.ToString("AffUserName")
                         });
                     }
                 }
 
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
             }
 
             return result;
         }
 
-        public ResultInfo UpdateMemberStatus(UpdateMemberStatusParam param)
+        public PlayerActionInfo GetMemberDetail(int memberId)
         {
-            const string SpKey = "Aff_Admin_Member_RemoveStatus_Upd";
+            const string Spkey = "Aff_Admin_Player_Sel";
 
-            using (var objectDb = GetObjectDb(SpKey))
+            using (var objectDb = GetObjectDb(Spkey))
             {
-                objectDb.SetParameterValue("IsRemoved", param.IsRemoved);
-                objectDb.SetParameterValue("ibccustid", param.MemberId);
-                objectDb.SetParameterValue("UserID", param.UserId);
-                objectDb.SetParameterValue("IP", param.Ip);
+                objectDb.SetParameterValue("CustId", memberId);
 
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new PlayerActionInfo
+                        {
+                            UserName = reader.ToString("UserName"),
+                            IsInclude = reader.GetVal<bool>("IsInclude"),
+                            IsRemoved = reader.GetVal<bool>("IsRemoved"),
+                            LastActionDate = reader.GetVal<DateTime?>("LastAction"),
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public ResultInfo UpdateMember(UpdateMemberParam param)
+        {
+            const string Spkey = "Aff_Admin_Member_RemoveStatus_Upd";
+
+            using (var objectDb = GetObjectDb(Spkey))
+            {
+                objectDb.SetParameterValue("CustId", param.MemberId);
+                objectDb.SetParameterValue("IsRemoved", param.IsRemoved);
+                objectDb.SetParameterValue("IsInclude", param.IsInclude);
+                objectDb.SetParameterValue("UserId", param.UserId);
+                objectDb.SetParameterValue("Ip", param.Ip);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
 
                 return GetResultInfo(objectDb);
             }
-        }
-
-        private static string FormatNumber(object Number)
-        {
-            var decimalString = CastAide.AsDecimal(Number, 0m).ToString("N2");
-            var decimalNumber = Convert.ToDecimal(decimalString);
-
-            return (decimalNumber >= 0 ? "$" : "-$") + Math.Abs(decimalNumber);
-
         }
     }
 }

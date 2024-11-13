@@ -1,7 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
@@ -9,8 +11,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
     {
         UserAccount GetUserAccountInfo(int affId);
 
-        ResultInfo UpdateUserAccount(UserAccountParam param);
+        Task<ResultInfo> UpdateUserAccountAsync(UserAccountParam param);
 
-        IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false);
+        (IEnumerable<PaymentMethodInfo> paymentMethods, decimal minAmount) GetPaymentMethod();
     }
 }

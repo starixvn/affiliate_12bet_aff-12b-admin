@@ -19,6 +19,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Ip { get; set; }
 
-        public string DateText => Date.ToString("MM/dd/yyyy hh:mm:ss tt");
+        public string DateText => Date.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

@@ -7,6 +7,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public interface IStatementHistoryService
     {
+        EntityResult<SubAffiliate> GetSubAffiliate(SubAffiliateParam param);
+
         DailyEarningResult GetDailyEarning(DailyEarningParam param);
 
         DailyEarningDetailResult GetDailyEarningDetail(DailyEarningParam param);

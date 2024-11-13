@@ -20,6 +20,9 @@ axios.interceptors.response.use(response => Promise.resolve(response),
 
             switch (status) {
                 case 401:
+                    alert("Your session was expired! Please login again.");
+                    location.reload(true);
+                    break;
                 case 403:
                     alert("You are not authorized on this function.");
                     location.reload(true);
@@ -38,11 +41,11 @@ axios.interceptors.response.use(response => Promise.resolve(response),
 export const post = (relativeUrl, params, options) => {
     const url = resolveClientUrl(relativeUrl);
     return axios.post(url, params, {
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                '__RequestVerificationToken': getXsrfToken()
-            }
-        })
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            '__RequestVerificationToken': getXsrfToken()
+        }
+    })
         .then(response => response)
         .catch(err => {
             options && options.onError && options.onError(err);

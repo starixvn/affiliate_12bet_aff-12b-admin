@@ -21,16 +21,14 @@ describe('customer statistics actions', () => {
 
     it('should create action to fetchData with correct parameter', async () => {
         const expectedResponse = {
-            data: { 
+            data: {
                 ActivePlayerByMonth: 0,
                 DepositByMonth: 0,
                 DepositTotal: 951.435,
-                FdmDepositByMonth: 0,
                 NewFdmByMonth: 0,
                 NewFdmTotal: 1829,
                 NewSignUpByMonth: 0,
                 NewSignUpTotal: 3742,
-                QualifiedMemberByMonth: 0,
                 TotalClickByMonth: 0,
                 TotalClickMobileByMonth: 0,
                 TotalClickPcLaptopByMonth: 0,
@@ -39,8 +37,8 @@ describe('customer statistics actions', () => {
                 UniqueClickByMonth: 0,
                 UniqueClickMobileByMonth: 0,
                 UniqueClickPcLaptopByMonth: 0,
-                WinlostByMonth: 0,
-                WinlostTotal: -42950.0237
+                GgrByMonth: 0,
+                GgrTotal: -42950.0237
             },
             status: 200
         };
@@ -51,7 +49,7 @@ describe('customer statistics actions', () => {
             affId: 1271808,
             monthDate: "07/01/2019"
         }
-        
+
         const result = await actions['fetchData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/CustomerStatistics/GetCustomerStatistics', param);

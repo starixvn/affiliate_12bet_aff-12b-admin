@@ -25,12 +25,8 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
-  style={
-    Object {
-      "maxWidth": 800,
-    }
-  }
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -92,7 +88,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-4"
+          className="mb-5"
           tag="form"
         >
           <FormGroup
@@ -102,8 +98,8 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
           >
             <Label
               className="required"
-              for="pageName"
-              sm={4}
+              htmlFor="pageName"
+              sm={7}
               tag="label"
               widths={
                 Array [
@@ -137,30 +133,18 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
                 onChange={[Function]}
                 onKeyPress={[Function]}
                 type="text"
-                value=""
+                value="123 @abc"
               />
-              <FormFeedback
-                tag="div"
-              >
-                <div
-                  dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "This field is required",
-                    }
-                  }
-                />
-              </FormFeedback>
             </Col>
           </FormGroup>
           <FormGroup
-            className="mb-3"
             row={true}
             tag="div"
           >
             <Label
               className="required"
-              for="pageCode"
-              sm={4}
+              htmlFor="pageCode"
+              sm={7}
               tag="label"
               widths={
                 Array [
@@ -194,7 +178,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
                 onChange={[Function]}
                 onKeyPress={[Function]}
                 type="text"
-                value=""
+                value="123 @abc"
               />
               <FormFeedback
                 tag="div"
@@ -202,22 +186,13 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
                 <div
                   dangerouslySetInnerHTML={
                     Object {
-                      "__html": "This field is required",
+                      "__html": "Special characters are not allowed",
                     }
                   }
                 />
               </FormFeedback>
             </Col>
           </FormGroup>
-          <ExcludedTargetCountryFormGroup
-            changeTargetCountry={[Function]}
-            isExcludedAllTargetCountries={false}
-            lblText="Excluded Target Country"
-            sm={4}
-            targetCountryList={null}
-            tooltipText="This Affiliate domain has been used for this target country!"
-            usingTargetCountryList={Array []}
-          />
         </Form>
         <Button
           className="mr-3"
@@ -268,12 +243,8 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
-  style={
-    Object {
-      "maxWidth": 800,
-    }
-  }
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -335,7 +306,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-4"
+          className="mb-5"
           tag="form"
         >
           <FormGroup
@@ -345,8 +316,8 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
           >
             <Label
               className="required"
-              for="pageName"
-              sm={4}
+              htmlFor="pageName"
+              sm={7}
               tag="label"
               widths={
                 Array [
@@ -380,7 +351,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
                 onChange={[Function]}
                 onKeyPress={[Function]}
                 type="text"
-                value=""
+                value="123456789012345678901234567890123456789012345678901"
               />
               <FormFeedback
                 tag="div"
@@ -388,7 +359,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
                 <div
                   dangerouslySetInnerHTML={
                     Object {
-                      "__html": "This field is required",
+                      "__html": "This field must not exceed 50 characters",
                     }
                   }
                 />
@@ -396,14 +367,13 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
             </Col>
           </FormGroup>
           <FormGroup
-            className="mb-3"
             row={true}
             tag="div"
           >
             <Label
               className="required"
-              for="pageCode"
-              sm={4}
+              htmlFor="pageCode"
+              sm={7}
               tag="label"
               widths={
                 Array [
@@ -437,7 +407,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
                 onChange={[Function]}
                 onKeyPress={[Function]}
                 type="text"
-                value=""
+                value="123456789012345678901234567890123456789012345678901"
               />
               <FormFeedback
                 tag="div"
@@ -445,22 +415,13 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
                 <div
                   dangerouslySetInnerHTML={
                     Object {
-                      "__html": "This field is required",
+                      "__html": "This field must not exceed 50 characters",
                     }
                   }
                 />
               </FormFeedback>
             </Col>
           </FormGroup>
-          <ExcludedTargetCountryFormGroup
-            changeTargetCountry={[Function]}
-            isExcludedAllTargetCountries={false}
-            lblText="Excluded Target Country"
-            sm={4}
-            targetCountryList={null}
-            tooltipText="This Affiliate domain has been used for this target country!"
-            usingTargetCountryList={Array []}
-          />
         </Form>
         <Button
           className="mr-3"
@@ -511,12 +472,8 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
-  style={
-    Object {
-      "maxWidth": 800,
-    }
-  }
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -578,7 +535,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-4"
+          className="mb-5"
           tag="form"
         >
           <FormGroup
@@ -588,8 +545,8 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
           >
             <Label
               className="required"
-              for="pageName"
-              sm={4}
+              htmlFor="pageName"
+              sm={7}
               tag="label"
               widths={
                 Array [
@@ -618,35 +575,23 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
             >
               <Input
                 className="input-required mt-2"
-                invalid={true}
+                invalid={false}
                 name="pageName"
                 onChange={[Function]}
                 onKeyPress={[Function]}
                 type="text"
-                value=""
+                value="123"
               />
-              <FormFeedback
-                tag="div"
-              >
-                <div
-                  dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "This field is required",
-                    }
-                  }
-                />
-              </FormFeedback>
             </Col>
           </FormGroup>
           <FormGroup
-            className="mb-3"
             row={true}
             tag="div"
           >
             <Label
               className="required"
-              for="pageCode"
-              sm={4}
+              htmlFor="pageCode"
+              sm={7}
               tag="label"
               widths={
                 Array [
@@ -675,40 +620,20 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
             >
               <Input
                 className="input-required mt-2"
-                invalid={true}
+                invalid={false}
                 name="pageCode"
                 onChange={[Function]}
                 onKeyPress={[Function]}
                 type="text"
-                value=""
+                value="abc"
               />
-              <FormFeedback
-                tag="div"
-              >
-                <div
-                  dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "This field is required",
-                    }
-                  }
-                />
-              </FormFeedback>
             </Col>
           </FormGroup>
-          <ExcludedTargetCountryFormGroup
-            changeTargetCountry={[Function]}
-            isExcludedAllTargetCountries={false}
-            lblText="Excluded Target Country"
-            sm={4}
-            targetCountryList={null}
-            tooltipText="This Affiliate domain has been used for this target country!"
-            usingTargetCountryList={Array []}
-          />
         </Form>
         <Button
           className="mr-3"
           color="success"
-          disabled={true}
+          disabled={false}
           onClick={[Function]}
           tag="button"
           type="button"

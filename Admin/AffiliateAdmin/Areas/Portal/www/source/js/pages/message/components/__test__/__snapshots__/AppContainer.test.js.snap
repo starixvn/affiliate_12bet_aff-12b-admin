@@ -11,7 +11,7 @@ exports[`message - components - AppContainer render correctly 1`] = `
     <Connect(Component) />
     <Connect(Component) />
     <Connect(Component) />
-    <Connect(MessageDetailForm) />
+    <Connect(Component) />
   </div>
 </AppLayout>
 `;

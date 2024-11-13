@@ -1,70 +1,63 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import * as types from './types';
-import { getDomainList, getTargetCountryListByDomain } from '../../domain/actions/index';
+import { SET_SELECTED_MARKET, SET_SELECTED_DOMAIN, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_AFF_DOMAIN_LIST, SET_REDIRECT_DOMAIN } from './types';
+import { getDomainList } from '../../domain/actions/index';
 
-export { toggleLoader, getTargetCountryListByDomain as getTargetCountryListByDomains };
+export { toggleLoader };
 
-export const setSelectedDomainId = (data) => {
+export const setSelectedDomain = (data) => {
     return {
-        type: types.SET_SELECTED_DOMAIN_ID,
+        type: SET_SELECTED_DOMAIN,
         data
     }
 }
 
-export const setSelectedTargetCountryCode = (data) => {
+export const setSelectedMarket = (data) => {
     return {
-        type: types.SET_SELECTED_TARGET_COUNTRY_CODE,
+        type: SET_SELECTED_MARKET,
         data
     }
 }
 
 export const setShouldResetScrollPosition = (data) => {
     return {
-        type: types.SHOULD_RESET_SCROLL_POSITION,
+        type: SHOULD_RESET_SCROLL_POSITION,
         data
     }
 }
 
 export const setGridData = (data) => {
     return {
-        type: types.SET_GRID_DATA,
+        type: SET_GRID_DATA,
         data
     }
 }
 
 export const setAffDomainList = (data) => {
     return {
-        type: types.SET_AFF_DOMAIN_LIST,
+        type: SET_AFF_DOMAIN_LIST,
         data
     }
 }
 
 export const setRedirectDomainList = (data) => {
     return {
-        type: types.SET_REDIRECT_DOMAIN_LIST,
+        type: SET_REDIRECT_DOMAIN,
         data
     }
 }
 
-export const fetchData = (targetCountryCode) => async (dispatch) => {
+export const fetchData = (market) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
     const url = 'Portal/DomainControl/GetDomainControlList';
-    const response = await post(url, { targetCountryCode });
+    const response = await post(url, { market });
 
     const data = response && response.status === 200 ? response.data : [];
 
     dispatch(setGridData(data));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
-}
-
-export const getDomainControlById = (domainControlId) => async () => {
-    const url = 'Portal/DomainControl/GetDomainControlById';
-    const response = await post(url, { domainControlId });
-
-    return response && response.status === 200 ? response.data : null;
 }
 
 export const fetchDomain = () => async (dispatch) => {

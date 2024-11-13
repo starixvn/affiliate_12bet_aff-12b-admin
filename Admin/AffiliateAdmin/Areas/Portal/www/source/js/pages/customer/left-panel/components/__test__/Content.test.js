@@ -15,7 +15,6 @@ describe('left panel - components - Content', () => {
             FirstName: "bb",
             Gender: false,
             GroupId: 102,
-            IsClosed: false,
             LastLoginDateText: "04/11/2019 22:24:00",
             LastLoginIp: "10.18.200.125",
             LastName: "12BETAFF226",
@@ -23,7 +22,7 @@ describe('left panel - components - Content', () => {
             NoSiteDescription: "",
             Phone: "abc",
             PreferredLanguage: "vi-VN",
-            SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+            SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
             Status: "Approved"
         }
         const result = shallow(<Content affiliateInfo={affiliateInfo} />);

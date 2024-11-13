@@ -30,10 +30,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             };
         }
 
-        protected static int GetTotalRow(IObjectDb objectDb)
+        protected static int GetTotalRows(IObjectDb objectDb)
         {
-            var totalRow = objectDb.GetParameterValue("NRows");
-            return totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+            var totalRows = objectDb.GetParameterValue("NRows");
+
+            return totalRows == DBNull.Value ? 0 : Convert.ToInt32(totalRows);
         }
     }
 }

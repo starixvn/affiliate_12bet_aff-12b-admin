@@ -1,21 +1,20 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
-import { getCountryList } from '../../../customer/user-panel/libs/service';
 import { setSelectedUserPanel, toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
-import * as types from '../actions/types';
+import { SET_SELECTED_SITE_URL, SET_PARAM } from '../actions/types';
 
-export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel, getCountryList };
+export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel };
 
-export const setSelectedSiteDetailFilter = (data) => {
+export const setSelectedSiteUrl = (data) => {
     return {
-        type: types.SET_SELECTED_SITE_DETAIL_FILTER,
+        type: SET_SELECTED_SITE_URL,
         data
     }
 }
 
 export const setParam = (data) => {
     return {
-        type: types.SET_PARAM,
+        type: SET_PARAM,
         data
     }
 }

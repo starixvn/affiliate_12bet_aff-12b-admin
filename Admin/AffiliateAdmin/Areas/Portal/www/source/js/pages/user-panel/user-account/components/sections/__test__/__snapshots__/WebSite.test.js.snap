@@ -27,7 +27,6 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
         >
           <Input
             checked={true}
-            disabled={false}
             onChange={[Function]}
             type="radio"
           />
@@ -41,7 +40,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
       >
         <Label
           className="required"
-          for="siteUrl"
+          htmlFor="siteUrl"
           sm={3}
           tag="label"
           widths={
@@ -76,7 +75,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
             name="siteUrl"
             onChange={[Function]}
             type="text"
-            value="https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount"
+            value="https://aff-b2c.nexdev.net/N88User/UserPanel/Main/#MyAccount"
           />
         </Col>
         <Button
@@ -91,7 +90,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
         </Button>
       </FormGroup>
       <FormGroup
-        key="siteUrl0"
+        key="siteUrl0 123"
         row={true}
         tag="div"
       >
@@ -152,7 +151,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
         </Button>
       </FormGroup>
       <FormGroup
-        key="siteUrl1"
+        key="siteUrl1 123"
         row={true}
         tag="div"
       >
@@ -213,7 +212,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
         </Button>
       </FormGroup>
       <FormGroup
-        key="siteUrl2"
+        key="siteUrl2 123"
         row={true}
         tag="div"
       >
@@ -297,7 +296,6 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
         >
           <Input
             checked={false}
-            disabled={false}
             onChange={[Function]}
             type="radio"
           />
@@ -311,7 +309,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
       >
         <Label
           className="required"
-          for="noSiteDescription"
+          htmlFor="noSiteDescription"
           sm={3}
           tag="label"
           widths={
@@ -325,7 +323,7 @@ exports[`user account - components - sections - WebSite render correctly 1`] = `
           }
           xl={2}
         >
-          Please describe how you would like to promote 12Bet if you don't have the URL
+          Please describe how you would like to promote undefined if you don't have the URL
         </Label>
         <Col
           sm={6}
@@ -388,7 +386,6 @@ exports[`user account - components - sections - WebSite render correctly when ha
         >
           <Input
             checked={true}
-            disabled={false}
             onChange={[Function]}
             type="radio"
           />
@@ -402,7 +399,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
       >
         <Label
           className="required"
-          for="siteUrl"
+          htmlFor="siteUrl"
           sm={3}
           tag="label"
           widths={
@@ -437,7 +434,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
             name="siteUrl"
             onChange={[Function]}
             type="text"
-            value="https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount"
+            value="https://aff-b2c.nexdev.net/N88User/UserPanel/Main/#MyAccount"
           />
         </Col>
         <Button
@@ -452,7 +449,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
         </Button>
       </FormGroup>
       <FormGroup
-        key="siteUrl0"
+        key="siteUrl0 123"
         row={true}
         tag="div"
       >
@@ -513,7 +510,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
         </Button>
       </FormGroup>
       <FormGroup
-        key="siteUrl1"
+        key="siteUrl1 123"
         row={true}
         tag="div"
       >
@@ -574,7 +571,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
         </Button>
       </FormGroup>
       <FormGroup
-        key="siteUrl2"
+        key="siteUrl2 123"
         row={true}
         tag="div"
       >
@@ -658,7 +655,6 @@ exports[`user account - components - sections - WebSite render correctly when ha
         >
           <Input
             checked={false}
-            disabled={false}
             onChange={[Function]}
             type="radio"
           />
@@ -672,7 +668,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
       >
         <Label
           className="required"
-          for="noSiteDescription"
+          htmlFor="noSiteDescription"
           sm={3}
           tag="label"
           widths={
@@ -686,7 +682,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
           }
           xl={2}
         >
-          Please describe how you would like to promote 12Bet if you don't have the URL
+          Please describe how you would like to promote undefined if you don't have the URL
         </Label>
         <Col
           sm={6}
@@ -719,7 +715,7 @@ exports[`user account - components - sections - WebSite render correctly when ha
       </FormGroup>
     </FormGroup>
   </Form>
-  <NotificationPopup
+  <Memo(NotificationPopup)
     isConfirmPopup={false}
     message="abc"
     onClose={[Function]}

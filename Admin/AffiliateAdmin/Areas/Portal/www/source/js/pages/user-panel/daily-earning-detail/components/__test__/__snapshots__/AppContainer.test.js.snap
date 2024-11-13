@@ -19,7 +19,41 @@ exports[`daily earning detail - components - AppContainer render correctly 1`] =
       ]
     }
   />
-  <Connect(Filter) />
+  <Connect(Filter)
+    baseCurrencyList={
+      Array [
+        Object {
+          "Code": "UUS",
+          "ExchangeId": 20,
+        },
+      ]
+    }
+    currencyList={
+      Array [
+        Object {
+          "checked": true,
+          "key": 20,
+          "name": "UUS",
+        },
+      ]
+    }
+    productList={
+      Array [
+        Object {
+          "ProductId": 1,
+          "ProductName": "Sportsbook",
+        },
+        Object {
+          "ProductId": 3,
+          "ProductName": "Playtech Casino",
+        },
+        Object {
+          "ProductId": 4,
+          "ProductName": "Number Game",
+        },
+      ]
+    }
+  />
   <Connect(Content) />
 </AppLayout>
 `;
@@ -43,7 +77,41 @@ exports[`daily earning detail - components - AppContainer render correctly with 
       ]
     }
   />
-  <Connect(Filter) />
+  <Connect(Filter)
+    baseCurrencyList={
+      Array [
+        Object {
+          "Code": "UUS",
+          "ExchangeId": 20,
+        },
+      ]
+    }
+    currencyList={
+      Array [
+        Object {
+          "checked": true,
+          "key": 20,
+          "name": "UUS",
+        },
+      ]
+    }
+    productList={
+      Array [
+        Object {
+          "ProductId": 1,
+          "ProductName": "Sportsbook",
+        },
+        Object {
+          "ProductId": 3,
+          "ProductName": "Playtech Casino",
+        },
+        Object {
+          "ProductId": 4,
+          "ProductName": "Number Game",
+        },
+      ]
+    }
+  />
   <Connect(Content) />
 </AppLayout>
 `;

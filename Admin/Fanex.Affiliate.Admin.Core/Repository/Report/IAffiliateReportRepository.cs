@@ -1,16 +1,16 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using System.Collections.Generic;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Report
 {
     public interface IAffiliateReportRepository
     {
-        EntityResult<AffiliateReport> GetMainReportData(AffiliateReportMainParam param);
+        EntityResult<AffiliateReport> GetMainReportData(AffiliateReportParam param);
 
-        EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportMainParam param);
+        EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportParam param);
 
-        IList<string> SearchAffiliateList(string userName);
+        DateTime GetReportCutOffDate();
     }
 }

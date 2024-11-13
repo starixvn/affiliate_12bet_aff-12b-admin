@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 {
     public class HomeService : BaseRepository, IHomeService
     {
-        public EntityResult<OnlineListInfo> GetOnlineList(string languageCodes, int pageIndex, int pageSize)
+        public EntityResult<OnlineListInfo> GetOnlineList(int pageIndex, int pageSize)
         {
             const string SpKey = "Aff_UserOnlineList";
 
@@ -20,10 +20,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("LanguageCodes", languageCodes);
                 objectDb.SetParameterValue("PageIndex", pageIndex);
                 objectDb.SetParameterValue("PageSize", pageSize);
 
+                objectDb.SetParameterValue("TotalPages", DefaultValue.Int);
                 objectDb.SetParameterValue("NRows", DefaultValue.Int);
 
                 using (var reader = objectDb.ExecuteReader())
@@ -42,58 +42,19 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
                 }
 
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
             }
 
             return result;
         }
 
-        public decimal GetPSPToday()
-        {
-            const string SpKey = "Aff_DEP_AffiliateGetPSP";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.SetParameterValue("PSP", DefaultValue.Decimal);
-
-                objectDb.ExecuteNonQuery();
-
-                var psp = objectDb.GetParameterValue("PSP");
-                return psp == DBNull.Value ? 0 : Convert.ToDecimal(psp);
-            }
-        }
-
-        public DepositInfo GetDepositInfo()
-        {
-            const string SpKey = "Aff_DEP_AffiliateGeneralInfo";
-            DepositInfo result = null;
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        result = new DepositInfo
-                        {
-                            AllMemberDepositUpToNow = reader.GetVal<int>("MemInProAllNum"),
-                            AllMemberDepositThisMonth = reader.GetVal<int>("MemInProMonthNum")
-                        };
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public GeneralInfo GetGeneralInfo(string marketIds)
+        public GeneralInfo GetGeneralInfo()
         {
             const string SpKey = "Aff_Admin_GeneralInfo_Sel";
             GeneralInfo result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("Languages", marketIds);
                 using (var reader = objectDb.ExecuteReader())
                 {
                     if (reader.Read())
@@ -112,28 +73,36 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
             {
                 PaymentRequestNumber = reader.GetVal<int>("PaymentReqNum"),
                 BannerNumber = reader.GetVal<int>("BannerNum"),
+                PlayerBannerNum = reader.GetVal<int>("PlayerBannerNum"),
+                AffiliateBannerNum = reader.GetVal<int>("AffiliateBannerNum"),
                 AllAffiliateNumber = reader.GetVal<int>("AffInProAllNum"),
                 PendingAffiliateNumber = reader.GetVal<int>("PendingAllNum"),
                 ApprovedAffiliateNumber = reader.GetVal<int>("ApprovedAllNum"),
                 DisapprovedAffiliateNumber = reader.GetVal<int>("DisapprovedAllNum"),
-                ClosedAffiliateNumber = reader.GetVal<int>("ClosedAllNum"),
+                SuspendedAffiliateNumber = reader.GetVal<int>("SuspendedAllNum"),
                 AllMemberDepositNumber = reader.GetVal<int>("DepositMemAllNum"),
                 AllDepositNumber = reader.GetVal<decimal>("DepositAll"),
-                AllWinlostNumber = reader.GetVal<decimal>("WinlostAll"),
+                AllGgrNumber = reader.GetVal<decimal>("GgrAll"),
                 AllBonusNumber = reader.GetVal<decimal>("BonusAll"),
+                AllRebateNumber = reader.GetVal<decimal>("RebateAll"),
                 AllPSPFeeNumber = reader.GetVal<decimal>("PSPFeeAll"),
                 AllNetWinlostNumber = reader.GetVal<decimal>("NetWinlostAll"),
                 AllAffiliateMonthNumber = reader.GetVal<int>("AffInProMonthNum"),
                 PendingAffiliateMonthNumber = reader.GetVal<int>("PendingMonthNum"),
                 ApprovedAffiliateMonthNumber = reader.GetVal<int>("ApprovedMonthNum"),
                 DisapprovedAffiliateMonthNumber = reader.GetVal<int>("DisapprovedMonthNum"),
-                ClosedAffiliateMonthNumber = reader.GetVal<int>("ClosedMonthNum"),
+                SuspendedAffiliateMonthNumber = reader.GetVal<int>("SuspendedMonthNum"),
                 AllMemberDepositMonthNumber = reader.GetVal<int>("DepositMemMonthNum"),
                 AllDepositMonthNumber = reader.GetVal<decimal>("DepositMonth"),
-                AllWinlostMonthNumber = reader.GetVal<decimal>("WinlostMonth"),
+                AllGgrMonthNumber = reader.GetVal<decimal>("GgrMonth"),
                 AllBonusMonthNumber = reader.GetVal<decimal>("BonusMonth"),
+                AllRebateMonthNumber = reader.GetVal<decimal>("RebateMonth"),
                 AllPSPFeeMonthNumber = reader.GetVal<decimal>("PSPFeeMonth"),
                 AllNetWinlostMonthNumber = reader.GetVal<decimal>("NetWinlostMonth"),
+                MemAllNum = reader.GetVal<int>("MemAllNum"),
+                NonDepositMemAllNum = reader.GetVal<int>("NonDepositMemAllNum"),
+                MemMonthNum = reader.GetVal<int>("MemMonthNum"),
+                NonDepositMemMonthNum = reader.GetVal<int>("NonDepositMemMonthNum"),
             };
         }
     }

@@ -17,73 +17,7 @@ exports[`home - components - BannerStatistics render correctly 1`] = `
     }
   >
     <span
-      className="tbl-icon01"
-    />
-    <span
-      className="text-blue"
-    >
-      Banner Statistics
-    </span>
-  </Row>
-  <Row
-    className="background-gray border"
-    tag="div"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-      ]
-    }
-  >
-    <Col
-      sm={12}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-    >
-      <span>
-        We have 
-        <strong>
-          32
-        </strong>
-         banners in the program
-      </span>
-    </Col>
-  </Row>
-</div>
-`;
-
-exports[`home - components - BannerStatistics render correctly with permissions 1`] = `
-<div
-  className="banner-statistics"
->
-  <Row
-    tag="div"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-      ]
-    }
-  >
-    <span
-      className="tbl-icon01"
-    />
-    <span
-      className="text-blue"
+      className="home-title"
     >
       Banner Statistics
     </span>
@@ -124,6 +58,34 @@ exports[`home - components - BannerStatistics render correctly with permissions 
           </strong>
         </a>
          banners in the program
+      </span>
+    </Col>
+    <Col
+      sm={12}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <span>
+        <a
+          href="/Portal/MediaGallery?UserType=1&IsFromHome=true"
+        >
+          <strong />
+        </a>
+         Players banners / 
+        <a
+          href="/Portal/MediaGallery?UserType=2&IsFromHome=true"
+        >
+          <strong />
+        </a>
+         Sub-affiliate banners
       </span>
     </Col>
   </Row>

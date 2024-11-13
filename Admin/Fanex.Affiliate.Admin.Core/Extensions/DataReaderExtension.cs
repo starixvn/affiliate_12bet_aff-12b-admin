@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Data.SqlTypes;
 
@@ -18,6 +18,8 @@ namespace Fanex.Affiliate.Admin.Core.Extensions
 
             return false;
         }
+
+#pragma warning disable IDE0034 // Simplify 'default' expression
         public static T GetVal<T>(this IDataReader dataReader, string columnName, T defauleValue = default(T))
         {
             var dbValue = dataReader[columnName];
@@ -31,9 +33,9 @@ namespace Fanex.Affiliate.Admin.Core.Extensions
 
         private static T Cast<T>(object dbValue, T defauleValue = default(T))
         {
-            if (dbValue is T)
+            if (dbValue is T t)
             {
-                return (T)dbValue;
+                return t;
             }
 
             if (dbValue is INullable && (dbValue as INullable).IsNull)

@@ -1,6 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Report
@@ -11,12 +9,14 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public string UserName { get; set; }
 
+        public string PaymentCurrency { get; set; }
+
         [JsonIgnore]
         public DateTime? MonthDate { get; set; }
 
         public string Description { get; set; }
 
-        public string MonthDateString => MonthDate.HasValue ? MonthDate.Value.ToString("MM/yyyy") : DefaultValue.String;
+        public string MonthDateString => MonthDate?.ToString("MM/yyyy") ?? string.Empty;
 
         public int TotalClick { get; set; }
 
@@ -28,24 +28,23 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public int ActiveMember { get; set; }
 
-        public int QualifiedMember { get; set; }
-
         public decimal Deposit { get; set; }
 
         public decimal Withdrawal { get; set; }
 
-        [PermissionCheck(Function.Turnover)]
         public decimal Turnover { get; set; }
 
-        public decimal Winlost { get; set; }
+        public decimal Ggr { get; set; }
 
         public decimal Bonus { get; set; }
 
+        public decimal Rebate { get; set; }
+
         public decimal PlatformFee { get; set; }
 
-        public decimal OperationalFee { get; set; }
+        public decimal DepositFee { get; set; }
 
-        public decimal BankingFee { get; set; }
+        public decimal WithdrawalFee { get; set; }
 
         public decimal TotalFee { get; set; }
 
@@ -53,9 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public decimal Earning { get; set; }
 
-        public decimal NewFdmEarning { get; set; }
-
-        public decimal TotalEarning => Earning + NewFdmEarning;
+        public string EarningBy { get; set; }
 
         public decimal AffWithdrawal { get; set; }
 
@@ -63,8 +60,18 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public decimal BalanceBf { get; set; }
 
-        public decimal PreviousBalanceBf { get; set; }
+        public decimal CurrentBBF { get; set; }
 
-        public string PreferredLanguage { get; set; }
+        public int NoOfSubAff { get; set; }
+
+        public decimal SubAffEarning { get; set; }
+
+        public decimal P2pEarning { get; set; }
+
+        public decimal TotalEarning => Earning + SubAffEarning + P2pEarning;
+
+        public bool IsMultiGroupProduct { get; set; }
+
+        public int TotalDeposit { get; set; }
     }
 }

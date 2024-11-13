@@ -1,5 +1,8 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Common.Extensions;
 using System;
@@ -16,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("AffId", affId);
+                objectDb.SetParameterValue(Field.AffId, affId);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -24,36 +27,34 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                     {
                         result = new UserAccount
                         {
-                            AffId = Convert.ToInt32(reader["AffId"]),
-                            AffName = Convert.ToString(reader["UserName"]),
-                            Status = Convert.ToString(reader["Status"]),
-                            FirstName = Convert.ToString(reader["FirstName"]),
-                            LastName = Convert.ToString(reader["LastName"]),
-                            Gender = reader["Gender"] == DBNull.Value ? (bool?)null : Convert.ToBoolean(reader["Gender"]),
-                            Email = Convert.ToString(reader["Email"]),
-                            Phone = Convert.ToString(reader["Phone"]),
-                            ContactApps = Convert.ToString(reader["ContactApps"]),
-                            Address = Convert.ToString(reader["Address"]),
-                            City = Convert.ToString(reader["City"]),
-                            State = Convert.ToString(reader["State"]),
-                            Postcode = Convert.ToString(reader["Postal"]),
-                            Country = Convert.ToString(reader["Country"]),
-                            MoreSiteUrls = Convert.ToString(reader["MoreSiteUrls"]),
-                            SiteUrl = Convert.ToString(reader["SiteUrl"]),
-                            PreferredPayment = Convert.ToString(reader["PreferredPayment"]),
-                            PlayerUsername = Convert.ToString(reader["PlayerUsername"]),
-                            NoSiteDescription = Convert.ToString(reader["NoSiteDesc"]),
-                            NetellerAccountId = Convert.ToString(reader["NetellerAccountID"]),
-                            MoneybookersEmail = Convert.ToString(reader["MoneybookersEmail"]),
-                            BankName = Convert.ToString(reader["BankName"]),
-                            BankAddress = Convert.ToString(reader["BankAddress"]),
-                            BankCode = Convert.ToString(reader["BankSwiftCode"]),
-                            BankAccountName = Convert.ToString(reader["BankAccountName"]),
-                            BankAccountNumber = Convert.ToString(reader["BankAccountNo"]),
-                            Question = Convert.ToString(reader["Question"]),
-                            QuestionId = reader["QuestionId"] == DBNull.Value ? (int?)null : reader.ToInt("QuestionId"),
-                            Answer = Convert.ToString(reader["Answer"]),
-                            MailOption = reader["MailOption"] == DBNull.Value ? (bool?)null : Convert.ToBoolean(reader["MailOption"])
+                            AffId = reader.ToInt(Field.AffId),
+                            AffName = reader.ToString("UserName"),
+                            FirstName = reader.ToString("FirstName"),
+                            LastName = reader.ToString("LastName"),
+                            Gender = reader.GetVal<bool?>("Gender"),
+                            Email = reader.ToString("Email"),
+                            Phone = reader.ToString("Phone"),
+                            ContactApps = reader.ToString("ContactApps"),
+                            Address = reader.ToString("Address"),
+                            City = reader.ToString("City"),
+                            State = reader.ToString("State"),
+                            Postcode = reader.ToString("Postal"),
+                            Country = reader.ToString("Country"),
+                            MoreSiteUrls = reader.ToString("MoreSiteUrls"),
+                            SiteUrl = reader.ToString("SiteUrl"),
+                            PreferredPayment = reader.ToString("PreferredPayment"),
+                            PlayerUsername = reader.ToString("PlayerUsername"),
+                            NoSiteDescription = reader.ToString("NoSiteDesc"),
+                            NetellerAccountId = reader.ToString("NetellerAccountID"),
+                            MoneybookersEmail = reader.ToString("MoneybookersEmail"),
+                            BankName = reader.ToString("BankName"),
+                            BankAddress = reader.ToString("BankAddress"),
+                            BankCode = reader.ToString("BankSwiftCode"),
+                            BankAccountName = reader.ToString("BankAccountName"),
+                            BankAccountNumber = reader.ToString("BankAccountNo"),
+                            Question = reader.ToString("Question"),
+                            Answer = reader.ToString("Answer"),
+                            MailOption = reader.GetVal<bool?>("MailOption")
                         };
                     }
                 }
@@ -67,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             const string SpKey = "Aff_Admin_AffiliateInfo_Upd";
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("AffId", param.AffId);
+                objectDb.SetParameterValue(Field.AffId, param.AffId);
                 objectDb.SetParameterValue("UserId", param.UserId);
                 objectDb.SetParameterValue("FirstName", param.FirstName);
                 objectDb.SetParameterValue("LastName", param.LastName);
@@ -89,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 objectDb.SetParameterValue("NoSiteDesc", param.NoSiteDescription);
 
                 objectDb.SetParameterValue("PreferredPayment", param.PreferredPayment);
-                objectDb.SetParameterValue("PlayerUsername", param.PlayerUsername);
+                objectDb.SetParameterValue("Player_Username", param.PlayerUsername);
                 objectDb.SetParameterValue("NetellerAccountId", param.NetellerAccountId);
                 objectDb.SetParameterValue("MoneybookersEmail", param.MoneybookersEmail);
                 objectDb.SetParameterValue("BankName", param.BankName);
@@ -98,8 +99,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 objectDb.SetParameterValue("BankAccountName", param.BankAccountName);
                 objectDb.SetParameterValue("BankAccountNo", param.BankAccountNumber);
                 objectDb.SetParameterValue("IP", param.Ip);
-                objectDb.SetParameterValue("QuestionId", param.QuestionId);
-                objectDb.SetParameterValue("Answer", param.Answer);
+
+                objectDb.SetParameterValue("Player_CustId", param.Player_CustId);
+                objectDb.SetParameterValue("Player_Currency", param.Player_Currency);
 
                 AssignResultOutputParam(objectDb);
 
@@ -109,31 +111,21 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             }
         }
 
-        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
+        public (IEnumerable<PaymentMethodInfo> paymentMethods, decimal minAmount) GetPaymentMethod()
         {
-            const string spKey = "Aff_User_SecurityQuestions_Sel";
+            const string SpKey = "Aff_PaymentMethod_Sel";
 
-            var securityQuestionList = new List<SecurityQuestion>();
-
-            using (var objectDb = GetObjectDb(spKey))
+            using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("IsIncludedOldData", isIncludeOldData);
-                objectDb.SetParameterValue("Language", language);
+                objectDb.SetParameterValue("MinAmount", DefaultValue.Int);
 
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        securityQuestionList.Add(new SecurityQuestion
-                        {
-                            QuestionId = Convert.ToByte(reader["QuestionID"]),
-                            Question = Convert.ToString(reader["Question"])
-                        });
-                    }
-                }
+                var paymentMethods = objectDb.Query<PaymentMethodInfo>();
+                var minAmount = objectDb.GetParameterValue("MinAmount");
+
+                var minAmountDecimal = minAmount == DBNull.Value ? 0 : Convert.ToDecimal(minAmount);
+
+                return (paymentMethods, minAmountDecimal);
             }
-
-            return securityQuestionList;
         }
     }
 }

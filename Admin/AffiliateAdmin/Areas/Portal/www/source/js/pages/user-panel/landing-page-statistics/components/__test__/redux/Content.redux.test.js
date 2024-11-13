@@ -40,7 +40,7 @@ describe('landing page statistics - Content - connect', () => {
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
             toggleLoaderUserPanel: actions['toggleLoaderUserPanel'],
-            setSelectedPageDetailFilter: actions['setSelectedPageDetailFilter'],
+            setSelectedPage: actions['setSelectedPage'],
             fetchData: actions['fetchData']
         }
 

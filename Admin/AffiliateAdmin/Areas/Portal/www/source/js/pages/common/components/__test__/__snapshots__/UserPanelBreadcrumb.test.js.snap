@@ -10,11 +10,12 @@ exports[`common - components - UserPanelBreadcrumb render correctly 1`] = `
     key="Daily Earning"
     tag="li"
   >
-    <Memo(MyLink)
+    <a
+      href="javascript:;"
       onClick={[MockFunction]}
     >
       Daily Earning
-    </Memo(MyLink)>
+    </a>
   </BreadcrumbItem>
   <BreadcrumbItem
     active={true}

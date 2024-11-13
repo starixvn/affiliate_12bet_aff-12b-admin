@@ -123,26 +123,8 @@
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
     <value>ភ្នាក់ងារ12Bet - ពាក្យស្នើសុំរបស់អ្នក</value>
   </data>
-  <data name="EmailSubjectAffInfor" xml:space="preserve">
-    <value>ភ្នាក់ងារ12Bet - ព័ត៌មានអំពីភ្នាក់ងាររបស់អ្នក</value>
-  </data>
-  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
-    <value>ភ្នាក់ងារ12Bet - [{0}] -សំណើទូទាត់របស់អ្នកត្រូវបានដំណើរការ និងបញ្ចប់ដោយជោគជ័យ។</value>
-  </data>
-  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
-    <value>ភ្នាក់ងារ12Bet - [{0}] - សំណើទូទាត់របស់អ្នកត្រូវបានបដិសេធ។</value>
-  </data>
   <data name="EmailTitleAffDisapproved" xml:space="preserve">
     <value>ពាក្យស្នើសុំរបស់អ្នក</value>
-  </data>
-  <data name="EmailTitleAffInfor" xml:space="preserve">
-    <value>ព័ត៌មានភ្នាក់ងាររបស់អ្នក</value>
-  </data>
-  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
-    <value>សំណើទូទាត់របស់អ្នកត្រូវបានដំណើរការ និងបញ្ចប់ដោយជោគជ័យ</value>
-  </data>
-  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
-    <value>សំណើបង់ប្រាក់របស់អ្នកត្រូវបានបដិសេធ</value>
   </data>
   <data name="EmailTitleAffApproved" xml:space="preserve">
     <value>ការជូនដំណឹងអំពីភ្នាក់ងារ</value>
@@ -150,13 +132,31 @@
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
     <value>ការណែនាំអំពីការដកប្រាក់របស់ភ្នាក់ងារ</value>
   </data>
-  <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
-    <value>ភ្នាក់ងារ12Bet - ការណែនាំអំពីការដកប្រាក់របស់ភ្នាក់ងារ</value>
+  <data name="Affiliate" xml:space="preserve">
+    <value>ភ្នាក់ងារ</value>
   </data>
   <data name="EmailAutoNotification" xml:space="preserve">
     <value>នេះជាអ៊ីមែលដែលបង្កើតឡើងដោយប្រព័ន្ធស្វ័យប្រវត្តិ សូមកុំឆ្លើយតបអ៊ីមែលនេះ។</value>
   </data>
-  <data name="Affiliate" xml:space="preserve">
-    <value>ភ្នាក់ងារ</value>
+  <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - ការណែនាំអំពីការដកប្រាក់របស់ភ្នាក់ងារ</value>
+  </data>
+  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
+    <value>សំណើបង់ប្រាក់របស់អ្នកត្រូវបានបដិសេធ</value>
+  </data>
+  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
+    <value>សំណើទូទាត់របស់អ្នកត្រូវបានដំណើរការ និងបញ្ចប់ដោយជោគជ័យ</value>
+  </data>
+  <data name="EmailTitleAffInfor" xml:space="preserve">
+    <value>ព័ត៌មានភ្នាក់ងាររបស់អ្នក</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - [{0}] - សំណើទូទាត់របស់អ្នកត្រូវបានបដិសេធ</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - [{0}] -សំណើទូទាត់របស់អ្នកត្រូវបានដំណើរការ និងបញ្ចប់ដោយជោគជ័យ</value>
+  </data>
+  <data name="EmailSubjectAffInfor" xml:space="preserve">
+    <value>ភ្នាក់ងារ12Bet - ព័ត៌មានអំពីភ្នាក់ងាររបស់អ្នក</value>
   </data>
 </root>

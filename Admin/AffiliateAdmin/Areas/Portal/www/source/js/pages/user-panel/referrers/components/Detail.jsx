@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, globalResource, maxWidth } from '../libs/constants';
+import { headerText, globalResource, maxWidth } from '../modules/constants';
 import { toggleLoaderUserPanel, setPagingOption, fetchDetailData } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
@@ -17,10 +17,10 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { pagingOption, selectedSiteDetailFilter, param } = this.props;
+        const { pagingOption, selectedSiteUrl, param } = this.props;
 
-        if (selectedSiteDetailFilter && selectedSiteDetailFilter != prevProps.selectedSiteDetailFilter) {
-            const postParam = { ...param, ...selectedSiteDetailFilter, pageIndex: 1, pageSize: pagingOption.PageSize };
+        if (selectedSiteUrl && selectedSiteUrl !== prevProps.selectedSiteUrl) {
+            const postParam = { ...param, selectedSiteUrl, pageIndex: 1, pageSize: pagingOption.PageSize };
             this.fetchData(postParam);
         }
     }
@@ -28,7 +28,9 @@ export class Detail extends Component {
     async fetchData(param) {
         this.props.toggleLoaderUserPanel(true);
 
-        const data = await this.props.fetchDetailData(param);
+        const { affId } = this.props;
+        const postData = { ...param, affId };
+        const data = await this.props.fetchDetailData(postData);
 
         this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.pageIndex, PageSize: param.pageSize });
@@ -59,7 +61,7 @@ export class Detail extends Component {
         }
         else {
             dataRows.push(
-                <Row>
+                <Row key="no-info">
                     <Cell className="text-center" colSpan="5">{globalResource.NoInfo}</Cell>
                 </Row>
             );
@@ -83,17 +85,18 @@ export class Detail extends Component {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const { param, selectedSiteDetailFilter } = this.props;
-        const newParam = { ...param, ...selectedSiteDetailFilter, pageIndex, pageSize };
+        const { param, selectedSiteUrl } = this.props;
+        const newParam = { ...param, selectedSiteUrl, pageIndex, pageSize };
         this.fetchData(newParam);
     }
 
     render() {
         const { gridData } = this.state;
 
-        return this.props.selectedSiteDetailFilter && (
+        return this.props.selectedSiteUrl && (
             <div className="table-responsive table-striped my-2">
                 <Table
+                    minWidth={1010}
                     maxWidth={maxWidth}
                     autoHeight={false}
                     bodyHeight={300}
@@ -109,12 +112,14 @@ export class Detail extends Component {
     }
 }
 
-function mapStateToProps({ clickStatistics }) {
-    const { pagingOption, param, selectedSiteDetailFilter } = clickStatistics;
+function mapStateToProps({ affCommonInfo, clickStatistics }) {
+    const { pagingOption, param, selectedSiteUrl } = clickStatistics;
+    const { affId } = affCommonInfo;
 
     return Object.assign({}, {
+        affId,
         pagingOption,
-        selectedSiteDetailFilter,
+        selectedSiteUrl,
         param
     });
 }

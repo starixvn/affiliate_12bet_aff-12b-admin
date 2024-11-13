@@ -1,6 +1,5 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
@@ -22,14 +21,12 @@ describe('domain - Content - connect', () => {
         const expectedResult = {
             isAffDomain: true,
             shouldResetScrollPosition: true,
-            isModifiable: true,
             gridData: []
         };
         const state = {
             isAffDomain: true,
             shouldResetScrollPosition: true,
             gridData: [],
-            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 
@@ -45,7 +42,7 @@ describe('domain - Content - connect', () => {
             deleteDomain: actions['deleteDomain'],
             fetchData: actions['fetchData'],
             toggleLoader: actions['toggleLoader'],
-            setSelectedDomainId: actions['setSelectedDomainId'],
+            setSelectedDomain: actions['setSelectedDomain'],
             setShouldResetScrollPosition: actions['setShouldResetScrollPosition']
         }
 

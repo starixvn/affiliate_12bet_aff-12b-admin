@@ -1,4 +1,2 @@
 ﻿export const SET_ONLINE_LIST = 'SET_ONLINE_LIST';
-export const SET_PSP_TODAY = 'SET_PSP_TODAY';
-export const SET_DEPOSIT_INFO = 'SET_DEPOSIT_INFO';
 export const SET_GENERAL_INFO = 'SET_GENERAL_INFO';

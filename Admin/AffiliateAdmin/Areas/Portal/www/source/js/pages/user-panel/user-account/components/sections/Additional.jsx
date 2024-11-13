@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { renderInputForm, capitalizeFirstChar, renderClaimBaseSelectionForm, renderClaimBaseInputForm } from '../../libs/service';
-import { countriesList } from '../../libs/constants';
+import { renderInputForm, capitalizeFirstChar } from '../../modules/service';
+import { countriesList } from '../../modules/constants';
 import { setUserAccountInfo } from '../../actions';
-import { claimResource } from '../../../../../modules/claim';
 
 export class Additional extends PureComponent {
     constructor(props) {
@@ -21,12 +20,12 @@ export class Additional extends PureComponent {
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
 
-    _renderCountry(country, isDisabled) {
+    _renderCountry(country) {
         return (
             <FormGroup row>
-                <Label for="country" sm={3} xl={2} className="required">Country</Label>
+                <Label htmlFor="country" sm={3} xl={2} className="required">Country</Label>
                 <Col sm={9} xl={10}>
-                    <Input type="select" id="country" name="country" disabled={isDisabled} value={country} onChange={this.handleChange}>
+                    <Input type="select" id="country" name="country" value={country} onChange={this.handleChange}>
                         <option value="">Select One</option>
                         {
                             Object.keys(countriesList).map((key) => {
@@ -40,28 +39,25 @@ export class Additional extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo, userClaims } = this.props;
-        const { hasWriteEditAffClaim } = userClaims;
+        const { userAccountInfo } = this.props;
 
-        return (
+        return userAccountInfo && (
             <Form tag="div">
-                {renderInputForm('address', 'Address', userAccountInfo.Address, !hasWriteEditAffClaim, true, this.handleChange)}
-                {renderInputForm('city', 'City', userAccountInfo.City, !hasWriteEditAffClaim, true, this.handleChange)}
-                {renderInputForm('state', 'State', userAccountInfo.State, !hasWriteEditAffClaim, false, this.handleChange)}
-                {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, !hasWriteEditAffClaim, true, this.handleChange)}
-                {this._renderCountry(userAccountInfo.Country, !hasWriteEditAffClaim)}
-                {renderClaimBaseSelectionForm(userClaims, claimResource.SecurityQA, 'questionId', 'Security Question', userAccountInfo.SecurityQuestions, userAccountInfo.QuestionId, false, this.handleChange, userAccountInfo.Question)}
-                {renderClaimBaseInputForm(userClaims, claimResource.SecurityQA, 'answer', 'Answer', userAccountInfo.Answer, false, this.handleChange)}
+                {renderInputForm('address', 'Address', userAccountInfo.Address, false, true, this.handleChange)}
+                {renderInputForm('city', 'City', userAccountInfo.City, false, true, this.handleChange)}
+                {renderInputForm('state', 'State', userAccountInfo.State, false, false, this.handleChange)}
+                {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, true, this.handleChange)}
+                {this._renderCountry(userAccountInfo.Country)}
+                {renderInputForm('question', 'Security Question', userAccountInfo.Question, true)}
+                {renderInputForm('answer', 'Answer', userAccountInfo.Answer, true)}
             </Form>
         )
     }
 }
 
-function mapStateToProps({ edit, claimsPrincipal }) {
-    const { userAccountInfo, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim } = edit;
-    const userClaims = { claimsPrincipal, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim }
-
-    return Object.assign({}, { userAccountInfo, userClaims });
+function mapStateToProps({ edit }) {
+    const { userAccountInfo } = edit;
+    return Object.assign({}, { userAccountInfo });
 }
 
 function mapDispatchToProps(dispatch) {

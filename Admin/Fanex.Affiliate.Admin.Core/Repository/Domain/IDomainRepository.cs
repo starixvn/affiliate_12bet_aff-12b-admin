@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using System.Collections.Generic;
@@ -8,16 +7,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 {
     public interface IDomainRepository
     {
-        IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param);
+        IEnumerable<DomainInfo> GetDomainList(string spKey);
 
-        DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true);
+        ResultInfo InsertDomain(InsertUpdateDomainParam param, string spKey);
 
-        IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true);
+        ResultInfo UpdateDomain(InsertUpdateDomainParam param, string spKey);
 
-        ResultInfo InsertDomain(InsertDomainParam param);
-
-        ResultInfo UpdateDomain(UpdateDomainParam param);
-
-        ResultInfo DeleteDomain(DeleteDomainParam param);
+        ResultInfo DeleteDomain(DeleteDomainParam param, string spKey);
     }
 }

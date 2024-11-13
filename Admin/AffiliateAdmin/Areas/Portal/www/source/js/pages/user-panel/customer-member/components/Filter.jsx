@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { memberTypes, resource, minDate } from '../libs/constants';
+import { memberTypes, resource, minDate } from '../modules/constants';
 import { setParam } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
 
@@ -33,7 +33,7 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(prevState => getDateRange(momentDate, prevState.toDate));
+        this.setState(getDateRange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {
@@ -52,7 +52,7 @@ export class Filter extends React.Component {
             <div className="filter-container py-0">
                 <Form inline tag="div">
                     <FormGroup className="my-2 mr-sm-2">
-                        <Label for="memberType" className="mr-sm-2">{resource.Member}</Label>
+                        <Label htmlFor="memberType" className="mr-sm-2">{resource.Member}</Label>
                         <Input type="select" name="memberType" id="memberType" value={memberType} onChange={this.handleChangeInput}>
                             <option key="memberType-0" value="0">Select</option>
                             {

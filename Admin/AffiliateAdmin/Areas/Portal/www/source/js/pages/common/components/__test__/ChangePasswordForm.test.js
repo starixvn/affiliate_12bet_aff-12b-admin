@@ -63,7 +63,7 @@ describe('common - components - ChangePasswordForm', () => {
     });
 
     it('handleChange - should setState', () => {
-        const event = { target: { name: "password", value: '123abc' }};
+        const event = { target: { name: "password", value: '123abc' } };
         const result = shallow(<ChangePasswordForm {...defaultProps} />);
         result.setState = jest.fn();
 
@@ -159,17 +159,13 @@ describe('common - components - ChangePasswordForm', () => {
         instance.handleClosePopup = jest.fn();
         instance.hideMessage = jest.fn();
         instance.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, time) => fn && fn());
 
         await instance.saveChangePassword(param);
 
         expect(props.updateChangeAffPasswword).toHaveBeenCalledWith(param);
         expect(instance.setState).toHaveBeenCalledTimes(1);
-        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: true, message: 'Change password is successful!' });
+        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: true, message: 'Change password successfully!' });
         expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
-        expect(window.setTimeout).toHaveBeenCalledTimes(2);
-        expect(instance.hideMessage).toHaveBeenCalled();
-        expect(instance.handleClosePopup).toHaveBeenCalled();
     });
 
     it('saveChangePassword - should call updateChangeAffPasswword failed', async () => {
@@ -181,7 +177,6 @@ describe('common - components - ChangePasswordForm', () => {
         instance.handleClosePopup = jest.fn();
         instance.hideMessage = jest.fn();
         instance.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, time) => fn && fn());
 
         await instance.saveChangePassword(param);
 
@@ -189,9 +184,6 @@ describe('common - components - ChangePasswordForm', () => {
         expect(instance.setState).toHaveBeenCalledTimes(1);
         expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Failed!' });
         expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
-        expect(window.setTimeout).toHaveBeenCalledTimes(1);
-        expect(instance.hideMessage).toHaveBeenCalled();
-        expect(instance.handleClosePopup).not.toHaveBeenCalled();
     });
 
     it('saveChangePassword - should call updateChangeAdminPasswword error', async () => {
@@ -202,7 +194,6 @@ describe('common - components - ChangePasswordForm', () => {
         instance.handleClosePopup = jest.fn();
         instance.hideMessage = jest.fn();
         instance.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, time) => fn && fn());
 
         await instance.saveChangePassword(param);
 
@@ -210,8 +201,5 @@ describe('common - components - ChangePasswordForm', () => {
         expect(instance.setState).toHaveBeenCalledTimes(1);
         expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Change password is failed!' });
         expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
-        expect(window.setTimeout).toHaveBeenCalledTimes(1);
-        expect(instance.hideMessage).toHaveBeenCalled();
-        expect(instance.handleClosePopup).not.toHaveBeenCalled();
     });
 });

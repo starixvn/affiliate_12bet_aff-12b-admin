@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetLandingPageList(123);
+            var result = repository.Object.GetLandingPageList();
 
             // Assert
             Assert.Single(result);
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetLandingPageList(123);
+            var result = repository.Object.GetLandingPageList();
 
             // Assert
             Assert.Empty(result);
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetLandingPageById(123, 123);
+            var result = repository.Object.GetLandingPageById(123);
 
             // Assert
             Assert.Equal(123, result.PageId);
@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
             repository.Setup(r => r.GetObjectDb("Aff_Admin_LandingPage_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetLandingPageById(123, 123);
+            var result = repository.Object.GetLandingPageById(123);
 
             // Assert
             Assert.Null(result);
@@ -188,7 +188,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.MediaGallery
         public void DeleteLandingPage_WhenCallWithInvalidParam_UpdateIsFailed()
         {
             // Arrange
-            var message = "Delete Landing Page(s) is failed.";
+            var message = "Delete Text(s) is failed.";
             var repository = new Mock<LandingPageRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);

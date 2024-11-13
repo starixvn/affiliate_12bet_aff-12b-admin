@@ -10,7 +10,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       <h5
         className="font-weight-bold"
       >
-        12BETAFF226
+        B2CAFF226
       </h5>
     </legend>
     <Alert
@@ -54,7 +54,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       tag="div"
     >
       <Label
-        sm={3}
+        sm={4}
         tag="label"
         widths={
           Array [
@@ -69,7 +69,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
         Balance Brought Forward
       </Label>
       <Label
-        sm={6}
+        sm={8}
         tag="label"
         widths={
           Array [
@@ -81,18 +81,18 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
           ]
         }
       >
-        $0.00
+        0.00
       </Label>
     </FormGroup>
     <FormGroup
-      className="has-error"
+      className="mb-2 has-error"
       row={true}
       tag="div"
     >
       <Label
         className="required"
-        for="amount"
-        sm={3}
+        htmlFor="amount"
+        sm={4}
         tag="label"
         widths={
           Array [
@@ -107,7 +107,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
         Amount
       </Label>
       <Col
-        sm={4}
+        sm={8}
         tag="div"
         widths={
           Array [
@@ -131,14 +131,14 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       </Col>
     </FormGroup>
     <FormGroup
-      className="mb-2"
+      className="mb-3"
       row={true}
       tag="div"
     >
       <Label
         className="align-self-center"
-        for="description"
-        sm={3}
+        htmlFor="description"
+        sm={4}
         tag="label"
         widths={
           Array [
@@ -153,7 +153,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
         Description
       </Label>
       <Col
-        sm={9}
+        sm={8}
         tag="div"
         widths={
           Array [
@@ -165,97 +165,14 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
           ]
         }
       >
-        <FormGroup
-          row={true}
-          tag="div"
-        >
-          <Label
-            className="align-self-center pb-0"
-            for="description"
-            sm={6}
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            Visible only to admin
-          </Label>
-          <Label
-            className="align-self-center pb-0 pl-1"
-            for="affDescription"
-            sm={6}
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            Visible also to affiliate
-          </Label>
-        </FormGroup>
-        <FormGroup
-          className="mb-3"
-          row={true}
-          tag="div"
-        >
-          <Col
-            className="pr-1"
-            sm={6}
-            tag="div"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <Input
-              id="description"
-              name="description"
-              onChange={[Function]}
-              rows="6"
-              type="textarea"
-              value=""
-            />
-          </Col>
-          <Col
-            className="pl-1"
-            sm={6}
-            tag="div"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <Input
-              id="affDescription"
-              name="affDescription"
-              onChange={[Function]}
-              rows="6"
-              type="textarea"
-              value=""
-            />
-          </Col>
-        </FormGroup>
+        <Input
+          id="description"
+          name="description"
+          onChange={[Function]}
+          rows="6"
+          type="textarea"
+          value=""
+        />
       </Col>
     </FormGroup>
     <FormGroup
@@ -264,7 +181,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       tag="div"
     >
       <Label
-        sm={3}
+        sm={4}
         tag="label"
         widths={
           Array [
@@ -277,7 +194,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
         }
       />
       <Col
-        sm={9}
+        sm={8}
         tag="div"
         widths={
           Array [
@@ -314,7 +231,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       <h5
         className="font-weight-bold"
       >
-        12BETAFF226
+        B2CAFF226
       </h5>
     </legend>
     <Alert
@@ -358,7 +275,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       tag="div"
     >
       <Label
-        sm={3}
+        sm={4}
         tag="label"
         widths={
           Array [
@@ -373,7 +290,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
         Balance Brought Forward
       </Label>
       <Label
-        sm={6}
+        sm={8}
         tag="label"
         widths={
           Array [
@@ -385,18 +302,18 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
           ]
         }
       >
-        $0.00
+        0.00
       </Label>
     </FormGroup>
     <FormGroup
-      className=""
+      className="mb-2"
       row={true}
       tag="div"
     >
       <Label
         className="required"
-        for="amount"
-        sm={3}
+        htmlFor="amount"
+        sm={4}
         tag="label"
         widths={
           Array [
@@ -411,7 +328,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
         Amount
       </Label>
       <Col
-        sm={4}
+        sm={8}
         tag="div"
         widths={
           Array [
@@ -435,14 +352,14 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       </Col>
     </FormGroup>
     <FormGroup
-      className="mb-2"
+      className="mb-3"
       row={true}
       tag="div"
     >
       <Label
         className="align-self-center"
-        for="description"
-        sm={3}
+        htmlFor="description"
+        sm={4}
         tag="label"
         widths={
           Array [
@@ -457,7 +374,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
         Description
       </Label>
       <Col
-        sm={9}
+        sm={8}
         tag="div"
         widths={
           Array [
@@ -469,97 +386,14 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
           ]
         }
       >
-        <FormGroup
-          row={true}
-          tag="div"
-        >
-          <Label
-            className="align-self-center pb-0"
-            for="description"
-            sm={6}
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            Visible only to admin
-          </Label>
-          <Label
-            className="align-self-center pb-0 pl-1"
-            for="affDescription"
-            sm={6}
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            Visible also to affiliate
-          </Label>
-        </FormGroup>
-        <FormGroup
-          className="mb-3"
-          row={true}
-          tag="div"
-        >
-          <Col
-            className="pr-1"
-            sm={6}
-            tag="div"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <Input
-              id="description"
-              name="description"
-              onChange={[Function]}
-              rows="6"
-              type="textarea"
-              value=""
-            />
-          </Col>
-          <Col
-            className="pl-1"
-            sm={6}
-            tag="div"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <Input
-              id="affDescription"
-              name="affDescription"
-              onChange={[Function]}
-              rows="6"
-              type="textarea"
-              value=""
-            />
-          </Col>
-        </FormGroup>
+        <Input
+          id="description"
+          name="description"
+          onChange={[Function]}
+          rows="6"
+          type="textarea"
+          value=""
+        />
       </Col>
     </FormGroup>
     <FormGroup
@@ -568,7 +402,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       tag="div"
     >
       <Label
-        sm={3}
+        sm={4}
         tag="label"
         widths={
           Array [
@@ -581,7 +415,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
         }
       />
       <Col
-        sm={9}
+        sm={8}
         tag="div"
         widths={
           Array [

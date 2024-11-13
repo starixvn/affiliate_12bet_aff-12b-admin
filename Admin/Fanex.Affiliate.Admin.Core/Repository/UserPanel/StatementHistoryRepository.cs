@@ -4,6 +4,8 @@ using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Common.Extensions;
+using Fanex.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,14 +22,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("AffId", param.AffId);
+                objectDb.SetParameterValue(Field.AffId, param.AffId);
                 objectDb.SetParameterValue("FDate", param.FromDate);
                 objectDb.SetParameterValue("TDate", param.ToDate);
                 objectDb.SetParameterValue("PageIndex", param.PageIndex);
                 objectDb.SetParameterValue("PageSize", param.PageSize);
-                objectDb.SetParameterValue("UserId", param.UserId);
 
-                objectDb.SetParameterValue("NRows", DefaultValue.Int);
+                objectDb.SetParameterValue(Field.NRows, DefaultValue.Int);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -35,19 +36,56 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                     {
                         dataList.Add(new StatementHistory
                         {
-                            TransId = Convert.ToInt64(reader["TransId"]),
-                            Date = Convert.ToDateTime(reader["MonthDate"]),
-                            TransType = Convert.ToInt32(reader["TransType"]),
-                            Amount = Convert.ToDecimal(reader["Amount"]),
-                            Status = Convert.ToString(reader["Status"]),
-                            Creator = Convert.ToString(reader["Creator"]),
-                            Description = Convert.ToString(reader["Description"])
+                            TransId = reader.ToLong("TransId"),
+                            Date = reader.ToDateTime(Field.MonthDate),
+                            TransType = reader.ToInt("TransType"),
+                            Amount = reader.ToDecimal("Amount"),
+                            Status = reader.ToString("Status"),
+                            Creator = reader.ToString("Creator"),
+                            Description = reader.ToString("Description"),
+                            CalculatedType = reader.GetVal<byte?>("CalculatedType")
                         });
                     }
                 }
 
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
+            }
+
+            return result;
+        }
+
+        public EntityResult<SubAffiliate> GetSubAffiliate(SubAffiliateParam param)
+        {
+            const string uSpKey = "Aff_SubAffiliate_Commission_Sel";
+
+            var result = new EntityResult<SubAffiliate>();
+            var dataList = new List<SubAffiliate>();
+
+            using (var objectDb = GetObjectDb(uSpKey))
+            {
+                objectDb.SetParameterValue(Field.AffId, param.AffId);
+                objectDb.SetParameterValue(Field.MonthDate, param.MonthDate);
+                objectDb.SetParameterValue("BaseCurrency", param.CurrencyId);
+                objectDb.SetParameterValue("PageIndex", param.PageIndex);
+                objectDb.SetParameterValue("PageSize", param.PageSize);
+
+                objectDb.SetParameterValue(Field.NRows, DefaultValue.Int);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        dataList.Add(BuildSubAffilliateItem(reader));
+                    }
+                    result.MainData = dataList;
+                    result.TotalItem = GetTotalRows(objectDb);
+
+                    if (reader.NextResult() && reader.Read())
+                    {
+                        result.Total = BuildSubAffilliateItem(reader);
+                    }
+                }
             }
 
             return result;
@@ -62,9 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(uSpKey))
             {
-                objectDb.SetParameterValue("AffId", param.AffId);
-                objectDb.SetParameterValue("ProductId", param.ProductId);
-                objectDb.SetParameterValue("MonthDate", param.MonthDate);
+                AssignCommonParam(objectDb, param);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -91,9 +127,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.SetParameterValue("AffId", param.AffId);
-                objectDb.SetParameterValue("ProductId", param.ProductId);
-                objectDb.SetParameterValue("MonthDate", param.MonthDate);
+                AssignCommonParam(objectDb, param);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
@@ -101,15 +135,15 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                     {
                         result.Add(new DailyEarningDetail
                         {
-                            CustId = Convert.ToInt32(reader["CustId"]),
-                            UserName = Convert.ToString(reader["UserName"]),
-                            IbcUserName = Convert.ToString(reader["IBCUsername"]),
-                            WinLost = Convert.ToDecimal(reader["Winlost"]),
-                            Turnover = Convert.ToDecimal(reader["Turnover"]),
-                            Deposit = Convert.ToDecimal(reader["Deposit"]),
-                            Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
-                            Bonus = Convert.ToDecimal(reader["Bonus"]),
-                            BankingFee = Convert.ToDecimal(reader["BankingFee"])
+                            CustId = reader.ToInt("CustId"),
+                            UserName = reader.ToString("UserName"),
+                            IbcUserName = reader.ToString("IBCUsername"),
+                            Ggr = reader.ToDecimal("Ggr"),
+                            Deposit = reader.ToDecimal("Deposit"),
+                            Withdrawal = reader.ToDecimal("Withdrawal"),
+                            Bonus = reader.ToDecimal("Bonus"),
+                            Rebate = reader.ToDecimal("Rebate"),
+                            Turnover = reader.ToDecimal("Turnover")
                         });
                     }
                 }
@@ -117,18 +151,36 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
             return result;
         }
+        private static void AssignCommonParam(IObjectDb objectDb, DailyEarningParam param)
+        {
+            objectDb.SetParameterValue(Field.AffId, param.AffId);
+            objectDb.SetParameterValue("ProductId", param.ProductId);
+            objectDb.SetParameterValue(Field.MonthDate, param.MonthDate);
+            objectDb.SetParameterValue("BaseCurrency", param.BaseCurrencyId);
+            objectDb.SetParameterValue("Currencies", param.CurrencyIds);
+        }
 
         private static DailyEarning BuildDailyEarningItem(IDataReader reader)
         {
             return new DailyEarning
             {
-                WinlostDate = reader.HasColumn("WinlostDate") ? Convert.ToDateTime(reader["WinlostDate"]) : (DateTime?)null,
-                Deposit = Convert.ToDecimal(reader["Deposit"]),
-                Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
-                MemberWinLost = Convert.ToDecimal(reader["MemberWinLost"]),
-                Turnover = Convert.ToDecimal(reader["Turnover"]),
-                Bonus = Convert.ToDecimal(reader["Bonus"]),
-                BankingFee = reader["BankingFee"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["BankingFee"])
+                WinlostDate = reader.HasColumn("WinlostDate") ? reader.ToDateTime("WinlostDate") : (DateTime?)null,
+                Deposit = reader.ToDecimal("Deposit"),
+                Withdrawal = reader.ToDecimal("Withdrawal"),
+                MemberGgr = reader.ToDecimal("Ggr"),
+                Bonus = reader.ToDecimal("Bonus"),
+                Rebate = reader.ToDecimal("Rebate"),
+                Turnover = reader.ToDecimal("Turnover")
+            };
+        }
+        private static SubAffiliate BuildSubAffilliateItem(IDataReader reader)
+        {
+            return new SubAffiliate
+            {
+                AffId = reader.ToInt(Field.AffId),
+                AffName = reader.ToString("UserName"),
+                Commission = reader.ToDecimal("Commission"),
+                SubAffCommission = reader.ToDecimal("SubAffCommission")
             };
         }
     }

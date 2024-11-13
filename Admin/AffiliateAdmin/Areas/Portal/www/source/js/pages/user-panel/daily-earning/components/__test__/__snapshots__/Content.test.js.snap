@@ -14,7 +14,7 @@ exports[`customer member - components - Content render correctly 1`] = `
           <t
             asc={true}
             className="text-center"
-            colSpan="NaN"
+            colSpan="7"
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -58,9 +58,20 @@ exports[`customer member - components - Content render correctly 1`] = `
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="Winlost"
+          title="Turnover"
         >
-          Winlost
+          Turnover
+        </t>
+        <t
+          asc={true}
+          colWidth={100}
+          header={true}
+          onClick={[Function]}
+          sortable={false}
+          sorting={false}
+          title="GGR"
+        >
+          GGR
         </t>
         <t
           asc={true}
@@ -102,9 +113,9 @@ exports[`customer member - components - Content render correctly 1`] = `
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="Banking Fee"
+          title="Rebate"
         >
-          Banking Fee
+          Rebate
         </t>
       </t>
     }
@@ -141,7 +152,7 @@ exports[`customer member - components - Content render correctly with have data 
           <t
             asc={true}
             className="text-center"
-            colSpan={false}
+            colSpan={1}
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -156,6 +167,17 @@ exports[`customer member - components - Content render correctly with have data 
             >
               06 January 2019
             </Button>
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -208,9 +230,9 @@ exports[`customer member - components - Content render correctly with have data 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="0.00"
+            title=""
           >
-            0.00
+            
           </t>
         </t>,
         <t>
@@ -228,7 +250,7 @@ exports[`customer member - components - Content render correctly with have data 
           <t
             asc={true}
             className="text-center"
-            colSpan={false}
+            colSpan={1}
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -243,6 +265,17 @@ exports[`customer member - components - Content render correctly with have data 
             >
               07 January 2019
             </Button>
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -295,9 +328,9 @@ exports[`customer member - components - Content render correctly with have data 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="0.00"
+            title=""
           >
-            0.00
+            
           </t>
         </t>,
       ]
@@ -318,6 +351,17 @@ exports[`customer member - components - Content render correctly with have data 
             title="Total"
           >
             Total
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -370,9 +414,9 @@ exports[`customer member - components - Content render correctly with have data 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="0.00"
+            title=""
           >
-            0.00
+            
           </t>
         </t>,
       ]
@@ -407,9 +451,20 @@ exports[`customer member - components - Content render correctly with have data 
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="Winlost"
+          title="Turnover"
         >
-          Winlost
+          Turnover
+        </t>
+        <t
+          asc={true}
+          colWidth={100}
+          header={true}
+          onClick={[Function]}
+          sortable={false}
+          sorting={false}
+          title="GGR"
+        >
+          GGR
         </t>
         <t
           asc={true}
@@ -451,9 +506,9 @@ exports[`customer member - components - Content render correctly with have data 
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="Banking Fee"
+          title="Rebate"
         >
-          Banking Fee
+          Rebate
         </t>
       </t>
     }

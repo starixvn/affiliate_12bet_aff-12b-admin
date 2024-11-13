@@ -1,31 +1,42 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Constants.Apis;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+using Fanex.Affiliate.Admin.Core.DTO.Api;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.DTO.Payment;
+using Fanex.Affiliate.Admin.Core.Exceptions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
-using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
+using Fanex.Affiliate.Admin.Core.Repository.Payment;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Newtonsoft.Json;
 using System;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Payment
 {
-    public class PaymentRequestService : IPaymentRequestService
+    public class PaymentService : IPaymentService
     {
         private readonly IPaymentRequestRepository _paymentRequestRepository;
         private readonly IAffiliateService _affiliateService;
         private readonly IEmailService _emailService;
+        private readonly ILicenseeService _licenseeService;
+        private readonly IAppSetting _appSetting;
 
-        public PaymentRequestService(
+        public PaymentService(
             IPaymentRequestRepository paymentRequestRepository,
             IAffiliateService affiliateService,
-            IEmailService emailService)
+            ILicenseeService licenseeService,
+            IEmailService emailService,
+            IAppSetting appSetting)
         {
             _paymentRequestRepository = paymentRequestRepository;
             _affiliateService = affiliateService;
+            _licenseeService = licenseeService;
             _emailService = emailService;
+            _appSetting = appSetting;
         }
 
         public EntityResult<PaymentRequest> GetPaymentRequestList(PaymentRequestParam param)
@@ -38,147 +49,108 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
             return _paymentRequestRepository.GetPaymentRequestDetail(transId);
         }
 
-        public ResultInfo UpdatePaymentRequest(PaymentUpdateParam param, PaymentRequestUpdateEmail emailParam)
+        public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam)
         {
-            var paymentRequestDetail = _paymentRequestRepository.GetPaymentRequestDetail(param.TransId);
-
-            if (paymentRequestDetail != null &&
-                string.Equals(AffStatus.Pending, paymentRequestDetail.Status, StringComparison.InvariantCultureIgnoreCase))
+            var affInfo = _affiliateService.GetAffiliateBasicInfo(param.AffId);
+            var paymentRequestDetail = GetPaymentRequestDetail(param.TransId);
+            var result = UpdatePaymentRequest(param, paymentRequestDetail);
+            if (result != null && result.IsSuccessful)
             {
-                param.Status = param.IsApproved ? AffStatus.Approved : AffStatus.Rejected;
-
-                var result = _paymentRequestRepository.UpdatePaymentRequest(param);
-
-                if (result.IsSuccessful)
-                {
-                    var logParam = new PaymentUpdateLogParam
-                    {
-                        AffId = paymentRequestDetail.AffId,
-                        UserId = param.UserId,
-                        Ip = param.Ip,
-                        OldData = result.OldData,
-                        NewData = result.NewData
-                    };
-                    var paymentEmailParam = GetPaymentRequestUpdateEmailParam(param.TransId, emailParam, paymentRequestDetail);
-
-                    return param.IsApproved
-                        ? HandleApprovePaymentRequest(result, logParam, paymentEmailParam, param)
-                        : HandleRejectPaymentRequest(logParam, paymentEmailParam);
-                }
-                else
-                {
-                    result.Message = GetErrMsg(result.Code, result.Message);
-                }
-
-                return result;
+                SendMail(param, emailParam, affInfo, paymentRequestDetail);
             }
-            return null;
+            return result;
         }
 
-        private ResultInfo HandleRejectPaymentRequest(PaymentUpdateLogParam logParam, PaymentRequestUpdateEmail emailParam)
+        public async Task<ResultInfo> HandlePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam)
         {
-            _emailService.SendRejectedPaymentRequestEmail(emailParam);
-            _paymentRequestRepository.WriteLogWhenUpdatePaymentRequestSuccessfully(logParam);
+            var siteId = _appSetting.MemberSiteId;
+            var paymentRequestDetail = GetPaymentRequestDetail(param.TransId);
+            var affInfo = _affiliateService.GetAffiliateBasicInfo(paymentRequestDetail.AffId);
+            var cust = await _licenseeService.GetMemberSiteCustomerInfo(affInfo.PlayerUsername, siteId);
+            var result = _licenseeService.CheckCustomerIsValid(cust);
 
-            return new ResultInfo { Message = "Rejecting the Payment Request is successful!" };
-        }
-
-        private ResultInfo HandleApprovePaymentRequest(PaymentUpdateResult result, PaymentUpdateLogParam logParam, PaymentRequestUpdateEmail emailParam, PaymentUpdateParam param)
-        {
-            var approveParam = XmlHelper.GetPaymentApproveParam(result.DetailXml);
-
-            if (approveParam is null)
+            if (result.Code == CustomerStatus.LOCKED)
             {
-                WriteErrorLogSentry($"Updating the Payment Request has failed: DetailXml is in an incorrect format", param, result.DetailXml);
-
-                var error = ResultInfo.GenerateErr("The DetailXml is in an incorrect format.");
-                HandleRollbackApprovePaymentRequest(error, result.DetailXml);
-
-                return ResultInfo.GenerateErr(Lang.ErrGeneral);
+                result = await _licenseeService.UnlockUser(cust.CustId);
             }
-
-            try
-            {
-                approveParam.SpKey = GetPaymentApproveSpKeyByCustId(approveParam.PlayerIbcCustId);
-                var approvedResult = _paymentRequestRepository.ApprovePaymentRequest(approveParam);
-
-                if (approvedResult.IsSuccessful)
-                {
-                    _emailService.SendApprovedPaymentRequestEmail(emailParam);
-                    _paymentRequestRepository.WriteLogWhenUpdatePaymentRequestSuccessfully(logParam);
-
-                    approvedResult.Message = "The approval of the Payment Request is successful!";
-                }
-                else
-                {
-                    WriteErrorLogSentry($"The approval of the Payment Request has failed: ErrorCode: {approvedResult.Code}, ErrorMessage: {approvedResult.Message}", approveParam, result.DetailXml);
-                    HandleRollbackApprovePaymentRequest(approvedResult, result.DetailXml);
-
-                    approvedResult.Message = GetErrMsg(approvedResult.Code, approvedResult.Message);
-                }
-
-                return approvedResult;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteError(ex);
-
-                var error = ResultInfo.GenerateErr("An exception was thrown at the approval of the Payment request process.");
-                HandleRollbackApprovePaymentRequest(error, result.DetailXml);
-
-                return ResultInfo.GenerateErr(Lang.ErrGeneral);
-            }
-        }
-
-        private void HandleRollbackApprovePaymentRequest(ResultInfo approveResult, string detailXml)
-        {
-            var result = _paymentRequestRepository.RollbackApprovePaymentRequest(approveResult, detailXml);
 
             if (!result.IsSuccessful)
             {
-                LogHelper.WriteError($"Rollback the approval of the Payment Request has failed: ErrorCode: {result.Code}, ErrorMessage: {result.Message}");
+                return result;
             }
+
+            result = UpdatePaymentRequest(param, paymentRequestDetail);
+
+            if (result.IsSuccessful && param.IsApproved)
+            {
+                var paymentInfo = new PaymentRequestInfo
+                {
+                    Amount = paymentRequestDetail.OriginalTransAmount,
+                    CustId = cust.CustId,
+                    RefTransId = param.TransId.ToString(),
+                    SiteId = siteId,
+                    Type = (int)PaymentType.WithdrawFromAffAcc,
+                    UserName = affInfo.PlayerUsername
+                };
+
+                try
+                {
+                    LogHelper.WriteInfo($"Call member site API to payment\n" +
+                        $"Param: {JsonConvert.SerializeObject(paymentInfo)}");
+
+                    result = await _licenseeService.UpdatePaymentRequest(paymentInfo);
+
+                    LogHelper.WriteInfo($"Membersite return result:\n" +
+                        $"Param: {JsonConvert.SerializeObject(paymentInfo)}\n" +
+                        $"Result: {JsonConvert.SerializeObject(result)}");
+                }
+                catch (Exception ex)
+                {
+                    throw new LicenseetException(paymentInfo, ex);
+                }
+            }
+
+            if (result.IsSuccessful)
+            {
+                SendMail(param, emailParam, affInfo, paymentRequestDetail);
+            }
+            return result;
         }
 
-        private string GetPaymentApproveSpKeyByCustId(string playerIbcCustId)
+        private void SendMail(PaymentRequestUpdateParam param,
+            PaymentRequestUpdateEmail emailParam,
+            AffiliateBasicInfo affInfo,
+            PaymentRequestDetail paymentRequestDetail)
         {
-            const string ApprovePaymentRequest_SpKey = "Aff_Admin_AffiliatePaymentRequest_Approve";
-
-            var siteDbConfig = _paymentRequestRepository.GetSiteDBConfigInfoByCustId(playerIbcCustId);
-
-            return $"{ApprovePaymentRequest_SpKey}_{siteDbConfig.LinkedServerName}";
-        }
-
-        private PaymentRequestUpdateEmail GetPaymentRequestUpdateEmailParam(long transId, PaymentRequestUpdateEmail emailParam, PaymentRequestDetail paymentRequestDetail)
-        {
-            var affInfo = _affiliateService.GetAffiliateBasicInfo(paymentRequestDetail.AffId);
 
             emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
             emailParam.FirstName = affInfo.FirstName;
             emailParam.MailTo = affInfo.Email;
             emailParam.IsHtml = !affInfo.MailOption;
-            emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguageCode;
-            emailParam.TransId = transId;
+            emailParam.Language = affInfo.PreferredLanguage;
+
+            emailParam.IsApproved = param.IsApproved;
+            emailParam.TransId = param.TransId;
             emailParam.TransDate = paymentRequestDetail.TransDate.ToString("MM/dd/yyyy");
             emailParam.Amount = paymentRequestDetail.Amount;
 
-            return emailParam;
+            _emailService.SendPaymentRequestUpdateEmail(emailParam);
         }
 
-        private static string GetErrMsg(int errCode, string errMessage)
+        private ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestDetail paymentRequestDetail)
         {
-            var message = Lang.ResourceManager.GetString("UpdatePaymentErr" + errCode);
+            if (paymentRequestDetail != null &&
+                string.Equals(AffStatus.Processing, paymentRequestDetail.Status, StringComparison.InvariantCultureIgnoreCase))
+            {
+                param.AffId = paymentRequestDetail.AffId;
+                param.Amount = paymentRequestDetail.Amount;
+                param.TransDate = paymentRequestDetail.TransDate;
+                param.Status = param.IsApproved ? AffStatus.Approved : AffStatus.Rejected;
 
-            return message ?? errMessage ?? "Updating the Payment Request has failed!";
-        }
-
-        private static void WriteErrorLogSentry(string errMessage, object param, string detailXml)
-        {
-            var messageLog = new StringBuilder().AppendLine(errMessage).AppendLine();
-            messageLog.AppendLine($"Parameters: {JsonConvert.SerializeObject(param)}");
-            messageLog.AppendLine($"DetailXml: {detailXml}");
-
-            LogHelper.WriteError(messageLog.ToString());
+                var result = _paymentRequestRepository.UpdatePaymentRequest(param);
+                return result;
+            }
+            return new ResultInfo { Code = ErrCode.GeneralErrorCode, Message = Lang.PaymentRequestNotValid };
         }
     }
 }

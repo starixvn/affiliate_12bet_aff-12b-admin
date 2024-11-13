@@ -4,14 +4,9 @@ import { shallow } from 'enzyme';
 import PaymentRequestUpdateForm from '../../../../common/components/PaymentRequestUpdateForm';
 
 describe('statement history - components - AppContainer', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-
     const defaultProps = {
         affName: "12BETAFF226",
         transactionId: 1262276211,
-        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
         param: {
             fromDate: "1/11/2019",
             isGetAll: false,
@@ -45,15 +40,12 @@ describe('statement history - components - AppContainer', () => {
     });
 
     it('handleFetchData - should call setParam and getAffiliateInfo when call handleFetchData in PaymentRequestUpdateForm', () => {
-        const setParam = jest.fn();
-        const getAffiliateInfo = jest.fn();
-        const props = Object.assign({}, defaultProps, { setParam, getAffiliateInfo });
+        const props = Object.assign({}, defaultProps, { getAffiliateInfo: jest.fn() });
 
         const wrapper = shallow(<AppContainer {...props} />);
 
         wrapper.find(PaymentRequestUpdateForm).props().handleFetchData();
 
-        expect(props.setParam).toHaveBeenCalledWith(defaultProps.param);
         expect(props.getAffiliateInfo).toHaveBeenCalledWith(defaultProps.affName);
     })
 });

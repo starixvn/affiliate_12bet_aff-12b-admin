@@ -8,8 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         void SendDisapprovedEmail(AffInformationEmail emailParam);
 
-        void SendApprovedPaymentRequestEmail(PaymentRequestUpdateEmail emailParam);
-
-        void SendRejectedPaymentRequestEmail(PaymentRequestUpdateEmail emailParam);
+        void SendPaymentRequestUpdateEmail(PaymentRequestUpdateEmail emailParam);
     }
 }

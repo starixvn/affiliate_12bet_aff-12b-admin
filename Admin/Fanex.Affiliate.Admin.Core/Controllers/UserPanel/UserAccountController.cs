@@ -1,24 +1,23 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [MultiFunctionAuthorize(FunctionName = Function.EditAffiliate, FunctionNameOption = Function.ManagePendingAff)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class UserAccountController : ReadOnlySessionBaseController
     {
         private readonly IUserAccountService _userAccountService;
-
-        private const string AdminPageDefaultLang = "en-US";
 
         public UserAccountController(
             ISessionService sessionService,
@@ -29,75 +28,68 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [UpdateUnauthorizedProperty]
+        [UnauthorizedPropertyCensor]
         public ActionResult GetUserAccountInfo(int affId)
         {
-            var userAccountInfo = _userAccountService.GetUserAccountInfo(affId);
-            var securityQuestions = (SessionService.UserClaim.HasClaim(Function.SecurityQA) || (userAccountInfo.IsPendingAff && SessionService.UserClaim.HasClaim(Function.ManagePendingAff)))
-                ? _userAccountService.GetSecurityQuestions(AdminPageDefaultLang).Select(q => new KeyValuePair<int, string>(q.QuestionId, q.Question))
-                : null;
-
-            if (userAccountInfo != null)
+            if (affId >= Validation.MinId)
             {
-                var newUserAccountInfo = new UserAccount
-                {
-                    AffId = userAccountInfo.AffId,
-                    AffName = userAccountInfo.AffName,
-                    Status = Server.HtmlDecode(userAccountInfo.Status),
-                    FirstName = Server.HtmlDecode(userAccountInfo.FirstName),
-                    LastName = Server.HtmlDecode(userAccountInfo.LastName),
-                    Gender = userAccountInfo.Gender,
-                    Email = Server.HtmlDecode(userAccountInfo.Email),
-                    Phone = Server.HtmlDecode(userAccountInfo.Phone),
-                    ContactApps = Server.HtmlDecode(userAccountInfo.ContactApps),
-                    Address = Server.HtmlDecode(userAccountInfo.Address),
-                    City = Server.HtmlDecode(userAccountInfo.City),
-                    State = Server.HtmlDecode(userAccountInfo.State),
-                    Postcode = Server.HtmlDecode(userAccountInfo.Postcode),
-                    Country = Server.HtmlDecode(userAccountInfo.Country),
-                    SiteUrl = Server.HtmlDecode(userAccountInfo.SiteUrl),
-                    MoreSiteUrls = Server.HtmlDecode(userAccountInfo.MoreSiteUrls),
-                    NoSiteDescription = Server.HtmlDecode(userAccountInfo.NoSiteDescription),
-                    PreferredPayment = Server.HtmlDecode(userAccountInfo.PreferredPayment),
-                    PlayerUsername = Server.HtmlDecode(userAccountInfo.PlayerUsername),
-                    NetellerAccountId = Server.HtmlDecode(userAccountInfo.NetellerAccountId),
-                    MoneybookersEmail = Server.HtmlDecode(userAccountInfo.MoneybookersEmail),
-                    BankName = Server.HtmlDecode(userAccountInfo.BankName),
-                    BankAddress = Server.HtmlDecode(userAccountInfo.BankAddress),
-                    BankCode = Server.HtmlDecode(userAccountInfo.BankCode),
-                    BankAccountName = Server.HtmlDecode(userAccountInfo.BankAccountName),
-                    BankAccountNumber = Server.HtmlDecode(userAccountInfo.BankAccountNumber),
-                    Question = Server.HtmlDecode(userAccountInfo.Question),
-                    QuestionId = userAccountInfo.QuestionId,
-                    Answer = Server.HtmlDecode(userAccountInfo.Answer),
-                    MailOption = userAccountInfo.MailOption,
-                    SecurityQuestions = securityQuestions
-                };
+                var userAccountInfo = _userAccountService.GetUserAccountInfo(affId);
 
-                if (!string.IsNullOrEmpty(newUserAccountInfo.ContactApps))
+                if (userAccountInfo != null)
                 {
-                    newUserAccountInfo.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(newUserAccountInfo.ContactApps).OrderBy(p => p.Order);
+                    var newUserAccountInfo = new UserAccount
+                    {
+                        AffId = userAccountInfo.AffId,
+                        AffName = userAccountInfo.AffName,
+                        FirstName = Server.HtmlDecode(userAccountInfo.FirstName),
+                        LastName = Server.HtmlDecode(userAccountInfo.LastName),
+                        Gender = userAccountInfo.Gender,
+                        Email = Server.HtmlDecode(userAccountInfo.Email),
+                        Phone = Server.HtmlDecode(userAccountInfo.Phone),
+                        ContactApps = Server.HtmlDecode(userAccountInfo.ContactApps),
+                        Address = Server.HtmlDecode(userAccountInfo.Address),
+                        City = Server.HtmlDecode(userAccountInfo.City),
+                        State = Server.HtmlDecode(userAccountInfo.State),
+                        Postcode = Server.HtmlDecode(userAccountInfo.Postcode),
+                        Country = Server.HtmlDecode(userAccountInfo.Country),
+                        SiteUrl = Server.HtmlDecode(userAccountInfo.SiteUrl),
+                        MoreSiteUrls = Server.HtmlDecode(userAccountInfo.MoreSiteUrls),
+                        NoSiteDescription = Server.HtmlDecode(userAccountInfo.NoSiteDescription),
+                        PreferredPayment = Server.HtmlDecode(userAccountInfo.PreferredPayment),
+                        PlayerUsername = Server.HtmlDecode(userAccountInfo.PlayerUsername),
+                        NetellerAccountId = Server.HtmlDecode(userAccountInfo.NetellerAccountId),
+                        MoneybookersEmail = Server.HtmlDecode(userAccountInfo.MoneybookersEmail),
+                        BankName = Server.HtmlDecode(userAccountInfo.BankName),
+                        BankAddress = Server.HtmlDecode(userAccountInfo.BankAddress),
+                        BankCode = Server.HtmlDecode(userAccountInfo.BankCode),
+                        BankAccountName = Server.HtmlDecode(userAccountInfo.BankAccountName),
+                        BankAccountNumber = Server.HtmlDecode(userAccountInfo.BankAccountNumber),
+                        Question = Server.HtmlDecode(userAccountInfo.Question),
+                        Answer = Server.HtmlDecode(userAccountInfo.Answer),
+                        MailOption = userAccountInfo.MailOption
+                    };
+
+                    if (!string.IsNullOrEmpty(newUserAccountInfo.ContactApps))
+                    {
+                        newUserAccountInfo.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(newUserAccountInfo.ContactApps).OrderBy(p => p.Order);
+                    }
+
+                    return GenerateJsonNetResult(newUserAccountInfo);
                 }
-
-                return new JsonNetResult
-                {
-                    Data = newUserAccountInfo
-                };
             }
 
             return new JsonNetResult();
         }
 
+        [FunctionAuthorize(FunctionName = Function.EditAffDetails, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [MultiFunctionAuthorize(FunctionName = Function.EditAffiliate, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
-        public ActionResult UpdateUserAccount(UserAccountParam param)
+        public async Task<ActionResult> UpdateUserAccount(UserAccountParam param)
         {
             if (ModelState.IsValid)
             {
                 var userAccountParam = new UserAccountParam
                 {
-                    IsPendingAff = param.IsPendingAff,
                     AffId = param.AffId,
                     FirstName = Server.HtmlEncode(param.FirstName),
                     LastName = Server.HtmlEncode(param.LastName),
@@ -122,20 +114,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     BankAccountName = Server.HtmlEncode(param.BankAccountName),
                     BankAccountNumber = Server.HtmlEncode(param.BankAccountNumber),
                     MailOption = param.MailOption,
-                    QuestionId = param.QuestionId,
-                    Answer = param.Answer,
-                    HasWebSite = param.HasWebSite
+                    HasWebSite = param.HasWebSite,
                 };
                 AssignUserInfoParam(userAccountParam);
 
-                if (param.ContactAppList == null || param.ContactAppList.All(c => string.IsNullOrEmpty(c.Value)))
-                {
-                    return new JsonNetResult
-                    {
-                        Data = ResultInfo.GenerateErr("At least one IM account is required!")
-                    };
-                }
-                else
+                if (param.ContactAppList != null)
                 {
                     userAccountParam.ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
                     {
@@ -145,12 +128,30 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     }));
                 }
 
-                return new JsonNetResult
-                {
-                    Data = _userAccountService.UpdateUserAccount(userAccountParam)
-                };
+                return GenerateJsonNetResult(await _userAccountService.UpdateUserAccountAsync(userAccountParam));
             }
-            return ModelState.GenerateErrorResult();
+
+            return GenerateModelStateErrResult();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetPaymentMethod()
+        {
+            var paymentInfo = _userAccountService.GetPaymentMethod();
+            var paymentMethods = paymentInfo.paymentMethods
+                .Select(m => new KeyValuePair<string, string>(m.PaymentId, m.PaymentName));
+            var vms = new PaymentMethodViewModel
+            {
+                MinAmount = paymentInfo.minAmount,
+                PaymentMethods = paymentMethods
+            };
+
+            var result = new JsonNetResult
+            {
+                Data = vms
+            };
+            return result;
         }
     }
 }

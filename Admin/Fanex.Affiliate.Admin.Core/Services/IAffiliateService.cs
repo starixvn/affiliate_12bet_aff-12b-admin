@@ -8,6 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
     {
         AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null);
 
-        ResultInfo ApproveAffiliate(ApproveAffiliateParam param);
+        (ResultInfo, string) ApproveAffiliate(ApproveAffiliateParam param);
     }
 }

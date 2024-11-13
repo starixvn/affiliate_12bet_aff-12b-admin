@@ -1,12 +1,15 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Controllers;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Moq;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -15,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 {
     public class EmailTestingControllerTest
     {
-        private ILifetimeScopeProvider _scopeProvider;
+        private ILifetimeScopeProvider scopeProvider;
 
         [Fact]
         public void Index_WhenCall_ReturnView()
@@ -35,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void Preview_WhenCallHasException_ReturnView()
         {
             // Arrange
-            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ISystemService>());
+            var controller = CreateEmailTestingController(MockingHelper.GetSessionService());
 
             // Action
             var viewResult = controller.Preview(string.Empty, string.Empty, string.Empty) as ViewResult;
@@ -45,33 +48,142 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             Assert.Equal("", viewName);
         }
 
-        [Theory]
-        [InlineData(TemplateString.AffiliateDisapproved)]
-        [InlineData(TemplateString.AffiliateApproved)]
-        [InlineData(TemplateString.WithdrawalGuidance)]
-        [InlineData(TemplateString.AffiliateInformation)]
-        [InlineData(TemplateString.PaymentRequestApproved)]
-        [InlineData(TemplateString.PaymentRequestRejected)]
-        [InlineData("Default")]
-        public void Preview_WhenCall_ReturnView(string template)
+        [Fact]
+        public void Preview_WhenCallWithAffiliateDisapproved_ReturnView()
         {
             // Arrange
+            var languageService = new Mock<ILanguageService>();
+            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en-US", ShortedLanguageCode = "en" } });
+
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.Environment).Returns("UAT");
             appSetting.Setup(a => a.IsProduction).Returns(true);
+            appSetting.Setup(a => a.MailContact).Returns("abc@gmail.com");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            _scopeProvider = new SimpleLifetimeScopeProvider(container);
-            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
             DependencyResolver.SetResolver(resolver);
 
-            var controller = CreateEmailTestingController();
+            var controller = CreateEmailTestingController(null, null, appSetting.Object, languageService.Object);
 
             // Action
-            var viewResult = controller.Preview(string.Empty, template, string.Empty) as ViewResult;
+            var viewResult = controller.Preview("en-US", "AffiliateDisapproved", string.Empty) as ViewResult;
+            var viewName = viewResult.ViewName;
+
+            // Assert
+            Assert.Equal("", viewName);
+        }
+
+        [Fact]
+        public void Preview_WhenCallWithAffiliateInformation_ReturnView()
+        {
+            // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.Environment).Returns("UAT");
+            appSetting.Setup(a => a.IsProduction).Returns(true);
+            appSetting.Setup(a => a.DefaultShortedLanguageCode).Returns("en");
+            appSetting.Setup(a => a.MailContact).Returns("abc@gmail.com");
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
+            DependencyResolver.SetResolver(resolver);
+
+            var controller = CreateEmailTestingController(appSetting: appSetting.Object);
+
+            // Action
+            var viewResult = controller.Preview(string.Empty, "AffiliateInformation", string.Empty) as ViewResult;
+            var viewName = viewResult.ViewName;
+
+            // Assert
+            Assert.Equal("", viewName);
+        }
+
+        [Fact]
+        public void Preview_WhenCallWithWithdrawalGuidance_ReturnView()
+        {
+            // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.Environment).Returns("UAT");
+            appSetting.Setup(a => a.IsProduction).Returns(true);
+            appSetting.Setup(a => a.DefaultShortedLanguageCode).Returns("en");
+            appSetting.Setup(a => a.MailContact).Returns("abc@gmail.com");
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
+            DependencyResolver.SetResolver(resolver);
+
+            var controller = CreateEmailTestingController(appSetting: appSetting.Object);
+
+            // Action
+            var viewResult = controller.Preview(string.Empty, "WithdrawalGuidance", string.Empty) as ViewResult;
+            var viewName = viewResult.ViewName;
+
+            // Assert
+            Assert.Equal("", viewName);
+        }
+
+        [Fact]
+        public void Preview_WhenCallPaymentRequestApproved_ReturnView()
+        {
+            // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.Environment).Returns("UAT");
+            appSetting.Setup(a => a.IsProduction).Returns(true);
+            appSetting.Setup(a => a.DefaultShortedLanguageCode).Returns("en");
+            appSetting.Setup(a => a.MailContact).Returns("abc@gmail.com");
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
+            DependencyResolver.SetResolver(resolver);
+
+            var controller = CreateEmailTestingController(appSetting: appSetting.Object);
+
+            // Action
+            var viewResult = controller.Preview(string.Empty, "PaymentRequest/Approved", string.Empty) as ViewResult;
+            var viewName = viewResult.ViewName;
+
+            // Assert
+            Assert.Equal("", viewName);
+        }
+
+        [Fact]
+        public void Preview_WhenCallPaymentRequestRejected_ReturnView()
+        {
+            // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.Environment).Returns("UAT");
+            appSetting.Setup(a => a.IsProduction).Returns(true);
+            appSetting.Setup(a => a.DefaultShortedLanguageCode).Returns("en");
+            appSetting.Setup(a => a.MailContact).Returns("abc@gmail.com");
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
+            DependencyResolver.SetResolver(resolver);
+
+            var controller = CreateEmailTestingController(appSetting: appSetting.Object);
+
+            // Action
+            var viewResult = controller.Preview(string.Empty, "PaymentRequest/Rejected", string.Empty) as ViewResult;
             var viewName = viewResult.ViewName;
 
             // Assert
@@ -82,37 +194,43 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void SendEmail_WhenCallHasException_ReturnFalse()
         {
             // Arrange
-            var controller = new EmailTestingController(MockingHelper.GetSessionService(), Mock.Of<IMailProcessor>(), Mock.Of<IAppSetting>(), Mock.Of<ISystemService>());
+            var controller = CreateEmailTestingController(MockingHelper.GetSessionService());
 
             // Action
-            var jsonResult = controller.SendEmail(string.Empty, string.Empty, string.Empty, string.Empty) as JsonResult;
+            var jsonResult = controller.SendEmail(string.Empty, string.Empty, string.Empty, string.Empty) as JsonNetResult;
             var data = jsonResult.Data as dynamic;
 
             // Assert
             Assert.False(data.Success);
         }
 
-        [Fact]
-        public void SendEmail_WhenCall_ReturnTrue()
+        [Theory]
+        [InlineData("AffiliateDisapproved")]
+        [InlineData("AffiliateInformation")]
+        [InlineData("PaymentRequest/Approved")]
+        [InlineData("PaymentRequest/Rejected")]
+        [InlineData("")]
+        public void SendEmail_WhenCall_ReturnTrue(string function)
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.Environment).Returns("UAT");
             appSetting.Setup(a => a.IsProduction).Returns(true);
-            appSetting.Setup(a => a.EmailBackgroundUrl).Returns("https://google.com");
+            appSetting.Setup(a => a.DefaultShortedLanguageCode).Returns("en");
+            appSetting.Setup(a => a.MailContact).Returns("abc@gmail.com");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            _scopeProvider = new SimpleLifetimeScopeProvider(container);
-            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
             DependencyResolver.SetResolver(resolver);
 
-            var controller = CreateEmailTestingController();
+            var controller = CreateEmailTestingController(appSetting: appSetting.Object);
 
             // Action
-            var jsonResult = controller.SendEmail(string.Empty, TemplateString.AffiliateApproved, "txt", string.Empty) as JsonResult;
+            var jsonResult = controller.SendEmail(string.Empty, function, string.Empty, string.Empty) as JsonNetResult;
             var data = jsonResult.Data as dynamic;
 
             // Assert
@@ -123,15 +241,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             ISessionService sessionService = null,
             IMailProcessor mailProcessor = null,
             IAppSetting appSetting = null,
-            ISystemService systemServive = null
+            ILanguageService languageService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeMailProcessor = mailProcessor ?? Mock.Of<IMailProcessor>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
-            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
 
-            var controller = new EmailTestingController(fakeSessionService, fakeMailProcessor, fakeAppSetting, fakesystemServive);
+            var controller = new EmailTestingController(fakeSessionService, fakeMailProcessor, fakeAppSetting, fakeLanguageService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

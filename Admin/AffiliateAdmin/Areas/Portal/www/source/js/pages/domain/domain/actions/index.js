@@ -1,26 +1,26 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import * as types from './types';
+import { SHOULD_RESET_SCROLL_POSITION, SET_SELECTED_DOMAIN, SET_GRID_DATA } from './types';
 
 export { toggleLoader };
 
 export const setShouldResetScrollPosition = (data) => {
     return {
-        type: types.SHOULD_RESET_SCROLL_POSITION,
+        type: SHOULD_RESET_SCROLL_POSITION,
         data
     }
 }
 
 export const setGridData = (data) => {
     return {
-        type: types.SET_GRID_DATA,
+        type: SET_GRID_DATA,
         data
     }
 }
 
-export const setSelectedDomainId = (data) => {
+export const setSelectedDomain = (data) => {
     return {
-        type: types.SET_SELECTED_DOMAIN_ID,
+        type: SET_SELECTED_DOMAIN,
         data
     }
 }
@@ -42,20 +42,6 @@ export const fetchData = (isAffDomain) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const getDomainById = (domainId, isAffDomain) => async () => {
-    const url = 'Portal/Domain/GetDomainById';
-    const response = await post(url, { domainId, isAffDomain });
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const getTargetCountryListByDomain = (param) => async () => {
-    const url = 'Portal/Domain/GetTargetCountryList';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
 export const insertDomain = (param) => async () => {
     const url = 'Portal/Domain/InsertDomain';
     const response = await post(url, param);
@@ -72,7 +58,7 @@ export const updateDomain = (param) => async () => {
 
 export const deleteDomain = (param) => async () => {
     const url = 'Portal/Domain/DeleteDomain';
-    const response = await post(url, param );
+    const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }

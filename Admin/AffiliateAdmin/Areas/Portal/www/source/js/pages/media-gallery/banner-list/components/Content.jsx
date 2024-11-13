@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
-import MyLink from '../../../common/components/MyLink';
 
 import { resizeWidthHeight } from '../libs/utils';
-import { headerText, globalResource, maxWidthHeight } from '../libs/constants';
+import { globalResource, pcLaptop, mobile, userTypeList } from '../../common/libs/constants';
+import { headerText, maxWidthHeight } from '../libs/constants';
 import { setSelectedBannerId, setPagingOption, fetchData, setCheckedBanners, setShouldResetScrollPosition, setParam, setBannerDetailUrl } from '../actions';
-import { claimResource } from '../../../../modules/claim';
-import { format } from '../../../../modules/numberFormat';
 
 export const Content = (props) => {
 
@@ -38,19 +36,20 @@ export const Content = (props) => {
     };
 
     function _renderHeader() {
-        const { isModifiable } = props;
         return (
             <Row key="thead">
-                {isModifiable && <Cell header={true} colWidth={20}></Cell>}
+                <Cell header={true} colWidth={20}></Cell>
                 <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.UserType}>{headerText.UserType}</Cell>
                 <Cell header={true} colWidth={415} title={headerText.Images}>{headerText.Images}</Cell>
                 <Cell header={true} colWidth={190} title={headerText.FileName}>{headerText.FileName}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.TargetProduct}>{headerText.TargetProduct}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Category}>{headerText.Category}</Cell>
+                <Cell header={true} colWidth={55} title={headerText.SubCategory}>{headerText.SubCategory}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.AffType}>{headerText.AffType}</Cell>
+                <Cell header={true} colWidth={55} title={headerText.Currency}>{headerText.Currency}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.Device}>{headerText.Device}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Size}>{headerText.Size}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.NumberOfCopies}>{headerText.NumberOfCopies}</Cell>
-                { isModifiable && <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>}
+                <Cell header={true} colWidth={25} title={globalResource.Edit}>{globalResource.Edit}</Cell>
             </Row>
         );
     }
@@ -68,8 +67,8 @@ export const Content = (props) => {
             }
         }
         else {
-            dataRows.push(<Row>
-                <Cell className="text-center" colSpan="10">{globalResource.NoInfo}</Cell>
+            dataRows.push(<Row key="no-info">
+                <Cell className="text-center" colSpan="11">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -77,65 +76,72 @@ export const Content = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
-        const { isModifiable } = props;
         const bannerId = dataItem.BannerId;
         const fileName = dataItem.FileName;
         const src = `${props.bannerRootUrl}/${fileName}?id=${dataItem.LastUpdateText}`;
         const size = dataItem.Size;
-        const numberOfCopies = format(dataItem.NumberOfCopies);
         const strSize = size.split('x');
         const realWidth = strSize[0];
         const realHeight = strSize[1];
         const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
         const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
+        const userType = userTypeList[dataItem.UserType] || '';
 
         return (
             <Row key={`dataRow-${index}`}>
-                {
-                    isModifiable && (
-                        <Cell className="text-center">
-                            <input type="checkbox" checked={!!props.checkedBanners[bannerId]}
-                                onChange={(e) => _onCheckItem(e.target.checked, bannerId)} />
-                        </Cell>
-                    )
-                }
+                <Cell className="text-center">
+                    <input type="checkbox" checked={props.checkedBanners[bannerId] || false}
+                        onChange={(e) => _onCheckItem(e.target.checked, bannerId)} />
+                </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
+                <Cell className="text-center" title={userType}>{userType}</Cell>
                 <Cell className="text-center">
                     {
                         isValidWithHeight ? (
-                            <img id={`img${bannerId}`} src={src} alt="" height={realHeight} width={realWidth} />
+                            <img id={`img${bannerId}`} src={src} alt="Banner" height={realHeight} width={realWidth} />
                         ) : (
-                                <MyLink id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, bannerId, width: realWidth, height: realHeight })}>
-                                    <img id={`img${bannerId}`} src={src} alt="12Bet banner" height={resizeResult.height} width={resizeResult.width} />
-                                </MyLink>
+                                <a href="javascript:;" id={`link${bannerId}`} onClick={() => props.setBannerDetailUrl({ src, bannerId, width: realWidth, height: realHeight })}>
+                                    <img id={`img${bannerId}`} src={src} alt="Banner" height={resizeResult.height} width={resizeResult.width} />
+                                </a>
                             )
                     }
                 </Cell>
                 <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
                 <Cell className="text-center text-break">
                     {
-                        dataItem.TargetProductNames && dataItem.TargetProductNames.map(value => {
-                            return (<p key={`target-product-${value}`} value={value}>{value}</p>)
+                        dataItem.Categories && dataItem.Categories.map(value => {
+                            return (<p key={`category-${value}`} value={value}>{value}</p>)
+                        })
+                    }
+                </Cell>
+                <Cell className="text-center text-break">
+                    {
+                        dataItem.SubCategories && dataItem.SubCategories.map(value => {
+                            return (<p key={`subCategory-${value}`}>{value}</p>)
                         })
                     }
                 </Cell>
                 <Cell className="text-center text-break" title={dataItem.Language}>{dataItem.Language}</Cell>
                 <Cell className="text-center text-break">
                     {
-                        dataItem.AffTypes && dataItem.AffTypes.map(value => {
-                            return (<p key={`aff-type-${value}`} value={value}>{value}</p>)
+                        dataItem.Currencies && dataItem.Currencies.map(value => {
+                            return (<p key={`currency-${value}`}>{value}</p>)
+                        })
+                    }
+                </Cell>
+                <Cell className="text-center text-break">
+                    {
+                        dataItem.DeviceTypes && dataItem.DeviceTypes.map(value => {
+                            return (<p key={`deviceType-${value}`}>{value == 0 ? pcLaptop : mobile}</p>)
                         })
                     }
                 </Cell>
                 <Cell className="text-center text-break" title={size}>{size}</Cell>
-                <Cell className="text-center text-break" title={numberOfCopies}>{numberOfCopies}</Cell>
-                {isModifiable &&
-                    <Cell className="text-center" title="Edit Banner">
-                        <Button color="link" onClick={() => props.setSelectedBannerId(bannerId)}>
-                            <span className="oi oi-pencil text-secondary"></span>
-                        </Button>
-                    </Cell>
-                }
+                <Cell className="text-center" title="Edit Banner">
+                    <Button color="link" onClick={() => props.setSelectedBannerId(bannerId)}>
+                        <span className="oi oi-pencil text-secondary"></span>
+                    </Button>
+                </Cell>
             </Row>
         )
     }
@@ -160,9 +166,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGalleryMenu);
-    return Object.assign({}, { pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData, isModifiable });
+function mapStateToProps({ pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData }) {
+    return Object.assign({}, { pagingOption, param, checkedBanners, bannerRootUrl, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {

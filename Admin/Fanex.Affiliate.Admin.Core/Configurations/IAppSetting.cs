@@ -1,9 +1,14 @@
-﻿
-namespace Fanex.Affiliate.Admin.Core.Configurations
+﻿namespace Fanex.Affiliate.Admin.Core.Configurations
 {
     public interface IAppSetting
     {
         string GetValue(string key);
+
+        string MailContact { get; }
+
+        string AppMailId { get; }
+
+        string AppMailAddress { get; }
 
         string InternalEuropeanAffiliateUrl { get; }
 
@@ -23,8 +28,6 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         string BccMail { get; }
 
-        string MailContact { get; }
-
         string JsVersion { get; }
 
         string SentryDsn { get; }
@@ -43,16 +46,26 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         string ServerId { get; }
 
-        string AppMailId { get; }
+        string SiteName { get; }
 
-        string AppMailAddress { get; }
+        string SiteFriendlyName { get; }
 
-        string LicenseeCustDbApiUrl { get; }
+        string DefaultLanguage { get; }
 
-        bool IsUseProxyToGetLicenseeCustDbApi { get; }
+        string DefaultLanguageCode { get; }
 
-        string LicenseeCustDbApiProxyUrl { get; }
+        string DefaultShortedLanguageCode { get; }
 
-        string LicenseeCustDbApiAuthenKey { get; }
+        string DefaultCurrency { get; }
+
+        string MemberSiteApiUrl { get; }
+
+        int MemberSiteId { get; }
+
+        string MemberSiteProxyUrl { get; }
+
+        string MemberSiteApiAuthenticationKey { get; }
+
+        bool IsUseMemberSiteProxy { get; }
     }
 }

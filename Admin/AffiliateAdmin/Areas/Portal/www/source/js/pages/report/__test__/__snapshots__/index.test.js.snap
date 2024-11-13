@@ -1,17 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`report - App Should render correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
-    }
-  }
+<BrowserRouter
+  forceRefresh={true}
 >
-  <Connect(AppContainer) />
-</Provider>
+  <Memo(SubMenuList)
+    img="Areas/Portal/www/dist/imgs/i_report.png"
+    menus={
+      Array [
+        Object {
+          "href": "/Portal/Report",
+          "label": "Affiliate",
+        },
+        Object {
+          "href": "/Portal/PlayerGgrReport",
+          "label": "Player GGR",
+        },
+      ]
+    }
+  />
+  <Suspense
+    fallback={null}
+  >
+    <Switch>
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_0"
+        path="/Portal/Report"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          }
+        }
+        key="route_1"
+        path="/Portal/PlayerGgrReport"
+      />
+      <Redirect
+        from="/"
+        to="/Portal/Report"
+      />
+    </Switch>
+  </Suspense>
+</BrowserRouter>
 `;

@@ -1,79 +1,95 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+using Fanex.Data;
+using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Domain
 {
     public class DomainRepository : BaseRepository, IDomainRepository
     {
-        public IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param)
+        public IEnumerable<DomainInfo> GetDomainList(string spKey)
         {
-            const string SpKey = "Aff_Domain_BlockTargetCountry_Sel";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                return objectDb.Query<TargetCountry>(param);
-            }
-        }
-
-        public IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true)
-        {
-            var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel";
+            var result = new List<DomainInfo>();
 
             using (var objectDb = GetObjectDb(spKey))
             {
-                return objectDb.Query<DomainInfo>(new { userId });
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(BuildSubAffDomainInfoItem(reader));
+                    }
+                }
             }
+
+            return result;
         }
 
-        public DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true)
+        public ResultInfo InsertDomain(InsertUpdateDomainParam param, string spKey)
         {
-            var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_12BETDomain_Sel";
-
             using (var objectDb = GetObjectDb(spKey))
             {
-                return objectDb.QueryEntity<DomainInfo>(new { userId, domainId });
-            }
-        }
+                AssignParam(objectDb, param);
 
-        public ResultInfo InsertDomain(InsertDomainParam param)
-        {
-            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Ins" : "Aff_Admin_12BETDomain_Ins";
-
-            using (var objectDb = GetObjectDb(spKey))
-            {
-                objectDb.ExecuteNonQuery(param);
+                objectDb.ExecuteNonQuery();
 
                 return GetResultInfo(objectDb);
             }
         }
 
-        public ResultInfo UpdateDomain(UpdateDomainParam param)
+        public ResultInfo UpdateDomain(InsertUpdateDomainParam param, string spKey)
         {
-            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Upd" : "Aff_Admin_12BETDomain_Upd";
-
             using (var objectDb = GetObjectDb(spKey))
             {
-                objectDb.ExecuteNonQuery(param);
+                objectDb.SetParameterValue("DomainId", param.DomainId);
+                AssignParam(objectDb, param);
+
+                objectDb.ExecuteNonQuery();
 
                 return GetResultInfo(objectDb);
             }
         }
 
-        public ResultInfo DeleteDomain(DeleteDomainParam param)
+        public ResultInfo DeleteDomain(DeleteDomainParam param, string spKey)
         {
-            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Del" : "Aff_Admin_12BETDomain_Del";
-
             using (var objectDb = GetObjectDb(spKey))
             {
+                objectDb.SetParameterValue("DomainId", param.DomainId);
+                objectDb.SetParameterValue("userid", param.UserId);
+                objectDb.SetParameterValue("ip", param.Ip);
+
                 AssignResultOutputParam(objectDb);
 
-                objectDb.ExecuteNonQuery(param);
+                objectDb.ExecuteNonQuery();
 
                 return GetResultInfo(objectDb);
             }
+        }
+
+        private static void AssignParam(IObjectDb objectDb, InsertUpdateDomainParam param)
+        {
+            objectDb.SetParameterValue("DomainName", param.DomainName);
+            objectDb.SetParameterValue("IsSSL", param.IsSSL);
+            objectDb.SetParameterValue("UserID", param.UserId);
+            objectDb.SetParameterValue("IP", param.Ip);
+
+            AssignResultOutputParam(objectDb);
+        }
+
+        private static DomainInfo BuildSubAffDomainInfoItem(IDataReader reader)
+        {
+            return new DomainInfo
+            {
+                DomainId = Convert.ToInt32(reader["DomainId"]),
+                DomainName = Convert.ToString(reader["DomainName"]),
+                IsSSL = reader.GetVal<bool>("IsSSL"),
+                Creator = Convert.ToString(reader["Creator"]),
+                CreatedDate = reader["CreateDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CreateDate"])
+            };
         }
     }
 }

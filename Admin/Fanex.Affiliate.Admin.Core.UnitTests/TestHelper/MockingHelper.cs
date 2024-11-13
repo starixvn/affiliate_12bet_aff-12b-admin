@@ -1,4 +1,6 @@
-﻿using Fanex.Affiliate.Admin.Core.Services.Common;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Logging;
 using Moq;
 using NSubstitute;
@@ -6,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
-using System.Security.Claims;
 using System.Web;
 using System.Web.SessionState;
 
@@ -14,17 +15,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
 {
     public static class MockingHelper
     {
-        public static ISessionService GetSessionService(string claim = null, bool hasClaim = false, bool isHost = false)
+        public static ISessionService GetSessionService()
         {
-            var claimsIdentities = new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(hasClaim ? claim : string.Empty, isHost ? "Write" : "Read") }) };
             return Mock.Of<ISessionService>(ss =>
-                ss.AffId == Constant.AffId &&
                 ss.AffName == Constant.AffName &&
                 ss.OnUserId == Constant.OnUserId &&
                 ss.UserId == Constant.UserId &&
-                ss.RequestIp == Constant.UserHostAddress &&
-                ss.ClaimIdentities == claimsIdentities &&
-                ss.UserClaim == new ClaimsPrincipal(claimsIdentities)
+                ss.UserPermissionList == new List<UserPermission>
+                {
+                    new UserPermission
+                    {
+                        IsHost = true,
+                        FunctionName = Function.RevenueGroup
+                    }
+                }
             );
         }
 
@@ -32,16 +36,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
         {
             var mockHttpRequest = new Mock<HttpRequestBase>();
             mockHttpRequest.Setup(p => p.ApplicationPath).Returns("/");
-            mockHttpRequest.Setup(p => p.UserHostAddress).Returns(Constant.UserHostAddress);
+            mockHttpRequest.Setup(p => p.UserHostAddress).Returns("::1");
             mockHttpRequest.Setup(p => p.Url).Returns(new Uri(Constant.DefaultRootDomain));
             mockHttpRequest.Setup(p => p.ServerVariables).Returns(new NameValueCollection());
             mockHttpRequest.Setup(p => p.Browser.Browser).Returns(Constant.Browser);
-            mockHttpRequest.Setup(p => p.UserHostName).Returns("123");
 
             return mockHttpRequest.Object;
         }
 
-        public static void SetUpEnviroment()
+        public static void SetUpLogEngineEnviroment()
+        {
+            var logEngine = Substitute.For<ILogEngine>();
+
+            LogManager.SetDefaultLogCategory("Tests")
+                .Use(new List<ILogEngine>
+                {
+                    logEngine
+                });
+        }
+
+        public static void SetUpHttpContextSession()
         {
             var request = new HttpRequest("111", "http://127.0.0.1:8080/controller/action", string.Empty);
             var test = Substitute.For<HttpBrowserCapabilities>();
@@ -57,17 +71,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
                  HttpCookieMode.AutoDetect,
                  SessionStateMode.InProc, false);
             SessionStateUtility.AddHttpSessionStateToContext(HttpContext.Current, sessionContainer);
-        }
-
-        public static void SetUpLogEngineEnviroment()
-        {
-            var logEngine = Substitute.For<ILogEngine>();
-
-            LogManager.SetDefaultLogCategory("Tests")
-                .Use(new List<ILogEngine>
-                {
-                    logEngine
-                });
         }
     }
 }

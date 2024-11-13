@@ -12,8 +12,7 @@ describe('customer - left panel - PanelList - connect', () => {
         const initialState = {
             leftPanel: {
                 affiliateInfo: {}
-            },
-            claimsPrincipal: {}
+            }
         }
         store = mockStore(initialState)
         wrapper = shallow(<PanelList store={store} />).dive()
@@ -21,6 +20,5 @@ describe('customer - left panel - PanelList - connect', () => {
 
     it('should show correct value', () => {
         expect(wrapper.props().affiliateInfo).toEqual({})
-        expect(wrapper.props().claimsPrincipal).toEqual({})
     })
 })

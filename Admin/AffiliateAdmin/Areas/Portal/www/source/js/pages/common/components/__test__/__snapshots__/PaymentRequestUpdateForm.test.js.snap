@@ -26,6 +26,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -128,7 +129,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
               }
             >
               <strong>
-                12BETAFF226
+                B2CAFF226
               </strong>
             </Label>
           </FormGroup>
@@ -275,45 +276,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
                 ]
               }
             >
-              L&#234; Văn
-            </Label>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Balance Brought Forward
-            </Label>
-            <Label
-              sm={6}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <strong>
-                -$
-              </strong>
+              Lê Văn
             </Label>
           </FormGroup>
         </fieldset>
@@ -397,7 +360,45 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
               }
             >
               <strong>
-                $100.00
+                100.00
+              </strong>
+            </Label>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Transfer Amount
+            </Label>
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <strong>
+                - (undefined)
               </strong>
             </Label>
           </FormGroup>
@@ -435,7 +436,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
               }
             >
               <strong>
-                Pending
+                Processing
               </strong>
             </Label>
           </FormGroup>
@@ -457,7 +458,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
                 ]
               }
             >
-              12BET User Name
+              undefined User Name
             </Label>
             <Label
               sm={6}
@@ -577,7 +578,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
                 tag="div"
               >
                 <Label
-                  for="AdminDesc"
+                  htmlFor="AdminDesc"
                   tag="label"
                   widths={
                     Array [
@@ -628,7 +629,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
                 tag="div"
               >
                 <Label
-                  for="AffDesc"
+                  htmlFor="AffDesc"
                   tag="label"
                   widths={
                     Array [
@@ -678,7 +679,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
 </Modal>
 `;
 
-exports[`common - components - PaymentRequestUpdateForm render correctly with not pending 1`] = `
+exports[`common - components - PaymentRequestUpdateForm render correctly with not Processing 1`] = `
 <Modal
   autoFocus={true}
   backdrop="static"
@@ -704,6 +705,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -806,7 +808,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
               }
             >
               <strong>
-                12BETAFF226
+                B2CAFF226
               </strong>
             </Label>
           </FormGroup>
@@ -846,6 +848,42 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
               <strong>
                 08/09/2019 03:43:17 AM
               </strong>
+            </Label>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Email Address
+            </Label>
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              hubert.duong_1@nexcel.vn
             </Label>
           </FormGroup>
           <FormGroup
@@ -917,9 +955,18 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
                 ]
               }
             >
-              L&#234; Văn
+              Lê Văn
             </Label>
           </FormGroup>
+        </fieldset>
+        <fieldset>
+          <legend>
+            <h6
+              className="font-weight-bold"
+            >
+              Payment Information
+            </h6>
+          </legend>
           <FormGroup
             className="mb-2"
             row={true}
@@ -938,7 +985,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
                 ]
               }
             >
-              Balance Brought Forward
+              Payment Method
             </Label>
             <Label
               sm={6}
@@ -954,19 +1001,10 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
               }
             >
               <strong>
-                -$
+                Player
               </strong>
             </Label>
           </FormGroup>
-        </fieldset>
-        <fieldset>
-          <legend>
-            <h6
-              className="font-weight-bold"
-            >
-              Payment Information
-            </h6>
-          </legend>
           <FormGroup
             className="mb-2"
             row={true}
@@ -1001,7 +1039,45 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
               }
             >
               <strong>
-                $100.00
+                100.00
+              </strong>
+            </Label>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              Transfer Amount
+            </Label>
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <strong>
+                - (undefined)
               </strong>
             </Label>
           </FormGroup>
@@ -1039,7 +1115,45 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
               }
             >
               <strong>
-                Pending
+                Processing
+              </strong>
+            </Label>
+          </FormGroup>
+          <FormGroup
+            className="mb-2"
+            row={true}
+            tag="div"
+          >
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              undefined User Name
+            </Label>
+            <Label
+              sm={6}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <strong>
+                bettingexp
               </strong>
             </Label>
           </FormGroup>
@@ -1156,7 +1270,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
                 tag="div"
               >
                 <Label
-                  for="AdminDesc"
+                  htmlFor="AdminDesc"
                   tag="label"
                   widths={
                     Array [
@@ -1207,7 +1321,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
                 tag="div"
               >
                 <Label
-                  for="AffDesc"
+                  htmlFor="AffDesc"
                   tag="label"
                   widths={
                     Array [

@@ -8,22 +8,23 @@
         public const int MaxPageIndex = int.MaxValue;
         public const int MinPageSize = 1;
         public const int MaxPageSize = 500;
-        public const int MinSearchBy = 0;
         public const int MaxSearchBy = int.MaxValue;
 
-        public const decimal InfinityAmount = 100_000_000_000_000m;
+        public const long InfinityAmount = 100_000_000_000;
         public const int InfinityQualifiedMember = 1_000_000_000;
 
-        public const int MinAffType = 2;
-        public const int MaxAffType = 4;
+        public const int MinAffType = 1;
+        public const int MaxAffType = 3;
 
         public const int MaxLengthCommGroupDescription = 100;
         public const int MaxLengthLandingPage = 100;
 
-        public const int MaxRow = 501;
-        public const int ColumnNumber = 3;
-        public const int UserNameColumnIndex = 0;
-        public const int AmountColumnIndex = 1;
-        public const int ReasonColumnIndex = 2;
+        public const int OnlyOneRow = 1;
+
+        public const int Zero = 0;
+        public const int MaxPercentage = 1;
+
+        public const int MaxLengthInputId = 9;
+        public const int MaxLengthInputString = 30;
     }
 }

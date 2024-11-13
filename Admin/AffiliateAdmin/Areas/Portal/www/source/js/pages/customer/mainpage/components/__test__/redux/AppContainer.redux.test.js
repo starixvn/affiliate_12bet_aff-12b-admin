@@ -1,14 +1,13 @@
-﻿import React from 'react';
-import AppContainer from '../../AppContainer';
-import { shallow } from 'enzyme';
-import configureMockStore from 'redux-mock-store';
-import { SET_SELECTED_USERPANEL } from '../../../../user-panel/actions/types';
+﻿import React from 'react'
+import AppContainer from '../../AppContainer'
+import { shallow } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import { SET_SELECTED_USERPANEL } from '../../../../user-panel/actions/types'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
-describe('Customer - components - AppContainer - connect', () => {
-    let wrapper;
-    let store;
+describe('customer - main page - AppContainer - connect', () => {
+    let wrapper, store;
 
     it('should show correct value', () => {
         const initialState = {
@@ -20,7 +19,7 @@ describe('Customer - components - AppContainer - connect', () => {
         const { selectedUserPanel, affId, status } = wrapper.props();
         expect(selectedUserPanel).toEqual("Statement History");
         expect(affId).toBeNull();
-        expect(status ).toBeNull();
+        expect(status).toBeNull();
     });
 
     it('should call correct action', () => {

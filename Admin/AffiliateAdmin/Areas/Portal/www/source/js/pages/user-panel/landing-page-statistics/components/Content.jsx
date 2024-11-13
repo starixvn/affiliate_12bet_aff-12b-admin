@@ -1,11 +1,11 @@
-﻿import React, { Component, Fragment } from 'react';
+﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerTitle, globalResource, maxWidth } from '../libs/constants';
-import { setSelectedPageDetailFilter, toggleLoaderUserPanel, fetchData } from '../actions';
+import { headerTitle, globalResource, maxWidth } from '../modules/constants';
+import { setSelectedPage, toggleLoaderUserPanel, fetchData } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Content extends Component {
@@ -35,21 +35,17 @@ export class Content extends Component {
         this.props.toggleLoaderUserPanel(false);
     }
 
-    handleSelectedPageDetailFilter = (selectedPage, filterOptionValue, isGroupByCountry) => {
-        const filterOptionName = isGroupByCountry ? "selectedCountry" : "languageCode";
-        const param = Object.assign({}, { selectedPage, [filterOptionName]: filterOptionValue });
+    handleSelectedPage = (selectedPage, languageCode) => {
+        const param = Object.assign({}, { selectedPage, languageCode });
 
-        this.props.setSelectedPageDetailFilter(param);
+        this.props.setSelectedPage(param);
     }
 
     _renderHeader() {
-        const { isGroupByCountry } = this.props;
-
         return (
             <Row key="thead">
-                {isGroupByCountry && <Cell header={true} colWidth={370} title={headerTitle.Country}>{headerTitle.Country}</Cell>}
-                <Cell header={true} colWidth={isGroupByCountry ? 210 : 370} title={headerTitle.Page}>{headerTitle.Page}</Cell>
-                {!isGroupByCountry && <Cell header={true} colWidth={210} title={headerTitle.Language}>{headerTitle.Language}</Cell>}
+                <Cell header={true} colWidth={290} title={headerTitle.Page}>{headerTitle.Page}</Cell>
+                <Cell header={true} colWidth={290} title={headerTitle.Language}>{headerTitle.Language}</Cell>
                 <Cell header={true} colWidth={110} title={headerTitle.TotalClick}>{headerTitle.TotalClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerTitle.UniqueClick}>{headerTitle.UniqueClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerTitle.Signups}>{headerTitle.Signups}</Cell>
@@ -62,16 +58,14 @@ export class Content extends Component {
         const dataRows = [];
 
         if (dataList.length) {
-            const { isGroupByCountry } = this.props;
-
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i, isGroupByCountry));
+                dataRows.push(this._buildDataRow(dataItem, i));
             }
         }
         else {
             dataRows.push(
-                <Row>
+                <Row key="no-info">
                     <Cell className="text-center" colSpan="6">{globalResource.NoInfo}</Cell>
                 </Row>
             );
@@ -80,35 +74,18 @@ export class Content extends Component {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index, isGroupByCountry) {
-        const language = dataItem.Language;
-        const country = dataItem.Country;
+    _buildDataRow(dataItem, index) {
+        const language = this.props.shortCodeLanguageList[dataItem.LanguageCode] || dataItem.LanguageCode;
         const page = htmlDecode(dataItem.Page);
-        const isShowLink = page && page.toLowerCase() != "none";
-
-        return page.toLowerCase() == "old url" ? null :(
+        return (
             <Row key={`dataRow-${index}`}>
-                {
-                    isGroupByCountry ? (
-                        <Fragment>
-                            <Cell title={country}>
-                                {isShowLink ? (<Button color="link" className="p-0" onClick={() => this.handleSelectedPageDetailFilter(dataItem.Page, dataItem.CountryCode, isGroupByCountry)}>
-                                    {country}
-                                </Button>) : country}
-                            </Cell>
-                            <Cell title={page} className="text-center">{page}</Cell>
-                        </Fragment>
-                    ) : (
-                        <Fragment>
-                                <Cell title={page}>
-                                    {isShowLink ? (<Button color="link" className="p-0" onClick={() => this.handleSelectedPageDetailFilter(dataItem.Page, dataItem.LanguageCode, isGroupByCountry)}>
-                                        {page}
-                                    </Button>) : page}
-                                </Cell>
-                                <Cell title={language} className="text-center">{language}</Cell>
-                        </Fragment>
-                    )
-                }
+                <Cell title={page}>
+                    {page && (page.toLowerCase() === "old url" || page.toLowerCase() === "none") ? page :
+                        (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, dataItem.LanguageCode)}>
+                            {page}
+                        </Button>)}
+                </Cell>
+                <Cell title={language} className="text-right">{language}</Cell>
                 <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>
                 <Cell title={dataItem.UniqueClick} className="text-right">{dataItem.UniqueClick}</Cell>
                 <Cell title={dataItem.Signups} className="text-right">{dataItem.Signups}</Cell>
@@ -136,13 +113,13 @@ export class Content extends Component {
 
 
 function mapStateToProps({ landingPageStatistics }) {
-    const { param, shortCodeLanguageList, isGroupByCountry } = landingPageStatistics;
+    const { param, shortCodeLanguageList } = landingPageStatistics;
 
-    return Object.assign({}, { param, shortCodeLanguageList, isGroupByCountry });
+    return Object.assign({}, { param, shortCodeLanguageList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoaderUserPanel, setSelectedPageDetailFilter, fetchData }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, setSelectedPage, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

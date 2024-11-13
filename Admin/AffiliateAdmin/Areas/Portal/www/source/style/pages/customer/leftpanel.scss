@@ -8,6 +8,7 @@
             left: 102px;
         }
     }
+
     a, &-btn-link {
         &:hover {
             text-decoration: none;
@@ -15,15 +16,21 @@
         }
     }
 
-    &-btn-link:focus  {
+    &-btn-link:focus {
         text-decoration: none;
     }
 
-    .app-container{
-        border-top: 5px solid #B9D8EA!important;
-        border-left: 3px solid #B9D8EA!important;
+    &-wrap-line {
+        line-height: 1;
+        margin-top: 3px;
+        margin-bottom: 5px;
+    }
+
+    .app-container {
+        border-top: 5px solid #B9D8EA !important;
+        border-left: 3px solid #B9D8EA !important;
         border-style: outset;
-        margin: .5rem .25rem .5rem .5rem!important;
+        margin: .5rem .25rem .5rem .5rem !important;
     }
 
     &-container {
@@ -31,8 +38,8 @@
         font-weight: 500;
         font-size: .71rem;
         width: 246px;
-        border-bottom: 5px solid #B9D8EA!important;
-        border-right: 3px solid #B9D8EA!important;
+        border-bottom: 5px solid #B9D8EA !important;
+        border-right: 3px solid #B9D8EA !important;
         border-style: inset;
         padding: 6px;
 
@@ -49,6 +56,7 @@
                 border-bottom: 1px solid #dee2e6;
                 white-space: normal;
                 word-break: break-word;
+
                 .d-inline-block {
                     line-height: 1.2;
                 }
@@ -87,17 +95,6 @@
                 border-left: 1px #bdc9e2 solid;
                 border-right: 1px #bdc9e2 solid;
                 padding: 0px 3px 0px 3px;
-
-                .btn-closed {
-                    padding: 2px;
-                    margin-bottom: 2px;
-                    background-color: #ddf0ff;
-                    border: 1px solid #6c757d!important;
-
-                    &:hover {
-                        background-color: lightcyan;
-                    }
-                }
             }
         }
     }

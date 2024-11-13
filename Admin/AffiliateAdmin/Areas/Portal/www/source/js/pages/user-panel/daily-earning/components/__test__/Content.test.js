@@ -3,10 +3,9 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 
 describe('customer member - components - Content', () => {
-    const param ={
+    const param = {
         affId: 1271808,
         monthDate: "08 January 2019",
-        isDisplayTurnOver: true,
         productId: 0
     };
 
@@ -20,7 +19,7 @@ describe('customer member - components - Content', () => {
             Bonus: 0,
             Date: "06 January 2019",
             Deposit: 0,
-            MemberWinLost: -536.0837,
+            MemberGgr: -536.0837,
             WinlostDate: "2019-01-06T00:00:00",
             Withdrawal: 0
         },
@@ -29,7 +28,7 @@ describe('customer member - components - Content', () => {
             Bonus: 0,
             Date: "07 January 2019",
             Deposit: 0,
-            MemberWinLost: -1495.1505,
+            MemberGgr: -1495.1505,
             WinlostDate: "2019-01-07T00:00:00",
             Withdrawal: 0
         }
@@ -39,7 +38,7 @@ describe('customer member - components - Content', () => {
         BankingFee: 0,
         Bonus: 0,
         Deposit: 0,
-        MemberWinLost: -2031.2342,
+        MemberGgr: -2031.2342,
         WinlostDate: null,
         Withdrawal: 0
     };
@@ -51,8 +50,7 @@ describe('customer member - components - Content', () => {
     });
 
     it('render correctly with have data', () => {
-        const props = { ...defaultProps, isDisplayTurnOver: false }
-        const result = shallow(<Content {...props} />);
+        const result = shallow(<Content {...defaultProps} />);
 
         result.instance().setState({ gridData, total, isSelectedAllProducts: false });
 
@@ -66,7 +64,7 @@ describe('customer member - components - Content', () => {
         const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData, 'text-right highlight')}</div>);
 
         dataRow.find('Button').at(0).simulate('click')
-        expect(props.redirectToDailyEarningDetail).toHaveBeenCalledWith({ affId: 1271808, monthDate: "06 January 2019", isDisplayTurnOver: true, productId: 0 });
+        expect(props.redirectToDailyEarningDetail).toHaveBeenCalledWith({ affId: 1271808, monthDate: "06 January 2019", productId: 0 });
     });
 
     it('componentDidUpdate - should call fetchData if param change', () => {

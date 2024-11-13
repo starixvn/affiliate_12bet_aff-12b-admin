@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                 }
 
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
             }
 
             return result;
@@ -69,17 +69,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
                         {
                             MessageId = Convert.ToInt32(reader[Field.MessageId]),
                             Important = Convert.ToBoolean(reader["Important"]),
-                            MessageContentEn = Convert.ToString(reader["message_en"]),
-                            MessageContentBn = Convert.ToString(reader["message_bn"]),
-                            MessageContentCn = Convert.ToString(reader["message_cn"]),
-                            MessageContentTw = Convert.ToString(reader["message_tw"]),
-                            MessageContentEs = Convert.ToString(reader["message_es"]),
-                            MessageContentTh = Convert.ToString(reader["message_th"]),
-                            MessageContentVi = Convert.ToString(reader["message_vi"]),
-                            MessageContentId = Convert.ToString(reader["message_id"]),
-                            MessageContentKh = Convert.ToString(reader["message_kh"]),
-                            MessageContentKr = Convert.ToString(reader["message_kr"]),
-                            MessageContentJp = Convert.ToString(reader["message_jp"])
+                            MessageContentbn = Convert.ToString(reader["message_bn"]),
+                            MessageContenten = Convert.ToString(reader["message_en"]),
+                            MessageContentcs = Convert.ToString(reader["message_cn"]),
+                            MessageContentth = Convert.ToString(reader["message_th"]),
+                            MessageContentvn = Convert.ToString(reader["message_vi"]),
+                            MessageContentid = Convert.ToString(reader["message_id"]),
+                            MessageContentkh = Convert.ToString(reader["message_kh"]),
+                            MessageContenthi = Convert.ToString(reader["message_hi"]),
+                            MessageContentms = Convert.ToString(reader["message_ms"]),
                         };
                     }
                 }
@@ -138,17 +136,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
         private static void AssignParam(IObjectDb objectDb, InsertUpdateMessageParam param)
         {
             objectDb.SetParameterValue("IsImportant", param.Important);
-            objectDb.SetParameterValue("msgen", param.MessageContentEn);
-            objectDb.SetParameterValue("msgbn", param.MessageContentBn);
-            objectDb.SetParameterValue("msgcn", param.MessageContentCn);
-            objectDb.SetParameterValue("msgtw", param.MessageContentTw);
-            objectDb.SetParameterValue("msges", param.MessageContentEs);
-            objectDb.SetParameterValue("msgth", param.MessageContentTh);
-            objectDb.SetParameterValue("msgvi", param.MessageContentVi);
-            objectDb.SetParameterValue("msgid", param.MessageContentId);
-            objectDb.SetParameterValue("msgkh", param.MessageContentKh);
-            objectDb.SetParameterValue("msgkr", param.MessageContentKr);
-            objectDb.SetParameterValue("msgjp", param.MessageContentJp);
+            objectDb.SetParameterValue("msgbn", param.MessageContentbn);
+            objectDb.SetParameterValue("msgen", param.MessageContenten);
+            objectDb.SetParameterValue("msgcn", param.MessageContentcs);
+            objectDb.SetParameterValue("msgth", param.MessageContentth);
+            objectDb.SetParameterValue("msgvi", param.MessageContentvn);
+            objectDb.SetParameterValue("msgid", param.MessageContentid);
+            objectDb.SetParameterValue("msgkh", param.MessageContentkh);
+            objectDb.SetParameterValue("msghi", param.MessageContenthi);
+            objectDb.SetParameterValue("msgms", param.MessageContentms);
             objectDb.SetParameterValue("UserID", param.UserId);
             objectDb.SetParameterValue("IP", param.Ip);
 

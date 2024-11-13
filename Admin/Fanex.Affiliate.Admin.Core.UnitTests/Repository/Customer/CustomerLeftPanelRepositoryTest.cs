@@ -118,6 +118,84 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         }
 
         [Fact]
+        public void GetTransferLimitSetting_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetTransferLimitSetting());
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
+            repository.Setup(r => r.GetObjectDb("Aff_Admin_TransferLimit_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetTransferLimitSetting(123);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.False(result.IsUnlimited);
+        }
+
+        [Fact]
+        public void GetTransferLimitSetting_WhenCall_ReturnNull()
+        {
+            // Arrange
+            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(false);
+
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
+            repository.Setup(r => r.GetObjectDb("Aff_Admin_TransferLimit_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetTransferLimitSetting(123);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void UpdateTransferLimitSetting_WhenCallWithInvalidParam_UpdateSuccessfully()
+        {
+            // Arrange
+            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_TransferLimit_Upd", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.UpdateTransferLimitSetting(new TransferLimitSettingParam());
+
+            // Assert
+            Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void UpdateTransferLimitSetting_WhenCallWithValidParam_UpdateIsFailed()
+        {
+            // Arrange
+            var message = "Update is failed.";
+            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
+            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_TransferLimit_Upd", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.UpdateTransferLimitSetting(new TransferLimitSettingParam());
+
+            // Assert
+            Assert.False(result.IsSuccessful);
+            Assert.Equal(message, result.Message);
+        }
+
+        [Fact]
         public void UpdateAffType_WhenCallWithInvalidParam_UpdateSuccessfully()
         {
             // Arrange
@@ -152,44 +230,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         }
 
         [Fact]
-        public void UpdateClosedStatus_WhenCallWithInvalidParam_UpdateSuccessfully()
-        {
-            // Arrange
-            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliateClosed_Upd", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.UpdateClosedStatus(new UpdateClosedStatusParam());
-
-            // Assert
-            Assert.True(result.IsSuccessful);
-        }
-
-        [Fact]
-        public void UpdateClosedStatus_WhenCallWithValidParam_UpdateIsFailed()
-        {
-            // Arrange
-            var message = "Update is failed.";
-            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliateClosed_Upd", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.UpdateClosedStatus(new UpdateClosedStatusParam());
-
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
-        }
-
-        [Fact]
         public void UpdateLanguage_WhenCallWithInvalidParam_UpdateSuccessfully()
         {
             // Arrange
@@ -221,44 +261,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
 
             // Action
             var result = repository.Object.UpdateLanguage(new UpdateLanguageParam());
-
-            // Assert
-            Assert.False(result.IsSuccessful);
-            Assert.Equal(message, result.Message);
-        }
-
-        [Fact]
-        public void UpdateContactNumber_WhenCallWithInvalidParam_UpdateSuccessfully()
-        {
-            // Arrange
-            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePhoneNumber_Upd", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.UpdateContactNumber(new UpdateContactNumberParam { PhoneNumber = "123" });
-
-            // Assert
-            Assert.True(result.IsSuccessful);
-        }
-
-        [Fact]
-        public void UpdateContactNumber_WhenCallWithValidParam_UpdateIsFailed()
-        {
-            // Arrange
-            var message = "Update contact number is failed.";
-            var repository = new Mock<CustomerLeftPanelRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(-999);
-            objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(message);
-            repository.Setup(re => re.GetObjectDb("Aff_Admin_AffiliatePhoneNumber_Upd", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.UpdateContactNumber(new UpdateContactNumberParam());
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -307,9 +309,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
+                ["ParentAffId"] = 0,
+                ["ParentAffName"] = "",
                 ["AffId"] = 1271808,
                 ["GroupId"] = 100,
-                ["UserName"] = "12BETAFF226",
+                ["UserName"] = "12BETAFF002",
                 ["FirstName"] = "Hubert",
                 ["LastName"] = "Duong",
                 ["PreferredLanguage"] = "en-US",
@@ -318,14 +322,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
                 ["GroupName"] = "Test",
                 ["ContactApps"] = "test",
                 ["Gender"] = true,
-                ["Closed"] = false,
                 ["LastLoginDate"] = new DateTime(2019, 11, 24),
                 ["LastLoginIp"] = "::1",
                 ["MoreSiteUrls"] = "test",
                 ["SiteUrl"] = "test.com",
                 ["NoSiteDesc"] = "tét",
                 ["Status"] = "Approved",
-                ["Phone"] = "0123456789"
+                ["Phone"] = "0123456789",
+                ["IsPrivate"] = true,
+                ["ApprovedBy"] = "abc"
             };
         }
 
@@ -333,9 +338,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
+                ["ParentAffId"] = DBNull.Value,
+                ["ParentAffName"] = "",
                 ["AffId"] = 1271808,
                 ["GroupId"] = 100,
-                ["UserName"] = "12BETAFF226",
+                ["UserName"] = "12BETAFF002",
                 ["FirstName"] = "Hubert",
                 ["LastName"] = "Duong",
                 ["PreferredLanguage"] = "en-US",
@@ -344,14 +351,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
                 ["GroupName"] = "Test",
                 ["ContactApps"] = "test",
                 ["Gender"] = true,
-                ["Closed"] = false,
                 ["LastLoginDate"] = DBNull.Value,
                 ["LastLoginIp"] = "::1",
                 ["MoreSiteUrls"] = "test",
                 ["SiteUrl"] = "test.com",
                 ["NoSiteDesc"] = "tét",
                 ["Status"] = "Approved",
-                ["Phone"] = "0123456789"
+                ["Phone"] = "0123456789",
+                ["IsPrivate"] = true,
+                ["ApprovedBy"] = "abc"
             };
         }
 
@@ -361,6 +369,18 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             {
                 ["Ip"] = "::1",
                 ["ReloadTime"] = new DateTime(2019, 11, 24)
+            };
+        }
+
+        private IDictionary<string, object> GetTransferLimitSetting()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["PlayerCustId"] = 123,
+                ["PlayerUsername"] = "Test",
+                ["PlayerCurrency"] = "USD",
+                ["TransferLimit"] = 10000,
+                ["DisabledTransfer"] = false
             };
         }
     }

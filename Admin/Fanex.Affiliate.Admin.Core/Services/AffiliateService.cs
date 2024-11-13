@@ -1,12 +1,14 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Common.Extensions;
 using System;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {
+
     public class AffiliateService : BaseRepository, IAffiliateService
     {
         public AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null)
@@ -23,7 +25,26 @@ namespace Fanex.Affiliate.Admin.Core.Services
                 {
                     if (reader.Read())
                     {
-                        result = BuildAffiliateBasicInfo(reader);
+                        result = new AffiliateBasicInfo
+                        {
+                            AffId = Convert.ToInt32(reader["AffId"]),
+                            AffCode = Convert.ToString(reader["AffCode"]),
+                            GroupId = Convert.ToInt32(reader["GroupId"]),
+                            GroupTypeId = reader.ToInt(Field.GroupTypeId),
+                            UserName = Convert.ToString(reader["UserName"]),
+                            FirstName = Convert.ToString(reader["FirstName"]),
+                            LastName = Convert.ToString(reader["LastName"]),
+                            Email = Convert.ToString(reader["Email"]),
+                            Status = Convert.ToString(reader["Status"]),
+                            ContactNumber = Convert.ToString(reader["Phone"]),
+                            MailOption = Convert.ToBoolean(reader["MailOption"]),
+                            PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
+                            PlayerUsername = Convert.ToString(reader["PlayerUsername"]),
+                            PlayerCustId = Convert.ToInt32(reader["PlayerCustId"]),
+                            ParentAffiliateName = Convert.ToString(reader["ParentAffName"]),
+                            AffType = Convert.ToByte(reader["AffType"]),
+                            IsUsingPrivateCommGroup = (reader["IsPrivate"] != DBNull.Value) && Convert.ToBoolean(reader["IsPrivate"])
+                        };
                     }
                 }
             }
@@ -31,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return result;
         }
 
-        public ResultInfo ApproveAffiliate(ApproveAffiliateParam param)
+        public (ResultInfo, string) ApproveAffiliate(ApproveAffiliateParam param)
         {
             const string SpKey = "Aff_Admin_Affiliate_Approved";
 
@@ -44,28 +65,14 @@ namespace Fanex.Affiliate.Admin.Core.Services
                 objectDb.SetParameterValue("Ip", param.Ip);
 
                 AssignResultOutputParam(objectDb);
+                objectDb.SetParameterValue("AffCode", DefaultValue.String);
 
                 objectDb.ExecuteNonQuery();
 
-                return GetResultInfo(objectDb);
-            }
-        }
+                var affCode = Convert.ToString(objectDb.GetParameterValue("AffCode"));
 
-        private static AffiliateBasicInfo BuildAffiliateBasicInfo(IDataReader reader)
-        {
-            return new AffiliateBasicInfo
-            {
-                AffId = Convert.ToInt32(reader["AffId"]),
-                GroupId = Convert.ToInt32(reader["GroupId"]),
-                UserName = Convert.ToString(reader["UserName"]),
-                FirstName = Convert.ToString(reader["FirstName"]),
-                Email = Convert.ToString(reader["Email"]),
-                MailOption = Convert.ToBoolean(reader["MailOption"]),
-                PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
-                PlayerUsername = Convert.ToString(reader["PlayerUsername"]),
-                Status = Convert.ToString(reader["Status"]),
-                AffType = Convert.ToByte(reader["AffType"])
-            };
+                return (GetResultInfo(objectDb), affCode);
+            }
         }
     }
 }

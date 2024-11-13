@@ -28,18 +28,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
                             NewSignUpTotal = Convert.ToInt32(reader["SignupsTotal"]),
                             NewFdmTotal = Convert.ToInt32(reader["FDMTotal"]),
                             ActivePlayerByMonth = Convert.ToInt32(reader["ActivePlayersByMonth"]),
-                            QualifiedMemberByMonth = Convert.ToInt32(reader["QualifiedMembersByMonth"]),
                             DepositByMonth = Convert.ToDecimal(reader["DepositByMonth"]),
                             DepositTotal = Convert.ToDecimal(reader["DepositTotal"]),
-                            FdmDepositByMonth = Convert.ToDecimal(reader["FDMDepositByMonth"]),
                             TurnoverByMonth = Convert.ToDecimal(reader["TurnoverByMonth"]),
                             TurnoverTotal = Convert.ToDecimal(reader["TurnoverTotal"]),
-                            WinlostByMonth = Convert.ToDecimal(reader["WinlostByMonth"]),
-                            WinlostTotal = Convert.ToDecimal(reader["WinlostTotal"]),
+                            GgrByMonth = Convert.ToDecimal(reader["GgrByMonth"]),
+                            GgrTotal = Convert.ToDecimal(reader["GgrTotal"]),
                             UniqueClickPcLaptopByMonth = Convert.ToInt32(reader["UniqueClickPCByMonth"]),
                             TotalClickPcLaptopByMonth = Convert.ToInt32(reader["TotalClickPCByMonth"]),
                             UniqueClickMobileByMonth = Convert.ToInt32(reader["UniqueClickMobileByMonth"]),
-                            TotalClickMobileByMonth = Convert.ToInt32(reader["TotalClickMobileByMonth"])
+                            TotalClickMobileByMonth = Convert.ToInt32(reader["TotalClickMobileByMonth"]),
+                            NoOfSubAffByMonth = Convert.ToInt32(reader["NoOfSubAffByMonth"]),
+                            NoOfSubAffTotal = Convert.ToInt32(reader["NoOfSubAffTotal"])
                         };
                     }
                 }

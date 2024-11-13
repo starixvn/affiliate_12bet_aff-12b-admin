@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Resources;
 using System.Linq;
 
@@ -22,7 +23,11 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.MediaGallery
 
         public static ResultInfo CreateErrorResult()
         {
-            return ResultInfo.GenerateErr(Lang.InvalidBannerExtensionFile);
+            return new ResultInfo
+            {
+                Code = ErrCode.GeneralErrorCode,
+                Message = Lang.InvalidBannerExtensionFile
+            };
         }
     }
 }

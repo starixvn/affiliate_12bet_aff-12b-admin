@@ -25,50 +25,6 @@ exports[`referrers - components - Filter render correctly 1`] = `
           ]
         }
       >
-        Country
-      </Label>
-      <div
-        className="multiple-select-wrapper is-invalid"
-      >
-        <MultipleSelect
-          dataSource={
-            Array [
-              Object {
-                "Checked": true,
-                "CountryCode": "en",
-                "CountryName": "England",
-              },
-            ]
-          }
-          hasAllOption={true}
-          isDisableOption={false}
-          itemDefaultOption={null}
-          keyField="CountryCode"
-          maxDisplayItemCount={1}
-          noneSelectedLabel="Please Select"
-          onChange={[Function]}
-          statusField="Checked"
-          valueField="CountryName"
-        />
-      </div>
-    </FormGroup>
-    <FormGroup
-      className="mr-sm-2"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
         From
       </Label>
       <t
@@ -81,7 +37,7 @@ exports[`referrers - components - Filter render correctly 1`] = `
         }
         isEnable={true}
         maxDate="7/12/2019"
-        minDate={2014-12-31T17:00:00.000Z}
+        minDate={2020-01-30T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>
@@ -124,7 +80,7 @@ exports[`referrers - components - Filter render correctly 1`] = `
     >
       <Label
         className="mr-sm-2"
-        for="deviceType"
+        htmlFor="deviceType"
         tag="label"
         widths={
           Array [

@@ -1,4 +1,0 @@
-﻿export const RESET_REDUCER = 'RESET_REDUCER';
-export const SET_SELECTED_MENU = 'SET_SELECTED_MENU';
-export const SET_USER_ID = 'SET_USER_ID';
-export const SET_USER_NAME = 'SET_USER_NAME';

@@ -5,7 +5,7 @@ const NO_SELECTED_LABEL = "Select options";
 const MAX_SELECTED_ITEM_FOR_DISPLAY = 3;
 
 function getSelectedItemsString(props) {
-    const { selectedItems, noneSelectedLabel, maxDisplayItemCount } = props;
+    const { selectedItems, noneSelectedLabel, maxDisplayItemCount, isSelectedAll, selectedAllLabel } = props;
     const selectedValues = selectedItems.map(item => item.value);
 
     let displayText = noneSelectedLabel;
@@ -16,6 +16,10 @@ function getSelectedItemsString(props) {
     }
     else if (selectedItemCount >= 1) {
         displayText = selectedValues.join(", ");
+    }
+
+    if (isSelectedAll && !!selectedAllLabel) {
+        displayText = selectedAllLabel
     }
 
     return displayText;
@@ -36,10 +40,14 @@ const MultipleSelectLabel = (props) => {
 MultipleSelectLabel.propTypes = {
     selectedItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     noneSelectedLabel: PropTypes.string,
+    isSelectedAll: PropTypes.bool,
+    selectedAllLabel: PropTypes.string,
     maxDisplayItemCount: PropTypes.number
 }
 
 MultipleSelectLabel.defaultProps = {
+    isSelectedAll: false,
+    selectedAllLabel: '',
     noneSelectedLabel: NO_SELECTED_LABEL,
     maxDisplayItemCount: MAX_SELECTED_ITEM_FOR_DISPLAY
 }

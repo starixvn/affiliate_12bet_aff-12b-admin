@@ -5,6 +5,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 {
     public class AppSetting : IAppSetting
     {
+        public static IAppSetting Instance { get; } = new AppSetting();
+
         public string InternalAsianAffiliateUrl => GetValue("internalAsianAffiliateURL");
 
         public string InternalEuropeanAffiliateUrl => GetValue("internalEuropeanAffiliateURL");
@@ -21,13 +23,17 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public string AsianAffSiteUrl => GetValue("AsianAffiliateURL");
 
-        public string MailContact => GetValue("MailContact");
-
         public string JsVersion => GetValue("JsVersion");
 
         public bool IsDev => Environment.Equals("DEV", StringComparison.OrdinalIgnoreCase);
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
+
+        public string MailContact => GetValue("MailContact");
+
+        public string AppMailId => GetValue("app_mail_id");
+
+        public string AppMailAddress => GetValue("app_mail_address");
 
         public string SentryDsn => GetValue("Dsn");
 
@@ -45,16 +51,26 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public string ServerId => GetValue("ServerID");
 
-        public string AppMailId => GetValue("app_mail_id");
+        public string SiteName => GetValue("SiteName");
 
-        public string AppMailAddress => GetValue("app_mail_address");
+        public string SiteFriendlyName => "12Bet";
 
-        public string LicenseeCustDbApiUrl => GetValue("LicenseeCustDbApiUrl");
+        public string DefaultLanguage => GetValue("DefaultLanguage");
 
-        public bool IsUseProxyToGetLicenseeCustDbApi => Convert.ToBoolean(GetValue("IsUseProxyToGetLicenseeCustDbApi"));
+        public string DefaultLanguageCode => GetValue("DefaultLanguageCode");
 
-        public string LicenseeCustDbApiProxyUrl => GetValue("LicenseeCustDbApiProxyUrl");
+        public string DefaultShortedLanguageCode => GetValue("DefaultShortedLanguageCode");
 
-        public string LicenseeCustDbApiAuthenKey => GetValue("LicenseeCustDbApiAuthenKey");
+        public string DefaultCurrency => GetValue("DefaultCurrency");
+
+        public string MemberSiteApiUrl => GetValue("MemberSiteApiUrl");
+
+        public int MemberSiteId => Convert.ToInt32(GetValue("MemberSiteId"));
+
+        public string MemberSiteProxyUrl => GetValue("MemberSiteProxyUrl");
+
+        public string MemberSiteApiAuthenticationKey => GetValue("MemberSiteApiAuthenticationKey");
+
+        public bool IsUseMemberSiteProxy => Convert.ToBoolean(GetValue("IsUseProxyToGetMemberSiteApi"));
     }
 }

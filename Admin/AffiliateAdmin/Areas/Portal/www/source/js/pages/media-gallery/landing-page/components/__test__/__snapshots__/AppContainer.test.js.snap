@@ -6,7 +6,6 @@ exports[`landing page list - components - AppContainer render correctly 1`] = `
     show={true}
   />
   <Memo(ControlButtons)
-    gridData={Array []}
     messages={
       Object {
         "AreYouSureDeleteItems": "Are you sure to delete the selected landing page(s)?",
@@ -16,16 +15,6 @@ exports[`landing page list - components - AppContainer render correctly 1`] = `
         "requiredErrorMessage": "This field is required",
       }
     }
-  />
-  <Connect(Component) />
-  <Connect(InsertUpdateForm) />
-</AppLayout>
-`;
-
-exports[`landing page list - components - AppContainer render correctly with has not permission 1`] = `
-<AppLayout>
-  <Loader
-    show={true}
   />
   <Connect(Component) />
   <Connect(InsertUpdateForm) />

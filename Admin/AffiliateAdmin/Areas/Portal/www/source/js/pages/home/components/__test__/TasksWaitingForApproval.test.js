@@ -17,33 +17,24 @@ describe('home - components - TasksWaitingForApproval', () => {
             AllNetWinlostNumber: 1776017.4515,
             AllPSPFeeMonthNumber: 0,
             AllPSPFeeNumber: -57.124,
-            AllWinlostMonthNumber: 58.3306,
-            AllWinlostNumber: -3453885.1957,
+            AllGgrMonthNumber: 58.3306,
+            AllGgrNumber: -3453885.1957,
             ApprovedAffiliateMonthNumber: 0,
             ApprovedAffiliateNumber: 236,
             BannerNumber: 32,
-            ClosedAffiliateMonthNumber: 0,
-            ClosedAffiliateNumber: 837,
             DisapprovedAffiliateMonthNumber: 0,
             DisapprovedAffiliateNumber: 1016,
+            FlashBannerNumber: 9,
+            ImageBannerNumber: 23,
             PaymentRequestNumber: 1,
             PendingAffiliateMonthNumber: 0,
-            PendingAffiliateNumber: 1024
+            PendingAffiliateNumber: 1024,
+            TextBannerNumber: 13
         },
-        isShowAffLink: false,
-        isShowPaymentLink: false,
         getGeneralInfo: jest.fn()
     }
-
     it('render correctly', () => {
         const result = shallow(<TasksWaitingForApproval {...defaultProps} />);
-
-        expect(result).toMatchSnapshot();
-    });
-
-    it('render correctly with permissions', () => {
-        const props = { ...defaultProps, isShowAffLink: true, isShowPaymentLink: true };
-        const result = shallow(<TasksWaitingForApproval {...props} />);
 
         expect(result).toMatchSnapshot();
     });

@@ -2,18 +2,18 @@ import { combineReducers } from 'redux';
 import { RESET_USER_PANEL } from '../../user-panel/actions/types';
 
 import leftPanel from '../../left-panel/reducers';
-import { affCommonInfo, today, languageList, hasTurnOverPermission } from './commonReducer';
-import {claimsPrincipal} from '../../../../reducers/claimReducer';
+import { affCommonInfo, today, languageList, productList, currencyList, baseCurrencyList, isProduction, licenseeName } from './commonReducer';
 import { userPanelReducer, selectedUserPanel, isShowLoaderUserPanel } from '../../user-panel/reducers';
 import customerStatistics from '../../customer-statistics/reducers';
-import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 const allReducers = combineReducers({
     today,
-    isShowLoader,
     languageList,
-    hasTurnOverPermission,
-    claimsPrincipal,
+    productList,
+    currencyList,
+    baseCurrencyList,
+    isProduction,
+    licenseeName,
     selectedUserPanel,
     isShowLoaderUserPanel,
     affCommonInfo,
@@ -23,16 +23,13 @@ const allReducers = combineReducers({
 });
 
 export const rootReducer = (state, action) => {
+    const newState = { ...state };
     if (action.type === RESET_USER_PANEL) {
-        const newState = { ...state };
-
         const userPanelName = action.data;
         newState[userPanelName] = {};
-
-        return allReducers(newState, action);
     }
 
-    return allReducers(state, action);
+    return allReducers(newState, action);
 };
 
 export default rootReducer;

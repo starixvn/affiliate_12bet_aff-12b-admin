@@ -6,7 +6,7 @@ import MultipleSelect from '../MultipleSelect'
 
 
 const defaultProps = {
-    dataSource: [],
+    dataSource: [{ key: "SB", value: "Sportsbook", checked: false }],
     keyField: "key",
     valueField: "value",
     statusField: "checked",
@@ -14,17 +14,14 @@ const defaultProps = {
     optionAllLabel: "All",
     maxDisplayItemCount: 3,
     onChange: jest.fn(),
-    hasAllOption: true
+    hasAllOption: true,
+    hasInputOption: true
 }
 
 const defaultOption = { code: "SB", name: "Sportsbook", status: true };
 const defaultDataSource = [defaultOption];
 
 describe('MultipleSelect ', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    })
-
     describe('Initial State', () => {
         it('has id prop - id value should be correct', () => {
             let defaultId = 1;
@@ -107,10 +104,10 @@ describe('MultipleSelect ', () => {
             multipleSelect.onToggle();
 
             let result = callback({ showOptionList: false });
-            expect(result).toEqual({ showOptionList: true });
+            expect(result).toEqual({ inputOption: "", showOptionList: true });
 
             result = callback({ showOptionList: true });
-            expect(result).toEqual({ showOptionList: false });
+            expect(result).toEqual({ inputOption: "", showOptionList: false });
         })
     })
 
@@ -147,6 +144,17 @@ describe('MultipleSelect ', () => {
         })
     })
 
+    describe('_handleChangeInput', () => {
+        it('new State should be correct', () => {
+            const multipleSelect = new MultipleSelect(defaultProps);
+            multipleSelect.setState = jest.fn();
+
+            multipleSelect._handleChangeInput({ target: { name: 'inputOption', value: 'ABC' }});
+
+            expect(multipleSelect.setState).toHaveBeenCalledWith({ inputOption: 'ABC' });
+        })
+    })
+
     describe('_callBackToParent', () => {
         it('call onChange function in props with correct parameters', () => {
             const expectedSelectedItemKey = "SB,BA";
@@ -159,7 +167,7 @@ describe('MultipleSelect ', () => {
             const dataSource = [];
             multipleSelect._callBackToParent(expectedSelectedItem, dataSource);
 
-            expect(multipleSelect.props.onChange).toHaveBeenCalledWith(expectedSelectedItem, expectedSelectedItemKey, false);
+            expect(multipleSelect.props.onChange).toHaveBeenCalledWith(expectedSelectedItem, expectedSelectedItemKey);
         })
     })
 
@@ -182,7 +190,7 @@ describe('MultipleSelect ', () => {
 
     describe('close', () => {
         it('setState function should be called with correct parameter', () => {
-            const expectedParam = { showOptionList: false };
+            const expectedParam = { showOptionList: false, inputOption: '' };
 
             const componentInstance = new MultipleSelect(defaultProps);
             componentInstance.setState = jest.fn();
@@ -246,7 +254,7 @@ describe('MultipleSelect ', () => {
                 { key: "RC", value: "Value RC", checked: true }
             ];
 
-            const props = Object.assign({}, defaultProps, {dataSource});
+            const props = Object.assign({}, defaultProps, { dataSource });
 
             const component = renderer.create(<MultipleSelect {...props} />);
             const instance = component.getInstance();

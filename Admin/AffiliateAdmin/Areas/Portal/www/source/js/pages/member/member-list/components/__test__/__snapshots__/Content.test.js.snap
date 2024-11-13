@@ -32,9 +32,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12Bet$wjpwjp"
+              title="B2C$wjpwjp"
             >
-              12Bet$wjpwjp
+              B2C$wjpwjp
             </t>
             <t
               asc={true}
@@ -43,20 +43,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETRMB0239317"
+              title="B2CRMB0239317"
             >
-              12BETRMB0239317
-            </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title=""
-            >
-              
+              B2CRMB0239317
             </t>
             <t
               asc={true}
@@ -76,9 +65,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={0}
+              title=""
             >
-              0
+              
             </t>
             <t
               asc={true}
@@ -98,9 +87,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETAFF017"
+              title="B2CAFF017"
             >
-              12BETAFF017
+              B2CAFF017
             </t>
             <t
               asc={true}
@@ -109,13 +98,42 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Remove the member"
             >
               <input
-                checked={false}
-                onChange={[Function]}
+                className="mt-1"
+                disabled={true}
                 type="checkbox"
               />
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Edit B2C$wjpwjp player"
+            >
+              <Button
+                color="link p-0"
+                onClick={[Function]}
+                tag="button"
+              >
+                <span
+                  className="oi oi-pencil text-secondary"
+                />
+              </Button>
             </t>
           </t>,
           <t>
@@ -137,9 +155,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12Bet$jingguoan"
+              title="B2C$jingguoan"
             >
-              12Bet$jingguoan
+              B2C$jingguoan
             </t>
             <t
               asc={true}
@@ -148,20 +166,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETRMB0239312"
+              title="B2CRMB0239312"
             >
-              12BETRMB0239312
-            </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title=""
-            >
-              
+              B2CRMB0239312
             </t>
             <t
               asc={true}
@@ -181,9 +188,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={0}
+              title=""
             >
-              0
+              
             </t>
             <t
               asc={true}
@@ -203,9 +210,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETAFF177"
+              title="B2CAFF177"
             >
-              12BETAFF177
+              B2CAFF177
             </t>
             <t
               asc={true}
@@ -214,13 +221,42 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Reinstate the member"
             >
               <input
-                checked={true}
-                onChange={[Function]}
+                className="mt-1"
+                disabled={true}
                 type="checkbox"
               />
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Edit B2C$jingguoan player"
+            >
+              <Button
+                color="link p-0"
+                onClick={[Function]}
+                tag="button"
+              >
+                <span
+                  className="oi oi-pencil text-secondary"
+                />
+              </Button>
             </t>
           </t>,
         ]
@@ -228,107 +264,141 @@ exports[`member list - components - Content  render correctly 1`] = `
       bodyHeight={300}
       containerPadding={20}
       header={
-        <t>
-          <t
-            asc={true}
-            colWidth={20}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="#"
-          >
-            #
-          </t>
-          <t
-            asc={true}
-            colWidth={120}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="User Name"
-          >
-            User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={120}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="IBC User Name"
-          >
-            IBC User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="First Name"
-          >
-            First Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Last Name"
-          >
-            Last Name
-          </t>
-          <t
-            asc={true}
-            colWidth={110}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Current Balance Member"
-          >
-            Current Balance Member
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Created Date"
-          >
-            Created Date
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Affiliate"
-          >
-            Affiliate
-          </t>
-          <t
-            asc={true}
-            colWidth={40}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Remove"
-          >
-            Remove
-          </t>
-        </t>
+        Array [
+          <t>
+            <t
+              asc={true}
+              colWidth={30}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="#"
+            >
+              #
+            </t>
+            <t
+              asc={true}
+              colWidth={120}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="User Name"
+            >
+              User Name
+            </t>
+            <t
+              asc={true}
+              colWidth={120}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="System Name"
+            >
+              System Name
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="First Name"
+            >
+              First Name
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="Last Name"
+            >
+              Last Name
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="Registration Date"
+            >
+              Registration Date
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="Affiliate"
+            >
+              Affiliate
+            </t>
+            <t
+              asc={true}
+              colSpan="3"
+              colWidth={200}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Removed"
+            >
+              Removed
+            </t>
+          </t>,
+          <t>
+            <t
+              asc={true}
+              colWidth={50}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Status"
+            >
+              Status
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Last Action Date"
+            >
+              Last Action Date
+            </t>
+            <t
+              asc={true}
+              colWidth={50}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Edit"
+            >
+              Edit
+            </t>
+          </t>,
+        ]
       }
       isPaging={true}
       maxWidth={0}
@@ -388,9 +458,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12Bet$wjpwjp"
+              title="B2C$wjpwjp"
             >
-              12Bet$wjpwjp
+              B2C$wjpwjp
             </t>
             <t
               asc={true}
@@ -399,20 +469,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETRMB0239317"
+              title="B2CRMB0239317"
             >
-              12BETRMB0239317
-            </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title=""
-            >
-              
+              B2CRMB0239317
             </t>
             <t
               asc={true}
@@ -432,9 +491,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={0}
+              title=""
             >
-              0
+              
             </t>
             <t
               asc={true}
@@ -454,9 +513,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETAFF017"
+              title="B2CAFF017"
             >
-              12BETAFF017
+              B2CAFF017
             </t>
             <t
               asc={true}
@@ -465,13 +524,42 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Remove the member"
             >
               <input
-                checked={false}
-                onChange={[Function]}
+                className="mt-1"
+                disabled={true}
                 type="checkbox"
               />
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Edit B2C$wjpwjp player"
+            >
+              <Button
+                color="link p-0"
+                onClick={[Function]}
+                tag="button"
+              >
+                <span
+                  className="oi oi-pencil text-secondary"
+                />
+              </Button>
             </t>
           </t>,
           <t>
@@ -493,9 +581,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12Bet$jingguoan"
+              title="B2C$jingguoan"
             >
-              12Bet$jingguoan
+              B2C$jingguoan
             </t>
             <t
               asc={true}
@@ -504,20 +592,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETRMB0239312"
+              title="B2CRMB0239312"
             >
-              12BETRMB0239312
-            </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title=""
-            >
-              
+              B2CRMB0239312
             </t>
             <t
               asc={true}
@@ -537,9 +614,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title={0}
+              title=""
             >
-              0
+              
             </t>
             <t
               asc={true}
@@ -559,9 +636,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETAFF177"
+              title="B2CAFF177"
             >
-              12BETAFF177
+              B2CAFF177
             </t>
             <t
               asc={true}
@@ -570,13 +647,42 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Reinstate the member"
             >
               <input
-                checked={true}
-                onChange={[Function]}
+                className="mt-1"
+                disabled={true}
                 type="checkbox"
               />
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title=""
+            >
+              
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Edit B2C$jingguoan player"
+            >
+              <Button
+                color="link p-0"
+                onClick={[Function]}
+                tag="button"
+              >
+                <span
+                  className="oi oi-pencil text-secondary"
+                />
+              </Button>
             </t>
           </t>,
         ]
@@ -584,107 +690,141 @@ exports[`member list - components - Content  render correctly with NotificationP
       bodyHeight={300}
       containerPadding={20}
       header={
-        <t>
-          <t
-            asc={true}
-            colWidth={20}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="#"
-          >
-            #
-          </t>
-          <t
-            asc={true}
-            colWidth={120}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="User Name"
-          >
-            User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={120}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="IBC User Name"
-          >
-            IBC User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="First Name"
-          >
-            First Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Last Name"
-          >
-            Last Name
-          </t>
-          <t
-            asc={true}
-            colWidth={110}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Current Balance Member"
-          >
-            Current Balance Member
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Created Date"
-          >
-            Created Date
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Affiliate"
-          >
-            Affiliate
-          </t>
-          <t
-            asc={true}
-            colWidth={40}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Remove"
-          >
-            Remove
-          </t>
-        </t>
+        Array [
+          <t>
+            <t
+              asc={true}
+              colWidth={30}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="#"
+            >
+              #
+            </t>
+            <t
+              asc={true}
+              colWidth={120}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="User Name"
+            >
+              User Name
+            </t>
+            <t
+              asc={true}
+              colWidth={120}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="System Name"
+            >
+              System Name
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="First Name"
+            >
+              First Name
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="Last Name"
+            >
+              Last Name
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="Registration Date"
+            >
+              Registration Date
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="Affiliate"
+            >
+              Affiliate
+            </t>
+            <t
+              asc={true}
+              colSpan="3"
+              colWidth={200}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Removed"
+            >
+              Removed
+            </t>
+          </t>,
+          <t>
+            <t
+              asc={true}
+              colWidth={50}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Status"
+            >
+              Status
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Last Action Date"
+            >
+              Last Action Date
+            </t>
+            <t
+              asc={true}
+              colWidth={50}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Edit"
+            >
+              Edit
+            </t>
+          </t>,
+        ]
       }
       isPaging={true}
       maxWidth={0}
@@ -709,11 +849,6 @@ exports[`member list - components - Content  render correctly with NotificationP
       width={0}
     />
   </div>
-  <NotificationPopup
-    isConfirmPopup={true}
-    message="Has NotificationPopup"
-    onClose={[Function]}
-  />
 </div>
 `;
 
@@ -734,7 +869,7 @@ exports[`member list - components - Content  render correctly with gridData is e
             <t
               asc={true}
               className="text-center"
-              colSpan="7"
+              colSpan="10"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -748,266 +883,141 @@ exports[`member list - components - Content  render correctly with gridData is e
       bodyHeight={300}
       containerPadding={20}
       header={
-        <t>
-          <t
-            asc={true}
-            colWidth={20}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="#"
-          >
-            #
-          </t>
-          <t
-            asc={true}
-            colWidth={120}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="User Name"
-          >
-            User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={120}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="IBC User Name"
-          >
-            IBC User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="First Name"
-          >
-            First Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Last Name"
-          >
-            Last Name
-          </t>
-          <t
-            asc={true}
-            colWidth={110}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Current Balance Member"
-          >
-            Current Balance Member
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Created Date"
-          >
-            Created Date
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Affiliate"
-          >
-            Affiliate
-          </t>
-          <t
-            asc={true}
-            colWidth={40}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Remove"
-          >
-            Remove
-          </t>
-        </t>
-      }
-      isPaging={true}
-      maxWidth={0}
-      minWidth={1000}
-      onPaging={[Function]}
-      pageOption={
-        Object {
-          "PageIndex": 1,
-          "PageList": Array [
-            10,
-            20,
-            50,
-            100,
-            200,
-            500,
-          ],
-          "PageSize": 20,
-          "TotalItem": 0,
-        }
-      }
-      shouldResetScrollPosition={true}
-      width={0}
-    />
-  </div>
-</div>
-`;
-
-exports[`member list - components - Content  render correctly with gridData is empty and not isShowMemberName 1`] = `
-<div
-  className="data-content"
->
-  <div
-    className="member-list-content table-responsive table-striped my-2"
-  >
-    <t
-      adjustedHeight={0}
-      autoHeight={true}
-      autoWidth={true}
-      body={
         Array [
           <t>
             <t
               asc={true}
-              className="text-center"
-              colSpan="7"
-              header={false}
+              colWidth={30}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="#"
+            >
+              #
+            </t>
+            <t
+              asc={true}
+              colWidth={120}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="User Name"
+            >
+              User Name
+            </t>
+            <t
+              asc={true}
+              colWidth={120}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="System Name"
+            >
+              System Name
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="First Name"
+            >
+              First Name
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="Last Name"
+            >
+              Last Name
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="Registration Date"
+            >
+              Registration Date
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              rowSpan="2"
+              sortable={false}
+              sorting={false}
+              title="Affiliate"
+            >
+              Affiliate
+            </t>
+            <t
+              asc={true}
+              colSpan="3"
+              colWidth={200}
+              header={true}
               onClick={[Function]}
               sortable={false}
               sorting={false}
+              title="Removed"
             >
-              There is no information available
+              Removed
+            </t>
+          </t>,
+          <t>
+            <t
+              asc={true}
+              colWidth={50}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Status"
+            >
+              Status
+            </t>
+            <t
+              asc={true}
+              colWidth={100}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Last Action Date"
+            >
+              Last Action Date
+            </t>
+            <t
+              asc={true}
+              colWidth={50}
+              header={true}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Edit"
+            >
+              Edit
             </t>
           </t>,
         ]
-      }
-      bodyHeight={300}
-      containerPadding={20}
-      header={
-        <t>
-          <t
-            asc={true}
-            colWidth={20}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="#"
-          >
-            #
-          </t>
-          <t
-            asc={true}
-            colWidth={120}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="User Name"
-          >
-            User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={120}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="IBC User Name"
-          >
-            IBC User Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="First Name"
-          >
-            First Name
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Last Name"
-          >
-            Last Name
-          </t>
-          <t
-            asc={true}
-            colWidth={110}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Current Balance Member"
-          >
-            Current Balance Member
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Created Date"
-          >
-            Created Date
-          </t>
-          <t
-            asc={true}
-            colWidth={100}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Affiliate"
-          >
-            Affiliate
-          </t>
-          <t
-            asc={true}
-            colWidth={40}
-            header={true}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-            title="Remove"
-          >
-            Remove
-          </t>
-        </t>
       }
       isPaging={true}
       maxWidth={0}

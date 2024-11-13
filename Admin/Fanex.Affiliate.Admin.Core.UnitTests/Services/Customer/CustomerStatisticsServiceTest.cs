@@ -60,18 +60,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
                 ["SignupsTotal"] = 0,
                 ["FDMTotal"] = 0,
                 ["ActivePlayersByMonth"] = 0,
-                ["QualifiedMembersByMonth"] = 0,
                 ["DepositByMonth"] = 0,
                 ["DepositTotal"] = 0,
-                ["FdmDepositByMonth"] = 0,
                 ["TurnoverByMonth"] = 0,
                 ["TurnoverTotal"] = 0,
-                ["WinlostByMonth"] = 0,
-                ["WinlostTotal"] = 0,
+                ["GgrByMonth"] = 0,
+                ["GgrTotal"] = 0,
+                ["TotalClickByMonth"] = 0,
+                ["UniqueClickByMonth"] = 0,
                 ["UniqueClickPCByMonth"] = 0,
                 ["TotalClickPCByMonth"] = 0,
                 ["UniqueClickMobileByMonth"] = 0,
-                ["TotalClickMobileByMonth"] = 0
+                ["TotalClickMobileByMonth"] = 0,
+                ["NoOfSubAffByMonth"] = 0,
+                ["NoOfSubAffTotal"] = 0
             };
         }
     }

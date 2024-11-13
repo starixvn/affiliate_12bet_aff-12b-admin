@@ -1,5 +1,5 @@
-﻿﻿import { TOGGLE_LOADER } from '../../actions/actionTypes'
-import { isShowLoader } from '../loaderReducer'
+﻿﻿import { TOGGLE_LOADER } from '../../actions/actionTypes';
+import { isShowLoader } from '../loaderReducer';
 
 describe('isShowLoader reducer', () => {
     it(`should handle isShowLoader reducer with type TOGGLE_LOADER`, () => {

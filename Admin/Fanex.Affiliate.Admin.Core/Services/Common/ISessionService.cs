@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
@@ -9,14 +9,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         int OnUserId { get; set; }
 
-        int AffId { get; set; }
-
         string AffName { get; set; }
 
-        IEnumerable<ClaimsIdentity> ClaimIdentities { get; set; }
-
-        ClaimsPrincipal UserClaim { get; }
-
-        string RequestIp { get; }
+        IList<UserPermission> UserPermissionList { get; set; }
     }
 }

@@ -12,8 +12,6 @@ describe('message - components - MessageDetailForm ', () => {
         MessageContentEn: "test",
         MessageContentEs: "",
         MessageContentId: "",
-        MessageContentKh: "",
-        MessageContentBn: "",
         MessageContentJp: "",
         MessageContentKr: "",
         MessageContentTh: "",
@@ -21,6 +19,10 @@ describe('message - components - MessageDetailForm ', () => {
         MessageContentVi: "",
         MessageId: 0
     };
+
+    const languages = {
+        En: "English"
+    }
 
     const param = {
         FromDate: "9/20/2019",
@@ -33,8 +35,9 @@ describe('message - components - MessageDetailForm ', () => {
 
     const defaultProps = {
         selectedMessageId: 37,
-        isModifiable: true,
-        param
+        param,
+        defaultMessageContentList: messageContentList,
+        languages
     };
 
     it('render correctly with update', () => {
@@ -108,6 +111,7 @@ describe('message - components - MessageDetailForm ', () => {
         expect(result.setState).not.toHaveBeenCalled();
         expect(instance._handleGetMessageDetail).not.toHaveBeenCalled();
     });
+
     it('_handleGetMessageDetail should call getMessageDetail and setState', async () => {
         const MessageId = 37;
         const expectedReponse = {
@@ -118,12 +122,12 @@ describe('message - components - MessageDetailForm ', () => {
         const props = Object.assign({}, defaultProps, { getMessageDetail: jest.fn(() => expectedReponse) });
         const result = shallow(<MessageDetailForm {...props} />);
 
-        result.setState = jest.fn(fn => fn && fn({ messageContentList }));
+        result.setState = jest.fn();
 
         await result.instance()._handleGetMessageDetail(MessageId);
 
         expect(props.getMessageDetail).toHaveBeenCalledWith(MessageId);
-        expect(result.setState).toHaveBeenCalledWith(expect.any(Function));
+        expect(result.setState).toHaveBeenCalledWith({ messageContentList: { ...messageContentList, MessageId: "37" }, important: false });
     });
 
     it('_handleGetMessageDetail should call getMessageDetail but not call setState', async () => {
@@ -159,7 +163,7 @@ describe('message - components - MessageDetailForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ isClickedEdit: true });
     });
 
-    it('_handleShowAlert should be called when click button Delete', () => {
+    it('_handleShowAlert should be call when click button Delete', () => {
         const result = shallow(<MessageDetailForm {...defaultProps} />);
         result.instance()._handleShowAlert = jest.fn();
 
@@ -176,15 +180,16 @@ describe('message - components - MessageDetailForm ', () => {
             }
         }
         const result = shallow(<MessageDetailForm {...defaultProps} />);
-        result.setState = jest.fn(fn => fn && fn({ messageContentList }));
+        result.setState = jest.fn();
 
         result.find('Input[type="textarea"][name="MessageContentEn"][id="MessageContentEn"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith(expect.any(Function));
+        expect(result.setState).toHaveBeenCalledWith({ messageContentList: { ...messageContentList, MessageContentEn: 'test' } });
     });
 
     it('_validateMessageContent - return false', async () => {
-        const wrapper = shallow(<MessageDetailForm {...defaultProps} />);
+        const props = Object.assign({}, defaultProps, { defaultMessageContentList: {} })
+        const wrapper = shallow(<MessageDetailForm {...props} />);
         const instance = wrapper.instance();
 
         const result = instance._validateMessageContent();
@@ -194,7 +199,6 @@ describe('message - components - MessageDetailForm ', () => {
 
     it('_validateMessageContent - return true', async () => {
         const wrapper = shallow(<MessageDetailForm {...defaultProps} />);
-        wrapper.setState({ messageContentList });
         const instance = wrapper.instance();
 
         const result = instance._validateMessageContent();
@@ -339,7 +343,6 @@ describe('message - components - MessageDetailForm ', () => {
     it('_handleShowAlert - should call setState, setTimeout and _hideMessage', async () => {
         const wrapper = shallow(<MessageDetailForm {...defaultProps} />);
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, val) => fn && fn());
         const instance = wrapper.instance();
         instance._hideMessage = jest.fn();
         instance.modalRef.current = jest.fn();
@@ -349,8 +352,6 @@ describe('message - components - MessageDetailForm ', () => {
 
         expect(instance.modalRef.current.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
         expect(wrapper.setState.mock.calls[0]).toEqual([{ isShowMessage: true, isSuccess: false, message: 'Updated failed!' }, expect.any(Function)]);
-        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
-        expect(instance._hideMessage).toHaveBeenCalled();
     });
 
     it('_hideMessage - should call setState and _handleFetchData', async () => {
@@ -414,7 +415,6 @@ describe('message - components - MessageDetailForm ', () => {
     });
 
     it('_handleClosePopup - should call setSelectedMessageId and setState', async () => {
-        const defaultMessageContentList = Object.assign({}, messageContentList, { MessageContentEn: '' })
         const props = Object.assign({}, defaultProps, { setSelectedMessageId: jest.fn() });
         const wrapper = shallow(<MessageDetailForm {...props} />);
         const instance = wrapper.instance();
@@ -423,6 +423,6 @@ describe('message - components - MessageDetailForm ', () => {
         instance._handleClosePopup();
 
         expect(props.setSelectedMessageId).toHaveBeenCalledWith(null);
-        expect(instance.setState).toHaveBeenCalledWith({ isClickedEdit: false, important: false, messageContentList: defaultMessageContentList });
+        expect(instance.setState).toHaveBeenCalledWith({ isClickedEdit: false, important: false, messageContentList });
     });
 })

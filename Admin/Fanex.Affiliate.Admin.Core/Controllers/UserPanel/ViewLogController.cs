@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.ViewLog)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class ViewLogController : ReadOnlySessionBaseController
     {
         private readonly IViewLogService _viewLogService;
@@ -21,14 +21,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        public ActionResult GetLogTypeList()
+        {
+            return GenerateJsonNetResult(_viewLogService.GetLogTypeList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetViewLogList(ViewLogParam param)
         {
             if (ModelState.IsValid)
             {
-                return new JsonNetResult
-                {
-                    Data = _viewLogService.GetViewLogList(param)
-                };
+                return GenerateJsonNetResult(_viewLogService.GetViewLogList(param));
             }
 
             return new JsonNetResult();

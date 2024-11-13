@@ -1,8 +1,7 @@
 ﻿import React, { PureComponent } from 'react';
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
-import { messages, initialState } from '../libs/constants';
+import { regExp, messages, initialState } from '../libs/constants';
 import { post } from '../../../modules/ajaxRequest';
-import { validateNewPassword } from '../../../modules/utils';
 
 export default class AppContainer extends PureComponent {
     constructor(props) {
@@ -60,28 +59,34 @@ export default class AppContainer extends PureComponent {
         this.setState({ ...initialState });
     }
 
-    _validatePassword(newPassword, oldPassword) {
-        if (newPassword && newPassword == oldPassword) {
-            return {
-                IsValid: false,
-                Message: "New password must be different from old!"
-            }
+    _validateNewPassword(newPassword) {
+        const result = {
+            isValid: false,
+            message: messages.RequiredNewPassword
         }
 
-        return validateNewPassword(newPassword);
+        if (newPassword) {
+            const regexCheckPassword = new RegExp(regExp.CheckPassword);
+            const isValid = regexCheckPassword.test(newPassword);
+
+            result.isValid = isValid;
+            result.message = isValid ? "" : messages.PasswordIncorrect;
+        }
+
+        return result;
     }
 
     _validateConfirmPassword(newPassword, confirmPassword) {
         const result = {
-            IsValid: false,
-            Message: messages.RequiredConfirmPassword
+            isValid: false,
+            message: messages.RequiredConfirmPassword
         }
 
         if (confirmPassword) {
             const isValid = confirmPassword === newPassword;
 
-            result.IsValid = isValid;
-            result.Message = isValid ? "" : messages.ConfirmPasswordIncorrect;
+            result.isValid = isValid;
+            result.message = isValid ? "" : messages.ConfirmPasswordIncorrect;
         }
 
         return result;
@@ -90,10 +95,10 @@ export default class AppContainer extends PureComponent {
     render() {
         const { isClickedSubmit, oldPassword, newPassword, confirmPassword, isShowMessage, isSuccess, message } = this.state;
 
-        const newPasswordValidation = this._validatePassword(newPassword, oldPassword);
+        const newPasswordValidation = this._validateNewPassword(newPassword);
         const confirmPasswordValidation = this._validateConfirmPassword(newPassword, confirmPassword);
         const isValidOldPassword = !!oldPassword;
-        const isValid = isValidOldPassword && newPasswordValidation.IsValid && confirmPasswordValidation.IsValid;
+        const isValid = isValidOldPassword && newPasswordValidation.isValid && confirmPasswordValidation.isValid;
 
         return (
             <div className="change-admin-password-container">
@@ -104,7 +109,7 @@ export default class AppContainer extends PureComponent {
                     </Alert>
                     <Form tag="form" className="my-2" autoComplete="off">
                         <FormGroup row className="mb-2">
-                            <Label for="oldPassword" sm={4} className="required text-right">Old Password</Label>
+                            <Label htmlFor="oldPassword" sm={4} className="required text-right">Old Password</Label>
                             <Col sm={8}>
                                 <Input type="password" className="input-required mt-1" name="oldPassword" id="oldPassword" autoComplete="false"
                                     value={oldPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !isValidOldPassword} />
@@ -113,22 +118,22 @@ export default class AppContainer extends PureComponent {
                             </Col>
                         </FormGroup>
                         <FormGroup row className="mb-2">
-                            <Label for="newPassword" sm={4} className="required text-right">New Password</Label>
+                            <Label htmlFor="newPassword" sm={4} className="required text-right">New Password</Label>
                             <Col sm={8}>
                                 <Input type="password" className="input-required mt-1" name="newPassword" id="newPassword" autoComplete="false"
-                                    value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.IsValid} />
-                                {newPasswordValidation.Message &&
-                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.Message }} /></FormFeedback>}
+                                    value={newPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !newPasswordValidation.isValid} />
+                                {newPasswordValidation.message &&
+                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: newPasswordValidation.message }} /></FormFeedback>}
                             </Col>
                         </FormGroup>
 
                         <FormGroup row className="mb-2">
-                            <Label for="confirmPassword" sm={4} className="required text-right">Confirm Password</Label>
+                            <Label htmlFor="confirmPassword" sm={4} className="required text-right">Confirm Password</Label>
                             <Col sm={8}>
                                 <Input type="password" className="input-required mt-1" name="confirmPassword" id="confirmPassword" autoComplete="false"
-                                    value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.IsValid} />
-                                {confirmPasswordValidation.Message &&
-                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.Message }} /></FormFeedback>}
+                                    value={confirmPassword} onKeyPress={(e) => this._handlePressEnter(isValid, e)} onChange={this._handleChange} invalid={isClickedSubmit && !confirmPasswordValidation.isValid} />
+                                {confirmPasswordValidation.message &&
+                                    <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
                             </Col>
                         </FormGroup>
                     </Form>

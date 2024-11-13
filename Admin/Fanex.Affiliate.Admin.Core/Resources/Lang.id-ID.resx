@@ -120,11 +120,23 @@
   <data name="Affiliate" xml:space="preserve">
     <value>Afiliasi</value>
   </data>
-  <data name="EmailAutoNotification" xml:space="preserve">
-    <value>Ini adalah email yang dibuat otomatis oleh sistem, jangan membalas email ini secara langsung.</value>
-  </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
     <value>12Bet Affiliates - Afiliasi Pemberitahuan</value>
+  </data>
+  <data name="EmailTitleAffApproved" xml:space="preserve">
+    <value>Afiliasi Pemberitahuan</value>
+  </data>
+  <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
+    <value>Afiliasi Penarikan Bimbingan</value>
+  </data>
+  <data name="EmailTitleAffDisapproved" xml:space="preserve">
+    <value>Permohonan Anda</value>
+  </data>
+  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
+    <value>12Bet Affiliates – Permohonan Anda</value>
+  </data>
+  <data name="EmailAutoNotification" xml:space="preserve">
+    <value>Ini adalah email yang dibuat otomatis oleh sistem, jangan membalas email ini secara langsung.</value>
   </data>
   <data name="EmailSubjectAffInfor" xml:space="preserve">
     <value>12Bet Affiliates - Informasi Afiliasi Anda</value>
@@ -132,14 +144,8 @@
   <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
     <value>12Bet Affiliates - Afiliasi Penarikan Bimbingan</value>
   </data>
-  <data name="EmailTitleAffApproved" xml:space="preserve">
-    <value>Afiliasi Pemberitahuan</value>
-  </data>
   <data name="EmailTitleAffInfor" xml:space="preserve">
     <value>Informasi Afiliasi Anda</value>
-  </data>
-  <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
-    <value>Afiliasi Penarikan Bimbingan</value>
   </data>
   <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
     <value>12Bet Affiliates - [{0}] - Permintaan pembayaran Anda telah diproses dan diselesaikan dengan sukses</value>
@@ -152,11 +158,5 @@
   </data>
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>Permintaan pembayaran Anda telah ditolak</value>
-  </data>
-  <data name="EmailTitleAffDisapproved" xml:space="preserve">
-    <value>Permohonan Anda</value>
-  </data>
-  <data name="EmailSubjectAffDisapproved" xml:space="preserve">
-    <value>12Bet Affiliates – Permohonan Anda</value>
   </data>
 </root>

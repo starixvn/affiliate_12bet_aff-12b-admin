@@ -189,7 +189,10 @@ exports[`user account - components - Content render correctly 1`] = `
       <Memo(Section)
         title="Payment Information"
       >
-        <Connect(Payment) />
+        <Connect(Payment)
+          minimumPayment={0}
+          paymentMethodList={Array []}
+        />
       </Memo(Section)>
     </Col>
   </Row>
@@ -208,7 +211,6 @@ exports[`user account - components - Content render correctly 1`] = `
     <Button
       className="mb-3"
       color="success"
-      disabled={true}
       onClick={[Function]}
       tag="button"
     >
@@ -407,7 +409,10 @@ exports[`user account - components - Content render correctly with isSuccess is 
       <Memo(Section)
         title="Payment Information"
       >
-        <Connect(Payment) />
+        <Connect(Payment)
+          minimumPayment={0}
+          paymentMethodList={Array []}
+        />
       </Memo(Section)>
     </Col>
   </Row>
@@ -426,7 +431,6 @@ exports[`user account - components - Content render correctly with isSuccess is 
     <Button
       className="mb-3"
       color="success"
-      disabled={true}
       onClick={[Function]}
       tag="button"
     >

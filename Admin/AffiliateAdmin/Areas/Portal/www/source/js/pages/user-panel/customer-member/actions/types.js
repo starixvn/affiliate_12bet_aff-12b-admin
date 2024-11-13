@@ -1,1 +1,1 @@
-export const SET_PARAM = 'USER_PANEL/CUSTOMER_MEMBER/SET_PARAM';
+export const SET_PARAM = 'SET_PARAM';

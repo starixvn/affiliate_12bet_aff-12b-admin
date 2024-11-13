@@ -59,7 +59,8 @@ export const fetchData = (param) => async (dispatch) => {
 function _convertCheckedMessages(dataList) {
     const checkedMessages = {};
     for (let item of dataList) {
-        checkedMessages[item.MessageId] = false;
+        const itemId = item.MessageId;
+        checkedMessages[itemId] = false;
     }
 
     return checkedMessages;

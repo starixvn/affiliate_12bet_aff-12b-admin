@@ -20,10 +20,10 @@ describe('domain control - Filter - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            targetCountryList: []
+            marketList: []
         };
         const state = {
-            targetCountryList: [],
+            marketList: [],
             anotherProp: "Not included"
         };
 
@@ -36,7 +36,7 @@ describe('domain control - Filter - connect', () => {
         const mockBindAction = jest.fn();
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
-            setSelectedTargetCountryCode: actions['setSelectedTargetCountryCode'],
+            setSelectedMarket: actions['setSelectedMarket'],
             fetchData: actions['fetchData']
         }
 

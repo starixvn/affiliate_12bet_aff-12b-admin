@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import SelectLabel from './SelectLabel';
 import SelectOptionList from './SelectOptionList';
 
-import { KEY_NAME, VALUE_NAME } from "../libs/constants";
+const KEY_NAME = "key";
+const VALUE_NAME = "value";
 
+let id = 1;
 
 export default class Select extends Component {
     constructor(props) {
         super(props);
-        this.id = `select-${props.id}`;
+        this.id = `select-${props.id || id++}`;
         this.selectOptionsRef = createRef();
 
         const { dataSource, keyField, valueField, selectedKey } = props;
@@ -21,14 +23,13 @@ export default class Select extends Component {
             showOptionList: false,
             inputOption: '',
             selectedItem: {
-                key: selectedItem[keyField],
-                value: selectedItem[valueField]
+                [KEY_NAME]: selectedItem[keyField],
+                [VALUE_NAME]: selectedItem[valueField]
             }
         }
     }
 
     static propTypes = {
-        id: PropTypes.string.isRequired,
         dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
         keyField: PropTypes.string,
         valueField: PropTypes.string,
@@ -45,26 +46,24 @@ export default class Select extends Component {
         isDisable: false
     }
 
+    componentDidMount() {
+        document.addEventListener('click', this._handleDocumentClick)
+    }
+
     componentWillUnmount() {
         document.removeEventListener('click', this._handleDocumentClick)
     }
 
     onChangeHandler = (selectedItem) => {
-        document.removeEventListener('click', this._handleDocumentClick);
+        this.onToggle();
 
-        this.setState({ selectedItem, showOptionList: false, inputOption: '' })
+        this.setState({ selectedItem });
 
-        this._callBackToParent(selectedItem[KEY_NAME]);
+        this._callBackToParent(selectedItem.key);
     }
 
     onToggle = () => {
-        this.setState((prevState) => {
-            const showOptionList = !prevState.showOptionList;
-
-            showOptionList ? document.addEventListener('click', this._handleDocumentClick) : document.removeEventListener('click', this._handleDocumentClick)
-
-            return { showOptionList, inputOption: '' }
-        })
+        this.setState((prevState) => { return { showOptionList: !prevState.showOptionList, inputOption: '' } })
     }
 
     _handleChangeInput = (event) => {
@@ -84,53 +83,52 @@ export default class Select extends Component {
 
         return dataSourceAfterFilter.map(item => {
             return {
-                key: item[keyField],
-                value: item[valueField]
+                [KEY_NAME]: item[keyField],
+                [VALUE_NAME]: item[valueField]
             }
         })
+    }
+
+    _close = () => {
+        this.setState({ showOptionList: false, inputOption: '' });
     }
 
     _handleDocumentClick = (event) => {
         const clickOutside = this.wrapper && !this.wrapper.contains(event.target);
 
         if (clickOutside && this.state.showOptionList) {
-            document.removeEventListener('click', this._handleDocumentClick);
-            this.setState({ showOptionList: false, inputOption: '' });
+            this.selectOptionsRef.current._resetSelectingOption();
+            this._close();
         }
     }
 
     render() {
-        const { inputOption, selectedItem, showOptionList } = this.state;
+        const { inputOption, selectedItem } = this.state;
         const { isDisable, hasInputOption } = this.props;
         const dataSource = this._convertDataSource(inputOption.trim().toLowerCase());
 
         return (
-            <div className="select-container" id={this.id} key={this.id} ref={element => this.wrapper = element}>
+            <div className="select-container" id={this.id} ref={element => this.wrapper = element}>
                 <SelectLabel
-                    id={this.id}
-                    selectedValue={selectedItem.value}
+                    selectedText={selectedItem.value}
                     onToggle={this.onToggle}
                     isDisable={isDisable} />
 
-                {
-                    showOptionList && (
-                        <div className="select-options-container">
-                            {
-                                hasInputOption &&
-                                <ul className="select-options">
-                                    <input type="text" name="inputOption" id={`inputOption-${this.id}`} value={inputOption} className="w-100" onChange={this._handleChangeInput} />
-                                </ul>
-                            }
+                <div className="select-options-container"
+                    style={{ display: this.state.showOptionList ? "block" : "none" }}>
+                    {
+                        hasInputOption &&
+                        <ul className="select-options">
+                            <input type="text" name="inputOption" value={inputOption} className="w-100" onChange={this._handleChangeInput} />
+                        </ul>
+                    }
 
-                            <SelectOptionList
-                                id={this.id}
-                                ref={this.selectOptionsRef}
-                                dataSource={dataSource}
-                                selectedKey={selectedItem.key}
-                                onChange={this.onChangeHandler} />
-                        </div>
-                    )
-                }
+                    <SelectOptionList
+                        id={this.id}
+                        ref={this.selectOptionsRef}
+                        dataSource={dataSource}
+                        onChange={this.onChangeHandler} />
+                </div>
             </div>
         )
     }

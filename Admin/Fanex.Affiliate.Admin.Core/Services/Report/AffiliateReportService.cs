@@ -3,12 +3,14 @@ using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Affiliate.Admin.Core.Repository.Report;
 using System;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Report
 {
     public class AffiliateReportService : IAffiliateReportService
     {
+        private const int ValidMonthArrange = 5;
+        private const int ValidDateArrange = 6;
+
         private readonly IAffiliateReportRepository _affiliateReportRepository;
 
         public AffiliateReportService(IAffiliateReportRepository affiliateReportRepository)
@@ -16,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             _affiliateReportRepository = affiliateReportRepository;
         }
 
-        public EntityResult<AffiliateReport> GetMainReportData(AffiliateReportMainParam param)
+        public EntityResult<AffiliateReport> GetMainReportData(AffiliateReportParam param)
         {
             if (!IsValidParam(param))
             {
@@ -26,28 +28,24 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             return _affiliateReportRepository.GetMainReportData(param);
         }
 
-        public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportMainParam param)
+        public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportParam param)
         {
             return _affiliateReportRepository.GetDetailReportData(param);
         }
 
-        public IList<string> SearchAffiliateList(string userName)
+        public DateTime GetReportCutOffDate()
         {
-            const byte MinCharacterLength = 2;
-
-            return string.IsNullOrEmpty(userName) || userName.Length < MinCharacterLength ?
-                new List<string>() :
-                _affiliateReportRepository.SearchAffiliateList(userName);
+            return _affiliateReportRepository.GetReportCutOffDate();
         }
 
-        private static bool IsValidParam(AffiliateReportMainParam param)
+        private static bool IsValidParam(AffiliateReportParam param)
         {
             return !string.IsNullOrEmpty(param.ProductIds) && IsValidDateRange(param.FromDate, param.ToDate, param.IsGetMonthly);
         }
 
         private static bool IsValidDateRange(DateTime from, DateTime to, bool isGetMonthly = true)
         {
-            var maxMonth = from.AddMonths(isGetMonthly ? 5 : 6);
+            var maxMonth = from.AddMonths(isGetMonthly ? ValidMonthArrange : ValidDateArrange);
 
             return DateTime.Compare(maxMonth, to) >= 0;
         }

@@ -1,18 +1,17 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public class LandingPageService : ILandingPageService
     {
-        private const string RestrictedCharacterPattern = "[;\\?:@=&\"<>#%\\{\\}\\|\\\\\\^~\\[\\]`\\s+]";
-        private const string RestricedCharacterErrorMessage = "Special characters are not allowed:\n the blank/empty space and ; ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `";
+        private const string RestrictedCharacterPattern = "[;/\\?:@=&\"<>#%\\{\\}\\|\\\\\\^~\\[\\]`\\s+]";
+        private const string RestricedCharacterErrorMessage = "Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `";
 
         private readonly ILandingPageRepository _landingPageRepository;
 
@@ -21,29 +20,42 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             _landingPageRepository = landingPageRepository;
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList(int userId)
+        public IEnumerable<LandingPage> GetLandingPageList()
         {
-            return _landingPageRepository.GetLandingPageList(userId);
+            return _landingPageRepository.GetLandingPageList();
         }
 
-        public LandingPage GetLandingPageById(int userId, int pageId)
+        public LandingPage GetLandingPageById(int pageId)
         {
-            return _landingPageRepository.GetLandingPageById(userId, pageId);
+            return _landingPageRepository.GetLandingPageById(pageId);
         }
 
-        public IEnumerable<TargetCountry> GetExcludedTargetCountryList(ExcludedTargetCountryParam param)
-        {
-            return _landingPageRepository.GetExcludedTargetCountryList(param).ExcludeEmpty();
-        }
-
-        public ResultInfo HandleSaveLandingPage(InsertUpdateLandingPageParam param, bool isInsert = false)
+        public ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param)
         {
             if (HasRestrictedCharacter(param.PageCode))
             {
-                return ResultInfo.GenerateErr(RestricedCharacterErrorMessage);
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = RestricedCharacterErrorMessage
+                };
             }
 
-            return isInsert ? _landingPageRepository.InsertLandingPage(param) : _landingPageRepository.UpdateLandingPage(param);
+            return _landingPageRepository.InsertLandingPage(param);
+        }
+
+        public ResultInfo UpdateLandingPage(InsertUpdateLandingPageParam param)
+        {
+            if (HasRestrictedCharacter(param.PageCode))
+            {
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = RestricedCharacterErrorMessage
+                };
+            }
+
+            return _landingPageRepository.UpdateLandingPage(param);
         }
 
         public ResultInfo DeleteLandingPage(DeleteLandingPageParam param)
@@ -53,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         private static bool HasRestrictedCharacter(string input)
         {
-            return Regex.IsMatch(input, RestrictedCharacterPattern);
+            return RegexHelper.IsMatch(input, RestrictedCharacterPattern);
         }
     }
 }

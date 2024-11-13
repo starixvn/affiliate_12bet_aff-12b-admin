@@ -2,47 +2,50 @@
 import { Content } from '../Content';
 import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
-import { sortByCommon } from '../../../../report/libs/constants';
 
 describe('players detail - components - Content', () => {
     const param = { productId: 0, monthDate: "11/1/2019" };
-    const turnover = 5;
     const gridData = [
         {
             IbcUserName: "12BETUS$02002",
-            UserName: "12bet$RyQ.Piong",
+            UserName: "12BET$RyQ.Piong",
             RegisteredDate: "2009-01-21T21:13:00",
             Deposit: 0,
             Withdrawal: 0,
-            BankingFee: 0,
+            DepositFee: 0,
+            WithdrawalFee: 0,
             Bonus: 0,
             Turnover: 5367360,
-            Winloss: -26050,
+            Ggr: -26050,
             RegisteredDateText: "01/21/2009 21:13:00"
         },
         {
             IbcUserName: "12BETRM021133",
-            UserName: "12Bet$all_in",
+            UserName: "12BET$all_in",
             RegisteredDate: "2013-03-07T00:30:00",
             Deposit: 0,
             Withdrawal: 0,
-            BankingFee: 0,
+            DepositFee: 0,
+            WithdrawalFee: 0,
             Bonus: 0,
             Turnover: 23.7056,
-            Winloss: -11.9332,
+            Ggr: -11.9332,
             RegisteredDateText: "03/07/2013 00:30:00"
         }
     ];
     const defaultProps = {
         affId: 1271808,
+        isDepositFeePercent: false,
+        isWithdrawalFeePercent: false,
         pagingOption: defaultPagingOption,
         param,
         setPagingOption: jest.fn(),
         toggleLoaderUserPanel: jest.fn(),
-        setSortedParam: jest.fn(),
         fetchData: jest.fn(() => gridData),
-        isDisplayTurnOver: true,
-        sortedParam: { sortById: turnover, isSortAsc: false }
+        sortingColumn: {
+            IsSortAsc: false,
+            ColumnName: 'Turnover'
+        }
     }
 
     it('render correctly', () => {
@@ -55,7 +58,7 @@ describe('players detail - components - Content', () => {
 
     it('render correctly with not selected All Product', () => {
         const newParam = Object.assign({}, defaultProps.param, { productId: 1 });
-        const props = Object.assign({}, defaultProps, { param: newParam });
+        const props = Object.assign({}, defaultProps, { param: newParam, isDepositFeePercent: true, isWithdrawalFeePercent: true });
         const result = shallow(<Content {...props} />);
 
         result.setState({ data: gridData });
@@ -93,6 +96,7 @@ describe('players detail - components - Content', () => {
         instance.componentDidUpdate(defaultProps);
 
         expect(instance._fetchData).toHaveBeenCalledWith({ ...newParam, pageIndex: 1, pageSize: 20 });
+        expect(instance.setState).toHaveBeenCalledWith({ isSortAsc: false, sortingColumn: 'Turnover' });
     });
 
     it('fetchData - should call toggleLoaderUserPanel, setState and setPagingOption with correct parameter', async () => {
@@ -127,40 +131,40 @@ describe('players detail - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
-        const newParam = Object.assign({}, defaultProps.param, { productId: 'abc', pageIndex: 1, pageSize: 20 });
-        await instance._fetchData(newParam);
+        const param = Object.assign({}, defaultProps.param, { pageIndex: 1, pageSize: 20 });
+        await instance._fetchData(param);
 
         expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(2);
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith({ ...newParam, affId: 1271808 });
+        expect(props.fetchData).toHaveBeenCalledWith({ ...param, affId: 1271808 });
         expect(instance.setState).toHaveBeenCalledWith({ data: null });
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 0, PageIndex: 1, PageSize: 20 });
     });
 
     it('handleClickHeader - should call setState and _fetchData when sortingColumn === selectedColumn', async () => {
-        const wrapper = shallow(<Content {...defaultProps} />);
+        const props = Object.assign({}, defaultProps, { setSortingColumn: jest.fn() });
+        const wrapper = shallow(<Content {...props} />);
         const instance = wrapper.instance();
-        instance.setState = jest.fn();
         instance._fetchData = jest.fn();
 
-        instance.handleClickHeader(turnover);
+        instance.handleClickHeader('Turnover');
 
-        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: turnover, pageIndex: 1, pageSize: 20 });
-        expect(defaultProps.setSortedParam).toHaveBeenCalledWith({ isSortAsc: true, sortById: 5 });
+        expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: true, sortById: 5, pageIndex: 1, pageSize: 20 });
+        expect(props.setSortingColumn).toHaveBeenCalledWith({ IsSortAsc: true, ColumnName: 'Turnover' });
     });
 
     it('handleClickHeader - should call setState and _fetchData when sortingColumn !== selectedColumn', async () => {
-        const wrapper = shallow(<Content {...defaultProps} />);
+        const props = Object.assign({}, defaultProps, { setSortingColumn: jest.fn() });
+        const wrapper = shallow(<Content {...props} />);
         const instance = wrapper.instance();
-        instance.setState = jest.fn();
         instance._fetchData = jest.fn();
 
-        instance.handleClickHeader(1);
+        instance.handleClickHeader('Username');
 
         expect(instance._fetchData).toHaveBeenCalledWith({ ...param, isSortAsc: false, sortById: 1, pageIndex: 1, pageSize: 20 });
-        expect(defaultProps.setSortedParam).toHaveBeenCalledWith({ isSortAsc: false, sortById: 1 });
+        expect(props.setSortingColumn).toHaveBeenCalledWith({ IsSortAsc: false, ColumnName: 'Username' });
     });
 
     it('handlePaging - should call fetchData with correct parameters', () => {

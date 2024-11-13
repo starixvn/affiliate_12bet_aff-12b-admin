@@ -11,6 +11,7 @@ describe('change admin password - components - AppContainer', () => {
         expect(result).toMatchSnapshot();
     });
 
+
     it('render correctly with correct password', () => {
         const result = shallow(<AppContainer />);
         result.setState({ oldPassword: '123', newPassword: '123abc', confirmPassword: '123abc', isSuccess: false, isClickedSubmit: true });
@@ -117,16 +118,11 @@ describe('change admin password - components - AppContainer', () => {
     it('_handleShowAlert - should call setState, setTimeout and _handleReset', () => {
         const wrapper = shallow(<AppContainer />);
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, val) => fn && fn());
 
         const instance = wrapper.instance();
-        instance._hideMessage = jest.fn();
-
         instance._handleShowAlert(false, 'Old password is incorrect!');
 
         expect(wrapper.setState.mock.calls[0]).toEqual([{ isShowMessage: true, isSuccess: false, message: 'Old password is incorrect!' }, expect.any(Function)]);
-        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
-        expect(instance._hideMessage).toHaveBeenCalledWith(false);
     });
 
     it('_hideMessage - should call setState', async () => {
@@ -176,7 +172,7 @@ describe('change admin password - components - AppContainer', () => {
     });
 
     it('_handleSubmit - should call setState and _handleShowAlert with success', async () => {
-        const expectedResult = { data: { IsSuccessful: true, Message: "" }};
+        const expectedResult = { data: { IsSuccessful: true, Message: "" } };
         const wrapper = shallow(<AppContainer />);
         wrapper.setState = jest.fn();
 
@@ -192,7 +188,7 @@ describe('change admin password - components - AppContainer', () => {
     });
 
     it('_handleSubmit - should call setState and _handleShowAlert with failed', async () => {
-        const expectedResult = { data: { IsSuccessful: false, Message: 'Old password is incorrect!' }};
+        const expectedResult = { data: { IsSuccessful: false, Message: 'Old password is incorrect!' } };
         const wrapper = shallow(<AppContainer />);
         wrapper.setState = jest.fn();
 

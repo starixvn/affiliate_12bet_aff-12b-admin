@@ -3,10 +3,6 @@ import { OnlineInfoPanel } from '../OnlineInfoPanel';
 import { shallow } from 'enzyme';
 
 describe('left panel - components - panel - OnlineInfoPanel', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-
     const affiliateInfo = {
         AffId: 1271808,
         AffLink: "http://localhost:55690/Auth/AdminLogin?chalengeStr=esh5u7&accKey=E16156C28&custName=12BETAFF226&accId=1000000026&accOnId=8405",
@@ -18,7 +14,6 @@ describe('left panel - components - panel - OnlineInfoPanel', () => {
         FirstName: "bb",
         Gender: true,
         GroupId: 102,
-        IsClosed: false,
         LastLoginDateText: "04/11/2019 22:24:00",
         LastLoginIp: "10.18.200.125",
         LastName: "12BETAFF226",
@@ -26,7 +21,7 @@ describe('left panel - components - panel - OnlineInfoPanel', () => {
         NoSiteDescription: "",
         Phone: "abc",
         PreferredLanguage: "vi-VN",
-        SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+        SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
         Status: "Approved"
     };
 

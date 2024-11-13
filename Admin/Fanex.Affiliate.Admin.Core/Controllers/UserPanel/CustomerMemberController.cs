@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.MemberDetail)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CustomerMemberController : ReadOnlySessionBaseController
     {
         private readonly ICustomerMemberService _customerMemberService;
@@ -20,15 +20,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [UpdateUnauthorizedProperty]
+        [UnauthorizedPropertyCensor]
         public ActionResult GetCustomerMember(CustomerMemberParam param)
         {
             if (ModelState.IsValid)
             {
-                return new JsonNetResult
-                {
-                    Data = _customerMemberService.GetCustomerMemberList(param)
-                };
+                return GenerateJsonNetResult(_customerMemberService.GetCustomerMember(param));
             }
 
             return new JsonNetResult();

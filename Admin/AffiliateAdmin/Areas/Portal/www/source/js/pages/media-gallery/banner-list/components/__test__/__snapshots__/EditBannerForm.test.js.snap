@@ -32,6 +32,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
     role="dialog"
     scrollable={false}
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -140,6 +141,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
             >
               [Maximum files: 10]
             </Label>
+                                                
             <br />
             <FormGroup
               className="mb-2"
@@ -148,7 +150,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
             >
               <Label
                 className="required"
-                for="file"
+                htmlFor="file"
                 sm={3}
                 tag="label"
                 widths={
@@ -182,6 +184,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   className="border text-danger"
                   files={Array []}
                   handleOnChangeFiles={[Function]}
+                  id="file"
                   isMultiple={true}
                   lblText="No file choosen"
                   multiple={false}
@@ -194,8 +197,64 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
               tag="div"
             >
               <Label
+                htmlFor="userType"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                User Type
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  id="userType"
+                  name="userType"
+                  onChange={[Function]}
+                  type="select"
+                  value={1}
+                >
+                  <option
+                    key="userType-1"
+                    value="1"
+                  >
+                    Players
+                  </option>
+                  <option
+                    key="userType-2"
+                    value="2"
+                  >
+                    Sub-Affiliate
+                  </option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
                 className="required"
-                for="category"
+                htmlFor="category"
                 sm={3}
                 tag="label"
                 widths={
@@ -241,8 +300,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -259,7 +318,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
             >
               <Label
                 className="required"
-                for="subCategory"
+                htmlFor="subCategory"
                 sm={3}
                 tag="label"
                 widths={
@@ -305,8 +364,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -322,7 +381,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
               tag="div"
             >
               <Label
-                for="language"
+                htmlFor="language"
                 sm={3}
                 tag="label"
                 widths={
@@ -355,7 +414,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   name="language"
                   onChange={[Function]}
                   type="select"
-                  value="Chinese Simplified"
+                  value="Vietnamese"
                 >
                   <option
                     key="language-English"
@@ -379,7 +438,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
             >
               <Label
                 className="required"
-                for="currency"
+                htmlFor="currency"
                 sm={3}
                 tag="label"
                 widths={
@@ -423,8 +482,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -441,7 +500,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
             >
               <Label
                 className="required"
-                for="affType"
+                htmlFor="affType"
                 sm={3}
                 tag="label"
                 widths={
@@ -485,8 +544,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -503,7 +562,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
             >
               <Label
                 className="required"
-                for="deviceType"
+                htmlFor="deviceType"
                 sm={3}
                 tag="label"
                 widths={
@@ -547,8 +606,8 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -565,7 +624,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
               tag="div"
             >
               <Label
-                for="inputFileName"
+                htmlFor="inputFileName0"
                 sm={3}
                 tag="label"
                 widths={
@@ -595,7 +654,7 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
               >
                 <Input
                   id="inputFileName0"
-                  name="inputFileName"
+                  name="inputFileName0"
                   onChange={[Function]}
                   onKeyPress={[Function]}
                   type="text"
@@ -607,7 +666,6 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
                   className="mr-3"
                   color="danger"
                   disabled={true}
-                  for="inputFileName"
                   onClick={[Function]}
                   tag="button"
                   type="button"
@@ -674,6 +732,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
     role="dialog"
     scrollable={false}
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -782,6 +841,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
             >
               [Maximum files: 10]
             </Label>
+                                                
             <br />
             <FormGroup
               className="mb-2"
@@ -790,7 +850,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
             >
               <Label
                 className="required"
-                for="file"
+                htmlFor="file"
                 sm={3}
                 tag="label"
                 widths={
@@ -824,6 +884,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   className="border text-danger"
                   files={Array []}
                   handleOnChangeFiles={[Function]}
+                  id="file"
                   isMultiple={true}
                   lblText="No file choosen"
                   multiple={false}
@@ -836,8 +897,64 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
               tag="div"
             >
               <Label
+                htmlFor="userType"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                User Type
+              </Label>
+              <Col
+                sm={5}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  id="userType"
+                  name="userType"
+                  onChange={[Function]}
+                  type="select"
+                  value={1}
+                >
+                  <option
+                    key="userType-1"
+                    value="1"
+                  >
+                    Players
+                  </option>
+                  <option
+                    key="userType-2"
+                    value="2"
+                  >
+                    Sub-Affiliate
+                  </option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
                 className="required"
-                for="category"
+                htmlFor="category"
                 sm={3}
                 tag="label"
                 widths={
@@ -883,8 +1000,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -901,7 +1018,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
             >
               <Label
                 className="required"
-                for="subCategory"
+                htmlFor="subCategory"
                 sm={3}
                 tag="label"
                 widths={
@@ -947,8 +1064,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -964,7 +1081,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
               tag="div"
             >
               <Label
-                for="language"
+                htmlFor="language"
                 sm={3}
                 tag="label"
                 widths={
@@ -997,7 +1114,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   name="language"
                   onChange={[Function]}
                   type="select"
-                  value="Chinese Simplified"
+                  value="Vietnamese"
                 >
                   <option
                     key="language-English"
@@ -1021,7 +1138,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
             >
               <Label
                 className="required"
-                for="currency"
+                htmlFor="currency"
                 sm={3}
                 tag="label"
                 widths={
@@ -1065,8 +1182,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1083,7 +1200,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
             >
               <Label
                 className="required"
-                for="affType"
+                htmlFor="affType"
                 sm={3}
                 tag="label"
                 widths={
@@ -1127,8 +1244,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1145,7 +1262,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
             >
               <Label
                 className="required"
-                for="deviceType"
+                htmlFor="deviceType"
                 sm={3}
                 tag="label"
                 widths={
@@ -1189,8 +1306,8 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1207,7 +1324,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
               tag="div"
             >
               <Label
-                for="inputFileName"
+                htmlFor="inputFileName0"
                 sm={3}
                 tag="label"
                 widths={
@@ -1237,7 +1354,7 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
               >
                 <Input
                   id="inputFileName0"
-                  name="inputFileName"
+                  name="inputFileName0"
                   onChange={[Function]}
                   onKeyPress={[Function]}
                   type="text"
@@ -1249,7 +1366,6 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
                   className="mr-3"
                   color="danger"
                   disabled={true}
-                  for="inputFileName"
                   onClick={[Function]}
                   tag="button"
                   type="button"
@@ -1321,6 +1437,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
     role="dialog"
     scrollable={false}
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -1414,6 +1531,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             >
               [File Size Limit: 3MB]
             </Label>
+                                                
             <br />
             <FormGroup
               className="mb-2"
@@ -1422,7 +1540,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             >
               <Label
                 className=""
-                for="file"
+                htmlFor="file"
                 sm={3}
                 tag="label"
                 widths={
@@ -1453,15 +1571,10 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                 <InputFile
                   accept="image/jpg, image/gif, image/png, image/jpeg"
                   btnName="Choose File"
-                  className="border text-success"
-                  files={
-                    Array [
-                      Object {
-                        "name": "abc.png",
-                      },
-                    ]
-                  }
+                  className="border text-danger"
+                  files={Array []}
                   handleOnChangeFiles={[Function]}
+                  id="file"
                   isMultiple={false}
                   lblText="No file choosen"
                   multiple={false}
@@ -1475,7 +1588,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             >
               <Label
                 className="required"
-                for="category"
+                htmlFor="category"
                 sm={3}
                 tag="label"
                 widths={
@@ -1515,8 +1628,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1533,7 +1646,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             >
               <Label
                 className="required"
-                for="subCategory"
+                htmlFor="subCategory"
                 sm={3}
                 tag="label"
                 widths={
@@ -1573,8 +1686,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1590,7 +1703,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
               tag="div"
             >
               <Label
-                for="language"
+                htmlFor="language"
                 sm={3}
                 tag="label"
                 widths={
@@ -1623,7 +1736,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                   name="language"
                   onChange={[Function]}
                   type="select"
-                  value="Chinese Simplified"
+                  value="Vietnamese"
                 >
                   <option
                     key="language-English"
@@ -1647,7 +1760,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             >
               <Label
                 className="required"
-                for="currency"
+                htmlFor="currency"
                 sm={3}
                 tag="label"
                 widths={
@@ -1691,8 +1804,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1709,7 +1822,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             >
               <Label
                 className="required"
-                for="affType"
+                htmlFor="affType"
                 sm={3}
                 tag="label"
                 widths={
@@ -1753,8 +1866,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1771,7 +1884,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
             >
               <Label
                 className="required"
-                for="deviceType"
+                htmlFor="deviceType"
                 sm={3}
                 tag="label"
                 widths={
@@ -1815,8 +1928,8 @@ exports[`banner list - components - EditBannerForm  render correctly with update
                     ]
                   }
                   hasAllOption={true}
-                  isDisableOption={false}
-                  itemDefaultOption={null}
+                  hasInputOption={false}
+                  isDisable={false}
                   keyField="key"
                   maxDisplayItemCount={1}
                   noneSelectedLabel="Please Select"
@@ -1832,7 +1945,7 @@ exports[`banner list - components - EditBannerForm  render correctly with update
               tag="div"
             >
               <Label
-                for="inputFileName"
+                htmlFor="inputFileName"
                 sm={3}
                 tag="label"
                 widths={

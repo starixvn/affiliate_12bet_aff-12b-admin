@@ -1,58 +1,53 @@
-﻿/// <reference path="../../../../common/components/mylink.jsx" />
-import React from 'react';
+﻿import React from 'react';
 import { Content } from '../Content';
 import { shallow } from 'enzyme';
 import MonthPicker from '@9softstudio/react-monthpicker';
-import MyLink from '../../../../common/components/MyLink';
 
 describe('customer statistics - components - Content', () => {
     const defaultProps = {
         monthDate: '7/1/2019',
         today: '7/1/2019',
-        affId: 1271808,
-        hasTurnOverPermission: true,
-        isDisplayTurnOver: true,
-        isDisplayActivePlayer: true
+        affId: 1271808
     };
 
     const data = {
         ActivePlayerByMonth: 0,
         DepositByMonth: 0,
         DepositTotal: 951.435,
-        FdmDepositByMonth: 0,
         NewFdmByMonth: 0,
         NewFdmTotal: 1829,
         NewSignUpByMonth: 0,
         NewSignUpTotal: 3742,
-        QualifiedMemberByMonth: 0,
+        TotalClickByMonth: 0,
         TotalClickMobileByMonth: 0,
         TotalClickPcLaptopByMonth: 0,
         TurnoverByMonth: 0,
         TurnoverTotal: 1061706.9773,
+        UniqueClickByMonth: 0,
         UniqueClickMobileByMonth: 0,
         UniqueClickPcLaptopByMonth: 0,
-        WinlostByMonth: 0,
-        WinlostTotal: -42950.0237
+        GgrByMonth: 0,
+        GgrTotal: -42950.0237
     }
 
     const dataHasPlayerActive = {
         ActivePlayerByMonth: 2,
         DepositByMonth: 0,
         DepositTotal: 951.435,
-        FdmDepositByMonth: 0,
         NewFdmByMonth: 0,
         NewFdmTotal: 1829,
         NewSignUpByMonth: 0,
         NewSignUpTotal: 3742,
-        QualifiedMemberByMonth: 0,
+        TotalClickByMonth: 0,
         TotalClickMobileByMonth: 0,
         TotalClickPcLaptopByMonth: 0,
         TurnoverByMonth: 0,
         TurnoverTotal: 1061706.9773,
+        UniqueClickByMonth: 0,
         UniqueClickMobileByMonth: 0,
         UniqueClickPcLaptopByMonth: 0,
-        WinlostByMonth: 0,
-        WinlostTotal: -42950.0237
+        GgrByMonth: 0,
+        GgrTotal: -42950.0237
     }
 
     it('Should render correctly', () => {
@@ -117,7 +112,7 @@ describe('customer statistics - components - Content', () => {
         expect(result).toEqual('Jun-2019');
     });
 
-    it('fetchData - should call setMonthDate, fetchData and setState', async() => {
+    it('fetchData - should call setMonthDate, fetchData and setState', async () => {
         const setMonthDate = jest.fn();
         const fetchData = jest.fn(() => data);
 
@@ -132,18 +127,6 @@ describe('customer statistics - components - Content', () => {
         expect(wrapper.setState).toHaveBeenCalledWith({ data, isLoading: false });
     });
 
-    it('redirectToPlayerDetail - should be called when click at player active link', () => {
-        const setMonthDate = jest.fn();
-        const fetchData = jest.fn(() => data);
-        const redirectToPlayerDetail = jest.fn()
-        const props = Object.assign({}, defaultProps, { setMonthDate, fetchData, redirectToPlayerDetail });
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState({ data: dataHasPlayerActive });
-
-        wrapper.find(MyLink).at(0).simulate('click');
-        expect(props.redirectToPlayerDetail).toHaveBeenCalledWith({ isClickLink: true, monthDate: "7/1/2019", productId: 0 });
-    });
-
     it('redirectToReferrers - should be called when click at referrers laptop link', () => {
         const setMonthDate = jest.fn();
         const fetchData = jest.fn(() => data);
@@ -152,8 +135,8 @@ describe('customer statistics - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
-        wrapper.find(MyLink).at(1).simulate('click');
-        expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 0, fromDate: "7/1/2019", isClickLink: true, toDate: "7/1/2019" });
+        wrapper.find('a').at(0).simulate('click');
+        expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 0, fromDate: "7/1/2019", isClickLink: true, toDate: "7/31/2019" });
     });
 
     it('redirectToReferrers - should be called when click at referrers mobile link', () => {
@@ -164,7 +147,7 @@ describe('customer statistics - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ data: dataHasPlayerActive });
 
-        wrapper.find(MyLink).at(2).simulate('click');
-        expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 1, fromDate: "7/1/2019", isClickLink: true, toDate: "7/1/2019" });
+        wrapper.find('a').at(1).simulate('click');
+        expect(props.redirectToReferrers).toHaveBeenCalledWith({ deviceType: 1, fromDate: "7/1/2019", isClickLink: true, toDate: "7/31/2019" });
     });
 })

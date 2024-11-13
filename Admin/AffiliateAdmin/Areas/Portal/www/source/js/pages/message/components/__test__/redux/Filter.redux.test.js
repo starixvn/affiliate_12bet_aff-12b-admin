@@ -19,7 +19,7 @@ describe('message - Filter - connect', () => {
     });
 
     it('props should be mapped correctly', () => {
-        const expectedResult = { today: '09/06/2019', pagingOption: { PageSize: 1, PageIndex: 20 }};
+        const expectedResult = { today: '09/06/2019', pagingOption: { PageSize: 1, PageIndex: 20 } };
         const state = {
             today: '09/06/2019',
             pagingOption: { PageSize: 1, PageIndex: 20 },

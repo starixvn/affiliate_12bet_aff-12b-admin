@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public class CustomerMemberService : BaseRepository, ICustomerMemberService
     {
-        public EntityResult<CustomerMember> GetCustomerMemberList(CustomerMemberParam param)
+        public EntityResult<CustomerMember> GetCustomerMember(CustomerMemberParam param)
         {
             const string SpKey = "Aff_Admin_Member_Sel";
             var result = new EntityResult<CustomerMember>();
@@ -28,16 +28,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                         dataList.Add(new CustomerMember
                         {
                             UserName = Convert.ToString(reader["UserName"]),
-                            FirstName = Convert.ToString(reader["FirstName"]),
-                            LastName = Convert.ToString(reader["LastName"]),
-                            CurrencyName = Convert.ToString(reader["Currency"]),
-                            RegisteredDate = Convert.ToDateTime(reader["RegisteredDate"])
+                            FirstName = reader["FirstName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["FirstName"]),
+                            LastName = reader["LastName"] == DBNull.Value ? string.Empty : Convert.ToString(reader["LastName"]),
+                            Email = reader["Email"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Email"]),
+                            CurrencyName = reader["Currency"] == DBNull.Value ? string.Empty : Convert.ToString(reader["Currency"]),
+                            RegisteredDate = reader["RegisteredDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["RegisteredDate"])
                         });
                     }
                 }
 
                 result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
+                result.TotalItem = GetTotalRows(objectDb);
             }
 
             return result;

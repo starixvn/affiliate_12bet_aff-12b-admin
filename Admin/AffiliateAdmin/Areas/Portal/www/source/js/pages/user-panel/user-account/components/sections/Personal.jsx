@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { renderInputForm, capitalizeFirstChar, renderClaimBaseInputForm, renderStaticForm } from '../../libs/service';
+import { renderInputForm, capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
 import { updateObjectInArray } from '../../../../../modules/dataHandler';
-import { claimResource } from '../../../../../modules/claim';
 
 export class Personal extends PureComponent {
     constructor(props) {
@@ -14,7 +13,7 @@ export class Personal extends PureComponent {
 
         const { userAccountInfo } = this.props;
 
-        this.arrayContactApps = userAccountInfo.ContactAppList;
+        this.arrayContactApps = userAccountInfo && userAccountInfo.ContactAppList;
     }
 
     handleChange = (event) => {
@@ -41,19 +40,19 @@ export class Personal extends PureComponent {
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
 
-    _renderGenderForm(isMale, isDisabled) {
+    _renderGenderForm(isMale) {
         return (
             <FormGroup row>
                 <Label for={name} sm={3} xl={2} className="required">Gender</Label>
                 <Col sm={9} xl={10}>
                     <FormGroup check className="d-inline-block mr-3">
                         <Label check>
-                            <Input type="radio" checked={isMale != null && isMale} disabled={isDisabled} onChange={() => this.handleChangeGender(true)} />{' '} Male
+                            <Input type="radio" checked={isMale != null && isMale} onChange={() => this.handleChangeGender(true)} />{' '} Male
                         </Label>
                     </FormGroup>
                     <FormGroup check className="d-inline-block">
                         <Label check>
-                            <Input type="radio" checked={isMale != null && !isMale} disabled={isDisabled} onChange={() => this.handleChangeGender(false)} />{' '} Female
+                            <Input type="radio" checked={isMale != null && !isMale} onChange={() => this.handleChangeGender(false)} />{' '} Female
                         </Label>
                     </FormGroup>
                 </Col>
@@ -62,21 +61,20 @@ export class Personal extends PureComponent {
     }
 
     render() {
-        const { userAccountInfo, userClaims } = this.props;
-        const { hasWriteEditAffClaim } = userClaims;
+        const { userAccountInfo } = this.props;
 
-        return (
+        return userAccountInfo && (
             <Form tag="div">
-                {renderStaticForm('username', 'User Name', userAccountInfo.AffName, true)}
-                {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, !hasWriteEditAffClaim, true, this.handleChange)}
-                {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, !hasWriteEditAffClaim, true, this.handleChange)}
-                {this._renderGenderForm(userAccountInfo.Gender, !hasWriteEditAffClaim)}
-                {renderClaimBaseInputForm(userClaims, claimResource.AffEmail, 'email', 'Email Address', userAccountInfo.Email, true, this.handleChange)}
-                {renderClaimBaseInputForm(userClaims, claimResource.AffPhone, 'phone', 'Contact Number', userAccountInfo.Phone, true, this.handleChange)}
+                {renderInputForm('username', 'User Name', userAccountInfo.AffName, true)}
+                {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, true, this.handleChange)}
+                {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, true, this.handleChange)}
+                {this._renderGenderForm(userAccountInfo.Gender)}
+                {renderInputForm('email', 'Email Address', userAccountInfo.Email, false, true, this.handleChange)}
+                {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, false, true, this.handleChange)}
                 {
                     this.arrayContactApps && this.arrayContactApps.map(contactApp => {
                         return (
-                            renderInputForm(contactApp.Name, contactApp.Name, contactApp.Value, !hasWriteEditAffClaim, this.arrayContactApps.length === 1, this.handleChangeContactApps)
+                            renderInputForm(contactApp.Name, contactApp.Name, contactApp.Value, false, false, this.handleChangeContactApps)
                         )
                     })
                 }
@@ -85,11 +83,9 @@ export class Personal extends PureComponent {
     }
 }
 
-function mapStateToProps({ edit, claimsPrincipal }) {
-    const { userAccountInfo, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim } = edit;
-    const userClaims = { claimsPrincipal, hasWriteEditAffClaim, hasReadManagePendingAffClaim, hasWriteManagePendingAffClaim }
-
-    return Object.assign({}, { userAccountInfo, userClaims });
+function mapStateToProps({ edit }) {
+    const { userAccountInfo } = edit;
+    return Object.assign({}, { userAccountInfo });
 }
 
 function mapDispatchToProp(dispatch) {

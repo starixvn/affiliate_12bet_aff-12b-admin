@@ -16,7 +16,7 @@ describe('user account - components - sections - Additional', () => {
         State: "700000",
         Postcode: "700000",
         Country: "Viet Nam",
-        SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+        SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
         MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
         NoSiteDescription: "",
         PreferredPayment: "Player",
@@ -31,13 +31,10 @@ describe('user account - components - sections - Additional', () => {
         Question: "What?",
         Answer: "What?",
         MailOption: false,
-        SecurityQuestions: [{ "Key": 11, "Value": "Name of the worst kid who bullied you?" }, { "Key": 12, "Value": "Name of your childhood bestfriend?" }],
-        ContactAppList: [{Name: "MSN/YM/QQ", Value: "@123 Lê Văn", Order: 0}]
+        ContactAppList: [{ Name: "MSN/YM/QQ", Value: "@123 Lê Văn", Order: 0 }]
     };
     const defaultProps = {
         userAccountInfo,
-        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
-        hasWriteEditAffClaim: true,
         setUserAccountInfo: jest.fn()
     }
 
@@ -47,19 +44,11 @@ describe('user account - components - sections - Additional', () => {
         expect(result).toMatchSnapshot();
     });
 
-    it('render correctly when not read claim', () => {
-        const newUserAccountInfo = Object.assign({}, userAccountInfo, { SecurityQuestions: null });
-        const props = Object.assign({}, defaultProps, { userAccountInfo: newUserAccountInfo, hasWriteEditAffClaim: false, claimsPrincipal: { hasReadClaim: jest.fn(() => false), hasWriteClaim: jest.fn(() => false) } });
-        const result = shallow(<Additional {...props} />);
-
-        expect(result).toMatchSnapshot();
-    });
-
     it('handleChange - should call setUserAccountInfo', () => {
         const result = shallow(<Additional {...defaultProps} />);
 
-        result.instance().handleChange({ target: { name: 'address', value: '123' }});
+        result.instance().handleChange({ target: { name: 'address', value: '123' } });
 
-        expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, Address: '123'});
+        expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, Address: '123' });
     });
 });

@@ -19,9 +19,13 @@ describe('referrers - Content - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            param: { abc: 123 }
+            param: { abc: 123 },
+            affId: 1271808
         };
         const state = {
+            affCommonInfo: {
+                affId: 1271808
+            },
             clickStatistics: {
                 param: { abc: 123 }
             },
@@ -38,7 +42,7 @@ describe('referrers - Content - connect', () => {
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
             toggleLoaderUserPanel: actions['toggleLoaderUserPanel'],
-            setSelectedSiteDetailFilter: actions['setSelectedSiteDetailFilter'],
+            setSelectedSiteUrl: actions['setSelectedSiteUrl'],
             fetchData: actions['fetchData']
         }
 

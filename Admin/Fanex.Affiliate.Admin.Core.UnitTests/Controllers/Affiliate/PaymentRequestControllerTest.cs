@@ -1,18 +1,21 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Controllers.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Payment;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -21,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {
     public class PaymentRequestControllerTest
     {
-        private ILifetimeScopeProvider _scopeProvider;
+        private ILifetimeScopeProvider scopeProvider;
 
         [Fact]
         public void Index_WhenCall_ReturnView()
@@ -29,6 +32,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var controller = CreatePaymentRequestController();
 
+            var urlHelperMock = new Mock<UrlHelper>();
+            urlHelperMock.Setup(m => m.Content(It.IsAny<string>())).Returns("/Portal/PaymentRequest");
+
+            controller.Url = urlHelperMock.Object;
             // Action
             var viewResult = controller.Index(new PaymentRequestParamFromHome { SearchBy = 1, FromDate = "21/04/2020", Status = "Approved", IsFromHome = true }) as ViewResult;
             var viewName = viewResult.ViewName;
@@ -43,9 +50,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = new PaymentRequestParam();
             PaymentRequestParam passedParam = null;
-            var PaymentRequestService = new Mock<IPaymentRequestService>();
-            PaymentRequestService.Setup(t => t.GetPaymentRequestList(param)).Returns(new EntityResult<PaymentRequest> { MainData = new List<PaymentRequest> { new PaymentRequest() }, TotalItem = 1 }).Callback<PaymentRequestParam>(p => passedParam = p);
-            var controller = CreatePaymentRequestController(PaymentRequestService: PaymentRequestService.Object);
+            var paymentRequestService = new Mock<IPaymentService>();
+            paymentRequestService.Setup(t => t.GetPaymentRequestList(param)).Returns(new EntityResult<PaymentRequest> { MainData = new List<PaymentRequest> { new PaymentRequest() }, TotalItem = 1 }).Callback<PaymentRequestParam>(p => passedParam = p);
+            var controller = CreatePaymentRequestController(paymentRequestService: paymentRequestService.Object);
 
             // Action
             var result = controller.GetPaymentRequestList(param) as JsonNetResult;
@@ -77,9 +84,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = 123L;
             var passedParam = 0L;
-            var PaymentRequestService = new Mock<IPaymentRequestService>();
-            PaymentRequestService.Setup(t => t.GetPaymentRequestDetail(param)).Returns(new PaymentRequestDetail { TransId = 123 }).Callback<long>(p => passedParam = p);
-            var controller = CreatePaymentRequestController(PaymentRequestService: PaymentRequestService.Object);
+            var paymentRequestService = new Mock<IPaymentService>();
+            paymentRequestService.Setup(t => t.GetPaymentRequestDetail(param)).Returns(new PaymentRequestDetail { TransId = 123 }).Callback<long>(p => passedParam = p);
+            var controller = CreatePaymentRequestController(paymentRequestService: paymentRequestService.Object);
 
             // Action
             var result = controller.GetPaymentRequestDetail(param) as JsonNetResult;
@@ -104,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         }
 
         [Fact]
-        public void UpdatePaymentRequest_WhenCallWithValidParam_InsertSuccessful()
+        public async Task UpdatePaymentRequest_WhenCallWithValidParam_UpdateSuccessful()
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
@@ -115,18 +122,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            _scopeProvider = new SimpleLifetimeScopeProvider(container);
-            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
             DependencyResolver.SetResolver(resolver);
 
-            var param = new PaymentUpdateParam { TransId = 123 };
-            PaymentUpdateParam passedParam = null;
-            var PaymentRequestService = new Mock<IPaymentRequestService>();
-            PaymentRequestService.Setup(s => s.UpdatePaymentRequest(It.IsAny<PaymentUpdateParam>(), It.IsAny<PaymentRequestUpdateEmail>())).Returns(new ResultInfo()).Callback<PaymentUpdateParam, PaymentRequestUpdateEmail>((a, b) => passedParam = a); ;
-            var controller = CreatePaymentRequestController(PaymentRequestService: PaymentRequestService.Object);
+            var param = new PaymentRequestUpdateParam { TransId = 123 };
+            PaymentRequestUpdateParam passedParam = null;
+            var paymentRequestService = new Mock<IPaymentService>();
+            paymentRequestService.Setup(s => s.HandlePaymentRequest(It.IsAny<PaymentRequestUpdateParam>(), It.IsAny<PaymentRequestUpdateEmail>()))
+                .Returns(Task.FromResult(new ResultInfo()))
+                .Callback<PaymentRequestUpdateParam, PaymentRequestUpdateEmail>((a, b) => passedParam = a);
+
+            var authRepository = new Mock<IAuthRepository>();
+            authRepository.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo());
+            var controller = CreatePaymentRequestController(null, paymentRequestService.Object, authRepository.Object);
 
             // Action
-            var result = controller.UpdatePaymentRequest(param) as JsonNetResult;
+            var result = await controller.UpdatePaymentRequest(param) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -135,14 +147,32 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         }
 
         [Fact]
-        public void UpdatePaymentRequest_WhenCallWithInvalidParam_ReturnError()
+        public async Task UpdatePaymentRequest_WhenCallWithNotHavePermission_ReturnError()
+        {
+            // Arrange
+            var param = new PaymentRequestUpdateParam { TransId = 123 };
+
+            var authRepository = new Mock<IAuthRepository>();
+            authRepository.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo { Code = ErrCode.GeneralErrorCode });
+            var controller = CreatePaymentRequestController(null, null, authRepository.Object);
+
+            // Action
+            var result = await controller.UpdatePaymentRequest(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
+        public async Task UpdatePaymentRequest_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
             var controller = CreatePaymentRequestController();
             controller.ModelState.AddModelError("Error01", "Failed!");
 
             // Action
-            var result = controller.UpdatePaymentRequest(new PaymentUpdateParam()) as JsonNetResult;
+            var result = await controller.UpdatePaymentRequest(new PaymentRequestUpdateParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -152,15 +182,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private PaymentRequestController CreatePaymentRequestController(
             ISessionService sessionService = null,
-            IPaymentRequestService PaymentRequestService = null,
-            IAdjustmentService AdjustmentService = null
+            IPaymentService paymentRequestService = null,
+            IAuthRepository authRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakePaymentRequestService = PaymentRequestService ?? Mock.Of<IPaymentRequestService>();
-            var fakeAdjustmentService = AdjustmentService ?? Mock.Of<IAdjustmentService>();
+            var fakePaymentRequestService = paymentRequestService ?? Mock.Of<IPaymentService>();
+            var fakeAuthRepository = authRepository ?? Mock.Of<IAuthRepository>();
 
-            var controller = new PaymentRequestController(fakeSessionService, fakePaymentRequestService, fakeAdjustmentService);
+            var controller = new PaymentRequestController(fakeSessionService, fakePaymentRequestService, fakeAuthRepository);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

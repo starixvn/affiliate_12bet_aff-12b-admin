@@ -8,6 +8,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Member
     {
         EntityResult<MemberInfo> GetMemberList(MemberParam param);
 
-        ResultInfo UpdateMemberStatus(UpdateMemberStatusParam param);
+        PlayerActionInfo GetMemberDetail(int memberId);
+
+        ResultInfo UpdateMember(UpdateMemberParam param);
     }
 }

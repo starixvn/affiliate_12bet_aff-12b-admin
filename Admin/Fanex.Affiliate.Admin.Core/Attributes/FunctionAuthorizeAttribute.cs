@@ -1,15 +1,15 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using System;
+using System.Linq;
 using System.Net;
-using System.Security.Claims;
-using System.Security.Principal;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-    public class FunctionAuthorizeAttribute : ActionFilterAttribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
+    public sealed class FunctionAuthorizeAttribute : ActionFilterAttribute
     {
         public string FunctionName { get; set; }
 
@@ -18,11 +18,11 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var context = filterContext.HttpContext;
-            var skipCheckAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowByPassFunctionAuthorizeAttribute), true);
+            var isSkipCheckAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowByPassFunctionAuthorizeAttribute), true);
 
-            if (!(skipCheckAuthorization || string.IsNullOrEmpty(FunctionName)))
+            if (!string.IsNullOrEmpty(FunctionName) && !isSkipCheckAuthorization)
             {
-                var hasPerimission = HasPerimission(filterContext.HttpContext.User);
+                var hasPerimission = HasPerimission();
 
                 if (!hasPerimission)
                 {
@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                         filterContext.HttpContext.Response.ContentType = "application/json";
                         filterContext.Result = new JsonResult
                         {
-                            Data = new { ErrCode = Code.ErrCodeAccessDenied, ErrMsg = "Access Denied." },
+                            Data = new { ErrCode = ErrCode.ErrCodeAccessDenied, ErrMsg = "Access Denied." },
                             JsonRequestBehavior = JsonRequestBehavior.AllowGet
                         };
                     }
@@ -46,19 +46,12 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             base.OnActionExecuting(filterContext);
         }
 
-        protected virtual bool HasPerimission(IPrincipal principal)
+        private bool HasPerimission()
         {
-            if (principal is ClaimsPrincipal claims)
-            {
-                return HasFuncClaim(claims, FunctionName);
-            }
+            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+            var permissionList = sessionService.UserPermissionList;
 
-            return false;
-        }
-
-        protected bool HasFuncClaim(ClaimsPrincipal claimsPrincipal, string funcName)
-        {
-            return IsHost ? claimsPrincipal.HasWriteClaim(funcName) : claimsPrincipal.HasClaim(funcName);
+            return permissionList.Any(i => i.FunctionName.MatchWith(this.FunctionName) && (i.IsHost || i.IsHost == IsHost));
         }
     }
 }

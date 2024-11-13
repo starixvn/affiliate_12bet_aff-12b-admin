@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Customer;
+using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
@@ -30,6 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
 
             // Assert
             Assert.Equal(1271808, result.AffId);
+            Assert.True(result.HasWebSite);
         }
 
         [Fact]
@@ -90,23 +92,41 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         }
 
         [Fact]
-        public void GetSecurityQuestions_WhenCall_ReturnCorrectData()
+        public void GetPaymentMethod_WhenCallWithInvalidAmount_ExcuteSucceed()
         {
             // Arrange
             var repository = new Mock<UserAccountRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
-            ReaderHelper.MapReaderData(dataReader, GetSecurityQuestionsList());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            repository.Setup(r => r.GetObjectDb("Aff_User_SecurityQuestions_Sel", 120)).Returns(objectDb.Object);
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("MinAmount")).Returns(DBNull.Value);
+            repository.Setup(re => re.GetObjectDb("Aff_PaymentMethod_Sel", 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetSecurityQuestions("en-US");
+            var (paymentMethods, minAmount) = repository.Object.GetPaymentMethod();
 
             // Assert
-            Assert.Single(result);
+            objectDb.Verify(obj => obj.Query<PaymentMethodInfo>(null, null), Times.Once);
+            Assert.Equal(0, minAmount);
+        }
+
+        [Fact]
+        public void GetPaymentMethod_WhenCall_ExcuteSucceed()
+        {
+            // Arrange
+            var repository = new Mock<UserAccountRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+
+            objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
+            objectDb.Setup(obj => obj.GetParameterValue("MinAmount")).Returns(100m);
+            repository.Setup(re => re.GetObjectDb("Aff_PaymentMethod_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var (paymentMethods, minAmount) = repository.Object.GetPaymentMethod();
+
+            // Assert
+            objectDb.Verify(obj => obj.Query<PaymentMethodInfo>(null, null), Times.Once);
+            Assert.Equal(100m, minAmount);
         }
 
         private IDictionary<string, object> GetUserAccountInfo()
@@ -127,11 +147,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
                 ["Postal"] = "700000",
                 ["Country"] = "Viet Nam",
                 ["MoreSiteUrls"] = "www.sportsbookie.com",
-                ["SiteUrl"] = "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+                ["SiteUrl"] = "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
                 ["PreferredPayment"] = "Player",
                 ["PlayerUsername"] = "bettingexp",
                 ["NoSiteDesc"] = "test",
-                ["NetellerAccountID"] = 1,
+                ["NetellerAccountID"] = true,
                 ["MoneybookersEmail"] = "abc@gmail.com",
                 ["BankName"] = "Test",
                 ["BankAddress"] = "test",
@@ -140,16 +160,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
                 ["BankAccountNo"] = "test",
                 ["Question"] = "test",
                 ["Answer"] = "test",
-                ["MailOption"] = 0
-            };
-        }
-
-        private IDictionary<string, object> GetSecurityQuestionsList()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["QuestionID"] = 123,
-                ["Question"] = "abc"
+                ["MailOption"] = false
             };
         }
     }

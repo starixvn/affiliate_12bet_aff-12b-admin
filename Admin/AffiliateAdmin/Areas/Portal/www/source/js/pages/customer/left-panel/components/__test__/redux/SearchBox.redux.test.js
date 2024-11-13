@@ -1,6 +1,5 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
@@ -19,10 +18,10 @@ describe('left panel - SearchBox - connect', () => {
     });
 
     it('props should be mapped correctly', () => {
-        const expectedResult = { affName : '12BETAFF226', isValidUserName: true };
+        const expectedResult = { affName: '12BETAFF226', isValidUserName: true };
 
         const state = {
-            leftPanel: { affName : '12BETAFF226', isValidUserName: true },
+            leftPanel: { affName: '12BETAFF226', isValidUserName: true },
             anotherProp: "Not included"
         };
 

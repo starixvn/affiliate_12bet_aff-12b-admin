@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 using System.Web;
@@ -15,13 +14,13 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ISystemService _systemServive;
+        private readonly ILanguageService _languageService;
 
-        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ISystemService systemServive)
+        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ILanguageService languageService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;
-            _systemServive = systemServive;
+            _languageService = languageService;
         }
 
         public void SendApprovedEmail(AffInformationEmail emailParam)
@@ -29,11 +28,11 @@ namespace Fanex.Affiliate.Admin.Core.Services
             emailParam.MailContact = _appSetting.MailContact;
             emailParam.ContactInfo = GetContactInfoContent(emailParam);
 
-            _systemServive.SetCulture(emailParam.Language);
+            _languageService.SetCulture(emailParam.Language);
             SendApprovedAffEmail(emailParam);
             SendAffInforEmail(emailParam);
             SendWithdrawalGuidanceEmail(emailParam);
-            _systemServive.SetCulture(LanguageSystem.DefaultLanguageCode);
+            _languageService.SetCulture(_appSetting.DefaultLanguageCode);
         }
 
         private void SendApprovedAffEmail(AffInformationEmail emailParam)
@@ -85,41 +84,35 @@ namespace Fanex.Affiliate.Admin.Core.Services
             _mailProcessor.Send(contentToSend, emailParam.MailTo, subject);
         }
 
-        public void SendApprovedPaymentRequestEmail(PaymentRequestUpdateEmail emailParam)
+        public void SendPaymentRequestUpdateEmail(PaymentRequestUpdateEmail emailParam)
         {
-            _systemServive.SetCulture(emailParam.Language);
-            AssignEmailBaseInfo(emailParam);
+            var language = emailParam.Language;
+            _languageService.SetCulture(language);
 
-            var content = GetEmailTextContent(TemplateString.PaymentRequestApproved, emailParam.Language, emailParam);
+            emailParam.MailContact = _appSetting.MailContact;
+            emailParam.DefaultCurrency = _appSetting.DefaultCurrency;
+
+            var TemplateName = emailParam.IsApproved ? TemplateString.PaymentRequestApproved : TemplateString.PaymentRequestRejected;
+
+            var content = GetEmailTextContent(TemplateName, language, emailParam);
+            var subject = emailParam.IsApproved ?
+                string.Format(Lang.EmailSubjectPaymentRequestApproved, emailParam.TransId) :
+                string.Format(Lang.EmailSubjectPaymentRequestRejected, emailParam.TransId);
+            var title = emailParam.IsApproved ? Lang.EmailTitlePaymentRequestApproved : Lang.EmailTitlePaymentRequestRejected;
+
             var contentToSend = emailParam.IsHtml ?
-                GetEmailHtmlContent(content, Lang.EmailTitlePaymentRequestApproved, emailParam.Language, emailParam.RootUrl) :
+                GetEmailHtmlContent(content, title, language, emailParam.RootUrl) :
                 content;
-            var subject = string.Format(Lang.EmailSubjectPaymentRequestApproved, emailParam.TransId);
 
             _mailProcessor.Send(contentToSend, emailParam.MailTo, subject);
-            _systemServive.SetCulture(LanguageSystem.DefaultLanguageCode);
-        }
-
-        public void SendRejectedPaymentRequestEmail(PaymentRequestUpdateEmail emailParam)
-        {
-            _systemServive.SetCulture(emailParam.Language);
-            AssignEmailBaseInfo(emailParam);
-
-            var content = GetEmailTextContent(TemplateString.PaymentRequestRejected, emailParam.Language, emailParam);
-            var contentToSend = emailParam.IsHtml ?
-                GetEmailHtmlContent(content, Lang.EmailTitlePaymentRequestRejected, emailParam.Language, emailParam.RootUrl) :
-                content;
-            var subject = string.Format(Lang.EmailSubjectPaymentRequestRejected, emailParam.TransId);
-
-            _mailProcessor.Send(contentToSend, emailParam.MailTo, subject);
-            _systemServive.SetCulture(LanguageSystem.DefaultLanguageCode);
+            _languageService.SetCulture(_appSetting.DefaultLanguageCode);
         }
 
         public void SendDisapprovedEmail(AffInformationEmail emailParam)
         {
-            _systemServive.SetCulture(emailParam.Language);
+            _languageService.SetCulture(emailParam.Language);
             SendDisapprovedAffiliateEmail(emailParam);
-            _systemServive.SetCulture(LanguageSystem.DefaultLanguageCode);
+            _languageService.SetCulture(_appSetting.DefaultLanguageCode);
         }
 
         private void SendDisapprovedAffiliateEmail(AffInformationEmail emailParam)
@@ -139,7 +132,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         private string GetEmailTextContent(string templateName, string prefrerredLanguage, object model)
         {
             var viewPath = string.Format(TemplateString.EmailTemplatePath, templateName, prefrerredLanguage);
-            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, templateName, LanguageSystem.DefaultLanguageCode);
+            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, templateName, _appSetting.DefaultLanguageCode);
             var physicalPath = HttpContext.Current.Server.MapPath(viewPath);
             var physicalPathBackup = HttpContext.Current.Server.MapPath(viewPathBackup);
 

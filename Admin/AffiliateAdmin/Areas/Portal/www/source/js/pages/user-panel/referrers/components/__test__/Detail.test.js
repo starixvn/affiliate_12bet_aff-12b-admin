@@ -4,12 +4,11 @@ import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('referrers - components - Detail', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-    const selectedSiteDetailFilter = { page: 'www.12-bet.com', selectedCountry: "en" };
+    const affId = 1271808;
+    const selectedSiteUrl = 'www.12-bet.com';
     const defaultProps = {
-        selectedSiteDetailFilter,
+        affId,
+        selectedSiteUrl,
         pagingOption: defaultPagingOption,
         param: {
             deviceType: 0,
@@ -48,7 +47,7 @@ describe('referrers - components - Detail', () => {
 
     it('render correctly with have data', () => {
         const result = shallow(<Detail {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: data.MainData });
 
         expect(result).toMatchSnapshot();
@@ -56,18 +55,18 @@ describe('referrers - components - Detail', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Detail {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: {} });
 
         expect(result).toMatchSnapshot();
     });
 
-    it('componentDidUpdate - should call fetchData if selectedSiteDetailFilter change', () => {
+    it('componentDidUpdate - should call fetchData if selectedSiteUrl change', () => {
         const componentInstance = new Detail(defaultProps);
         componentInstance.fetchData = jest.fn();
-        componentInstance.componentDidUpdate({ selectedSiteDetailFilter: {} });
+        componentInstance.componentDidUpdate({ selectedSiteUrl: "" });
 
-        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...defaultProps.param, ...selectedSiteDetailFilter, pageIndex: 1, pageSize: 20 });
+        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...defaultProps.param, selectedSiteUrl, pageIndex: 1, pageSize: 20 });
     });
 
     it('fetchDetailData - should call toggleLoaderUserPanel, setState and setPagingOption with correct parameter', async () => {
@@ -78,14 +77,14 @@ describe('referrers - components - Detail', () => {
         const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, setPagingOption, fetchDetailData });
         const componentInstance = new Detail(props);
         componentInstance.setState = jest.fn();
-        const param = Object.assign({}, defaultProps.param, { ...selectedSiteDetailFilter, pageIndex: 1, pageSize: 20 });
+        const param = Object.assign({}, defaultProps.param, { selectedSiteUrl, pageIndex: 1, pageSize: 20 });
         await componentInstance.fetchData(param);
 
         expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(2);
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchDetailData).toHaveBeenCalledWith({ ...param });
+        expect(props.fetchDetailData).toHaveBeenCalledWith({ ...param, affId });
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: data.MainData, shouldResetScrollPosition: true });
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 2, PageIndex: 1, PageSize: 20 });
     });
@@ -98,14 +97,14 @@ describe('referrers - components - Detail', () => {
         const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, setPagingOption, fetchDetailData });
         const componentInstance = new Detail(props);
         componentInstance.setState = jest.fn();
-        const param = Object.assign({}, defaultProps.param, { ...selectedSiteDetailFilter, pageIndex: 1, pageSize: 20 });
+        const param = Object.assign({}, defaultProps.param, { selectedSiteUrl: '', pageIndex: 1, pageSize: 20 });
         await componentInstance.fetchData(param);
 
         expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(2);
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchDetailData).toHaveBeenCalledWith({ ...param });
+        expect(props.fetchDetailData).toHaveBeenCalledWith({ ...param, affId });
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: null, shouldResetScrollPosition: true });
         expect(props.setPagingOption).toHaveBeenCalledWith({ TotalItem: 0, PageIndex: 1, PageSize: 20 });
     });
@@ -115,7 +114,7 @@ describe('referrers - components - Detail', () => {
         const pageIndex = 2;
         const pageSize = 50;
 
-        const paramExpect = Object.assign({}, defaultProps.param, { ...selectedSiteDetailFilter, pageIndex, pageSize });
+        const paramExpect = Object.assign({}, defaultProps.param, { selectedSiteUrl, pageIndex, pageSize });
 
         const props = Object.assign({}, defaultProps, { setPagingOption });
         const componentInstance = new Detail(props);

@@ -13,6 +13,24 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
 {
     public class ReportRepositoryTest
     {
+        private const string _sp_GetMainReportData = "Aff_Admin_AffiliateReport_Sel";
+        private const string _sp_GetDetailReportData = "Aff_Admin_AffiliateReport_Detail_Sel";
+
+        [Fact]
+        public void GetReportCutOffDate_WhenCall_CallCorrectMethodOfObjectDb()
+        {
+            // Arrange
+            var objectDb = new Mock<IObjectDb>();
+            var repository = new Mock<AffiliateReportRepository> { CallBase = true };
+            repository.Setup(re => re.GetObjectDb("Task_Aff_GetSetting", It.IsAny<int>())).Returns(objectDb.Object);
+
+            // Action
+            repository.Object.GetReportCutOffDate();
+
+            // Assert
+            objectDb.Verify(obj => obj.QueryEntity<DateTime>(null, null), Times.Once);
+        }
+
         [Fact]
         public void GetMainReportData_WhenCall_ReturnCorrectData()
         {
@@ -26,15 +44,46 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
             ReaderHelper.MapReaderData(dataReader, GetReportData());
             objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
-            repository.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateReport_Sel", 120)).Returns(objectDb.Object);
+            repository.Setup(r => r.GetObjectDb(_sp_GetMainReportData, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetMainReportData(new AffiliateReportMainParam());
+            var result = repository.Object.GetMainReportData(new AffiliateReportParam());
             var item = result.MainData.FirstOrDefault();
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Null(item.MonthDateString);
+            Assert.Equal("", item.MonthDateString);
+            Assert.Equal(123, item.TotalEarning);
+        }
+
+        [Fact]
+        public void GetMainReportData_WhenCall_ReturnCorrectDataHasFullColumn()
+        {
+            // Arrange
+            var repository = new Mock<AffiliateReportRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false).Returns(true);
+            dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
+            dataReader.Setup(d => d.FieldCount).Returns(4);
+            dataReader.Setup(d => d.GetName(0)).Returns("AffId");
+            dataReader.Setup(d => d.GetName(1)).Returns("Username");
+            dataReader.Setup(d => d.GetName(2)).Returns("MonthDate");
+            dataReader.Setup(d => d.GetName(3)).Returns("Description");
+
+            ReaderHelper.MapReaderData(dataReader, GetReportDataFullColumn());
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
+            repository.Setup(r => r.GetObjectDb(_sp_GetMainReportData, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetMainReportData(new AffiliateReportParam());
+            var item = result.MainData.FirstOrDefault();
+
+            // Assert
+            Assert.Single(result.MainData);
+            Assert.Empty(item.MonthDateString);
+            Assert.Equal(123, item.TotalEarning);
         }
 
         [Fact]
@@ -48,10 +97,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
 
             objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
-            repository.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateReport_Sel", 120)).Returns(objectDb.Object);
+            repository.Setup(r => r.GetObjectDb(_sp_GetMainReportData, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetMainReportData(new AffiliateReportMainParam());
+            var result = repository.Object.GetMainReportData(new AffiliateReportParam());
 
             // Assert
             Assert.Empty(result.MainData);
@@ -67,13 +116,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false).Returns(true);
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
 
-            ReaderHelper.MapReaderData(dataReader, GetReportData());
+            ReaderHelper.MapReaderData(dataReader, GetReportDataFullColumn());
             objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
-            repository.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateReport_Detail_Sel", 120)).Returns(objectDb.Object);
+            repository.Setup(r => r.GetObjectDb(_sp_GetDetailReportData, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetDetailReportData(new AffiliateReportMainParam());
+            var result = repository.Object.GetDetailReportData(new AffiliateReportParam());
             var item = result.MainData.FirstOrDefault();
 
             // Assert
@@ -92,36 +141,43 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
 
             objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
             objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
-            repository.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateReport_Detail_Sel", 120)).Returns(objectDb.Object);
+            repository.Setup(r => r.GetObjectDb(_sp_GetDetailReportData, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetDetailReportData(new AffiliateReportMainParam());
+            var result = repository.Object.GetDetailReportData(new AffiliateReportParam());
 
             // Assert
             Assert.Empty(result.MainData);
         }
 
-        [Fact]
-        public void SearchAffiliateList_WhenCall_ReturnCorrectData()
+        private IDictionary<string, object> GetReportData()
         {
-            // Arrange
-            var repository = new Mock<AffiliateReportRepository> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetSearchAffiliateList());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            repository.Setup(r => r.GetObjectDb("Aff_AffiliateUsername_SearchEx", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = repository.Object.SearchAffiliateList("12BETAFF226");
-
-            // Assert
-            Assert.Single(result);
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["TotalClick"] = 123,
+                ["UniqueClick"] = 123,
+                ["Signup"] = 123,
+                ["FDM"] = 123,
+                ["ActivePlayer"] = 123,
+                ["Deposit"] = 123,
+                ["Withdrawal"] = 123,
+                ["Turnover"] = 123,
+                ["Ggr"] = 123,
+                ["Bonus"] = 123,
+                ["PlatformFee"] = 123,
+                ["BankingFee"] = 123,
+                ["TotalFee"] = 123,
+                ["CommissionRate"] = 123,
+                ["Earning"] = 123,
+                ["AffWithdrawal"] = 123,
+                ["AffAdjustment"] = 123,
+                ["BFF"] = 123,
+                ["NoOfSubAff"] = 0,
+                ["SubAffEarning"] = 0
+            };
         }
 
-        private IDictionary<string, object> GetReportData()
+        private IDictionary<string, object> GetReportDataFullColumn()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
@@ -133,33 +189,22 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Report
                 ["UniqueClick"] = 123,
                 ["Signup"] = 123,
                 ["FDM"] = 123,
-                ["ActiveMember"] = 123,
-                ["QualifiedMember"] = 123,
+                ["ActivePlayer"] = 123,
                 ["Deposit"] = 123,
                 ["Withdrawal"] = 123,
                 ["Turnover"] = 123,
-                ["Winlost"] = 123,
+                ["Ggr"] = 123,
                 ["Bonus"] = 123,
                 ["PlatformFee"] = 123,
-                ["OperationalFee"] = 123,
                 ["BankingFee"] = 123,
                 ["TotalFee"] = 123,
                 ["CommissionRate"] = 123,
                 ["Earning"] = 123,
-                ["FdmEarning"] = 123,
                 ["AffWithdrawal"] = 123,
                 ["AffAdjustment"] = 123,
                 ["BFF"] = 123,
-                ["PreviousBFF"] = 123,
-                ["Language"] = "en-US"
-            };
-        }
-
-        private IDictionary<string, object> GetSearchAffiliateList()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["UserName"] = "12BETAFF226"
+                ["NoOfSubAff"] = 0,
+                ["SubAffEarning"] = 0
             };
         }
     }

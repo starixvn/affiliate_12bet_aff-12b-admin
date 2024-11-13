@@ -44,8 +44,7 @@ namespace Fanex.Affiliate.User.Site
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            var application = sender as HttpApplication;
-            if (application != null && application.Context != null)
+            if (sender is HttpApplication application && application.Context != null)
             {
                 application.Context.Response.Headers.Remove("Server");
             }

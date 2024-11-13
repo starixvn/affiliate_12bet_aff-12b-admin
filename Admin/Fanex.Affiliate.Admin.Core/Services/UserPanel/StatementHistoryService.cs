@@ -1,11 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
-using Fanex.Affiliate.Admin.Core.Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +13,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
     public class StatementHistoryService : IStatementHistoryService
     {
         private readonly IStatementHistoryRepository _statementHistoryRepository;
-        private readonly ISessionService _sessionService;
 
-        public StatementHistoryService(IStatementHistoryRepository statementHistoryRepository, ISessionService sessionService)
+        public StatementHistoryService(IStatementHistoryRepository statementHistoryRepository)
         {
             _statementHistoryRepository = statementHistoryRepository;
-            _sessionService = sessionService;
+        }
+
+        public EntityResult<SubAffiliate> GetSubAffiliate(SubAffiliateParam param)
+        {
+            return _statementHistoryRepository.GetSubAffiliate(param);
         }
 
         public DailyEarningResult GetDailyEarning(DailyEarningParam param)
@@ -36,12 +37,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
             foreach (var item in rawData)
             {
-                total.WinLost += item.WinLost;
                 total.Turnover += item.Turnover;
+                total.Ggr += item.Ggr;
                 total.Deposit += item.Deposit;
                 total.Withdrawal += item.Withdrawal;
                 total.Bonus += item.Bonus;
-                total.BankingFee += item.BankingFee;
+                total.Rebate += item.Rebate;
             }
 
             return new DailyEarningDetailResult
@@ -53,54 +54,35 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public EntityResult<StatementHistory> GetStatementHistoryList(AffiliatePagingByDateParam param)
         {
-            var customStatementList = new List<StatementHistory>();
-            var data = _statementHistoryRepository.GetStatementHistoryList(param);
-            var mainData = FilterDataHaveClaimToQuery(data.MainData);
-
-            foreach (var item in mainData)
+            var vms = new List<StatementHistory>();
+            var result = _statementHistoryRepository.GetStatementHistoryList(param);
+            foreach (var item in result.MainData)
             {
-                if (item.TransType == TransType.MonthlyEarning || item.TransType == TransType.NewFdmCommissionBonus)
+                if (item.TransType == TransType.MonthlyEarning || item.TransType == TransType.SubAffiliate)
                 {
-                    if (CheckIfExistMonthlyTotal(item.Date, customStatementList))
+                    if (CheckIfExistMonthlyTotal(item.Date, vms))
                     {
                         continue;
                     }
-                    customStatementList.Add(CreateMonthlyTotal(item.Date, mainData));
+                    vms.Add(CreateMonthlyTotal(item.Date, result.MainData));
                 }
                 else
                 {
-                    customStatementList.Add(item);
+                    vms.Add(item);
                 }
             }
 
             return new EntityResult<StatementHistory>
             {
-                MainData = customStatementList,
-                TotalItem = mainData.Count()
+                MainData = vms,
+                TotalItem = result.TotalItem
             };
-        }
-
-        private IEnumerable<StatementHistory> FilterDataHaveClaimToQuery(IEnumerable<StatementHistory> mainData)
-        {
-            var claimPrincipal = _sessionService.UserClaim;
-            var result = mainData;
-            if (!claimPrincipal.HasClaim(Function.AffAdjustment))
-            {
-                result = result.Where(r => r.TransType != TransType.Adjustment);
-            }
-
-            if (!claimPrincipal.HasClaim(Function.PaymentRequest))
-            {
-                result = result.Where(r => r.TransType != TransType.PaymentRequest);
-            }
-
-            return result;
         }
 
         private static StatementHistory CreateMonthlyTotal(DateTime monthDate, IEnumerable<StatementHistory> statementHistoryList)
         {
             var children = statementHistoryList.Where(s => s.Date == monthDate)
-                .Where(s => s.TransType == TransType.MonthlyEarning || s.TransType == TransType.NewFdmCommissionBonus);
+                .Where(s => s.TransType == TransType.SubAffiliate || s.TransType == TransType.MonthlyEarning);
 
             var monthlyCom = children.FirstOrDefault(s => s.TransType == TransType.MonthlyEarning);
 
@@ -112,14 +94,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 Children = children,
                 Status = monthlyCom?.Status ?? children.FirstOrDefault().Status,
                 TransType = TransType.MonthlyTotal,
-                Description = monthlyCom?.Description ?? children.FirstOrDefault().Description
+                CalculatedType = monthlyCom?.CalculatedType ?? children.FirstOrDefault().CalculatedType
             };
             return monthlyTotal;
         }
 
-        private static bool CheckIfExistMonthlyTotal(DateTime monthDate, List<StatementHistory> customStatementList)
+        private static bool CheckIfExistMonthlyTotal(DateTime monthDate, List<StatementHistory> vms)
         {
-            return customStatementList.Any(m => m.Date == monthDate && m.TransType == TransType.MonthlyTotal);
+            return vms.Exists(m => m.Date == monthDate && m.TransType == TransType.MonthlyTotal);
         }
     }
 }

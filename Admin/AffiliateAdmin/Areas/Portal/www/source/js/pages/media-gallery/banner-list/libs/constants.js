@@ -1,25 +1,25 @@
-﻿import { globalResource } from '../../../../modules/globalResource';
-import { selectedAllProduct } from '../../../../modules/constants';
+﻿import { playerBanner } from "../../common/libs/constants";
 
-export { globalResource, selectedAllProduct };
+export const Casino = 'Casino';
+export const Sportsbook = 'Sportsbook';
 
-const defaultLanguage = 'Chinese Simplified';
-export const Asian = 2;
+export const Asian = 1;
 export const maxWidthHeight = 501;
 export const maxLength = 50;
 export const regSpecialCharacters = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';
-export const validExtensions = ['jpg', 'gif', 'png', 'jpeg'];
 
 export const headerText = {
-    Index: globalResource.Index,
+    Index: '#',
+    UserType: 'User Type',
     Images: 'Images',
     FileName: 'File Name',
-    TargetProduct: 'Target Product',
+    Category: 'Category',
+    SubCategory: 'Sub Category',
     Language: 'Language',
+    Currency: 'Currency',
     Size: 'Size',
-    CopiedFrom: 'Copied From',
-    NumberOfCopies: 'Number Of Copies',
-    AffType: 'Affiliate Type'
+    AffType: 'Affiliate Type',
+    Device: 'Device'
 }
 
 export const messages = {
@@ -31,11 +31,12 @@ export const messages = {
 export const defaultState = {
     files: [],
     inputFileNames: [''],
-    language: defaultLanguage,
     isInsert: true,
     isShowMessage: false,
     isSuccess: true,
     message: '',
     isDisabled: true,
-    messageNotificationPopup: ''
+    isDisableCurrency: false,
+    messageNotificationPopup: '',
+    userType: playerBanner
 }

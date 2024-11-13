@@ -4,10 +4,3 @@
 
     return span.textContent;
 }
-
-export const trimText = (text) => {
-    if (typeof(text) === "undefined" || text === null)
-        return "";
-    else 
-        return text;
-} 

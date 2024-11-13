@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
@@ -14,10 +13,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
     public static class LogHelper
     {
         private const int LimitedLevelOfInnerException = 3;
-
         public static void WriteError(Exception exception, string additionalMessage = null)
         {
-            var content = BuildMessage(exception);
+            var content = BuildMessage(exception.Message);
             if (!string.IsNullOrWhiteSpace(additionalMessage))
             {
                 content.AppendLine(additionalMessage);
@@ -25,16 +23,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
             AddDatabaseInfo(content, exception);
             AddExceptionInfo(content, exception, LimitedLevelOfInnerException);
-            LogService.Error(content.ToString(), exception);
-        }
-        public static void WriteError(string msg)
-        {
-            LogService.Error(msg);
-        }
 
-        public static async Task WriteErrorAsync(string msg)
-        {
-            await LogService.ErrorAsync(msg);
+            LogService.Error(content.ToString(), exception);
         }
 
         public static void WriteInfo(string msg)
@@ -42,10 +32,10 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             LogService.Info(msg);
         }
 
-        private static StringBuilder BuildMessage(Exception exception)
+        private static StringBuilder BuildMessage(string message)
         {
             var request = HttpContext.Current.Request;
-            var builder = new StringBuilder().AppendLine($"Error Message: {exception.Message}").AppendLine();
+            var builder = new StringBuilder().AppendLine($"Error Message: {message}").AppendLine();
             builder.AppendLine("REQUEST INFO")
                    .AppendLine("Domain: " + request.Headers["Host"])
                    .AppendLine("Form: " + string.Join("~", request.Form))
@@ -56,9 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                    .AppendLine("BrowserVer: " + request.Browser.Version)
                    .AppendLine("Agent: " + request.UserAgent)
                    .AppendLine("IP Address: " + request.UserHostAddress)
-                   .AppendLine("Actual IP Address: " + request.GetClientIP())
-                   .AppendLine($"Source:{exception.Source}")
-                   .AppendLine($"TargetSite:{exception.TargetSite}");
+                   .AppendLine("Actual IP Address: " + request.GetClientIP());
 
             builder.AppendLine("UserName: " + HttpContext.Current.Session["UserName"]);
 

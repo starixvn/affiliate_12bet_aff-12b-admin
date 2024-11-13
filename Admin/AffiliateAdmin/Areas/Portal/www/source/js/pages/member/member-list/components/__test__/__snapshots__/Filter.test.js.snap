@@ -32,7 +32,7 @@ exports[`member list - components - Filter  render correctly 1`] = `
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"
-        value="12BETAFF226"
+        value="B2CAFF226"
       />
     </FormGroup>
     <FormGroup
@@ -79,7 +79,7 @@ exports[`member list - components - Filter  render correctly 1`] = `
           ]
         }
       >
-        IBC User Name
+        System Name
       </Label>
       <Input
         name="ibcUserName"

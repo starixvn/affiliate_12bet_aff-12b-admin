@@ -2,9 +2,7 @@
 {
     public static class Money
     {
-        public const decimal MaxValue = 922_337_203_685_477m;
-        public const decimal MinValue = -922_337_203_685_477m;
-
-        public const int DecDigits = 2;
+        public const long AllowedMaxValue = 100_000_000_000;
+        public const long AllowedMinValue = -100_000_000_000;
     }
 }

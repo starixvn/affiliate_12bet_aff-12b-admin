@@ -10,7 +10,6 @@ export const messageInsertId = 0;
 export const messageCurrentId = -1;
 
 const english = 'MessageContentEn';
-const bangladesh = 'MessageContentBn';
 const chineseTraditional = 'MessageContentTw';
 const chineseSimplified = 'MessageContentCn';
 const spanish = 'MessageContentEs';
@@ -19,34 +18,29 @@ const vietNamese = 'MessageContentVi';
 const indonesian = 'MessageContentId';
 const korean = 'MessageContentKr';
 const japanese = 'MessageContentJp';
-const cambodian = 'MessageContentKh';
 
 export const defaultMessageContentList =
 {
     MessageId: 0,
     [english]: '',
-    [bangladesh]: '',
     [chineseTraditional]: '',
     [chineseSimplified]: '',
     [spanish]: '',
     [thai]: '',
     [vietNamese]: '',
     [indonesian]: '',
-    [cambodian]: '',
     [korean]: '',
     [japanese]: ''
 };
 
 export const languages = {
     [english]: 'English',
-    [bangladesh]: 'English (Bangladesh)',
     [chineseTraditional]: 'Chinese Traditional',
     [chineseSimplified]: 'Chinese Simplified',
     [spanish]: 'Spanish',
     [thai]: 'Thai',
     [vietNamese]: 'VietNamese',
     [indonesian]: 'Indonesian',
-    [cambodian]: 'Cambodian',
     [korean]: 'Korean',
     [japanese]: 'Japanese'
 }
@@ -78,7 +72,7 @@ export const resource = {
 }
 
 export const headerText = {
-    Index: globalResource.Index,
+    Index: '#',
     Creator: 'Creator',
     PostedDate: 'Posted Date',
     Message: 'Message',
@@ -89,8 +83,8 @@ export const headerText = {
 
 export const messages = {
     PleaseSelect: 'Please select items to delete',
-    AreYouSureDeleteItems: 'Are you sure to delete the selected item(s)?',
-    DeleteItemsSuccessfully: 'Delete message(s) Successfully',
+    AreYouSureDeleteItems: 'Are you sure to delete the selected email(s)?',
+    DeleteItemsSuccessfully: 'Delete Email(s) Successfully',
     PleaseEnter: 'Please enter the content of message, one language at least.',
     AreYouWant: 'Are you sure you want to update this message?'
 }

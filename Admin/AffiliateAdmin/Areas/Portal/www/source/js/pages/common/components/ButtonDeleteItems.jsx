@@ -20,7 +20,7 @@ export default class ButtonDeleteItems extends PureComponent {
     }
 
     _handleOpenNotificationPopup = (message, isConfirmPopup, itemIdList) => {
-        this.setState({ message, isConfirmPopup: !!isConfirmPopup, itemIdList: itemIdList || '' });
+        this.setState({ message, isConfirmPopup: isConfirmPopup || false, itemIdList: itemIdList || '' });
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
@@ -34,8 +34,7 @@ export default class ButtonDeleteItems extends PureComponent {
 
     _handleDelete = () => {
         const itemIdList = this._getCheckedItemIdList();
-        const length = itemIdList.length;
-        length === 0 ? this._handleOpenNotificationPopup(this.props.messages.PleaseSelect) : this._handleOpenNotificationPopup(this.props.messages.AreYouSureDeleteItems.replace('{0}', length), true, itemIdList);
+        itemIdList.length === 0 ? this._handleOpenNotificationPopup(this.props.messages.PleaseSelect) : this._handleOpenNotificationPopup(this.props.messages.AreYouSureDeleteItems, true, itemIdList);
     }
 
     _deleteExcute = async (itemIdList) => {
@@ -69,7 +68,7 @@ export default class ButtonDeleteItems extends PureComponent {
                         onClose={this._handleCloseNotificationPopup}
                     />
                 }
-                <Button outline type="button" color="danger" onClick={this._handleDelete}>{this.props.label || 'Delete'}<span className={this.props.hasIcon ? "oi oi-trash ml-2" : ""}></span></Button>
+                <Button outline type="button" color="danger" onClick={this._handleDelete}>Delete<span className={this.props.hasIcon ? "oi oi-x ml-2" : ""}></span></Button>
             </React.Fragment>
         );
     }

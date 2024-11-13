@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import { updateLanguage, getAffiliateInfo } from '../../actions';
 import { messages } from '../../libs/constants';
 import { htmlDecode } from '../../../../../modules/htmlHelper';
-import { NotificationPopup } from '../../../../common/components/NotificationPopup';
+import NotificationPopup from '../../../../common/components/NotificationPopup';
 
 export class Language extends PureComponent {
     constructor(props) {
@@ -68,23 +68,19 @@ export class Language extends PureComponent {
     }
 
     _renderLanguageLabel() {
-        const { affiliateInfo } = this.props;
+        const { affiliateInfo, languageList } = this.props;
+        const languageItem = languageList.find(l => l.LanguageCode === affiliateInfo.PreferredLanguage);
 
         return (
-            <Button color="link" className="left-panel-btn-link text-primary" onClick={() => this.toggleChangingLanguage(true)}>
-                {htmlDecode(affiliateInfo.PreferredLanguageName)}
+            <Button color="link" className="left-panel-btn-link" onClick={() => this.toggleChangingLanguage(true)}>
+                {languageItem && htmlDecode(languageItem.LanguageName)}
             </Button>
         )
     }
 
-    _renderStaticContent = () => {
-        const { affiliateInfo, languageList } = this.props;
-        const languageItem = languageList.find(l => l.LanguageCode === affiliateInfo.PreferredLanguage);
-        return <React.Fragment> {languageItem && htmlDecode(languageItem.LanguageName)} </React.Fragment>;
-    }
-
-    _renderSelectionContent =() => {
+    render() {
         const { isChangingLanguage, messageNotification, isConfirmPopup } = this.state;
+
         return (
             <React.Fragment>
                 {
@@ -99,14 +95,6 @@ export class Language extends PureComponent {
                 }
             </React.Fragment>
         )
-    }
-
-    render() {
-        const { isStatic } = this.props;
-
-        const renderContent = isStatic ? this._renderStaticContent : this._renderSelectionContent;
-
-        return renderContent();
     }
 }
 

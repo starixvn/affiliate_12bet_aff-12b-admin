@@ -1,22 +1,23 @@
 export const globalResource = {
-    Index: '#',
     From: 'From',
     To: 'To',
     GetAll: 'Get All',
     Search: 'Search',
     SearchBy: 'Search By',
     All: 'All',
-    Action: 'Action',
     Product: 'Product',
     Add: 'Add',
     Edit: 'Edit',
     Save: 'Save',
-    Submit: 'Submit',
     Update: 'Update',
     Delete: 'Delete',
     Cancel: 'Cancel',
     Remove: 'Remove',
     NoInfo: 'There is no information available',
     ChooseFile: "Choose File",
-    AnError: "An error occurred while processing your request, please try again later!"
+    Currency: 'Currency',
+    BaseCurrency: 'Base Currency',
+    UserName: 'User Name',
+    SystemUserName: 'System Name',
+    NA: 'N/A'
 }

@@ -8,11 +8,13 @@ describe('customer - mainpage reducer', () => {
             affInfo: {},
         },
         affCommonInfo: null,
+        baseCurrencyList: null,
         clickStatistics: {
             pagingOption: defaultPagingOption,
             param: {},
-            selectedSiteDetailFilter: null,
+            selectedSiteUrl: null,
         },
+        currencyList: null,
         customerStatistics: {
             monthDate: null,
         },
@@ -20,29 +22,30 @@ describe('customer - mainpage reducer', () => {
             param: null,
         },
         dailyEarningDetail: {
+            param: {},
+        },
+        subAffiliate: {
             pagingOption: defaultPagingOption,
             param: {},
         },
         edit: {
-            hasWriteEditAffClaim: false,
             moreSiteUrlsList: null,
             userAccountInfo: null,
         },
-        hasTurnOverPermission: false,
-        isShowLoader: false,
+        isProduction: false,
         isShowLoaderUserPanel: false,
         landingPageStatistics: {
             pageList: [],
             pagingOption: defaultPagingOption,
             param: {},
-            isGroupByCountry: true,
-            selectedPageDetailFilter: null,
+            selectedPage: null,
             shortCodeLanguageList: {},
         },
         languageList: null,
         leftPanel: {
             affName: '',
             affiliateInfo: null,
+            affTypeList: null,
             isShowLoader: false,
             isValidUserName: true,
         },
@@ -51,32 +54,23 @@ describe('customer - mainpage reducer', () => {
             param: null,
         },
         note: {
-            affNote: {
-                isShowPopup: false,
-                affNoteInfo: {
-                    noteContent: '',
-                    noteId: 0,
-                },
-                affNoteList: null,
-                pagingOption: defaultPagingOption,
+            isShowPopup: false,
+            noteInfo: {
+                noteContent: '',
+                noteId: 0,
             },
-            marketingNote: {
-                isShowPopup: false,
-                marketingNoteInfo: {
-                    noteContent: '',
-                    noteId: 0,
-                },
-                marketingNoteList: null,
-                pagingOption: defaultPagingOption,
-            },
-            selectedSubNote: null
+            noteList: [],
+            pagingOption: defaultPagingOption,
         },
         playerDetail: {
             pagingOption: defaultPagingOption,
             param: {},
-            productList: [],
-            sortedParam: null,
+            sortingColumn: {
+                ColumnName: "Turnover",
+                IsSortAsc: false,
+            }
         },
+        productList: null,
         selectedUserPanel: null,
         statementHistory: {
             expandMonthDateList: {},
@@ -84,13 +78,17 @@ describe('customer - mainpage reducer', () => {
             param: null,
             transactionId: null,
         },
+        licenseeName: '',
         today: '6/27/2019',
+        trackingStatistics: {
+            param: {},
+            selectedMonth: null,
+        },
         viewLog: {
             pagingOption: defaultPagingOption,
-            param: null,
+            param: {},
             showIdList: {},
         },
-        claimsPrincipal: {}
     }
     it(`should handle rootReducer reducer`, () => {
         const expectResult = Object.assign({}, expectedResult, { isShowLoaderUserPanel: true, })

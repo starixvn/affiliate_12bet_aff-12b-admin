@@ -11,7 +11,7 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setSelectedSiteDetailFilter', type: types.SET_SELECTED_SITE_DETAIL_FILTER, data: '12-bet.net' },
+    { name: 'setSelectedSiteUrl', type: types.SET_SELECTED_SITE_URL, data: '12-bet.net' },
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } }
 ]
 
@@ -50,7 +50,7 @@ describe('referrers actions', () => {
             fromDate: "07/01/2016",
             toDate: "7/3/2019"
         }
-        
+
         const result = await actions['fetchData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Referrers/GetReferrersList', param);
@@ -91,7 +91,7 @@ describe('referrers actions', () => {
                         SiteUrl: "",
                         TotalClick: 4,
                         UniqueClick: 3,
-                        WebsiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/#MediaGallery"
+                        WebsiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/#MediaGallery"
                     }
                 ],
                 TotalItem: 2
@@ -109,7 +109,7 @@ describe('referrers actions', () => {
             selectedSiteUrl: "ha.nexdev.net",
             toDate: "7/3/2019"
         }
-        
+
         const result = await actions['fetchDetailData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/Referrers/GetReferrersDetailList', param);

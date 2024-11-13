@@ -1,38 +1,36 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+﻿import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom';
+import SubMenuList from '../common/components/SubMenuList';
+import { menus } from './libs/menus';
+import { Permission } from '../../modules/permissions'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
-import reducer from './reducers';
-import AppContainer from "./components/AppContainer";
-import { configureStore } from '../../modules/store';
-
-import ClaimPrincipal from '../../modules/claim';
-
-export default class App extends React.Component {
+export default class App extends React.PureComponent {
     constructor(props) {
         super(props);
+    }
 
-        const productList = window.initialState.productList.map(p => {
-            return Object.assign({}, p, { Checked: true });
-        })
-
-        const languageList = [...window.initialState.languageList];
-        const language = {};
-        for (let languageItem of languageList) {
-            language[languageItem.LanguageCode] = languageItem.LanguageName;
-        }
-
-        const { today } = window.initialState;
-
-        this.store = configureStore({ productList, languageList: language, today, claimsPrincipal: ClaimPrincipal.currentClaimPrincipal }, reducer);
+    getRenderMenuItems = () => {
+        const currentPermisisons = Permission.currentPermissions;
+        return menus.filter(m => currentPermisisons.hasPermission(m.permissionName))
     }
 
     render() {
+        const imgSrc = 'Areas/Portal/www/dist/imgs/i_report.png';
+        const renderMenus = this.getRenderMenuItems();
+        const firstMenu = renderMenus[0];
         return (
-            <Provider store={this.store}>
-                <AppContainer />
-            </Provider>
-        );
+            <Router forceRefresh>
+                <SubMenuList img={imgSrc}
+                    menus={renderMenus.map((menu) => { return { label: menu.label, href: menu.href } })} />
+                <Suspense fallback={null}>
+                    <Switch>
+                        {renderMenus.map((menu, index) => <Route key={`route_${index}`} path={menu.href} component={menu.component} />)}
+                        {firstMenu && <Redirect from="/" to={firstMenu.href} />}
+                    </Switch>
+                </Suspense>
+            </Router>
+        )
     }
 }
 

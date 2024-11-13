@@ -1,37 +1,40 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Data;
-using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
     public class AffiliateBasicInfo
     {
-        [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "AffId not exists!")]
         public int AffId { get; set; }
+
+        public string AffCode { get; set; }
+
+        public string ParentAffiliateName { get; set; }
 
         public int GroupId { get; set; }
 
-        [Required(ErrorMessage = "User Name is required!")]
+        public int GroupTypeId { get; set; }
+
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "First Name is required!")]
-        public string FirstName { get; set; }
-
-        [Range(Validation.MinAffType, Validation.MaxAffType, ErrorMessage = "AffType is incorrect!")]
         public int AffType { get; set; }
 
-        [SpParam(Ignored = true)]
-        public string Status { get; set; }
+        public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Email is required!")]
+        public string LastName { get; set; }
+
+        public string ContactNumber { get; set; }
+
         public string Email { get; set; }
+
+        public string Status { get; set; }
 
         public bool MailOption { get; set; }
 
-        [Required(ErrorMessage = "Preferred Language is required!")]
         public string PreferredLanguage { get; set; }
 
-        [Required(ErrorMessage = "Player User Name is required!")]
         public string PlayerUsername { get; set; }
+
+        public int PlayerCustId { get; set; }
+
+        public bool IsUsingPrivateCommGroup { get; set; }
     }
 }

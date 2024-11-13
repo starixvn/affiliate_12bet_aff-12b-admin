@@ -15,7 +15,6 @@ describe('left panel - components - PanelList', () => {
             FirstName: "bb",
             Gender: true,
             GroupId: 102,
-            IsClosed: false,
             LastLoginDateText: "04/11/2019 22:24:00",
             LastLoginIp: "10.18.200.125",
             LastName: "12BETAFF226",
@@ -23,10 +22,10 @@ describe('left panel - components - PanelList', () => {
             NoSiteDescription: "",
             Phone: "abc",
             PreferredLanguage: "vi-VN",
-            SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+            SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
             Status: "Approved"
         }
-        const result = shallow(<PanelList affiliateInfo={affiliateInfo} claimsPrincipal={{ hasReadClaim: jest.fn(() => true) }} />);
+        const result = shallow(<PanelList affiliateInfo={affiliateInfo} />);
 
         expect(result).toMatchSnapshot();
     });
@@ -43,7 +42,6 @@ describe('left panel - components - PanelList', () => {
             FirstName: "",
             Gender: null,
             GroupId: 0,
-            IsClosed: false,
             LastLoginDateText: "01/01/1900 00:00:00",
             LastLoginIp: "10.10.12.12",
             LastName: "",

@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import ReportTitle from '../ReportTitle';
-import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 describe('ReportTitle', () => {

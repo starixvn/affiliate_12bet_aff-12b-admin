@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using System;
 using System.Linq;
 using System.Net;
-using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -19,26 +18,21 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             var isAuthorized = base.AuthorizeCore(httpContext)
                 && httpContext.Request.IsAuthenticated
                 && httpContext.User.Identity.IsAuthenticated;
-            var claimIdentities = sessionService.ClaimIdentities;
-
-            if (isAuthorized && sessionService.UserId > 0 && claimIdentities != null && claimIdentities.Any())
-            {
-                var claimPrincipal = httpContext.User as ClaimsPrincipal;
-                claimPrincipal.AddIdentities(claimIdentities);
-                return true;
-            }
-            return false;
+            return isAuthorized
+                && sessionService.UserId > 0
+                && sessionService.UserPermissionList != null
+                && sessionService.UserPermissionList.Any();
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
             FormsAuthentication.SignOut();
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 filterContext.HttpContext.Response.ContentType = "application/json";
                 filterContext.Result = new JsonResult
                 {
-                    Data = new { ErrCode = Code.ErrCodeSessionExpired, ErrMsg = "Your session was expired! Please login again." },
+                    Data = new { ErrCode = ErrCode.ErrCodeSessionExpired, ErrMsg = "Your session was expired! Please login again." },
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }

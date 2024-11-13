@@ -16,11 +16,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(l => l.GetLandingPageList(It.IsAny<int>())).Returns(new List<LandingPage> { new LandingPage() });
+            landingPageRepository.Setup(l => l.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
             var service = CreateLandingPageService(landingPageRepository.Object);
 
             // Action
-            var result = service.GetLandingPageList(123);
+            var result = service.GetLandingPageList();
 
             // Assert
             Assert.Single(result);
@@ -33,11 +33,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var pageId = 123;
             int passedParam = 0;
             var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(l => l.GetLandingPageById(pageId, It.IsAny<int>())).Returns(new LandingPage { PageId = 123 }).Callback<int>(p => passedParam = p);
+            landingPageRepository.Setup(l => l.GetLandingPageById(pageId)).Returns(new LandingPage { PageId = 123 }).Callback<int>(p => passedParam = p);
             var service = CreateLandingPageService(landingPageRepository.Object);
 
             // Action
-            var result = service.GetLandingPageById(pageId, 234);
+            var result = service.GetLandingPageById(pageId);
 
             // Assert
             Assert.Equal(pageId, result.PageId);
@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService(landingPageRepository.Object);
 
             // Action
-            var result = service.HandleSaveLandingPage(param, true);
+            var result = service.InsertLandingPage(param);
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -70,11 +70,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService();
 
             // Action
-            var result = service.HandleSaveLandingPage(param, true);
+            var result = service.InsertLandingPage(param);
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("Special characters are not allowed:\n the blank/empty space and ; ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `", result.Message);
+            Assert.Equal("Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `", result.Message);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService(landingPageRepository.Object);
 
             // Action
-            var result = service.HandleSaveLandingPage(param);
+            var result = service.UpdateLandingPage(param);
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -103,11 +103,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService();
 
             // Action
-            var result = service.HandleSaveLandingPage(param);
+            var result = service.UpdateLandingPage(param);
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("Special characters are not allowed:\n the blank/empty space and ; ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `", result.Message);
+            Assert.Equal("Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `", result.Message);
         }
 
         [Fact]

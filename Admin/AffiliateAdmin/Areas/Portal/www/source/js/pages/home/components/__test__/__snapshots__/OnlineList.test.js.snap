@@ -87,9 +87,9 @@ exports[`home - components - OnlineList render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Admin"
+              title="Administrator"
             >
-              Admin
+              Administrator
             </t>
           </t>,
           <t>
@@ -111,12 +111,12 @@ exports[`home - components - OnlineList render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="12BETAFF226"
+              title="B2CAFF226"
             >
               <a
-                href="/Portal/Customer?user=12BETAFF226"
+                href="/Portal/Customer?user=B2CAFF226"
               >
-                12BETAFF226
+                B2CAFF226
               </a>
             </t>
             <t

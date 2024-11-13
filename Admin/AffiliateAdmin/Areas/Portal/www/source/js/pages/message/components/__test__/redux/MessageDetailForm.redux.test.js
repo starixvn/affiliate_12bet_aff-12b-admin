@@ -21,13 +21,11 @@ describe('message - MessageDetailForm - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             selectedMessageId: "123",
-            isModifiable: true,
             param: { isGetAll: true }
         };
         const state = {
             selectedMessageId: "123",
             param: { isGetAll: true },
-            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 
@@ -58,6 +56,6 @@ describe('message - MessageDetailForm - connect', () => {
     it('returned function of connect should be called with correct parameter', () => {
         const MessageDetailForm = require('../../MessageDetailForm').MessageDetailForm;
 
-        expect(connectMock).toHaveBeenCalledWith(MessageDetailForm);
+        expect(connectMock).toHaveBeenCalledWith(React.memo(MessageDetailForm));
     })
 })

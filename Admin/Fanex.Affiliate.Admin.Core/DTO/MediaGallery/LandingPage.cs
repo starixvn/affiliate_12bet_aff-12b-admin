@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 {
     public class LandingPage
     {
@@ -9,8 +7,5 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
         public string PageName { get; set; }
 
         public string PageCode { get; set; }
-
-        [JsonProperty(PropertyName = "ExcludedTargetCountries")]
-        public string ExcludedTargetCountry { get; set; }
     }
 }

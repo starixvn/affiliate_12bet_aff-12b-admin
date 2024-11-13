@@ -4,11 +4,7 @@ import { shallow } from 'enzyme';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 describe('statement history - components - Filter', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-
-    const today = '07/11/2019';
+    const today = '03/12/2020';
     const defaultProps = {
         today
     };
@@ -28,7 +24,7 @@ describe('statement history - components - Filter', () => {
 
         wrapper.instance().componentDidMount();
 
-        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "1/11/2019", isGetAll: false, toDate: "7/11/2019", isBack: false, scrollTop: 0 });
+        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "01/01/2020", isGetAll: false, toDate: "3/12/2020", isBack: false, scrollTop: 0 });
     });
 
     it('handleChecked - should call setState when click GetAll checkbox', () => {
@@ -49,20 +45,20 @@ describe('statement history - components - Filter', () => {
     });
 
     it('handleChangeFromDate - should be called when From change', () => {
-        const monthDate = { format: jest.fn(() => "6/25/2019")};
+        const monthDate = { format: jest.fn(() => "01/11/2020") };
         const setParam = jest.fn();
         const props = Object.assign({}, defaultProps, { setParam });
         const wrapper = shallow(<Filter {...props} />);
 
-        wrapper.setState = jest.fn(fn => fn && fn(prevState => ({ fromDate: "6/25/2019", toDate: "7/11/2019" })));
+        wrapper.setState = jest.fn();
 
         wrapper.find(DatePicker).at(0).simulate('change', monthDate);
 
-        expect(wrapper.setState).toHaveBeenCalledWith(expect.any(Function));
+        expect(wrapper.setState).toHaveBeenCalledWith({ fromDate: "01/11/2020", toDate: "3/12/2020" });
     });
 
     it('handleChangeToDate - should be called when To change', () => {
-        const monthDate = { format: jest.fn(() => "7/10/2019")};
+        const monthDate = { format: jest.fn(() => "7/10/2019") };
         const setParam = jest.fn();
         const props = Object.assign({}, defaultProps, { setParam });
         const wrapper = shallow(<Filter {...props} />);
@@ -88,6 +84,6 @@ describe('statement history - components - Filter', () => {
         wrapper.find('Input[type="checkbox"][name="isGetAll"]').simulate('change', event);
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "1/11/2019", isGetAll: false, toDate: "7/11/2019", isBack: false, scrollTop: 0 });
+        expect(props.setParam).toHaveBeenCalledWith({ fromDate: "01/01/2020", isGetAll: false, toDate: "3/12/2020", isBack: false, scrollTop: 0 });
     });
 });

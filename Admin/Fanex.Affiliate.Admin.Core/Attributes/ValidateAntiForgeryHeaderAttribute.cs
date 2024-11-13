@@ -13,7 +13,6 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         {
             var request = filterContext.RequestContext.HttpContext.Request;
             string clientToken = request.IsAjaxRequest() ? request.Headers.Get(KEYNAME) : request.Form[KEYNAME];
-
             if (clientToken == null)
             {
                 throw new HttpAntiForgeryException($"Header/Form does not contain {KEYNAME}");
@@ -27,5 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
 
             AntiForgery.Validate(serverTokenCookie.Value, clientToken);
         }
+
+
     }
 }

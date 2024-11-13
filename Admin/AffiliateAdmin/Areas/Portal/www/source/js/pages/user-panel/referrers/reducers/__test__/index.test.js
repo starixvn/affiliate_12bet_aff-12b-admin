@@ -1,5 +1,5 @@
-﻿import * as types from '../../actions/types'
-import * as reducers from '../index'
+﻿import * as types from '../../actions/types';
+import * as reducers from '../index';
 
 const runTestReducer = ({ name, value, action, expectedResult }) => {
     it(`should handle ${name} reducer with type ${action.type}`, () => {
@@ -9,7 +9,7 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 }
 
 const testCaseList = [
-    { name: 'selectedSiteDetailFilter', value: null, action: { type: types.SET_SELECTED_SITE_DETAIL_FILTER, data: {} }, expectedResult: {} },
+    { name: 'selectedSiteUrl', value: null, action: { type: types.SET_SELECTED_SITE_URL, data: 'abc' }, expectedResult: 'abc' },
     { name: 'param', value: {}, action: { type: types.SET_PARAM, data: { productId: 123, content: 'abc' } }, expectedResult: { productId: 123, content: 'abc' } }
 ]
 

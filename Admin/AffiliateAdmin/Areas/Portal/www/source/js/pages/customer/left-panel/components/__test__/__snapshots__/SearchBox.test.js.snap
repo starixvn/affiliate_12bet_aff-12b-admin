@@ -6,29 +6,22 @@ exports[`left panel - components - SearchBox render correctly 1`] = `
 >
   <FormGroup
     row={true}
+    style={
+      Object {
+        "justifyContent": "space-evenly",
+      }
+    }
     tag="div"
   >
-    <Col
-      sm={9}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-    >
+    <div>
       <Input
         name="affName"
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"
-        value="12BETAFF226"
+        value="B2CAFF226"
       />
-    </Col>
+    </div>
     <Button
       color="secondary"
       id="search-affName"
@@ -47,28 +40,21 @@ exports[`left panel - components - SearchBox render correctly has props is null 
 >
   <FormGroup
     row={true}
+    style={
+      Object {
+        "justifyContent": "space-evenly",
+      }
+    }
     tag="div"
   >
-    <Col
-      sm={9}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-    >
+    <div>
       <Input
         name="affName"
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"
       />
-    </Col>
+    </div>
     <Button
       color="secondary"
       id="search-affName"

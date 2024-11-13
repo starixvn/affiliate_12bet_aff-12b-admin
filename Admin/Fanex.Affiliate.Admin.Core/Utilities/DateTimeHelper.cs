@@ -2,11 +2,22 @@
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
 {
-    public class DateTimeHelper : IDateTimeHelper
+    public static class DateTimeHelper
     {
-        public DateTime GetNowDateTime()
+        public static bool IsValidDateRange(DateTime from, DateTime to, int monthRange = 6)
         {
-            return DateTime.Now;
+            var maxMonth = from.AddMonths(monthRange);
+
+            return DateTime.Compare(maxMonth, to) >= 0;
         }
+
+        public static bool IsValidDateTime(DateTime from, DateTime to)
+        {
+            return DateTime.Compare(from, to) <= 0;
+        }
+
+        public static DateTimeOffset NowDateTimeOffset => DateTimeOffset.Now;
+
+        public static DateTimeOffset UtcNowDateTimeOffset => DateTimeOffset.UtcNow;
     }
 }

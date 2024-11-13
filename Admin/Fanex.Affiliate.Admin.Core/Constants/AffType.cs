@@ -2,10 +2,10 @@
 {
     public static class AffType
     {
-        public const int Asian = 2;
+        public const int Asian = 1;
 
-        public const int Media = 3;
+        public const int Media = 2;
 
-        public const int European = 4;
+        public const int European = 3;
     }
 }

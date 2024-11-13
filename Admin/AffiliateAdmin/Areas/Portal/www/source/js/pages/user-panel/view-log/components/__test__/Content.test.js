@@ -8,11 +8,11 @@ describe('view log - components - Content', () => {
         affId: 1271808,
         pagingOption: defaultPagingOption,
         param: {
-            logAction: 0,
+            logType: 0,
             fromDate: "06/06/2019",
             toDate: "06/06/2019"
         },
-        showIdList: {10279105: false},
+        showIdList: { 10279105: false },
         setPagingOption: jest.fn(),
         toggleLoaderUserPanel: jest.fn(),
         setShowIdList: jest.fn(),
@@ -23,7 +23,7 @@ describe('view log - components - Content', () => {
         {
             Id: 10279106,
             UpdatedBy: "AAwalter",
-            Description: "Update Affiliate's Closed Status. IsClosed=0",
+            Description: "Update Affiliate's Status",
             Action: "User Info",
             Ip: "::1",
             DateText: "06/06/2019 03:42:42 AM"
@@ -31,7 +31,7 @@ describe('view log - components - Content', () => {
         {
             Id: 10279105,
             UpdatedBy: "AAwalter",
-            Description: "Update Affiliate's Closed Status. IsClosed=1",
+            Description: "Update Affiliate's Status",
             Action: "User Info",
             Ip: "::1",
             DateText: "06/06/2019 03:42:38 AM"
@@ -124,7 +124,7 @@ describe('view log - components - Content', () => {
         dataRow.find('Button').at(0).simulate('click');
 
         expect(wrapper.setState).toHaveBeenCalledWith({ "shouldResetScrollPosition": false });
-        expect(props.setShowIdList).toHaveBeenCalledWith({10279105: true});
+        expect(props.setShowIdList).toHaveBeenCalledWith({ 10279105: true });
     });
 
     it('handlePaging - should call fetchData with correct parameters', () => {

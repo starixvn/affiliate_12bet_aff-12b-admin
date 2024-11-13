@@ -8,24 +8,21 @@ const mockStore = configureMockStore();
 describe('left panel - ApprovedStatusInfo - connect', () => {
     let wrapper;
     let store;
-    const affiliateInfo = { AffName: '12BETAFF226' };
 
     beforeEach(() => {
         const initialState = {
             leftPanel: {
-                affiliateInfo
+                affiliateInfo: {}
             },
-            affCommonInfo: { affName: '12BETAFF226' },
-            claimsPrincipal: { hasWriteClaim: jest.fn(() => true), hasReadClaim: jest.fn(() => true) }
+            affCommonInfo: { affName: '12BETAFF226' }
         };
         store = mockStore(initialState);
         wrapper = shallow(<ApprovedStatusInfo store={store} />).dive();
     });
 
     it('should show correct value', () => {
-        expect(wrapper.props().affName).toEqual('12BETAFF226');
-        expect(wrapper.props().affiliateInfo).toEqual(affiliateInfo);
-        expect(wrapper.props().isPwdChangeable).toBeTruthy();
-        expect(wrapper.props().isShowMemberLstLink).toBeTruthy();
+        const { affiliateInfo, affName } = wrapper.props();
+        expect(affName).toEqual('12BETAFF226');
+        expect(affiliateInfo).toEqual({});
     });
 })

@@ -20,9 +20,11 @@ const actionList = [
     { name: 'setParam', type: types.SET_PARAM, data: { Id: 123 } },
     { name: 'setParamFromHome', type: types.SET_PARAM_FROM_HOME, data: { IsFromHome: true } },
     { name: 'setBannerDetailUrl', type: types.SET_BANNER_DETAIL_URL, data: 'abc/test.jpg' },
+    { name: 'setCategoryList', type: types.SET_CATEGORY_LIST, data: [{ id: 234, name: 'SP Bonus' }] },
     { name: 'setSelectedBannerId', type: types.SET_SELECTED_BANNER_ID, data: 123456 },
     { name: 'setCheckedBanners', type: types.SET_CHECKED_BANNERS, data: { 123456: false } },
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
+    { name: 'setDisableCurrency', type: types.SET_DISABLE_CURRENCY, data: true },
     { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' },
     { name: 'setSizeList', type: types.SET_SIZE_LIST, data: [{ id: 234, name: '320x50' }] },
 ];
@@ -31,6 +33,59 @@ describe('banner list actions', () => {
     actionList.forEach(item => {
         runTestAction(item);
     });
+
+    it('should create action to getCategories', async () => {
+        const expectedResponse = { data: [{ CategoryName: "name" }], status: 200 };
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+
+        const result = await actions['getCategories'](1)();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetCategoryList', { userType: 1 });
+        expect(result).toEqual([{
+            categoryName: 'name',
+            key: 'name',
+            name: 'name',
+            checked: false
+        }]);
+    })
+
+    it('should create action to getCategories', async () => {
+        ajaxRequest.post = jest.fn();
+
+        const result = await actions['getCategories'](1)();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetCategoryList', { userType: 1 });
+        expect(result).toEqual([]);
+    })
+
+    it('should create action to getCategoryList', async () => {
+        const expectedResponse = { data: [{ Id: 123, Name: 'SP Bonus' }], status: 200 };
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+
+        const expectedAction = [
+            { type: 'SET_CATEGORY_LIST', data: [{ Id: 123, Name: 'SP Bonus' }] }
+        ];
+
+        const store = mockStore({ todos: [] });
+        return store.dispatch(actions['getCategoryList'](1)).then(() => {
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetCategoryList', { userType: 1 });
+            expect(store.getActions()).toEqual(expectedAction);
+        })
+    })
+
+    it('should create action to getCategoryList', async () => {
+        ajaxRequest.post = jest.fn();
+
+        const expectedAction = [
+            { type: 'SET_CATEGORY_LIST', data: [] }
+        ];
+
+        const store = mockStore({ todos: [] });
+        return store.dispatch(actions['getCategoryList'](1)).then(() => {
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetCategoryList', { userType: 1 });
+            expect(store.getActions()).toEqual(expectedAction);
+        })
+    })
 
     it('should create action to getSizeList', async () => {
         const expectedResponse = { data: [{ Id: 123, Name: '320x50' }], status: 200 };
@@ -43,8 +98,12 @@ describe('banner list actions', () => {
         const param = {
             AffType: 2,
             Category: "",
+            Currency: "",
+            DeviceType: 0,
+            ImageType: "",
             Language: "",
-            Size: ""
+            Size: "",
+            SubCategory: ""
         }
 
         const store = mockStore({ todos: [] });
@@ -64,8 +123,12 @@ describe('banner list actions', () => {
         const param = {
             AffType: 5,
             Category: "",
+            Currency: "",
+            DeviceType: 0,
+            ImageType: "",
             Language: "",
-            Size: ""
+            Size: "",
+            SubCategory: ""
         }
 
         const store = mockStore({ todos: [] });
@@ -81,15 +144,23 @@ describe('banner list actions', () => {
                 MainData: [
                     {
                         BannerId: 2485,
-                        TargetProducts: ["Casino"],
+                        Categories: ["Casino"],
+                        SubCategories: ["Baccarat"],
+                        Currencies: ["EURO"],
+                        DeviceTypes: ["1"],
                         FileName: "CategoryMedia/giphy.gif",
+                        ImageType: "Image",
                         Language: "Chinese Simplified",
                         Size: "500x500"
                     },
                     {
                         BannerId: 2448,
-                        TargetProducts: ["Number Game"],
+                        Categories: ["Number Game"],
+                        SubCategories: [""],
+                        Currencies: ["EURO"],
+                        DeviceTypes: ["1"],
                         FileName: "CategoryMedia/step1.jpg",
+                        ImageType: "Image",
                         Language: "Chinese Simplified",
                         Size: "1655x438"
                     }
@@ -111,10 +182,14 @@ describe('banner list actions', () => {
         const param = {
             AffType: 2,
             Category: "",
+            Currency: "",
+            DeviceType: 0,
+            ImageType: "",
             Language: "",
             PageIndex: 1,
             PageSize: 20,
-            Size: ""
+            Size: "",
+            SubCategory: ""
         }
 
         const store = mockStore({ todos: [] });
@@ -138,10 +213,14 @@ describe('banner list actions', () => {
         const param = {
             AffType: 5,
             Category: "",
+            Currency: "",
+            DeviceType: 0,
+            ImageType: "",
             Language: "",
             PageIndex: 1,
             PageSize: 20,
-            Size: ""
+            Size: "",
+            SubCategory: ""
         }
 
         const store = mockStore({ todos: [] });
@@ -156,7 +235,10 @@ describe('banner list actions', () => {
             data: {
                 BannerId: 2485,
                 Category: "Baccarat",
+                Currency: "EURO",
+                DeviceType: 1,
                 FileName: "CategoryMedia/Casino/Baccarat/giphy.gif",
+                ImageType: "Image",
                 Language: "Chinese Simplified",
                 Size: "500x500"
             }, status: 200
@@ -166,7 +248,7 @@ describe('banner list actions', () => {
 
         const result = await actions['getBannerDetail'](selectedBannerId)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetBannerDetail', { selectedBannerId });
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetBannerDetail', { selectedBannerId: 2485 });
 
         expect(result).toEqual(expectedResponse.data);
     })
@@ -177,7 +259,7 @@ describe('banner list actions', () => {
 
         const result = await actions['getBannerDetail'](selectedBannerId)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetBannerDetail', { selectedBannerId });
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/GetBannerDetail', { selectedBannerId: 123456 });
         expect(result).toEqual(null);
     })
 
@@ -191,9 +273,9 @@ describe('banner list actions', () => {
 
         const result = await actions['insertBanner'](param)();
 
-        expect(ajaxRequest.post.mock.calls[0][0]).toEqual('Portal/MediaGallery/InsertBanner');
+        expect(ajaxRequest.post.mock.calls[0][0]).toEqual('Portal/MediaGallery/insertBanner');
 
-        expect(result).toEqual(expectedResponse.data);
+        expect(result).toEqual({ IsSuccessful: true, Message: "" });
     })
 
     it('should create action to insertBanner with incorrect parameter', async () => {
@@ -204,7 +286,7 @@ describe('banner list actions', () => {
 
         const result = await actions['insertBanner'](param)();
 
-        expect(ajaxRequest.post.mock.calls[0][0]).toEqual('Portal/MediaGallery/InsertBanner');
+        expect(ajaxRequest.post.mock.calls[0][0]).toEqual('Portal/MediaGallery/insertBanner');
         expect(result).toEqual(null);
     })
 
@@ -239,7 +321,7 @@ describe('banner list actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const BannerIdList = '2485,2448';
 
-        const result = await actions['deleteBanners'](BannerIdList)();
+        const result = await actions['deleteBanners']({ BannerIdList })();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/DeleteBanners', { BannerIdList });
 
@@ -250,7 +332,7 @@ describe('banner list actions', () => {
         ajaxRequest.post = jest.fn();
         const BannerIdList = '123456';
 
-        const result = await actions['deleteBanners'](BannerIdList)();
+        const result = await actions['deleteBanners']({ BannerIdList })();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/MediaGallery/DeleteBanners', { BannerIdList });
         expect(result).toEqual(null);

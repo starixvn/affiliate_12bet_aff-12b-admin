@@ -5,11 +5,11 @@ export class ReducerRegistry {
     }
 
     getReducers() {
-        return {...this._reducers };
+        return { ...this._reducers };
     }
 
     register(name, reducer) {
-        this._reducers = {...this._reducers, [name]: reducer };
+        this._reducers = { ...this._reducers, [name]: reducer };
         if (this._emitChange) {
             this._emitChange(this.getReducers());
         }

@@ -13,7 +13,7 @@ exports[`Loader render - correctly with correct props 1`] = `
     className="backdrop"
     style={
       Object {
-        "display": "block",
+        "display": "none",
       }
     }
   />

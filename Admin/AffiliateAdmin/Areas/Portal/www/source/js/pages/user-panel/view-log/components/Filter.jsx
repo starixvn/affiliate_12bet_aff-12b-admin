@@ -4,11 +4,9 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { headerText, globalResource, minDate } from '../libs/constants';
-import { setParam, setShowIdList, getLogActionList } from '../actions';
+import { headerText, globalResource, minDate } from '../modules/constants';
+import { setParam, setShowIdList, getLogTypeList } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
-
-const maxDate = new Date(2021, 2, 24);
 
 export class Filter extends React.Component {
     constructor(props) {
@@ -16,29 +14,28 @@ export class Filter extends React.Component {
 
         const { today } = this.props;
         const now = new Date(today);
-        const isValidNow = now < maxDate;
 
-        this.nowString = isValidNow ? `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}` : '3/24/2021';
+        this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
-        const sixMonthAgo = new Date(this.nowString);
+        let sixMonthAgo = new Date(today);
         sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
 
         this.state = {
-            logActionIds: '',
-            fromDate: `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
+            logType: 0,
+            fromDate: sixMonthAgo < minDate ? '01/01/2020' : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
-            logActionList: null
+            logTypeList: null
         }
     }
 
     componentDidMount() {
-        this.handleGetLogActionList();
+        this.getLogTypeList();
     }
 
-    handleGetLogActionList = async () => {
-        var logActionList = await this.props.getLogActionList();
+    getLogTypeList = async () => {
+        const logTypeList = await this.props.getLogTypeList();
 
-        this.setState({ logActionList });
+        this.setState({ logTypeList });
     }
 
     handleChange = (event) => {
@@ -46,7 +43,7 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(prevState => getDateRange(momentDate, prevState.toDate));
+        this.setState(getDateRange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {
@@ -54,29 +51,29 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        const { logActionIds, fromDate, toDate } = this.state;
-
+        this.props.setParam(this.state);
         this.props.setShowIdList({});
-        this.props.setParam({ logActionIds, fromDate, toDate });
     }
 
     render() {
-        const { logActionIds, fromDate, toDate, logActionList } = this.state;
+        const { logType, fromDate, toDate, logTypeList } = this.state;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mr-sm-2">
-                        <Label for="logActionIds" className="mr-sm-2">{headerText.Action}</Label>
-                        <Input type="select" name="logActionIds" id="logActionIds" value={logActionIds} onChange={this.handleChange}>
-                            <option value="">{globalResource.All}</option>
-                            {
-                                logActionList && logActionList.map(item => {
-                                    return (<option key={`logAction-${item.ActionIds}`} value={item.ActionIds}>{item.ActionName}</option>)
-                                })
-                            }
-                        </Input>
-                    </FormGroup>
+                    {
+                        logTypeList && <FormGroup className="mr-sm-2">
+                            <Label htmlFor="logType" className="mr-sm-2">{headerText.Type}</Label>
+                            <Input type="select" name="logType" id="logType" value={logType} onChange={this.handleChange}>
+                                <option value="0">{globalResource.All}</option>
+                                {
+                                    logTypeList.map(logType => {
+                                        return (<option key={`logType-${logType.TypeId}`} value={logType.TypeId}>{logType.TypeName}</option>)
+                                    })
+                                }
+                            </Input>
+                        </FormGroup>
+                    }
                     <FormGroup className="mr-sm-2">
                         <Label className="mr-sm-2">{globalResource.From}</Label>
                         <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate}
@@ -105,7 +102,7 @@ function mapStateToProps({ today }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setShowIdList, getLogActionList }, dispatch);
+    return bindActionCreators({ setParam, setShowIdList, getLogTypeList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

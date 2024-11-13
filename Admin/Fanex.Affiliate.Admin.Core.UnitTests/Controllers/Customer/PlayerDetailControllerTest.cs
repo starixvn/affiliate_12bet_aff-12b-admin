@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
@@ -20,12 +21,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var param = new PlayerDetailParam();
             PlayerDetailParam passedParam = null;
             var playerDetailService = new Mock<IPlayerDetailService>();
-            playerDetailService.Setup(s => s.GetPlayerDetailList(param)).Returns(new PlayerDetailResult { MainData = new List<PlayerDetail> { new PlayerDetail() }, TotalItem = 1 }).Callback<PlayerDetailParam>(p => passedParam = p);
+            playerDetailService.Setup(s => s.GetPlayerDetailList(param)).Returns(new EntityResult<PlayerDetail> { MainData = new List<PlayerDetail> { new PlayerDetail() }, TotalItem = 1 }).Callback<PlayerDetailParam>(p => passedParam = p);
             var controller = CreatePlayerDetailController(playerDetailService: playerDetailService.Object);
 
             // Action
             var result = controller.GetPlayerDetailList(param) as JsonNetResult;
-            var data = result.Data as PlayerDetailResult;
+            var data = result.Data as EntityResult<PlayerDetail>;
 
             // Assert
             Assert.Single(data.MainData);

@@ -5,8 +5,9 @@ exports[`customer - user-panel - components - UserPanelMenuItem Should render co
   className="up-item"
   key="edit"
 >
-  <Memo(MyLink)
+  <a
     className="upitem-link active"
+    href="javascript:;"
     onClick={[Function]}
   >
     <span
@@ -14,7 +15,7 @@ exports[`customer - user-panel - components - UserPanelMenuItem Should render co
     >
       Edit
     </span>
-  </Memo(MyLink)>
+  </a>
 </li>
 `;
 
@@ -23,8 +24,9 @@ exports[`customer - user-panel - components - UserPanelMenuItem Should render co
   className="up-item"
   key="edit"
 >
-  <Memo(MyLink)
+  <a
     className="upitem-link "
+    href="javascript:;"
     onClick={[Function]}
   >
     <span
@@ -32,6 +34,6 @@ exports[`customer - user-panel - components - UserPanelMenuItem Should render co
     >
       Edit
     </span>
-  </Memo(MyLink)>
+  </a>
 </li>
 `;

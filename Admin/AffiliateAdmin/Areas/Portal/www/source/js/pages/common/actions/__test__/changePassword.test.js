@@ -48,7 +48,7 @@ describe('changePassword actions', () => {
 
         const result = await updateChangeAdminPasswword(param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/AdminInfo/ChangePassword', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Administrator/ChangePassword', param);
         expect(result).toEqual(null);
     })
 
@@ -63,7 +63,7 @@ describe('changePassword actions', () => {
 
         const result = await updateChangeAdminPasswword(param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/AdminInfo/ChangePassword', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Administrator/ChangePassword', param);
         expect(result).toEqual({ IsSuccessful: true, Message: '' });
     })
 });

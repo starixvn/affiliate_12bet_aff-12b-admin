@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody, Alert, Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { resource, globalResource, statusList, errorList, pending } from '../libs/constants/paymentRequestUpdate';
+import { resource, globalResource, statusList, errorList, processing } from '../modules/constants/paymentRequestUpdate';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 import { getPaymentRequestDetail, updatePaymentRequest } from '../actions/paymentRequestUpdate';
 import { htmlDecode } from '../../../modules/htmlHelper';
-import { claimResource } from '../../../modules/claim';
 
-const pendingStatus = pending.toLowerCase();
+const processingStatus = processing.toLowerCase();
 const approvedStatus = statusList.Approved.toLowerCase();
 const rejectedStatus = statusList.Rejected.toLowerCase();
 
@@ -22,8 +21,11 @@ export class PaymentRequestUpdateForm extends PureComponent {
             originalStatus: '',
             isSuccess: true,
             isShowMessage: false,
-            message: ''
-        }
+            message: '',
+            isSendingRequest: false
+        };
+
+        this.timeOutAlert = null;
     }
 
     componentDidUpdate(prevProps) {
@@ -34,30 +36,35 @@ export class PaymentRequestUpdateForm extends PureComponent {
         }
     }
 
+    componentWillUnmount() {
+        this.timeOutAlert && window.clearTimeout(this.timeOutAlert);
+    }
+
     handleChange = (event) => {
-        const { name, value } = event.target;
-
-        this.setState(prevState => {
-            const paymentRequestInfo = Object.assign({}, prevState.paymentRequestInfo, { [name]: value });
-
-            return { paymentRequestInfo };
-        });
+        this.setState({ paymentRequestInfo: Object.assign({}, this.state.paymentRequestInfo, { [event.target.name]: event.target.value }) });
     }
 
     handleGetPaymentRequestInfo = async (transId) => {
         const data = await this.props.getPaymentRequestDetail({ transId });
 
-        data && this.setState({ paymentRequestInfo: data, originalStatus: htmlDecode(data.Status) });
+        data && this.setState(
+        { 
+            paymentRequestInfo: data, 
+            originalStatus: htmlDecode(data.Status),
+            isSendingRequest: false
+        });
     }
 
     handleSave = async () => {
-        this.props.handleToggleLoader(true);
-
         const { paymentRequestInfo, originalStatus } = this.state;
         const selectedStatus = paymentRequestInfo.Status;
 
-        if (originalStatus && originalStatus.toLowerCase() === pendingStatus &&
+        if (originalStatus && originalStatus.toLowerCase() === processingStatus &&
             selectedStatus && (selectedStatus.toLowerCase() === approvedStatus || selectedStatus.toLowerCase() === rejectedStatus)) {
+
+            this.setState({
+                isSendingRequest: true
+            });
 
             const paymentInfo = Object.assign({}, {
                 AffId: paymentRequestInfo.AffId,
@@ -73,7 +80,7 @@ export class PaymentRequestUpdateForm extends PureComponent {
                     isShowMessage: true,
                     isSuccess: result.IsSuccessful,
                     message: result.IsSuccessful ? `Transaction ID ${paymentRequestInfo.TransId} has been updated successfully!` : result.Message,
-                }, () => window.setTimeout(this.hideMessage, 3000));
+                }, this.handleTimeOut);
 
                 if (result.IsSuccessful) {
                     window.setTimeout(() => this.props.handleClosePopup(), 3000);
@@ -85,17 +92,19 @@ export class PaymentRequestUpdateForm extends PureComponent {
                     isSuccess: false,
                     isShowMessage: true,
                     message: errorList.UpdateFailed,
-                }, () => window.setTimeout(this.hideMessage, 3000));
+                }, this.handleTimeOut);
             }
         } else {
             this.setState({
                 isSuccess: false,
                 isShowMessage: true,
                 message: errorList.NotChoose,
-            }, () => window.setTimeout(this.hideMessage, 3000));
+            }, this.handleTimeOut);
         }
+    }
 
-        this.props.handleToggleLoader(false);
+    handleTimeOut = () => {
+        this.timeOutAlert = window.setTimeout(this.hideMessage, 3000);
     }
 
     hideMessage = () => {
@@ -105,7 +114,6 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     _renderAccountInformation(paymentRequestInfo) {
-        const { isShowEmail } = this.props;
         return (
             <fieldset>
                 <legend>
@@ -119,26 +127,18 @@ export class PaymentRequestUpdateForm extends PureComponent {
                     <Label sm={6}>{resource.RequestedDate}</Label>
                     <Label sm={6}><strong>{paymentRequestInfo.TransDateText}</strong></Label>
                 </FormGroup>
-                { isShowEmail &&
-                    <FormGroup row className="mb-2">
-                        <Label sm={6}>{resource.EmailAddress}</Label>
-                        <Label sm={6}>{htmlDecode(paymentRequestInfo.Email)}</Label>
-                    </FormGroup>
-                }
+                <FormGroup row className="mb-2">
+                    <Label sm={6}>{resource.EmailAddress}</Label>
+                    <Label sm={6}>{htmlDecode(paymentRequestInfo.Email)}</Label>
+                </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.FirstName}</Label>
-                    <Label sm={6}>{paymentRequestInfo.FirstName}</Label>
+                    <Label sm={6}>{htmlDecode(paymentRequestInfo.FirstName)}</Label>
                 </FormGroup>
-
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.LastName}</Label>
-                    <Label sm={6}>{paymentRequestInfo.LastName}</Label>
+                    <Label sm={6}>{htmlDecode(paymentRequestInfo.LastName)}</Label>
                 </FormGroup>
-                <FormGroup row className="mb-2">
-                    <Label sm={6}>{resource.BalanceBroughtForward}</Label>
-                    <Label sm={6}><strong>{formatDecimalWithCurrencySymbol(paymentRequestInfo.BalanceBF)}</strong></Label>
-                </FormGroup>
-
             </fieldset>
         );
     }
@@ -177,41 +177,40 @@ export class PaymentRequestUpdateForm extends PureComponent {
         );
     }
 
-    _renderPaymentInformation(paymentRequestInfo, isPending) {
-        const { isShowPaymentInfo } = this.props
+    _renderPaymentInformation(paymentRequestInfo, isProcessing) {
         return (
             <fieldset>
                 <legend>
                     <h6 className="font-weight-bold">{resource.PaymentInformation}</h6>
                 </legend>
-                { isShowPaymentInfo &&
-                    <FormGroup row className="mb-2">
-                        <Label sm={6}>{resource.PaymentMethod}</Label>
-                        <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PaymentMethod)}</strong></Label>
-                    </FormGroup>
-                }
+                <FormGroup row className="mb-2">
+                    <Label sm={6}>{resource.PaymentMethod}</Label>
+                    <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PaymentMethod)}</strong></Label>
+                </FormGroup>
                 <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.Amount}</Label>
                     <Label sm={6}><strong>{formatDecimalWithCurrencySymbol(paymentRequestInfo.Amount)}</strong></Label>
                 </FormGroup>
                 <FormGroup row className="mb-2">
+                    <Label sm={6}>{resource.TransAmount}</Label>
+                    <Label sm={6}><strong>{`${formatDecimalWithCurrencySymbol(paymentRequestInfo.TransAmount)} (${paymentRequestInfo.TransCurrencyCode})`}</strong></Label>
+                </FormGroup>
+                <FormGroup row className="mb-2">
                     <Label sm={6}>{resource.Status}</Label>
                     <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.Status)}</strong></Label>
                 </FormGroup>
-                { isShowPaymentInfo &&
-                    <FormGroup row className="mb-2">
-                        <Label sm={6}>{resource.UserName12Bet}</Label>
-                        <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PlayerUsername)}</strong></Label>
-                    </FormGroup>
-                }
+                <FormGroup row className="mb-2">
+                    <Label sm={6}>{`${this.props.licenseeName} ${resource.UserName}`}</Label>
+                    <Label sm={6}><strong>{htmlDecode(paymentRequestInfo.PlayerUsername)}</strong></Label>
+                </FormGroup>
                 {
-                    isPending ? this._renderOptionalStatus() : this._renderPaymentCompletionInfo(paymentRequestInfo)
+                    isProcessing ? this._renderOptionalStatus() : this._renderPaymentCompletionInfo(paymentRequestInfo)
                 }
             </fieldset>
         );
     }
 
-    _renderNote(paymentRequestInfo, isPending) {
+    _renderNote(paymentRequestInfo, isProcessing) {
         const { AdminDesc, AffDesc } = paymentRequestInfo;
 
         return (
@@ -222,8 +221,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
                             <h6 className="font-weight-bold">{resource.AdminNote}</h6>
                         </legend>
                         <FormGroup>
-                            <Label for="AdminDesc">{resource.VisibleAdmin}</Label>
-                            <Input type="textarea" name="AdminDesc" rows="6" disabled={!isPending} value={htmlDecode(AdminDesc)} onChange={this.handleChange} />
+                            <Label htmlFor="AdminDesc">{resource.VisibleAdmin}</Label>
+                            <Input type="textarea" name="AdminDesc" rows="6" disabled={!isProcessing} value={htmlDecode(AdminDesc)} onChange={this.handleChange} />
                         </FormGroup>
                     </fieldset>
                 </Col>
@@ -233,8 +232,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
                             <h6 className="font-weight-bold">{resource.AffiliateNote}</h6>
                         </legend>
                         <FormGroup>
-                            <Label for="AffDesc">{resource.VisibleAffiliate}</Label>
-                            <Input type="textarea" name="AffDesc" rows="6" disabled={!isPending} value={htmlDecode(AffDesc)} onChange={this.handleChange} />
+                            <Label htmlFor="AffDesc">{resource.VisibleAffiliate}</Label>
+                            <Input type="textarea" name="AffDesc" rows="6" disabled={!isProcessing} value={htmlDecode(AffDesc)} onChange={this.handleChange} />
                         </FormGroup>
                     </fieldset>
                 </Col>
@@ -248,13 +247,12 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 
     render() {
-        const { transactionId, isUpdatable } = this.props;
-        const { paymentRequestInfo, originalStatus, isSuccess, isShowMessage, message } = this.state;
-        const isPending = originalStatus && originalStatus.toLowerCase() === pendingStatus;
-        const isUpdatableForm = isPending && isUpdatable;
+        const { transactionId } = this.props;
+        const { paymentRequestInfo, originalStatus, isSuccess, isShowMessage, message, isSendingRequest } = this.state;
+        const isProcessing = originalStatus && originalStatus.toLowerCase() === processingStatus;
 
         return paymentRequestInfo && (
-            <Modal isOpen={transactionId} toggle={this.handleClosePopup} backdrop="static">
+            <Modal isOpen={!!transactionId} toggle={this.handleClosePopup} backdrop='static'>
                 <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>Trxn.ID {transactionId}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper p-0">
@@ -263,9 +261,9 @@ export class PaymentRequestUpdateForm extends PureComponent {
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
                             {this._renderAccountInformation(paymentRequestInfo)}
-                            {this._renderPaymentInformation(paymentRequestInfo, isUpdatableForm)}
-                            {this._renderNote(paymentRequestInfo, isUpdatableForm)}
-                            <Button type="button" color="success" className="mr-3" disabled={!isUpdatableForm} onClick={this.handleSave}>{globalResource.Update}</Button>
+                            {this._renderPaymentInformation(paymentRequestInfo, isProcessing)}
+                            {this._renderNote(paymentRequestInfo, isProcessing)}
+                            <Button type="button" color="success" className="mr-3" disabled={!isProcessing || isSendingRequest} onClick={this.handleSave}>{globalResource.Update}</Button>
                             <Button type="button" color="info" onClick={this.handleClosePopup}>{globalResource.Cancel}</Button>
                         </Form>
                     </div>
@@ -275,15 +273,8 @@ export class PaymentRequestUpdateForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ claimsPrincipal }) {
-    const isUpdatable = claimsPrincipal.hasWriteClaim(claimResource.PaymentRequest)
-    const isShowEmail = claimsPrincipal.hasReadClaim(claimResource.AffEmail)
-    const isShowPaymentInfo = claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo)
-    return Object.assign({}, { isUpdatable, isShowEmail, isShowPaymentInfo });
-}
-
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ getPaymentRequestDetail, updatePaymentRequest }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdateForm);
+export default connect(null, mapDispatchToProps)(PaymentRequestUpdateForm);

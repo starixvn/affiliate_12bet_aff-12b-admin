@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Controllers;
+﻿using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Home;
 using Fanex.Affiliate.Admin.Core.Extensions;
@@ -29,42 +28,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void GetPSPToday_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var homeService = new Mock<IHomeService>();
-            homeService.Setup(t => t.GetPSPToday()).Returns(1.23m);
-            var controller = CreateHomeController(homeService: homeService.Object);
-
-            // Action
-            var result = controller.GetPSPToday() as JsonNetResult;
-
-            // Assert
-            Assert.Equal(1.23m, result.Data);
-        }
-
-        [Fact]
-        public void GetDepositInfo_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var homeService = new Mock<IHomeService>();
-            homeService.Setup(t => t.GetDepositInfo()).Returns(new DepositInfo { AllMemberDepositUpToNow = 123 });
-            var controller = CreateHomeController(homeService: homeService.Object);
-
-            // Action
-            var result = controller.GetDepositInfo() as JsonNetResult;
-            var data = result.Data as DepositInfo;
-
-            // Assert
-            Assert.Equal(123, data.AllMemberDepositUpToNow);
-        }
-
-        [Fact]
         public void GetGeneralInfo_WhenCall_ReturnCorrectData()
         {
             // Arrange
             var homeService = new Mock<IHomeService>();
-            homeService.Setup(t => t.GetGeneralInfo(string.Empty)).Returns(new GeneralInfo { PaymentRequestNumber = 1 });
+            homeService.Setup(t => t.GetGeneralInfo()).Returns(new GeneralInfo { PaymentRequestNumber = 1 });
             var controller = CreateHomeController(homeService: homeService.Object);
 
             // Action
@@ -80,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var homeService = new Mock<IHomeService>();
-            homeService.Setup(t => t.GetOnlineList(It.IsAny<string>(), 1, 20)).Returns(new EntityResult<OnlineListInfo> { MainData = new List<OnlineListInfo> { new OnlineListInfo() } });
+            homeService.Setup(t => t.GetOnlineList(1, 20)).Returns(new EntityResult<OnlineListInfo> { MainData = new List<OnlineListInfo> { new OnlineListInfo() } });
             var controller = CreateHomeController(homeService: homeService.Object);
 
             // Action
@@ -93,14 +61,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
 
         private HomeController CreateHomeController(
             ISessionService sessionService = null,
-            IHomeService homeService = null,
-            ISystemService systemServive = null)
+            IHomeService homeService = null)
         {
-            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService(Function.HomeMenu, true);
+            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeHomeService = homeService ?? Mock.Of<IHomeService>();
-            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
 
-            return new HomeController(fakeSessionService, fakeHomeService, fakesystemServive);
+            return new HomeController(fakeSessionService, fakeHomeService);
         }
     }
 }

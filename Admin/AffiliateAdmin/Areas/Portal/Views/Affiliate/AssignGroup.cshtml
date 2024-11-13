@@ -11,9 +11,10 @@
     <script type="text/javascript">
         window.initialState = {
             commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
+            commGroupTypes: @Html.Raw(Json.Encode(Model.CommGroupTypes)),
+            selectedGroupType: @Model.SelectedGroupType,
             selectedGroup: @Model.SelectedGroup,
-            hasCommGroupVisible: '@Model.HasCommGroupVisible'.toLowerCase() === 'true',
-            affInfo: @Html.Raw(Json.Encode(Model.AffInfo)),
+            affInfo: @Html.Raw(Json.Encode(Model.AffInfo))
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/commission/assign-group.js")"></script>

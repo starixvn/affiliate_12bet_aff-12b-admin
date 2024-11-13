@@ -35,7 +35,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             // Assert
             Assert.Single(result.MainData);
             Assert.Equal("22-Nov-2019", item.DateText);
-            Assert.Equal("2019-11-22", item.NormalizeDateText);
         }
 
         [Fact]
@@ -59,7 +58,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             // Assert
             Assert.Single(result.MainData);
             Assert.Equal("Nov-2019", item.DateText);
-            Assert.Equal("2019-11-22", item.NormalizeDateText);
         }
 
         [Fact]
@@ -80,6 +78,70 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
 
             // Assert
             Assert.Equal(0, result.TotalItem);
+        }
+
+        [Fact]
+        public void GetSubAffiliate_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var repository = new Mock<StatementHistoryRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false).Returns(true);
+            dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetSubAffiliateList());
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
+            repository.Setup(r => r.GetObjectDb("Aff_SubAffiliate_Commission_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetSubAffiliate(new SubAffiliateParam());
+
+            // Assert
+            Assert.Single(result.MainData);
+        }
+
+        [Fact]
+        public void GetSubAffiliate_WhenCall_ReturnCorrectDataHasNull()
+        {
+            // Arrange
+            var repository = new Mock<StatementHistoryRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false).Returns(true);
+            dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetSubAffiliateListHasNull());
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
+            repository.Setup(r => r.GetObjectDb("Aff_SubAffiliate_Commission_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetSubAffiliate(new SubAffiliateParam());
+
+            // Assert
+            Assert.Single(result.MainData);
+        }
+
+        [Fact]
+        public void GetSubAffiliate_WhenCall_ReturnNullData()
+        {
+            // Arrange
+            var repository = new Mock<StatementHistoryRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false);
+
+            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
+            repository.Setup(r => r.GetObjectDb("Aff_SubAffiliate_Commission_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetSubAffiliate(new SubAffiliateParam());
+
+            // Assert
+            Assert.Empty(result.MainData);
         }
 
         [Fact]
@@ -192,13 +254,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
-                ["TransId"] = 37,
+                ["TransId"] = 123,
                 ["Amount"] = 100,
-                ["TransType"] = 202,
+                ["TransType"] = 123,
                 ["MonthDate"] = new DateTime(2019, 11, 22),
                 ["Status"] = "Approved",
                 ["Creator"] = "sa",
-                ["Description"] = "abc"
+                ["Description"] = "abc",
+                ["CalculatedType"] = DBNull.Value
             };
         }
 
@@ -206,13 +269,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
-                ["TransId"] = 37,
+                ["TransId"] = 123,
                 ["Amount"] = 100,
                 ["TransType"] = 0,
                 ["MonthDate"] = new DateTime(2019, 11, 22),
                 ["Status"] = "Approved",
                 ["Creator"] = "sa",
-                ["Description"] = "abc"
+                ["Description"] = "abc",
+                ["CalculatedType"] = DBNull.Value
             };
         }
 
@@ -222,9 +286,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             {
                 ["Deposit"] = 123,
                 ["Withdrawal"] = 123,
-                ["MemberWinLost"] = 123,
+                ["Ggr"] = 123,
                 ["Bonus"] = 123,
-                ["Turnover"] = 0,
                 ["BankingFee"] = 123,
             };
         }
@@ -235,9 +298,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
             {
                 ["Deposit"] = 123,
                 ["Withdrawal"] = 123,
-                ["MemberWinLost"] = 123,
+                ["Ggr"] = 123,
                 ["Bonus"] = 123,
-                ["Turnover"] = 0,
                 ["BankingFee"] = DBNull.Value,
                 ["WinlostDate"] = new DateTime(2019, 11, 22)
             };
@@ -250,12 +312,33 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Customer
                 ["CustId"] = 123,
                 ["UserName"] = "abc",
                 ["IBCUsername"] = "abc",
-                ["Winlost"] = 123,
+                ["Ggr"] = 123,
                 ["Deposit"] = 123,
-                ["Turnover"] = 0,
                 ["Withdrawal"] = 123,
                 ["Bonus"] = 123,
                 ["BankingFee"] = 123,
+            };
+        }
+
+        private IDictionary<string, object> GetSubAffiliateList()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["AffId"] = 123,
+                ["AffName"] = "abc",
+                ["Commission"] = 123,
+                ["SubAffCommission"] = 123
+            };
+        }
+
+        private IDictionary<string, object> GetSubAffiliateListHasNull()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["AffId"] = 123,
+                ["AffName"] = "abc",
+                ["Commission"] = DBNull.Value,
+                ["SubAffCommission"] = DBNull.Value
             };
         }
     }

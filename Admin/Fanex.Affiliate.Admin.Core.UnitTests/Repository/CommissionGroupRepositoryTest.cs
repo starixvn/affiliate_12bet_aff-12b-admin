@@ -1,6 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
 using Moq;
@@ -23,6 +23,21 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         private const string SpKeyCommGroupAssign = "Aff_Admin_CommGroup_Assign";
 
         [Fact]
+        public void GetCommissionGroupTypes_WhenCall_CallCorrectMethodOfObjectDb()
+        {
+            // Arrange
+            var objectDb = new Mock<IObjectDb>();
+            var repository = new Mock<CommissionGroupRepository> { CallBase = true };
+            repository.Setup(re => re.GetObjectDb("Aff_Admin_CommGroup_GroupTypeSel", It.IsAny<int>())).Returns(objectDb.Object);
+
+            // Action
+            repository.Object.GetCommissionGroupTypes();
+
+            // Assert
+            objectDb.Verify(obj => obj.Query<CommGroupType>(null, null), Times.Once);
+        }
+
+        [Fact]
         public void GetCommissionSettingList_WhenCall_ReturnCorrectCommGroupData()
         {
             // Arrange
@@ -42,7 +57,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             // Assert
             Assert.Single(result.CommGroupList);
             Assert.Empty(result.TierSettingList);
-            Assert.Empty(result.DeductionSettingList);
+            Assert.Empty(result.TierDeductionSettingList);
+            Assert.Empty(result.P2pDeductionSettingList);
+            Assert.Equal("07/11/2018 00:00:00", commGroupItem.CreatedDateText);
         }
 
         [Fact]
@@ -65,7 +82,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             // Assert
             Assert.Empty(result.CommGroupList);
             Assert.Single(result.TierSettingList);
-            Assert.Empty(result.DeductionSettingList);
+            Assert.Empty(result.TierDeductionSettingList);
+            Assert.Empty(result.P2pDeductionSettingList);
         }
 
         [Fact]
@@ -88,7 +106,32 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             // Assert
             Assert.Empty(result.CommGroupList);
             Assert.Empty(result.TierSettingList);
-            Assert.Single(result.DeductionSettingList);
+            Assert.Single(result.TierDeductionSettingList);
+            Assert.Empty(result.P2pDeductionSettingList);
+        }
+
+        [Fact]
+        public void GetCommissionSettingList_WhenCall_ReturnCorrectP2pDeductionSetting()
+        {
+            // Arrange
+            var repository = new Mock<CommissionGroupRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false).Returns(false).Returns(true);
+            dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(true).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetExpectedP2pDeductionSetting());
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<GetCommissionGroupParam>(), null)).Returns(dataReader.Object);
+            repository.Setup(re => re.GetObjectDb(SpKeyCommGroupSel, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetCommissionGroupList(new GetCommissionGroupParam());
+
+            // Assert
+            Assert.Empty(result.CommGroupList);
+            Assert.Empty(result.TierSettingList);
+            Assert.Empty(result.TierDeductionSettingList);
+            Assert.Single(result.P2pDeductionSettingList);
         }
 
         [Fact]
@@ -101,6 +144,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(0);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(DBNull.Value);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns(string.Empty);
+            objectDb.Setup(obj => obj.GetParameterValue("GroupId")).Returns(DBNull.Value);
             repository.Setup(re => re.GetObjectDb(SpKeyCommGroupIns, 120)).Returns(objectDb.Object);
 
             // Action
@@ -120,6 +164,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             objectDb.Setup(obj => obj.ExecuteNonQuery(null, null)).Returns(123);
             objectDb.Setup(obj => obj.GetParameterValue("ErrCode")).Returns(123);
             objectDb.Setup(obj => obj.GetParameterValue("ErrMsg")).Returns("Create Commission Group is failed!");
+            objectDb.Setup(obj => obj.GetParameterValue("GroupId")).Returns(1);
             repository.Setup(re => re.GetObjectDb(SpKeyCommGroupIns, 120)).Returns(objectDb.Object);
 
             // Action
@@ -255,7 +300,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             repository.Object.GetDeductionList();
 
             // Assert
-            objectDb.Verify(obj => obj.Query<Deduction>(null, null), Times.Once);
+            objectDb.Verify(obj => obj.Query<DeductionItem>(null, null), Times.Once);
         }
 
         [Fact]
@@ -304,6 +349,27 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             Assert.Equal(0, param.GroupId);
         }
 
+        [Fact]
+        public void GetAllCommGroups_WhenCall_ReturnCorrectCommGroupList()
+        {
+            // Arrange
+            var repository = new Mock<CommissionGroupRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
+
+            var expectedValue = GetExpectedNomalCommGroup();
+            ReaderHelper.MapReaderData(dataReader, expectedValue);
+            objectDb.Setup(obj => obj.ExecuteReader(null, null)).Returns(dataReader.Object);
+            repository.Setup(re => re.GetObjectDb("Aff_CommGroup_Sel", 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetAllCommGroups();
+
+            // Assert
+            Assert.Single(result);
+        }
+
         private IDictionary<string, object> GetExpectedCommGroup()
         {
             return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
@@ -316,8 +382,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
                 ["Description"] = "Description",
                 ["QMTurnover"] = 100.50m,
                 ["NextQMTurnover"] = 150.50m,
-                ["IsApplyBonus"] = true,
-                ["NextIsApplyBonus"] = false,
                 ["NoAffs"] = 2
             };
         }
@@ -330,8 +394,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
                 ["TierId"] = 1,
                 ["MinAmount"] = 0m,
                 ["MaxAmount"] = 100m,
-                ["MinQm"] = 0,
-                ["MaxQm"] = 50,
+                ["MinAp"] = 0,
+                ["MaxAp"] = 50,
                 ["Commission"] = 0.2m
             };
         }
@@ -345,7 +409,21 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
                 ["DeductionName"] = "DeductionName",
                 ["ProductIds"] = "1,2,3",
                 ["DeductedPercentage"] = 0.7m,
-                ["NextDeductedPercentage"] = 0.5m
+                ["IsDeductedPercent"] = true,
+                ["DeductedAmount"] = "0"
+            };
+        }
+
+        private IDictionary<string, object> GetExpectedP2pDeductionSetting()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["GroupId"] = 101,
+                ["DeductionId"] = 1,
+                ["DeductionName"] = "DeductionName",
+                ["ProductIds"] = "1,2,3",
+                ["DeductedPercentage"] = 0.7m,
+                ["Commission"] = 0.1m
             };
         }
 

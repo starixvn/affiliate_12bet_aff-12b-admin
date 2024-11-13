@@ -1,4 +1,3 @@
-
 export const defaultPagingOption = {
     PageIndex: 1,
     PageSize: 20,
@@ -6,17 +5,20 @@ export const defaultPagingOption = {
     PageList: [10, 20, 50, 100, 200, 500]
 };
 
-export const minMonthDate = { month: 12, year: 2009 };
+export const minMonthDate = { month: 1, year: 2020 };
 
 export const shortedMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 export const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export const money = {
     MaxValue: 922337203685477,
-    MinValue: -922337203685477
+    MinValue: -922337203685477,
+    AllowedMaxValue: 100000000000,
+    AllowedMinValue: -100000000000
 }
 
 export const selectedAllProduct = 0;
+export const defaultBaseCurrency = 0;
 
 export const maxWidth = window.innerWidth - 282;
 
@@ -25,9 +27,13 @@ const maxUserPanelHeight = window.innerHeight - 234;
 export const spinnerLoaderWidth = (maxWidth / 2) - 32
 export const spinnerLoaderUserPanelHeight = (maxUserPanelHeight / 2) - 32
 
-export const minDate = new Date(2009, 11, 1);
-export const minDateOfClickStatistics = new Date(2015, 0, 1);
 export const sixMonth = 6;
+export const minDate = new Date(2019, 12, 31);
+
+export const submitFail = {
+    IsSuccessful: false,
+    Message: 'An error occurred while processing your request, please try again later!'
+}
 
 export const pcLaptop = 'PC / Laptop';
 export const mobile = 'Mobile';
@@ -35,32 +41,4 @@ export const mobile = 'Mobile';
 export const deviceTypes = {
     [pcLaptop]: 0,
     [mobile]: 1
-}
-
-export const targetCountryStatus = {
-    Normal: 0,
-    Blocked: 1,
-    Excluded: 1,
-    Using: 2
-}
-
-export const regExp = {
-    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
-}
-
-export const changePasswordMessages = {
-    RequiredConfirmPassword: "Confirm Password is required!",
-    ChangePasswordSuccess: "Change password is successful!",
-    ConfirmPasswordIncorrect: 'Confirm Password is incorrect!',
-    ChangePasswordFailed: 'Change password is failed!'
-}
-
-export const specialCharacters = ["#", "<", "$", "+", "%", ">", "!", "`", "&", "*", "'", "|", "{", "}", "?", "\"", "=", "/", ":", "\\", "@"]
-
-export const defaultDatetimeFormat = "dd/MM/yyyy HH:mm:ss";
-export const defaultDateFormat = "dd/MM/yyyy";
-
-export const submitIsFailed = {
-    IsSuccessful: false,
-    Message: 'An error occurred while processing your request, please try again later!'
 }

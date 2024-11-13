@@ -17,9 +17,9 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setParam', type: types.SET_PARAM, data: { Id: 123 }},
+    { name: 'setParam', type: types.SET_PARAM, data: { Id: 123 } },
     { name: 'setSelectedMessageId', type: types.SET_SELECTED_MESSAGE_ID, data: 123456 },
-    { name: 'setCheckedMessages', type: types.SET_CHECKED_MESSAGES, data: { 123456: false }},
+    { name: 'setCheckedMessages', type: types.SET_CHECKED_MESSAGES, data: { 123456: false } },
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
     { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' }
 ];
@@ -63,11 +63,11 @@ describe('message actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER' , data: true },
-            { type: types.SET_GRID_DATA , data: expectedResponse.data.MainData },
-            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 2 }},
-            { type: types.SHOULD_RESET_SCROLL_POSITION , data: true },
-            { type: types.SET_CHECKED_MESSAGES , data: { 37: false, 6: false } },
+            { type: 'TOGGLE_LOADER', data: true },
+            { type: types.SET_GRID_DATA, data: expectedResponse.data.MainData },
+            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 2 } },
+            { type: types.SHOULD_RESET_SCROLL_POSITION, data: true },
+            { type: types.SET_CHECKED_MESSAGES, data: { 37: false, 6: false } },
             { type: 'TOGGLE_LOADER', data: false },
         ];
         const param = {
@@ -78,7 +78,7 @@ describe('message actions', () => {
             PageSize: 20,
             ToDate: "9/19/2019"
         }
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData'](param)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Message/GetMessageList', param);
@@ -90,11 +90,11 @@ describe('message actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER' , data: true },
-            { type: types.SET_GRID_DATA , data: [] },
-            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 0 }},
-            { type: types.SHOULD_RESET_SCROLL_POSITION , data: true },
-            { type: types.SET_CHECKED_MESSAGES , data: {} },
+            { type: 'TOGGLE_LOADER', data: true },
+            { type: types.SET_GRID_DATA, data: [] },
+            { type: 'SET_PAGING_OPTION', data: { PageIndex: 1, PageSize: 20, TotalItem: 0 } },
+            { type: types.SHOULD_RESET_SCROLL_POSITION, data: true },
+            { type: types.SET_CHECKED_MESSAGES, data: {} },
             { type: 'TOGGLE_LOADER', data: false },
         ];
         const param = {
@@ -105,7 +105,7 @@ describe('message actions', () => {
             PageSize: 20,
             ToDate: "9/19/2019"
         }
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData'](param)).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Message/GetMessageList', param);
@@ -114,17 +114,19 @@ describe('message actions', () => {
     })
 
     it('should create action to getMessageDetail with correct parameter', async () => {
-        const expectedResponse = { data: {
-            Creator: "sa",
-            Important: true,
-            Message: "test",
-            MessageId: 37,
-            PostedDate: "2019-09-13T02:12:43.987",
-            PostedDateText: "09/13/2019 02:12:43",
-            UpdatedBy: "sa",
-            UpdatedDate: "2019-09-16T02:38:23.327",
-            UpdatedDateText: "09/16/2019 02:38:23"
-        }, status: 200 };
+        const expectedResponse = {
+            data: {
+                Creator: "sa",
+                Important: true,
+                Message: "test",
+                MessageId: 37,
+                PostedDate: "2019-09-13T02:12:43.987",
+                PostedDateText: "09/13/2019 02:12:43",
+                UpdatedBy: "sa",
+                UpdatedDate: "2019-09-16T02:38:23.327",
+                UpdatedDateText: "09/16/2019 02:38:23"
+            }, status: 200
+        };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const selectedMessageId = 37;
 
@@ -138,7 +140,7 @@ describe('message actions', () => {
     it('should create action to getMessageDetail with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const selectedMessageId = 123456;
-        
+
         const result = await actions['getMessageDetail'](selectedMessageId)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Message/GetMessageDetail', { selectedMessageId: 123456 });
@@ -184,7 +186,7 @@ describe('message actions', () => {
             MessageId: 0,
             important: false
         };
-        
+
         const result = await actions['insertMessage'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Message/insertMessage', param);
@@ -230,7 +232,7 @@ describe('message actions', () => {
             MessageId: 37,
             important: false
         };
-        
+
         const result = await actions['updateMessage'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Message/UpdateMessage', param);
@@ -252,7 +254,7 @@ describe('message actions', () => {
     it('should create action to deleteMessages with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const messageIdList = '123456';
-        
+
         const result = await actions['deleteMessages'](messageIdList)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Message/DeleteMessages', { messageIdList });

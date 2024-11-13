@@ -1,3 +1,3 @@
-import MultipleSelect from './components/MultipleSelect'
+import MultipleSelect from './components/MultipleSelect';
 
-export default MultipleSelect
+export default MultipleSelect;

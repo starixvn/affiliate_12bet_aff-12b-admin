@@ -6,7 +6,8 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
 import PaymentRequestUpdateForm from '../../../common/components/PaymentRequestUpdateForm';
-import { setTransactionId, setParam, getAffiliateInfo, toggleLoader } from '../actions';
+
+import { setTransactionId, setParam, getAffiliateInfo } from '../actions';
 
 export class AppContainer extends PureComponent {
     constructor(props) {
@@ -18,26 +19,21 @@ export class AppContainer extends PureComponent {
     }
 
     handleFetchData = () => {
-        const { affName, param } = this.props;
-        this.props.setParam(param);
+        const { affName } = this.props;
         this.props.getAffiliateInfo(affName);
     }
 
-    handleToggleLoader = (toggle) => {
-        this.props.toggleLoader(toggle);
-    }
-
     render() {
-        const { transactionId } = this.props;
+        const { transactionId, licenseeName } = this.props;
 
         return (
             <AppLayout>
                 <Filter />
                 <Content />
                 <PaymentRequestUpdateForm
+                    licenseeName={licenseeName}
                     transactionId={transactionId}
                     handleClosePopup={this.handleClosePopup}
-                    handleToggleLoader={this.handleToggleLoader}
                     handleFetchData={this.handleFetchData}
                 />
             </AppLayout>
@@ -45,14 +41,14 @@ export class AppContainer extends PureComponent {
     }
 }
 
-function mapStateToProps({ statementHistory, affCommonInfo }) {
-    const { transactionId, param } = statementHistory;
+function mapStateToProps({ statementHistory, affCommonInfo, licenseeName }) {
+    const { transactionId } = statementHistory;
     const { affName } = affCommonInfo;
-    return Object.assign({}, { transactionId, param, affName });
+    return Object.assign({}, { transactionId, affName, licenseeName });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId, setParam, getAffiliateInfo, toggleLoader }, dispatch);
+    return bindActionCreators({ setTransactionId, setParam, getAffiliateInfo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

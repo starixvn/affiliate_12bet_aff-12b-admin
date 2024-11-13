@@ -270,14 +270,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 TextLinkTemplate = "{scheme}://{domain}/{custid}/{target}/{lang}/index.html"
             };
 
-        private static void SetUpContext(string lang = null)
-        {
-            var query = String.IsNullOrWhiteSpace(lang) ? null : $"lang={lang}";
-            var request = new HttpRequest("111", "http://127.0.0.1:8080/controller/action", query);
-            var response = new HttpResponse(new StringWriter());
-            HttpContext.Current = new HttpContext(request, response);
-        }
-
         private MarketingService CreateService()
             => new MarketingService(Repo, CacheService, LanguageService, AppSetting, AccountRepository);
     }

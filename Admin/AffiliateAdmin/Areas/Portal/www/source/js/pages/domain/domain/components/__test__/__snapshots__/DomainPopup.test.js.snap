@@ -25,12 +25,8 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
-  style={
-    Object {
-      "maxWidth": 650,
-    }
-  }
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -92,7 +88,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-3"
+          className="mb-5"
           tag="form"
         >
           <FormGroup
@@ -102,8 +98,8 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
           >
             <Label
               className="required"
-              for="domainName"
-              sm={3}
+              htmlFor="domainName"
+              sm={4}
               tag="label"
               widths={
                 Array [
@@ -118,7 +114,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
               Domain
             </Label>
             <Col
-              sm={9}
+              sm={8}
               tag="div"
               widths={
                 Array [
@@ -146,8 +142,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
             tag="div"
           >
             <Label
-              for="isSSL"
-              sm={3}
+              sm={4}
               tag="label"
               widths={
                 Array [
@@ -162,7 +157,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
               SSL
             </Label>
             <Col
-              sm={9}
+              sm={8}
               tag="div"
               widths={
                 Array [
@@ -176,22 +171,13 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
             >
               <input
                 checked={false}
-                id="isSSL"
+                className="mt-2"
                 name="isSSL"
                 onChange={[Function]}
                 type="checkbox"
               />
             </Col>
           </FormGroup>
-          <ExcludedTargetCountryFormGroup
-            changeTargetCountry={[Function]}
-            isExcludedAllTargetCountries={false}
-            lblText="Block Target Country"
-            sm={3}
-            targetCountryList={null}
-            tooltipText="This Affiliate domain has been used for this target country!"
-            usingTargetCountryList={Array []}
-          />
         </Form>
         <Button
           className="mr-3"
@@ -243,12 +229,8 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
-  style={
-    Object {
-      "maxWidth": 650,
-    }
-  }
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -310,7 +292,7 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-3"
+          className="mb-5"
           tag="form"
         >
           <FormGroup
@@ -320,8 +302,8 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
           >
             <Label
               className="required"
-              for="domainName"
-              sm={3}
+              htmlFor="domainName"
+              sm={4}
               tag="label"
               widths={
                 Array [
@@ -336,7 +318,7 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
               Domain
             </Label>
             <Col
-              sm={9}
+              sm={8}
               tag="div"
               widths={
                 Array [
@@ -364,8 +346,7 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
             tag="div"
           >
             <Label
-              for="isSSL"
-              sm={3}
+              sm={4}
               tag="label"
               widths={
                 Array [
@@ -380,7 +361,7 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
               SSL
             </Label>
             <Col
-              sm={9}
+              sm={8}
               tag="div"
               widths={
                 Array [
@@ -394,40 +375,13 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
             >
               <input
                 checked={true}
-                id="isSSL"
+                className="mt-2"
                 name="isSSL"
                 onChange={[Function]}
                 type="checkbox"
               />
             </Col>
           </FormGroup>
-          <ExcludedTargetCountryFormGroup
-            changeTargetCountry={[Function]}
-            isExcludedAllTargetCountries={false}
-            lblText="Block Target Country"
-            sm={3}
-            targetCountryList={
-              Array [
-                Object {
-                  "Status": 0,
-                  "TargetCountryCode": "en-US",
-                  "TargetCountryName": "English",
-                },
-                Object {
-                  "Status": 1,
-                  "TargetCountryCode": "th-TH",
-                  "TargetCountryName": "Thailand",
-                },
-                Object {
-                  "Status": 2,
-                  "TargetCountryCode": "zh-CN",
-                  "TargetCountryName": "Chinese",
-                },
-              ]
-            }
-            tooltipText="This Affiliate domain has been used for this target country!"
-            usingTargetCountryList={Array []}
-          />
         </Form>
         <Button
           className="mr-3"

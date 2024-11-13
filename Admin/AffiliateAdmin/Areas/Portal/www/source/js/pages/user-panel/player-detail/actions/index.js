@@ -1,17 +1,10 @@
 import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
-import { getProductList  } from '../../../customer/user-panel/libs/service';
-import { SET_PRODUCT_LIST, SET_PARAM, SET_SORTED_PARAM } from './types';
+import { SET_PARAM, SET_SORTING_COLUMN } from './types';
 
-export { setPagingOption, toggleLoaderUserPanel, getProductList }
+export { setPagingOption, toggleLoaderUserPanel }
 
-export const setProductList = (data) => {
-    return {
-        type: SET_PRODUCT_LIST,
-        data
-    }
-}
 
 export const setParam = (data) => {
     return {
@@ -20,9 +13,9 @@ export const setParam = (data) => {
     }
 }
 
-export const setSortedParam = (data) => {
+export const setSortingColumn = (data) => {
     return {
-        type: SET_SORTED_PARAM,
+        type: SET_SORTING_COLUMN,
         data
     }
 }
@@ -30,13 +23,6 @@ export const setSortedParam = (data) => {
 export const fetchData = (param) => async () => {
     const url = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
     const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const exportExcel = (param) => async () => {
-    const url = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
-    const response = await post(url, { ...param, pageIndex: 1, pageSize: 20 });
 
     return response && response.status === 200 ? response.data : null;
 }

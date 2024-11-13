@@ -1,8 +1,5 @@
 ﻿import React, { PureComponent } from 'react';
-import { Alert, Form, FormGroup, Label, Input, Col } from 'reactstrap';
-import AppLayout from '../../../layouts/AppLayout';
-import MyLink from '../../common/components/MyLink';
-import Loader from '../../../components/Loader';
+import { Alert, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { post } from '../../../modules/ajaxRequest';
 import { resolveClientUrl } from '../../../modules/utils';
@@ -18,7 +15,7 @@ export default class AppContainer extends PureComponent {
             isShowMessage: false,
             message: '',
             year: now.getFullYear(),
-            isShowLoader: false
+            isClickedLogin: false
         }
     }
 
@@ -47,7 +44,7 @@ export default class AppContainer extends PureComponent {
     }
 
     _handleLogin = () => {
-        !this.state.isShowLoader && this.setState({ isShowLoader: true }, this._login);
+        !this.state.isClickedLogin && this.setState({ isClickedLogin: true }, this._login);
     }
 
     _login = async () => {
@@ -63,7 +60,7 @@ export default class AppContainer extends PureComponent {
                 const { data } = response;
 
                 if (data.IsSuccessful) {
-                    window.location = resolveClientUrl("Portal/Home");
+                    window.location = resolveClientUrl("Portal/Home")
                 } else {
                     this._handleShowAlert(false, data.Message);
                 }
@@ -72,7 +69,7 @@ export default class AppContainer extends PureComponent {
             }
         }
 
-        this.setState({ isShowLoader: false });
+        this.setState({ isClickedLogin: false });
     }
 
     _handlePressEnter = (event) => {
@@ -89,55 +86,51 @@ export default class AppContainer extends PureComponent {
     }
 
     render() {
-        const { userName, password, isShowMessage, message, year, isShowLoader } = this.state;
+        const { userName, password, isShowMessage, message, year } = this.state;
+        const { licenseeName } = window.initialState;
 
         return (
-            <AppLayout>
-                <Loader show={isShowLoader} />
-                <div className="login-container">
-                    <div className="lgRight"></div>
-                    <div className="lgRp">
-                        <div className="logo"></div>
-                        <div className="war-box">
-                            <Alert color='danger' isOpen={isShowMessage}>
-                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
-                            </Alert>
-                        </div>
-                        <Form tag="form" className="form-login pl-3" autoComplete="false">
-                            <FormGroup row className="mb-1">
-                                <span className="icUser">&nbsp;</span>
-                                <Label for="userName" sm={3} className="form-login-text">User Name</Label>
-                                <Col sm={6}>
-                                    <Input type="text" name="userName" id="userName" value={userName}
-                                        onKeyPress={this._handlePressEnter} onChange={this._handleChange} />
-                                </Col>
-                            </FormGroup>
-
-                            <FormGroup row>
-                                <span className="icPass">&nbsp;</span>
-                                <Label for="passWord" sm={3} className="form-login-text">Password</Label>
-                                <Col sm={6}>
-                                    <Input type="password" name="password" id="password" autoComplete="false"
-                                        value={password} onKeyPress={this._handlePressEnter} onChange={this._handleChange} />
-                                </Col>
-                            </FormGroup>
-                        </Form>
-                        <div className="bt">
-                            <MyLink className={"bt-login"} onClick={this._handleLogin}>
-                                Log On
-                            </MyLink>
-                        </div>
-                        <div className="foot">
-                            <span className="foot-left">&nbsp;</span>
-                            <span className="foot-rp">{`© Copyright ${year} Pacific Sea Invests`}</span>
-                            <span className="foot-right">&nbsp;</span>
-                            {/* <span className="foot-text">Best view in</span>
-                            <span className="foot-icIE">&nbsp;</span>
-                            <span className="foot-icFirefox">&nbsp;</span> */}
+            <div className="login-container">
+                <div className="lgRp">
+                    <div className="login-header">
+                        <div>
+                            <div>Welcome to {licenseeName}<span> Login</span></div>
+                            <p>Please sign in to continue to work</p>
                         </div>
                     </div>
+                    <div className="war-box">
+                        <Alert color='danger' isOpen={isShowMessage}>
+                            <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                        </Alert>
+                    </div>
+
+                    <Form tag="form" className="form-login" autoComplete="false">
+                        <FormGroup>
+                            <Label htmlFor="userName" className="form-login-text">User Name</Label>
+                            <div>
+                                <Input type="text" name="userName" id="userName" value={userName}
+                                    onKeyPress={this._handlePressEnter} onChange={this._handleChange} />
+                            </div>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Label htmlFor="passWord" className="form-login-text">Password</Label>
+                            <div>
+                                <Input type="password" name="password" id="password" autoComplete="false"
+                                    value={password} onKeyPress={this._handlePressEnter} onChange={this._handleChange} />
+                            </div>
+                        </FormGroup>
+
+                        <div className="bt">
+                            <a href="javascript:;" className="bt-login" onClick={this._handleLogin} >Log On</a>
+                        </div>
+                    </Form>
                 </div>
-            </ AppLayout>
+
+                <div className="foot">
+                    <span className="foot-rp">{`© Copyright ${year} ${licenseeName}. All Rights Reserved | 21+`}</span>
+                </div>
+            </div>
         )
     }
 }

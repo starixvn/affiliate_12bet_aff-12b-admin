@@ -1,142 +1,102 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
-    [FunctionAuthorize(FunctionName = Function.DomainMenu)]
+    [FunctionAuthorize(FunctionName = Function.Domain)]
     public class DomainControlController : ReadOnlySessionBaseController
     {
-        private readonly ISystemService _systemService;
         private readonly IDomainControlService _domainControlService;
+        private readonly ILanguageRepository _languageRepository;
 
         public DomainControlController(
             ISessionService sessionService,
             IDomainControlService domainControlService,
-            ISystemService systemService) : base(sessionService)
+            ILanguageRepository languageRepository) : base(sessionService)
         {
-            _systemService = systemService;
             _domainControlService = domainControlService;
+            _languageRepository = languageRepository;
         }
 
         public ActionResult Index()
         {
-            var model = new DomainViewModel
+            var subMenu = new List<SubMenu>
             {
-                TargetCountryList = _systemService.GetTargetCountryListByUser()
+                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain?isAffDomain=true") },
+                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/Domain?isAffDomain=false") },
+                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl"), IsActive = true },
+                new SubMenu { Name = Lang.SubAffiliateDomain, Url = Url.Content("~/Portal/SubAffDomain") }
             };
 
-            return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);
+            var model = new DomainControlViewModel
+            {
+                SubMenuList = subMenu,
+                MarketList = _languageRepository.GetLanguageList()
+            };
+
+            return View("~/Areas/Portal/Views/Domain/DomainControl.cshtml", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainControlList(string targetCountryCode)
+        public ActionResult GetDomainControlList(string market)
         {
-            var visibleTargetCountryCodes = SystemHelper.GetVisibleTargetCountryCodes(targetCountryCode, _systemService.GetTargetCountryListByUser());
-
-            return new JsonNetResult
-            {
-                Data = _domainControlService.GetDomainControlList(visibleTargetCountryCodes)
-            };
+            return GenerateJsonNetResult(_domainControlService.GetDomainControlList(market));
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainControlById(int domainControlId)
+        [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
+        public ActionResult InsertDomainControl(InsertUpdateDomainControlParam param)
         {
-            var domainControl = _domainControlService.GetDomainControlById(domainControlId);
-            var isValidTargetCountry = SystemHelper.IsValidTargetCountryCodes(domainControl?.TargetCountryCode, _systemService.GetTargetCountryListByUser());
-
-            return new JsonNetResult
-            {
-                Data = isValidTargetCountry ? domainControl : null
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
-        public ActionResult InsertDomainControl(InsertDomainControlParam param)
-        {
-            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesNotBlockedByUser(param.AffDomainId, param.RedirectDomainId)))
+            if (ModelState.IsValid)
             {
                 AssignUserInfoParam(param);
 
-                return new JsonNetResult
-                {
-                    Data = _domainControlService.InsertDomainControl(param)
-                };
+                return GenerateJsonNetResult(_domainControlService.InsertDomainControl(param));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr("The Domain Control's info is invalid!")
-            };
+            return GenerateErrResult("Domain's info is invalid!");
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
-        public ActionResult UpdateDomainControl(UpdateDomainControlParam param)
+        [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
+        public ActionResult UpdateDomainControl(InsertUpdateDomainControlParam param)
         {
-            if (ModelState.IsValid && SystemHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountriesNotBlockedByUser(param.AffDomainId, param.RedirectDomainId)))
+            var isValidDomainId = param.DomainId >= Validation.MinId;
+            if (ModelState.IsValid && isValidDomainId)
             {
                 AssignUserInfoParam(param);
 
-                return new JsonNetResult
-                {
-                    Data = _domainControlService.UpdateDomainControl(param)
-                };
+                return GenerateJsonNetResult(_domainControlService.UpdateDomainControl(param));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr("The Domain Control's info is invalid!")
-            };
+            return GenerateErrResult(isValidDomainId ? "Domain's info is invalid!" : "Domain Id is invalid.");
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.DomainMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
         public ActionResult DeleteDomainControl(DeleteDomainControlParam param)
         {
             if (ModelState.IsValid)
             {
                 AssignUserInfoParam(param);
 
-                return new JsonNetResult
-                {
-                    Data = _domainControlService.DeleteDomainControl(param)
-                };
+                return GenerateJsonNetResult(_domainControlService.DeleteDomainControl(param));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr("The Domain Control is incorrect!")
-            };
-        }
-
-        private IEnumerable<TargetCountry> GetVisibleTargetCountriesNotBlockedByUser(int affDomainId, int redirectDomainId)
-        {
-            var param = new TargetCountryParam
-            {
-                UserId = SessionService.UserId,
-                AffDomainId = affDomainId,
-                RedirectDomainId = redirectDomainId
-            };
-
-            return _domainControlService.GetVisibleTargetCountryListNotBlocked(param);
+            return GenerateErrResult("Domain Id is invalid.");
         }
     }
 }

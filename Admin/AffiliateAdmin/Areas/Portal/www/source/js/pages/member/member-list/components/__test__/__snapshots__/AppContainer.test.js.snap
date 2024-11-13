@@ -7,5 +7,6 @@ exports[`member list - components - AppContainer render correctly 1`] = `
   />
   <Connect(Component) />
   <Connect(Content) />
+  <Connect(EditMemberPopup) />
 </AppLayout>
 `;

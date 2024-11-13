@@ -2,11 +2,13 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
+using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
@@ -15,100 +17,85 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.AffiliateMenu)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class AffiliateController : ReadOnlySessionBaseController
     {
         private readonly IAffiliateInfoRepository _affiliateInfoRepository;
 
         private readonly ICommissionGroupRepository _commissionGroupRepository;
 
-        private readonly ISystemService _systemService;
+        private readonly ILanguageService _languageService;
 
         public AffiliateController(
             ISessionService sessionService,
             IAffiliateInfoRepository affiliateInfoRepository,
             ICommissionGroupRepository commissionGroupRepository,
-            ISystemService systemService) : base(sessionService)
+            ILanguageService languageService) : base(sessionService)
         {
             _commissionGroupRepository = commissionGroupRepository;
             _affiliateInfoRepository = affiliateInfoRepository;
-            _systemService = systemService;
+            _languageService = languageService;
         }
 
         [HttpGet]
-        [AllowByPassFunctionAuthorize]
         public ActionResult Index(ParamFromHome param, int groupId = 0)
         {
-            var viewModel = new AffiliateFilterViewModel
+            var subMenu = new List<SubMenu>
             {
+                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate"), FunctionName = Function.Affiliate, IsActive = true },
+                new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest"), FunctionName = Function.Payment },
+                new SubMenu { Name = Lang.RevenueGroup, Url = Url.Content("~/Portal/RevenueGroup"), FunctionName = Function.RevenueGroup }
+            };
+
+            var viewModel = new AffiliateInfoViewModel
+            {
+                CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(new GetGroupListParam()),
+                LanguageList = _languageService.GetLanguageList(),
                 SelectedGroupId = groupId,
-                Param = param
+                Param = param,
+                SubMenuList = subMenu
             };
 
-            return View("~/Areas/Portal/Views/Affiliate/AffiliateInfo.cshtml", viewModel);
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetFilter()
+        public ActionResult GetAffiliateList(AffiliateInfoParam param)
         {
-            var groupListParam = new GetGroupListParam { AffId = -1 };
-            var viewModel = new AffiliateFilterViewModel
+            if (int.TryParse(param.AffCode, out _) || string.IsNullOrEmpty(param.AffCode))
             {
-                CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(groupListParam),
-                LanguageList = _systemService.GetInChangeMarkets(),
-                TargetCountryList = _systemService.GetTargetCountryListByUser()
-            };
-
-            return new JsonNetResult(viewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        [UpdateUnauthorizedProperty]
-        public ActionResult GetAffiliateList(GetAffiliateViewModel viewModel)
-        {
-            if (int.TryParse(viewModel.AffId, out int affId) || string.IsNullOrEmpty(viewModel.AffId))
-            {
-                viewModel.AffIdNumber = affId;
-                viewModel.UserId = SessionService.UserId;
-                var param = BuildGetModelToParam(viewModel);
+                param.UserId = SessionService.UserId;
                 var model = _affiliateInfoRepository.GetAffiliateList(param);
 
-                return new JsonNetResult
-                {
-                    Data = model
-                };
+                return GenerateJsonNetResult(model);
             }
 
-            return new JsonNetResult
+            return GenerateJsonNetResult(new EntityResult<AffiliateInfo>
             {
-                Data = new EntityResult<AffiliateInfo>
-                {
-                    MainData = new List<AffiliateInfo>(),
-                    TotalItem = 0
-                }
-            };
+                MainData = new List<AffiliateInfo>(),
+                TotalItem = 0
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffiliateInfo, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         public ActionResult ToggleFavorite(FavoriteParam param)
         {
             if (ModelState.IsValid)
             {
                 AssignUserInfoParam(param);
 
-                return Json(_affiliateInfoRepository.ToggleFavorite(param));
+                return GenerateJsonNetResult(_affiliateInfoRepository.ToggleFavorite(param));
             }
 
-            return Json(ResultInfo.GenerateErr("Update Favorite failed!"));
+            return GenerateErrResult("Update Favorite failed!");
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffPassword, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.EditAffDetails, IsHost = true)]
         public ActionResult ChangePassword(PasswordParam param)
         {
             if (ModelState.IsValid)
@@ -116,37 +103,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 param.Password = CryptographyHelper.Encrypt(param.Password);
                 AssignUserInfoParam(param);
 
-                return Json(_affiliateInfoRepository.ChangePassword(param));
+                return GenerateJsonNetResult(_affiliateInfoRepository.ChangePassword(param));
             }
-            return Json(ResultInfo.GenerateErr("Change Password is failed!"));
-        }
-
-        private AffiliateInfoParam BuildGetModelToParam(GetAffiliateViewModel viewModel)
-        {
-            var supportLanguages = _systemService.GetInChangeMarkets();
-            var supportTargetCountries = _systemService.GetTargetCountryListByUser();
-
-            var queryLangs = SystemHelper.BuildAllowQueryLanguages(viewModel.Language, supportLanguages);
-            var queryTargetCountries = SystemHelper.GetVisibleTargetCountryCodes(viewModel.TargetCountry, supportTargetCountries);
-
-            return new AffiliateInfoParam
-            {
-                AffId = viewModel.AffId,
-                AffIdNumber = viewModel.AffIdNumber,
-                Email = viewModel.Email,
-                GroupId = viewModel.GroupId,
-                IsExportExcel = viewModel.IsExportExcel,
-                PageIndex = viewModel.PageIndex,
-                PageSize = viewModel.PageSize,
-                TargetCountryCodes = queryTargetCountries,
-                PreferenceLanguages = queryLangs,
-                SortBy = viewModel.SortBy,
-                SortDirectionType = viewModel.SortDirectionType,
-                Status = viewModel.Status,
-                UserId = viewModel.UserId,
-                UserName = viewModel.UserName,
-                ProcessingStatus = viewModel.ProcessingStatus,
-            };
+            return GenerateErrResult("Change Password is failed!");
         }
     }
 }

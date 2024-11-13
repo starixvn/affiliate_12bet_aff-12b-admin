@@ -4,10 +4,6 @@ import { shallow } from 'enzyme';
 import CommissionGroupPopup from '../../../../../common/components/CommissionGroupPopup';
 
 describe('left panel - components - panel - CommissionPanel', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-
     const affiliateInfo = {
         AffId: 1271808,
         AffLink: "http://localhost:55690/Auth/AdminLogin?chalengeStr=esh5u7&accKey=E16156C28&custName=12BETAFF226&accId=1000000026&accOnId=8405",
@@ -19,7 +15,6 @@ describe('left panel - components - panel - CommissionPanel', () => {
         FirstName: "bb",
         Gender: true,
         GroupId: 102,
-        IsClosed: false,
         LastLoginDateText: "04/11/2019 22:24:00",
         LastLoginIp: "10.18.200.125",
         LastName: "12BETAFF226",
@@ -27,64 +22,18 @@ describe('left panel - components - panel - CommissionPanel', () => {
         NoSiteDescription: "",
         Phone: "abc",
         PreferredLanguage: "vi-VN",
-        SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+        SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
         Status: "Approved"
     };
 
     const defaultProps = {
-        isStatic: false,
         affiliateInfo
     }
 
-    it('render correctly with status is not closed', () => {
+    it('render correctly', () => {
         const result = shallow(<CommissionPanel {...defaultProps} />);
 
         expect(result).toMatchSnapshot();
-    });
-
-    it('render correctly with status is closed', () => {
-        const affInfoClosed = {
-            AffId: 1219631,
-            AffLink: "http://localhost:55690/Auth/AdminLogin?chalengeStr=5omp0h&accKey=6B8465&custName=12BETAFF016&accId=1000000026&accOnId=8405",
-            AffName: "12BETAFF016",
-            AffType: 2,
-            BalanceBf: 0,
-            CommGroupName: "",
-            ContactApps: '[{"Name":"MSN/YM/QQ","Value":"123123123","Order":0}]',
-            FirstName: "",
-            Gender: null,
-            GroupId: 0,
-            IsClosed: true,
-            LastLoginDateText: "01/01/1900 00:00:00",
-            LastLoginIp: "10.10.12.12",
-            LastName: "",
-            MoreSiteUrl: "",
-            NoSiteDescription: "",
-            Phone: "123456789",
-            PreferredLanguage: "en-US",
-            SiteUrl: "http://www.12345678.com",
-            Status: "Closed"
-        }
-        const props = Object.assign({}, defaultProps, { affiliateInfo: affInfoClosed });
-        const result = shallow(<CommissionPanel {...props} />);
-
-        expect(result).toMatchSnapshot();
-    });
-
-    it('render correctly with isStatic', () => {
-        const props = Object.assign({}, defaultProps, { isStatic: true });
-        const result = shallow(<CommissionPanel {...props} />);
-
-        expect(result).toMatchSnapshot();
-    });
-
-    it('componentDidUpdate - should call setState', () => {
-        const wrapper = shallow(<CommissionPanel {...defaultProps} />);
-        wrapper.setState = jest.fn();
-
-        wrapper.instance().componentDidUpdate();
-
-        expect(wrapper.setState).toHaveBeenCalledWith({ isPrivateGroup: false });
     });
 
     it('toggleEditingCommissionPopup - should call setState when CommGroupName button', () => {

@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -27,7 +28,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             if (contentLength > _appSetting.ImageSize)
             {
-                return ResultInfo.GenerateErr(Lang.InvalidBannerSize);
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = Lang.InvalidBannerSize
+                };
             }
 
             return new ResultInfo();

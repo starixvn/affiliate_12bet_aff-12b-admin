@@ -1,17 +1,18 @@
 ﻿.headWrapper {
     width: 100%;
-    min-width: 540px;
-    height: 38px;
-    background: url(../assets/bg_top.jpg) repeat-x #d4d4d4;
+    height: 50px;
 
     .logo {
-        background: url('../assets/banner_top.jpg') no-repeat left;
         width: 250px;
         height: 100%;
+        font-size: 22px;
+        font-weight: bold;
+        padding-left: 20px;
+        line-height: 2;
     }
 
     .user-info {
-        font-size: 11px;
+        padding-top: 10px;
         position: relative;
 
         .icon-top {
@@ -39,18 +40,15 @@
     }
 
     .clock-container {
-        padding: 10px;
+        line-height: 50px;
         color: #131111;
         margin-right: 20px;
 
-        @media (max-width: 767px) {
-            display: none;
-        }
-
         .oi-clock {
             margin-right: 10px;
-            font-size: 15px;
-            color: #b79c28;
+            margin-top: 3px;
+            font-size: 17px;
+            vertical-align: text-bottom;
         }
     }
 }

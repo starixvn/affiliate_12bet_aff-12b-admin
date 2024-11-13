@@ -46,7 +46,7 @@ describe('home - components - Filter', () => {
     });
 
     it('_handleCountDown - Should call setState and _handleFetchData', async () => {
-        const props = Object.assign({}, defaultProps, { getOnlineList: jest.fn(), getPSPToday: jest.fn(), getDepositInfo: jest.fn() });
+        const props = Object.assign({}, defaultProps, { getOnlineList: jest.fn() });
         const result = shallow(<Filter {...props} />);
         const instance = result.instance();
         instance.setState({ countDown: 0, selectedCountDown: 3600 });
@@ -72,15 +72,13 @@ describe('home - components - Filter', () => {
         expect(instance._handleFetchData).not.toHaveBeenCalled();
     });
 
-    it('_handleFetchData - Should call getOnlineList, getPSPToday and getDepositInfo', async () => {
-        const props = Object.assign({}, defaultProps, { getOnlineList: jest.fn(), getPSPToday: jest.fn(), getDepositInfo: jest.fn() });
+    it('_handleFetchData - Should call getOnlineList', async () => {
+        const props = Object.assign({}, defaultProps, { getOnlineList: jest.fn() });
         const result = shallow(<Filter {...props} />);
 
         await result.instance()._handleFetchData();
 
         expect(props.getOnlineList).toHaveBeenCalledWith({ pageIndex: 1, pageSize: 20 });
-        expect(props.getPSPToday).toHaveBeenCalled();
-        expect(props.getDepositInfo).toHaveBeenCalled();
     });
 
     it('_toggleChangingCountDown - Should be called when onBlur selected countdown', () => {

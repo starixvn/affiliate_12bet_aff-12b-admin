@@ -20,14 +20,10 @@ describe('referrers - Filter - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             today: '09/252019',
-            affId: 1271808,
             param: { abc: 123 }
         };
         const state = {
             today: '09/252019',
-            affCommonInfo: {
-                affId: 1271808
-            },
             clickStatistics: {
                 param: { abc: 123 }
             },
@@ -44,8 +40,7 @@ describe('referrers - Filter - connect', () => {
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
             setParam: actions['setParam'],
-            getCountryList: actions['getCountryList'],
-            setSelectedSiteDetailFilter: actions['setSelectedSiteDetailFilter']
+            setSelectedSiteUrl: actions['setSelectedSiteUrl']
         }
 
         const dispatch = {};

@@ -1,42 +1,42 @@
 ﻿import React from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import AppContainer from './components/AppContainer';
 
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
-import ClaimPrincipal from '../../../modules/claim';
-import { rearrangeItems } from './libs/utils';
+import { convertListToMutilpleSelected } from '../../../modules/utils';
+import { playerBanner, affiliateBanner } from '../common/libs/constants';
+import { convertCatelogyListByUserTypeToMuptileSelected } from './libs/utils';
 
 export default class App extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        const { targetProductList, languageList, sizeList, affTypeList,
-            paramFromHome, bannerRootUrl, today } = window.initialState;
+        const { categoryList, subCategoryList, languageList, currencyList, bannerRootUrl, sizeList, affTypeList,
+            paramFromHome, subCategoryCasinoList, subCategorySportsbookList, defaultLanguage } = window.initialState;
 
-        const newTargetProductList = targetProductList.map(item => {
+        const playerCategoryList = convertCatelogyListByUserTypeToMuptileSelected(categoryList, playerBanner);
+        const subAffiliateCategoryList = convertCatelogyListByUserTypeToMuptileSelected(categoryList, affiliateBanner);
+
+        const newSubCategoryList = subCategoryList.map(item => {
             return {
-                key: item.TargetProductId,
-                name: item.TargetProductName,
-                checked: false
+                key: item.SubCategoryName,
+                name: item.SubCategoryName,
+                parentCategoryName: item.CategoryName,
+                checked: true
             };
         });
 
-        const newSizeList = rearrangeItems(sizeList);
+        const newSizeList = convertListToMutilpleSelected(sizeList, 'Name', 'Name', false);
+        const newCurrencyList = convertListToMutilpleSelected(currencyList, 'Name', 'Name', false);
+        const newAffTypeList = convertListToMutilpleSelected(affTypeList, 'AffTypeId', 'AffTypeName');
 
-        const newAffTypeList = affTypeList.map(item => {
-            return {
-                key: item.AffTypeId,
-                name: item.AffTypeName,
-                checked: false
-            };
-        });
-
-        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
         this.store = configureStore({
-            languageList, paramFromHome, targetProductList: newTargetProductList, sizeList: newSizeList, affTypeList: newAffTypeList,
-            bannerRootUrl, claimsPrincipal, today
+            languageList, paramFromHome, categoryList, playerCategoryList, subAffiliateCategoryList, subCategoryList: newSubCategoryList,
+            currencyList: newCurrencyList, bannerRootUrl, sizeList: newSizeList, affTypeList: newAffTypeList,
+            subCategoryCasinoList, subCategorySportsbookList, defaultLanguage
         }, reducer);
     }
 
@@ -48,3 +48,5 @@ export default class App extends React.PureComponent {
         );
     }
 }
+
+ReactDOM.render(<App />, document.getElementById("root"));

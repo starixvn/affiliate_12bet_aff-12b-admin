@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             Assert.Single(result.MainData);
             Assert.Equal("01/01/2020 00:00:00", item.RegistrationDateText);
             Assert.Equal("04/15/2020 00:00:00", item.ApprovalDateText);
-            Assert.Equal("04/15/2020", item.CasinoDateText);
+            Assert.Equal("abc", item.ApprovedByText);
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             Assert.Single(result.MainData);
             Assert.Equal("01/01/2020 00:00:00", item.RegistrationDateText);
             Assert.Equal("N/A", item.ApprovalDateText);
-            Assert.Equal("N/A", item.CasinoDateText);
+            Assert.Equal("N/A", item.ApprovedByText);
         }
 
         [Fact]
@@ -128,23 +128,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             {
                 ["AffId"] = 1271808,
                 ["Status"] = "Approved",
-                ["UserName"] = "12BetAff226",
+                ["UserName"] = "12BETAFF001",
                 ["FirstName"] = "abc",
                 ["LastName"] = "123",
                 ["PreferredLanguage"] = "vi-VN",
                 ["Email"] = "abc@gmail.com",
                 ["RegisteredDate"] = new DateTime(2020, 01, 01),
                 ["ApprovedDate"] = new DateTime(2020, 04, 15),
-                ["CasinoJoinedDate"] = new DateTime(2020, 04, 15),
-                ["GroupName"] = "12BetAff226",
+                ["GroupName"] = "12BETAFF001",
                 ["BFF"] = 123m,
                 ["NoOfMember"] = 1,
                 ["IsFavorite"] = true,
-                ["IsClosed"] = false,
                 ["Currency"] = "USD",
                 ["PlayerCurrency"] = "USD",
                 ["Phone"] = "0123456789",
-                ["Player_Username"] = "abc123"
+                ["Player_Username"] = "abc123",
+                ["IsPrivate"] = false,
+                ["ParentAffId"] = 1,
+                ["ParentAffName"] = "12BETAFF000",
+                ["NoOfSubAff"] = 0,
+                ["ApprovedBy"] = "abc"
             };
         }
 
@@ -154,23 +157,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository.Affiliate
             {
                 ["AffId"] = 1271808,
                 ["Status"] = "Approved",
-                ["UserName"] = "12BetAff226",
+                ["UserName"] = "12BETAFF001",
                 ["FirstName"] = "abc",
                 ["LastName"] = "123",
                 ["PreferredLanguage"] = "vi-VN",
                 ["Email"] = "abc@gmail.com",
                 ["RegisteredDate"] = new DateTime(2020, 01, 01),
                 ["ApprovedDate"] = DBNull.Value,
-                ["CasinoJoinedDate"] = DBNull.Value,
-                ["GroupName"] = "12BetAff226",
+                ["GroupName"] = "12BETAFF001",
                 ["BFF"] = DBNull.Value,
                 ["NoOfMember"] = DBNull.Value,
                 ["IsFavorite"] = true,
-                ["IsClosed"] = false,
                 ["Currency"] = "USD",
                 ["PlayerCurrency"] = "USD",
                 ["Phone"] = "0123456789",
-                ["Player_Username"] = "abc123"
+                ["Player_Username"] = "abc123",
+                ["IsPrivate"] = false,
+                ["ParentAffId"] = DBNull.Value,
+                ["ParentAffName"] = DBNull.Value,
+                ["NoOfSubAff"] = 0,
+                ["ApprovedBy"] = DBNull.Value
             };
         }
     }

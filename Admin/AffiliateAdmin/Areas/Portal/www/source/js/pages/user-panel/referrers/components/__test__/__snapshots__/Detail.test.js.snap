@@ -88,6 +88,7 @@ exports[`referrers - components - Detail render correctly 1`] = `
     }
     isPaging={true}
     maxWidth={742}
+    minWidth={1010}
     onPaging={[Function]}
     pageOption={
       Object {
@@ -297,6 +298,7 @@ exports[`referrers - components - Detail render correctly with have data 1`] = `
     }
     isPaging={true}
     maxWidth={742}
+    minWidth={1010}
     onPaging={[Function]}
     pageOption={
       Object {
@@ -407,6 +409,7 @@ exports[`referrers - components - Detail render correctly with have data is empt
     }
     isPaging={true}
     maxWidth={742}
+    minWidth={1010}
     onPaging={[Function]}
     pageOption={
       Object {
