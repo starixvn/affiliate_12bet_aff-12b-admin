@@ -1,10 +1,9 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.CoreService;
-using ONEbook.UM.AspNetMVC.Filters;
-using System;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.CoreService;
+using ONEbook.UM.AspNetMVC.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -36,7 +35,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 requestContext.HttpContext.Response.Cookies.Add(new HttpCookie("afffavoritelang", favoriteLanguage) { HttpOnly = true });
                 SessionService.CurrentLanguage = favoriteLanguage;
             }
-            DetectUserIdle(requestContext.RouteData.Values);
             SystemService.SetCulture(favoriteLanguage);
         }
 
@@ -55,19 +53,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             var absolutePath = VirtualPathUtility.ToAbsolute(path);
             return Redirect(absolutePath);
-        }
-
-        private void DetectUserIdle(RouteValueDictionary values)
-        {
-            var controller = values["controller"]?.ToString();
-            var action = values["action"]?.ToString();
-
-            if (!(SessionService.IsOpenedFeedback
-                || string.Equals("ReCheckin", action, StringComparison.CurrentCultureIgnoreCase)
-                || string.Equals("Feedback", controller, StringComparison.CurrentCultureIgnoreCase)))
-            {
-                SessionService.LastestRequestTime = DateTime.Now;
-            }
         }
     }
 }

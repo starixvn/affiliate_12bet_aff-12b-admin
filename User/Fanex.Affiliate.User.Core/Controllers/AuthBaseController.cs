@@ -8,6 +8,7 @@ using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using System.Linq;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.Repository.UserPanel;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -16,17 +17,20 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private readonly ICaptchaService _captchaService;
         private readonly IAppSetting _appSetting;
         private readonly IAuthService _authService;
+        protected readonly IAccountRepository _accountRepository;
 
         public AuthBaseController(
             ISessionService sessionService,
             ISystemService languageService,
             IAppSetting appSetting,
             ICaptchaService captchaService,
-            IAuthService authService) : base(sessionService, languageService)
+            IAuthService authService, 
+            IAccountRepository accountRepository) : base(sessionService, languageService)
         {
             _captchaService = captchaService;
             _appSetting = appSetting;
             _authService = authService;
+            _accountRepository = accountRepository;
         }
 
         protected ICaptchaService CaptchaService => _captchaService;
@@ -64,10 +68,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, adminId);
             user.OnUserId = _authService.GetOnUserId(onUserIdParam);
+            var accountInfo = _accountRepository.GetAccountInfo(user.AffId);
 
-            SessionService.LastestRequestTime = System.DateTime.Now;
-            SessionService.IsOpenedFeedback = SessionService.IsInternal || !AuthService.IsValidAff(user.AffId);
             SessionService.AssignSessions(user);
+            SessionService.UserSession.BaseCurrency = accountInfo.DefaultBaseCurrency;
             AuthService.SignIn(user.UserName, false);
         }
 

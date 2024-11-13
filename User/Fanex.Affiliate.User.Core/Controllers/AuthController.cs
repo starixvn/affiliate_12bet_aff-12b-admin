@@ -1,20 +1,21 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Text;
+using System.Web.Mvc;
+using System.Web.UI;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
-using System.Web.Mvc;
-using System.Web.UI;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -28,7 +29,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
             IAppSetting appSetting,
             ISystemService languageService,
             IAuthService authService,
-            ICaptchaService captchaService) : base(sessionService, languageService, appSetting, captchaService, authService)
+            IAccountRepository accountRepository,
+            ICaptchaService captchaService) : base(sessionService, languageService, appSetting, captchaService, authService, accountRepository)
 
         {
         }
@@ -120,7 +122,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 var hashedPassword = Generator.GenerateSHA512String(admin?.SesionId + loginParam.ChalengeStr);
                 if (admin != null && string.Equals(loginParam.AccKey, hashedPassword))
                 {
-                    var internalClaims = AuthService.GetInternalLoginClaim(admin.UserId);
                     var clientIpAddress = Request.GetClientIP();
                     var userLoginParam = new UserLoginParam
                     {
@@ -141,7 +142,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         user.UserId = admin.UserId;
                         var adminId = admin.UserId * -1;
                         AssignLoginInfoAndSetAuth(user, clientIpAddress, adminId);
-                        AssignClaimForInternalLogin(internalClaims);
                     }
                     else
                     {
@@ -175,25 +175,17 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult ReCheckin()
         {
             var onUserId = SessionService.UserSession.OnUserId;
-            var isKickOut = onUserId > 0 && AuthService.Recheckin(SessionService.UserSession.OnUserId,
-                SessionService.IsInternal);
+            var isKickOut = onUserId > 0 && AuthService.Recheckin(SessionService.UserSession.OnUserId, SessionService.IsInternal);
 
             if (isKickOut)
             {
                 DoSignOut();
-
-                return Json(new
-                {
-                    IsKickOut = true,
-                    Message = Lang.Msgkickout
-                }, JsonRequestBehavior.AllowGet);
             }
 
             return Json(new
             {
-                IsKickOut = false,
-                IsShowFeedback = IsValidAffToShowFeedback(),
-                Message = string.Empty
+                IsKickOut = isKickOut,
+                Message = isKickOut ? Lang.Msgkickout : string.Empty
             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -228,11 +220,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
             };
 
             SessionService.ClaimsIdentities = claimIdentites;
-        }
-
-        private bool IsValidAffToShowFeedback()
-        {
-            return !SessionService.IsOpenedFeedback && !AuthService.IsValidIdleTime(SessionService.LastestRequestTime) && AuthService.IsValidAff(SessionService.UserSession.AffId);
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using System.Web.Mvc;
+using System.Web.UI;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
@@ -10,9 +13,6 @@ using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using System;
-using System.Web.Mvc;
-using System.Web.UI;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -21,7 +21,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private const int CaptchaImgWidth = 74;
         private const int CaptchaImgHeight = 26;
 
-        private readonly IAccountRepository _accountRepository;
         private readonly IVerificationService _verificationService;
 
         public VerificationAccountController(
@@ -31,9 +30,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
             ICaptchaService captchaService,
             IAccountRepository accountRepository,
             IAuthService authService,
-            IVerificationService verificationService) : base(sessionService, languageService, appSetting, captchaService, authService)
+            IVerificationService verificationService) : base(sessionService, languageService, appSetting, captchaService, authService, accountRepository)
         {
-            _accountRepository = accountRepository;
             _verificationService = verificationService;
         }
 
