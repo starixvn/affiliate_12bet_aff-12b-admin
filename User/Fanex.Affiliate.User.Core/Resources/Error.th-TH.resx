@@ -210,4 +210,7 @@
   <data name="General" xml:space="preserve">
     <value>เกิดข้อผิดพลาดขณะดำเนินการตามคำขอของคุณ!</value>
   </data>
+  <data name="YourAccountHasBeenSuspended" xml:space="preserve">
+    <value>บัญชีของคุณถูกระงับ โปรดติดต่อผู้จัดการบัญชีของคุณสำหรับข้อมูลเพิ่มเติม</value>
+  </data>
 </root>

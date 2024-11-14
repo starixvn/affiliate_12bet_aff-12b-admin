@@ -2366,4 +2366,13 @@
 而且佣金支付一直都很稳定。&lt;br/&gt;
 这是一个稳固的合作伙伴关系。</value>
   </data>
+  <data name="GGR" xml:space="preserve">
+    <value>收入</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>首存日期</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>总收入</value>
+  </data>
 </root>

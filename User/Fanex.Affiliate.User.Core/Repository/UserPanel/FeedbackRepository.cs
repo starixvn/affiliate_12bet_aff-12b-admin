@@ -42,19 +42,21 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public bool IsShowFeedback(int affId)
         {
-            const string SpKey = "Aff_User_FeedbackPopup_Check";
-            var parameterSet = new
-            {
-                affId,
-                IsShowPopup = false
-            };
+            //const string SpKey = "Aff_User_FeedbackPopup_Check";
+            //var parameterSet = new
+            //{
+            //    affId,
+            //    IsShowPopup = false
+            //};
 
-            using (var db = _builder.Build(SpKey))
-            {
-                db.ExecuteNonQuery(parameterSet);
+            //using (var db = _builder.Build(SpKey))
+            //{
+            //    db.ExecuteNonQuery(parameterSet);
 
-                return parameterSet.IsShowPopup;
-            }
+            //    return parameterSet.IsShowPopup;
+            //}
+
+            return false;
         }
     }
 }

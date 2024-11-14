@@ -2365,4 +2365,55 @@
 អត្រាកម្រៃជើងសារខ្ពស់&lt;br/&gt;
 ភាពជាដៃគូរឹងមាំ និងទំនុកចិត្ត!</value>
   </data>
+  <data name="ActivePlayers" xml:space="preserve">
+    <value>ចំនួនអ្នកលេងសកម្ម</value>
+  </data>
+  <data name="SubAffiliate" xml:space="preserve">
+    <value>សាខាសម្ព័ន្ធរង</value>
+  </data>
+  <data name="SubAffDownline" xml:space="preserve">
+    <value>បន្ទាត់ក្រោមសាខាសម្ព័ន្ធរង</value>
+  </data>
+  <data name="SubAffEarning" xml:space="preserve">
+    <value>ការរកប្រាក់ចំណូលពីសាខាសម្ព័ន្ធរង</value>
+  </data>
+  <data name="GGR" xml:space="preserve">
+    <value>GGR</value>
+  </data>
+  <data name="MinRequired" xml:space="preserve">
+    <value>ទាមទារអប្បបរមា</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ FDM</value>
+  </data>
+  <data name="Rebate" xml:space="preserve">
+    <value>លុយទទួលមកវិញ</value>
+  </data>
+  <data name="DepositFee" xml:space="preserve">
+    <value>តម្លៃដាក់លុយ</value>
+  </data>
+  <data name="WithdrawalFee" xml:space="preserve">
+    <value>តម្លៃដកលុយ</value>
+  </data>
+  <data name="ApprovalDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទអនុម័ត</value>
+  </data>
+  <data name="SuspensionDate" xml:space="preserve">
+    <value>កាលបរិច្ឆេទផ្អាក</value>
+  </data>
+  <data name="SuspensionSatus" xml:space="preserve">
+    <value>ស្ថានភាពផ្អាក</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>GGR សរុប</value>
+  </data>
+  <data name="NumberOfActivePlayers" xml:space="preserve">
+    <value>លេខអ្នកលេងដែលសកម្ម</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>ដកចេញ</value>
+  </data>
+  <data name="SubAffDetail" xml:space="preserve">
+    <value>ព័ត៌មានលម្អិតនៃសាខាសម្ព័ន្ធរង</value>
+  </data>
 </root>

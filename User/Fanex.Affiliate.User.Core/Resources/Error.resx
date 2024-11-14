@@ -210,4 +210,7 @@
   <data name="InvalidEmoji" xml:space="preserve">
     <value>Emoji is invalid.</value>
   </data>
+  <data name="YourAccountHasBeenSuspended" xml:space="preserve">
+    <value>Your account has been suspended. Please contact your Account Manager for more information.</value>
+  </data>
 </root>

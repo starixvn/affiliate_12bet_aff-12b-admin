@@ -2370,4 +2370,13 @@
 จ่ายค่าคอมมิชั่นสม่ำเสมอ​&lt;br/&gt;
 ซึ่งถือเป็นการเข้าร่วมที่มั่นคง"​</value>
   </data>
+  <data name="GGR" xml:space="preserve">
+    <value>รายได้</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>วันที่ฝากเงินแรก</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>รายได้รวม</value>
+  </data>
 </root>

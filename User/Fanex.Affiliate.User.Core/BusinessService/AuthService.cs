@@ -1,4 +1,7 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
+﻿using System;
+using System.Collections.Specialized;
+using System.Web;
+using System.Web.Security;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
@@ -7,13 +10,6 @@ using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Security.Claims;
-using System.Web;
-using System.Web.Security;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -24,7 +20,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private readonly IAuthRepository _authRepository;
         private readonly IVerificationRepository _verificationRepository;
-        private readonly IFeedbackService _feedbackService;
         private readonly ICryptographyService _cryptographyService;
         private readonly IAppSetting _appSetting;
 
@@ -32,13 +27,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             IAuthRepository authRepository,
             ICryptographyService cryptographyService,
             IAppSetting appSetting,
-            IFeedbackService feedbackService,
             IVerificationRepository verificationRepository)
         {
             _authRepository = authRepository;
             _cryptographyService = cryptographyService;
             _appSetting = appSetting;
-            _feedbackService = feedbackService;
             _verificationRepository = verificationRepository;
         }
 
@@ -52,35 +45,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _authRepository.GetOnUserId(onUserIdParam);
         }
 
-        public InternalLoginInfo GetInternalLoginInfo(int onUserId)
+        public string GetSessionId(int onUserId)
         {
-            return _authRepository.GetInternalLoginInfo(onUserId);
-        }
-
-        public IEnumerable<Claim> GetInternalLoginClaim(int internalLoginUserId)
-        {
-            var permissions = _authRepository.GetInternalLoginPermission(internalLoginUserId);
-            return permissions.Select(p =>
-            {
-                var claimType = p.FunctionName;
-                var claimValue = p.IsHost ? ClaimConstant.WriteClaimValue : string.Empty;
-                return new Claim(claimType, claimValue);
-            });
+            return _authRepository.GetSessionId(onUserId);
         }
 
         public bool Recheckin(int onUserId, bool isInternal)
         {
             return _authRepository.Recheckin(onUserId, isInternal);
-        }
-
-        public bool IsValidIdleTime(DateTime? lastestRequestTime)
-        {
-            return _feedbackService.IsValidIdleTime(lastestRequestTime);
-        }
-
-        public bool IsValidAff(int affId)
-        {
-            return _feedbackService.IsValidAff(affId);
         }
 
         public void SignIn(string userName, bool createPersistentCookie)
@@ -96,7 +68,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private LoginResultViewModel GetLoginResultForInternalAdmin(UserLoginParam userParam)
         {
             var user = _authRepository.GetUserInfo(userParam.UserName, true);
-            var checkingActiveUserResult = CheckActiveUser(user);
+            var checkingActiveUserResult = CheckActiveUser(user, true);
 
             return new LoginResultViewModel
             {
@@ -151,12 +123,23 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             };
         }
 
-        private static LoginResultInfo CheckActiveUser(AuthorizedUserInfo user)
+        private static LoginResultInfo CheckActiveUser(AuthorizedUserInfo user, bool isInternal = false)
         {
-            if (user == null || user.IsClosed)
+            const string Approved = "Approved";
+            const string Suspended = "Suspended";
+            if (user == null)
             {
-                var message = user == null ? Error.LoginWrongInfo : Error.LoginClosedAccount;
-                return new LoginResultInfo { IsOk = false, Message = message };
+                return new LoginResultInfo { IsOk = false, Message = Error.LoginWrongInfo };
+            }
+
+            if (!string.Equals(Approved, user.Status, StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (isInternal && string.Equals(Suspended, user.Status, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return new LoginResultInfo { IsOk = true };
+                }
+
+                return new LoginResultInfo { IsOk = false, Message = Error.YourAccountHasBeenSuspended };
             }
 
             return new LoginResultInfo { IsOk = true };
@@ -166,8 +149,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             var failedLoginCount = verificationInfo.FailedLoginCount;
 
-            return (failedLoginCount.HasValue && failedLoginCount.Value >= MaxFailedLoginCount) ||
-                (!failedLoginCount.HasValue && verificationInfo.DeviceCount > AllowedUserDeviceCount);
+            return failedLoginCount >= MaxFailedLoginCount || (!failedLoginCount.HasValue && verificationInfo.DeviceCount > AllowedUserDeviceCount);
         }
 
         private LoginResultViewModel IsValidQueryStringInfo(NameValueCollection loginInfo)

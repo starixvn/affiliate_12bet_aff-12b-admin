@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
 using System.Web.Mvc;
 using System.Web.UI;
 using Fanex.Affiliate.User.Core.BusinessService;
@@ -15,7 +12,6 @@ using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -31,7 +27,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
             IAuthService authService,
             IAccountRepository accountRepository,
             ICaptchaService captchaService) : base(sessionService, languageService, appSetting, captchaService, authService, accountRepository)
-
         {
         }
 
@@ -42,13 +37,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             var viewModel = new AuthenticationFormViewModel
             {
-                CurrentLanguage = SessionService.CurrentLanguage,
                 IsAuthenticated = User.Identity.IsAuthenticated && SessionService.UserSession != null
             };
 
             if (viewModel.IsAuthenticated)
             {
-                viewModel.UserName = SessionService.UserSession.UserName;
+                viewModel.UserName = SessionService.UserSession?.UserName;
             }
             else
             {
@@ -83,8 +77,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             if (loginResult.Result.ShouldVerifyAccount)
             {
-                SessionService.VerificationSession = new VerificationSession { AffId = loginResult.UserInfo.AffId };
-
+                SessionService.VerificationSession = new VerificationSession { AffId = loginResult.UserInfo.AffId, PreferredLanguage = loginResult.UserInfo.PreferredLanguage };
                 return Json(loginResult.Result);
             }
 
@@ -118,9 +111,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                var admin = AuthService.GetInternalLoginInfo(loginParam.AccOnId);
-                var hashedPassword = Generator.GenerateSHA512String(admin?.SesionId + loginParam.ChalengeStr);
-                if (admin != null && string.Equals(loginParam.AccKey, hashedPassword))
+                var adminSessionId = AuthService.GetSessionId(loginParam.AccOnId);
+                var hashedPassword = Generator.GenerateSHA512String(adminSessionId + loginParam.ChalengeStr);
+                if (string.Equals(loginParam.AccKey, hashedPassword))
                 {
                     var clientIpAddress = Request.GetClientIP();
                     var userLoginParam = new UserLoginParam
@@ -136,36 +129,22 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     var loginResult = AuthService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
 
-                    var isValidUser = user != null && IsValidDomain(user.AffType);
-                    if (loginResult.Result.IsOk && isValidUser)
+                    if (loginResult.Result.IsOk && user != null && IsValidDomain(user.AffType))
                     {
-                        user.UserId = admin.UserId;
-                        var adminId = admin.UserId * -1;
-                        AssignLoginInfoAndSetAuth(user, clientIpAddress, adminId);
+                        var adminId = loginParam.AccId * -1;
+                        AssignLoginInfoAndSetAuth(loginResult.UserInfo, clientIpAddress, adminId);
                     }
                     else
                     {
-                        var message = new StringBuilder().AppendLine($"Internal Login on AccOnId {loginParam.AccOnId} was failed: {JsonConvert.SerializeObject(loginResult)}");
-                        message.AppendLine($"Admin: {JsonConvert.SerializeObject(admin)}");
-                        message.AppendLine($"UserLoginParam: {JsonConvert.SerializeObject(userLoginParam)}");
-                        message.AppendLine($"IsValidDomain: {isValidUser}");
-                        message.AppendLine($"AllowedAffiliateTypes: {JsonConvert.SerializeObject(AppSetting.AllowedAffiliateTypes)}");
-
-                        LogHelper.WriteInfo(message.ToString());
-
                         return Redirect(Url.RenderLanguageContent("~/Notify/PageNotFound"));
                     }
                 }
                 else
                 {
-                    var message = new StringBuilder().AppendLine($"Compare Internal Login on AccOnId {loginParam.AccOnId} was failed: {JsonConvert.SerializeObject(admin)}");
-                    message.AppendLine($"AccKey: {loginParam.AccKey}");
-                    message.AppendLine($"HashedPassword: {hashedPassword}");
-
-                    LogHelper.WriteInfo(message.ToString());
                     return Redirect(Url.RenderLanguageContent("~/Notify/PageNotFound"));
                 }
             }
+
             return Redirect(Url.RenderLanguageContent("~/UserPanel/Main/#AccountOverView"));
         }
 
@@ -210,16 +189,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             Session.Clear();
             AuthService.SignOut();
-        }
-
-        private void AssignClaimForInternalLogin(IEnumerable<Claim> internalClaims)
-        {
-            var claimIdentites = new List<ClaimsIdentity>
-            {
-                new ClaimsIdentity(internalClaims)
-            };
-
-            SessionService.ClaimsIdentities = claimIdentites;
         }
     }
 }

@@ -331,6 +331,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string YourAccountHasBeenSuspended {
+            get {
+                return ResourceManager.GetString("YourAccountHasBeenSuspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your session has expired!.
         /// </summary>
         public static string YourSessionHasExpired {

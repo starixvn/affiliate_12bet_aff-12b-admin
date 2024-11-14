@@ -2342,4 +2342,55 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="Aff286TestimonialContent" xml:space="preserve">
     <value>Tham gia 12BET là một quyết định tuyệt vời đối với tôi. Chương trình đại lý dễ tham gia, và các khoản thanh toán hoa hồng luôn ổn định. Đây là một đối tác vững chắc.</value>
   </data>
+  <data name="ActivePlayers" xml:space="preserve">
+    <value>Số lượng người chơi hoạt động</value>
+  </data>
+  <data name="SubAffiliate" xml:space="preserve">
+    <value>Đại Lý Cấp Dưới</value>
+  </data>
+  <data name="SubAffDownline" xml:space="preserve">
+    <value>Đại Lý Cấp Dưới</value>
+  </data>
+  <data name="SubAffEarning" xml:space="preserve">
+    <value>Thu Nhập của Đại Lý Cấp Dưới</value>
+  </data>
+  <data name="GGR" xml:space="preserve">
+    <value>Doanh Thu</value>
+  </data>
+  <data name="MinRequired" xml:space="preserve">
+    <value>Yêu cầu tối thiểu</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>Ngày FDM</value>
+  </data>
+  <data name="Rebate" xml:space="preserve">
+    <value>Khuyến Mãi Hoàn Trả</value>
+  </data>
+  <data name="DepositFee" xml:space="preserve">
+    <value>Phí Nạp Tiền</value>
+  </data>
+  <data name="WithdrawalFee" xml:space="preserve">
+    <value>Phí Rút Tiền</value>
+  </data>
+  <data name="ApprovalDate" xml:space="preserve">
+    <value>Ngày chấp thuận</value>
+  </data>
+  <data name="SuspensionDate" xml:space="preserve">
+    <value>Ngày bị khóa</value>
+  </data>
+  <data name="SuspensionSatus" xml:space="preserve">
+    <value>Tình trạng bị khóa</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>Tổng Doanh Thu</value>
+  </data>
+  <data name="NumberOfActivePlayers" xml:space="preserve">
+    <value>Số người chơi hoạt động</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Bỏ</value>
+  </data>
+  <data name="SubAffDetail" xml:space="preserve">
+    <value>Chi Tiết Đại Lý Cấp Dưới</value>
+  </data>
 </root>

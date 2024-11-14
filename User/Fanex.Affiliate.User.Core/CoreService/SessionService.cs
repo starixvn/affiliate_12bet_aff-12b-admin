@@ -91,15 +91,18 @@ namespace Fanex.Affiliate.User.Core.CoreService
             var userSession = new UserSession
             {
                 AffId = authorizedUser.AffId,
+                AffCode = authorizedUser.AffCode,
                 UserName = authorizedUser.UserName,
                 PreferredLanguage = string.IsNullOrEmpty(authorizedUser.PreferredLanguage) ?
-                                        SystemLanguage.DefaultLanguageCode :
-                                        authorizedUser.PreferredLanguage,
+                    SystemLanguage.DefaultLanguageCode :
+                    authorizedUser.PreferredLanguage,
                 OnUserId = authorizedUser.OnUserId,
                 AffType = authorizedUser.AffType,
                 GroupName = authorizedUser.GroupName,
-                UserId = authorizedUser.UserId,
-                OfferPageId = authorizedUser.OfferPageId
+                IsMaxSubLevel = authorizedUser.IsMaxSubLevel,
+                IsDepositFeePercent = authorizedUser.IsDepositFeePercent,
+                IsWithdrawalFeePercent = authorizedUser.IsWithdrawalFeePercent,
+                DisabledTransfer = true //authorizedUser.DisabledTransfer //Hide Transfer Player
             };
 
             HttpContext.Current.Session[UserSessionKey] = userSession;

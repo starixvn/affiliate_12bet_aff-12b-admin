@@ -1,25 +1,21 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.Filters;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
+using Fanex.Affiliate.User.Core.Filters;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using Fanex.Affiliate.User.Core.Repository.UserPanel;
 
 namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
+    using ViewModels.UserPanel;
+
     [CustomAuthorize]
     public class SummaryController : BaseController
     {
-        private const int Turnover = 5;
-        private const int Winloss = 6;
-        private const int Username = 1;
         private readonly IAccountOverviewRepository _accountOverviewRepository;
 
         public SummaryController(ISessionService sessionService,
@@ -34,7 +30,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly]
         public ActionResult Index()
         {
-            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Index.cshtml");
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/Index.cshtml", SessionService.UserSession.IsMaxSubLevel);
         }
 
         [HttpPost]
@@ -57,51 +53,56 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                 Deposit = model.Sum(item => item.Deposit),
                 ActiveMembers = model.Sum(item => item.ActiveMembers),
                 Turnover = model.Sum(item => item.Turnover),
-                Winloss = model.Sum(item => item.Winloss),
                 Withdrawal = model.Sum(item => item.Withdrawal),
                 DepositedMembers = model.Sum(item => item.DepositedMembers),
                 QualifiedActiveMembers = model.Sum(item => item.QualifiedActiveMembers),
+                GGR = model.Sum(item => item.GGR)
             };
 
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/Overview.cshtml", model.Concat(new List<OverviewDetail> { itemTotal }));
         }
 
         [HttpPost]
-        [AjaxOnly(PermissionName = ClaimConstant.ActivePlayerDetailType)]
+        [AjaxOnly]
         public ActionResult PlayersDetails(PlayerDetailParam param)
         {
-            var userSession = SessionService.UserSession;
-            if (ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType))
-            {
-                param.SortById = Turnover;
-            }
-            else
-            {
-                var isIndiaAffiliate = userSession.PreferredLanguage.MatchWith(SystemLanguage.IndiaLanguageCode) && !SessionService.IsInternal;
-
-                param.SortById = isIndiaAffiliate ? Username : Winloss;
-            }
-
-            param.AffId = userSession.AffId;
-            var model = _accountOverviewRepository.GetPlayerDetailList(param);
-
-            ViewBag.TotalItem = param.NRows;
-            ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
+            var model = GetPlayerDetailViewModel(param);
 
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", model);
         }
 
         [HttpPost]
-        [AjaxOnly(PermissionName = ClaimConstant.ActivePlayerDetailType)]
+        [AjaxOnly]
         public ActionResult PlayersDetailsContent(PlayerDetailParam param)
         {
-            param.AffId = SessionService.UserSession.AffId;
-            var model = _accountOverviewRepository.GetPlayerDetailList(param);
-
-            ViewBag.TotalItem = param.NRows;
-            ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
+            var model = GetPlayerDetailViewModel(param);
 
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/PlayersDetailsContent.cshtml", model);
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult SubAffDetails(SubAffDetailParam param)
+        {
+            param.AffId = SessionService.UserSession.AffId;
+            var model = _accountOverviewRepository.GetSubAffDetails(param);
+
+            return PartialView("~/Views/UserPanel/AccountOverView/Summary/SubAffDetails.cshtml", model);
+        }
+
+        private PlayerDetailViewModel GetPlayerDetailViewModel(PlayerDetailParam param)
+        {
+            param.AffId = SessionService.UserSession.AffId;
+            var playerDetailList = _accountOverviewRepository.GetPlayerDetailList(param);
+
+            return new PlayerDetailViewModel
+            {
+                PlayerDetailList = playerDetailList,
+                TotalItem = param.NRows,
+                StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1,
+                IsDepositFeePercent = SessionService.UserSession.IsDepositFeePercent,
+                IsWithdrawalFeePercent = SessionService.UserSession.IsWithdrawalFeePercent
+            };
         }
     }
 }

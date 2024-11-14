@@ -415,6 +415,7 @@
     <Content Include="www\build\styles\fonts\myriadPro\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\Images\account-overview\icon-subaff.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-US.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.hi-IN.jpg" />
@@ -1393,6 +1394,7 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.vi-VN.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.zh-TW.webp" />
     <Content Include="Views\Home\Partial\_AffTestimonialContentBlock.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Summary\SubAffDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

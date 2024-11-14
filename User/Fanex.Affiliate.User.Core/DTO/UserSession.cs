@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
 
         public int AffId { get; set; }
 
-        public int? UserId { get; set; }
+        public int AffCode { get; set; }
 
         public int OnUserId { get; set; }
 
@@ -19,8 +19,20 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
 
         public string GroupName { get; set; }
 
-        public int OfferPageId { get; set; }
+        public bool IsMaxSubLevel { get; set; }
 
-        public int BaseCurrency { get;set; }
+        public bool IsDepositFeePercent { get; set; }
+
+        public bool IsWithdrawalFeePercent { get; set; }
+
+        public int BaseCurrency { get; set; }
+
+        public bool DisabledTransfer { get; set; }
+
+
+        // Need Removed
+        public int? UserId { get; set; }
+
+        public int OfferPageId { get; set; }
     }
 }

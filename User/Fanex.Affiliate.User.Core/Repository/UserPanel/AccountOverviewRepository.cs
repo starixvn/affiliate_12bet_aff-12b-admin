@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,16 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             using (var db = _builder.Build(uSpKey))
             {
                 return db.QueryEntity<OverviewSummary>(new { affId, monthDate });
+            }
+        }
+
+        public IEnumerable<SubAffDetail> GetSubAffDetails(SubAffDetailParam param)
+        {
+            const string uSpKey = "Aff_User_Overview_SubAffiliate_Sel";
+
+            using (var objectDb = _builder.Build(uSpKey))
+            {
+                return objectDb.Query<SubAffDetail>(param);
             }
         }
     }

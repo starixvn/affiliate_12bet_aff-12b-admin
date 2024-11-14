@@ -1,40 +1,41 @@
-﻿@using Fanex.Affiliate.User.Core.Utilities
-@using Fanex.Affiliate.User.Core.Constants
-@using Fanex.Affiliate.User.Core.CoreService
-@model List<Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview.PlayerDetail>
+﻿@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PlayerDetailViewModel
 
 @{
-    var hasScroll = Model.Count() > 10;
-    var totalItem = ViewBag.TotalItem;
-    var startRowNumber = ViewBag.StartRowNumber;
-    var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
-
-    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, sessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !sessionService.IsInternal;
+    var hasScroll = Model.PlayerDetailList != null && Model.PlayerDetailList.Count() > 10;
+    var totalItem = Model.TotalItem;
+    var startRowNumber = Model.StartRowNumber;
+    var isDepositFeePercent = Model.IsDepositFeePercent;
+    var isWithdrawalFeePercent = Model.IsWithdrawalFeePercent;
+    var columnDepositFee = Model.IsDepositFeePercent ? 1 : 0;
+    var columnWithdrawalFee = Model.IsWithdrawalFeePercent ? 1 : 0;
 }
 
 @{
-    if (Model.Any())
+    if (Model.PlayerDetailList != null && Model.PlayerDetailList.Any())
     {
-        foreach (var item in Model)
+        foreach (var item in Model.PlayerDetailList)
         {
-    <tr>
-        <td class="text-center">@startRowNumber</td>
-        <td class="text-center break-all">@item.Username</td>
-        <td class="text-center">@item.RegisteredDate.ToString("dd-MMM-yyyy hh:mm tt")</td>
-        @if (hasTurnOverPermission)
-        {
-            <td class="text-center">@item.Turnover.FormatDecimal()</td>
-        }
-        @if (!isIndiaAffiliate)
-        {
-            <td class="text-center">@item.Winloss.FormatDecimal()</td>
-        }
-        <td class="text-center">@item.Deposit.FormatDecimal()</td>
-        <td class="text-center">@item.Withdrawal.FormatDecimal()</td>
-        <td class="text-center">@item.Bonus.FormatDecimal()</td>
-        <td class="text-center">@item.BankingFee.FormatDecimal()</td>
-    </tr>
+            <tr>
+                <td class="text-center">@startRowNumber</td>
+                <td class="text-center break-all">@item.Username</td>
+                <td class="text-center">@(item.RegisteredDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? string.Empty)</td>
+                <td class="text-center">@(item.FirstDepositDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? string.Empty)</td>
+                <td class="text-center">@item.Turnover.FormatDecimal()</td>
+                <td class="text-center">@item.GGR.FormatDecimal()</td>
+                <td class="text-center">@item.Deposit.FormatDecimal()</td>
+                <td class="text-center">@item.Withdrawal.FormatDecimal()</td>
+                <td class="text-center">@item.Bonus.FormatDecimal()</td>
+                <td class="text-center">@item.Rebate.FormatDecimal()</td>
+                @if (isDepositFeePercent)
+                {
+                    <td class="text-center">@item.DepositFee.FormatDecimal()</td>
+                }
+
+                @if (isWithdrawalFeePercent)
+                {
+                    <td class="text-center">@item.WithdrawalFee.FormatDecimal()</td>
+                }
+            </tr>
 
             startRowNumber++;
         }
@@ -42,7 +43,7 @@
     else
     {
         <tr>
-            <td class="text-center" colspan="@( 7 + hasTurnOverPermission.ToInt() + (!isIndiaAffiliate).ToInt() )">@Lang.NoInfo</td>
+            <td class="text-center" colspan=@(10 + columnDepositFee + columnWithdrawalFee)>@Lang.NoInfo</td>
         </tr>
     }
 }

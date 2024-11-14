@@ -1,9 +1,10 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Common.Extensions;
 using Fanex.Data;
-using System.Collections.Generic;
+using System;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
@@ -21,9 +22,9 @@ namespace Fanex.Affiliate.User.Core.Repository
             const string spKey = "Aff_CheckIn";
             var dbMode = onUserIdParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var db = _builder.Build(spKey, dbMode))
+            using (var objectDb = _builder.Build(spKey, dbMode))
             {
-                db.ExecuteNonQuery(onUserIdParam);
+                objectDb.ExecuteNonQuery(onUserIdParam);
             }
 
             return onUserIdParam.On_UserId;
@@ -34,9 +35,28 @@ namespace Fanex.Affiliate.User.Core.Repository
             const string spKey = "Aff_User_Login_UserInfoSel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var db = _builder.Build(spKey, dbMode))
+            using (var objectDb = _builder.Build(spKey, dbMode))
             {
-                return db.QueryEntity<AuthorizedUserInfo>(new { userName });
+                objectDb.SetParameterValue("UserName", userName);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    return reader.Read() ? new AuthorizedUserInfo
+                    {
+                        AffId = reader.ToInt("AffId"),
+                        AffCode = reader.ToInt("AffCode"),
+                        UserName = reader.ToString("UserName"),
+                        Password = reader.ToString("Password"),
+                        GroupName = reader.ToString("GroupName"),
+                        AffType = reader.ToString("AffType"),
+                        Status = reader.ToString("Status"),
+                        PreferredLanguage = reader.ToString("PreferredLanguage"),
+                        IsMaxSubLevel = reader.ToBool("IsMaxSubLevel"),
+                        IsDepositFeePercent = reader.ToBool("Dep_IsDeductedPercent"),
+                        IsWithdrawalFeePercent = reader.ToBool("Wit_IsDeductedPercent"),
+                        DisabledTransfer = reader.ToBool("DisabledTransfer")
+                    } : null;
+                }
             }
         }
 
@@ -44,12 +64,12 @@ namespace Fanex.Affiliate.User.Core.Repository
         {
             const string spKey = "Aff_User_Login_ResultUpd";
 
-            using (var db = _builder.Build(spKey))
+            using (var objectDb = _builder.Build(spKey))
             {
-                AssignUpdateLoginResultParam(db, loginResultParam);
-                db.ExecuteNonQuery();
+                AssignUpdateLoginResultParam(objectDb, loginResultParam);
+                objectDb.ExecuteNonQuery();
 
-                var result = GetResultInfo(db);
+                var result = GetResultInfo(objectDb);
 
                 return new LoginResultInfo
                 {
@@ -59,21 +79,15 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
         }
 
-        public InternalLoginInfo GetInternalLoginInfo(int onUserId)
+        public string GetSessionId(int onUserId)
         {
             const string spKey = "Aff_SessionIdSel";
-            using (var db = _builder.Build(spKey))
-            {
-                db.SetParameterValue("OnUserId", onUserId);
 
-                using (var reader = db.ExecuteReader())
-                {
-                    return reader.Read() ? new InternalLoginInfo
-                    {
-                        SesionId = reader.ToString("NetSessionID"),
-                        UserId = reader.ToInt("CustId")
-                    } : null;
-                }
+            using (var objectDb = _builder.Build(spKey))
+            {
+                objectDb.SetParameterValue("OnUserId", onUserId);
+
+                return objectDb.ExecuteScalar() as string;
             }
         }
 
@@ -87,35 +101,12 @@ namespace Fanex.Affiliate.User.Core.Repository
                 IsKickedOut = true
             };
 
-            using (var db = _builder.Build(spKey, dbMode))
+            using (var objectDb = _builder.Build(spKey, dbMode))
             {
-                db.ExecuteNonQuery(parameterSet);
+                objectDb.ExecuteNonQuery(parameterSet);
             }
 
             return parameterSet.IsKickedOut;
-        }
-
-        public IEnumerable<InternalPermission> GetInternalLoginPermission(int internalLoginUserId)
-        {
-            const string spKey = "Aff_Admin_PolicySel";
-            var result = new List<InternalPermission>();
-            using (var db = _builder.Build(spKey))
-            {
-                db.SetParameterValue("UserId", internalLoginUserId);
-
-                using (var reader = db.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(new InternalPermission
-                        {
-                            FunctionName = reader.ToString("FuncName"),
-                            IsHost = reader.ToByte("Host") == 1
-                        });
-                    }
-                }
-            }
-            return result;
         }
 
         private static void AssignUpdateLoginResultParam(IObjectDb objectDb, LoginResultParam param)

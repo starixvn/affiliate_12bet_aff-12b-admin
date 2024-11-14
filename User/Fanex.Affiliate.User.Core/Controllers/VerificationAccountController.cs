@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Redirect(Url.RenderLanguageContent("~/Home"));
             }
 
-            var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);
+            var userInfo = AccountRepository.GetUserInfoById(verificationSession.AffId, false);
 
             var viewModel = new VerificationAccountViewModel
             {
@@ -113,10 +113,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Json(CreateVerifyAccountResult(GetErrorResult(Error.General)));
             }
 
-            var requestValidtionResult = ValidateLoginRequest(param.Captcha, verificationSession.Captcha);
-            if (!requestValidtionResult.IsOk)
+            var requestValidationResult = ValidateLoginRequest(param.Captcha, verificationSession.Captcha);
+            if (!requestValidationResult.IsOk)
             {
-                return Json(CreateVerifyAccountResult(requestValidtionResult));
+                return Json(CreateVerifyAccountResult(requestValidationResult));
             }
 
             var verificationOtpParam = CreateVerificationOtpParam(param);
@@ -182,7 +182,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private VerificationOtpParam CreateVerificationOtpParam(VerificationAccountParam param)
         {
             var verificationSession = SessionService.VerificationSession;
-            var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);
+            var userInfo = AccountRepository.GetUserInfoById(verificationSession.AffId, false);
 
             return new VerificationOtpParam
             {

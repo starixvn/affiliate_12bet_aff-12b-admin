@@ -2452,4 +2452,58 @@ CONSISTENT PAYMENT</value>
   <data name="Aff286TestimonialContent" xml:space="preserve">
     <value>"Joining 12BET has been a great decision for me. The affiliate program is easy to join, and the commission payments are always consistent. It's a solid partnership."</value>
   </data>
+  <data name="ActivePlayers" xml:space="preserve">
+    <value>Number of Active Players</value>
+  </data>
+  <data name="SubAffDownline" xml:space="preserve">
+    <value>Sub-Affiliate Downline</value>
+  </data>
+  <data name="SubAffEarning" xml:space="preserve">
+    <value>Sub-Affiliate Earning</value>
+  </data>
+  <data name="SubAffiliate" xml:space="preserve">
+    <value>Sub-Affiliate</value>
+  </data>
+  <data name="GGR" xml:space="preserve">
+    <value>GGR</value>
+  </data>
+  <data name="MinRequired" xml:space="preserve">
+    <value>Min required</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>FDM Date</value>
+  </data>
+  <data name="Rebate" xml:space="preserve">
+    <value>Rebate</value>
+  </data>
+  <data name="DepositFee" xml:space="preserve">
+    <value>Deposit Fee</value>
+  </data>
+  <data name="WithdrawalFee" xml:space="preserve">
+    <value>Withdrawal Fee</value>
+  </data>
+  <data name="ApprovalDate" xml:space="preserve">
+    <value>Approval Date</value>
+  </data>
+  <data name="NumberOfActivePlayers" xml:space="preserve">
+    <value>No. of Active Players</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="SuspensionDate" xml:space="preserve">
+    <value>Suspension Date</value>
+  </data>
+  <data name="SuspensionSatus" xml:space="preserve">
+    <value>Suspension Status</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>Total GGR</value>
+  </data>
+  <data name="SubAffDetail" xml:space="preserve">
+    <value>Sub-Affiliate Details</value>
+  </data>
+  <data name="CurrencyLabel" xml:space="preserve">
+    <value>USD</value>
+  </data>
 </root>
