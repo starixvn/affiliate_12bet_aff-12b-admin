@@ -105,14 +105,14 @@
   //    "www/source/js/pages/statement-history.js"
   //  ]
   //},
-  //{
-  //  "outputFileName": "www/build/js/messagehistory.js",
-  //  "inputFiles": [
-  //    "www/source/js/lib/pikaday.js",
-  //    "www/source/js/components/pager.js",
-  //    "www/source/js/pages/messagehistory.js"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/js/messagehistory.js",
+    "inputFiles": [
+      "www/source/js/lib/pikaday.js",
+      "www/source/js/components/pager.js",
+      "www/source/js/pages/messagehistory.js"
+    ]
+  },
   //{
   //  "outputFileName": "www/build/js/signup.js",
   //  "inputFiles": [

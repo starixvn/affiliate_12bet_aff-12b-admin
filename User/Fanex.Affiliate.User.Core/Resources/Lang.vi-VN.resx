@@ -2393,4 +2393,7 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="SubAffDetail" xml:space="preserve">
     <value>Chi Tiết Đại Lý Cấp Dưới</value>
   </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>Lấy tất cả</value>
+  </data>
 </root>

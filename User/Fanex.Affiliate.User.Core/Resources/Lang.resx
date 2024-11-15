@@ -2503,6 +2503,9 @@ CONSISTENT PAYMENT</value>
   <data name="SubAffDetail" xml:space="preserve">
     <value>Sub-Affiliate Details</value>
   </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>Get All</value>
+  </data>
   <data name="CurrencyLabel" xml:space="preserve">
     <value>USD</value>
   </data>

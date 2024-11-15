@@ -2627,6 +2627,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string GetAll {
+            get {
+                return ResourceManager.GetString("GetAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get banner for your target market!.
         /// </summary>
         public static string GetBannerForYourTargetMarket {

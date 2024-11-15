@@ -2416,4 +2416,7 @@
   <data name="SubAffDetail" xml:space="preserve">
     <value>ព័ត៌មានលម្អិតនៃសាខាសម្ព័ន្ធរង</value>
   </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>ទទួលបានទាំងអស់</value>
+  </data>
 </root>

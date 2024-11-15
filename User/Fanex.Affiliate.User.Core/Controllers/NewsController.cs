@@ -72,7 +72,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var isInternal = (userSession != null) && SessionService.IsInternal;
 
             var hotNews = _newsService.GetLatestHotNews(isInternal);
-            var preferredLanguage = userSession?.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode;
+            var preferredLanguage = SessionService.CurrentLanguage;
             var hotNewsList = hotNews.HotNewsList;
 
             var viewModel = new LatestHotNewViewModel
@@ -81,10 +81,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 IsAuthenticated = HttpContext.User.Identity.IsAuthenticated && SessionService.UserSession != null
             };
 
-            if (hotNewsList.Any())
+            if (hotNewsList != null && hotNewsList.Any())
             {
-                viewModel.SelectedHotNews = hotNewsList.ContainsKey(preferredLanguage) ?
-                                    hotNewsList[preferredLanguage] :
+                viewModel.SelectedHotNews = hotNewsList.TryGetValue(preferredLanguage, out var value) ?
+                                    value :
                                     hotNewsList.First().Value;
             }
 

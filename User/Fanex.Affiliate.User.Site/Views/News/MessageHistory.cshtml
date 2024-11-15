@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
-    var now = DateTime.Now.Date;
+    var now = DateTimeOffset.Now.Date;
 }
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.MessageHistoryViewModel
@@ -32,7 +32,8 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" id="chkSearchAll" />
+                        <input type="checkbox" id="chkSearchAll" checked/>
+                        <b>@Lang.GetAll</b>
                     </label>
                 </div>
             </div>
