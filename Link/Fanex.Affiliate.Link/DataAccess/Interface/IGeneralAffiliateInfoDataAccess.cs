@@ -8,5 +8,7 @@
         /// <param name="criteria">Input criteria.</param>
         /// <returns>Success or fail.</returns>
         (int affId, string affCode) GetGeneralAffiliateInfo(int? affId = null, string affCode = null);
+
+        string GetCommGroupByAffCode(string affCode);
     }
 }

@@ -29,7 +29,7 @@
 
             routes.MapRoute(
                 name: "OldLink",
-                url: "{affId}/{pageId}/{lang}/index.html",
+                url: "{affId}/{pageCode}/{lang}/index.html",
                 defaults:
                 new
                 {
@@ -42,35 +42,68 @@
                 constraints:
                 new
                 {
-                    affId = @"\d+"
+                    affId = @"\d+",
+                    lang = @"(\w{2}|hien|hitg)"
                 });
 
             routes.MapRoute(
-               name: "ChannelLink",
-               url: "{pageId}/{affCode}/{lang}/{channel}/index.html",
-               defaults:
-               new
-               {
-                   controller = "Home",
-                   action = "Link",
-                   pageId = UrlParameter.Optional,
-                   affCode = UrlParameter.Optional,
-                   lang = UrlParameter.Optional,
-                   channel = UrlParameter.Optional
-               });
+                name: "SpecialPageCodeOldLink",
+                url: "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "SpecialPageCodeOldLink",
+                    affId = UrlParameter.Optional,
+                    pageCodePart1 = UrlParameter.Optional,
+                    pageCodePart2 = UrlParameter.Optional,
+                    lang = UrlParameter.Optional
+                },
+                constraints:
+                new
+                {
+                    affId = @"\d+",
+                    lang = @"(\w{2}|hien|hitg)"
+                });
 
             routes.MapRoute(
-               name: "Link",
-               url: "{pageId}/{affCode}/{lang}/index.html",
-               defaults:
-               new
-               {
-                   controller = "Home",
-                   action = "Link",
-                   pageId = UrlParameter.Optional,
-                   affCode = UrlParameter.Optional,
-                   lang = UrlParameter.Optional
-               });
+                name: "ChannelLink",
+                url: "{pageCode}/{affCode}/{lang}/{channel}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "Link",
+                    pageCode = UrlParameter.Optional,
+                    affCode = UrlParameter.Optional,
+                    lang = UrlParameter.Optional,
+                    channel = UrlParameter.Optional
+                },
+                constraints:
+                new
+                {
+                    lang = @"(\w{2}|hien|hitg)"
+                });
+
+            routes.MapRoute(
+                name: "SpecialPageCodeChannelLink",
+                url: "{pageCodePart1}/{pageCodePart2}/{affCode}/{lang}/{channel}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "SpecialPageCodeLink",
+                    pageCodePart1 = UrlParameter.Optional,
+                    pageCodePart2 = UrlParameter.Optional,
+                    affCode = UrlParameter.Optional,
+                    lang = UrlParameter.Optional,
+                    channel = UrlParameter.Optional
+                },
+                constraints:
+                new
+                {
+                    lang = @"(\w{2}|hien|hitg)"
+                });
 
             routes.IgnoreRoute("go");
         }

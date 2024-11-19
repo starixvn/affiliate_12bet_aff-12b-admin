@@ -9,11 +9,6 @@
     /// </summary>
     public class GeneralAffiliateInfoDataAccess : IGeneralAffiliateInfoDataAccess
     {
-        /// <summary>
-        /// Insert statistics into database.
-        /// </summary>
-        /// <param name="criteria">Input criteria.</param>
-        /// <returns>Success or fail.</returns>
         public (int affId, string affCode) GetGeneralAffiliateInfo(int? affId = null, string affCode = null)
         {
             const string uSpKey = "Aff_Get_GeneralAffInfo";
@@ -31,6 +26,26 @@
                     }
 
                     return (0, string.Empty);
+                }
+            }
+        }
+
+        public string GetCommGroupByAffCode(string affCode)
+        {
+            const string uSpKey = "Aff_AffiliateUser_ExtraUserInfoSel";
+
+            using (var objectDb = new SqlObjectDb(uSpKey))
+            {
+                objectDb.SetParameterValue("AffCode", affCode);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToString(reader["GroupName"]);
+                    }
+
+                    return string.Empty;
                 }
             }
         }
