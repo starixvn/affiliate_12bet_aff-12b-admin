@@ -2,9 +2,12 @@
 
 @helper RenderItem(Fanex.Affiliate.User.Core.ViewModels.UserPanel.StatementHistoryViewModel item, int id, int? parentId = null, int? index = null)
 {
-    var isLink = item.TransType == (byte)Fanex.Affiliate.User.Core.Enum.TransType.MonthlyEarning && DateTime.Compare(item.MonthDate, ViewBag.AvailableFromDate) > 0;
+    var isLink = item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Payment
+                 && item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Adjustment
+                 && item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.MonthlyTotal
+                 && DateTime.Compare(item.MonthDate, ViewBag.AvailableFromDate) > 0;
 
-    var hasChildren = item.Children == null || item.Children.Count() > 0;
+    var hasChildren = item.Children == null || item.Children.Any();
     var displayClass = parentId != null ? "display-none" : "";
 
     <tr data-id='@id' data-parent='@parentId' class='@displayClass'>
@@ -37,7 +40,10 @@
         </td>
         <td class="text-center">@item.DisplayStatus</td>
         <td>
-            @Html.Raw(item.DescriptionDisplay)
+            @if (item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Adjustment)
+            {
+                @Html.Raw(item.DescriptionDisplay)
+            }
         </td>
     </tr>
 }
@@ -48,11 +54,11 @@
         <thead>
             <tr>
                 <th width="5%"></th>
-                <th width="25%">@Lang.Date</th>
-                <th width="15%">@Lang.Type</th>
-                <th width="15%">@Lang.Amount</th>
-                <th width="10%">@Lang.Status</th>
-                <th>@Lang.Description</th>
+                <th width="20%">@Lang.Date</th>
+                <th width="20">@Lang.Type</th>
+                <th width="12%">@Lang.Amount</th>
+                <th width="12%">@Lang.Status</th>
+                <th width="31%">@Lang.Description</th>
             </tr>
         </thead>
         <tbody>
@@ -91,4 +97,3 @@
 </div>
 
 <input type="hidden" id="TotalItem" value="@ViewBag.TotalItem" />
-

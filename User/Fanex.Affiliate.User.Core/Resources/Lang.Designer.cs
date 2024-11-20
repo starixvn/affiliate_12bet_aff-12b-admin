@@ -863,6 +863,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base Currency.
+        /// </summary>
+        public static string BaseCurrency {
+            get {
+                return ResourceManager.GetString("BaseCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basketball.
         /// </summary>
         public static string Basketball {
@@ -1403,6 +1412,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revenue Share.
+        /// </summary>
+        public static string Commission {
+            get {
+                return ResourceManager.GetString("Commission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Commission Report.
         /// </summary>
         public static string CommissionReport {
@@ -1696,6 +1714,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Current {
             get {
                 return ResourceManager.GetString("Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Revenue Share.
+        /// </summary>
+        public static string CurrentCommission {
+            get {
+                return ResourceManager.GetString("CurrentCommission", resourceCulture);
             }
         }
         
@@ -2627,7 +2654,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Get All.
         /// </summary>
         public static string GetAll {
             get {
@@ -5184,6 +5211,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculate Revenue Share by Turnover.
+        /// </summary>
+        public static string RevenueShareByTurnover {
+            get {
+                return ResourceManager.GetString("RevenueShareByTurnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculate Revenue Share by Winloss.
+        /// </summary>
+        public static string RevenueShareByWinloss {
+            get {
+                return ResourceManager.GetString("RevenueShareByWinloss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RMB (Ren Min Bi).
         /// </summary>
         public static string RMB {
@@ -6368,6 +6413,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Uncalculated {
             get {
                 return ResourceManager.GetString("Uncalculated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncalculated Revenue Share.
+        /// </summary>
+        public static string UncalculatedCommission {
+            get {
+                return ResourceManager.GetString("UncalculatedCommission", resourceCulture);
             }
         }
         

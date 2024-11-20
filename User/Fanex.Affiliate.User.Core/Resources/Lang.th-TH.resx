@@ -2379,4 +2379,7 @@
   <data name="TotalGGR" xml:space="preserve">
     <value>รายได้รวม</value>
   </data>
+  <data name="Commission" xml:space="preserve">
+    <value>ส่วนแบ่งรายได้</value>
+  </data>
 </root>

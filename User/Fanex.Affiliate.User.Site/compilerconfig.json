@@ -1,4 +1,8 @@
 ﻿[
+    {
+        "outputFile": "www/build/styles/css/main.css",
+        "inputFile": "www/source/styles/scss/main.scss"
+    },
     //{
     //    "outputFile": "www/build/styles/css/main.css",
     //    "inputFile": "www/source/styles/scss/main.scss"
@@ -43,10 +47,14 @@
     //  "outputFile": "www/build/js/account-overview.js",
     //  "inputFile": "www/source/js/pages/account-overview/account-overview.js"
     //},
-    //{
-    //  "outputFile": "www/build/js/daily-earning.js",
-    //  "inputFile": "www/source/js/pages/daily-earning.js"
-    //},
+    {
+      "outputFile": "www/build/js/daily-earning.js",
+      "inputFile": "www/source/js/pages/daily-earning.js"
+    },
+    {
+      "outputFile": "www/build/js/sub-affiliate-earning.js",
+      "inputFile": "www/source/js/pages/sub-affiliate-earning.js"
+    },
     //{
     //  "outputFile": "www/build/js/test.js",
     //  "inputFile": "www/source/js/pages/test.js"
@@ -71,10 +79,10 @@
     //  "outputFile": "www/build/styles/css/statistics.css",
     //  "inputFile": "www/source/styles/pages/statistics.scss"
     //},
-    //{
-    //  "outputFile": "www/build/styles/css/statement-history.css",
-    //  "inputFile": "www/source/styles/pages/statement-history.scss"
-    //},
+    {
+      "outputFile": "www/build/styles/css/statement-history.css",
+      "inputFile": "www/source/styles/pages/statement-history.scss"
+    },
     {
       "outputFile": "www/build/styles/css/account-overview.css",
       "inputFile": "www/source/styles/pages/account-overview.scss"

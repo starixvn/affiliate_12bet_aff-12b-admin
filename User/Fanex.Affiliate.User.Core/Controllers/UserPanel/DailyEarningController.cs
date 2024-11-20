@@ -15,14 +15,15 @@
     public class DailyEarningController : BaseController
     {
         private readonly IStatementHistoryRepository _statementHistoryRepository;
+        private readonly ICurrencyRepository _currencyRepository;
 
         public DailyEarningController(ISessionService sessionService,
             ISystemService languageService,
-            IStatementHistoryRepository statementHistoryRepository
-
-            ) : base(sessionService, languageService)
+            IStatementHistoryRepository statementHistoryRepository,
+            ICurrencyRepository currencyRepository) : base(sessionService, languageService)
         {
             _statementHistoryRepository = statementHistoryRepository;
+            _currencyRepository = currencyRepository;
         }
 
         [AjaxOnly]
@@ -33,23 +34,23 @@
             param.ProductId = param.ProductId ?? Product.Sportsbook;
             param.MonthDate = param.MonthDate ?? DateTime.Now.AddDays(-1);
 
-            var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
-
             var viewModel = new DailyEarningViewModel
             {
                 ProductList = param.IsOnlyContent ? null : _statementHistoryRepository.GetProductList(param.IsInternal),
                 Data = _statementHistoryRepository.GetDailyEarning(param),
-                SelectedProduct = param.ProductId.Value,
-                IsKoreanAgentCommGroup = !string.IsNullOrEmpty(extraUserInfo.GroupName) && extraUserInfo.GroupName.MatchWith(CommGroupName.KoreanAgentComm),
-                HasDailyDetail = extraUserInfo.HasDailyDetail
+                SelectedProduct = param.ProductId.Value
             };
+
             ViewBag.MonthDate = param.MonthDate;
-            var viewPath = param.IsOnlyContent ? "~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningContent.cshtml" :
-                "~/Views/UserPanel/StatementHistory/DailyEarning.cshtml";
+            ViewBag.BaseCurrencies = _currencyRepository.GetBaseCurrencyList();
+            ViewBag.SelectedBaseCurrency = param.BaseCurrency;
+
+            var viewPath = param.IsOnlyContent 
+                ? "~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningContent.cshtml" 
+                : "~/Views/UserPanel/StatementHistory/DailyEarning.cshtml";
 
             return View(viewPath, viewModel);
 
         }
-
     }
 }

@@ -2419,4 +2419,16 @@
   <data name="GetAll" xml:space="preserve">
     <value>ទទួលបានទាំងអស់</value>
   </data>
+  <data name="BaseCurrency" xml:space="preserve">
+    <value>មូលដ្ឋាននៃរូបិយប័ណ្ណ</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>ការចែករំលែកប្រាក់ចំណូល</value>
+  </data>
+  <data name="UncalculatedCommission" xml:space="preserve">
+    <value>ការបែងចែកប្រាក់ចំណូលដែលមិនបានគណនា</value>
+  </data>
+  <data name="CurrentCommission" xml:space="preserve">
+    <value>ការបែងចែកប្រាក់ចំណេញបច្ចុប្បន្ន</value>
+  </data>
 </root>

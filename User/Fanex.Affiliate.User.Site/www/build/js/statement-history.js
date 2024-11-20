@@ -235,7 +235,8 @@
 var StatementHistory = (function ($) {
     const _currentPage = "StatementHistory";
     const urlMapping = [
-        { transType: 201, url: "UserPanel/Main/#DailyEarning" }
+        { transType: 201, url: "UserPanel/Main/#DailyEarning" },
+        { transType: 204, url: "UserPanel/Main/#SubAffEarning" }
     ];
 
     let _pageSize = 20;
@@ -281,12 +282,19 @@ var StatementHistory = (function ($) {
         },
 
         initEvent: function () {
+            $("#base-currency").change(function () {
+                _expandElementList = [];
+                var params = _me.getStatementHistoryParam();
+                _me.renderStatementHistory(params);
+            })
+
             $("#statementDataList").on("click", ".amountItem", function () {
                 let transtype = Number($(this).data("transtype"));
                 let url = urlMapping.find(elem => elem.transType === transtype).url;
                 let params = {
                     monthDate: $(this).data("date"),
                     requestPage: _currentPage,
+                    baseCurrency: $("#base-currency").val(),
                     isOnlyContent: false
                 };
                 _me.setStatementHistoryParamIntoStorage();
@@ -304,6 +312,7 @@ var StatementHistory = (function ($) {
 
         getStatementHistoryParam: function () {
             return {
+                baseCurrency: $("#base-currency").val(),
                 pageSize: _pageSize,
                 pageIndex: _pageIndex + 1
             };

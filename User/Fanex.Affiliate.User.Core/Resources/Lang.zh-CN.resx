@@ -2375,4 +2375,7 @@
   <data name="TotalGGR" xml:space="preserve">
     <value>总收入</value>
   </data>
+  <data name="Commission" xml:space="preserve">
+    <value>佣金盈利</value>
+  </data>
 </root>

@@ -70,6 +70,9 @@
     <Setting Key="Aff_DailyEarning_Sel_view" SpName="Aff_DailyEarning_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel_view" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
+
+	<Setting Key="Aff_SubAffiliate_Commission_Sel" SpName="Aff_SubAffiliate_Commission_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet"/>
+    <Setting Key="Aff_SubAffiliate_Commission_Sel_view" SpName="Aff_SubAffiliate_Commission_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet"/>
   </Function>
 
   <Function Name="Commission">
@@ -123,6 +126,10 @@
     <Setting Key="Aff_User_Overview_SubAffiliate_Sel" SpName="Aff_User_Overview_SubAffiliate_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
   </Function>
 
+  <Function Name="Currency">
+	<Setting Key="Aff_BaseCurrency_Sel" SpName="Aff_BaseCurrency_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
+  </Function>
+	
   <Function Name="NewsLetter">
     <Setting Key="Aff_Admin_Newsletter_Sel" SpName="Aff_Admin_Newsletter_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
   </Function>

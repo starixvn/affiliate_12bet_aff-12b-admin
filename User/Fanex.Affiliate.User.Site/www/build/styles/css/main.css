@@ -1702,6 +1702,8 @@ table + .button-group {
     width: 80px; }
     .form-filter .form-group label.w150 {
       width: 150px; }
+    .form-filter .form-group label.w120 {
+      width: 120px; }
     .form-filter .form-group label.w100 {
       width: 100px; }
   .form-filter .form-group .form-control {

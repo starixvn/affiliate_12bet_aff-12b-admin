@@ -2354,4 +2354,7 @@ PEMBAYARAN KONSISTEN</value>
   <data name="TotalGGR" xml:space="preserve">
     <value>Total GGR</value>
   </data>
+  <data name="Commission" xml:space="preserve">
+    <value>Bagi Hasil</value>
+  </data>
 </root>

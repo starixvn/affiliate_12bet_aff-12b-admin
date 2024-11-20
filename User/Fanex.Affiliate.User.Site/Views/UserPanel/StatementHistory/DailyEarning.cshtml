@@ -1,5 +1,7 @@
 ﻿@{
     Layout = null;
+    var baseCurrencies = ViewBag.BaseCurrencies as IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.Currency>;
+    var selectedBaseCurrency = Convert.ToInt32(ViewBag.SelectedBaseCurrency);
 }
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.DailyEarningViewModel
@@ -11,13 +13,13 @@
 <div>
     <div class="breadcrumb-container">
         <ol class="breadcrumb" id="dailyEarningBreadcrumb">
-            <li><a href="@Url.RenderLanguageContent("~/UserPanel/Main/#StatementHistory?isClickBreadcumb=true")">@Lang.StatementHistory</a></li>
+            <li><a href="@Url.RenderLanguageContent($"~/UserPanel/Main/#StatementHistory?baseCurrency={selectedBaseCurrency}")">@Lang.StatementHistory</a></li>
         </ol>
     </div>
 
     <div class="form-inline form-filter">
         <div class="form-group">
-            <label for="ProductId" class="w100">@Lang.ProductType:</label>
+            <label for="ProductId" class="w120">@Lang.ProductType:</label>
             <select class="form-control" id="ProductId">
                 <option value="0">@Lang.All</option>
 
@@ -27,7 +29,17 @@
                     {
                         <option value="@item.ProductId" @(item.ProductId == Model.SelectedProduct ? "selected" : string.Empty)>@item.ProductName</option>
                     }
-                }               
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="base-currency" class="w120">@Lang.BaseCurrency:</label>
+            <select class="form-control" id="base-currency">
+                @foreach (var currency in baseCurrencies)
+                {
+                    var selected = currency.ExchangeId == selectedBaseCurrency ? "selected='selected'" : string.Empty;
+                    <option @selected value="@currency.ExchangeId">@currency.Code</option>
+                }
             </select>
         </div>
     </div>

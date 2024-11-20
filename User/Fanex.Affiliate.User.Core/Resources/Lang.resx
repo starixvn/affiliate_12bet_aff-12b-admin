@@ -2506,6 +2506,24 @@ CONSISTENT PAYMENT</value>
   <data name="GetAll" xml:space="preserve">
     <value>Get All</value>
   </data>
+  <data name="BaseCurrency" xml:space="preserve">
+    <value>Base Currency</value>
+  </data>
+  <data name="RevenueShareByTurnover" xml:space="preserve">
+    <value>Calculate Revenue Share by Turnover</value>
+  </data>
+  <data name="RevenueShareByWinloss" xml:space="preserve">
+    <value>Calculate Revenue Share by Winloss</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>Revenue Share</value>
+  </data>
+  <data name="UncalculatedCommission" xml:space="preserve">
+    <value>Uncalculated Revenue Share</value>
+  </data>
+  <data name="CurrentCommission" xml:space="preserve">
+    <value>Current Revenue Share</value>
+  </data>
   <data name="CurrencyLabel" xml:space="preserve">
     <value>USD</value>
   </data>

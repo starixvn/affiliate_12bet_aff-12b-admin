@@ -120,6 +120,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<IpAddressRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<FeedbackService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<FeedbackRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CurrencyRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterType<QrCodeGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<LicenseeCustDbApiService>().AsImplementedInterfaces().InstancePerLifetimeScope();

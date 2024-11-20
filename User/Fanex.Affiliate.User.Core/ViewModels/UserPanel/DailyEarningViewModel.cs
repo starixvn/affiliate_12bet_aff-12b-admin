@@ -12,8 +12,6 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
 
         public int SelectedProduct { get; set; }
 
-        public bool HasDailyDetail { get; set; }
-
         public bool IsKoreanAgentCommGroup { get; set; }
     }
 }
