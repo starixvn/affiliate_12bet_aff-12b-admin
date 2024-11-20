@@ -77,7 +77,7 @@ export class Filter extends Component {
                     selectedPaymentCurrencyList: PaymentCurrencyIds,
                     isGetAll: false,
                     isExcludeNegvBBF: false,
-                    IsExcludeNegvCurrentBBF: false,
+                    isExcludeNegvCurrentBBF: false,
                     isCheckedDatePicker: false
                 }, callback);
 

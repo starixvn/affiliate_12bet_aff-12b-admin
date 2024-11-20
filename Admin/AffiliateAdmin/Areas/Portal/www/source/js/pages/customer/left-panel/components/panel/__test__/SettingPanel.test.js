@@ -22,7 +22,7 @@ describe('left panel - components - panel - SettingPanel', () => {
         NoSiteDescription: "",
         Phone: "abc",
         PreferredLanguage: "vi-VN",
-        SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
+        SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
         IsDisabledTransfer: true,
         TransferLimit: 100000000,
         PlayerCurrency: 'USD',

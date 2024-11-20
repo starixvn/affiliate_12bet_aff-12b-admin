@@ -86,17 +86,21 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
             var monthlyCom = children.FirstOrDefault(s => s.TransType == TransType.MonthlyEarning);
 
-            var monthlyTotal = new StatementHistory
+            return GetMonthlyTotal(monthDate, monthlyCom, children);
+        }
+
+        private static StatementHistory GetMonthlyTotal(DateTime monthDate, StatementHistory monthlyCom, IEnumerable<StatementHistory> children)
+        {
+            return new StatementHistory
             {
-                Creator = monthlyCom?.Creator ?? children.FirstOrDefault().Creator,
+                Creator = monthlyCom?.Creator ?? children.FirstOrDefault()?.Creator,
                 Amount = children.Sum(s => s.Amount),
                 Date = monthDate,
                 Children = children,
-                Status = monthlyCom?.Status ?? children.FirstOrDefault().Status,
+                Status = monthlyCom?.Status ?? children.FirstOrDefault()?.Status,
                 TransType = TransType.MonthlyTotal,
-                CalculatedType = monthlyCom?.CalculatedType ?? children.FirstOrDefault().CalculatedType
+                CalculatedType = monthlyCom?.CalculatedType ?? children.FirstOrDefault()?.CalculatedType
             };
-            return monthlyTotal;
         }
 
         private static bool CheckIfExistMonthlyTotal(DateTime monthDate, List<StatementHistory> vms)

@@ -203,7 +203,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12bet.nexdev.net/User");
+            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12b.nexdev.net/UserAsian");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
@@ -235,7 +235,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12bet.nexdev.net/User");
+            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12b.nexdev.net/UserAsian");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
@@ -267,7 +267,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12bet.nexdev.net/User");
+            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12b.nexdev.net/UserAsian");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
@@ -303,7 +303,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             MockingHelper.SetUpHttpContextSession();
             MockingHelper.SetUpLogEngineEnviroment();
             var appSetting = new Mock<IAppSetting>();
-            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12bet.nexdev.net/User");
+            appSetting.Setup(a => a.AsianAffSiteUrl).Returns("https://aff-12b.nexdev.net/UserAsian");
 
             var builder = new ContainerBuilder();
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();

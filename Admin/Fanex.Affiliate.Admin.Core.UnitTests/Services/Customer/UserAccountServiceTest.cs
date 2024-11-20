@@ -182,7 +182,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
                 Postcode = "700000",
                 Country = "Viet Nam",
                 MoreSiteUrls = "www.sportsbookie.com",
-                SiteUrl = "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
+                SiteUrl = "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
                 PreferredPayment = "Wire",
                 PlayerUsername = "bettingexp",
                 NoSiteDescription = "test",

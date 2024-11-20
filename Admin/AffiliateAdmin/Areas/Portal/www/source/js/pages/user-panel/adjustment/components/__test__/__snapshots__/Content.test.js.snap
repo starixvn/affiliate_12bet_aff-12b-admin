@@ -10,7 +10,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       <h5
         className="font-weight-bold"
       >
-        B2CAFF226
+        12BETAFF226
       </h5>
     </legend>
     <Alert
@@ -231,7 +231,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       <h5
         className="font-weight-bold"
       >
-        B2CAFF226
+        12BETAFF226
       </h5>
     </legend>
     <Alert

@@ -52,7 +52,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
         onClick={[Function]}
         tag="button"
       >
-        N88AFF001
+        12BETAFF001
       </Button>
     </Col>
   </Row>
@@ -98,10 +98,10 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
       }
     >
       <a
-        href="http://localhost:55690/Auth/AdminLogin?chalengeStr=esh5u7&accKey=E16156C28&custName=B2CAFF226&accId=1000000026&accOnId=8405"
+        href="http://localhost:55690/Auth/AdminLogin?chalengeStr=esh5u7&accKey=E16156C28&custName=12BETAFF226&accId=1000000026&accOnId=8405"
         target="_blank"
       >
-        N88AFF002
+        12BETAFF002
       </a>
     </Col>
   </Row>
@@ -232,7 +232,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
         ]
       }
     >
-      B2CAFF226
+      12BETAFF226
     </Col>
   </Row>
   <Row
@@ -455,11 +455,11 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
       }
     >
       <a
-        href="http://anonym.to/?http://https://aff-b2c.nexdev.net/N88User/UserPanel/Main/#MyAccount"
+        href="http://anonym.to/?http://https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount"
         target="_blank"
-        title="http://https://aff-b2c.nexdev.net/N88User/UserPanel/Main/#MyAccount"
+        title="http://https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount"
       >
-        https://aff-b2c.nexdev.net/N88User/UserPanel/Main/#MyAccount
+        https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount
       </a>
     </Col>
   </Row>
@@ -612,7 +612,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
         onClick={[Function]}
         tag="button"
       >
-        N88AFF001
+        12BETAFF001
       </Button>
     </Col>
   </Row>
@@ -658,7 +658,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
       }
     >
       <span>
-        N88AFF002
+        12BETAFF002
       </span>
     </Col>
   </Row>
@@ -1162,7 +1162,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
         onClick={[Function]}
         tag="button"
       >
-        N88AFF001
+        12BETAFF001
       </Button>
     </Col>
   </Row>
@@ -1208,10 +1208,10 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
       }
     >
       <a
-        href="http://localhost:55690/Auth/AdminLogin?chalengeStr=640eh6&accKey=3F9ADA82AD&custName=B2CAFF001&accId=1000000026&accOnId=8405"
+        href="http://localhost:55690/Auth/AdminLogin?chalengeStr=640eh6&accKey=3F9ADA82AD&custName=12BETAFF001&accId=1000000026&accOnId=8405"
         target="_blank"
       >
-        N88AFF002
+        12BETAFF002
       </a>
     </Col>
   </Row>
@@ -1722,7 +1722,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
         onClick={[Function]}
         tag="button"
       >
-        N88AFF001
+        12BETAFF001
       </Button>
     </Col>
   </Row>
@@ -1768,10 +1768,10 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
       }
     >
       <a
-        href="http://localhost:55690/Auth/AdminLogin?chalengeStr=640eh6&accKey=3F9ADA82AD&custName=B2CAFF001&accId=1000000026&accOnId=8405"
+        href="http://localhost:55690/Auth/AdminLogin?chalengeStr=640eh6&accKey=3F9ADA82AD&custName=12BETAFF001&accId=1000000026&accOnId=8405"
         target="_blank"
       >
-        N88AFF002
+        12BETAFF002
       </a>
     </Col>
   </Row>

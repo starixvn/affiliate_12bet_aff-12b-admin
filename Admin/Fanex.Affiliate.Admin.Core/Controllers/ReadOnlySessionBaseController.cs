@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     {
         private readonly ISessionService _sessionService;
 
-        protected ReadOnlySessionBaseController(ISessionService sessionService)
+        public ReadOnlySessionBaseController(ISessionService sessionService)
         {
             _sessionService = sessionService;
         }

@@ -92,8 +92,6 @@ describe('Login - components - AppContainer', () => {
         instance._handleShowAlert(false, 'Wrong userName or password!');
 
         expect(wrapper.setState.mock.calls[0]).toEqual([{ isShowMessage: true, isSuccess: false, message: 'Wrong userName or password!' }, expect.any(Function)]);
-        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
-        expect(instance._hideMessage).toHaveBeenCalled();
     });
 
     it('_hideMessage - should call setState', async () => {

@@ -129,7 +129,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
               }
             >
               <strong>
-                B2CAFF226
+                12BETAFF226
               </strong>
             </Label>
           </FormGroup>
@@ -808,7 +808,7 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
               }
             >
               <strong>
-                B2CAFF226
+                12BETAFF226
               </strong>
             </Label>
           </FormGroup>

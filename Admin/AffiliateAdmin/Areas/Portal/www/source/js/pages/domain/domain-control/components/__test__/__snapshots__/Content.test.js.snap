@@ -59,9 +59,9 @@ exports[`domain control - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="10.18.200.209:7613/B2CGo"
+              title="10.18.200.209:7613/Go"
             >
-              10.18.200.209:7613/B2CGo
+              10.18.200.209:7613/Go
             </t>
             <t
               asc={true}

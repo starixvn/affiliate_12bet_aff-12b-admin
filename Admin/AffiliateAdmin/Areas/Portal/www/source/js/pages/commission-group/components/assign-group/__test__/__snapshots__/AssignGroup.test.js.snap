@@ -20,7 +20,7 @@ AssignGroup {
       "MailOption": false,
       "PlayerUsername": "qatest01",
       "PreferredLanguage": "hi-IN",
-      "UserName": "B2CAFF001",
+      "UserName": "12BETAFF001",
     },
     "commGroupList": Array [
       Object {
@@ -125,7 +125,7 @@ exports[`commission group - AssignGroup Should render correctly with isSuccess s
       </h6>
     </legend>
     <p>
-      B2CAFF001
+      12BETAFF001
     </p>
   </fieldset>
   <fieldset>

@@ -28,7 +28,7 @@ describe('left panel - components - MainInfo', () => {
             NoSiteDescription: "",
             Phone: "abc",
             PreferredLanguage: "vi-VN",
-            SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
+            SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
             Status: "Approved"
         }
         const result = shallow(<MainInfo affiliateInfo={affiliateInfo} />);

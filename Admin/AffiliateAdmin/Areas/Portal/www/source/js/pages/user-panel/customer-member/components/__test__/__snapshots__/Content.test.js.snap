@@ -30,9 +30,9 @@ exports[`customer member - components - Content render correctly with have data 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2C$thongchart14"
+            title="12BET$thongchart14"
           >
-            B2C$thongchart14
+            12BET$thongchart14
           </t>
           <t
             asc={true}
@@ -267,9 +267,9 @@ exports[`customer member - components - Content render correctly with have data 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2C$thongchart14"
+            title="12BET$thongchart14"
           >
-            B2C$thongchart14
+            12BET$thongchart14
           </t>
           <t
             asc={true}

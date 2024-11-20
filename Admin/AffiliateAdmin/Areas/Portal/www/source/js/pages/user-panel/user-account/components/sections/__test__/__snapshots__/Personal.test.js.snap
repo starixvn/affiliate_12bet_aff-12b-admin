@@ -44,7 +44,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       <p
         className="form-control-plaintext"
       >
-        B2CAFF226
+        12BETAFF226
       </p>
     </Col>
   </FormGroup>

@@ -48,6 +48,7 @@ describe('affiliate report - Filter - connect', () => {
         const expectedActionCreator = {
             setCommGroupList: actions['setCommGroupList'],
             setPaymentCurrencyList: actions['setPaymentCurrencyList'],
+            setIsCheckedDatePicker: actions['setIsCheckedDatePicker'],
             setProductList: actions['setProductList'],
             setReportTitle: actions['setReportTitle'],
             setParam: actions['setParam'],

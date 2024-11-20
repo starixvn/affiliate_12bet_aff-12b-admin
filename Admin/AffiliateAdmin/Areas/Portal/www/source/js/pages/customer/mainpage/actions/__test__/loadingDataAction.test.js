@@ -46,7 +46,7 @@ describe('customer - main page actions', () => {
                 NoSiteDescription: "",
                 Phone: "abc",
                 PreferredLanguage: "vi-VN",
-                SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
+                SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
                 Status: "Approved"
             },
             status: 200

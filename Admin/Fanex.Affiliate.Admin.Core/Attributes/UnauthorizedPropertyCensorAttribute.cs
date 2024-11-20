@@ -43,9 +43,9 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
                 return;
             }
 
-            if (data is IEnumerable)
+            if (data is IEnumerable dataItems)
             {
-                foreach (var item in data as IEnumerable)
+                foreach (var item in dataItems)
                 {
                     CensorData(item);
                 }

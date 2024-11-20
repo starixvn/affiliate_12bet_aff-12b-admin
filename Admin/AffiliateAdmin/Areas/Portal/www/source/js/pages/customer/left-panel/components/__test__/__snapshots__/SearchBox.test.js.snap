@@ -19,7 +19,7 @@ exports[`left panel - components - SearchBox render correctly 1`] = `
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"
-        value="B2CAFF226"
+        value="12BETAFF226"
       />
     </div>
     <Button

@@ -28,9 +28,9 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2C$RyQ.Piong"
+            title="12BET$RyQ.Piong"
           >
-            B2C$RyQ.Piong
+            12BET$RyQ.Piong
           </t>
           <t
             asc={true}
@@ -38,9 +38,9 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2CUS$02002"
+            title="12BETUS$02002"
           >
-            B2CUS$02002
+            12BETUS$02002
           </t>
           <t
             asc={true}
@@ -157,9 +157,9 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2C$all_in"
+            title="12BET$all_in"
           >
-            B2C$all_in
+            12BET$all_in
           </t>
           <t
             asc={true}
@@ -167,9 +167,9 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2CRM021133"
+            title="12BETRM021133"
           >
-            B2CRM021133
+            12BETRM021133
           </t>
           <t
             asc={true}
@@ -557,9 +557,9 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2C$RyQ.Piong"
+            title="12BET$RyQ.Piong"
           >
-            B2C$RyQ.Piong
+            12BET$RyQ.Piong
           </t>
           <t
             asc={true}
@@ -567,9 +567,9 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2CUS$02002"
+            title="12BETUS$02002"
           >
-            B2CUS$02002
+            12BETUS$02002
           </t>
           <t
             asc={true}
@@ -708,9 +708,9 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2C$all_in"
+            title="12BET$all_in"
           >
-            B2C$all_in
+            12BET$all_in
           </t>
           <t
             asc={true}
@@ -718,9 +718,9 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="B2CRM021133"
+            title="12BETRM021133"
           >
-            B2CRM021133
+            12BETRM021133
           </t>
           <t
             asc={true}

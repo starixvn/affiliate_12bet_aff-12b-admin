@@ -188,7 +188,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
                   key="affDomain-21"
                   value={21}
                 >
-                  10.18.200.209:7613/B2CGo
+                  10.18.200.209:7613/Go
                 </option>
                 <option
                   key="affDomain-34"
@@ -511,7 +511,7 @@ exports[`domain control - components - DomainControlPopup  render correctly with
                   key="affDomain-21"
                   value={21}
                 >
-                  10.18.200.209:7613/B2CGo
+                  10.18.200.209:7613/Go
                 </option>
                 <option
                   key="affDomain-34"

@@ -93,6 +93,7 @@ describe('affiliate report - Filter ', () => {
             isGetAll: false,
             isExcludeNegvBBF: false,
             isExcludeNegvCurrentBBF: false,
+            isCheckedDatePicker: false,
             selectedBaseCurrency: "",
             selectedCurrencyList: "",
             selectedPaymentCurrencyList: "",
@@ -119,6 +120,7 @@ describe('affiliate report - Filter ', () => {
             userName: 'Month on Month view',
             sortBy: 1,
             isSortAscending: false,
+            isCheckedDatePicker: false,
             selectedEarning: 'all'
         };
         const selectedProductList = '1,2';
@@ -370,13 +372,14 @@ describe('affiliate report - Filter ', () => {
             PageIndex: 1,
             PageSize: 20,
             GroupIds: 'all',
+            IsGetMonthly: true,
             IsExcludeNegvBBF: false,
             IsExcludeNegvCurrentBBF: false,
             PaymentCurrencyIds: "21",
             IsGetAll: false
         };
 
-        const props = Object.assign({}, defaultProps, { setParam: jest.fn() })
+        const props = Object.assign({}, defaultProps, { setParam: jest.fn(), setIsCheckedDatePicker: jest.fn() })
 
         const wrapper = shallow(<Filter {...props} />);
         const instance = wrapper.instance();
@@ -408,6 +411,7 @@ describe('affiliate report - Filter ', () => {
             PageIndex: 1,
             PageSize: 20,
             GroupIds: 'all',
+            IsGetMonthly: true,
             IsExcludeNegvBBF: false,
             IsExcludeNegvCurrentBBF: false,
             PaymentCurrencyIds: "21",
@@ -450,6 +454,7 @@ describe('affiliate report - Filter ', () => {
             PageIndex: 1,
             PageSize: 20,
             GroupIds: 'all',
+            IsGetMonthly: true,
             IsExcludeNegvBBF: false,
             IsExcludeNegvCurrentBBF: false,
             PaymentCurrencyIds: "21",

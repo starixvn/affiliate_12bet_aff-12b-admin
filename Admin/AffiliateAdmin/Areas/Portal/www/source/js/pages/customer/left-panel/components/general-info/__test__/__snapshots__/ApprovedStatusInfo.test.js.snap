@@ -85,7 +85,7 @@ exports[`left panel - components - general-info - ApprovedStatusInfo render corr
       }
     >
       <a
-        href="/Portal/Player?AffName=B2CAFF226"
+        href="/Portal/Player?AffName=12BETAFF226"
         target="_top"
       >
         Player List
@@ -106,7 +106,7 @@ exports[`left panel - components - general-info - ApprovedStatusInfo render corr
       }
     >
       <a
-        href="/Portal/Affiliate?ParentAffName=B2CAFF226"
+        href="/Portal/Affiliate?ParentAffName=12BETAFF226"
         target="_top"
       >
         Sub-Affiliate List

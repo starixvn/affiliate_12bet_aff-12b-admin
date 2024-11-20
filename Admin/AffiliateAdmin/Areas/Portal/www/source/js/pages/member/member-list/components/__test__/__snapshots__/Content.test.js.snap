@@ -32,9 +32,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2C$wjpwjp"
+              title="12BET$wjpwjp"
             >
-              B2C$wjpwjp
+              12BET$wjpwjp
             </t>
             <t
               asc={true}
@@ -43,9 +43,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2CRMB0239317"
+              title="12BETRMB0239317"
             >
-              B2CRMB0239317
+              12BETRMB0239317
             </t>
             <t
               asc={true}
@@ -87,9 +87,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2CAFF017"
+              title="12BETAFF017"
             >
-              B2CAFF017
+              12BETAFF017
             </t>
             <t
               asc={true}
@@ -123,7 +123,7 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Edit B2C$wjpwjp player"
+              title="Edit 12BET$wjpwjp player"
             >
               <Button
                 color="link p-0"
@@ -155,9 +155,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2C$jingguoan"
+              title="12BET$jingguoan"
             >
-              B2C$jingguoan
+              12BET$jingguoan
             </t>
             <t
               asc={true}
@@ -166,9 +166,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2CRMB0239312"
+              title="12BETRMB0239312"
             >
-              B2CRMB0239312
+              12BETRMB0239312
             </t>
             <t
               asc={true}
@@ -210,9 +210,9 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2CAFF177"
+              title="12BETAFF177"
             >
-              B2CAFF177
+              12BETAFF177
             </t>
             <t
               asc={true}
@@ -246,7 +246,7 @@ exports[`member list - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Edit B2C$jingguoan player"
+              title="Edit 12BET$jingguoan player"
             >
               <Button
                 color="link p-0"
@@ -458,9 +458,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2C$wjpwjp"
+              title="12BET$wjpwjp"
             >
-              B2C$wjpwjp
+              12BET$wjpwjp
             </t>
             <t
               asc={true}
@@ -469,9 +469,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2CRMB0239317"
+              title="12BETRMB0239317"
             >
-              B2CRMB0239317
+              12BETRMB0239317
             </t>
             <t
               asc={true}
@@ -513,9 +513,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2CAFF017"
+              title="12BETAFF017"
             >
-              B2CAFF017
+              12BETAFF017
             </t>
             <t
               asc={true}
@@ -549,7 +549,7 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Edit B2C$wjpwjp player"
+              title="Edit 12BET$wjpwjp player"
             >
               <Button
                 color="link p-0"
@@ -581,9 +581,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2C$jingguoan"
+              title="12BET$jingguoan"
             >
-              B2C$jingguoan
+              12BET$jingguoan
             </t>
             <t
               asc={true}
@@ -592,9 +592,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2CRMB0239312"
+              title="12BETRMB0239312"
             >
-              B2CRMB0239312
+              12BETRMB0239312
             </t>
             <t
               asc={true}
@@ -636,9 +636,9 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="B2CAFF177"
+              title="12BETAFF177"
             >
-              B2CAFF177
+              12BETAFF177
             </t>
             <t
               asc={true}
@@ -672,7 +672,7 @@ exports[`member list - components - Content  render correctly with NotificationP
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Edit B2C$jingguoan player"
+              title="Edit 12BET$jingguoan player"
             >
               <Button
                 color="link p-0"

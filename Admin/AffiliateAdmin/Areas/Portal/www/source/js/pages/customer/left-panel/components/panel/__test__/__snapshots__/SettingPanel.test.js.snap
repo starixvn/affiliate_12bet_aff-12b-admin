@@ -162,7 +162,7 @@ exports[`left panel - components - panel - SettingPanel render correctly 1`] = `
       </div>
       <CommissionGroupPopup
         affId={1271808}
-        affName="B2CAFF226"
+        affName="12BETAFF226"
         isNewAffiliate={true}
         isPrivateGroup={false}
         setShowPopupCommGroup={[Function]}
@@ -329,7 +329,7 @@ exports[`left panel - components - panel - SettingPanel render correctly with is
       </div>
       <CommissionGroupPopup
         affId={1271808}
-        affName="B2CAFF226"
+        affName="12BETAFF226"
         isNewAffiliate={true}
         isPrivateGroup={false}
         setShowPopupCommGroup={[Function]}
@@ -507,7 +507,7 @@ exports[`left panel - components - panel - SettingPanel render correctly with ul
       </div>
       <CommissionGroupPopup
         affId={1271808}
-        affName="B2CAFF226"
+        affName="12BETAFF226"
         isNewAffiliate={true}
         isPrivateGroup={false}
         setShowPopupCommGroup={[Function]}

@@ -124,7 +124,7 @@ exports[`common - components - CommissionGroupPopup render correctly with Privat
       <span
         className="iconpopup"
       />
-      Edit the Revenue Group for B2CAFF226
+      Edit the Revenue Group for 12BETAFF226
     </ModalHeader>
     <ModalBody
       tag="div"

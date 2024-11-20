@@ -93,7 +93,8 @@ const colConfig =
     },
     [fields.Rebate]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH]: 120
     },
     [fields.PlatformFee]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
@@ -296,7 +297,6 @@ export default class ReportExcel {
 
     _createBodyData() {
         const mainData = this.data.MainData;
-        console.log(mainData);
 
         for (let item of mainData) {
             item.CommissionRate = formatDecimal(item.CommissionRate) + '%';

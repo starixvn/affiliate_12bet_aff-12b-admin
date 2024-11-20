@@ -118,7 +118,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
             if (exception.InnerException != null && limitedInnerException > 0)
             {
-                AddExceptionInfo(builder, exception.InnerException, --limitedInnerException);
+                var exceptionLevel = limitedInnerException - 1;
+                AddExceptionInfo(builder, exception.InnerException, exceptionLevel);
             }
         }
     }

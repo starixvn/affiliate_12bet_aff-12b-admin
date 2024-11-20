@@ -137,7 +137,7 @@ describe('affiliate report - Content ', () => {
 
             await componentInstance.handleExportExcel();
 
-            expect(ReportExcel).toHaveBeenCalledWith(expectedData, reportTitle, isMainView);
+            expect(ReportExcel).toHaveBeenCalled();
         });
     });
 

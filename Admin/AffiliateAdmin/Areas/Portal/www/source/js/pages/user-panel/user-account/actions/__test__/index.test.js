@@ -55,7 +55,7 @@ describe('user account actions', () => {
                 Postcode: "X",
                 PreferredPayment: "Player",
                 Question: "What?",
-                SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
+                SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
                 State: "A"
             },
             status: 200
@@ -123,7 +123,7 @@ describe('user account actions', () => {
             Postcode: "X",
             PreferredPayment: "Player",
             Question: "What?",
-            SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
+            SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
             State: "A"
         }
 
@@ -163,7 +163,7 @@ describe('user account actions', () => {
             Postcode: "X",
             PreferredPayment: "Player",
             Question: "What?",
-            SiteUrl: "https://aff-12bet.nexdev.net/User/UserPanel/Main/#MyAccount",
+            SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
             State: "A"
         }
 

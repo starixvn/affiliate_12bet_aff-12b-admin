@@ -129,13 +129,13 @@ exports[`customer member - components - Content render correctly with have data 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="N88AFF003"
+            title="12BETAFF003"
           >
             <a
-              href="/Portal/Customer?user=N88AFF003"
+              href="/Portal/Customer?user=12BETAFF003"
               target="_top"
             >
-              N88AFF003
+              12BETAFF003
             </a>
           </t>
           <t
@@ -181,13 +181,13 @@ exports[`customer member - components - Content render correctly with have data 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="N88AFF004"
+            title="12BETAFF004"
           >
             <a
-              href="/Portal/Customer?user=N88AFF004"
+              href="/Portal/Customer?user=12BETAFF004"
               target="_top"
             >
-              N88AFF004
+              12BETAFF004
             </a>
           </t>
           <t

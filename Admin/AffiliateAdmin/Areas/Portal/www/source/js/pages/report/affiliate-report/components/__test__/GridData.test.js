@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
 import { GridData } from '../GridData';
+import { headerFake } from '../../libs/headerFake';
 
 describe('affiliate report - GridData ', () => {
     const mainView = 1;
@@ -18,6 +19,7 @@ describe('affiliate report - GridData ', () => {
             PageList: [10, 20, 50, 100, 500]
         },
         param: {},
+        headerRow: headerFake,
         productList,
         reportCutOffDate: "06/01/2023",
         currentViewLevel: mainView
