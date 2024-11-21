@@ -73,10 +73,17 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var specificDomains = (_appSetting.IsDev || _appSetting.IsLocal) ?
                                     SpecificDomain.SpecificDomainByAffOnLocal : SpecificDomain.SpecificDomainByAffOnPro;
 
-            if (specificDomains.TryGetValue(affId.ToString(), out string domainName))
+            if (specificDomains.TryGetValue(affId.ToString(), out string domainNames))
             {
-                var specificDomainList = new List<Domain> { new Domain { DomainId = affId, DomainName = domainName, IsSsl = true } };
-                specificDomainList.AddRange(domainList.Where(d => !d.DomainName.MatchWith(domainName)));
+                var names = domainNames.Split(',');
+                var specificDomainList = new List<Domain>();
+
+                foreach(var name in names)
+                {
+                    specificDomainList.Add(new Domain { DomainId = affId + specificDomainList.Count(), DomainName = name, IsSsl = false });
+                }    
+
+                specificDomainList.AddRange(domainList.Where(d => !Array.Exists(names, n => n.MatchWith(d.DomainName))));
 
                 return specificDomainList;
             }
