@@ -14,15 +14,13 @@
 
         public string NoSiteDesc { get; set; }
 
-        public string TargetCountryCode { get; set; }
-
-        public string Player_UserName { get; set; }
-
         public string Ip { get; set; }
 
         public string Language { get; set; }
 
         public string ContactApps { get; set; }
+
+        public int DefaultBaseCurrency { get; set; }
 
         public int ErrCode { get; set; }
 

@@ -1,13 +1,14 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.System;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.Repository;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
+using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.System;
+using Fanex.Affiliate.User.Core.Extensions;
+using Fanex.Affiliate.User.Core.Repository;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -26,6 +27,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _sessionService = sessionService;
             _cacheService = cacheService;
         }
+
+        public string GetCurrentLanguage()
+            => Thread.CurrentThread.CurrentCulture.Name;
 
         public string GetFavoriteLanguage()
         {
@@ -102,8 +106,22 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _systemRepository.GetTargetLanguageListByCountry(_sessionService.IsInternal, targetCountry, _sessionService.UserSession?.UserId);
         }
 
-        public bool IsValid(string langCode, bool isAfterLogin = true)
-            => !string.IsNullOrWhiteSpace(langCode) && GetSystemTargetLanguages().Any(l => Equals(l.LanguageCode, langCode));
+        public IEnumerable<Language> GetLanguageList(bool? isInternal = null)
+        {
+            var isForInternal = isInternal ?? _sessionService.IsInternal;
+            var languageList = _cacheService.Get<IEnumerable<Language>>(CacheKey.LanguageList);
+
+            if (languageList == null)
+            {
+                languageList = _systemRepository.GetLanguageList(isForInternal);
+                _cacheService.Set(CacheKey.LanguageList, languageList);
+            }
+
+            return languageList ?? new List<Language>();
+        }
+
+        public bool IsValid(string langCode)
+            => !string.IsNullOrWhiteSpace(langCode) && GetLanguageList().Any(l => Equals(l.Code, langCode));
 
         public void SetCulture(string languageCode)
         {

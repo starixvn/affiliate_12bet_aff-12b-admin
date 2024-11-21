@@ -25,6 +25,11 @@
                 WebSite.changeWebsiteOption(hasWebSite, _isClickSubmit);
             });
 
+            $('select[data-val="true"]').on("change", function () {
+                var validator = $("#accountForm").validate();
+                validator.element($(this));
+            });
+
             $("#btnMyAccountSubmit").on("click", function () {
                 _me.submit();
             });

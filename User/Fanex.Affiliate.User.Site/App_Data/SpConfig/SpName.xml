@@ -111,6 +111,7 @@
     <Setting Key="Aff_User_Overview_Summary_Sel" SpName="Aff_User_Overview_Summary_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
     <Setting Key="Aff_User_LoginInfo_Sel" SpName="Aff_User_LoginInfo_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
 
+    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
     <Setting Key="Aff_TargetProduct_Sel" SpName="Aff_TargetProduct_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
     <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
     <Setting Key="Aff_User_Domain_Sel" SpName="Aff_User_Domain_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
@@ -118,7 +119,7 @@
     <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
     <Setting Key="Aff_User_BannerStatistics_Ins" SpName="Aff_User_BannerStatistics_Ins" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
 
-    <Setting Key="Aff_TargetProduct_Sel_view" SpName="Aff_TargetProduct_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
+	  <Setting Key="Aff_TargetProduct_Sel_view" SpName="Aff_TargetProduct_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
     <Setting Key="Aff_Admin_MediaSize_Sel_view" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
     <Setting Key="Aff_User_Domain_Sel_view" SpName="Aff_User_Domain_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
     <Setting Key="Aff_User_LandingPage_Sel_view" SpName="Aff_User_LandingPage_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />

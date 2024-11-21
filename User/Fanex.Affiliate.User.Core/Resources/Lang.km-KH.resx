@@ -2431,4 +2431,13 @@
   <data name="CurrentCommission" xml:space="preserve">
     <value>ការបែងចែកប្រាក់ចំណេញបច្ចុប្បន្ន</value>
   </data>
+  <data name="AffiliateCurrency" xml:space="preserve">
+    <value>រូបិយប័ណ្ណនៃសម្ព័ន្ធ</value>
+  </data>
+  <data name="DefaultBaseCurrency" xml:space="preserve">
+    <value>រូបិយប័ណ្ណមូលដ្ឋាននៃលំនាំដើម</value>
+  </data>
+  <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
+    <value>ឯកតារូបិយប័ណ្ណបានបង្ហាញនៅក្នុងរបាយការណ៍ទាំងអស់</value>
+  </data>
 </root>

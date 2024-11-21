@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using Fanex.Affiliate.User.Core.Resources;
 
 namespace Fanex.Affiliate.User.Core.Constants
 {
@@ -254,6 +255,11 @@ namespace Fanex.Affiliate.User.Core.Constants
         public static string GetAffManagerContactInfo(string currentLanguage)
         {
             return _supportedAffManagerContactInfos.ContainsKey(currentLanguage) ? _supportedAffManagerContactInfos[currentLanguage] : _supportedAffManagerContactInfos[EnglishLanguageCode];
+        }
+
+        public static string GetLanguageText(string value)
+        {
+            return Lang.ResourceManager.GetString(value.Replace(" ", "")) ?? value;
         }
     }
 }

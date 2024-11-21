@@ -2408,4 +2408,13 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="CurrentCommission" xml:space="preserve">
     <value>Hoa hồng hiện tại</value>
   </data>
+  <data name="AffiliateCurrency" xml:space="preserve">
+    <value>Tiền tệ đại lý</value>
+  </data>
+  <data name="DefaultBaseCurrency" xml:space="preserve">
+    <value>Tiền cơ sở mặc định</value>
+  </data>
+  <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
+    <value>Đơn vị tiền tệ hiển thị trên tất cả báo cáo</value>
+  </data>
 </root>

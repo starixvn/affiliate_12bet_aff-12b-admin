@@ -1,17 +1,25 @@
-﻿using Fanex.Affiliate.User.Core.DTO.System;
-using System.Collections.Generic;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
+    using System.Collections.Generic;
+    using DTO;
+    using Fanex.Affiliate.User.Core.DTO.System;
+
+
     public interface ISystemService
     {
         void SetCulture(string languageCode);
 
         string GetFavoriteLanguage();
 
-        string GetFavoriteShortedLanguage();
+        string GetCurrentLanguage();
 
-        bool IsValid(string langCode, bool isAfterLogin = true);
+        IEnumerable<Language> GetLanguageList(bool? isInternal = null);
+
+        bool IsValid(string langCode);
+
+        // Need Removed
+
+        string GetFavoriteShortedLanguage();
 
         IEnumerable<TargetLanguage> GetSystemTargetLanguages();
 
