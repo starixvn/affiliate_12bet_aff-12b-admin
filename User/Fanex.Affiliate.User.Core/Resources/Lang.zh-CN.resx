@@ -2378,4 +2378,10 @@
   <data name="Commission" xml:space="preserve">
     <value>佣金盈利</value>
   </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>子代理佣金比例</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>多个组中份额最高的%</value>
+  </data>
 </root>

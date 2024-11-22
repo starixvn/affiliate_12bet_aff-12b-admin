@@ -1518,7 +1518,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Your Application</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
-    <value>Commission Report</value>
+    <value>Revenue Report</value>
     <comment>87923</comment>
   </data>
   <data name="Temporary" xml:space="preserve">
@@ -2535,5 +2535,23 @@ CONSISTENT PAYMENT</value>
   </data>
   <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
     <value>Currency unit shown in all reports</value>
+  </data>
+  <data name="EarningBy" xml:space="preserve">
+    <value>Earning By</value>
+  </data>
+  <data name="P2pRevenueShare" xml:space="preserve">
+    <value>P2P Rev. Share</value>
+  </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>Sub-Affiliate Comm Rate</value>
+  </data>
+  <data name="RoyaltyFee" xml:space="preserve">
+    <value>Royalty Fee</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>The highest share % of multiple groups</value>
+  </data>
+  <data name="Winloss" xml:space="preserve">
+    <value>Winloss</value>
   </data>
 </root>

@@ -1517,7 +1517,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>LIÊN HỆ</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
-    <value>Báo Cáo Hoa Hồng Đại Lý</value>
+    <value>Báo Cáo Hoa Hồng</value>
   </data>
   <data name="GrossWinLoss" xml:space="preserve">
     <value>Tổng Thắng Thua</value>
@@ -2416,5 +2416,17 @@ THANH TOÁN ỔN ĐỊNH</value>
   </data>
   <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
     <value>Đơn vị tiền tệ hiển thị trên tất cả báo cáo</value>
+  </data>
+  <data name="P2pRevenueShare" xml:space="preserve">
+    <value>Hoa Hồng P2P</value>
+  </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>Tỷ lệ hoa hồng đại lý cấp dưới</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>Tỷ lệ hoa hồng cao nhất của nhiều nhóm sản phẩm</value>
+  </data>
+  <data name="RoyaltyFee" xml:space="preserve">
+    <value>Phí Bản Quyền</value>
   </data>
 </root>

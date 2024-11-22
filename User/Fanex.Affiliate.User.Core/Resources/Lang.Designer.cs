@@ -1988,6 +1988,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Earning By.
+        /// </summary>
+        public static string EarningBy {
+            get {
+                return ResourceManager.GetString("EarningBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ecuador .
         /// </summary>
         public static string Ecuador {
@@ -4369,6 +4378,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to P2P Rev. Share.
+        /// </summary>
+        public static string P2pRevenueShare {
+            get {
+                return ResourceManager.GetString("P2pRevenueShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         public static string Page {
@@ -5292,6 +5310,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Royalty Fee.
+        /// </summary>
+        public static string RoyaltyFee {
+            get {
+                return ResourceManager.GetString("RoyaltyFee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Russian Federation .
         /// </summary>
         public static string RussianFederation {
@@ -5738,6 +5765,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-Affiliate Comm Rate.
+        /// </summary>
+        public static string SubAffCommRate {
+            get {
+                return ResourceManager.GetString("SubAffCommRate", resourceCulture);
             }
         }
         
@@ -6206,6 +6242,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string THB {
             get {
                 return ResourceManager.GetString("THB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The highest share % of multiple groups.
+        /// </summary>
+        public static string TheHighestShare {
+            get {
+                return ResourceManager.GetString("TheHighestShare", resourceCulture);
             }
         }
         
@@ -6809,6 +6854,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string WinAndLoss {
             get {
                 return ResourceManager.GetString("WinAndLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Winloss.
+        /// </summary>
+        public static string Winloss {
+            get {
+                return ResourceManager.GetString("Winloss", resourceCulture);
             }
         }
         

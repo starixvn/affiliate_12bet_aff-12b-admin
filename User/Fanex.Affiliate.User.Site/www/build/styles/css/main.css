@@ -1698,19 +1698,21 @@ table + .button-group {
   display: inline-flex;
   align-items: center;
   margin-right: 30px; }
-  .form-filter .form-group label {
-    width: 80px; }
-    .form-filter .form-group label.w150 {
-      width: 150px; }
-    .form-filter .form-group label.w120 {
-      width: 120px; }
-    .form-filter .form-group label.w100 {
-      width: 100px; }
+  .form-filter .form-group label.w150 {
+    width: 150px; }
+  .form-filter .form-group label.w120 {
+    width: 120px; }
+  .form-filter .form-group label.w100 {
+    width: 100px; }
   .form-filter .form-group .form-control {
     width: 200px; }
 
 .form-inline {
   margin-bottom: 5px; }
+  .form-inline .form-group label {
+    display: inline-flex;
+    align-content: center;
+    margin-right: 20px; }
 
 .form-control-static {
   min-height: 28px;

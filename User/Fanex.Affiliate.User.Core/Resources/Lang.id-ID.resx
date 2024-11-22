@@ -2357,4 +2357,10 @@ PEMBAYARAN KONSISTEN</value>
   <data name="Commission" xml:space="preserve">
     <value>Bagi Hasil</value>
   </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>Rate Komisi Sub-Afiliasi </value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>% tertinggi dari beberapa grup</value>
+  </data>
 </root>

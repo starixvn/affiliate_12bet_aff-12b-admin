@@ -21,20 +21,17 @@
         .btn {
             margin-right: 0;
         }
-    }
-}
 
-.form-filter {
-    .form-group {
-        label {
-            display: inline;
-            margin-right: 2px;
+        @media(max-width: 576px) {
+            label {
+                width: 110px;
+            }
         }
     }
 }
 
 .commission-report {
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: 1048px) {
         width: 100%;
         margin-bottom: 15px;
         overflow-x: auto;

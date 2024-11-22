@@ -652,7 +652,7 @@
     <value>ផ្តល់ជូនសំរាប់ខ្ញុំ</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
-    <value>របាយការណ៍ប្រាក់កំរៃជើងសារ</value>
+    <value>របាយការណ៍ប្រាក់ចំណូល</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>ស្ថិតិ</value>
@@ -2439,5 +2439,17 @@
   </data>
   <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
     <value>ឯកតារូបិយប័ណ្ណបានបង្ហាញនៅក្នុងរបាយការណ៍ទាំងអស់</value>
+  </data>
+  <data name="P2pRevenueShare" xml:space="preserve">
+    <value>P2P Rev. ចែករំលែក</value>
+  </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>អត្រាការប្រាក់នៃសាខារង</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>ការចែករំលែកដ៏ខ្ពស់បំផុត % នៃក្រុមជាច្រើន</value>
+  </data>
+  <data name="RoyaltyFee" xml:space="preserve">
+    <value>ថ្លៃសួយសារអាករ</value>
   </data>
 </root>

@@ -275,6 +275,8 @@
     <Compile Include="Constants\ControllerName.cs" />
     <Compile Include="Constants\DbParam.cs" />
     <Compile Include="Constants\DefaultValue.cs" />
+    <Compile Include="Constants\EarningByType.cs" />
+    <Compile Include="Constants\GMT.cs" />
     <Compile Include="Constants\HeaderKey.cs" />
     <Compile Include="Constants\Number.cs" />
     <Compile Include="Constants\Page.cs" />
@@ -299,7 +301,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NotifyController.cs" />
     <Compile Include="Controllers\UserPanel\BaseMarketingController.cs" />
-    <Compile Include="Controllers\UserPanel\CommissionReportController.cs" />
+    <Compile Include="Controllers\UserPanel\RevenueReportController.cs" />
     <Compile Include="Controllers\UserPanel\DailyEarningController.cs" />
     <Compile Include="Controllers\UserPanel\NewsLetterController.cs" />
     <Compile Include="Controllers\UserPanel\SubAffEarningController.cs" />
@@ -308,6 +310,7 @@
     <Compile Include="DTO\UserPanel\MediaGallery\LanguageType.cs" />
     <Compile Include="DTO\UserPanel\SubAffComInfo.cs" />
     <Compile Include="DTO\UserPanel\SubAffDetail.cs" />
+    <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffComParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffDetailParam.cs" />
     <Compile Include="Repository\UserPanel\CurrencyRepository.cs" />

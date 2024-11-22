@@ -2382,4 +2382,10 @@
   <data name="Commission" xml:space="preserve">
     <value>ส่วนแบ่งรายได้</value>
   </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>เรทค่าคอมมิชชั่นพันธมิตรย่อย</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>% ส่วนแบ่งสูงสุดของหลายกลุ่ม</value>
+  </data>
 </root>

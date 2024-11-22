@@ -39,10 +39,10 @@
     //  "outputFile": "www/build/styles/css/marketing.css",
     //  "inputFile": "www/source/styles/pages/marketing.scss"
     //},
-    //{
-    //  "outputFile": "www/build/js/user-panel.js",
-    //  "inputFile": "www/source/js/pages/user-panel.js"
-    //},
+    {
+      "outputFile": "www/build/js/user-panel.js",
+      "inputFile": "www/source/js/pages/user-panel.js"
+    },
     //{
     //  "outputFile": "www/build/js/account-overview.js",
     //  "inputFile": "www/source/js/pages/account-overview/account-overview.js"
@@ -87,14 +87,14 @@
       "outputFile": "www/build/styles/css/account-overview.css",
       "inputFile": "www/source/styles/pages/account-overview.scss"
     },
-    //{
-    //  "outputFile": "www/build/styles/css/pages/commissionreport.css",
-    //  "inputFile": "www/source/styles/pages/commissionreport.scss"
-    //},
-    //{
-    //  "outputFile": "www/build/js/pages/commission-report.js",
-    //  "inputFile": "www/source/js/pages/commission-report.js"
-    //},
+    {
+      "outputFile": "www/build/styles/css/pages/commissionreport.css",
+      "inputFile": "www/source/styles/pages/commissionreport.scss"
+    },
+    {
+      "outputFile": "www/build/js/pages/commission-report.js",
+      "inputFile": "www/source/js/pages/commission-report.js"
+    },
     //{
     //  "outputFile": "www/build/styles/css/pages/payment-request.css",
     //  "inputFile": "www/source/styles/pages/payment-request.scss"
