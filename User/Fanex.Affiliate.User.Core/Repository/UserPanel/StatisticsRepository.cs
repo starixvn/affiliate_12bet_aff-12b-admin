@@ -2,6 +2,7 @@
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using Fanex.Common.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -36,19 +37,19 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             var dbMode = statisticsDetailParam.IsInternal ? DBMode.View : DBMode.Main;
             var dataList = new List<ReferrerStatistics>();
 
-            using (var db = _builder.Build(uSpkey, dbMode))
+            using (var objectDb = _builder.Build(uSpkey, dbMode))
             {
-                using (var reader = db.ExecuteReader(statisticsDetailParam))
+                using (var reader = objectDb.ExecuteReader(statisticsDetailParam))
                 {
                     while (reader.Read())
                     {
                         dataList.Add(new ReferrerStatistics
                         {
-                            SiteUrls = Convert.ToString(reader["UrlReferrer"]),
-                            TotalClick = reader[TotalClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[TotalClickColumn]),
-                            UniqueClick = reader[UniqueClickColumn] == DBNull.Value ? 0 : Convert.ToInt32(reader[UniqueClickColumn]),
-                            SignUps = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),
-                            Fdm = reader["FDM"] == DBNull.Value ? 0 : Convert.ToInt32(reader["FDM"])
+                            DomainReferrer = reader.ToString("UrlReferrer"),
+                            TotalClick = reader.ToInt(TotalClickColumn),
+                            UniqueClick = reader.ToInt(UniqueClickColumn),
+                            SignUps = reader.ToInt("Signups"),
+                            Fdm = reader.ToInt("FDM")
                         });
                     }
                 }

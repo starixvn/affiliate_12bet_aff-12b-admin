@@ -1553,12 +1553,6 @@ var ReferrerStatistics = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
     var _selectedDomain;
-    var _selectedCountryCode;
-    let countrySelector = null;
-
-    function initCountrySelector() {
-        countrySelector = $('#country').multipleSelector();
-    }
 
     function initPager() {
         $("#statisticsDetailPager").pager({
@@ -1599,7 +1593,6 @@ var ReferrerStatistics = (function ($) {
         initialize: function () {
             initDatePicker('FromDate', 'fromPicker');
             initDatePicker('ToDate', 'toPicker');
-            initCountrySelector();
             _me.initEvent();
         },
 
@@ -1611,16 +1604,13 @@ var ReferrerStatistics = (function ($) {
                 var params = {
                     fromDate: $('#FromDate').val(),
                     toDate: $('#ToDate').val(),
-                    deviceType: $('#DeviceType').val(),
-                    isSubmit: true,
-                    countryCodes: countrySelector.getSelectedValues()
+                    deviceType: $('#DeviceType').val()
                 };
                 _me.getMainView(params);
             });
 
             $('#statisticsTable').on('click', '.statisticsItem', function () {
                 _selectedDomain = $(this).data('domain');
-                _selectedCountryCode = $(this).data('country-code');
                 _pageIndex = 0;
                 var params = _me.getDetailParam();
 
@@ -1650,7 +1640,7 @@ var ReferrerStatistics = (function ($) {
         },
 
         getDetailView: function (params, onSuccess) {
-            if (!params.domain || !params.countryCode) {
+            if (!params.domain) {
                 return;
             }
 
@@ -1677,7 +1667,6 @@ var ReferrerStatistics = (function ($) {
         getDetailParam: function () {
             return {
                 domain: _selectedDomain,
-                countryCode: _selectedCountryCode,
                 fromDate: $('#FromDate').val(),
                 toDate: $('#ToDate').val(),
                 deviceType: $('#DeviceType').val(),
