@@ -1,13 +1,19 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
+    using System.Collections.Generic;
+    using DTO;
+    using DTO.UserPanel.AccountOverview;
+    using DTO.UserPanel.MediaGallery;
+    using Enum;
+    using MetalModels.UserPanel;
+
     public interface IMarketingService
     {
+        IEnumerable<LandingPage> GetLandingPageList(bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink);
+
+
+
+
         IEnumerable<TargetProduct> GetTargetProductList(bool isInternal);
 
         IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal);

@@ -310,12 +310,14 @@
     <Compile Include="DTO\UserPanel\MediaGallery\LanguageType.cs" />
     <Compile Include="DTO\UserPanel\SubAffComInfo.cs" />
     <Compile Include="DTO\UserPanel\SubAffDetail.cs" />
+    <Compile Include="Enum\AffiliateLinkType.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffComParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffDetailParam.cs" />
     <Compile Include="Repository\UserPanel\CurrencyRepository.cs" />
     <Compile Include="Repository\UserPanel\ICurrencyRepository.cs" />
     <Compile Include="Utilities\CurrencyHelper.cs" />
+    <Compile Include="Utilities\MarketingHelper.cs" />
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\BreadcumViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\MyAccountViewModel.cs" />

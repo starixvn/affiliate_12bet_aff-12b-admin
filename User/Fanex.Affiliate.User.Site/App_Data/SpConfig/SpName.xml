@@ -43,6 +43,9 @@
     
     <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
     <Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
+
+    <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
+	<Setting Key="Aff_Admin_LandingPage_Sel_view" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
     
     <Setting Key="Aff_Country_Sel" SpName="Aff_Country_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
     <Setting Key="Aff_Country_Sel_view" SpName="Aff_Country_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />

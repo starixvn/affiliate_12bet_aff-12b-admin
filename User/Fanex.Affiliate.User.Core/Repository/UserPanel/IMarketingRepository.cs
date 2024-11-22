@@ -7,6 +7,12 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public interface IMarketingRepository
     {
+        IEnumerable<LandingPage> GetLandingPageList(bool isInternal);
+
+
+
+
+
         IEnumerable<TargetProduct> GetTargetProductList(bool isInternal);
 
         IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal);

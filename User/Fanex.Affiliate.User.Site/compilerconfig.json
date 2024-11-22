@@ -75,10 +75,10 @@
     //  "outputFile": "www/build/js/pages/logout.js",
     //  "inputFile": "www/source/js/pages/logout.js"
     //},
-    //{
-    //  "outputFile": "www/build/styles/css/statistics.css",
-    //  "inputFile": "www/source/styles/pages/statistics.scss"
-    //},
+    {
+      "outputFile": "www/build/styles/css/statistics.css",
+      "inputFile": "www/source/styles/pages/statistics.scss"
+    },
     {
       "outputFile": "www/build/styles/css/statement-history.css",
       "inputFile": "www/source/styles/pages/statement-history.scss"

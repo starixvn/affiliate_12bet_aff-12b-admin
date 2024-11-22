@@ -1,71 +1,49 @@
-﻿@using Fanex.Affiliate.User.Core.Extensions
-@using Fanex.Affiliate.User.Core.Constants
-@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics.LandingPageStatisticsViewModel
-
-@{ 
-    var isReportByCountry = string.Equals(Statistics.ReportByCountry, Model.ReportBy, StringComparison.InvariantCultureIgnoreCase);
-}
+﻿@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics.LandingPageStatisticsViewModel
 
 <table>
     <thead>
         <tr>
-            @if (isReportByCountry)
-            {
-                <th width="32%">@Lang.Country</th>
-                <th width="20%">@Lang.Page</th>
-            }
-            else
-            {
-                <th width="32%">@Lang.Page</th>
-                <th width="20%">@Lang.Language</th>
-            }
-            <th width="12%">@Lang.TotalClick</th>
-            <th width="12%">@Lang.UniqueClick</th>
-            <th width="12%">@Lang.SignUp</th>
-            <th width="12%">@Lang.FDM</th>
+            <th width="20%">@Lang.Page</th>
+            <th width="20%">@Lang.Language</th>
+            <th width="15%">@Lang.TotalClick</th>
+            <th width="15%">@Lang.UniqueClick</th>
+            <th width="15%">@Lang.SignUp</th>
+            <th width="15%">@Lang.FDM</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.DataList)
-        {
-        <tr>
-            @if (isReportByCountry)
+        @{
+            if (Model.DataList != null && Model.DataList.Any())
             {
-            <td>
-                @if (Model.IsDetail || item.Page.MatchWith("none") || item.Page.MatchWith("old url"))
+                foreach (var item in Model.DataList)
                 {
-                    @item.Country
+                    <tr>
+                        <td>
+                            @if (Model.IsDetail || item.SportCode.MatchWith("none") || item.SportCode.MatchWith("old url"))
+                            {
+                                @item.SportCode
+                            }
+                            else
+                            {
+                                <a href="javascript:;" class="statisticsItem" data-page="@item.SportCode" data-language="@item.LanguageCode">
+                                    @item.SportCode
+                                </a>
+                            }
+                        </td>
+                        <td class="text-center">@item.LanguageName</td>
+                        <td class="text-right">@item.TotalClick</td>
+                        <td class="text-right">@item.UniqueClick</td>
+                        <td class="text-right">@item.SignUps</td>
+                        <td class="text-right">@item.Fdm</td>
+                    </tr>
                 }
-                else
-                {
-                    <a href="javascript:;" class="statisticsItem" data-page="@item.Page" data-isreportbycountry="@isReportByCountry" data-reportbyvalue="@(isReportByCountry ? item.CountryCode : item.LanguageCode)">
-                        @item.Country
-                    </a>
-                }
-            </td>
-                <td class="text-center">@item.Page</td>
             }
             else
             {
-                <td>
-                    @if (Model.IsDetail || item.Page.MatchWith("none") || item.Page.MatchWith("old url"))
-                    {
-                        @item.Page
-                    }
-                    else
-                    {
-                        <a href="javascript:;" class="statisticsItem" data-page="@item.Page" data-isreportbycountry="@isReportByCountry" data-reportbyvalue="@(isReportByCountry ? item.CountryCode : item.LanguageCode)">
-                            @item.Page
-                        </a>
-                    }
-                </td>
-                <td class="text-center">@item.Language</td>
+                <tr>
+                    <td class="text-center" colspan="6">@Lang.NoInfo</td>
+                </tr>
             }
-            <td class="text-right">@item.TotalClick</td>
-            <td class="text-right">@item.UniqueClick</td>
-            <td class="text-right">@item.SignUps</td>
-            <td class="text-right">@item.Fdm</td>
-        </tr>
         }
     </tbody>
 </table>

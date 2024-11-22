@@ -65,24 +65,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam)
         {
-            if (!string.Equals(Statistics.ReportByCountry, landingPageStatisticsParam.ReportBy, StringComparison.InvariantCultureIgnoreCase))
-            {
-                var languageList = _systemService.GetAllSystemTargetLanguages();
-                landingPageStatisticsParam.LanguageCodes = GetShortedCode(languageList, landingPageStatisticsParam.LanguageCode);
-                landingPageStatisticsParam.CountryCodes = null;
-
-                var dataList = _statisticsRepository.GetLandingPageStatistics(landingPageStatisticsParam);
-
-                foreach (var item in dataList)
-                {
-                    var language = languageList.FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
-
-                    item.Language = language == null ? item.LanguageCode : SystemHelper.GetLanguageText(language.LanguageName);
-                }
-
-                return dataList;
-            }
-
             return _statisticsRepository.GetLandingPageStatistics(landingPageStatisticsParam);
         }
 
@@ -94,20 +76,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<ReferrerStatistics> GetStatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam)
         {
             return _statisticsRepository.GetStatisticsDetailBySite(statisticsDetailParam);
-        }
-
-        private static string GetShortedCode(IEnumerable<TargetLanguage> languageList, string languageCode)
-        {
-            if (string.IsNullOrEmpty(languageCode))
-            {
-                var allShortedCode = languageList.Select(l => l.ShortedCode).ToList();
-
-                return string.Join(",", allShortedCode);
-            }
-
-            var shortedCode = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(languageCode))?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
-
-            return shortedCode;
         }
     }
 }

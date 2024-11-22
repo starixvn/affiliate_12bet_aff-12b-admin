@@ -8,6 +8,7 @@ using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -37,6 +38,26 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _systemService = systemService;
             _appSetting = appSetting;
             _accountRepository = accountRepository;
+        }
+
+        public IEnumerable<LandingPage> GetLandingPageList(bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink)
+        {
+            var isTargetToMember = linkType == AffiliateLinkType.AffiliateLink;
+            return isTargetToMember
+                ? _marketingRepository.GetLandingPageList(isInternal)
+                : GetSubAffLandingPages();
+        }
+
+        private static IEnumerable<LandingPage> GetSubAffLandingPages()
+        {
+            return new List<LandingPage>
+            {
+                new LandingPage
+                {
+                    PageCode = "Signup",
+                    PageName="SignUp"
+                }
+            };
         }
 
         public string GetTargetCountryCodeByAff(int affId)

@@ -14,6 +14,17 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             _builder = builder;
         }
 
+        public IEnumerable<LandingPage> GetLandingPageList(bool isInternal)
+        {
+            const string SpKey = "Aff_Admin_LandingPage_Sel";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+
+            using (var db = _builder.Build(SpKey, dbMode))
+            {
+                return db.Query<LandingPage>();
+            }
+        }
+
         public IEnumerable<TargetProduct> GetTargetProductList(bool isInternal)
         {
             const string uSpKey = "Aff_TargetProduct_Sel";
