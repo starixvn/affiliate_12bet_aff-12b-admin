@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Apis;
+using Fanex.Affiliate.Admin.Core.Handlers;
 using Fanex.Caching;
-using Fanex.Infrastructure.Handlers;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.NETFramework;
@@ -10,7 +10,6 @@ using ONEbook.UM.Transport;
 using Refit;
 using System;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Web.Compilation;
@@ -67,13 +66,9 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         private static void RegisterMemberSiteApi(this ContainerBuilder builder)
         {
             var appSetting = AppSetting.Instance;
-            var handler = new AuthenticatedHttpClientHandler(appSetting.MemberSiteApiAuthenticationKey)
-            {
-                Proxy = appSetting.IsUseMemberSiteProxy
-                            ? new WebProxy(new Uri(appSetting.MemberSiteProxyUrl))
-                            : null
+            var cacheService = new CacheService();
+            var handler = new AuthenticatedHttpClientHandler(appSetting, cacheService);
 
-            };
             builder.RegisterInstance(RestService.For<ILicenseeApi>(
                 new HttpClient(handler)
                 {

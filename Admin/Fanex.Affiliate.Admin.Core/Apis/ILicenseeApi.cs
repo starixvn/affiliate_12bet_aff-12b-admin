@@ -6,6 +6,9 @@ namespace Fanex.Affiliate.Admin.Core.Apis
 {
     public interface ILicenseeApi
     {
+        [Get("/")]
+        Task<string> GetAsync();
+
         [Get("/api/customer/GetLoginCustomerInfo")]
         Task<MemberSiteCustomerInfo> GetCustomerInfoAsync(string userName, int siteId);
 

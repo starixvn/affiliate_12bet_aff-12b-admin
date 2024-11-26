@@ -292,9 +292,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\..\packages\xunit.analyzers.1.17.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
     <Analyzer Include="..\..\packages\xunit.analyzers.1.17.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
   </ItemGroup>

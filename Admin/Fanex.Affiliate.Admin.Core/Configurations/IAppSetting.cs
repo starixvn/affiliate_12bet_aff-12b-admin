@@ -64,7 +64,11 @@
 
         string MemberSiteProxyUrl { get; }
 
-        string MemberSiteApiAuthenticationKey { get; }
+        string MemberSiteApiUsername { get; }
+
+        string MemberSiteApiPassword { get; }
+
+        int MemberSiteApiTokenCacheTimeOut { get; }
 
         bool IsUseMemberSiteProxy { get; }
     }
