@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
@@ -88,6 +89,16 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             using (var db = _builder.Build(SpKey, dbMode))
             {
                 return db.Query<LandingPage>(new { TargetCountryCode = string.Empty });
+            }
+        }
+
+        public IEnumerable<MarketingPageStatistics> GetMarketingPageStatistics(MarketingPageStatisticsParam param)
+        {
+            const string spKey = "Aff_User_Rpt_MarketingPage_Statistics";
+
+            using (var db = _builder.Build(spKey))
+            {
+                return db.Query<MarketingPageStatistics>(param);
             }
         }
     }

@@ -298,6 +298,7 @@
     </Compile>
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\FeedbackController.cs" />
+    <Compile Include="Controllers\UserPanel\MarketingLinkStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\OffersForMeController.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionController.cs" />
     <Compile Include="Controllers\UserPanel\MemberController.cs" />
@@ -316,6 +317,7 @@
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\PaymentRequestInfo.cs" />
     <Compile Include="DTO\UserPanel\Currency.cs" />
+    <Compile Include="DTO\UserPanel\MarketingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\LanguageType.cs" />
     <Compile Include="DTO\UserPanel\SubAffComInfo.cs" />
     <Compile Include="DTO\UserPanel\SubAffDetail.cs" />
@@ -324,6 +326,7 @@
     <Compile Include="MetalModels\Apis\AccountParam.cs" />
     <Compile Include="MetalModels\Apis\TransferMoneyParam.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
+    <Compile Include="MetalModels\UserPanel\MarketingPageStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffComParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffDetailParam.cs" />
     <Compile Include="Repository\UserPanel\CurrencyRepository.cs" />
@@ -645,6 +648,7 @@
     <Compile Include="ViewModels\UserPanel\PaymentViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\StatementHistoryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\LandingPageStatisticsViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Statistics\MarketingPageStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\ReferrerStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\SubAffComViewModel.cs" />
     <Compile Include="ViewModels\VerificationAccountViewModel.cs" />

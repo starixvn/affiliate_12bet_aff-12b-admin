@@ -2942,6 +2942,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string IncludeInActiveLink {
+            get {
+                return ResourceManager.GetString("IncludeInActiveLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to India .
         /// </summary>
         public static string India {
@@ -3487,6 +3496,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string March {
             get {
                 return ResourceManager.GetString("March", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marketing Page Statistics.
+        /// </summary>
+        public static string MarketLinkStatistics {
+            get {
+                return ResourceManager.GetString("MarketLinkStatistics", resourceCulture);
             }
         }
         
@@ -4396,6 +4414,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page Name.
+        /// </summary>
+        public static string PageName {
+            get {
+                return ResourceManager.GetString("PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page Size.
         /// </summary>
         public static string PageSize {
@@ -5193,7 +5220,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input Request Amount (USD).
+        ///   Looks up a localized string similar to Input Request Amount.
         /// </summary>
         public static string RequestAmt {
             get {
@@ -6624,7 +6651,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The payment account you entered is Closed. Please check again..
         /// </summary>
         public static string UserNameClosed {
             get {

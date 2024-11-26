@@ -1,33 +1,20 @@
-﻿@using Fanex.Affiliate.User.Core.Utilities
-@using Fanex.Affiliate.User.Core.CoreService
-@using Fanex.Affiliate.User.Core.BusinessService
-@using Fanex.Affiliate.User.Core.Constants
+﻿@using Fanex.Affiliate.User.Core.CoreService
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var newsLetterService = DependencyResolver.Current.GetService<INewsLetterService>();
     var groupName = sessionService.UserSession.GroupName;
-    var hasTurnOverPermission = ClaimUtitlity.HasClaim(ClaimConstant.TurnOverType);
-    var hasPaymentRequestPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.PaymentRequest);
-    var hasCommissionReportPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.CommissionReport);
-    var isIndiaAffiliate = string.Equals(SystemLanguage.IndiaLanguageCode, sessionService.UserSession.PreferredLanguage, StringComparison.OrdinalIgnoreCase) && !sessionService.IsInternal;
-    var isShowNewsLetterTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && newsLetterService.HasNewCurrentTime();
-    var isShowOfferTab = Helper.IsAsianAffType(sessionService.UserSession.AffType) && sessionService.UserSession.OfferPageId != 0;
 }
-@section afterLogin{after-login}
+
+@section afterLogin{
+    after-login
+}
 
 @section styles{
     @RenderSection("styles", required: false)
 }
 
 @section scripts{
-    <script>
-        window.Permission = {
-            HasTurnOverPermission: '@hasTurnOverPermission'.toLowerCase() === 'true',
-            IsIndiaAffiliate: '@isIndiaAffiliate'.toLowerCase() === 'true'
-        }
-    </script>
     @RenderSection("scripts", required: false)
 }
 
@@ -41,29 +28,16 @@
             }
             <li><a class="menu-item" id="menuStatementHistory" href="@Url.RenderLanguageContent("~/UserPanel/Main/#StatementHistory")">@Lang.StatementHistory</a></li>
             <li><a class="menu-item" id="menuMyAccount" href="@Url.RenderLanguageContent("~/UserPanel/Main/#MyAccount")">@Lang.MyAccount</a></li>
-            @if (hasPaymentRequestPermission)
-            {
-                <li><a class="menu-item" id="menuPaymentRequest" href="@Url.RenderLanguageContent("~/UserPanel/Main/#PaymentRequest")">@Lang.PaymentRequest</a></li>
-            }
-            @if (hasCommissionReportPermission)
-            {
-                <li><a class="menu-item" id="menuCommissionReport" href="@Url.RenderLanguageContent("~/UserPanel/Main/#RevenueReport")">@Lang.CommissionReport</a></li>
-            }
+            <li><a class="menu-item" id="menuPaymentRequest" href="@Url.RenderLanguageContent("~/UserPanel/Main/#PaymentRequest")">@Lang.PaymentRequest</a></li>
+            <li><a class="menu-item" id="menuCommissionReport" href="@Url.RenderLanguageContent("~/UserPanel/Main/#RevenueReport")">@Lang.CommissionReport</a></li>
             <li class="parent">
                 <a class="menu-item" href="javascript:;">@Lang.Statistics <i class="caret"></i></a>
                 <ul class="menu submenu-container list-unstyled">
                     <li><a class="menu-item" id="menuReferrersStatistics" href="@Url.RenderLanguageContent("~/UserPanel/Main/#ReferrersStatistics")">@Lang.Referrals</a></li>
                     <li><a class="menu-item" id="menuLandingPageStatistics" href="@Url.RenderLanguageContent("~/UserPanel/Main/#LandingPageStatistics")">@Lang.LandingPages</a></li>
+                    <li><a class="menu-item" id="menuMarketingLinkStatistics" href="@Url.RenderLanguageContent("~/UserPanel/Main/#MarketingLinkStatistics")">@Lang.MarketLinkStatistics</a></li>
                 </ul>
             </li>
-            @if (isShowNewsLetterTab)
-            {
-                <li><a class="menu-item" id="menuNewsLetter" href="@Url.RenderLanguageContent("~/UserPanel/Main/#NewsLetter")">@Lang.WhatNewThisMonth</a></li>
-            }
-            @if (isShowOfferTab)
-            {
-                <li><a class="menu-item" id="menuOffersForMe" href="@Url.RenderLanguageContent("~/UserPanel/Main/#OffersForMe")">@Lang.OffersForMe</a></li>
-            }
         </ul>
     </div>
 

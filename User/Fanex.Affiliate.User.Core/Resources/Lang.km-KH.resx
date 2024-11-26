@@ -2458,4 +2458,13 @@
   <data name="UserNameClosed" xml:space="preserve">
     <value>គណនីទូទាត់ប្រាក់ដែលអ្នកបានបញ្ចូលបានបិទ។ សូមពិនិត្យម្តងទៀត។</value>
   </data>
+  <data name="MarketLinkStatistics" xml:space="preserve">
+    <value>ស្ថិតិទំព័រទីផ្សារ</value>
+  </data>
+  <data name="PageName" xml:space="preserve">
+    <value>ឈ្មោះទំព័រ</value>
+  </data>
+  <data name="IncludeInActiveLink" xml:space="preserve">
+    <value>រួមបញ្ចូលទំាងការតាមដានតំណលីងដែលអសកម្ម</value>
+  </data>
 </root>

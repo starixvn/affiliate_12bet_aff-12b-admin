@@ -391,6 +391,10 @@
     <Content Include="www\build\js\statistics\landingpagestatistics.min.js">
       <DependentUpon>landingpagestatistics.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\statistics\marketing-statistics.js" />
+    <Content Include="www\build\js\statistics\marketing-statistics.min.js">
+      <DependentUpon>marketing-statistics.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\statistics\referrerstatistics.min.js">
       <DependentUpon>referrerstatistics.js</DependentUpon>
     </Content>
@@ -700,6 +704,7 @@
     <Content Include="www\source\js\lib\swiper.min.js" />
     <Content Include="www\source\js\pages\commission-structure.js" />
     <Content Include="www\source\js\pages\products.js" />
+    <Content Include="www\source\js\pages\statistics\marketing-statistics.js" />
     <Content Include="www\source\js\pages\sub-affiliate-earning.js" />
     <Content Include="www\source\styles\scss\vendors\swiper.css" />
     <None Include="Configurations\AppSetting\AppSetting.tt">
@@ -1402,6 +1407,8 @@
     <Content Include="Views\UserPanel\AccountOverView\Summary\SubAffDetails.cshtml" />
     <Content Include="Views\UserPanel\StatementHistory\SubAffEarning.cshtml" />
     <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_SubAffEarningContent.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\MarketingPageStatistics\Index.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\StatisticsPartial\_MarketingPageStatisticsContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

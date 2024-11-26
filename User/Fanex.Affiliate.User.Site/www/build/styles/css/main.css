@@ -1336,6 +1336,9 @@ label.require:after {
     .info-group .item .value {
       text-align: right; }
 
+.display-none {
+  display: none; }
+
 .btn {
   display: inline-block;
   padding: 0 8px;
@@ -1705,7 +1708,7 @@ table + .button-group {
   .form-filter .form-group label.w100 {
     width: 100px; }
   .form-filter .form-group .form-control {
-    width: 200px; }
+    width: 150px; }
 
 .form-inline {
   margin-bottom: 5px; }

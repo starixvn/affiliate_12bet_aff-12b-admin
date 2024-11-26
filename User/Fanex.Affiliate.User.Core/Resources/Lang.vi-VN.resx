@@ -2438,4 +2438,13 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="UserNameClosed" xml:space="preserve">
     <value>Tài khoản thanh toán này đã bị đóng. Vui lòng kiểm tra lại.</value>
   </data>
+  <data name="MarketLinkStatistics" xml:space="preserve">
+    <value>Thống Kê Marketing</value>
+  </data>
+  <data name="PageName" xml:space="preserve">
+    <value>Tên trang</value>
+  </data>
+  <data name="IncludeInActiveLink" xml:space="preserve">
+    <value>Đường dẫn không giám sát</value>
+  </data>
 </root>

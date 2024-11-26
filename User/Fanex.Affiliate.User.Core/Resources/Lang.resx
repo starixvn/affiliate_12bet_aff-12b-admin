@@ -2563,4 +2563,13 @@ CONSISTENT PAYMENT</value>
   <data name="UserNameClosed" xml:space="preserve">
     <value>The payment account you entered is Closed. Please check again.</value>
   </data>
+  <data name="MarketLinkStatistics" xml:space="preserve">
+    <value>Marketing Page Statistics</value>
+  </data>
+  <data name="PageName" xml:space="preserve">
+    <value>Page Name</value>
+  </data>
+  <data name="IncludeInActiveLink" xml:space="preserve">
+    <value>Include Inactive Tracking Link</value>
+  </data>
 </root>
