@@ -289,5 +289,13 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 .btn-submit {
   margin-bottom: 5px; }
 
-.form-filter {
-  margin-bottom: 30px; }
+.form-filter .form-group .form-control {
+  width: 150px;
+  display: inline-block; }
+
+.form-filter label {
+  width: 60px; }
+
+.form-filter .checkbox input[type='checkbox'] {
+  position: relative;
+  margin-left: 0; }
