@@ -99,10 +99,10 @@
     //  "outputFile": "www/build/styles/css/pages/payment-request.css",
     //  "inputFile": "www/source/styles/pages/payment-request.scss"
     //},
-    //{
-    //  "outputFile": "www/build/js/payment-request.js",
-    //  "inputFile": "www/source/js/pages/payment-request.js"
-    //},
+    {
+      "outputFile": "www/build/js/payment-request.js",
+      "inputFile": "www/source/js/pages/payment-request.js"
+    },
     //{
     //  "outputFile": "www/build/styles/css/messagehistory.css",
     //  "inputFile": "www/source/styles/pages/messagehistory.scss"

@@ -224,6 +224,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apis\IAccountApi.cs" />
+    <Compile Include="Apis\ILicenseeApi.cs" />
     <Compile Include="Apis\ILicenseeCustDbApi.cs" />
     <Compile Include="BusinessService\AccountService.cs" />
     <Compile Include="BusinessService\Apis\ILicenseeCustDbApiService.cs" />
@@ -265,6 +267,7 @@
     <Compile Include="BusinessService\UnderMaintenanceService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
     <Compile Include="Constants\ActionName.cs" />
+    <Compile Include="Constants\Apis\CustomerStatus.cs" />
     <Compile Include="Constants\AppContact.cs" />
     <Compile Include="Constants\CacheKey.cs" />
     <Compile Include="Constants\CalculatedType.cs" />
@@ -305,12 +308,21 @@
     <Compile Include="Controllers\UserPanel\DailyEarningController.cs" />
     <Compile Include="Controllers\UserPanel\NewsLetterController.cs" />
     <Compile Include="Controllers\UserPanel\SubAffEarningController.cs" />
+    <Compile Include="DTO\Apis\AccountApiResult.cs" />
+    <Compile Include="DTO\Apis\ApiResultInfo.cs" />
+    <Compile Include="DTO\Apis\CustomerBalanceInfo.cs" />
+    <Compile Include="DTO\Apis\MemberSiteCustomerInfo.cs" />
+    <Compile Include="DTO\GeneralAffInfo.cs" />
     <Compile Include="DTO\Language.cs" />
+    <Compile Include="DTO\PaymentRequestInfo.cs" />
     <Compile Include="DTO\UserPanel\Currency.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\LanguageType.cs" />
     <Compile Include="DTO\UserPanel\SubAffComInfo.cs" />
     <Compile Include="DTO\UserPanel\SubAffDetail.cs" />
     <Compile Include="Enum\AffiliateLinkType.cs" />
+    <Compile Include="Infrastructure\AuthenticatedHttpClientHandler.cs" />
+    <Compile Include="MetalModels\Apis\AccountParam.cs" />
+    <Compile Include="MetalModels\Apis\TransferMoneyParam.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffComParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffDetailParam.cs" />
@@ -382,7 +394,6 @@
     <Compile Include="DTO\UserPanel\RateInfo.cs" />
     <Compile Include="DTO\UserPanel\Statistics\Country.cs" />
     <Compile Include="Extensions\HttpRequestExtension.cs" />
-    <Compile Include="Filters\AddOnClaimAuthFilter.cs" />
     <Compile Include="Filters\LanguageRouteCheckingAttribute.cs" />
     <Compile Include="Infrastructure\DateTimeProvider.cs" />
     <Compile Include="Infrastructure\HttpRequestParserHandler.cs" />

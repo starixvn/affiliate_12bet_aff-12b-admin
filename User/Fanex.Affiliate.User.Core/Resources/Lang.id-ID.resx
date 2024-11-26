@@ -1046,7 +1046,7 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Nominal (USD)</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>Isi Jumlah Penarikan (USD)</value>
+    <value>Isi Jumlah Penarikan</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>Proseskan Penarikan Saya</value>

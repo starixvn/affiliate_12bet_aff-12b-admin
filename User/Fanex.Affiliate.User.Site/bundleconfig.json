@@ -173,14 +173,14 @@
   //    "www/source/styles/fonts/nokora/font.css"
   //  ]
   //},
-  //{
-  //  "outputFileName": "www/build/js/pages/verification-account.js",
-  //  "inputFiles": [
-  //    "www/source/js/lib/hmac-sha256.js",
-  //    "www/source/js/components/authhelper.js",
-  //    "www/source/js/pages/verification-account.js"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/js/pages/verification-account.js",
+    "inputFiles": [
+      "www/source/js/lib/hmac-sha256.js",
+      "www/source/js/components/authhelper.js",
+      "www/source/js/pages/verification-account.js"
+    ]
+  },
   {
     "outputFileName": "www/build/js/pages/login.js",
     "inputFiles": [

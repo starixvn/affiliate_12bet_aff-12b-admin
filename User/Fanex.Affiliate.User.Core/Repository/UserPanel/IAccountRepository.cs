@@ -29,5 +29,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         int CreateSecretKey(int affId, string secretKey);
 
+        GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null);
     }
 }

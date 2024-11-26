@@ -1,5 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
     using Constants;
     using DTO;
     using Extensions;
@@ -9,10 +13,6 @@
     using MetalModels.Email;
     using MetalModels.UserPanel;
     using Resources;
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel;
 
@@ -33,7 +33,7 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel(DateTime.Now.Year));
+            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel(DateTimeOffset.Now.Year));
         }
 
         [HttpPost]
@@ -70,6 +70,7 @@
                 paymentCreationParam.Ip = Request.GetClientIP();
                 paymentCreationParam.IsInternal = SessionService.IsInternal;
                 paymentCreationParam.IsLocalTest = !_appSetting.IsProduction;
+                paymentCreationParam.TransDate = paymentCreationParam.TransDate ?? DateTimeOffset.Now.DateTime;
 
                 var emailParam = new PaymentEmailParam
                 {
@@ -101,7 +102,7 @@
             }
             else
             {
-                cancelParam.UserId = SessionService.UserSession.AffId;
+                cancelParam.AffId = SessionService.UserSession.AffId;
                 cancelParam.Language = SessionService.CurrentLanguage;
                 cancelParam.Ip = Request.GetClientIP();
 
@@ -136,15 +137,14 @@
             };
             var paymentList = _paymentService.GetPaymentList(paymentParam);
 
-
             var viewModel = new PaymentViewModel
             {
                 PaymentList = paymentList,
                 BalBroughtForward = paymentParam.BalBroughtForward,
                 MinAmount = paymentParam.MinAmount,
                 PreferredPayment = paymentParam.PreferredPayment,
-                PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Pending)),
-                IsValidDate = _paymentService.IsInDateRange() || !_appSetting.IsProduction
+                PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Processing)),
+                IsValidDate = true
             };
 
             return viewModel;

@@ -1124,7 +1124,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Request Amount</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>Input Request Amount (USD)</value>
+    <value>Input Request Amount</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>Request Payout</value>
@@ -2553,5 +2553,14 @@ CONSISTENT PAYMENT</value>
   </data>
   <data name="Winloss" xml:space="preserve">
     <value>Winloss</value>
+  </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>The payment account you entered does not exist. Please check again.</value>
+  </data>
+  <data name="UserNameSuspended" xml:space="preserve">
+    <value>The payment account you entered is Suspended. Please check again.</value>
+  </data>
+  <data name="UserNameClosed" xml:space="preserve">
+    <value>The payment account you entered is Closed. Please check again.</value>
   </data>
 </root>

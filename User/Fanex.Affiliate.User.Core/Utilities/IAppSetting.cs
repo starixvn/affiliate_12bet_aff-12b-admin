@@ -76,5 +76,17 @@ namespace Fanex.Affiliate.User.Core.Utilities
         string LicenseeCustDbApiProxyUrl { get; }
 
         string LicenseeCustDbApiAuthenKey { get; }
+
+        string MemberSiteApiUrl { get; }
+
+        string AccountSiteApiUrl { get; }
+
+        int MemberSiteId { get; }
+
+        string MemberSiteProxyUrl { get; }
+
+        string MemberSiteApiAuthenticationKey { get; }
+
+        bool IsUseMemberSiteProxy { get; }
     }
 }

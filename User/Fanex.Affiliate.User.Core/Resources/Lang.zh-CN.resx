@@ -1038,7 +1038,7 @@
     <value>提款金额</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>输入要求的金额 ($美金)</value>
+    <value>输入要求的金额</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>要求提款 </value>

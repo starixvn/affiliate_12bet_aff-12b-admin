@@ -79,6 +79,18 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string LicenseeCustDbApiAuthenKey => GetValue("LicenseeCustDbApiAuthenKey");
 
+        public string MemberSiteApiUrl => GetValue("MemberSiteApiUrl");
+
+        public string AccountSiteApiUrl => GetValue("AccountSiteApiUrl");
+
+        public int MemberSiteId => Convert.ToInt32(GetValue("MemberSiteId"));
+
+        public string MemberSiteProxyUrl => GetValue("MemberSiteProxyUrl");
+
+        public string MemberSiteApiAuthenticationKey => GetValue("MemberSiteApiAuthenticationKey");
+
+        public bool IsUseMemberSiteProxy => Convert.ToBoolean(GetValue("IsUseProxyToGetMemberSiteApi"));
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

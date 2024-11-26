@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 }
-@using Fanex.Affiliate.User.Core.Constants;
+
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
 
 @{
@@ -16,7 +16,7 @@
     {
         switch (status.ToLower())
         {
-            case PaymentStatus.Pending:
+            case PaymentStatus.Processing:
                 return Lang.Proccessing;
             case PaymentStatus.Completed:
                 return Lang.Approved;
@@ -74,12 +74,13 @@
                         </tr>
                     }
                 }
+                else
+                {
+                    <tr>
+                        <td class="text-center" colspan="7">@Lang.NoInfo</td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
-
-    @if (!hasData)
-    {
-        <p class="text-center">@Lang.NoInfo</p>
-    }
 </div>

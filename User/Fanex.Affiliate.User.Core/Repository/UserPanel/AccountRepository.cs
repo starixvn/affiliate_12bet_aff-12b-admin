@@ -186,5 +186,16 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
+        public GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null)
+        {
+            const string uSpKey = "Aff_Get_GeneralAffInfo";
+
+            using (var objectDb = _builder.Build(uSpKey))
+            {
+                var parameterSet = new { affId, affCode };
+
+                return objectDb.QueryEntity<GeneralAffInfo>(parameterSet);
+            }
+        }
     }
 }

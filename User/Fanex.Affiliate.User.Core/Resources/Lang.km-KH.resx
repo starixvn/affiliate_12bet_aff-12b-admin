@@ -2452,4 +2452,10 @@
   <data name="RoyaltyFee" xml:space="preserve">
     <value>ថ្លៃសួយសារអាករ</value>
   </data>
+  <data name="UserNameSuspended" xml:space="preserve">
+    <value>គណនីទូទាត់ប្រាក់ដែលអ្នកបានបញ្ចូលបានផ្អាក។ សូមពិនិត្យម្តងទៀត។</value>
+  </data>
+  <data name="UserNameClosed" xml:space="preserve">
+    <value>គណនីទូទាត់ប្រាក់ដែលអ្នកបានបញ្ចូលបានបិទ។ សូមពិនិត្យម្តងទៀត។</value>
+  </data>
 </root>

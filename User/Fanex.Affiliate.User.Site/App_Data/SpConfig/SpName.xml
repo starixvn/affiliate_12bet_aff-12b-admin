@@ -87,11 +87,12 @@
     <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
     <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="DBAFFN88.Affiliate_N88.wsv_afinetv" />
     <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
-    <Setting Key="Aff_PaymentRequestIns" SpName="Aff_PaymentRequestIns" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
+	<Setting Key="Aff_User_PaymentRequest_Ins" SpName="Aff_User_PaymentRequest_Ins" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
   </Function>
 
   <Function Name="SignUp">
     <Setting Key="Aff_User_Affiliate_Ins" SpName="Aff_User_Affiliate_Ins" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
+    <Setting Key="Aff_Get_GeneralAffInfo" SpName="Aff_Get_GeneralAffInfo" DbName="DBAFFN88.Affiliate_N88.wsv_afinet" />
   </Function>
 
   <Function Name="Member">

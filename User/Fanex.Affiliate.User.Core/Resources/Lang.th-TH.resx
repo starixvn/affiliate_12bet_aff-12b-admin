@@ -1046,7 +1046,7 @@
     <value>จำนวนเงินที่ร้องขอ</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>กรอกจำนวนเงินที่ต้องการร้องขอ ( ดอลล่าสหรัฐ )</value>
+    <value>กรอกจำนวนเงินที่ต้องการร้องขอ</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>การขอจ่ายเงิน</value>
@@ -2387,5 +2387,8 @@
   </data>
   <data name="TheHighestShare" xml:space="preserve">
     <value>% ส่วนแบ่งสูงสุดของหลายกลุ่ม</value>
+  </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>គណនីបង់ប្រាក់ដែលអ្នកបានបញ្ចូលមិនមានទេ។ សូមពិនិត្យម្តងទៀត។</value>
   </data>
 </root>

@@ -1046,7 +1046,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Số tiền yêu cầu</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>Nhập số tiền yêu cầu (bằng USD)</value>
+    <value>Nhập số tiền yêu cầu</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>Yêu cầu thanh toán</value>
@@ -2428,5 +2428,14 @@ THANH TOÁN ỔN ĐỊNH</value>
   </data>
   <data name="RoyaltyFee" xml:space="preserve">
     <value>Phí Bản Quyền</value>
+  </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>Tài khoản thanh toán này không tồn tại. Vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="UserNameSuspended" xml:space="preserve">
+    <value>Tài khoản thanh toán này đang tạm khóa. Vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="UserNameClosed" xml:space="preserve">
+    <value>Tài khoản thanh toán này đã bị đóng. Vui lòng kiểm tra lại.</value>
   </data>
 </root>

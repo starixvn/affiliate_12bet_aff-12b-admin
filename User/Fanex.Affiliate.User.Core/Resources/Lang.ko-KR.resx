@@ -1063,7 +1063,7 @@
     <value>요청금액</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>요청금액을 입력하세요(USD)</value>
+    <value>요청금액을 입력하세요</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>출금요청</value>

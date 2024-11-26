@@ -29,7 +29,6 @@ namespace Fanex.Affiliate.User.Site
             {
                 FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             }
-            GlobalFilters.Filters.Add(new AddOnClaimAuthFilter());
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MvcHandler.DisableMvcResponseHeader = true;

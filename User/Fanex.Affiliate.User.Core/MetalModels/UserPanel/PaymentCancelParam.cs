@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public string Status { get; set; }
 
-        public int UserId { get; set; }
+        public int AffId { get; set; }
 
         public string Ip { get; set; }
 

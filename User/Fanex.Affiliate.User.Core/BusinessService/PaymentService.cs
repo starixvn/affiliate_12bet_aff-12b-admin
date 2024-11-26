@@ -5,6 +5,7 @@ using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,8 +16,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private const int BeginDay = 8;
         private const int EndDay = 15;
 
-        private readonly IAccountRepository _accountRepository;
         private readonly IAccountService _accountService;
+        private readonly IAccountRepository _accountRepository;
         private readonly IPaymentRepository _paymentRepository;
         private readonly IEmailService _emailService;
         private readonly IDateTimeProvider _dateTimeProvider;
@@ -48,7 +49,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (resultInfo.IsOk)
             {
-                var userInfo = _accountRepository.GetUserInfoById(cancelParam.UserId, cancelParam.IsInternal);
+                var userInfo = _accountRepository.GetUserInfoById(cancelParam.AffId, cancelParam.IsInternal);
 
                 if (userInfo != null)
                 {
@@ -65,20 +66,28 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public async Task<ResultInfo> CreatePaymentRequestAsync(PaymentCreationParam paymentCreationParam, PaymentEmailParam emailParam)
         {
-            var resultInfo = ValidatePaymentRequest(paymentCreationParam);
+            var resultInfo = await ValidatePaymentRequest(paymentCreationParam);
 
             if (resultInfo.IsOk)
             {
-                resultInfo = await _accountService.CheckPlayerAccountIsActivedAsync(paymentCreationParam.AffId, paymentCreationParam.Language);
+                var param = new PaymentRequestInfo
+                {
+                    AffId = paymentCreationParam.AffId,
+                    Language = paymentCreationParam.Language,
+                    IpAddress = paymentCreationParam.Ip,
+                    Amount = paymentCreationParam.Amount,
+                    ErrCode = paymentCreationParam.ErrCode,
+                    ErrMsg = paymentCreationParam.ErrMsg
+                };
+
+                resultInfo = _paymentRepository.CreatePaymentRequest(param);
+
                 if (resultInfo.IsOk)
                 {
-                    resultInfo = _paymentRepository.CreatePaymentRequest(paymentCreationParam);
+                    paymentCreationParam.TransId = param.TransId;
 
-                    if (resultInfo.IsOk)
-                    {
-                        AssignEmailParam(emailParam, paymentCreationParam, PaymentRequestType.Create);
-                        SendEmail(emailParam);
-                    }
+                    AssignEmailParam(emailParam, paymentCreationParam, PaymentRequestType.Create);
+                    SendEmail(emailParam);
                 }
             }
 
@@ -91,22 +100,17 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return (currentDay >= BeginDay && currentDay <= EndDay);
         }
 
-        private ResultInfo ValidatePaymentRequest(PaymentCreationParam paymentCreationParam)
+        private async Task<ResultInfo> ValidatePaymentRequest(PaymentCreationParam paymentCreationParam)
         {
             var resultInfo = new ResultInfo { IsOk = false };
-
-            if (!IsInDateRange() && !paymentCreationParam.IsLocalTest)
-            {
-                resultInfo.Message = Error.PaymentPayoutTimeInvalid;
-            }
-            else if (!IsValidAmount(paymentCreationParam))
+            if (!IsValidAmount(paymentCreationParam))
             {
                 resultInfo.Message = Error.PaymentAmountInvalid;
+                return resultInfo;
             }
-            else
-            {
-                resultInfo.IsOk = true;
-            }
+
+            var affInfo = _accountRepository.GetAccountInfo(paymentCreationParam.AffId);
+            resultInfo = await _accountService.CheckAndUnlockUserIfLocked(affInfo.PlayerUsername);
 
             return resultInfo;
         }
@@ -129,7 +133,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailParam.MailTo = userInfo.Email;
                 emailParam.TransId = paymentCreationParam.TransId;
                 emailParam.Amount = paymentCreationParam.Amount;
-                emailParam.RequestDate = paymentCreationParam.TransDate.Value;
+                emailParam.RequestDate = paymentCreationParam.TransDate ?? DateTimeOffset.Now.DateTime;
             }
         }
 
