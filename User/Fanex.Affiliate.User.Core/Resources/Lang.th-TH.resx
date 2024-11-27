@@ -1532,7 +1532,7 @@
     <value>ค่าธรรมเนียมธนาคาร</value>
   </data>
   <data name="CommRate" xml:space="preserve">
-    <value>เรทคอมมิชชั่น</value>
+    <value>เรทค่าคอมมิชชั่นพันธมิตรย่อย</value>
   </data>
   <data name="CommShorted" xml:space="preserve">
     <value>ค่าคอมมิชชั่น</value>
@@ -1869,7 +1869,7 @@
     <value>ทีมงานภาษากัมพูชา</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
-    <value>สมาชิกใหม่</value>
+    <value>สมัครสมาชิกใหม่</value>
   </data>
   <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
     <value>กรุณากรอกรหัสยืนยัน</value>
@@ -2122,9 +2122,6 @@
   </data>
   <data name="FdmExtraComm" xml:space="preserve">
     <value>ค่าคอมมิชชั่น FDM พิเศษ</value>
-  </data>
-  <data name="TotalCommission" xml:space="preserve">
-    <value>ค่าคอมมิชชั่นทั้งหมด</value>
   </data>
   <data name="Hindi" xml:space="preserve">
     <value>ฮินดี</value>
@@ -2390,5 +2387,8 @@
   </data>
   <data name="UserNameNotExist" xml:space="preserve">
     <value>គណនីបង់ប្រាក់ដែលអ្នកបានបញ្ចូលមិនមានទេ។ សូមពិនិត្យម្តងទៀត។</value>
+  </data>
+  <data name="CurrencyLabel" xml:space="preserve">
+    <value>USD</value>
   </data>
 </root>

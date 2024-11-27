@@ -1528,9 +1528,6 @@
   <data name="BankingFee" xml:space="preserve">
     <value>存款手續費</value>
   </data>
-  <data name="CommRate" xml:space="preserve">
-    <value>傭金比例</value>
-  </data>
   <data name="CommShorted" xml:space="preserve">
     <value>傭金</value>
   </data>
@@ -1868,9 +1865,6 @@
   <data name="MKK" xml:space="preserve">
     <value>MMK</value>
   </data>
-  <data name="NewSignUp" xml:space="preserve">
-    <value>新註冊會員</value>
-  </data>
   <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
     <value>請輸入驗證碼</value>
   </data>
@@ -2123,9 +2117,6 @@
   <data name="FdmExtraComm" xml:space="preserve">
     <value>首次存款新會員額外佣金</value>
   </data>
-  <data name="TotalCommission" xml:space="preserve">
-    <value>總佣金</value>
-  </data>
   <data name="Hindi" xml:space="preserve">
     <value>印地語</value>
   </data>
@@ -2365,5 +2356,8 @@
 這個合作夥伴計畫加入容易，&lt;br/&gt;
 而且佣金支付一直都很穩定。&lt;br/&gt;
 這是一個穩固的合作夥伴關係。</value>
+  </data>
+  <data name="CurrencyLabel" xml:space="preserve">
+    <value>USD</value>
   </data>
 </root>

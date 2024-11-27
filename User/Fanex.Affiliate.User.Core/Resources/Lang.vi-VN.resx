@@ -1532,7 +1532,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Phí Ngân Hàng</value>
   </data>
   <data name="CommRate" xml:space="preserve">
-    <value>% Hoa Hồng</value>
+    <value>Tỷ lệ hoa hồng đại lý cấp dưới</value>
   </data>
   <data name="CommShorted" xml:space="preserve">
     <value>Hoa Hồng Đại Lý</value>
@@ -2446,5 +2446,8 @@ THANH TOÁN ỔN ĐỊNH</value>
   </data>
   <data name="IncludeInActiveLink" xml:space="preserve">
     <value>Đường dẫn không giám sát</value>
+  </data>
+  <data name="CurrencyLabel" xml:space="preserve">
+    <value>USD</value>
   </data>
 </root>

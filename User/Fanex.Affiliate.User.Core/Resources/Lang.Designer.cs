@@ -1457,7 +1457,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comm. Rate.
+        ///   Looks up a localized string similar to Revenue Rate.
         /// </summary>
         public static string CommRate {
             get {
@@ -2942,7 +2942,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Include Inactive Tracking Link.
         /// </summary>
         public static string IncludeInActiveLink {
             get {
@@ -4090,7 +4090,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Sign Up.
+        ///   Looks up a localized string similar to New Signups.
         /// </summary>
         public static string NewSignUp {
             get {
@@ -6354,7 +6354,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Commission.
+        ///   Looks up a localized string similar to Total Revenue Share.
         /// </summary>
         public static string TotalCommission {
             get {

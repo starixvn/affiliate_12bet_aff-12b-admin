@@ -468,7 +468,7 @@
     <value>Denmark </value>
   </data>
   <data name="Deposit" xml:space="preserve">
-    <value>Deposit</value>
+    <value>Deposited</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -1534,7 +1534,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <comment>87923</comment>
   </data>
   <data name="CommRate" xml:space="preserve">
-    <value>Comm. Rate</value>
+    <value>Revenue Rate</value>
     <comment>87923</comment>
   </data>
   <data name="GrossWinLoss" xml:space="preserve">
@@ -2009,7 +2009,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Overview</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
-    <value>New Sign Up</value>
+    <value>New Signups</value>
   </data>
   <data name="DepositedMembers" xml:space="preserve">
     <value>Deposited Members</value>
@@ -2201,7 +2201,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>FDM Extra Comm</value>
   </data>
   <data name="TotalCommission" xml:space="preserve">
-    <value>Total Commission</value>
+    <value>Total Revenue Share</value>
   </data>
   <data name="MonthlyEarning" xml:space="preserve">
     <value>Monthly Earning</value>
