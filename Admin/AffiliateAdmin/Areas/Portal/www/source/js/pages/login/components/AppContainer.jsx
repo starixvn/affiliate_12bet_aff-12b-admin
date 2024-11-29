@@ -1,5 +1,6 @@
 ﻿import React, { PureComponent } from 'react';
 import { Alert, Form, FormGroup, Label, Input } from 'reactstrap';
+import Loader from '../../../components/Loader';
 
 import { post } from '../../../modules/ajaxRequest';
 import { resolveClientUrl } from '../../../modules/utils';
@@ -15,7 +16,7 @@ export default class AppContainer extends PureComponent {
             isShowMessage: false,
             message: '',
             year: now.getFullYear(),
-            isClickedLogin: false
+            isShowLoader: false
         }
     }
 
@@ -44,7 +45,7 @@ export default class AppContainer extends PureComponent {
     }
 
     _handleLogin = () => {
-        !this.state.isClickedLogin && this.setState({ isClickedLogin: true }, this._login);
+        !this.state.isShowLoader && this.setState({ isShowLoader: true }, this._login);
     }
 
     _login = async () => {
@@ -60,7 +61,7 @@ export default class AppContainer extends PureComponent {
                 const { data } = response;
 
                 if (data.IsSuccessful) {
-                    window.location = resolveClientUrl("Portal/Home")
+                    window.location = resolveClientUrl("Portal/Home");
                 } else {
                     this._handleShowAlert(false, data.Message);
                 }
@@ -69,7 +70,7 @@ export default class AppContainer extends PureComponent {
             }
         }
 
-        this.setState({ isClickedLogin: false });
+        this.setState({ isShowLoader: false });
     }
 
     _handlePressEnter = (event) => {
@@ -86,11 +87,12 @@ export default class AppContainer extends PureComponent {
     }
 
     render() {
-        const { userName, password, isShowMessage, message, year } = this.state;
+        const { userName, password, isShowMessage, message, year, isShowLoader } = this.state;
         const { licenseeName } = window.initialState;
 
         return (
             <div className="login-container">
+                <Loader show={isShowLoader} />
                 <div className="lgRp">
                     <div className="login-header">
                         <div>

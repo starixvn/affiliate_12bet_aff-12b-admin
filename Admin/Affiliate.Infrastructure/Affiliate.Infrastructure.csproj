@@ -72,7 +72,6 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.9.32.0.97167\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.9.32.0.97167\analyzers\SonarAnalyzer.ShimLayer.dll" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
