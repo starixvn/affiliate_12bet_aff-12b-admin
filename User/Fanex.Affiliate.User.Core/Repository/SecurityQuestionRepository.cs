@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Common.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -21,7 +22,6 @@ namespace Fanex.Affiliate.User.Core.Repository
 
             using (var db = _builder.Build(spKey))
             {
-                db.SetParameterValue("IsIncludedOldData", isIncludeOldData);
                 db.SetParameterValue("Language", language);
 
                 using (var reader = db.ExecuteReader())
@@ -30,8 +30,8 @@ namespace Fanex.Affiliate.User.Core.Repository
                     {
                         securityQuestionList.Add(new SecurityQuestion
                         {
-                            QuestionId = Convert.ToByte(reader["QuestionID"]),
-                            Question = Convert.ToString(reader["Question"])
+                            QuestionId = reader.ToByte("QuestionID"),
+                            Question = reader.ToString("Question")
                         });
                     }
                 }

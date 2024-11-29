@@ -2470,4 +2470,7 @@
   <data name="CurrencyLabel" xml:space="preserve">
     <value>USD</value>
   </data>
+  <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
+    <value>អាសយដ្ឋានអ៊ីមែលត្រូវតែផ្ទៀងផ្ទាត់</value>
+  </data>
 </root>

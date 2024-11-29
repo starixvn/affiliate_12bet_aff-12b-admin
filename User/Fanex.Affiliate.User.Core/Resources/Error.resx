@@ -202,7 +202,7 @@
     <value>User Name no more than 50 characters.</value>
   </data>
   <data name="AnswerMaxLength" xml:space="preserve">
-    <value>Your Answer no more than 250 characters.</value>
+    <value>Your Answer no more than 300 characters.</value>
   </data>
   <data name="MessageMaxLength" xml:space="preserve">
     <value>Message no more than 4000 characters.</value>
@@ -212,5 +212,8 @@
   </data>
   <data name="YourAccountHasBeenSuspended" xml:space="preserve">
     <value>Your account has been suspended. Please contact your Account Manager for more information.</value>
+  </data>
+  <data name="UserNameMaxLength30" xml:space="preserve">
+    <value>User Name no more than 30 characters.</value>
   </data>
 </root>

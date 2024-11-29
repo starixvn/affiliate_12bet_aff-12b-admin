@@ -187,7 +187,7 @@
     <value>이메일 주소는 50자 이내입니다.</value>
   </data>
   <data name="AnswerMaxLength" xml:space="preserve">
-    <value>답변은 250자 이하입니다.</value>
+    <value>답변은 300자 이하입니다.</value>
   </data>
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>회원 아이디는 50자 이하입니다.</value>

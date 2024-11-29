@@ -2450,4 +2450,7 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="CurrencyLabel" xml:space="preserve">
     <value>USD</value>
   </data>
+  <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
+    <value>Nhập lại địa chỉ email là bắt buộc</value>
+  </data>
 </root>

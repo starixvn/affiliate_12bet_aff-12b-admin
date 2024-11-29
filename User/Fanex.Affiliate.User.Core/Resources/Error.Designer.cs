@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Error {
@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Answer no more than 250 characters..
+        ///   Looks up a localized string similar to Your Answer no more than 300 characters..
         /// </summary>
         public static string AnswerMaxLength {
             get {
@@ -313,6 +313,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Name no more than 30 characters..
+        /// </summary>
+        public static string UserNameMaxLength30 {
+            get {
+                return ResourceManager.GetString("UserNameMaxLength30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid/expired verification code, please try again or request a new one..
         /// </summary>
         public static string VerificationFailed {
@@ -331,7 +340,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Your account has been suspended. Please contact your Account Manager for more information..
         /// </summary>
         public static string YourAccountHasBeenSuspended {
             get {

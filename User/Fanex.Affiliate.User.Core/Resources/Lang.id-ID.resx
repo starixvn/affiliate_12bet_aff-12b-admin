@@ -2363,4 +2363,7 @@ PEMBAYARAN KONSISTEN</value>
   <data name="CurrencyLabel" xml:space="preserve">
     <value>USD</value>
   </data>
+  <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
+    <value>Ketik ulang e-mail diperlukan</value>
+  </data>
 </root>

@@ -2572,4 +2572,7 @@ CONSISTENT PAYMENT</value>
   <data name="IncludeInActiveLink" xml:space="preserve">
     <value>Include Inactive Tracking Link</value>
   </data>
+  <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
+    <value>Verify Email Address is required</value>
+  </data>
 </root>

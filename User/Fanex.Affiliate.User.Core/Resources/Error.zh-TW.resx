@@ -187,7 +187,7 @@
     <value>Email（不超過50個字符）</value>
   </data>
   <data name="AnswerMaxLength" xml:space="preserve">
-    <value>您的回答（不超過250個字符）</value>
+    <value>您的回答（不超過300個字符）</value>
   </data>
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>用戶名（不超過50個字符）</value>

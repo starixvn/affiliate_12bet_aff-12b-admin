@@ -187,7 +187,7 @@
     <value>Alamat Email: tidak lebih dari 50 karakter.</value>
   </data>
   <data name="AnswerMaxLength" xml:space="preserve">
-    <value>Jawaban Anda: tidak lebih dari 250 karakter.</value>
+    <value>Jawaban Anda: tidak lebih dari 300 karakter.</value>
   </data>
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>User Name (Nama Pengguna) tidak lebih dari 50 karakter.</value>

@@ -29,6 +29,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             [102] = Lang.errExistAccount
         };
 
+        private const int TEST_CURRENCY = 20;
+
         public AccountService(
             IAccountRepository accountRepository,
             IEmailService emailService,
@@ -41,48 +43,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _licenseeCustDbApiService = licenseeCustDbApiService;
             _licenseeApi = licenseeApi;
             _appSetting = appSetting;
-        }
-
-        public ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailSignUpParam emailParam)
-        {
-            if (!signUpParam.IsLocal)
-            {
-                var depositAccount = _accountRepository.GetDepositPlayerAccount(signUpParam.Player_UserName);
-
-                if (!depositAccount.IsValid)
-                {
-                    return new ResultInfo { IsOk = false, Message = Lang.errDepositDBConnectFailed };
-                }
-            }
-
-            var result = _accountRepository.CreateAffiliate(signUpParam);
-            if (result.IsOk)
-            {
-                emailParam.MailTo = signUpParam.Email;
-                emailParam.User = new UserInfo
-                {
-                    PreferredLanguage = signUpParam.PreferredLanguage,
-                    FirstName = signUpParam.FirstName
-                };
-
-                _emailService.SendSignUpEmail(emailParam);
-
-                var csdEmailParam = new NoticeEmailParam
-                {
-                    MailTo = emailParam.MailContact,
-                    MailContact = emailParam.MailContact,
-                    FirstName = signUpParam.FirstName,
-                    LastName = signUpParam.LastName,
-                    UserName = signUpParam.UserName,
-                    SiteUrl = signUpParam.SiteUrl,
-                    MoreSiteUrls = signUpParam.MoreSiteUrls,
-                    NoSiteDesc = signUpParam.NoSiteDesc
-                };
-
-                _emailService.SendNoticeEmailToCsd(csdEmailParam);
-            }
-
-            return result;
         }
 
         /// <summary>
@@ -145,45 +105,47 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
 
-        public async Task<ResultInfo> CreateAffiliateAsync(UserSignUpParam signUpParam, EmailBaseParam emailParam)
+        public async Task<ResultInfo> CreateAffiliateAsync(UserSignUpParam signUpParam, EmailSignUpParam emailParam)
         {
-            //var cust = await GetMemberSiteCustomer(signUpParam.Player_UserName);
-            //var validInfo = CheckPlayerUserNameValid(cust);
+            var cust = await GetMemberSiteCustomer(signUpParam.Player_UserName);
+            var validInfo = CheckPlayerUserNameValid(cust);
 
-            //if (!validInfo.IsOk)
-            //{
-            //    return validInfo;
-            //}
+            if (!validInfo.IsOk)
+            {
+                return validInfo;
+            }
 
-            //signUpParam.Player_CustId = cust.CustId;
-            //signUpParam.Player_Currency = cust.IsTest.GetValueOrDefault(true) ? TEST_CURRENCY : cust.CurrencyId.GetValueOrDefault();
+            signUpParam.Player_CustId = cust.CustId;
+            signUpParam.Player_Currency = cust.IsTest.GetValueOrDefault(true) ? TEST_CURRENCY : cust.CurrencyId.GetValueOrDefault();
 
-            //var result = _accountRepository.CreateAffiliate(signUpParam);
-            //if (result.IsOk)
-            //{
-            //    var userInfo = new UserInfo
-            //    {
-            //        PreferredLanguage = signUpParam.PreferredLanguage,
-            //        FirstName = signUpParam.FirstName
-            //    };
+            var result = _accountRepository.CreateAffiliate(signUpParam);
+            if (result.IsOk)
+            {
+                emailParam.MailTo = signUpParam.Email;
+                emailParam.User = new UserInfo
+                {
+                    PreferredLanguage = signUpParam.PreferredLanguage,
+                    FirstName = signUpParam.FirstName
+                };
 
-            //    var csdEmailParam = new NoticeEmailParam
-            //    {
-            //        MailTo = emailParam.MailContact,
-            //        MailContact = emailParam.MailContact,
-            //        FirstName = signUpParam.FirstName,
-            //        LastName = signUpParam.LastName,
-            //        UserName = signUpParam.UserName,
-            //        SiteUrl = signUpParam.SiteUrl,
-            //        MoreSiteUrls = signUpParam.MoreSiteUrls,
-            //        NoSiteDesc = signUpParam.NoSiteDesc,
-            //        User = userInfo
-            //    };
+                _emailService.SendSignUpEmail(emailParam);
 
-            //    _emailService.SendNoticeEmailToCsd(csdEmailParam);
-            //}
+                var csdEmailParam = new NoticeEmailParam
+                {
+                    MailTo = emailParam.MailContact,
+                    MailContact = emailParam.MailContact,
+                    FirstName = signUpParam.FirstName,
+                    LastName = signUpParam.LastName,
+                    UserName = signUpParam.UserName,
+                    SiteUrl = signUpParam.SiteUrl,
+                    MoreSiteUrls = signUpParam.MoreSiteUrls,
+                    NoSiteDesc = signUpParam.NoSiteDesc
+                };
 
-            return new ResultInfo();
+                _emailService.SendNoticeEmailToCsd(csdEmailParam);
+            }
+
+            return result;
         }
 
         public GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null)

@@ -121,13 +121,13 @@
       "www/source/js/pages/messagehistory.js"
     ]
   },
-  //{
-  //  "outputFileName": "www/build/js/signup.js",
-  //  "inputFiles": [
-  //    "www/source/js/components/website.js",
-  //    "www/source/js/pages/signup.js"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/js/signup.js",
+    "inputFiles": [
+      "www/source/js/components/website.js",
+      "www/source/js/pages/signup.js"
+    ]
+  },
   //{
   //  "outputFileName": "www/build/js/member.js",
   //  "inputFiles": [

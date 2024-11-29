@@ -1,16 +1,14 @@
-@using Fanex.Affiliate.User.Core.Constants
 @using Fanex.Affiliate.User.Core.CoreService
 @using Fanex.Affiliate.User.Core.BusinessService
-@using Fanex.Affiliate.User.Core.Utilities
 
 @{
+
     ViewBag.Title = Lang.SignUp;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var systemService = DependencyResolver.Current.GetService<ISystemService>();
+    var languageService = DependencyResolver.Current.GetService<ISystemService>();
     var currentLanguage = sessionService.CurrentLanguage;
-
     var hasThirdContactApp = AppContact.ThirdAppContactList.ContainsKey(currentLanguage);
     var secondAppName = AppContact.SecondAppContactList[currentLanguage];
 }
@@ -261,43 +259,28 @@
                         <div class="group-form">
                             <div class="form-group form-columns form-columns-2">
                                 <div class="items validate-group">
-                                    <label class="custom-label" for="TargetCountryCode">@Lang.TargetCountry <span class="red-warn">*</span></label>
-                                    <select class="form-input form-select" name="TargetCountryCode" id="TargetCountryCode" data-val="true" data-val-required="@Lang.TargetCountryErr">
-                                        <option value="">@Lang.SelectOne</option>
-                                        @foreach (var item in systemService.GetSystemTargetCountries())
-                                        {
-                                            <option value="@item.TargetCountryCode" data-language="@item.DefaultLanguageCode">@SystemHelper.GetTargetCountryText(item.TargetCountryName)</option>
-                                        }
-                                    </select>
-                                    @Html.ValidationMessageFor(x => x.TargetCountryCode, string.Empty, new { @class = "validate-input hide" })
-                                </div>
-
-                                <div class="items validate-group">
                                     <label class="custom-label" for="PreferredLanguage">@Lang.Language <span class="red-warn">*</span></label>
                                     <select class="form-input form-select" name="PreferredLanguage" id="PreferredLanguage" data-val="true" data-val-required="@Lang.AffAccountLanguageErr">
                                         <option value="">@Lang.SelectOne</option>
-                                        @foreach (var item in systemService.GetSystemTargetLanguages())
+                                        @foreach (var item in languageService.GetLanguageList())
                                         {
-                                            <option value="@item.LanguageCode">@SystemHelper.GetLanguageText(item.LanguageName)</option>
+                                            <option value="@item.Code">@item.NativeName</option>
                                         }
                                     </select>
                                     @Html.ValidationMessageFor(x => x.PreferredLanguage, string.Empty, new { @class = "validate-input hide" })
                                 </div>
-                            </div>
-
-                            <div class="form-group form-columns form-columns-2">
                                 <div class="items validate-group">
                                     @{Html.RenderAction("SecurityQuestion", "Signup");}
                                     @Html.ValidationMessageFor(x => x.QuestionId, string.Empty, new { @class = "validate-input hide" })
                                 </div>
+                            </div>
 
+                            <div class="form-group form-columns form-columns-2">
                                 <div class="items validate-group">
                                     <label for="Answer" class="custom-label">@Lang.lblYourAnswer <span class="red-warn">*</span></label>
                                     @Html.TextBoxFor(p => p.Answer, new { @class = "form-input" })
                                     @Html.ValidationMessageFor(x => x.Answer, string.Empty, new { @class = "validate-input hide" })
                                 </div>
-                            </div>
-                            <div class="form-group form-columns form-columns-2">
                                 <div class="items validate-group">
                                     <label for="Captcha" class="custom-label">@Lang.Validation <span class="red-warn">*</span></label>
                                     <div class="captcha-group">
@@ -335,7 +318,7 @@
                                 </label>
                             </div>
                             <div class="items validate-group">
-                                <label for="Player_UserName" class="custom-label">@Lang.UsernameSignUp <span class="red-warn">* (@Lang.NonDeposited)</span></label>
+                                <label for="Player_UserName" class="custom-label">@Lang.UsernameSignUp</label>
                                 @Html.TextBoxFor(p => p.Player_UserName, new { @class = "form-input", @autocomplete = "off" })
                                 @Html.ValidationMessageFor(x => x.Player_UserName, string.Empty, new { @class = "validate-input hide" })
                             </div>

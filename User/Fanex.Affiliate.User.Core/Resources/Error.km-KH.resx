@@ -187,7 +187,7 @@
     <value>អាស័យដ្ឋានអ៊ីមែលមិនលើសពី 50 តួអក្សរ។</value>
   </data>
   <data name="AnswerMaxLength" xml:space="preserve">
-    <value>ចម្លើយរបស់អ្នកមិនលើសពី 250 តួអក្សរ។</value>
+    <value>ចម្លើយរបស់អ្នកមិនលើសពី 300 តួអក្សរ។</value>
   </data>
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>ឈ្មោះអ្នកប្រើប្រាស់មិនលើសពី 50 តួអក្សរ។</value>
@@ -212,5 +212,8 @@
   </data>
   <data name="YourAccountHasBeenSuspended" xml:space="preserve">
     <value>គណនីរបស់អ្នកត្រូវបានផ្អាកដំណើការ។ សូមទាក់ទងទៅកាន់អ្នកគ្រប់គ្រងគណនីរបស់អ្នកសម្រាប់ព័ត៌មានបន្ថែម</value>
+  </data>
+  <data name="UserNameMaxLength30" xml:space="preserve">
+    <value>មោះគណនីអ្នកប្រើមិនឲ្យលើសពី 30 តួអក្សរ</value>
   </data>
 </root>

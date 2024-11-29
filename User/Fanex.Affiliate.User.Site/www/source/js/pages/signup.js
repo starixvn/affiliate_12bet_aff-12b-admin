@@ -36,16 +36,14 @@
                 WebSite.reoderInputUrl(resourceLanguage.webSiteUrl);
             });
 
-            $("#TargetCountryCode").on("change", function () {
-                const selectedOption = $('option:selected', this);
-                const language = selectedOption.data("language");
-
-                $("#PreferredLanguage").val(language || "").trigger('click');
-            });
-
             $("#accountForm").on("change", "input[name=HasWebSite][type=radio]", function () {
                 var hasWebSite = this.value === "True";
                 WebSite.changeWebsiteOption(hasWebSite, _isClickSubmit);
+            });
+
+            $('select[data-val="true"]').on("change", function () {
+                var validator = $("#accountForm").validate();
+                validator.element($(this));
             });
 
             $("#signupCaptchaBtn").on("click", function () {
@@ -99,7 +97,7 @@
             var inputList = $("input, select, textarea", $("#accountForm"));
             for (var i = 0; i < inputList.length; i++) {
                 var element = inputList[i];
-                if (element.type !== "radio") {
+                if (element.type !== "radio" && element.type !== "hidden") {
                     $(element).val("");
                 }
             }

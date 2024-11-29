@@ -184,7 +184,7 @@
     <value>ที่อยู่อีเมลไม่เกิน 50 ตัวอักษร</value>
   </data>
   <data name="AnswerMaxLength" xml:space="preserve">
-    <value>คำตอบของคุณไม่เกิน 250 ตัวอักษร</value>
+    <value>คำตอบของคุณไม่เกิน 300 ตัวอักษร</value>
   </data>
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>ชื่อผู้ใช้ ไม่เกิน 50 ตัวอักษร</value>

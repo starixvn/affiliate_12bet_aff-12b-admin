@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public interface IAccountService
     {
-        Task<ResultInfo> CreateAffiliateAsync(UserSignUpParam signUpParam, EmailBaseParam emailParam);
+        Task<ResultInfo> CreateAffiliateAsync(UserSignUpParam signUpParam, EmailSignUpParam emailParam);
 
         GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null);
 
@@ -19,7 +19,5 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         // Need Removed
         Task<ResultInfo> CheckPlayerAccountIsActivedAsync(int affId, string language);
-
-        ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailSignUpParam emailParam);
     }
 }

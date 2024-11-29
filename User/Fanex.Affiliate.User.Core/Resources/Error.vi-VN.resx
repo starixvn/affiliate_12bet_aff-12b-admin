@@ -187,7 +187,7 @@
     <value>Địa chỉ Email không quá 50 ký tự.</value>
   </data>
   <data name="AnswerMaxLength" xml:space="preserve">
-    <value>Câu trả lời của bạn không quá 250 ký tự.</value>
+    <value>Câu trả lời của bạn không quá 300 ký tự.</value>
   </data>
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>Tên đăng nhập không quá 50 ký tự.</value>
@@ -212,5 +212,8 @@
   </data>
   <data name="YourAccountHasBeenSuspended" xml:space="preserve">
     <value>Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Quản lý tài khoản để được hỗ trợ.</value>
+  </data>
+  <data name="UserNameMaxLength30" xml:space="preserve">
+    <value>Tên người dùng không được nhiều hơn 30 ký tự</value>
   </data>
 </root>
