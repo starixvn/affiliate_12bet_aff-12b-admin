@@ -322,7 +322,9 @@
     <Compile Include="DTO\UserPanel\SubAffComInfo.cs" />
     <Compile Include="DTO\UserPanel\SubAffDetail.cs" />
     <Compile Include="Enum\AffiliateLinkType.cs" />
+    <Compile Include="Filters\JsonHandlerAttribute.cs" />
     <Compile Include="Infrastructure\AuthenticatedHttpClientHandler.cs" />
+    <Compile Include="Infrastructure\JsonNetResult.cs" />
     <Compile Include="MetalModels\Apis\AccountParam.cs" />
     <Compile Include="MetalModels\Apis\TransferMoneyParam.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />

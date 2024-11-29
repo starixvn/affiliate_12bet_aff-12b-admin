@@ -61,8 +61,7 @@
       cursor: pointer; }
 
 .table tbody tr > td {
-  background: #fff;
-  color: #000; }
+  background: #fff; }
   .table tbody tr > td .row-wrapper {
     position: relative; }
     .table tbody tr > td .row-wrapper .chevron {

@@ -25,10 +25,7 @@ namespace Fanex.Affiliate.User.Site
             AreaRegistration.RegisterAllAreas();
 
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            if (env != "LOCAL")
-            {
-                FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            }
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MvcHandler.DisableMvcResponseHeader = true;

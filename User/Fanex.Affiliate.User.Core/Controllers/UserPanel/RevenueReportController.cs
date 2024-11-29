@@ -9,6 +9,7 @@
     using Filters;
     using MetalModels.UserPanel;
 
+    [CustomAuthorize]
     public class RevenueReportController : BaseController
     {
         private readonly ICommissionReportService _commissionReportService;

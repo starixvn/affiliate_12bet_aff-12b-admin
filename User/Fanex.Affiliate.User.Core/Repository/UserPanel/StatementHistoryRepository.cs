@@ -1,7 +1,9 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using Fanex.Common.Extensions;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
@@ -42,13 +44,25 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             var dbMode = dailyEarningParam.IsInternal ? DBMode.View : DBMode.Main;
 
             var dailyEarningResult = new DailyEarningResult();
+            var dataList = new List<DailyEarning>();
 
             using (var db = _builder.Build(uSpKey, dbMode))
             {
-                using (var multipleReader = db.QueryMultiple(dailyEarningParam))
+                using (var reader = db.ExecuteReader(dailyEarningParam))
                 {
-                    dailyEarningResult.MainDataList = multipleReader.Read<DailyEarning>();
-                    dailyEarningResult.Total = multipleReader.ReadFirstOrDefault<DailyEarning>();
+                    while (reader.Read())
+                    {
+                        var item = BuildDailyEarningItem(reader);
+                        item.WinlostDate = reader.ToDateTime("WinlostDate");
+
+                        dataList.Add(item);
+                    }
+                    dailyEarningResult.MainDataList = dataList;
+
+                    if (reader.NextResult() && reader.Read())
+                    {
+                        dailyEarningResult.Total = BuildDailyEarningItem(reader);
+                    }
                 }
             }
 
@@ -75,10 +89,23 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             const string uSpKey = "Aff_SubAffiliate_Commission_Sel";
             var mode = subAffParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var objecDb = _builder.Build(uSpKey, mode))
+            using (var db = _builder.Build(uSpKey, mode))
             {
-                return objecDb.Query<SubAffComInfo>(subAffParam);
+                return db.Query<SubAffComInfo>(subAffParam);
             }
+        }
+
+        private static DailyEarning BuildDailyEarningItem(IDataReader reader)
+        {
+            return new DailyEarning
+            {
+                Deposit = reader.ToDecimal("Deposit"),
+                Turnover = reader.ToDecimal("Turnover"),
+                Withdrawal = reader.ToDecimal("Withdrawal"),
+                MemberGGR = reader.ToDecimal("GGR"),
+                Bonus = reader.ToDecimal("Bonus"),
+                Rebate = reader.ToDecimal("Rebate"),
+            };
         }
     }
 }

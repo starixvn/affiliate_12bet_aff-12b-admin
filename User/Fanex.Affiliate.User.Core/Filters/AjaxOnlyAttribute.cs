@@ -1,6 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.CoreService;
-using System;
-using System.Linq;
+﻿using System;
 using System.Reflection;
 using System.Web.Mvc;
 
@@ -13,17 +11,7 @@ namespace Fanex.Affiliate.User.Core.Filters
 
         public override bool IsValidForRequest(ControllerContext controllerContext, MethodInfo methodInfo)
         {
-            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-            var hasPermission = true;
-
-            if (!string.IsNullOrEmpty(PermissionName) && sessionService.IsInternal)
-            {
-                var claims = sessionService.ClaimsIdentities.FirstOrDefault();
-
-                hasPermission = claims.HasClaim(c => c.Type == PermissionName);
-            }
-
-            return controllerContext.HttpContext.Request.IsAjaxRequest() && hasPermission;
+            return controllerContext.HttpContext.Request.IsAjaxRequest();
         }
     }
 }
