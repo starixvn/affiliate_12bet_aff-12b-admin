@@ -14,10 +14,13 @@ namespace Fanex.Affiliate.Link.Constants
         private const string AFF16097_ID = "92043185";
 
         private const string AFF15932_ID = "92043020";
+        private const string AFF16325_ID = "92043413";
+        private const string AFF16326_ID = "92043414";
 
         public static readonly IReadOnlyDictionary<string, string> FakeSpecificDomainByAffOnLocal = new Dictionary<string, string>
         {
-            [AFF16105_ID] = "aff-12bet.nexdev.net/12BetGo,go.12real.com",
+            [AFF16105_ID] = "aff-12bet.nexdev.net/12BetGo,go.12fifa18.com",
+
             [AFF16204_ID] = "aff-12bet.nexdev.net/12BetGo,go.12real.com",
             [AFF16205_ID] = "aff-12bet.nexdev.net/12BetGo,go.12real.com",
             
@@ -27,6 +30,9 @@ namespace Fanex.Affiliate.Link.Constants
             [AFF16097_ID] = "aff-12bet.nexdev.net/12BetGo,join.best5689.com",
 
             [AFF15932_ID] = "aff-12bet.nexdev.net/12BetGo,go.5689fun.com",
+
+            [AFF16325_ID] = "aff-12bet.nexdev.net/12BetGo,go.5689fun.com",
+            [AFF16326_ID] = "aff-12bet.nexdev.net/12BetGo,go.6789sutzo.com",
         };
     }
 }

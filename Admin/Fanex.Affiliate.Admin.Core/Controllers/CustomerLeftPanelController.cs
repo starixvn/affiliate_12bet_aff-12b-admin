@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     AffId = param.AffId,
                     PreferredLanguage = Server.HtmlEncode(param.PreferredLanguage)
                 };
-                AssignParam(param);
+                AssignParam(updateLanguageParam);
 
                 return new JsonNetResult
                 {
