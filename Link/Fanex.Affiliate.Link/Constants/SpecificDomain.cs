@@ -17,6 +17,21 @@ namespace Fanex.Affiliate.Link.Constants
         private const string AFF16325_ID = "92043413";
         private const string AFF16326_ID = "92043414";
 
+        //12aff.best5689.com
+        private const string AFF130_ID = "1257975";
+        private const string AFF16311_ID = "92043399";
+        private const string AFF16314_ID = "92043402";
+        private const string AFF16225_ID = "92043313";
+        private const string AFF14617_ID = "92041705";
+        private const string AFF13902_ID = "92040990";
+        private const string AFF16313_ID = "92043401";
+        private const string AFF15775_ID = "92042863";
+        private const string AFF16214_ID = "92043302";
+        private const string AFF13506_ID = "92040594";
+        private const string AFF13065_ID = "92040153";
+        private const string AFF7782_ID = "92034870";
+        private const string AFF16050_ID = "92043138";
+
         public static readonly IReadOnlyDictionary<string, string> FakeSpecificDomainByAffOnLocal = new Dictionary<string, string>
         {
             [AFF16105_ID] = "aff-12bet.nexdev.net/12BetGo,go.12fifa18.com",
@@ -29,10 +44,25 @@ namespace Fanex.Affiliate.Link.Constants
             [AFF16096_ID] = "aff-12bet.nexdev.net/12BetGo,join.best5689.com",
             [AFF16097_ID] = "aff-12bet.nexdev.net/12BetGo,join.best5689.com",
 
-            [AFF15932_ID] = "aff-12bet.nexdev.net/12BetGo,go.5689fun.com",
+            [AFF15932_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
 
             [AFF16325_ID] = "aff-12bet.nexdev.net/12BetGo,go.5689fun.com",
             [AFF16326_ID] = "aff-12bet.nexdev.net/12BetGo,go.6789sutzo.com",
+
+            //12aff.best5689.com
+            [AFF130_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF16311_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF16314_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF16225_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF14617_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF13902_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF16313_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF15775_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF16214_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF13506_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF13065_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF7782_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            [AFF16050_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
         };
     }
 }
