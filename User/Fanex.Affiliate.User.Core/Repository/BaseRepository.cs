@@ -22,6 +22,7 @@ namespace Fanex.Affiliate.User.Core.Repository
             return new ResultInfo
             {
                 IsOk = code == DBNull.Value || Convert.ToInt32(code) == 0,
+                Code = Convert.ToInt32(code),
                 Message = Convert.ToString(objectDb.GetParameterValue("ErrMsg"))
             };
         }

@@ -2473,4 +2473,46 @@
   <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
     <value>អាសយដ្ឋានអ៊ីមែលត្រូវតែផ្ទៀងផ្ទាត់</value>
   </data>
+  <data name="AffilateLink" xml:space="preserve">
+    <value>លីងតំណភ្ជាប់សម្ព័ន្ធ</value>
+  </data>
+  <data name="SubAffiliateLink" xml:space="preserve">
+    <value>អនុវ​ សាខាសម្ព័ន្ធ។ តំណភ្ជាប់លីង</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>បន្ថែម​ថ្មី...</value>
+  </data>
+  <data name="AffiliateLinkType" xml:space="preserve">
+    <value>ប្រភេទតំណលីង</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>ឆានែល</value>
+  </data>
+  <data name="TrackingAndQrCode" xml:space="preserve">
+    <value>តាមដានតំណភ្ជាប់លីង និង QRលេខកូដ</value>
+  </data>
+  <data name="MarketingPage" xml:space="preserve">
+    <value>ទំព័រទីផ្សារ</value>
+  </data>
+  <data name="EnterChannel" xml:space="preserve">
+    <value>សូមវាយបញ្ចូលឈ្មោះឆានែល៖</value>
+  </data>
+  <data name="AddChannelSuccess" xml:space="preserve">
+    <value>បន្ថែមឆានែលបានជោគជ័យ</value>
+  </data>
+  <data name="ConfirmActiveLink" xml:space="preserve">
+    <value>តើអ្នកប្រាកដអំពីសកម្មភាពនេះទេ? តាមរយៈការបញ្ជាក់សកម្មភាពនេះ អ្នកនឹងសកម្មតំណលីងតាមដាន។</value>
+  </data>
+  <data name="ConfirmDeactiveLink" xml:space="preserve">
+    <value>តើអ្នកប្រាកដអំពីសកម្មភាពនេះទេ? តាមរយៈការបញ្ជាក់សកម្មភាពនេះ អ្នកនឹងបិទតំណលីងតាមដាន។</value>
+  </data>
+  <data name="NumberOfLink" xml:space="preserve">
+    <value>លេខនៃលីងតំណភ្ជាប់</value>
+  </data>
+  <data name="CopyQRCode" xml:space="preserve">
+    <value>ចម្លងQRកូដ</value>
+  </data>
+  <data name="SaveQRCode" xml:space="preserve">
+    <value>រក្សាទុកQRកូដ</value>
+  </data>
 </root>

@@ -216,4 +216,16 @@
   <data name="UserNameMaxLength30" xml:space="preserve">
     <value>Tên người dùng không được nhiều hơn 30 ký tự</value>
   </data>
+  <data name="ErrInValidAff" xml:space="preserve">
+    <value>Đại lý không hợp lệ</value>
+  </data>
+  <data name="ErrChannelExisted" xml:space="preserve">
+    <value>Tên kênh đã tồn tại. Hãy kiểm tra lại lần nữa.</value>
+  </data>
+  <data name="ErrInternalError" xml:space="preserve">
+    <value>Lỗi nội bộ. Vui lòng liên hệ quản trị viên.</value>
+  </data>
+  <data name="NameToLong20" xml:space="preserve">
+    <value>Tên kênh không thể vượt quá 20 ký tự. Vui lòng thử lại</value>
+  </data>
 </root>

@@ -1,20 +1,23 @@
-﻿using Fanex.Data;
-
-namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
+    using Enum;
+
     public class SizeParam
     {
-        [SpParam(SqlParamName = "TargetProductId")]
-        public string TargetProduct { get; set; }
+        public string Category { get; set; }
 
-        [SpParam(Ignored = true)]
+        public string SubCategory { get; set; }
+
         public string Language { get; set; }
 
-        public string Languages { get; set; }
+        public string Currency { get; set; }
+
+        public string ImageType { get; set; }
+
+        public byte DeviceType { get; set; }
 
         public string AffType { get; set; }
 
-        [SpParam(Ignored = true)]
-        public string TargetCountry { get; set; }
+        public AffiliateLinkType TargetId { get; set; }
     }
 }

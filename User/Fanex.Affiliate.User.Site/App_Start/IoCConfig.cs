@@ -136,6 +136,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<OfferService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<OfferRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<HttpClientUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<FileSystem>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
         private static void RegisterLicenseeCustDbApi(this ContainerBuilder builder)

@@ -28,22 +28,25 @@
 
 @helper RenderDropdownForMarketing(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true, bool isVisible = true)
 {
-    <div class="form-group flex-sm-boostrap flex-center @(isVisible ? string.Empty : "hide")">
-        <label class="col-sm-3 col-lg-2 control-label" for="@id">@label</label>
-        <div class="col-sm-4 col-md-5 col-lg-3">
-            <select class="form-control" id="@id">
-                @if (hasAllOption)
-                {
-                    <option value="">@Fanex.Affiliate.User.Core.Resources.Lang.All</option>
-                }
+    if (dataList != null)
+    {
+        <div class="form-group flex-sm-boostrap flex-center @(isVisible ? string.Empty : "hide")">
+            <label class="control-label">@label</label>
+            <div class="control-input">
+                <select class="form-control" id="@id">
+                    @if (hasAllOption)
+                    {
+                        <option value="">@Fanex.Affiliate.User.Core.Resources.Lang.All</option>
+                    }
 
-                @foreach (var item in dataList)
-                {
-                    <option value="@item.Value" @(item.Selected ? "selected" : string.Empty)>@item.Text</option>
-                }
-            </select>
+                    @foreach (var item in dataList)
+                    {
+                        <option value="@item.Value" @(item.Selected ? "selected" : string.Empty)>@item.Text</option>
+                    }
+                </select>
+            </div>
         </div>
-    </div>
+    }
 }
 
 @helper RenderDropdownForMarketingHasNoInfo(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAnyDomain = false)
@@ -106,7 +109,7 @@
         <ul class="multiple-select-options multiple-select-option-all">
             @if (itemDefaultOption is null)
             {
-                var checkedItemCount = dataList.Where(d => d.Selected).Count();
+                var checkedItemCount = dataList.Count(d => d.Selected);
                 var checkedAll = checkedItemCount == dataList.Count();
 
                 <li class="multiple-select-item">

@@ -35,10 +35,10 @@
     //    "outputFile": "www/build/styles/css/contact-us.css",
     //    "inputFile": "www/source/styles/pages/contact-us.scss"
     //},
-    //{
-    //  "outputFile": "www/build/styles/css/marketing.css",
-    //  "inputFile": "www/source/styles/pages/marketing.scss"
-    //},
+    {
+      "outputFile": "www/build/styles/css/marketing.css",
+      "inputFile": "www/source/styles/pages/marketing.scss"
+    },
     {
       "outputFile": "www/build/js/user-panel.js",
       "inputFile": "www/source/js/pages/user-panel.js"
@@ -174,5 +174,9 @@
     {
       "outputFile": "www/build/styles/css/forgot-password.css",
       "inputFile": "www/source/styles/pages/forgot-password.scss"
+    },
+    {
+      "outputFile": "www/build/js/channel-link-statistic.js",
+      "inputFile": "www/source/js/pages/account-overview/channel-link-statistic.js"
     }
 ]

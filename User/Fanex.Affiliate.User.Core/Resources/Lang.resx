@@ -2575,4 +2575,46 @@ CONSISTENT PAYMENT</value>
   <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
     <value>Verify Email Address is required</value>
   </data>
+  <data name="AffilateLink" xml:space="preserve">
+    <value>Affiliate Link</value>
+  </data>
+  <data name="SubAffiliateLink" xml:space="preserve">
+    <value>Sub-Aff. Link</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add new...</value>
+  </data>
+  <data name="AffiliateLinkType" xml:space="preserve">
+    <value>Link type</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>Channel</value>
+  </data>
+  <data name="TrackingAndQrCode" xml:space="preserve">
+    <value>Tracking Links &amp; QR Codes</value>
+  </data>
+  <data name="MarketingPage" xml:space="preserve">
+    <value>Marketing Page</value>
+  </data>
+  <data name="EnterChannel" xml:space="preserve">
+    <value>Please enter Channel Name:</value>
+  </data>
+  <data name="AddChannelSuccess" xml:space="preserve">
+    <value>Add channel succeeded</value>
+  </data>
+  <data name="ConfirmActiveLink" xml:space="preserve">
+    <value>Are you sure about this action? By confirming this action, you will active this tracking link.</value>
+  </data>
+  <data name="ConfirmDeactiveLink" xml:space="preserve">
+    <value>Are you sure about this action? By confirming this action, you will deactive this tracking link.</value>
+  </data>
+  <data name="NumberOfLink" xml:space="preserve">
+    <value>No. of Links</value>
+  </data>
+  <data name="CopyQRCode" xml:space="preserve">
+    <value>Copy QR Code</value>
+  </data>
+  <data name="SaveQRCode" xml:space="preserve">
+    <value>Save QR Code</value>
+  </data>
 </root>

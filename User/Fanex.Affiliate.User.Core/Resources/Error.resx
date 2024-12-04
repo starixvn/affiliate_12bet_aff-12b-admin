@@ -216,4 +216,16 @@
   <data name="UserNameMaxLength30" xml:space="preserve">
     <value>User Name no more than 30 characters.</value>
   </data>
+  <data name="ErrInValidAff" xml:space="preserve">
+    <value>Invalid Affiliate</value>
+  </data>
+  <data name="ErrChannelExisted" xml:space="preserve">
+    <value>The channel already exists. Please check again.</value>
+  </data>
+  <data name="ErrInternalError" xml:space="preserve">
+    <value>Internal error. Please contact to administrator.</value>
+  </data>
+  <data name="NameToLong20" xml:space="preserve">
+    <value>Channel Name cannot exceed 20 characters. Please check again</value>
+  </data>
 </root>

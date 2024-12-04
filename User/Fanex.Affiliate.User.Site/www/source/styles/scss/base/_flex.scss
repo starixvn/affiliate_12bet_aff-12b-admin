@@ -41,6 +41,10 @@
     }
 }
 
+.flex.space-between {
+    justify-content: space-between;
+}
+
 @media(min-width: 1024px) {
     .flex {
         .flex-md-3 {

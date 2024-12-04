@@ -216,4 +216,16 @@
   <data name="UserNameMaxLength30" xml:space="preserve">
     <value>មោះគណនីអ្នកប្រើមិនឲ្យលើសពី 30 តួអក្សរ</value>
   </data>
+  <data name="ErrInValidAff" xml:space="preserve">
+    <value>សម្ព័ន្ធភាពមិនត្រឹមត្រូវ</value>
+  </data>
+  <data name="ErrChannelExisted" xml:space="preserve">
+    <value>ឆានែលបានមានរួចហើយ។ សូមពិនិត្យម្តងទៀត។</value>
+  </data>
+  <data name="ErrInternalError" xml:space="preserve">
+    <value>កំហុស​ផ្នែកខាងក្នុង។ សូមទាក់ទងទៅអ្នកគ្រប់គ្រង។</value>
+  </data>
+  <data name="NameToLong20" xml:space="preserve">
+    <value>ឈ្មោះឆានែលមិនឲ្យលើសពី 20 តួអក្សរទេ។ សូមពិនិត្យម្តងទៀត</value>
+  </data>
 </root>

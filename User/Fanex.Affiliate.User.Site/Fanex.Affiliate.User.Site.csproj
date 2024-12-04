@@ -365,7 +365,19 @@
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
     <Content Include="sitemap.xml" />
+    <Content Include="www\build\js\channel-link-statistic.js" />
+    <Content Include="www\build\js\channel-link-statistic.min.js">
+      <DependentUpon>channel-link-statistic.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\generated-qrcode.js" />
+    <Content Include="www\build\js\generated-qrcode.min.js">
+      <DependentUpon>generated-qrcode.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\lib\bootstrap.min.js" />
+    <Content Include="www\build\js\lib\bootstrap2-toggle.js" />
+    <Content Include="www\build\js\lib\bootstrap2-toggle.min.js">
+      <DependentUpon>bootstrap2-toggle.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\build\js\overview.min.js">
       <DependentUpon>overview.js</DependentUpon>
@@ -424,6 +436,7 @@
       <DependentUpon>font.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\Images\account-overview\icon-subaff.png" />
+    <Content Include="www\build\styles\Images\account-overview\qr-disabled.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-US.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.hi-IN.jpg" />
@@ -700,8 +713,10 @@
     <Content Include="www\build\styles\Images\product\live-casino\banner-mobile.png" />
     <Content Include="www\build\styles\Images\talk.svg" />
     <Content Include="www\build\styles\Images\under-maintenance\banner-um.svg" />
+    <Content Include="www\source\js\lib\bootstrap2-toggle.js" />
     <Content Include="www\source\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\source\js\lib\swiper.min.js" />
+    <Content Include="www\source\js\pages\account-overview\channel-link-statistic.js" />
     <Content Include="www\source\js\pages\commission-structure.js" />
     <Content Include="www\source\js\pages\products.js" />
     <Content Include="www\source\js\pages\statistics\marketing-statistics.js" />
@@ -1409,6 +1424,11 @@
     <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_SubAffEarningContent.cshtml" />
     <Content Include="Views\UserPanel\Statistics\MarketingPageStatistics\Index.cshtml" />
     <Content Include="Views\UserPanel\Statistics\StatisticsPartial\_MarketingPageStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_ChannelLinkStatistic.cshtml" />
+    <Content Include="www\source\styles\scss\components\_qr_code.scss" />
+    <Content Include="www\source\styles\scss\components\_table-sticky.scss" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_GeneratedQrCode.cshtml" />
+    <Content Include="www\source\styles\scss\components\_toogle-button.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

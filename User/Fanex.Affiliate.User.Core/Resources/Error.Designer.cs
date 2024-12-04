@@ -97,6 +97,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The channel already exists. Please check again..
+        /// </summary>
+        public static string ErrChannelExisted {
+            get {
+                return ResourceManager.GetString("ErrChannelExisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internal error. Please contact to administrator..
+        /// </summary>
+        public static string ErrInternalError {
+            get {
+                return ResourceManager.GetString("ErrInternalError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Affiliate.
+        /// </summary>
+        public static string ErrInValidAff {
+            get {
+                return ResourceManager.GetString("ErrInValidAff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name no more than 50 characters..
         /// </summary>
         public static string FirstNameMaxLength {
@@ -201,6 +228,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string MessageMaxLength {
             get {
                 return ResourceManager.GetString("MessageMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Channel Name cannot exceed 20 characters. Please check again.
+        /// </summary>
+        public static string NameToLong20 {
+            get {
+                return ResourceManager.GetString("NameToLong20", resourceCulture);
             }
         }
         

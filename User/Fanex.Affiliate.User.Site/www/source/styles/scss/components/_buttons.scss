@@ -145,3 +145,13 @@
         display: none;
     }
 }
+
+.btn-transparent {
+    background-color: transparent;
+}
+
+.btn.btn-transparent {
+    :hover {
+        color: cornflowerblue;
+    }
+}

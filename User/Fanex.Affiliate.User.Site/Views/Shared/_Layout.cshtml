@@ -5,13 +5,11 @@
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var settingService = DependencyResolver.Current.GetService<IAppSetting>();
-    var systemService = DependencyResolver.Current.GetService<ISystemService>();
-    var userSession = sessionService.UserSession;
-    var languageList = systemService.GetSystemTargetLanguages()
-                                        .Where(l => !l.LanguageCode.Equals("en-GB") && !l.LanguageCode.Equals("te-IN"));
+    var languageService = DependencyResolver.Current.GetService<ISystemService>();
+    var languageList = languageService.GetLanguageList()
+                                        .Where(l => !l.Code.Equals("en-GB") && !l.Code.Equals("te-IN"));
     var currentLanguage = sessionService.CurrentLanguage;
-    var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(currentLanguage))?.NativeLanguage;
-    var path = HttpContext.Current.Request.Path;
+    var languageNativeName = languageList.FirstOrDefault(l => l.Code.Equals(currentLanguage))?.NativeName;
     var isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated && sessionService.UserSession != null;
 
     var isProduction = settingService.IsProduction;
@@ -129,9 +127,9 @@
                                         <ul class="list-unstyled language-list">
                                             @foreach (var language in languageList)
                                             {
-                                                var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.LanguageCode) ? SystemLanguage.SupportedLanguage[language.LanguageCode] : language.ShortedCode;
+                                                var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.Code) ? SystemLanguage.SupportedLanguage[language.Code] : language.ShortedCode;
                                                 <li>
-                                                    <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.LanguageCode"></i>@language.NativeLanguage</a>
+                                                    <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
                                                 </li>
                                             }
                                         </ul>

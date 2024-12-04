@@ -88,5 +88,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         string MemberSiteApiAuthenticationKey { get; }
 
         bool IsUseMemberSiteProxy { get; }
+
+        string SubAffTextLinkTemplate { get; }
     }
 }

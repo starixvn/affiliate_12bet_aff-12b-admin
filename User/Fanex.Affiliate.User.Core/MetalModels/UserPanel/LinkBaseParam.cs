@@ -9,10 +9,10 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public int AffId { get; set; }
 
         [SpParam(Ignored = true)]
-        public string TextLinkTemplate { get; set; }
+        public int AffCode { get; set; }
 
         [SpParam(Ignored = true)]
-        public string SelectedTargetCountry { get; set; }
+        public string TextLinkTemplate { get; set; }
 
         [SpParam(Ignored = true)]
         public string SelectedPage { get; set; }
@@ -22,5 +22,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         [SpParam(Ignored = true)]
         public int SelectedDomainId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string SelectedChannel { get; set; }
     }
 }

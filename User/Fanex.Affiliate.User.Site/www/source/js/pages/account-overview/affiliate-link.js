@@ -1,69 +1,84 @@
 ﻿var AffiliateLink = (function ($) {
+
+    function handleFalseResponse(response) {
+        let data;
+        switch (response.status) {
+            case 403:
+                data = response.json();
+                alert(data.ErrMsg);
+                location.reload();
+                break;
+            default:
+                alert('Internal error');
+                break;
+        }
+    }
+
     var _me = {
         initialize: function () {
             _me.initEvent();
-            _me.resiterQrcodeEvent();
+            _me.renderLinkChannelStatisticPage();
         },
 
         initEvent: function () {
-            $("#btnMarketingSubmit").on("click", function () {
-                _me.generateTextLink();
+            $("#AffLinkType").change(function () {
+                let selectedVal = $(this).val();
+                let selectedItem = window.searchOption.RefLinks.find(r => r.AffLinkType == selectedVal);
+
+                let domains = selectedItem.Domains.map(item => new Option(item.DomainName, item.DomainId));
+                let pages = selectedItem.SitePages.map(item => new Option(item.PageName, item.PageCode));
+
+                $("#Page").empty().append(pages);
+                $("#Domain").empty().append(domains);
+            })
+
+            $("#btnGenQRCode").click(function () {
+                Site.showLoader();
+                Promise.all([_me.renderLinkChannelStatisticPage(), _me.renderQrCodePage()])
+                    .then(() => {
+                        Site.hideLoader();
+                        MarketingBase.registerToggleLinkEvent(_me.renderLinkChannelStatisticPage);
+                        MarketingBase.resiterQrcodeEvent();
+                    })
             });
+
+            MarketingBase.initChannelSelectEvent();
         },
 
-        resiterQrcodeEvent: function () {
-            new ClipboardJS('.btn-copy-link');
-
-            new ClipboardJS('.btn-copy-qr', {
-                text: function (trigger) {
-                    let imgTag = $(trigger).nextAll("img")[0];
-                    return imgTag.outerHTML;
-                }
-            });
-
-            $('.btn-save-img').click(function () {
-                let base64Img = $(this).nextAll("img").attr("src");
-                let downloadTag = document.createElement("a");
-                let downloadName = $(this).data("image-name");
-                downloadTag.href = base64Img;
-                downloadTag.download = downloadName;
-                downloadTag.click();
-            });
-        },
-        generateTextLink: function () {
-            var params = _me.getLinkGenerationParam();
-            _me.getTextLink(params);
+        renderLinkChannelStatisticPage: function () {
+            return MarketingBase.renderLinkChannelStatisticPage()
+                .then((response) => {
+                    if (response.ok)
+                        return response.text()
+                    else {
+                        handleFalseResponse(response);
+                    }
+                })
+                .then(html => {
+                    $("#link-statistic").empty().html(html);
+                })
         },
 
-        getLinkGenerationParam: function () {
-            return {
-                selectedTargetCountry: $("#TargetCountry").val(),
-                selectedDomainId: $("#Domain").val(),
-                selectedLanguage: $("#Language").val(),
-                selectedPage: $("#MemberSitePage").val()
+        renderQrCodePage: function () {
+            let param = {
+                selectedLanguage: $('#Language').val(),
+                selectedPage: $('#Page').val(),
+                selectedChannel: $('#Channel').val(),
+                selectedDomainId: $('#Domain').val(),
+                selectedLinkType: $('#AffLinkType').val()
             }
+            return MarketingBase.renderQrCodePage(param)
+                .then((response) => {
+                    if (response.ok)
+                        return response.text()
+                    else {
+                        handleFalseResponse(response);
+                    }
+                })
+                .then(html => {
+                    $("#qr-code").empty().html(html);
+                });
         },
-
-        getTextLink: function (params) {
-            var that = this;
-            $.ajax({
-                type: "GET",
-                dataType: "html",
-                cache: false,
-                data: params,
-                url: Site.resolveRelativeLangUrl("UserPanel/AffiliateLink/GenerateLink"),
-                success: function (response) {
-                    $("#textLinkList").html(response);
-                    that.resiterQrcodeEvent();
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
-                }
-            });
-        }
     };
 
     return _me;

@@ -1,33 +1,45 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
     using System.Collections.Generic;
+    using System.Linq;
     using DTO;
-    using DTO.UserPanel.AccountOverview;
+    using DTO.UserPanel;
     using DTO.UserPanel.MediaGallery;
     using Enum;
+    using MetalModels;
     using MetalModels.UserPanel;
+    using ViewModels.UserPanel.Marketing;
 
     public interface IMarketingService
     {
-        IEnumerable<LandingPage> GetLandingPageList(bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink);
+        IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, AffiliateLinkType linkType, bool isInternal = false);
 
+        IEnumerable<LanguageType> GetLanguageList(bool isInternal);
 
+        IEnumerable<CurrencyType> GetCurrencyList(bool isInternal);
 
+        IEnumerable<BannerType> GetBannerTypeList(bool isInternal = false);
 
-        IEnumerable<TargetProduct> GetTargetProductList(bool isInternal);
+        IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal = false);
 
-        IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal);
+        IEnumerable<Domain> GetAvailableDomainList(int affId, AffiliateLinkType linkType, bool isInternal = false);
 
-        IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, int affId, bool isInternal);
+        IDictionary<string, LanguageLinkViewModel> GenerateLinkList(LinkGeneratingParam linkGeneratedParam);
 
-        IEnumerable<AffiliateLink> GenerateLinkList(LinkGenerationParam linkGenerationParam);
+        IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
 
-        IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam);
+        IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
 
-        IEnumerable<LandingPage> GetLandingPageList(string targetCountry, string commGroupName, bool isInternal);
+        IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink);
 
-        ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param);
+        ResultInfo<MarketingChannel> AddMarketingChannel(int userId, string channelName);
 
-        string GetTargetCountryCodeByAff(int affId);
+        IDictionary<string, string> GetChannels(int userId);
+
+        string GetTextLinkTemplate(AffiliateLinkType linkType);
+
+        ResultInfo ToggleMarketingLink(MarketingLinkParam param);
+
+        IEnumerable<IGrouping<string, MarketingChannelLink>> GetUsingMarketingLinks(int userId);
     }
 }

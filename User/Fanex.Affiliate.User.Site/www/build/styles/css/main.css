@@ -274,6 +274,9 @@ input[type="checkbox"], input[type="radio"] {
   .flex .flex-lg-9 {
     width: 75%; } }
 
+.flex.space-between {
+  justify-content: space-between; }
+
 @media (min-width: 1024px) {
   .flex .flex-md-3 {
     width: 25%; }
@@ -1455,6 +1458,12 @@ label.require:after {
   @media (min-width: 992px) {
     .btn-login-mobile {
       display: none; } }
+
+.btn-transparent {
+  background-color: transparent; }
+
+.btn.btn-transparent :hover {
+  color: cornflowerblue; }
 
 .table-medium {
   width: 70%; }

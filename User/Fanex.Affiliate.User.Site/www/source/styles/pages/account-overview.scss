@@ -2,6 +2,9 @@
 @import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
 @import "../scss/components/pager";
+@import '../scss/components/table-sticky';
+@import '../scss/components/toogle-button';
+@import '../scss/components/qr_code';
 
 .account-overview {
     .menu {
@@ -429,6 +432,30 @@
 
         & .dashboard-section-col {
             width: 45%;
+        }
+    }
+}
+
+
+.wrapper-layout-after-login {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+
+    @include TableAndMobile {
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+
+    @include Mobile {
+        gap: 12px;
+    }
+
+    .column {
+        width: 50%;
+
+        @include TableAndMobile {
+            width: 100%;
         }
     }
 }
