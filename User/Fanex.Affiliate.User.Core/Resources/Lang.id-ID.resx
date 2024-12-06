@@ -2366,4 +2366,10 @@ PEMBAYARAN KONSISTEN</value>
   <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
     <value>Ketik ulang e-mail diperlukan</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>Sub Category</value>
+  </data>
 </root>

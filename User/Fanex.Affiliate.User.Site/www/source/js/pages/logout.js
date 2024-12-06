@@ -20,7 +20,6 @@
                 dataType: "html",
                 cache: false,
                 success: function (result) {
-                    console.log(result);
                     $("#groupAuth").append(`<div id="affFeedback">${result}</div>`);
                 },
                 complete: function (jqXHR, textStatus) {

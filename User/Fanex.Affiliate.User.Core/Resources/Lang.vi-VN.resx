@@ -2495,4 +2495,16 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="SaveQRCode" xml:space="preserve">
     <value>Lưu Mã QR</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>Danh mục phụ</value>
+  </data>
+  <data name="SearchAndGenQR" xml:space="preserve">
+    <value>Tìm và tạo</value>
+  </data>
+  <data name="MediaGallery" xml:space="preserve">
+    <value>Thư viện hình ảnh</value>
+  </data>
 </root>

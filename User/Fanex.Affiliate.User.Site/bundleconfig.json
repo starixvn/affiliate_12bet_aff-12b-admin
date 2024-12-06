@@ -56,21 +56,21 @@
       "www/source/js/pages/account-overview/player-detail.js"
     ]
   },
-  //{
-  //  "outputFileName": "www/build/js/overview.js",
-  //  "inputFiles": [
-  //    "www/source/js/pages/account-overview/overview.js"
-  //  ]
-  //},
-  //{
-  //  "outputFileName": "www/build/js/mediagallery.js",
-  //  "inputFiles": [
-  //    "www/source/js/components/pager.js",
-  //    "www/source/js/components/clipboard.js",
-  //    "www/source/js/pages/account-overview/marketingbase.js",
-  //    "www/source/js/pages/account-overview/mediagallery.js"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/js/overview.js",
+    "inputFiles": [
+      "www/source/js/pages/account-overview/overview.js"
+    ]
+  },
+  {
+    "outputFileName": "www/build/js/mediagallery.js",
+    "inputFiles": [
+      "www/source/js/components/clipboard.js",
+      "www/source/js/components/pager.js",
+      "www/source/js/pages/account-overview/marketingbase.js",
+      "www/source/js/pages/account-overview/mediagallery.js"
+    ]
+  },
   {
     "outputFileName": "www/build/js/affiliate-link.js",
     "inputFiles": [

@@ -379,6 +379,8 @@
       <DependentUpon>bootstrap2-toggle.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
+    <Content Include="www\build\js\mediagallery.js" />
+    <Content Include="www\build\js\mediagallery.min.js" />
     <Content Include="www\build\js\overview.min.js">
       <DependentUpon>overview.js</DependentUpon>
     </Content>
@@ -871,10 +873,6 @@
     <Content Include="www\build\js\login.min.js">
       <DependentUpon>login.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\mediagallery.js" />
-    <Content Include="www\build\js\mediagallery.min.js">
-      <DependentUpon>mediagallery.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\member.js" />
     <Content Include="www\build\js\member.min.js">
       <DependentUpon>member.js</DependentUpon>
@@ -1266,7 +1264,6 @@
     <Content Include="Views\UserPanel\AccountOverView\Partial\_GenerateLinkForm.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Partial\_SearchForm.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Partial\_QrCodeLinkList.cshtml" />
-    <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
     <Content Include="www\source\styles\scss\base\_flex.scss" />
     <Content Include="Views\UserPanel\NewsLetter\Index.cshtml" />
     <Content Include="Views\UserPanel\NewsLetter\Preview.cshtml" />
@@ -1429,6 +1426,7 @@
     <Content Include="www\source\styles\scss\components\_table-sticky.scss" />
     <Content Include="Views\UserPanel\AccountOverView\Partial\_GeneratedQrCode.cshtml" />
     <Content Include="www\source\styles\scss\components\_toogle-button.scss" />
+    <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

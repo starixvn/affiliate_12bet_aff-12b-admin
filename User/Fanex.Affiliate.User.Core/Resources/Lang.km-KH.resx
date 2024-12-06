@@ -2515,4 +2515,16 @@
   <data name="SaveQRCode" xml:space="preserve">
     <value>រក្សាទុកQRកូដ</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>ប្រភេទ</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>អនុ ប្រភេទ</value>
+  </data>
+  <data name="SearchAndGenQR" xml:space="preserve">
+    <value>ស្វែងរក និង បង្កើត</value>
+  </data>
+  <data name="MediaGallery" xml:space="preserve">
+    <value>រូបភាពប្រព័ន្ធផ្សព្វផ្សាយ</value>
+  </data>
 </root>

@@ -7,6 +7,7 @@
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using Constants;
+    using DTO.UserPanel;
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
@@ -65,29 +66,29 @@
             return Json(sizeList, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpGet]
-        //[AjaxOnly]
-        //public ActionResult GetBanner(MarketingBannerParam bannerParam)
-        //{
-        //    var userSession = SessionService.UserSession;
-        //    var selectedDomain = MarketingService.GetAvailableDomainList(userSession.AffId, bannerParam.TargetId, SessionService.IsInternal)
-        //                                            .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetBanner(MarketingBannerParam bannerParam)
+        {
+            var userSession = SessionService.UserSession;
+            var selectedDomain = MarketingService.GetAvailableDomainList(userSession.AffId, bannerParam.TargetId, SessionService.IsInternal)
+                                                    .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
 
-        //    var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
+            var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
-        //    bannerParam.AffId = userSession.AffId;
-        //    bannerParam.AffCode = userSession.AffCode;
-        //    bannerParam.AffType = userSession.AffType;
-        //    bannerParam.SelectedDomain = selectedDomain;
-        //    bannerParam.TextLinkTemplate = MarketingService.GetTextLinkTemplate(bannerParam.TargetId);
-        //    bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain;
-        //    bannerParam.Language = GetEnglishName(bannerParam.Language);
+            bannerParam.AffId = userSession.AffId;
+            bannerParam.AffCode = userSession.AffCode;
+            bannerParam.AffType = userSession.AffType;
+            bannerParam.SelectedDomain = selectedDomain;
+            bannerParam.TextLinkTemplate = MarketingService.GetTextLinkTemplate(bannerParam.TargetId);
+            bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain;
+            bannerParam.Language = GetEnglishName(bannerParam.Language);
 
-        //    var bannerList = GetBannerList(bannerParam);
-        //    ViewBag.TotalItem = bannerParam.Nrows;
+            var bannerList = GetBannerList(bannerParam);
+            ViewBag.TotalItem = bannerParam.Nrows;
 
-        //    return View("~/Views/UserPanel/AccountOverview/Partial/_BannerList.cshtml", bannerList);
-        //}
+            return View("~/Views/UserPanel/AccountOverview/Partial/_BannerList.cshtml", bannerList);
+        }
 
         [HttpGet]
         [AjaxOnly]
@@ -129,6 +130,7 @@
             }
             var qrCode = qrCodes.First();
             var imageFile = Convert.FromBase64String(qrCode.Value.QrCode);
+
             return File(imageFile, "image/png", $"{param.SelectedLanguage}.png");
         }
 
@@ -145,6 +147,7 @@
                 });
             }
             var userId = SessionService.UserSession.AffId;
+
             return Json(MarketingService.AddMarketingChannel(userId, channelName));
         }
 
@@ -183,14 +186,15 @@
             return View("~/Views/UserPanel/AccountOverview/Partial/_ChannelLinkStatistic.cshtml", MarketingService.GetUsingMarketingLinks(userId));
         }
 
-        //private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
-        //{
-        //    if (bannerParam.SelectedDomain == null)
-        //    {
-        //        return new List<MarketingItem>();
-        //    }
-        //    return MarketingService.GetBannerList(bannerParam);
-        //}
+        private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        {
+            if (bannerParam.SelectedDomain == null)
+            {
+                return new List<MarketingItem>();
+            }
+
+            return MarketingService.GetBannerList(bannerParam);
+        }
 
         private IDictionary<string, QrCodeLinkModel> GenerateQrCodeViewModel(QrCodeParam param, bool includePrefix = true)
         {

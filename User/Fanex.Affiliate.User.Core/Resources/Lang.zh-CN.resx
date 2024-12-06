@@ -2387,4 +2387,10 @@
   <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
     <value>确认电子邮箱地址必需</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>种类</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>附属分类</value>
+  </data>
 </root>

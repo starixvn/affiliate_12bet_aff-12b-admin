@@ -314,6 +314,8 @@
     <Compile Include="Controllers\UserPanel\DailyEarningController.cs" />
     <Compile Include="Controllers\UserPanel\NewsLetterController.cs" />
     <Compile Include="Controllers\UserPanel\SubAffEarningController.cs" />
+    <Compile Include="Controllers\UserPanel\SubAffLinkController.cs" />
+    <Compile Include="Controllers\UserPanel\SubAffMediaGalleryController.cs" />
     <Compile Include="DTO\Apis\AccountApiResult.cs" />
     <Compile Include="DTO\Apis\ApiResultInfo.cs" />
     <Compile Include="DTO\Apis\CustomerBalanceInfo.cs" />
@@ -359,6 +361,7 @@
     <Compile Include="ViewModels\UserPanel\BreadcumViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LanguageLinkViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingLinkViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\MediaGallerySearchFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\RefLinkViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\MyAccountViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PlayerDetailViewModel.cs" />

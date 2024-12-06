@@ -2617,4 +2617,16 @@ CONSISTENT PAYMENT</value>
   <data name="SaveQRCode" xml:space="preserve">
     <value>Save QR Code</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>Sub Category</value>
+  </data>
+  <data name="SearchAndGenQR" xml:space="preserve">
+    <value>Search and Generate</value>
+  </data>
+  <data name="MediaGallery" xml:space="preserve">
+    <value>Media Gallery</value>
+  </data>
 </root>

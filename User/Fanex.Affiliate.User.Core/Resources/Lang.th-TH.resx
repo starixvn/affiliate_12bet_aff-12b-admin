@@ -2394,4 +2394,10 @@
   <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
     <value>ต้องระบุอีเมล์แอดเดรสค่ะ</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>หัวข้อ</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>ประเภท</value>
+  </data>
 </root>

@@ -1295,6 +1295,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cayman Islands .
         /// </summary>
         public static string CaymanIslands {
@@ -3635,6 +3644,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string MediaGallery {
+            get {
+                return ResourceManager.GetString("MediaGallery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message.
         /// </summary>
         public static string Message {
@@ -5553,6 +5571,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search and Generate.
+        /// </summary>
+        public static string SearchAndGenQR {
+            get {
+                return ResourceManager.GetString("SearchAndGenQR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select One.
         /// </summary>
         public static string SelectOne {
@@ -5954,6 +5981,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SubAffiliateLink {
             get {
                 return ResourceManager.GetString("SubAffiliateLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub Category.
+        /// </summary>
+        public static string SubCategory {
+            get {
+                return ResourceManager.GetString("SubCategory", resourceCulture);
             }
         }
         
