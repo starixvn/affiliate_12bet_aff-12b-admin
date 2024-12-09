@@ -31,6 +31,9 @@ namespace Fanex.Affiliate.Link.Constants
         private const string AFF13065_ID = "92040153";
         private const string AFF7782_ID = "92034870";
         private const string AFF16050_ID = "92043138";
+        
+        private const string AFF16343_ID = "92043431";
+        private const string AFF16344_ID = "92043432";
 
         public static readonly IReadOnlyDictionary<string, string> FakeSpecificDomainByAffOnLocal = new Dictionary<string, string>
         {
@@ -63,6 +66,9 @@ namespace Fanex.Affiliate.Link.Constants
             [AFF13065_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
             [AFF7782_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
             [AFF16050_ID] = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com",
+            
+            [AFF16343_ID] = "aff-12bet.nexdev.net/12BetGo,go.9012ijk.com",
+            [AFF16344_ID] = "aff-12bet.nexdev.net/12BetGo,go.sbc31.com",
         };
     }
 }
