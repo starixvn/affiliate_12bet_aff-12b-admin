@@ -224,12 +224,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Apis\IAccountApi.cs" />
     <Compile Include="Apis\ILicenseeApi.cs" />
-    <Compile Include="Apis\ILicenseeCustDbApi.cs" />
     <Compile Include="BusinessService\AccountService.cs" />
-    <Compile Include="BusinessService\Apis\ILicenseeCustDbApiService.cs" />
-    <Compile Include="BusinessService\Apis\LicenseeCustDbApiService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
     <Compile Include="BusinessService\CaptchaService.cs" />
     <Compile Include="BusinessService\CommissionReportService.cs" />
@@ -266,7 +262,6 @@
     <Compile Include="BusinessService\TwoFactorAuthService.cs" />
     <Compile Include="BusinessService\UnderMaintenanceService.cs" />
     <Compile Include="BusinessService\VerificationService.cs" />
-    <Compile Include="Constants\ActionName.cs" />
     <Compile Include="Constants\Apis\CustomerStatus.cs" />
     <Compile Include="Constants\AppContact.cs" />
     <Compile Include="Constants\CacheKey.cs" />
@@ -275,7 +270,6 @@
     <Compile Include="Constants\CommGroupName.cs" />
     <Compile Include="Constants\CommissionType.cs" />
     <Compile Include="Constants\ControllerName.cs" />
-    <Compile Include="Constants\DbParam.cs" />
     <Compile Include="Constants\DefaultValue.cs" />
     <Compile Include="Constants\EarningByType.cs" />
     <Compile Include="Constants\ErrCodes.cs" />
@@ -287,7 +281,6 @@
     <Compile Include="Constants\Product.cs" />
     <Compile Include="Constants\RequestPage.cs" />
     <Compile Include="Constants\SpecificDomain.cs" />
-    <Compile Include="Constants\Statistics.cs" />
     <Compile Include="Constants\RouteName.cs" />
     <Compile Include="Constants\SessionKey.cs" />
     <Compile Include="Constants\TransType.cs" />
@@ -312,7 +305,6 @@
     <Compile Include="Controllers\UserPanel\SubAffEarningController.cs" />
     <Compile Include="Controllers\UserPanel\SubAffLinkController.cs" />
     <Compile Include="Controllers\UserPanel\SubAffMediaGalleryController.cs" />
-    <Compile Include="DTO\Apis\AccountApiResult.cs" />
     <Compile Include="DTO\Apis\ApiResultInfo.cs" />
     <Compile Include="DTO\Apis\CustomerBalanceInfo.cs" />
     <Compile Include="DTO\Apis\MemberSiteCustomerInfo.cs" />
@@ -334,7 +326,6 @@
     <Compile Include="Filters\JsonHandlerAttribute.cs" />
     <Compile Include="Infrastructure\AuthenticatedHttpClientHandler.cs" />
     <Compile Include="Infrastructure\JsonNetResult.cs" />
-    <Compile Include="MetalModels\Apis\AccountParam.cs" />
     <Compile Include="MetalModels\Apis\TransferMoneyParam.cs" />
     <Compile Include="MetalModels\MarketingLinkParam.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
@@ -390,7 +381,6 @@
     <Compile Include="Controllers\UserPanel\StatisticsController.cs" />
     <Compile Include="CoreService\ISessionService.cs" />
     <Compile Include="CoreService\SessionService.cs" />
-    <Compile Include="DTO\Apis\LicenseeCustDbApiResult.cs" />
     <Compile Include="DTO\ContactApp.cs" />
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
     <Compile Include="DTO\DBMode.cs" />
@@ -422,7 +412,6 @@
     <Compile Include="Infrastructure\HttpRequestParserHandler.cs" />
     <Compile Include="Infrastructure\IDateTimeProvider.cs" />
     <Compile Include="Infrastructure\IHttpRequestParserHandler.cs" />
-    <Compile Include="MetalModels\Apis\LicenseeCustDbApiParam.cs" />
     <Compile Include="MetalModels\Email\EmailSignUpParam.cs" />
     <Compile Include="MetalModels\UserPanel\CopiedBannerCounterParam.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
@@ -439,7 +428,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Helper.cs" />
     <Compile Include="Utilities\HttpClientUtility.cs" />
     <Compile Include="Utilities\IHttpClientUtility.cs" />
     <Compile Include="Utilities\LogHelper.cs" />
@@ -455,7 +443,6 @@
     <Compile Include="DTO\UserPanel\AffiliateCommission.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
-    <Compile Include="DTO\UserPanel\DepositCustomerInfo.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\LandingPage.cs" />
     <Compile Include="DTO\UserPanel\Statistics\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\Banner.cs" />
@@ -504,7 +491,6 @@
     <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
     <Compile Include="MetalModels\SendCodeParam.cs" />
     <Compile Include="MetalModels\UserPanel\MemberParam.cs" />
-    <Compile Include="MetalModels\UserPanel\DepositPlayerAccountParam.cs" />
     <Compile Include="MetalModels\UserPanel\MessageHistoryParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentCreationParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentParam.cs" />

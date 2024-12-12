@@ -94,12 +94,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return resultInfo;
         }
 
-        public bool IsInDateRange()
-        {
-            var currentDay = _dateTimeProvider.Now.Day;
-            return (currentDay >= BeginDay && currentDay <= EndDay);
-        }
-
         private async Task<ResultInfo> ValidatePaymentRequest(PaymentCreationParam paymentCreationParam)
         {
             var resultInfo = new ResultInfo { IsOk = false };

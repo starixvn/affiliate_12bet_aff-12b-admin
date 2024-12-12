@@ -6,7 +6,6 @@ using System.Web;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.System;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Repository;
 
@@ -27,9 +26,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _sessionService = sessionService;
             _cacheService = cacheService;
         }
-
-        public string GetCurrentLanguage()
-            => Thread.CurrentThread.CurrentCulture.Name;
 
         public string GetFavoriteLanguage()
         {
@@ -53,59 +49,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return SystemLanguage.GetCurrentShortedLanguage(favoriteLanguage);
         }
 
-        public IEnumerable<TargetCountry> GetSystemTargetCountries()
-        {
-            var isInternal = _sessionService.IsInternal;
-            var cacheKey = isInternal ? CacheKey.InternalTargetCountryList : CacheKey.TargetCountryList;
-
-            var targetCountryList = _cacheService.Get<IEnumerable<TargetCountry>>(cacheKey);
-            if (targetCountryList == null)
-            {
-                targetCountryList = _systemRepository.GetTargetCountryList(isInternal, _sessionService.UserSession?.UserId);
-                _cacheService.Set(cacheKey, targetCountryList);
-            }
-
-            return targetCountryList ?? new List<TargetCountry>();
-        }
-
-        public IEnumerable<TargetLanguage> GetSystemTargetLanguages()
-        {
-            var isInternal = _sessionService.IsInternal;
-            var cacheKey = isInternal ? CacheKey.InternalTargetLanguageList : CacheKey.TargetLanguageList;
-
-
-            var targetLanguageList = _cacheService.Get<IEnumerable<TargetLanguage>>(cacheKey);
-            if (targetLanguageList == null)
-            {
-                targetLanguageList = GetAllSystemTargetLanguages().Where(l => !l.LanguageCode.Equals("hi") && !l.LanguageCode.Equals("te-IN"));
-                _cacheService.Set(cacheKey, targetLanguageList);
-            }
-
-            return targetLanguageList ?? new List<TargetLanguage>();
-        }
-
-
-        public IEnumerable<TargetLanguage> GetAllSystemTargetLanguages()
-        {
-            var isInternal = _sessionService.IsInternal;
-            var cacheKey = isInternal ? CacheKey.InternalAllTargetLanguageList : CacheKey.AllTargetLanguageList;
-
-
-            var targetLanguageList = _cacheService.Get<IEnumerable<TargetLanguage>>(cacheKey);
-            if (targetLanguageList == null)
-            {
-                targetLanguageList = _systemRepository.GetTargetLanguageListByCountry(isInternal, userId: _sessionService.UserSession?.UserId);
-                _cacheService.Set(cacheKey, targetLanguageList);
-            }
-
-            return targetLanguageList ?? new List<TargetLanguage>();
-        }
-
-        public IEnumerable<TargetLanguage> GetSystemTargetLanguagesByCountry(string targetCountry)
-        {
-            return _systemRepository.GetTargetLanguageListByCountry(_sessionService.IsInternal, targetCountry, _sessionService.UserSession?.UserId);
-        }
-
         public IEnumerable<Language> GetLanguageList(bool? isInternal = null)
         {
             var isForInternal = isInternal ?? _sessionService.IsInternal;
@@ -113,7 +56,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (languageList == null)
             {
-                languageList = _systemRepository.GetLanguageList(isForInternal);
+                languageList = _systemRepository.GetLanguageList(isForInternal).Where(l => !l.Code.Equals("hi") && !l.Code.Equals("te-IN"));
                 _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 

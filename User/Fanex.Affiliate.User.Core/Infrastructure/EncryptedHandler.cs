@@ -24,13 +24,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             _httpRequestParserHandle = parserHanlder;
         }
 
-        public bool IsReusable
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool IsReusable => true;
 
         public void ProcessRequest(HttpContext context)
         {

@@ -15,9 +15,5 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         Task<ResultInfo> CheckAndUnlockUserIfLocked(string userName);
 
         Task<MemberSiteCustomerInfo> GetMemberSiteCustomer(string userName);
-
-
-        // Need Removed
-        Task<ResultInfo> CheckPlayerAccountIsActivedAsync(int affId, string language);
     }
 }

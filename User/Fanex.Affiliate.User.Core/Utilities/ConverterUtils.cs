@@ -21,9 +21,9 @@ namespace Fanex.Affiliate.User.Core.Utilities
         public static string ToHex(byte[] buff)
         {
             var builder = new StringBuilder();
-            for (int i = 0; i < buff.Length; i++)
+            foreach (var t in buff)
             {
-                builder.Append(buff[i].ToString("X2")); // hex format
+                builder.Append(t.ToString("X2")); // hex format
             }
 
             return builder.ToString();

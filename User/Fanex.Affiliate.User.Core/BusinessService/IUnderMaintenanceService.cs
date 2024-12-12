@@ -5,7 +5,5 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public interface IUnderMaintenanceService
     {
         UnderMaintenanceTime GetUnderMaintenanceTime();
-
-        bool IsUnderMaintenance();
     }
 }

@@ -33,8 +33,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string EmailBackgroundUrl => GetValue("EmailBackgroundUrl");
 
-        public string MediaScriptUrl => GetValue("MediaScriptUrl");
-
         public string MailContact => GetValue("MailContact");
 
         public string MailCc => GetValue("MailCc");
@@ -59,10 +57,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string ResourceDomain => GetValue("ResourceDomain");
 
-        public string CcMail => GetValue("CcMail");
-
-        public string BccMail => GetValue("BccMail");
-
         public string AppMailAddress => GetValue("app_mail_address");
 
         public string AppMailId => GetValue("app_mail_id");
@@ -70,14 +64,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
         public IEnumerable<string> MarketingForCommGroups => GetValue("MarketingForCommGroups").Split(',');
 
         public IEnumerable<string> MarketingLandingPages => GetValue("MarketingLandingPages").Split(',');
-
-        public string LicenseeCustDbApiUrl => GetValue("LicenseeCustDbApiUrl");
-
-        public bool IsUseProxyToGetLicenseeCustDbApi => Convert.ToBoolean(GetValue("IsUseProxyToGetLicenseeCustDbApi"));
-
-        public string LicenseeCustDbApiProxyUrl => GetValue("LicenseeCustDbApiProxyUrl");
-
-        public string LicenseeCustDbApiAuthenKey => GetValue("LicenseeCustDbApiAuthenKey");
 
         public string MemberSiteApiUrl => GetValue("MemberSiteApiUrl");
 

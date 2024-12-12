@@ -20,10 +20,5 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             return _maintenaceService.GetUnderMaintenanceTime();
         }
-
-        public bool IsUnderMaintenance()
-        {
-            return _maintenaceService.IsUnderMaintenance();
-        }
     }
 }

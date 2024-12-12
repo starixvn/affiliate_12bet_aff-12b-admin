@@ -1,66 +1,17 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.System;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
+    using System.Collections.Generic;
+    using DTO.UserPanel.Statistics;
+    using MetalModels.UserPanel;
+    using Repository.UserPanel;
+
     public class StatisticsService : IStatisticsService
     {
         private readonly IStatisticsRepository _statisticsRepository;
-        private readonly ISystemService _systemService;
-        private readonly IMemoryCacheService _cacheService;
-        private readonly IAppSetting _appSetting;
 
-        public StatisticsService(
-            IStatisticsRepository statisticsRepository,
-            ISystemService systemService,
-            IMemoryCacheService cacheService,
-            IAppSetting appSetting)
+        public StatisticsService(IStatisticsRepository statisticsRepository)
         {
             _statisticsRepository = statisticsRepository;
-            _systemService = systemService;
-            _cacheService = cacheService;
-            _appSetting = appSetting;
-        }
-
-        public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal)
-        {
-            var landingPages = _cacheService.Get<IEnumerable<LandingPage>>(CacheKey.LandingPageList);
-
-            if (landingPages == null)
-            {
-                landingPages = _statisticsRepository.GetLandingPageList(isInternal);
-
-                var filteredLandingPageList = StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName);
-
-                _cacheService.Set(CacheKey.LandingPageList, filteredLandingPageList);
-            }
-
-            return landingPages ?? new List<LandingPage>();
-        }
-
-        public IEnumerable<SelectListItem> GetCountryList(bool isInternal)
-        {
-            var countryList = _statisticsRepository.GetCountryList(isInternal);
-
-            return StatisticsHelper.GetCountryList(countryList);
-        }
-
-        public string GetCountryCodes(bool isInternal)
-        {
-            var countryList = _statisticsRepository.GetCountryList(isInternal);
-
-            return string.Join(",", countryList.Select(c => c.CountryCode));
         }
 
         public IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam)

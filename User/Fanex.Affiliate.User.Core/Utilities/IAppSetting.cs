@@ -31,8 +31,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string EmailBackgroundUrl { get; }
 
-        string MediaScriptUrl { get; }
-
         string MailContact { get; }
 
         string MailCc { get; }
@@ -57,10 +55,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string ResourceDomain { get; }
 
-        string CcMail { get; }
-
-        string BccMail { get; }
-
         string AppMailId { get; }
 
         string AppMailAddress { get; }
@@ -68,14 +62,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
         IEnumerable<string> MarketingForCommGroups { get; }
 
         IEnumerable<string> MarketingLandingPages { get; }
-
-        string LicenseeCustDbApiUrl { get; }
-
-        bool IsUseProxyToGetLicenseeCustDbApi { get; }
-
-        string LicenseeCustDbApiProxyUrl { get; }
-
-        string LicenseeCustDbApiAuthenKey { get; }
 
         string MemberSiteApiUrl { get; }
 

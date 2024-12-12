@@ -48,11 +48,5 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             return await HttpClientUtility.GetContent(NEWSLETTER_CONTENT_PATH, item.FileName);
         }
-
-        public bool HasNewCurrentTime()
-        {
-            var items = Repository.GetNewsLettersByDate(DateTime.Now);
-            return items.Any();
-        }
     }
 }

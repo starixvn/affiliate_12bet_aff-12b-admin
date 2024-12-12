@@ -27,16 +27,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public DepositCustomerInfo GetDepositPlayerAccount(string playerUserName)
-        {
-            const string uSpKey = "Aff_Deposit_GetCustDataForCreateIBCACByUserName";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                return db.QueryEntity<DepositCustomerInfo>(new { deposit_username = playerUserName });
-            }
-        }
-
         public ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam)
         {
             const string uSpKey = "Aff_User_UserInfoUpd";
@@ -109,47 +99,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             {
                 return db.QueryEntity<UserInfo>(new { affId });
             }
-        }
-
-        public PlayerAccountCheckingResult CheckPlayerAccountIsActived(int affId, string language)
-        {
-            var result = new PlayerAccountCheckingResult();
-            const string uSpKey = "Aff_CustomerCheck12BetPlayerAccountActivated";
-            var parameterSet = new
-            {
-                AffId = affId,
-                Language = language,
-                Result = false,
-                ErrCode = 0,
-                ErrMsg = string.Empty
-            };
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                db.ExecuteNonQuery(parameterSet);
-
-                result.IsOk = parameterSet.Result;
-                result.Message = parameterSet.ErrMsg;
-                result.PlayerUserName = db.GetParameterValue("12BetPlayerUserName") as string;
-            }
-
-            return result;
-        }
-
-        public ResultInfo UpdatePlayerAccountStatusForDeposit(DepositPlayerAccountParam account)
-        {
-            const string uSpKey = "Aff_Deposit_MemberIBCDetail";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                db.ExecuteNonQuery(account);
-            }
-
-            return new ResultInfo
-            {
-                IsOk = account.ErrorCode == 0,
-                Message = account.ErrorMsg
-            };
         }
 
         public ResultInfo CreateAffiliate(UserSignUpParam signUpParam)
