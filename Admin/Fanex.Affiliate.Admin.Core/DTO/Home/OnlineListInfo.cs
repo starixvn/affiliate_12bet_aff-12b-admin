@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Home
 {
@@ -6,16 +7,18 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Home
     {
         public string UserName { get; set; }
 
-        public DateTime? LoggedInDate { get; set; }
+        [JsonIgnore]
+        public DateTime? LoggedIn { get; set; }
 
-        public DateTime? LastRequestDate { get; set; }
+        [JsonIgnore]
+        public DateTime? LastRequest { get; set; }
 
         public string Ip { get; set; }
 
         public string Role { get; set; }
 
-        public string LoggedInDateText => LoggedInDate?.ToString("MM/dd/yyyy HH:mm:ss");
+        public string LoggedInText => LoggedIn?.ToString("MM/dd/yyyy HH:mm:ss");
 
-        public string LastRequestDateText => LastRequestDate?.ToString("MM/dd/yyyy HH:mm:ss");
+        public string LastRequestText => LastRequest?.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

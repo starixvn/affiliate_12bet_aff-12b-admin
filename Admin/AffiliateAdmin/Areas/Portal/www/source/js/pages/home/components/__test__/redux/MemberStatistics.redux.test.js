@@ -16,11 +16,11 @@ describe('home - MemberStatistics - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            generalInfo: { PaymentRequestNumber: 1 }
+            generalInfo: { PaymentReqNum: 1 }
         };
 
         const state = {
-            generalInfo: { PaymentRequestNumber: 1 },
+            generalInfo: { PaymentReqNum: 1 },
             anotherProp: "Not included"
         };
 

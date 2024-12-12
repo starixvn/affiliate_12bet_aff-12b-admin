@@ -28,13 +28,13 @@ export class TasksWaitingForApproval extends PureComponent {
                             <span><strong>Affiliate</strong></span>
                         </Col>
                         <Col sm={2} className="text-border">
-                            <a href={resolveClientUrl("Portal/Affiliate?Status=Pending&IsFromHome=true")}><strong>{format(generalInfo.PendingAffiliateNumber)}</strong></a>
+                            <a href={resolveClientUrl("Portal/Affiliate?Status=Pending&IsFromHome=true")}><strong>{format(generalInfo.PendingAllNum)}</strong></a>
                         </Col>
                         <Col sm={5} className="text-border">
                             <span><strong>Payment Request</strong></span>
                         </Col>
                         <Col sm={2} className="text-border">
-                            <a href={resolveClientUrl("Portal/PaymentRequest?SearchBy=2&Status=Processing&FromDate=01/01/2020&IsFromHome=true")}><strong>{format(generalInfo.PaymentRequestNumber)}</strong></a>
+                            <a href={resolveClientUrl("Portal/PaymentRequest?SearchBy=2&Status=Processing&FromDate=01/01/2020&IsFromHome=true")}><strong>{format(generalInfo.PaymentReqNum)}</strong></a>
                         </Col>
                     </Col>
                 </Row>

@@ -274,6 +274,9 @@
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
     <Compile Include="Criterias\Auth\CheckUserPermissionCriteria.cs" />
     <Compile Include="Criterias\Auth\UserPermissionCriteria.cs" />
+    <Compile Include="Criterias\Home\GeneralInfoCriteria.cs" />
+    <Compile Include="Criterias\Home\UserOnlineCriteria.cs" />
+    <Compile Include="Criterias\PagingCriteria.cs" />
     <Compile Include="DTO\Administrator\AdministratorInfo.cs" />
     <Compile Include="DTO\Administrator\DepartmentInfo.cs" />
     <Compile Include="DTO\Administrator\PolicyInfo.cs" />

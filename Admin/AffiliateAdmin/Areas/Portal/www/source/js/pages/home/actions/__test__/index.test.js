@@ -18,7 +18,7 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setGeneralInfo', type: types.SET_GENERAL_INFO, data: { PaymentRequestNumber: 1 } },
+    { name: 'setGeneralInfo', type: types.SET_GENERAL_INFO, data: { PaymentReqNum: 1 } },
     { name: 'setOnlineList', type: types.SET_ONLINE_LIST, data: [{ UserName: 'sa' }] }
 ];
 
@@ -84,12 +84,12 @@ describe('home actions', () => {
     })
 
     it('should create action to getGeneralInfo with return correctly', async () => {
-        const expectedResponse = { data: { PaymentRequestNumber: 1 }, status: 200 };
+        const expectedResponse = { data: { PaymentReqNum: 1 }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
             { type: 'TOGGLE_LOADER', data: true },
-            { type: types.SET_GENERAL_INFO, data: { PaymentRequestNumber: 1 } },
+            { type: types.SET_GENERAL_INFO, data: { PaymentReqNum: 1 } },
             { type: 'TOGGLE_LOADER', data: false }
         ];
 

@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var homeService = new Mock<IHomeService>();
-            homeService.Setup(t => t.GetGeneralInfo()).Returns(new GeneralInfo { PaymentRequestNumber = 1 });
+            homeService.Setup(t => t.GetGeneralInfo()).Returns(new GeneralInfo { PaymentReqNum = 1 });
             var controller = CreateHomeController(homeService: homeService.Object);
 
             // Action
@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
             var data = result.Data as GeneralInfo;
 
             // Assert
-            Assert.Equal(1, data.PaymentRequestNumber);
+            Assert.Equal(1, data.PaymentReqNum);
         }
 
         [Fact]

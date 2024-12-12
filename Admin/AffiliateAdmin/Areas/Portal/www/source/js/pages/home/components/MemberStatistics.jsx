@@ -13,14 +13,14 @@ export class MemberStatistics extends PureComponent {
     _renderData(generalInfo, isUpToNow) {
         return (
             <tbody>
-                {this._buildRow('Total Deposits', formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.AllDepositNumber : generalInfo.AllDepositMonthNumber))}
-                {this._buildRow('Total PSP fees', formatDecimalWithCurrencySymbol(isUpToNow ? (generalInfo.AllPSPFeeNumber) : (generalInfo.AllPSPFeeMonthNumber)))}
-                {this._buildRow('Total GGR', formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.AllGgrNumber : generalInfo.AllGgrMonthNumber))}
-                {this._buildRow('Total Bonus', formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.AllBonusNumber : generalInfo.AllBonusMonthNumber))}
-                {this._buildRow('Total Rebate', formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.AllRebateNumber : generalInfo.AllRebateMonthNumber))}
+                {this._buildRow('Total Deposits', formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.DepositAll : generalInfo.DepositMonth))}
+                {this._buildRow('Total PSP fees', formatDecimalWithCurrencySymbol(isUpToNow ? (generalInfo.PSPFeeAll) : (generalInfo.PSPFeeMonth)))}
+                {this._buildRow('Total GGR', formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.GgrAll : generalInfo.GgrMonth))}
+                {this._buildRow('Total Bonus', formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.BonusAll : generalInfo.BonusMonth))}
+                {this._buildRow('Total Rebate', formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.RebateAll : generalInfo.RebateMonth))}
                 <tr>
                     <td className="title-total"><strong>Company Net Win</strong></td>
-                    <td className="content-total"><strong>{formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.AllNetWinlostNumber : generalInfo.AllNetWinlostMonthNumber)}</strong></td>
+                    <td className="content-total"><strong>{formatDecimalWithCurrencySymbol(isUpToNow ? generalInfo.NetWinlostAll : generalInfo.NetWinlostMonth)}</strong></td>
                 </tr>
             </tbody>
         );
@@ -45,7 +45,7 @@ export class MemberStatistics extends PureComponent {
                         <span>We have <strong>{format(isUpToNow ? generalInfo.MemAllNum : generalInfo.MemMonthNum)}</strong> players in the program</span>
                     </Col>
                     <Col sm={12} className="pl-4">
-                        <span><strong>{format(isUpToNow ? generalInfo.AllMemberDepositNumber : generalInfo.AllMemberDepositMonthNumber)}</strong> Deposit / <strong>{format(isUpToNow ? (generalInfo.NonDepositMemAllNum) : (generalInfo.NonDepositMemMonthNum))}</strong> Non-Deposit</span>
+                        <span><strong>{format(isUpToNow ? generalInfo.DepositMemAllNum : generalInfo.DepositMemMonthNum)}</strong> Deposit / <strong>{format(isUpToNow ? (generalInfo.NonDepositMemAllNum) : (generalInfo.NonDepositMemMonthNum))}</strong> Non-Deposit</span>
                     </Col>
                     <Col sm={12}>
                         <Table className="member-statistics-table" sm={12}>

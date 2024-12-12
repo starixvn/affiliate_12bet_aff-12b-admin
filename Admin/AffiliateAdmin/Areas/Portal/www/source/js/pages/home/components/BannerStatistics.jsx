@@ -16,7 +16,7 @@ export const BannerStatistics = (props) => {
             </Row>
             <Row className="background-gray border">
                 <Col sm={12}>
-                    <span>We have <a href={resolveClientUrl("Portal/MediaGallery?IsFromHome=true")}><strong>{format(generalInfo.BannerNumber)}</strong></a> banners in the program</span>
+                    <span>We have <a href={resolveClientUrl("Portal/MediaGallery?IsFromHome=true")}><strong>{format(generalInfo.BannerNum)}</strong></a> banners in the program</span>
                 </Col>
                 <Col sm={12}>
                     <span>

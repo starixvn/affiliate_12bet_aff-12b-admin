@@ -143,7 +143,9 @@
     <Setting Key="Aff_Con_Batch_AdminPolicySel" SpName="Aff_Con_Batch_AdminPolicySel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Home">
-    <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="RoleName" ObjectProperty="Role" />
+    </Setting>
     <Setting Key="Aff_Admin_GeneralInfo_Sel" SpName="Aff_Admin_GeneralInfo_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Currency">

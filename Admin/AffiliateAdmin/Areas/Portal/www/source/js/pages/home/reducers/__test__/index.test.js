@@ -9,7 +9,7 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 }
 
 const testCaseList = [
-    { name: 'generalInfo', value: null, action: { type: types.SET_GENERAL_INFO, data: { PaymentRequestNumber: 1 } }, expectedResult: { PaymentRequestNumber: 1 } },
+    { name: 'generalInfo', value: null, action: { type: types.SET_GENERAL_INFO, data: { PaymentReqNum: 1 } }, expectedResult: { PaymentReqNum: 1 } },
     { name: 'onlineList', value: null, action: { type: types.SET_ONLINE_LIST, data: [{ UserName: 'sa' }] }, expectedResult: [{ UserName: 'sa' }] }
 ]
 

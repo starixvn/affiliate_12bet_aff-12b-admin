@@ -252,7 +252,6 @@
     <Compile Include="Services\Domain\SubAffDomainServiceTest.cs" />
     <Compile Include="Services\Domain\DomainServiceTest.cs" />
     <Compile Include="Services\EmailServiceTest.cs" />
-    <Compile Include="Services\Home\HomeServiceTest.cs" />
     <Compile Include="Services\LanguageServiceTest.cs" />
     <Compile Include="Services\LicenseeServiceTest.cs" />
     <Compile Include="Services\MediaGallery\BannerListServiceTest.cs" />

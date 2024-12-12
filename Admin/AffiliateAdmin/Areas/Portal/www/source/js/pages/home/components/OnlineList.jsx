@@ -69,8 +69,8 @@ export class OnlineList extends PureComponent {
                         dataItem.Role.toLowerCase() === 'admin' ? userName : (<a href={resolveClientUrl(`Portal/Customer?user=${userName}`)}>{userName}</a>)
                     }
                 </Cell>
-                <Cell title={dataItem.LoggedInDateText} className="text-center">{dataItem.LoggedInDateText}</Cell>
-                <Cell title={dataItem.LastRequestDateText} className="text-center">{dataItem.LastRequestDateText}</Cell>
+                <Cell title={dataItem.LoggedInText} className="text-center">{dataItem.LoggedInText}</Cell>
+                <Cell title={dataItem.LastRequestText} className="text-center">{dataItem.LastRequestText}</Cell>
                 <Cell title={ipAddress} className="text-center">
                     <a target="_blank" href={url}>{ipAddress}</a>
                 </Cell>
