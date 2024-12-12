@@ -23,7 +23,10 @@
     <Setting Key="Aff_Admin_CommGroup_GroupTypeSel" SpName="Aff_Admin_CommGroup_GroupTypeSel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Auth">
-    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="Host" ObjectProperty="IsHost" />
+      <Mapping DataField="FuncName" ObjectProperty="FunctionName" />
+    </Setting>
     <Setting Key="Aff_Con_CheckPermission" SpName="Aff_Con_CheckPermission" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Login" SpName="Aff_Admin_Login" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
