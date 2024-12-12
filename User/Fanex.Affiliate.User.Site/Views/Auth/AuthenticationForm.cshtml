@@ -7,7 +7,7 @@
 @if (Model.IsAuthenticated)
 {
     <div class="group-auth-login" id="groupAuth">
-        <a class="btn-auth btn-login login-after" id="btnLogout">
+        <a href="@Url.RenderLanguageContent("~/Auth/SignOut/")" class="btn-auth btn-login login-after" id="btnLogout">
             @Lang.Logout
         </a>
         <a href="@Url.RenderLanguageContent("~/UserPanel/Main/#AccountOverview")" class="btn-auth btn-signup">@Lang.MyAcc @Model.UserName</a>

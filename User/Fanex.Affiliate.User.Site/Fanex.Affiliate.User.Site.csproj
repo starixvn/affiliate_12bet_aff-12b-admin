@@ -825,7 +825,6 @@
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\Csd\Content.en-US.cshtml" />
-    <Content Include="Views\UserPanel\Feedback\Index.cshtml" />
     <Content Include="Views\UserPanel\Member\Index.cshtml" />
     <Content Include="Views\UserPanel\Member\_DataContent.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
@@ -898,17 +897,9 @@
     <Content Include="www\build\js\pages\faq.min.js">
       <DependentUpon>faq.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\pages\feedback.js" />
-    <Content Include="www\build\js\pages\feedback.min.js">
-      <DependentUpon>feedback.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\pages\login.js" />
     <Content Include="www\build\js\pages\login.min.js">
       <DependentUpon>login.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\pages\logout.js" />
-    <Content Include="www\build\js\pages\logout.min.js">
-      <DependentUpon>logout.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\pages\promotion.js" />
     <Content Include="www\build\js\pages\terms-and-coditions.js" />
@@ -947,10 +938,6 @@
     <Content Include="www\build\styles\css\commissionreport.css" />
     <Content Include="www\build\styles\css\commissionreport.min.css">
       <DependentUpon>commissionreport.css</DependentUpon>
-    </Content>
-    <Content Include="www\build\styles\css\feedback.css" />
-    <Content Include="www\build\styles\css\feedback.min.css">
-      <DependentUpon>feedback.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\member.css" />
     <Content Include="www\build\styles\css\member.min.css">
@@ -1010,17 +997,6 @@
     <Content Include="www\build\styles\fonts\tahoma\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\Images\feedback\dissatisfaction-active.png" />
-    <Content Include="www\build\styles\Images\feedback\dissatisfaction.png" />
-    <Content Include="www\build\styles\Images\feedback\letter-icon.png" />
-    <Content Include="www\build\styles\Images\feedback\neutral-active.png" />
-    <Content Include="www\build\styles\Images\feedback\neutral.png" />
-    <Content Include="www\build\styles\Images\feedback\satisfied-active.png" />
-    <Content Include="www\build\styles\Images\feedback\satisfied.png" />
-    <Content Include="www\build\styles\Images\feedback\unsatisfied-active.png" />
-    <Content Include="www\build\styles\Images\feedback\unsatisfied.png" />
-    <Content Include="www\build\styles\Images\feedback\very-please-active.png" />
-    <Content Include="www\build\styles\Images\feedback\very-please.png" />
     <Content Include="www\build\styles\Images\header-bg.png" />
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\source\js\components\authhelper.js" />
@@ -1043,9 +1019,7 @@
     <Content Include="www\source\js\pages\commission-report.js" />
     <Content Include="www\source\js\pages\contactus.js" />
     <Content Include="www\source\js\pages\faq.js" />
-    <Content Include="www\source\js\pages\feedback.js" />
     <Content Include="www\source\js\pages\forgotpassword.js" />
-    <Content Include="www\source\js\pages\logout.js" />
     <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
     <Content Include="www\source\js\pages\promotion.js" />
@@ -1272,8 +1246,6 @@
     <Content Include="www\source\styles\pages\promotion.scss" />
     <Content Include="Views\UserPanel\OffersForMe\Index.cshtml" />
     <Content Include="Views\UserPanel\OffersForMe\Preview.cshtml" />
-    <Content Include="www\source\styles\pages\feedback.scss" />
-    <Content Include="www\build\styles\Images\feedback\letter-icon.webp" />
     <Content Include="Views\Shared\Email\NewPassword\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.km-KH.cshtml" />

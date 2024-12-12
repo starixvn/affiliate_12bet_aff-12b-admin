@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    [CustomAuthorize(PermissionName = ClaimConstant.HotNewsType)]
+    [CustomAuthorize]
     public class NewsController : BaseController
     {
         private readonly INewsService _newsService;
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
-        [AjaxOnly(PermissionName = ClaimConstant.HotNewsType)]
+        [AjaxOnly]
         public ActionResult GetMessageHistory(MessageHistoryParam param)
         {
             param.IsInternal = SessionService.IsInternal;

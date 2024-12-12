@@ -1,10 +1,7 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
+﻿using System.Web;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Web;
 using static Fanex.Affiliate.User.Core.Constants.SessionKey;
 
 namespace Fanex.Affiliate.User.Core.CoreService
@@ -15,22 +12,6 @@ namespace Fanex.Affiliate.User.Core.CoreService
         {
             get { return HttpContext.Current.Session[CaptchaCodeKey] as string; }
             set { HttpContext.Current.Session[CaptchaCodeKey] = value; }
-        }
-
-        public DateTime? LastestRequestTime
-        {
-            get
-            {
-                var time = HttpContext.Current.Session[LastestRequestTimeKey];
-                return (DateTime?)time;
-            }
-            set { HttpContext.Current.Session[LastestRequestTimeKey] = value; }
-        }
-
-        public bool IsOpenedFeedback
-        {
-            get { return (bool)(HttpContext.Current.Session[IsOpenedFeedbackKey] ?? false); }
-            set { HttpContext.Current.Session[IsOpenedFeedbackKey] = value; }
         }
 
         public UserSession UserSession
@@ -112,12 +93,6 @@ namespace Fanex.Affiliate.User.Core.CoreService
         {
             get { return HttpContext.Current.Session[VerificationSessionKey] as VerificationSession; }
             set { HttpContext.Current.Session[VerificationSessionKey] = value; }
-        }
-
-        public IEnumerable<ClaimsIdentity> ClaimsIdentities
-        {
-            get => HttpContext.Current.Session[ClaimIdentitiesKey] as IEnumerable<ClaimsIdentity>;
-            set => HttpContext.Current.Session[ClaimIdentitiesKey] = value;
         }
     }
 }

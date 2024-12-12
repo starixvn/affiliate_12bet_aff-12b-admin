@@ -234,8 +234,6 @@
     <Compile Include="BusinessService\CaptchaService.cs" />
     <Compile Include="BusinessService\CommissionReportService.cs" />
     <Compile Include="BusinessService\ContactService.cs" />
-    <Compile Include="BusinessService\FeedbackService.cs" />
-    <Compile Include="BusinessService\IFeedbackService.cs" />
     <Compile Include="BusinessService\IMarketingService.cs" />
     <Compile Include="BusinessService\IUnderMaintenanceService.cs" />
     <Compile Include="BusinessService\MarketingService.cs" />
@@ -273,7 +271,6 @@
     <Compile Include="Constants\AppContact.cs" />
     <Compile Include="Constants\CacheKey.cs" />
     <Compile Include="Constants\CalculatedType.cs" />
-    <Compile Include="Constants\ClaimConstant.cs" />
     <Compile Include="Constants\CommByGroupType.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
     <Compile Include="Constants\CommissionType.cs" />
@@ -302,7 +299,6 @@
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\AffiliateLinkController.cs" />
     <Compile Include="Controllers\UserPanel\BaseMarketingController.cs" />
-    <Compile Include="Controllers\UserPanel\FeedbackController.cs" />
     <Compile Include="Controllers\UserPanel\MarketingController.cs" />
     <Compile Include="Controllers\UserPanel\MarketingLinkStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\OffersForMeController.cs" />
@@ -429,14 +425,11 @@
     <Compile Include="MetalModels\Apis\LicenseeCustDbApiParam.cs" />
     <Compile Include="MetalModels\Email\EmailSignUpParam.cs" />
     <Compile Include="MetalModels\UserPanel\CopiedBannerCounterParam.cs" />
-    <Compile Include="MetalModels\UserPanel\FeedbackParam.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IIpAddressRepository.cs" />
     <Compile Include="Repository\ISystemRepository.cs" />
     <Compile Include="Repository\IpAddressRepository.cs" />
     <Compile Include="Repository\SystemRepository.cs" />
-    <Compile Include="Repository\UserPanel\FeedbackRepository.cs" />
-    <Compile Include="Repository\UserPanel\IFeedbackRepository.cs" />
     <Compile Include="Repository\UserPanel\OfferRepository.cs" />
     <Compile Include="Repository\UserPanel\IOfferRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsLetterRepository.cs" />
@@ -446,13 +439,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\ClaimUtitlity.cs" />
     <Compile Include="Utilities\Helper.cs" />
     <Compile Include="Utilities\HttpClientUtility.cs" />
     <Compile Include="Utilities\IHttpClientUtility.cs" />
     <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="Utilities\StatisticsHelper.cs" />
-    <Compile Include="ViewModels\UserPanel\FeedbackViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\AffiliateLinkViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MediaGalleryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />

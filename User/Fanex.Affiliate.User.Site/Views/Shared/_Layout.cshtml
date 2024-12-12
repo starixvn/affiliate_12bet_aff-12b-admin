@@ -197,7 +197,7 @@
                         @if (isLoggedIn)
                         {
                             <div class="logout-btn">
-                                <a href="#" id="btnLogoutMobile">logout</a>
+                                <a href="@Url.RenderLanguageContent("~/Auth/SignOut/")" id="btnLogoutMobile">logout</a>
                             </div>
                         }
                     </div>
@@ -278,11 +278,6 @@
     @Html.InlineScripts("~/www/build/js/jquery.extension.js")
     <script src="@Url.RenderLink("~/www/build/js/site.js")"></script>
     <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
-
-    @if (isLoggedIn)
-    {
-        <script src="@Url.RenderLink("~/www/build/js/pages/logout.js")"></script>
-    }
 
     @if (!settingService.IsLocal && isLoggedIn)
     {

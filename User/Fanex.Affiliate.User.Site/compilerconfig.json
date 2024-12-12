@@ -24,10 +24,6 @@
     //  "inputFile": "www/source/styles/pages/my-account.scss"
     //},
     //{
-    //  "outputFile": "www/build/styles/css/feedback.css",
-    //  "inputFile": "www/source/styles/pages/feedback.scss"
-    //},
-    //{
     //    "outputFile": "www/build/styles/css/faq.css",
     //    "inputFile": "www/source/styles/pages/faq.scss"
     //},
@@ -70,10 +66,6 @@
     //{
     //  "outputFile": "www/build/js/recheckin.js",
     //  "inputFile": "www/source/js/recheckin.js"
-    //},
-    //{
-    //  "outputFile": "www/build/js/pages/logout.js",
-    //  "inputFile": "www/source/js/pages/logout.js"
     //},
     {
       "outputFile": "www/build/styles/css/statistics.css",
@@ -142,10 +134,6 @@
     //{
     //  "outputFile": "www/build/js/pages/faq.js",
     //  "inputFile": "www/source/js/pages/faq.js"
-    //},
-    //{
-    //  "outputFile": "www/build/js/pages/feedback.js",
-    //  "inputFile": "www/source/js/pages/feedback.js"
     //},
     //{
     //  "outputFile": "www/build/js/pagetracking.js",

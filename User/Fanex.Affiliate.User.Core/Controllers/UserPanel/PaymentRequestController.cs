@@ -16,7 +16,7 @@
     using Utilities;
     using ViewModels.UserPanel;
 
-    [CustomAuthorize(PermissionName = ClaimConstant.PaymentRequest)]
+    [CustomAuthorize]
     public class PaymentRequestController : BaseController
     {
         private readonly IPaymentService _paymentService;

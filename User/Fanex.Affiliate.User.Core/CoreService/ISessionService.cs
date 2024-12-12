@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 
 namespace Fanex.Affiliate.User.Core.CoreService
@@ -23,12 +20,5 @@ namespace Fanex.Affiliate.User.Core.CoreService
         void AssignSessions(AuthorizedUserInfo authorizedUser);
 
         VerificationSession VerificationSession { get; set; }
-
-        // Need Removed
-        IEnumerable<ClaimsIdentity> ClaimsIdentities { get; set; }
-
-        DateTime? LastestRequestTime { get; set; }
-
-        bool IsOpenedFeedback { get; set; }
     }
 }
