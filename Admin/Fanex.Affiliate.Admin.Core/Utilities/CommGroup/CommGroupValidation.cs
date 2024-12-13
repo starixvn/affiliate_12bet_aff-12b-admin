@@ -2,9 +2,10 @@
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
+using Fanex.Affiliate.Admin.Core.Services.Auth;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,20 +16,20 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
     {
         private const string brElementHtml = "<br />";
 
-        private readonly IAuthRepository _authRepository;
+        private readonly IAuthService _authService;
         private readonly IAffiliateService _affiliateService;
-        private readonly IProductRepository _productRepository;
+        private readonly ISystemService _systemService;
         private readonly ICommGroupCommonService _commGroupCommonService;
 
         public CommGroupValidation(
-            IAuthRepository authRepository,
+            IAuthService authService,
             IAffiliateService affiliateService,
-            IProductRepository productRepository,
+            ISystemService systemService,
             ICommGroupCommonService commGroupCommonService)
         {
-            _authRepository = authRepository;
+            _authService = authService;
             _affiliateService = affiliateService;
-            _productRepository = productRepository;
+            _systemService = systemService;
             _commGroupCommonService = commGroupCommonService;
         }
 
@@ -38,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 
             if (string.IsNullOrEmpty(affInfo.AffCode))
             {
-                var permissionList = _authRepository.GetPermissionList(userId);
+                var permissionList = _authService.GetPermissionList(userId);
 
                 return permissionList.Any(i => i.FunctionName.MatchWith(Function.EditAffStatus) && i.IsHost);
             }
@@ -66,7 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
         private ResultInfo ValidateAllFees(CommGroupSettingParam commGroup)
         {
             var result = new ResultInfo();
-            var productIdOfDB = _productRepository.GetProductList().Select(p => p.ProductId.ToString());
+            var productIdOfDB = _systemService.GetProductList().Select(p => p.ProductId.ToString());
 
             var validateP2pDeductionList = ValidateDeductionList(commGroup.P2pDeductionList, productIdOfDB, CommGroupErrorMessage.InvalidP2pDeduction);
             if (!validateP2pDeductionList.IsSuccessful)

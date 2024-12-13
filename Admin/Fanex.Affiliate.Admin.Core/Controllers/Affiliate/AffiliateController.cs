@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -24,13 +23,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private readonly ICommGroupCommonService _commGroupCommonService;
 
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _languageService;
 
         public AffiliateController(
             ISessionService sessionService,
             IAffiliateInfoRepository affiliateInfoRepository,
             ICommGroupCommonService commGroupCommonService,
-            ILanguageService languageService) : base(sessionService)
+            ISystemService languageService) : base(sessionService)
         {
             _commGroupCommonService = commGroupCommonService;
             _affiliateInfoRepository = affiliateInfoRepository;

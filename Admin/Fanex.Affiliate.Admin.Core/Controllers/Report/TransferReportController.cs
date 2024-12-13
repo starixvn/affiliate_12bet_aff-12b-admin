@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.ViewModels.Report;
@@ -15,15 +14,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
     [FunctionAuthorize(FunctionName = Function.TransferPlayerReport)]
     public class TransferReportController : ReadOnlySessionBaseController
     {
-        private readonly ICurrencyRepository _currencyRepository;
+        private readonly ISystemService _systemService;
         private readonly ITransferReportService _transferReportService;
 
         public TransferReportController(
             ISessionService sessionService,
-            ICurrencyRepository currencyRepository,
+            ISystemService systemService,
             ITransferReportService transferReportService) : base(sessionService)
         {
-            _currencyRepository = currencyRepository;
+            _systemService = systemService;
             _transferReportService = transferReportService;
         }
 
@@ -33,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
         {
             var viewModel = new ReportCommonViewModel
             {
-                BaseCurrencyList = _currencyRepository.GetBaseCurrencies()
+                BaseCurrencyList = _systemService.GetBaseCurrencies()
             };
 
             return View("~/Areas/Portal/Views/Report/TransferReport.cshtml", viewModel);

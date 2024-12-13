@@ -4,7 +4,8 @@ using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.Email;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Moq;
@@ -22,14 +23,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         private ILifetimeScopeProvider ScopeProvider;
         private readonly IMailProcessor MailProcessor;
         private readonly IAppSetting AppSetting;
-        private readonly ILanguageService LanguageService;
+        private readonly ISystemService LanguageService;
 
         public EmailServiceTest()
         {
             MailProcessor = Substitute.For<IMailProcessor>();
             AppSetting = Substitute.For<IAppSetting>();
             AppSetting.AppMailId.Returns("3");
-            LanguageService = Substitute.For<ILanguageService>();
+            LanguageService = Substitute.For<ISystemService>();
         }
 
         [Fact]

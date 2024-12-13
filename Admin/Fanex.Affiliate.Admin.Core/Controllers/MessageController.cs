@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Message;
 using Fanex.Affiliate.Admin.Core.MetaModels.Message;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Message;
 using System.Collections.Generic;
@@ -17,12 +16,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     {
         private const int threeMilliSecond = 3;
         private readonly IMessageService _messageSevice;
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _languageService;
 
         public MessageController(
             ISessionService sessionService,
             IMessageService messageSevice,
-            ILanguageService languageService) : base(sessionService)
+            ISystemService languageService) : base(sessionService)
         {
             _messageSevice = messageSevice;
             _languageService = languageService;

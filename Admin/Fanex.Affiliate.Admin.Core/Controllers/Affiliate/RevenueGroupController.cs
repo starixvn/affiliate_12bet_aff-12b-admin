@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -25,19 +24,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private readonly ICommissionGroupService _commissionGroupService;
 
-        private readonly IProductRepository _productRepository;
+        private readonly ISystemService _systemService;
 
         private readonly ICommGroupValidation _commGroupValidation;
 
         public RevenueGroupController(
             ISessionService sessionService,
             ICommissionGroupService commissionService,
-            IProductRepository productRepository,
+            ISystemService systemService,
             ICommGroupCommonService commGroupCommonService,
             ICommGroupValidation commGroupValidation) : base(sessionService)
         {
             _commissionGroupService = commissionService;
-            _productRepository = productRepository;
+            _systemService = systemService;
             _commGroupCommonService = commGroupCommonService;
             _commGroupValidation = commGroupValidation;
         }
@@ -51,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest"), FunctionName = Function.Payment },
                 new SubMenu { Name = Lang.RevenueGroup, Url = Url.Content("~/Portal/RevenueGroup"), FunctionName = Function.RevenueGroup, IsActive = true }
             };
-            var productList = _productRepository.GetProductList();
+            var productList = _systemService.GetProductList();
 
             var viewModel = new CommissionGroupViewModel
             {

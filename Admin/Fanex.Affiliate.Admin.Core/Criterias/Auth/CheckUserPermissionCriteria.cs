@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.Auth
 {
     public class CheckUserPermissionCriteria : CriteriaBase
     {
-        private const string SP_NAME = "Aff_Admin_PolicySel";
+        private const string SP_NAME = "Aff_Con_CheckPermission";
 
         public override string GetSettingKey() => SP_NAME;
 

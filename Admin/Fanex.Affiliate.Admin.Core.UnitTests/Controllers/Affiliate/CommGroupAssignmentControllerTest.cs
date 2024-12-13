@@ -9,8 +9,7 @@ using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -195,12 +194,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             const int affId = 1271808, groupTypeId = 1;
             var productList = new List<Product> { new Product { ProductId = 123, ProductName = "Casino", IsP2P = true } };
             var deductionList = new List<DeductionItem> { new DeductionItem { DeductionId = 13, DeductionName = "ExchangeGgrShare", DeductedPercentage = 0.05m, IsDeductedPercent = true, DeductedAmount = "" } };
-            var productRepository = new Mock<IProductRepository>();
-            productRepository.Setup(p => p.GetProductList()).Returns(productList);
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(p => p.GetProductList()).Returns(productList);
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
             commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(deductionList);
 
-            var controller = CreateCommGroupAssignmentController(productRepository: productRepository.Object, commGroupCommonService: commGroupCommonService.Object);
+            var controller = CreateCommGroupAssignmentController(systemService: systemService.Object, commGroupCommonService: commGroupCommonService.Object);
             var expectModel = new AssignPrivateGroupViewModel
             {
                 ProductList = productList,
@@ -274,8 +273,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var commGroup = CreateCommGroupSettingParam();
             var affInfo = new AffInfoParam { AffId = 1271808 };
-            var productRepository = new Mock<IProductRepository>();
-            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 2 },
@@ -286,7 +285,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
             commGroupValidation.Setup(e => e.ValidateCommGroup(It.IsAny<CommGroupSettingParam>())).Returns(new ResultInfo { Code = ErrCode.GeneralErrorCode });
 
-            var controller = CreateCommGroupAssignmentController(productRepository: productRepository.Object, commGroupValidation: commGroupValidation.Object);
+            var controller = CreateCommGroupAssignmentController(systemService: systemService.Object, commGroupValidation: commGroupValidation.Object);
 
             // Action
             var result = await controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
@@ -314,8 +313,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             var commGroup = CreateCommGroupSettingParam();
             var affInfo = new AffInfoParam { AffId = 1271808 };
-            var productRepository = new Mock<IProductRepository>();
-            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 3 },
@@ -328,7 +327,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
             commGroupValidation.Setup(e => e.ValidateCommGroup(It.IsAny<CommGroupSettingParam>())).Returns(new ResultInfo());
 
-            var controller = CreateCommGroupAssignmentController(productRepository: productRepository.Object, commGroupAssignmentService: commGroupAssignmentService.Object, commGroupValidation: commGroupValidation.Object);
+            var controller = CreateCommGroupAssignmentController(systemService: systemService.Object, commGroupAssignmentService: commGroupAssignmentService.Object, commGroupValidation: commGroupValidation.Object);
 
             // Action
             var result = await controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
@@ -340,20 +339,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private static CommGroupAssignmentController CreateCommGroupAssignmentController(
             ISessionService sessionService = null,
-            IProductRepository productRepository = null,
+            ISystemService systemService = null,
             IAffiliateService affiliateService = null,
             ICommGroupAssignmentService commGroupAssignmentService = null,
             ICommGroupCommonService commGroupCommonService = null,
             ICommGroupValidation commGroupValidation = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
+            var fakesystemService = systemService ?? Mock.Of<ISystemService>();
             var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
             var fakeCommGroupAssignmentService = commGroupAssignmentService ?? Mock.Of<ICommGroupAssignmentService>();
             var fakeCommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();
             var fakeCommGroupValidation = commGroupValidation ?? Mock.Of<ICommGroupValidation>();
 
-            var controller = new CommGroupAssignmentController(fakeSessionService, fakeProductRepository, fakeAffiliateService, fakeCommGroupAssignmentService, fakeCommGroupCommonService, fakeCommGroupValidation);
+            var controller = new CommGroupAssignmentController(fakeSessionService, fakesystemService, fakeAffiliateService, fakeCommGroupAssignmentService, fakeCommGroupCommonService, fakeCommGroupValidation);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

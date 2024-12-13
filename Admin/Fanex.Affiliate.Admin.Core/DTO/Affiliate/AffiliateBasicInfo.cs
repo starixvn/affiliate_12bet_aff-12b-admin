@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string AffCode { get; set; }
 
-        public string ParentAffiliateName { get; set; }
+        public string ParentAffName { get; set; }
 
         public int GroupId { get; set; }
 

@@ -5,8 +5,8 @@ using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Auth;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Payment;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -20,15 +20,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     public class PaymentRequestController : ReadOnlySessionBaseController
     {
         private readonly IPaymentService _paymentRequestService;
-        private readonly IAuthRepository _authRepo;
+        private readonly IAuthService _authService;
 
         public PaymentRequestController(
             ISessionService sessionService,
             IPaymentService paymentRequestService,
-            IAuthRepository authRepository) : base(sessionService)
+            IAuthService authService) : base(sessionService)
         {
             _paymentRequestService = paymentRequestService;
-            _authRepo = authRepository;
+            _authService = authService;
         }
 
         public ActionResult Index(PaymentRequestParamFromHome param)
@@ -82,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     FuncName = Function.Payment
                 };
 
-                var result = _authRepo.CheckPermission(permissionParam);
+                var result = _authService.CheckPermission(permissionParam);
                 if (!result.IsSuccessful)
                 {
                     return GenerateJsonNetResult(result);

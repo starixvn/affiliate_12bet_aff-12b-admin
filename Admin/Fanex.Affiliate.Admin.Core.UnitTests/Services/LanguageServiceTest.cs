@@ -1,6 +1,7 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
+﻿using Fanex.Affiliate.Admin.Core.Criterias;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,10 +16,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetLanguageList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var languageRepository = new Mock<ILanguageRepository>();
-            languageRepository.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
+            var languageService = new Mock<IDynamicRepository>();
+            languageService.Setup(l => l.Fetch<Language>(It.IsAny<BaseCriteria>())).Returns(new List<Language> { new Language() });
 
-            var service = CreateLanguageService(languageRepository.Object);
+            var service = CreateLanguageService(languageService.Object);
 
             // Action
             var result = service.GetLanguageList();
@@ -45,11 +46,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             Assert.Equal(Thread.CurrentThread.CurrentCulture, currentCulture);
         }
 
-        private static LanguageService CreateLanguageService(ILanguageRepository languageRepository = null)
+        private static SystemService CreateLanguageService(IDynamicRepository dynamicRepository = null)
         {
-            var fakeLanguageRepository = languageRepository ?? Mock.Of<ILanguageRepository>();
+            var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 
-            return new LanguageService(fakeLanguageRepository);
+            return new SystemService(fakedynamicRepository);
         }
     }
 }

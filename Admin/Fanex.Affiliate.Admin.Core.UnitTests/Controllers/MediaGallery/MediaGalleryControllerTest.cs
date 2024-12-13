@@ -4,7 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var commonMediaGalleryService = new Mock<ICommonMediaGalleryService>();
             commonMediaGalleryService.Setup(c => c.GetCategoryList(1, 1)).Returns(new List<Category> { new Category { CategoryName = "Category" } });
             commonMediaGalleryService.Setup(c => c.GetCurrencyList()).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 234, Name = "Currency" } });
-            var languageService = new Mock<ILanguageService>();
+            var languageService = new Mock<ISystemService>();
             languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language { LanguageCode = "en", LanguageName = "English" } });
             var affTypeService = new Mock<IAffTypeService>();
             affTypeService.Setup(a => a.GetAffTypeList()).Returns(new List<AffTypeInfo> { new AffTypeInfo { AffTypeId = 2, AffTypeName = "Asian" } });
@@ -293,7 +293,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private MediaGalleryController CreateMediaGalleryController(
         ISessionService sessionService = null,
-        ILanguageService languageService = null,
+        ISystemService languageService = null,
         ICommonMediaGalleryService commonMediaGalleryService = null,
         IBannerListService bannerListService = null,
         IAffTypeService affTypeService = null,
@@ -301,7 +301,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
             var fakeCommonMediaGalleryService = commonMediaGalleryService ?? Mock.Of<ICommonMediaGalleryService>();
             var fakeBannerListService = bannerListService ?? Mock.Of<IBannerListService>();
             var fakeAffTypeService = affTypeService ?? Mock.Of<IAffTypeService>();

@@ -2,11 +2,12 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 using System.Web;
 
-namespace Fanex.Affiliate.Admin.Core.Services
+namespace Fanex.Affiliate.Admin.Core.Services.Email
 {
     public class EmailService : IEmailService
     {
@@ -14,9 +15,9 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _languageService;
 
-        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ILanguageService languageService)
+        public EmailService(IMailProcessor mailProcessor, IAppSetting appSetting, ISystemService languageService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;

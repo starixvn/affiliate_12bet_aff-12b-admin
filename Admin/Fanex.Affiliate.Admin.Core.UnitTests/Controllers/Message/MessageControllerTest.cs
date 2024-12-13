@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Message;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Message;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Message;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -232,12 +231,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         private MessageController CreateMessageController(
             ISessionService sessionService = null,
             IMessageService messageSevice = null,
-            ILanguageService languageService = null
+            ISystemService languageService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeMessageSevice = messageSevice ?? Mock.Of<IMessageService>();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
 
             var controller = new MessageController(fakeSessionService, fakeMessageSevice, fakeLanguageService);
 

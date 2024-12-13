@@ -9,7 +9,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Services.Auth;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Payment;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -133,9 +133,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
                 .Returns(Task.FromResult(new ResultInfo()))
                 .Callback<PaymentRequestUpdateParam, PaymentRequestUpdateEmail>((a, b) => passedParam = a);
 
-            var authRepository = new Mock<IAuthRepository>();
-            authRepository.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo());
-            var controller = CreatePaymentRequestController(null, paymentRequestService.Object, authRepository.Object);
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo());
+            var controller = CreatePaymentRequestController(null, paymentRequestService.Object, authService.Object);
 
             // Action
             var result = await controller.UpdatePaymentRequest(param) as JsonNetResult;
@@ -152,9 +152,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = new PaymentRequestUpdateParam { TransId = 123 };
 
-            var authRepository = new Mock<IAuthRepository>();
-            authRepository.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo { Code = ErrCode.GeneralErrorCode });
-            var controller = CreatePaymentRequestController(null, null, authRepository.Object);
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo { Code = ErrCode.GeneralErrorCode });
+            var controller = CreatePaymentRequestController(null, null, authService.Object);
 
             // Action
             var result = await controller.UpdatePaymentRequest(param) as JsonNetResult;
@@ -183,14 +183,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         private PaymentRequestController CreatePaymentRequestController(
             ISessionService sessionService = null,
             IPaymentService paymentRequestService = null,
-            IAuthRepository authRepository = null
+            IAuthService authService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakePaymentRequestService = paymentRequestService ?? Mock.Of<IPaymentService>();
-            var fakeAuthRepository = authRepository ?? Mock.Of<IAuthRepository>();
+            var fakeauthService = authService ?? Mock.Of<IAuthService>();
 
-            var controller = new PaymentRequestController(fakeSessionService, fakePaymentRequestService, fakeAuthRepository);
+            var controller = new PaymentRequestController(fakeSessionService, fakePaymentRequestService, fakeauthService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

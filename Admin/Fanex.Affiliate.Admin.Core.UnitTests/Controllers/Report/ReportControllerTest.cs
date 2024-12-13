@@ -3,8 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
@@ -23,13 +21,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Report
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var productRepository = new Mock<IProductRepository>();
-            productRepository.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
-            var languageService = new Mock<ILanguageService>();
-            languageService.Setup(s => s.GetLanguageList()).Returns(new List<Language> { new Language() });
-            var currencyRepository = new Mock<ICurrencyRepository>();
-            currencyRepository.Setup(s => s.GetCurrencies()).Returns(new List<Currency> { new Currency { ExchangeId = 123, Code = "ABC" } });
-            var controller = CreateReportController(productRepository: productRepository.Object, languageService: languageService.Object);
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(s => s.GetLanguageList()).Returns(new List<Language> { new Language() });
+            systemService.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
+            systemService.Setup(s => s.GetCurrencies()).Returns(new List<Currency> { new Currency { ExchangeId = 123, Code = "ABC" } });
+            var controller = CreateReportController(systemService: systemService.Object);
 
             // Action
             var viewResult = controller.Index() as ViewResult;
@@ -82,21 +78,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Report
 
         private ReportController CreateReportController(
             ISessionService sessionService = null,
-            IProductRepository productRepository = null,
-            ILanguageService languageService = null,
+            ISystemService systemService = null,
             IAffiliateReportService affiliateReportService = null,
-            ICurrencyRepository currencyRepository = null,
             ICommGroupCommonService commissionGroupRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakesystemService = systemService ?? Mock.Of<ISystemService>();
             var fakeAffiliateReportService = affiliateReportService ?? Mock.Of<IAffiliateReportService>();
-            var fakeCurrencyRepository = currencyRepository ?? Mock.Of<ICurrencyRepository>();
             var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommGroupCommonService>();
 
-            return new ReportController(fakeSessionService, fakeProductRepository, fakeLanguageService, fakeAffiliateReportService, fakeCurrencyRepository, fakeCommissionGroupRepository);
+            return new ReportController(fakeSessionService, fakesystemService, fakeAffiliateReportService, fakeCommissionGroupRepository);
         }
     }
 }

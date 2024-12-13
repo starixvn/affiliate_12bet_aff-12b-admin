@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -21,9 +20,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Report
         public void Index_WhenCall_ReturnCorrectViewAndModel()
         {
             //Arrange
-            var currencyRepository = new Mock<ICurrencyRepository>();
-            currencyRepository.Setup(c => c.GetBaseCurrencies()).Returns(new List<Currency> { new Currency() });
-            var controller = CreateTransferReportController(null, currencyRepository.Object, null);
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(c => c.GetBaseCurrencies()).Returns(new List<Currency> { new Currency() });
+            var controller = CreateTransferReportController(null, systemService.Object, null);
 
             //Action
             var result = controller.Index() as ViewResult;
@@ -69,14 +68,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Report
 
         public TransferReportController CreateTransferReportController(
             ISessionService sessionService = null,
-            ICurrencyRepository currencyRepository = null,
+            ISystemService systemService = null,
             ITransferReportService TransferReportService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeCurrencyRepository = currencyRepository ?? Mock.Of<ICurrencyRepository>();
+            var fakesystemService = systemService ?? Mock.Of<ISystemService>();
             var fakeTransferReportService = TransferReportService ?? Mock.Of<ITransferReportService>();
 
-            return new TransferReportController(fakeSessionService, fakeCurrencyRepository, fakeTransferReportService);
+            return new TransferReportController(fakeSessionService, fakesystemService, fakeTransferReportService);
         }
     }
 }

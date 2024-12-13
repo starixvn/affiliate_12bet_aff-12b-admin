@@ -4,9 +4,9 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
 using System.Collections.Generic;
 
-namespace Fanex.Affiliate.Admin.Core.Repository
+namespace Fanex.Affiliate.Admin.Core.Services.Auth
 {
-    public interface IAuthRepository
+    public interface IAuthService
     {
         IList<UserPermission> GetPermissionList(int userId);
         bool ReCheckin(int onUserId);

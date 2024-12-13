@@ -231,8 +231,6 @@
     <Compile Include="Repository\Report\ReportRepositoryTest.cs" />
     <Compile Include="Services\Administrator\AdministratorServiceTest.cs" />
     <Compile Include="Services\Administrator\DepartmentServiceTest.cs" />
-    <Compile Include="Services\AffilateServiceTest.cs" />
-    <Compile Include="Services\AffTypeServiceTest.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupAssignmentServiceTest.cs" />
     <Compile Include="Services\CommGroup\CommGroupCommonServiceTest.cs" />

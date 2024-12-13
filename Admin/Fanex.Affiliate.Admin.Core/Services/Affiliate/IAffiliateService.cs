@@ -2,7 +2,7 @@
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 
-namespace Fanex.Affiliate.Admin.Core.Services
+namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 {
     public interface IAffiliateService
     {

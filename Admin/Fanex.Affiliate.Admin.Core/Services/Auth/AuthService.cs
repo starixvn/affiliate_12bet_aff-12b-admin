@@ -9,13 +9,13 @@ using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Fanex.Affiliate.Admin.Core.Repository
+namespace Fanex.Affiliate.Admin.Core.Services.Auth
 {
-    public class AuthRepository : IAuthRepository
+    public class AuthService : IAuthService
     {
         private readonly IDynamicRepository _dynamicRepository;
 
-        public AuthRepository(
+        public AuthService(
             IDynamicRepository dynamicRepository)
         {
             _dynamicRepository = dynamicRepository;

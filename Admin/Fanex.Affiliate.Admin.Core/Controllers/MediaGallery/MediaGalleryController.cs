@@ -4,7 +4,7 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         private const int BannerListCategory = 1;
         private const string CasinoCategory = "Casino";
         private const string SportsbookCategory = "Sportsbook";
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _languageService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
         private readonly IBannerListService _bannerListService;
         private readonly IAffTypeService _affTypeService;
@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         public MediaGalleryController(
             ISessionService sessionService,
-            ILanguageService languageService,
+            ISystemService languageService,
             ICommonMediaGalleryService commonMediaGalleryService,
             IBannerListService bannerListService,
             IAffTypeService affTypeService,

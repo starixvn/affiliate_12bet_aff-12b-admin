@@ -2,8 +2,6 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
@@ -15,28 +13,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
     [FunctionAuthorize(FunctionName = Function.AffReport)]
     public class ReportController : ReadOnlySessionBaseController
     {
-        private readonly IProductRepository _productRepository;
-
-        private readonly ILanguageService _languageService;
+        private readonly ISystemService _systemService;
 
         private readonly IAffiliateReportService _affiliateReportService;
-
-        private readonly ICurrencyRepository _currencyRepository;
 
         private readonly ICommGroupCommonService _commGroupCommonService;
 
         public ReportController(
             ISessionService sessionService,
-            IProductRepository productRepository,
-            ILanguageService languageService,
+            ISystemService systemService,
             IAffiliateReportService affiliateReportService,
-            ICurrencyRepository currencyRepository,
             ICommGroupCommonService commGroupCommonService) : base(sessionService)
         {
-            _productRepository = productRepository;
-            _languageService = languageService;
+            _systemService = systemService;
             _affiliateReportService = affiliateReportService;
-            _currencyRepository = currencyRepository;
             _commGroupCommonService = commGroupCommonService;
         }
 
@@ -48,11 +38,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
             var viewModel = new AffiliateReportViewModel
             {
                 ReportCutOffDate = _affiliateReportService.GetReportCutOffDate(),
-                ProductList = _productRepository.GetProductList(),
-                LanguageList = _languageService.GetLanguageList(),
-                CurrencyList = _currencyRepository.GetCurrencies(),
-                BaseCurrencyList = _currencyRepository.GetBaseCurrencies(),
-                PaymentCurrencyList = _currencyRepository.GetPaymentCurrencies(),
+                ProductList = _systemService.GetProductList(),
+                LanguageList = _systemService.GetLanguageList(),
+                CurrencyList = _systemService.GetCurrencies(),
+                BaseCurrencyList = _systemService.GetBaseCurrencies(),
+                PaymentCurrencyList = _systemService.GetPaymentCurrencies(),
                 CommGroupList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()),
                 CommGroupTypes = _commGroupCommonService.GetCommGroupTypes()
             };

@@ -3,22 +3,23 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 
-namespace Fanex.Affiliate.Admin.Core.Repository
+namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 {
-    public class LanguageRepository : ILanguageRepository
+    public class AffTypeService : IAffTypeService
     {
         private readonly IDynamicRepository _dynamicRepository;
 
-        public LanguageRepository(
+        public AffTypeService(
             IDynamicRepository dynamicRepository)
         {
             _dynamicRepository = dynamicRepository;
         }
-        public IEnumerable<Language> GetLanguageList()
-        {
-            const string SpKey = "Aff_Market_Sel";
 
-            return _dynamicRepository.Fetch<Language>(new BaseCriteria(SpKey));
+        public IEnumerable<AffTypeInfo> GetAffTypeList()
+        {
+            const string SpKey = "Aff_AffTypeSel";
+
+            return _dynamicRepository.Fetch<AffTypeInfo>(new BaseCriteria(SpKey));
         }
     }
 }

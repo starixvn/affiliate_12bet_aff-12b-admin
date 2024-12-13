@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
@@ -18,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var languageService = new Mock<ILanguageService>();
+            var languageService = new Mock<ISystemService>();
             languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
 
             var controller = CreateCustomerController(languageService: languageService.Object);
@@ -39,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.AffName).Returns("12BETAFF226");
-            var languageService = new Mock<ILanguageService>();
+            var languageService = new Mock<ISystemService>();
             languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
 
             var controller = CreateCustomerController(languageService: languageService.Object);
@@ -56,19 +55,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private CustomerController CreateCustomerController(
             ISessionService sessionService = null,
-            ILanguageService languageService = null,
-            IAffTypeService affTypeService = null,
-            IProductRepository productRepository = null,
-            ICurrencyRepository currencyRepository = null
+            ISystemService languageService = null,
+            IAffTypeService affTypeService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
             var fakeAffTypeService = affTypeService ?? Mock.Of<IAffTypeService>();
-            var fakeProductRepository = productRepository ?? Mock.Of<IProductRepository>();
-            var fakeCurrencyRepository = currencyRepository ?? Mock.Of<ICurrencyRepository>();
 
-            return new CustomerController(fakeSessionService, fakeLanguageService, fakeAffTypeService, fakeProductRepository, fakeCurrencyRepository);
+            return new CustomerController(fakeSessionService, fakeLanguageService, fakeAffTypeService);
         }
     }
 }

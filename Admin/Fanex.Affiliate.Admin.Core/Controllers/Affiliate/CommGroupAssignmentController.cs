@@ -4,8 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -28,13 +27,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private readonly IAffiliateService _affiliateService;
 
-        private readonly IProductRepository _productRepository;
+        private readonly ISystemService _systemService;
 
         private readonly ICommGroupValidation _commGroupValidation;
 
         public CommGroupAssignmentController(
             ISessionService sessionService,
-            IProductRepository productRepository,
+            ISystemService systemService,
             IAffiliateService affiliateService,
             ICommGroupAssignmentService commGroupAssignmentService,
             ICommGroupCommonService commGroupCommonService,
@@ -42,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         {
             _affiliateService = affiliateService;
             _commGroupAssignmentService = commGroupAssignmentService;
-            _productRepository = productRepository;
+            _systemService = systemService;
             _commGroupCommonService = commGroupCommonService;
             _commGroupValidation = commGroupValidation;
         }
@@ -104,7 +103,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = new AssignPrivateGroupViewModel();
             if (affId >= Validation.MinId)
             {
-                var productList = _productRepository.GetProductList();
+                var productList = _systemService.GetProductList();
                 var affInfo = _affiliateService.GetAffiliateBasicInfo(affId);
 
                 viewModel = new AssignPrivateGroupViewModel

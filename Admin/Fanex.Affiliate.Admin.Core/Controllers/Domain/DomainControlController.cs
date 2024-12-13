@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
@@ -16,15 +15,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     public class DomainControlController : ReadOnlySessionBaseController
     {
         private readonly IDomainControlService _domainControlService;
-        private readonly ILanguageRepository _languageRepository;
+        private readonly ISystemService _languageService;
 
         public DomainControlController(
             ISessionService sessionService,
             IDomainControlService domainControlService,
-            ILanguageRepository languageRepository) : base(sessionService)
+            ISystemService languageService) : base(sessionService)
         {
             _domainControlService = domainControlService;
-            _languageRepository = languageRepository;
+            _languageService = languageService;
         }
 
         public ActionResult Index()
@@ -40,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             var model = new DomainControlViewModel
             {
                 SubMenuList = subMenu,
-                MarketList = _languageRepository.GetLanguageList()
+                MarketList = _languageService.GetLanguageList()
             };
 
             return View("~/Areas/Portal/Views/Domain/DomainControl.cshtml", model);

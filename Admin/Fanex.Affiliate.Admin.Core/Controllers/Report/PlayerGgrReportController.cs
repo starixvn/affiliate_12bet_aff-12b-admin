@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.ViewModels.Report;
@@ -15,18 +14,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
     [FunctionAuthorize(FunctionName = Function.AffReport)]
     public class PlayerGgrReportController : ReadOnlySessionBaseController
     {
-        private readonly IProductRepository _productRepository;
-        private readonly ICurrencyRepository _currencyRepository;
+        private readonly ISystemService _systemService;
         private readonly IPlayerGgrReportService _playerGgrReportService;
 
         public PlayerGgrReportController(
             ISessionService sessionService,
-            IProductRepository productRepository,
-            ICurrencyRepository currencyRepository,
+            ISystemService systemService,
             IPlayerGgrReportService playerGgrReportService) : base(sessionService)
         {
-            _productRepository = productRepository;
-            _currencyRepository = currencyRepository;
+            _systemService = systemService;
             _playerGgrReportService = playerGgrReportService;
         }
 
@@ -36,8 +32,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
         {
             var viewModel = new ReportCommonViewModel
             {
-                ProductList = _productRepository.GetProductList(),
-                BaseCurrencyList = _currencyRepository.GetBaseCurrencies()
+                ProductList = _systemService.GetProductList(),
+                BaseCurrencyList = _systemService.GetBaseCurrencies()
             };
 
             return View("~/Areas/Portal/Views/Report/PlayerGgrReport.cshtml", viewModel);

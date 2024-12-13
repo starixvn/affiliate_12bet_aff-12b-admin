@@ -4,9 +4,10 @@ using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
+using Fanex.Affiliate.Admin.Core.Services.Auth;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Moq;
 using System.Collections.Generic;
@@ -39,10 +40,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), It.IsAny<string>())).Returns(new AffiliateBasicInfo());
 
-            var authRepository = new Mock<IAuthRepository>();
-            authRepository.Setup(a => a.GetPermissionList(It.IsAny<int>())).Returns(new List<UserPermission> { new UserPermission { FunctionName = Function.EditAffStatus, IsHost = true } });
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.GetPermissionList(It.IsAny<int>())).Returns(new List<UserPermission> { new UserPermission { FunctionName = Function.EditAffStatus, IsHost = true } });
 
-            var helper = CreateCommGroupValidationHelper(authRepository.Object, affiliateService.Object);
+            var helper = CreateCommGroupValidationHelper(authService.Object, affiliateService.Object);
 
             // Action
             var result = helper.HasPermissionAssignOnAff(123, 234);
@@ -321,14 +322,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
             Assert.False(result.IsSuccessful);
         }
 
-        private static CommGroupValidation CreateCommGroupValidationHelper(IAuthRepository authRepository = null, IAffiliateService affiliateService = null)
+        private static CommGroupValidation CreateCommGroupValidationHelper(IAuthService authService = null, IAffiliateService affiliateService = null)
         {
-            var fakeIAuthRepository = authRepository ?? Mock.Of<IAuthRepository>();
+            var fakeIauthService = authService ?? Mock.Of<IAuthService>();
             var fakeIAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
-            var productRepository = new Mock<IProductRepository>();
+            var systemService = new Mock<ISystemService>();
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
 
-            productRepository.Setup(p => p.GetProductList()).Returns(new List<Product>
+            systemService.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 2 },
@@ -340,7 +341,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                 new CommGroupType {GroupTypeId = 2}
             });
 
-            return new CommGroupValidation(fakeIAuthRepository, fakeIAffiliateService, productRepository.Object, commGroupCommonService.Object);
+            return new CommGroupValidation(fakeIauthService, fakeIAffiliateService, systemService.Object, commGroupCommonService.Object);
         }
         private static CommGroupSettingParam CreateValidCommGroupSettingParam()
         {
