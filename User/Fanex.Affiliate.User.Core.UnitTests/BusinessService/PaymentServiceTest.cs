@@ -1,7 +1,9 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Enum;
-using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -9,13 +11,12 @@ using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Moq;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
+    using DTO.UserPanel;
+
     public class PaymentServiceTest
     {
         [Fact]
@@ -38,7 +39,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void CancelPaymentRequest_WhenCall_AssignValueForParamCorrectly()
         {
             // Arrange
-            var paymentParam = new PaymentCancelParam { UserId = Constant.DefaultAffId, IsInternal = false };
+            var paymentParam = new PaymentCancelParam { AffId = Constant.DefaultAffId, IsInternal = false };
             var emailParam = new PaymentEmailParam();
             PaymentEmailParam passedEmailParam = null;
 
@@ -52,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 Email = Constant.DefaultMailUser
             };
             var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.UserId, paymentParam.IsInternal)).Returns(userInfo);
+            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.AffId, paymentParam.IsInternal)).Returns(userInfo);
 
             var emailService = new Mock<IEmailService>();
             emailService.Setup(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>())).Callback<PaymentEmailParam>(p => passedEmailParam = p);
@@ -78,7 +79,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void CancelPaymentRequest_WhenCall_ReturnCorrectResult(bool isSuccessful, string message)
         {
             // Arrange
-            var paymentParam = new PaymentCancelParam { UserId = Constant.DefaultAffId, IsInternal = false };
+            var paymentParam = new PaymentCancelParam { AffId = Constant.DefaultAffId, IsInternal = false };
             var emailParam = new PaymentEmailParam();
 
             var paymentRepository = new Mock<IPaymentRepository>();
@@ -86,7 +87,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             UserInfo userInfo = null;
             var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.UserId, paymentParam.IsInternal)).Returns(userInfo);
+            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.AffId, paymentParam.IsInternal)).Returns(userInfo);
 
             var service = CreatePaymentService(
                 paymentRepository: paymentRepository.Object,
@@ -105,7 +106,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             // Arrange
             // Arrange
-            var paymentParam = new PaymentCancelParam { UserId = Constant.DefaultAffId, IsInternal = false };
+            var paymentParam = new PaymentCancelParam { AffId = Constant.DefaultAffId, IsInternal = false };
             var emailParam = new PaymentEmailParam();
 
             var paymentRepository = new Mock<IPaymentRepository>();
@@ -113,7 +114,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             UserInfo userInfo = null;
             var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.UserId, paymentParam.IsInternal)).Returns(userInfo);
+            accountRepository.Setup(a => a.GetUserInfoById(paymentParam.AffId, paymentParam.IsInternal)).Returns(userInfo);
 
             var emailService = new Mock<IEmailService>();
 
@@ -127,29 +128,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             // Assert
             emailService.Verify(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>()), Times.Never());
-        }
-
-        [Fact]
-        public async Task CreatePaymentRequest_IsLocalTest_ReturnCorrectResultInfo()
-        {
-            // Arrange
-            var param = new PaymentCreationParam
-            {
-                IsLocalTest = false,
-                Amount = 123
-            };
-
-            var dateTimeProvider = new Mock<IDateTimeProvider>();
-            dateTimeProvider.Setup(d => d.Now).Returns(new DateTime(2020, 12, 06));
-
-            var service = CreatePaymentService(dateTimeProvider: dateTimeProvider.Object);
-
-            // Action
-            var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
-
-            // Assert
-            Assert.False(result.IsOk);
-            Assert.Equal(Error.PaymentPayoutTimeInvalid, result.Message);
         }
 
         [Fact]
@@ -175,39 +153,24 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public async Task CreatePaymentRequest_PlayerAccountIsNotActived_ReturnCorrectResultInfo()
-        {
-            // Arrange
-            var param = CreateValidPaymentCreationParam();
-            const string ErrorMessage = "Player Account Is Not Actived";
-
-            var accountService = new Mock<IAccountService>();
-            accountService.Setup(a => a.CheckPlayerAccountIsActivedAsync(param.AffId, param.Language)).Returns(Task.FromResult(new ResultInfo { Message = ErrorMessage }));
-
-            var service = CreatePaymentService(accountService: accountService.Object);
-
-            // Action
-            var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
-
-            // Assert
-            Assert.False(result.IsOk);
-            Assert.Equal(ErrorMessage, result.Message);
-        }
-
-        [Fact]
         public async Task CreatePaymentRequest_ValidParamButCreatePaymentFailed_ReturnCorrectResultInfo()
         {
             // Arrange
             var param = CreateValidPaymentCreationParam();
             const string ErrorMessage = "Create Payment Failed";
 
+            var userInfo = CreateUserInfo();
+            var accountInfo = CreateAccountInfo();
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(a => a.GetUserInfoById(param.AffId, param.IsInternal)).Returns(userInfo);
+            accountRepository.Setup(a => a.GetAccountInfo(param.AffId)).Returns(accountInfo);
+
             var accountService = new Mock<IAccountService>();
-            accountService.Setup(a => a.CheckPlayerAccountIsActivedAsync(param.AffId, param.Language)).Returns(Task.FromResult(new ResultInfo { IsOk = true }));
-
+            accountService.Setup(a => a.CheckAndUnlockUserIfLocked(accountInfo.PlayerUsername)).ReturnsAsync(new ResultInfo { IsOk = true });
             var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CreatePaymentRequest(param)).Returns(new ResultInfo { Message = ErrorMessage });
+            paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentRequestInfo>())).Returns(new ResultInfo { Message = ErrorMessage });
 
-            var service = CreatePaymentService(paymentRepository: paymentRepository.Object, accountService: accountService.Object);
+            var service = CreatePaymentService(paymentRepository: paymentRepository.Object, accountRepository: accountRepository.Object, accountService: accountService.Object);
 
             // Action
             var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
@@ -216,6 +179,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.False(result.IsOk);
             Assert.Equal(ErrorMessage, result.Message);
         }
+
 
         [Fact]
         public async Task CreatePaymentRequest_ValidParamAndSendEmail_ReturnCorrectResultAndEmailParamAssignCorrectly()
@@ -223,30 +187,34 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             PaymentEmailParam passedEmailParam = null;
             var param = CreateValidPaymentCreationParam();
-
-            var accountService = new Mock<IAccountService>();
-            accountService.Setup(a => a.CheckPlayerAccountIsActivedAsync(param.AffId, param.Language)).Returns(Task.FromResult(new ResultInfo { IsOk = true }));
+            PaymentRequestInfo paymentRequest = null;
 
             var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CreatePaymentRequest(param)).Returns(new ResultInfo { IsOk = true });
+            paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentRequestInfo>()))
+                .Callback<PaymentRequestInfo>(p =>
+                {
+                    p.TransId = param.TransId;
+                    paymentRequest = p;
+                })
+                .Returns(new ResultInfo { IsOk = true });
 
-            var userInfo = new UserInfo
-            {
-                UserName = "usernametest",
-                AffId = Constant.DefaultAffId,
-                Email = Constant.DefaultMailUser
-            };
+            var userInfo = CreateUserInfo();
+            var accountInfo = CreateAccountInfo();
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(a => a.GetUserInfoById(param.AffId, param.IsInternal)).Returns(userInfo);
+            accountRepository.Setup(a => a.GetAccountInfo(param.AffId)).Returns(accountInfo);
 
             var emailService = new Mock<IEmailService>();
             emailService.Setup(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>())).Callback<PaymentEmailParam>(p => passedEmailParam = p);
 
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(a => a.CheckAndUnlockUserIfLocked(accountInfo.PlayerUsername)).ReturnsAsync(new ResultInfo { IsOk = true });
+
             var service = CreatePaymentService(
                 accountRepository: accountRepository.Object,
                 paymentRepository: paymentRepository.Object,
-                accountService: accountService.Object,
-                emailService: emailService.Object);
+                emailService: emailService.Object,
+                accountService: accountService.Object);
 
             var expectedEmailParam = new PaymentEmailParam
             {
@@ -263,8 +231,50 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             // Assert
             Assert.True(result.IsOk);
-            Assert.Null(result.Message);
             Assert.Equal(JsonConvert.SerializeObject(expectedEmailParam), JsonConvert.SerializeObject(passedEmailParam));
+        }
+
+        [Fact]
+        public async Task CreatePaymentRequest_ValidParamHasTransDateIsNullAndSendEmail_ReturnCorrectResultAndEmailParamAssignCorrectly()
+        {
+            // Arrange
+            PaymentEmailParam passedEmailParam = null;
+            var param = CreatePaymentCreationParamHasTransDateIsNull();
+            PaymentRequestInfo paymentRequest = null;
+
+            var paymentRepository = new Mock<IPaymentRepository>();
+            paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentRequestInfo>()))
+                .Callback<PaymentRequestInfo>(p =>
+                {
+                    p.TransId = param.TransId;
+                    paymentRequest = p;
+                })
+                .Returns(new ResultInfo { IsOk = true });
+
+            var userInfo = CreateUserInfo();
+            var accountInfo = CreateAccountInfo();
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(a => a.GetUserInfoById(param.AffId, param.IsInternal)).Returns(userInfo);
+            accountRepository.Setup(a => a.GetAccountInfo(param.AffId)).Returns(accountInfo);
+
+            var emailService = new Mock<IEmailService>();
+            emailService.Setup(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>())).Callback<PaymentEmailParam>(p => passedEmailParam = p);
+
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(a => a.CheckAndUnlockUserIfLocked(accountInfo.PlayerUsername)).ReturnsAsync(new ResultInfo { IsOk = true });
+
+            var service = CreatePaymentService(
+                accountRepository: accountRepository.Object,
+                paymentRepository: paymentRepository.Object,
+                emailService: emailService.Object,
+                accountService: accountService.Object);
+
+            // Action
+            var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
+
+            // Assert
+            Assert.True(result.IsOk);
+            Assert.NotEqual(param.TransDate, passedEmailParam.RequestDate);
         }
 
         [Fact]
@@ -273,29 +283,60 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             PaymentEmailParam passedEmailParam = null;
             var param = CreateValidPaymentCreationParam();
-
-            var accountService = new Mock<IAccountService>();
-            accountService.Setup(a => a.CheckPlayerAccountIsActivedAsync(param.AffId, param.Language)).Returns(Task.FromResult(new ResultInfo { IsOk = true }));
+            PaymentRequestInfo paymentRequest = null;
 
             var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CreatePaymentRequest(param)).Returns(new ResultInfo { IsOk = true });
+            paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentRequestInfo>()))
+                .Callback<PaymentRequestInfo>(p =>
+                {
+                    p.TransId = param.TransId;
+                    paymentRequest = p;
+                })
+                .Returns(new ResultInfo { IsOk = true });
+
+            var accountInfo = CreateAccountInfo();
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(a => a.GetAccountInfo(param.AffId)).Returns(accountInfo);
 
             var emailService = new Mock<IEmailService>();
             emailService.Setup(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>())).Callback<PaymentEmailParam>(p => passedEmailParam = p);
 
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(a => a.CheckAndUnlockUserIfLocked(accountInfo.PlayerUsername)).ReturnsAsync(new ResultInfo { IsOk = true });
+
             var service = CreatePaymentService(
+                accountRepository: accountRepository.Object,
                 paymentRepository: paymentRepository.Object,
-                accountService: accountService.Object,
-                emailService: emailService.Object);
+                emailService: emailService.Object,
+                accountService: accountService.Object);
 
             // Action
             var result = await service.CreatePaymentRequestAsync(param, new PaymentEmailParam());
 
             // Assert
             Assert.True(result.IsOk);
-            Assert.Null(result.Message);
             Assert.Null(passedEmailParam);
         }
+
+        private static UserInfo CreateUserInfo()
+        {
+            return new UserInfo
+            {
+                UserName = "usernametest",
+                AffId = Constant.DefaultAffId,
+                Email = Constant.DefaultMailUser
+            };
+        }
+
+        private AccountInformation CreateAccountInfo()
+            => new AccountInformation
+            {
+                Address = "abc",
+                AffCurrency = "USD",
+                AffId = 1,
+                City = "ab",
+                PlayerUsername = "username"
+            };
 
         private PaymentCreationParam CreateValidPaymentCreationParam()
         {
@@ -308,56 +349,36 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 AffId = Constant.DefaultAffId,
                 Language = Constant.DefaultLanguage,
                 TransId = 123,
-                TransDate = new System.DateTime(2018, 12, 28)
+                TransDate = new DateTime(2018, 12, 28)
+            };
+        }
+        private PaymentCreationParam CreatePaymentCreationParamHasTransDateIsNull()
+        {
+            return new PaymentCreationParam
+            {
+                IsLocalTest = true,
+                Amount = 100m,
+                MinAmount = 100m,
+                BalBroughtForward = 1000m,
+                AffId = Constant.DefaultAffId,
+                Language = Constant.DefaultLanguage,
+                TransId = 123,
+                TransDate = null
             };
         }
 
         private static PaymentService CreatePaymentService(
             IAccountRepository accountRepository = null,
-            IAccountService accountService = null,
             IPaymentRepository paymentRepository = null,
             IEmailService emailService = null,
-            IDateTimeProvider dateTimeProvider = null)
+            IAccountService accountService = null)
         {
             var fakeAccountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
-            var fakeAccountService = accountService ?? Mock.Of<IAccountService>();
             var fakePaymentRepository = paymentRepository ?? Mock.Of<IPaymentRepository>();
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
-            var fakeDateTimeProvider = dateTimeProvider ?? Mock.Of<IDateTimeProvider>();
+            var fakeAccountService = accountService ?? Mock.Of<IAccountService>();
 
-            return new PaymentService(fakeAccountRepository, fakeAccountService, fakePaymentRepository, fakeEmailService, fakeDateTimeProvider);
-        }
-    }
-
-    public static class PaymentServiceTestCase
-    {
-        public static IEnumerable<object[]> CreateForPaymentCreation()
-        {
-            yield return new object[]
-            {
-                new PaymentCreationParam
-                {
-                    IsLocalTest = true,
-                    Amount = 100m,
-                    MinAmount = 100m,
-                    BalBroughtForward = 90m
-                },
-                new ResultInfo { IsOk = false, Message = Error.PaymentAmountInvalid }
-            };
-
-            yield return new object[]
-            {
-                new PaymentCreationParam
-                {
-                    IsLocalTest = true,
-                    Amount = 100m,
-                    MinAmount = 100m,
-                    BalBroughtForward = 1000m,
-                    AffId = Constant.DefaultAffId,
-                    Language = Constant.DefaultLanguage
-                },
-                new ResultInfo { IsOk = true }
-            };
+            return new PaymentService(fakeAccountRepository, fakeAccountService, fakePaymentRepository, fakeEmailService);
         }
     }
 }

@@ -1,14 +1,13 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System;
+    using System.Web.Mvc;
     using Constants;
-    using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
-    using System;
-    using System.Web.Mvc;
     using ViewModels.UserPanel;
 
     [CustomAuthorize]
@@ -17,7 +16,8 @@
         private readonly IStatementHistoryRepository _statementHistoryRepository;
         private readonly ICurrencyRepository _currencyRepository;
 
-        public DailyEarningController(ISessionService sessionService,
+        public DailyEarningController(
+            ISessionService sessionService,
             ISystemService languageService,
             IStatementHistoryRepository statementHistoryRepository,
             ICurrencyRepository currencyRepository) : base(sessionService, languageService)

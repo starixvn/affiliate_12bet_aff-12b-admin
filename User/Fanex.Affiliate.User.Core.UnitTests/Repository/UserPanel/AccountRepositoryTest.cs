@@ -18,46 +18,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             const string uSpKey = "Aff_User_UserInfoSel";
             var repo = CreateRepo();
             var db = Builder.Build(null, null);
-            db.QueryEntity<AccountInformation>(null).ReturnsForAnyArgs(new AccountInformation
-            {
-                Address = "abc",
-                AffId = 1,
-                City = "city",
-                ContactAppList = new List<ContactApp> { new ContactApp { Name = "zalo", Order = 1, Value = "abc" } },
-                ContactApps = "skype",
-                Country = "vietnam",
-                Email = "abc@gmail.com",
-                Gender = true,
-                HasWebSite = false,
-                IsRenderState = true,
-                LanguageName = "VietName",
-                MoreSiteUrls = "",
-                NoSiteDesc = "",
-                Phone = "",
-                PlayerUsername = "",
-                Postal = "",
-                PreferredLanguage = "vi-VN",
-                PreferredPayment = "perf",
-                SiteUrl = "",
-                State = "pending",
-                UserName = "aff1"
-            });
+            db.QueryEntity<AccountInformation>(null).ReturnsForAnyArgs(new AccountInformation());
 
             var result = repo.GetAccountInfo(1);
-
-            Assert.Equal(uSpKey, db.SettingKey);
-            Assert.NotNull(result);
-        }
-
-        [Fact]
-        public void GetDepositPlayerAccount_WhenCall_QueryDepositInfo()
-        {
-            const string uSpKey = "Aff_Deposit_GetCustDataForCreateIBCACByUserName";
-            var repo = CreateRepo();
-            var db = Builder.Build(null, null);
-            db.QueryEntity<DepositCustomerInfo>().ReturnsForAnyArgs(CreateDepositAccountInfo());
-
-            var result = repo.GetDepositPlayerAccount("userName");
 
             Assert.Equal(uSpKey, db.SettingKey);
             Assert.NotNull(result);
@@ -143,52 +106,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             Assert.NotNull(result);
         }
 
-        [Fact]
-        public void CheckPlayerAccountIsactived_WhenCall_ReturnCheckingResult()
-        {
-            const string uSpKey = "Aff_CustomerCheck12BetPlayerAccountActivated";
-            var repo = CreateRepo();
-            var isOk = false;
-            var message = "error";
-            var playerUserName = "playerName";
-            var db = Builder.Build(null, null);
-            db.When(d => d.ExecuteNonQuery(Arg.Compat.Any<object>()))
-                .Do(c =>
-                {
-                    var arg = c.Args()[0];
-                    SetObjectPropetyValue(arg, "Result", isOk);
-                    SetObjectPropetyValue(arg, "ErrMsg", message);
-                    db.GetParameterValue("12BetPlayerUserName").Returns(playerUserName);
-                });
-
-            var result = repo.CheckPlayerAccountIsActived(1, "");
-
-            Assert.Equal(uSpKey, db.SettingKey);
-            Assert.Equal(isOk, result.IsOk);
-            Assert.Equal(message, result.Message);
-            Assert.Equal(playerUserName, result.PlayerUserName);
-        }
-
-        [Fact]
-        public void UpdatePlayerAccountStatusForDeposit_WhenUpdateSuccess_ReturnSuccess()
-        {
-            const string uSpKey = "Aff_Deposit_MemberIBCDetail";
-            var repo = CreateRepo();
-            var param = new DepositPlayerAccountParam { DepUserName = "1", ErrorCode = 101, ErrorMsg = "", IbcCustId = 1 };
-            var db = Builder.Build(null, null);
-            db.When(d => d.ExecuteNonQuery(param))
-                .Do(c =>
-                {
-                    var arg = c.Args()[0];
-                    SetObjectPropetyValue(arg, "ErrorCode", 0);
-                    SetObjectPropetyValue(arg, "ErrorMsg", null);
-                });
-
-            var result = repo.UpdatePlayerAccountStatusForDeposit(param);
-
-            Assert.Equal(uSpKey, db.SettingKey);
-            Assert.True(result.IsOk);
-        }
 
         [Fact]
         public void CreateAffiliate_WhenReturnNoErrorCode_ReturnOkResult()
@@ -240,8 +157,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var result = repo.CreateAffiliate(param);
 
             Assert.Equal(uSpKey, db.SettingKey);
-            Assert.Equal("Player", UserSignUpParam.PreferredPayment);
             Assert.True(result.IsOk);
+            Assert.Equal("Player", UserSignUpParam.PreferredPayment);
         }
 
         [Fact]
@@ -274,6 +191,32 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             Assert.Equal(errorCode, result);
         }
 
+        [Fact]
+        public void GetUserInfoById_WhenCall_CallQuery()
+        {
+            const string uSpKey = "Aff_User_GeneralInfo_Sel";
+            var repo = CreateRepo();
+            var db = Builder.Build(null, null);
+
+            repo.GetUserInfoById(1, false);
+
+            Assert.Equal(uSpKey, db.SettingKey);
+            db.Received().QueryEntity<UserInfo>(Arg.Any<object>());
+        }
+
+        [Fact]
+        public void GetGeneralAffInfo_WhenCall_CallQuery()
+        {
+            const string uSpKey = "Aff_Get_GeneralAffInfo";
+            var repo = CreateRepo();
+            var db = Builder.Build(null, null);
+
+            repo.GetGeneralAffInfo(1, null);
+
+            Assert.Equal(uSpKey, db.SettingKey);
+            db.Received().QueryEntity<GeneralAffInfo>(Arg.Any<object>());
+        }
+
         private static UpdateAccountParam CreateUpdateAccountParam()
             => new UpdateAccountParam
             {
@@ -286,7 +229,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
                 MoreSiteUrls = "",
                 NoSiteDesc = string.Empty,
                 Phone = "123456",
-                Player_UserName = "name",
                 SiteUrl = "abc.com"
             };
 
@@ -314,19 +256,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
                 PreferredLanguage = "",
                 SecretKey = "abc",
                 UserName = "name"
-            };
-
-        private static DepositCustomerInfo CreateDepositAccountInfo()
-            => new DepositCustomerInfo
-            {
-                AffiliateId = 1,
-                AgentId = 1,
-                Country = "",
-                DepositUserId = 1,
-                DepositUserName = "aff1",
-                OddsType = "hongkong",
-                Password = "",
-                Success = 1
             };
     }
 }

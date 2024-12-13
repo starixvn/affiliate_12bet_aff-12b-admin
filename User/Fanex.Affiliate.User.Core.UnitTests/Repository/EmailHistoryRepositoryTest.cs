@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
             var db = Builder.Build(null, null);
             var errorCode = 101;
             db.When(d => d.ExecuteNonQuery(param))
-                .Do(c => (c.Args()[0] as ContactUsParam).ErrCode = errorCode);
+                .Do(c => ((ContactUsParam)c.Args()[0]).ErrCode = errorCode);
 
             repo.Insert(param);
 

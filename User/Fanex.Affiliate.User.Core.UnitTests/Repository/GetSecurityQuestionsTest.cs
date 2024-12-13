@@ -11,6 +11,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
         [Fact]
         public void GetSecurityQuestions_WhenCall_ReturnListSecurityQuestion()
         {
+            // Arrange
             var repo = CreateRepo();
             var secQuestion = new SecurityQuestion
             {
@@ -23,8 +24,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
             AssignObjectToReader(reader, secQuestion);
             reader.Read().Returns(true, true, false);
 
+            // Action
             var result = repo.GetSecurityQuestions("vi-VN", true);
 
+            // Assert
             Assert.Equal(spKey, db.SettingKey);
             Assert.Equal(2, result.Count());
             reader.Received(3).Read();

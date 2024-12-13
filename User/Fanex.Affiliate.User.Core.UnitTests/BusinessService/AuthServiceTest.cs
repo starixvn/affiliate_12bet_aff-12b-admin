@@ -1,5 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.DTO;
+﻿using System;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -8,8 +8,6 @@ using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using System;
-using System.Collections.Generic;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -19,7 +17,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         private readonly IAuthRepository AuthRepo;
         private readonly ICryptographyService CryptographyService;
         private readonly IAppSetting AppSetting;
-        private readonly IFeedbackService FeedbackService;
         private readonly IVerificationRepository VerificationRepo;
 
         const string Password = "Password";
@@ -32,7 +29,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             AuthRepo = Substitute.For<IAuthRepository>();
             CryptographyService = Substitute.For<ICryptographyService>();
             AppSetting = Substitute.For<IAppSetting>();
-            FeedbackService = Substitute.For<IFeedbackService>();
             VerificationRepo = Substitute.For<IVerificationRepository>();
         }
 
@@ -50,18 +46,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLoginResult_WhenLoginWithInternalClosedAdminUser_ReturnErrorResult()
+        public void GetLoginResult_WhenLoginWithInternalSuspendedAfUser_ReturnOK()
         {
             var param = CreateLoginParam();
-            var userInfo = CreateAutherizedUserInfo();
-            userInfo.IsClosed = true;
+            var userInfo = CreateSuspendedUserInfo();
             var service = CreateService();
             AuthRepo.GetUserInfo(Arg.Compat.Any<string>(), true).Returns(userInfo);
 
             var result = service.GetLoginResult(param, true);
 
-            Assert.False(result.Result.IsOk);
-            Assert.Equal(Error.LoginClosedAccount, result.Result.Message);
+            Assert.True(result.Result.IsOk);
         }
 
         [Fact]
@@ -98,7 +92,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetLoginResult_WhenQueryStringHaveEmptyUserName_ReturnFailResult()
         {
             var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var queryString = $"u={String.Empty}&p={Password}&t={nowTick}";
+            var queryString = $"u={string.Empty}&p={Password}&t={nowTick}";
             var service = CreateService();
             SetUpLoginNormaiUserPassedAllCheckCondition();
             var param = CreateLoginParam();
@@ -114,7 +108,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetLoginResult_WhenQueryStringHaveEmptyPassword_ReturnFailResult()
         {
             var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var queryString = $"u={UserName}&p={String.Empty}&t={nowTick}";
+            var queryString = $"u={UserName}&p={string.Empty}&t={nowTick}";
             var service = CreateService();
             SetUpLoginNormaiUserPassedAllCheckCondition();
             var param = CreateLoginParam();
@@ -127,19 +121,18 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLoginResult_WhenUserIsClosed_ReturnFailResult()
+        public void GetLoginResult_WhenUserIsSuspended_ReturnFailResult()
         {
             var service = CreateService();
             var param = CreateLoginParam();
             SetUpLoginNormaiUserPassedAllCheckCondition();
-            var user = CreateAutherizedUserInfo();
-            user.IsClosed = true;
+            var user = CreateSuspendedUserInfo();
             AuthRepo.GetUserInfo(null, false).ReturnsForAnyArgs(user);
 
             var result = service.GetLoginResult(param, false);
 
             Assert.False(result.Result.IsOk);
-            Assert.Contains(Error.LoginClosedAccount, result.Result.Message);
+            Assert.Contains(Error.YourAccountHasBeenSuspended, result.Result.Message);
         }
 
         [Fact]
@@ -194,7 +187,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreateService();
             SetUpLoginNormaiUserPassedAllCheckCondition();
             var param = CreateLoginParam();
-
             var result = service.GetLoginResult(param, false);
 
             Assert.True(result.Result.IsOk);
@@ -215,9 +207,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var service = CreateService();
 
-            service.GetInternalLoginInfo(1);
+            service.GetSessionId(1);
 
-            AuthRepo.ReceivedWithAnyArgs().GetInternalLoginInfo(1);
+            AuthRepo.ReceivedWithAnyArgs().GetSessionId(1);
         }
 
         [Fact]
@@ -230,48 +222,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             AuthRepo.ReceivedWithAnyArgs().Recheckin(1, false);
         }
 
-        [Fact]
-        public void IsValidIdleTime_WhenCall_RepoCalled()
-        {
-            var now = DateTime.Now;
-            var service = CreateService();
-
-            service.IsValidIdleTime(now);
-
-            FeedbackService.ReceivedWithAnyArgs().IsValidIdleTime(now);
-        }
-
-        [Fact]
-        public void IsValidAff_WhenCall_RepoCalled()
-        {
-            var service = CreateService();
-
-            service.IsValidAff(123);
-
-            FeedbackService.ReceivedWithAnyArgs().IsValidAff(123);
-        }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetInternalLoginClaim_WhenCall_RepoCalled(bool isHost)
-        {
-            AuthRepo.GetInternalLoginPermission(Arg.Any<int>()).Returns(new List<InternalPermission> {
-                new InternalPermission
-                {
-                    FunctionName = "[123]",
-                    IsHost = isHost
-                }
-            });
-
-            var service = CreateService();
-
-            var result = service.GetInternalLoginClaim(1);
-
-            AuthRepo.ReceivedWithAnyArgs().GetInternalLoginPermission(1);
-            Assert.NotEmpty(result);
-        }
-
         private void SetUpLoginNormaiUserPassedAllCheckCondition()
         {
             var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
@@ -280,7 +230,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             AppSetting.LoginTimeout.Returns(30);
             AuthRepo.GetUserInfo(null, false).ReturnsForAnyArgs(CreateAutherizedUserInfo());
             CryptographyService.EncryptPassword(null).ReturnsForAnyArgs("password");
-            AuthRepo.UpdateLoginResult(null).ReturnsForAnyArgs(new LoginResultInfo
+            AuthRepo.UpdateLoginResult(null).ReturnsForAnyArgs(new DTO.LoginResultInfo
             {
                 IsOk = true
             });
@@ -299,6 +249,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 DeviceCount = 11,
                 FailedLoginCount = 1
             };
+
 
         private static UserLoginParam CreateLoginParam()
             => new UserLoginParam
@@ -319,15 +270,27 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 AffId = 1,
                 AffType = "Asia",
                 GroupName = "group",
-                IsClosed = false,
                 OnUserId = 1,
                 Password = "password",
                 PreferredLanguage = "vn-vi",
-                Status = "active",
+                Status = "Approved",
+                UserName = "test"
+            };
+
+        private static AuthorizedUserInfo CreateSuspendedUserInfo()
+            => new AuthorizedUserInfo
+            {
+                AffId = 1,
+                AffType = "Asia",
+                GroupName = "group",
+                OnUserId = 1,
+                Password = "password",
+                PreferredLanguage = "vn-vi",
+                Status = "Suspended",
                 UserName = "test"
             };
 
         private AuthService CreateService()
-            => new AuthService(AuthRepo, CryptographyService, AppSetting, FeedbackService, VerificationRepo);
+            => new AuthService(AuthRepo, CryptographyService, AppSetting, VerificationRepo);
     }
 }

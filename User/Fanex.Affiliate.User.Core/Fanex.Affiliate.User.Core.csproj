@@ -326,7 +326,6 @@
     <Compile Include="Filters\JsonHandlerAttribute.cs" />
     <Compile Include="Infrastructure\AuthenticatedHttpClientHandler.cs" />
     <Compile Include="Infrastructure\JsonNetResult.cs" />
-    <Compile Include="MetalModels\Apis\TransferMoneyParam.cs" />
     <Compile Include="MetalModels\MarketingLinkParam.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGeneratingParam.cs" />
@@ -392,8 +391,6 @@
     <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\SecurityQuestion.cs" />
     <Compile Include="DTO\InternalLoginInfo.cs" />
-    <Compile Include="DTO\System\TargetCountry.cs" />
-    <Compile Include="DTO\System\TargetLanguage.cs" />
     <Compile Include="DTO\UserPanel\AccountOverview\AffiliateLink.cs" />
     <Compile Include="DTO\UserPanel\Offer.cs" />
     <Compile Include="DTO\UserPanel\HtmlFileInfo.cs" />
@@ -415,9 +412,7 @@
     <Compile Include="MetalModels\Email\EmailSignUpParam.cs" />
     <Compile Include="MetalModels\UserPanel\CopiedBannerCounterParam.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
-    <Compile Include="Repository\IIpAddressRepository.cs" />
     <Compile Include="Repository\ISystemRepository.cs" />
-    <Compile Include="Repository\IpAddressRepository.cs" />
     <Compile Include="Repository\SystemRepository.cs" />
     <Compile Include="Repository\UserPanel\OfferRepository.cs" />
     <Compile Include="Repository\UserPanel\IOfferRepository.cs" />
@@ -465,7 +460,6 @@
     <Compile Include="Enum\MemberType.cs" />
     <Compile Include="Enum\PaymentRequestType.cs" />
     <Compile Include="Enum\TransType.cs" />
-    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
@@ -626,7 +620,6 @@
     <Compile Include="Utilities\IAppSetting.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="CoreService\MemoryCacheService.cs" />
-    <Compile Include="Utilities\SystemHelper.cs" />
     <Compile Include="Utilities\Parser.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="DTO\UserPanel\AccountInformation.cs" />
@@ -754,7 +747,9 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DTO\System\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Refit.5.0.23\build\net461\refit.targets" Condition="Exists('..\..\packages\Refit.5.0.23\build\net461\refit.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

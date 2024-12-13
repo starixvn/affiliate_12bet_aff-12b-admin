@@ -14,15 +14,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
         public ProductControllerTest()
         {
-            SessionService = NSubtituteMockingHelper.FakeSessionService();
-            LanguageService = NSubtituteMockingHelper.FakeLanguageService();
+            SessionService = NSubstituteMockingHelper.FakeSessionService();
+            LanguageService = NSubstituteMockingHelper.FakeLanguageService();
         }
 
         [Fact]
         public void Index_WhenCall_ReturnCorrectView()
         {
             var controller = new ProductController(SessionService, LanguageService);
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
 
             var result = controller.Index() as ViewResult;
 

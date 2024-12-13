@@ -64,19 +64,21 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
             var authUserInfo = new AuthorizedUserInfo
             {
                 AffId = 1,
-                AffType = "asia",
-                GroupName = "group",
-                IsClosed = false,
-                OnUserId = 1,
+                AffCode = 12345,
+                UserName = "Name",
                 Password = "pass",
-                PreferredLanguage = "vi-VN",
+                GroupName = "group",
+                AffType = "asia",
                 Status = "Approved",
-                UserName = "Name"
+                PreferredLanguage = "vi-VN",
+                IsMaxSubLevel = false
             };
             var repo = CreateRepo();
             var db = Builder.Build(null, null);
             var reader = db.ExecuteReader();
             reader.Read().Returns(true);
+            reader["Dep_IsDeductedPercent"].Returns(true);
+            reader["Wit_IsDeductedPercent"].Returns(true);
             AssignObjectToReader(reader, authUserInfo);
 
             var userInfo = repo.GetUserInfo("username", isInternal);
@@ -109,41 +111,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
         }
 
         [Fact]
-        public void GetInternalLoginInfo_WhenCall_ReturnSessionId()
+        public void GetSessionId_WhenCall_ReturnSessionId()
         {
-            var onUserId = 1;
+            var repo = CreateRepo();
+            var db = Builder.Build(null, null);
             var sessionId = "12345";
             var spKey = "Aff_SessionIdSel";
+            db.ExecuteScalar().Returns(sessionId);
 
-            var repo = CreateRepo();
-            var db = Builder.Build(null, null);
-            var reader = db.ExecuteReader();
-
-            reader.Read().Returns(true);
-            reader["NetSessionID"].Returns(sessionId);
-            reader["CustId"].Returns(123);
-
-            var result = repo.GetInternalLoginInfo(onUserId);
+            var result = repo.GetSessionId(1);
 
             Assert.Equal(spKey, db.SettingKey);
-            Assert.Equal(sessionId, result.SesionId);
-            db.Received().SetParameterValue("OnUserId", onUserId);
-        }
-
-        [Fact]
-        public void GetInternalLoginInfo_WhenCall_ReturnNull()
-        {
-            var onUserId = 1;
-            var spKey = "Aff_SessionIdSel";
-
-            var repo = CreateRepo();
-            var db = Builder.Build(null, null);
-            db.ExecuteReader();
-
-            var result = repo.GetInternalLoginInfo(onUserId);
-
-            Assert.Equal(spKey, db.SettingKey);
-            Assert.Null(result);
+            db.Received().SetParameterValue("OnUserId", 1);
+            Assert.Equal(sessionId, result);
         }
 
         [Theory]
@@ -163,27 +143,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
 
             Assert.Equal(spKey, db.SettingKey);
             Assert.Equal(isKickOut, result);
-        }
-
-        [Fact]
-        public void GetInternalLoginPermission_WhenCall_ReturnSessionId()
-        {
-            var internalLoginUserId = 1;
-            var spKey = "Aff_Admin_PolicySel";
-
-            var repo = CreateRepo();
-            var db = Builder.Build(null, null);
-            var reader = db.ExecuteReader();
-
-            reader.Read().Returns(true, false);
-            reader["FuncName"].Returns("[Test]");
-            reader["Host"].Returns(1);
-
-            var result = repo.GetInternalLoginPermission(internalLoginUserId);
-
-            Assert.Equal(spKey, db.SettingKey);
-            Assert.NotEmpty(result);
-            db.Received().SetParameterValue("UserId", internalLoginUserId);
         }
 
         private static void AssertDbReciveParam(IObjectDb db, LoginResultParam param)

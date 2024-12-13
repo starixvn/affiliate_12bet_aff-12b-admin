@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
         public PromotionControllerTest()
         {
-            sessionService = NSubtituteMockingHelper.FakeSessionService();
+            sessionService = NSubstituteMockingHelper.FakeSessionService();
         }
 
         [Fact]

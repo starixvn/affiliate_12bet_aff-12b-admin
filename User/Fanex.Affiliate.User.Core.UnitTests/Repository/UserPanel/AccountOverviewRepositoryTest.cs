@@ -1,4 +1,6 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using NSubstitute;
 using System;
@@ -15,11 +17,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             const string uSpKey = "Aff_User_LoginInfo_Sel";
             var repo = CreateRepo();
             var db = Builder.Build(null, null);
-            db.QueryEntity<LastLoginInfo>(null).ReturnsForAnyArgs(new LastLoginInfo
-            {
-                LastLoginIP = "",
-                LastLoginDate = DateTime.Now,
-            });
+            db.QueryEntity<LastLoginInfo>(null).ReturnsForAnyArgs(new LastLoginInfo());
 
             var result = repo.GetLastLoginInfo(1);
 
@@ -37,20 +35,43 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             {
                 new PlayerDetail
                 {
-                    BankingFee = 100, Bonus = 100, Deposit = 100, RegisteredDate= DateTime.Now, Turnover = 100, Username = "name", Winloss = 100, Withdrawal = 100
+                    Bonus = 100, Deposit = 100, RegisteredDate = DateTime.Now, FirstDepositDate = DateTime.Now,
+                    Turnover = 100, Username = "name", GGR = 100, Withdrawal = 100,
+                    DepositFee = 0, Rebate = 0, WithdrawalFee = 0
                 }
             });
 
-            var result = repo.GetPlayerDetailList(new MetalModels.UserPanel.PlayerDetailParam
+            var result = repo.GetPlayerDetailList(new PlayerDetailParam());
+
+            Assert.Equal(uSpKey, db.SettingKey);
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public void GetSubAffDetails_WhenCall_ReturnListSubAffDetail()
+        {
+            const string uSpKey = "Aff_User_Overview_SubAffiliate_Sel";
+            var repo = CreateRepo();
+            var db = Builder.Build(null, null);
+            db.Query<SubAffDetail>(null).ReturnsForAnyArgs(new List<SubAffDetail>
             {
-                AffId = 1,
-                IsSortAsc = true,
-                MonthDate = DateTime.Now,
-                NRows = 10,
-                PageIndex = 1,
-                PageSize = 10,
-                SortById = 1,
+                new SubAffDetail
+                {
+                    AffId = 1,
+                    UserName = "Nova",
+                    FirstName = "Nova",
+                    LastName = "Nova",
+                    IsSuspended = true,
+                    ApprovedDate = DateTime.Now,
+                    SuspendedDate = DateTime.Now,
+                    Turnover = 10,
+                    ActivePlayer = 1,
+                    Commission = 10,
+                    GGR = 1,
+                }
             });
+
+            var result = repo.GetSubAffDetails(new SubAffDetailParam());
 
             Assert.Equal(uSpKey, db.SettingKey);
             Assert.NotEmpty(result);
@@ -62,14 +83,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             const string uSpKey = "Aff_User_Overview_Detail_Sel";
             var repo = CreateRepo();
             var db = Builder.Build(null, null);
-            db.Query<OverviewDetail>(null).ReturnsForAnyArgs(new List<OverviewDetail>
-            {
-                new OverviewDetail
-                {
-                    ActiveMembers = 3, Deposit = 100, DepositedMembers = 2, QualifiedActiveMembers = 2, Signups = 1, Turnover = 100,
-                    Winloss = 100, WinlostDate = DateTime.Now, Withdrawal = 100
-                }
-            });
+            db.Query<OverviewDetail>(null).ReturnsForAnyArgs(new List<OverviewDetail> { new OverviewDetail { WinlostDate = new DateTime(2020, 12, 01) } });
 
             var result = repo.GetUserOverviewDetailList(1, DateTime.Now);
 
@@ -89,11 +103,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
                 BalanceBroughtForward = 100,
                 Commission = 10,
                 Deposit = 100,
-                FdmDeposit = 0,
                 DepositedMembers = 2,
                 QualifiedActivePlayers = 1,
                 Signups = 2,
-                Turnover = 100
+                Turnover = 100,
+                NoOfSubAff = 0,
+                SubAffCommission = 0
             });
 
             var result = repo.GetUserOverviewSummary(1, DateTime.Now);

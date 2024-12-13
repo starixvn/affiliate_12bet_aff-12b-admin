@@ -23,6 +23,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var db = Builder.Build(uSpKey, dbMode);
             var reader = db.ExecuteReader();
             reader.Read().Returns(true, false);
+            reader[""].ReturnsForAnyArgs(DBNull.Value);
             db.GetParameterValue(null).ReturnsForAnyArgs(DBNull.Value);
             var repo = CreateRepo();
 
@@ -48,6 +49,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var db = Builder.Build(uSpKey, dbMode);
             var reader = db.ExecuteReader();
             reader.Read().Returns(true, true, false);
+            reader[""].ReturnsForAnyArgs(DBNull.Value);
             db.GetParameterValue("BalBroughtForward").Returns("100");
             db.GetParameterValue("PreferredPayment").Returns("acc");
             db.GetParameterValue("MinAmount").Returns("100");
@@ -81,11 +83,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         [Fact]
         public void CreatePaymentRequest_WhenGetNoErrorCode_ReturnSuccess()
         {
-            const string uSpKey = "Aff_PaymentRequestIns";
-            var param = new PaymentCreationParam { ErrCode = 101 };
+            const string uSpKey = "Aff_User_PaymentRequest_Ins";
+            var param = new PaymentRequestInfo { ErrCode = 101 };
             var db = Builder.Build(uSpKey);
             db.When(d => d.ExecuteNonQuery(param))
-                .Do(c => (c.Args()[0] as PaymentCreationParam).ErrCode = 0);
+                .Do(c => (c.Args()[0] as PaymentRequestInfo).ErrCode = 0);
             var repo = CreateRepo();
 
             var result = repo.CreatePaymentRequest(param);

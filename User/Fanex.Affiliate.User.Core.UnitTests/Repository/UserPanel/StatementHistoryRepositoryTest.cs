@@ -1,8 +1,8 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
+using Moq;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -13,16 +13,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
     public class StatementHistoryRepositoryTest : RepositoryTestBase<StatementHistoryRepository>
     {
         [Theory]
-        [InlineData(true, (int)TransType.Payment, "running")]
-        [InlineData(false, (int)TransType.Adjustment, "pending")]
-        [InlineData(false, (int)TransType.MonthlyEarning, "completed")]
-        [InlineData(false, 123, "cancelled")]
-        [InlineData(false, 123, "approved")]
-        [InlineData(false, 123, "rejected")]
-        [InlineData(false, 123, "current")]
-        [InlineData(false, 123, "test")]
-        [InlineData(false, 123, "")]
-        public void GetStatementHistory_WhenCall_QueryStatementHistory(bool isInternal, int transType, string status)
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GetStatementHistory_WhenCall_QueryStatementHistory(bool isInternal)
         {
             const string uSpKey = "Aff_User_StatementHistory_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
@@ -32,15 +25,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
                 IsInternal = isInternal
             };
             var db = Builder.Build(uSpKey, dbMode);
-            db.Query<StatementHistory>(param).Returns(new List<StatementHistory> {
-                new StatementHistory {
-                    MonthDate = new DateTime(2020, 12, 07),
-                    TransType = transType,
-                    Amount = 0,
-                    Status = status,
-                    Description = "test"
-                }
-            });
+            db.Query<StatementHistory>(param).Returns(new List<StatementHistory> { new StatementHistory {
+                TransType = 123,
+                Amount = 100,
+                CalculatedType = 1,
+                Description = string.Empty,
+                MonthDate = new DateTime(2020, 12, 01),
+                Status = "Payment"
+            } });
             var repo = CreateRepo();
 
             var result = repo.GetStatementHistory(param);
@@ -68,47 +60,63 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         }
 
         [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetDailyEarning_WhenCall_ReturnDailyEarningResult(bool isInternal)
+        [InlineData(true, true)]
+        [InlineData(false, false)]
+        public void GetDailyEarning_WhenCall_ReturnDailyEarningResult(bool isInternal, bool isNextResult)
         {
             const string uSpKey = "Aff_DailyEarning_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
             var key = uSpKey + dbMode;
             var param = new DailyEarningParam { IsInternal = isInternal };
             var db = Builder.Build(uSpKey, dbMode);
-            var multipleQuery = db.QueryMultiple(param);
-            multipleQuery.Read<DailyEarning>().Returns(new List<DailyEarning>
-            {
-                new DailyEarning { Bonus = 100, Deposit = 100, MemberWinLost = 100, MemberWinLostFake = 100, WinlostDate = DateTime.Now, Withdrawal = 100 }
-            });
-            multipleQuery.ReadFirstOrDefault<DailyEarning>().Returns(new DailyEarning { });
+
+            var reader = db.ExecuteReader(It.IsAny<object>());
+            reader.Read().Returns(true, false, true);
+            reader.NextResult().Returns(isNextResult, true, false);
+            reader["Deposit"].Returns(100);
+            reader["Withdrawal"].Returns(100);
+            reader["GGR"].Returns(100);
+            reader["Bonus"].Returns(100);
+            reader["Rebate"].Returns(10);
+            reader["Turnover"].Returns(10);
+            reader["WinlostDate"].Returns(new DateTime(2021, 10, 25));
+
             var repo = CreateRepo();
 
             var result = repo.GetDailyEarning(param);
 
             Assert.Equal(key, db.SettingKey);
             Assert.NotEmpty(result.MainDataList);
-            Assert.NotNull(result.Total);
         }
 
         [Theory]
-        [InlineData(true, true)]
-        [InlineData(false, false)]
-        public void GetExtraUserInfo_WhenCall_ReturNotNullResult(bool isInternal, bool isReturnNullInfo)
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GetSubAffCommission_WhenCall_ReturnSubAffCommission(bool isInternal)
         {
-            const string uSpKey = "Aff_AffiliateUser_ExtraUserInfoSel";
+            const string uSpKey = "Aff_SubAffiliate_Commission_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
             var key = uSpKey + dbMode;
-            var extraUserInfo = isReturnNullInfo ? null : new ExtraUserInfo { GroupName = "abc", HasDailyDetail = false };
-            var db = Builder.Build(uSpKey, dbMode);
-            db.QueryEntity<ExtraUserInfo>().Returns(extraUserInfo);
+            var param = new SubAffComParam
+            {
+                AffId = 123,
+                MonthDate = new DateTime(2020, 12, 01),
+                BaseCurrency = 1,
+                IsInternal = isInternal
+            };
             var repo = CreateRepo();
+            var db = Builder.Build(uSpKey, dbMode);
+            db.Query<SubAffComInfo>(param).Returns(new List<SubAffComInfo> { new SubAffComInfo {
+                AffId = 123,
+                UserName = "Nova",
+                Commission = 100,
+                SubAffCommission = 0
+            } });
 
-            var result = repo.GetExtraUserInfo(1, isInternal);
+            var result = repo.GetSubAffCommission(param);
 
             Assert.Equal(key, db.SettingKey);
-            Assert.NotNull(result);
+            Assert.NotEmpty(result);
         }
     }
 }

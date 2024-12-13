@@ -1,24 +1,29 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using NSubstitute;
-using System;
-using System.Collections.Specialized;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
+﻿namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 {
-    public static class NSubtituteMockingHelper
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using Enum;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using MetalModels.UserPanel;
+    using NSubstitute;
+    using ViewModels.UserPanel.Marketing;
+
+    public static class NSubstituteMockingHelper
     {
-        public static IMarketingService FakeMarkengtingService()
+        public static IMarketingService FakeMarketingService()
         {
             var marketingService = Substitute.For<IMarketingService>();
-            marketingService.GetTargetProductList(Arg.Compat.Any<bool>()).Returns(Constant.TargetProductList);
-            marketingService.GetDomainListByTargetCountry(Arg.Compat.Any<string>(), Arg.Compat.Any<int>(), Arg.Compat.Any<bool>()).Returns(Constant.DomainList);
-            marketingService.GetLandingPageList(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<bool>()).Returns(Constant.LandingPageList);
-            marketingService.GenerateLinkList(Arg.Compat.Any<LinkGenerationParam>()).Returns(Constant.LinkList);
+            marketingService.GetCategoryList(Arg.Any<bool>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(Constant.CategoryList);
+            marketingService.GetCurrencyList(Arg.Any<bool>()).Returns(Constant.CurrencyType);
+            marketingService.GetAvailableDomainList(Arg.Any<int>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(Constant.DomainList);
+            marketingService.GetLandingPageList(Arg.Any<string>(), Arg.Any<bool>(), Arg.Any<AffiliateLinkType>()).Returns(Constant.LandingPageList);
+            marketingService.GenerateLinkList(Arg.Any<LinkGeneratingParam>()).Returns(GetGeneratedLinkList());
 
             return marketingService;
         }
@@ -37,7 +42,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         {
             var service = Substitute.For<ISystemService>();
             service.GetFavoriteLanguage().Returns(Constant.DefaultLanguage);
-            service.GetSystemTargetLanguages().ReturnsForAnyArgs(Constant.LanguageList);
+            service.GetLanguageList().Returns(Constant.LanguageList);
+            service.GetFavoriteShortedLanguage().Returns(Constant.DefaultShortedLanguageCode);
             return service;
         }
 
@@ -77,6 +83,17 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         public static void FakeAjaxRequest(HttpRequestBase request)
         {
             request["X-Requested-With"].Returns("XMLHttpRequest");
+        }
+
+        private static IDictionary<string, LanguageLinkViewModel> GetGeneratedLinkList()
+        {
+            var languageLink = Constant.LanguageList.Select(l => new LanguageLinkViewModel
+            {
+                Language = l,
+                Link = $"{l.DisplayName}.com"
+            });
+            return languageLink.ToDictionary(l => l.Language.Code);
+
         }
     }
 }

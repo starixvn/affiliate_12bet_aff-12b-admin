@@ -96,21 +96,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.Equal(content, result);
         }
 
-        [Fact]
-        public void HasNewCurrentTime_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var newsLetterRepository = new Mock<INewsLetterRepository>();
-            newsLetterRepository.Setup(p => p.GetNewsLettersByDate(It.IsAny<DateTime>())).Returns(new List<NewsLetter> { new NewsLetter() });
-            var service = CreateNewsLetterService(newsLetterRepository: newsLetterRepository.Object);
-
-            // Action
-            var result = service.HasNewCurrentTime();
-
-            // Assert
-            Assert.True(result);
-        }
-
         private static NewsLetterService CreateNewsLetterService(
             INewsLetterRepository newsLetterRepository = null,
             ISessionService sessionService = null,

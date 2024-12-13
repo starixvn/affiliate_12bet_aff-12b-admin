@@ -1,20 +1,20 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.System;
-using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using NSubstitute;
-using NSubstitute.ReturnsExtensions;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using Xunit;
-
-namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
+    using DTO;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Constants;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Repository;
+    using TestHelper;
+    using NSubstitute;
+    using NSubstitute.ReturnsExtensions;
+    using Xunit;
+
     public class LanguageServiceTest
     {
         private readonly ISystemRepository Repo;
@@ -24,21 +24,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public LanguageServiceTest()
         {
             Repo = Substitute.For<ISystemRepository>();
-            SessionService = NSubtituteMockingHelper.FakeSessionService();
+            SessionService = NSubstituteMockingHelper.FakeSessionService();
             CacheServive = Substitute.For<IMemoryCacheService>();
-        }
-
-        [Fact]
-        public void GetFavoriteLanguage_WhenLangFromRequestIsInvalid_ReturnLang()
-        {
-            var validLang = SystemLanguage.SupportedLanguage.FirstOrDefault().Key;
-            var code = SystemLanguage.SupportedLanguage[validLang];
-            SetUpContext(code);
-            var service = CreateService();
-
-            var result = service.GetFavoriteLanguage();
-
-            Assert.Equal(validLang, result);
         }
 
         [Fact]
@@ -46,24 +33,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var validLang = SystemLanguage.SupportedLanguage.FirstOrDefault().Key;
             var code = SystemLanguage.SupportedLanguage[validLang];
+            CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).Returns(CreateLanguages());
             SetUpContext(code);
-
-            CacheServive.Get<IEnumerable<TargetLanguage>>(CacheKey.InternalLanguageList).Returns(CreateLanguages());
-            this.SessionService.IsInternal.Returns(true);
-
-            var service = CreateService();
-
-            var result = service.GetFavoriteLanguage();
-
-            Assert.Equal(validLang, result);
-        }
-
-        [Fact]
-        public void GetFavoriteLanguage_WhenCookieLangIsInvalid_ReturnCookieLang()
-        {
-            var validLang = SystemLanguage.SupportedLanguage.FirstOrDefault().Key;
-            SetUpContext();
-            HttpContext.Current.Request.Cookies.Add(new HttpCookie("afffavoritelang", validLang));
             var service = CreateService();
 
             var result = service.GetFavoriteLanguage();
@@ -75,9 +46,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetFavoriteLanguage_WhenCookieLangIsValid_ReturnCookieLang()
         {
             var validLang = SystemLanguage.SupportedLanguage.FirstOrDefault().Key;
+            CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).Returns(CreateLanguages());
             SetUpContext();
-            HttpContext.Current.Request.Cookies.Add(new HttpCookie("afffavoritelang", validLang));
-            CacheServive.Get<IEnumerable<TargetLanguage>>(CacheKey.LanguageList).Returns(CreateLanguages());
+            HttpContext.Current.Request.Cookies.Add(new HttpCookie("afffavoritelangN8B", validLang));
             var service = CreateService();
 
             var result = service.GetFavoriteLanguage();
@@ -98,26 +69,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetSystemTargetLanguages_WhenHaveInfoInCache_NotQueryFromRepo()
+        public void GetSystemLanguages_WhenHaveInfoInCache_NotQueryFromRepo()
         {
             var service = CreateService();
-            CacheServive.Get<IEnumerable<TargetLanguage>>(CacheKey.LanguageList).Returns(CreateLanguages());
+            CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).Returns(CreateLanguages());
 
-            service.GetSystemTargetLanguages();
+            service.GetLanguageList();
 
-            Repo.DidNotReceiveWithAnyArgs().GetTargetLanguageListByCountry(Arg.Any<bool>(), Arg.Any<string>(), Arg.Any<int?>());
+            Repo.DidNotReceiveWithAnyArgs().GetLanguageList(false);
         }
 
         [Fact]
         public void GetSystemLanguage_WhenNotHaveInfoInCacheAndRepo_ReturnEmptyList()
         {
             var service = CreateService();
-            CacheServive.Get<IEnumerable<TargetLanguage>>(CacheKey.LanguageList).ReturnsNull();
-            Repo.GetTargetLanguageListByCountry(Arg.Any<bool>(), Arg.Any<string>(), Arg.Any<int?>()).ReturnsNullForAnyArgs();
+            CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).ReturnsNull();
+            Repo.GetLanguageList(false).ReturnsNullForAnyArgs();
 
-            var result = service.GetSystemTargetLanguages();
+            var result = service.GetLanguageList();
 
-            Repo.ReceivedWithAnyArgs().GetTargetLanguageListByCountry(Arg.Any<bool>(), Arg.Any<string>(), Arg.Any<int?>());
+            Repo.ReceivedWithAnyArgs().GetLanguageList(false);
             Assert.Empty(result);
         }
 
@@ -125,13 +96,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetSystemLange_WhenRepoHaveInfoButCacheIsNot_SaveInfoInCache()
         {
             var service = CreateService();
-            CacheServive.Get<IEnumerable<TargetLanguage>>(CacheKey.LanguageList).ReturnsNull();
-            Repo.GetTargetLanguageListByCountry(Arg.Any<bool>(), Arg.Any<string>(), Arg.Any<int?>()).ReturnsForAnyArgs(CreateLanguages());
+            CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).ReturnsNull();
+            Repo.GetLanguageList(false).ReturnsForAnyArgs(CreateLanguages());
 
-            var result = service.GetSystemTargetLanguages();
+            var result = service.GetLanguageList();
 
-            Repo.ReceivedWithAnyArgs().GetTargetLanguageListByCountry(Arg.Any<bool>(), Arg.Any<string>(), Arg.Any<int?>());
-            CacheServive.ReceivedWithAnyArgs().Set(null, default(IEnumerable<TargetLanguage>));
+            Repo.ReceivedWithAnyArgs().GetLanguageList(false);
+            CacheServive.ReceivedWithAnyArgs().Set(null, default(IEnumerable<Language>));
             Assert.NotEmpty(result);
         }
 
@@ -153,11 +124,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             HttpContext.Current = new HttpContext(request, response);
         }
 
-        private static IEnumerable<TargetLanguage> CreateLanguages()
-            => new List<TargetLanguage>
+        private static IEnumerable<Language> CreateLanguages()
+            => new List<Language>
             {
-                new TargetLanguage { DisplayName="VietNam", LanguageCode="vi-VN", LanguageName="VietNam", NativeLanguage="Viet Nam", ShortedCode="vn" },
-                new TargetLanguage { DisplayName="England", LanguageCode="en-US", LanguageName="England", NativeLanguage="England", ShortedCode="en" }
+                new Language
+                {
+                    DisplayName = "VietNam", Code = "vi-VN", EnglishName = "VietNam", NativeName = "Viet Nam",
+                    ShortedCode = "vn"
+                },
+                new Language
+                {
+                    DisplayName = "American", Code = "en-US", EnglishName = "American", NativeName = "American",
+                    ShortedCode = "en"
+                }
             };
 
         private SystemService CreateService()

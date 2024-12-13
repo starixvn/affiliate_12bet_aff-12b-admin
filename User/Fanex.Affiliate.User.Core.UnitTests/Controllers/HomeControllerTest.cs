@@ -1,4 +1,8 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
@@ -6,21 +10,22 @@ using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using Moq;
 using NSubstitute;
-using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
     public class HomeControllerTest
     {
-        const string PromotionTemplate = "https://promotions.{0}.com?lang=en&act=sports";
+        private const string PromotionTemplate = "https://promotions.{0}.com?lang=en&act=sports";
+
+        public HomeControllerTest()
+        {
+            MockingUrlHelperExtension.FakeGetFavoriteShortedLanguage();
+        }
 
         [Theory]
-        [InlineData(false, "/SignUp", "javascript:;")]
-        [InlineData(true, "/UserPanel/Main/#AccountOverView", "/UserPanel/Main/#MediaGallery")]
+        [InlineData(false, "/en/SignUp", "javascript:;")]
+        [InlineData(true, "/en/UserPanel/Main/#AccountOverView", "/en/UserPanel/Main/#MediaGallery")]
         public void Index_CheckIsAuthenticated_ReturnCorrectViewModel(bool isAuthenticated, string expectedSignupLink, string expectedBannerlink)
         {
             // Arrange
@@ -85,13 +90,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void Excute_WhenRequestChangeLang_SetForNewLang(string controller, string action)
         {
             var languageService = Substitute.For<ISystemService>();
-            var sessionService = NSubtituteMockingHelper.FakeSessionService();
+            var sessionService = NSubstituteMockingHelper.FakeSessionService();
             var appSetting = Substitute.For<IAppSetting>();
             var homeController = new HomeController(sessionService, appSetting, languageService);
             var routeData = new RouteData();
             routeData.Values.Add(nameof(controller), controller);
             routeData.Values.Add(nameof(action), action);
-            NSubtituteMockingHelper.FakeController(homeController, routeData);
+            NSubstituteMockingHelper.FakeController(homeController, routeData);
             var requestContext = new RequestContext(homeController.HttpContext, homeController.RouteData);
             requestContext.HttpContext.Response.Cookies.Returns(new HttpCookieCollection());
             languageService.GetFavoriteLanguage().Returns("vn-vi");

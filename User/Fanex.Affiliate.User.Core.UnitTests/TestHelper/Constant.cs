@@ -1,17 +1,16 @@
-﻿using Fanex.Affiliate.User.Core.DTO.Auth;
-using Fanex.Affiliate.User.Core.DTO.System;
+﻿using System.Collections.Generic;
+using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 {
-    using DTO.UserPanel.AccountOverview;
-
     public static class Constant
     {
         public const string DefaultLanguage = "en-US";
 
-        public const string DefaultShortedLanguageCode = "EN";
+        public const string DefaultShortedLanguageCode = "en";
 
         public const int DefaultAffId = 123;
 
@@ -35,11 +34,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 
         public const string GroupName = "No Commission";
 
-        public static IEnumerable<TargetLanguage> LanguageList = new List<TargetLanguage>
+        public static IEnumerable<CurrencyType> CurrencyType = new List<CurrencyType>
         {
-            new TargetLanguage { LanguageCode = "en-UK", DisplayName = "English", LanguageName = "English", NativeLanguage = "English", ShortedCode = "en" },
-            new TargetLanguage { LanguageCode = "vi-VN", DisplayName = "VietNam", LanguageName = "VietNamese", NativeLanguage = "Tieng viet", ShortedCode = "vn" },
-            new TargetLanguage { LanguageCode = "en-US",  DisplayName ="English", LanguageName = "English", NativeLanguage = "English", ShortedCode = "us" }
+            new CurrencyType {Currency = "VND", CurrencyId=1 },
+            new CurrencyType { CurrencyId = 2, Currency = "USD" },
+            new CurrencyType { CurrencyId = 2, Currency = "Test" }
+        };
+
+        public static IEnumerable<CategoryType> CategoryList = new List<CategoryType>
+        {
+            new CategoryType {Category = "All", SubCategory= "All" },
+            new CategoryType { Category = "test1", SubCategory = "testSub2" },
+            new CategoryType { Category = "Casino", SubCategory = "CasinoClubs" },
+            new CategoryType { Category = "test2" }
+        };
+
+        public static IEnumerable<Language> LanguageList = new List<Language>
+        {
+            new Language {Code = "en-UK", DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="en" },
+            new Language {Code ="vi-VN", DisplayName="VietNam", EnglishName= "VietNamese", NativeName="Tieng viet", ShortedCode = "vn" },
+            new Language {Code = "en-US",  DisplayName="English", EnglishName="English", NativeName="English", ShortedCode="en"}
         };
 
         public static IEnumerable<TargetProduct> TargetProductList = new List<TargetProduct>
@@ -76,6 +90,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         {
             new AffiliateLink { Language = "abc", Link = "http:\\abc.com" },
             new AffiliateLink { Language = "123", Link = "http:\\123.com" }
+        };
+
+        public static IEnumerable<SizeType> SizeTypes => new List<SizeType>
+        {
+            new SizeType { SizeId = 1, Size = "1080x1920" },
+            new SizeType { SizeId = 2, Size = "640x256" },
         };
 
         public static string LogoImageBase64 = @"iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAACJNJREFUeNq0WGlsVNcVvm

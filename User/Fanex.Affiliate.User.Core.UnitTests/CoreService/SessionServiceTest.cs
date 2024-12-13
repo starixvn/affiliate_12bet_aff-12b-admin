@@ -3,10 +3,7 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Security.Claims;
 using System.Web;
 using System.Web.SessionState;
 using Xunit;
@@ -15,7 +12,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.CoreService
 {
     public class SessionServiceTest
     {
-        private const string UserSessionKey = "Affiliate12Bet.UserSessionKey";
+        private const string UserSessionKey = "Affiliate12B.UserSessionKey";
 
         private static HttpSessionState Session => HttpContext.Current.Session;
 
@@ -29,41 +26,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.CoreService
             service.CaptchaCode = captchaCode;
 
             Assert.Equal(captchaCode, service.CaptchaCode);
-        }
-
-        [Fact]
-        public void PropertyLastestRequestTime_WhenCall_PropertyStoreCorrectly()
-        {
-            SetUpHttpContextSession();
-            var service = CreateService();
-            var lastestRequestTime = new DateTime(2022, 08, 31);
-
-            service.LastestRequestTime = lastestRequestTime;
-
-            Assert.Equal(lastestRequestTime, service.LastestRequestTime);
-        }
-
-        [Fact]
-        public void PropertyIsOpenedFeedback_WhenSessionNotExistKey_ReturnFalse()
-        {
-            SetUpHttpContextSession();
-            var service = CreateService();
-
-            var result = service.IsOpenedFeedback;
-
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void PropertyIsOpenedFeedback_WhenCall_PropertyStoreCorrectly()
-        {
-            SetUpHttpContextSession();
-            var service = CreateService();
-            var isOpenedFeedback = true;
-
-            service.IsOpenedFeedback = isOpenedFeedback;
-
-            Assert.Equal(isOpenedFeedback, service.IsOpenedFeedback);
         }
 
         [Fact]
@@ -215,25 +177,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.CoreService
             Assert.Equal(verifySession, service.VerificationSession);
         }
 
-        [Fact]
-        public void PropertyClaimsIdentities_WhenCall_ReturnCorrectValue()
-        {
-            SetUpHttpContextSession();
-            var claimsIdentities = new List<ClaimsIdentity>{
-                new ClaimsIdentity(
-                    new List<Claim>
-                    {
-                        new Claim("Test", "Write")
-                    }
-                )
-            };
-            var service = CreateService();
-
-            service.ClaimsIdentities = claimsIdentities;
-
-            Assert.Equal(claimsIdentities, service.ClaimsIdentities);
-        }
-
         private static SessionService CreateService()
             => new SessionService();
 
@@ -243,7 +186,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.CoreService
                 AffId = 1,
                 AffType = "asia",
                 GroupName = "group",
-                IsClosed = false,
                 OnUserId = 1,
                 Password = "abc",
                 PreferredLanguage = "vi-VN",

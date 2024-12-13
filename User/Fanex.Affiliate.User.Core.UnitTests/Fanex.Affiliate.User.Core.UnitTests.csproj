@@ -196,7 +196,7 @@
     <Compile Include="Controllers\TermAndConditionControllerTest.cs" />
     <Compile Include="Controllers\UnderMaintenanceControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\AffiliateLinkControllerTest.cs" />
-    <Compile Include="Controllers\UserPanel\CommissionReportControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\RevenueReportControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\DailyEarningControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MarketingControllerTest.cs" />
@@ -214,7 +214,6 @@
     <Compile Include="Controllers\VerificationAccountControllerTest.cs" />
     <Compile Include="CoreService\MemoryCacheServiceTest.cs" />
     <Compile Include="CoreService\SessionServiceTest.cs" />
-    <Compile Include="Extensions\EnumerableExtensionsTest.cs" />
     <Compile Include="Extensions\NumberFormatterTest.cs" />
     <Compile Include="Extensions\StringExtensionTest.cs" />
     <Compile Include="Infrastructure\EncryptedHandlerTest.cs" />
@@ -226,7 +225,6 @@
     <Compile Include="Repository\UserPanel\AccountOverviewRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\AccountRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\CommissionReportRepositoryTest.cs" />
-    <Compile Include="Repository\UserPanel\IpAddressRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\MarketingRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\MemberRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\NewsLetterRepositoryTest.cs" />
@@ -239,10 +237,9 @@
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestHelper\NSubtituteMockingHelper.cs" />
+    <Compile Include="TestHelper\MockingUrlHelperExtension.cs" />
+    <Compile Include="TestHelper\NSubstituteMockingHelper.cs" />
     <Compile Include="TestHelper\SimpleLifetimeScopeProvider.cs" />
-    <Compile Include="Utilities\ClaimUtitlityTest.cs" />
-    <Compile Include="Utilities\HelperTest.cs" />
     <Compile Include="Utilities\LogHelperTest.cs" />
   </ItemGroup>
   <ItemGroup>

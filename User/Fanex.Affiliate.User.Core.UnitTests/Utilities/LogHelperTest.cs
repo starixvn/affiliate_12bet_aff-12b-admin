@@ -20,22 +20,22 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Utilities
             Assert.True(true);
         }
 
-        [Fact]
-        public void WriteError_WhenCall_WriteLog()
+        [Theory]
+        [InlineData("")]
+        [InlineData("Message")]
+        public void WriteError_WhenCall_WriteLog(string additionalMessage)
         {
+            SetUpEnvironment();
             MockingHelper.SetUpLogEngineEnviroment();
-            SetUpEnviroment();
-
             var ex = Substitute.For<Exception>();
 
-            LogHelper.WriteError(ex);
+            LogHelper.WriteError(ex, additionalMessage);
 
             Assert.True(true);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Non-substitutable member", "NS1000:Non-virtual setup specification.", Justification = "<Pending>")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2325:Methods and properties that don't access instance data should be static", Justification = "<Pending>")]
-        private void SetUpEnviroment()
+        private static void SetUpEnvironment()
         {
             var request = new HttpRequest("111", "http://127.0.0.1:8080/controller/action", string.Empty);
             var test = Substitute.For<HttpBrowserCapabilities>();
@@ -47,9 +47,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Utilities
             HttpContext.Current = new HttpContext(request, response);
 
             var sessionContainer = new HttpSessionStateContainer("id", new SessionStateItemCollection(),
-                 new HttpStaticObjectsCollection(), 10, true,
-                 HttpCookieMode.AutoDetect,
-                 SessionStateMode.InProc, false);
+                new HttpStaticObjectsCollection(), 10, true,
+                HttpCookieMode.AutoDetect,
+                SessionStateMode.InProc, false);
             SessionStateUtility.AddHttpSessionStateToContext(HttpContext.Current, sessionContainer);
         }
     }

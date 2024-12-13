@@ -1,39 +1,32 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Enum;
-using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class PaymentService : IPaymentService
     {
-        private const int BeginDay = 8;
-        private const int EndDay = 15;
-
         private readonly IAccountService _accountService;
         private readonly IAccountRepository _accountRepository;
         private readonly IPaymentRepository _paymentRepository;
         private readonly IEmailService _emailService;
-        private readonly IDateTimeProvider _dateTimeProvider;
 
         public PaymentService(
             IAccountRepository accountRepository,
             IAccountService accountService,
             IPaymentRepository paymentRepository,
-            IEmailService emailService,
-            IDateTimeProvider dateTimeProvider)
+            IEmailService emailService)
         {
             _accountRepository = accountRepository;
             _accountService = accountService;
             _paymentRepository = paymentRepository;
             _emailService = emailService;
-            _dateTimeProvider = dateTimeProvider;
         }
 
         public IEnumerable<Payment> GetPaymentList(PaymentParam paymentParam)

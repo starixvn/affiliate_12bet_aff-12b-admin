@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using NSubstitute;
 using System;
@@ -20,17 +21,22 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             {
                 new AffiliateCommission
                 {
-                    BankingFee = 100, Bonus = 100, CalculatedType =1, Commission = 100, CommissionRate =100,
-                    MonthDate = DateTime.Now, OperationalFee = 100, PlatformFee = 100, ProductId = 1, ProductName = "saba", TurnOver = 100, WinLoss = 100
+                    Bonus = 100, CalculatedType =1, Commission = 100, CommissionRate =100,
+                    MonthDate = DateTime.Now, PlatformFee = 100, ProductId = 1, ProductName = "saba", TurnOver = 100, GGR = 100
                 }
             });
 
-            var result = repo.GetAffiliateCommission(1, DateTime.Now);
-            var item = result.FirstOrDefault();
+            var param = new CommissionReportParam
+            {
+                AffId = 1,
+                BaseCurrency = 20,
+                WinLostDate = DateTime.Now
+            };
+
+            var result = repo.GetAffiliateCommission(param);
 
             Assert.Equal(uSpKey, db.SettingKey);
-            Assert.NotEmpty(result);
-            Assert.Equal(item.TotalCommission, item.Commission + item.FdmCommission);
+            Assert.Equal(100, result.FirstOrDefault().TotalCommission);
         }
     }
 }

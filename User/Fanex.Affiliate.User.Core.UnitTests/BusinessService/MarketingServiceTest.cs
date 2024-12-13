@@ -1,63 +1,100 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.User.Core.Utilities;
-using NSubstitute;
-using NSubstitute.ReturnsExtensions;
-using Xunit;
-
-namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
+    using System;
+    using System.Collections.Generic;
+    using DTO;
+    using DTO.UserPanel;
+    using Enum;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Constants;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+    using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+    using Fanex.Affiliate.User.Core.Repository.UserPanel;
+    using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+    using Fanex.Affiliate.User.Core.Utilities;
+    using MetalModels;
+    using NSubstitute;
+    using NSubstitute.ReturnsExtensions;
+    using Xunit;
+
     public class MarketingServiceTest
     {
         private readonly IMarketingRepository Repo;
-        private readonly IAppSetting AppSetting;
         private readonly IMemoryCacheService CacheService;
         private readonly ISystemService LanguageService;
-        private readonly IAccountRepository AccountRepository;
+        private readonly IAppSetting AppSetting;
 
         public MarketingServiceTest()
         {
             Repo = Substitute.For<IMarketingRepository>();
-            AppSetting = Substitute.For<IAppSetting>();
             CacheService = Substitute.For<IMemoryCacheService>();
-            AccountRepository = Substitute.For<IAccountRepository>();
-            LanguageService = NSubtituteMockingHelper.FakeLanguageService();
+            LanguageService = NSubstituteMockingHelper.FakeLanguageService();
+            AppSetting = Substitute.For<IAppSetting>();
         }
 
         [Fact]
         public void GetCategoryList_WhenHaveInfoInCache_NotCallRepoToQueryInfo()
         {
             var service = CreateService();
-            CacheService.Get<IEnumerable<TargetProduct>>(null).ReturnsForAnyArgs(Constant.TargetProductList);
+            CacheService.Get<IEnumerable<CategoryType>>(null).ReturnsForAnyArgs(Constant.CategoryList);
 
-            service.GetTargetProductList(false);
+            service.GetCategoryList(false, AffiliateLinkType.AffiliateLink, false);
 
-            Repo.DidNotReceiveWithAnyArgs().GetTargetProductList(false);
+            Repo.DidNotReceiveWithAnyArgs().GetCategoryList(null, false);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GetCategoryList_WhenNotHaveInfoInBothCacheAndRepo_ReturnEmptyList(bool isMediaPage)
+        {
+            var service = CreateService();
+            CacheService.Get<IEnumerable<CategoryType>>(null).ReturnsNullForAnyArgs();
+            Repo.GetCategoryList(null, false).ReturnsNullForAnyArgs();
+
+            var result = service.GetCategoryList(isMediaPage, AffiliateLinkType.AffiliateLink, false);
+
+            Repo.ReceivedWithAnyArgs().GetCategoryList(null, false);
+            CacheService.ReceivedWithAnyArgs().Set(null, default(IEnumerable<CategoryType>));
+            Assert.Empty(result);
         }
 
         [Fact]
-        public void GetCategoryList_WhenNotHaveInfoInBothCacheAndRepo_ReturnEmptyList()
+        public void GetCurrencyList_WhenNotHaveInfoInCache_CallInfoFromRepo()
         {
             var service = CreateService();
-            CacheService.Get<IEnumerable<TargetProduct>>(null).ReturnsNullForAnyArgs();
-            Repo.GetTargetProductList(false).ReturnsNullForAnyArgs();
+            CacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList).ReturnsNull();
+            Repo.GetCurrencyList(false).ReturnsForAnyArgs(Constant.CurrencyType);
 
-            var result = service.GetTargetProductList(false);
+            service.GetCurrencyList(false);
 
-            Repo.ReceivedWithAnyArgs().GetTargetProductList(false);
-            CacheService.ReceivedWithAnyArgs().Set(null, default(IEnumerable<TargetProduct>));
+            Repo.Received().GetCurrencyList(false);
+            CacheService.Received().Set(CacheKey.CurrencyList, Arg.Compat.Any<IEnumerable<CurrencyType>>());
+        }
+
+        [Fact]
+        public void GetCurrencyList_WhenNotHaveInfoInBothCacheAndRepo_ReturnEmptyList()
+        {
+            var service = CreateService();
+            CacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList).ReturnsNull();
+            Repo.GetCurrencyList(false).ReturnsNullForAnyArgs();
+
+            var result = service.GetCurrencyList(false);
+
             Assert.Empty(result);
+        }
+
+        [Fact]
+        public void GetCurrencyList_WhenHaveInfoInCache_NotCallInfoFromRepo()
+        {
+            var service = CreateService();
+            CacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList).Returns(Constant.CurrencyType);
+
+            service.GetCurrencyList(false);
+
+            Repo.DidNotReceive().GetCurrencyList(false);
+            CacheService.DidNotReceive().Set(CacheKey.CurrencyList, Arg.Compat.Any<IEnumerable<CurrencyType>>());
         }
 
         [Fact]
@@ -67,8 +104,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = new SizeParam
             {
                 AffType = "asia",
-                TargetProduct = "cate",
-                Language = "vi-VN"
+                Category = "cate",
+                Currency = "USD",
+                DeviceType = 1,
+                ImageType = "png",
+                Language = "vi-VN",
+                SubCategory = "sub",
+                TargetId = AffiliateLinkType.AffiliateLink
             };
 
             service.GetSizeList(param, false);
@@ -77,86 +119,83 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetDomainList_WhenCacheNotHaveDomainInfo_RepoCall()
+        public void GetAvailableDomainList_WhenCacheNotHaveDomainInfo_RepoCall()
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).ReturnsNull();
-            Repo.GetDomainListByTargetCountry(Arg.Any<string>(), false).ReturnsForAnyArgs(Constant.DomainList);
+            Repo.GetAvailableDomainList(0, true, false).ReturnsForAnyArgs(Constant.DomainList);
 
-            var result = service.GetDomainListByTargetCountry(string.Empty, 968222, false);
+            var result = service.GetAvailableDomainList(0, AffiliateLinkType.AffiliateLink, false);
 
-            Repo.Received().GetDomainListByTargetCountry(string.Empty, false);
+            Repo.Received().GetAvailableDomainList(0, true, false);
             CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
             Assert.NotEmpty(result);
         }
 
         [Fact]
-        public void GetDomainList_WhenBothCacheAndRepoNotHaveDomainInfo_ReturnEmptyList()
+        public void GetAvailableDomainList_WhenBothCacheAndRepoNotHaveDomainInfo_ReturnEmptyList()
         {
             var service = CreateService();
-            CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).ReturnsNull();
-            Repo.GetDomainListByTargetCountry(string.Empty, false).ReturnsForAnyArgs(new List<Domain>());
+            CacheService.Get<IEnumerable<Domain>>(CacheKey.SubDomainList).ReturnsNull();
+            Repo.GetAvailableDomainList(0, true, false).ReturnsNullForAnyArgs();
 
-            var result = service.GetDomainListByTargetCountry(string.Empty, 123, false);
+            var result = service.GetAvailableDomainList(0, AffiliateLinkType.SubAffiliateLink, false);
 
-            Repo.Received().GetDomainListByTargetCountry(string.Empty, false);
-            CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
+            Repo.Received().GetAvailableDomainList(0, false, false);
+            CacheService.Received().Set(CacheKey.SubDomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
+            Assert.Empty(result);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GenerateLinkList_WhenSelectAllLanguagesAndLanguagesInSystemNotEmpty_ReturnNotEmptyList(bool isSsl)
+        {
+            var service = CreateService();
+            LanguageService.GetLanguageList().Returns(GetLanguageList());
+            var param = CreateLinkGenerationParam(isSsl);
+            param.SelectedLanguage = null;
+
+            var result = service.GenerateLinkList(param);
+
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public void GenerateLinkList_WhenSelectedLanguageNotEmpty_ReturnEmpty()
+        {
+            var service = CreateService();
+            LanguageService.GetLanguageList().Returns(GetLanguageList());
+            var param = CreateLinkGenerationParam();
+            param.SelectedLanguage = "abc";
+
+            var result = service.GenerateLinkList(param);
+
             Assert.Empty(result);
         }
 
         [Fact]
-        public void GetDomainList_WhenCacheHaveDomainInfo_RepoNotCall()
+        public void GenerateLinkList_WhenSelectedLanguageNotEmpty_ReturnNotEmpty()
         {
             var service = CreateService();
-            CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).Returns(Constant.DomainList);
-
-            var result = service.GetDomainListByTargetCountry(string.Empty, 123, false);
-
-            Repo.DidNotReceive().GetDomainListByTargetCountry(string.Empty, false);
-            CacheService.DidNotReceive().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
-            Assert.NotEmpty(result);
-        }
-
-        [Theory]
-        [InlineData("vi-VN")]
-        [InlineData("th-TH")]
-        public void GenerateLinkList_WhenSelectAllLanguagesAndLanguagesInSystemNotEmpty_ReturnNotEmptyList(string preferredLanguage)
-        {
-            var service = CreateService();
-            var param = CreateLinkGenerationParam(preferredLanguage);
-            param.SelectedLanguage = null;
+            LanguageService.GetLanguageList().Returns(GetLanguageList());
+            var param = CreateLinkGenerationParam();
 
             var result = service.GenerateLinkList(param);
 
             Assert.NotEmpty(result);
         }
 
-        [Theory]
-        [InlineData("vi-VN")]
-        [InlineData("th-TH")]
-        public void GenerateLinkList_WhenNotExistLanguageListFromSite_ReturnOneItem(string preferredLanguage)
+        [Fact]
+        public void GenerateLinkList_WhenSelectedLanguageEmpty_ReturnEmpty()
         {
             var service = CreateService();
-            var param = CreateLinkGenerationParam(preferredLanguage);
-            param.LanguageList = null;
-            param.SelectedLanguage = null;
+            LanguageService.GetLanguageList().Returns(new List<Language>());
+            var param = CreateLinkGenerationParam();
 
             var result = service.GenerateLinkList(param);
 
-            Assert.Equal(1, result.Count());
-        }
-
-        [Theory]
-        [InlineData("vi-VN")]
-        [InlineData("th-TH")]
-        public void GenerateLinkList_WhenLanglistFromSiteNotEmpty_ReturnNotEmpty(string preferredLanguage)
-        {
-            var service = CreateService();
-            var param = CreateLinkGenerationParam(preferredLanguage);
-
-            var result = service.GenerateLinkList(param);
-
-            Assert.NotEmpty(result);
+            Assert.Empty(result);
         }
 
         [Theory]
@@ -168,6 +207,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreateMarketingBannerParam();
             var bannerList = CreateMarketingItemList(language);
             Repo.GetBannerList(param).Returns(bannerList);
+            LanguageService.GetLanguageList().Returns(GetLanguageList());
 
             var result = service.GetBannerList(param);
 
@@ -176,24 +216,137 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLandingPageList_WhenCall_RepoCall()
+        public void GetBannerList_WhenCall_RepoCallReturnNull()
         {
-            var servcice = CreateService();
+            var service = CreateService();
+            var param = CreateMarketingBannerParam();
+            Repo.GetBannerList(param).Returns(new List<MarketingItem>());
+            LanguageService.GetLanguageList().Returns(GetLanguageList());
 
-            servcice.GetLandingPageList(string.Empty, Constant.GroupName, false);
+            var result = service.GetBannerList(param);
 
-            Repo.Received().GetLandingPageListByTargetCountry(string.Empty, false);
+            Repo.Received().GetBannerList(param);
+            Assert.Empty(result);
         }
 
         [Fact]
-        public void CountNumberOfCopies_WhenCall_RepoCall()
+        public void GetLandingPageList_WhenCall_RepoCall()
         {
-            var param = new CopiedBannerCounterParam();
-            var servcice = CreateService();
+            var service = CreateService();
 
-            servcice.CountNumberOfCopies(param);
+            service.GetLandingPageList(string.Empty, false);
 
-            Repo.Received().CountNumberOfCopies(param);
+            Repo.Received().GetLandingPageList(false);
+        }
+
+        [Fact]
+        public void GetLandingPageList_WhenCallWithSubAff_ReturnNotEmptyData()
+        {
+            var service = CreateService();
+
+            var result = service.GetLandingPageList(string.Empty, false, AffiliateLinkType.SubAffiliateLink);
+
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public void GetTextLinkTemplate_WhenCallWithTargetToMember_ReturnCorrectData()
+        {
+            AppSetting.TextLinkTemplate.Returns("TargetToMember");
+            var service = CreateService();
+
+            var result = service.GetTextLinkTemplate(AffiliateLinkType.AffiliateLink);
+
+            Assert.Equal("TargetToMember", result);
+        }
+
+        [Fact]
+        public void GetTextLinkTemplate_WhenCallWithTargetToSubAff_ReturnCorrectData()
+        {
+            AppSetting.SubAffTextLinkTemplate.Returns("TargetToSubAff");
+            var service = CreateService();
+
+            var result = service.GetTextLinkTemplate(AffiliateLinkType.SubAffiliateLink);
+
+            Assert.Equal("TargetToSubAff", result);
+        }
+
+        [Fact]
+        public void GetTextLinkTemplate_WhenCallWithInvalidTarget_ReturnCorrectData()
+        {
+            AppSetting.TextLinkTemplate.Returns("InvalidTarget");
+            var service = CreateService();
+
+            var result = service.GetTextLinkTemplate(0);
+
+            Assert.Equal("InvalidTarget", result);
+        }
+
+        [Theory]
+        [InlineData(ErrCodes.OneHundredOne, "", false)]
+        [InlineData(ErrCodes.OneHundredTwo, "", false)]
+        [InlineData(ErrCodes.OneHundredThree, "", false)]
+        [InlineData(123, "Abc", false)]
+        [InlineData(0, "", true)]
+        public void AddMarketingChannel_WhenCall_RepoCall(int code, string errMsg, bool isOk)
+        {
+            var resultInfoExpected = new ResultInfo
+            {
+                Code = code,
+                Message = errMsg,
+                IsOk = isOk
+            };
+
+            var service = CreateService();
+            Repo.AddMarketingChannel(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<string>()).Returns(resultInfoExpected);
+
+            var result = service.AddMarketingChannel(1, "xyz");
+
+            Repo.Received().AddMarketingChannel(1, "xyz", "xyz");
+            Assert.Equal(isOk, result.IsOk);
+        }
+
+        [Fact]
+        public void GetChannels_WhenCall_RepoCall()
+        {
+            var service = CreateService();
+
+            service.GetChannels(123);
+
+            Repo.Received().GetMarketingChannels(123);
+        }
+
+        [Theory]
+        [InlineData(ErrCodes.OneHundredOne, "", false)]
+        [InlineData(ErrCodes.OneHundredTwo, "", false)]
+        [InlineData(123, "Abc", false)]
+        [InlineData(0, "", true)]
+        public void ToggleMarketingLink_WhenCall_RepoCall(int code, string errMsg, bool isOk)
+        {
+            var resultInfoExpected = new ResultInfo
+            {
+                Code = code,
+                Message = errMsg,
+                IsOk = isOk
+            };
+            var service = CreateService();
+            var param = new MarketingLinkParam();
+            Repo.ToggleMarketingLink(Arg.Any<MarketingLinkParam>()).Returns(resultInfoExpected);
+
+            var result = service.ToggleMarketingLink(param);
+
+            Repo.Received().ToggleMarketingLink(param);
+            Assert.Equal(isOk, result.IsOk);
+        }
+
+        [Fact]
+        public void GetUsingMarketingLinks_WhenCall_RepoCall()
+        {
+            var service = CreateService();
+
+            service.GetUsingMarketingLinks(123);
+
+            Repo.Received().GetUsingMarketingLink(123);
         }
 
         private MarketingBannerParam CreateMarketingBannerParam()
@@ -202,7 +355,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 AffId = 1,
                 AffType = "asia",
                 BannerDomain = "abc.com",
-                TargetProduct = "cate",
+                Category = "cate",
+                Currency = "USD",
+                DeviceType = 1,
                 IsInternal = false,
                 Language = "English",
                 Nrows = 19,
@@ -212,65 +367,76 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 SelectedDomainId = 1,
                 SelectedPage = "SignUp",
                 Size = "1020x90",
+                SubCategory = "sub",
                 TextLinkTemplate = "{scheme}://{domain}/{custid}/{target}/{lang}/index.html",
                 TotalPages = 30
             };
 
-        private IEnumerable<Banner> CreateMarketingItemList(string language)
-            => new List<Banner>
+        private IEnumerable<MarketingItem> CreateMarketingItemList(string language)
+            => new List<MarketingItem>
             {
-                new Banner
-                {
-                    BannerId = 1,
-                    TargetProduct = "cate",
-                    FileName = "abc.png",
-                    Height = 1090,
-                    Language = language,
-                    LastUpdate = DateTime.Now,
-                    Message = "abc",
-                    RedirectLink = "abc.com",
-                    ScriptSrc = "banner.com/script",
-                    SelectedDomainName = "SignUp",
-                    Size = "1090x90",
-                    Width = 90
-                },
-                new Banner
-                {
-                    BannerId = 1,
-                    TargetProduct = "cate",
-                    FileName = "abc.png",
-                    Height = 1090,
-                    Language = "English",
-                    LastUpdate = DateTime.Now,
-                    Message = "abc",
-                    RedirectLink = "abc.com",
-                    ScriptSrc = "banner.com/script",
-                    SelectedDomainName = "SignUp",
-                    Size = string.Empty,
-                    Width = 90
-                }
+             new MarketingItem
+             {
+                 BannerId = 1,
+                 Category = "cate",
+                 Currency = "USD",
+                 DeviceType = "mobile",
+                 FileName = "abc.png",
+                 Height = 1090,
+                 ImageType = "png",
+                 Language = language,
+                 LastUpdate = DateTime.Now,
+                 Message = "abc",
+                 RedirectLink = "abc.com",
+                 ScriptSrc = "banner.com/script",
+                 SelectedDomainName = "SignUp",
+                 Size = "1090x90",
+                 TextId = 2,
+                 Width = 90
+             },
+             new MarketingItem
+             {
+                 BannerId = 1,
+                 Category = "cate",
+                 Currency = "USD",
+                 DeviceType = "mobile",
+                 FileName = "abc.png",
+                 Height = 1090,
+                 ImageType = "png",
+                 Language = "English",
+                 LastUpdate = DateTime.Now,
+                 Message = "abc",
+                 RedirectLink = "abc.com",
+                 ScriptSrc = "banner.com/script",
+                 SelectedDomainName = "SignUp",
+                 Size = string.Empty,
+                 TextId = 2,
+                 Width = 90
+             }
             };
 
-        private LinkGenerationParam CreateLinkGenerationParam(string language)
-            => new LinkGenerationParam
+        private LinkGeneratingParam CreateLinkGenerationParam(bool isSsl = false)
+            => new LinkGeneratingParam
             {
                 AffId = 1,
                 DomainId = 1,
                 IsInternal = false,
-                LanguageList = new List<SelectListItem>
-                {
-                    new SelectListItem {Text = "VietNam", Selected = true, Value="vi-VN" },
-                    new SelectListItem {Text = "Thai", Selected = true, Value = "th-TH" }
-                },
-                PreferredLanguage = language,
-                SelectedDomain = new Domain { DomainId = 1, DomainName = "abc.com", IsSsl = false },
+                PreferredLanguage = "vi-VN",
+                SelectedDomain = new Domain { DomainId = 1, DomainName = "abc.com", IsSsl = isSsl },
                 SelectedDomainId = 1,
-                SelectedLanguage = language,
+                SelectedLanguage = "vi-VN",
                 SelectedPage = "SignUp",
                 TextLinkTemplate = "{scheme}://{domain}/{custid}/{target}/{lang}/index.html"
             };
 
+        private IEnumerable<Language> GetLanguageList()
+            => new List<Language>
+            {
+             new Language{DisplayName="VietNam", Code="vi-VN", EnglishName="VietNam", NativeName="Viet Nam", ShortedCode="vn"},
+             new Language { DisplayName="English", Code="en-US", EnglishName="English", NativeName="English", ShortedCode="en" }
+            };
+
         private MarketingService CreateService()
-            => new MarketingService(Repo, CacheService, LanguageService, AppSetting, AccountRepository);
+            => new MarketingService(Repo, CacheService, AppSetting, LanguageService);
     }
 }

@@ -22,6 +22,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
     public class PaymentRequestControllerTest
     {
+        public PaymentRequestControllerTest()
+        {
+            MockingUrlHelperExtension.FakeGetFavoriteShortedLanguage();
+        }
+
         private static PaymentRequestController CreatePaymentRequestController(ISessionService sessionService = null,
             IAppSetting appSetting = null,
             ISystemService languageService = null,
@@ -236,7 +241,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             // Arrange
             const long TransId = 1;
-            var param = new PaymentCancelParam { TransId = TransId };
+            var param = new PaymentCancelParam
+            {
+                TransId = TransId,
+                AffId = Constant.DefaultAffId,
+                Amount = 100
+            };
+
             PaymentCancelParam passedParam = null;
 
             var paymentService = new Mock<IPaymentService>();
@@ -248,10 +259,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
             var expectedResult = JsonConvert.SerializeObject(new PaymentCancelParam
             {
-                UserId = Constant.DefaultAffId,
                 Language = Constant.DefaultLanguage,
+                AffId = Constant.DefaultAffId,
                 TransId = TransId,
-                Ip = "127.0.0.1"
+                Ip = "127.0.0.1",
+                Amount = 100
             });
 
             // Action
@@ -292,7 +304,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             PaymentEmailParam emailParam = null;
             var param = new PaymentCancelParam
             {
-                UserId = Constant.DefaultAffId,
                 TransId = TransId,
                 Amount = 100m,
                 RequestDate = new DateTime(2018, 6, 12)
@@ -366,12 +377,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             // Arrange
             PaymentCreationParam passedParam = null;
+            var transDate = DateTimeOffset.Now.DateTime;
             var creationParam = new PaymentCreationParam
             {
                 AffId = Constant.DefaultAffId,
                 Amount = 100,
                 MinAmount = 100,
-                BalBroughtForward = 150
+                BalBroughtForward = 150,
+                TransDate = transDate
             };
 
             var paymentService = new Mock<IPaymentService>();
@@ -393,7 +406,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 Language = Constant.DefaultLanguage,
                 MinAmount = 100m,
                 BalBroughtForward = 150m,
-                IsLocalTest = true
+                IsLocalTest = true,
+                TransDate = transDate
             };
             var expectedResult = JsonConvert.SerializeObject(expectedParam);
 
@@ -521,7 +535,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 Amount = 100m,
                 MailContact = Constant.DefaultMailContact,
                 RequestDate = new DateTime(2018, 6, 12),
-                RootDomain = Constant.DefaultRootDomain + "/",
+                RootDomain = Constant.DefaultRootDomain + "/en/",
                 TransId = 1,
                 PaymentType = paymentType,
                 CurrentLanguage = Constant.DefaultLanguage
@@ -535,7 +549,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             yield return new object[]
             {
-                new List<Payment> { new Payment { Status = PaymentStatus.Pending } },
+                new List<Payment> { new Payment { Status = PaymentStatus.Processing } },
                 true
             };
 
@@ -550,7 +564,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 new List<Payment>
                 {
                     new Payment { Status = PaymentStatus.Approved },
-                    new Payment { Status = PaymentStatus.Pending }
+                    new Payment { Status = PaymentStatus.Processing }
                 },
                 true
             };

@@ -3,8 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using DTO.UserPanel.MediaGallery;
-    using Fanex.Affiliate.User.Core.DTO;
-    using Fanex.Affiliate.User.Core.DTO.System;
+    using DTO;
 
     public class SystemRepository : ISystemRepository
     {
@@ -13,16 +12,6 @@
         public SystemRepository(IObjectDBBuilder builder)
         {
             _builder = builder;
-        }
-
-        public IEnumerable<TargetLanguage> GetTargetLanguageListByCountry(bool isInternal, string targetCountryCode = null, int? userId = null)
-        {
-            return new List<TargetLanguage>();
-        }
-
-        public IEnumerable<TargetCountry> GetTargetCountryList(bool isInternal, int? userId = null)
-        {
-            return new List<TargetCountry>();
         }
 
         public IEnumerable<Language> GetLanguageList(bool isInternal)

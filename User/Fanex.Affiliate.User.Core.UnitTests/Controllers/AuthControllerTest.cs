@@ -1,23 +1,26 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Controllers;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Auth;
-using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.User.Core.Utilities;
-using Fanex.Affiliate.User.Core.ViewModels;
-using NSubstitute;
-using NSubstitute.ReturnsExtensions;
-using System.Collections.Generic;
-using System.Security.Principal;
-using System.Web.Mvc;
-using Xunit;
-
-namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
+﻿namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
+    using System.Collections.Generic;
+    using System.Security.Principal;
+    using System.Web.Mvc;
+    using Core.Extensions;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Controllers;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.DTO;
+    using Fanex.Affiliate.User.Core.DTO.Auth;
+    using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+    using Fanex.Affiliate.User.Core.MetalModels;
+    using Fanex.Affiliate.User.Core.Repository.UserPanel;
+    using Fanex.Affiliate.User.Core.Resources;
+    using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+    using Fanex.Affiliate.User.Core.Utilities;
+    using Fanex.Affiliate.User.Core.ViewModels;
+    using Moq;
+    using NSubstitute;
+    using NSubstitute.ReturnsExtensions;
+    using Xunit;
+
     public class AuthControllerTest
     {
         private readonly ISessionService SessionService;
@@ -25,21 +28,25 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         private readonly ISystemService LanguageService;
         private readonly IAuthService AuthService;
         private readonly ICaptchaService CaptchaService;
+        private readonly IAccountRepository AccountRepository;
 
         public AuthControllerTest()
         {
-            SessionService = NSubtituteMockingHelper.FakeSessionService();
+            SessionService = NSubstituteMockingHelper.FakeSessionService();
             AppSetting = Substitute.For<IAppSetting>();
-            LanguageService = NSubtituteMockingHelper.FakeLanguageService();
+            LanguageService = NSubstituteMockingHelper.FakeLanguageService();
             AuthService = Substitute.For<IAuthService>();
             CaptchaService = Substitute.For<ICaptchaService>();
+            AccountRepository = Substitute.For<IAccountRepository>();
+
+            MockingUrlHelperExtension.FakeGetFavoriteShortedLanguage();
         }
 
         [Fact]
         public void AuthenticationForm_WhenCallWithNoAuthenticationUser_SendPublicKey()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
             controller.HttpContext.User = Substitute.For<IPrincipal>();
             var identity = Substitute.For<IIdentity>();
             identity.IsAuthenticated.Returns(false);
@@ -58,7 +65,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void AuthenticationForm_WhenCallWithNoSession_SendPublicKey()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
             controller.HttpContext.User = Substitute.For<IPrincipal>();
             var identity = Substitute.For<IIdentity>();
             identity.IsAuthenticated.Returns(true);
@@ -78,7 +85,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void AuthenticationForm_WhenCallWithLoginUer_ReturnCoreectViewWithLoginUserName()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
             controller.HttpContext.User = Substitute.For<IPrincipal>();
             var identity = Substitute.For<IIdentity>();
             identity.IsAuthenticated.Returns(true);
@@ -108,7 +115,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void SignIn_WhenCallNotAjaxRequest_ReturnResultNotOk()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
 
             var result = controller.SignIn(new UserLoginParam()) as JsonResult;
             var model = result.Data as ResultInfo;
@@ -121,8 +128,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void SignIn_WhenCallWithModelIsNotValid_ReturnResultNotOk()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            NSubstituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeAjaxRequest(controller.Request);
             controller.ModelState.AddModelError("Error", "Need add field error");
 
             var result = controller.SignIn(new UserLoginParam()) as JsonResult;
@@ -136,8 +143,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void SignIn_WhenCallWithNotValidCaptcha_ReturnResultNotOk()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            NSubstituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeAjaxRequest(controller.Request);
             var param = GetValidParam();
             CaptchaService.IsValid("", "", "").ReturnsForAnyArgs(false);
 
@@ -152,8 +159,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void SignIn_WhenAccNeedVerify_ReturnShouldVerifyAccountResult()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            NSubstituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeAjaxRequest(controller.Request);
             var param = GetValidParam();
             CaptchaService.IsValid("", "", "").ReturnsForAnyArgs(true);
             var loginResult = GetValidLoginResultViewModel();
@@ -170,8 +177,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void SignIn_WhenCallWithNotValidDomain_ReturnErrorResult()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            NSubstituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeAjaxRequest(controller.Request);
             var param = GetValidParam();
             CaptchaService.IsValid("", "", "").ReturnsForAnyArgs(true);
             var loginResult = GetValidLoginResultViewModel();
@@ -189,8 +196,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void SignIn_WhenCallWithLoginResultIsNotOk_SessionNotSave()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            NSubstituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeAjaxRequest(controller.Request);
             var param = GetValidParam();
             CaptchaService.IsValid("", "", "").ReturnsForAnyArgs(true);
             var loginResult = GetInvalidLoginResultViewModel();
@@ -208,8 +215,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void SignIn_WhenCallWithUserInfoIsNull_SessionNotSave()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            NSubstituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeAjaxRequest(controller.Request);
             var param = GetValidParam();
             CaptchaService.IsValid("", "", "").ReturnsForAnyArgs(true);
             var loginResult = GetLoginResultViewModelHasUserInfoIsNull();
@@ -227,13 +234,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void SignIn_WhenCallWithLoginResultIsOk_SessionSave()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            NSubtituteMockingHelper.FakeAjaxRequest(controller.Request);
+            NSubstituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeAjaxRequest(controller.Request);
             var param = GetValidParam();
             CaptchaService.IsValid("", "", "").ReturnsForAnyArgs(true);
             var loginResult = GetValidLoginResultViewModel();
             AuthService.GetLoginResult(null, false).ReturnsForAnyArgs(loginResult);
             AppSetting.AllowedAffiliateTypes.Returns(new List<string> { "Asian" });
+            AccountRepository.GetAccountInfo(Arg.Any<int>()).Returns(new DTO.UserPanel.AccountInformation { DefaultBaseCurrency = 1 });
 
             var result = controller.SignIn(param) as JsonResult;
             var model = result.Data as ResultInfo;
@@ -246,7 +254,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void SignOut_WhenCall_RedirectToHome()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
 
             var result = controller.SignOut() as RedirectResult;
 
@@ -257,7 +265,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void AdminLogin_ModelNotValid_RedirectToAccountOverView()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
             controller.ModelState.AddModelError("abc", "Need field abc");
 
             var result = controller.AdminLogin(new InternalLoginModel()) as RedirectResult;
@@ -268,22 +276,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         [Fact]
         public void AdminLogin_WhenHashingKeyNotEqual_RedirectToPageNotFount()
         {
+            var adminSessionId = "sessionId";
             var param = CreateInternalLoginParam();
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            AuthService.GetInternalLoginInfo(default(int)).ReturnsForAnyArgs(new InternalLoginInfo());
-
-            var result = controller.AdminLogin(param) as RedirectResult;
-
-            Assert.Contains("PageNotFound", result.Url);
-        }
-
-        [Fact]
-        public void AdminLogin_WhenInternalLoginInfoIsNull_RedirectToPageNotFount()
-        {
-            var param = CreateInternalLoginParam();
-            var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
+            AuthService.GetSessionId(default(int)).ReturnsForAnyArgs(adminSessionId);
 
             var result = controller.AdminLogin(param) as RedirectResult;
 
@@ -299,8 +296,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var param = CreateInternalLoginParam();
             param.AccKey = hashed;
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            AuthService.GetInternalLoginInfo(default(int)).ReturnsForAnyArgs(new InternalLoginInfo { SesionId = adminSessionId });
+            NSubstituteMockingHelper.FakeController(controller);
+            AuthService.GetSessionId(default(int)).ReturnsForAnyArgs(adminSessionId);
             var loginResult = GetValidLoginResultViewModel();
             loginResult.Result.IsOk = false;
             AuthService.GetLoginResult(default(UserLoginParam), true).ReturnsForAnyArgs(loginResult);
@@ -319,11 +316,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var param = CreateInternalLoginParam();
             param.AccKey = hashed;
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
-            AuthService.GetInternalLoginInfo(default(int)).ReturnsForAnyArgs(new InternalLoginInfo { SesionId = adminSessionId });
+            NSubstituteMockingHelper.FakeController(controller);
+            AuthService.GetSessionId(default(int)).ReturnsForAnyArgs(adminSessionId);
             var loginResult = GetValidLoginResultViewModel();
             AuthService.GetLoginResult(default(UserLoginParam), true).ReturnsForAnyArgs(loginResult);
             AppSetting.AllowedAffiliateTypes.Returns(new List<string> { "Asian" });
+            AccountRepository.GetAccountInfo(Arg.Any<int>()).Returns(new DTO.UserPanel.AccountInformation { DefaultBaseCurrency = 1 });
 
             var result = controller.AdminLogin(param) as RedirectResult;
 
@@ -335,7 +333,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void ReCheckIn_WhenAnotherOneLogin_SignOut()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
             AuthService.Recheckin(1, false).ReturnsForAnyArgs(true);
 
             controller.ReCheckin();
@@ -347,7 +345,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void ReCheckIn_WhenHasNotAnotherOneLogin_SignOut()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
             AuthService.Recheckin(1, false).ReturnsForAnyArgs(false);
 
             controller.ReCheckin();
@@ -359,7 +357,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void CaptchaImage_WhenUserDefaultType_SessionSaveCaptchaCode()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
             var captcha = "1234";
             CaptchaService.GenerateCaptcha().Returns(captcha);
 
@@ -373,7 +371,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void CaptchaImage_WhenTypeNotZero_SessionSaveSignUpCaptchaCode()
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
             var captcha = "1234";
             CaptchaService.GenerateCaptcha().Returns(captcha);
 
@@ -383,8 +381,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(typeof(FileContentResult), result.GetType());
         }
 
-        public AuthController CreateController()
-            => new AuthController(SessionService, AppSetting, LanguageService, AuthService, CaptchaService);
+        private AuthController CreateController()
+            => new AuthController(SessionService, AppSetting, LanguageService, AuthService, AccountRepository, CaptchaService);
 
         private UserLoginParam GetValidParam()
             => new UserLoginParam
@@ -439,9 +437,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
         }
 
-        private InternalLoginModel CreateInternalLoginParam()
+        private static InternalLoginModel CreateInternalLoginParam()
             => new InternalLoginModel
             {
+                AccId = 1,
                 AccKey = "",
                 ChalengeStr = "abc",
                 AccOnId = 1,

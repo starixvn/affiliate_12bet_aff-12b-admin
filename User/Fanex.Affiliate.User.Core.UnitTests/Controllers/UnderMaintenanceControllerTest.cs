@@ -19,8 +19,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
         public UnderMaintenanceControllerTest()
         {
-            SessionService = NSubtituteMockingHelper.FakeSessionService();
-            LanguageService = NSubtituteMockingHelper.FakeLanguageService();
+            SessionService = NSubstituteMockingHelper.FakeSessionService();
+            LanguageService = NSubstituteMockingHelper.FakeLanguageService();
             MaintenanceService = Substitute.For<IUnderMaintenanceService>();
         }
 
@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void Excute_WhenRequestChangeLang_SetForNewLang(string languageCode)
         {
             var controller = CreateController();
-            NSubtituteMockingHelper.FakeController(controller);
+            NSubstituteMockingHelper.FakeController(controller);
             var routeData = CreateRouteData();
             controller.ControllerContext.RouteData = routeData;
             var requestContext = new RequestContext(controller.HttpContext, routeData);

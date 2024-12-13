@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -34,7 +35,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var db = Builder.Build(uSpkey, dbMode);
             db.Query<ReferrerStatistics>(param).Returns(new List<ReferrerStatistics>
             {
-                new ReferrerStatistics { SiteUrls = "", Fdm = 1, SignUps = 1, TotalClick = 1, UniqueClick = 1, CountryCode = "EN", Country = "England"}
+                new ReferrerStatistics { DomainReferrer = "", Fdm = 1, SignUps = 1, TotalClick = 1, UniqueClick = 1}
             });
             var repo = CreateRepo();
 
@@ -45,9 +46,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
         }
 
         [Theory]
-        [InlineData(true, true)]
-        [InlineData(false, false)]
-        public void GetStatisticDetailBySite_WhenCall_ReturnListReferreStatitstics(bool isInternal, bool isRecordExist)
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GetStatisticDetailBySite_WhenCall_ReturnListReferrerStatistics(bool isInternal)
         {
             const string uSpkey = "Aff_ClickStatisticsDetailBySite";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
@@ -64,15 +65,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
                 PageIndex = 1,
                 PageSize = 1,
                 SportCode = "",
-                CountryCode = "",
                 ToDate = DateTime.Now,
                 TotalPages = 1,
             };
-            var rowValue = isRecordExist ? null : DBNull.Value;
+            var rowValue = DBNull.Value;
             var db = Builder.Build(uSpkey, dbMode);
             var reader = db.ExecuteReader(param);
             reader.Read().Returns(true, false);
-            reader[Arg.Compat.Any<string>()].Returns(rowValue);
+            reader[Arg.Any<string>()].Returns(rowValue);
             var repo = CreateRepo();
 
             var result = repo.GetStatisticsDetailBySite(param);
@@ -100,7 +100,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             var db = Builder.Build(uSpkey, dbMode);
             db.Query<LandingPageStatistics>(param).Returns(new List<LandingPageStatistics>
             {
-                new LandingPageStatistics { Fdm = 1, LanguageCode = "", Language = "", SignUps = 1, Page = "", TotalClick = 1, UniqueClick = 1, CountryCode = "EN", Country = "England" }
+                new LandingPageStatistics { Fdm = 1, LanguageCode = "", LanguageName = "", SignUps = 1, SportCode = "", TotalClick = 1, UniqueClick = 1 }
             });
             var repo = CreateRepo();
 
@@ -110,24 +110,28 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository.UserPanel
             Assert.NotEmpty(result);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetCountryList_WhenCall_QueryCountry(bool isInternal)
+        [Fact]
+        public void GetMarketingPageStatistics_WhenCall_QueryLandingPage()
         {
-            const string uSpkey = "Aff_Country_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var key = uSpkey + dbMode;
-            var db = Builder.Build(uSpkey, dbMode);
-            db.Query<Country>().Returns(new List<Country>
+            const string uSpkey = "Aff_User_Rpt_MarketingPage_Statistics";
+            var param = new MarketingPageStatisticsParam();
+            var db = Builder.Build(uSpkey);
+            db.Query<MarketingPageStatistics>(param).Returns(new List<MarketingPageStatistics>
             {
-                new Country { CountryCode = "EN", CountryName = "England" }
+                new MarketingPageStatistics {
+                    ChannelName = "",
+                    AffMediaLink = "",
+                    MarketName = "",
+                    TotalClick = 1,
+                    Language = "",
+                    UniqueClick = 1
+                }
             });
             var repo = CreateRepo();
 
-            var result = repo.GetCountryList(isInternal);
+            var result = repo.GetMarketingPageStatistics(param);
 
-            Assert.Equal(key, db.SettingKey);
+            Assert.Equal(uSpkey, db.SettingKey);
             Assert.NotEmpty(result);
         }
     }
