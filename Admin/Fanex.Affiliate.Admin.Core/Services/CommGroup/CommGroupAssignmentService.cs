@@ -1,49 +1,43 @@
 ﻿using Affiliate.Infrastructure.Helpers;
+using Fanex.Affiliate.Admin.Core.Commands.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Data.Repository;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 {
     public class CommGroupAssignmentService : ICommGroupAssignmentService
     {
-        private readonly ICommissionGroupRepository _commGroupRepository;
+        private readonly IDynamicRepository _dynamicRepository;
         private readonly IAffiliateService _affiliateService;
         private readonly IEmailService _emailService;
         private readonly ICommGroupCommonService _commGroupCommonService;
         private readonly IThirdPartyLicenseeService _thirdPartyLicenseeService;
 
         public CommGroupAssignmentService(
-            ICommissionGroupRepository commGroupRepository,
+            IDynamicRepository dynamicRepository,
             IAffiliateService affiliateService,
             IEmailService emailService,
             ICommGroupCommonService commGroupCommonService,
             IThirdPartyLicenseeService thirdPartyLicenseeService)
         {
-            _commGroupRepository = commGroupRepository;
+            _dynamicRepository = dynamicRepository;
             _affiliateService = affiliateService;
             _emailService = emailService;
             _commGroupCommonService = commGroupCommonService;
             _thirdPartyLicenseeService = thirdPartyLicenseeService;
         }
 
-        public IEnumerable<NormalCommGroup> GetNormalCommGroupList(GetGroupListParam param)
+        public async Task<ResultInfo> AssignGroup(AssignGroupParam param, AffInfoParam affInfo, AffInformationEmail emailParam)
         {
-            return _commGroupRepository.GetNormalCommGroupList(param);
-        }
-
-        public Task<ResultInfo> AssignGroup(AssignGroupParam param, AffInfoParam affInfo, AffInformationEmail emailParam)
-        {
-            return ProcessAssignGroup(param, affInfo, emailParam);
+            return await ProcessAssignGroup(param, affInfo, emailParam);
         }
 
         public async Task<ResultInfo> AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffInfoParam affInfo, AffInformationEmail emailParam)
@@ -55,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
             if (commGroupResult.IsSuccessful)
             {
-                var assignparam = new AssignGroupParam
+                var assignParam = new AssignGroupParam
                 {
                     UserId = param.UserId,
                     AffId = affInfo.AffId,
@@ -63,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                     Ip = param.Ip
                 };
 
-                return await ProcessAssignGroup(assignparam, affInfo, emailParam);
+                return await ProcessAssignGroup(assignParam, affInfo, emailParam);
             }
 
             return commGroupResult;
@@ -71,8 +65,19 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
         private async Task<ResultInfo> ProcessAssignGroup(AssignGroupParam param, AffInfoParam affInfo, AffInformationEmail emailParam)
         {
-            var assignResult = _commGroupRepository.AssignGroup(param);
+            var command = new AssignCommGroupCommand
+            {
+                UserId = param.UserId,
+                AffId = affInfo.AffId,
+                GroupId = param.GroupId,
+                Ip = param.Ip
+            };
+
+            await _dynamicRepository.ExecuteAsync(command);
+
             var isApproved = affInfo.GroupId != 0;
+            var assignResult = new ResultInfo(command.ErrCode, command.ErrMsg);
+
             if (!isApproved && assignResult.IsSuccessful)
             {
                 return await ProcessApproveAffiliate(param, affInfo, emailParam);

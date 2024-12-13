@@ -20,7 +20,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 
         public int NoAffs { get; set; }
 
-        public decimal SubAffCommRate { get; set; }
+        [JsonIgnore]
+        public decimal SubCommRate { get; set; }
+
+        public decimal SubAffCommRate => SubCommRate;
 
         public bool IsActivePlayerSum { get; set; }
 

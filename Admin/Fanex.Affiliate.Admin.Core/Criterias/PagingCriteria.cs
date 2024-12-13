@@ -1,5 +1,5 @@
-﻿using Fanex.Data.Repository;
-using Fanex.Data;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 namespace Fanex.Affiliate.Admin.Core.Criterias
 {
     public abstract class PagingCriteria : CriteriaBase

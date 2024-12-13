@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 var selectedGroupType = groupTypeId == 0 ? GroupType.CalculateRevenueShareByWinloss : groupTypeId;
                 var param = new GetGroupListParam { AffId = affId };
-                var commGroupList = _commGroupAssignmentService.GetNormalCommGroupList(param);
+                var commGroupList = _commGroupCommonService.GetNormalCommGroupList(param);
                 var commGroupTypeList = _commGroupCommonService.GetCommGroupTypes();
 
                 viewModel = new AssignNormalGroupViewModel

@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
                 return result;
             }
 
-            if (tierSettingList.Any(item => item.MinAp > Validation.InfinityQualifiedMember))
+            if (tierSettingList.Any(item => item.MinAm > Validation.InfinityQualifiedMember))
             {
                 UpdateResult(result, "Min AP must be lesser than or equal to 1,000,000,000!");
             }

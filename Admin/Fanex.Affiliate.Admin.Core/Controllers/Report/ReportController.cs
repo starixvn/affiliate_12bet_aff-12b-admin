@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.ViewModels.Report;
@@ -22,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
 
         private readonly ICurrencyRepository _currencyRepository;
 
-        private readonly ICommissionGroupRepository _commissionGroupRepository;
+        private readonly ICommGroupCommonService _commGroupCommonService;
 
         public ReportController(
             ISessionService sessionService,
@@ -30,13 +31,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
             ILanguageService languageService,
             IAffiliateReportService affiliateReportService,
             ICurrencyRepository currencyRepository,
-            ICommissionGroupRepository commissionGroupRepository) : base(sessionService)
+            ICommGroupCommonService commGroupCommonService) : base(sessionService)
         {
             _productRepository = productRepository;
             _languageService = languageService;
             _affiliateReportService = affiliateReportService;
             _currencyRepository = currencyRepository;
-            _commissionGroupRepository = commissionGroupRepository;
+            _commGroupCommonService = commGroupCommonService;
         }
 
 
@@ -52,8 +53,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
                 CurrencyList = _currencyRepository.GetCurrencies(),
                 BaseCurrencyList = _currencyRepository.GetBaseCurrencies(),
                 PaymentCurrencyList = _currencyRepository.GetPaymentCurrencies(),
-                CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(new GetGroupListParam()),
-                CommGroupTypes = _commissionGroupRepository.GetCommissionGroupTypes()
+                CommGroupList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()),
+                CommGroupTypes = _commGroupCommonService.GetCommGroupTypes()
             };
 
             return View(viewModel);

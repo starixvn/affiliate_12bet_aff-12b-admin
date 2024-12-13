@@ -12,7 +12,7 @@ describe('commission group - DeductionSetting', () => {
             GroupId: 0,
             GroupName: "ABC",
             PlatformFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6" }],
-            TierSettingList: [{ GroupProductId: 123, TierId: 1, MinAmount: 0, MinAp: 5, Commission: 0 }]
+            TierSettingList: [{ GroupProductId: 123, TierId: 1, MinAmount: 0, MinAm: 5, Commission: 0 }]
         }
     };
 

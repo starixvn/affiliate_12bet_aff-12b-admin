@@ -5,10 +5,10 @@ using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
@@ -22,17 +22,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     {
         private readonly IAffiliateInfoRepository _affiliateInfoRepository;
 
-        private readonly ICommissionGroupRepository _commissionGroupRepository;
+        private readonly ICommGroupCommonService _commGroupCommonService;
 
         private readonly ILanguageService _languageService;
 
         public AffiliateController(
             ISessionService sessionService,
             IAffiliateInfoRepository affiliateInfoRepository,
-            ICommissionGroupRepository commissionGroupRepository,
+            ICommGroupCommonService commGroupCommonService,
             ILanguageService languageService) : base(sessionService)
         {
-            _commissionGroupRepository = commissionGroupRepository;
+            _commGroupCommonService = commGroupCommonService;
             _affiliateInfoRepository = affiliateInfoRepository;
             _languageService = languageService;
         }
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
             var viewModel = new AffiliateInfoViewModel
             {
-                CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(new GetGroupListParam()),
+                CommGroupList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()),
                 LanguageList = _languageService.GetLanguageList(),
                 SelectedGroupId = groupId,
                 Param = param,

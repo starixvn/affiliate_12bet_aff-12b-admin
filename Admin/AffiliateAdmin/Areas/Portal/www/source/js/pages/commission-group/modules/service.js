@@ -202,7 +202,7 @@ export const validateTierSettingList = (tierSettingList) => {
     } else if (tierSettingList.filter(item => item.MinAmount > INFINITY_AM).length > 0) {
         isValid = false;
         messageList.push(messages.amountConstrain);
-    } else if (tierSettingList.filter(item => item.MinAp > INFINITY_QM).length > 0) {
+    } else if (tierSettingList.filter(item => item.MinAm > INFINITY_QM).length > 0) {
         isValid = false;
         messageList.push(messages.qmConstrain);
     }

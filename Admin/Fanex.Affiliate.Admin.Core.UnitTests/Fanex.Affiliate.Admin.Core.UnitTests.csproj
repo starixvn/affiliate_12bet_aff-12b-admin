@@ -51,6 +51,10 @@
     <Reference Include="Fanex.Data, Version=4.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.4.2.5.3\lib\net472\Fanex.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Data.Repository, Version=4.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.Repository.4.2.5.3\lib\net472\Fanex.Data.Repository.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.1.1\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
@@ -213,19 +217,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepositoryTest.cs" />
     <Compile Include="Repository\Affiliate\PaymentRequestRepositoryTest.cs" />
-    <Compile Include="Repository\CommissionGroupRepositoryTest.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepositoryTest.cs" />
     <Compile Include="Repository\Customer\LandingPageStatisticsRepositoryTest.cs" />
     <Compile Include="Repository\Customer\ReferrersRepositoryTest.cs" />
     <Compile Include="Repository\Customer\StatementHistoryRepositoryTest.cs" />
     <Compile Include="Repository\Customer\UserAccountRepositoryTest.cs" />
     <Compile Include="Repository\Domain\SubAffDomainRepositoryTest.cs" />
-    <Compile Include="Repository\LanguageRepositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\BannerListReppositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepositoryTest.cs" />
     <Compile Include="Repository\Member\MemberRepositoryTest.cs" />
-    <Compile Include="Repository\CurrencyRepositoryTest.cs" />
-    <Compile Include="Repository\ProductRepositoryTest.cs" />
     <Compile Include="Repository\Report\TransferReportRepositoryTest.cs" />
     <Compile Include="Repository\Report\PlayerGgrReportRepositoryTest.cs" />
     <Compile Include="Repository\Report\ReportRepositoryTest.cs" />

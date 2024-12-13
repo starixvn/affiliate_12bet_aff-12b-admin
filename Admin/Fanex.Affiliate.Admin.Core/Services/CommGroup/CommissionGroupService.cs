@@ -1,7 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Commands.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Criterias.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,24 +11,31 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 {
     public class CommissionGroupService : ICommissionGroupService
     {
-        private readonly ICommissionGroupRepository _commGroupRepository;
+        private readonly IDynamicRepository _dynamicRepository;
 
         private readonly ICommGroupCommonService _commGroupCommonService;
 
-        public CommissionGroupService(ICommissionGroupRepository commGroupRepository, ICommGroupCommonService commGroupCommonService)
+        public CommissionGroupService(IDynamicRepository dynamicRepository, ICommGroupCommonService commGroupCommonService)
         {
-            _commGroupRepository = commGroupRepository;
+            _dynamicRepository = dynamicRepository;
             _commGroupCommonService = commGroupCommonService;
         }
 
         public IEnumerable<CommissionGroupSetting> GetCommissionGroupList(GetCommissionGroupParam param)
         {
-            var rawData = _commGroupRepository.GetCommissionGroupList(param);
+            var criteria = new GetCommissionGroupCriteria
+            {
+                GroupId = param.GroupId,
+                GroupName = param.GroupName,
+                GroupTypeId = param.GroupTypeId,
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize,
+            };
 
-            var commGroupList = rawData.CommGroupList;
-            var tierSettingList = rawData.TierSettingList;
-            var tierDeductionSettingList = rawData.TierDeductionSettingList;
-            var p2pDeductionSettingList = rawData.P2pDeductionSettingList;
+            var (commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList)
+                = _dynamicRepository.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(criteria);
+
+            param.Nrows = criteria.Nrows;
 
             var result = from c in commGroupList
                          join t in tierSettingList on c.GroupId equals t.GroupId into groupTierSetting
@@ -40,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                              GroupTypeId = c.GroupTypeId,
                              GroupTypeName = c.GroupTypeName,
                              GroupTypeBy = c.GroupTypeBy,
-                             SubAffCommRate = c.SubAffCommRate,
+                             SubCommRate = c.SubCommRate,
                              CreatedDate = c.CreatedDate,
                              Creator = c.Creator,
                              Description = c.Description,
@@ -69,7 +78,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
         public ResultInfo DeleteCommissionGroup(DeleteCommissionGroupParam param)
         {
-            return _commGroupRepository.DeleteCommissionGroup(param);
+            var command = new DeleteCommGroupCommand
+            {
+                GroupId = param.GroupId,
+                UserId = param.UserId,
+                Ip = param.Ip
+            };
+
+            _dynamicRepository.Execute(command);
+
+            return new ResultInfo(command.ErrCode, command.ErrMsg);
         }
     }
 }

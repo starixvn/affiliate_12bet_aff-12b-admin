@@ -1,19 +1,18 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Fanex.Affiliate.Admin.Core.Commands.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
+using Fanex.Data.Repository;
 using Moq;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Xunit;
@@ -25,31 +24,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         private ILifetimeScopeProvider scopeProvider;
 
         [Fact]
-        public void GetNormalCommGroupList_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var param = new GetGroupListParam();
-            var expectedResult = new List<NormalCommGroup>
-            {
-                new NormalCommGroup
-                {
-                    GroupId = 123,
-                    GroupName = "New Test",
-                    GroupTypeId = 1
-                }
-            };
-            var commGroupRepository = new Mock<ICommissionGroupRepository>();
-            commGroupRepository.Setup(comm => comm.GetNormalCommGroupList(param)).Returns(expectedResult);
-            var service = CreateCommGroupAssignmentService(commGroupRepository.Object);
-
-            // Action
-            var result = service.GetNormalCommGroupList(param);
-
-            // Assert
-            Assert.Single(result);
-        }
-
-        [Fact]
         public async Task AssignGroup_WhenCallWithAssignComm_ExcuteCorrect()
         {
             // Arrange
@@ -57,11 +31,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var affInfo = new AffInfoParam { GroupId = 123 };
             var emailParam = new AffInformationEmail();
 
-            var expectedResult = new ResultInfo();
-            var commGroupRepository = new Mock<ICommissionGroupRepository>();
-            commGroupRepository.Setup(comm => comm.AssignGroup(param)).Returns(expectedResult);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
 
-            var service = CreateCommGroupAssignmentService(commGroupRepository.Object);
+            var service = CreateCommGroupAssignmentService(dynamicRepository.Object);
 
             // Action
             var result = await service.AssignGroup(param, affInfo, emailParam);
@@ -78,14 +51,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var affInfo = new AffInfoParam { AffType = 3 };
             var emailParam = new AffInformationEmail();
 
-            var expectedResult = new ResultInfo();
-            var commGroupRepository = new Mock<ICommissionGroupRepository>();
-            commGroupRepository.Setup(comm => comm.AssignGroup(param)).Returns(expectedResult);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns((new ResultInfo { Code = 999 }, "12345"));
 
-            var service = CreateCommGroupAssignmentService(commGroupRepository.Object, affiliateService.Object);
+            var service = CreateCommGroupAssignmentService(dynamicRepository.Object, affiliateService.Object);
 
             // Action
             var result = await service.AssignGroup(param, affInfo, emailParam);
@@ -115,17 +87,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var affInfo = new AffInfoParam { AffType = 3 };
             var emailParam = new AffInformationEmail();
 
-            var expectedResult = new ResultInfo();
-            var commGroupRepository = new Mock<ICommissionGroupRepository>();
-            commGroupRepository.Setup(comm => comm.AssignGroup(param)).Returns(expectedResult);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
 
             var affiliateService = new Mock<IAffiliateService>();
-            affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns((expectedResult, "12345"));
+            affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns((new ResultInfo(), "12345"));
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(isNull ? null : new AffiliateBasicInfo());
             var thirdPartyLicenseeService = new Mock<IThirdPartyLicenseeService>();
             thirdPartyLicenseeService.Setup(comm => comm.SendAffiliateInfo(It.IsAny<AffiliateBasicInfo>())).Returns(Task.CompletedTask);
 
-            var service = CreateCommGroupAssignmentService(commGroupRepository.Object, affiliateService.Object, thirdPartyLicenseeService: thirdPartyLicenseeService.Object);
+            var service = CreateCommGroupAssignmentService(dynamicRepository.Object, affiliateService.Object, thirdPartyLicenseeService: thirdPartyLicenseeService.Object);
 
             // Action
             var result = await service.AssignGroup(param, affInfo, emailParam);
@@ -195,15 +166,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var affInfo = new AffInfoParam();
             var emailParam = new AffInformationEmail();
 
-            var expectedResult = new ResultInfo();
-
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
-            commGroupCommonService.Setup(comm => comm.CreateCommissionGroup(param)).Returns(expectedResult);
+            commGroupCommonService.Setup(comm => comm.CreateCommissionGroup(param)).Returns(new ResultInfo());
 
-            var commGroupRepository = new Mock<ICommissionGroupRepository>();
-            commGroupRepository.Setup(comm => comm.AssignGroup(It.IsAny<AssignGroupParam>())).Returns(new ResultInfo { Code = 999 });
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>())).Callback<AssignCommGroupCommand>(c => c.ErrCode = 999);
 
-            var service = CreateCommGroupAssignmentService(commGroupRepository.Object, null, null, commGroupCommonService.Object);
+            var service = CreateCommGroupAssignmentService(dynamicRepository.Object, null, null, commGroupCommonService.Object);
 
             // Action
             var result = await service.AssignPrivateGroup(param, affInfo, emailParam);
@@ -220,18 +189,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var affInfo = new AffInfoParam();
             var emailParam = new AffInformationEmail();
 
-            var expectedResult = new ResultInfo();
-
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
-            commGroupCommonService.Setup(comm => comm.CreateCommissionGroup(param)).Returns(expectedResult);
+            commGroupCommonService.Setup(comm => comm.CreateCommissionGroup(param)).Returns(new ResultInfo());
 
-            var commGroupRepository = new Mock<ICommissionGroupRepository>();
-            commGroupRepository.Setup(comm => comm.AssignGroup(It.IsAny<AssignGroupParam>())).Returns(expectedResult);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns((new ResultInfo { Code = 999 }, "12345"));
 
-            var service = CreateCommGroupAssignmentService(commGroupRepository.Object, affiliateService.Object, null, commGroupCommonService.Object);
+            var service = CreateCommGroupAssignmentService(dynamicRepository.Object, affiliateService.Object, null, commGroupCommonService.Object);
 
             // Action
             var result = await service.AssignPrivateGroup(param, affInfo, emailParam);
@@ -266,8 +233,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
             commGroupCommonService.Setup(comm => comm.CreateCommissionGroup(param)).Returns(expectedResult);
 
-            var commGroupRepository = new Mock<ICommissionGroupRepository>();
-            commGroupRepository.Setup(comm => comm.AssignGroup(It.IsAny<AssignGroupParam>())).Returns(expectedResult);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns((expectedResult, "12345"));
@@ -276,7 +243,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var thirdPartyLicenseeService = new Mock<IThirdPartyLicenseeService>();
             thirdPartyLicenseeService.Setup(comm => comm.SendAffiliateInfo(It.IsAny<AffiliateBasicInfo>())).Throws(new System.Exception());
 
-            var service = CreateCommGroupAssignmentService(commGroupRepository.Object, affiliateService.Object, null, commGroupCommonService.Object, thirdPartyLicenseeService.Object);
+            var service = CreateCommGroupAssignmentService(dynamicRepository.Object, affiliateService.Object, null, commGroupCommonService.Object, thirdPartyLicenseeService.Object);
 
             // Action
             var result = await service.AssignPrivateGroup(param, affInfo, emailParam);
@@ -294,14 +261,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var affInfo = new AffInfoParam { GroupId = 123 };
             var emailParam = new AffInformationEmail();
 
-            var expectedResult = new ResultInfo();
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
-            commGroupCommonService.Setup(comm => comm.UpdateCommissionGroup(param)).Returns(expectedResult);
+            commGroupCommonService.Setup(comm => comm.UpdateCommissionGroup(param)).Returns(new ResultInfo());
 
-            var commGroupRepository = new Mock<ICommissionGroupRepository>();
-            commGroupRepository.Setup(comm => comm.AssignGroup(It.IsAny<AssignGroupParam>())).Returns(expectedResult);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
 
-            var service = CreateCommGroupAssignmentService(commGroupRepository.Object, null, null, commGroupCommonService.Object);
+            var service = CreateCommGroupAssignmentService(dynamicRepository.Object, null, null, commGroupCommonService.Object);
 
             // Action
             var result = await service.AssignPrivateGroup(param, affInfo, emailParam);
@@ -311,20 +277,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         }
 
         private static CommGroupAssignmentService CreateCommGroupAssignmentService(
-            ICommissionGroupRepository commGroupRepository = null,
+            IDynamicRepository dynamicRepository = null,
             IAffiliateService affiliateService = null,
             IEmailService emailService = null,
             ICommGroupCommonService commGroupCommonService = null,
             IThirdPartyLicenseeService thirdPartyLicenseeService = null)
         {
 
-            var fakeCommGroupRepository = commGroupRepository ?? Mock.Of<ICommissionGroupRepository>();
+            var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
             var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
             var fakeCommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();
             var fakeThirdPartyLicenseeservice = thirdPartyLicenseeService ?? Mock.Of<IThirdPartyLicenseeService>();
 
-            return new CommGroupAssignmentService(fakeCommGroupRepository, fakeAffiliateService, fakeEmailService, fakeCommGroupCommonService, fakeThirdPartyLicenseeservice);
+            return new CommGroupAssignmentService(fakedynamicRepository, fakeAffiliateService, fakeEmailService, fakeCommGroupCommonService, fakeThirdPartyLicenseeservice);
         }
 
         private static CreateUpdateCommissionGroupParam CreateValidCreateUpdateCommissionGroupParam()

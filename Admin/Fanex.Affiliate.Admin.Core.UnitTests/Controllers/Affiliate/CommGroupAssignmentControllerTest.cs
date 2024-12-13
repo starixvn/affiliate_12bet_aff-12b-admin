@@ -52,12 +52,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             GetGroupListParam passedParam = null;
             var commGroupList = new List<NormalCommGroup> { new NormalCommGroup { GroupId = 123, GroupName = "Test", GroupTypeId = groupTypeId } };
-            var commGroupAssignmentService = new Mock<ICommGroupAssignmentService>();
-            commGroupAssignmentService.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(commGroupList).Callback<GetGroupListParam>(p => passedParam = p);
+            var commGroupCommonService = new Mock<ICommGroupCommonService>();
+            commGroupCommonService.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(commGroupList).Callback<GetGroupListParam>(p => passedParam = p);
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(affId, null)).Returns(new AffiliateBasicInfo { AffId = affId });
 
-            var controller = CreateCommGroupAssignmentController(affiliateService: affiliateService.Object, commGroupAssignmentService: commGroupAssignmentService.Object);
+            var controller = CreateCommGroupAssignmentController(affiliateService: affiliateService.Object, commGroupCommonService: commGroupCommonService.Object);
 
             // Action
             var viewResult = controller.AssignGroup(affId, groupTypeId) as ViewResult;

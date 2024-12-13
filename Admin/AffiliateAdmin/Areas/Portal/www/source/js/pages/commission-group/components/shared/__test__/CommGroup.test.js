@@ -13,7 +13,7 @@ describe('commission group - CommGroupInfo', () => {
             GroupName: "ABC",
             GroupTypeId: 1,
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6" }],
-            TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinAp: 0, MaxAp: 1000000000, Commission: 0 }]
+            TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinAm: 0, MaxAp: 1000000000, Commission: 0 }]
         }
     };
 

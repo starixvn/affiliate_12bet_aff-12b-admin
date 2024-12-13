@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             productRepository.Setup(p => p.GetProductList()).Returns(new List<Product> { new Product { ProductId = 123, ProductName = "abc" } });
 
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
-            commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(new List<DTO.CommissionGroup.DeductionItem> { new DTO.CommissionGroup.DeductionItem { DeductionId = 13, DeductionName = "ExchangeGgrShare", DeductedPercentage = 0.05m } });
+            commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(new List<DeductionItem> { new DeductionItem { DeductionId = 13, DeductionName = "ExchangeGgrShare", DeductedPercentage = 0.05m } });
 
             var controller = CreateCommissionGroupController(productRepository: productRepository.Object, commGroupCommonService: commGroupCommonService.Object);
 
@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             // Arrange
             var param = new GetCommissionGroupParam { GroupName = "abc", PageIndex = 1, PageSize = 20 };
             var commissionGroupService = new Mock<ICommissionGroupService>();
-            commissionGroupService.Setup(c => c.GetCommissionGroupList(param)).Returns(new List<CommissionGroupSetting> { new CommissionGroupSetting { GroupName = "abc" } }).Callback<GetCommissionGroupParam>(p => param.Nrows = 1);
+            commissionGroupService.Setup(c => c.GetCommissionGroupList(param)).Returns(new List<CommissionGroupSetting> { new CommissionGroupSetting { GroupName = "abc" } });
             var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object);
 
             // Action

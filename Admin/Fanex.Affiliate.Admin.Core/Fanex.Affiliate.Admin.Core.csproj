@@ -207,6 +207,10 @@
     <Compile Include="Commands\Auth\LoginOnUserCommand.cs" />
     <Compile Include="Commands\Auth\LogoutCommand.cs" />
     <Compile Include="Commands\Auth\ReCheckinCommand.cs" />
+    <Compile Include="Commands\BaseNonQueryCommand.cs" />
+    <Compile Include="Commands\CommissionGroup\AssignCommGroupCommand.cs" />
+    <Compile Include="Commands\CommissionGroup\DeleteCommGroupCommand.cs" />
+    <Compile Include="Commands\CommissionGroup\UpdateCommGroupCommand.cs" />
     <Compile Include="Configurations\AppSetting.cs" />
     <Compile Include="Configurations\IAppSetting.cs" />
     <Compile Include="Configurations\LoggingConfig.cs" />
@@ -274,9 +278,14 @@
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
     <Compile Include="Criterias\Auth\CheckUserPermissionCriteria.cs" />
     <Compile Include="Criterias\Auth\UserPermissionCriteria.cs" />
+    <Compile Include="Commands\CommissionGroup\BaseCommGroupCommand.cs" />
+    <Compile Include="Commands\CommissionGroup\InsertCommGroupCommand.cs" />
+    <Compile Include="Criterias\CommissionGroup\GetCommissionGroupCriteria.cs" />
+    <Compile Include="Criterias\CommissionGroup\GetNormalCommGroupCriteria.cs" />
     <Compile Include="Criterias\Home\GeneralInfoCriteria.cs" />
     <Compile Include="Criterias\Home\UserOnlineCriteria.cs" />
     <Compile Include="Criterias\PagingCriteria.cs" />
+    <Compile Include="Criterias\BaseCriteria.cs" />
     <Compile Include="DTO\Administrator\AdministratorInfo.cs" />
     <Compile Include="DTO\Administrator\DepartmentInfo.cs" />
     <Compile Include="DTO\Administrator\PolicyInfo.cs" />
@@ -291,6 +300,7 @@
     <Compile Include="DTO\CommissionGroup\CommGroupType.cs" />
     <Compile Include="DTO\CommissionGroup\DeductionSetting.cs" />
     <Compile Include="DTO\CommissionGroup\NormalCommGroup.cs" />
+    <Compile Include="DTO\CommissionGroup\P2pDeductionSetting.cs" />
     <Compile Include="DTO\Currency.cs" />
     <Compile Include="DTO\Customer\TransferLimitSettingInfo.cs" />
     <Compile Include="DTO\Domain\DomainControlInfo.cs" />
@@ -341,6 +351,7 @@
     <Compile Include="MetaModels\CheckPermissionParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\AffInfoParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\CommGroupSettingParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\TierDeductionSettingParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\DeductionSettingParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\P2PDeductionSettingParam.cs" />
@@ -390,7 +401,6 @@
     <Compile Include="MetaModels\Affiliate\FavoriteParam.cs" />
     <Compile Include="MetaModels\Affiliate\PasswordParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\AssignGroupParam.cs" />
-    <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\DeleteCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\CreateUpdateCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\GetGroupListParam.cs" />
@@ -452,10 +462,8 @@
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
     <Compile Include="Repository\AuthRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
-    <Compile Include="Repository\CommissionGroupRepository.cs" />
     <Compile Include="Repository\Report\IAffiliateReportRepository.cs" />
     <Compile Include="Repository\IAuthRepository.cs" />
-    <Compile Include="Repository\ICommissionGroupRepository.cs" />
     <Compile Include="Configurations\IoCConfig.cs" />
     <Compile Include="Repository\ILanguageRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />

@@ -10,7 +10,7 @@ describe('commission group - GridData ', () => {
         MaxAmount: 100000000000,
         MaxAp: 1000000000,
         MinAmount: 0,
-        MinAp: 0,
+        MinAm: 0,
         TierId: 1
     };
     const dataItem = {

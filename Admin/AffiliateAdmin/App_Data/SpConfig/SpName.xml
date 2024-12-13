@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet Admin">
   <Function Name="Language">
-    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
+      <Mapping DataField="MarketName" ObjectProperty="LanguageName" />
+      <Mapping DataField="ShortedCode" ObjectProperty="ShortedLanguageCode" />
+    </Setting>
   </Function>
   <Function Name="AffiliateInformation">
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
@@ -13,7 +17,6 @@
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Deductions_Sel" SpName="Aff_Admin_CommGroup_Deductions_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_CommGroup_Sel" SpName="Aff_CommGroup_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />

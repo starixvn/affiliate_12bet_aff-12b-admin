@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -85,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Report
             ILanguageService languageService = null,
             IAffiliateReportService affiliateReportService = null,
             ICurrencyRepository currencyRepository = null,
-            ICommissionGroupRepository commissionGroupRepository = null
+            ICommGroupCommonService commissionGroupRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
@@ -93,7 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Report
             var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
             var fakeAffiliateReportService = affiliateReportService ?? Mock.Of<IAffiliateReportService>();
             var fakeCurrencyRepository = currencyRepository ?? Mock.Of<ICurrencyRepository>();
-            var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommissionGroupRepository>();
+            var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommGroupCommonService>();
 
             return new ReportController(fakeSessionService, fakeProductRepository, fakeLanguageService, fakeAffiliateReportService, fakeCurrencyRepository, fakeCommissionGroupRepository);
         }

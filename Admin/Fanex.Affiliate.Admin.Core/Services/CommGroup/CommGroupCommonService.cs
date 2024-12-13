@@ -1,8 +1,11 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Commands.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias;
+using Fanex.Affiliate.Admin.Core.Criterias.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,41 +14,91 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 {
     public class CommGroupCommonService : ICommGroupCommonService
     {
-        private readonly ICommissionGroupRepository _commGroupRepository;
+        private readonly IDynamicRepository _dynamicRepository;
 
         public CommGroupCommonService(
-            ICommissionGroupRepository commGroupRepository)
+            IDynamicRepository dynamicRepository)
         {
-            _commGroupRepository = commGroupRepository;
+            _dynamicRepository = dynamicRepository;
         }
 
         public ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            BuildXml(param);
+            var commandInsert = new InsertCommGroupCommand
+            {
+                GroupTypeId = param.GroupTypeId,
+                IsPrivate = param.IsPrivate
+            };
 
-            return _commGroupRepository.CreateCommissionGroup(param);
+            AssignBaseCommissionGroupCommand(param, commandInsert);
+
+            _dynamicRepository.Execute(commandInsert);
+
+            param.GroupId = commandInsert.GroupId;
+
+            return new ResultInfo(commandInsert.ErrCode, commandInsert.ErrMsg);
         }
 
         public ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            BuildXml(param);
+            var commandUpdate = new UpdateCommGroupCommand
+            {
+                GroupId = param.GroupId
+            };
 
-            return _commGroupRepository.UpdateCommissionGroup(param);
+            AssignBaseCommissionGroupCommand(param, commandUpdate);
+
+            _dynamicRepository.Execute(commandUpdate);
+
+            return new ResultInfo(commandUpdate.ErrCode, commandUpdate.ErrMsg);
         }
 
         public IEnumerable<DeductionItem> GetDeductionList()
         {
-            return _commGroupRepository.GetDeductionList().Where(d => d.DeductionId != Deduction.OperationalFeeId);
+            const string SpKey = "Aff_Admin_CommGroup_Deductions_Sel";
+
+            return _dynamicRepository.Fetch<DeductionItem>(new BaseCriteria(SpKey)).Where(d => d.DeductionId != Deduction.OperationalFeeId);
         }
 
         public IEnumerable<CommGroupType> GetCommGroupTypes()
         {
-            return _commGroupRepository.GetCommissionGroupTypes();
+            const string SpKey = "Aff_Admin_CommGroup_GroupTypeSel";
+
+            return _dynamicRepository.Fetch<CommGroupType>(new BaseCriteria(SpKey));
         }
 
-        private static void BuildXml(CreateUpdateCommissionGroupParam param)
+        public IEnumerable<NormalCommGroup> GetNormalCommGroupList(GetGroupListParam param)
         {
-            param.TierSettingXml = BuildTierSettingXml(param.TierSettingList, param.PlatformFeeList);
+            var criteria = new GetNormalCommGroupCriteria
+            {
+                AffId = param.AffId,
+                GroupTypeId = param.GroupTypeId,
+            };
+
+            var normalCommGroups = _dynamicRepository.Fetch<NormalCommGroup>(criteria);
+            param.GroupId = criteria.GroupId;
+
+            return normalCommGroups;
+        }
+
+        private static void AssignBaseCommissionGroupCommand(CreateUpdateCommissionGroupParam param, BaseCommGroupCommand command)
+        {
+            var (tierSettingXml, tierDeductionsXml, p2pDeductionsXml) = GetSettingXmls(param);
+
+            command.UserId = param.UserId;
+            command.GroupName = param.GroupName;
+            command.Description = param.Description;
+            command.SubAffCommRate = param.SubAffCommRate;
+            command.IsActivePlayerSum = param.IsActivePlayerSum;
+            command.Ip = param.Ip;
+            command.TierSettingXml = tierSettingXml;
+            command.TierDeductionsXml = tierDeductionsXml;
+            command.P2pDeductionsXml = p2pDeductionsXml;
+        }
+
+        private static (string tierSettingXml, string tierDeductionsXml, string p2pDeductionsXml) GetSettingXmls(CreateUpdateCommissionGroupParam param)
+        {
+            var tierSettingXml = BuildTierSettingXml(param.TierSettingList, param.PlatformFeeList);
 
             var tierDeductionSettingList = param.PlatformFeeList.Concat(new[] { param.DepositFee, param.WithdrawalFee });
             if (param.KillRateFeeList != null && param.KillRateFeeList.Any())
@@ -53,8 +106,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 tierDeductionSettingList = tierDeductionSettingList.Concat(param.KillRateFeeList);
             }
 
-            param.TierDeductionsXml = BuildTierDeductionSettingXml(tierDeductionSettingList);
-            param.P2pDeductionsXml = BuildP2pDeductionSettingXml(param.P2pDeductionList);
+            var tierDeductionsXml = BuildTierDeductionSettingXml(tierDeductionSettingList);
+            var p2pDeductionsXml = BuildP2pDeductionSettingXml(param.P2pDeductionList);
+
+            return (tierSettingXml, tierDeductionsXml, p2pDeductionsXml);
         }
 
         private static string BuildTierSettingXml(IEnumerable<TierSettingParam> tierSettingParamList, IEnumerable<TierDeductionSettingParam> platformFeeList)
@@ -71,7 +126,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                     var productIds = platformFeeList.FirstOrDefault(p => p.GroupProductId == item.GroupProductId)?.ProductIds;
 
                     var row = $"<row id=\"{item.TierId}\" minamount=\"{item.MinAmount}\"" +
-                        $" minam=\"{item.MinAp}\" commission=\"{item.Commission}\" productids=\"{productIds}\" />";
+                        $" minam=\"{item.MinAm}\" commission=\"{item.Commission}\" productids=\"{productIds}\" />";
                     result.Append(row);
                 }
             }

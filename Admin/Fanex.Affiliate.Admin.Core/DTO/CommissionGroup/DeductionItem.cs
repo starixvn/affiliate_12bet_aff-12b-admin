@@ -2,9 +2,9 @@
 {
     public class DeductionItem
     {
-        public int DeductionId { get; set; }
+        public virtual int DeductionId { get; set; }
 
-        public string DeductionName { get; set; }
+        public virtual string DeductionName { get; set; }
 
         public decimal DeductedPercentage { get; set; }
 

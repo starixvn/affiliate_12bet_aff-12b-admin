@@ -4,6 +4,14 @@ namespace Fanex.Affiliate.Admin.Core.DTO
 {
     public class ResultInfo
     {
+        public ResultInfo() { }
+
+        public ResultInfo(int code, string message)
+        {
+            Code = code;
+            Message = message;
+        }
+
         public int Code { get; set; }
 
         public string Message { get; set; }
@@ -15,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO
         public static ResultInfo GenerateErr(string message = "") => new ResultInfo
         {
             Code = ErrCode.GeneralErrorCode,
-            Message = message,
+            Message = message
         };
     }
 }

@@ -100,7 +100,7 @@ describe('commission group actions', () => {
                                 MaxAmount: 15,
                                 MaxAp: 5,
                                 MinAmount: 0,
-                                MinAp: 0,
+                                MinAm: 0,
                                 TierId: 1
                             },
                             {
@@ -109,7 +109,7 @@ describe('commission group actions', () => {
                                 MaxAmount: 100000000000000,
                                 MaxAp: 1000000000,
                                 MinAmount: 16,
-                                MinAp: 6,
+                                MinAm: 6,
                                 TierId: 1
                             }
                         ]

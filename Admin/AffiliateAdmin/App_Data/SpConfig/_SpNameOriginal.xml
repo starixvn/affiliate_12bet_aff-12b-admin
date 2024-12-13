@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet Admin">
   <Function Name="Language">
-    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="" />
+    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="" >
+      <Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
+      <Mapping DataField="MarketName" ObjectProperty="LanguageName" />
+      <Mapping DataField="ShortedCode" ObjectProperty="ShortedLanguageCode" />
+    </Setting>
   </Function>
   <Function Name="AffiliateInformation">
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="" />
@@ -13,7 +17,6 @@
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="" />
     <Setting Key="Aff_Admin_CommGroup_Deductions_Sel" SpName="Aff_Admin_CommGroup_Deductions_Sel" DbName="" />
-    <Setting Key="Aff_CommGroup_Sel" SpName="Aff_CommGroup_Sel" DbName="" />
     <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel" DbName="" />
     <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins" DbName="" />
     <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd" DbName="" />
@@ -23,7 +26,10 @@
     <Setting Key="Aff_Admin_CommGroup_GroupTypeSel" SpName="Aff_Admin_CommGroup_GroupTypeSel" DbName="" />
   </Function>
   <Function Name="Auth">
-    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="" />
+    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="" >
+      <Mapping DataField="Host" ObjectProperty="IsHost" />
+      <Mapping DataField="FuncName" ObjectProperty="FunctionName" />
+    </Setting>
     <Setting Key="Aff_Con_CheckPermission" SpName="Aff_Con_CheckPermission" DbName="" />
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="" />
     <Setting Key="Aff_Admin_Login" SpName="Aff_Admin_Login" DbName="" />
@@ -140,7 +146,9 @@
     <Setting Key="Aff_Con_Batch_AdminPolicySel" SpName="Aff_Con_Batch_AdminPolicySel" DbName="" />
   </Function>
   <Function Name="Home">
-    <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="" />
+    <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="" >
+      <Mapping DataField="RoleName" ObjectProperty="Role" />
+    </Setting>
     <Setting Key="Aff_Admin_GeneralInfo_Sel" SpName="Aff_Admin_GeneralInfo_Sel" DbName="" />
   </Function>
   <Function Name="Currency">

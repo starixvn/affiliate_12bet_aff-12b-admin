@@ -100,7 +100,7 @@ export class GridData extends Component {
 
         for (let tierSetting of tierSettingList) {
             const minAmount = format(tierSetting.MinAmount);
-            const minAp = format(tierSetting.MinAp);
+            const minAp = format(tierSetting.MinAm);
 
             rows.push(
                 (<Row key={`row-${tierSetting.TierId}-${tierSetting.ProductIds}`}>

@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 
         public decimal MinAmount { get; set; }
 
-        public int MinAp { get; set; }
+        public int MinAm { get; set; }
 
         public decimal Commission { get; set; }
     }

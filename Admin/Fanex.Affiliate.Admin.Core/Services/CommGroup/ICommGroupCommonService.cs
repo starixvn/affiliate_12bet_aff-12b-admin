@@ -14,5 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
         IEnumerable<DeductionItem> GetDeductionList();
 
         IEnumerable<CommGroupType> GetCommGroupTypes();
+
+        IEnumerable<NormalCommGroup> GetNormalCommGroupList(GetGroupListParam param);
     }
 }

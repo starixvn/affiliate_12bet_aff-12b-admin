@@ -268,14 +268,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                 {
                     Commission = 0.01m,
                     MinAmount = 101,
-                    MinAp = 0,
+                    MinAm = 0,
                     TierId = 1
                 },
                 new TierSettingParam
                 {
                     Commission = 0.10m,
                     MinAmount = 100_000_000_001,
-                    MinAp = 101,
+                    MinAm = 101,
                     TierId = 2
                 }
             };
@@ -290,7 +290,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         }
 
         [Fact]
-        public void ValidateCommGroup_ValidateTierSettingList_WhenCallWithMinApGreaterThanInfinityQualifiedMember_ReturnError()
+        public void ValidateCommGroup_ValidateTierSettingList_WhenCallWithMinAmGreaterThanInfinityQualifiedMember_ReturnError()
         {
             // Arrange
             var param = CreateValidCommGroupSettingParam();
@@ -300,14 +300,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                 {
                     Commission = 0.01m,
                     MinAmount = 0,
-                    MinAp = 101,
+                    MinAm = 101,
                     TierId = 1
                 },
                 new TierSettingParam
                 {
                     Commission = 0.10m,
                     MinAmount = 101,
-                    MinAp = 1_000_000_001,
+                    MinAm = 1_000_000_001,
                     TierId = 2
                 }
             };
@@ -390,14 +390,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                     {
                         Commission = 0.01m,
                         MinAmount = 0,
-                        MinAp = 0,
+                        MinAm = 0,
                         TierId = 1
                     },
                     new TierSettingParam
                     {
                         Commission = 0.10m,
                         MinAmount = 101,
-                        MinAp = 101,
+                        MinAm = 101,
                         TierId = 2
                     }
                 }

@@ -35,7 +35,7 @@ describe('commission group - Content', () => {
             MaxAmount: 100000000000000,
             MaxAp: 1000000000,
             MinAmount: 0,
-            MinAp: 0,
+            MinAm: 0,
             TierId: 1
         }]
     }

@@ -6,9 +6,9 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commissionGroupRepository = new Mock<ICommissionGroupRepository>();
+            var commissionGroupRepository = new Mock<ICommGroupCommonService>();
             commissionGroupRepository.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(new List<NormalCommGroup> { new NormalCommGroup() });
             var languageService = new Mock<ILanguageService>();
             languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
@@ -157,13 +157,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             ISessionService sessionService = null,
             ILanguageService languageService = null,
             IAffiliateInfoRepository affiliateInfoRepository = null,
-            ICommissionGroupRepository commissionGroupRepository = null
+            ICommGroupCommonService commissionGroupRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
             var fakeAffiliateInfoRepository = affiliateInfoRepository ?? Mock.Of<IAffiliateInfoRepository>();
-            var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommissionGroupRepository>();
+            var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommGroupCommonService>();
 
             var controller = new AffiliateController(fakeSessionService, fakeAffiliateInfoRepository, fakeCommissionGroupRepository, fakeLanguageService);
 

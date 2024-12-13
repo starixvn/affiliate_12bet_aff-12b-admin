@@ -48,7 +48,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             _dynamicRepository.Execute(command);
             param.UserId = command.UserId;
 
-            return new ResultInfo {
+            return new ResultInfo
+            {
                 Code = command.ErrCode,
                 Message = command.ErrMsg,
             };
