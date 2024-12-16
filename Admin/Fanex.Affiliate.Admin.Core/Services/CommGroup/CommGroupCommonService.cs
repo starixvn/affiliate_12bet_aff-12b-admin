@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.Criterias.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
@@ -12,15 +11,10 @@ using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 {
-    public class CommGroupCommonService : ICommGroupCommonService
+    public class CommGroupCommonService : BaseDynamicService, ICommGroupCommonService
     {
-        private readonly IDynamicRepository _dynamicRepository;
-
         public CommGroupCommonService(
-            IDynamicRepository dynamicRepository)
-        {
-            _dynamicRepository = dynamicRepository;
-        }
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
         public ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
@@ -30,13 +24,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 IsPrivate = param.IsPrivate
             };
 
-            AssignBaseCommissionGroupCommand(param, commandInsert);
+            AssignBaseCommissionGroupCommand(commandInsert, param);
 
-            _dynamicRepository.Execute(commandInsert);
+            var result = ExecuteReturnResultInfo(commandInsert);
 
             param.GroupId = commandInsert.GroupId;
 
-            return new ResultInfo(commandInsert.ErrCode, commandInsert.ErrMsg);
+            return result;
         }
 
         public ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param)
@@ -46,25 +40,23 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 GroupId = param.GroupId
             };
 
-            AssignBaseCommissionGroupCommand(param, commandUpdate);
+            AssignBaseCommissionGroupCommand(commandUpdate, param);
 
-            _dynamicRepository.Execute(commandUpdate);
-
-            return new ResultInfo(commandUpdate.ErrCode, commandUpdate.ErrMsg);
+            return ExecuteReturnResultInfo(commandUpdate);
         }
 
         public IEnumerable<DeductionItem> GetDeductionList()
         {
             const string SpKey = "Aff_Admin_CommGroup_Deductions_Sel";
 
-            return _dynamicRepository.Fetch<DeductionItem>(new BaseCriteria(SpKey)).Where(d => d.DeductionId != Deduction.OperationalFeeId);
+            return FetchTData<DeductionItem>(SpKey).Where(d => d.DeductionId != Deduction.OperationalFeeId);
         }
 
         public IEnumerable<CommGroupType> GetCommGroupTypes()
         {
             const string SpKey = "Aff_Admin_CommGroup_GroupTypeSel";
 
-            return _dynamicRepository.Fetch<CommGroupType>(new BaseCriteria(SpKey));
+            return FetchTData<CommGroupType>(SpKey);
         }
 
         public IEnumerable<NormalCommGroup> GetNormalCommGroupList(GetGroupListParam param)
@@ -75,13 +67,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 GroupTypeId = param.GroupTypeId,
             };
 
-            var normalCommGroups = _dynamicRepository.Fetch<NormalCommGroup>(criteria);
+            var normalCommGroups = FetchTData<NormalCommGroup>(criteria);
             param.GroupId = criteria.GroupId;
 
             return normalCommGroups;
         }
 
-        private static void AssignBaseCommissionGroupCommand(CreateUpdateCommissionGroupParam param, BaseCommGroupCommand command)
+        private static void AssignBaseCommissionGroupCommand(BaseCommGroupCommand command, CreateUpdateCommissionGroupParam param)
         {
             var (tierSettingXml, tierDeductionsXml, p2pDeductionsXml) = GetSettingXmls(param);
 

@@ -4,6 +4,9 @@ exports[`Login - components - AppContainer render correctly 1`] = `
 <div
   className="login-container"
 >
+  <Loader
+    show={false}
+  />
   <div
     className="lgRp"
   >
@@ -13,7 +16,7 @@ exports[`Login - components - AppContainer render correctly 1`] = `
       <div>
         <div>
           Welcome to 
-          YashBet
+          Aff
           <span>
              Login
           </span>
@@ -147,7 +150,7 @@ exports[`Login - components - AppContainer render correctly 1`] = `
     <span
       className="foot-rp"
     >
-      © Copyright 2019 YashBet. All Rights Reserved | 21+
+      © Copyright 2019 Aff. All Rights Reserved | 21+
     </span>
   </div>
 </div>

@@ -11,18 +11,14 @@ using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Auth
 {
-    public class AuthService : IAuthService
+    public class AuthService : BaseDynamicService, IAuthService
     {
-        private readonly IDynamicRepository _dynamicRepository;
-
         public AuthService(
-            IDynamicRepository dynamicRepository)
-        {
-            _dynamicRepository = dynamicRepository;
-        }
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
+
         public IList<UserPermission> GetPermissionList(int userId)
         {
-            var result = _dynamicRepository.Fetch<UserPermission>(new UserPermissionCriteria { UserId = userId });
+            var result = FetchTData<UserPermission>(new UserPermissionCriteria { UserId = userId });
 
             return result.Where(p => !p.FunctionName.Contains("TransferPlayer")).ToList(); //Hide Transfer Player
         }
@@ -30,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
         public bool ReCheckin(int onUserId)
         {
             var command = new ReCheckinCommand { OnUserId = onUserId };
-            _dynamicRepository.Execute(command);
+            ExecuteCommand(command);
 
             return command.IsKickedOut;
         }
@@ -42,17 +38,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
                 UserName = param.UserName,
                 Password = Encryption.CfsEnCode(param.Password),
                 UserHostName = param.UserHostName,
-                Ip = param.Ip,
             };
 
-            _dynamicRepository.Execute(command);
+            var result = ExecuteReturnResultInfo(command, param);
             param.UserId = command.UserId;
 
-            return new ResultInfo
-            {
-                Code = command.ErrCode,
-                Message = command.ErrMsg,
-            };
+            return result;
         }
 
         public int LoginOnUser(LoginParam param, string sessionId, string serverId)
@@ -65,14 +56,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
                 ServerId = serverId,
             };
 
-            _dynamicRepository.Execute(command);
+            ExecuteCommand(command);
 
             return command.OnUserId;
         }
 
         public void Logout(int onUserId)
         {
-            _dynamicRepository.Execute(new LogoutCommand { OnUserId = onUserId });
+            ExecuteCommand(new LogoutCommand { OnUserId = onUserId });
         }
 
         public ResultInfo CheckPermission(CheckPermissionParam param)
@@ -83,7 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
                 FuncName = param.FuncName,
             };
 
-            return _dynamicRepository.Get<ResultInfo>(criteria);
+            return GetTData<ResultInfo>(criteria);
         }
     }
 }

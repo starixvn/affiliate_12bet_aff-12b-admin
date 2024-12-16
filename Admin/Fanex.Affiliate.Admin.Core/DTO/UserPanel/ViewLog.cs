@@ -6,12 +6,12 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
     [Serializable]
     public class ViewLog
     {
-        public int Id { get; set; }
+        public int LogId { get; set; }
 
         [JsonIgnore]
         public DateTime Date { get; set; }
 
-        public string UpdatedBy { get; set; }
+        public string UpdatedName { get; set; }
 
         public string Description { get; set; }
 

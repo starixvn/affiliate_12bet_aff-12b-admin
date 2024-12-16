@@ -1,7 +1,7 @@
 ﻿
 namespace Fanex.Affiliate.Admin.Core.Commands.CommissionGroup
 {
-    public class AssignCommGroupCommand : BaseNonQueryCommand
+    public class AssignCommGroupCommand : BaseAffNonQueryCommand
     {
         private const string SP_NAME = "Aff_Admin_CommGroup_Assign";
 
@@ -10,7 +10,5 @@ namespace Fanex.Affiliate.Admin.Core.Commands.CommissionGroup
         public override bool IsValid() => GroupId > 0 && AffId > 0;
 
         public int GroupId { get; set; }
-
-        public int AffId { get; set; }
     }
 }

@@ -75,8 +75,8 @@ exports[`commission group - TierSetting Should render correctly 1`] = `
               Object {
                 "Commission": 0,
                 "GroupProductId": 123,
+                "MinAm": 5,
                 "MinAmount": 0,
-                "MinAp": 5,
                 "TierId": 1,
               }
             }
@@ -90,8 +90,8 @@ exports[`commission group - TierSetting Should render correctly 1`] = `
               Object {
                 "Commission": 0.1,
                 "GroupProductId": 123,
+                "MinAm": 5,
                 "MinAmount": 1,
-                "MinAp": 5,
                 "TierId": 2,
               }
             }

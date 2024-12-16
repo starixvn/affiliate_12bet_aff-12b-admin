@@ -7,15 +7,10 @@ using Fanex.Data.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 {
-    public class AffiliateService : IAffiliateService
+    public class AffiliateService : BaseDynamicService, IAffiliateService
     {
-        private readonly IDynamicRepository _dynamicRepository;
-
         public AffiliateService(
-            IDynamicRepository dynamicRepository)
-        {
-            _dynamicRepository = dynamicRepository;
-        }
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
         public AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null)
         {
             var criteria = new AffBasicInfoCriteria
@@ -24,23 +19,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
                 AffName = affName
             };
 
-            return _dynamicRepository.Get<AffiliateBasicInfo>(criteria);
+            return GetTData<AffiliateBasicInfo>(criteria);
         }
 
         public (ResultInfo, string) ApproveAffiliate(ApproveAffiliateParam param)
         {
             var command = new ApproveAffCommand
             {
-                AffId = param.AffId,
                 Status = param.Status,
                 Password = param.Password,
-                UserId = param.UserId,
-                Ip = param.Ip,
             };
 
-            _dynamicRepository.Get<AffiliateBasicInfo>(command);
+            var result = ExecuteReturnResultInfo(command, param);
 
-            return (new ResultInfo(command.ErrCode, command.ErrMsg), command.AffCode);
+            return (result, command.AffCode);
         }
     }
 }

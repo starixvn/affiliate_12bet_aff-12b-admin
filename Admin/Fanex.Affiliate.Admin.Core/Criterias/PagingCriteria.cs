@@ -8,8 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.Criterias
 
         public int PageSize { get; set; }
 
-        public int TotalPages { get; set; }
-
         [SpParam(SqlParamName = "NRows")]
         public int TotalItem { get; set; }
     }

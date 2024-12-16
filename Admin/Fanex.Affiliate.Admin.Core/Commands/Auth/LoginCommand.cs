@@ -1,9 +1,8 @@
 ﻿using Fanex.Data;
-using Fanex.Data.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Commands.Auth
 {
-    public class LoginCommand : NonQueryCommand
+    public class LoginCommand : BaseNonQueryCommand
     {
         private const string SP_NAME = "Aff_Admin_Login";
 
@@ -18,13 +17,5 @@ namespace Fanex.Affiliate.Admin.Core.Commands.Auth
 
         [SpParam(SqlParamName = "HostName")]
         public string UserHostName { get; set; }
-
-        public string Ip { get; set; }
-
-        public int UserId { get; set; }
-
-        public int ErrCode { get; set; }
-
-        public string ErrMsg { get; set; }
     }
 }

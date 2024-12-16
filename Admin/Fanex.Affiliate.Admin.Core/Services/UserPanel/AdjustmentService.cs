@@ -5,14 +5,11 @@ using Fanex.Data.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class AdjustmentService : IAdjustmentService
+    public class AdjustmentService : BaseDynamicService, IAdjustmentService
     {
-        private readonly IDynamicRepository _dynamicRepository;
-
-        public AdjustmentService(
-            IDynamicRepository dynamicRepository)
+        public AdjustmentService(IDynamicRepository dynamicRepository)
+            : base(dynamicRepository)
         {
-            _dynamicRepository = dynamicRepository;
         }
 
         public decimal GetBalanceBroughtForward(int affId)
@@ -22,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 AffId = affId
             };
 
-            _dynamicRepository.Execute(command);
+            DynamicRepository.Execute(command);
 
             return command.BalBroughtForward;
         }
@@ -31,16 +28,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         {
             var command = new InsertAdjustmentCommand
             {
-                AffId = param.AffId,
                 Amount = param.Amount,
                 Description = param.Description,
-                UserId = param.UserId,
-                Ip = param.Ip,
             };
 
-            _dynamicRepository.Execute(command);
-
-            return new ResultInfo(command.ErrCode, command.ErrMsg);
+            return ExecuteReturnResultInfo(command, param);
         }
     }
 }

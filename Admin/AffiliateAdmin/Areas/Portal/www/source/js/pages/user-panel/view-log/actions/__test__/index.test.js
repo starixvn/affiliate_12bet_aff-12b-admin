@@ -28,17 +28,17 @@ describe('customer member actions', () => {
                         Action: "Setting for Commission Group",
                         DateText: "07/01/2019 12:46:38 AM",
                         Description: "GroupId=1271808GroupId=102",
-                        Id: 6860,
+                        LogId: 6860,
                         Ip: "::1",
-                        UpdatedBy: "AAwalter"
+                        UpdatedName: "AAwalter"
                     },
                     {
                         Action: "Payout",
                         DateText: "06/20/2019 10:25:07 PM",
                         Description: "Affiliate request payout. Amount=125.00",
-                        Id: 10279364,
+                        LogId: 10279364,
                         Ip: "10.18.200.125",
-                        UpdatedBy: ""
+                        UpdatedName: ""
                     }
                 ],
                 Total: null,

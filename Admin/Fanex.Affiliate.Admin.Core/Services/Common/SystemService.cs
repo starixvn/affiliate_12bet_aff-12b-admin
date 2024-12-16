@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Criterias;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,49 +6,44 @@ using System.Threading;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
-    public class SystemService : ISystemService
+    public class SystemService : BaseDynamicService, ISystemService
     {
-        private readonly IDynamicRepository _dynamicRepository;
-
         public SystemService(
-            IDynamicRepository dynamicRepository)
-        {
-            _dynamicRepository = dynamicRepository;
-        }
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
         public IEnumerable<Language> GetLanguageList()
         {
             const string SpKey = "Aff_Market_Sel";
 
-            return _dynamicRepository.Fetch<Language>(new BaseCriteria(SpKey));
+            return FetchTData<Language>(SpKey);
         }
 
         public IEnumerable<Product> GetProductList()
         {
             const string SpKey = "Aff_ProductList_Sel";
 
-            return _dynamicRepository.Fetch<Product>(new BaseCriteria(SpKey));
+            return FetchTData<Product>(SpKey);
         }
 
         public IEnumerable<Currency> GetBaseCurrencies()
         {
             const string SpKey = "Aff_BaseCurrency_Sel";
 
-            return _dynamicRepository.Fetch<Currency>(new BaseCriteria(SpKey));
+            return FetchTData<Currency>(SpKey);
         }
 
         public IEnumerable<Currency> GetCurrencies()
         {
             const string SpKey = "Aff_Currency_Sel";
 
-            return _dynamicRepository.Fetch<Currency>(new BaseCriteria(SpKey));
+            return FetchTData<Currency>(SpKey);
         }
 
         public IEnumerable<Currency> GetPaymentCurrencies()
         {
             const string SpKey = "Aff_PaymentCurrency_Sel";
 
-            return _dynamicRepository.Fetch<Currency>(new BaseCriteria(SpKey));
+            return FetchTData<Currency>(SpKey);
         }
 
         public void SetCulture(string languageCode)
