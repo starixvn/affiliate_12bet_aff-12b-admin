@@ -1,0 +1,74 @@
+﻿@{
+    var affTestimonialList = new Dictionary<string, Dictionary<string, string>>
+    {
+        ["12BETAFF**274"] = new Dictionary<string, string>
+        {
+            ["Title"] = Lang.Aff274TestimonialTitle,
+            ["Content"] = Lang.Aff274TestimonialContent
+        },
+        ["12BETAFF**131"] = new Dictionary<string, string>
+        {
+            ["Title"] = Lang.Aff131TestimonialTitle,
+            ["Content"] = Lang.Aff131TestimonialContent
+        },
+        ["12BETAFF**504"] = new Dictionary<string, string>
+        {
+            ["Title"] = Lang.Aff504TestimonialTitle,
+            ["Content"] = Lang.Aff504TestimonialContent
+        },
+        ["12BETAFF**014"] = new Dictionary<string, string>
+        {
+            ["Title"] = Lang.Aff014TestimonialTitle,
+            ["Content"] = Lang.Aff014TestimonialContent
+        },
+        ["12BETAFF**801"] = new Dictionary<string, string>
+        {
+            ["Title"] = Lang.Aff801TestimonialTitle,
+            ["Content"] = Lang.Aff801TestimonialContent
+        },
+        ["12BETAFF**846"] = new Dictionary<string, string>
+        {
+            ["Title"] = Lang.Aff846TestimonialTitle,
+            ["Content"] = Lang.Aff846TestimonialContent
+        },
+        ["12BETAFF**242"] = new Dictionary<string, string>
+        {
+            ["Title"] = Lang.Aff242TestimonialTitle,
+            ["Content"] = Lang.Aff242TestimonialContent
+        },
+        ["12BETAFF**429"] = new Dictionary<string, string>
+        {
+            ["Title"] = Lang.Aff429TestimonialTitle,
+            ["Content"] = Lang.Aff429TestimonialContent
+        },
+        ["12BETAFF**286"] = new Dictionary<string, string>
+        {
+            ["Title"] = Lang.Aff286TestimonialTitle,
+            ["Content"] = Lang.Aff286TestimonialContent
+        },
+    };
+}
+
+<div class="mini-block">
+    <div class="swiper mini-block-banner">
+        <div class="swiper-wrapper" style="align-items:center;">
+            @foreach (var testimonial in affTestimonialList)
+            {
+                <div class="swiper-slide">
+                    
+                </div>
+            }
+        </div>
+        <div class="swiper-button-next">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
+                <path d="M16.4648 15.8837L10.2773 9.69621L12.0448 7.92871L19.9998 15.8837L12.0448 23.8387L10.2773 22.0712L16.4648 15.8837Z" fill="#D90F0F" />
+            </svg>
+        </div>
+        <div class="swiper-button-prev">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
+                <path d="M13.535 15.8837L19.7225 22.0712L17.955 23.8387L10 15.8837L17.955 7.92871L19.7225 9.69621L13.535 15.8837Z" fill="#D90F0F" />
+            </svg>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>

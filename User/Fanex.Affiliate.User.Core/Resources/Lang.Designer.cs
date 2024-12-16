@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -238,6 +238,201 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Adjustment {
             get {
                 return ResourceManager.GetString("Adjustment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;I really appreciate the detailed support from&lt;br/&gt;
+        ///the 12BET affiliate team. They provide clear&lt;br/&gt;
+        ///guidance and have helped me optimize my&lt;br/&gt;
+        ///campaigns to earn more!&quot;.
+        /// </summary>
+        public static string Aff014TestimonialContent {
+            get {
+                return ResourceManager.GetString("Aff014TestimonialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EASY-TO-APPROACH&lt;br/&gt;
+        ///ACCOUNT MANAGERS.
+        /// </summary>
+        public static string Aff014TestimonialTitle {
+            get {
+                return ResourceManager.GetString("Aff014TestimonialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;I&apos;ve worked with many affiliates before, but&lt;br/&gt;
+        ///the commission rate at 12BET are by far the&lt;br/&gt;
+        ///best. It&apos;s a great way to boos my earnings!&quot;.
+        /// </summary>
+        public static string Aff131TestimonialContent {
+            get {
+                return ResourceManager.GetString("Aff131TestimonialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIGH COMMISSION&lt;br/&gt;
+        ///RATES.
+        /// </summary>
+        public static string Aff131TestimonialTitle {
+            get {
+                return ResourceManager.GetString("Aff131TestimonialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;12BET makes affiliate marketing so easy.&lt;br/&gt;
+        ///Their platform is user-friendly, and the&lt;br/&gt;
+        ///account manager for my market is always&lt;br/&gt;
+        ///ready to help with anything I need.&quot;.
+        /// </summary>
+        public static string Aff242TestimonialContent {
+            get {
+                return ResourceManager.GetString("Aff242TestimonialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USER-FRIENDLY&lt;br/&gt;
+        ///PLATFORM &amp; DEDICATED&lt;br/&gt;
+        ///ACCOUNT MANAGER.
+        /// </summary>
+        public static string Aff242TestimonialTitle {
+            get {
+                return ResourceManager.GetString("Aff242TestimonialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;The 12BET affiliate program is so simple to&lt;br/&gt;
+        ///use, and my account manager is always&lt;br/&gt;
+        ///available to answer questions. I can always&lt;br/&gt;
+        ///rely on getting my commission on time!&quot;.
+        /// </summary>
+        public static string Aff274TestimonialContent {
+            get {
+                return ResourceManager.GetString("Aff274TestimonialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TIMELY PAYMENTS &amp;&lt;br/&gt;SUPPORT.
+        /// </summary>
+        public static string Aff274TestimonialTitle {
+            get {
+                return ResourceManager.GetString("Aff274TestimonialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Joining 12BET has been a great decision for&lt;br/&gt;
+        ///me. The affiliate program is easy to join, and&lt;br/&gt;
+        ///the commission payments are always&lt;br/&gt;
+        ///consistent. It&apos;s a solid partnership.&quot;.
+        /// </summary>
+        public static string Aff286TestimonialContent {
+            get {
+                return ResourceManager.GetString("Aff286TestimonialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EASY TO JOIN &amp;&lt;br/&gt;
+        ///CONSISTEN PAYMENT.
+        /// </summary>
+        public static string Aff286TestimonialTitle {
+            get {
+                return ResourceManager.GetString("Aff286TestimonialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;I&apos;ve tried many affiliate programs, but 12BET&lt;br/&gt;
+        ///offers the most competitive commissions.&lt;br/&gt;
+        ///Plus, the support team is always responsive&lt;br/&gt;
+        ///and helpful!&quot;.
+        /// </summary>
+        public static string Aff429TestimonialContent {
+            get {
+                return ResourceManager.GetString("Aff429TestimonialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COMPETITIVE&lt;br/&gt;
+        ///COMMISSIONS &amp;&lt;br/&gt;
+        ///EXCELLENT SUPPORT.
+        /// </summary>
+        public static string Aff429TestimonialTitle {
+            get {
+                return ResourceManager.GetString("Aff429TestimonialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;The affiliate system is super easy to set up,&lt;br/&gt;
+        ///and the team at 12BET sends me a thoughtful&lt;br/&gt;
+        ///gift every year. It&apos;s litt;e things like this that&lt;br/&gt;
+        ///made the partnership special.&quot;.
+        /// </summary>
+        public static string Aff504TestimonialContent {
+            get {
+                return ResourceManager.GetString("Aff504TestimonialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ANNUAL GIFTS.
+        /// </summary>
+        public static string Aff504TestimonialTitle {
+            get {
+                return ResourceManager.GetString("Aff504TestimonialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;12BET&apos;s affiliate program is straightforward,&lt;br/&gt;
+        ///and the commission payments are always&lt;br/&gt;
+        ///reliable. I&apos;ve been paid on time every month!&quot;.
+        /// </summary>
+        public static string Aff801TestimonialContent {
+            get {
+                return ResourceManager.GetString("Aff801TestimonialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TIMELY COMMISSION&lt;br/&gt;
+        ///PAYMENTS.
+        /// </summary>
+        public static string Aff801TestimonialTitle {
+            get {
+                return ResourceManager.GetString("Aff801TestimonialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;What I love about 12BET is the transparency.&lt;br/&gt;
+        ///The commission rates are high, and I always&lt;br/&gt;
+        ///know exactly how much I&apos;ll earn. No surprise!&quot;.
+        /// </summary>
+        public static string Aff846TestimonialContent {
+            get {
+                return ResourceManager.GetString("Aff846TestimonialContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CLEAR AND TRANSPARENT&lt;br/&gt;
+        ///COMMISSION STRUCTURE.
+        /// </summary>
+        public static string Aff846TestimonialTitle {
+            get {
+                return ResourceManager.GetString("Aff846TestimonialTitle", resourceCulture);
             }
         }
         

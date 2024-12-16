@@ -2275,4 +2275,91 @@
   <data name="ContactAffManager" xml:space="preserve">
     <value>제휴 관리자에게 문의하세요</value>
   </data>
+  <data name="Aff274TestimonialTitle" xml:space="preserve">
+    <value>적시 결제 및&lt;br/&gt;지원</value>
+  </data>
+  <data name="Aff274TestimonialContent" xml:space="preserve">
+    <value>"12BET 제휴 프로그램은 사용하기 매우 간편하고&lt;br/&gt;
+저희 계정 관리자는 항상 질문에 답합니다.&lt;br/&gt;
+저는 항상 수수료를 제때 받을 수 있다는 것을&lt;br/&gt;
+확신할 수 있습니다!"</value>
+  </data>
+  <data name="Aff131TestimonialTitle" xml:space="preserve">
+    <value>높은&lt;br/&gt;
+커미션</value>
+  </data>
+  <data name="Aff131TestimonialContent" xml:space="preserve">
+    <value>"저는 이전에 많은 제휴사와 협력해 봤지만,&lt;br/&gt;
+12BET의 수수료율은 단연 최고입니다.&lt;br/&gt;
+수익을 높일 수 있는 훌륭한 방법입니다!"</value>
+  </data>
+  <data name="Aff504TestimonialTitle" xml:space="preserve">
+    <value>연간 선물</value>
+  </data>
+  <data name="Aff504TestimonialContent" xml:space="preserve">
+    <value>"제휴 시스템은 설정이 정말 간단하고,&lt;br/&gt;
+12BET 팀은 매년 저에게 정성스러운&lt;br/&gt;
+선물을 보내줍니다. 이런 작은 배려가&lt;br/&gt;
+파트너십을 특별하게 만듭니다."</value>
+  </data>
+  <data name="Aff014TestimonialTitle" xml:space="preserve">
+    <value>접근하기 쉬운&lt;br/&gt;
+계정 관리자</value>
+  </data>
+  <data name="Aff014TestimonialContent" xml:space="preserve">
+    <value>"12BET 제휴 팀의 세심한 지원에 정말&lt;br/&gt;
+감사드립니다. 그들은 명확한 안내를&lt;br/&gt;
+제공하고, 제 캠페인을 최적화하여 더 많은&lt;br/&gt;
+수익을 올릴 수 있도록 도와주었습니다!"</value>
+  </data>
+  <data name="Aff801TestimonialTitle" xml:space="preserve">
+    <value>적시 커미션&lt;br/&gt;
+결제</value>
+  </data>
+  <data name="Aff801TestimonialContent" xml:space="preserve">
+    <value>"12BET의 제휴 프로그램은 간단하고,&lt;br/&gt;
+커미션 지급은 항상 신뢰할 수 있습니다.&lt;br/&gt;
+저는 매달 제때 지급받고 있습니다!"</value>
+  </data>
+  <data name="Aff846TestimonialTitle" xml:space="preserve">
+    <value>명확하고 투명함&lt;br/&gt;
+커미션 구조</value>
+  </data>
+  <data name="Aff846TestimonialContent" xml:space="preserve">
+    <value>"12BET의 가장 큰 매력은 투명성입니다.&lt;br/&gt;
+커미션 비율이 높고, 제가 얼마나 벌지 항상&lt;br/&gt;
+정확히 알 수 있습니다. 놀랍지 않아요!"</value>
+  </data>
+  <data name="Aff242TestimonialTitle" xml:space="preserve">
+    <value>사용자 친화적인&lt;br/&gt;
+플랫폼 및 전용&lt;br/&gt;
+계정 매니저</value>
+  </data>
+  <data name="Aff242TestimonialContent" xml:space="preserve">
+    <value>"12BET은 제휴 마케팅을 쉽게 만들어 줍니다.&lt;br/&gt;
+그들의 플랫폼은 사용자 친화적이고,&lt;br/&gt;
+제 마켓을 담당하는 계정 매니저는 항상&lt;br/&gt;
+필요한 모든 도움을 제공해 줍니다."</value>
+  </data>
+  <data name="Aff429TestimonialTitle" xml:space="preserve">
+    <value>경쟁력 있는&lt;br/&gt;
+커미션 및&lt;br/&gt;
+훌륭한 지원</value>
+  </data>
+  <data name="Aff429TestimonialContent" xml:space="preserve">
+    <value>"저는 여러 제휴 프로그램을 시도해 보았지만,&lt;br/&gt;
+12BET이 가장 경쟁력 있는 커미션을 제공합니다.&lt;br/&gt;
+게다가 지원 팀은 항상 빠르고&lt;br/&gt;
+도움이 됩니다!"</value>
+  </data>
+  <data name="Aff286TestimonialTitle" xml:space="preserve">
+    <value>간편한 가입 및&lt;br/&gt;
+일관된 결제</value>
+  </data>
+  <data name="Aff286TestimonialContent" xml:space="preserve">
+    <value>"12BET에 가입한 것은 제게 훌륭한&lt;br/&gt;
+결정이었습니다. 제휴 프로그램은 가입이&lt;br/&gt;
+쉬우며, 커미션 지급이 항상 일관됩니다.&lt;br/&gt;
+아주 견고한 파트너십입니다."</value>
+  </data>
 </root>

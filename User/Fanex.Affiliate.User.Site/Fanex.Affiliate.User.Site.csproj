@@ -1491,6 +1491,7 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item1\mobile.th-TH.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\desktop.th-TH.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item1\mobile.th-TH.webp" />
+    <Content Include="Views\Home\Partial\_AffTestimonialContentBlock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
