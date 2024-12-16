@@ -208,10 +208,13 @@
     <Compile Include="Commands\Auth\LoginOnUserCommand.cs" />
     <Compile Include="Commands\Auth\LogoutCommand.cs" />
     <Compile Include="Commands\Auth\ReCheckinCommand.cs" />
+    <Compile Include="Commands\BaseAffNonQueryCommand.cs" />
     <Compile Include="Commands\BaseNonQueryCommand.cs" />
     <Compile Include="Commands\CommissionGroup\AssignCommGroupCommand.cs" />
     <Compile Include="Commands\CommissionGroup\DeleteCommGroupCommand.cs" />
     <Compile Include="Commands\CommissionGroup\UpdateCommGroupCommand.cs" />
+    <Compile Include="Commands\UserPanel\BalanceBroughtForwardCommand.cs" />
+    <Compile Include="Commands\UserPanel\InsertAdjustmentCommand.cs" />
     <Compile Include="Configurations\AppSetting.cs" />
     <Compile Include="Configurations\IAppSetting.cs" />
     <Compile Include="Configurations\LoggingConfig.cs" />
@@ -672,7 +675,9 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.9.32.0.97167\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.9.32.0.97167\analyzers\SonarAnalyzer.ShimLayer.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Criterias\UserPanel\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Refit.5.0.23\build\net461\refit.targets" Condition="Exists('..\..\packages\Refit.5.0.23\build\net461\refit.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
