@@ -50,7 +50,7 @@ export class EditMemberPopup extends PureComponent {
                 memberName: memberInfo.UserName,
                 isInclude: memberInfo.IsInclude,
                 isRemoved: memberInfo.IsRemoved,
-                lastActionDate: memberInfo.LastActionDate
+                lastActionDate: memberInfo.LastAction
             }))
         }
     }

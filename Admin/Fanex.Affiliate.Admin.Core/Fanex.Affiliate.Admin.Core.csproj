@@ -213,6 +213,7 @@
     <Compile Include="Commands\CommissionGroup\AssignCommGroupCommand.cs" />
     <Compile Include="Commands\CommissionGroup\DeleteCommGroupCommand.cs" />
     <Compile Include="Commands\CommissionGroup\UpdateCommGroupCommand.cs" />
+    <Compile Include="Commands\Member\UpdateMemberCommand.cs" />
     <Compile Include="Commands\UserPanel\BalanceBroughtForwardCommand.cs" />
     <Compile Include="Commands\UserPanel\InsertAdjustmentCommand.cs" />
     <Compile Include="Commands\UserPanel\Note\UpdateNoteCommand.cs" />
@@ -292,11 +293,17 @@
     <Compile Include="Criterias\Home\GeneralInfoCriteria.cs" />
     <Compile Include="Criterias\Home\UserOnlineCriteria.cs" />
     <Compile Include="Criterias\AffPagingCriteria.cs" />
+    <Compile Include="Criterias\Member\MemberCriteria.cs" />
+    <Compile Include="Criterias\Member\MemberDetailCriteria.cs" />
     <Compile Include="Criterias\PagingCriteria.cs" />
     <Compile Include="Criterias\BaseCriteria.cs" />
     <Compile Include="Criterias\UserPanel\Note\NoteCriteria.cs" />
     <Compile Include="Criterias\UserPanel\Note\NoteDetailCriteria.cs" />
     <Compile Include="Criterias\UserPanel\PlayerDetailCriteria.cs" />
+    <Compile Include="Criterias\UserPanel\TrackingStatistics\BaseTrackingStatisticsCriteria.cs" />
+    <Compile Include="Criterias\UserPanel\TrackingStatistics\TrackingCodeCriteria.cs" />
+    <Compile Include="Criterias\UserPanel\TrackingStatistics\TrackingStatisticsCriteria.cs" />
+    <Compile Include="Criterias\UserPanel\TrackingStatistics\TrackingStatisticsDetailCriteria.cs" />
     <Compile Include="Criterias\UserPanel\ViewLogCriteria.cs" />
     <Compile Include="DTO\Administrator\AdministratorInfo.cs" />
     <Compile Include="DTO\Administrator\DepartmentInfo.cs" />
@@ -346,6 +353,7 @@
     <Compile Include="DTO\Tracker\UpdateDataTrackerDTO.cs" />
     <Compile Include="DTO\UserPanel\LogType.cs" />
     <Compile Include="DTO\UserPanel\SubAffiliate.cs" />
+    <Compile Include="DTO\UserPanel\TrackingInfo.cs" />
     <Compile Include="Exceptions\LicenseePaymentException.cs" />
     <Compile Include="Extensions\HttpRequestExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
@@ -466,8 +474,6 @@
     <Compile Include="Repository\Domain\IDomainRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
     <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
-    <Compile Include="Repository\Member\IMemberRepository.cs" />
-    <Compile Include="Repository\Member\MemberRepository.cs" />
     <Compile Include="Repository\Payment\IPaymentRequestRepository.cs" />
     <Compile Include="Repository\Payment\PaymentRequestRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />

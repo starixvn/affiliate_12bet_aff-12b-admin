@@ -66,8 +66,14 @@
   <Function Name="Customer">
     <Setting Key="Aff_Admin_PlayersDetail_Sel" SpName="Aff_Admin_PlayersDetail_Sel" DbName="" />
     <Setting Key="Aff_Admin_Member_Sel" SpName="Aff_Admin_Member_Sel" DbName="" />
-    <Setting Key="Aff_Admin_AffiliateNote_Sel" SpName="Aff_Admin_AffiliateNote_Sel" DbName="" />
-    <Setting Key="Aff_Admin_AffiliateNote_Detail_Sel" SpName="Aff_Admin_AffiliateNote_Detail_Sel" DbName="" />
+    <Setting Key="Aff_Admin_AffiliateNote_Sel" SpName="Aff_Admin_AffiliateNote_Sel" DbName="" >
+      <Mapping DataField="UpdatedName" ObjectProperty="CreatedBy" />
+      <Mapping DataField="UpdatedDate" ObjectProperty="LastModify" />
+      <Mapping DataField="Note" ObjectProperty="NoteContent" />
+    </Setting>
+    <Setting Key="Aff_Admin_AffiliateNote_Detail_Sel" SpName="Aff_Admin_AffiliateNote_Detail_Sel" DbName="" >
+      <Mapping DataField="Note" ObjectProperty="NoteContent" />
+    </Setting>
     <Setting Key="Aff_Admin_AffiliateNote_Ins" SpName="Aff_Admin_AffiliateNote_Ins" DbName="" />
     <Setting Key="Aff_Admin_AffiliateNote_Upd" SpName="Aff_Admin_AffiliateNote_Upd" DbName="" />
     <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="" />
@@ -109,7 +115,10 @@
     <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del" DbName="" />
   </Function>
   <Function Name="Member">
-    <Setting Key="Aff_Admin_MemberList_Sel" SpName="Aff_Admin_MemberList_Sel" DbName="" />
+    <Setting Key="Aff_Admin_MemberList_Sel" SpName="Aff_Admin_MemberList_Sel" DbName="" >
+      <Mapping DataField="CustID" ObjectProperty="MemberId" />
+      <Mapping DataField="AffUserName" ObjectProperty="AffName" />
+    </Setting>
     <Setting Key="Aff_Admin_Player_Sel" SpName="Aff_Admin_Player_Sel" DbName="" />
     <Setting Key="Aff_Admin_Member_RemoveStatus_Upd" SpName="Aff_Admin_Member_RemoveStatus_Upd" DbName="" />
   </Function>

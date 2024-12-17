@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 NoteContent = param.NoteContent,
             };
 
-            return ExecuteReturnResultInfo(command, param);
+            return ExecuteAffReturnResultInfo(command, param);
         }
 
         public ResultInfo UpdateNote(InsertUpdateNoteParam param)
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 NoteContent = param.NoteContent,
             };
 
-            return ExecuteReturnResultInfo(command, param);
+            return ExecuteAffReturnResultInfo(command, param);
         }
     }
 }

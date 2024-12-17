@@ -115,7 +115,10 @@
     <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Member">
-    <Setting Key="Aff_Admin_MemberList_Sel" SpName="Aff_Admin_MemberList_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_MemberList_Sel" SpName="Aff_Admin_MemberList_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="CustID" ObjectProperty="MemberId" />
+      <Mapping DataField="AffUserName" ObjectProperty="AffName" />
+    </Setting>
     <Setting Key="Aff_Admin_Player_Sel" SpName="Aff_Admin_Player_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Member_RemoveStatus_Upd" SpName="Aff_Admin_Member_RemoveStatus_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
@@ -173,5 +176,3 @@
     <Setting Key="Task_API_PushDataTracker_Upd" SpName="Task_API_PushDataTracker_Upd" DbName="DB12B.bodb_12B.wsv_lap" />
   </Function>
 </Functions>
-
-		

@@ -10,6 +10,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Member
 
         public bool IsInclude { get; set; }
 
-        public DateTime? LastActionDate { get; set; }
+        public DateTime? LastAction { get; set; }
     }
 }

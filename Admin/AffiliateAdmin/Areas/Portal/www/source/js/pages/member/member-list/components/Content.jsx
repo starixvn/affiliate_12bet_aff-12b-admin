@@ -83,8 +83,8 @@ export class Content extends PureComponent {
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
         const firstName = htmlDecode(dataItem.FirstName);
         const lastName = htmlDecode(dataItem.LastName);
-        const createdDate = formatDateTime(dataItem.CreatedDate, "MM/dd/yyyy HH:mm:ss");
-        const lastActionDate = formatDateTime(dataItem.LastActionDate, "MM/dd/yyyy HH:mm:ss");
+        const createdDate = formatDateTime(dataItem.RegisteredDate, "MM/dd/yyyy HH:mm:ss");
+        const lastActionDate = formatDateTime(dataItem.LastAction, "MM/dd/yyyy HH:mm:ss");
 
         return (
             <Row key={`dataRow-${index}`}>

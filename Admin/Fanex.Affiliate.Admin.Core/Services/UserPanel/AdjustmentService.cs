@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 Description = param.Description,
             };
 
-            return ExecuteReturnResultInfo(command, param);
+            return ExecuteAffReturnResultInfo(command, param);
         }
     }
 }

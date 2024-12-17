@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return new ResultInfo(command.ErrCode, command.ErrMsg);
         }
 
-        public ResultInfo ExecuteReturnResultInfo(BaseAffNonQueryCommand command, AffiliateBasicInfoParam param)
+        public ResultInfo ExecuteAffReturnResultInfo(BaseAffNonQueryCommand command, AffiliateBasicInfoParam param)
         {
             command.AffId = param.AffId;
             command.UserId = param.UserId;
@@ -69,6 +69,17 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public void ExecuteCommand(NonQueryCommand command)
         {
             _dynamicRepository.Execute(command);
+        }
+
+        public EntityResult<T> FetchEntityResult<T>(PagingCriteria criteria) where T : class
+        {
+            var dataList = _dynamicRepository.Fetch<T>(criteria);
+
+            return new EntityResult<T>
+            {
+                MainData = dataList,
+                TotalItem = criteria.TotalItem,
+            };
         }
 
         public EntityResult<T> FetchEntityResult<T>(AffPagingCriteria criteria, AffiliatePagingParam param) where T : class

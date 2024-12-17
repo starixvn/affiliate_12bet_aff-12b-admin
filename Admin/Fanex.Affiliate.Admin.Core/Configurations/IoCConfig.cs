@@ -7,6 +7,7 @@ using Fanex.Data.Repository;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.NETFramework;
+using ONEbook.UM.Services;
 using ONEbook.UM.Transport;
 using Refit;
 using System;
@@ -86,6 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<IPHelperImpl>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UMRestClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<HttpContextHelper>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<MaintenanceService>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<DynamicRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }

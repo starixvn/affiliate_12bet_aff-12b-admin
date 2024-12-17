@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
                 Password = param.Password,
             };
 
-            var result = ExecuteReturnResultInfo(command, param);
+            var result = ExecuteAffReturnResultInfo(command, param);
 
             return (result, command.AffCode);
         }
