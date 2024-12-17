@@ -135,17 +135,14 @@ namespace Fanex.Affiliate.User.Site
         private static void RegisterMemberSiteApi(this ContainerBuilder builder)
         {
             var appSetting = new AppSetting();
-            var handler = new AuthenticatedHttpClientHandler(appSetting.MemberSiteApiAuthenticationKey)
-            {
-                Proxy = appSetting.IsUseMemberSiteProxy
-                    ? new WebProxy(new Uri(appSetting.MemberSiteProxyUrl))
-                    : null
+            var cacheService = new MemoryCacheService(new MemoryCache(new MemoryCacheOptions()));
+            var handler = new AuthenticatedHttpClientHandler(appSetting, cacheService);
 
-            };
             builder.RegisterInstance(RestService.For<ILicenseeApi>(
                 new HttpClient(handler)
                 {
-                    BaseAddress = new Uri(appSetting.MemberSiteApiUrl)
+                    BaseAddress = new Uri(appSetting.MemberSiteApiUrl),
+
                 }));
         }
     }

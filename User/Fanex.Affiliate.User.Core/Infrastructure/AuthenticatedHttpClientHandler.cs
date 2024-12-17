@@ -4,77 +4,88 @@
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
-    using System.Net.Sockets;
-    using System.Security.Cryptography;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Web;
+    using Apis;
+    using Constants;
+    using CoreService;
+    using DTO.Apis;
+    using MetalModels.Apis;
+    using Refit;
+    using Utilities;
 
     public class AuthenticatedHttpClientHandler : HttpClientHandler
     {
-        private readonly string _machineIp;
-        private readonly string _secretKey;
+        private readonly IAppSetting _appSetting;
+        private readonly ITokenApi _tokenApi;
+        private readonly IMemoryCacheService _cacheService;
 
-        public AuthenticatedHttpClientHandler(string secretKey)
+        public AuthenticatedHttpClientHandler(IAppSetting appSetting, IMemoryCacheService cacheService)
         {
-            _secretKey = secretKey;
-            _machineIp = GetLocalIpAddress();
+            _appSetting = appSetting ?? throw new ArgumentNullException(nameof(cacheService));
+
+            Proxy = appSetting.IsUseMemberSiteProxy ? new WebProxy(new Uri(appSetting.MemberSiteProxyUrl)) : null;
+            AutomaticDecompression = AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            _tokenApi = TokenApiInstance(Proxy, appSetting.MemberSiteApiUrl);
+            _cacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            // See if the request has an authorize header
-            request.Headers.Authorization = AuthenticationHeaderValue.Parse(Authenticate(request));
+            await SetJwtToken(request);
 
             return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
         }
 
-        private string Authenticate(HttpRequestMessage request)
+        private async Task SetJwtToken(HttpRequestMessage request)
         {
-            var requestUri = HttpUtility.UrlEncode(request.RequestUri.PathAndQuery.ToLowerInvariant().Replace("api//", "api/"));
-            var requestHttpMethod = request.Method.ToString();
+            var token = _cacheService.Get<string>(CacheKey.TokenMemoryCache);
 
-            //Calculate UNIX time
-            var epochStart = new DateTime(1970, 01, 01, 0, 0, 0, 0, DateTimeKind.Utc);
-            var timeSpan = DateTime.UtcNow - epochStart;
-            var requestTimeStamp = Convert.ToUInt64(timeSpan.TotalSeconds).ToString();
-
-            //create random nonce for each request
-            var nonce = Guid.NewGuid().ToString("N");
-
-            //Creating the raw signature string
-            var signatureRawData = $"{_machineIp}{requestHttpMethod}{requestUri}{requestTimeStamp}{nonce}";
-
-            var secretKeyByteArray = Convert.FromBase64String(_secretKey);
-
-            var signature = Encoding.UTF8.GetBytes(signatureRawData);
-
-            using (var hmac = new HMACSHA256(secretKeyByteArray))
+            if (token == null)
             {
-                var signatureBytes = hmac.ComputeHash(signature);
-                var requestSignatureBase64String = Convert.ToBase64String(signatureBytes);
+                var tokenInfo = await GetJwtTokenAsync();
+                token = tokenInfo.AccessToken;
 
-                // Setting the values in the Authorization header using custom scheme (amx)
-                var authHeader = $"amx {_machineIp}:{requestSignatureBase64String}:{nonce}:{requestTimeStamp}";
+                _cacheService.Set(CacheKey.TokenMemoryCache, token, _appSetting.MemberSiteApiTokenCacheTimeOut);
+            }
 
-                return authHeader;
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        }
+
+        private async Task<TokenInfo> GetJwtTokenAsync()
+        {
+            var tokenRequestParam = new TokenRequestParam
+            {
+                Username = $"{_appSetting.MemberSiteApiUsername}",
+                Password = _appSetting.MemberSiteApiPassword
+            };
+
+            try
+            {
+                return await _tokenApi.GetTokenAsync(tokenRequestParam);
+
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+
+                throw new InvalidOperationException($"Can't get JwtSecurityToken for {tokenRequestParam.Username}!");
             }
         }
 
-        private static string GetLocalIpAddress()
+        private static ITokenApi TokenApiInstance(IWebProxy proxy, string tokenApiUrl)
         {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-
-            foreach (var ip in host.AddressList)
+            var handler = new HttpClientHandler
             {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString().Replace(":", "_");
-                }
-            }
+                Proxy = proxy
+            };
 
-            throw new InvalidOperationException("Local IP Address Not Found!");
+            return RestService.For<ITokenApi>(
+                new HttpClient(handler)
+                {
+                    BaseAddress = new Uri(tokenApiUrl)
+                });
         }
     }
 }

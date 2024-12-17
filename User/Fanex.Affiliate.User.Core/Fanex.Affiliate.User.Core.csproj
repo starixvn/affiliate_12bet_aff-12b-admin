@@ -225,6 +225,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apis\ILicenseeApi.cs" />
+    <Compile Include="Apis\ITokenApi.cs" />
+    <Compile Include="DTO\Apis\TokenInfo.cs" />
     <Compile Include="BusinessService\AccountService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
     <Compile Include="BusinessService\CaptchaService.cs" />
@@ -326,6 +328,7 @@
     <Compile Include="Filters\JsonHandlerAttribute.cs" />
     <Compile Include="Infrastructure\AuthenticatedHttpClientHandler.cs" />
     <Compile Include="Infrastructure\JsonNetResult.cs" />
+    <Compile Include="MetalModels\Apis\TokenRequestParam.cs" />
     <Compile Include="MetalModels\MarketingLinkParam.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGeneratingParam.cs" />
