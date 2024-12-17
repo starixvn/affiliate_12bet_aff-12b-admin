@@ -214,6 +214,9 @@
     <Compile Include="Commands\CommissionGroup\DeleteCommGroupCommand.cs" />
     <Compile Include="Commands\CommissionGroup\UpdateCommGroupCommand.cs" />
     <Compile Include="Commands\Member\UpdateMemberCommand.cs" />
+    <Compile Include="Commands\Message\InsertMessageCommand.cs" />
+    <Compile Include="Commands\Message\DeleteMessageCommand.cs" />
+    <Compile Include="Commands\Message\UpdateMessageCommand.cs" />
     <Compile Include="Commands\UserPanel\BalanceBroughtForwardCommand.cs" />
     <Compile Include="Commands\UserPanel\InsertAdjustmentCommand.cs" />
     <Compile Include="Commands\UserPanel\Note\UpdateNoteCommand.cs" />
@@ -295,6 +298,10 @@
     <Compile Include="Criterias\AffPagingCriteria.cs" />
     <Compile Include="Criterias\Member\MemberCriteria.cs" />
     <Compile Include="Criterias\Member\MemberDetailCriteria.cs" />
+    <Compile Include="Commands\Message\BaseMessageCommand.cs" />
+    <Compile Include="Criterias\Message\MessageCriteria.cs" />
+    <Compile Include="Criterias\Message\MessageDetailCriteria.cs" />
+    <Compile Include="Criterias\PagingByDateCriteria.cs" />
     <Compile Include="Criterias\PagingCriteria.cs" />
     <Compile Include="Criterias\BaseCriteria.cs" />
     <Compile Include="Criterias\UserPanel\Note\NoteCriteria.cs" />

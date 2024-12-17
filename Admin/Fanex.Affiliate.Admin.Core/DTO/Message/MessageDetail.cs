@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.Message
+﻿using Newtonsoft.Json;
+
+namespace Fanex.Affiliate.Admin.Core.DTO.Message
 {
     public class MessageDetail
     {
@@ -6,22 +8,49 @@
 
         public bool Important { get; set; }
 
-        public string MessageContenten { get; set; }
+        [JsonIgnore]
+        public string Message_En { get; set; }
 
-        public string MessageContentcs { get; set; }
+        public string MessageContenten => Message_En;
 
-        public string MessageContentth { get; set; }
+        [JsonIgnore]
+        public string Message_Cn { get; set; }
 
-        public string MessageContentvn { get; set; }
+        public string MessageContentcs => Message_Cn;
 
-        public string MessageContentid { get; set; }
+        [JsonIgnore]
+        public string Message_Th { get; set; }
 
-        public string MessageContenthi { get; set; }
+        public string MessageContentth => Message_Th;
 
-        public string MessageContentms { get; set; }
+        [JsonIgnore]
+        public string Message_Vi { get; set; }
 
-        public string MessageContentbn { get; set; }
+        public string MessageContentvn => Message_Vi;
 
-        public string MessageContentkh { get; set; }
+        [JsonIgnore]
+        public string Message_Id { get; set; }
+
+        public string MessageContentid => Message_Id;
+
+        [JsonIgnore]
+        public string Message_Hi { get; set; }
+
+        public string MessageContenthi => Message_Hi;
+
+        [JsonIgnore]
+        public string Message_Ms { get; set; }
+
+        public string MessageContentms => Message_Ms;
+
+        [JsonIgnore]
+        public string Message_Bn { get; set; }
+
+        public string MessageContentbn => Message_Bn;
+
+        [JsonIgnore]
+        public string Message_Kh { get; set; }
+
+        public string MessageContentkh => Message_Kh;
     }
 }
