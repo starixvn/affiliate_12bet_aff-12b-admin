@@ -2507,4 +2507,13 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="MediaGallery" xml:space="preserve">
     <value>Thư viện hình ảnh</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="InvalidLink" xml:space="preserve">
+    <value>Liên kết bạn đã nhập không hợp lệ.&lt;br /&gt;Vui lòng liên hệ với bộ phận chăm sóc khách hàng hoặc</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>nhấn vào đây.</value>
+  </data>
 </root>

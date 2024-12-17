@@ -56,6 +56,21 @@ namespace Fanex.Affiliate.User.Site
             );
 
             routes.MapRoute(
+                name: "SignUpUsingAffIDHasLang",
+                url: "{lang}/Signup/{refId}/{action}",
+                constraints: new { lang = @"(\w{2}|hien|hitg)" },
+                defaults: new { controller = "Signup", action = IndexAction, refId = UrlParameter.Optional, lang = UrlParameter.Optional },
+                namespaces: new[] { "Fanex.Affiliate.User.Core.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "SignUpUsingAffID",
+                url: "Signup/{refId}/{action}",
+                defaults: new { controller = "Signup", action = IndexAction, refId = UrlParameter.Optional },
+                namespaces: new[] { "Fanex.Affiliate.User.Core.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "DefaultHasLang",
                 url: "{lang}/{controller}/{action}/{id}",
                 constraints: new { lang = @"(\w{2}|hien|hitg)" },

@@ -2527,4 +2527,13 @@
   <data name="MediaGallery" xml:space="preserve">
     <value>រូបភាពប្រព័ន្ធផ្សព្វផ្សាយ</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>កំហុស</value>
+  </data>
+  <data name="InvalidLink" xml:space="preserve">
+    <value>លីងដែលអ្នកបានបញ្ចូលមិនត្រឹមត្រូវទេ។&lt;br /&gt;សូមទាក់ទងទៅកាន់ផ្នែកបម្រើសេវាកម្មអតិថិជន ឬក៏</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>ចុចនៅ​ទីនេះ</value>
+  </data>
 </root>

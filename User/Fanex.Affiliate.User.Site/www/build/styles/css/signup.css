@@ -557,3 +557,11 @@
         left: 9px; }
       .input-url .group-input .button-toggle-close:before {
         display: none; }
+
+.error-content .img-support {
+  max-width: 40rem;
+  margin: auto;
+  margin-bottom: 8rem; }
+
+.error-content .error-text {
+  font-size: 1.5rem; }
