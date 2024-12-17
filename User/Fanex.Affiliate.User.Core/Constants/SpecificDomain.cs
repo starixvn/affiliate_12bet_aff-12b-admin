@@ -18,6 +18,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string DOMAIN_GO_SBC31_PRO = "go.sbc31.com";
 
         private const string DOMAIN_GO_THA88_PRO = "go.tha88.com";
+        private const string DOMAIN_GO_APA56_PRO = "go.apa56.com";
 
         //go.12real.com, go.12fifa18.com
         private const string AFF16105_ID = "92043193";
@@ -90,7 +91,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             [AFF7782_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
             [AFF16050_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
 
-            [AFF16342_ID] = DOMAIN_GO_THA88_PRO,
+            [AFF16342_ID] = $"{DOMAIN_GO_THA88_PRO},{DOMAIN_GO_APA56_PRO}",
             [AFF16343_ID] = DOMAIN_GO_9012IJK_PRO,
             [AFF16344_ID] = DOMAIN_GO_SBC31_PRO,
         };

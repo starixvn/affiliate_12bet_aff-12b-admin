@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
                 foreach(var name in names)
                 {
-                    specificDomainList.Add(new Domain { DomainId = affId + specificDomainList.Count(), DomainName = name, IsSsl = false });
+                    specificDomainList.Add(new Domain { DomainId = affId + specificDomainList.Count, DomainName = name, IsSsl = false });
                 }    
 
                 specificDomainList.AddRange(domainList.Where(d => !Array.Exists(names, n => n.MatchWith(d.DomainName))));
