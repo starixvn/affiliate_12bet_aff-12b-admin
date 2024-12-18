@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
             var command = new InsertMessageCommand();
             AssignCommand(command, param);
 
-            return ExecuteReturnResultInfo(command, param);
+            return ExecuteReturnResultInfo(command);
         }
 
         public ResultInfo UpdateMessage(InsertUpdateMessageParam param)
@@ -53,21 +53,25 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
             };
             AssignCommand(command, param);
 
-            return ExecuteReturnResultInfo(command, param);
+            return ExecuteReturnResultInfo(command);
         }
 
         public ResultInfo DeleteMessages(DeleteMessageParam param)
         {
             var command = new DeleteMessageCommand
             {
+                UserId = param.UserId,
+                Ip = param.Ip,
                 MessageIds = param.MessageIdList,
             };
 
-            return ExecuteReturnResultInfo(command, param);
+            return ExecuteReturnResultInfo(command);
         }
 
         private static void AssignCommand(BaseMessageCommand command, InsertUpdateMessageParam param)
         {
+            command.UserId = param.UserId;
+            command.Ip = param.Ip;
             command.IsImportant = param.Important;
             command.MsgBn = param.MessageContentbn;
             command.MsgEn = param.MessageContenten;

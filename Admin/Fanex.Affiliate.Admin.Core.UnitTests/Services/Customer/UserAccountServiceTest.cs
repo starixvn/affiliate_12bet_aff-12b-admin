@@ -1,12 +1,14 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
+﻿using Fanex.Affiliate.Admin.Core.Commands.UserPanel.UserAccount;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.UserAccount;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Api;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -22,8 +24,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var param = 1271808;
             var passedParam = 0;
-            var repository = new Mock<IUserAccountRepository>();
-            repository.Setup(comm => comm.GetUserAccountInfo(param)).Returns(new UserAccount { AffId = 1271808 }).Callback<int>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Get<UserAccount>(It.IsAny<UserAccountCriteria>())).Returns(new UserAccount { AffId = 1271808 }).Callback<int>(p => passedParam = p);
             var service = CreateUserAccountService(repository.Object);
 
             // Action
@@ -40,8 +42,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var param = GetUserAccountParam();
             UserAccountParam passedParam = null;
-            var repository = new Mock<IUserAccountRepository>();
-            repository.Setup(comm => comm.UpdateUserAccount(param)).Returns(new ResultInfo()).Callback<UserAccountParam>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateUserAccountCommand>())).Callback<UserAccountParam>(p => passedParam = p);
             var service = CreateUserAccountService(repository.Object);
 
             // Action
@@ -56,14 +58,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         public async Task UpdateUserAccount_WhenCallWithValidPlayerAccount_ExcuteSuccessfully()
         {
             // Arrange
-            var repository = new Mock<IUserAccountRepository>();
-            repository.Setup(r => r.GetUserAccountInfo(It.IsAny<int>())).Returns(new UserAccount { PlayerUsername = "Abc" });
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Get<UserAccount>(It.IsAny<UserAccountCriteria>())).Returns(new UserAccount { PlayerUsername = "Abc" });
             var licenseeService = new Mock<ILicenseeService>();
             licenseeService.Setup(s => s.CheckCustomerIsValid(It.IsAny<MemberSiteCustomerInfo>()))
                 .Returns(new ResultInfo { Code = 0 });
             licenseeService.Setup(s => s.GetMemberSiteCustomerInfo(It.IsAny<string>(), It.IsAny<int>()))
                 .ReturnsAsync(new MemberSiteCustomerInfo());
-            repository.Setup(comm => comm.UpdateUserAccount(It.IsAny<UserAccountParam>())).Returns(new ResultInfo());
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateUserAccountCommand>()));
             var service = CreateUserAccountService(repository.Object, licenseeService.Object);
 
             // Action
@@ -79,8 +81,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(ap => ap.SiteFriendlyName).Returns("12BET");
-            var repository = new Mock<IUserAccountRepository>();
-            repository.Setup(r => r.GetUserAccountInfo(It.IsAny<int>())).Returns(new UserAccount { PlayerUsername = "Abc" });
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Get<UserAccount>(It.IsAny<UserAccountCriteria>())).Returns(new UserAccount { PlayerUsername = "Abc" });
             var licenseeService = new Mock<ILicenseeService>();
             licenseeService.Setup(s => s.CheckCustomerIsValid(It.IsAny<MemberSiteCustomerInfo>())).Returns(new ResultInfo { Code = 100 });
 
@@ -141,8 +143,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         public void GetPaymentMethod_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var userAccountRepository = new Mock<IUserAccountRepository>();
-            userAccountRepository.Setup(t => t.GetPaymentMethod()).Returns((new List<PaymentMethodInfo> { new PaymentMethodInfo { PaymentId = "123", PaymentName = "abc" } }, 100m));
+            var userAccountRepository = new Mock<IDynamicRepository>();
+            userAccountRepository.Setup(t => t.Fetch<PaymentMethodInfo>(It.IsAny<PaymentMethodCriteria>())).Returns(new List<PaymentMethodInfo> { new PaymentMethodInfo { PaymentId = "123", PaymentName = "abc" } }).Callback<PaymentMethodCriteria>(p => p.MinAmount = 100m);
             var service = CreateUserAccountService(userAccountRepository: userAccountRepository.Object);
 
             // Action
@@ -154,11 +156,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         }
 
         private static UserAccountService CreateUserAccountService(
-            IUserAccountRepository userAccountRepository = null,
+            IDynamicRepository userAccountRepository = null,
             ILicenseeService licenseeService = null,
             IAppSetting appSeting = null)
         {
-            var fakeUserAccountRepository = userAccountRepository ?? Mock.Of<IUserAccountRepository>();
+            var fakeUserAccountRepository = userAccountRepository ?? Mock.Of<IDynamicRepository>();
             var fakeAppSetting = appSeting ?? Mock.Of<IAppSetting>();
             var fakeLicenseeService = licenseeService ?? Mock.Of<ILicenseeService>();
 

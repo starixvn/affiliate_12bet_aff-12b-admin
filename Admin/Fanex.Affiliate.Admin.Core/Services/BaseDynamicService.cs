@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands;
 using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 
@@ -46,26 +45,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return new ResultInfo(command.ErrCode, command.ErrMsg);
         }
 
-        public ResultInfo ExecuteReturnResultInfo(BaseNonQueryCommand command, UserInfoParam param)
-        {
-            command.UserId = param.UserId;
-            command.Ip = param.Ip;
-            _dynamicRepository.Execute(command);
-
-            return new ResultInfo(command.ErrCode, command.ErrMsg);
-        }
-
-        public ResultInfo ExecuteAffReturnResultInfo(BaseAffNonQueryCommand command, AffiliateBasicInfoParam param)
-        {
-            command.AffId = param.AffId;
-            command.UserId = param.UserId;
-            command.Ip = param.Ip;
-
-            _dynamicRepository.Execute(command);
-
-            return new ResultInfo(command.ErrCode, command.ErrMsg);
-        }
-
         public void ExecuteCommand(NonQueryCommand command)
         {
             _dynamicRepository.Execute(command);
@@ -82,12 +61,8 @@ namespace Fanex.Affiliate.Admin.Core.Services
             };
         }
 
-        public EntityResult<T> FetchEntityResult<T>(AffPagingCriteria criteria, AffiliatePagingParam param) where T : class
+        public EntityResult<T> FetchEntityResult<T>(AffPagingCriteria criteria) where T : class
         {
-            criteria.AffId = param.AffId;
-            criteria.PageIndex = param.PageIndex;
-            criteria.PageSize = param.PageSize;
-
             var dataList = _dynamicRepository.Fetch<T>(criteria);
 
             return new EntityResult<T>

@@ -2,7 +2,7 @@
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using Moq;
 using System.Collections.Generic;
 using Xunit;

@@ -23,12 +23,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         {
             var criteria = new ViewLogCriteria
             {
+                AffId = param.AffId,
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize,
                 LogType = param.LogType,
                 FromDate = param.FromDate,
                 ToDate = param.ToDate,
             };
 
-            return FetchEntityResult<ViewLog>(criteria, param);
+            return FetchEntityResult<ViewLog>(criteria);
         }
     }
 }

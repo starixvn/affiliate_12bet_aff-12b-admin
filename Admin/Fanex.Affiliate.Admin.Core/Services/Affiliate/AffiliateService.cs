@@ -26,11 +26,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
         {
             var command = new ApproveAffCommand
             {
+                AffId = param.AffId,
+                UserId = param.UserId,
+                Ip = param.Ip,
                 Status = param.Status,
                 Password = param.Password,
             };
 
-            var result = ExecuteAffReturnResultInfo(command, param);
+            var result = ExecuteReturnResultInfo(command);
 
             return (result, command.AffCode);
         }

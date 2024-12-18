@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers

@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public long TransId { get; set; }
 
         [JsonIgnore]
-        public DateTime Date { get; set; }
+        public DateTime MonthDate { get; set; }
 
         public int TransType { get; set; }
 
@@ -26,9 +26,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public byte? CalculatedType { get; set; }
 
         public string DateText => (TransType == Constants.TransType.MonthlyEarning || TransType == Constants.TransType.MonthlyTotal
-            || TransType == Constants.TransType.SubAffiliate) ? Date.ToString("MMM-yyyy") : Date.ToString("dd-MMM-yyyy");
+            || TransType == Constants.TransType.SubAffiliate) ? MonthDate.ToString("MMM-yyyy") : MonthDate.ToString("dd-MMM-yyyy");
 
-        public string NormalizeDateText => Date.ToString("yyyy-MM-dd");
+        public string NormalizeDateText => MonthDate.ToString("yyyy-MM-dd");
 
         public string DescriptionDisplay
         {

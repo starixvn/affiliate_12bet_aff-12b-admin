@@ -1,4 +1,6 @@
 ﻿
+using Newtonsoft.Json;
+
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
     public class AffiliateBasicInfo
@@ -13,7 +15,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public int GroupTypeId { get; set; }
 
-        public string UserName { get; set; }
+        [JsonIgnore]
+        public string AffName { get; set; }
+
+        public string UserName => AffName;
 
         public int AffType { get; set; }
 
@@ -21,7 +26,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string LastName { get; set; }
 
-        public string ContactNumber { get; set; }
+        [JsonIgnore]
+        public string Phone { get; set; }
+
+        public string ContactNumber => Phone;
 
         public string Email { get; set; }
 
@@ -35,6 +43,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public int PlayerCustId { get; set; }
 
-        public bool IsUsingPrivateCommGroup { get; set; }
+        [JsonIgnore]
+        public bool IsPrivate { get; set; }
+
+        public bool IsUsingPrivateCommGroup => IsPrivate;
     }
 }

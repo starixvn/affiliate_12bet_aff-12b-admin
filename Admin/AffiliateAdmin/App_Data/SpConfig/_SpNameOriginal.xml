@@ -10,8 +10,11 @@
   <Function Name="AffiliateInformation">
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="" />
     <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="" >
-      <Mapping DataField="IsPrivate" ObjectProperty="IsUsingPrivateCommGroup" />
-      <Mapping DataField="Phone" ObjectProperty="ContactNumber" />
+      <Mapping DataField="Username" ObjectProperty="AffName" />
+      <Mapping DataField="Postal" ObjectProperty="Postcode" />
+      <Mapping DataField="NoSiteDesc" ObjectProperty="NoSiteDescription" />
+      <Mapping DataField="BankSwiftCode" ObjectProperty="BankCode" />
+      <Mapping DataField="BankAccountNo" ObjectProperty="BankAccountNumber" />
     </Setting>
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="" />
     <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="" />

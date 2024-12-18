@@ -36,9 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Country { get; set; }
 
-
         public string SiteUrl { get; set; }
-
 
         public string MoreSiteUrls { get; set; }
 

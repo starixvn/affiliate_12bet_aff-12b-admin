@@ -222,10 +222,8 @@
     <Compile Include="Repository\Affiliate\AffiliateInfoRepositoryTest.cs" />
     <Compile Include="Repository\Affiliate\PaymentRequestRepositoryTest.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepositoryTest.cs" />
-    <Compile Include="Repository\Customer\LandingPageStatisticsRepositoryTest.cs" />
-    <Compile Include="Repository\Customer\ReferrersRepositoryTest.cs" />
-    <Compile Include="Repository\Customer\StatementHistoryRepositoryTest.cs" />
-    <Compile Include="Repository\Customer\UserAccountRepositoryTest.cs" />
+    <Compile Include="Services\Customer\LandingPageStatisticsServiceTest.cs" />
+    <Compile Include="Services\Customer\ReferrersStatisticsServiceTest.cs" />
     <Compile Include="Repository\Domain\SubAffDomainRepositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\BannerListReppositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepositoryTest.cs" />

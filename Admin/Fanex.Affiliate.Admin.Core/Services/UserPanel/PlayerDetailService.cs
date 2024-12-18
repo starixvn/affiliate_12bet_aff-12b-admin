@@ -15,6 +15,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         {
             var criteria = new PlayerDetailCriteria
             {
+                AffId = param.AffId,
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize,
                 ProductId = param.ProductId,
                 MonthDate = param.MonthDate,
                 IsSortAsc = param.IsSortAsc,
@@ -24,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 CurrencyIds = param.CurrencyIds
             };
 
-            return FetchEntityResult<PlayerDetail>(criteria, param);
+            return FetchEntityResult<PlayerDetail>(criteria);
         }
     }
 }

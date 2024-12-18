@@ -3,8 +3,8 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
@@ -20,9 +20,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var param = new LandingPageStatisticsParam();
             LandingPageStatisticsParam passedParam = null;
-            var landingPageStatisticsRepository = new Mock<ILandingPageStatisticsRepository>();
-            landingPageStatisticsRepository.Setup(t => t.GetLandingPageStatisticsList(param)).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() }).Callback<LandingPageStatisticsParam>(p => passedParam = p);
-            var controller = CreateLandingPageStatisticsController(landingPageStatisticsRepository: landingPageStatisticsRepository.Object);
+            var landingPageStatisticsService = new Mock<ILandingPageStatisticsService>();
+            landingPageStatisticsService.Setup(t => t.GetLandingPageStatisticsList(param)).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() }).Callback<LandingPageStatisticsParam>(p => passedParam = p);
+            var controller = CreateLandingPageStatisticsController(landingPageStatisticsService: landingPageStatisticsService.Object);
 
             // Action
             var result = controller.GetLandingPageStatisticsList(param) as JsonNetResult;
@@ -53,9 +53,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var param = new LandingPageStatisticsDetailParam();
             LandingPageStatisticsDetailParam passedParam = null;
-            var landingPageStatisticsRepository = new Mock<ILandingPageStatisticsRepository>();
-            landingPageStatisticsRepository.Setup(t => t.GetLandingPageStatisticsDetailList(param)).Returns(new EntityResult<LandingPageStatistics> { MainData = new List<LandingPageStatistics> { new LandingPageStatistics() }, TotalItem = 1 }).Callback<LandingPageStatisticsDetailParam>(p => passedParam = p);
-            var controller = CreateLandingPageStatisticsController(landingPageStatisticsRepository: landingPageStatisticsRepository.Object);
+            var landingPageStatisticsService = new Mock<ILandingPageStatisticsService>();
+            landingPageStatisticsService.Setup(t => t.GetLandingPageStatisticsDetailList(param)).Returns(new EntityResult<LandingPageStatistics> { MainData = new List<LandingPageStatistics> { new LandingPageStatistics() }, TotalItem = 1 }).Callback<LandingPageStatisticsDetailParam>(p => passedParam = p);
+            var controller = CreateLandingPageStatisticsController(landingPageStatisticsService: landingPageStatisticsService.Object);
 
             // Action
             var result = controller.GetLandingPageStatisticsDetailList(param) as JsonNetResult;
@@ -83,13 +83,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private LandingPageStatisticsController CreateLandingPageStatisticsController(
             ISessionService sessionService = null,
-            ILandingPageStatisticsRepository landingPageStatisticsRepository = null
+            ILandingPageStatisticsService landingPageStatisticsService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLandingPageStatisticsRepository = landingPageStatisticsRepository ?? Mock.Of<ILandingPageStatisticsRepository>();
+            var fakeLandingPageStatisticsService = landingPageStatisticsService ?? Mock.Of<ILandingPageStatisticsService>();
 
-            return new LandingPageStatisticsController(fakeSessionService, fakeLandingPageStatisticsRepository);
+            return new LandingPageStatisticsController(fakeSessionService, fakeLandingPageStatisticsService);
         }
     }
 }

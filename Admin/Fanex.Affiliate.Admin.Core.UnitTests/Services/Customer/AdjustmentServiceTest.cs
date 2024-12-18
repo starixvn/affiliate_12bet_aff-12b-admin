@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.UserPanel;
+using Fanex.Affiliate.Admin.Core.Commands.UserPanel.Adjustment;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Data.Repository;

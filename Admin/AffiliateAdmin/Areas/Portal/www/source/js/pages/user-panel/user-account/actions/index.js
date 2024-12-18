@@ -28,8 +28,7 @@ export const getUserAccountInfo = (affId) => async (dispatch) => {
     const data = response && response.status === 200 ? response.data : null;
 
     const moreSiteUrls = data && data.MoreSiteUrls;
-    const moreSiteUrlsList = moreSiteUrls && moreSiteUrls != '' && moreSiteUrls.split(';');
-
+    const moreSiteUrlsList = !moreSiteUrls ? [] : moreSiteUrls.split(';');
     dispatch(setMoreSiteUrlsList(moreSiteUrlsList));
     dispatch(setUserAccountInfo(data));
     dispatch(toggleLoaderUserPanel(false));

@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.TrackingStatistics;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using Fanex.Data.Repository;
 using Moq;
 using System;

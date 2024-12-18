@@ -1,6 +1,6 @@
 ﻿using Fanex.Data;
 
-namespace Fanex.Affiliate.Admin.Core.Commands.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Commands.UserPanel.Adjustment
 {
     public class InsertAdjustmentCommand : BaseAffNonQueryCommand
     {

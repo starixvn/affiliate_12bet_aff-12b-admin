@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Commands.UserPanel;
+﻿using Fanex.Affiliate.Admin.Core.Commands.UserPanel.Adjustment;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Data.Repository;
@@ -28,11 +28,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         {
             var command = new InsertAdjustmentCommand
             {
+                AffId = param.AffId,
+                UserId = param.UserId,
+                Ip = param.Ip,
                 Amount = param.Amount,
                 Description = param.Description,
             };
 
-            return ExecuteAffReturnResultInfo(command, param);
+            return ExecuteReturnResultInfo(command);
         }
     }
 }

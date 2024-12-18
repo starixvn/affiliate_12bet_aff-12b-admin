@@ -2,7 +2,7 @@
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using System.Collections.Generic;
 
-namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics
 {
     public interface ITrackingStatisticsService
     {

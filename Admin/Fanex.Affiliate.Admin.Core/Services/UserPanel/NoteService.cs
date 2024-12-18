@@ -16,9 +16,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public EntityResult<NoteDetail> GetNoteList(AffiliatePagingParam param)
         {
-            var criteria = new NoteCriteria();
+            var criteria = new NoteCriteria
+            {
+                AffId = param.AffId,
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize,
+            };
 
-            return FetchEntityResult<NoteDetail>(criteria, param);
+            return FetchEntityResult<NoteDetail>(criteria);
         }
 
         public Note GetNoteContentById(int affId, int noteId)
@@ -36,21 +41,27 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         {
             var command = new InsertNoteCommand
             {
+                AffId = param.AffId,
+                UserId = param.UserId,
+                Ip = param.Ip,
                 NoteContent = param.NoteContent,
             };
 
-            return ExecuteAffReturnResultInfo(command, param);
+            return ExecuteReturnResultInfo(command);
         }
 
         public ResultInfo UpdateNote(InsertUpdateNoteParam param)
         {
             var command = new UpdateNoteCommand
             {
+                AffId = param.AffId,
+                UserId = param.UserId,
+                Ip = param.Ip,
                 NoteId = param.NoteId,
                 NoteContent = param.NoteContent,
             };
 
-            return ExecuteAffReturnResultInfo(command, param);
+            return ExecuteReturnResultInfo(command);
         }
     }
 }

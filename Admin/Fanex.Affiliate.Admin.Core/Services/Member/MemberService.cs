@@ -40,12 +40,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
         {
             var command = new UpdateMemberCommand
             {
+                UserId = param.UserId,
+                Ip = param.Ip,
                 MemberId = param.MemberId,
                 IsInclude = param.IsInclude,
                 IsRemoved = param.IsRemoved,
             };
 
-            return ExecuteReturnResultInfo(command, param);
+            return ExecuteReturnResultInfo(command);
         }
     }
 }

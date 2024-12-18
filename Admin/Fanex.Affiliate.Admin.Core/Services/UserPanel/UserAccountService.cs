@@ -1,41 +1,47 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
+﻿using Fanex.Affiliate.Admin.Core.Commands.UserPanel.UserAccount;
+using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.UserAccount;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class UserAccountService : IUserAccountService
+    public class UserAccountService : BaseDynamicService, IUserAccountService
     {
-        private readonly IUserAccountRepository _userAccountRepository;
         private readonly ILicenseeService _licenseeService;
         private readonly IAppSetting _appSetting;
 
         private const int TEST_CURRENCY_ID = 20;
 
-        public UserAccountService(IUserAccountRepository userAccountRepository,
+        public UserAccountService(IDynamicRepository dynamicRepository,
             ILicenseeService licenseeService,
-            IAppSetting appSetting)
+            IAppSetting appSetting) : base(dynamicRepository)
         {
-            _userAccountRepository = userAccountRepository;
             _licenseeService = licenseeService;
             _appSetting = appSetting;
         }
 
         public UserAccount GetUserAccountInfo(int affId)
         {
-            return _userAccountRepository.GetUserAccountInfo(affId);
+            var criteria = new UserAccountCriteria { AffId = affId };
+
+            return GetTData<UserAccount>(criteria);
         }
 
         public (IEnumerable<PaymentMethodInfo> paymentMethods, decimal minAmount) GetPaymentMethod()
         {
-            return _userAccountRepository.GetPaymentMethod();
+            var criteria = new PaymentMethodCriteria();
+
+            var paymentMethods = FetchTData<PaymentMethodInfo>(criteria);
+
+            return (paymentMethods, criteria.MinAmount);
         }
 
         public async Task<ResultInfo> UpdateUserAccountAsync(UserAccountParam param)
@@ -68,7 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                     param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault() ? TEST_CURRENCY_ID : memberSiteCust.CurrencyId.GetValueOrDefault();
                 }
 
-                return _userAccountRepository.UpdateUserAccount(param);
+                return UpdateUserAccount(param);
             }
 
             return new ResultInfo
@@ -76,6 +82,44 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 Code = ErrCode.GeneralErrorCode,
                 Message = Lang.UpdateIsFailed
             };
+        }
+
+        private ResultInfo UpdateUserAccount(UserAccountParam param)
+        {
+            var command = new UpdateUserAccountCommand
+            {
+                AffId = param.AffId,
+                UserId = param.UserId,
+                Ip = param.Ip,
+                FirstName = param.FirstName,
+                LastName = param.LastName,
+                Gender = param.Gender,
+                Email = param.Email,
+                Phone = param.Phone,
+                ContactApps = param.ContactApps,
+                Address = param.Address,
+                City = param.City,
+                State = param.State,
+                Postcode = param.Postcode,
+                Country = param.Country,
+                MailOption = param.MailOption,
+                SiteUrl = param.SiteUrl,
+                MoreSiteUrls = param.MoreSiteUrls,
+                NoSiteDescription = param.NoSiteDescription,
+                PreferredPayment = param.PreferredPayment,
+                PlayerUsername = param.PlayerUsername,
+                NetellerAccountId = param.NetellerAccountId,
+                MoneybookersEmail = param.MoneybookersEmail,
+                BankName = param.BankName,
+                BankAddress = param.BankAddress,
+                BankCode = param.BankCode,
+                BankAccountName = param.BankAccountName,
+                BankAccountNumber = param.BankAccountNumber,
+                Player_CustId = param.Player_CustId,
+                Player_Currency = param.Player_Currency,
+            };
+
+            return ExecuteReturnResultInfo(command);
         }
 
         private ResultInfo ValidateWebSite(UserAccountParam param)

@@ -1,10 +1,15 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
+﻿using Newtonsoft.Json;
+
+namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
     public class SubAffiliate
     {
         public int AffId { get; set; }
 
-        public string AffName { get; set; }
+        [JsonIgnore]
+        public string UserName { get; set; }
+
+        public string AffName => UserName;
 
         public decimal Commission { get; set; }
 

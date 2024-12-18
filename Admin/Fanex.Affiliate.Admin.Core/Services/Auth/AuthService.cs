@@ -35,12 +35,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
         {
             var command = new LoginCommand
             {
+                UserId = param.UserId,
+                Ip = param.Ip,
                 UserName = param.UserName,
                 Password = Encryption.CfsEnCode(param.Password),
                 UserHostName = param.UserHostName,
             };
 
-            var result = ExecuteReturnResultInfo(command, param);
+            var result = ExecuteReturnResultInfo(command);
             param.UserId = command.UserId;
 
             return result;

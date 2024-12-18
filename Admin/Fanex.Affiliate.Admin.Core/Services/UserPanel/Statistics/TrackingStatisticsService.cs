@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
+namespace Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics
 {
     public class TrackingStatisticsService : BaseDynamicService, ITrackingStatisticsService
     {
