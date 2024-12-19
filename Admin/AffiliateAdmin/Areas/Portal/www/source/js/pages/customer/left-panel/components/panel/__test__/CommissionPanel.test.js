@@ -18,7 +18,7 @@ describe('left panel - components - panel - CommissionPanel', () => {
         LastLoginDateText: "04/11/2019 22:24:00",
         LastLoginIp: "10.18.200.125",
         LastName: "12BETAFF226",
-        MoreSiteUrl: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
+        MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
         NoSiteDescription: "",
         Phone: "abc",
         PreferredLanguage: "vi-VN",

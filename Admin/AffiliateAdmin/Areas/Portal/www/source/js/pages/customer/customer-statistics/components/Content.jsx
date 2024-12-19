@@ -96,10 +96,10 @@ export class Content extends PureComponent {
             <tbody>
                 {
                     this._buildRow(rowTitle.NewSignups,
-                        `${format(data.NewSignUpByMonth)}/${format(data.NewFdmByMonth)}`,
-                        `${format(data.NewSignUpTotal)}/${format(data.NewFdmTotal)}`)
+                        `${format(data.SignupsByMonth)}/${format(data.FdmByMonth)}`,
+                        `${format(data.SignupsTotal)}/${format(data.FdmTotal)}`)
                 }
-                {this._buildRow(rowTitle.TotalActive, format(data.ActivePlayerByMonth), resource.NA)}
+                {this._buildRow(rowTitle.TotalActive, format(data.ActivePlayersByMonth), resource.NA)}
                 {this._buildRow(rowTitle.TotalSubAff, format(data.NoOfSubAffByMonth), format(data.NoOfSubAffTotal))}
                 {this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
                 {this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
@@ -107,7 +107,7 @@ export class Content extends PureComponent {
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
                         (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
-                            {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
+                            {format(data.UniqueClickPCByMonth)}/{format(data.TotalClickPCByMonth)}
                         </a>),
                         resource.NA)
                 }

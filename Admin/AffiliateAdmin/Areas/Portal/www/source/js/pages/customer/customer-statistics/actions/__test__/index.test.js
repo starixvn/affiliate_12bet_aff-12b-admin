@@ -22,21 +22,21 @@ describe('customer statistics actions', () => {
     it('should create action to fetchData with correct parameter', async () => {
         const expectedResponse = {
             data: {
-                ActivePlayerByMonth: 0,
+                ActivePlayersByMonth: 0,
                 DepositByMonth: 0,
                 DepositTotal: 951.435,
-                NewFdmByMonth: 0,
-                NewFdmTotal: 1829,
-                NewSignUpByMonth: 0,
-                NewSignUpTotal: 3742,
+                FdmByMonth: 0,
+                FdmTotal: 1829,
+                SignupsByMonth: 0,
+                SignupsTotal: 3742,
                 TotalClickByMonth: 0,
                 TotalClickMobileByMonth: 0,
-                TotalClickPcLaptopByMonth: 0,
+                TotalClickPCByMonth: 0,
                 TurnoverByMonth: 0,
                 TurnoverTotal: 1061706.9773,
                 UniqueClickByMonth: 0,
                 UniqueClickMobileByMonth: 0,
-                UniqueClickPcLaptopByMonth: 0,
+                UniqueClickPCByMonth: 0,
                 GgrByMonth: 0,
                 GgrTotal: -42950.0237
             },

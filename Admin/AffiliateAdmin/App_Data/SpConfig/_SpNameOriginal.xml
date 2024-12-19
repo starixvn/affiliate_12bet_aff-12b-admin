@@ -15,6 +15,12 @@
       <Mapping DataField="NoSiteDesc" ObjectProperty="NoSiteDescription" />
       <Mapping DataField="BankSwiftCode" ObjectProperty="BankCode" />
       <Mapping DataField="BankAccountNo" ObjectProperty="BankAccountNumber" />
+      <Mapping DataField="IsPrivate" ObjectProperty="IsUsingPrivateCommGroup" />
+      <Mapping DataField="GroupName" ObjectProperty="CommGroupName" />
+      <Mapping DataField="BalBroughtForward" ObjectProperty="BalanceBf" />
+      <Mapping DataField="Dep_IsDeductedPercent" ObjectProperty="IsDepositFeePercent" />
+      <Mapping DataField="Wit_IsDeductedPercent" ObjectProperty="IsWithdrawalFeePercent" />
+      <Mapping DataField="DisabledTransfer" ObjectProperty="IsDisabledTransfer" />
     </Setting>
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="" />
     <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="" />
@@ -103,7 +109,9 @@
     <Setting Key="Aff_Admin_AffiliateAffType_Upd" SpName="Aff_Admin_AffiliateAffType_Upd" DbName="" />
     <Setting Key="Aff_Admin_AffiliateInfo_Upd" SpName="Aff_Admin_AffiliateInfo_Upd" DbName="" />
     <Setting Key="Aff_SubAffiliate_Commission_Sel" SpName="Aff_SubAffiliate_Commission_Sel" DbName="" />
-    <Setting Key="Aff_Admin_TransferLimit_Sel" SpName="Aff_Admin_TransferLimit_Sel" DbName="" />
+    <Setting Key="Aff_Admin_TransferLimit_Sel" SpName="Aff_Admin_TransferLimit_Sel" DbName="" >
+      <Mapping DataField="DisabledTransfer" ObjectProperty="IsDisabledTransfer" />
+    </Setting>
     <Setting Key="Aff_Admin_TransferLimit_Upd" SpName="Aff_Admin_TransferLimit_Upd" DbName="" />
   </Function>
   <Function Name="MediaGallery">

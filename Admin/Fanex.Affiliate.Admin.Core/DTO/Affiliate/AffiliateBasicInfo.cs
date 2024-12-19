@@ -43,9 +43,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public int PlayerCustId { get; set; }
 
-        [JsonIgnore]
-        public bool IsPrivate { get; set; }
-
-        public bool IsUsingPrivateCommGroup => IsPrivate;
+        public bool IsUsingPrivateCommGroup { get; set; }
     }
 }

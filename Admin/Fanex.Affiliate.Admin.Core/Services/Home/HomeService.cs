@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.Criterias.Home;
+﻿using Fanex.Affiliate.Admin.Core.Criterias;
+using Fanex.Affiliate.Admin.Core.Criterias.Home;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Home;
 using Fanex.Data.Repository;
@@ -33,7 +34,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 
         public GeneralInfo GetGeneralInfo()
         {
-            return _dynamicRepository.Get<GeneralInfo>(new GeneralInfoCriteria());
+            const string SpKey = "Aff_Admin_GeneralInfo_Sel";
+
+            return _dynamicRepository.Get<GeneralInfo>(new BaseCriteria(SpKey));
         }
     }
 }

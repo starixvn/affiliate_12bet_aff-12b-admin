@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.Criterias.Home;
+﻿using Fanex.Affiliate.Admin.Core.Criterias;
+using Fanex.Affiliate.Admin.Core.Criterias.Home;
 using Fanex.Affiliate.Admin.Core.DTO.Home;
 using Fanex.Affiliate.Admin.Core.Services.Home;
 using Fanex.Data.Repository;
@@ -41,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Get<GeneralInfo>(It.IsAny<GeneralInfoCriteria>())).Returns(new GeneralInfo());
+            dynamicRepository.Setup(re => re.Get<GeneralInfo>(It.IsAny<BaseCriteria>())).Returns(new GeneralInfo());
 
             // Action
             var service = new HomeService(dynamicRepository.Object);

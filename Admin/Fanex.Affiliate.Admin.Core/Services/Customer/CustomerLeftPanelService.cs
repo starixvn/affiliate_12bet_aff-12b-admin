@@ -1,43 +1,43 @@
 ﻿using Affiliate.Infrastructure.Helpers;
 using DNAide.Utils;
+using Fanex.Affiliate.Admin.Core.Commands.Customer;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.Customer;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
-using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Email;
 using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {
-    public class CustomerLeftPanelService : ICustomerLeftPanelService
+    public class CustomerLeftPanelService : BaseDynamicService, ICustomerLeftPanelService
     {
         private readonly IEmailService _emailService;
         private readonly IAffiliateService _affiliateService;
-        private readonly ICustomerLeftPanelRepository _customerLeftPanelRepository;
         private readonly IThirdPartyLicenseeService _thirdPartyLicenseeService;
 
         public CustomerLeftPanelService(
             IEmailService emailService,
             IAffiliateService affiliateService,
-            ICustomerLeftPanelRepository customerLeftPanelRepository,
-            IThirdPartyLicenseeService thirdPartyLicenseeService)
+            IDynamicRepository dynamicRepository,
+            IThirdPartyLicenseeService thirdPartyLicenseeService) : base (dynamicRepository)
         {
             _emailService = emailService;
             _affiliateService = affiliateService;
-            _customerLeftPanelRepository = customerLeftPanelRepository;
             _thirdPartyLicenseeService = thirdPartyLicenseeService;
         }
         public AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName, string accId, string accOnId, string sessionId)
         {
-            var affiliateInfo = _customerLeftPanelRepository.GetAffiliateInfoOnLeftPanel(affUserName);
+            var affiliateInfo = GetAffiliateInfoOnLeftPanel(affUserName);
             if (affiliateInfo != null)
             {
                 affiliateInfo.AffLink = GenerateUrl(affUserName, affiliateInfo.AffType, accId, accOnId, sessionId).ToString();
@@ -45,14 +45,25 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             return affiliateInfo;
         }
 
+        private AffiliateInfoOnLeftPanel GetAffiliateInfoOnLeftPanel(string affUserName)
+        {
+            var criteria = new AffiliateInfoOnLeftPanelCriteria { Username = affUserName };
+
+            return GetTData<AffiliateInfoOnLeftPanel>(criteria);
+        }
+
         public IEnumerable<OnlineList> GetOnlineList(string affUserName)
         {
-            return _customerLeftPanelRepository.GetOnlineList(affUserName);
+            var criteria = new AffiliateOnlineCriteria { Username = affUserName };
+
+            return FetchTData<OnlineList>(criteria);
         }
 
         public TransferLimitSettingInfo GetTransferLimitSetting(int affId)
         {
-            return _customerLeftPanelRepository.GetTransferLimitSetting(affId);
+            var criteria = new TransferLimitCriteria { AffId = affId };
+
+            return GetTData<TransferLimitSettingInfo>(criteria);
         }
 
         public ResultInfo UpdateTransferLimitSetting(TransferLimitSettingParam param)
@@ -66,22 +77,54 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
                 };
             }
 
-            return _customerLeftPanelRepository.UpdateTransferLimitSetting(param);
+            var command = new UpdateTransferLimitCommand {
+                AffId = param.AffId,
+                DisabledTransfer = param.DisabledTransfer,
+                TransferLimit = param.TransferLimit,
+                UserId = param.UserId,
+                Ip = param.Ip,
+            };
+
+            return ExecuteReturnResultInfo(command);
         }
 
         public ResultInfo UpdateAffType(UpdateAffTypeParam param)
         {
-            return _customerLeftPanelRepository.UpdateAffType(param);
+            var command = new UpdateAffTypeCommand
+            {
+                AffId = param.AffId,
+                AffType = param.AffType,
+                UserId = param.UserId,
+                Ip = param.Ip,
+            };
+
+            return ExecuteReturnResultInfo(command);
         }
 
         public ResultInfo UpdateLanguage(UpdateLanguageParam param)
         {
-            return _customerLeftPanelRepository.UpdateLanguage(param);
+            var command = new UpdateLanguageCommand
+            {
+                AffId = param.AffId,
+                PreferredLanguage = param.PreferredLanguage,
+                UserId = param.UserId,
+                Ip = param.Ip,
+            };
+
+            return ExecuteReturnResultInfo(command);
         }
 
         public async Task<ResultInfo> UpdateStatus(UpdateStatusParam param, AffInformationEmail emailParam)
         {
-            var result = _customerLeftPanelRepository.UpdateStatus(param);
+            var command = new UpdateStatusCommand
+            {
+                AffId = param.AffId,
+                Status = param.Status,
+                UserId = param.UserId,
+                Ip = param.Ip,
+            };
+
+            var result = ExecuteReturnResultInfo(command);
 
             if (result.IsSuccessful && string.Equals(param.Status, AffStatus.Disapproved, StringComparison.InvariantCultureIgnoreCase))
             {

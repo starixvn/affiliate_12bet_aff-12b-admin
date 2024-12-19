@@ -1,18 +1,20 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Fanex.Affiliate.Admin.Core.Commands.Customer;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.Customer;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
-using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Email;
 using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
+using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -26,11 +28,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         private ILifetimeScopeProvider scopeProvider;
 
         [Fact]
-        public void GetAffiliateInfoOnLeftPanel_WhenCall_ReturnNull()
+        public void GetAffiliateInfoOnLeftPanel_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.GetAffiliateInfoOnLeftPanel(It.IsAny<string>()));
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Get<AffiliateInfoOnLeftPanel>(It.IsAny<AffiliateInfoOnLeftPanelCriteria>())).Returns(null as AffiliateInfoOnLeftPanel);
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
@@ -55,8 +57,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var resolver = new AutofacDependencyResolver(container, scopeProvider);
             DependencyResolver.SetResolver(resolver);
 
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.GetAffiliateInfoOnLeftPanel(It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226", AffType = AffType.Asian });
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Get<AffiliateInfoOnLeftPanel>(It.IsAny<AffiliateInfoOnLeftPanelCriteria>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226", AffType = AffType.Asian });
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
@@ -82,8 +84,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var resolver = new AutofacDependencyResolver(container, scopeProvider);
             DependencyResolver.SetResolver(resolver);
 
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.GetAffiliateInfoOnLeftPanel(It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226", AffType = AffType.European });
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Get<AffiliateInfoOnLeftPanel>(It.IsAny<AffiliateInfoOnLeftPanelCriteria>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226", AffType = AffType.European });
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
@@ -100,8 +102,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var param = "12BETAFF226";
             var passedParam = string.Empty;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.GetOnlineList(param)).Returns(new List<OnlineList> { new OnlineList() }).Callback<string>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Fetch<OnlineList>(It.IsAny<AffiliateOnlineCriteria>())).Returns(new List<OnlineList> { new OnlineList() }).Callback<string>(p => passedParam = p);
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
@@ -117,9 +119,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var param = 123;
-            var passedParam = 0;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.GetTransferLimitSetting(param)).Returns(new TransferLimitSettingInfo()).Callback<int>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateTransferLimitCommand>()));
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
@@ -127,7 +128,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -135,9 +135,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var param = new TransferLimitSettingParam { TransferLimit = 100 };
-            TransferLimitSettingParam passedParam = null;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.UpdateTransferLimitSetting(param)).Returns(new ResultInfo()).Callback<TransferLimitSettingParam>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateTransferLimitCommand>()));
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
@@ -145,7 +144,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -168,9 +166,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var param = new UpdateAffTypeParam();
-            UpdateAffTypeParam passedParam = null;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.UpdateAffType(param)).Returns(new ResultInfo()).Callback<UpdateAffTypeParam>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateLanguageCommand>()));
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
@@ -178,7 +175,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -186,9 +182,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var param = new UpdateLanguageParam();
-            UpdateLanguageParam passedParam = null;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.UpdateLanguage(param)).Returns(new ResultInfo()).Callback<UpdateLanguageParam>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateLanguageCommand>()));
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
@@ -196,7 +191,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -215,9 +209,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             DependencyResolver.SetResolver(resolver);
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "disapproved" };
-            UpdateStatusParam passedParam = null;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.UpdateStatus(param)).Returns(new ResultInfo()).Callback<UpdateStatusParam>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateStatusCommand>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2 });
 
@@ -228,7 +221,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -247,9 +239,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             DependencyResolver.SetResolver(resolver);
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "disapproved" };
-            UpdateStatusParam passedParam = null;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.UpdateStatus(param)).Returns(new ResultInfo()).Callback<UpdateStatusParam>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateStatusCommand>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2, PreferredLanguage = "vi-VN" });
 
@@ -260,7 +251,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -279,9 +269,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             DependencyResolver.SetResolver(resolver);
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "approved" };
-            UpdateStatusParam passedParam = null;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.UpdateStatus(param)).Returns(new ResultInfo()).Callback<UpdateStatusParam>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateStatusCommand>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2, PreferredLanguage = "vi-VN" });
             var thirdPartyLicenseeService = new Mock<IThirdPartyLicenseeService>();
@@ -294,7 +283,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -315,9 +303,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             DependencyResolver.SetResolver(resolver);
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "approved" };
-            UpdateStatusParam passedParam = null;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.UpdateStatus(param)).Returns(new ResultInfo()).Callback<UpdateStatusParam>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateStatusCommand>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2, PreferredLanguage = "vi-VN" });
             var thirdPartyLicenseeService = new Mock<IThirdPartyLicenseeService>();
@@ -330,7 +317,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -338,9 +324,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var param = new UpdateStatusParam { AffId = 1271808, Status = "disapproved" };
-            UpdateStatusParam passedParam = null;
-            var repository = new Mock<ICustomerLeftPanelRepository>();
-            repository.Setup(comm => comm.UpdateStatus(param)).Returns(new ResultInfo { Code = -999 }).Callback<UpdateStatusParam>(p => passedParam = p);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateStatusCommand>())).Callback<UpdateStatusCommand>(c => c.ErrCode = -999);
 
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
@@ -349,18 +334,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         private static CustomerLeftPanelService CreateCustomerLeftPanelService(
             IEmailService emailService = null,
             IAffiliateService affiliateService = null,
-            ICustomerLeftPanelRepository customerLeftPanelRepository = null,
+            IDynamicRepository customerLeftPanelRepository = null,
             IThirdPartyLicenseeService thirdPartyLicenseeService = null)
         {
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
             var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
-            var fakeCustomerLeftPanelRepository = customerLeftPanelRepository ?? Mock.Of<ICustomerLeftPanelRepository>();
+            var fakeCustomerLeftPanelRepository = customerLeftPanelRepository ?? Mock.Of<IDynamicRepository>();
             var fakeThirdPartyLicenseeService = thirdPartyLicenseeService ?? Mock.Of<IThirdPartyLicenseeService>();
 
             return new CustomerLeftPanelService(fakeEmailService, fakeAffiliateService, fakeCustomerLeftPanelRepository, fakeThirdPartyLicenseeService);

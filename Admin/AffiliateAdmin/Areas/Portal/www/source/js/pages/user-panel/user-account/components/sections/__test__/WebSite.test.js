@@ -89,8 +89,8 @@ describe('user account - components - sections - WebSite', () => {
         const props = Object.assign({}, defaultProps, { moreSiteUrlsList: ["www.abc.com", "   ", "www.123.com"] });
         const result = shallow(<WebSite {...props} />);
         result.setState = jest.fn();
-        result.instance().moreSiteUrlRefs[1].current = jest.fn();
-        result.instance().moreSiteUrlRefs[1].current.focus = jest.fn();
+        result.instance().moreSiteUrlsRefs[1].current = jest.fn();
+        result.instance().moreSiteUrlsRefs[1].current.focus = jest.fn();
 
         result.instance().handleAddUrl();
 

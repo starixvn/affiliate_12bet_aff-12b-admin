@@ -11,10 +11,10 @@ export class WebSite extends PureComponent {
     constructor(props) {
         super(props);
 
-        this.moreSiteUrlRefs = [];
+        this.moreSiteUrlsRefs = [];
 
         for (let _siteUrl of this.props.moreSiteUrlsList) {
-            this.moreSiteUrlRefs.push(React.createRef());
+            this.moreSiteUrlsRefs.push(React.createRef());
         }
 
         this.state = {
@@ -48,11 +48,11 @@ export class WebSite extends PureComponent {
         const findIndex = newMoreSiteUrlsList.indexOf('');
 
         if (findIndex === -1) {
-            this.moreSiteUrlRefs.push(React.createRef());
+            this.moreSiteUrlsRefs.push(React.createRef());
             moreSiteUrlsList.push('');
             this.props.setMoreSiteUrlsList(moreSiteUrlsList);
         } else {
-            this.moreSiteUrlRefs[findIndex].current.focus();
+            this.moreSiteUrlsRefs[findIndex].current.focus();
             this.setState({ messageNotification: `Please input Website URL ${findIndex + 2}` });
         }
     }
@@ -60,7 +60,7 @@ export class WebSite extends PureComponent {
     handleDeleteUrl = (siteIndex) => {
         const { moreSiteUrlsList } = this.props;
         moreSiteUrlsList.splice(siteIndex, 1);
-        this.moreSiteUrlRefs.splice(siteIndex, 1);
+        this.moreSiteUrlsRefs.splice(siteIndex, 1);
 
         this.props.setMoreSiteUrlsList(moreSiteUrlsList);
     }
@@ -84,7 +84,7 @@ export class WebSite extends PureComponent {
                             <FormGroup row key={`siteUrl${index} ${123}`}>
                                 <Label for={`${index}`} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6}>
-                                    <input className="form-control" disabled={!hasWebSite} name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlRefs[index]} />
+                                    <input className="form-control" disabled={!hasWebSite} name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlsRefs[index]} />
                                 </Col>
                                 <Button outline color="danger" disabled={!hasWebSite} className="mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>

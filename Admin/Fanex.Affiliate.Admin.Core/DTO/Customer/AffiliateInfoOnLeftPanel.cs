@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
         public string SiteUrl { get; set; }
 
 
-        public string MoreSiteUrl { get; set; }
+        public string MoreSiteUrls { get; set; }
 
         public string NoSiteDescription { get; set; }
 

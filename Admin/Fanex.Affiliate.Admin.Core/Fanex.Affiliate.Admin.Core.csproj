@@ -216,6 +216,10 @@
     <Compile Include="Commands\CommissionGroup\AssignCommGroupCommand.cs" />
     <Compile Include="Commands\CommissionGroup\DeleteCommGroupCommand.cs" />
     <Compile Include="Commands\CommissionGroup\UpdateCommGroupCommand.cs" />
+    <Compile Include="Commands\Customer\UpdateAffTypeCommand.cs" />
+    <Compile Include="Commands\Customer\UpdateLanguageCommand.cs" />
+    <Compile Include="Commands\Customer\UpdateStatusCommand.cs" />
+    <Compile Include="Commands\Customer\UpdateTransferLimitCommand.cs" />
     <Compile Include="Commands\Member\UpdateMemberCommand.cs" />
     <Compile Include="Commands\Message\InsertMessageCommand.cs" />
     <Compile Include="Commands\Message\DeleteMessageCommand.cs" />
@@ -299,7 +303,10 @@
     <Compile Include="Commands\CommissionGroup\InsertCommGroupCommand.cs" />
     <Compile Include="Criterias\CommissionGroup\GetCommissionGroupCriteria.cs" />
     <Compile Include="Criterias\CommissionGroup\GetNormalCommGroupCriteria.cs" />
-    <Compile Include="Criterias\Home\GeneralInfoCriteria.cs" />
+    <Compile Include="Criterias\Customer\AffiliateInfoOnLeftPanelCriteria.cs" />
+    <Compile Include="Criterias\Customer\AffiliateOnlineCriteria.cs" />
+    <Compile Include="Criterias\Customer\CustomerStatisticsCriteria.cs" />
+    <Compile Include="Criterias\Customer\TransferLimitCriteria.cs" />
     <Compile Include="Criterias\Home\UserOnlineCriteria.cs" />
     <Compile Include="Criterias\AffPagingCriteria.cs" />
     <Compile Include="Criterias\Member\MemberCriteria.cs" />
@@ -493,8 +500,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Services\Auth\IAuthService.cs" />
-    <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
-    <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
     <Compile Include="Repository\Domain\DomainRepository.cs" />
     <Compile Include="Repository\Domain\IDomainRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
