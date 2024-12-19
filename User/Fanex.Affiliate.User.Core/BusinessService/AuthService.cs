@@ -185,12 +185,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private bool IsMatchPassword(string passwordInput, string passwordFromDb)
         {
-            string encryptedPassword = _cryptographyService.EncryptPassword(passwordInput);
+            var encryptedPassword = _cryptographyService.EncryptPassword(passwordInput);
 
             return encryptedPassword.Equals(passwordFromDb);
         }
 
-        private LoginResultParam CreateLoginResultParam(UserLoginParam userParam, bool isSuccessful, int affId, string deviceInfo = null)
+        private static LoginResultParam CreateLoginResultParam(UserLoginParam userParam, bool isSuccessful, int affId, string deviceInfo = null)
         {
             return new LoginResultParam
             {

@@ -1,18 +1,21 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Data;
-using System;
-
-namespace Fanex.Affiliate.User.Core.Repository
+﻿namespace Fanex.Affiliate.User.Core.Repository
 {
+    using Criterias;
+    using Data;
+    using Data.Repository;
+    using DTO;
+    using DTO.VerificationAccount;
+    using MetalModels;
+
     public class VerificationRepository : BaseRepository, IVerificationRepository
     {
         private readonly IObjectDBBuilder _builder;
+        private readonly IDynamicRepository _repository;
 
-        public VerificationRepository(IObjectDBBuilder builder)
+        public VerificationRepository(IObjectDBBuilder builder, IDynamicRepository repository)
         {
             _builder = builder;
+            _repository = repository;
         }
 
         public ResultInfo UpdateVerificationInfo(AuthResultBaseParam param)
@@ -24,29 +27,8 @@ namespace Fanex.Affiliate.User.Core.Repository
 
         public VerificationInfo GetLoginInfoByUserDevice(int affId, string ipAddress, string deviceInfo)
         {
-            const string SpKey = "Aff_User_VerificationInfoSel";
-            VerificationInfo result = null;
-
-            using (var db = _builder.Build(SpKey))
-            {
-                db.SetParameterValue("AffId", affId);
-                db.SetParameterValue("IpAddress", ipAddress);
-                db.SetParameterValue("DeviceInfo", deviceInfo);
-
-                using (var reader = db.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        result = new VerificationInfo
-                        {
-                            FailedLoginCount = reader["FailedLoginCount"] == DBNull.Value ? null : (byte?)reader["FailedLoginCount"],
-                            DeviceCount = Convert.ToByte(reader["DeviceCount"])
-                        };
-                    }
-                }
-
-                return result;
-            }
+            var loginInfoCriteria = new GetLoginInfoByUserDeviceCriteria(affId, ipAddress, deviceInfo);
+            return _repository.Get<VerificationInfo>(loginInfoCriteria);
         }
 
         public ResultInfo InsertUserDeviceInfo(AuthResultBaseParam param)

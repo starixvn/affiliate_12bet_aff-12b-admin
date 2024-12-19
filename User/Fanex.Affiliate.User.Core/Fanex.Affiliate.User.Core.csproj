@@ -205,6 +205,13 @@
   <ItemGroup>
     <Compile Include="Apis\ILicenseeApi.cs" />
     <Compile Include="Apis\ITokenApi.cs" />
+    <Compile Include="Commands\BaseNonQueryCommand.cs" />
+    <Compile Include="Commands\Auth\CheckInCommand.cs" />
+    <Compile Include="Commands\Auth\RecheckinCommand.cs" />
+    <Compile Include="Criterias\Verification\GetLoginInfoByUserDeviceCriteria.cs" />
+    <Compile Include="Criterias\Auth\GetSessionIdCriteria.cs" />
+    <Compile Include="Criterias\Auth\GetUserInfoCriteria.cs" />
+    <Compile Include="Commands\Auth\UpdateLoginResultCommand.cs" />
     <Compile Include="DTO\Apis\TokenInfo.cs" />
     <Compile Include="BusinessService\AccountService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
@@ -321,9 +328,12 @@
     <Compile Include="Repository\UserPanel\ICurrencyRepository.cs" />
     <Compile Include="Repository\UserPanel\IMarketingRepository.cs" />
     <Compile Include="Repository\UserPanel\MarketingRepository.cs" />
+    <Compile Include="Utilities\DbSettingHelper.cs" />
     <Compile Include="Utilities\CurrencyHelper.cs" />
     <Compile Include="Utilities\FileSystem.cs" />
     <Compile Include="Utilities\IFileSystem.cs" />
+    <Compile Include="Extensions\Mappers\CheckInExtension.cs" />
+    <Compile Include="Extensions\Mappers\UpdateLoginResultExtension.cs" />
     <Compile Include="Utilities\MarketingHelper.cs" />
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\BreadcumViewModel.cs" />

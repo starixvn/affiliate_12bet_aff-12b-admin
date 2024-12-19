@@ -1,123 +1,62 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Auth;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Common.Extensions;
-using Fanex.Data;
-using System;
-
-namespace Fanex.Affiliate.User.Core.Repository
+﻿namespace Fanex.Affiliate.User.Core.Repository
 {
-    public class AuthRepository : BaseRepository, IAuthRepository
-    {
-        private readonly IObjectDBBuilder _builder;
+    using Commands;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using DTO.Auth;
+    using Extensions.Mappers;
+    using MetalModels;
 
-        public AuthRepository(IObjectDBBuilder builder)
+    public class AuthRepository : IAuthRepository
+    {
+        private readonly IDynamicRepository _repository;
+
+        public AuthRepository(IDynamicRepository repository)
         {
-            _builder = builder;
+            _repository = repository;
         }
 
         public int GetOnUserId(OnUserIdParam onUserIdParam)
         {
-            const string spKey = "Aff_CheckIn";
-            var dbMode = onUserIdParam.IsInternal ? DBMode.View : DBMode.Main;
+            var command = new CheckInCommand();
+            command.Map(onUserIdParam);
 
-            using (var objectDb = _builder.Build(spKey, dbMode))
-            {
-                objectDb.ExecuteNonQuery(onUserIdParam);
-            }
+            _repository.Execute(command);
 
-            return onUserIdParam.On_UserId;
+            return command.On_UserId;
         }
 
         public AuthorizedUserInfo GetUserInfo(string userName, bool isInternal)
         {
-            const string spKey = "Aff_User_Login_UserInfoSel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var objectDb = _builder.Build(spKey, dbMode))
-            {
-                objectDb.SetParameterValue("UserName", userName);
-
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    return reader.Read() ? new AuthorizedUserInfo
-                    {
-                        AffId = reader.ToInt("AffId"),
-                        AffCode = reader.ToInt("AffCode"),
-                        UserName = reader.ToString("UserName"),
-                        Password = reader.ToString("Password"),
-                        GroupName = reader.ToString("GroupName"),
-                        AffType = reader.ToString("AffType"),
-                        Status = reader.ToString("Status"),
-                        PreferredLanguage = reader.ToString("PreferredLanguage"),
-                        IsMaxSubLevel = reader.ToBool("IsMaxSubLevel"),
-                        IsDepositFeePercent = reader.ToBool("Dep_IsDeductedPercent"),
-                        IsWithdrawalFeePercent = reader.ToBool("Wit_IsDeductedPercent"),
-                        DisabledTransfer = reader.ToBool("DisabledTransfer")
-                    } : null;
-                }
-            }
+            var criteria = new GetUserInfoCriteria(userName, isInternal);
+            return _repository.Get<AuthorizedUserInfo>(criteria);
         }
 
         public LoginResultInfo UpdateLoginResult(LoginResultParam loginResultParam)
         {
-            const string spKey = "Aff_User_Login_ResultUpd";
+            var command = new UpdateLoginResultCommand();
+            command.Map(loginResultParam);
+            _repository.Execute(command);
 
-            using (var objectDb = _builder.Build(spKey))
+            return new LoginResultInfo
             {
-                AssignUpdateLoginResultParam(objectDb, loginResultParam);
-                objectDb.ExecuteNonQuery();
-
-                var result = GetResultInfo(objectDb);
-
-                return new LoginResultInfo
-                {
-                    IsOk = result.IsOk,
-                    Message = result.Message
-                };
-            }
+                IsOk = command.ErrCode == 0,
+                Message = command.ErrMsg
+            };
         }
 
         public string GetSessionId(int onUserId)
         {
-            const string spKey = "Aff_SessionIdSel";
-
-            using (var objectDb = _builder.Build(spKey))
-            {
-                objectDb.SetParameterValue("OnUserId", onUserId);
-
-                return objectDb.ExecuteScalar() as string;
-            }
+            return _repository.Get<string>(new GetSessionIdCriteria(onUserId));
         }
 
         public bool Recheckin(int onUserId, bool isInternal)
         {
-            const string spKey = "Aff_Recheckin";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-            var parameterSet = new
-            {
-                On_UserId = onUserId,
-                IsKickedOut = true
-            };
+            var command = new RecheckinCommand(onUserId, isInternal);
+            _repository.Execute(command);
 
-            using (var objectDb = _builder.Build(spKey, dbMode))
-            {
-                objectDb.ExecuteNonQuery(parameterSet);
-            }
-
-            return parameterSet.IsKickedOut;
-        }
-
-        private static void AssignUpdateLoginResultParam(IObjectDb objectDb, LoginResultParam param)
-        {
-            objectDb.SetParameterValue("AffId", param.AffId);
-            objectDb.SetParameterValue("IpAddress", param.IpAddress);
-            objectDb.SetParameterValue("DeviceInfo", param.DeviceInfo);
-            objectDb.SetParameterValue("Language", param.Language);
-            objectDb.SetParameterValue("IsSuccessful", param.IsSuccessful);
-
-            AssignResultOutputParam(objectDb);
+            return command.IsKickedOut;
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Web.Compilation;
@@ -17,6 +16,7 @@ using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Caching;
 using Fanex.Caching.Memory;
+using Fanex.Data.Repository;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.NETFramework;
@@ -73,6 +73,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterInstance(new UMClientConfiguration().Initialize());
             builder.RegisterInstance<ICache>(new MemoryCache(new MemoryCacheOptions()));
             builder.RegisterInstance<ICacheService>(new CacheService());
+            builder.RegisterInstance<IDynamicRepository>(new DynamicRepository());
 
             builder.RegisterType<UMCacheService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<IPHelperImpl>().AsImplementedInterfaces().SingleInstance();
