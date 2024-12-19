@@ -51,13 +51,25 @@
     <Setting Key="Task_Aff_GetSetting" SpName="Task_Aff_GetSetting" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Info">
-    <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="PreferredLanguage" ObjectProperty="Language" />
+      <Mapping DataField="RegisteredDate" ObjectProperty="RegistrationDate" />
+      <Mapping DataField="ApprovedDate" ObjectProperty="ApprovalDate" />
+      <Mapping DataField="BFF" ObjectProperty="BalanceBf" />
+      <Mapping DataField="NoOfMember" ObjectProperty="Member" />
+      <Mapping DataField="Player_Username" ObjectProperty="PlayerUserName" />
+      <Mapping DataField="IsPrivate" ObjectProperty="IsUsingPrivateCommGroup" />
+    </Setting>
     <Setting Key="Aff_Admin_Affiliate_Favorite_Upd" SpName="Aff_Admin_Affiliate_Favorite_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Affiliate_Password_Upd" SpName="Aff_Admin_Affiliate_Password_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Payment">
-    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="Username" ObjectProperty="AffName" />
+    </Setting>
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="PreferredPayment" ObjectProperty="PaymentMethod" />
+    </Setting>
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Upd" SpName="Aff_Admin_AffiliatePaymentRequest_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_PaymentMethod_Sel" SpName="Aff_PaymentMethod_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet"/>
   </Function>

@@ -1,6 +1,8 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
+﻿using Fanex.Affiliate.Admin.Core.Commands.Affiliate;
+using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Constants.Apis;
+using Fanex.Affiliate.Admin.Core.Criterias.PaymentRequest;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Api;
@@ -8,33 +10,31 @@ using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.Exceptions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
-using Fanex.Affiliate.Admin.Core.Repository.Payment;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Email;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Data.Repository;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Payment
 {
-    public class PaymentService : IPaymentService
+    public class PaymentService : BaseDynamicService, IPaymentService
     {
-        private readonly IPaymentRequestRepository _paymentRequestRepository;
         private readonly IAffiliateService _affiliateService;
         private readonly IEmailService _emailService;
         private readonly ILicenseeService _licenseeService;
         private readonly IAppSetting _appSetting;
 
         public PaymentService(
-            IPaymentRequestRepository paymentRequestRepository,
+            IDynamicRepository dynamicRepository,
             IAffiliateService affiliateService,
             ILicenseeService licenseeService,
             IEmailService emailService,
-            IAppSetting appSetting)
+            IAppSetting appSetting) : base (dynamicRepository)
         {
-            _paymentRequestRepository = paymentRequestRepository;
             _affiliateService = affiliateService;
             _licenseeService = licenseeService;
             _emailService = emailService;
@@ -43,12 +43,29 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
         public EntityResult<PaymentRequest> GetPaymentRequestList(PaymentRequestParam param)
         {
-            return _paymentRequestRepository.GetPaymentRequestList(param);
+            var criteria = new PaymentRequestCriteria
+            {
+                SearchById = param.SearchBy,
+                Username = param.Username,
+                Status = param.Status,
+                IsGetAll = param.IsGetAll,
+                FromDate = param.FromDate,
+                ToDate = param.ToDate,
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize,
+            };
+
+            return FetchEntityResult<PaymentRequest>(criteria);
         }
 
         public PaymentRequestDetail GetPaymentRequestDetail(long transId)
         {
-            return _paymentRequestRepository.GetPaymentRequestDetail(transId);
+            var criteria = new PaymentRequestDetailCriteria
+            {
+                TransId = transId
+            };
+
+            return GetTData<PaymentRequestDetail>(criteria);
         }
 
         public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam)
@@ -144,13 +161,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
             if (paymentRequestDetail != null &&
                 string.Equals(AffStatus.Processing, paymentRequestDetail.Status, StringComparison.InvariantCultureIgnoreCase))
             {
-                param.AffId = paymentRequestDetail.AffId;
-                param.Amount = paymentRequestDetail.Amount;
-                param.TransDate = paymentRequestDetail.TransDate;
-                param.Status = param.IsApproved ? AffStatus.Approved : AffStatus.Rejected;
+                var command = new UpdatePaymentRequestCommand
+                {
+                    TransId = param.TransId,
+                    Status = param.IsApproved ? AffStatus.Approved : AffStatus.Rejected,
+                    AdminDesc = param.AdminDesc,
+                    AffDesc = param.AffDesc,
+                    UserId = param.UserId,
+                    Ip = param.Ip,
+                };
 
-                var result = _paymentRequestRepository.UpdatePaymentRequest(param);
-                return result;
+                return ExecuteReturnResultInfo(command);
             }
             return new ResultInfo { Code = ErrCode.GeneralErrorCode, Message = Lang.PaymentRequestNotValid };
         }

@@ -5,8 +5,8 @@ using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class AffiliateController : ReadOnlySessionBaseController
     {
-        private readonly IAffiliateInfoRepository _affiliateInfoRepository;
+        private readonly IAffiliateService _affiliateService;
 
         private readonly ICommGroupCommonService _commGroupCommonService;
 
@@ -27,12 +27,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         public AffiliateController(
             ISessionService sessionService,
-            IAffiliateInfoRepository affiliateInfoRepository,
+            IAffiliateService affiliateService,
             ICommGroupCommonService commGroupCommonService,
             ISystemService languageService) : base(sessionService)
         {
             _commGroupCommonService = commGroupCommonService;
-            _affiliateInfoRepository = affiliateInfoRepository;
+            _affiliateService = affiliateService;
             _languageService = languageService;
         }
 
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             if (int.TryParse(param.AffCode, out _) || string.IsNullOrEmpty(param.AffCode))
             {
                 param.UserId = SessionService.UserId;
-                var model = _affiliateInfoRepository.GetAffiliateList(param);
+                var model = _affiliateService.GetAffiliateList(param);
 
                 return GenerateJsonNetResult(model);
             }
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 AssignUserInfoParam(param);
 
-                return GenerateJsonNetResult(_affiliateInfoRepository.ToggleFavorite(param));
+                return GenerateJsonNetResult(_affiliateService.ToggleFavorite(param));
             }
 
             return GenerateErrResult("Update Favorite failed!");
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 param.Password = CryptographyHelper.Encrypt(param.Password);
                 AssignUserInfoParam(param);
 
-                return GenerateJsonNetResult(_affiliateInfoRepository.ChangePassword(param));
+                return GenerateJsonNetResult(_affiliateService.ChangePassword(param));
             }
             return GenerateErrResult("Change Password is failed!");
         }

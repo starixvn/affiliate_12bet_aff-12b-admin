@@ -33,7 +33,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         [JsonIgnore]
         public DateTime? ApprovalDate { get; set; }
 
-        public string CommissionGroup { get; set; }
+        public string GroupName { get; set; }
+
+        public string CommissionGroup => GroupName ?? "N/A";
 
         public int GroupTypeId { get; set; }
 

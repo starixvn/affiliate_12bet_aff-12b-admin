@@ -204,6 +204,9 @@
     <Compile Include="Attributes\UnauthorizedPropertyCensorAttribute.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />
     <Compile Include="Commands\Affiliate\ApproveAffCommand.cs" />
+    <Compile Include="Commands\Affiliate\ChangeAffPasswordCommand.cs" />
+    <Compile Include="Commands\Affiliate\ToggleFavoriteCommand.cs" />
+    <Compile Include="Commands\Affiliate\UpdatePaymentRequestCommand.cs" />
     <Compile Include="Commands\Auth\LoginCommand.cs" />
     <Compile Include="Commands\Auth\LoginOnUserCommand.cs" />
     <Compile Include="Commands\Auth\LogoutCommand.cs" />
@@ -288,6 +291,7 @@
     <Compile Include="Controllers\UserPanel\UserAccountController.cs" />
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
     <Compile Include="Criterias\Affiliate\AffBasicInfoCriteria.cs" />
+    <Compile Include="Criterias\Affiliate\AffiliateCriteria.cs" />
     <Compile Include="Criterias\AffPagingByDateCriteria.cs" />
     <Compile Include="Criterias\Auth\CheckUserPermissionCriteria.cs" />
     <Compile Include="Criterias\Auth\UserPermissionCriteria.cs" />
@@ -306,6 +310,8 @@
     <Compile Include="Criterias\PagingByDateCriteria.cs" />
     <Compile Include="Criterias\PagingCriteria.cs" />
     <Compile Include="Criterias\BaseCriteria.cs" />
+    <Compile Include="Criterias\PaymentRequest\PaymentRequestCriteria.cs" />
+    <Compile Include="Criterias\PaymentRequest\PaymentRequestDetailCriteria.cs" />
     <Compile Include="Criterias\UserPanel\LandingPageStatistics\BaseLandingPageStatisticsCritera.cs" />
     <Compile Include="Criterias\UserPanel\LandingPageStatistics\LandingPageStatisticsCriteria.cs" />
     <Compile Include="Criterias\UserPanel\LandingPageStatistics\LandingPageStatisticsDetailCriteria.cs" />
@@ -486,8 +492,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
-    <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Services\Auth\IAuthService.cs" />
     <Compile Include="Repository\Customer\CustomerLeftPanelRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerLeftPanelRepository.cs" />
@@ -495,8 +499,6 @@
     <Compile Include="Repository\Domain\IDomainRepository.cs" />
     <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
     <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
-    <Compile Include="Repository\Payment\IPaymentRequestRepository.cs" />
-    <Compile Include="Repository\Payment\PaymentRequestRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
     <Compile Include="Services\Auth\AuthService.cs" />
     <Compile Include="Repository\BaseRepository.cs" />

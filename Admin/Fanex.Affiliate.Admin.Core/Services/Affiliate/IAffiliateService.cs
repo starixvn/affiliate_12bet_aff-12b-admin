@@ -9,5 +9,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
         AffiliateBasicInfo GetAffiliateBasicInfo(int? affId, string affName = null);
 
         (ResultInfo, string) ApproveAffiliate(ApproveAffiliateParam param);
+
+        EntityResult<AffiliateInfo> GetAffiliateList(AffiliateInfoParam param);
+
+        ResultInfo ToggleFavorite(FavoriteParam param);
+
+        ResultInfo ChangePassword(PasswordParam param);
     }
 }

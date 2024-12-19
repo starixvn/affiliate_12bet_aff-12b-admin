@@ -1,11 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet Admin">
   <Function Name="Language">
-    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
+      <Mapping DataField="MarketName" ObjectProperty="LanguageName" />
+      <Mapping DataField="ShortedCode" ObjectProperty="ShortedLanguageCode" />
+    </Setting>
   </Function>
   <Function Name="AffiliateInformation">
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="Username" ObjectProperty="AffName" />
+      <Mapping DataField="Postal" ObjectProperty="Postcode" />
+      <Mapping DataField="NoSiteDesc" ObjectProperty="NoSiteDescription" />
+      <Mapping DataField="BankSwiftCode" ObjectProperty="BankCode" />
+      <Mapping DataField="BankAccountNo" ObjectProperty="BankAccountNumber" />
+    </Setting>
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_AffiliateOnlineList_Sel" SpName="Aff_Admin_AffiliateOnlineList_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
@@ -13,7 +23,6 @@
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Deductions_Sel" SpName="Aff_Admin_CommGroup_Deductions_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_CommGroup_Sel" SpName="Aff_CommGroup_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
@@ -23,7 +32,10 @@
     <Setting Key="Aff_Admin_CommGroup_GroupTypeSel" SpName="Aff_Admin_CommGroup_GroupTypeSel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Auth">
-    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="Host" ObjectProperty="IsHost" />
+      <Mapping DataField="FuncName" ObjectProperty="FunctionName" />
+    </Setting>
     <Setting Key="Aff_Con_CheckPermission" SpName="Aff_Con_CheckPermission" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Login" SpName="Aff_Admin_Login" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
@@ -39,13 +51,25 @@
     <Setting Key="Task_Aff_GetSetting" SpName="Task_Aff_GetSetting" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Info">
-    <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="PreferredLanguage" ObjectProperty="Language" />
+      <Mapping DataField="RegisteredDate" ObjectProperty="RegistrationDate" />
+      <Mapping DataField="ApprovedDate" ObjectProperty="ApprovalDate" />
+      <Mapping DataField="BFF" ObjectProperty="BalanceBf" />
+      <Mapping DataField="NoOfMember" ObjectProperty="Member" />
+      <Mapping DataField="Player_Username" ObjectProperty="PlayerUserName" />
+      <Mapping DataField="IsPrivate" ObjectProperty="IsUsingPrivateCommGroup" />
+    </Setting>
     <Setting Key="Aff_Admin_Affiliate_Favorite_Upd" SpName="Aff_Admin_Affiliate_Favorite_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Affiliate_Password_Upd" SpName="Aff_Admin_Affiliate_Password_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Payment">
-    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="Username" ObjectProperty="AffName" />
+    </Setting>
+    <Setting Key="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" SpName="Aff_Admin_AffiliatePaymentRequest_Detail_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="PreferredPayment" ObjectProperty="PaymentMethod" />
+    </Setting>
     <Setting Key="Aff_Admin_AffiliatePaymentRequest_Upd" SpName="Aff_Admin_AffiliatePaymentRequest_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_PaymentMethod_Sel" SpName="Aff_PaymentMethod_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet"/>
   </Function>
@@ -57,8 +81,14 @@
   <Function Name="Customer">
     <Setting Key="Aff_Admin_PlayersDetail_Sel" SpName="Aff_Admin_PlayersDetail_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Member_Sel" SpName="Aff_Admin_Member_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_AffiliateNote_Sel" SpName="Aff_Admin_AffiliateNote_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_AffiliateNote_Detail_Sel" SpName="Aff_Admin_AffiliateNote_Detail_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_AffiliateNote_Sel" SpName="Aff_Admin_AffiliateNote_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="UpdatedName" ObjectProperty="CreatedBy" />
+      <Mapping DataField="UpdatedDate" ObjectProperty="LastModify" />
+      <Mapping DataField="Note" ObjectProperty="NoteContent" />
+    </Setting>
+    <Setting Key="Aff_Admin_AffiliateNote_Detail_Sel" SpName="Aff_Admin_AffiliateNote_Detail_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="Note" ObjectProperty="NoteContent" />
+    </Setting>
     <Setting Key="Aff_Admin_AffiliateNote_Ins" SpName="Aff_Admin_AffiliateNote_Ins" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_AffiliateNote_Upd" SpName="Aff_Admin_AffiliateNote_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
@@ -88,7 +118,10 @@
     <Setting Key="Aff_Admin_Banner_Upd" SpName="Aff_Admin_Banner_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Banner_Del" SpName="Aff_Admin_Banner_Del" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_AffTypeSel" SpName="Aff_AffTypeSel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_AffTypeSel" SpName="Aff_AffTypeSel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="TypeId" ObjectProperty="AffTypeId" />
+      <Mapping DataField="TypeName" ObjectProperty="AffTypeName" />
+    </Setting>
   </Function>
   <Function Name="Message">
     <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
@@ -97,7 +130,10 @@
     <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Member">
-    <Setting Key="Aff_Admin_MemberList_Sel" SpName="Aff_Admin_MemberList_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_MemberList_Sel" SpName="Aff_Admin_MemberList_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="CustID" ObjectProperty="MemberId" />
+      <Mapping DataField="AffUserName" ObjectProperty="AffName" />
+    </Setting>
     <Setting Key="Aff_Admin_Player_Sel" SpName="Aff_Admin_Player_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Member_RemoveStatus_Upd" SpName="Aff_Admin_Member_RemoveStatus_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
@@ -140,7 +176,9 @@
     <Setting Key="Aff_Con_Batch_AdminPolicySel" SpName="Aff_Con_Batch_AdminPolicySel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Home">
-    <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_UserOnlineList" SpName="Aff_UserOnlineList" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="RoleName" ObjectProperty="Role" />
+    </Setting>
     <Setting Key="Aff_Admin_GeneralInfo_Sel" SpName="Aff_Admin_GeneralInfo_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Currency">
