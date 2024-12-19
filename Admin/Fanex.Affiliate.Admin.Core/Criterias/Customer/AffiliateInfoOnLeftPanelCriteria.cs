@@ -1,5 +1,4 @@
 ﻿using Fanex.Data.Repository;
-using System;
 
 namespace Fanex.Affiliate.Admin.Core.Criterias.Customer
 {

@@ -22,7 +22,7 @@ describe('administrator - common components - EditPolicyForm - connect', () => {
         const expectedActionCreator = {
             getRolePolicy: actions['getRolePolicy'],
             getAccountPolicyList: actions['getAccountPolicyList'],
-            getPolicyListByGroupIds: actions['getPolicyListByGroupIds'],
+            getPolicyListByAccountIds: actions['getPolicyListByAccountIds'],
             updateAccountPolicy: actions['updateAccountPolicy'],
             updateRolePolicy: actions['updateRolePolicy']
         }

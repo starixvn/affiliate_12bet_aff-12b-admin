@@ -3,14 +3,10 @@ using Fanex.Affiliate.Admin.Core.Criterias.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Affiliate;
-using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
-using Fanex.Data;
 using Fanex.Data.Repository;
 using Moq;
-using NSubstitute;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Xunit;
 

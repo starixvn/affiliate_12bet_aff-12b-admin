@@ -1,13 +1,10 @@
-﻿using Fanex.Affiliate.Admin.Core.Criterias;
-using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.StatementHistory;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.StatementHistory;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Data.Repository;
 using Moq;
-using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;

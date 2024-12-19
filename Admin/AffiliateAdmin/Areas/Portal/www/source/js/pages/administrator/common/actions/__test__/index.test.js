@@ -161,7 +161,7 @@ describe('administrator - common actions', () => {
     })
 
     it('should create action to getAccountPolicyList with update successfully', async () => {
-        const expectedResponse = { data: [{ FunctionId: 100000034, Policy: 1, GroupPolicy: 3 }], status: 200 };
+        const expectedResponse = { data: [{ FuncId: 100000034, Policy: 1, GPolicy: 3 }], status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
             GroupId: 123
@@ -200,7 +200,7 @@ describe('administrator - common actions', () => {
     })
 
     it('should create action to getRolePolicy with update successfully', async () => {
-        const expectedResponse = { data: [{ FunctionId: 100000034, Policy: 3 }], status: 200 };
+        const expectedResponse = { data: [{ FuncId: 100000034, Policy: 3 }], status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
             GroupId: 123
@@ -235,16 +235,16 @@ describe('administrator - common actions', () => {
         expect(result).toEqual({ data: [], checkedPolicies: {} });
     })
 
-    it('should create action to getPolicyListByGroupIds with update successfully', async () => {
-        const expectedResponse = { data: [{ FunctionId: 100000034, Policy: 1, GroupPolicy: 3 }], status: 200 };
+    it('should create action to getPolicyListByAccountIds with update successfully', async () => {
+        const expectedResponse = { data: [{ FuncId: 100000034, Policy: 1, GPolicy: 3 }], status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
             GroupIds: '123,234'
         };
 
-        const result = await actions['getPolicyListByGroupIds'](param)();
+        const result = await actions['getPolicyListByAccountIds'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Administrator/GetPolicyListByGroupIds', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Administrator/GetPolicyListByAccountIds', param);
 
         expect(result).toEqual({
             data: expectedResponse.data, checkedPolicies: {
@@ -262,15 +262,15 @@ describe('administrator - common actions', () => {
         });
     })
 
-    it('should create action to getPolicyListByGroupIds with update is failed', async () => {
+    it('should create action to getPolicyListByAccountIds with update is failed', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
             GroupIds: '123,234'
         };
 
-        const result = await actions['getPolicyListByGroupIds'](param)();
+        const result = await actions['getPolicyListByAccountIds'](param)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Administrator/GetPolicyListByGroupIds', param);
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Administrator/GetPolicyListByAccountIds', param);
         expect(result).toEqual({ data: [], checkedPolicies: {} });
     })
 

@@ -36,16 +36,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetAccountPolicyList(int groupId)
+        public ActionResult GetAccountPolicyList(int accountId)
         {
-            return GenerateJsonNetResult(_administratorService.GetAccountPolicyList(groupId));
+            return GenerateJsonNetResult(_administratorService.GetAccountPolicyList(accountId));
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetPolicyListByGroupIds(string groupIds)
+        public ActionResult GetPolicyListByAccountIds(string accountIds)
         {
-            return GenerateJsonNetResult(_administratorService.GetPolicyListByGroupIds(groupIds));
+            return GenerateJsonNetResult(_administratorService.GetPolicyListByAccountIds(accountIds));
         }
 
         [HttpPost]

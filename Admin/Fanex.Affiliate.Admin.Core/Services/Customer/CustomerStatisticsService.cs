@@ -2,7 +2,6 @@
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Data.Repository;
-using System;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Customer
 {

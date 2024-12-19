@@ -214,38 +214,38 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Administrator
         public void GetAccountPolicyList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var groupId = 123;
+            var accountId = 123;
             int passedParam = 0;
             var administratorService = new Mock<IAdministratorService>();
-            administratorService.Setup(t => t.GetAccountPolicyList(groupId)).Returns(new List<PolicyInfo> { new PolicyInfo { FunctionId = 123 } }).Callback<int>(p => passedParam = p);
+            administratorService.Setup(t => t.GetAccountPolicyList(accountId)).Returns(new List<PolicyInfo> { new PolicyInfo { FuncId = 123 } }).Callback<int>(p => passedParam = p);
             var controller = CreateAdministratorController(administratorService: administratorService.Object);
 
             // Action
-            var result = controller.GetAccountPolicyList(groupId) as JsonNetResult;
+            var result = controller.GetAccountPolicyList(accountId) as JsonNetResult;
             var data = result.Data as List<PolicyInfo>;
 
             // Assert
             Assert.Single(data);
-            Assert.Equal(groupId, passedParam);
+            Assert.Equal(accountId, passedParam);
         }
 
         [Fact]
-        public void GetPolicyListByGroupIds_WhenCall_ReturnCorrectData()
+        public void GetPolicyListByAccountIds_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var groupIds = "123";
+            var accountIds = "123";
             var passedParam = string.Empty;
             var administratorService = new Mock<IAdministratorService>();
-            administratorService.Setup(t => t.GetPolicyListByGroupIds(groupIds)).Returns(new List<PolicyInfo> { new PolicyInfo { FunctionId = 123 } }).Callback<string>(p => passedParam = p);
+            administratorService.Setup(t => t.GetPolicyListByAccountIds(accountIds)).Returns(new List<PolicyInfo> { new PolicyInfo { FuncId = 123 } }).Callback<string>(p => passedParam = p);
             var controller = CreateAdministratorController(administratorService: administratorService.Object);
 
             // Action
-            var result = controller.GetPolicyListByGroupIds(groupIds) as JsonNetResult;
+            var result = controller.GetPolicyListByAccountIds(accountIds) as JsonNetResult;
             var data = result.Data as List<PolicyInfo>;
 
             // Assert
             Assert.Single(data);
-            Assert.Equal(groupIds, passedParam);
+            Assert.Equal(accountIds, passedParam);
         }
 
         [Fact]

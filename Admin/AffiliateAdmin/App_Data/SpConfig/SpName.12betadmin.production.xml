@@ -167,17 +167,27 @@
     <Setting Key="Aff_Admin_SubAffiliateDomain_Del" SpName="Aff_Admin_SubAffiliateDomain_Del" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Administrator">
-    <Setting Key="Aff_Con_GroupInfoSel" SpName="Aff_Con_GroupInfoSel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Con_GroupInfoSel" SpName="Aff_Con_GroupInfoSel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="GroupId" ObjectProperty="DepartmentId" />
+      <Mapping DataField="GroupName" ObjectProperty="DepartmentName" />
+      <Mapping DataField="GroupDesc" ObjectProperty="Description" />
+      <Mapping DataField="NoUser" ObjectProperty="NoOfUser" />
+    </Setting>
     <Setting Key="Aff_Con_GroupInfoIns" SpName="Aff_Con_GroupInfoIns" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Con_GroupInfoUpd" SpName="Aff_Con_GroupInfoUpd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Con_GroupInfoDel" SpName="Aff_Con_GroupInfoDel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Con_GroupPolicySel" SpName="Aff_Con_GroupPolicySel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Con_GroupPolicyUpd" SpName="Aff_Con_GroupPolicyUpd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Con_AdminSelByGroupID" SpName="Aff_Con_AdminSelByGroupID" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Con_AdminSelByGroupID" SpName="Aff_Con_AdminSelByGroupID" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="CustId" ObjectProperty="UserId" />
+      <Mapping DataField="CreateDate" ObjectProperty="CreatedDate" />
+    </Setting>
     <Setting Key="Aff_Con_AdminUpdClosed" SpName="Aff_Con_AdminUpdClosed" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Con_AdminIns" SpName="Aff_Con_AdminIns" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Con_AdminInsFromExisted" SpName="Aff_Con_AdminInsFromExisted" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Con_AdminSelByCustID" SpName="Aff_Con_AdminSelByCustID" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Con_AdminSelByCustID" SpName="Aff_Con_AdminSelByCustID" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="CustId" ObjectProperty="UserId" />
+    </Setting>
     <Setting Key="Aff_Con_AdminUpd" SpName="Aff_Con_AdminUpd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Con_AdminPolicySelByCustID" SpName="Aff_Con_AdminPolicySelByCustID" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Con_AdminPolicyUpd" SpName="Aff_Con_AdminPolicyUpd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />

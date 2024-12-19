@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Administrator
 {
@@ -13,7 +12,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Administrator
 
         public string LastName { get; set; }
 
-        public bool IsOpen { get; set; }
+        public bool Closed { get; set; }
+
+        public bool IsOpen => !Closed;
 
         public string Creator { get; set; }
 

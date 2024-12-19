@@ -5,23 +5,23 @@ import { shallow } from 'enzyme';
 describe('administrator - common - components - EditPolicyForm ', () => {
     const gridData = [
         {
-            FunctionDescription: "User Control",
-            FunctionId: 21,
-            GroupPolicy: 3,
+            FuncDesc: "User Control",
+            FuncId: 21,
+            GPolicy: 3,
             ParentId: 21,
             Policy: 3
         },
         {
-            FunctionDescription: "Affiliate",
-            FunctionId: 22,
-            GroupPolicy: 1,
+            FuncDesc: "Affiliate",
+            FuncId: 22,
+            GPolicy: 1,
             ParentId: 22,
             Policy: 1
         },
         {
-            FunctionDescription: "Payment",
-            FunctionId: 23,
-            GroupPolicy: 0,
+            FuncDesc: "Payment",
+            FuncId: 23,
+            GPolicy: 0,
             ParentId: 23,
             Policy: 0
         }
@@ -107,8 +107,8 @@ describe('administrator - common - components - EditPolicyForm ', () => {
     it('_handleGetPolicyList - should call getRolePolicy and setState', async () => {
         const expectResult = {
             data: {
-                FunctionDescription: "User Control",
-                FunctionId: 21,
+                FuncDesc: "User Control",
+                FuncId: 21,
                 ParentId: 21,
                 Policy: 3
             },
@@ -132,9 +132,9 @@ describe('administrator - common - components - EditPolicyForm ', () => {
     it('_handleGetPolicyList - should call getAccountPolicyList and setState', async () => {
         const expectResult = {
             data: {
-                FunctionDescription: "User Control",
-                FunctionId: 21,
-                GroupPolicy: 3,
+                FuncDesc: "User Control",
+                FuncId: 21,
+                GPolicy: 3,
                 ParentId: 21,
                 Policy: 3
             },
@@ -151,16 +151,16 @@ describe('administrator - common - components - EditPolicyForm ', () => {
 
         await instance._handleGetPolicyList(123, true, false);
 
-        expect(props.getAccountPolicyList).toHaveBeenCalledWith({ groupId: 123 });
+        expect(props.getAccountPolicyList).toHaveBeenCalledWith({ accountId: 123 });
         expect(result.setState).toHaveBeenCalledWith({ ...expectResult });
     });
 
-    it('_handleGetPolicyList - should call getPolicyListByGroupIds and setState', async () => {
+    it('_handleGetPolicyList - should call getPolicyListByAccountIds and setState', async () => {
         const expectResult = {
             data: {
-                FunctionDescription: "User Control",
-                FunctionId: 21,
-                GroupPolicy: 3,
+                FuncDesc: "User Control",
+                FuncId: 21,
+                GPolicy: 3,
                 ParentId: 21,
                 Policy: 3
             },
@@ -169,7 +169,7 @@ describe('administrator - common - components - EditPolicyForm ', () => {
                 individualPermission: { HasRead: true, HasHost: true }
             }
         }
-        const props = Object.assign({}, defaultProps, { getPolicyListByGroupIds: jest.fn(() => expectResult) });
+        const props = Object.assign({}, defaultProps, { getPolicyListByAccountIds: jest.fn(() => expectResult) });
         const result = shallow(<EditPolicyForm {...props} />);
         const instance = result.instance();
 
@@ -177,7 +177,7 @@ describe('administrator - common - components - EditPolicyForm ', () => {
 
         await instance._handleGetPolicyList('123', true, true);
 
-        expect(props.getPolicyListByGroupIds).toHaveBeenCalledWith({ groupIds: '123' });
+        expect(props.getPolicyListByAccountIds).toHaveBeenCalledWith({ accountIds: '123' });
         expect(result.setState).toHaveBeenCalledWith({ ...expectResult });
     });
 

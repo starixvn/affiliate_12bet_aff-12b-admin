@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
             IAffiliateService affiliateService,
             ILicenseeService licenseeService,
             IEmailService emailService,
-            IAppSetting appSetting) : base (dynamicRepository)
+            IAppSetting appSetting) : base(dynamicRepository)
         {
             _affiliateService = affiliateService;
             _licenseeService = licenseeService;

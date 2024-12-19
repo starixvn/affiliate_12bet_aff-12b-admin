@@ -6,7 +6,7 @@ import { Table, Button, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap'
 import { globalResource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { convertCheckedPolicies } from '../libs/services';
-import { getRolePolicy, getAccountPolicyList, getPolicyListByGroupIds, updateAccountPolicy, updateRolePolicy } from '../actions/index';
+import { getRolePolicy, getAccountPolicyList, getPolicyListByAccountIds, updateAccountPolicy, updateRolePolicy } from '../actions/index';
 
 const defaultState = {
     data: null,
@@ -33,13 +33,13 @@ export class EditPolicyForm extends PureComponent {
     }
 
     _handleGetPolicyList = async (selectedId, isAccountPolicy, isGetByIdList) => {
-        var result = isAccountPolicy ? (isGetByIdList ? await this.props.getPolicyListByGroupIds({ groupIds: selectedId }) : await this.props.getAccountPolicyList({ groupId: selectedId }))
+        var result = isAccountPolicy ? (isGetByIdList ? await this.props.getPolicyListByAccountIds({ accountIds: selectedId }) : await this.props.getAccountPolicyList({ accountId: selectedId }))
             : await this.props.getRolePolicy({ departmentId: selectedId });
 
         this.setState({ ...result });
     }
 
-    _handleChange = (event, funcId, isGroupPolicy) => {
+    _handleChange = (event, funcId, isGPolicy) => {
         const { name, checked } = event.target;
         const { checkedPolicies } = this.state;
         const { individualPermission, groupPermission } = checkedPolicies[funcId];
@@ -54,12 +54,12 @@ export class EditPolicyForm extends PureComponent {
             newPolicy = { HasHost: true, HasRead: true };
         }
 
-        const newPermission = Object.assign({}, isGroupPolicy ? groupPermission : individualPermission, newPolicy);
+        const newPermission = Object.assign({}, isGPolicy ? groupPermission : individualPermission, newPolicy);
 
         const newCheckedPolicies = Object.assign({}, checkedPolicies, {
             [funcId]: {
-                individualPermission: isGroupPolicy ? individualPermission : newPermission,
-                groupPermission: isGroupPolicy ? newPermission : groupPermission
+                individualPermission: isGPolicy ? individualPermission : newPermission,
+                groupPermission: isGPolicy ? newPermission : groupPermission
             }
         });
 
@@ -155,8 +155,8 @@ export class EditPolicyForm extends PureComponent {
     }
 
     _buildDataRow(dataItem, checkedPolicies, isAccountPolicy) {
-        const funcDescription = htmlDecode(dataItem.FunctionDescription);
-        const { individualPermission, groupPermission } = checkedPolicies[dataItem.FunctionId];
+        const funcDescription = htmlDecode(dataItem.FuncDesc);
+        const { individualPermission, groupPermission } = checkedPolicies[dataItem.FuncId];
 
         return (
             <tr key={`dataRow-${funcDescription}`}>
@@ -165,18 +165,18 @@ export class EditPolicyForm extends PureComponent {
                     isAccountPolicy && (
                         <React.Fragment>
                             <td className="text-center">
-                                <input type="checkbox" name="HasRead" onChange={(e) => this._handleChange(e, dataItem.FunctionId, false)} checked={individualPermission.HasRead} />
+                                <input type="checkbox" name="HasRead" onChange={(e) => this._handleChange(e, dataItem.FuncId, false)} checked={individualPermission.HasRead} />
                             </td>
                             <td className="text-center">
-                                <input type="checkbox" name="HasHost" onChange={(e) => this._handleChange(e, dataItem.FunctionId, false)} checked={individualPermission.HasHost} />
+                                <input type="checkbox" name="HasHost" onChange={(e) => this._handleChange(e, dataItem.FuncId, false)} checked={individualPermission.HasHost} />
                             </td>
                         </ React.Fragment>)
                 }
                 <td className="text-center">
-                    <input type="checkbox" name="HasRead" disabled={isAccountPolicy} onChange={(e) => this._handleChange(e, dataItem.FunctionId, true)} checked={groupPermission.HasRead} />
+                    <input type="checkbox" name="HasRead" disabled={isAccountPolicy} onChange={(e) => this._handleChange(e, dataItem.FuncId, true)} checked={groupPermission.HasRead} />
                 </td>
                 <td className="text-center">
-                    <input type="checkbox" name="HasHost" disabled={isAccountPolicy} onChange={(e) => this._handleChange(e, dataItem.FunctionId, true)} checked={groupPermission.HasHost} />
+                    <input type="checkbox" name="HasHost" disabled={isAccountPolicy} onChange={(e) => this._handleChange(e, dataItem.FuncId, true)} checked={groupPermission.HasHost} />
                 </td>
             </tr>
         )
@@ -220,7 +220,7 @@ export class EditPolicyForm extends PureComponent {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getRolePolicy, getAccountPolicyList, getPolicyListByGroupIds, updateAccountPolicy, updateRolePolicy }, dispatch);
+    return bindActionCreators({ getRolePolicy, getAccountPolicyList, getPolicyListByAccountIds, updateAccountPolicy, updateRolePolicy }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(EditPolicyForm);

@@ -199,7 +199,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Administrator
             var selectedDepartmentId = 123;
             int passedParam = 0;
             var departmentService = new Mock<IDepartmentService>();
-            departmentService.Setup(t => t.GetRolePolicy(selectedDepartmentId)).Returns(new List<PolicyInfo> { new PolicyInfo { FunctionId = 123 } }).Callback<int>(p => passedParam = p);
+            departmentService.Setup(t => t.GetRolePolicy(selectedDepartmentId)).Returns(new List<PolicyInfo> { new PolicyInfo { FuncId = 123 } }).Callback<int>(p => passedParam = p);
             var controller = CreateDepartmentController(departmentService: departmentService.Object);
 
             // Action

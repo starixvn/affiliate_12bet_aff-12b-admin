@@ -7,10 +7,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Administrator
 
         public int Policy { get; set; }
 
-        public int FunctionId { get; set; }
+        public int FuncId { get; set; }
 
-        public string FunctionDescription { get; set; }
+        public string FuncDesc { get; set; }
 
-        public byte GroupPolicy { get; set; }
+        public byte GPolicy { get; set; }
     }
 }

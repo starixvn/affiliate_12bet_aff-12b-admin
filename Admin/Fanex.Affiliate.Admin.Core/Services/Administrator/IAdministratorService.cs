@@ -7,9 +7,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
 {
     public interface IAdministratorService
     {
-        IEnumerable<PolicyInfo> GetAccountPolicyList(int groupId);
+        IEnumerable<PolicyInfo> GetAccountPolicyList(int accountId);
 
-        IEnumerable<PolicyInfo> GetPolicyListByGroupIds(string groupIds);
+        IEnumerable<PolicyInfo> GetPolicyListByAccountIds(string accountIds);
 
         IEnumerable<AdministratorInfo> GetUserList(int groupId, string userName, string firstLetter);
 

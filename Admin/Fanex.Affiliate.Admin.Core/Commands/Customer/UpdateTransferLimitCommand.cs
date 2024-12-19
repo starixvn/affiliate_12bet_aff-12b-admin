@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fanex.Affiliate.Admin.Core.Commands.Customer
+﻿namespace Fanex.Affiliate.Admin.Core.Commands.Customer
 {
     public class UpdateTransferLimitCommand : BaseAffNonQueryCommand
     {

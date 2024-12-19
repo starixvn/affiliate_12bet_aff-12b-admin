@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
             IEmailService emailService,
             IAffiliateService affiliateService,
             IDynamicRepository dynamicRepository,
-            IThirdPartyLicenseeService thirdPartyLicenseeService) : base (dynamicRepository)
+            IThirdPartyLicenseeService thirdPartyLicenseeService) : base(dynamicRepository)
         {
             _emailService = emailService;
             _affiliateService = affiliateService;
@@ -77,7 +77,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
                 };
             }
 
-            var command = new UpdateTransferLimitCommand {
+            var command = new UpdateTransferLimitCommand
+            {
                 AffId = param.AffId,
                 DisabledTransfer = param.DisabledTransfer,
                 TransferLimit = param.TransferLimit,

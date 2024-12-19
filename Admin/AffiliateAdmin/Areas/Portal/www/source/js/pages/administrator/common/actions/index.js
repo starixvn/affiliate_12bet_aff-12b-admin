@@ -62,8 +62,8 @@ export const getRolePolicy = (param) => async () => {
     return { data: data ? data : [], checkedPolicies };
 }
 
-export const getPolicyListByGroupIds = (param) => async () => {
-    const url = 'Portal/Administrator/GetPolicyListByGroupIds';
+export const getPolicyListByAccountIds = (param) => async () => {
+    const url = 'Portal/Administrator/GetPolicyListByAccountIds';
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -95,15 +95,15 @@ function _convertCheckedUsers(dataList) {
 function _convertCheckedAccountPolicy(dataList) {
     const checkedPolicies = {};
     for (let item of dataList) {
-        const itemId = item.FunctionId;
+        const itemId = item.FuncId;
         checkedPolicies[itemId] = {
             individualPermission: {
                 HasRead: !!item.Policy,
                 HasHost: item.Policy === 3
             },
             groupPermission: {
-                HasRead: !!item.GroupPolicy,
-                HasHost: item.GroupPolicy === 3
+                HasRead: !!item.GPolicy,
+                HasHost: item.GPolicy === 3
             }
         };
     }
@@ -114,7 +114,7 @@ function _convertCheckedAccountPolicy(dataList) {
 function _convertCheckedRolePolicy(dataList) {
     const checkedPolicies = {};
     for (let item of dataList) {
-        const itemId = item.FunctionId;
+        const itemId = item.FuncId;
         checkedPolicies[itemId] = {
             individualPermission: {},
             groupPermission: {
