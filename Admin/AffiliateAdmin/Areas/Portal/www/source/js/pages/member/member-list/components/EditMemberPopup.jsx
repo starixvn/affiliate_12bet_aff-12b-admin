@@ -64,7 +64,7 @@ export class EditMemberPopup extends PureComponent {
             return isInclude ? `The report will include data from 01/${monthName} to ${now.getDate()}/${monthName}` : `The report will exclude data from 01/${monthName}`;
         }
 
-        return `The report will include data from 01/${isInclude ? monthName : monthNames[month + 1]}`;
+        return `The report will include data from 01/${isInclude ? monthName : monthNames[(month + 1) % 12]}`;
     }
 
     isValidData = (today, isRemoved, isInclude) => {

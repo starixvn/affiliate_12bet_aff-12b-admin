@@ -1334,9 +1334,9 @@
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.eot" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.ttf" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.woff" />
-    <Content Include="Areas\Portal\www\dist\vendors\bootstrap-manifest.json" />
     <Content Include="Areas\Portal\www\dist\vendors\moment-manifest.json" />
     <Content Include="Areas\Portal\www\dist\vendors\react-manifest.json" />
+    <Content Include="Areas\Portal\www\dist\vendors\bootstrap-manifest.json" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">

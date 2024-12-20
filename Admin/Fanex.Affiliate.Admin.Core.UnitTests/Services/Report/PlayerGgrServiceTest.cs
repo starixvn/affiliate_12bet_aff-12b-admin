@@ -1,8 +1,8 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.Report;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository.Report;
 using Fanex.Affiliate.Admin.Core.Services.Report;
+using Fanex.Data.Repository;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -18,9 +18,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             // Arrange
             var param = new PlayerGgrReportParam { ProductIds = "123", FromDate = new DateTime(2021, 09, 01), ToDate = new DateTime(2021, 09, 29) };
             PlayerGgrReportParam passedParam = null;
-            var repository = new Mock<IPlayerGgrReportRepository>();
-            repository.Setup(re => re.GetPlayerGgrReportData(param)).Returns(new EntityResult<PlayerGgrReport> { MainData = new List<PlayerGgrReport> { new PlayerGgrReport() }, TotalItem = 1 }).Callback<PlayerGgrReportParam>(p => passedParam = p);
-            var service = CreatePlayerGgrReportService(repository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+
+            dynamicRepository.Setup(r => r.FetchMultiple<dynamic, dynamic>(It.IsAny<TransferReportCriteria>())).Returns((new List<PlayerGgrReport> { new PlayerGgrReport() }, new List<PlayerGgrReport> { new PlayerGgrReport() }));
+            var service = CreatePlayerGgrReportService(dynamicRepository.Object);
 
             // Action
             var result = service.GetPlayerGgrReportData(param);
@@ -43,11 +44,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             Assert.Empty(result.MainData);
         }
 
-        private static PlayerGgrReportService CreatePlayerGgrReportService(IPlayerGgrReportRepository playerGgrReportRepository = null)
+        private static PlayerGgrReportService CreatePlayerGgrReportService(IDynamicRepository dynamicRepository = null)
         {
-            var fakePlayerGgrReportRepository = playerGgrReportRepository ?? Mock.Of<IPlayerGgrReportRepository>();
+            var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 
-            return new PlayerGgrReportService(fakePlayerGgrReportRepository);
+            return new PlayerGgrReportService(fakedynamicRepository);
         }
     }
 }

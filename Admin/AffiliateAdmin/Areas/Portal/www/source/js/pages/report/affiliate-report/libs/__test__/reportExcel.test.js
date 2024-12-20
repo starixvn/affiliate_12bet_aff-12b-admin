@@ -17,7 +17,7 @@ describe('affiliate report - Report Excel ', () => {
     const isMainView = true;
     const itemHaveDescription = {
         PlayerCurrency: "ABC",
-        ActiveMember: 0,
+        ActivePlayer: 0,
         AffAdjustment: 0,
         AffId: 927841,
         AffWithdrawal: 0,
@@ -43,7 +43,7 @@ describe('affiliate report - Report Excel ', () => {
         Withdrawal: 0,
     };
     const itemHaveNotDescription = {
-        ActiveMember: 0,
+        ActivePlayer: 0,
         AffAdjustment: 0,
         AffId: 968222,
         AffWithdrawal: 0,
@@ -324,7 +324,7 @@ describe('affiliate report - Report Excel ', () => {
             { field: "UniqueClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "Signup", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "Fdm", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
-            { field: "ActiveMember", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
+            { field: "ActivePlayer", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "NoOfSubAff", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "TotalDeposit", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "Deposit", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0.00" }, wpx: 120 },

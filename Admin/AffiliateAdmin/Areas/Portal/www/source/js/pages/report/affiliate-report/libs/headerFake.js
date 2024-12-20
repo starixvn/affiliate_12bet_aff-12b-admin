@@ -33,7 +33,7 @@ const cols = [
     new SingleHeaderColumn(reportKey.UniqueClick, headerText[reportKey.UniqueClick], true),
     new SingleHeaderColumn(reportKey.Signup, headerText[reportKey.Signup], true),
     new SingleHeaderColumn(reportKey.Fdm, headerText[reportKey.Fdm], true),
-    new SingleHeaderColumn(reportKey.ActiveMember, headerText[reportKey.ActiveMember], true),
+    new SingleHeaderColumn(reportKey.ActivePlayer, headerText[reportKey.ActivePlayer], true),
     new SingleHeaderColumn(reportKey.NoOfSubAff, headerText[reportKey.NoOfSubAff], true),
     new SingleHeaderColumn(reportKey.TotalDeposit, headerText[reportKey.TotalDeposit], true),
     new AggregateHeaderColumn(reportKey.MemberStatistics, headerText[reportKey.MemberStatistics], aggregateHeaderChildrenOfMemberStatistics),

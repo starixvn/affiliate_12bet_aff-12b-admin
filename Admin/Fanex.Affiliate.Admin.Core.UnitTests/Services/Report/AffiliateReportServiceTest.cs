@@ -1,8 +1,8 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.Report;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository.Report;
 using Fanex.Affiliate.Admin.Core.Services.Report;
+using Fanex.Data.Repository;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -17,17 +17,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
         {
             // Arrange
             var param = new AffiliateReportParam { ProductIds = "123", FromDate = new DateTime(2019, 10, 24), ToDate = new DateTime(2019, 11, 24) };
-            AffiliateReportParam passedParam = null;
-            var repository = new Mock<IAffiliateReportRepository>();
-            repository.Setup(re => re.GetMainReportData(param)).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 }).Callback<AffiliateReportParam>(p => passedParam = p);
-            var service = CreateAffiliateReportService(repository.Object);
+
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(r => r.FetchMultiple<AffiliateReport, AffiliateReport>(It.IsAny<AffiliateReportCriteria>())).Returns((new List<AffiliateReport> { new AffiliateReport() }, new List<AffiliateReport> { new AffiliateReport() }));
+            var service = CreateAffiliateReportService(dynamicRepository.Object);
 
             // Action
             var result = service.GetMainReportData(param);
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -48,25 +47,24 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
         {
             // Arrange
             var param = new AffiliateReportParam();
-            AffiliateReportParam passedParam = null;
-            var repository = new Mock<IAffiliateReportRepository>();
-            repository.Setup(re => re.GetDetailReportData(param)).Returns(new EntityResult<AffiliateReport> { MainData = new List<AffiliateReport> { new AffiliateReport() }, TotalItem = 1 }).Callback<AffiliateReportParam>(p => passedParam = p);
-            var service = CreateAffiliateReportService(repository.Object);
+
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(r => r.FetchMultiple<AffiliateReport, AffiliateReport>(It.IsAny<AffiliateReportDetailCriteria>())).Returns((new List<AffiliateReport> { new AffiliateReport() }, new List<AffiliateReport> { new AffiliateReport() }));
+            var service = CreateAffiliateReportService(dynamicRepository.Object);
 
             // Action
             var result = service.GetDetailReportData(param);
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
         public void GetReportCutOffDate_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var repository = new Mock<IAffiliateReportRepository>();
-            repository.Setup(re => re.GetReportCutOffDate()).Returns(new DateTime(2023, 11, 01));
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Get<DateTime>(It.IsAny<ReportCutOffDateCriteria>())).Returns(new DateTime(2023, 11, 01));
             var service = CreateAffiliateReportService(repository.Object);
 
             // Action
@@ -76,11 +74,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             Assert.Equal("01/11/2023", result.ToString("dd/MM/yyyy"));
         }
 
-        private static AffiliateReportService CreateAffiliateReportService(IAffiliateReportRepository affiliateReportRepository = null)
+        private static AffiliateReportService CreateAffiliateReportService(IDynamicRepository dynamicRepository = null)
         {
-            var fakeAffiliateReportRepository = affiliateReportRepository ?? Mock.Of<IAffiliateReportRepository>();
+            var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 
-            return new AffiliateReportService(fakeAffiliateReportRepository);
+            return new AffiliateReportService(fakedynamicRepository);
         }
     }
 }

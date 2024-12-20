@@ -224,9 +224,6 @@
     <Compile Include="Repository\Domain\SubAffDomainRepositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\BannerListReppositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepositoryTest.cs" />
-    <Compile Include="Repository\Report\TransferReportRepositoryTest.cs" />
-    <Compile Include="Repository\Report\PlayerGgrReportRepositoryTest.cs" />
-    <Compile Include="Repository\Report\ReportRepositoryTest.cs" />
     <Compile Include="Services\Administrator\AdministratorServiceTest.cs" />
     <Compile Include="Services\Administrator\DepartmentServiceTest.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordServiceTest.cs" />

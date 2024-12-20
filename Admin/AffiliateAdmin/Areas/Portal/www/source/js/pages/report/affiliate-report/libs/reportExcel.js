@@ -51,7 +51,7 @@ const colConfig =
         [TOTAL_SECTION_STYLE]: totalCellStyle.number,
         [COL_WIDTH]: 120
     },
-    [fields.ActiveMember]: {
+    [fields.ActivePlayer]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.number,
         [TOTAL_SECTION_STYLE]: totalCellStyle.number,
         [COL_WIDTH]: 120
@@ -299,7 +299,7 @@ export default class ReportExcel {
         const mainData = this.data.MainData;
 
         for (let item of mainData) {
-            item.CommissionRate = formatDecimal(item.CommissionRate) + '%';
+            item.CommissionRate = formatDecimal(item.CommissionRate * 100) + '%';
 
             if (!this.isMainView) {
                 const {

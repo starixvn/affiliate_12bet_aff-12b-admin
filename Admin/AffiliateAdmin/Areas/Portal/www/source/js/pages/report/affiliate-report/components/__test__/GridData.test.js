@@ -210,7 +210,7 @@ describe('affiliate report - GridData ', () => {
     it('_renderDataSection - should render correctly', () => {
         const dataList = [
             {
-                ActiveMember: 0,
+                ActivePlayer: 0,
                 AffAdjustment: 0,
                 AffId: 927841,
                 AffWithdrawal: 0,
@@ -246,7 +246,7 @@ describe('affiliate report - GridData ', () => {
     it('_renderDataSection - should render correctly with ProductIds equal allProduct', () => {
         const dataList = [
             {
-                ActiveMember: 0,
+                ActivePlayer: 0,
                 AffAdjustment: 0,
                 AffId: 927841,
                 AffWithdrawal: 0,
@@ -281,7 +281,7 @@ describe('affiliate report - GridData ', () => {
 
     it('_buildDataRow - should render correctly is Main view', () => {
         const dataItem = {
-            ActiveMember: 0,
+            ActivePlayer: 0,
             AffAdjustment: 0,
             AffId: 0,
             AffWithdrawal: 0,
@@ -317,7 +317,7 @@ describe('affiliate report - GridData ', () => {
 
     it('_buildDataRow - should render correctly is Month on Month view', () => {
         const dataItem = {
-            ActiveMember: 0,
+            ActivePlayer: 0,
             AffAdjustment: 0,
             AffId: 968222,
             AffWithdrawal: 0,
@@ -353,7 +353,7 @@ describe('affiliate report - GridData ', () => {
 
     it('_buildDataRow - should call handleViewMonthOnMonth when click button view', () => {
         const dataItem = {
-            ActiveMember: 0,
+            ActivePlayer: 0,
             AffAdjustment: 0,
             AffId: 968222,
             AffWithdrawal: 0,
@@ -413,7 +413,7 @@ describe('affiliate report - GridData ', () => {
 
     it('_buildCommonCell - should return correctly with correct paramaters', () => {
         const dataItem = {
-            ActiveMember: 0,
+            ActivePlayer: 0,
             AffAdjustment: 0,
             AffId: 968222,
             AffWithdrawal: 0,
@@ -496,7 +496,7 @@ describe('affiliate report - GridData ', () => {
         const total = 2;
         const dataList = [
             {
-                ActiveMember: 0,
+                ActivePlayer: 0,
                 AffAdjustment: 0,
                 AffId: 927841,
                 AffWithdrawal: 0,
@@ -521,7 +521,7 @@ describe('affiliate report - GridData ', () => {
                 Withdrawal: 0,
             },
             {
-                ActiveMember: 0,
+                ActivePlayer: 0,
                 AffAdjustment: 0,
                 AffId: 968222,
                 AffWithdrawal: 0,

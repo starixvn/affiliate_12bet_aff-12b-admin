@@ -108,7 +108,7 @@ export class GridData extends PureComponent {
                 {mainHeader[reportKey.UniqueClick].isShowable && (<th width={55} rowSpan="2" title={headerText.UniqueClick}>{headerText.UniqueClick}</th>)}
                 {mainHeader[reportKey.Signup].isShowable && (<th width={55} rowSpan="2" title={headerText.Signup}>{headerText.Signup}</th>)}
                 {mainHeader[reportKey.Fdm].isShowable && (<th width={55} rowSpan="2" title={headerText.Fdm}>{headerText.Fdm}</th>)}
-                {mainHeader[reportKey.ActiveMember].isShowable && (<th width={55} rowSpan="2" title={headerText.ActiveMember}>{headerText.ActiveMember}</th>)}
+                {mainHeader[reportKey.ActivePlayer].isShowable && (<th width={55} rowSpan="2" title={headerText.ActivePlayer}>{headerText.ActivePlayer}</th>)}
                 {mainHeader[reportKey.NoOfSubAff].isShowable && (<th width={65} rowSpan="2" title={headerText.NoOfSubAff}>{headerText.NoOfSubAff}</th>)}
                 {mainHeader[reportKey.TotalDeposit].isShowable && (<th width={65} rowSpan="2" title={headerText.TotalDeposit}>{headerText.TotalDeposit}</th>)}
                 {mainHeader[reportKey.MemberStatistics].isShowable && (<th colSpan={mainHeader[reportKey.MemberStatistics].totalShowableCol} height={28} title={headerText.MemberStatistics}>{headerText.MemberStatistics}</th>)}
@@ -199,7 +199,7 @@ export class GridData extends PureComponent {
         const uniqueClick = format(dataItem.UniqueClick);
         const signup = format(dataItem.Signup);
         const fdm = format(dataItem.Fdm);
-        const activeMember = format(dataItem.ActiveMember);
+        const activeMember = format(dataItem.ActivePlayer);
         const noOfSubAff = format(dataItem.NoOfSubAff);
         const totalDeposit = format(dataItem.TotalDeposit);
         const deposit = formatDecimal(dataItem.Deposit);
@@ -219,7 +219,7 @@ export class GridData extends PureComponent {
         const affAdjustment = formatDecimal(dataItem.AffAdjustment);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
         const currentBalanceBf = formatDecimal(dataItem.CurrentBBF);
-        const commRate = isTotalRow ? 'N/A' : dataItem.CommissionRate + '%';
+        const commRate = isTotalRow ? 'N/A' : (dataItem.CommissionRate * 100) + '%';
         const subAffEarning = formatDecimal(dataItem.SubAffEarning);
         const totalEarning = formatDecimal(dataItem.TotalEarning);
         const paymentCurrency = isTotalRow ? '' : dataItem.PaymentCurrency;
@@ -230,7 +230,7 @@ export class GridData extends PureComponent {
                 {header[reportKey.UniqueClick].isShowable && (<td className="text-right" title={uniqueClick}>{uniqueClick}</td>)}
                 {header[reportKey.Signup].isShowable && (<td className="text-right" title={signup}>{signup}</td>)}
                 {header[reportKey.Fdm].isShowable && (<td className="text-right" title={fdm}>{fdm}</td>)}
-                {header[reportKey.ActiveMember].isShowable && (<td className="text-right" title={activeMember}>{activeMember}</td>)}
+                {header[reportKey.ActivePlayer].isShowable && (<td className="text-right" title={activeMember}>{activeMember}</td>)}
                 {header[reportKey.NoOfSubAff].isShowable && (<td className="text-right" title={noOfSubAff}>{noOfSubAff}</td>)}
                 {header[reportKey.TotalDeposit].isShowable && (<td className="text-right" title={totalDeposit}>{totalDeposit}</td>)}
                 {header[reportKey.Deposit].isShowable && (<td className="text-right" title={deposit}>{deposit}</td>)}

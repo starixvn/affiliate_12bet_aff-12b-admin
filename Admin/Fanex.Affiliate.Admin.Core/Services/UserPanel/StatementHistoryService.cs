@@ -27,14 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 PageSize = param.PageSize,
             };
 
-            var (dataList, itemTotal) = DynamicRepository.FetchMultiple<SubAffiliate, SubAffiliate>(criteria);
-
-            return new EntityResult<SubAffiliate>
-            {
-                MainData = dataList,
-                Total = itemTotal.FirstOrDefault(),
-                TotalItem = criteria.TotalItem,
-            };
+            return FetchEntityResultHasTotalItem<SubAffiliate>(criteria);
         }
 
         public DailyEarningResult GetDailyEarning(DailyEarningParam param)

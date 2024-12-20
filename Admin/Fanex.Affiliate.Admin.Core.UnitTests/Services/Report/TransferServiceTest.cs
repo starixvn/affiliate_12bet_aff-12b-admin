@@ -1,8 +1,8 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.Report;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository.Report;
 using Fanex.Affiliate.Admin.Core.Services.Report;
+using Fanex.Data.Repository;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -17,17 +17,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
         {
             // Arrange
             var param = new TransferReportParam { TransId = "123", FromDate = new DateTime(2021, 10, 01), ToDate = new DateTime(2021, 10, 21) };
-            TransferReportParam passedParam = null;
-            var repository = new Mock<ITransferReportRepository>();
-            repository.Setup(re => re.GetTransferReportData(param)).Returns(new EntityResult<TransferReport> { MainData = new List<TransferReport> { new TransferReport() }, TotalItem = 1 }).Callback<TransferReportParam>(p => passedParam = p);
-            var service = CreateTransferReportService(repository.Object);
+            // Arrange
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(r => r.Fetch<TransferReport>(It.IsAny<TransferReportCriteria>())).Returns(new List<TransferReport> { new TransferReport() });
+            var service = CreateTransferReportService(dynamicRepository.Object);
 
             // Action
             var result = service.GetTransferReportData(param);
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -43,11 +42,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             Assert.Empty(result.MainData);
         }
 
-        private static TransferReportService CreateTransferReportService(ITransferReportRepository TransferReportRepository = null)
+        private static TransferReportService CreateTransferReportService(IDynamicRepository dynamicRepository = null)
         {
-            var fakeTransferReportRepository = TransferReportRepository ?? Mock.Of<ITransferReportRepository>();
+            var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 
-            return new TransferReportService(fakeTransferReportRepository);
+            return new TransferReportService(fakedynamicRepository);
         }
     }
 }

@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {
@@ -61,14 +62,15 @@ namespace Fanex.Affiliate.Admin.Core.Services
             };
         }
 
-        public EntityResult<T> FetchEntityResult<T>(AffPagingCriteria criteria) where T : class
+        public EntityResult<T> FetchEntityResultHasTotalItem<T>(PagingCriteria criteria) where T : class
         {
-            var dataList = _dynamicRepository.Fetch<T>(criteria);
+            var (dataList, totalItem) = _dynamicRepository.FetchMultiple<T, T>(criteria);
 
             return new EntityResult<T>
             {
                 MainData = dataList,
                 TotalItem = criteria.TotalItem,
+                Total = totalItem.FirstOrDefault()
             };
         }
     }

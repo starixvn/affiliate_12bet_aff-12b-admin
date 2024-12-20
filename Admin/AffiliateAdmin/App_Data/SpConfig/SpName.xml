@@ -50,10 +50,18 @@
     <Setting Key="Aff_Logout" SpName="Aff_Logout" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Report">
-    <Setting Key="Aff_Admin_AffiliateReport_Sel" SpName="Aff_Admin_AffiliateReport_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_AffiliateReport_Detail_Sel" SpName="Aff_Admin_AffiliateReport_Detail_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_AffiliateReport_Sel" SpName="Aff_Admin_AffiliateReport_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="BFF" ObjectProperty="BalanceBf" />
+      <Mapping DataField="CurrentBFF" ObjectProperty="CurrentBBF" />
+    </Setting>
+    <Setting Key="Aff_Admin_AffiliateReport_Detail_Sel" SpName="Aff_Admin_AffiliateReport_Detail_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="BFF" ObjectProperty="BalanceBf" />
+    </Setting>
     <Setting Key="Aff_Admin_PlayerReport_GGR" SpName="Aff_Admin_PlayerReport_GGR" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_TransferBalanceHistory_Sel" SpName="Aff_TransferBalanceHistory_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_TransferBalanceHistory_Sel" SpName="Aff_TransferBalanceHistory_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="TransTime" ObjectProperty="CreatedDate" />
+      <Mapping DataField="Currency" ObjectProperty="PlayerCurrency" />
+    </Setting>
     <Setting Key="Task_Aff_GetSetting" SpName="Task_Aff_GetSetting" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Info">
