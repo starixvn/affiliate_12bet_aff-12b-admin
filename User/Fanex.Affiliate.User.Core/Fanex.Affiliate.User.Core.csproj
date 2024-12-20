@@ -210,6 +210,7 @@
     <Compile Include="Commands\Auth\CheckInCommand.cs" />
     <Compile Include="Commands\Auth\RecheckinCommand.cs" />
     <Compile Include="Criterias\Account\GetGeneralAffInfoCriteria.cs" />
+    <Compile Include="Criterias\Language\GetLanguageListCriteria.cs" />
     <Compile Include="Criterias\SecurityQuestion\GetSecurityQuestionsCriteria.cs" />
     <Compile Include="Criterias\Verification\GetLoginInfoByUserDeviceCriteria.cs" />
     <Compile Include="Criterias\Auth\GetSessionIdCriteria.cs" />

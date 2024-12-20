@@ -2,35 +2,33 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using DTO.UserPanel.MediaGallery;
+    using Criterias;
+    using Data.Repository;
     using DTO;
+    using DTO.UserPanel.MediaGallery;
 
     public class SystemRepository : ISystemRepository
     {
-        private readonly IObjectDBBuilder _builder;
+        private readonly IDynamicRepository _repository;
 
-        public SystemRepository(IObjectDBBuilder builder)
+        public SystemRepository(IDynamicRepository repository)
         {
-            _builder = builder;
+            _repository = repository;
         }
 
         public IEnumerable<Language> GetLanguageList(bool isInternal)
         {
-            const string uSpKey = "Aff_Market_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+            var languages = _repository.Fetch<LanguageType>(new GetLanguageListCriteria(isInternal));
 
-            using (var objectDb = _builder.Build(uSpKey, dbMode))
-            {
-                return objectDb.Query<LanguageType>()
-                    .Select(l => new Language
-                    {
-                        Code = l.MarketId,
-                        DisplayName = l.DisplayName,
-                        EnglishName = l.MarketName,
-                        NativeName = l.MarketNativeName,
-                        ShortedCode = l.ShortedCode
-                    });
-            }
+            return languages
+                .Select(l => new Language
+                {
+                    Code = l.MarketId,
+                    DisplayName = l.DisplayName,
+                    EnglishName = l.MarketName,
+                    NativeName = l.MarketNativeName,
+                    ShortedCode = l.ShortedCode
+                });
         }
     }
 }
