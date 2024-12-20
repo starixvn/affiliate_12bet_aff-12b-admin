@@ -209,6 +209,11 @@
     <Compile Include="Commands\BaseNonQueryCommand.cs" />
     <Compile Include="Commands\Auth\CheckInCommand.cs" />
     <Compile Include="Commands\Auth\RecheckinCommand.cs" />
+    <Compile Include="Criterias\AccountOverview\GetLastLoginInfoCriteria.cs" />
+    <Compile Include="Criterias\AccountOverview\GetPlayerDetailListCriteria.cs" />
+    <Compile Include="Criterias\AccountOverview\GetSubAffDetailsCriteria.cs" />
+    <Compile Include="Criterias\AccountOverview\GetUserOverviewDetailListCriteria.cs" />
+    <Compile Include="Criterias\AccountOverview\GetUserOverviewSummaryCriteria.cs" />
     <Compile Include="Criterias\Account\GetGeneralAffInfoCriteria.cs" />
     <Compile Include="Criterias\Language\GetLanguageListCriteria.cs" />
     <Compile Include="Criterias\SecurityQuestion\GetSecurityQuestionsCriteria.cs" />
@@ -316,6 +321,7 @@
     <Compile Include="DTO\UserPanel\SubAffDetail.cs" />
     <Compile Include="Enum\AffiliateLinkType.cs" />
     <Compile Include="Extensions\Mappers\CreateAffiliateExtension.cs" />
+    <Compile Include="Extensions\Mappers\GetPlayerDetailListExtension.cs" />
     <Compile Include="Filters\JsonHandlerAttribute.cs" />
     <Compile Include="Infrastructure\AuthenticatedHttpClientHandler.cs" />
     <Compile Include="Infrastructure\JsonNetResult.cs" />

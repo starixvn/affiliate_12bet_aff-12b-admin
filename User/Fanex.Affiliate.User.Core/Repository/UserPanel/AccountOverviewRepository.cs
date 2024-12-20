@@ -1,68 +1,49 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using System;
-using System.Collections.Generic;
-
-namespace Fanex.Affiliate.User.Core.Repository.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
+    using System;
+    using System.Collections.Generic;
+    using Criterias;
+    using Extensions.Mappers;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
+    using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+    using Fanex.Data.Repository;
+
     public class AccountOverviewRepository : IAccountOverviewRepository
     {
-        private readonly IObjectDBBuilder _builder;
+        private readonly IDynamicRepository _repository;
 
-        public AccountOverviewRepository(IObjectDBBuilder builder)
+        public AccountOverviewRepository(IDynamicRepository repository)
         {
-            _builder = builder;
+            _repository = repository;
         }
 
         public LastLoginInfo GetLastLoginInfo(int affId)
         {
-            const string uSpKey = "Aff_User_LoginInfo_Sel";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                return db.QueryEntity<LastLoginInfo>(new { affId });
-            }
+            return _repository.Get<LastLoginInfo>(new GetLastLoginInfoCriteria(affId));
         }
 
         public IEnumerable<PlayerDetail> GetPlayerDetailList(PlayerDetailParam param)
         {
-            const string uSpKey = "Aff_User_Overview_PlayersDetail_Sel";
+            var criteria = new GetPlayerDetailListCriteria();
+            criteria.Map(param);
 
-            using (var db = _builder.Build(uSpKey))
-            {
-                return db.Query<PlayerDetail>(param);
-            }
+            return _repository.Fetch<PlayerDetail>(criteria);
         }
 
         public IEnumerable<OverviewDetail> GetUserOverviewDetailList(int affId, DateTime monthDate)
         {
-            const string uSpKey = "Aff_User_Overview_Detail_Sel";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                return db.Query<OverviewDetail>(new { affId, monthDate });
-            }
+            return _repository.Fetch<OverviewDetail>(new GetUserOverviewDetailListCriteria(affId, monthDate));
         }
 
         public OverviewSummary GetUserOverviewSummary(int affId, DateTime monthDate)
         {
-            const string uSpKey = "Aff_User_Overview_Summary_Sel";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                return db.QueryEntity<OverviewSummary>(new { affId, monthDate });
-            }
+            return _repository.Get<OverviewSummary>(new GetUserOverviewSummaryCriteria(affId, monthDate));
         }
 
         public IEnumerable<SubAffDetail> GetSubAffDetails(SubAffDetailParam param)
         {
-            const string uSpKey = "Aff_User_Overview_SubAffiliate_Sel";
-
-            using (var objectDb = _builder.Build(uSpKey))
-            {
-                return objectDb.Query<SubAffDetail>(param);
-            }
+            return _repository.Fetch<SubAffDetail>(new GetSubAffDetailsCriteria(param));
         }
     }
 }
