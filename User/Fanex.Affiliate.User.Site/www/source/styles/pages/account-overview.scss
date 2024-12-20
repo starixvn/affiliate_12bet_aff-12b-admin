@@ -99,7 +99,7 @@
                 justify-content: flex-start;
                 align-items: center;
                 height: 70px;
-                width: 680px;
+                width: 710px;
                 border-radius: 5px;
                 margin-bottom: 10px;
 
@@ -149,11 +149,15 @@
                 text-align: center;
                 color: #fff;
                 border-left: 1px solid #f9f9f9;
-                width: 310px;
+                width: 330px;
 
                 &-title {
                     width: 100%;
                     font-size: 1.5rem;
+
+                    &.vi-VN {
+                        font-size: 1.4rem;
+                    }
                 }
 
                 &-content {
@@ -343,7 +347,13 @@
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 360px) {
+    .summary-content .dashboard-section .info-panel-title.vi-VN {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 750px) {
     .account-overview {
         .summary {
             &-content {
@@ -431,7 +441,7 @@
         display: flex;
 
         & .dashboard-section-col {
-            width: 45%;
+            width: 50%;
         }
     }
 }

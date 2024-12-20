@@ -12,7 +12,7 @@ function handleSetTop() {
 
     if (isOverviewTable) {
         let headerHeight = $('#overview-table-header').height();
-        $('#overview-table-total > th').css({ top: `${SUB_MENU_HEIGHT + headerHeight}px` });
+        $('#overview-table-total > th').css({ top: `${SUB_MENU_HEIGHT + Math.ceil(headerHeight)}px` });
     }
 }
 
