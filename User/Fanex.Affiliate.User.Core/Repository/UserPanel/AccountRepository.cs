@@ -1,18 +1,23 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using System;
-
-namespace Fanex.Affiliate.User.Core.Repository.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
+    using System;
+    using Commands.Account;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using Extensions.Mappers;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel;
+    using MetalModels;
+
     public class AccountRepository : BaseRepository, IAccountRepository
     {
         private readonly IObjectDBBuilder _builder;
+        private readonly IDynamicRepository _repository;
 
-        public AccountRepository(IObjectDBBuilder builder)
+        public AccountRepository(IObjectDBBuilder builder, IDynamicRepository repository)
         {
             _builder = builder;
+            _repository = repository;
         }
 
         public AccountInformation GetAccountInfo(int affId)
@@ -103,17 +108,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public ResultInfo CreateAffiliate(UserSignUpParam signUpParam)
         {
-            const string uSpKey = "Aff_User_Affiliate_Ins";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                db.ExecuteNonQuery(signUpParam);
-            }
+            var command = new CreateAffiliateCommand();
+            command.Map(signUpParam);
+            _repository.Execute(command);
 
             return new ResultInfo
             {
-                IsOk = signUpParam.ErrCode == 0,
-                Message = signUpParam.ErrMsg
+                IsOk = command.ErrCode == 0,
+                Message = command.ErrMsg
             };
         }
 
@@ -137,14 +139,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null)
         {
-            const string uSpKey = "Aff_Get_GeneralAffInfo";
-
-            using (var objectDb = _builder.Build(uSpKey))
-            {
-                var parameterSet = new { affId, affCode };
-
-                return objectDb.QueryEntity<GeneralAffInfo>(parameterSet);
-            }
+            return _repository.Get<GeneralAffInfo>(new GetGeneralAffInfoCriteria(affId, affCode));
         }
     }
 }

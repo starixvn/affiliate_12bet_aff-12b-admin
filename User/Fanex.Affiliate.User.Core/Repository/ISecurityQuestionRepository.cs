@@ -5,6 +5,6 @@ namespace Fanex.Affiliate.User.Core.Repository
 {
     public interface ISecurityQuestionRepository
     {
-        IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false);
+        IEnumerable<SecurityQuestion> GetSecurityQuestions(string language);
     }
 }

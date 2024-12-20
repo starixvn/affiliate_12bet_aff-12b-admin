@@ -13,9 +13,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _securityQuestionRepository = securityQuestionRepository;
         }
 
-        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
+        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language)
         {
-            return _securityQuestionRepository.GetSecurityQuestions(language, isIncludeOldData);
+            return _securityQuestionRepository.GetSecurityQuestions(language);
         }
     }
 }

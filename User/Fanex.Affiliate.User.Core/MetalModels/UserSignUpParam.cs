@@ -1,10 +1,9 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels.Attributes;
 using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Data;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {
@@ -82,35 +81,25 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         public string AffType { get; set; }
 
-        public int ErrCode { get; set; }
-
-        public string ErrMsg { get; set; }
-
         public string AffParentCode { get; set; }
 
         public int Player_CustId { get; set; }
 
         public int Player_Currency { get; set; }
 
-        [SpParam(Ignored = true)]
         public IEnumerable<ContactApp> ContactAppList { get; set; }
 
-        [SpParam(Ignored = true)]
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "VerifyEmailAddressIsRequired")]
         [Compare("Email", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "Emailaddressest")]
         public string VerifyEmail { get; set; }
 
-        [SpParam(Ignored = true)]
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryValidCode")]
         public string Captcha { get; set; }
 
-        [SpParam(Ignored = true)]
         public bool IsLocal { get; set; }
 
-        [SpParam(Ignored = true)]
         public bool HasWebSite { get; set; } = true;
 
-        [SpParam(Ignored = true)]
         public bool IsValidParentCode { get; set; } = true;
     }
 }

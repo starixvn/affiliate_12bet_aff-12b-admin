@@ -5,6 +5,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public interface ISecurityQuestionService
     {
-        IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false);
+        IEnumerable<SecurityQuestion> GetSecurityQuestions(string language);
     }
 }

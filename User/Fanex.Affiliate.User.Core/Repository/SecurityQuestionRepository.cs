@@ -1,42 +1,25 @@
-﻿using System.Collections.Generic;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Common.Extensions;
-
-namespace Fanex.Affiliate.User.Core.Repository
+﻿namespace Fanex.Affiliate.User.Core.Repository
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+
     public class SecurityQuestionRepository : ISecurityQuestionRepository
     {
-        private readonly IObjectDBBuilder _builder;
+        private readonly IDynamicRepository _repository;
 
-        public SecurityQuestionRepository(IObjectDBBuilder builder)
+        public SecurityQuestionRepository(IDynamicRepository repository)
         {
-            _builder = builder;
+            _repository = repository;
         }
 
-        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
+        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language)
         {
-            const string spKey = "Aff_User_SecurityQuestions_Sel";
+            var result = _repository.Fetch<SecurityQuestion>(new GetSecurityQuestionsCriteria(language));
 
-            var securityQuestionList = new List<SecurityQuestion>();
-
-            using (var db = _builder.Build(spKey))
-            {
-                db.SetParameterValue("Language", language);
-
-                using (var reader = db.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        securityQuestionList.Add(new SecurityQuestion
-                        {
-                            QuestionId = reader.ToByte("QuestionId"),
-                            Question = reader.ToString("Question")
-                        });
-                    }
-                }
-            }
-
-            return securityQuestionList;
+            return result ?? Enumerable.Empty<SecurityQuestion>();
         }
     }
 }
