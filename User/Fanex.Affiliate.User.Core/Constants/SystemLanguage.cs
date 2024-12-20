@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Constants
     {
         private const string _English_LanguageCode = "en-US";
         private const string _Bangladesh_LanguageCode = "bn-BD";
-        private const string _India_LanguageCode = "hi-IN";
+        private const string _India_LanguageCode = "en-IN";
         private const string _Indonesia_LanguageCode = "id-ID";
         private const string _Japan_LanguageCode = "ja-JP";
         private const string _Cambodia_LanguageCode = "km-KH";
@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         {
             [_English_LanguageCode] = "en",
             [_Bangladesh_LanguageCode] = "bn",
-            [_India_LanguageCode] = "hi",
+            [_India_LanguageCode] = "hien",
             [_Indonesia_LanguageCode] = "id",
             [_Japan_LanguageCode] = "jp",
             [_Cambodia_LanguageCode] = "kh",

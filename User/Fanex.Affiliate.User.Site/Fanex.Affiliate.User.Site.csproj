@@ -468,6 +468,7 @@
     <Content Include="www\build\styles\Images\logo\zh-CN.png" />
     <Content Include="www\build\styles\Images\logo\en-US.png" />
     <Content Include="www\build\styles\Images\logo\hi-IN.png" />
+    <Content Include="www\build\styles\Images\logo\en-IN.png" />
     <Content Include="www\build\styles\Images\logo\id-ID.png" />
     <Content Include="www\build\styles\Images\logo\ja-JP.png" />
     <Content Include="www\build\styles\Images\logo\km-KH.png" />
@@ -527,6 +528,7 @@
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.id-ID.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.ja-JP.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.hi-IN.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.en-IN.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.bn-BD.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.en-US.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.km-KH.png" />
@@ -606,6 +608,8 @@
     <Content Include="www\build\styles\Images\langs\en.svg" />
     <Content Include="www\build\styles\Images\langs\hi.png" />
     <Content Include="www\build\styles\Images\langs\hi.svg" />
+    <Content Include="www\build\styles\Images\langs\hien.png" />
+    <Content Include="www\build\styles\Images\langs\hien.svg" />
     <Content Include="www\build\styles\Images\langs\id.png" />
     <Content Include="www\build\styles\Images\langs\id.svg" />
     <Content Include="www\build\styles\Images\langs\ja.png" />
@@ -663,6 +667,7 @@
     <Content Include="www\build\styles\Images\qr-icon\zh-CN.png" />
     <Content Include="www\build\styles\Images\qr-icon\en-US.png" />
     <Content Include="www\build\styles\Images\qr-icon\hi-IN.png" />
+    <Content Include="www\build\styles\Images\qr-icon\en-IN.png" />
     <Content Include="www\build\styles\Images\qr-icon\id-ID.png" />
     <Content Include="www\build\styles\Images\qr-icon\ja-JP.png" />
     <Content Include="www\build\styles\Images\qr-icon\km-KH.png" />
@@ -755,6 +760,7 @@
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.es-ES.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.ko-KR.cshtml" />
@@ -766,6 +772,7 @@
     <Content Include="Views\Shared\Email\PaymentCancel\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.es-ES.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.ko-KR.cshtml" />
@@ -777,6 +784,7 @@
     <Content Include="Views\Shared\Email\PaymentRequest\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.es-ES.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentRequest\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.ko-KR.cshtml" />
@@ -788,6 +796,7 @@
     <Content Include="Views\Shared\Email\NewPassword\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.es-ES.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\NewPassword\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.ko-KR.cshtml" />
@@ -1098,6 +1107,7 @@
     <Content Include="Views\Shared\Email\Signup\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.es-ES.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\Signup\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.ko-KR.cshtml" />
@@ -1155,8 +1165,10 @@
     <Content Include="Views\Faq\Partial\_Content.ko-KR.cshtml" />
     <Content Include="Views\Faq\Partial\_Content.ja-JP.cshtml" />
     <Content Include="Views\Faq\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Faq\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.en-US.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\TermAndCondition\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.id-ID.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.ja-JP.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.ko-KR.cshtml" />
@@ -1170,6 +1182,7 @@
     <Content Include="www\build\styles\fonts\tahoma\TAHOMA_0.TTF" />
     <Content Include="Views\CommissionStructure\Partial\_Content.en-US.cshtml" />
     <Content Include="Views\CommissionStructure\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\CommissionStructure\Partial\_Content.id-ID.cshtml" />
     <Content Include="Views\CommissionStructure\Partial\_Content.ja-JP.cshtml" />
     <Content Include="Views\CommissionStructure\Partial\_Content.ko-KR.cshtml" />
@@ -1189,6 +1202,7 @@
     <Content Include="Views\Shared\Email\VerificationAccount\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.es-ES.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.ko-KR.cshtml" />
@@ -1225,6 +1239,7 @@
     <Content Include="www\source\styles\scss\components\_multiple-select.scss" />
     <Content Include="Views\Promotion\Partial\_Content.en-US.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Promotion\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.id-ID.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.ja-JP.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.ko-KR.cshtml" />
@@ -1251,6 +1266,7 @@
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.es-ES.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.km-KH.cshtml" />
@@ -1264,6 +1280,7 @@
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.es-ES.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.km-KH.cshtml" />
@@ -1291,6 +1308,7 @@
     <Content Include="Views\Home\Partial\_Content.bn-BD.cshtml" />
     <Content Include="Views\Home\Partial\_Content.en-US.cshtml" />
     <Content Include="Views\Home\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Home\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\Home\Partial\_Content.id-ID.cshtml" />
     <Content Include="Views\Home\Partial\_Content.ja-JP.cshtml" />
     <Content Include="Views\Home\Partial\_Content.km-KH.cshtml" />

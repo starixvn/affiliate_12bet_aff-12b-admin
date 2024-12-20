@@ -56,11 +56,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (languageList == null)
             {
-                languageList = _systemRepository.GetLanguageList(isForInternal).Where(l => !l.Code.Equals("hi") && !l.Code.Equals("te-IN"));
+                languageList = _systemRepository.GetLanguageList(isForInternal).Where(l => !l.Code.Equals("hi-IN") && !l.Code.Equals("te-IN"));
                 _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 
-            return languageList ?? new List<Language>();
+            return languageList;
         }
 
         public bool IsValid(string langCode)
