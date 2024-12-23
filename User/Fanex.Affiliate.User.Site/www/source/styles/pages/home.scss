@@ -130,6 +130,220 @@
         }
     }
 }
+.block-aff-testimonial {
+    padding: 0 0 75px;
+    background: #F6F6F6;
+
+    .mini-block {
+        position: relative;
+        margin-top: 28px;
+
+        .mini-block-testimonial {
+            max-width: 1005px;
+            margin: 0 auto;
+            position: unset;
+
+            @include Tablet {
+                max-width: 600px;
+            }
+        }
+
+        .swiper-slide {
+            border-radius: 12px;
+            padding: 12px 0;
+            background: #fff;
+
+            img {
+                width: auto;
+                margin: 0 auto;
+
+                @include Tablet {
+                    width: auto;
+                }
+            }
+
+            .items {
+                padding: 12px 24px;
+
+                .aff-name {
+                    text-align: center;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 19.5px;
+                    margin-bottom: 20px;
+
+                    &::after {
+                        content: '';
+                        display: block;
+                        width: calc(100% - 48px);
+                        position: absolute;
+                        top: 55px;
+                        background: #D9D9D9;
+                        height: 1px;
+                    }
+
+                    .flag {
+                        display: inline-block;
+                        max-width: 20px;
+                        margin-left: 5px;
+                    }
+                }
+
+                .aff-testimonial {
+                    .title {
+                        min-height: 40px;
+                        text-align: center;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 19.5px;
+                        color: #D90F0F;
+
+                        &.aff286 {
+                            min-height: 58.5px;
+
+                            @include Tablet {
+                                min-height: 40px;
+                            }
+                        }
+
+                        @include Mobile {
+                           min-height: 40px !important;
+                        }
+                    }
+
+                    .content {
+                        text-align: center;
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 17.07px;
+                        color: #353E5B;
+                        margin-bottom: 10px;
+                        min-height: 85.5px;
+
+                        @include Tablet {
+                            min-height: 102.5px;
+                        }
+
+                        @include Mobile {
+                            min-height: 68.5px !important;
+                        }
+                    }
+
+                    &.id-ID {
+                        .title {
+                            &.aff131, &.aff504 {
+                                min-height: 58.5px;
+                            }
+
+                            &.aff504 {
+                                @include Tablet {
+                                    min-height: 40px;
+                                }
+                            }
+
+                            &.aff429, &.aff286 {
+                                min-height: 78px;
+                            }
+
+                            &.aff286 {
+                                @include Tablet {
+                                    min-height: 58.5px;
+                                }
+                            }
+                        }
+
+                        .content {
+                            &.aff801, &.aff846 {
+                                min-height: 102.5px;
+                            }
+
+                            @include Tablet {
+                                &.aff504 {
+                                    min-height: 119.6px;
+                                }
+                            }
+                        }
+                    }
+
+                    &.km-KH {
+                        .content {
+                            @include Tablet {
+                                &.aff242, &.aff429 {
+                                    min-height: 85.5px;
+                                }
+                            }
+                        }
+                    }
+
+                    &.ko-KR {
+                        .content {
+                            min-height: 68.5px;
+
+                            @include Tablet {
+                                min-height: 85.5px;
+                            }
+                        }
+                    }
+
+                    &.th-TH {
+                        .content {
+                            min-height: 85.5px;
+                        }
+                    }
+
+                    &.vi-VN {
+                        .title {
+                            @include Tablet {
+                                &.aff504 {
+                                    min-height: 58.5px;
+                                }
+                            }
+                        }
+
+                        .content {
+                            &.aff274, &.aff131 {
+                                min-height: 102.5px;
+                            }
+                        }
+                    }
+
+                    &.zh-CN, &.zh-TW {
+                        .title {
+                            &.aff429 {
+                                min-height: 58.5px;
+                            }
+                        }
+
+                        .content {
+                            min-height: 68.5px;
+
+                            @include Tablet {
+                                &.aff274, &.aff131 {
+                                    min-height: 85.5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            @include Mobile {
+                display: none;
+            }
+        }
+
+        .swiper-pagination {
+            bottom: -45px;
+
+            @include Mobile {
+                bottom: -35px;
+            }
+        }
+    }
+}
 .block-get-started {
     background: #F6F6F6;
     padding: 52px 0 76px;

@@ -11,14 +11,14 @@
   //  "outputFileName": "www/build/js/lib/jsencrypt-2.3.1.min.js",
   //  "inputFiles": [ "www/source/js/lib/jsencrypt-2.3.1.min.js" ]
   //},
-  //{
-  //  "outputFileName": "www/build/js/pages/home.js",
-  //  "inputFiles": [
-  //    "www/source/js/lib/swiper.min.js",
-  //    "www/source/js/components/pagetracking.js",
-  //    "www/source/js/pages/home.js"
-  //  ]
-  //},
+  {
+    "outputFileName": "www/build/js/pages/home.js",
+    "inputFiles": [
+      "www/source/js/lib/swiper.min.js",
+      "www/source/js/components/pagetracking.js",
+      "www/source/js/pages/home.js"
+    ]
+  },
   //{
   //  "outputFileName": "www/build/js/pages/commission-structure.js",
   //  "inputFiles": [

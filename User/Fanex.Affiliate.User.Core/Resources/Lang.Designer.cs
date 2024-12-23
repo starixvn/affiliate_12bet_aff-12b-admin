@@ -242,10 +242,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;I really appreciate the detailed support from&lt;br/&gt;
-        ///the 12BET affiliate team. They provide clear&lt;br/&gt;
-        ///guidance and have helped me optimize my&lt;br/&gt;
-        ///campaigns to earn more!&quot;.
+        ///   Looks up a localized string similar to &quot;I really appreciate the detailed support from the 12BET affiliate team. They provide clear guidance and have helped me optimize my campaigns to earn more!&quot;.
         /// </summary>
         public static string Aff014TestimonialContent {
             get {
@@ -264,9 +261,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;I&apos;ve worked with many affiliates before, but&lt;br/&gt;
-        ///the commission rate at 12BET are by far the&lt;br/&gt;
-        ///best. It&apos;s a great way to boos my earnings!&quot;.
+        ///   Looks up a localized string similar to &quot;I&apos;ve worked with many affiliates before, but the commission rate at 12BET are by far the best. It&apos;s a great way to boos my earnings!&quot;.
         /// </summary>
         public static string Aff131TestimonialContent {
             get {
@@ -285,10 +280,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;12BET makes affiliate marketing so easy.&lt;br/&gt;
-        ///Their platform is user-friendly, and the&lt;br/&gt;
-        ///account manager for my market is always&lt;br/&gt;
-        ///ready to help with anything I need.&quot;.
+        ///   Looks up a localized string similar to &quot;12BET makes affiliate marketing so easy. Their platform is user-friendly, and the account manager for my market is always ready to help with anything I need.&quot;.
         /// </summary>
         public static string Aff242TestimonialContent {
             get {
@@ -308,10 +300,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;The 12BET affiliate program is so simple to&lt;br/&gt;
-        ///use, and my account manager is always&lt;br/&gt;
-        ///available to answer questions. I can always&lt;br/&gt;
-        ///rely on getting my commission on time!&quot;.
+        ///   Looks up a localized string similar to &quot;The 12BET affiliate program is so simple to use, and my account manager is always available to answer questions. I can always rely on getting my commission on time!&quot;.
         /// </summary>
         public static string Aff274TestimonialContent {
             get {
@@ -329,10 +318,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Joining 12BET has been a great decision for&lt;br/&gt;
-        ///me. The affiliate program is easy to join, and&lt;br/&gt;
-        ///the commission payments are always&lt;br/&gt;
-        ///consistent. It&apos;s a solid partnership.&quot;.
+        ///   Looks up a localized string similar to &quot;Joining 12BET has been a great decision for me. The affiliate program is easy to join, and the commission payments are always consistent. It&apos;s a solid partnership.&quot;.
         /// </summary>
         public static string Aff286TestimonialContent {
             get {
@@ -351,10 +337,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;I&apos;ve tried many affiliate programs, but 12BET&lt;br/&gt;
-        ///offers the most competitive commissions.&lt;br/&gt;
-        ///Plus, the support team is always responsive&lt;br/&gt;
-        ///and helpful!&quot;.
+        ///   Looks up a localized string similar to &quot;I&apos;ve tried many affiliate programs, but 12BET offers the most competitive commissions. Plus, the support team is always responsive and helpful!&quot;.
         /// </summary>
         public static string Aff429TestimonialContent {
             get {
@@ -374,10 +357,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;The affiliate system is super easy to set up,&lt;br/&gt;
-        ///and the team at 12BET sends me a thoughtful&lt;br/&gt;
-        ///gift every year. It&apos;s litt;e things like this that&lt;br/&gt;
-        ///made the partnership special.&quot;.
+        ///   Looks up a localized string similar to &quot;The affiliate system is super easy to set up, and the team at 12BET sends me a thoughtful gift every year. It&apos;s little things like this that made the partnership special.&quot;.
         /// </summary>
         public static string Aff504TestimonialContent {
             get {
@@ -395,9 +375,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;12BET&apos;s affiliate program is straightforward,&lt;br/&gt;
-        ///and the commission payments are always&lt;br/&gt;
-        ///reliable. I&apos;ve been paid on time every month!&quot;.
+        ///   Looks up a localized string similar to &quot;12BET&apos;s affiliate program is straightforward, and the commission payments are always reliable. I&apos;ve been paid on time every month!&quot;.
         /// </summary>
         public static string Aff801TestimonialContent {
             get {
@@ -416,9 +394,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;What I love about 12BET is the transparency.&lt;br/&gt;
-        ///The commission rates are high, and I always&lt;br/&gt;
-        ///know exactly how much I&apos;ll earn. No surprise!&quot;.
+        ///   Looks up a localized string similar to &quot;What I love about 12BET is the transparency. The commission rates are high, and I always know exactly how much I&apos;ll earn. No surprise!&quot;.
         /// </summary>
         public static string Aff846TestimonialContent {
             get {
