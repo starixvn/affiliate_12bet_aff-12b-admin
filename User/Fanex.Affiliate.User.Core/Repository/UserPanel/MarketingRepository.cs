@@ -1,152 +1,102 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using System.Collections.Generic;
-
-namespace Fanex.Affiliate.User.Core.Repository.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
+    using System.Collections.Generic;
+    using Commands.Marketing;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using Extensions.Mappers;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+    using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+    using MetalModels;
+
     public class MarketingRepository : BaseRepository, IMarketingRepository
     {
-        private readonly IObjectDBBuilder _builder;
+        private readonly IDynamicRepository _repository;
 
-        public MarketingRepository(IObjectDBBuilder builder)
+        public MarketingRepository(IDynamicRepository repository)
         {
-            _builder = builder;
+            _repository = repository;
         }
+
         public IEnumerable<CategoryType> GetCategoryList(MediaCategoryParam param, bool isInternal)
         {
-            const string uSpKey = "Aff_Admin_MediaCategory_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<CategoryType>(param);
-            }
+            return _repository.Fetch<CategoryType>(new GetCategoryListCriteria(param.TypeId, param.TargetId, isInternal));
         }
 
         public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
         {
-            const string uSpKey = "Aff_Admin_MediaCurrency_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<CurrencyType>();
-            }
-        }
-
-        public IEnumerable<BannerType> GetBannerTypeList(bool isInternal)
-        {
-            const string uSpKey = "Aff_Admin_MediaType_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<BannerType>();
-            }
+            return _repository.Fetch<CurrencyType>(new GetCurrencyListCriteria(isInternal));
         }
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal)
         {
-            const string uSpKey = "Aff_Admin_MediaSize_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+            var criteria = new GetSizeListCriteria(isInternal);
+            criteria.Map(param);
 
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<SizeType>(param);
-            }
+            return _repository.Fetch<SizeType>(criteria);
         }
 
         public IEnumerable<Domain> GetAvailableDomainList(int affId, bool isMember, bool isInternal)
         {
-            var uSpKey = isMember ? "Aff_User_Domain_Sel" : "Aff_User_SubAffiliateDomain_Sel";
+            var affCriteria = new GetAffDomainListCriteria(affId, isInternal);
+            var subAffCriteria = new GetSubAffDomainListCriteria(isInternal);
 
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return isMember ? db.Query<Domain>(new { AffId = affId }) : db.Query<Domain>();
-            }
+            return isMember 
+                ? _repository.Fetch<Domain>(affCriteria) 
+                : _repository.Fetch<Domain>(subAffCriteria);
         }
 
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
-            const string uSpKey = "Aff_Admin_Banner_Sel";
+            var criteria = new GetBannerListCriteria();
+            criteria.Map(bannerParam);
 
-            var dbMode = bannerParam.IsInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<MarketingItem>(bannerParam);
-            }
-        }
-
-        public IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
-        {
-            const string uSpKey = "Aff_Admin_Text_Sel";
-            var dbMode = textParam.IsInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<MarketingItem>(textParam);
-            }
+            return _repository.Fetch<MarketingItem>(criteria);
         }
 
         public IEnumerable<LandingPage> GetLandingPageList(bool isInternal)
         {
-            const string SpKey = "Aff_Admin_LandingPage_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(SpKey, dbMode))
-            {
-                return db.Query<LandingPage>();
-            }
+            return _repository.Fetch<LandingPage>(new GetLandingPageListCriteria(isInternal));
         }
 
         public ResultInfo AddMarketingChannel(int userId, string channelCode, string channelName)
         {
-            const string spKey = "Aff_User_AffMediaChannel_Ins";
+            var command = new AddMarketingChannelCommand(userId, channelCode, channelName);
+            _repository.Execute(command);
 
-            using (var db = _builder.Build(spKey))
+            return new ResultInfo
             {
-                AssignResultOutputParam(db);
-                db.ExecuteNonQuery(new { AffId = userId, ChannelCode = channelCode, ChannelName = channelName });
-                return GetResultInfo(db);
-            }
+                IsOk = command.ErrCode == 0,
+                Code = command.ErrCode,
+                Message = command.ErrMsg
+            };
         }
 
         public IEnumerable<MarketingChannel> GetMarketingChannels(int userId)
         {
-            const string spKey = "Aff_User_AffMediaChannel_Sel";
-
-            using (var db = _builder.Build(spKey))
-            {
-                return db.Query<MarketingChannel>(new { AffId = userId });
-            }
+            return _repository.Fetch<MarketingChannel>(new GetMarketingChannelsCriteria(userId));
         }
 
         public ResultInfo ToggleMarketingLink(MarketingLinkParam param)
         {
-            const string spKey = "Aff_User_AffMediaLink_ToggleChannel";
+            var command = new ToggleMarketingLinkCommand();
+            command.Map(param);
 
-            using (var db = _builder.Build(spKey))
+            _repository.Execute(command);
+
+            return new ResultInfo
             {
-                AssignResultOutputParam(db);
-                db.ExecuteNonQuery(param);
-                return GetResultInfo(db);
-            }
+                Code = command.ErrCode,
+                IsOk = command.ErrCode == 0,
+                Message = command.ErrMsg
+            };
         }
 
         public IEnumerable<MarketingChannelLink> GetUsingMarketingLink(int userId)
         {
-            const string spKey = "Aff_User_AffMediaChannel_Statistics";
-
-            using (var db = _builder.Build(spKey))
-            {
-                return db.Query<MarketingChannelLink>(new { AffId = userId });
-            }
+            return _repository.Fetch<MarketingChannelLink>(new GetUsingMarketingLinkCriteria(userId));
         }
 
     }

@@ -66,7 +66,7 @@
 
             var refs = new List<RefLinkViewModel>
             {
-                GetAffLinkTypeViewModel(),
+                GetAffLinkTypeViewModel()
             };
 
             var affId = SessionService.UserSession.AffId;

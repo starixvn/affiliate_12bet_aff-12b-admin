@@ -13,15 +13,11 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         IEnumerable<CurrencyType> GetCurrencyList(bool isInternal);
 
-        IEnumerable<BannerType> GetBannerTypeList(bool isInternal);
-
         IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal);
 
         IEnumerable<Domain> GetAvailableDomainList(int affId, bool isMember, bool isInternal);
 
         IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
-
-        IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
 
         IEnumerable<LandingPage> GetLandingPageList(bool isInternal);
 
