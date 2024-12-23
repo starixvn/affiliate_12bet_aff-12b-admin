@@ -257,11 +257,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var scheme = selectedDomain.IsSsl ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
 
             var result = template.Replace("{scheme}", scheme)
-                                .Replace("{domain}", selectedDomain.DomainName)
-                                .Replace("{custid}", linkParam.AffCode.ToString())
-                                .Replace("{target}", HttpUtility.UrlPathEncode(linkParam.SelectedPage))
-                                .Replace("{lang}", shortedLanguageCode)
-                                .Replace("{channel}", linkParam.SelectedChannel);
+                .Replace("{domain}", selectedDomain.DomainName)
+                .Replace("{affCode}", linkParam.AffCode.ToString())
+                .Replace("{target}", HttpUtility.UrlPathEncode(linkParam.SelectedPage))
+                .Replace("{lang}", shortedLanguageCode)
+                .Replace("{channel}", linkParam.SelectedChannel);
 
             return result;
         }
