@@ -217,6 +217,7 @@
     <Compile Include="Criterias\AccountOverview\GetUserOverviewDetailListCriteria.cs" />
     <Compile Include="Criterias\AccountOverview\GetUserOverviewSummaryCriteria.cs" />
     <Compile Include="Criterias\Account\GetGeneralAffInfoCriteria.cs" />
+    <Compile Include="Criterias\Currency\GetBaseCurrencyListCriteria.cs" />
     <Compile Include="Criterias\Language\GetLanguageListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetAffDomainListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetBannerListCriteria.cs" />
@@ -228,6 +229,10 @@
     <Compile Include="Criterias\Marketing\GetSubAffDomainListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetUsingMarketingLinkCriteria.cs" />
     <Compile Include="Criterias\SecurityQuestion\GetSecurityQuestionsCriteria.cs" />
+    <Compile Include="Criterias\StatementHistory\GetDailyEarningCriteria.cs" />
+    <Compile Include="Criterias\StatementHistory\GetProductListCriteria.cs" />
+    <Compile Include="Criterias\StatementHistory\GetStatementHistoryCriteria.cs" />
+    <Compile Include="Criterias\StatementHistory\GetSubAffCommissionCriteria.cs" />
     <Compile Include="Criterias\Verification\GetLoginInfoByUserDeviceCriteria.cs" />
     <Compile Include="Criterias\Auth\GetSessionIdCriteria.cs" />
     <Compile Include="Criterias\Auth\GetUserInfoCriteria.cs" />
@@ -333,7 +338,10 @@
     <Compile Include="Enum\AffiliateLinkType.cs" />
     <Compile Include="Extensions\Mappers\CreateAffiliateExtension.cs" />
     <Compile Include="Extensions\Mappers\GetBannerListExtension.cs" />
+    <Compile Include="Extensions\Mappers\GetDailyEarningExtension.cs" />
     <Compile Include="Extensions\Mappers\GetPlayerDetailListExtension.cs" />
+    <Compile Include="Extensions\Mappers\GetStatementHistoryExtension.cs" />
+    <Compile Include="Extensions\Mappers\GetSubAffCommExtension.cs" />
     <Compile Include="Extensions\Mappers\MediaSizeExtension.cs" />
     <Compile Include="Extensions\Mappers\ToggleMarketingLinkExtension.cs" />
     <Compile Include="Filters\JsonHandlerAttribute.cs" />

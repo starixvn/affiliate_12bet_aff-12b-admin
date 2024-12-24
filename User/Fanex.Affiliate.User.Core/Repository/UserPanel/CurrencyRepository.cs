@@ -1,25 +1,22 @@
 ﻿namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     using System.Collections.Generic;
+    using Criterias;
+    using Data.Repository;
     using DTO.UserPanel;
 
     public class CurrencyRepository : ICurrencyRepository
     {
-        private readonly IObjectDBBuilder _builder;
+        private readonly IDynamicRepository _repository;
 
-        public CurrencyRepository(IObjectDBBuilder builder)
+        public CurrencyRepository(IDynamicRepository repository)
         {
-            _builder = builder;
+            _repository = repository;
         }
 
         public IEnumerable<Currency> GetBaseCurrencyList()
         {
-            const string uSpKey = "Aff_BaseCurrency_Sel";
-
-            using (var objectDb = _builder.Build(uSpKey))
-            {
-                return objectDb.Query<Currency>();
-            }
+            return _repository.Fetch<Currency>(new GetBaseCurrencyListCriteria());
         }
     }
 }

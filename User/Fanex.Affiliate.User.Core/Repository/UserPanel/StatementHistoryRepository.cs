@@ -1,111 +1,56 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Common.Extensions;
-using System.Collections.Generic;
-using System.Data;
-
-namespace Fanex.Affiliate.User.Core.Repository.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
+    using System.Collections.Generic;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using Extensions.Mappers;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel;
+    using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+    using Fanex.Common.Extensions;
+
     public class StatementHistoryRepository : IStatementHistoryRepository
     {
-        private readonly IObjectDBBuilder _builder;
+        private readonly IDynamicRepository _repository;
 
-        public StatementHistoryRepository(IObjectDBBuilder builder)
+        public StatementHistoryRepository(IDynamicRepository repository)
         {
-            _builder = builder;
+            _repository = repository;
         }
 
         public IEnumerable<StatementHistory> GetStatementHistory(StatementHistoryParam statementHistoryParam)
         {
-            const string uSpKey = "Aff_User_StatementHistory_Sel";
-            var dbMode = statementHistoryParam.IsInternal ? DBMode.View : DBMode.Main;
+            var criteria = new GetStatementHistoryCriteria();
+            criteria.Map(statementHistoryParam);
 
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<StatementHistory>(statementHistoryParam);
-            }
+            return _repository.Fetch<StatementHistory>(criteria);
         }
 
         public IEnumerable<ProductItem> GetProductList(bool isInternal)
         {
-            const string uSpKey = "Aff_ProductList_Sel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                return db.Query<ProductItem>();
-            }
+            return _repository.Fetch<ProductItem>(new GetProductListCriteria(isInternal));
         }
 
         public DailyEarningResult GetDailyEarning(DailyEarningParam dailyEarningParam)
         {
-            const string uSpKey = "Aff_DailyEarning_Sel";
-            var dbMode = dailyEarningParam.IsInternal ? DBMode.View : DBMode.Main;
-
+            var criteria = new GetDailyEarningCriteria();
+            criteria.Map(dailyEarningParam);
             var dailyEarningResult = new DailyEarningResult();
-            var dataList = new List<DailyEarning>();
 
-            using (var db = _builder.Build(uSpKey, dbMode))
-            {
-                using (var reader = db.ExecuteReader(dailyEarningParam))
-                {
-                    while (reader.Read())
-                    {
-                        var item = BuildDailyEarningItem(reader);
-                        item.WinlostDate = reader.ToDateTime("WinlostDate");
+            var (data, total) = _repository.FetchMultiple<DailyEarning, DailyEarning>(criteria);
 
-                        dataList.Add(item);
-                    }
-                    dailyEarningResult.MainDataList = dataList;
-
-                    if (reader.NextResult() && reader.Read())
-                    {
-                        dailyEarningResult.Total = BuildDailyEarningItem(reader);
-                    }
-                }
-            }
+            dailyEarningResult.MainDataList = data;
+            dailyEarningResult.Total = total.GetFirstOrDefault();
 
             return dailyEarningResult;
         }
 
-        public ExtraUserInfo GetExtraUserInfo(int affId, bool isInternal)
-        {
-            const string uSpKey = "Aff_AffiliateUser_ExtraUserInfoSel";
-            var mode = isInternal ? DBMode.View : DBMode.Main;
-            var result = new ExtraUserInfo();
-
-            using (var db = _builder.Build(uSpKey, mode))
-            {
-                db.SetParameterValue("AffId", affId);
-                result = db.QueryEntity<ExtraUserInfo>() ?? result;
-            }
-
-            return result;
-        }
-
         public IEnumerable<SubAffComInfo> GetSubAffCommission(SubAffComParam subAffParam)
         {
-            const string uSpKey = "Aff_SubAffiliate_Commission_Sel";
-            var mode = subAffParam.IsInternal ? DBMode.View : DBMode.Main;
+            var criteria = new GetSubAffCommissionCriteria();
+            criteria.Map(subAffParam);
 
-            using (var db = _builder.Build(uSpKey, mode))
-            {
-                return db.Query<SubAffComInfo>(subAffParam);
-            }
-        }
-
-        private static DailyEarning BuildDailyEarningItem(IDataReader reader)
-        {
-            return new DailyEarning
-            {
-                Deposit = reader.ToDecimal("Deposit"),
-                Turnover = reader.ToDecimal("Turnover"),
-                Withdrawal = reader.ToDecimal("Withdrawal"),
-                MemberGGR = reader.ToDecimal("GGR"),
-                Bonus = reader.ToDecimal("Bonus"),
-                Rebate = reader.ToDecimal("Rebate"),
-            };
+            return _repository.Fetch<SubAffComInfo>(criteria);
         }
     }
 }
