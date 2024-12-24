@@ -1,12 +1,12 @@
 ﻿using Fanex.Affiliate.Admin.Core.Apis;
+using Fanex.Affiliate.Admin.Core.Commands.Tracker;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Api;
-using Fanex.Affiliate.Admin.Core.DTO.Tracker;
 using Fanex.Affiliate.Admin.Core.Exceptions;
-using Fanex.Affiliate.Admin.Core.Repository.Tracker;
+using Fanex.Affiliate.Admin.Core.Services.Tracker;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Newtonsoft.Json;
 using System;
@@ -16,13 +16,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee
 {
     public class ThirdPartyLicenseeService : IThirdPartyLicenseeService
     {
-        private readonly IJobTrackerRepository _trackerRepository;
+        private readonly IJobTrackerService _jobTrackerService;
         private readonly ILicenseeApi _licenseeApi;
         private readonly IAppSetting _appSetting;
 
-        public ThirdPartyLicenseeService(IJobTrackerRepository jobTrackerRepository, ILicenseeApi licenseeApi, IAppSetting appSetting)
+        public ThirdPartyLicenseeService(IJobTrackerService jobjobTrackerService, ILicenseeApi licenseeApi, IAppSetting appSetting)
         {
-            _trackerRepository = jobTrackerRepository;
+            _jobTrackerService = jobjobTrackerService;
             _licenseeApi = licenseeApi;
             _appSetting = appSetting;
         }
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee
                 ParentAffiliate = affInfo.ParentAffName,
                 SiteId = _appSetting.MemberSiteId
             };
-            var (Id, Result) = _trackerRepository.InsertDataTracker(new InsertDataTrackerDTO
+            var (Id, Result) = _jobTrackerService.InsertDataTracker(new InsertJobTrackerCommand
             {
                 PushDataInfo = JsonConvert.SerializeObject(affiliateInfo),
                 PushDataType = DataTrackerType.ApproveAffiliate
@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee
                 {
                     await SendAffiliateInfoToLicensee(affiliateInfo);
 
-                    _trackerRepository.UpdateDataTracker(new UpdateDataTrackerDTO
+                    _jobTrackerService.UpdateDataTracker(new UpdateJobTrackerCommand
                     {
                         PushTrackerId = Id,
                         StatusId = DataTrackerStatus.Success
@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee
             catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
-                _trackerRepository.UpdateDataTracker(new UpdateDataTrackerDTO
+                _jobTrackerService.UpdateDataTracker(new UpdateJobTrackerCommand
                 {
                     PushTrackerId = Id,
                     StatusId = DataTrackerStatus.Failure

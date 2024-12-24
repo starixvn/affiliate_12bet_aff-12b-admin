@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Moq;
 using System.Collections.Generic;
@@ -16,10 +15,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var spKey = string.Empty;
-            var repository = new Mock<IDomainRepository> { CallBase = true };
-            repository.Setup(r => r.GetDomainList(It.IsAny<string>())).Returns(new List<DomainInfo> { new DomainInfo() }).Callback<string>(p => spKey = p);
+            var commonService = new Mock<ICommonDomainService> { CallBase = true };
+            commonService.Setup(r => r.GetDomainList(It.IsAny<string>())).Returns(new List<DomainInfo> { new DomainInfo() }).Callback<string>(p => spKey = p);
 
-            var service = CreateSubAffDomainService(repository.Object);
+            var service = CreateSubAffDomainService(commonService.Object);
 
             // Action
             var result = service.GetSubAffDomainList();
@@ -34,10 +33,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var spKey = string.Empty;
-            var repository = new Mock<IDomainRepository> { CallBase = true };
-            repository.Setup(r => r.InsertDomain(It.IsAny<InsertUpdateDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<InsertUpdateDomainParam, string>((p, s) => spKey = s);
+            var commonService = new Mock<ICommonDomainService> { CallBase = true };
+            commonService.Setup(r => r.InsertDomain(It.IsAny<InsertUpdateDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<InsertUpdateDomainParam, string>((p, s) => spKey = s);
 
-            var service = CreateSubAffDomainService(repository.Object);
+            var service = CreateSubAffDomainService(commonService.Object);
 
             // Action
             var result = service.InsertSubAffDomain(new InsertUpdateDomainParam());
@@ -52,10 +51,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var spKey = string.Empty;
-            var repository = new Mock<IDomainRepository> { CallBase = true };
-            repository.Setup(r => r.UpdateDomain(It.IsAny<InsertUpdateDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<InsertUpdateDomainParam, string>((p, s) => spKey = s);
+            var commonService = new Mock<ICommonDomainService> { CallBase = true };
+            commonService.Setup(r => r.UpdateDomain(It.IsAny<InsertUpdateDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<InsertUpdateDomainParam, string>((p, s) => spKey = s);
 
-            var service = CreateSubAffDomainService(repository.Object);
+            var service = CreateSubAffDomainService(commonService.Object);
 
             // Action
             var result = service.UpdateSubAffDomain(new InsertUpdateDomainParam());
@@ -70,10 +69,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var spKey = string.Empty;
-            var repository = new Mock<IDomainRepository> { CallBase = true };
-            repository.Setup(r => r.DeleteDomain(It.IsAny<DeleteDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<DeleteDomainParam, string>((p, s) => spKey = s);
+            var commonService = new Mock<ICommonDomainService> { CallBase = true };
+            commonService.Setup(r => r.DeleteDomain(It.IsAny<DeleteDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<DeleteDomainParam, string>((p, s) => spKey = s);
 
-            var service = CreateSubAffDomainService(repository.Object);
+            var service = CreateSubAffDomainService(commonService.Object);
 
             // Action
             var result = service.DeleteSubAffDomain(new DeleteDomainParam());
@@ -83,11 +82,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             Assert.Equal("Aff_Admin_SubAffiliateDomain_Del", spKey);
         }
 
-        private static SubAffDomainService CreateSubAffDomainService(IDomainRepository subAffDomainRepository = null)
+        private static SubAffDomainService CreateSubAffDomainService(ICommonDomainService subAffDomaincommonService = null)
         {
-            var fakeSubAffDomainRepository = subAffDomainRepository ?? Mock.Of<IDomainRepository>();
+            var fakeSubAffDomaincommonService = subAffDomaincommonService ?? Mock.Of<ICommonDomainService>();
 
-            return new SubAffDomainService(fakeSubAffDomainRepository);
+            return new SubAffDomainService(fakeSubAffDomaincommonService);
         }
     }
 }

@@ -30,7 +30,6 @@ describe('domain control - components - Content ', () => {
         {
             AffDomain: "10.18.200.209:7613/Go",
             AffDomainId: 21,
-            CreatedDate: "2018-05-02T04:23:45.707",
             CreatedDateText: "05/02/2018",
             Creator: "AAjenny",
             DomainId: 89,
@@ -43,7 +42,6 @@ describe('domain control - components - Content ', () => {
         {
             AffDomain: "go.liam.com",
             AffDomainId: 47,
-            CreatedDate: "2018-05-02T23:15:20.28",
             CreatedDateText: "05/02/2018",
             Creator: "AAjenny",
             DomainId: 92,

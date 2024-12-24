@@ -173,7 +173,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repository\Tracker\JobTrackerRepositoryTest.cs" />
+    <Compile Include="Services\JobTrackerServiceTest.cs" />
     <Compile Include="Services\Affiliate\AffiliateServiceTest.cs" />
     <Compile Include="Services\Affiliate\AffTypeServiceTest.cs" />
     <Compile Include="Services\Auth\AuthServiceTest.cs" />
@@ -221,7 +221,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Customer\LandingPageStatisticsServiceTest.cs" />
     <Compile Include="Services\Customer\ReferrersStatisticsServiceTest.cs" />
-    <Compile Include="Repository\Domain\SubAffDomainRepositoryTest.cs" />
+    <Compile Include="Services\Domain\CommonDomainServiceTest.cs" />
     <Compile Include="Repository\MediaGallery\BannerListReppositoryTest.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepositoryTest.cs" />
     <Compile Include="Services\Administrator\AdministratorServiceTest.cs" />

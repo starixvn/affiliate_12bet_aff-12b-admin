@@ -165,7 +165,11 @@
     <Setting Key="Aff_Admin_LicenseeDomain_Ins" SpName="Aff_Admin_LicenseeDomain_Ins" DbName="" />
     <Setting Key="Aff_Admin_LicenseeDomain_Upd" SpName="Aff_Admin_LicenseeDomain_Upd" DbName="" />
     <Setting Key="Aff_Admin_LicenseeDomain_Del" SpName="Aff_Admin_LicenseeDomain_Del" DbName="" />
-    <Setting Key="Aff_Admin_DomainControl_Sel" SpName="Aff_Admin_DomainControl_Sel" DbName="" />
+    <Setting Key="Aff_Admin_DomainControl_Sel" SpName="Aff_Admin_DomainControl_Sel" DbName="" >
+      <Mapping DataField="DomainControlId" ObjectProperty="DomainId" />
+      <Mapping DataField="MarketName" ObjectProperty="Market" />
+      <Mapping DataField="Status" ObjectProperty="IsUsed" />
+    </Setting>
     <Setting Key="Aff_Admin_DomainControl_Ins" SpName="Aff_Admin_DomainControl_Ins" DbName="" />
     <Setting Key="Aff_Admin_DomainControl_Upd" SpName="Aff_Admin_DomainControl_Upd" DbName="" />
     <Setting Key="Aff_Admin_DomainControl_Del" SpName="Aff_Admin_DomainControl_Del" DbName="" />

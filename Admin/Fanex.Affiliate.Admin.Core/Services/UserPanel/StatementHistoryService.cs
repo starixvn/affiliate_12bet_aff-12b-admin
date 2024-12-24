@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 PageSize = param.PageSize,
             };
 
-            return FetchEntityResultHasTotalItem<SubAffiliate>(criteria);
+            return FetchEntityResultHasItemTotal<SubAffiliate>(criteria);
         }
 
         public DailyEarningResult GetDailyEarning(DailyEarningParam param)

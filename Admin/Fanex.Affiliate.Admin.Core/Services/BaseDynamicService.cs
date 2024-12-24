@@ -62,15 +62,15 @@ namespace Fanex.Affiliate.Admin.Core.Services
             };
         }
 
-        public EntityResult<T> FetchEntityResultHasTotalItem<T>(PagingCriteria criteria) where T : class
+        public EntityResult<T> FetchEntityResultHasItemTotal<T>(PagingCriteria criteria) where T : class
         {
-            var (dataList, totalItem) = _dynamicRepository.FetchMultiple<T, T>(criteria);
+            var (dataList, itemTotal) = _dynamicRepository.FetchMultiple<T, T>(criteria);
 
             return new EntityResult<T>
             {
                 MainData = dataList,
                 TotalItem = criteria.TotalItem,
-                Total = totalItem.FirstOrDefault()
+                Total = itemTotal.FirstOrDefault()
             };
         }
     }

@@ -1,11 +1,11 @@
 ﻿using Fanex.Affiliate.Admin.Core.Apis;
+using Fanex.Affiliate.Admin.Core.Commands.Tracker;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Api;
-using Fanex.Affiliate.Admin.Core.DTO.Tracker;
-using Fanex.Affiliate.Admin.Core.Repository.Tracker;
 using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
+using Fanex.Affiliate.Admin.Core.Services.Tracker;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using NSubstitute;
 using System.Threading.Tasks;
@@ -15,13 +15,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ThirdPartyLisencee
 {
     public class ThirdPartyLicenseeServiceTest
     {
-        private readonly IJobTrackerRepository _trackerRepository;
+        private readonly IJobTrackerService _jobTrackerService;
         private readonly ILicenseeApi _licenseeApi;
         private readonly IAppSetting _appSetting;
 
         public ThirdPartyLicenseeServiceTest()
         {
-            _trackerRepository = Substitute.For<IJobTrackerRepository>();
+            _jobTrackerService = Substitute.For<IJobTrackerService>();
             _licenseeApi = Substitute.For<ILicenseeApi>();
             _appSetting = Substitute.For<IAppSetting>();
         }
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ThirdPartyLisencee
             MockingHelper.SetUpHttpContextSession();
             MockingHelper.SetUpLogEngineEnviroment();
 
-            _trackerRepository.InsertDataTracker(Arg.Any<InsertDataTrackerDTO>()).Returns((123, ResultInfo.Success));
+            _jobTrackerService.InsertDataTracker(Arg.Any<InsertJobTrackerCommand>()).Returns((123, ResultInfo.Success));
             _licenseeApi.InsertAffiliateInfo(Arg.Compat.Any<ApiAffiliateInfo>()).Returns(Task.FromResult(new ApiResultInfo()));
 
             //Action
@@ -41,21 +41,21 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ThirdPartyLisencee
             await service.SendAffiliateInfo(new AffiliateBasicInfo());
 
             //Assert
-            _trackerRepository.Received().UpdateDataTracker(Arg.Compat.Any<UpdateDataTrackerDTO>());
+            _jobTrackerService.Received().UpdateDataTracker(Arg.Compat.Any<UpdateJobTrackerCommand>());
         }
 
         [Fact]
         public async Task SendAffiliateInfo_WhenCallWithInsertDataTrackerFailed_ShouldNotCallUpdateDataTracker()
         {
             //Arrange
-            _trackerRepository.InsertDataTracker(Arg.Any<InsertDataTrackerDTO>()).Returns((123, ResultInfo.GenerateErr("Error")));
+            _jobTrackerService.InsertDataTracker(Arg.Any<InsertJobTrackerCommand>()).Returns((123, ResultInfo.GenerateErr("Error")));
 
             //Action
             var service = CreateThirdPartyLicenseeService();
             await service.SendAffiliateInfo(new AffiliateBasicInfo());
 
             //Assert
-            _trackerRepository.DidNotReceive().UpdateDataTracker(Arg.Compat.Any<UpdateDataTrackerDTO>());
+            _jobTrackerService.DidNotReceive().UpdateDataTracker(Arg.Compat.Any<UpdateJobTrackerCommand>());
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ThirdPartyLisencee
             MockingHelper.SetUpHttpContextSession();
             MockingHelper.SetUpLogEngineEnviroment();
 
-            _trackerRepository.InsertDataTracker(Arg.Any<InsertDataTrackerDTO>()).Returns((123, ResultInfo.Success));
+            _jobTrackerService.InsertDataTracker(Arg.Any<InsertJobTrackerCommand>()).Returns((123, ResultInfo.Success));
             _licenseeApi.InsertAffiliateInfo(Arg.Compat.Any<ApiAffiliateInfo>()).Returns(Task.FromResult(new ApiResultInfo { IsSuccess = true }));
 
             //Action
@@ -73,10 +73,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ThirdPartyLisencee
             await service.SendAffiliateInfo(new AffiliateBasicInfo());
 
             //Assert
-            _trackerRepository.Received().UpdateDataTracker(Arg.Compat.Any<UpdateDataTrackerDTO>());
+            _jobTrackerService.Received().UpdateDataTracker(Arg.Compat.Any<UpdateJobTrackerCommand>());
         }
 
         private ThirdPartyLicenseeService CreateThirdPartyLicenseeService()
-            => new ThirdPartyLicenseeService(_trackerRepository, _licenseeApi, _appSetting);
+            => new ThirdPartyLicenseeService(_jobTrackerService, _licenseeApi, _appSetting);
     }
 }

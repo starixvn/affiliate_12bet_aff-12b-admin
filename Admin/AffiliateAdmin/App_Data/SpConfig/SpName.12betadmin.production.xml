@@ -165,7 +165,11 @@
     <Setting Key="Aff_Admin_LicenseeDomain_Ins" SpName="Aff_Admin_LicenseeDomain_Ins" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_LicenseeDomain_Upd" SpName="Aff_Admin_LicenseeDomain_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_LicenseeDomain_Del" SpName="Aff_Admin_LicenseeDomain_Del" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_DomainControl_Sel" SpName="Aff_Admin_DomainControl_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_DomainControl_Sel" SpName="Aff_Admin_DomainControl_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="DomainControlId" ObjectProperty="DomainId" />
+      <Mapping DataField="MarketName" ObjectProperty="Market" />
+      <Mapping DataField="Status" ObjectProperty="IsUsed" />
+    </Setting>
     <Setting Key="Aff_Admin_DomainControl_Ins" SpName="Aff_Admin_DomainControl_Ins" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_DomainControl_Upd" SpName="Aff_Admin_DomainControl_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_DomainControl_Del" SpName="Aff_Admin_DomainControl_Del" DbName="DBAFF.Affiliate_12B.wsv_afinet" />

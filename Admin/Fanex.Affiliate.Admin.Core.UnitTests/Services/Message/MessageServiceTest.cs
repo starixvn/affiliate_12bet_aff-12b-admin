@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Service.Message
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
 {
     public class MessageServiceTest
     {

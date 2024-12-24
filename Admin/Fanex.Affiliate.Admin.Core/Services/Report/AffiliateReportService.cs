@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Criterias.Report;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.Report;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
@@ -33,7 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             };
             AssignBaseAffiliateReportCriteria(criteria, param);
 
-            return FetchEntityResultHasTotalItem<AffiliateReport>(criteria);
+            return FetchEntityResultHasItemTotal<AffiliateReport>(criteria);
         }
 
         public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportParam param)
@@ -45,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             };
             AssignBaseAffiliateReportCriteria(criteria, param);
 
-            return FetchEntityResultHasTotalItem<AffiliateReport>(criteria);
+            return FetchEntityResultHasItemTotal<AffiliateReport>(criteria);
         }
 
         public DateTime GetReportCutOffDate()

@@ -1,47 +1,46 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
-    public class SubAffDomainService : BaseRepository, ISubAffDomainService
+    public class SubAffDomainService : ISubAffDomainService
     {
-        private readonly IDomainRepository _domainRepository;
+        private readonly ICommonDomainService _commonDomainService;
 
-        public SubAffDomainService(IDomainRepository domainRepository)
+        public SubAffDomainService(
+            ICommonDomainService commonDomainService)
         {
-            _domainRepository = domainRepository;
+            _commonDomainService = commonDomainService;
         }
 
         public IEnumerable<DomainInfo> GetSubAffDomainList()
         {
             const string SpKey = "Aff_Admin_SubAffiliateDomain_Sel";
 
-            return _domainRepository.GetDomainList(SpKey);
+            return _commonDomainService.GetDomainList(SpKey);
         }
 
         public ResultInfo InsertSubAffDomain(InsertUpdateDomainParam param)
         {
             const string SpKey = "Aff_Admin_SubAffiliateDomain_Ins";
 
-            return _domainRepository.InsertDomain(param, SpKey);
+            return _commonDomainService.InsertDomain(param, SpKey);
         }
 
         public ResultInfo UpdateSubAffDomain(InsertUpdateDomainParam param)
         {
             const string SpKey = "Aff_Admin_SubAffiliateDomain_Upd";
 
-            return _domainRepository.UpdateDomain(param, SpKey);
+            return _commonDomainService.UpdateDomain(param, SpKey);
         }
 
         public ResultInfo DeleteSubAffDomain(DeleteDomainParam param)
         {
             const string SpKey = "Aff_Admin_SubAffiliateDomain_Del";
 
-            return _domainRepository.DeleteDomain(param, SpKey);
+            return _commonDomainService.DeleteDomain(param, SpKey);
         }
     }
 }
