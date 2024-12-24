@@ -1,19 +1,21 @@
-﻿using System.Threading.Tasks;
-using Fanex.Affiliate.User.Core.Apis;
-using Fanex.Affiliate.User.Core.Constants.Apis;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Apis;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.MetalModels.Email;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Affiliate.User.Core.Utilities;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class AccountService : IAccountService
+    using System.Threading.Tasks;
+    using Apis;
+    using Commands.Account;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using Fanex.Affiliate.User.Core.Constants.Apis;
+    using Fanex.Affiliate.User.Core.DTO.Apis;
+    using MetalModels;
+    using MetalModels.Email;
+    using Resources;
+    using Utilities;
+
+    public class AccountService : BaseDynamicService, IAccountService
     {
-        private readonly IAccountRepository _accountRepository;
         private readonly IEmailService _emailService;
         private readonly ILicenseeApi _licenseeApi;
         private readonly IAppSetting _appSetting;
@@ -21,12 +23,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private const int TEST_CURRENCY = 20;
 
         public AccountService(
-            IAccountRepository accountRepository,
+            IDynamicRepository dynamicRepository,
             IEmailService emailService,
             ILicenseeApi licenseeApi,
-            IAppSetting appSetting)
+            IAppSetting appSetting) : base(dynamicRepository)
         {
-            _accountRepository = accountRepository;
             _emailService = emailService;
             _licenseeApi = licenseeApi;
             _appSetting = appSetting;
@@ -45,7 +46,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             signUpParam.Player_CustId = cust.CustId;
             signUpParam.Player_Currency = cust.IsTest.GetValueOrDefault(true) ? TEST_CURRENCY : cust.CurrencyId.GetValueOrDefault();
 
-            var result = _accountRepository.CreateAffiliate(signUpParam);
+            var result = ExecuteReturnResultInfo(signUpParam.MapTo<CreateAffiliateCommand>());
             if (result.IsOk)
             {
                 emailParam.MailTo = signUpParam.Email;
@@ -77,7 +78,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null)
         {
-            return _accountRepository.GetGeneralAffInfo(affId, affCode) ?? new GeneralAffInfo();
+            return GetTData<GeneralAffInfo>(new GetGeneralAffInfoCriteria(affId, affCode)) ?? new GeneralAffInfo();
         }
 
         public async Task<ResultInfo> CheckAndUnlockUserIfLocked(string userName)

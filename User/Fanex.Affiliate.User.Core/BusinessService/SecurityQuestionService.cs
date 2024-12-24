@@ -1,21 +1,19 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.Repository;
-using System.Collections.Generic;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class SecurityQuestionService : ISecurityQuestionService
-    {
-        private readonly ISecurityQuestionRepository _securityQuestionRepository;
+    using System.Collections.Generic;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
 
-        public SecurityQuestionService(ISecurityQuestionRepository securityQuestionRepository)
-        {
-            _securityQuestionRepository = securityQuestionRepository;
-        }
+    public class SecurityQuestionService : BaseDynamicService, ISecurityQuestionService
+    {
+        public SecurityQuestionService(IDynamicRepository dynamicRepository) : base(dynamicRepository) 
+        { }
 
         public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language)
         {
-            return _securityQuestionRepository.GetSecurityQuestions(language);
+            return FetchTData<SecurityQuestion>(new GetSecurityQuestionsCriteria(language));
         }
     }
 }

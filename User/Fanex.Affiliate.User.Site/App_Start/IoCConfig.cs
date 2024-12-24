@@ -80,22 +80,19 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<UMRestClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<HttpContextHelper>().AsImplementedInterfaces().SingleInstance();
 
-            builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SystemService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<MarketingRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<StatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CryptographyService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<NewsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<NewsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<EmailService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<StatementHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<StatementHistoryService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentService>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -112,17 +109,14 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<VerificationService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<WrapperUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<VerificationRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<SecurityQuestionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<AccountOverviewRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AccountOverviewService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatisticsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<UnderMaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CurrencyRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterType<QrCodeGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterType<ObjectDBBuilder>().AsImplementedInterfaces().UsingConstructor().InstancePerLifetimeScope();
-            builder.RegisterType<SystemRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<DateTimeProvider>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterType<NewsLetterRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();

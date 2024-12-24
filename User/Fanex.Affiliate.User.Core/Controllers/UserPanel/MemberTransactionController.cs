@@ -15,8 +15,8 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         private readonly IMemberTransactionService _memberTransactionService;
 
         public MemberTransactionController(ISessionService sessionService,
-            ISystemService languageService, IMemberTransactionService memberTransactionService)
-            : base(sessionService, languageService)
+            ISystemService systemsService, IMemberTransactionService memberTransactionService)
+            : base(sessionService, systemsService)
         {
             _memberTransactionService = memberTransactionService;
         }

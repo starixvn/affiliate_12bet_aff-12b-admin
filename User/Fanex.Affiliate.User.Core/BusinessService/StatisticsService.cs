@@ -1,32 +1,46 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
     using System.Collections.Generic;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO.UserPanel;
     using DTO.UserPanel.Statistics;
     using MetalModels.UserPanel;
-    using Repository.UserPanel;
+    using Utilities;
 
-    public class StatisticsService : IStatisticsService
+    public class StatisticsService : BaseDynamicService, IStatisticsService
     {
-        private readonly IStatisticsRepository _statisticsRepository;
-
-        public StatisticsService(IStatisticsRepository statisticsRepository)
+        public StatisticsService(IDynamicRepository dynamicRepository) : base(dynamicRepository)
         {
-            _statisticsRepository = statisticsRepository;
         }
 
         public IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam)
         {
-            return _statisticsRepository.GetLandingPageStatistics(landingPageStatisticsParam);
+            var criteria = landingPageStatisticsParam.MapTo<GetLandingPageStatisticsCriteria>();
+
+            return FetchTData<LandingPageStatistics>(criteria);
         }
 
         public IEnumerable<ReferrerStatistics> GetReferrerStatistics(ReferrerStatisticsParam referrerStatisticsParam)
         {
-            return _statisticsRepository.GetReferrerStatistics(referrerStatisticsParam);
+            var criteria = referrerStatisticsParam.MapTo<GetReferrerStatisticsCriteria>();
+
+            return FetchTData<ReferrerStatistics>(criteria);
         }
 
         public IEnumerable<ReferrerStatistics> GetStatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam)
         {
-            return _statisticsRepository.GetStatisticsDetailBySite(statisticsDetailParam);
+            var criteria = statisticsDetailParam.MapTo<GetStatisticsDetailBySiteCriteria>();
+
+            return FetchTData<ReferrerStatistics>(criteria);
+        }
+
+        public IEnumerable<MarketingPageStatistics> GetMarketingPageStatistics(MarketingPageStatisticsParam param)
+        {
+            var criteria = param.MapTo<GetMarketingPageStatisticsCriteria>();
+           
+            return FetchTData<MarketingPageStatistics>(criteria);
         }
     }
 }

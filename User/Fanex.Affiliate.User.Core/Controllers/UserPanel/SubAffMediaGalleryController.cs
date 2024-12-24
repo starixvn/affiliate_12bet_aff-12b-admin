@@ -10,9 +10,9 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         public SubAffMediaGalleryController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemsService,
             IMarketingService marketingService)
-            : base(sessionService, appSetting, languageService, marketingService)
+            : base(sessionService, appSetting, systemsService, marketingService)
         {
         }
 

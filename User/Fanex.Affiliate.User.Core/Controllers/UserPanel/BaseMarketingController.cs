@@ -21,9 +21,9 @@
         public BaseMarketingController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemsService,
             IMarketingService marketingService)
-            : base(sessionService, languageService)
+            : base(sessionService, systemsService)
         {
             MarketingService = marketingService;
             AppSetting = appSetting;

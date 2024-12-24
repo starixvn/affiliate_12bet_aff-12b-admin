@@ -23,10 +23,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemsService,
             IAuthService authService,
             IAccountRepository accountRepository,
-            ICaptchaService captchaService) : base(sessionService, languageService, appSetting, captchaService, authService, accountRepository)
+            ICaptchaService captchaService) : base(sessionService, systemsService, appSetting, captchaService, authService, accountRepository)
         {
         }
 

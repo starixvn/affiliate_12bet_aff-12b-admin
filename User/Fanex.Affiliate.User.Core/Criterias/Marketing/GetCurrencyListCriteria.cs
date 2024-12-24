@@ -1,10 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.Criterias
 {
-    using Data;
-    using Fanex.Data.Repository;
     using Utilities;
 
-    public class GetCurrencyListCriteria : CriteriaBase
+    public class GetCurrencyListCriteria : BaseCriteria
     {
         private const string SpKey = "Aff_Admin_MediaCurrency_Sel";
 
@@ -12,9 +10,6 @@
         {
             IsInternal = isInternal;
         }
-
-        [SpParam(Ignored = true)]
-        private bool IsInternal { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

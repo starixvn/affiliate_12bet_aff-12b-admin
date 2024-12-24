@@ -15,14 +15,14 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
     [CustomAuthorize]
     public class SummaryController : BaseController
     {
-        private readonly IAccountOverviewRepository _accountOverviewRepository;
+        private readonly IAccountOverviewService _accountOverviewService;
 
         public SummaryController(ISessionService sessionService,
-            ISystemService languageService,
-            IAccountOverviewRepository accountOverviewRepository
-            ) : base(sessionService, languageService)
+            ISystemService systemsService,
+            IAccountOverviewService accountOverviewService
+            ) : base(sessionService, systemsService)
         {
-            _accountOverviewRepository = accountOverviewRepository;
+            _accountOverviewService = accountOverviewService;
         }
 
         [HttpGet]
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly]
         public ActionResult Dashboard(DateTime monthDate)
         {
-            var model = _accountOverviewRepository.GetUserOverviewSummary(SessionService.UserSession.AffId, monthDate);
+            var model = _accountOverviewService.GetUserOverviewSummary(SessionService.UserSession.AffId, monthDate);
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/Dashboard.cshtml", model);
         }
 
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         [AjaxOnly]
         public ActionResult Overview(DateTime monthDate)
         {
-            var model = _accountOverviewRepository.GetUserOverviewDetailList(SessionService.UserSession.AffId, monthDate);
+            var model = _accountOverviewService.GetUserOverviewDetailList(SessionService.UserSession.AffId, monthDate);
 
             var itemTotal = new OverviewDetail
             {
@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         public ActionResult SubAffDetails(SubAffDetailParam param)
         {
             param.AffId = SessionService.UserSession.AffId;
-            var model = _accountOverviewRepository.GetSubAffDetails(param);
+            var model = _accountOverviewService.GetSubAffDetails(param);
 
             return PartialView("~/Views/UserPanel/AccountOverView/Summary/SubAffDetails.cshtml", model);
         }
@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         private PlayerDetailViewModel GetPlayerDetailViewModel(PlayerDetailParam param)
         {
             param.AffId = SessionService.UserSession.AffId;
-            var playerDetailList = _accountOverviewRepository.GetPlayerDetailList(param);
+            var playerDetailList = _accountOverviewService.GetPlayerDetailList(param);
 
             return new PlayerDetailViewModel
             {

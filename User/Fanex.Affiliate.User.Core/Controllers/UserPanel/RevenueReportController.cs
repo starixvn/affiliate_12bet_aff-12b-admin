@@ -4,7 +4,6 @@
     using System.Web.Mvc;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
@@ -13,24 +12,21 @@
     public class RevenueReportController : BaseController
     {
         private readonly ICommissionReportService _commissionReportService;
-        private readonly ICurrencyRepository _currencyRepository;
 
         public RevenueReportController(
             ISessionService sessionService,
-            ISystemService languageService,
-            ICommissionReportService commissionReportService,
-            ICurrencyRepository currencyRepository
-            ) : base(sessionService, languageService)
+            ISystemService systemsService,
+            ICommissionReportService commissionReportService
+            ) : base(sessionService, systemsService)
         {
             _commissionReportService = commissionReportService;
-            _currencyRepository = currencyRepository;
         }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index(int? baseCurrency)
         {
-            ViewBag.BaseCurrencies = _currencyRepository.GetBaseCurrencyList();
+            ViewBag.BaseCurrencies = SystemService.GetBaseCurrencyList();
             ViewBag.DefaultBaseCurrency = baseCurrency ?? SessionService.UserSession.BaseCurrency;
 
             return View("~/Views/UserPanel/CommissionReport/Index.cshtml", SessionService.UserSession.IsMaxSubLevel);

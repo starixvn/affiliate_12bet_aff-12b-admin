@@ -30,10 +30,10 @@
         public MarketingController(
             ISessionService sessionService, 
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemsService,
             IMarketingService marketingService,
             IQrCodeGeneratorService qrCodeGeneratorService,
-            IFileSystem fileSystem) : base(sessionService, appSetting, languageService, marketingService)
+            IFileSystem fileSystem) : base(sessionService, appSetting, systemsService, marketingService)
         {
             _appSetting = appSetting;
             _qrCodeGeneratorService = qrCodeGeneratorService;

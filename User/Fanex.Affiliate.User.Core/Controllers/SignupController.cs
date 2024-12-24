@@ -31,9 +31,9 @@
             ISessionService sessionService,
             IAppSetting appSetting,
             IAccountService accountService,
-            ISystemService languageService,
+            ISystemService systemsService,
             ICaptchaService captchaService,
-            ISecurityQuestionService securityQuestionService) : base(sessionService, languageService)
+            ISecurityQuestionService securityQuestionService) : base(sessionService, systemsService)
         {
             _accountService = accountService;
             _captchaService = captchaService;

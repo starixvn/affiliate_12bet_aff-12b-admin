@@ -5,7 +5,6 @@
     using Constants;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
     using ViewModels.UserPanel;
@@ -13,17 +12,14 @@
     [CustomAuthorize]
     public class DailyEarningController : BaseController
     {
-        private readonly IStatementHistoryRepository _statementHistoryRepository;
-        private readonly ICurrencyRepository _currencyRepository;
+        private readonly IStatementHistoryService _statementHistoryService;
 
         public DailyEarningController(
             ISessionService sessionService,
-            ISystemService languageService,
-            IStatementHistoryRepository statementHistoryRepository,
-            ICurrencyRepository currencyRepository) : base(sessionService, languageService)
+            ISystemService systemsService,
+            IStatementHistoryService statementHistoryService) : base(sessionService, systemsService)
         {
-            _statementHistoryRepository = statementHistoryRepository;
-            _currencyRepository = currencyRepository;
+            _statementHistoryService = statementHistoryService;
         }
 
         [AjaxOnly]
@@ -36,13 +32,13 @@
 
             var viewModel = new DailyEarningViewModel
             {
-                ProductList = param.IsOnlyContent ? null : _statementHistoryRepository.GetProductList(param.IsInternal),
-                Data = _statementHistoryRepository.GetDailyEarning(param),
+                ProductList = param.IsOnlyContent ? null : _statementHistoryService.GetProductList(param.IsInternal),
+                Data = _statementHistoryService.GetDailyEarning(param),
                 SelectedProduct = param.ProductId.Value
             };
 
             ViewBag.MonthDate = param.MonthDate;
-            ViewBag.BaseCurrencies = _currencyRepository.GetBaseCurrencyList();
+            ViewBag.BaseCurrencies = SystemService.GetBaseCurrencyList();
             ViewBag.SelectedBaseCurrency = param.BaseCurrency;
 
             var viewPath = param.IsOnlyContent 

@@ -18,11 +18,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         public AuthBaseController(
             ISessionService sessionService,
-            ISystemService languageService,
+            ISystemService systemsService,
             IAppSetting appSetting,
             ICaptchaService captchaService,
             IAuthService authService,
-            IAccountRepository accountRepository) : base(sessionService, languageService)
+            IAccountRepository accountRepository) : base(sessionService, systemsService)
         {
             CaptchaService = captchaService;
             AppSetting = appSetting;

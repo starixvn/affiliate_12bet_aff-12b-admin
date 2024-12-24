@@ -1,11 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.Criterias
 {
-    using Data;
-    using Data.Repository;
     using Enum;
     using Utilities;
 
-    public class GetBannerListCriteria : CriteriaBase
+    public class GetBannerListCriteria : BaseCriteria
     {
         private const string SpKey = "Aff_Admin_Banner_Sel";
 
@@ -30,9 +28,6 @@
         public int Nrows { get; set; }
 
         public string SubCategory { get; set; }
-
-        [SpParam(Ignored = true)]
-        public bool IsInternal { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

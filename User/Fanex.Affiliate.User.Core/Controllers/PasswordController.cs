@@ -28,9 +28,9 @@
             IAppSetting appSetting,
             IAccountRepository accountRepository,
             ICryptographyService cryptographyService,
-            ISystemService languageService,
+            ISystemService systemsService,
             IEmailService mailService)
-            : base(sessionService, languageService)
+            : base(sessionService, systemsService)
         {
             _accountRepository = accountRepository;
             _cryptographyService = cryptographyService;

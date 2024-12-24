@@ -7,22 +7,21 @@
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Filters;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics;
     using MetalModels.UserPanel;
 
     [CustomAuthorize]
     public class MarketingLinkStatisticsController : BaseController
     {
-        private readonly IStatisticsRepository _statisticsRepository;
+        private readonly IStatisticsService _statisticsService;
 
         public MarketingLinkStatisticsController(
             ISessionService sessionService,
-            ISystemService languageService,
-            IStatisticsRepository statisticsRepository
-            ) : base(sessionService, languageService)
+            ISystemService systemsService,
+            IStatisticsService statisticsService
+            ) : base(sessionService, systemsService)
         {
-            _statisticsRepository = statisticsRepository;
+            _statisticsService = statisticsService;
         }
 
         public ActionResult Index()
@@ -60,7 +59,7 @@
                 LanguageCodes = vm.Language
             };
 
-            var model = _statisticsRepository.GetMarketingPageStatistics(param).GroupBy(s => s.ChannelName);
+            var model = _statisticsService.GetMarketingPageStatistics(param).GroupBy(s => s.ChannelName);
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_MarketingPageStatisticsContent.cshtml", model);
         }

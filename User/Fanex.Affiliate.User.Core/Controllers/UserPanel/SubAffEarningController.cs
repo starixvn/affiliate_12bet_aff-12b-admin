@@ -6,24 +6,20 @@
     using BusinessService;
     using CoreService;
     using Fanex.Affiliate.User.Core.Filters;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using MetalModels.UserPanel;
     using ViewModels.UserPanel;
 
     [CustomAuthorize]
     public class SubAffEarningController : BaseController
     {
-        private readonly IStatementHistoryRepository _statementHistoryRepository;
-        private readonly ICurrencyRepository _currencyRepository;
+        private readonly IStatementHistoryService _statementHistoryService;
 
         public SubAffEarningController(
             ISessionService sessionService,
             ISystemService systemService,
-            IStatementHistoryRepository statementHistoryRepository,
-            ICurrencyRepository currencyRepository) : base(sessionService, systemService)
+            IStatementHistoryService statementHistoryService) : base(sessionService, systemService)
         {
-            _statementHistoryRepository = statementHistoryRepository;
-            _currencyRepository = currencyRepository;
+            _statementHistoryService = statementHistoryService;
         }
 
         [AjaxOnly]
@@ -33,7 +29,7 @@
             param.IsInternal = SessionService.IsInternal;
             param.MonthDate = param.MonthDate ?? DateTimeOffset.Now.AddDays(-1).DateTime;
 
-            var subAffComm = _statementHistoryRepository.GetSubAffCommission(param);
+            var subAffComm = _statementHistoryService.GetSubAffCommission(param);
             var requestPage = param.RequestPage;
             var vms = subAffComm.Select(s => new SubAffComViewModel
             {
@@ -51,7 +47,7 @@
 
             ViewBag.MonthDate = param.MonthDate;
             ViewBag.Breadcrumb = breadcrumb;
-            ViewBag.BaseCurrencies = _currencyRepository.GetBaseCurrencyList();
+            ViewBag.BaseCurrencies = SystemService.GetBaseCurrencyList();
             ViewBag.SelectedBaseCurrency = param.BaseCurrency;
 
             var path = param.IsOnlyContent

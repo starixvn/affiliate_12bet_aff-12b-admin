@@ -1,10 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.Commands
 {
-    using Data;
-    using Data.Repository;
     using Utilities;
 
-    public class RecheckinCommand : NonQueryCommand
+    public class RecheckinCommand : BaseNonQueryCommand
     {
         private const string SpKey = "Aff_Recheckin";
 
@@ -17,9 +15,6 @@
         public int On_UserId { get; set; }
 
         public bool IsKickedOut { get; set; } = true;
-
-        [SpParam(Ignored = true)]
-        public bool IsInternal { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

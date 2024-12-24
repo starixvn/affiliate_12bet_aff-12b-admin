@@ -8,7 +8,6 @@
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.DTO.UserPanel;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.Utilities;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
@@ -19,26 +18,23 @@
     {
         private const int DefaultPageSize = 20;
         private readonly IAppSetting _appSetting;
-        private readonly IStatementHistoryRepository _statementHistoryRepository;
-        private readonly ICurrencyRepository _currencyRepository;
+        private readonly IStatementHistoryService _statementHistoryService;
 
         public StatementHistoryController(ISessionService sessionService,
-            ISystemService languageService,
+            ISystemService systemsService,
             IAppSetting appSetting,
-            IStatementHistoryRepository statementHistoryRepository,
-            ICurrencyRepository currencyRepository
-            ) : base(sessionService, languageService)
+            IStatementHistoryService statementHistoryService
+            ) : base(sessionService, systemsService)
         {
             _appSetting = appSetting;
-            _statementHistoryRepository = statementHistoryRepository;
-            _currencyRepository = currencyRepository;
+            _statementHistoryService = statementHistoryService;
         }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index(string baseCurrency)
         {
-            var baseCurrencies = _currencyRepository.GetBaseCurrencyList();
+            var baseCurrencies = SystemService.GetBaseCurrencyList();
             var isClickBreadcrumb = false;
             var baseCurrencyId = SessionService.UserSession.BaseCurrency;
 
@@ -86,7 +82,7 @@
         private IEnumerable<StatementHistoryViewModel> GetStatementHistoryViewModel(StatementHistoryParam param)
         {
             var vms = new List<StatementHistoryViewModel>();
-            var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
+            var statementHistoryList = _statementHistoryService.GetStatementHistory(param);
 
             if (SessionService.UserSession.IsMaxSubLevel)
             {

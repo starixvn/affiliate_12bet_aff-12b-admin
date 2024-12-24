@@ -20,11 +20,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetSecurityQuestions_WhenCall_RepoCall()
         {
             var service = CreateService();
-            SecurityQuestionRepo.GetSecurityQuestions(null, false).ReturnsForAnyArgs(CreateSecurityQuestion());
+            SecurityQuestionRepo.GetSecurityQuestions(null).ReturnsForAnyArgs(CreateSecurityQuestion());
 
-            var result = service.GetSecurityQuestions("vn", false);
+            var result = service.GetSecurityQuestions("vn");
 
-            SecurityQuestionRepo.Received().GetSecurityQuestions("vn", false);
+            SecurityQuestionRepo.Received().GetSecurityQuestions("vn");
             Assert.NotEmpty(result);
         }
 

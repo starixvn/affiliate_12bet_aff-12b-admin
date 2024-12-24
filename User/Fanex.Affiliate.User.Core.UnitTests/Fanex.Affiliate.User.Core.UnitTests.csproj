@@ -149,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessService\AccountServiceTest.cs" />
-    <Compile Include="BusinessService\AuthServiceTest.cs" />
     <Compile Include="BusinessService\CaptchaServiceTest.cs" />
     <Compile Include="BusinessService\CommissionReportServiceTest.cs" />
     <Compile Include="BusinessService\ContactServiceTest.cs" />
@@ -204,21 +203,16 @@
     <Compile Include="Extensions\StringExtensionTest.cs" />
     <Compile Include="Infrastructure\EncryptedHandlerTest.cs" />
     <Compile Include="Infrastructure\HttpRequestParserHandlerTest.cs" />
-    <Compile Include="Repository\AuthRepositoryTest.cs" />
     <Compile Include="Repository\EmailHistoryRepositoryTest.cs" />
     <Compile Include="Repository\GetSecurityQuestionsTest.cs" />
     <Compile Include="Repository\RepositoryTestBase.cs" />
-    <Compile Include="Repository\UserPanel\AccountOverviewRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\AccountRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\CommissionReportRepositoryTest.cs" />
-    <Compile Include="Repository\UserPanel\MarketingRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\MemberRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\NewsLetterRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\NewsRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\OfferRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\PaymentRepositoryTest.cs" />
-    <Compile Include="Repository\UserPanel\StatementHistoryRepositoryTest.cs" />
-    <Compile Include="Repository\UserPanel\StatisticsRepositoryTest.cs" />
     <Compile Include="Repository\VerificationRepositoryTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />

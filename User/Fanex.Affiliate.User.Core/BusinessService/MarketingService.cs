@@ -1,39 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.Enum;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Affiliate.User.Core.Utilities;
-using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class MarketingService : IMarketingService
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using Commands.Marketing;
+    using Constants;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using DTO.UserPanel;
+    using DTO.UserPanel.MediaGallery;
+    using Enum;
+    using Extensions;
+    using MetalModels;
+    using MetalModels.UserPanel;
+    using Resources;
+    using Utilities;
+    using ViewModels.UserPanel.Marketing;
+
+    public class MarketingService : BaseDynamicService, IMarketingService
     {
-        private readonly IMarketingRepository _marketingRepository;
         private readonly IMemoryCacheService _cacheService;
         private readonly IAppSetting _appSetting;
-        private readonly ISystemService _languageService;
+        private readonly ISystemService _systemsService;
 
         private const int AffiliateLink = 1;
         private const int MediaGallery = 2;
 
-        public MarketingService(IMarketingRepository marketingRepository, IMemoryCacheService cacheService, IAppSetting appSetting, ISystemService languageService)
+        public MarketingService(
+            IDynamicRepository dynamicRepository,
+            IMemoryCacheService cacheService,
+            IAppSetting appSetting,
+            ISystemService systemsService) : base(dynamicRepository)
         {
-            _marketingRepository = marketingRepository;
             _cacheService = cacheService;
             _appSetting = appSetting;
-            _languageService = languageService;
+            _systemsService = systemsService;
         }
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, AffiliateLinkType linkType, bool isInternal = false)
@@ -50,7 +54,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     TargetId = (int)linkType,
                     TypeId = mediaType
                 };
-                categoryList = _marketingRepository.GetCategoryList(param, isInternal);
+                categoryList = FetchTData<CategoryType>(new GetCategoryListCriteria(param.TypeId, param.TargetId, isInternal));
 
                 _cacheService.Set(cacheKey, categoryList);
             }
@@ -64,7 +68,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (currencyList == null)
             {
-                currencyList = _marketingRepository.GetCurrencyList(isInternal);
+                currencyList = FetchTData<CurrencyType>(new GetCurrencyListCriteria(isInternal));
                 _cacheService.Set(CacheKey.CurrencyList, currencyList);
             }
 
@@ -73,7 +77,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal = false)
         {
-            return _marketingRepository.GetSizeList(param, isInternal);
+            var criteria = param.MapTo<GetSizeListCriteria>(isInternal);
+
+            return FetchTData<SizeType>(criteria);
         }
 
         public IEnumerable<Domain> GetAvailableDomainList(int affId, AffiliateLinkType linkType, bool isInternal = false)
@@ -85,7 +91,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (domainList == null)
             {
-                domainList = _marketingRepository.GetAvailableDomainList(affId, isMember, isInternal);
+                domainList = isMember
+                    ? FetchTData<Domain>(new GetAffDomainListCriteria(affId, isInternal))
+                    : FetchTData<Domain>(new GetSubAffDomainListCriteria(isInternal));
+
                 var specificDomains = _appSetting.IsDev || _appSetting.IsLocal
                     ? SpecificDomain.SpecificDomainByAffOnLocal
                     : SpecificDomain.SpecificDomainByAffOnPro;
@@ -126,22 +135,22 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
-            const int lengthOfSplittingSize = 2;
-            var bannerList = _marketingRepository.GetBannerList(bannerParam);
+            const int LengthOfSplittingSize = 2;
 
+            var bannerList = FetchTData<MarketingItem>(bannerParam.MapTo<GetBannerListCriteria>());
             foreach (var banner in bannerList)
             {
                 banner.FileName = bannerParam.BannerDomain + banner.FileName;
                 banner.SelectedDomainName = bannerParam.SelectedDomain.DomainName;
 
                 var sizes = banner.Size.Split('x');
-                if (sizes.Count() == lengthOfSplittingSize)
+                if (sizes.Count() == LengthOfSplittingSize)
                 {
                     banner.Width = Convert.ToInt32(sizes[0]);
                     banner.Height = Convert.ToInt32(sizes[1]);
                 }
 
-                var language = _languageService.GetLanguageList().FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
+                var language = _systemsService.GetLanguageList().FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
 
                 if (language != null)
                 {
@@ -155,7 +164,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink)
         {
             var isTargetToMember = linkType == AffiliateLinkType.AffiliateLink;
-            var landingPages = _marketingRepository.GetLandingPageList(isInternal);
+            var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(isInternal));
 
             return isTargetToMember
                 ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName)
@@ -178,7 +187,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public ResultInfo<MarketingChannel> AddMarketingChannel(int userId, string channelName)
         {
             var channelCode = NormalizeName(channelName);
-            var result = _marketingRepository.AddMarketingChannel(userId, channelCode, channelName);
+            var result = ExecuteReturnResultInfo(new AddMarketingChannelCommand(userId, channelCode, channelName));
             var message = GenAddChannelErrMsg(result.Code);
 
             return new ResultInfo<MarketingChannel>
@@ -190,11 +199,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
         public IDictionary<string, string> GetChannels(int userId)
-            => _marketingRepository.GetMarketingChannels(userId).ToDictionary(c => c.ChannelCode, c => c.ChannelName);
+            => FetchTData<MarketingChannel>(new GetMarketingChannelsCriteria(userId))
+                .ToDictionary(c => c.ChannelCode, c => c.ChannelName);
 
         public ResultInfo ToggleMarketingLink(MarketingLinkParam param)
         {
-            var result = _marketingRepository.ToggleMarketingLink(param);
+            var result = ExecuteReturnResultInfo(param.MapTo<ToggleMarketingLinkCommand>());
             var message = GenToggleErrMsg(result.Code);
 
             return new ResultInfo
@@ -205,12 +215,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         }
 
         public IEnumerable<IGrouping<string, MarketingChannelLink>> GetUsingMarketingLinks(int userId)
-            => _marketingRepository.GetUsingMarketingLink(userId).GroupBy(c => c.ChannelCode);
+            => FetchTData<MarketingChannelLink>(new GetUsingMarketingLinkCriteria(userId)).GroupBy(c => c.ChannelCode);
 
         private Dictionary<string, Language> GetLanguageUsedForGeneration(LinkGeneratingParam linkGeneratedParam)
         {
             var result = new Dictionary<string, Language>();
-            var languageList = _languageService.GetLanguageList();
+            var languageList = _systemsService.GetLanguageList();
 
             if (string.IsNullOrEmpty(linkGeneratedParam.SelectedLanguage))
             {

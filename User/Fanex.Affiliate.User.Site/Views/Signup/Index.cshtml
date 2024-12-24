@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var languageService = DependencyResolver.Current.GetService<ISystemService>();
+    var systemsService = DependencyResolver.Current.GetService<ISystemService>();
     var currentLanguage = sessionService.CurrentLanguage;
     var hasThirdContactApp = AppContact.ThirdAppContactList.ContainsKey(currentLanguage);
     var secondAppName = AppContact.SecondAppContactList[currentLanguage];
@@ -264,7 +264,7 @@
                                         <label class="custom-label" for="PreferredLanguage">@Lang.Language <span class="red-warn">*</span></label>
                                         <select class="form-input form-select" name="PreferredLanguage" id="PreferredLanguage" data-val="true" data-val-required="@Lang.AffAccountLanguageErr">
                                             <option value="">@Lang.SelectOne</option>
-                                            @foreach (var item in languageService.GetLanguageList())
+                                            @foreach (var item in systemsService.GetLanguageList())
                                             {
                                                 <option value="@item.Code">@item.NativeName</option>
                                             }

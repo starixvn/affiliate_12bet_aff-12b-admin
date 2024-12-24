@@ -24,11 +24,11 @@
         public ContactUsController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemsService,
             IContactService contactService,
             IAccountRepository accountRepository,
             ICaptchaService captchaService)
-            : base(sessionService, languageService)
+            : base(sessionService, systemsService)
         {
             _contactService = contactService;
             _accountRepository = accountRepository;

@@ -1,29 +1,30 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
     using System.Web.Mvc;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.CoreService;
+    using BusinessService;
+    using CoreService;
     using Filters;
-    using Repository.UserPanel;
     using ViewModels.UserPanel;
 
     [CustomAuthorize]
     public class AccountOverviewController : BaseController
     {
-        private readonly IAccountOverviewRepository _accountOverviewRepository;
-        public AccountOverviewController(ISessionService sessionService,
-            ISystemService languageService,
-            IAccountOverviewRepository accountOverviewRepository
-            ) : base(sessionService, languageService)
+        private readonly IAccountOverviewService _accountOverviewService;
+
+        public AccountOverviewController(
+            ISessionService sessionService,
+            ISystemService systemsService,
+            IAccountOverviewService accountOverviewService) 
+            : base(sessionService, systemsService)
         {
-            _accountOverviewRepository = accountOverviewRepository;
+            _accountOverviewService = accountOverviewService;
         }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index()
         {
-            var lastLoginInfo = _accountOverviewRepository.GetLastLoginInfo(SessionService.UserSession.AffId);
+            var lastLoginInfo = _accountOverviewService.GetLastLoginInfo(SessionService.UserSession.AffId);
 
             var model = new AccountOverviewViewModel
             {

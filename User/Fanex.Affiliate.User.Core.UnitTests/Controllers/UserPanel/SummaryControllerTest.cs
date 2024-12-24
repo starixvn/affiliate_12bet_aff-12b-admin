@@ -37,9 +37,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         {
             // Arrange
             var expectedResult = new OverviewSummary { ActivePlayers = 123 };
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetUserOverviewSummary(It.IsAny<int>(), monthDate)).Returns(expectedResult);
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetUserOverviewSummary(It.IsAny<int>(), monthDate)).Returns(expectedResult);
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
             var partialViewResult = controller.Dashboard(monthDate) as PartialViewResult;
@@ -53,9 +53,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void Overview_WhenCall_ReturnCorrectPartialView()
         {
             // Arrange
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetUserOverviewDetailList(It.IsAny<int>(), monthDate)).Returns(new List<OverviewDetail>());
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetUserOverviewDetailList(It.IsAny<int>(), monthDate)).Returns(new List<OverviewDetail>());
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
             var partialViewResult = controller.Overview(monthDate) as PartialViewResult;
@@ -71,9 +71,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             var param = new PlayerDetailParam { MonthDate = monthDate, IsSortAsc = true };
             PlayerDetailParam passedParam = null;
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
             var partialViewResult = controller.PlayersDetails(param) as PartialViewResult;
@@ -91,9 +91,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             var param = new PlayerDetailParam { MonthDate = monthDate };
             PlayerDetailParam passedParam = null;
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
             var partialViewResult = controller.PlayersDetailsContent(param) as PartialViewResult;
@@ -109,9 +109,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void SubAffDetails_WhenCall_ReturnCorrectPartialView()
         {
             // Arrange
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetSubAffDetails(It.IsAny<SubAffDetailParam>())).Returns(new List<SubAffDetail> { new SubAffDetail() });
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetSubAffDetails(It.IsAny<SubAffDetailParam>())).Returns(new List<SubAffDetail> { new SubAffDetail() });
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
             var partialViewResult = controller.SubAffDetails(new SubAffDetailParam { MonthDate = new DateTime(2020, 12, 01) }) as PartialViewResult;
@@ -124,13 +124,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private static SummaryController CreateController(
             ISessionService sessionService = null,
             ISystemService languageService = null,
-            IAccountOverviewRepository accountOverviewRepository = null)
+            IAccountOverviewService accountOverviewService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
             languageService = languageService ?? Mock.Of<ISystemService>();
-            accountOverviewRepository = accountOverviewRepository ?? Mock.Of<IAccountOverviewRepository>();
+            accountOverviewService = accountOverviewService ?? Mock.Of<IAccountOverviewService>();
 
-            return new SummaryController(sessionService, languageService, accountOverviewRepository);
+            return new SummaryController(sessionService, languageService, accountOverviewService);
         }
     }
 }

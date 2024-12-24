@@ -1,11 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.Criterias
 {
     using System;
-    using Data;
-    using Data.Repository;
     using Utilities;
 
-    public class GetSubAffCommissionCriteria : CriteriaBase
+    public class GetSubAffCommissionCriteria : BaseCriteria
     {
         private const string SpKey = "Aff_SubAffiliate_Commission_Sel";
 
@@ -14,9 +12,6 @@
         public DateTime? MonthDate { get; set; }
 
         public int BaseCurrency { get; set; }
-
-        [SpParam(Ignored = true)]
-        public bool IsInternal { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

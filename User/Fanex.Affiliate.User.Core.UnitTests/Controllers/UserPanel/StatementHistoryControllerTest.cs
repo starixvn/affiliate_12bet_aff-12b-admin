@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private readonly ISessionService SessionService;
         private readonly ISystemService LanguageService;
         private readonly IAppSetting AppSetting;
-        private readonly IStatementHistoryRepository Repo;
+        private readonly IStatementHistoryService Repo;
         private readonly ICurrencyRepository CurrencyRepo;
 
         public StatementHistoryControllerTest()
@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             SessionService = NSubstituteMockingHelper.FakeSessionService();
             LanguageService = NSubstituteMockingHelper.FakeLanguageService();
             AppSetting = Substitute.For<IAppSetting>();
-            Repo = Substitute.For<IStatementHistoryRepository>();
+            Repo = Substitute.For<IStatementHistoryService>();
             CurrencyRepo = Substitute.For<ICurrencyRepository>();
         }
 

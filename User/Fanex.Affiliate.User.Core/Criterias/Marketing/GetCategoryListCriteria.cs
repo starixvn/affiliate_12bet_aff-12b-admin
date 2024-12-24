@@ -1,10 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.Criterias
 {
-    using Data;
-    using Data.Repository;
     using Utilities;
 
-    public class GetCategoryListCriteria : CriteriaBase
+    public class GetCategoryListCriteria : BaseCriteria
     {
         private const string SpKey = "Aff_Admin_MediaCategory_Sel";
 
@@ -18,9 +16,6 @@
         public int TypeId { get; set; }
 
         public int TargetId { get; set; }
-
-        [SpParam(Ignored = true)]
-        private bool IsInternal { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

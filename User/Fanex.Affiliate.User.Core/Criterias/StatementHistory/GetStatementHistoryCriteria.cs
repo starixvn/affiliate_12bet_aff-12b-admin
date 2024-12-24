@@ -1,10 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.Criterias
 {
-    using Data;
-    using Data.Repository;
     using Utilities;
 
-    public class GetStatementHistoryCriteria : CriteriaBase
+    public class GetStatementHistoryCriteria : BaseCriteria
     {
         private const string SpKey = "Aff_User_StatementHistory_Sel";
 
@@ -17,9 +15,6 @@
         public int? PageIndex { get; set; }
 
         public int NRows { get; set; }
-
-        [SpParam(Ignored = true)]
-        public bool IsInternal { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

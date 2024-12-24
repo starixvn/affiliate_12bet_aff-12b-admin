@@ -46,10 +46,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 Total = null
             };
 
-            var statementHistoryRepository = new Mock<IStatementHistoryRepository>();
-            statementHistoryRepository.Setup(s => s.GetProductList(param.IsInternal)).Returns(expectProductList);
-            statementHistoryRepository.Setup(s => s.GetDailyEarning(param)).Returns(expectDailyEarningResult);
-            var controller = CreateController(statementHistoryRepository.Object);
+            var statementHistoryService = new Mock<IStatementHistoryService>();
+            statementHistoryService.Setup(s => s.GetProductList(param.IsInternal)).Returns(expectProductList);
+            statementHistoryService.Setup(s => s.GetDailyEarning(param)).Returns(expectDailyEarningResult);
+            var controller = CreateController(statementHistoryService.Object);
 
             //Action
             var actionResult = controller.Index(param) as ViewResult;
@@ -82,10 +82,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var productList = new List<ProductItem>();
             var dailyEarningResult = new DailyEarningResult();
 
-            var statementHistoryRepository = new Mock<IStatementHistoryRepository>();
-            statementHistoryRepository.Setup(s => s.GetProductList(param.IsInternal)).Returns(productList);
-            statementHistoryRepository.Setup(s => s.GetDailyEarning(param)).Returns(dailyEarningResult);
-            var controller = CreateController(statementHistoryRepository.Object);
+            var statementHistoryService = new Mock<IStatementHistoryService>();
+            statementHistoryService.Setup(s => s.GetProductList(param.IsInternal)).Returns(productList);
+            statementHistoryService.Setup(s => s.GetDailyEarning(param)).Returns(dailyEarningResult);
+            var controller = CreateController(statementHistoryService.Object);
 
             var expectProductId = 1;
 
@@ -112,10 +112,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var productList = new List<ProductItem>();
             var dailyEarningResult = new DailyEarningResult();
 
-            var statementHistoryRepository = new Mock<IStatementHistoryRepository>();
-            statementHistoryRepository.Setup(s => s.GetProductList(param.IsInternal)).Returns(productList);
-            statementHistoryRepository.Setup(s => s.GetDailyEarning(param)).Returns(dailyEarningResult);
-            var controller = CreateController(statementHistoryRepository.Object);
+            var statementHistoryService = new Mock<IStatementHistoryService>();
+            statementHistoryService.Setup(s => s.GetProductList(param.IsInternal)).Returns(productList);
+            statementHistoryService.Setup(s => s.GetDailyEarning(param)).Returns(dailyEarningResult);
+            var controller = CreateController(statementHistoryService.Object);
 
             //Act
             controller.Index(param);
@@ -140,10 +140,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var productList = new List<ProductItem>();
             var dailyEarningResult = new DailyEarningResult();
 
-            var statementHistoryRepository = new Mock<IStatementHistoryRepository>();
-            statementHistoryRepository.Setup(s => s.GetProductList(param.IsInternal)).Returns(productList);
-            statementHistoryRepository.Setup(s => s.GetDailyEarning(param)).Returns(dailyEarningResult);
-            var controller = CreateController(statementHistoryRepository.Object);
+            var statementHistoryService = new Mock<IStatementHistoryService>();
+            statementHistoryService.Setup(s => s.GetProductList(param.IsInternal)).Returns(productList);
+            statementHistoryService.Setup(s => s.GetDailyEarning(param)).Returns(dailyEarningResult);
+            var controller = CreateController(statementHistoryService.Object);
 
             //Act
             var actionResult = controller.Index(param) as ViewResult;
@@ -154,7 +154,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         }
 
         private static DailyEarningController CreateController(
-             IStatementHistoryRepository statementHistoryRepository = null,
+             IStatementHistoryService statementHistoryService = null,
              ISessionService sessionService = null,
              ISystemService languageService = null,
              ICurrencyRepository currencyRepository = null)
@@ -163,8 +163,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
             var fakeCurrencyRepository = currencyRepository ?? Mock.Of<ICurrencyRepository>();
-            var fakeStatementHistoryRepository = statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>();
-            var controller = new DailyEarningController(fakeSessionService, fakeLanguageService, fakeStatementHistoryRepository, fakeCurrencyRepository);
+            var fakeStatementHistoryService = statementHistoryService ?? Mock.Of<IStatementHistoryService>();
+            var controller = new DailyEarningController(fakeSessionService, fakeLanguageService, fakeStatementHistoryService, fakeCurrencyRepository);
 
             return MockingHelper.FakeController(controller) as DailyEarningController;
         }

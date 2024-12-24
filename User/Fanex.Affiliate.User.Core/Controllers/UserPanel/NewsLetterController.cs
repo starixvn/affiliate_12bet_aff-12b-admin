@@ -13,8 +13,8 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         public NewsLetterController(INewsLetterService service,
             ISessionService sessionService,
-            ISystemService languageService)
-            : base(sessionService, languageService)
+            ISystemService systemsService)
+            : base(sessionService, systemsService)
         {
             Service = service;
         }

@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
     {
         public IEnumerable<ProductItem> ProductList { get; set; }
 
-        public DailyEarningResult Data { get; set; }
+        public EntityResult<DailyEarning> Data { get; set; }
 
         public int SelectedProduct { get; set; }
 

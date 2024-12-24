@@ -1,12 +1,12 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using System;
-using System.Collections.Generic;
-
-namespace Fanex.Affiliate.User.Core.Repository.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public interface IAccountOverviewRepository
+    using System;
+    using System.Collections.Generic;
+    using DTO.UserPanel;
+    using DTO.UserPanel.AccountOverview;
+    using MetalModels.UserPanel;
+
+    public interface IAccountOverviewService
     {
         OverviewSummary GetUserOverviewSummary(int affId, DateTime monthDate);
 

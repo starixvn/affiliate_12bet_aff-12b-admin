@@ -22,10 +22,10 @@
         public MediaGalleryController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemsService,
             IMarketingService marketingService,
             IAccountService accountService) :
-            base(sessionService, appSetting, languageService, marketingService)
+            base(sessionService, appSetting, systemsService, marketingService)
         {
             AccountService = accountService;
         }

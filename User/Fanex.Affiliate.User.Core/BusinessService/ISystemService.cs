@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using DTO;
+    using DTO.UserPanel;
 
     public interface ISystemService
     {
@@ -14,5 +15,7 @@
         bool IsValid(string langCode);
 
         string GetFavoriteShortedLanguage();
+
+        IEnumerable<Currency> GetBaseCurrencyList();
     }
 }

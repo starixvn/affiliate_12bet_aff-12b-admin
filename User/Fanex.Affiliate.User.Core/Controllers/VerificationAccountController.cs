@@ -26,11 +26,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public VerificationAccountController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemsService,
             ICaptchaService captchaService,
             IAccountRepository accountRepository,
             IAuthService authService,
-            IVerificationService verificationService) : base(sessionService, languageService, appSetting, captchaService, authService, accountRepository)
+            IVerificationService verificationService) : base(sessionService, systemsService, appSetting, captchaService, authService, accountRepository)
         {
             _verificationService = verificationService;
         }

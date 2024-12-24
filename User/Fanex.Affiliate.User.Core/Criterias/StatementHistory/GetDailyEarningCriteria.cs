@@ -1,11 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.Criterias
 {
     using System;
-    using Data;
-    using Data.Repository;
     using Utilities;
 
-    public class GetDailyEarningCriteria : CriteriaBase
+    public class GetDailyEarningCriteria : BaseCriteria
     {
         private const string SpKey = "Aff_DailyEarning_Sel";
 
@@ -16,9 +14,6 @@
         public int BaseCurrency { get; set; }
 
         public DateTime? MonthDate { get; set; }
-
-        [SpParam(Ignored = true)]
-        public bool IsInternal { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

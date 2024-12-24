@@ -15,8 +15,8 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         public MemberController(
             ISessionService sessionService,
-            ISystemService languageService,
-            IMemberRepository memberRepository) : base(sessionService, languageService)
+            ISystemService systemsService,
+            IMemberRepository memberRepository) : base(sessionService, systemsService)
         {
             _memberRepository = memberRepository;
         }

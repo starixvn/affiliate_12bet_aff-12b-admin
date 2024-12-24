@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Repository
             reader.Read().Returns(true, true, false);
 
             // Action
-            var result = repo.GetSecurityQuestions("vi-VN", true);
+            var result = repo.GetSecurityQuestions("vi-VN");
 
             // Assert
             Assert.Equal(spKey, db.SettingKey);

@@ -1,10 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.Criterias
 {
-    using Data;
-    using Data.Repository;
     using Utilities;
 
-    public class GetUserInfoCriteria : CriteriaBase
+    public class GetUserInfoCriteria : BaseCriteria
     {
         private const string SpKey = "Aff_User_Login_UserInfoSel";
 
@@ -15,9 +13,6 @@
         }
 
         public string UserName { get; set; }
-
-        [SpParam(Ignored = true)]
-        public bool IsInternal { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

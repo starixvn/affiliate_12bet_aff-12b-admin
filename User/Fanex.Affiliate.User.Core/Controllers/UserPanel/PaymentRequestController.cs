@@ -23,8 +23,8 @@
         private readonly IAppSetting _appSetting;
         public PaymentRequestController(ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
-            IPaymentService paymentService) : base(sessionService, languageService)
+            ISystemService systemsService,
+            IPaymentService paymentService) : base(sessionService, systemsService)
         {
             _paymentService = paymentService;
             _appSetting = appSetting;
