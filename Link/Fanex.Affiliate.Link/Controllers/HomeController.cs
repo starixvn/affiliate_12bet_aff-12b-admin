@@ -4,10 +4,7 @@ namespace Fanex.Affiliate.Link.Controllers
 {
     using Commands;
     using Fanex.Affiliate.Link.Constants;
-    using Fanex.Affiliate.Link.DataAccess.Impl;
-    using Fanex.Affiliate.Link.DataAccess.Interface;
     using Fanex.Affiliate.Link.Extensions;
-    using Fanex.Logging;
     using Helpers;
     using ONEbook.UM.AspNetMVC.Filters;
     using Services.Impl;
@@ -32,7 +29,7 @@ namespace Fanex.Affiliate.Link.Controllers
         private static readonly bool IsLocal = IsMatching(ConfigurationManager.AppSettings["Environment"].ToString(), LOCAL_ENV);
 
         private readonly ITrackingSystemService _trackingSystemService;
-        private readonly IGeneralAffiliateInfoDataAccess _generalAffiliateInfoDataAccess;
+        private readonly IGeneralAffiliateInfoService _generalAffiliateInfoDataAccess;
 
         private const string BENGALI_SHORTED_CODE = "bn";
         private const string BENGALI_COUNTRY_CODE = "bd";
@@ -47,7 +44,7 @@ namespace Fanex.Affiliate.Link.Controllers
         public HomeController()
         {
             _trackingSystemService = new TrackingSystemService();
-            _generalAffiliateInfoDataAccess = new GeneralAffiliateInfoDataAccess();
+            _generalAffiliateInfoDataAccess = new GeneralAffiliateInfoService();
         }
 
         #endregion Constructor
@@ -76,18 +73,18 @@ namespace Fanex.Affiliate.Link.Controllers
                 var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
                 var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affId: affId);
 
-                if (string.IsNullOrEmpty(affInfo.affCode))
+                if (string.IsNullOrEmpty(affInfo.AffCode))
                 {
                     ViewBag.Result = LinkIsInvalidMessage;
 
                     return View("Link");
                 }
 
-                return InsertAffiliate(affInfo.affCode, pageCode, lang, affDomain);
+                return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain);
             }
             catch (Exception ex)
             {
-                LogService.Error($"{ex.Message}", ex);
+                LogHelper.WriteError(ex);
                 ViewBag.Result = LinkIsIncorrectMessage;
                 return View("Link");
             }
@@ -108,7 +105,7 @@ namespace Fanex.Affiliate.Link.Controllers
             }
             catch (Exception ex)
             {
-                LogService.Error($"{ex.Message}", ex);
+                LogHelper.WriteError(ex);
                 ViewBag.Result = LinkIsIncorrectMessage;
                 return View("Link");
             }
@@ -121,6 +118,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain)
         {
+            var a = IsValidAffMarketing(affCode);
             if (Request.Url != null)
             {
                 var urlReferrer = Request.UrlReferrer?.AbsoluteUri;
@@ -196,7 +194,7 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             var commGroup = _generalAffiliateInfoDataAccess.GetCommGroupByAffCode(affCode);
 
-            return Array.Exists(MarketingForCommGroups, c => IsMatching(c, commGroup));
+            return Array.Exists(MarketingForCommGroups, c => IsMatching(c, commGroup.GroupName));
         }
 
         private static string GetFullAffDomain(string url, string endPointOfAffDomain)
