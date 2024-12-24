@@ -233,6 +233,11 @@
     <Compile Include="Criterias\StatementHistory\GetProductListCriteria.cs" />
     <Compile Include="Criterias\StatementHistory\GetStatementHistoryCriteria.cs" />
     <Compile Include="Criterias\StatementHistory\GetSubAffCommissionCriteria.cs" />
+    <Compile Include="Criterias\Statistics\BaseStatisticsCriteria.cs" />
+    <Compile Include="Criterias\Statistics\GetLandingPageStatisticsCriteria.cs" />
+    <Compile Include="Criterias\Statistics\GetMarketingPageStatisticsCriteria.cs" />
+    <Compile Include="Criterias\Statistics\GetReferrerStatisticsCriteria.cs" />
+    <Compile Include="Criterias\Statistics\GetStatisticsDetailBySiteCriteria.cs" />
     <Compile Include="Criterias\Verification\GetLoginInfoByUserDeviceCriteria.cs" />
     <Compile Include="Criterias\Auth\GetSessionIdCriteria.cs" />
     <Compile Include="Criterias\Auth\GetUserInfoCriteria.cs" />
@@ -339,8 +344,12 @@
     <Compile Include="Extensions\Mappers\CreateAffiliateExtension.cs" />
     <Compile Include="Extensions\Mappers\GetBannerListExtension.cs" />
     <Compile Include="Extensions\Mappers\GetDailyEarningExtension.cs" />
+    <Compile Include="Extensions\Mappers\GetLandingPageStatisticsExtension.cs" />
+    <Compile Include="Extensions\Mappers\GetMarketingPageStatisticsExtension.cs" />
     <Compile Include="Extensions\Mappers\GetPlayerDetailListExtension.cs" />
+    <Compile Include="Extensions\Mappers\GetReferrerStatisticsExtension.cs" />
     <Compile Include="Extensions\Mappers\GetStatementHistoryExtension.cs" />
+    <Compile Include="Extensions\Mappers\GetStatisticsDetailBySiteExtension.cs" />
     <Compile Include="Extensions\Mappers\GetSubAffCommExtension.cs" />
     <Compile Include="Extensions\Mappers\MediaSizeExtension.cs" />
     <Compile Include="Extensions\Mappers\ToggleMarketingLinkExtension.cs" />
@@ -427,7 +436,6 @@
     <Compile Include="DTO\UserPanel\AccountOverview\OverviewSummary.cs" />
     <Compile Include="DTO\UserPanel\AccountOverview\PlayerDetail.cs" />
     <Compile Include="DTO\UserPanel\RateInfo.cs" />
-    <Compile Include="DTO\UserPanel\Statistics\Country.cs" />
     <Compile Include="Extensions\HttpRequestExtension.cs" />
     <Compile Include="Filters\LanguageRouteCheckingAttribute.cs" />
     <Compile Include="Infrastructure\DateTimeProvider.cs" />

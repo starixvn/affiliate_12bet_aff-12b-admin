@@ -36,8 +36,12 @@
 		<Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_ClickStatisticsSelBySite_view" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 
-		<Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-		<Setting Key="Aff_ClickStatisticsDetailBySite_view" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
+		<Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet">
+			<Mapping DataField="UrlReferrer" ObjectProperty="DomainReferrer" />
+		</Setting>
+		<Setting Key="Aff_ClickStatisticsDetailBySite_view" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv">
+			<Mapping DataField="UrlReferrer" ObjectProperty="DomainReferrer" />
+		</Setting>
 
 		<Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
