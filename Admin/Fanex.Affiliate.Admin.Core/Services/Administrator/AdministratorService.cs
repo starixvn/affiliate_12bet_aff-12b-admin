@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
             {
                 UserName = param.UserName,
                 GroupId = param.GroupId,
-                Creator = param.UserId,
+                UserId = param.UserId,
                 Ip = param.Ip,
             };
 

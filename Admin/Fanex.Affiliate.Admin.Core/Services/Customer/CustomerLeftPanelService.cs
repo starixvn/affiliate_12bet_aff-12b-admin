@@ -125,7 +125,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
                 Ip = param.Ip,
             };
 
-            var result = ExecuteReturnResultInfo(command);
+            var result = await ExecuteReturnResultInfoAsync(command);
 
             if (result.IsSuccessful && string.Equals(param.Status, AffStatus.Disapproved, StringComparison.InvariantCultureIgnoreCase))
             {

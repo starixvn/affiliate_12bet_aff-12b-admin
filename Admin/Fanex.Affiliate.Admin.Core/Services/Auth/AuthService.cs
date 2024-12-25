@@ -70,13 +70,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
 
         public ResultInfo CheckPermission(CheckPermissionParam param)
         {
-            var criteria = new CheckUserPermissionCriteria
+            var command = new CheckUserPermissionCommand
             {
                 UserId = param.CustId,
                 FuncName = param.FuncName,
             };
 
-            return GetTData<ResultInfo>(criteria);
+            DynamicRepository.Execute(command);
+
+            return new ResultInfo(command.ErrCode, command.ErrMsg);
         }
     }
 }

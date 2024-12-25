@@ -9,15 +9,12 @@ using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 {
-    public class CommissionGroupService : ICommissionGroupService
+    public class CommissionGroupService : BaseDynamicService, ICommissionGroupService
     {
-        private readonly IDynamicRepository _dynamicRepository;
-
         private readonly ICommGroupCommonService _commGroupCommonService;
 
-        public CommissionGroupService(IDynamicRepository dynamicRepository, ICommGroupCommonService commGroupCommonService)
+        public CommissionGroupService(IDynamicRepository dynamicRepository, ICommGroupCommonService commGroupCommonService) : base(dynamicRepository)
         {
-            _dynamicRepository = dynamicRepository;
             _commGroupCommonService = commGroupCommonService;
         }
 
@@ -33,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             };
 
             var (commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList)
-                = _dynamicRepository.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(criteria);
+                = DynamicRepository.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(criteria);
 
             param.Nrows = criteria.Nrows;
 
@@ -85,9 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 Ip = param.Ip
             };
 
-            _dynamicRepository.Execute(command);
-
-            return new ResultInfo(command.ErrCode, command.ErrMsg);
+            return ExecuteReturnResultInfo(command);
         }
     }
 }

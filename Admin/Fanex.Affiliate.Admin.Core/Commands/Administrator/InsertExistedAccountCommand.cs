@@ -14,9 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Commands.Administrator
 
         public int GroupId { get; set; }
 
-        public int Creator { get; set; }
-
-        [SpParam(Ignored = true)]
+        [SpParam(SqlParamName = "Creator")]
         public new int UserId { get; set; }
     }
 }

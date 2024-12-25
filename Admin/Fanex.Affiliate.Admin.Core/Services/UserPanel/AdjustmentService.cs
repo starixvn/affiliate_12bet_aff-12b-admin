@@ -7,10 +7,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public class AdjustmentService : BaseDynamicService, IAdjustmentService
     {
-        public AdjustmentService(IDynamicRepository dynamicRepository)
-            : base(dynamicRepository)
-        {
-        }
+        public AdjustmentService(
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
         public decimal GetBalanceBroughtForward(int affId)
         {

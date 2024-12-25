@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
-using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
@@ -15,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public IEnumerable<DomainInfo> GetDomainList(string spKey)
         {
-            return FetchTData<DomainInfo>(new BaseCriteria(spKey));
+            return FetchTData<DomainInfo>(spKey);
         }
 
         public ResultInfo InsertDomain(InsertUpdateDomainParam param, string spKey)

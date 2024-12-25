@@ -78,7 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             var playerGgrReport = BuildTotalDataItem(dataItem, selectedProductIdList);
 
             playerGgrReport.AffName = Convert.ToString(dataItem["AffUsername"]);
-            playerGgrReport.PlayerName = Convert.ToString(dataItem["Username"]);
+            playerGgrReport.PlayerName = Convert.ToString(dataItem["UserName"]);
             playerGgrReport.RegistrationDate = Convert.ToDateTime(dataItem["RegisteredDate"]);
             playerGgrReport.FdmDate = Convert.ToDateTime(dataItem["FdmDate"]);
 

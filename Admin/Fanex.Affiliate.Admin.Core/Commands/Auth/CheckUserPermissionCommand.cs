@@ -1,9 +1,9 @@
 ﻿using Fanex.Data;
 using Fanex.Data.Repository;
 
-namespace Fanex.Affiliate.Admin.Core.Criterias.Auth
+namespace Fanex.Affiliate.Admin.Core.Commands.Auth
 {
-    public class CheckUserPermissionCriteria : CriteriaBase
+    public class CheckUserPermissionCommand : NonQueryCommand
     {
         private const string SP_NAME = "Aff_Con_CheckPermission";
 
@@ -15,5 +15,9 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.Auth
         public int UserId { get; set; }
 
         public string FuncName { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
     }
 }

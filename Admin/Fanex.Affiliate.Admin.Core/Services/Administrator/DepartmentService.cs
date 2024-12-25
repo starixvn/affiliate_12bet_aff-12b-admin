@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Administrator;
-using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.Criterias.Administrator;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Administrator;
@@ -20,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Administrator
         {
             const string SpKey = "Aff_Con_GroupInfoSel";
 
-            return FetchTData<DepartmentInfo>(new BaseCriteria(SpKey));
+            return FetchTData<DepartmentInfo>(SpKey);
         }
 
         public DepartmentInfo GetDepartmentDetail(int selectedDepartmentId)

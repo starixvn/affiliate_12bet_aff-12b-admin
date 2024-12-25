@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Get<ResultInfo>(It.IsAny<CheckUserPermissionCriteria>())).Returns(new ResultInfo());
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<CheckUserPermissionCommand>()));
 
             // Action
             var service = new AuthService(dynamicRepository.Object);

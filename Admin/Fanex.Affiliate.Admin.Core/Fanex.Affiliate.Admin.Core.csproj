@@ -212,7 +212,6 @@
     <Compile Include="Commands\Administrator\InsertExistedAccountCommand.cs" />
     <Compile Include="Commands\Administrator\UpdateAccountCommand.cs" />
     <Compile Include="Commands\Administrator\UpdateAccountPolicyCommand.cs" />
-    <Compile Include="Commands\Administrator\UpdateDepartmentCommand.cs" />
     <Compile Include="Commands\Administrator\UpdateRolePolicyCommand.cs" />
     <Compile Include="Commands\Affiliate\ApproveAffCommand.cs" />
     <Compile Include="Commands\Affiliate\ChangeAffPasswordCommand.cs" />
@@ -330,7 +329,7 @@
     <Compile Include="Criterias\Affiliate\AffBasicInfoCriteria.cs" />
     <Compile Include="Criterias\Affiliate\AffiliateCriteria.cs" />
     <Compile Include="Criterias\AffPagingByDateCriteria.cs" />
-    <Compile Include="Criterias\Auth\CheckUserPermissionCriteria.cs" />
+    <Compile Include="Commands\Auth\CheckUserPermissionCommand.cs" />
     <Compile Include="Criterias\Auth\UserPermissionCriteria.cs" />
     <Compile Include="Commands\CommissionGroup\BaseCommGroupCommand.cs" />
     <Compile Include="Commands\CommissionGroup\InsertCommGroupCommand.cs" />

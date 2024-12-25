@@ -15,9 +15,8 @@ using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 {
-    public class CommGroupAssignmentService : ICommGroupAssignmentService
+    public class CommGroupAssignmentService : BaseDynamicService, ICommGroupAssignmentService
     {
-        private readonly IDynamicRepository _dynamicRepository;
         private readonly IAffiliateService _affiliateService;
         private readonly IEmailService _emailService;
         private readonly ICommGroupCommonService _commGroupCommonService;
@@ -28,9 +27,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             IAffiliateService affiliateService,
             IEmailService emailService,
             ICommGroupCommonService commGroupCommonService,
-            IThirdPartyLicenseeService thirdPartyLicenseeService)
+            IThirdPartyLicenseeService thirdPartyLicenseeService) : base(dynamicRepository)
         {
-            _dynamicRepository = dynamicRepository;
             _affiliateService = affiliateService;
             _emailService = emailService;
             _commGroupCommonService = commGroupCommonService;
@@ -75,10 +73,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 Ip = param.Ip
             };
 
-            await _dynamicRepository.ExecuteAsync(command);
-
+            var assignResult = await ExecuteReturnResultInfoAsync(command);
             var isApproved = affInfo.GroupId != 0;
-            var assignResult = new ResultInfo(command.ErrCode, command.ErrMsg);
 
             if (!isApproved && assignResult.IsSuccessful)
             {

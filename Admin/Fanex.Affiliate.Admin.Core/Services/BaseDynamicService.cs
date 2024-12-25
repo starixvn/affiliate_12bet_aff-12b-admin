@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {
@@ -42,6 +43,13 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public ResultInfo ExecuteReturnResultInfo(BaseNonQueryCommand command)
         {
             _dynamicRepository.Execute(command);
+
+            return new ResultInfo(command.ErrCode, command.ErrMsg);
+        }
+
+        public async Task<ResultInfo> ExecuteReturnResultInfoAsync(BaseNonQueryCommand command)
+        {
+            await _dynamicRepository.ExecuteAsync(command);
 
             return new ResultInfo(command.ErrCode, command.ErrMsg);
         }
