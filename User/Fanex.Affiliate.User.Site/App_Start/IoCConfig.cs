@@ -84,7 +84,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SystemService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<AccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CryptographyService>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -97,7 +96,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<PaymentService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemberRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<EmailHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<ContactService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ServiceSoapClient>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemberInfoServiceWrapper>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemberTransactionService>().AsImplementedInterfaces().InstancePerLifetimeScope();

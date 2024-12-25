@@ -265,7 +265,6 @@
     <Compile Include="BusinessService\AuthService.cs" />
     <Compile Include="BusinessService\CaptchaService.cs" />
     <Compile Include="BusinessService\CommissionReportService.cs" />
-    <Compile Include="BusinessService\ContactService.cs" />
     <Compile Include="BusinessService\IMarketingService.cs" />
     <Compile Include="BusinessService\IUnderMaintenanceService.cs" />
     <Compile Include="BusinessService\MarketingService.cs" />
@@ -282,7 +281,6 @@
     <Compile Include="BusinessService\MemberTransactionService.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapper.cs" />
     <Compile Include="BusinessService\EmailService.cs" />
-    <Compile Include="BusinessService\IContactService.cs" />
     <Compile Include="BusinessService\IMemberTransactionService.cs" />
     <Compile Include="BusinessService\IMemberInfoServiceWrapper.cs" />
     <Compile Include="BusinessService\IPaymentService.cs" />
@@ -566,8 +564,6 @@
     <Compile Include="Repository\UserPanel\IMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\NewsRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsRepository.cs" />
-    <Compile Include="Repository\UserPanel\AccountRepository.cs" />
-    <Compile Include="Repository\UserPanel\IAccountRepository.cs" />
     <Compile Include="Repository\ObjectDBBuilder.cs" />
     <Compile Include="Repository\IObjectDBBuilder.cs" />
     <Compile Include="Resources\Error.Designer.cs">

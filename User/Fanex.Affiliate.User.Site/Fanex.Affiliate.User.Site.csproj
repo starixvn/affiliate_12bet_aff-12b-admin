@@ -823,10 +823,6 @@
     <Content Include="www\build\js\affiliate-link.min.js">
       <DependentUpon>affiliate-link.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\contactus.js" />
-    <Content Include="www\build\js\contactus.min.js">
-      <DependentUpon>contactus.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\daily-earning.js" />
     <Content Include="www\build\js\daily-earning.min.js">
       <DependentUpon>daily-earning.js</DependentUpon>
@@ -997,7 +993,6 @@
     <Content Include="www\source\js\pages\account-overview\player-detail.js" />
     <Content Include="www\source\js\pages\account-overview\summary.js" />
     <Content Include="www\source\js\pages\commission-report.js" />
-    <Content Include="www\source\js\pages\contactus.js" />
     <Content Include="www\source\js\pages\faq.js" />
     <Content Include="www\source\js\pages\forgotpassword.js" />
     <Content Include="www\source\js\pages\member.js" />

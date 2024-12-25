@@ -6,7 +6,6 @@
     ViewBag.HeaderTitle = Lang.ContactUsHeaderTitle;
 }
 
-@model Fanex.Affiliate.User.Core.DTO.UserInfo
 @{
     var currentLanguage = ViewBag.CurrentLanguage;
 }
@@ -25,7 +24,6 @@
             generalError: '@Error.General'
         }
     </script>
-    @Html.InlineScripts("~/www/build/js/contactus.js")
 }
 
 <div class="content">
