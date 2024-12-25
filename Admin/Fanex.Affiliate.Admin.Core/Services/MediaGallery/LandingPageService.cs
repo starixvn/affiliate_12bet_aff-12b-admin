@@ -1,33 +1,31 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Commands.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
-    public class LandingPageService : ILandingPageService
+    public class LandingPageService : BaseDynamicService, ILandingPageService
     {
         private const string RestrictedCharacterPattern = "[;/\\?:@=&\"<>#%\\{\\}\\|\\\\\\^~\\[\\]`\\s+]";
         private const string RestricedCharacterErrorMessage = "Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `";
 
-        private readonly ILandingPageRepository _landingPageRepository;
-
-        public LandingPageService(ILandingPageRepository landingPageRepository)
-        {
-            _landingPageRepository = landingPageRepository;
-        }
+        public LandingPageService(
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
         public IEnumerable<LandingPage> GetLandingPageList()
         {
-            return _landingPageRepository.GetLandingPageList();
+            return FetchTData<LandingPage>(new LandingPageCriteria());
         }
 
         public LandingPage GetLandingPageById(int pageId)
         {
-            return _landingPageRepository.GetLandingPageById(pageId);
+            return GetTData<LandingPage>(new LandingPageCriteria { PageId = pageId });
         }
 
         public ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param)
@@ -41,7 +39,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 };
             }
 
-            return _landingPageRepository.InsertLandingPage(param);
+            var command = new InsertLandingPageCommand();
+            AssignBaseLandingPageCommand(command, param);
+
+            return ExecuteReturnResultInfo(command);
         }
 
         public ResultInfo UpdateLandingPage(InsertUpdateLandingPageParam param)
@@ -55,17 +56,38 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 };
             }
 
-            return _landingPageRepository.UpdateLandingPage(param);
+            var command = new UpdateLandingPageCommand
+            {
+                PageId = param.PageId,
+            };
+            AssignBaseLandingPageCommand(command, param);
+
+            return ExecuteReturnResultInfo(command);
         }
 
         public ResultInfo DeleteLandingPage(DeleteLandingPageParam param)
         {
-            return _landingPageRepository.DeleteLandingPage(param);
+            var command = new DeleteLandingPageCommand
+            {
+                PageIds = param.PageIds,
+                UserId = param.UserId,
+                Ip = param.Ip,
+            };
+
+            return ExecuteReturnResultInfo(command);
         }
 
         private static bool HasRestrictedCharacter(string input)
         {
             return RegexHelper.IsMatch(input, RestrictedCharacterPattern);
+        }
+
+        private static void AssignBaseLandingPageCommand(BaseLandingPageCommand command, InsertUpdateLandingPageParam param)
+        {
+            command.PageCode = param.PageCode;
+            command.PageName = param.PageName;
+            command.UserId = param.UserId;
+            command.Ip = param.Ip;
         }
     }
 }

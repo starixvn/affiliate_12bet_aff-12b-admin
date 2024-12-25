@@ -1,6 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using System.Web.Mvc;
 
@@ -9,15 +9,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CommonSettingController : BaseController
     {
-        private readonly ILandingPageRepository _landingPageRepository;
+        private readonly ILandingPageService _landingPageService;
         private readonly ITrackingStatisticsService _trackingStatisticsService;
 
         public CommonSettingController(
-            ILandingPageRepository landingPageRepository,
+            ILandingPageService landingPageService,
             ITrackingStatisticsService trackingStatisticsService
             )
         {
-            _landingPageRepository = landingPageRepository;
+            _landingPageService = landingPageService;
             _trackingStatisticsService = trackingStatisticsService;
         }
 
@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult GetPageList()
         {
-            return GenerateJsonNetResult(_landingPageRepository.GetLandingPageList());
+            return GenerateJsonNetResult(_landingPageService.GetLandingPageList());
         }
 
         [HttpPost]

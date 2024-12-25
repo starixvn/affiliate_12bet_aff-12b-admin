@@ -6,7 +6,7 @@
 
         public override string GetSettingKey() => SP_NAME;
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => DomainControlId > 0;
 
         public int DomainControlId { get; set; }
     }

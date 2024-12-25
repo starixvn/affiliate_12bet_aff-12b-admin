@@ -1,12 +1,14 @@
-﻿using Fanex.Affiliate.Admin.Core.Configurations;
+﻿using Fanex.Affiliate.Admin.Core.Commands.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
+using Fanex.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,23 +18,21 @@ using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
-    public class BannerListService : IBannerListService
+    public class BannerListService : BaseDynamicService, IBannerListService
     {
         private const int MaxLength = 50;
         private const string RestrictedMultiInputFileNamesPattern = "[\\\\/:*?\"<>#%&+]";
         private const string RestrictedInputFileNamePattern = "[\\\\/:*?\"<>|#%&+]";
 
-        private readonly IBannerListRepository _bannerListRepository;
         private readonly IAppSetting _appSetting;
         private readonly ISystemFile _systemFile;
         private readonly IBannerValidationService _bannerValidationService;
         public BannerListService(
-            IBannerListRepository bannerListRepository,
+            IDynamicRepository dynamicRepository,
             IAppSetting appSetting,
             ISystemFile systemFile,
-            IBannerValidationService bannerValidationService)
+            IBannerValidationService bannerValidationService) : base(dynamicRepository)
         {
-            _bannerListRepository = bannerListRepository;
             _appSetting = appSetting;
             _systemFile = systemFile;
             _bannerValidationService = bannerValidationService;
@@ -40,12 +40,32 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public EntityResult<BannerInfo> GetBannerList(BannerParam param)
         {
-            return _bannerListRepository.GetBannerList(param);
+            var criteria = new BannerCriteria
+            {
+                Size = param.Size,
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize,
+            };
+            AssignBaseBannerCriteria(criteria, param);
+
+            var dataList = DynamicRepository.Fetch<BannerInfo>(criteria);
+
+            return new EntityResult<BannerInfo>
+            {
+                MainData = dataList,
+                TotalItem = criteria.TotalItem,
+            };
         }
 
         public BannerInfo GetBannerDetail(int selectedBannerId, byte userType)
         {
-            return _bannerListRepository.GetBannerDetail(selectedBannerId, userType);
+            var criteria = new BannerDetailCriteria
+            {
+                BannerId = selectedBannerId,
+                UserType = userType,
+            };
+
+            return GetTData<BannerInfo>(criteria);
         }
 
         private ResultInfo ValidateAllFiles(HttpPostedFileBase[] files)
@@ -246,7 +266,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
 
             BuildFilesXml(param);
-            result = _bannerListRepository.InsertBanner(param);
+            result = InsertBanner(param);
 
             if (!result.IsSuccessful)
             {
@@ -303,7 +323,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                 return result;
             }
 
-            var oldBannerInfo = _bannerListRepository.GetBannerDetail(param.BannerId, param.UserType);
+            var oldBannerInfo = GetBannerDetail(param.BannerId, param.UserType);
             var oldFilePath = oldBannerInfo.FileName;
 
             result = CheckFileInFolder(param, oldFilePath);
@@ -323,7 +343,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
                     {
                         param.Sizes.Add(BannerHelper.GetSize(bitmap.Width, bitmap.Height));
                         BuildFilesXml(param);
-                        result = _bannerListRepository.UpdateBanner(param);
+                        result = UpdateBanner(param);
 
                         if (result.IsSuccessful)
                         {
@@ -337,7 +357,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             {
                 param.Sizes.Add(oldBannerInfo.Size);
                 BuildFilesXml(param);
-                result = _bannerListRepository.UpdateBanner(param);
+                result = UpdateBanner(param);
 
                 if (result.IsSuccessful && !string.Equals(param.FilePaths[0], oldFilePath, StringComparison.CurrentCultureIgnoreCase))
                 {
@@ -351,7 +371,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         public ResultInfo DeleteBanners(DeleteBannerParam param)
         {
             var fileNameList = GetFileNameList(param.BannerIdList, param.UserType);
-            var result = _bannerListRepository.DeleteBanners(param);
+            var command = new DeleteBannerCommand
+            {
+                BannerIds = param.BannerIdList,
+                TargetId = param.UserType,
+                UserId = param.UserId,
+                Ip = param.Ip,
+            };
+
+            var result = ExecuteReturnResultInfo(command);
 
             if (result.IsSuccessful)
             {
@@ -362,7 +390,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public IEnumerable<MediaGalleryFilterItem> GetSizeList(SizeParam param)
         {
-            return _bannerListRepository.GetSizeList(param);
+            var criteria = new MediaSizeCriteria
+            {
+                ImageType = param.ImageType,
+            };
+            AssignBaseBannerCriteria(criteria, param);
+
+            return FetchTData<MediaGalleryFilterItem>(criteria);
         }
 
         private void UploadFile(Bitmap bitmap, string fileName)
@@ -405,7 +439,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
             foreach (var bannerId in bannerIdList)
             {
-                var bannerInfo = _bannerListRepository.GetBannerDetail(Convert.ToInt32(bannerId), userType);
+                var bannerInfo = GetBannerDetail(Convert.ToInt32(bannerId), userType);
                 fileNameList.Add(bannerInfo.FileName);
             }
 
@@ -424,6 +458,50 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             }
 
             return result;
+        }
+
+        private ResultInfo InsertBanner(InsertUpdateMultipleBannersParam param)
+        {
+            var command = new InsertBannerCommand();
+            AssignBaseBannerCommand(command, param);
+
+            return ExecuteReturnResultInfo(command);
+        }
+
+        private ResultInfo UpdateBanner(InsertUpdateMultipleBannersParam param)
+        {
+            var command = new UpdateBannerCommand
+            {
+                BannerId = param.BannerId,
+            };
+            AssignBaseBannerCommand(command, param);
+
+            return ExecuteReturnResultInfo(command);
+        }
+
+        private static void AssignBaseBannerCommand(BaseBannerCommand command, InsertUpdateMultipleBannersParam param)
+        {
+            command.TargetId = param.UserType;
+            command.Files = param.Files;
+            command.Categories = param.Categories;
+            command.SubCategories = param.SubCategories;
+            command.Language = param.Language;
+            command.Currencies = param.Currencies;
+            command.AffTypes = param.AffTypes;
+            command.DeviceTypes = param.DeviceTypes;
+            command.UserId = param.UserId;
+            command.Ip = param.Ip;
+        }
+
+        private static void AssignBaseBannerCriteria(BaseBannerCriteria criteria, BaseBannerParam param)
+        {
+            criteria.Category = param.Category;
+            criteria.SubCategory = param.SubCategory;
+            criteria.Language = param.Language;
+            criteria.Currency = param.Currency;
+            criteria.AffType = param.AffType;
+            criteria.DeviceType = param.DeviceType;
+            criteria.UserType = param.UserType;
         }
     }
 }

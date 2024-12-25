@@ -1,17 +1,12 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
 using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
-using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
-using Fanex.Data;
 using Fanex.Data.Repository;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Xunit;
 

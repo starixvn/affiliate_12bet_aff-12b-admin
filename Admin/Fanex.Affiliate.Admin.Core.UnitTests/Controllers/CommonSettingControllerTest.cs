@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using Moq;
 using System.Collections.Generic;
@@ -15,9 +15,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetPageList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(s => s.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
-            var controller = CreateCommonSettingController(landingPageRepository: landingPageRepository.Object);
+            var landingPageService = new Mock<ILandingPageService>();
+            landingPageService.Setup(s => s.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
+            var controller = CreateCommonSettingController(landingPageService: landingPageService.Object);
 
             // Action
             var result = controller.GetPageList() as JsonNetResult;
@@ -47,14 +47,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         private CommonSettingController CreateCommonSettingController(
-            ILandingPageRepository landingPageRepository = null,
+            ILandingPageService landingPageService = null,
             ITrackingStatisticsService trackingStatisticsService = null
             )
         {
-            var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
+            var fakelandingPageService = landingPageService ?? Mock.Of<ILandingPageService>();
             var faketrackingStatisticsService = trackingStatisticsService ?? Mock.Of<ITrackingStatisticsService>();
 
-            return new CommonSettingController(fakeLandingPageRepository, faketrackingStatisticsService);
+            return new CommonSettingController(fakelandingPageService, faketrackingStatisticsService);
         }
     }
 }

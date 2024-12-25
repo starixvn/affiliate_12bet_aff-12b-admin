@@ -239,6 +239,14 @@
     <Compile Include="Commands\Domain\InsertDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\UpdateDomainCommand.cs" />
     <Compile Include="Commands\Domain\UpdateDomainControlCommand.cs" />
+    <Compile Include="Commands\MediaGallery\BaseBannerCommand.cs" />
+    <Compile Include="Commands\MediaGallery\BaseLandingPageCommand.cs" />
+    <Compile Include="Commands\MediaGallery\DeleteBannerCommand.cs" />
+    <Compile Include="Commands\MediaGallery\DeleteLandingPageCommand.cs" />
+    <Compile Include="Commands\MediaGallery\InsertLandingPageCommand.cs" />
+    <Compile Include="Commands\MediaGallery\InsertBannerCommand.cs" />
+    <Compile Include="Commands\MediaGallery\UpdateLandingPageCommand.cs" />
+    <Compile Include="Commands\MediaGallery\UpdateBannerCommand.cs" />
     <Compile Include="Commands\Member\UpdateMemberCommand.cs" />
     <Compile Include="Commands\Message\InsertMessageCommand.cs" />
     <Compile Include="Commands\Message\DeleteMessageCommand.cs" />
@@ -337,6 +345,12 @@
     <Compile Include="Criterias\AffPagingCriteria.cs" />
     <Compile Include="Criterias\Administrator\AdministratorCriteria.cs" />
     <Compile Include="Criterias\Administrator\AdministratorDetailCriteria.cs" />
+    <Compile Include="Criterias\MediaGallery\BannerCriteria.cs" />
+    <Compile Include="Criterias\MediaGallery\BannerDetailCriteria.cs" />
+    <Compile Include="Criterias\MediaGallery\BaseBannerCriteria.cs" />
+    <Compile Include="Criterias\MediaGallery\LandingPageCriteria.cs" />
+    <Compile Include="Criterias\MediaGallery\MediaCategoryCriteria.cs" />
+    <Compile Include="Criterias\MediaGallery\MediaSizeCriteria.cs" />
     <Compile Include="Criterias\Member\MemberCriteria.cs" />
     <Compile Include="Criterias\Member\MemberDetailCriteria.cs" />
     <Compile Include="Commands\Message\BaseMessageCommand.cs" />
@@ -451,6 +465,7 @@
     <Compile Include="MetaModels\Login\LoginParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />
+    <Compile Include="MetaModels\MediaGallery\BaseBannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\DeleteBannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateMultipleBannersParam.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
@@ -533,13 +548,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Services\Auth\IAuthService.cs" />
-    <Compile Include="Repository\MediaGallery\BannerListRepository.cs" />
-    <Compile Include="Repository\MediaGallery\IBannerListRepository.cs" />
     <Compile Include="Services\Auth\AuthService.cs" />
-    <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Configurations\IoCConfig.cs" />
-    <Compile Include="Repository\MediaGallery\ILandingPageRepository.cs" />
-    <Compile Include="Repository\MediaGallery\LandingPageRepository.cs" />
     <Compile Include="Services\Domain\CommonDomainService.cs" />
     <Compile Include="Services\Domain\ICommonDomainService.cs" />
     <Compile Include="Services\Tracker\IJobTrackerService.cs" />

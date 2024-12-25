@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 PageIndex = param.PageIndex,
                 PageSize = param.PageSize,
             };
-            
+
             return FetchEntityResult<CustomerMember>(command);
         }
     }
