@@ -9,7 +9,6 @@ using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
@@ -28,9 +27,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
             IAppSetting appSetting,
             ISystemService systemsService,
             ICaptchaService captchaService,
-            IAccountRepository accountRepository,
             IAuthService authService,
-            IVerificationService verificationService) : base(sessionService, systemsService, appSetting, captchaService, authService, accountRepository)
+            IVerificationService verificationService,
+            IAccountService accountService) 
+            : base(sessionService, systemsService, appSetting, captchaService, authService, accountService)
         {
             _verificationService = verificationService;
         }
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Redirect(Url.RenderLanguageContent("~/Home"));
             }
 
-            var userInfo = AccountRepository.GetUserInfoById(verificationSession.AffId, false);
+            var userInfo = AccountService.GetUserInfoById(verificationSession.AffId, false);
 
             var viewModel = new VerificationAccountViewModel
             {
@@ -182,7 +182,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private VerificationOtpParam CreateVerificationOtpParam(VerificationAccountParam param)
         {
             var verificationSession = SessionService.VerificationSession;
-            var userInfo = AccountRepository.GetUserInfoById(verificationSession.AffId, false);
+            var userInfo = AccountService.GetUserInfoById(verificationSession.AffId, false);
 
             return new VerificationOtpParam
             {

@@ -8,7 +8,6 @@ using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
@@ -25,8 +24,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
             IAppSetting appSetting,
             ISystemService systemsService,
             IAuthService authService,
-            IAccountRepository accountRepository,
-            ICaptchaService captchaService) : base(sessionService, systemsService, appSetting, captchaService, authService, accountRepository)
+            ICaptchaService captchaService,
+            IAccountService accountService) 
+            : base(sessionService, systemsService, appSetting, captchaService, authService, accountService)
         {
         }
 

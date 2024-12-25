@@ -6,7 +6,6 @@ using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 
@@ -14,20 +13,20 @@ namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class AuthBaseController : BaseController
     {
-        protected readonly IAccountRepository AccountRepository;
+        protected readonly IAccountService AccountService;
 
         public AuthBaseController(
             ISessionService sessionService,
             ISystemService systemsService,
             IAppSetting appSetting,
             ICaptchaService captchaService,
-            IAuthService authService,
-            IAccountRepository accountRepository) : base(sessionService, systemsService)
+            IAuthService authService, 
+            IAccountService accountService) : base(sessionService, systemsService)
         {
             CaptchaService = captchaService;
             AppSetting = appSetting;
             AuthService = authService;
-            AccountRepository = accountRepository;
+            AccountService = accountService;
         }
 
         protected ICaptchaService CaptchaService { get; }
@@ -65,7 +64,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, adminId);
             user.OnUserId = AuthService.GetOnUserId(onUserIdParam);
-            var accountInfo = AccountRepository.GetAccountInfo(user.AffId);
+            var accountInfo = AccountService.GetAccountInfo(user.AffId);
 
             SessionService.AssignSessions(user);
             SessionService.UserSession.BaseCurrency = accountInfo.DefaultBaseCurrency;
