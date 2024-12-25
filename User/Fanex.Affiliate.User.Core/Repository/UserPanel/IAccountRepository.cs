@@ -15,11 +15,5 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         UserInfo RecoverPassword(PasswordRecoveryParam passwordRecoveryParam);
 
         UserInfo GetUserInfoById(int affId, bool isInternal);
-
-        ResultInfo CreateAffiliate(UserSignUpParam signUpParam);
-
-        int CreateSecretKey(int affId, string secretKey);
-
-        GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null);
     }
 }

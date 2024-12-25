@@ -117,6 +117,13 @@
             return GetTData<UserInfo>(new GetUserInfoByIdCriteria(affId, isInternal));
         }
 
+        public int CreateSecretKey(int affId, string secretKey)
+        {
+            var result = ExecuteReturnResultInfo(new CreateSecretKeyCommand(affId, secretKey));
+
+            return result.Code;
+        }
+
         private static ResultInfo CheckPlayerUserNameValid(MemberSiteCustomerInfo cust)
         {
             var validInfo = new ResultInfo

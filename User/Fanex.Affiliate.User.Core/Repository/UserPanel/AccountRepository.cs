@@ -102,28 +102,5 @@
                 Message = command.ErrMsg
             };
         }
-
-        public int CreateSecretKey(int affId, string secretKey)
-        {
-            const string uSpKey = "Aff_User_SecretKeyIns";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                db.SetParameterValue("AffId", affId);
-                db.SetParameterValue("SecretKey", secretKey);
-                AssignResultOutputParam(db);
-
-                db.ExecuteNonQuery();
-
-                var code = db.GetParameterValue("ErrCode");
-
-                return code == DBNull.Value ? 0 : Convert.ToInt32(code);
-            }
-        }
-
-        public GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null)
-        {
-            return _repository.Get<GeneralAffInfo>(new GetGeneralAffInfoCriteria(affId, affCode));
-        }
     }
 }

@@ -12,7 +12,6 @@
     using MetalModels;
     using MetalModels.Email;
     using OtpNet;
-    using Repository.UserPanel;
     using Utilities;
 
     public class VerificationService : BaseDynamicService, IVerificationService
@@ -20,7 +19,7 @@
         private const int SecretKeyExistedCode = 101;
 
         private readonly ITwoFactorAuthService _twoFactorAuthService;
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountService _accountService;
         private readonly IEmailService _mailService;
         private readonly ICryptographyService _cryptographyService;
         private readonly IWrapperUtility _wrapperUtility;
@@ -28,13 +27,13 @@
         public VerificationService(
             IDynamicRepository dynamicRepository,
             ITwoFactorAuthService twoFactorAuthService,
-            IAccountRepository accountRepository,
             IEmailService mailService,
             ICryptographyService cryptographyService,
-            IWrapperUtility wrapperUtility) : base(dynamicRepository)
+            IWrapperUtility wrapperUtility,
+            IAccountService accountService) : base(dynamicRepository)
         {
             _twoFactorAuthService = twoFactorAuthService;
-            _accountRepository = accountRepository;
+            _accountService = accountService;
             _mailService = mailService;
             _cryptographyService = cryptographyService;
             _wrapperUtility = wrapperUtility;
@@ -44,7 +43,7 @@
         {
             if (CanSendCode(param.SentCodeTime, param.IntervalInMinute))
             {
-                var userInfo = _accountRepository.GetUserInfoById(param.AffId, false);
+                var userInfo = _accountService.GetUserInfoById(param.AffId, false);
                 if (!param.Email.MatchWith(userInfo.Email))
                 {
                     return CreateSendCodeFailedResult(isValidEmail: false);
@@ -166,12 +165,12 @@
         private string TryCreateSecretKey(int affId)
         {
             var secretKey = GenerateSecretKey();
-            var resultCode = _accountRepository.CreateSecretKey(affId, secretKey);
+            var resultCode = _accountService.CreateSecretKey(affId, secretKey);
 
             while (resultCode == SecretKeyExistedCode)
             {
                 secretKey = GenerateSecretKey();
-                resultCode = _accountRepository.CreateSecretKey(affId, secretKey);
+                resultCode = _accountService.CreateSecretKey(affId, secretKey);
             }
 
             return secretKey;

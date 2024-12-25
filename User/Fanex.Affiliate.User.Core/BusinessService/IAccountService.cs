@@ -22,5 +22,7 @@
         ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam);
 
         UserInfo GetUserInfoById(int affId, bool isInternal);
+
+        int CreateSecretKey(int affId, string secretKey);
     }
 }

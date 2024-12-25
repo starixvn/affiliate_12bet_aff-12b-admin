@@ -210,6 +210,7 @@
     <Compile Include="BusinessService\IStatementHistoryService.cs" />
     <Compile Include="BusinessService\StatementHistoryService.cs" />
     <Compile Include="Commands\Account\CreateAffiliateCommand.cs" />
+    <Compile Include="Commands\Account\CreateSecretKeyCommand.cs" />
     <Compile Include="Commands\Account\UpdateAccountInfoCommand.cs" />
     <Compile Include="Commands\BaseNonQueryCommand.cs" />
     <Compile Include="Commands\Auth\CheckInCommand.cs" />
