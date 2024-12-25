@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(r => r.Fetch<TrackingStatistics>(It.IsAny<TrackingStatisticsDetailCriteria>()))
-                .Returns(new List<TrackingStatistics>());
+                .Returns(new List<TrackingStatistics> { new TrackingStatistics() });
 
             // Action
             var service = new TrackingStatisticsService(dynamicRepository.Object);

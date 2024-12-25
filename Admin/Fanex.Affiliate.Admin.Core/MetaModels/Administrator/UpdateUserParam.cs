@@ -8,8 +8,10 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Account Id is invalid!")]
         public int AccountId { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string FirstName { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string LastName { get; set; }
 
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Please choose department!")]

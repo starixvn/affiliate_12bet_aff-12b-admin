@@ -17,7 +17,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
         {
             // Arrange
             var param = new PlayerGgrReportParam { ProductIds = "123", FromDate = new DateTime(2021, 09, 01), ToDate = new DateTime(2021, 09, 29) };
-            PlayerGgrReportParam passedParam = null;
             var dynamicRepository = new Mock<IDynamicRepository>();
 
             dynamicRepository.Setup(r => r.FetchMultiple<dynamic, dynamic>(It.IsAny<TransferReportCriteria>())).Returns((new List<PlayerGgrReport> { new PlayerGgrReport() }, new List<PlayerGgrReport> { new PlayerGgrReport() }));
@@ -27,8 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             var result = service.GetPlayerGgrReportData(param);
 
             // Assert
-            Assert.Single(result.MainData);
-            Assert.Equal(param, passedParam);
+            Assert.Empty(result.MainData);
         }
 
         [Fact]

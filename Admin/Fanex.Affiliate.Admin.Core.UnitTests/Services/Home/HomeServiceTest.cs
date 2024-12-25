@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
                         LoggedIn = new DateTime(2019, 11, 15),
                         LastRequest = new DateTime(2019, 11, 15)
                     }
-                }).Callback<UserOnlineCriteria>(c => c.TotalItem = 1);
+                });
 
             // Action
             var service = new HomeService(dynamicRepository.Object);

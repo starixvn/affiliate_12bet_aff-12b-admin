@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.Criterias;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.UserPanel;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<CustomerMember>(It.IsAny<BaseCriteria>())).Returns(new List<CustomerMember> { new CustomerMember { RegisteredDate = new DateTime(2020, 04, 15) } });
+            repository.Setup(r => r.Fetch<CustomerMember>(It.IsAny<CustomerMemberCriteria>())).Returns(new List<CustomerMember> { new CustomerMember { RegisteredDate = new DateTime(2020, 04, 15) } });
 
             // Action
             var service = new CustomerMemberService(repository.Object);
@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<CustomerMember>(It.IsAny<BaseCriteria>())).Returns(new List<CustomerMember> { new CustomerMember() });
+            repository.Setup(r => r.Fetch<CustomerMember>(It.IsAny<CustomerMemberCriteria>())).Returns(new List<CustomerMember> { new CustomerMember() });
 
             // Action
             var service = new CustomerMemberService(repository.Object);

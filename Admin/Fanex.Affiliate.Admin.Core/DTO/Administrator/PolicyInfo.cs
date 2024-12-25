@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Administrator
 
         public int FuncId { get; set; }
 
-        public string FuncDesc { get; set; }
+        public string FuncDesc { get; set; } = string.Empty;
 
         public byte GPolicy { get; set; }
     }

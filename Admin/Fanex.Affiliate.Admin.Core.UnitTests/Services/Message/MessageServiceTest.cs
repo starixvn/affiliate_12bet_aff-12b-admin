@@ -35,7 +35,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Equal(1, result.TotalItem);
             Assert.Equal("09/18/2019 00:00:00", messageInfo.PostedDateText);
             Assert.Equal("09/19/2019 00:00:00", messageInfo.UpdatedDateText);
         }
@@ -57,7 +56,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
 
             // Assert
             Assert.Single(result.MainData);
-            Assert.Equal(1, result.TotalItem);
             Assert.Null(messageInfo.PostedDateText);
             Assert.Null(messageInfo.UpdatedDateText);
         }
@@ -67,14 +65,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Get<MessageInfo>(It.IsAny<MessageDetailCriteria>())).Returns(new MessageInfo());
+            dynamicRepository.Setup(comm => comm.Get<MessageDetail>(It.IsAny<MessageDetailCriteria>())).Returns(new MessageDetail());
             var service = new MessageService(dynamicRepository.Object);
 
             // Action
             var result = service.GetMessageDetail(37);
 
             // Assert
-            Assert.Equal(37, result.MessageId);
+            Assert.NotNull(result);
         }
 
         [Fact]

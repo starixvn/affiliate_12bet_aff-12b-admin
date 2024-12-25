@@ -6,7 +6,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Data.Repository;
 using Moq;
-using NSubstitute.Extensions;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -32,9 +31,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
                     NoAffs = 2
                 }
             };
-            var p2pDeductionSettingList = new List<DeductionSetting>
+            var p2pDeductionSettingList = new List<P2pDeductionSetting>
             {
-                new DeductionSetting
+                new P2pDeductionSetting
                 {
                     GroupId = 101,
                     DeductionId = 1,
@@ -83,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
                 }
             };
             var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(It.IsAny<GetCommissionGroupCriteria>())).ReturnsForAll((commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList));
+            commGroupRepository.Setup(comm => comm.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(It.IsAny<GetCommissionGroupCriteria>())).Returns((commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList));
             var service = CreateCommissionGroupService(commGroupRepository.Object);
 
             // Action
@@ -128,11 +127,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         }
 
         [Fact]
-        public static void DeleteCommissionGroup_WhenCall_ReturnCorrectData()
+        public static void DeleteCommissionGroup_WhenCall_Successfully()
         {
             // Arrange
             var param = new DeleteCommissionGroupParam();
-            var expectedResult = new ResultInfo();
             var commGroupRepository = new Mock<IDynamicRepository>();
             commGroupRepository.Setup(comm => comm.Execute(It.IsAny<DeleteCommGroupCommand>()));
             var service = CreateCommissionGroupService(commGroupRepository.Object);
@@ -141,7 +139,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             var result = service.DeleteCommissionGroup(param);
 
             // Assert
-            Assert.Equal(result, expectedResult);
+            Assert.True(result.IsSuccessful);
         }
 
         private static CommissionGroupService CreateCommissionGroupService(

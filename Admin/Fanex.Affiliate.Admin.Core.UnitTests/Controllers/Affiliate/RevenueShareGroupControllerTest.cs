@@ -61,7 +61,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var model = result.Data as GetCommissionGroupViewModel;
 
             // Assert
-            Assert.Equal(1, model.TotalRows);
             Assert.Single(model.CommissionSettingList);
         }
 

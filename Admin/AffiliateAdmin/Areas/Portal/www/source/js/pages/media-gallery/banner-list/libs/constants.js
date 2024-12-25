@@ -3,7 +3,7 @@
 export const Casino = 'Casino';
 export const Sportsbook = 'Sportsbook';
 
-export const Asian = 1;
+export const Asian = 2;
 export const maxWidthHeight = 501;
 export const maxLength = 50;
 export const regSpecialCharacters = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';

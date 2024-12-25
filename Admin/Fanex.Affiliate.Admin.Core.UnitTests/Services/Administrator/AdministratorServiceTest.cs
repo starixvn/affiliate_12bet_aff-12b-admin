@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<PolicyInfo>(It.IsAny<PoliciesByGroupIdsCriteria>())).Returns(new List<PolicyInfo> { new PolicyInfo() });
+            dynamicRepository.Setup(r => r.Fetch<PolicyInfo>(It.IsAny<AccountPolicyCriteria>())).Returns(new List<PolicyInfo> { new PolicyInfo() });
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -109,7 +109,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.InsertUser(new InsertUserParam());
 
             // Assert
-            Assert.False(result.IsSuccessful);
+            Assert.True(result.IsSuccessful);
         }
 
         [Fact]

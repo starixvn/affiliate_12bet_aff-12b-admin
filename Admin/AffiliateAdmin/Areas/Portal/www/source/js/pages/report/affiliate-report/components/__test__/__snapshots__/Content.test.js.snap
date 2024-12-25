@@ -63,7 +63,7 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
             "text": "FDM",
           },
           SingleHeaderColumn {
-            "key": "ActiveMember",
+            "key": "ActivePlayer",
             "showable": true,
             "text": "Active Player",
           },
@@ -268,7 +268,7 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "text": "FDM",
           },
           SingleHeaderColumn {
-            "key": "ActiveMember",
+            "key": "ActivePlayer",
             "showable": true,
             "text": "Active Player",
           },
@@ -481,7 +481,7 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "text": "FDM",
           },
           SingleHeaderColumn {
-            "key": "ActiveMember",
+            "key": "ActivePlayer",
             "showable": true,
             "text": "Active Player",
           },

@@ -28,7 +28,7 @@ describe('daily earning actions', () => {
                         Bonus: 0,
                         Date: "06 January 2019",
                         Deposit: 0,
-                        MemberGgr: -536.0837,
+                        Ggr: -536.0837,
                         WinlostDate: "2019-01-06T00:00:00",
                         Withdrawal: 0
                     },
@@ -37,7 +37,7 @@ describe('daily earning actions', () => {
                         Bonus: 0,
                         Date: "07 January 2019",
                         Deposit: 0,
-                        MemberGgr: -1495.1505,
+                        Ggr: -1495.1505,
                         WinlostDate: "2019-01-07T00:00:00",
                         Withdrawal: 0
                     }
@@ -47,7 +47,7 @@ describe('daily earning actions', () => {
                     Bonus: 0,
                     Date: "Total",
                     Deposit: 0,
-                    MemberGgr: -4619.4527,
+                    Ggr: -4619.4527,
                     WinlostDate: null,
                     Withdrawal: 0
                 }

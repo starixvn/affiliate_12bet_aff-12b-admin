@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
             // Arrange
             var param = new MemberParam();
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Fetch<MemberInfo>(It.IsAny<MemberCriteria>())).Returns(new List<MemberInfo> { new MemberInfo() }).Callback<MemberCriteria>(m => m.TotalItem = 1);
+            dynamicRepository.Setup(comm => comm.Fetch<MemberInfo>(It.IsAny<MemberCriteria>())).Returns(new List<MemberInfo> { new MemberInfo() });
             var service = CreateMemberService(dynamicRepository.Object);
 
             // Action

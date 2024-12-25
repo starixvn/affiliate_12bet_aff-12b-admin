@@ -34,8 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Get<AffiliateBasicInfo>(It.IsAny<AffBasicInfoCriteria>()))
-                .Returns(new AffiliateBasicInfo()).Callback<ApproveAffCommand>(a => a.AffCode = "123456");
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<ApproveAffCommand>())).Callback<INonQueryCommand>(a => (a as ApproveAffCommand).AffCode = "123456");
 
             // Action
             var service = new AffiliateService(dynamicRepository.Object);
@@ -52,8 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(re => re.Fetch<AffiliateInfo>(It.IsAny<AffiliateCriteria>()))
-                .Returns(new List<AffiliateInfo> { new AffiliateInfo { RegistrationDate = new DateTime(2020, 01, 01), ApprovalDate = new DateTime(2020, 04, 15) } })
-                .Callback<AffiliateCriteria>(a => a.TotalItem = 1);
+                .Returns(new List<AffiliateInfo> { new AffiliateInfo { ApprovedBy = "abc", RegistrationDate = new DateTime(2020, 01, 01), ApprovalDate = new DateTime(2020, 04, 15) } });
 
             // Action
             var service = new AffiliateService(dynamicRepository.Object);
@@ -73,8 +71,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(re => re.Fetch<AffiliateInfo>(It.IsAny<AffiliateCriteria>()))
-                .Returns(new List<AffiliateInfo> { new AffiliateInfo { RegistrationDate = new DateTime(2020, 01, 01) } })
-                .Callback<AffiliateCriteria>(a => a.TotalItem = 1);
+                .Returns(new List<AffiliateInfo> { new AffiliateInfo { RegistrationDate = new DateTime(2020, 01, 01) } });
 
             // Action
             var service = new AffiliateService(dynamicRepository.Object);

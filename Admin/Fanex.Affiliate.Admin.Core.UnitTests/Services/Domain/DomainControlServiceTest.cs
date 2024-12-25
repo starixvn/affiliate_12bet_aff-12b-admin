@@ -1,5 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
-using Fanex.Affiliate.Admin.Core.Criterias;
+using Fanex.Affiliate.Admin.Core.Criterias.Domain;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<BaseCriteria>())).Returns(new List<DomainControlInfo> { new DomainControlInfo { CreatedDate = new DateTime(2019, 10, 29) } });
+            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>())).Returns(new List<DomainControlInfo> { new DomainControlInfo { CreatedDate = new DateTime(2019, 10, 29) } });
 
             // Action
             var service = new DomainControlService(repository.Object);
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<BaseCriteria>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() });
+            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() });
 
             // Action
             var service = new DomainControlService(repository.Object);

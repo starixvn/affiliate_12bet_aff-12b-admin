@@ -1,6 +1,8 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Commands.Tracker
+﻿using Fanex.Data.Repository;
+
+namespace Fanex.Affiliate.Admin.Core.Commands.Tracker
 {
-    public class InsertJobTrackerCommand : BaseNonQueryCommand
+    public class InsertJobTrackerCommand : NonQueryCommand
     {
         private const string SP_NAME = "Task_API_PushDataTracker_Import";
 
@@ -13,5 +15,9 @@
         public string PushDataInfo { get; set; }
 
         public int PushTrackerId { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
     }
 }

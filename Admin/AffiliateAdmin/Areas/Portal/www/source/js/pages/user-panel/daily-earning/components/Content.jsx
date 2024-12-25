@@ -77,7 +77,7 @@ export class Content extends PureComponent {
 
     _buildDataRow(dataItem, rowNumber, productColumnClassName) {
         const turnover = formatDecimal(dataItem.Turnover);
-        const ggr = formatDecimal(dataItem.MemberGgr);
+        const ggr = formatDecimal(dataItem.Ggr);
         const deposit = formatDecimal(dataItem.Deposit);
         const withdrawal = formatDecimal(dataItem.Withdrawal);
         const bonus = formatDecimal(dataItem.Bonus);

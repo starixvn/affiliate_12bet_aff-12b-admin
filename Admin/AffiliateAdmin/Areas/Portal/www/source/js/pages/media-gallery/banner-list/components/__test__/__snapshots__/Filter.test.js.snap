@@ -215,7 +215,7 @@ exports[`banner list - components - Filter  render correctly 1`] = `
         name="affType"
         onChange={[Function]}
         type="select"
-        value={1}
+        value={2}
       >
         <option
           key="affType-Asian"
@@ -599,7 +599,7 @@ exports[`banner list - components - Filter  render correctly with Casino's subca
         name="affType"
         onChange={[Function]}
         type="select"
-        value={1}
+        value={2}
       >
         <option
           key="affType-Asian"
@@ -983,7 +983,7 @@ exports[`banner list - components - Filter  render correctly with Sportbook's su
         name="affType"
         onChange={[Function]}
         type="select"
-        value={1}
+        value={2}
       >
         <option
           key="affType-Asian"

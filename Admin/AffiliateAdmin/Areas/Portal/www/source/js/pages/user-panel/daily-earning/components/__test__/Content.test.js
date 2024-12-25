@@ -19,7 +19,7 @@ describe('customer member - components - Content', () => {
             Bonus: 0,
             Date: "06 January 2019",
             Deposit: 0,
-            MemberGgr: -536.0837,
+            Ggr: -536.0837,
             WinlostDate: "2019-01-06T00:00:00",
             Withdrawal: 0
         },
@@ -28,7 +28,7 @@ describe('customer member - components - Content', () => {
             Bonus: 0,
             Date: "07 January 2019",
             Deposit: 0,
-            MemberGgr: -1495.1505,
+            Ggr: -1495.1505,
             WinlostDate: "2019-01-07T00:00:00",
             Withdrawal: 0
         }
@@ -38,7 +38,7 @@ describe('customer member - components - Content', () => {
         BankingFee: 0,
         Bonus: 0,
         Deposit: 0,
-        MemberGgr: -2031.2342,
+        Ggr: -2031.2342,
         WinlostDate: null,
         Withdrawal: 0
     };

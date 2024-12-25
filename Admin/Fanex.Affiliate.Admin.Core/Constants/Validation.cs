@@ -13,8 +13,8 @@
         public const long InfinityAmount = 100_000_000_000;
         public const int InfinityQualifiedMember = 1_000_000_000;
 
-        public const int MinAffType = 1;
-        public const int MaxAffType = 3;
+        public const int MinAffType = 2;
+        public const int MaxAffType = 4;
 
         public const int MaxLengthCommGroupDescription = 100;
         public const int MaxLengthLandingPage = 100;

@@ -127,13 +127,30 @@
     <Setting Key="Aff_Admin_LandingPage_Ins" SpName="Aff_Admin_LandingPage_Ins" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_LandingPage_Upd" SpName="Aff_Admin_LandingPage_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_LandingPage_Del" SpName="Aff_Admin_LandingPage_Del" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_MediaCurrency_Sel" SpName="Aff_Admin_MediaCurrency_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="Category" ObjectProperty="CategoryName" />
+      <Mapping DataField="SubCategory" ObjectProperty="SubCategoryName" />
+      <Mapping DataField="TargetId" ObjectProperty="UserType" />
+    </Setting>
+    <Setting Key="Aff_Admin_MediaCurrency_Sel" SpName="Aff_Admin_MediaCurrency_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="CurrencyId" ObjectProperty="Id" />
+      <Mapping DataField="Currency" ObjectProperty="Name" />
+    </Setting>
+    <Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="SizeId" ObjectProperty="Id" />
+      <Mapping DataField="Size" ObjectProperty="Name" />
+    </Setting>
     <Setting Key="Aff_Admin_Banner_Ins" SpName="Aff_Admin_Banner_Ins" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Banner_Upd" SpName="Aff_Admin_Banner_Upd" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Banner_Del" SpName="Aff_Admin_Banner_Del" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="TargetId" ObjectProperty="UserType" />
+      <Mapping DataField="Categories" ObjectProperty="Category" />
+      <Mapping DataField="SubCategories" ObjectProperty="SubCategory" />
+      <Mapping DataField="Currencies" ObjectProperty="Currency" />
+      <Mapping DataField="DeviceTypes" ObjectProperty="DeviceType" />
+      <Mapping DataField="AffTypes" ObjectProperty="AffType" />
+    </Setting>
     <Setting Key="Aff_AffTypeSel" SpName="Aff_AffTypeSel" DbName="DBAFF.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="TypeId" ObjectProperty="AffTypeId" />
       <Mapping DataField="TypeName" ObjectProperty="AffTypeName" />

@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(null as PaymentRequestDetail);
 
             var service = CreatePaymentRequestService(dynamicRepository: dynamicRepository.Object);
 
@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             var result = service.UpdatePaymentRequest(new PaymentRequestUpdateParam { IsApproved = true }, new PaymentRequestUpdateEmail());
 
             // Assert
-            Assert.Null(result);
+            Assert.False(result.IsSuccessful);
         }
 
         [Fact]
@@ -191,7 +191,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
 
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>())).Callback<UpdatePaymentRequestCommand>(u => u.ErrCode = ErrCode.GeneralErrorCode);
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>())).Callback<INonQueryCommand>(u => (u as UpdatePaymentRequestCommand).ErrCode = ErrCode.GeneralErrorCode);
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });

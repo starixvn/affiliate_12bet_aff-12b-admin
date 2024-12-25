@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var selectedBannerId = 123;
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerCriteria>())).Returns(new BannerInfo { BannerId = 123 });
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { BannerId = 123 });
             var service = CreateBannerListService(dynamicRepository.Object);
 
             // Action
@@ -260,7 +260,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.BannerFolders).Returns(new string[] { "abc" });
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<InsertBannerCommand>())).Callback<InsertBannerCommand>(c => c.ErrCode = ErrCode.GeneralErrorCode);
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<InsertBannerCommand>())).Callback<INonQueryCommand>(c => (c as InsertBannerCommand).ErrCode = ErrCode.GeneralErrorCode);
             var bannerValidationService = new Mock<IBannerValidationService>();
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
@@ -399,7 +399,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo { Code = ErrCode.GeneralErrorCode, Message = "Invalid File" });
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>())).Callback<UpdateBannerCommand>(c => c.ErrCode = ErrCode.GeneralErrorCode);
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>())).Callback<INonQueryCommand>(c => (c as UpdateBannerCommand).ErrCode = ErrCode.GeneralErrorCode);
             var service = CreateBannerListService(dynamicRepository.Object, null, systemFile.Object, bannerValidationService.Object);
 
             // Action
@@ -423,7 +423,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>())).Callback<UpdateBannerCommand>(c => c.ErrCode = ErrCode.GeneralErrorCode);
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>())).Callback<INonQueryCommand>(c => (c as UpdateBannerCommand).ErrCode = ErrCode.GeneralErrorCode);
             var service = CreateBannerListService(dynamicRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
 
             // Action
@@ -528,7 +528,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var param = new DeleteBannerParam { BannerIdList = "123", UserType = 1 };
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "abc.gif" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<DeleteBannerCommand>())).Callback<DeleteBannerCommand>(c => { c.ErrCode = 999; c.ErrMsg = "Delete is failed"; });
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<DeleteBannerCommand>())).Callback<INonQueryCommand>(c => { var a = c as DeleteBannerCommand; a.ErrCode = 999; a.ErrMsg = "Delete is failed"; });
             var service = CreateBannerListService(dynamicRepository.Object);
 
             // Action

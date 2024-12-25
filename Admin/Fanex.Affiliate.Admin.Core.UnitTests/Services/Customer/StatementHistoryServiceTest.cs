@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.FetchMultiple<DailyEarning, DailyEarning>(It.IsAny<DailyEarningCriteria>())).Returns((new List<DailyEarning> { new DailyEarning() }, new List<DailyEarning> { new DailyEarning() }));
+            repository.Setup(comm => comm.Fetch<DailyEarningDetail>(It.IsAny<DailyEarningCriteria>())).Returns((new List<DailyEarningDetail> { new DailyEarningDetail() }));
 
             var service = CreateStatementHistoryService(repository.Object);
 
@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.Fetch<StatementHistory>(It.IsAny<DailyEarningCriteria>())).Returns(new List<StatementHistory> {
+            repository.Setup(comm => comm.Fetch<StatementHistory>(It.IsAny<StatementHistoryCriteria>())).Returns(new List<StatementHistory> {
                 new StatementHistory { TransType = 201, MonthDate = new DateTime(2020, 06, 10), Status = "Current", CalculatedType = 1 },
                 new StatementHistory { TransType = 204, MonthDate = new DateTime(2020, 06, 10), Status = "Current", CalculatedType = 1 },
                 new StatementHistory { TransType = 201, MonthDate = new DateTime(2020, 05, 10), Status = "Current", CalculatedType = 2 },

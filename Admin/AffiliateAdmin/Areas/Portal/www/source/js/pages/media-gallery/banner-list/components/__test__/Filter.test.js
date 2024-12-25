@@ -85,7 +85,7 @@ describe('banner list - components - Filter ', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "affType": 1, "category": "", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", userType: 0 });
+        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "affType": 2, "category": "", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", userType: 0 });
     });
 
     it('_handleChangeCategory - should change category when change category select', () => {
@@ -98,7 +98,7 @@ describe('banner list - components - Filter ', () => {
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Casino');
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 1, "category": "Casino", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", userType: 0 });
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "category": "Casino", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", userType: 0 });
     });
 
     it('_handleChangeCategory - should change category when change category select', () => {
@@ -111,7 +111,7 @@ describe('banner list - components - Filter ', () => {
         wrapper.find('Input[type="select"][id="category"]').simulate('change', event);
 
         expect(wrapper.find('Input[type="select"][id="category"]').prop('value')).toEqual('Sportsbook');
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 1, "category": "Sportsbook", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", userType: 0 });
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "category": "Sportsbook", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", userType: 0 });
     });
 
     it("_handleChange - should call setDisableCurrency, getCategoryList, getSizeList and setState", () => {
@@ -124,10 +124,10 @@ describe('banner list - components - Filter ', () => {
 
         wrapper.instance()._handleChange(event)
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ "affType": 1, "category": "", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", "userType": '1' });
+        expect(wrapper.setState).toHaveBeenCalledWith({ "affType": 2, "category": "", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", "userType": '1' });
         expect(props.setDisableCurrency).toHaveBeenCalledWith(false);
         expect(props.getCategoryList).toHaveBeenCalledWith('1');
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 1, "category": "", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", "userType": '1' });
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "category": "", "currency": "", "deviceType": "", "language": "", "size": "", "subCategory": "", "userType": '1' });
     });
 
     it("_handleChange - should call getSizeList and setState", () => {
@@ -139,8 +139,8 @@ describe('banner list - components - Filter ', () => {
         wrapper.setState = jest.fn();
 
         wrapper.instance()._handleChange(event)
-        expect(wrapper.setState).toHaveBeenCalledWith({ "affType": 1, "category": "", "currency": "USD", "deviceType": "", "language": "", "size": "", "subCategory": "", "userType": 0 });
-        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 1, "category": "", "currency": "USD", "deviceType": "", "language": "", "size": "", "subCategory": "", "userType": 0 });
+        expect(wrapper.setState).toHaveBeenCalledWith({ "affType": 2, "category": "", "currency": "USD", "deviceType": "", "language": "", "size": "", "subCategory": "", "userType": 0 });
+        expect(props.getSizeList).toHaveBeenCalledWith({ "affType": 2, "category": "", "currency": "USD", "deviceType": "", "language": "", "size": "", "subCategory": "", "userType": 0 });
     });
 
     it('setSize - should change category when change size select', () => {
@@ -164,7 +164,7 @@ describe('banner list - components - Filter ', () => {
         instance.componentDidMount();
 
         expect(props.setParamFromHome).toHaveBeenCalledWith({ IsFromHome: false });
-        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "affType": 1, "category": "", "currency": "", deviceType: "", userType: 1, "language": "", "size": "", "subCategory": "" });
+        expect(props.setParam).toHaveBeenCalledWith({ "PageIndex": 1, "PageSize": 20, "affType": 2, "category": "", "currency": "", deviceType: "", userType: 1, "language": "", "size": "", "subCategory": "" });
     });
 
     it('componentDidMount - should not call setParamFromHome and _handleSearch', () => {

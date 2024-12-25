@@ -81,7 +81,7 @@ describe('user account actions', () => {
 
         const expectedAction = [
             { type: 'TOGGLE_LOADER_USER_PANEL', data: true },
-            { type: types.SET_MORE_SITE_URLS_LIST, data: null },
+            { type: types.SET_MORE_SITE_URLS_LIST, data: [] },
             { type: types.SET_USER_ACCOUNT_INFO, data: null },
             { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
         ];

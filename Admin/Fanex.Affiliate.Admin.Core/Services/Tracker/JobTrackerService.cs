@@ -11,14 +11,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.Tracker
 
         public (int Id, ResultInfo Result) InsertDataTracker(InsertJobTrackerCommand command)
         {
-            var resultInfo = ExecuteReturnResultInfo(command);
+            DynamicRepository.Execute(command);
+
+            var resultInfo = new ResultInfo(command.ErrCode, command.ErrMsg);
 
             return (command.PushTrackerId, resultInfo);
         }
 
         public ResultInfo UpdateDataTracker(UpdateJobTrackerCommand command)
         {
-            return ExecuteReturnResultInfo(command);
+            DynamicRepository.Execute(command);
+
+            return new ResultInfo(command.ErrCode, command.ErrMsg);
         }
     }
 }

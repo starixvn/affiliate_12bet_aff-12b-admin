@@ -1,6 +1,8 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Commands.Tracker
+﻿using Fanex.Data.Repository;
+
+namespace Fanex.Affiliate.Admin.Core.Commands.Tracker
 {
-    public class UpdateJobTrackerCommand : BaseNonQueryCommand
+    public class UpdateJobTrackerCommand : NonQueryCommand
     {
         private const string SP_NAME = "Task_API_PushDataTracker_Upd";
 
@@ -11,5 +13,9 @@
         public int PushTrackerId { get; set; }
 
         public int StatusId { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
     }
 }

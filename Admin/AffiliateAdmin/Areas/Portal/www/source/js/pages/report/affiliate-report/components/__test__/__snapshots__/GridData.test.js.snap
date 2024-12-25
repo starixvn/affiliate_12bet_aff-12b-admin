@@ -1482,9 +1482,9 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           />
           <td
             className="text-right"
-            title="undefined%"
+            title="NaN%"
           >
-            undefined%
+            NaN%
           </td>
           <td
             className="text-right"

@@ -5,6 +5,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
     {
         public int GroupId { get; set; }
 
-        public string ProductIds { get; set; }
+        public string ProductIds { get; set; } = string.Empty;
     }
 }

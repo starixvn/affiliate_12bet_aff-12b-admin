@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Fetch<ReferrersStatistics>(It.IsAny<ReferrersStatisticsCriteria>())).Returns(new List<ReferrersStatistics> { new ReferrersStatistics() });
+            dynamicRepository.Setup(re => re.Fetch<ReferrersStatistics>(It.IsAny<ReferrersStatisticsDetailCriteria>())).Returns(new List<ReferrersStatistics> { new ReferrersStatistics() });
 
             // Action
             var service = new ReferrersStatisticsService(dynamicRepository.Object);

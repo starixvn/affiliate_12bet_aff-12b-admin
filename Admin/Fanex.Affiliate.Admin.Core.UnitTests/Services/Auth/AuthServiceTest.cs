@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Auth;
 using Fanex.Affiliate.Admin.Core.Criterias.Auth;
-using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
@@ -66,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
             // Arrange
             var onUserId = 123456;
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<LoginOnUserCommand>())).Callback<LoginOnUserCommand>(c => c.OnUserId = onUserId);
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<LoginOnUserCommand>())).Callback<INonQueryCommand>(c => (c as LoginOnUserCommand).OnUserId = onUserId);
 
             // Action
             var service = new AuthService(dynamicRepository.Object);

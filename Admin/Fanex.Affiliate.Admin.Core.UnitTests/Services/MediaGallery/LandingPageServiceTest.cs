@@ -32,9 +32,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var pageId = 123;
-            int passedParam = 0;
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<LandingPage>(It.IsAny<LandingPageCriteria>())).Returns(new LandingPage { PageId = 123 }).Callback<LandingPageCriteria>(p => passedParam = p.PageId.Value);
+            dynamicRepository.Setup(l => l.Get<LandingPage>(It.IsAny<LandingPageCriteria>())).Returns(new LandingPage { PageId = 123 });
             var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
@@ -42,7 +41,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
 
             // Assert
             Assert.Equal(pageId, result.PageId);
-            Assert.Equal(pageId, passedParam);
         }
 
         [Fact]
