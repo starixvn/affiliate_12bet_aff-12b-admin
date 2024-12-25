@@ -26,9 +26,5 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string Ip { get; set; }
 
         public string Language { get; set; }
-
-        public int ErrCode { get; set; }
-
-        public string ErrMsg { get; set; }
     }
 }

@@ -124,6 +124,27 @@
             return result.Code;
         }
 
+        public (int, UserInfo) GetUserInfoByEmail(UserInfoByEmailParam userInfoParam)
+        {
+            var criteria = userInfoParam.MapTo<GetUserInfoByEmailCriteria>();
+            var result = GetTData<UserInfo>(criteria);
+
+            return (criteria.ErrCode, result);
+        }
+
+        public (int, UserInfo) RecoverPassword(PasswordRecoveryParam passwordRecoveryParam)
+        {
+            var criteria = passwordRecoveryParam.MapTo<GetRecoverPasswordCriteria>();
+            var result = GetTData<UserInfo>(criteria);
+
+            return (criteria.ErrCode, result);
+        }
+
+        public ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam)
+        {
+            return ExecuteReturnResultInfo(updatePasswordParam.MapTo<UpdatePasswordCommand>());
+        }
+
         private static ResultInfo CheckPlayerUserNameValid(MemberSiteCustomerInfo cust)
         {
             var validInfo = new ResultInfo

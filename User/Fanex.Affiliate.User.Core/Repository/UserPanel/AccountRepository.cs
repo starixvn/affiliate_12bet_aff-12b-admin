@@ -1,13 +1,7 @@
 ﻿namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
-    using System;
-    using Commands.Account;
-    using Criterias;
     using Data.Repository;
     using DTO;
-    using Extensions.Mappers;
-    using Fanex.Affiliate.User.Core.DTO.UserPanel;
-    using MetalModels;
 
     public class AccountRepository : BaseRepository, IAccountRepository
     {
@@ -20,65 +14,6 @@
             _repository = repository;
         }
 
-        public AccountInformation GetAccountInfo(int affId)
-        {
-            const string uSpKey = "Aff_User_UserInfoSel";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                var parameterSet = new { affId };
-
-                return db.QueryEntity<AccountInformation>(parameterSet);
-            }
-        }
-
-        public ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam)
-        {
-            const string uSpKey = "Aff_AffiliateUpdPwd";
-            var parameterSet = new
-            {
-                updatePasswordParam.AffId,
-                updatePasswordParam.UserId,
-                updatePasswordParam.Ip,
-                updatePasswordParam.Language,
-                updatePasswordParam.ErrCode,
-                updatePasswordParam.ErrMsg,
-                OldPwd = updatePasswordParam.OldPassword,
-                AffPwd = updatePasswordParam.NewPassword
-            };
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                db.ExecuteNonQuery(parameterSet);
-            }
-
-            return new ResultInfo
-            {
-                IsOk = parameterSet.ErrCode == 0,
-                Message = parameterSet.ErrMsg
-            };
-        }
-
-        public UserInfo GetUserInfoByEmail(UserInfoByEmailParam userInfoParam)
-        {
-            const string uSpKey = "Aff_User_ForgotPassword";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                return db.QueryEntity<UserInfo>(userInfoParam);
-            }
-        }
-
-        public UserInfo RecoverPassword(PasswordRecoveryParam passwordRecoveryParam)
-        {
-            const string uSpKey = "Aff_User_RecoverPassWord";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                return db.QueryEntity<UserInfo>(passwordRecoveryParam);
-            }
-        }
-
         public UserInfo GetUserInfoById(int affId, bool isInternal)
         {
             const string uSpKey = "Aff_User_GeneralInfo_Sel";
@@ -88,19 +23,6 @@
             {
                 return db.QueryEntity<UserInfo>(new { affId });
             }
-        }
-
-        public ResultInfo CreateAffiliate(UserSignUpParam signUpParam)
-        {
-            var command = new CreateAffiliateCommand();
-            command.Map(signUpParam);
-            _repository.Execute(command);
-
-            return new ResultInfo
-            {
-                IsOk = command.ErrCode == 0,
-                Message = command.ErrMsg
-            };
         }
     }
 }

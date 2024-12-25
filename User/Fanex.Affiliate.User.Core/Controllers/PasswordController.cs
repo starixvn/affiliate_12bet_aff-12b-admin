@@ -1,24 +1,24 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
     using DTO;
-    using Fanex.Affiliate.User.Core.Extensions;
+    using Extensions;
     using Filters;
     using MetalModels;
     using MetalModels.Email;
-    using Repository.UserPanel;
     using Resources;
-    using System.Linq;
-    using System.Web.Mvc;
     using Utilities;
 
     public class PasswordController : BaseController
     {
-        const int InvalidUrlAddress = 1001;
-        const int RecoverPasswordFailed = 1002;
-        private readonly IAccountRepository _accountRepository;
+        private const int InvalidUrlAddress = 1001;
+        private const int RecoverPasswordFailed = 1002;
+
+        private readonly IAccountService _accountService;
         private readonly ICryptographyService _cryptographyService;
         private readonly IEmailService _mailService;
         private readonly IAppSetting _appSetting;
@@ -26,13 +26,13 @@
         public PasswordController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            IAccountRepository accountRepository,
+            IAccountService accountService,
             ICryptographyService cryptographyService,
             ISystemService systemsService,
             IEmailService mailService)
             : base(sessionService, systemsService)
         {
-            _accountRepository = accountRepository;
+            _accountService = accountService;
             _cryptographyService = cryptographyService;
             _mailService = mailService;
             _appSetting = appSetting;
@@ -71,12 +71,13 @@
             {
                 IsOk = true
             };
-            var userInfo = _accountRepository.GetUserInfoByEmail(param);
 
-            if (param.ErrCode != 0)
+            var (errorCode, userInfo) = _accountService.GetUserInfoByEmail(param);
+
+            if (errorCode != 0)
             {
                 result.IsOk = false;
-                result.Message = Common.GetErrorMessage("ForgotPassword", param.ErrCode)
+                result.Message = Common.GetErrorMessage("ForgotPassword", errorCode)
                     ?.Replace("{0}", Url.RenderLanguageContent($"~/{ControllerName.ContactUs}"));
             }
             else
@@ -114,9 +115,9 @@
                 Language = SessionService.CurrentLanguage
             };
 
-            var userInfo = _accountRepository.RecoverPassword(param);
+            var (errorCode, userInfo) = _accountService.RecoverPassword(param);
 
-            var isSuccessful = param.ErrCode == 0;
+            var isSuccessful = errorCode == 0;
 
             if (isSuccessful)
             {
@@ -133,7 +134,7 @@
                 _mailService.SendNewPasswordEmail(recoverEmailParam);
             }
 
-            return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful, errCode = param.ErrCode });
+            return RedirectToFixedAction("RecoverPasswordResult", new { isSuccessful, errCode = errorCode });
         }
 
         public ActionResult RecoverPasswordResult(bool isSuccessful = false, int errCode = 0)
@@ -194,7 +195,7 @@
                 param.Ip = Request.GetClientIP();
                 param.Language = SessionService.CurrentLanguage;
 
-                var updateResult = _accountRepository.UpdatePassword(param);
+                var updateResult = _accountService.UpdatePassword(param);
                 resultInfo.IsOk = updateResult.IsOk;
                 resultInfo.Message = updateResult.IsOk ? Lang.Passwordchanged : updateResult.Message;
             }

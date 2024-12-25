@@ -24,5 +24,11 @@
         UserInfo GetUserInfoById(int affId, bool isInternal);
 
         int CreateSecretKey(int affId, string secretKey);
+
+        (int, UserInfo) GetUserInfoByEmail(UserInfoByEmailParam userInfoParam);
+
+        (int, UserInfo) RecoverPassword(PasswordRecoveryParam passwordRecoveryParam);
+
+        ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam);
     }
 }
