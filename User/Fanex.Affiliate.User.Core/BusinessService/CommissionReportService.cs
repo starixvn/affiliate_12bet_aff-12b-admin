@@ -1,22 +1,22 @@
-﻿using System.Linq;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class CommissionReportService : ICommissionReportService
+    using System.Linq;
+    using Constants;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO.UserPanel;
+    using MetalModels.UserPanel;
+    using Resources;
+    using Utilities;
+    using ViewModels.UserPanel;
+
+    public class CommissionReportService : BaseDynamicService, ICommissionReportService
     {
         private const int PercentageUnit = 100;
 
-        private readonly ICommissionReportRepository _commissionReportRepository;
-
-        public CommissionReportService(ICommissionReportRepository commissionReportRepository)
+        public CommissionReportService(IDynamicRepository dynamicRepository) : base(dynamicRepository)
         {
-            _commissionReportRepository = commissionReportRepository;
         }
 
         private static string GetCalculatedNote(int? type)
@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public CommissionReportDataViewModel GenerateCommissionReportData(CommissionReportParam param)
         {
-            var rawData = _commissionReportRepository.GetAffiliateCommission(param);
+            var rawData = FetchTData<AffiliateCommission>(param.MapTo<GetAffiliateCommissionCriteria>());
 
             var byMonth = rawData.GroupBy(n => n.MonthDate)
                         .OrderByDescending(g => g.Key)

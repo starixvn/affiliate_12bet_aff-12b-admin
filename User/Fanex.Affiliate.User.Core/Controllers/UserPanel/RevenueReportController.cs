@@ -2,8 +2,8 @@
 {
     using System;
     using System.Web.Mvc;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.CoreService;
+    using BusinessService;
+    using CoreService;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
     using MetalModels.UserPanel;

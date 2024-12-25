@@ -95,11 +95,9 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<AccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemberRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<EmailHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ServiceSoapClient>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemberInfoServiceWrapper>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemberTransactionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CommissionReportRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionReportService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CaptchaService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<TwoFactorAuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();

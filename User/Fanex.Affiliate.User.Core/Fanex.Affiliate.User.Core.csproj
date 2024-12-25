@@ -234,6 +234,7 @@
     <Compile Include="Criterias\Account\GetUserInfoByEmailCriteria.cs" />
     <Compile Include="Criterias\Account\GetUserInfoByIdCriteria.cs" />
     <Compile Include="Criterias\BaseCriteria.cs" />
+    <Compile Include="Criterias\Comm\GetAffiliateCommissionCriteria.cs" />
     <Compile Include="Criterias\Currency\GetBaseCurrencyListCriteria.cs" />
     <Compile Include="Criterias\Language\GetLanguageListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetAffDomainListCriteria.cs" />
@@ -556,10 +557,6 @@
     <Compile Include="MetalModels\VerificationAccountParam.cs" />
     <Compile Include="MetalModels\VerificationOtpParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\EmailHistoryRepository.cs" />
-    <Compile Include="Repository\IEmailHistoryRepository.cs" />
-    <Compile Include="Repository\UserPanel\CommissionReportRepository.cs" />
-    <Compile Include="Repository\UserPanel\ICommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\MemberRepository.cs" />
     <Compile Include="Repository\UserPanel\IMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\NewsRepository.cs" />
