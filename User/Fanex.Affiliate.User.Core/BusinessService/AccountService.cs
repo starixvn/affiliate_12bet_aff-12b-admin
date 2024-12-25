@@ -2,11 +2,13 @@
 {
     using System.Threading.Tasks;
     using Apis;
+    using Commands;
     using Commands.Account;
     using CoreService;
     using Criterias;
     using Data.Repository;
     using DTO;
+    using DTO.UserPanel;
     using Fanex.Affiliate.User.Core.Constants.Apis;
     using Fanex.Affiliate.User.Core.DTO.Apis;
     using MetalModels;
@@ -98,6 +100,16 @@
         {
             var siteId = _appSetting.MemberSiteId;
             return await _licenseeApi.GetCustomerInfoAsync(userName, siteId);
+        }
+
+        public AccountInformation GetAccountInfo(int affId)
+        {
+            return GetTData<AccountInformation>(new GetAccountInfoCriteria(affId));
+        }
+
+        public ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam)
+        {
+            return ExecuteReturnResultInfo(accountUpdateParam.MapTo<UpdateAccountInfoCommand>());
         }
 
         private static ResultInfo CheckPlayerUserNameValid(MemberSiteCustomerInfo cust)

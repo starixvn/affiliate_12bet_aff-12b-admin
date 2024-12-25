@@ -8,8 +8,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         AccountInformation GetAccountInfo(int affId);
 
-        ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam);
-
         ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam);
 
         UserInfo GetUserInfoByEmail(UserInfoByEmailParam userInfoParam);

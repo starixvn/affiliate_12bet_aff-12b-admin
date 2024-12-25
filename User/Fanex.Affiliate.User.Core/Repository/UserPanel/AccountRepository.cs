@@ -32,22 +32,6 @@
             }
         }
 
-        public ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam)
-        {
-            const string uSpKey = "Aff_User_UserInfoUpd";
-
-            using (var db = _builder.Build(uSpKey))
-            {
-                db.ExecuteNonQuery(accountUpdateParam);
-            }
-
-            return new ResultInfo
-            {
-                IsOk = accountUpdateParam.ErrCode == 0,
-                Message = accountUpdateParam.ErrMsg
-            };
-        }
-
         public ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam)
         {
             const string uSpKey = "Aff_AffiliateUpdPwd";

@@ -1,11 +1,12 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Apis;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.MetalModels.Email;
-using System.Threading.Tasks;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
+    using System.Threading.Tasks;
+    using DTO;
+    using DTO.UserPanel;
+    using Fanex.Affiliate.User.Core.DTO.Apis;
+    using MetalModels;
+    using MetalModels.Email;
+
     public interface IAccountService
     {
         Task<ResultInfo> CreateAffiliateAsync(UserSignUpParam signUpParam, EmailSignUpParam emailParam);
@@ -15,5 +16,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         Task<ResultInfo> CheckAndUnlockUserIfLocked(string userName);
 
         Task<MemberSiteCustomerInfo> GetMemberSiteCustomer(string userName);
+
+        AccountInformation GetAccountInfo(int affId);
+
+        ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam);
     }
 }

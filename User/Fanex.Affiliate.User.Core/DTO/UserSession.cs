@@ -29,10 +29,6 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
 
         public bool DisabledTransfer { get; set; }
 
-
-        // Need Removed
-        public int? UserId { get; set; }
-
         public int OfferPageId { get; set; }
     }
 }

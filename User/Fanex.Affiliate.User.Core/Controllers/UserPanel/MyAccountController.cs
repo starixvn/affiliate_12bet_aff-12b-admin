@@ -3,13 +3,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using BusinessService;
+    using Constants;
+    using CoreService;
     using DTO;
     using DTO.UserPanel;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.Constants;
-    using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Extensions;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
+    using Extensions;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
     using MetalModels;
@@ -22,20 +21,21 @@
     {
         private const string SimplifiedChineseCode = "zh-CN";
         private const string TraditionalChineseCode = "zh-TW";
-        private readonly IAccountRepository _accountRepository;
 
-        public MyAccountController(ISessionService sessionService,
+        private readonly IAccountService _accountService;
+
+        public MyAccountController(
+            ISessionService sessionService,
             ISystemService systemsService, 
-            IAccountRepository accountRepository)
-            : base(sessionService, systemsService)
+            IAccountService accountService) : base(sessionService, systemsService)
         {
-            _accountRepository = accountRepository;
+            _accountService = accountService;
         }
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index()
         {
-            var accountInfo = _accountRepository.GetAccountInfo(SessionService.UserSession.AffId);
+            var accountInfo = _accountService.GetAccountInfo(SessionService.UserSession.AffId);
             var newAccountInfo = new AccountInformation
             {
                 AffId = accountInfo.AffId,
@@ -98,10 +98,10 @@
             }
 
             var userSession = SessionService.UserSession;
-            var userAccount = _accountRepository.GetAccountInfo(userSession.AffId);
-            model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername) ?
-                userAccount.PlayerUsername :
-                Server.HtmlEncode(model.PlayerUsername);
+            var userAccount = _accountService.GetAccountInfo(userSession.AffId);
+            model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername) 
+                ? userAccount.PlayerUsername 
+                : Server.HtmlEncode(model.PlayerUsername);
 
             var accountUpdateParam = new UpdateAccountParam
             {
@@ -121,7 +121,7 @@
                 })),
             };
 
-            var updatingResult = _accountRepository.UpdateAccountInformation(accountUpdateParam);
+            var updatingResult = _accountService.UpdateAccountInformation(accountUpdateParam);
             if (updatingResult.IsOk)
             {
                 userSession.BaseCurrency = accountUpdateParam.DefaultBaseCurrency;

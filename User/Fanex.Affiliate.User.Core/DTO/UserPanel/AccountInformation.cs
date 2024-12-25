@@ -66,7 +66,5 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         public decimal TransferLimit { get; set; }
 
         public int PlayerCurrencyId { get; set; }
-
-        public string TargetCountryCode { get; set; } // Need Removed
     }
 }

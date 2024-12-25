@@ -210,6 +210,7 @@
     <Compile Include="BusinessService\IStatementHistoryService.cs" />
     <Compile Include="BusinessService\StatementHistoryService.cs" />
     <Compile Include="Commands\Account\CreateAffiliateCommand.cs" />
+    <Compile Include="Commands\Account\UpdateAccountInfoCommand.cs" />
     <Compile Include="Commands\BaseNonQueryCommand.cs" />
     <Compile Include="Commands\Auth\CheckInCommand.cs" />
     <Compile Include="Commands\Auth\RecheckinCommand.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Criterias\AccountOverview\GetSubAffDetailsCriteria.cs" />
     <Compile Include="Criterias\AccountOverview\GetUserOverviewDetailListCriteria.cs" />
     <Compile Include="Criterias\AccountOverview\GetUserOverviewSummaryCriteria.cs" />
+    <Compile Include="Criterias\Account\GetAccountInfoCriteria.cs" />
     <Compile Include="Criterias\Account\GetGeneralAffInfoCriteria.cs" />
     <Compile Include="Criterias\BaseCriteria.cs" />
     <Compile Include="Criterias\Currency\GetBaseCurrencyListCriteria.cs" />
