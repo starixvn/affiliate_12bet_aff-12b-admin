@@ -216,6 +216,8 @@
     <Compile Include="Commands\Auth\RecheckinCommand.cs" />
     <Compile Include="Commands\Marketing\AddMarketingChannelCommand.cs" />
     <Compile Include="Commands\Marketing\ToggleMarketingLinkCommand.cs" />
+    <Compile Include="Commands\Payment\CancelPaymentRequestCommand.cs" />
+    <Compile Include="Commands\Payment\CreatePaymentRequestCommand.cs" />
     <Compile Include="Commands\Verification\InsertUserDeviceInfoCommand.cs" />
     <Compile Include="Commands\Verification\UpdateVerificationInfoCommand.cs" />
     <Compile Include="CoreService\BaseDynamicService.cs" />
@@ -226,6 +228,7 @@
     <Compile Include="Criterias\AccountOverview\GetUserOverviewSummaryCriteria.cs" />
     <Compile Include="Criterias\Account\GetAccountInfoCriteria.cs" />
     <Compile Include="Criterias\Account\GetGeneralAffInfoCriteria.cs" />
+    <Compile Include="Criterias\Account\GetUserInfoByIdCriteria.cs" />
     <Compile Include="Criterias\BaseCriteria.cs" />
     <Compile Include="Criterias\Currency\GetBaseCurrencyListCriteria.cs" />
     <Compile Include="Criterias\Language\GetLanguageListCriteria.cs" />
@@ -238,6 +241,7 @@
     <Compile Include="Criterias\Marketing\GetSizeListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetSubAffDomainListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetUsingMarketingLinkCriteria.cs" />
+    <Compile Include="Criterias\Payment\GetPaymentListCriteria.cs" />
     <Compile Include="Criterias\SecurityQuestion\GetSecurityQuestionsCriteria.cs" />
     <Compile Include="Criterias\StatementHistory\GetDailyEarningCriteria.cs" />
     <Compile Include="Criterias\StatementHistory\GetProductListCriteria.cs" />
@@ -558,8 +562,6 @@
     <Compile Include="Repository\UserPanel\IMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\NewsRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsRepository.cs" />
-    <Compile Include="Repository\UserPanel\IPaymentRepository.cs" />
-    <Compile Include="Repository\UserPanel\PaymentRepository.cs" />
     <Compile Include="Repository\UserPanel\AccountRepository.cs" />
     <Compile Include="Repository\UserPanel\IAccountRepository.cs" />
     <Compile Include="Repository\ObjectDBBuilder.cs" />

@@ -20,5 +20,7 @@
         AccountInformation GetAccountInfo(int affId);
 
         ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam);
+
+        UserInfo GetUserInfoById(int affId, bool isInternal);
     }
 }

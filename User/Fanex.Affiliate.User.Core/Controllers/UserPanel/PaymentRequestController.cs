@@ -4,11 +4,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using BusinessService;
     using Constants;
+    using CoreService;
     using DTO;
     using Extensions;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.CoreService;
     using Filters;
     using MetalModels.Email;
     using MetalModels.UserPanel;

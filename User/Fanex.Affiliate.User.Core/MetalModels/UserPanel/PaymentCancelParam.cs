@@ -1,5 +1,4 @@
-﻿using Fanex.Data;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
@@ -15,14 +14,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public string Language { get; set; }
 
-        public int ErrCode { get; set; }
-
-        public string ErrMsg { get; set; }
-
-        [SpParam(Ignored = true)]
         public decimal Amount { get; set; }
 
-        [SpParam(Ignored = true)]
         public DateTime RequestDate { get; set; }
     }
 }

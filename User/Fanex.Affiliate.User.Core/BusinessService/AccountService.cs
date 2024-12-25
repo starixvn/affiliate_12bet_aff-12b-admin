@@ -112,6 +112,11 @@
             return ExecuteReturnResultInfo(accountUpdateParam.MapTo<UpdateAccountInfoCommand>());
         }
 
+        public UserInfo GetUserInfoById(int affId, bool isInternal)
+        {
+            return GetTData<UserInfo>(new GetUserInfoByIdCriteria(affId, isInternal));
+        }
+
         private static ResultInfo CheckPlayerUserNameValid(MemberSiteCustomerInfo cust)
         {
             var validInfo = new ResultInfo

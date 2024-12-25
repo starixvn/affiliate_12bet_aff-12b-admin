@@ -212,7 +212,6 @@
     <Compile Include="Repository\UserPanel\NewsLetterRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\NewsRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\OfferRepositoryTest.cs" />
-    <Compile Include="Repository\UserPanel\PaymentRepositoryTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
