@@ -215,6 +215,8 @@
     <Compile Include="Commands\Auth\RecheckinCommand.cs" />
     <Compile Include="Commands\Marketing\AddMarketingChannelCommand.cs" />
     <Compile Include="Commands\Marketing\ToggleMarketingLinkCommand.cs" />
+    <Compile Include="Commands\Verification\InsertUserDeviceInfoCommand.cs" />
+    <Compile Include="Commands\Verification\UpdateVerificationInfoCommand.cs" />
     <Compile Include="CoreService\BaseDynamicService.cs" />
     <Compile Include="Criterias\AccountOverview\GetLastLoginInfoCriteria.cs" />
     <Compile Include="Criterias\AccountOverview\GetPlayerDetailListCriteria.cs" />
@@ -548,7 +550,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EmailHistoryRepository.cs" />
     <Compile Include="Repository\IEmailHistoryRepository.cs" />
-    <Compile Include="Repository\IVerificationRepository.cs" />
     <Compile Include="Repository\UserPanel\CommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\ICommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\MemberRepository.cs" />
@@ -561,7 +562,6 @@
     <Compile Include="Repository\UserPanel\IAccountRepository.cs" />
     <Compile Include="Repository\ObjectDBBuilder.cs" />
     <Compile Include="Repository\IObjectDBBuilder.cs" />
-    <Compile Include="Repository\VerificationRepository.cs" />
     <Compile Include="Resources\Error.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

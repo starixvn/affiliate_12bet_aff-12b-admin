@@ -102,7 +102,13 @@
             var hashedDeviceInfo = _cryptographyService.ComputeSha256Hash(Parser.GetDeviceInfo(userParam.UserAgent));
             if (!userParam.IsVerifyingAccount)
             {
-                var verificationInfo = GetTData<VerificationInfo>(new GetLoginInfoByUserDeviceCriteria(user.AffId, userParam.LoginIp, hashedDeviceInfo));
+                var verificationInfo = GetTData<VerificationInfo>(new GetLoginInfoByUserDeviceCriteria
+                {
+                    AffId = user.AffId, 
+                    IpAddress = userParam.LoginIp, 
+                    DeviceInfo = hashedDeviceInfo
+                });
+
                 if (verificationInfo == null || ShouldVerifyAccount(verificationInfo))
                 {
                     return new LoginResultViewModel

@@ -4,13 +4,6 @@
 
     public class GetLoginInfoByUserDeviceCriteria : CriteriaBase
     {
-        public GetLoginInfoByUserDeviceCriteria(int affId, string ipAddress, string deviceInfo)
-        {
-            AffId = affId;
-            IpAddress = ipAddress;
-            DeviceInfo = deviceInfo;
-        }
-        
         public int AffId { get; set; }
 
         public string IpAddress { get; set; }

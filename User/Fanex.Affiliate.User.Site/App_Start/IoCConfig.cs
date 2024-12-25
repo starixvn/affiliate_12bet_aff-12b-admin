@@ -108,7 +108,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<TwoFactorAuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<VerificationService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<WrapperUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<VerificationRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountOverviewService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatisticsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -136,8 +135,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterInstance(RestService.For<ILicenseeApi>(
                 new HttpClient(handler)
                 {
-                    BaseAddress = new Uri(appSetting.MemberSiteApiUrl),
-
+                    BaseAddress = new Uri(appSetting.MemberSiteApiUrl)
                 }));
         }
     }
