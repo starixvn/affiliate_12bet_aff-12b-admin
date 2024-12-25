@@ -165,6 +165,14 @@
             .items {
                 padding: 8px 24px;
 
+                @include Mobile {
+                    min-height: 231px;
+
+                    &.zh-CN, &.zh-TW {
+                        min-height: 212.5px;
+                    }
+                }
+
                 .aff-name {
                     text-align: center;
                     font-weight: 700;
@@ -184,12 +192,12 @@
 
                     span {
                         vertical-align: middle;
+                        padding-right: 5px;
                     }
 
                     .flag {
                         display: inline-block;
-                        max-width: 20px;
-                        margin-left: 5px;
+                        width: 20px;
                     }
                 }
 
