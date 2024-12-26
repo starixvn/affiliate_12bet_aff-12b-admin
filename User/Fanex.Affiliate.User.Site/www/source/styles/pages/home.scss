@@ -165,14 +165,6 @@
             .items {
                 padding: 8px 24px;
 
-                @include Mobile {
-                    min-height: 231px;
-
-                    &.zh-CN, &.zh-TW {
-                        min-height: 212.5px;
-                    }
-                }
-
                 .aff-name {
                     text-align: center;
                     font-weight: 700;
@@ -203,24 +195,12 @@
 
                 .aff-testimonial {
                     .title {
-                        min-height: 40px;
+                        min-height: 58.5px;
                         text-align: center;
                         font-weight: 700;
                         font-size: 16px;
                         line-height: 19.5px;
                         color: #D90F0F;
-
-                        &.aff286 {
-                            min-height: 58.5px;
-
-                            @include Tablet {
-                                min-height: 40px;
-                            }
-                        }
-
-                        @include Mobile {
-                            min-height: 40px !important;
-                        }
                     }
 
                     .content {
@@ -232,58 +212,82 @@
                         color: #353E5B;
                         margin: 10px 0;
                         min-height: 85.5px;
+                    }
 
-                        @include Tablet {
-                            min-height: 102.5px;
+                    &.en-US, &.hi-IN, &.bn-BD, &.ja-JP {
+                        .title {
+                            @media (max-width: 1095px) and (min-width: 1025px) {
+                                min-height: 78px;
+                            }
                         }
 
-                        @include Mobile {
-                            min-height: 68.5px !important;
+                        .content {
+                            @media (max-width: 1365px) and (min-width: 1025px) {
+                                min-height: 102.5px;
+                            }
+
+                            @media (max-width: 1104px) and (min-width: 1025px) {
+                                min-height: 119.5px;
+                            }
+
+                            @media (max-width: 1024px) and (min-width: 768px) {
+                                min-height: 102.5px;
+                            }
+
+                            @media (max-width: 767px) and (min-width: 389px) {
+                                min-height: 68.5px;
+                            }
+
+                            @media (max-width: 340px) {
+                                min-height: 102.5px;
+                            }
                         }
                     }
 
                     &.id-ID {
                         .title {
-                            &.aff131, &.aff504 {
-                                min-height: 58.5px;
-                            }
+                            min-height: 78px;
 
-                            &.aff504 {
-                                @include Tablet {
-                                    min-height: 40px;
-                                }
-                            }
-
-                            &.aff429, &.aff286 {
-                                min-height: 78px;
-                            }
-
-                            &.aff286 {
-                                @include Tablet {
-                                    min-height: 58.5px;
-                                }
+                            @media (max-width: 1059px) and (min-width: 1025px) {
+                                min-height: 97.5px;
                             }
                         }
 
                         .content {
-                            &.aff801, &.aff846 {
-                                min-height: 102.5px;
+                            min-height: 102.5px;
+
+                            @media (max-width: 1180px) and (min-width: 1069px) {
+                                min-height: 119.5px;
                             }
 
-                            @include Tablet {
-                                &.aff504 {
-                                    min-height: 119.6px;
-                                }
+                            @media (max-width: 1068px) and (min-width: 1025px) {
+                                min-height: 136.6px;
+                            }
+
+                            @media (max-width: 1024px) and (min-width: 768px) {
+                                min-height: 119.5px;
+                            }
+
+                            @media (max-width: 767px) and (min-width: 425px) {
+                                min-height: 68.5px;
+                            }
+
+                            @media (max-width: 424px) and (min-width: 378px) {
+                                min-height: 85.5px;
+                            }
+
+                            @media (max-width: 323px) {
+                                min-height: 119.5px;
                             }
                         }
                     }
 
                     &.km-KH {
                         .content {
-                            @include Tablet {
-                                &.aff242, &.aff429 {
-                                    min-height: 85.5px;
-                                }
+                            line-break: normal;
+
+                            @media (max-width: 1185px) and (min-width: 768px) {
+                                min-height: 102.5px;
                             }
                         }
                     }
@@ -292,7 +296,7 @@
                         .content {
                             min-height: 68.5px;
 
-                            @include Tablet {
+                            @media (max-width: 1360px) and (min-width: 768px) {
                                 min-height: 85.5px;
                             }
                         }
@@ -306,34 +310,50 @@
 
                     &.vi-VN {
                         .title {
-                            @include Tablet {
-                                &.aff504 {
-                                    min-height: 58.5px;
-                                }
+                            @media (max-width: 1113px) and (min-width: 1024px) {
+                                min-height: 78px;
                             }
                         }
 
                         .content {
-                            &.aff274, &.aff131 {
+                            min-height: 102.5px;
+
+                            @media (max-width: 1179px) {
+                                min-height: 119.5px;
+                            }
+
+                            @media (max-width: 1024px) {
+                                min-height: 102.5px;
+                            }
+
+                            @media (max-width: 767px) {
+                                min-height: 68.5px;
+                            }
+
+                            @media (max-width: 430px) {
+                                min-height: 85.5px;
+                            }
+
+                            @media (max-width: 360px) {
                                 min-height: 102.5px;
                             }
                         }
                     }
 
                     &.zh-CN, &.zh-TW {
-                        .title {
-                            &.aff429 {
-                                min-height: 58.5px;
-                            }
-                        }
-
                         .content {
                             min-height: 68.5px;
 
-                            @include Tablet {
-                                &.aff274, &.aff131 {
-                                    min-height: 85.5px;
-                                }
+                            @media (max-width: 1179px) {
+                                min-height: 85.5px;
+                            }
+
+                            @media (max-width: 767px) {
+                                min-height: 68.5px;
+                            }
+
+                            @media (max-width: 324px) {
+                                min-height: 85.5px;
                             }
                         }
                     }
