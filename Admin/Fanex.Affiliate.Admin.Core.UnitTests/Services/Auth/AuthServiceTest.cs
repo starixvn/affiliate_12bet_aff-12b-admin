@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Fetch<UserPermission>(It.IsAny<UserPermissionCriteria>())).Returns(new List<UserPermission>());
+            dynamicRepository.Setup(re => re.Fetch<UserPermission>(It.IsAny<UserPermissionCriteria>(), It.IsAny<string>())).Returns(new List<UserPermission>());
 
             // Action
             var service = new AuthService(dynamicRepository.Object);
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<ReCheckinCommand>()));
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<ReCheckinCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AuthService(dynamicRepository.Object);
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<LoginCommand>()));
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<LoginCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AuthService(dynamicRepository.Object);
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
             // Arrange
             var onUserId = 123456;
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<LoginOnUserCommand>())).Callback<INonQueryCommand>(c => (c as LoginOnUserCommand).OnUserId = onUserId);
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<LoginOnUserCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => (c as LoginOnUserCommand).OnUserId = onUserId);
 
             // Action
             var service = new AuthService(dynamicRepository.Object);
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
             service.Logout(123);
 
             // Assert
-            dynamicRepository.Received().Execute(Arg.Any<LogoutCommand>());
+            dynamicRepository.Received().Execute(Arg.Any<LogoutCommand>(), It.IsAny<string>());
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<CheckUserPermissionCommand>()));
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<CheckUserPermissionCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AuthService(dynamicRepository.Object);

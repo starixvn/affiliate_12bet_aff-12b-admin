@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new BannerParam();
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(b => b.Fetch<BannerInfo>(It.IsAny<BannerCriteria>())).Returns(new List<BannerInfo> { new BannerInfo() });
+            dynamicRepository.Setup(b => b.Fetch<BannerInfo>(It.IsAny<BannerCriteria>(), It.IsAny<string>())).Returns(new List<BannerInfo> { new BannerInfo() });
             var service = CreateBannerListService(dynamicRepository.Object);
 
             // Action
@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new BannerParam { Category = "Casino", SubCategory = "Casino Bonus" };
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(b => b.Fetch<BannerInfo>(It.IsAny<BannerCriteria>()))
+            dynamicRepository.Setup(b => b.Fetch<BannerInfo>(It.IsAny<BannerCriteria>(), It.IsAny<string>()))
                 .Returns(new List<BannerInfo> { new BannerInfo() });
             var service = CreateBannerListService(dynamicRepository.Object);
 
@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new BannerParam { Category = "Casino" };
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(b => b.Fetch<BannerInfo>(It.IsAny<BannerCriteria>()))
+            dynamicRepository.Setup(b => b.Fetch<BannerInfo>(It.IsAny<BannerCriteria>(), It.IsAny<string>()))
                 .Returns(new List<BannerInfo> { new BannerInfo() });
             var service = CreateBannerListService(dynamicRepository.Object);
 
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var selectedBannerId = 123;
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { BannerId = 123 });
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { BannerId = 123 });
             var service = CreateBannerListService(dynamicRepository.Object);
 
             // Action
@@ -260,7 +260,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.BannerFolders).Returns(new string[] { "abc" });
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<InsertBannerCommand>())).Callback<INonQueryCommand>(c => (c as InsertBannerCommand).ErrCode = ErrCode.GeneralErrorCode);
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<InsertBannerCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => (c as InsertBannerCommand).ErrCode = ErrCode.GeneralErrorCode);
             var bannerValidationService = new Mock<IBannerValidationService>();
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
@@ -282,7 +282,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.BannerFolders).Returns(new string[] { "abc" });
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<InsertBannerCommand>()));
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<InsertBannerCommand>(), It.IsAny<string>()));
             var bannerValidationService = new Mock<IBannerValidationService>();
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
@@ -377,7 +377,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var bannerValidationService = new Mock<IBannerValidationService>();
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo { Code = ErrCode.ErrTheFileNameAlreadyExists, Message = "The file name already exists." });
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "abc.gif" });
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "abc.gif" });
             var service = CreateBannerListService(dynamicRepository.Object, null, systemFile.Object, bannerValidationService.Object);
 
             // Action
@@ -398,8 +398,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo { Code = ErrCode.ErrTheFileNameAlreadyExists });
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo { Code = ErrCode.GeneralErrorCode, Message = "Invalid File" });
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>())).Callback<INonQueryCommand>(c => (c as UpdateBannerCommand).ErrCode = ErrCode.GeneralErrorCode);
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => (c as UpdateBannerCommand).ErrCode = ErrCode.GeneralErrorCode);
             var service = CreateBannerListService(dynamicRepository.Object, null, systemFile.Object, bannerValidationService.Object);
 
             // Action
@@ -422,8 +422,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo { Code = ErrCode.ErrTheFileNameAlreadyExists });
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>())).Callback<INonQueryCommand>(c => (c as UpdateBannerCommand).ErrCode = ErrCode.GeneralErrorCode);
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => (c as UpdateBannerCommand).ErrCode = ErrCode.GeneralErrorCode);
             var service = CreateBannerListService(dynamicRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
 
             // Action
@@ -445,8 +445,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo { Code = ErrCode.ErrTheFileNameAlreadyExists });
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>()));
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>(), It.IsAny<string>()));
             var service = CreateBannerListService(dynamicRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
 
             // Action
@@ -465,8 +465,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var bannerValidationService = new Mock<IBannerValidationService>();
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>()));
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>(), It.IsAny<string>()));
             var service = CreateBannerListService(dynamicRepository.Object, null, systemFile.Object, bannerValidationService.Object);
 
             // Action
@@ -486,8 +486,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var bannerValidationService = new Mock<IBannerValidationService>();
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo());
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "CategoryMedia/abc.png" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>()));
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "CategoryMedia/abc.png" });
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>(), It.IsAny<string>()));
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.BannerFolders).Returns(new string[] { "abc" });
             var service = CreateBannerListService(dynamicRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
@@ -506,8 +506,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             string[] bannerFolders = { "abc" };
             var param = new DeleteBannerParam { BannerIdList = "123", UserType = 1 };
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "abc.gif" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<DeleteBannerCommand>()));
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "abc.gif" });
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<DeleteBannerCommand>(), It.IsAny<string>()));
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.BannerFolders).Returns(bannerFolders);
             var systemFile = new Mock<ISystemFile>();
@@ -527,8 +527,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new DeleteBannerParam { BannerIdList = "123", UserType = 1 };
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>())).Returns(new BannerInfo { FileName = "abc.gif" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<DeleteBannerCommand>())).Callback<INonQueryCommand>(c => { var a = c as DeleteBannerCommand; a.ErrCode = 999; a.ErrMsg = "Delete is failed"; });
+            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "abc.gif" });
+            dynamicRepository.Setup(s => s.Execute(It.IsAny<DeleteBannerCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => { var a = c as DeleteBannerCommand; a.ErrCode = 999; a.ErrMsg = "Delete is failed"; });
             var service = CreateBannerListService(dynamicRepository.Object);
 
             // Action
@@ -545,7 +545,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new SizeParam();
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(t => t.Fetch<MediaGalleryFilterItem>(It.IsAny<MediaSizeCriteria>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
+            dynamicRepository.Setup(t => t.Fetch<MediaGalleryFilterItem>(It.IsAny<MediaSizeCriteria>(), It.IsAny<string>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
             var service = CreateBannerListService(dynamicRepository.Object);
 
             // Action
@@ -561,7 +561,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new SizeParam { Category = "Casino", SubCategory = "Casino Bonus" };
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(t => t.Fetch<MediaGalleryFilterItem>(It.IsAny<MediaSizeCriteria>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
+            dynamicRepository.Setup(t => t.Fetch<MediaGalleryFilterItem>(It.IsAny<MediaSizeCriteria>(), It.IsAny<string>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
             var service = CreateBannerListService(dynamicRepository.Object);
 
             // Action
@@ -577,7 +577,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new SizeParam { Category = "Casino" };
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(t => t.Fetch<MediaGalleryFilterItem>(It.IsAny<MediaSizeCriteria>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
+            dynamicRepository.Setup(t => t.Fetch<MediaGalleryFilterItem>(It.IsAny<MediaSizeCriteria>(), It.IsAny<string>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem { Id = 456, Name = "320x250" } });
             var service = CreateBannerListService(dynamicRepository.Object);
 
             // Action

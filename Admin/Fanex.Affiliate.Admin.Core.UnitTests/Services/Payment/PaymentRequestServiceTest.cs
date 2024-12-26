@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             // Arrange
             var param = new PaymentRequestParam();
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Fetch<PaymentRequest>(It.IsAny<PaymentRequestCriteria>())).Returns(new List<PaymentRequest> { new PaymentRequest() });
+            dynamicRepository.Setup(l => l.Fetch<PaymentRequest>(It.IsAny<PaymentRequestCriteria>(), It.IsAny<string>())).Returns(new List<PaymentRequest> { new PaymentRequest() });
 
             var service = CreatePaymentRequestService(dynamicRepository: dynamicRepository.Object);
 
@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             // Arrange
             var transId = 123;
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { TransId = transId });
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { TransId = transId });
 
             var service = CreatePaymentRequestService(dynamicRepository: dynamicRepository.Object);
 
@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "abc" });
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "abc" });
 
             var service = CreatePaymentRequestService(dynamicRepository: dynamicRepository.Object);
 
@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(null as PaymentRequestDetail);
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(null as PaymentRequestDetail);
 
             var service = CreatePaymentRequestService(dynamicRepository: dynamicRepository.Object);
 
@@ -111,8 +111,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             DependencyResolver.SetResolver(resolver);
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>()));
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "processing" });
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>(), It.IsAny<string>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { AffType = 2 });
 
@@ -141,8 +141,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             DependencyResolver.SetResolver(resolver);
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>()));
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "processing" });
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>(), It.IsAny<string>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });
 
@@ -163,7 +163,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             appSetting.Setup(a => a.MemberSiteId).Returns(1);
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "processing" });
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });
@@ -190,8 +190,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             appSetting.Setup(a => a.MemberSiteId).Returns(1);
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>())).Callback<INonQueryCommand>(u => (u as UpdatePaymentRequestCommand).ErrCode = ErrCode.GeneralErrorCode);
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "processing" });
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(u => (u as UpdatePaymentRequestCommand).ErrCode = ErrCode.GeneralErrorCode);
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });
@@ -226,8 +226,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             DependencyResolver.SetResolver(resolver);
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>()));
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "processing" });
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>(), It.IsAny<string>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });
@@ -263,8 +263,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             DependencyResolver.SetResolver(resolver);
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>()));
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "processing" });
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>(), It.IsAny<string>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });
@@ -301,8 +301,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             DependencyResolver.SetResolver(resolver);
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>()));
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "processing" });
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>(), It.IsAny<string>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });
@@ -338,8 +338,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             DependencyResolver.SetResolver(resolver);
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>())).Returns(new PaymentRequestDetail { Status = "processing" });
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>()));
+            dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "processing" });
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>(), It.IsAny<string>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });

@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Fetch<OnlineListInfo>(It.IsAny<UserOnlineCriteria>())).Returns(
+            dynamicRepository.Setup(re => re.Fetch<OnlineListInfo>(It.IsAny<UserOnlineCriteria>(), It.IsAny<string>())).Returns(
                 new List<OnlineListInfo> {
                     new OnlineListInfo {
                         LoggedIn = new DateTime(2019, 11, 15),
@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Get<GeneralInfo>(It.IsAny<BaseCriteria>())).Returns(new GeneralInfo());
+            dynamicRepository.Setup(re => re.Get<GeneralInfo>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new GeneralInfo());
 
             // Action
             var service = new HomeService(dynamicRepository.Object);

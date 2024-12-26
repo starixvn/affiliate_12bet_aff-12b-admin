@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<DepartmentInfo>(It.IsAny<BaseCriteria>())).Returns(new List<DepartmentInfo> { new DepartmentInfo() });
+            dynamicRepository.Setup(r => r.Fetch<DepartmentInfo>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<DepartmentInfo> { new DepartmentInfo() });
 
             // Action
             var service = new DepartmentService(dynamicRepository.Object);
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Get<DepartmentInfo>(It.IsAny<DepartmentDetailCriteria>())).Returns(new DepartmentInfo());
+            dynamicRepository.Setup(r => r.Get<DepartmentInfo>(It.IsAny<DepartmentDetailCriteria>(), It.IsAny<string>())).Returns(new DepartmentInfo());
 
             // Action
             var service = new DepartmentService(dynamicRepository.Object);
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<DepartmentCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<DepartmentCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new DepartmentService(dynamicRepository.Object);
@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<DepartmentCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<DepartmentCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new DepartmentService(dynamicRepository.Object);
@@ -78,7 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<DeleteDepartmentCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<DeleteDepartmentCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new DepartmentService(dynamicRepository.Object);
@@ -93,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<PolicyInfo>(It.IsAny<RolePolicyCriteria>())).Returns(new List<PolicyInfo> { new PolicyInfo() });
+            dynamicRepository.Setup(r => r.Fetch<PolicyInfo>(It.IsAny<RolePolicyCriteria>(), It.IsAny<string>())).Returns(new List<PolicyInfo> { new PolicyInfo() });
 
             // Action
             var service = new DepartmentService(dynamicRepository.Object);
@@ -108,7 +108,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<UpdateRolePolicyCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<UpdateRolePolicyCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new DepartmentService(dynamicRepository.Object);

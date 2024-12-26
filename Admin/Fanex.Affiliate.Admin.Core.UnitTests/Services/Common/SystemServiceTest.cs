@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         {
             // Arrange
             var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Language>(It.IsAny<BaseCriteria>())).Returns(new List<Language> { new Language() });
+            languageService.Setup(l => l.Fetch<Language>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Language> { new Language() });
 
             var service = CreateLanguageService(languageService.Object);
 
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         {
             // Arrange
             var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>())).Returns(new List<Currency> { new Currency() });
+            languageService.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Currency> { new Currency() });
 
             var service = CreateLanguageService(languageService.Object);
 
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         {
             // Arrange
             var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>())).Returns(new List<Currency> { new Currency() });
+            languageService.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Currency> { new Currency() });
 
             var service = CreateLanguageService(languageService.Object);
 
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         {
             // Arrange
             var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>())).Returns(new List<Currency> { new Currency() });
+            languageService.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Currency> { new Currency() });
 
             var service = CreateLanguageService(languageService.Object);
 
@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         {
             // Arrange
             var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Product>(It.IsAny<BaseCriteria>())).Returns(new List<Product> { new Product() });
+            languageService.Setup(l => l.Fetch<Product>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Product> { new Product() });
 
             var service = CreateLanguageService(languageService.Object);
 

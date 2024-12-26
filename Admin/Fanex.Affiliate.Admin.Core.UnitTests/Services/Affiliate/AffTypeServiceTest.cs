@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Get<AffTypeInfo>(It.IsAny<BaseCriteria>())).Returns(new AffTypeInfo());
+            dynamicRepository.Setup(re => re.Get<AffTypeInfo>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new AffTypeInfo());
 
             // Action
             var service = new AffTypeService(dynamicRepository.Object);

@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var emailParam = new AffInformationEmail();
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>(), It.IsAny<string>()));
 
             var service = CreateCommGroupAssignmentService(dynamicRepository.Object);
 
@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var emailParam = new AffInformationEmail();
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>(), It.IsAny<string>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns((new ResultInfo { Code = 999 }, "12345"));
@@ -89,7 +89,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var emailParam = new AffInformationEmail();
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>(), It.IsAny<string>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns((new ResultInfo(), "12345"));
@@ -171,7 +171,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             commGroupCommonService.Setup(comm => comm.CreateCommissionGroup(param)).Returns(new ResultInfo());
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>())).Callback<INonQueryCommand>(c => (c as AssignCommGroupCommand).ErrCode = 999);
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => (c as AssignCommGroupCommand).ErrCode = 999);
 
             var service = CreateCommGroupAssignmentService(dynamicRepository.Object, null, null, commGroupCommonService.Object);
 
@@ -194,7 +194,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             commGroupCommonService.Setup(comm => comm.CreateCommissionGroup(param)).Returns(new ResultInfo());
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>(), It.IsAny<string>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns((new ResultInfo { Code = 999 }, "12345"));
@@ -235,7 +235,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             commGroupCommonService.Setup(comm => comm.CreateCommissionGroup(param)).Returns(expectedResult);
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>(), It.IsAny<string>()));
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.ApproveAffiliate(It.IsAny<ApproveAffiliateParam>())).Returns((expectedResult, "12345"));
@@ -266,7 +266,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             commGroupCommonService.Setup(comm => comm.UpdateCommissionGroup(param)).Returns(new ResultInfo());
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>()));
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>(), It.IsAny<string>()));
 
             var service = CreateCommGroupAssignmentService(dynamicRepository.Object, null, null, commGroupCommonService.Object);
 

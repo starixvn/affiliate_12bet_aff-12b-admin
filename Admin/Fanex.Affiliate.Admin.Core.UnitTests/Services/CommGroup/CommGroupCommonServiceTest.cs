@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             // Arrange
             var param = CreateValidCreateUpdateCommissionGroupParam();
             var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.Execute(It.IsAny<InsertCommGroupCommand>()));
+            commGroupRepository.Setup(comm => comm.Execute(It.IsAny<InsertCommGroupCommand>(), It.IsAny<string>()));
 
             var service = CreateCommGroupCommonService(commGroupRepository.Object);
 
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             // Arrange
             var param = CreateValidCreateUpdateCommissionGroupParamHasKillRate();
             var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.Execute(It.IsAny<UpdateCommGroupCommand>()));
+            commGroupRepository.Setup(comm => comm.Execute(It.IsAny<UpdateCommGroupCommand>(), It.IsAny<string>()));
 
             var service = CreateCommGroupCommonService(commGroupRepository.Object);
 
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
                             DeductedPercentage= 0, DeductionId= 14, DeductionName = "ExchangeCommissionShare"
                         }
                     };
-            commGroupRepository.Setup(comm => comm.Fetch<DeductionItem>(It.IsAny<BaseCriteria>())).Returns(expectedResult);
+            commGroupRepository.Setup(comm => comm.Fetch<DeductionItem>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(expectedResult);
             var service = CreateCommGroupCommonService(commGroupRepository.Object);
 
             // Action
@@ -78,7 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
                     {
                         new CommGroupType()
                     };
-            commGroupRepository.Setup(comm => comm.Fetch<CommGroupType>(It.IsAny<BaseCriteria>())).Returns(expectedResult);
+            commGroupRepository.Setup(comm => comm.Fetch<CommGroupType>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(expectedResult);
             var service = CreateCommGroupCommonService(commGroupRepository.Object);
 
             // Action
@@ -103,7 +103,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
                 }
             };
             var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.Fetch<NormalCommGroup>(It.IsAny<GetNormalCommGroupCriteria>())).Returns(expectedResult);
+            commGroupRepository.Setup(comm => comm.Fetch<NormalCommGroup>(It.IsAny<GetNormalCommGroupCriteria>(), It.IsAny<string>())).Returns(expectedResult);
             var service = CreateCommGroupCommonService(commGroupRepository.Object);
 
             // Action

@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data;
-using Fanex.Data.SqlServer;
 using System;
 using System.Configuration;
 using System.Reflection;
@@ -24,9 +23,10 @@ namespace AffiliateAdmin
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
             DbSettingProviderManager
-                  .StartNewSession()
-                  .WithSqlServer("~/App_Data/SpConfig/SpName.xml")
-                  .Run();
+                    .StartNewSession()
+                    .Register(false)
+                    .Run();
+    
 
             AreaRegistration.RegisterAllAreas();
             LoggingConfig.RegisterSentry();

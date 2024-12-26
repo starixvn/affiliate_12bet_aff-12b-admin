@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<PlayerDetail>(It.IsAny<PlayerDetailCriteria>())).Returns(new List<PlayerDetail>
+            dynamicRepository.Setup(r => r.Fetch<PlayerDetail>(It.IsAny<PlayerDetailCriteria>(), It.IsAny<string>())).Returns(new List<PlayerDetail>
             {
                 new PlayerDetail
                 {
@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<PlayerDetail>(It.IsAny<PlayerDetailCriteria>())).Returns(new List<PlayerDetail>
+            dynamicRepository.Setup(r => r.Fetch<PlayerDetail>(It.IsAny<PlayerDetailCriteria>(), It.IsAny<string>())).Returns(new List<PlayerDetail>
             {
                 new PlayerDetail()
             });

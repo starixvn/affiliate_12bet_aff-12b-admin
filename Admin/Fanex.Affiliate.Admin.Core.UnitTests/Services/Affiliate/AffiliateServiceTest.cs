@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Get<AffiliateBasicInfo>(It.IsAny<AffBasicInfoCriteria>())).Returns(new AffiliateBasicInfo());
+            dynamicRepository.Setup(re => re.Get<AffiliateBasicInfo>(It.IsAny<AffBasicInfoCriteria>(), It.IsAny<string>())).Returns(new AffiliateBasicInfo());
 
             // Action
             var service = new AffiliateService(dynamicRepository.Object);
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<ApproveAffCommand>())).Callback<INonQueryCommand>(a => (a as ApproveAffCommand).AffCode = "123456");
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<ApproveAffCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(a => (a as ApproveAffCommand).AffCode = "123456");
 
             // Action
             var service = new AffiliateService(dynamicRepository.Object);
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Fetch<AffiliateInfo>(It.IsAny<AffiliateCriteria>()))
+            dynamicRepository.Setup(re => re.Fetch<AffiliateInfo>(It.IsAny<AffiliateCriteria>(), It.IsAny<string>()))
                 .Returns(new List<AffiliateInfo> { new AffiliateInfo { ApprovedBy = "abc", RegistrationDate = new DateTime(2020, 01, 01), ApprovalDate = new DateTime(2020, 04, 15) } });
 
             // Action
@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Fetch<AffiliateInfo>(It.IsAny<AffiliateCriteria>()))
+            dynamicRepository.Setup(re => re.Fetch<AffiliateInfo>(It.IsAny<AffiliateCriteria>(), It.IsAny<string>()))
                 .Returns(new List<AffiliateInfo> { new AffiliateInfo { RegistrationDate = new DateTime(2020, 01, 01) } });
 
             // Action
@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<ToggleFavoriteCommand>()));
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<ToggleFavoriteCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AffiliateService(dynamicRepository.Object);
@@ -105,7 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<ChangeAffPasswordCommand>()));
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<ChangeAffPasswordCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AffiliateService(dynamicRepository.Object);

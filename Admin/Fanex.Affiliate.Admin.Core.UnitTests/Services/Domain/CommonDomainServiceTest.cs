@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<DomainInfo>(It.IsAny<BaseCriteria>())).Returns(new List<DomainInfo> { new DomainInfo { CreateDate = new DateTime(2020, 09, 10) } });
+            repository.Setup(r => r.Fetch<DomainInfo>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<DomainInfo> { new DomainInfo { CreateDate = new DateTime(2020, 09, 10) } });
 
             // Action
             var service = new CommonDomainService(repository.Object);
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<DomainInfo>(It.IsAny<BaseCriteria>())).Returns(new List<DomainInfo> { new DomainInfo() });
+            repository.Setup(r => r.Fetch<DomainInfo>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<DomainInfo> { new DomainInfo() });
 
             // Action
             var service = new CommonDomainService(repository.Object);
@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Execute(It.IsAny<InsertDomainCommand>()));
+            repository.Setup(r => r.Execute(It.IsAny<InsertDomainCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new CommonDomainService(repository.Object);
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Execute(It.IsAny<UpdateDomainCommand>()));
+            repository.Setup(r => r.Execute(It.IsAny<UpdateDomainCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new CommonDomainService(repository.Object);
@@ -83,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Execute(It.IsAny<DeleteDomainCommand>()));
+            repository.Setup(r => r.Execute(It.IsAny<DeleteDomainCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new CommonDomainService(repository.Object);

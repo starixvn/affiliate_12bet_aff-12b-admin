@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.Get<UserAccount>(It.IsAny<UserAccountCriteria>())).Returns(new UserAccount());
+            repository.Setup(comm => comm.Get<UserAccount>(It.IsAny<UserAccountCriteria>(), It.IsAny<string>())).Returns(new UserAccount());
             var service = CreateUserAccountService(repository.Object);
 
             // Action
@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var param = GetUserAccountParam();
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.Execute(It.IsAny<UpdateUserAccountCommand>()));
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateUserAccountCommand>(), It.IsAny<string>()));
             var service = CreateUserAccountService(repository.Object);
 
             // Action
@@ -54,13 +54,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Get<UserAccount>(It.IsAny<UserAccountCriteria>())).Returns(new UserAccount { PlayerUsername = "Abc" });
+            repository.Setup(r => r.Get<UserAccount>(It.IsAny<UserAccountCriteria>(), It.IsAny<string>())).Returns(new UserAccount { PlayerUsername = "Abc" });
             var licenseeService = new Mock<ILicenseeService>();
             licenseeService.Setup(s => s.CheckCustomerIsValid(It.IsAny<MemberSiteCustomerInfo>()))
                 .Returns(new ResultInfo { Code = 0 });
             licenseeService.Setup(s => s.GetMemberSiteCustomerInfo(It.IsAny<string>(), It.IsAny<int>()))
                 .ReturnsAsync(new MemberSiteCustomerInfo());
-            repository.Setup(comm => comm.Execute(It.IsAny<UpdateUserAccountCommand>()));
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateUserAccountCommand>(), It.IsAny<string>()));
             var service = CreateUserAccountService(repository.Object, licenseeService.Object);
 
             // Action
@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(ap => ap.SiteFriendlyName).Returns("12BET");
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Get<UserAccount>(It.IsAny<UserAccountCriteria>())).Returns(new UserAccount { PlayerUsername = "Abc" });
+            repository.Setup(r => r.Get<UserAccount>(It.IsAny<UserAccountCriteria>(), It.IsAny<string>())).Returns(new UserAccount { PlayerUsername = "Abc" });
             var licenseeService = new Mock<ILicenseeService>();
             licenseeService.Setup(s => s.CheckCustomerIsValid(It.IsAny<MemberSiteCustomerInfo>())).Returns(new ResultInfo { Code = 100 });
 
@@ -139,7 +139,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var userAccountRepository = new Mock<IDynamicRepository>();
-            userAccountRepository.Setup(t => t.Fetch<PaymentMethodInfo>(It.IsAny<PaymentMethodCriteria>())).Returns(new List<PaymentMethodInfo> { new PaymentMethodInfo { PaymentId = "123", PaymentName = "abc" } }).Callback<ICriteria>(p => (p as PaymentMethodCriteria).MinAmount = 100m);
+            userAccountRepository.Setup(t => t.Fetch<PaymentMethodInfo>(It.IsAny<PaymentMethodCriteria>(), It.IsAny<string>())).Returns(new List<PaymentMethodInfo> { new PaymentMethodInfo { PaymentId = "123", PaymentName = "abc" } }).Callback<ICriteria>(p => (p as PaymentMethodCriteria).MinAmount = 100m);
             var service = CreateUserAccountService(userAccountRepository: userAccountRepository.Object);
 
             // Action

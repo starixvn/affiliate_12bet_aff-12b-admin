@@ -18,14 +18,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<TrackingInfo>(It.IsAny<TrackingCodeCriteria>())).Returns(new List<TrackingInfo>());
+            dynamicRepository.Setup(r => r.Fetch<TrackingInfo>(It.IsAny<TrackingCodeCriteria>(), It.IsAny<string>())).Returns(new List<TrackingInfo>());
 
             // Action
             var service = new TrackingStatisticsService(dynamicRepository.Object);
             var result = service.GetTrackingCodeList(1271808);
 
             // Assert
-            dynamicRepository.Verify(obj => obj.Fetch<TrackingInfo>(It.IsAny<TrackingCodeCriteria>()), Times.Once);
+            dynamicRepository.Verify(obj => obj.Fetch<TrackingInfo>(It.IsAny<TrackingCodeCriteria>(), It.IsAny<string>()), Times.Once);
         }
 
 
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.FetchMultiple<TrackingStatistics, TrackingStatistics>(It.IsAny<TrackingStatisticsCriteria>()))
+            dynamicRepository.Setup(r => r.FetchMultiple<TrackingStatistics, TrackingStatistics>(It.IsAny<TrackingStatisticsCriteria>(), It.IsAny<string>()))
                 .Returns((new List<TrackingStatistics> { new TrackingStatistics { Date = new DateTime(2019, 12, 27) } }, new List<TrackingStatistics>()));
 
             // Action
@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<TrackingStatistics>(It.IsAny<TrackingStatisticsDetailCriteria>()))
+            dynamicRepository.Setup(r => r.Fetch<TrackingStatistics>(It.IsAny<TrackingStatisticsDetailCriteria>(), It.IsAny<string>()))
                 .Returns(new List<TrackingStatistics> { new TrackingStatistics() });
 
             // Action

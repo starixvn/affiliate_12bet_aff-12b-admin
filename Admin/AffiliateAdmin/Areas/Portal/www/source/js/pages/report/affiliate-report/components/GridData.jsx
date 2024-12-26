@@ -219,7 +219,7 @@ export class GridData extends PureComponent {
         const affAdjustment = formatDecimal(dataItem.AffAdjustment);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
         const currentBalanceBf = formatDecimal(dataItem.CurrentBBF);
-        const commRate = isTotalRow ? 'N/A' : (dataItem.CommissionRate * 100) + '%';
+        const commRate = isTotalRow ? 'N/A' : formatDecimal(dataItem.CommissionRate * 100) + '%';
         const subAffEarning = formatDecimal(dataItem.SubAffEarning);
         const totalEarning = formatDecimal(dataItem.TotalEarning);
         const paymentCurrency = isTotalRow ? '' : dataItem.PaymentCurrency;

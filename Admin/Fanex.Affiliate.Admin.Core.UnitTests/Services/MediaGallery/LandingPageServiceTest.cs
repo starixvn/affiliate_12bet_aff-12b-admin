@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Fetch<LandingPage>(It.IsAny<LandingPageCriteria>())).Returns(new List<LandingPage> { new LandingPage() });
+            dynamicRepository.Setup(l => l.Fetch<LandingPage>(It.IsAny<LandingPageCriteria>(), It.IsAny<string>())).Returns(new List<LandingPage> { new LandingPage() });
             var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var pageId = 123;
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Get<LandingPage>(It.IsAny<LandingPageCriteria>())).Returns(new LandingPage { PageId = 123 });
+            dynamicRepository.Setup(l => l.Get<LandingPage>(It.IsAny<LandingPageCriteria>(), It.IsAny<string>())).Returns(new LandingPage { PageId = 123 });
             var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new InsertUpdateLandingPageParam { PageCode = "123" };
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<InsertLandingPageCommand>()));
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<InsertLandingPageCommand>(), It.IsAny<string>()));
             var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
@@ -79,9 +79,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var param = new InsertUpdateLandingPageParam { PageCode = "abc" };
-            InsertUpdateLandingPageParam passedParam = null;
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdateLandingPageCommand>()));
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdateLandingPageCommand>(), It.IsAny<string>()));
             var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
@@ -112,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var param = new DeleteLandingPageParam();
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<DeleteLandingPageCommand>()));
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<DeleteLandingPageCommand>(), It.IsAny<string>()));
             var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action

@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Get<CustomerStatistics>(It.IsAny<CustomerStatisticsCriteria>())).Returns(new CustomerStatistics());
+            dynamicRepository.Setup(r => r.Get<CustomerStatistics>(It.IsAny<CustomerStatisticsCriteria>(), It.IsAny<string>())).Returns(new CustomerStatistics());
 
             // Action
             var service = new CustomerStatisticsService(dynamicRepository.Object);

@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Fetch<LandingPageStatistics>(It.IsAny<LandingPageStatisticsCriteria>())).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() });
+            dynamicRepository.Setup(re => re.Fetch<LandingPageStatistics>(It.IsAny<LandingPageStatisticsCriteria>(), It.IsAny<string>())).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() });
 
             // Action
             var service = new LandingPageStatisticsService(dynamicRepository.Object);
@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Fetch<LandingPageStatistics>(It.IsAny<LandingPageStatisticsDetailCriteria>())).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() });
+            dynamicRepository.Setup(re => re.Fetch<LandingPageStatistics>(It.IsAny<LandingPageStatisticsDetailCriteria>(), It.IsAny<string>())).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() });
 
             // Action
             var service = new LandingPageStatisticsService(dynamicRepository.Object);

@@ -11,10 +11,10 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Administrator
         [Required(ErrorMessage = "Password is required!")]
         public string Password { get; set; }
 
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string FirstName { get; set; }
 
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string LastName { get; set; }
 
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "Please choose department!")]

@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             var param = new PlayerGgrReportParam { ProductIds = "123", FromDate = new DateTime(2021, 09, 01), ToDate = new DateTime(2021, 09, 29) };
             var dynamicRepository = new Mock<IDynamicRepository>();
 
-            dynamicRepository.Setup(r => r.FetchMultiple<dynamic, dynamic>(It.IsAny<TransferReportCriteria>())).Returns((new List<PlayerGgrReport> { new PlayerGgrReport() }, new List<PlayerGgrReport> { new PlayerGgrReport() }));
+            dynamicRepository.Setup(r => r.FetchMultiple<dynamic, dynamic>(It.IsAny<TransferReportCriteria>(), It.IsAny<string>())).Returns((new List<PlayerGgrReport> { new PlayerGgrReport() }, new List<PlayerGgrReport> { new PlayerGgrReport() }));
             var service = CreatePlayerGgrReportService(dynamicRepository.Object);
 
             // Action

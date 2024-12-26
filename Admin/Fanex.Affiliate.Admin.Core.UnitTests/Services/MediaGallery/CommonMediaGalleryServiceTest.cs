@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<Category>(It.IsAny<MediaCategoryCriteria>())).Returns(new List<Category> { new Category() });
+            repository.Setup(r => r.Fetch<Category>(It.IsAny<MediaCategoryCriteria>(), It.IsAny<string>())).Returns(new List<Category> { new Category() });
 
             // Action
             var service = new CommonMediaGalleryService(repository.Object);
@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<MediaGalleryFilterItem>(It.IsAny<BaseCriteria>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem() });
+            repository.Setup(r => r.Fetch<MediaGalleryFilterItem>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem() });
 
             // Action
             var service = new CommonMediaGalleryService(repository.Object);

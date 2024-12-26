@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<BalanceBroughtForwardCommand>()));
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<BalanceBroughtForwardCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AdjustmentService(dynamicRepository.Object);
@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<InsertAdjustmentCommand>()));
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<InsertAdjustmentCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AdjustmentService(dynamicRepository.Object);

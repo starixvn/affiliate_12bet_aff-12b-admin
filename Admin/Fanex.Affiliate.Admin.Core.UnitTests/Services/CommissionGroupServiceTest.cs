@@ -82,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
                 }
             };
             var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(It.IsAny<GetCommissionGroupCriteria>())).Returns((commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList));
+            commGroupRepository.Setup(comm => comm.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(It.IsAny<GetCommissionGroupCriteria>(), It.IsAny<string>())).Returns((commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList));
             var service = CreateCommissionGroupService(commGroupRepository.Object);
 
             // Action
@@ -132,7 +132,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             // Arrange
             var param = new DeleteCommissionGroupParam();
             var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.Execute(It.IsAny<DeleteCommGroupCommand>()));
+            commGroupRepository.Setup(comm => comm.Execute(It.IsAny<DeleteCommGroupCommand>(), It.IsAny<string>()));
             var service = CreateCommissionGroupService(commGroupRepository.Object);
 
             // Action

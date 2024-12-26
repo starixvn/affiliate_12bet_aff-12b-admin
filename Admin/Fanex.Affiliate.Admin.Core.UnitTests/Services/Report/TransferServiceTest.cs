@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             var param = new TransferReportParam { TransId = "123", FromDate = new DateTime(2021, 10, 01), ToDate = new DateTime(2021, 10, 21) };
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<TransferReport>(It.IsAny<TransferReportCriteria>())).Returns(new List<TransferReport> { new TransferReport() });
+            dynamicRepository.Setup(r => r.Fetch<TransferReport>(It.IsAny<TransferReportCriteria>(), It.IsAny<string>())).Returns(new List<TransferReport> { new TransferReport() });
             var service = CreateTransferReportService(dynamicRepository.Object);
 
             // Action

@@ -1,10 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Data;
 using Fanex.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
 using System.Web;
 
@@ -70,25 +68,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             var dbInfo = new Dictionary<string, object>();
             BindSqlExceptionInfo(exception, dbInfo);
-            BindFanexDataExceptionInfo(exception, dbInfo);
+
             return dbInfo;
-        }
-
-        private static void BindFanexDataExceptionInfo(Exception exception, IDictionary<string, object> dbInfo)
-        {
-            if (exception is ObjectDbException fanexDataException)
-            {
-                BindSqlExceptionInfo(exception.InnerException, dbInfo);
-
-                var connString = new SqlConnectionStringBuilder(fanexDataException.ConnectionString);
-
-                dbInfo["Server"] = connString.DataSource;
-                dbInfo["DbName"] = fanexDataException.DbName;
-                dbInfo["SpName"] = fanexDataException.SpName;
-                dbInfo["UserId"] = connString.UserID;
-                dbInfo["Parameters"] = GetParameters(fanexDataException.Parameters);
-                dbInfo["CommandTimeout"] = fanexDataException.CommandTimeout;
-            }
         }
 
         private static void BindSqlExceptionInfo(Exception exception, IDictionary<string, object> dbInfo)
@@ -100,12 +81,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                 dbInfo["Line"] = sqlException.LineNumber;
             }
         }
-
-        private static string GetParameters(IDictionary<string, object> parameters)
-            => parameters?.Count > 0
-               ? parameters.Select(parameter => $"{parameter.Key}={parameter.Value}")
-                        .Aggregate((firstPair, secondPair) => $"{firstPair};{secondPair}")
-               : string.Empty;
 
         private static void AddExceptionInfo(StringBuilder builder, Exception exception, int limitedInnerException)
         {

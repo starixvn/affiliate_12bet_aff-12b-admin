@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
             // Arrange
             var param = new MemberParam();
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Fetch<MemberInfo>(It.IsAny<MemberCriteria>())).Returns(new List<MemberInfo> { new MemberInfo() });
+            dynamicRepository.Setup(comm => comm.Fetch<MemberInfo>(It.IsAny<MemberCriteria>(), It.IsAny<string>())).Returns(new List<MemberInfo> { new MemberInfo() });
             var service = CreateMemberService(dynamicRepository.Object);
 
             // Action
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Get<PlayerActionInfo>(It.IsAny<MemberDetailCriteria>())).Returns(new PlayerActionInfo());
+            dynamicRepository.Setup(comm => comm.Get<PlayerActionInfo>(It.IsAny<MemberDetailCriteria>(), It.IsAny<string>())).Returns(new PlayerActionInfo());
             var service = CreateMemberService(dynamicRepository.Object);
 
             // Action
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
             // Arrange
             var param = new UpdateMemberParam();
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<UpdateMemberCommand>()));
+            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<UpdateMemberCommand>(), It.IsAny<string>()));
             var service = CreateMemberService(dynamicRepository.Object);
 
             // Action

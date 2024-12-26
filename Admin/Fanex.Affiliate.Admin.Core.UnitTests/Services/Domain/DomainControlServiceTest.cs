@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>())).Returns(new List<DomainControlInfo> { new DomainControlInfo { CreatedDate = new DateTime(2019, 10, 29) } });
+            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>(), It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo { CreatedDate = new DateTime(2019, 10, 29) } });
 
             // Action
             var service = new DomainControlService(repository.Object);
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() });
+            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>(), It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() });
 
             // Action
             var service = new DomainControlService(repository.Object);
@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Execute(It.IsAny<InsertDomainControlCommand>()));
+            repository.Setup(r => r.Execute(It.IsAny<InsertDomainControlCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new DomainControlService(repository.Object);
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Execute(It.IsAny<UpdateDomainControlCommand>()));
+            repository.Setup(r => r.Execute(It.IsAny<UpdateDomainControlCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new DomainControlService(repository.Object);
@@ -83,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Execute(It.IsAny<DeleteDomainControlCommand>()));
+            repository.Setup(r => r.Execute(It.IsAny<DeleteDomainControlCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new DomainControlService(repository.Object);

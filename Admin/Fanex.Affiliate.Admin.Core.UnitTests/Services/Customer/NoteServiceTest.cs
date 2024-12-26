@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<NoteDetail>(It.IsAny<NoteCriteria>())).Returns(new List<NoteDetail>
+            dynamicRepository.Setup(r => r.Fetch<NoteDetail>(It.IsAny<NoteCriteria>(), It.IsAny<string>())).Returns(new List<NoteDetail>
             {
                 new NoteDetail { LastModify = new DateTime(2019, 11, 22) }
             });
@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<NoteDetail>(It.IsAny<NoteCriteria>())).Returns(new List<NoteDetail>
+            dynamicRepository.Setup(r => r.Fetch<NoteDetail>(It.IsAny<NoteCriteria>(), It.IsAny<string>())).Returns(new List<NoteDetail>
             {
                 new NoteDetail ()
             });
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Get<Note>(It.IsAny<NoteDetailCriteria>())).Returns(new Note { NoteId = 37 });
+            dynamicRepository.Setup(r => r.Get<Note>(It.IsAny<NoteDetailCriteria>(), It.IsAny<string>())).Returns(new Note { NoteId = 37 });
 
             // Action
             var service = new NoteService(dynamicRepository.Object);
@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertNoteCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertNoteCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new NoteService(dynamicRepository.Object);
@@ -91,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<UpdateNoteCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<UpdateNoteCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new NoteService(dynamicRepository.Object);

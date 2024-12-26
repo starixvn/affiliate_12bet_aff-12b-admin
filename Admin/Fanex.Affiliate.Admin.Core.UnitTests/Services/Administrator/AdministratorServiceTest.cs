@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<AdministratorInfo>(It.IsAny<AdministratorCriteria>())).Returns(new List<AdministratorInfo> { new AdministratorInfo { CreatedDate = new DateTime(2019, 11, 6) } });
+            dynamicRepository.Setup(r => r.Fetch<AdministratorInfo>(It.IsAny<AdministratorCriteria>(), It.IsAny<string>())).Returns(new List<AdministratorInfo> { new AdministratorInfo { CreatedDate = new DateTime(2019, 11, 6) } });
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<AdministratorInfo>(It.IsAny<AdministratorCriteria>())).Returns(new List<AdministratorInfo> { new AdministratorInfo() });
+            dynamicRepository.Setup(r => r.Fetch<AdministratorInfo>(It.IsAny<AdministratorCriteria>(), It.IsAny<string>())).Returns(new List<AdministratorInfo> { new AdministratorInfo() });
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Get<AdministratorInfo>(It.IsAny<AdministratorDetailCriteria>())).Returns(new AdministratorInfo());
+            dynamicRepository.Setup(r => r.Get<AdministratorInfo>(It.IsAny<AdministratorDetailCriteria>(), It.IsAny<string>())).Returns(new AdministratorInfo());
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<PolicyInfo>(It.IsAny<AccountPolicyCriteria>())).Returns(new List<PolicyInfo> { new PolicyInfo() });
+            dynamicRepository.Setup(r => r.Fetch<PolicyInfo>(It.IsAny<AccountPolicyCriteria>(), It.IsAny<string>())).Returns(new List<PolicyInfo> { new PolicyInfo() });
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<PolicyInfo>(It.IsAny<PoliciesByGroupIdsCriteria>())).Returns(new List<PolicyInfo> { new PolicyInfo() });
+            dynamicRepository.Setup(r => r.Fetch<PolicyInfo>(It.IsAny<PoliciesByGroupIdsCriteria>(), It.IsAny<string>())).Returns(new List<PolicyInfo> { new PolicyInfo() });
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertAccountCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertAccountCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertExistedAccountCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertExistedAccountCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -134,7 +134,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<UpdateAccountCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<UpdateAccountCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -150,7 +150,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<ChangeAccountStatusCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<ChangeAccountStatusCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -166,7 +166,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<UpdateAccountPolicyCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<UpdateAccountPolicyCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);
@@ -181,7 +181,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
 
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<ChangeAccountPasswordCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<ChangeAccountPasswordCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new AdministratorService(dynamicRepository.Object);

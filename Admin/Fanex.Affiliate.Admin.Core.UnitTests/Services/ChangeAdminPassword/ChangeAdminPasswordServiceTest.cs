@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ChangeAdminPassword
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<ChangeAdminPasswordCommand>()));
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<ChangeAdminPasswordCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new ChangeAdminPasswordService(dynamicRepository.Object);

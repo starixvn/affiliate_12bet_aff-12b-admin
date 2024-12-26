@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Fetch<MessageInfo>(It.IsAny<MessageCriteria>())).Returns(new List<MessageInfo>
+            dynamicRepository.Setup(comm => comm.Fetch<MessageInfo>(It.IsAny<MessageCriteria>(), It.IsAny<string>())).Returns(new List<MessageInfo>
             {
                 new MessageInfo
                 {
@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Fetch<MessageInfo>(It.IsAny<MessageCriteria>())).Returns(new List<MessageInfo>
+            dynamicRepository.Setup(comm => comm.Fetch<MessageInfo>(It.IsAny<MessageCriteria>(), It.IsAny<string>())).Returns(new List<MessageInfo>
             {
                 new MessageInfo()
             });
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Get<MessageDetail>(It.IsAny<MessageDetailCriteria>())).Returns(new MessageDetail());
+            dynamicRepository.Setup(comm => comm.Get<MessageDetail>(It.IsAny<MessageDetailCriteria>(), It.IsAny<string>())).Returns(new MessageDetail());
             var service = new MessageService(dynamicRepository.Object);
 
             // Action
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<InsertMessageCommand>()));
+            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<InsertMessageCommand>(), It.IsAny<string>()));
             var service = new MessageService(dynamicRepository.Object);
 
             // Action
@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<UpdateMessageCommand>()));
+            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<UpdateMessageCommand>(), It.IsAny<string>()));
             var service = new MessageService(dynamicRepository.Object);
 
             // Action
@@ -110,7 +110,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<DeleteMessageCommand>()));
+            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<DeleteMessageCommand>(), It.IsAny<string>()));
             var service = new MessageService(dynamicRepository.Object);
 
             // Action

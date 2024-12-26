@@ -19,14 +19,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<LogType>(It.IsAny<BaseCriteria>())).Returns(new List<LogType>());
+            dynamicRepository.Setup(r => r.Fetch<LogType>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<LogType>());
 
             // Action
             var service = new ViewLogService(dynamicRepository.Object);
             var result = service.GetLogTypeList();
 
             // Assert
-            dynamicRepository.Verify(obj => obj.Fetch<LogType>(It.IsAny<BaseCriteria>()), Times.Once);
+            dynamicRepository.Verify(obj => obj.Fetch<LogType>(It.IsAny<BaseCriteria>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<ViewLog>(It.IsAny<ViewLogCriteria>())).Returns(new List<ViewLog>
+            dynamicRepository.Setup(r => r.Fetch<ViewLog>(It.IsAny<ViewLogCriteria>(), It.IsAny<string>())).Returns(new List<ViewLog>
             {
                 new ViewLog { Date = new DateTime(2019, 12, 27) }
             });

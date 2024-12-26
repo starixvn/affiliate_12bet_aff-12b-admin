@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             var param = new AffiliateReportParam { ProductIds = "123", FromDate = new DateTime(2019, 10, 24), ToDate = new DateTime(2019, 11, 24) };
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.FetchMultiple<AffiliateReport, AffiliateReport>(It.IsAny<AffiliateReportCriteria>())).Returns((new List<AffiliateReport> { new AffiliateReport() }, new List<AffiliateReport> { new AffiliateReport() }));
+            dynamicRepository.Setup(r => r.FetchMultiple<AffiliateReport, AffiliateReport>(It.IsAny<AffiliateReportCriteria>(), It.IsAny<string>())).Returns((new List<AffiliateReport> { new AffiliateReport() }, new List<AffiliateReport> { new AffiliateReport() }));
             var service = CreateAffiliateReportService(dynamicRepository.Object);
 
             // Action
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             var param = new AffiliateReportParam();
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.FetchMultiple<AffiliateReport, AffiliateReport>(It.IsAny<AffiliateReportDetailCriteria>())).Returns((new List<AffiliateReport> { new AffiliateReport() }, new List<AffiliateReport> { new AffiliateReport() }));
+            dynamicRepository.Setup(r => r.FetchMultiple<AffiliateReport, AffiliateReport>(It.IsAny<AffiliateReportDetailCriteria>(), It.IsAny<string>())).Returns((new List<AffiliateReport> { new AffiliateReport() }, new List<AffiliateReport> { new AffiliateReport() }));
             var service = CreateAffiliateReportService(dynamicRepository.Object);
 
             // Action
@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
         {
             // Arrange
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Get<DateTime>(It.IsAny<ReportCutOffDateCriteria>())).Returns(new DateTime(2023, 11, 01));
+            repository.Setup(r => r.Get<DateTime>(It.IsAny<ReportCutOffDateCriteria>(), It.IsAny<string>())).Returns(new DateTime(2023, 11, 01));
             var service = CreateAffiliateReportService(repository.Object);
 
             // Action
