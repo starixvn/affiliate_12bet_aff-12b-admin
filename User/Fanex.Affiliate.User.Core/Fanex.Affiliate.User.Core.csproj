@@ -208,6 +208,8 @@
     <Compile Include="BusinessService\AccountOverviewService.cs" />
     <Compile Include="BusinessService\IAccountOverviewService.cs" />
     <Compile Include="BusinessService\IStatementHistoryService.cs" />
+    <Compile Include="BusinessService\IMemberService.cs" />
+    <Compile Include="BusinessService\MemberService.cs" />
     <Compile Include="BusinessService\StatementHistoryService.cs" />
     <Compile Include="Commands\Account\CreateAffiliateCommand.cs" />
     <Compile Include="Commands\Account\CreateSecretKeyCommand.cs" />
@@ -246,6 +248,7 @@
     <Compile Include="Criterias\Marketing\GetSizeListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetSubAffDomainListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetUsingMarketingLinkCriteria.cs" />
+    <Compile Include="Criterias\Member\GetMemberListCriteria.cs" />
     <Compile Include="Criterias\Payment\GetPaymentListCriteria.cs" />
     <Compile Include="Criterias\SecurityQuestion\GetSecurityQuestionsCriteria.cs" />
     <Compile Include="Criterias\StatementHistory\GetDailyEarningCriteria.cs" />
@@ -550,8 +553,6 @@
     <Compile Include="MetalModels\VerificationAccountParam.cs" />
     <Compile Include="MetalModels\VerificationOtpParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\UserPanel\MemberRepository.cs" />
-    <Compile Include="Repository\UserPanel\IMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\NewsRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsRepository.cs" />
     <Compile Include="Repository\ObjectDBBuilder.cs" />

@@ -202,7 +202,6 @@
     <Compile Include="Infrastructure\HttpRequestParserHandlerTest.cs" />
     <Compile Include="Repository\GetSecurityQuestionsTest.cs" />
     <Compile Include="Repository\RepositoryTestBase.cs" />
-    <Compile Include="Repository\UserPanel\MemberRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\NewsLetterRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\NewsRepositoryTest.cs" />
     <Compile Include="Repository\UserPanel\OfferRepositoryTest.cs" />

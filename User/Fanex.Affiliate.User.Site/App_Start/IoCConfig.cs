@@ -94,7 +94,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<StatementHistoryService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<MemberRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ServiceSoapClient>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionReportService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CaptchaService>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -104,7 +103,8 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountOverviewService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatisticsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<UnderMaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<UnderMaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope(); 
+            builder.RegisterType<MemberService>().AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterType<QrCodeGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
 

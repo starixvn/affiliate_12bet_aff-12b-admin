@@ -1,24 +1,23 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
     [CustomAuthorize]
     public class MemberController : BaseController
     {
-        private readonly IMemberRepository _memberRepository;
+        private readonly IMemberService _memberService;
 
         public MemberController(
             ISessionService sessionService,
             ISystemService systemsService,
-            IMemberRepository memberRepository) : base(sessionService, systemsService)
+            IMemberService memberService) : base(sessionService, systemsService)
         {
-            _memberRepository = memberRepository;
+            _memberService = memberService;
         }
 
         [HttpGet]
@@ -34,7 +33,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                 PageIndex = 1
             };
 
-            var model = _memberRepository.GetMemberList(memberParam);
+            var model = _memberService.GetMemberList(memberParam);
             ViewBag.TotalItem = memberParam.NRows;
             ViewBag.StartRowNumber = 1;
 
@@ -48,7 +47,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             memberParam.AffId = SessionService.UserSession.AffId;
             memberParam.IsInternal = SessionService.IsInternal;
 
-            var memberList = _memberRepository.GetMemberList(memberParam);
+            var memberList = _memberService.GetMemberList(memberParam);
             ViewBag.TotalItem = memberParam.NRows;
             ViewBag.StartRowNumber = (memberParam.PageIndex - 1) * memberParam.PageSize + 1;
 
