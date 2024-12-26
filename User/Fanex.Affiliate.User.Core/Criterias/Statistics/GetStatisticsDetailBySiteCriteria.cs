@@ -2,9 +2,11 @@
 {
     using Utilities;
 
-    public class GetStatisticsDetailBySiteCriteria : BaseStatisticsCriteria
+    public class GetStatisticsDetailBySiteCriteria : AffPagingByDateCriteria
     {
         private const string SpKey = "Aff_ClickStatisticsDetailBySite";
+
+        public byte DeviceType { get; set; }
 
         public string Domain { get; set; }
 
@@ -12,13 +14,7 @@
 
         public string LanguageCode { get; set; }
 
-        public int? PageSize { get; set; }
-
-        public int? PageIndex { get; set; }
-
         public int TotalPages { get; set; }
-
-        public int NRows { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

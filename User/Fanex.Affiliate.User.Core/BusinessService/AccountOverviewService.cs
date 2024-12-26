@@ -24,7 +24,7 @@
         {
             var criteria = param.MapTo<GetPlayerDetailListCriteria>();
 
-            return FetchTData<PlayerDetail>(criteria);
+            return FetchTDataWithPaging<PlayerDetail>(criteria, param);
         }
 
         public IEnumerable<OverviewDetail> GetUserOverviewDetailList(int affId, DateTime monthDate)

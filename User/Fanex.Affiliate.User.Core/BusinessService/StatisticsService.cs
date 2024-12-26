@@ -33,7 +33,7 @@
         {
             var criteria = statisticsDetailParam.MapTo<GetStatisticsDetailBySiteCriteria>();
 
-            return FetchTData<ReferrerStatistics>(criteria);
+            return FetchTDataWithPaging<ReferrerStatistics>(criteria, statisticsDetailParam);
         }
 
         public IEnumerable<MarketingPageStatistics> GetMarketingPageStatistics(MarketingPageStatisticsParam param)

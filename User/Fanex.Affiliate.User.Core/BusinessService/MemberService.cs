@@ -16,7 +16,9 @@
 
         public IEnumerable<Member> GetMemberList(MemberParam customerParam)
         {
-            return FetchTData<Member>(customerParam.MapTo<GetMemberListCriteria>());
+            var criteria = customerParam.MapTo<GetMemberListCriteria>();
+
+            return FetchTDataWithPaging<Member>(criteria, customerParam);
         }
     }
 }

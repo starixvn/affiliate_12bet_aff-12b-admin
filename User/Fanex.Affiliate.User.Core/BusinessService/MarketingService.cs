@@ -137,7 +137,7 @@
         {
             const int LengthOfSplittingSize = 2;
 
-            var bannerList = FetchTData<MarketingItem>(bannerParam.MapTo<GetBannerListCriteria>());
+            var bannerList = FetchTDataWithPaging<MarketingItem>(bannerParam.MapTo<GetBannerListCriteria>(), bannerParam);
             foreach (var banner in bannerList)
             {
                 banner.FileName = bannerParam.BannerDomain + banner.FileName;

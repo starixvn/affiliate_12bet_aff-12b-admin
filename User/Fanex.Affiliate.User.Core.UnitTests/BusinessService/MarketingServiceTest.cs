@@ -360,7 +360,7 @@
                 DeviceType = 1,
                 IsInternal = false,
                 Language = "English",
-                Nrows = 19,
+                NRows = 19,
                 PageIndex = 1,
                 PageSize = 20,
                 SelectedDomain = new Domain { DomainId = 1, DomainName = "abc.com", IsSsl = true },

@@ -235,6 +235,8 @@
     <Compile Include="Criterias\Account\GetRecoverPasswordCriteria.cs" />
     <Compile Include="Criterias\Account\GetUserInfoByEmailCriteria.cs" />
     <Compile Include="Criterias\Account\GetUserInfoByIdCriteria.cs" />
+    <Compile Include="Criterias\AffPagingByDateCriteria.cs" />
+    <Compile Include="Criterias\AffPagingCriteria.cs" />
     <Compile Include="Criterias\BaseCriteria.cs" />
     <Compile Include="Criterias\Comm\GetAffiliateCommissionCriteria.cs" />
     <Compile Include="Criterias\Currency\GetBaseCurrencyListCriteria.cs" />
@@ -249,6 +251,8 @@
     <Compile Include="Criterias\Marketing\GetSubAffDomainListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetUsingMarketingLinkCriteria.cs" />
     <Compile Include="Criterias\Member\GetMemberListCriteria.cs" />
+    <Compile Include="Criterias\PagingByDateCriteria.cs" />
+    <Compile Include="Criterias\PagingCriteria.cs" />
     <Compile Include="Criterias\Payment\GetPaymentListCriteria.cs" />
     <Compile Include="Criterias\SecurityQuestion\GetSecurityQuestionsCriteria.cs" />
     <Compile Include="Criterias\StatementHistory\GetDailyEarningCriteria.cs" />
@@ -357,18 +361,6 @@
     <Compile Include="DTO\UserPanel\SubAffComInfo.cs" />
     <Compile Include="DTO\UserPanel\SubAffDetail.cs" />
     <Compile Include="Enum\AffiliateLinkType.cs" />
-    <Compile Include="Extensions\Mappers\CreateAffiliateExtension.cs" />
-    <Compile Include="Extensions\Mappers\GetBannerListExtension.cs" />
-    <Compile Include="Extensions\Mappers\GetDailyEarningExtension.cs" />
-    <Compile Include="Extensions\Mappers\GetLandingPageStatisticsExtension.cs" />
-    <Compile Include="Extensions\Mappers\GetMarketingPageStatisticsExtension.cs" />
-    <Compile Include="Extensions\Mappers\GetPlayerDetailListExtension.cs" />
-    <Compile Include="Extensions\Mappers\GetReferrerStatisticsExtension.cs" />
-    <Compile Include="Extensions\Mappers\GetStatementHistoryExtension.cs" />
-    <Compile Include="Extensions\Mappers\GetStatisticsDetailBySiteExtension.cs" />
-    <Compile Include="Extensions\Mappers\GetSubAffCommExtension.cs" />
-    <Compile Include="Extensions\Mappers\MediaSizeExtension.cs" />
-    <Compile Include="Extensions\Mappers\ToggleMarketingLinkExtension.cs" />
     <Compile Include="Filters\JsonHandlerAttribute.cs" />
     <Compile Include="Infrastructure\AuthenticatedHttpClientHandler.cs" />
     <Compile Include="Infrastructure\JsonNetResult.cs" />
@@ -377,7 +369,6 @@
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGeneratingParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingPageStatisticsParam.cs" />
-    <Compile Include="MetalModels\UserPanel\MarketingTextParam.cs" />
     <Compile Include="MetalModels\UserPanel\MediaCategoryParam.cs" />
     <Compile Include="MetalModels\UserPanel\QrCodeParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffComParam.cs" />
@@ -387,8 +378,6 @@
     <Compile Include="Utilities\FileSystem.cs" />
     <Compile Include="Utilities\MapHelper.cs" />
     <Compile Include="Utilities\IFileSystem.cs" />
-    <Compile Include="Extensions\Mappers\CheckInExtension.cs" />
-    <Compile Include="Extensions\Mappers\UpdateLoginResultExtension.cs" />
     <Compile Include="Utilities\MarketingHelper.cs" />
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\BreadcumViewModel.cs" />

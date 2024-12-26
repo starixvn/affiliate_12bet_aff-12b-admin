@@ -85,7 +85,7 @@
             bannerParam.Language = GetEnglishName(bannerParam.Language);
 
             var bannerList = GetBannerList(bannerParam);
-            ViewBag.TotalItem = bannerParam.Nrows;
+            ViewBag.TotalItem = bannerParam.NRows;
 
             return View("~/Views/UserPanel/AccountOverview/Partial/_BannerList.cshtml", bannerList);
         }

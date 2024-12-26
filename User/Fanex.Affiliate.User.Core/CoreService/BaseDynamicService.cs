@@ -1,8 +1,10 @@
 ﻿namespace Fanex.Affiliate.User.Core.CoreService
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Commands;
+    using Criterias;
     using Data.Repository;
     using DTO;
 
@@ -24,6 +26,26 @@
         {
             return _dynamicRepository.Get<T>(criteria);
         }
+
+        public IEnumerable<T> FetchTDataWithPaging<T>(PagingCriteria criteria, object param) where T : class
+        {
+            var result = _dynamicRepository.Fetch<T>(criteria);
+
+            var paramType = param.GetType();
+            SetPagingProperty(paramType, param, "NRows", criteria.NRows);
+
+            return result;
+        }
+
+        private static void SetPagingProperty(Type paramType, object param, string propertyName, object value)
+        {
+            var property = paramType.GetProperty(propertyName);
+            if (property != null && property.CanWrite)
+            {
+                property.SetValue(param, value);
+            }
+        }
+
 
         public void ExecuteCommand(NonQueryCommand command)
         {

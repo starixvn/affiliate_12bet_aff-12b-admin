@@ -19,7 +19,7 @@
         {
             var criteria = statementHistoryParam.MapTo<GetStatementHistoryCriteria>();
 
-            return FetchTData<StatementHistory>(criteria);
+            return FetchTDataWithPaging<StatementHistory>(criteria, statementHistoryParam);
         }
 
         public IEnumerable<ProductItem> GetProductList(bool isInternal)
