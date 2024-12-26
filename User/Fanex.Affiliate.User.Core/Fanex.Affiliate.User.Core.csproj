@@ -279,11 +279,7 @@
     <Compile Include="BusinessService\IStatisticsService.cs" />
     <Compile Include="BusinessService\ITwoFactorAuthService.cs" />
     <Compile Include="BusinessService\IVerificationService.cs" />
-    <Compile Include="BusinessService\MemberTransactionService.cs" />
-    <Compile Include="BusinessService\MemberInfoServiceWrapper.cs" />
     <Compile Include="BusinessService\EmailService.cs" />
-    <Compile Include="BusinessService\IMemberTransactionService.cs" />
-    <Compile Include="BusinessService\IMemberInfoServiceWrapper.cs" />
     <Compile Include="BusinessService\IPaymentService.cs" />
     <Compile Include="BusinessService\NewsLetterService.cs" />
     <Compile Include="BusinessService\NewsService.cs" />
@@ -330,7 +326,6 @@
     <Compile Include="Controllers\UserPanel\MarketingController.cs" />
     <Compile Include="Controllers\UserPanel\MarketingLinkStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\OffersForMeController.cs" />
-    <Compile Include="Controllers\UserPanel\MemberTransactionController.cs" />
     <Compile Include="Controllers\UserPanel\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NotifyController.cs" />
@@ -478,7 +473,6 @@
     <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResult.cs" />
-    <Compile Include="DTO\Transaction.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AffiliateCommisionByMonth.cs" />
     <Compile Include="DTO\UserPanel\AffiliateCommission.cs" />
@@ -521,7 +515,6 @@
     <Compile Include="MetalModels\AuthResultBaseParam.cs" />
     <Compile Include="MetalModels\ContactUsParam.cs" />
     <Compile Include="MetalModels\Email\VerificationAccountEmailParam.cs" />
-    <Compile Include="MetalModels\MemberTransactionParam.cs" />
     <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
     <Compile Include="MetalModels\Email\NoticeEmailParam.cs" />
     <Compile Include="MetalModels\Email\PaymentEmailParam.cs" />
@@ -654,7 +647,6 @@
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
-    <Compile Include="ViewModels\MemberTransactionViewModel.cs" />
     <Compile Include="ViewModels\ProPageViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\CommissionReportDataViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />

@@ -166,8 +166,6 @@
     <Compile Include="Constants\SystemLanguageTest.cs" />
     <Compile Include="Controllers\PromotionControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MainControllerTest.cs" />
-    <Compile Include="BusinessService\MemberInfoServiceWrapperTest.cs" />
-    <Compile Include="BusinessService\MemberTransactionServiceTest.cs" />
     <Compile Include="BusinessService\PaymentServiceTest.cs" />
     <Compile Include="Controllers\AuthControllerTest.cs" />
     <Compile Include="Controllers\CommissionStructureControllerTest.cs" />

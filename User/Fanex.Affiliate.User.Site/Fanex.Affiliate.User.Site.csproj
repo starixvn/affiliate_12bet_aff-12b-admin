@@ -1143,7 +1143,6 @@
     <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_PaymentList.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_RequestPayout.cshtml" />
     <Content Include="Views\TermAndCondition\Popup.cshtml" />
-    <Content Include="Views\UserPanel\MemberTransaction\Index.cshtml" />
     <Content Include="www\source\styles\scss\components\_modal.scss" />
     <Content Include="www\source\styles\scss\base\_pureicon.scss" />
     <Content Include="www\source\styles\scss\layout\_footer.scss" />
