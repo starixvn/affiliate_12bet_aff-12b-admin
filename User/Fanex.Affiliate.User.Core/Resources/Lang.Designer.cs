@@ -261,7 +261,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;I&apos;ve worked with many affiliates before, but the commission rate at 12BET are by far the best. It&apos;s a great way to boos my earnings!&quot;.
+        ///   Looks up a localized string similar to &quot;I&apos;ve worked with many affiliates before, but the commission rate at 12BET are by far the best. It&apos;s a great way to boost my earnings!&quot;.
         /// </summary>
         public static string Aff131TestimonialContent {
             get {
@@ -328,7 +328,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to EASY TO JOIN &amp;&lt;br/&gt;
-        ///CONSISTEN PAYMENT.
+        ///CONSISTENT PAYMENT.
         /// </summary>
         public static string Aff286TestimonialTitle {
             get {

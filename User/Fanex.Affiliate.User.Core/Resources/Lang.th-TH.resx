@@ -2292,8 +2292,8 @@
 และจ่ายค่าคอมมิชชั่นที่ตรงเวลา!"</value>
   </data>
   <data name="Aff131TestimonialTitle" xml:space="preserve">
-    <value>อัตรา&lt;br/&gt;
-ค่าคอมมิชั่นสูง</value>
+    <value>อัตรา​&lt;br/&gt;
+ค่าคอมมิชชั่นสูง​</value>
   </data>
   <data name="Aff131TestimonialContent" xml:space="preserve">
     <value>"ฉันเคยร่วมงานกับพันธมิตรหลายแห่งมาก่อน&lt;br/&gt;
@@ -2343,10 +2343,10 @@
 และบริการที่ยอดเยี่ยม</value>
   </data>
   <data name="Aff242TestimonialContent" xml:space="preserve">
-    <value>"12BET ทำให้การตลาดแบบพันธมิตรเป็นเรื่องง่าย&lt;br/&gt;
-มีแพลตฟอร์มใช้งานง่ายและ&lt;br/&gt;
-มีการจัดการบัญชีสำหรับการตลาดอยู่เสมอ&lt;br/&gt;
-พร้อมที่จะช่วยเหลือทุกสิ่งที่ฉันต้องการ"</value>
+    <value>"12BET ทำให้การตลาดแบบพันธมิตร​&lt;br/&gt;
+เป็นเรื่องง่าย มีแพลตฟอร์มใช้งานง่าย​​&lt;br/&gt;
+และมีการจัดการบัญชีสำหรับการตลาดเสมอ​​&lt;br/&gt;
+พร้อมที่จะช่วยเหลือทุกสิ่งที่ฉันต้องการ"​</value>
   </data>
   <data name="Aff429TestimonialTitle" xml:space="preserve">
     <value>การแข่งขัน&lt;br/&gt;
@@ -2364,9 +2364,10 @@
 จ่ายเงินตรงเวลา</value>
   </data>
   <data name="Aff286TestimonialContent" xml:space="preserve">
-    <value>"เข้าร่วมกับ 12BET นั้นเป็นการตัดสินใจที่ถูกต้อง&lt;br/&gt;
-โปรแกรมพันธมิตรนั้นสมัครง่าย&lt;br/&gt;
-จ่ายค่าคอมมิชั่นสม่ำเสมอ&lt;br/&gt;
-ซึ่งถือเป็นการเข้าร่วมที่มั่นคง."</value>
+    <value>"เข้าร่วมกับ 12BET นั้นเป็นการตัดสินใจ​&lt;br/&gt;
+ที่ถูกต้อง&lt;br/&gt;
+โปรแกรมพันธมิตรนั้นสมัครง่าย​&lt;br/&gt;
+จ่ายค่าคอมมิชั่นสม่ำเสมอ​&lt;br/&gt;
+ซึ่งถือเป็นการเข้าร่วมที่มั่นคง"​</value>
   </data>
 </root>
