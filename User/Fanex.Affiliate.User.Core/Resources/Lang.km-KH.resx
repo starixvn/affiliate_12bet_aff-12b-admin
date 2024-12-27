@@ -2279,4 +2279,90 @@
   <data name="ContactAffManager" xml:space="preserve">
     <value>សូមទាក់ទងអ្នកគ្រប់គ្រងផ្នែកភ្នាក់ងារ</value>
   </data>
+  <data name="Aff274TestimonialTitle" xml:space="preserve">
+    <value>ការទូទាន់ទឹកប្រាក់ទាន់​ពេល​វេលា&lt;br/&gt;និងគាំទ្រជាពិសេស!</value>
+  </data>
+  <data name="Aff274TestimonialContent" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងាររបស់ 12BET ងាយស្រួលប្រើប្រាស់&lt;br/&gt;
+ហើយកម្មវិធីគ្រប់គ្រងឆ្លើយតបបានរហ័ស&lt;br/&gt;
+ខ្ញុំតែងតែទទួលបានកំរៃជើងសារ&lt;br/&gt;
+ទាន់ពេលវេលាផងដែរ!</value>
+  </data>
+  <data name="Aff131TestimonialTitle" xml:space="preserve">
+    <value>ភាគរយក&lt;br/&gt;
+កម្រៃជើងសារខ្ពស់</value>
+  </data>
+  <data name="Aff131TestimonialContent" xml:space="preserve">
+    <value>ទោះបីជាខ្ញុំធ្លាប់បានធ្វើជាភ្នាក់ងារជាច្រើនជាមួយក្រុមហ៊ុនផ្សេងៗគ្នាក៏ដោយ&lt;br/&gt;
+ប៉ុន្តែអត្រាកំរៃជើងសារនៅ 12BET គឺល្អលេខមួយ&lt;br/&gt;
+នេះជាឱកាសដ៏ល្អរបស់ខ្ញុំ ដើម្បីបង្កើនប្រាក់ចំណូលអោយបានកាន់តែច្រើន!</value>
+  </data>
+  <data name="Aff504TestimonialTitle" xml:space="preserve">
+    <value>អំណោយប្រចាំឆ្នាំ</value>
+  </data>
+  <data name="Aff504TestimonialContent" xml:space="preserve">
+    <value>គណនីភ្នាក់ងារគឺសាមញ្ញ និងងាយស្រួលប្រើប្រាស់ណាស់ ជារៀងរាល់ឆ្នាំ ក្រុមការងារ 12BET តែងតែផ្តល់អំណោយជាកាដូជូន&lt;br/&gt;
+ទោះបីវាមិនធំដំ ប៉ុន្តែវាពិតជាគួរអោយចាប់អារម្មណ៍&lt;br/&gt;
+ក្នុងនាមជាដៃគូដ៏ពិសេស។</value>
+  </data>
+  <data name="Aff014TestimonialTitle" xml:space="preserve">
+    <value>គណះគ្រប់គ្រងភ្នាក់ងារ&lt;br/&gt;
+ងាយស្រួលទំនាក់ទំនង</value>
+  </data>
+  <data name="Aff014TestimonialContent" xml:space="preserve">
+    <value>ខ្ញុំពិតជាពេញចិត្ត និងទទួលបានការយកចិត្តទុកដាក់ពីក្រុមការងារ&lt;br/&gt;
+ការណែនាំពន្យល់និងបង្កើនប្រសិទ្ធភាព&lt;br/&gt;
+យុទ្ធនាការរកចំណូលបានច្រើន!&lt;br/&gt;
+ពីកម្មវិធីភ្នាក់ងាររបស់ 12BET។</value>
+  </data>
+  <data name="Aff801TestimonialTitle" xml:space="preserve">
+    <value>ការទូទាន់ទឹកប្រាក់ទាន់​ពេល​វេលា&lt;br/&gt;
+និងគាំទ្រជាពិសេស!</value>
+  </data>
+  <data name="Aff801TestimonialContent" xml:space="preserve">
+    <value>កម្មវិធីភ្នាក់ងាររបស់ 12BET ងាយស្រួលប្រើប្រាស់&lt;br/&gt;
+ហើយការទូទាត់កម្រៃជើងសារបានខ្ពស់&lt;br/&gt;
+អាចទុកចិត្តបាន ខ្ញុំ​តែងតែទទួលបានបានការទូទាត់បាន​ទាន់​ពេល​ជារៀងរាល់​ខែ។</value>
+  </data>
+  <data name="Aff846TestimonialTitle" xml:space="preserve">
+    <value>រចនាសម្ព័ន្ធភ្នាក់ងារ&lt;br/&gt;
+ច្បាស់លាស់ និងតម្លាភាព</value>
+  </data>
+  <data name="Aff846TestimonialContent" xml:space="preserve">
+    <value>អ្វីដែលខ្ញុំចូលចិត្តអំពី 12BET នោះគឺតម្លាភាព&lt;br/&gt;
+អត្រាកម្រៃជើងសារខ្ពស់ ហើយខ្ញុំតែងតែ&lt;br/&gt;
+ដឹងច្បាស់ថាខ្ញុំនឹងរកបានប៉ុន្មាន។</value>
+  </data>
+  <data name="Aff242TestimonialTitle" xml:space="preserve">
+    <value>ងាយស្រួលប្រើប្រាស់&lt;br/&gt;
+រចនាបទ &amp; វេទិកា​ដ៏ទាក់ទាញ&lt;br/&gt;
+គណនីគ្រប់គ្រង</value>
+  </data>
+  <data name="Aff242TestimonialContent" xml:space="preserve">
+    <value>12BET រចនាឡើងមានងាយស្រួលប្រើប្រាស់&lt;br/&gt;
+វេទិការនិងកម្មវិធីងាយស្រួលមើល&lt;br/&gt;
+គណនីគ្រប់គ្រងទីផ្សាររបស់ខ្ញុំ&lt;br/&gt;
+បានជួយសំរួលការងារខ្ញុំបានច្រើន!</value>
+  </data>
+  <data name="Aff429TestimonialTitle" xml:space="preserve">
+    <value>ការប្រកួតប្រជែង&lt;br/&gt;
+កម្រៃជើងសារ&lt;br/&gt;
+និងការគាំទ្រ</value>
+  </data>
+  <data name="Aff429TestimonialContent" xml:space="preserve">
+    <value>ខ្ញុំបានសាកល្បងកម្មវិធីភ្នាក់ងារជាច្រើន ប៉ុន្តែ 12BET&lt;br/&gt;
+បានផ្តល់ជូននូវកម្រៃជើងប្រកួតប្រជែងជាច្រើន&lt;br/&gt;
+លើសពីនេះ ក្រុមគាំទ្រតែងតែឆ្លើយតបសាររហ័ស&lt;br/&gt;
+និងមានប្រយោជន៍បំផុត!</value>
+  </data>
+  <data name="Aff286TestimonialTitle" xml:space="preserve">
+    <value>ងាយស្រួលចូលរួម&lt;br/&gt;
+ការទូទាត់ច្បាស់លាស់</value>
+  </data>
+  <data name="Aff286TestimonialContent" xml:space="preserve">
+    <value>ចូលរួមជាមួយ 12BET គឺជាជំរើសដ៏ល្អបំផុតសំរាប់ខ្ញុំ&lt;br/&gt;
+កម្មវិធីភ្នាក់ងារងាយស្រួលប្រើប្រាស់&lt;br/&gt;
+អត្រាកម្រៃជើងសារខ្ពស់&lt;br/&gt;
+ភាពជាដៃគូរឹងមាំ និងទំនុកចិត្ត!</value>
+  </data>
 </root>

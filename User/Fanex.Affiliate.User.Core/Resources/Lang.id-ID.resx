@@ -2282,4 +2282,67 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="ContactAffManager" xml:space="preserve">
     <value>Hubungi Manajer Afiliasi</value>
   </data>
+  <data name="Aff274TestimonialTitle" xml:space="preserve">
+    <value>PEMBAYARAN KOMISI &amp; BANTUAN&lt;br/&gt;YANG TEPAT WAKTU</value>
+  </data>
+  <data name="Aff274TestimonialContent" xml:space="preserve">
+    <value>"Program afiliasi 12BET mudah digunakan, dan akun manajer saya selalu tersedia untuk membantu. Saya selalu menerima komisi saya tepat waktu!"</value>
+  </data>
+  <data name="Aff131TestimonialTitle" xml:space="preserve">
+    <value>TAWARAN KOMISI&lt;br/&gt;
+PALING TINGGI</value>
+  </data>
+  <data name="Aff131TestimonialContent" xml:space="preserve">
+    <value>"Saya pernah bekerja dengan program afiliasi lain, tapi % komisinya tidak setinggi 12BET. Disini saya bisa meningkatkan penghasilan saya!"</value>
+  </data>
+  <data name="Aff504TestimonialTitle" xml:space="preserve">
+    <value>HADIAH TAHUNAN</value>
+  </data>
+  <data name="Aff504TestimonialContent" xml:space="preserve">
+    <value>"Sistem afiliasi sangat mudah dipahami, dan tim 12BET selalu mengirimkan saya hadiah setiap tahun.Hal-hal kecil seperti ini yang buat afiliasi 12BET istimewa."</value>
+  </data>
+  <data name="Aff014TestimonialTitle" xml:space="preserve">
+    <value>AKUN MANAJER YANG&lt;br/&gt;
+MUDAH DIHUBUNGI</value>
+  </data>
+  <data name="Aff014TestimonialContent" xml:space="preserve">
+    <value>"Saya benar-benar menghargai dukungan tim afiliasi 12BET. Panduannya jelas dan telah membantu saya mengoptimalkan kinerja saya untuk mendapatkan lebih banyak penghasilan!"</value>
+  </data>
+  <data name="Aff801TestimonialTitle" xml:space="preserve">
+    <value>KOMISI SELALU&lt;br/&gt;
+TEPAT WAKTU</value>
+  </data>
+  <data name="Aff801TestimonialContent" xml:space="preserve">
+    <value>"Program afiliasi 12BET sangat sederhana, dan pembayaran komisinya selalu dapat diandalkan. Saya selalu dibayar tepat waktu setiap bulan!"</value>
+  </data>
+  <data name="Aff846TestimonialTitle" xml:space="preserve">
+    <value>STRUKTUR KOMISI JELAS&lt;br/&gt;
+DAN TRANSPARAN</value>
+  </data>
+  <data name="Aff846TestimonialContent" xml:space="preserve">
+    <value>"Saya sangat suka transparansi tim 12BET. Tingkat komisinya tinggi, dan saya selalu tahu persis berapa banyak yang akan saya hasilkan."</value>
+  </data>
+  <data name="Aff242TestimonialTitle" xml:space="preserve">
+    <value>PLATFORM MUDAH DIGUNAKAN&lt;br/&gt;
+&amp; AKUN MANAJER YANG&lt;br/&gt;
+BERDEDIKASI TINGGI</value>
+  </data>
+  <data name="Aff242TestimonialContent" xml:space="preserve">
+    <value>"12BET membuat pemasaran afiliasi sangat mudah. Platform mudah digunakan dan akun manajer selalu siap membantu dengan apapun yang saya butuhkan."</value>
+  </data>
+  <data name="Aff429TestimonialTitle" xml:space="preserve">
+    <value>KOMISI BERSAING &amp;&lt;br/&gt;
+DUKUNGAN AKUN MANAJER&lt;br/&gt;
+YANG LUAR BIASA</value>
+  </data>
+  <data name="Aff429TestimonialContent" xml:space="preserve">
+    <value>"Saya sudah mencoba banyak program afiliasi, tapi komisi 12BET yang paling bersaing. Selain itu, tim akun manajer selalu responsif dan sangat membantu!"</value>
+  </data>
+  <data name="Aff286TestimonialTitle" xml:space="preserve">
+    <value>JOINNYA GAMPANG &amp;&lt;br/&gt;
+PEMBAYARAN KONSISTEN</value>
+  </data>
+  <data name="Aff286TestimonialContent" xml:space="preserve">
+    <value>"Bagi saya bergabung dengan 12BET adalah keputusan tepat. Join program afiliasinya gampang, dan pembayaran komisinya konsisten. Ini adalah kemitraan yang solid."</value>
+  </data>
 </root>

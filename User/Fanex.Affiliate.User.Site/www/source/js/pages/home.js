@@ -86,11 +86,49 @@
         });
     }
 
+    function miniBlockTestimonial() {
+        var swiper = new Swiper(".mini-block-testimonial", {
+            slidesPerView: 3,
+            spaceBetween: 26,
+            slidesPerGroup: 3,
+            loop: true,
+            speed: 700,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            breakpoints: {
+                //640: {
+                //    slidesPerView: 2,
+                //    spaceBetween: 12,
+                //    slidesPerGroup: 2,
+                //},
+                767: {
+                    slidesPerView: 1,
+                    slidesPerGroup: 1,
+                },
+                1024: {
+                    slidesPerView: 2,
+                    slidesPerGroup: 2,
+                },
+            },
+        });
+    }
+
     var _me = {
         initialize: function () {
             topBanner();
             partnershipBanner();
             miniBlockBanner();
+            miniBlockTestimonial();
             _me.initEvent();
         },
         initEvent: function () {
