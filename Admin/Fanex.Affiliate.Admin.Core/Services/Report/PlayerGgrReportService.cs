@@ -79,8 +79,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
 
             playerGgrReport.AffName = Convert.ToString(dataItem["AffUsername"]);
             playerGgrReport.PlayerName = Convert.ToString(dataItem["UserName"]);
-            playerGgrReport.RegistrationDate = Convert.ToDateTime(dataItem["RegisteredDate"]);
-            playerGgrReport.FdmDate = Convert.ToDateTime(dataItem["FdmDate"]);
+            playerGgrReport.RegistrationDate = dataItem["RegisteredDate"] is null ? default(DateTime?) : Convert.ToDateTime(dataItem["RegisteredDate"]);
+            playerGgrReport.FdmDate = dataItem["FirstDepositDate"] is null ? default(DateTime?) : Convert.ToDateTime(dataItem["FirstDepositDate"]);
 
             return playerGgrReport;
         }
@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             return new PlayerGgrReport
             {
                 TotalTurnover = Convert.ToDecimal(dataItem["Total_Turnover"]),
-                TotalGgr = Convert.ToDecimal(dataItem["Total_Ggr"]),
+                TotalGgr = Convert.ToDecimal(dataItem["Total_GGR"]),
                 ProductReportList = BuildProductReportList(dataItem, selectedProductIdList),
             };
         }
@@ -104,7 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
                 var item = new PlayerGgrProductInfo
                 {
                     Turnover = Convert.ToDecimal(dataItem[$"{productId}_Turnover"]),
-                    Ggr = Convert.ToDecimal(dataItem[$"{productId}_Ggr"])
+                    Ggr = Convert.ToDecimal(dataItem[$"{productId}_GGR"])
                 };
 
                 productReportList.Add(productId, item);
