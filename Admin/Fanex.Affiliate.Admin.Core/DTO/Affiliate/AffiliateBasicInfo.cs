@@ -15,7 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public int GroupTypeId { get; set; }
 
-        [JsonIgnore]
         public string AffName { get; set; }
 
         public string UserName => AffName;
@@ -26,7 +25,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string LastName { get; set; }
 
-        [JsonIgnore]
         public string Phone { get; set; }
 
         public string ContactNumber => Phone;

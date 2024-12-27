@@ -8,7 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO
 
         public string ProductName { get; set; }
 
-        [JsonIgnore]
         public bool IsP2P { get; set; }
     }
 }

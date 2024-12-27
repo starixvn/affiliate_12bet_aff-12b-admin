@@ -12,9 +12,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel.Statistics
 
         public int Fdm { get; set; }
 
-        [JsonIgnore]
-        public string URLReferrer { get; set; }
-
-        public string WebsiteUrl => URLReferrer;
+        public string WebsiteUrl { get; set; }
     }
 }

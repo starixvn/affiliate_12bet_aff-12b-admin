@@ -5,9 +5,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
     public class ReferrersStatistics : ClickStatistics
     {
-        [JsonIgnore]
-        public string DomainReferrer { get; set; }
-
-        public string SiteUrl => DomainReferrer;
+        public string SiteUrl { get; set; }
     }
 }

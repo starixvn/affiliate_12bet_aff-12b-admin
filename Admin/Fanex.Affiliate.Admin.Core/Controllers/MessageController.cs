@@ -114,15 +114,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 MessageId = param.MessageId,
                 Important = param.Important,
-                MessageContenten = Server.HtmlEncode(param.MessageContenten),
-                MessageContentcs = Server.HtmlEncode(param.MessageContentcs),
-                MessageContentth = Server.HtmlEncode(param.MessageContentth),
-                MessageContentvn = Server.HtmlEncode(param.MessageContentvn),
-                MessageContentid = Server.HtmlEncode(param.MessageContentid),
-                MessageContenthi = Server.HtmlEncode(param.MessageContenthi),
-                MessageContentms = Server.HtmlEncode(param.MessageContentms),
-                MessageContentbn = Server.HtmlEncode(param.MessageContentbn),
-                MessageContentkh = Server.HtmlEncode(param.MessageContentkh),
+                Message_en = Server.HtmlEncode(param.Message_en),
+                Message_cs = Server.HtmlEncode(param.Message_cs),
+                Message_th = Server.HtmlEncode(param.Message_th),
+                Message_vn = Server.HtmlEncode(param.Message_vn),
+                Message_id = Server.HtmlEncode(param.Message_id),
+                Message_hi = Server.HtmlEncode(param.Message_hi),
+                Message_ms = Server.HtmlEncode(param.Message_ms),
+                Message_bn = Server.HtmlEncode(param.Message_bn),
+                Message_kh = Server.HtmlEncode(param.Message_kh),
             };
         }
     }

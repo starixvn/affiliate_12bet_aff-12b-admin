@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                              GroupTypeId = c.GroupTypeId,
                              GroupTypeName = c.GroupTypeName,
                              GroupTypeBy = c.GroupTypeBy,
-                             SubCommRate = c.SubCommRate,
+                             SubAffCommRate = c.SubAffCommRate,
                              CreatedDate = c.CreatedDate,
                              Creator = c.Creator,
                              Description = c.Description,

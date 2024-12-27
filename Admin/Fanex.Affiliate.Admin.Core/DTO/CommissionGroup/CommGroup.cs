@@ -11,7 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 
         public string GroupName { get; set; }
 
-        [JsonIgnore]
         public DateTime CreatedDate { get; set; }
 
         public string Creator { get; set; }
@@ -20,10 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 
         public int NoAffs { get; set; }
 
-        [JsonIgnore]
-        public decimal SubCommRate { get; set; }
-
-        public decimal SubAffCommRate => SubCommRate;
+        public decimal SubAffCommRate { get; set; }
 
         public bool IsActivePlayerSum { get; set; }
 

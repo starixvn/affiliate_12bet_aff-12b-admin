@@ -18,7 +18,7 @@ const runTestAction = ({ name, type, data }) => {
 
 const actionList = [
     { name: 'setParam', type: types.SET_PARAM, data: { Id: 123 } },
-    { name: 'setSelectedMessageId', type: types.SET_SELECTED_MESSAGE_ID, data: 123456 },
+    { name: 'setSelectedMessageId', type: types.SET_SELECTED_Message_id, data: 123456 },
     { name: 'setCheckedMessages', type: types.SET_CHECKED_MESSAGES, data: { 123456: false } },
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
     { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' }
@@ -151,15 +151,15 @@ describe('message actions', () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: '' }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
-            MessageContentCn: "",
-            MessageContentEn: "test",
-            MessageContentEs: "",
-            MessageContentId: "",
-            MessageContentJp: "",
-            MessageContentKr: "",
-            MessageContentTh: "",
-            MessageContentTw: "",
-            MessageContentVi: "",
+            Message_cs: "",
+            Message_en: "test",
+            Message_es: "",
+            Message_id: "",
+            Message_jp: "",
+            Message_ko: "",
+            Message_th: "",
+            Message_ch: "",
+            Message_vn: "",
             MessageId: 0,
             important: false
         };
@@ -174,15 +174,15 @@ describe('message actions', () => {
     it('should create action to insertMessage with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
-            MessageContentCn: "",
-            MessageContentEn: "",
-            MessageContentEs: "",
-            MessageContentId: "",
-            MessageContentJp: "",
-            MessageContentKr: "",
-            MessageContentTh: "",
-            MessageContentTw: "",
-            MessageContentVi: "",
+            Message_cs: "",
+            Message_en: "",
+            Message_es: "",
+            Message_id: "",
+            Message_jp: "",
+            Message_ko: "",
+            Message_th: "",
+            Message_ch: "",
+            Message_vn: "",
             MessageId: 0,
             important: false
         };
@@ -197,15 +197,15 @@ describe('message actions', () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: '' }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
-            MessageContentCn: "",
-            MessageContentEn: "test",
-            MessageContentEs: "",
-            MessageContentId: "",
-            MessageContentJp: "",
-            MessageContentKr: "",
-            MessageContentTh: "",
-            MessageContentTw: "",
-            MessageContentVi: "",
+            Message_cs: "",
+            Message_en: "test",
+            Message_es: "",
+            Message_id: "",
+            Message_jp: "",
+            Message_ko: "",
+            Message_th: "",
+            Message_ch: "",
+            Message_vn: "",
             MessageId: 37,
             important: false
         };
@@ -220,15 +220,15 @@ describe('message actions', () => {
     it('should create action to updateMessage with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const param = {
-            MessageContentCn: "",
-            MessageContentEn: "",
-            MessageContentEs: "",
-            MessageContentId: "",
-            MessageContentJp: "",
-            MessageContentKr: "",
-            MessageContentTh: "",
-            MessageContentTw: "",
-            MessageContentVi: "",
+            Message_cs: "",
+            Message_en: "",
+            Message_es: "",
+            Message_id: "",
+            Message_jp: "",
+            Message_ko: "",
+            Message_th: "",
+            Message_ch: "",
+            Message_vn: "",
             MessageId: 37,
             important: false
         };

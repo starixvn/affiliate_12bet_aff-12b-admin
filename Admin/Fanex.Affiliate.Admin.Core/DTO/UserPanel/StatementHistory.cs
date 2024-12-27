@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
     {
         public long TransId { get; set; }
 
-        [JsonIgnore]
+        
         public DateTime MonthDate { get; set; }
 
         public int TransType { get; set; }
@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Creator { get; set; }
 
-        [JsonIgnore]
+        
         public string Description { get; set; }
 
         public byte? CalculatedType { get; set; }

@@ -73,15 +73,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Message
             command.UserId = param.UserId;
             command.Ip = param.Ip;
             command.IsImportant = param.Important;
-            command.MsgBn = param.MessageContentbn;
-            command.MsgEn = param.MessageContenten;
-            command.MsgCn = param.MessageContentcs;
-            command.MsgTh = param.MessageContentth;
-            command.MsgVi = param.MessageContentvn;
-            command.MsgId = param.MessageContentid;
-            command.MsgKh = param.MessageContentkh;
-            command.MsgHi = param.MessageContenthi;
-            command.MsgMs = param.MessageContentms;
+            command.MsgBn = param.Message_bn;
+            command.MsgEn = param.Message_en;
+            command.MsgCn = param.Message_cs;
+            command.MsgTh = param.Message_th;
+            command.MsgVi = param.Message_vn;
+            command.MsgId = param.Message_id;
+            command.MsgKh = param.Message_kh;
+            command.MsgHi = param.Message_hi;
+            command.MsgMs = param.Message_ms;
         }
     }
 }

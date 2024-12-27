@@ -29,7 +29,9 @@
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Deductions_Sel" SpName="Aff_Admin_CommGroup_Deductions_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="SubCommRate" ObjectProperty="SubAffCommRate" />
+    </Setting>
     <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_CommGroup_Del" SpName="Aff_Admin_CommGroup_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
@@ -105,9 +107,19 @@
     </Setting>
     <Setting Key="Aff_Admin_AffiliateNote_Ins" SpName="Aff_Admin_AffiliateNote_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_AffiliateNote_Upd" SpName="Aff_Admin_AffiliateNote_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="DomainReferrer" ObjectProperty="SiteUrl" />
+      <Mapping DataField="URLReferrer" ObjectProperty="WebsiteUrl" />
+    </Setting>
+    <Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet"  >
+      <Mapping DataField="SportCode" ObjectProperty="Page" />
+      <Mapping DataField="DomainReferrer" ObjectProperty="SiteUrl" />
+      <Mapping DataField="URLReferrer" ObjectProperty="WebsiteUrl" />
+    </Setting>
+    <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF12B.Affiliate_12B.wsv_afinet"  >
+      <Mapping DataField="SportCode" ObjectProperty="Page" />
+      <Mapping DataField="URLReferrer" ObjectProperty="WebsiteUrl" />
+    </Setting>
     <Setting Key="Aff_Admin_AffiliateLog_Sel" SpName="Aff_Admin_AffiliateLog_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_LogType_Sel" SpName="Aff_Admin_LogType_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_CustomerSelBalBF" SpName="Aff_CustomerSelBalBF" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
@@ -157,7 +169,12 @@
     </Setting>
   </Function>
   <Function Name="Message">
-    <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet"  >
+      <Mapping DataField="Message_Cn" ObjectProperty="Message_cs" />
+      <Mapping DataField="Message_Vi" ObjectProperty="Message_vn" />
+      <Mapping DataField="CreatorName" ObjectProperty="Creator" />
+      <Mapping DataField="UpdatedName" ObjectProperty="UpdatedBy" />
+    </Setting>
     <Setting Key="Aff_Admin_Message_Ins" SpName="Aff_Admin_Message_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Message_Upd" SpName="Aff_Admin_Message_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Message_Del" SpName="Aff_Admin_Message_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />

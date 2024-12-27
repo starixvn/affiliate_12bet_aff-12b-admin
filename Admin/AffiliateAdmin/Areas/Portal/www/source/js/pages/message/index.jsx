@@ -19,7 +19,7 @@ export default class App extends React.PureComponent {
         const languages = {};
 
         for (let languageItem of languageList) {
-            const key = 'MessageContent' + languageItem.ShortedLanguageCode;
+            const key = 'Message_' + languageItem.ShortedLanguageCode;
             defaultMessageContentList[key] = '';
             languages[key] = languageItem.LanguageName;
         }

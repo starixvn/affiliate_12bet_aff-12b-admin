@@ -8,49 +8,22 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Message
 
         public bool Important { get; set; }
 
-        [JsonIgnore]
-        public string Message_En { get; set; }
+        public string Message_en { get; set; }
 
-        public string MessageContenten => Message_En;
+        public string Message_cs { get; set; }
 
-        [JsonIgnore]
-        public string Message_Cn { get; set; }
+        public string Message_th { get; set; }
 
-        public string MessageContentcs => Message_Cn;
+        public string Message_vn { get; set; }
 
-        [JsonIgnore]
-        public string Message_Th { get; set; }
+        public string Message_id { get; set; }
 
-        public string MessageContentth => Message_Th;
+        public string Message_hi { get; set; }
 
-        [JsonIgnore]
-        public string Message_Vi { get; set; }
+        public string Message_ms { get; set; }
 
-        public string MessageContentvn => Message_Vi;
+        public string Message_bn { get; set; }
 
-        [JsonIgnore]
-        public string Message_Id { get; set; }
-
-        public string MessageContentid => Message_Id;
-
-        [JsonIgnore]
-        public string Message_Hi { get; set; }
-
-        public string MessageContenthi => Message_Hi;
-
-        [JsonIgnore]
-        public string Message_Ms { get; set; }
-
-        public string MessageContentms => Message_Ms;
-
-        [JsonIgnore]
-        public string Message_Bn { get; set; }
-
-        public string MessageContentbn => Message_Bn;
-
-        [JsonIgnore]
-        public string Message_Kh { get; set; }
-
-        public string MessageContentkh => Message_Kh;
+        public string Message_kh { get; set; }
     }
 }

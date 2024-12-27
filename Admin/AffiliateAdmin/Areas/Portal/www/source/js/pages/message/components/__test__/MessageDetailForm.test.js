@@ -8,15 +8,15 @@ describe('message - components - MessageDetailForm ', () => {
     const message = 'Please enter the content of message, one language at least.';
 
     const messageContentList = {
-        MessageContentCn: "",
-        MessageContentEn: "test",
-        MessageContentEs: "",
-        MessageContentId: "",
-        MessageContentJp: "",
-        MessageContentKr: "",
-        MessageContentTh: "",
-        MessageContentTw: "",
-        MessageContentVi: "",
+        Message_cs: "",
+        Message_en: "test",
+        Message_es: "",
+        Message_id: "",
+        Message_jp: "",
+        Message_ko: "",
+        Message_th: "",
+        Message_ch: "",
+        Message_vn: "",
         MessageId: 0
     };
 
@@ -175,16 +175,16 @@ describe('message - components - MessageDetailForm ', () => {
     it('_handleChangeMessageContent - should call setState', async () => {
         const event = {
             target: {
-                name: 'MessageContentEn',
+                name: 'Message_en',
                 value: 'test'
             }
         }
         const result = shallow(<MessageDetailForm {...defaultProps} />);
         result.setState = jest.fn();
 
-        result.find('Input[type="textarea"][name="MessageContentEn"][id="MessageContentEn"]').simulate('change', event);
+        result.find('Input[type="textarea"][name="Message_en"][id="Message_en"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ messageContentList: { ...messageContentList, MessageContentEn: 'test' } });
+        expect(result.setState).toHaveBeenCalledWith({ messageContentList: { ...messageContentList, Message_en: 'test' } });
     });
 
     it('_validateMessageContent - return false', async () => {

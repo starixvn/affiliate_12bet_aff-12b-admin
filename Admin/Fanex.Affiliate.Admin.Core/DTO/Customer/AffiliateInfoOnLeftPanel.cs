@@ -37,10 +37,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public string NoSiteDescription { get; set; }
 
-        [JsonIgnore]
         public DateTime? LastLoginDate { get; set; }
 
-        public string LastLoginDateText => LastLoginDate.HasValue ? LastLoginDate.Value.ToString("MM/dd/yyyy HH:mm:ss") : string.Empty;
+        public string LastLoginDateText => LastLoginDate?.ToString("MM/dd/yyyy HH:mm:ss");
 
         public string LastLoginIp { get; set; }
 

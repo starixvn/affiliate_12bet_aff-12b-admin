@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
     {
         public int TransId { get; set; }
 
-        [JsonIgnore]
+        
         public DateTime CreatedDate { get; set; }
 
         public string AffName { get; set; }

@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Phone { get; set; }
 
-        [JsonIgnore]
+        
         public string ContactApps { get; set; }
 
         public string Address { get; set; }

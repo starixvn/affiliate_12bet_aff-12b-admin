@@ -7,10 +7,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Home
     {
         public string UserName { get; set; }
 
-        [JsonIgnore]
         public DateTime? LoggedIn { get; set; }
 
-        [JsonIgnore]
         public DateTime? LastRequest { get; set; }
 
         public string Ip { get; set; }

@@ -9,45 +9,45 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Message
         public bool Important { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContenten { get; set; }
+        public string Message_en { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentcs { get; set; }
+        public string Message_cs { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentth { get; set; }
+        public string Message_th { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentvn { get; set; }
+        public string Message_vn { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentid { get; set; }
+        public string Message_id { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContenthi { get; set; }
+        public string Message_hi { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentms { get; set; } = string.Empty;
+        public string Message_ms { get; set; } = string.Empty;
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentbn { get; set; }
+        public string Message_bn { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentkh { get; set; }
+        public string Message_kh { get; set; }
 
         public bool IsValid()
         {
-            if (!(string.IsNullOrEmpty(MessageContenten) && string.IsNullOrEmpty(MessageContentcs) && string.IsNullOrEmpty(MessageContentbn)))
+            if (!(string.IsNullOrEmpty(Message_en) && string.IsNullOrEmpty(Message_cs) && string.IsNullOrEmpty(Message_bn)))
             {
                 return true;
             }
 
-            if (!(string.IsNullOrEmpty(MessageContentth) && string.IsNullOrEmpty(MessageContentvn) && string.IsNullOrEmpty(MessageContentid)))
+            if (!(string.IsNullOrEmpty(Message_th) && string.IsNullOrEmpty(Message_vn) && string.IsNullOrEmpty(Message_id)))
             {
                 return true;
             }
 
-            return !(string.IsNullOrEmpty(MessageContenthi) && string.IsNullOrEmpty(MessageContentms) && string.IsNullOrEmpty(MessageContentkh));
+            return !(string.IsNullOrEmpty(Message_hi) && string.IsNullOrEmpty(Message_ms) && string.IsNullOrEmpty(Message_kh));
         }
     }
 }

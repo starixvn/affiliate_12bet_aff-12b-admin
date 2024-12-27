@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
     {
         public int AffId { get; set; }
 
-        [JsonIgnore]
+        
         public string UserName { get; set; }
 
         public string AffName => UserName;

@@ -27,10 +27,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string Email { get; set; }
 
-        [JsonIgnore]
         public DateTime RegistrationDate { get; set; }
 
-        [JsonIgnore]
         public DateTime? ApprovalDate { get; set; }
 
         public string GroupName { get; set; }
@@ -59,7 +57,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public bool IsUsingPrivateCommGroup { get; set; }
 
-        [JsonIgnore]
         public string ApprovedBy { get; set; }
 
         public string ApprovedByText => string.IsNullOrEmpty(ApprovedBy) ? "N/A" : ApprovedBy;

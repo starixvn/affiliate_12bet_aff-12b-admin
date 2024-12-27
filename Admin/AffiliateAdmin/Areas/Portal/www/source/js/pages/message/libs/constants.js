@@ -9,15 +9,15 @@ export const important = '2';
 export const messageInsertId = 0;
 export const messageCurrentId = -1;
 
-const english = 'MessageContentEn';
-const chineseTraditional = 'MessageContentTw';
-const chineseSimplified = 'MessageContentCn';
-const spanish = 'MessageContentEs';
-const thai = 'MessageContentTh';
-const vietNamese = 'MessageContentVi';
-const indonesian = 'MessageContentId';
-const korean = 'MessageContentKr';
-const japanese = 'MessageContentJp';
+const english = 'Message_en';
+const chineseTraditional = 'Message_ch';
+const chineseSimplified = 'Message_cs';
+const spanish = 'Message_es';
+const thai = 'Message_th';
+const vietNamese = 'Message_vn';
+const indonesian = 'Message_id';
+const korean = 'Message_ko';
+const japanese = 'Message_jp';
 
 export const defaultMessageContentList =
 {

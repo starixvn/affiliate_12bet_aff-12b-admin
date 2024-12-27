@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void InsertMessage_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageContenten = "abc" };
+            var param = new InsertUpdateMessageParam { Message_en = "abc" };
             InsertUpdateMessageParam passedParam = null;
             var messageSevice = new Mock<IMessageService>();
             messageSevice.Setup(s => s.InsertMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
@@ -146,7 +146,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void UpdateMessage_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageId = 1, MessageContentvn = "abc" };
+            var param = new InsertUpdateMessageParam { MessageId = 1, Message_vn = "abc" };
             InsertUpdateMessageParam passedParam = null;
             var messageSevice = new Mock<IMessageService>();
             messageSevice.Setup(s => s.UpdateMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
@@ -181,7 +181,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void UpdateMessage_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageContenten = "abc" };
+            var param = new InsertUpdateMessageParam { Message_en = "abc" };
             var controller = CreateMessageController();
 
             // Action

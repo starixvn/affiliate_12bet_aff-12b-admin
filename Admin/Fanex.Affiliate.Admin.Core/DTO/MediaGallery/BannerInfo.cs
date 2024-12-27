@@ -35,7 +35,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 
         public byte UserType { get; set; }
 
-        [JsonIgnore]
         public DateTime? UpdatedDate { get; set; }
 
         public string LastUpdateText => UpdatedDate?.ToString("MM/dd/yyyy HH:mm:ss");

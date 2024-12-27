@@ -1,7 +1,7 @@
 ﻿import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { setPagingOption } from '../../../actions/pagingAction';
-import { SET_PARAM, SET_CHECKED_MESSAGES, SET_SELECTED_MESSAGE_ID, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
+import { SET_PARAM, SET_CHECKED_MESSAGES, SET_SELECTED_Message_id, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from './types';
 
 export { toggleLoader, setPagingOption };
 
@@ -14,7 +14,7 @@ export const setParam = (data) => {
 
 export const setSelectedMessageId = (data) => {
     return {
-        type: SET_SELECTED_MESSAGE_ID,
+        type: SET_SELECTED_Message_id,
         data
     }
 }

@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
                 {
                     var criteria = GetPlayerGgrReportCriteria(param);
 
-                    var (dataItemObjects, dataTotalObjects) = DynamicRepository.FetchMultiple<dynamic, dynamic>(criteria);
+                    var (dataItemObjects, dataTotalObjects) = DynamicRepository.FetchMultiple<JObject, JObject>(criteria);
 
                     var selectedProductIdList = param.ProductIds.Split(',');
 
@@ -61,41 +62,41 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             };
         }
 
-        private static List<PlayerGgrReport> BuildDataItemList(IEnumerable<dynamic> dataItemObjects, string[] selectedProductIdList)
+        private static List<PlayerGgrReport> BuildDataItemList(IEnumerable<JObject> dataItemObjects, string[] selectedProductIdList)
         {
             var dataList = new List<PlayerGgrReport>();
 
             foreach (var dataItem in dataItemObjects)
             {
-                dataList.Add(BuildDataItem((IDictionary<string, object>)dataItem, selectedProductIdList));
+                dataList.Add(BuildDataItem(dataItem, selectedProductIdList));
             }
 
             return dataList;
         }
 
-        private static PlayerGgrReport BuildDataItem(IDictionary<string, object> dataItem, string[] selectedProductIdList)
+        private static PlayerGgrReport BuildDataItem(JObject dataItem, string[] selectedProductIdList)
         {
             var playerGgrReport = BuildTotalDataItem(dataItem, selectedProductIdList);
 
-            playerGgrReport.AffName = Convert.ToString(dataItem["AffUsername"]);
-            playerGgrReport.PlayerName = Convert.ToString(dataItem["UserName"]);
-            playerGgrReport.RegistrationDate = dataItem["RegisteredDate"] is null ? default(DateTime?) : Convert.ToDateTime(dataItem["RegisteredDate"]);
-            playerGgrReport.FdmDate = dataItem["FirstDepositDate"] is null ? default(DateTime?) : Convert.ToDateTime(dataItem["FirstDepositDate"]);
+            playerGgrReport.AffName = dataItem.Value<string>("AffUsername");
+            playerGgrReport.PlayerName = dataItem.Value<string>("UserName");
+            playerGgrReport.RegistrationDate = dataItem.Value<DateTime?>("RegisteredDate");
+            playerGgrReport.FdmDate = dataItem.Value<DateTime?>("FirstDepositDate");
 
             return playerGgrReport;
         }
 
-        private static PlayerGgrReport BuildTotalDataItem(IDictionary<string, object> dataItem, string[] selectedProductIdList)
+        private static PlayerGgrReport BuildTotalDataItem(JObject dataItem, string[] selectedProductIdList)
         {
             return new PlayerGgrReport
             {
-                TotalTurnover = Convert.ToDecimal(dataItem["Total_Turnover"]),
-                TotalGgr = Convert.ToDecimal(dataItem["Total_GGR"]),
+                TotalTurnover = ConvertToDecimal(dataItem.Value<decimal?>("Total_Turnover")),
+                TotalGgr = ConvertToDecimal(dataItem.Value<decimal?>("Total_GGR")),
                 ProductReportList = BuildProductReportList(dataItem, selectedProductIdList),
             };
         }
 
-        private static Dictionary<string, PlayerGgrProductInfo> BuildProductReportList(IDictionary<string, object> dataItem, string[] selectedProductIdList)
+        private static Dictionary<string, PlayerGgrProductInfo> BuildProductReportList(JObject dataItem, string[] selectedProductIdList)
         {
             var productReportList = new Dictionary<string, PlayerGgrProductInfo>();
 
@@ -103,14 +104,19 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             {
                 var item = new PlayerGgrProductInfo
                 {
-                    Turnover = Convert.ToDecimal(dataItem[$"{productId}_Turnover"]),
-                    Ggr = Convert.ToDecimal(dataItem[$"{productId}_GGR"])
+                    Turnover = ConvertToDecimal(dataItem.Value<decimal?>($"{productId}_Turnover")),
+                    Ggr = ConvertToDecimal(dataItem.Value<decimal?>($"{productId}_GGR"))
                 };
 
                 productReportList.Add(productId, item);
             }
 
             return productReportList;
+        }
+
+        private static decimal ConvertToDecimal(decimal? data)
+        {
+            return data ?? 0;
         }
     }
 }

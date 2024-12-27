@@ -10,10 +10,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public string PlayerName { get; set; }
 
-        [JsonIgnore]
+        
         public DateTime? RegistrationDate { get; set; }
 
-        [JsonIgnore]
+        
         public DateTime? FdmDate { get; set; }
 
         public decimal TotalTurnover { get; set; }

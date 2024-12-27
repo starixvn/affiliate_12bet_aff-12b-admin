@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string UserName { get; set; }
 
-        [JsonIgnore]
+        
         public DateTime? RegisteredDate { get; set; }
 
         public decimal Deposit { get; set; }
@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public decimal? FirstDepositAmount { get; set; }
 
-        [JsonIgnore]
+        
         public DateTime? FirstDepositDate { get; set; }
 
         public string FirstDepositDateText => FirstDepositDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? string.Empty;

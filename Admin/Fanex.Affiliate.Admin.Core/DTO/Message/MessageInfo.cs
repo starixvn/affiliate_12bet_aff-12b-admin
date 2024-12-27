@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Message
 {
@@ -7,27 +6,18 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Message
     {
         public int MessageId { get; set; }
 
-        [JsonIgnore]
-        public string CreatorName { get; set; }
+        public string Creator { get; set; }
 
-        public string Creator => CreatorName;
+        public string Message_en { get; set; }
 
-        [JsonIgnore]
-        public string Message_En { get; set; }
-
-        public string Message => Message_En;
+        public string Message => Message_en;
 
         public bool Important { get; set; }
 
-        [JsonIgnore]
-        public string UpdatedName { get; set; }
+        public string UpdatedBy { get; set; }
 
-        public string UpdatedBy => UpdatedName;
-
-        [JsonIgnore]
         public DateTime? PostedDate { get; set; }
 
-        [JsonIgnore]
         public DateTime? UpdatedDate { get; set; }
 
         public string PostedDateText => PostedDate?.ToString("MM/dd/yyyy HH:mm:ss");

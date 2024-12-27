@@ -23,7 +23,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string Creator { get; set; }
 
-        [JsonIgnore]
         public DateTime? CreatedDate { get; set; }
 
         public string CreatedDateText => CreatedDate?.ToString("MM/dd/yyyy");

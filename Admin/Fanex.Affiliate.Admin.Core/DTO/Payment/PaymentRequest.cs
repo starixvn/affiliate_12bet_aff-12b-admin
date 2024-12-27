@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Payment
     {
         public long TransId { get; set; }
 
-        [JsonIgnore]
+        
         public DateTime TransDate { get; set; }
 
         public string Status { get; set; }
@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Payment
 
         public decimal Amount { get; set; }
 
-        [JsonIgnore]
+        
         public DateTime CompletedDate { get; set; }
 
         public string Creator { get; set; }
