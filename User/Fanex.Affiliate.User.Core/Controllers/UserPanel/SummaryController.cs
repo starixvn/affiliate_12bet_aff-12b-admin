@@ -7,7 +7,6 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 
 namespace Fanex.Affiliate.User.Core.Controllers.UserPanel

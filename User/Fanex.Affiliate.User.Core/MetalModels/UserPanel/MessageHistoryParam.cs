@@ -19,6 +19,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public int PageIndex { get; set; } = DefaultPageIndex;
 
-        public int Nrows { get; set; }
+        public int NRows { get; set; }
     }
 }

@@ -1,25 +1,29 @@
-﻿using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Utilities;
-using System.Threading.Tasks;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class OfferService : IOfferService
+    using System.Threading.Tasks;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO.UserPanel;
+    using Utilities;
+
+    public class OfferService : BaseDynamicService, IOfferService
     {
         private const string OFFER_CONTENT_PATH = "offerpage/getcontent";
 
-        private readonly IOfferRepository _offerRepository;
         private readonly IHttpClientUtility _httpClientUtility;
 
-        public OfferService(IHttpClientUtility httpClientUtility, IOfferRepository offerRepository)
+        public OfferService(
+            IDynamicRepository dynamicRepository,
+            IHttpClientUtility httpClientUtility)
+            : base(dynamicRepository)
         {
             _httpClientUtility = httpClientUtility;
-            _offerRepository = offerRepository;
         }
 
         public async Task<string> GetOfferById(int id)
         {
-            var item = _offerRepository.GetOfferById(id);
+            var item = GetTData<Offer>(new GetOfferByIdCriteria(id));
 
             if (item != null)
             {

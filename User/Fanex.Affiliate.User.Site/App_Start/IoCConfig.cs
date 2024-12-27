@@ -11,8 +11,6 @@ using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.MemberInfoWebService;
-using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Caching;
 using Fanex.Caching.Memory;
@@ -87,7 +85,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CryptographyService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<NewsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<NewsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<EmailService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -105,16 +102,12 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<StatisticsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<UnderMaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope(); 
             builder.RegisterType<MemberService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-
             builder.RegisterType<QrCodeGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-
-            builder.RegisterType<ObjectDBBuilder>().AsImplementedInterfaces().UsingConstructor().InstancePerLifetimeScope();
-            builder.RegisterType<DateTimeProvider>().AsImplementedInterfaces().InstancePerLifetimeScope();
-
-            builder.RegisterType<NewsLetterRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<NewsLetterService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<OfferService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<OfferRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            builder.RegisterType<DateTimeProvider>().AsImplementedInterfaces().InstancePerLifetimeScope();
+
             builder.RegisterType<HttpClientUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<FileSystem>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }

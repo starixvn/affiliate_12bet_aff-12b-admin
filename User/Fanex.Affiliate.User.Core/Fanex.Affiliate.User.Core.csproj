@@ -251,6 +251,11 @@
     <Compile Include="Criterias\Marketing\GetSubAffDomainListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetUsingMarketingLinkCriteria.cs" />
     <Compile Include="Criterias\Member\GetMemberListCriteria.cs" />
+    <Compile Include="Criterias\NewsLetter\GetNewsLetterByIdCriteria.cs" />
+    <Compile Include="Criterias\NewsLetter\GetNewsLettersByDateCriteria.cs" />
+    <Compile Include="Criterias\News\GetLastestHotNewsCriteria.cs" />
+    <Compile Include="Criterias\News\GetMessageListCriteria.cs" />
+    <Compile Include="Criterias\Offer\GetOfferByIdCriteria.cs" />
     <Compile Include="Criterias\PagingByDateCriteria.cs" />
     <Compile Include="Criterias\PagingCriteria.cs" />
     <Compile Include="Criterias\Payment\GetPaymentListCriteria.cs" />
@@ -446,11 +451,6 @@
     <Compile Include="Infrastructure\IHttpRequestParserHandler.cs" />
     <Compile Include="MetalModels\Email\EmailSignUpParam.cs" />
     <Compile Include="MetalModels\UserPanel\CopiedBannerCounterParam.cs" />
-    <Compile Include="Repository\BaseRepository.cs" />
-    <Compile Include="Repository\UserPanel\OfferRepository.cs" />
-    <Compile Include="Repository\UserPanel\IOfferRepository.cs" />
-    <Compile Include="Repository\UserPanel\INewsLetterRepository.cs" />
-    <Compile Include="Repository\UserPanel\NewsLetterRepository.cs" />
     <Compile Include="Resources\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -542,10 +542,6 @@
     <Compile Include="MetalModels\VerificationAccountParam.cs" />
     <Compile Include="MetalModels\VerificationOtpParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\UserPanel\NewsRepository.cs" />
-    <Compile Include="Repository\UserPanel\INewsRepository.cs" />
-    <Compile Include="Repository\ObjectDBBuilder.cs" />
-    <Compile Include="Repository\IObjectDBBuilder.cs" />
     <Compile Include="Resources\Error.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
