@@ -44,7 +44,7 @@
             {
                 AffId = userSession.AffId,
                 IsInternal = isInternal,
-                FromDate = new DateTime(now.Year, now.Month, 1),
+                FromDate = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1),
                 ToDate = now.DateTime
             };
 

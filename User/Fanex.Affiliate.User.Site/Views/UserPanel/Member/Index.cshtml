@@ -3,8 +3,8 @@
     ViewBag.Title = Lang.YourCustomers;
     Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
 
-    var now = DateTime.Now;
-    var fromDate = new DateTime(now.Year, now.Month, 1);
+    var now = DateTimeHelper.Now;
+    var fromDate = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1);
 }
 
 @model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.Member>

@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
             var minDateTime = dateTimeProvider.Now.AddMinutes(expirationByMinute * -1);
             var timeTicks = Convert.ToInt64(timeTickString);
-            var dateTimeRequest = new DateTime(timeTicks, DateTimeKind.Local);
+            var dateTimeRequest = new DateTimeOffset(timeTicks, TimeSpan.Zero).DateTime;
 
             return DateTime.Compare(dateTimeRequest, minDateTime) < 0;
         }

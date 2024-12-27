@@ -20,7 +20,6 @@
     using MetalModels.UserPanel;
     using ViewModels.UserPanel.Marketing;
 
-    [CustomAuthorize]
     public class MarketingController : BaseMarketingController
     {
         private readonly IQrCodeGeneratorService _qrCodeGeneratorService;
@@ -104,9 +103,9 @@
 
                 if (usingLinks != null)
                 {
-                    foreach (var item in result)
+                    foreach (var item in result.Values)
                     {
-                        item.Value.IsShow = usingLinks.Any(l => l.AffMediaLink.Equals(item.Value.Link, StringComparison.OrdinalIgnoreCase));
+                        item.IsShow = usingLinks.Any(l => l.AffMediaLink.Equals(item.Link, StringComparison.OrdinalIgnoreCase));
                     }
                 }
             }

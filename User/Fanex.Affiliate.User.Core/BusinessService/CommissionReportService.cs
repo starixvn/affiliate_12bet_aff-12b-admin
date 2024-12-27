@@ -43,21 +43,21 @@
                         }).ToList();
 
             var total = new AffiliateCommission();
-            foreach (var item in byMonth)
+            foreach (var item in byMonth.Select(_ => _.Data))
             {
-                item.Data.CommissionRate *= PercentageUnit;
-                item.Data.SubCommRate *= PercentageUnit;
+                item.CommissionRate *= PercentageUnit;
+                item.SubCommRate *= PercentageUnit;
 
-                total.TurnOver += item.Data.TurnOver;
-                total.GGR += item.Data.GGR;
-                total.PlatformFee += item.Data.PlatformFee;
-                total.DepositFee += item.Data.DepositFee;
-                total.WithdrawalFee += item.Data.WithdrawalFee;
-                total.Bonus += item.Data.Bonus;
-                total.Rebate += item.Data.Rebate;
-                total.Commission += item.Data.Commission;
-                total.P2pCommission += item.Data.P2pCommission;
-                total.SubAffCommission += item.Data.SubAffCommission;
+                total.TurnOver += item.TurnOver;
+                total.GGR += item.GGR;
+                total.PlatformFee += item.PlatformFee;
+                total.DepositFee += item.DepositFee;
+                total.WithdrawalFee += item.WithdrawalFee;
+                total.Bonus += item.Bonus;
+                total.Rebate += item.Rebate;
+                total.Commission += item.Commission;
+                total.P2pCommission += item.P2pCommission;
+                total.SubAffCommission += item.SubAffCommission;
             }
 
             return new CommissionReportDataViewModel

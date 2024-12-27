@@ -7,6 +7,7 @@
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
+    using Utilities;
 
     [CustomAuthorize]
     public class RevenueReportController : BaseController
@@ -37,11 +38,11 @@
         public ActionResult Index(int year, int baseCurrency = 0)
         {
             var currency = baseCurrency == 0 ? SessionService.UserSession.BaseCurrency : baseCurrency;
-            var viewModel = year >= 2009 && year <= DateTime.Now.Year
+            var viewModel = year >= 2009 && year <= DateTimeHelper.CurrentYear
                 ? _commissionReportService.GenerateCommissionReportData(new CommissionReportParam
                 {
                     AffId = SessionService.UserSession.AffId, 
-                    WinLostDate = new DateTime(year, 1, 1), 
+                    WinLostDate = DateTimeHelper.CreateDateTime(year, 1, 1), 
                     BaseCurrency = currency
                 })
                 : new CommissionReportDataViewModel();

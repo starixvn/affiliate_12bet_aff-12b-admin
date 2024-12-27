@@ -5,12 +5,9 @@
     using BusinessService;
     using CoreService;
     using Filters;
-    using ONEbook.UM.AspNetMVC.Filters;
     using Utilities;
     using ViewModels.UserPanel.Marketing;
 
-    [CheckUMFilter]
-    [CustomAuthorize]
     public class AffiliateLinkController : BaseMarketingController
     {
         private readonly IAccountService _accountService;

@@ -40,7 +40,7 @@
         [AjaxOnly]
         public ActionResult GetPaymentListByYear(int year)
         {
-            var viewModel = year >= 2009 && year <= DateTime.Now.Year ? GetViewModel(year) : GetViewModel(DateTime.Now.Year);
+            var viewModel = year >= 2009 && year <= DateTimeHelper.CurrentYear ? GetViewModel(year) : GetViewModel(DateTimeHelper.CurrentYear);
 
             return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", viewModel);
         }
@@ -48,7 +48,7 @@
         [AjaxOnly]
         public ActionResult PaymentRequestPartial()
         {
-            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel(DateTime.Now.Year));
+            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel(DateTimeHelper.CurrentYear));
         }
 
         [HttpPost]

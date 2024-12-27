@@ -245,9 +245,8 @@
         {
             var linkDics = new Dictionary<string, LanguageLinkViewModel>();
 
-            foreach (var item in languages)
+            foreach (var lang in languages.Values)
             {
-                var lang = item.Value;
                 var linkViewModel = new LanguageLinkViewModel
                 {
                     Language = lang,

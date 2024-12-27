@@ -8,6 +8,7 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Filters;
     using MetalModels.UserPanel;
+    using Utilities;
     using ViewModels.UserPanel.Statistics;
 
     [CustomAuthorize]
@@ -31,7 +32,7 @@
             {
                 AffId = SessionService.UserSession.AffId,
                 IsInternal = SessionService.IsInternal,
-                FromDate = new DateTime(now.Year, now.Month, 1),
+                FromDate = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1),
                 ToDate = now.DateTime,
                 DeviceType = (byte)DeviceType.PCDevice
             };

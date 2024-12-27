@@ -133,7 +133,7 @@
 
         private static bool CheckIfExistMonthlyTotal(DateTime monthDate, List<StatementHistoryViewModel> statementHistoryViews)
         {
-            return statementHistoryViews.Any(m => m.MonthDate == monthDate && m.TransType == TransType.MonthlyTotal);
+            return statementHistoryViews.Exists(m => m.MonthDate == monthDate && m.TransType == TransType.MonthlyTotal);
         }
 
         private static StatementHistoryViewModel CreateViewModelFromStatementHistoryItem(StatementHistory item)

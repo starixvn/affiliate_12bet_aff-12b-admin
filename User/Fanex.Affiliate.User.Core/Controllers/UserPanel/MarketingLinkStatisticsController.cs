@@ -3,12 +3,13 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.Constants;
-    using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Filters;
-    using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics;
+    using BusinessService;
+    using Constants;
+    using CoreService;
+    using Filters;
     using MetalModels.UserPanel;
+    using Utilities;
+    using ViewModels.UserPanel.Statistics;
 
     [CustomAuthorize]
     public class MarketingLinkStatisticsController : BaseController
@@ -27,7 +28,7 @@
         public ActionResult Index()
         {
             var now = DateTimeOffset.Now.ToOffset(new TimeSpan(GMT.PlusEight, 0, 0));
-            var startMonth = new DateTime(now.Year, now.Month, 1);
+            var startMonth = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1);
             var languages = SystemService.GetLanguageList(SessionService.IsInternal).Select(l => new SelectListItem
             {
                 Text = l.EnglishName,

@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Utilities
 {
-    using System;
     using System.Linq;
     using System.Reflection;
 
@@ -8,14 +7,14 @@
     {
         private const string IsInternalPropName = "IsInternal";
 
-        public static TDestination MapTo<TDestination>(this object source, bool isInternal = false)
+        public static TDestination MapTo<TDestination>(this object source, bool isInternal = false) where TDestination : class, new()
         {
+            var destination = new TDestination();
+
             if (source == null)
             {
-                return default(TDestination);
+                return destination;
             }
-
-            var destination = Activator.CreateInstance<TDestination>();
 
             var sourceProperties = source.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             var destinationProperties = typeof(TDestination).GetProperties(BindingFlags.Public | BindingFlags.Instance);

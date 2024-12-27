@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System;
     using System.Security.Cryptography;
     using Commands;
     using Constants;
@@ -156,7 +155,7 @@
         {
             var now = _wrapperUtility.GetNowDateTime();
 
-            return new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
+            return DateTimeHelper.CreateDateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
         }
 
         private static string CreateHashMessage(string message, string secret)

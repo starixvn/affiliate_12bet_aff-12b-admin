@@ -216,7 +216,7 @@
         {
             var timestamp = Convert.ToInt64(timeStampString);
             var utcDateTimeRequest = DateTimeOffset.FromUnixTimeMilliseconds(timestamp).UtcDateTime;
-            var utcNow = DateTime.Now.ToUniversalTime();
+            var utcNow = DateTimeHelper.UtcNow;
 
             return DateTime.Compare(utcDateTimeRequest, utcNow.AddMinutes(timeout * -1)) >= 0;
         }

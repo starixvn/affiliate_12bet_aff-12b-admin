@@ -115,7 +115,7 @@
                     </div>
                     <div class="login">
                         <div class="user-signup">
-                            @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTime.UtcNow.Ticks });}
+                            @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTimeHelper.UtcNow.Ticks });}
                             <div class="language-container">
                                 <div class="language-selection">
                                     <button class="select-language" id="selectedLanguage">
@@ -240,7 +240,7 @@
                 </div>
             </div>
             <div class="footer-text">
-                @Lang.Copyright.Replace("{0}", DateTime.Now.Year.ToString())
+                @Lang.Copyright.Replace("{0}", DateTimeHelper.CurrentYear.ToString())
             </div>
         </div>
     </div>

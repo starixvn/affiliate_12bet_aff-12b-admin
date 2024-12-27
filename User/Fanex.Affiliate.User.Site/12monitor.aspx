@@ -1,6 +1,7 @@
 <%@ Page Language="C#" EnableSessionState="False" %>
 <%@ Import Namespace="Fanex.Affiliate.User.Core.Constants" %>
 <%@ Import Namespace="Fanex.Affiliate.User.Core.Extensions" %>
+<%@ Import Namespace="Fanex.Affiliate.User.Core.Utilities" %>
 
 <html>
 <head runat="server">
@@ -17,7 +18,7 @@
         Server IP: <%= Request.ServerVariables["LOCAL_ADDR"]%>
     </div>
     <div class="servertime">
-        Server Time: <%= DateTime.Now%>
+        Server Time: <%= DateTimeHelper.Now%>
     </div>
     <div class="haproxy">
         Client IP: <%= Request.UserHostAddress%>

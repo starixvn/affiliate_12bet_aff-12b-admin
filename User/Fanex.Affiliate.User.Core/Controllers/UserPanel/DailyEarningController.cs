@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
     using System.Web.Mvc;
     using Constants;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Filters;
     using MetalModels.UserPanel;
+    using Utilities;
     using ViewModels.UserPanel;
 
     [CustomAuthorize]
@@ -28,7 +28,7 @@
             param.AffId = SessionService.UserSession.AffId;
             param.IsInternal = SessionService.IsInternal;
             param.ProductId = param.ProductId ?? Product.Sportsbook;
-            param.MonthDate = param.MonthDate ?? DateTime.Now.AddDays(-1);
+            param.MonthDate = param.MonthDate ?? DateTimeHelper.Now.AddDays(-1);
 
             var viewModel = new DailyEarningViewModel
             {
