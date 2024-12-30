@@ -211,21 +211,22 @@
     <value>Emoji មិនត្រឹមត្រូវទេ។</value>
   </data>
   <data name="YourAccountHasBeenSuspended" xml:space="preserve">
-    <value>គណនីរបស់អ្នកត្រូវបានផ្អាកដំណើការ។ សូមទាក់ទងទៅកាន់អ្នកគ្រប់គ្រងគណនីរបស់អ្នកសម្រាប់ព័ត៌មានបន្ថែម</value>
+    <value>គណនីរបស់អ្នកត្រូវបានផ្អាកដំណើការ។
+សម្រាប់ព័ត៌មានបន្ថែម សូមទាក់ទងមកកាន់អ្នកគ្រប់គ្រងគណនី។</value>
   </data>
   <data name="UserNameMaxLength30" xml:space="preserve">
-    <value>មោះគណនីអ្នកប្រើមិនឲ្យលើសពី 30 តួអក្សរ</value>
+    <value>ឈ្មោះប្រើប្រាស់មិនត្រូវលើសពី 30 តួអក្សរ។</value>
   </data>
   <data name="ErrInValidAff" xml:space="preserve">
-    <value>សម្ព័ន្ធភាពមិនត្រឹមត្រូវ</value>
+    <value>ភ្នាក់ងារមិនត្រឹមត្រូវ។</value>
   </data>
   <data name="ErrChannelExisted" xml:space="preserve">
-    <value>ឆានែលបានមានរួចហើយ។ សូមពិនិត្យម្តងទៀត។</value>
+    <value>ឆានែលធ្លាប់មានរួចហើយ សូមពិនិត្យមើលម្តងទៀត។</value>
   </data>
   <data name="ErrInternalError" xml:space="preserve">
-    <value>កំហុស​ផ្នែកខាងក្នុង។ សូមទាក់ទងទៅអ្នកគ្រប់គ្រង។</value>
+    <value>កំហុស​ផ្នែកខាងក្នុង សូមទាក់ទងមកកាន់អ្នកគ្រប់គ្រង។</value>
   </data>
   <data name="NameToLong20" xml:space="preserve">
-    <value>ឈ្មោះឆានែលមិនឲ្យលើសពី 20 តួអក្សរទេ។ សូមពិនិត្យម្តងទៀត</value>
+    <value>ឈ្មោះឆានែលមិនត្រូវលើសពី 20 តួអក្សរទេ សូមពិនិត្យមើលម្តងទៀត។</value>
   </data>
 </root>

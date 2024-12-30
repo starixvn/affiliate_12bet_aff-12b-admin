@@ -90,7 +90,7 @@
             return new RefLinkViewModel
             {
                 AffLinkType = AffiliateLinkType.AffiliateLink,
-                AffTypeDisplayName = Lang.AffilateLink,
+                AffTypeDisplayName = Lang.AffiliateLink,
                 Domains = domains,
                 SitePages = pages
             };

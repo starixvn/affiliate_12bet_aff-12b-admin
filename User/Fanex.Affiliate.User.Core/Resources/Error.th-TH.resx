@@ -213,4 +213,19 @@
   <data name="YourAccountHasBeenSuspended" xml:space="preserve">
     <value>บัญชีของคุณถูกระงับ โปรดติดต่อผู้จัดการบัญชีของคุณสำหรับข้อมูลเพิ่มเติม</value>
   </data>
+  <data name="UserNameMaxLength30" xml:space="preserve">
+    <value>ยูสเซอร์เนมไม่เกิน 30 ตัวอักษร</value>
+  </data>
+  <data name="ErrInValidAff" xml:space="preserve">
+    <value>พันธมิตรไม่ถูกต้อง</value>
+  </data>
+  <data name="ErrChannelExisted" xml:space="preserve">
+    <value>ช่องนี้มีอยู่แล้ว กรุณาตรวจสอบอีกครั้ง</value>
+  </data>
+  <data name="ErrInternalError" xml:space="preserve">
+    <value>พบข้อผิดพลาดภายใน กรุณาติดต่อผู้ดูแลระบบ.</value>
+  </data>
+  <data name="NameToLong20" xml:space="preserve">
+    <value>ชื่อช่องต้องมีความยาวไม่เกิน 20 ตัวอักษร กรุณาตรวจสอบอีกครั้ง</value>
+  </data>
 </root>

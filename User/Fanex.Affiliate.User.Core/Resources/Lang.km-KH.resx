@@ -250,7 +250,7 @@
     <value>កំណត់ឡើងវិញ</value>
   </data>
   <data name="RevenueShare" xml:space="preserve">
-    <value>បែងចែងប្រាក់ចំណូល</value>
+    <value>ការចែករំលែកប្រាក់ចំណូល</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>ផលិតផលទាំងអស់</value>
@@ -939,7 +939,7 @@
     <value>សង្ខេប</value>
   </data>
   <data name="AffiliateLink" xml:space="preserve">
-    <value>តំណភ្ជាប់ភ្នាក់ងារ</value>
+    <value>លីងតំណភ្ជាប់ភ្នាក់ងារ</value>
   </data>
   <data name="LastLogin" xml:space="preserve">
     <value>ចូលចុងក្រោយ</value>
@@ -957,7 +957,7 @@
     <value>កាលបរិច្ឆេទ</value>
   </data>
   <data name="Deposit" xml:space="preserve">
-    <value>ដាក់លុយ</value>
+    <value>ដាក់ប្រាក់</value>
   </data>
   <data name="Turnover" xml:space="preserve">
     <value>ភ្នាល់វិលជុំ</value>
@@ -1086,10 +1086,10 @@
     <value>ចម្លងតំណ</value>
   </data>
   <data name="CopyQR" xml:space="preserve">
-    <value>ចម្លងកូដ QR</value>
+    <value>ចម្លង QRកូដ</value>
   </data>
   <data name="SaveQR" xml:space="preserve">
-    <value>រក្សាទុកកូដ QR</value>
+    <value>រក្សាទុក QRកូដ</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>ចម្លង</value>
@@ -2366,22 +2366,22 @@
 ភាពជាដៃគូរឹងមាំ និងទំនុកចិត្ត!</value>
   </data>
   <data name="ActivePlayers" xml:space="preserve">
-    <value>ចំនួនអ្នកលេងសកម្ម</value>
+    <value>ចំនួនអ្នកលេងដែលសកម្ម</value>
   </data>
   <data name="SubAffiliate" xml:space="preserve">
-    <value>សាខាសម្ព័ន្ធរង</value>
+    <value>ភ្នាក់ងាររង</value>
   </data>
   <data name="SubAffDownline" xml:space="preserve">
-    <value>បន្ទាត់ក្រោមសាខាសម្ព័ន្ធរង</value>
+    <value>ភ្នាក់ងាររង</value>
   </data>
   <data name="SubAffEarning" xml:space="preserve">
-    <value>ការរកប្រាក់ចំណូលពីសាខាសម្ព័ន្ធរង</value>
+    <value>ប្រាក់ចំណូលរបស់ភ្នាក់ងាររង</value>
   </data>
   <data name="GGR" xml:space="preserve">
-    <value>GGR</value>
+    <value>ចំណូល</value>
   </data>
   <data name="MinRequired" xml:space="preserve">
-    <value>ទាមទារអប្បបរមា</value>
+    <value>តម្រូវការតិចបំផុត</value>
   </data>
   <data name="FdmDate" xml:space="preserve">
     <value>កាលបរិច្ឆេទ FDM</value>
@@ -2390,37 +2390,37 @@
     <value>លុយទទួលមកវិញ</value>
   </data>
   <data name="DepositFee" xml:space="preserve">
-    <value>តម្លៃដាក់លុយ</value>
+    <value>សេវាដាក់ប្រាក់</value>
   </data>
   <data name="WithdrawalFee" xml:space="preserve">
-    <value>តម្លៃដកលុយ</value>
+    <value>សេវាដកប្រាក់</value>
   </data>
   <data name="ApprovalDate" xml:space="preserve">
-    <value>កាលបរិច្ឆេទអនុម័ត</value>
+    <value>កាលបរិច្ឆេទយល់ព្រម</value>
   </data>
   <data name="SuspensionDate" xml:space="preserve">
-    <value>កាលបរិច្ឆេទផ្អាក</value>
+    <value>កាលបរិច្ឆេទផ្អាកដំណើរការ</value>
   </data>
   <data name="SuspensionSatus" xml:space="preserve">
     <value>ស្ថានភាពផ្អាក</value>
   </data>
   <data name="TotalGGR" xml:space="preserve">
-    <value>GGR សរុប</value>
+    <value>ប្រាក់ចំណូលសរុប</value>
   </data>
   <data name="NumberOfActivePlayers" xml:space="preserve">
-    <value>លេខអ្នកលេងដែលសកម្ម</value>
+    <value>ចំនួនអ្នកលេងសកម្ម</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>ដកចេញ</value>
   </data>
   <data name="SubAffDetail" xml:space="preserve">
-    <value>ព័ត៌មានលម្អិតនៃសាខាសម្ព័ន្ធរង</value>
+    <value>ព័ត៌មានលម្អិតភ្នាក់ងាររង</value>
   </data>
   <data name="GetAll" xml:space="preserve">
     <value>ទទួលបានទាំងអស់</value>
   </data>
   <data name="BaseCurrency" xml:space="preserve">
-    <value>មូលដ្ឋាននៃរូបិយប័ណ្ណ</value>
+    <value>ប្រាក់មូលដ្ឋាន</value>
   </data>
   <data name="Commission" xml:space="preserve">
     <value>ការចែករំលែកប្រាក់ចំណូល</value>
@@ -2432,31 +2432,31 @@
     <value>ការបែងចែកប្រាក់ចំណេញបច្ចុប្បន្ន</value>
   </data>
   <data name="AffiliateCurrency" xml:space="preserve">
-    <value>រូបិយប័ណ្ណនៃសម្ព័ន្ធ</value>
+    <value>រូបិយប័ណ្ណភ្នាក់ងារ</value>
   </data>
   <data name="DefaultBaseCurrency" xml:space="preserve">
-    <value>រូបិយប័ណ្ណមូលដ្ឋាននៃលំនាំដើម</value>
+    <value>រូបិយប័ណ្ណមូលដ្ឋានលំនាំដើម</value>
   </data>
   <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
     <value>ឯកតារូបិយប័ណ្ណបានបង្ហាញនៅក្នុងរបាយការណ៍ទាំងអស់</value>
   </data>
   <data name="P2pRevenueShare" xml:space="preserve">
-    <value>P2P Rev. ចែករំលែក</value>
+    <value>ការចែករំលែកប្រាក់ចំណូល P2P</value>
   </data>
   <data name="SubAffCommRate" xml:space="preserve">
-    <value>អត្រាការប្រាក់នៃសាខារង</value>
+    <value>អត្រាកំម្រៃជើងសារភ្នាក់ងាររង</value>
   </data>
   <data name="TheHighestShare" xml:space="preserve">
-    <value>ការចែករំលែកដ៏ខ្ពស់បំផុត % នៃក្រុមជាច្រើន</value>
+    <value>ភាគរយនៃចំណែកខ្ពស់បំផុតនៃក្រុមជាច្រើន</value>
   </data>
   <data name="RoyaltyFee" xml:space="preserve">
     <value>ថ្លៃសួយសារអាករ</value>
   </data>
   <data name="UserNameSuspended" xml:space="preserve">
-    <value>គណនីទូទាត់ប្រាក់ដែលអ្នកបានបញ្ចូលបានផ្អាក។ សូមពិនិត្យម្តងទៀត។</value>
+    <value>គណនីទូទាត់ប្រាក់ដែលអ្នកបានបញ្ចូលបានផ្អាក សូមពិនិត្យម្តងទៀត។</value>
   </data>
   <data name="UserNameClosed" xml:space="preserve">
-    <value>គណនីទូទាត់ប្រាក់ដែលអ្នកបានបញ្ចូលបានបិទ។ សូមពិនិត្យម្តងទៀត។</value>
+    <value>គណនីទូទាត់ប្រាក់ដែលអ្នកបានបញ្ចូលបានបិទ សូមពិនិត្យម្តងទៀត។</value>
   </data>
   <data name="MarketLinkStatistics" xml:space="preserve">
     <value>ស្ថិតិទំព័រទីផ្សារ</value>
@@ -2465,7 +2465,7 @@
     <value>ឈ្មោះទំព័រ</value>
   </data>
   <data name="IncludeInActiveLink" xml:space="preserve">
-    <value>រួមបញ្ចូលទំាងការតាមដានតំណលីងដែលអសកម្ម</value>
+    <value>រួមបញ្ចូលទាំងការតាមដានតំណលីងដែលអសកម្ម</value>
   </data>
   <data name="CurrencyLabel" xml:space="preserve">
     <value>USD</value>
@@ -2477,7 +2477,7 @@
     <value>លីងតំណភ្ជាប់សម្ព័ន្ធ</value>
   </data>
   <data name="SubAffiliateLink" xml:space="preserve">
-    <value>អនុវ​ សាខាសម្ព័ន្ធ។ តំណភ្ជាប់លីង</value>
+    <value>លីងតំណភ្ជាប់របស់ភ្នាក់ងាររង</value>
   </data>
   <data name="AddNew" xml:space="preserve">
     <value>បន្ថែម​ថ្មី...</value>
@@ -2489,7 +2489,7 @@
     <value>ឆានែល</value>
   </data>
   <data name="TrackingAndQrCode" xml:space="preserve">
-    <value>តាមដានតំណភ្ជាប់លីង និង QRលេខកូដ</value>
+    <value>តាមដានតំណភ្ជាប់លីង និង QRកូដ</value>
   </data>
   <data name="MarketingPage" xml:space="preserve">
     <value>ទំព័រទីផ្សារ</value>
@@ -2501,25 +2501,25 @@
     <value>បន្ថែមឆានែលបានជោគជ័យ</value>
   </data>
   <data name="ConfirmActiveLink" xml:space="preserve">
-    <value>តើអ្នកប្រាកដអំពីសកម្មភាពនេះទេ? តាមរយៈការបញ្ជាក់សកម្មភាពនេះ អ្នកនឹងសកម្មតំណលីងតាមដាន។</value>
+    <value>តើអ្នកប្រាកដអំពីសកម្មភាពនេះទេ? តាមរយៈការបញ្ជាក់សកម្មភាពនេះ អ្នកនឹងប្រើប្រាស់តំណលីងនេះ។</value>
   </data>
   <data name="ConfirmDeactiveLink" xml:space="preserve">
-    <value>តើអ្នកប្រាកដអំពីសកម្មភាពនេះទេ? តាមរយៈការបញ្ជាក់សកម្មភាពនេះ អ្នកនឹងបិទតំណលីងតាមដាន។</value>
+    <value>តើអ្នកប្រាកដអំពីសកម្មភាពនេះទេ? តាមរយៈការបញ្ជាក់សកម្មភាពនេះ អ្នកនឹងបិទតំណលីង។</value>
   </data>
   <data name="NumberOfLink" xml:space="preserve">
-    <value>លេខនៃលីងតំណភ្ជាប់</value>
+    <value>ចំនួនលីងតំណភ្ជាប់</value>
   </data>
   <data name="CopyQRCode" xml:space="preserve">
-    <value>ចម្លងQRកូដ</value>
+    <value>ចម្លង QRកូដ</value>
   </data>
   <data name="SaveQRCode" xml:space="preserve">
-    <value>រក្សាទុកQRកូដ</value>
+    <value>រក្សាទុក QRកូដ</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>ប្រភេទ</value>
   </data>
   <data name="SubCategory" xml:space="preserve">
-    <value>អនុ ប្រភេទ</value>
+    <value>រង ប្រភេទ</value>
   </data>
   <data name="SearchAndGenQR" xml:space="preserve">
     <value>ស្វែងរក និង បង្កើត</value>
@@ -2531,9 +2531,24 @@
     <value>កំហុស</value>
   </data>
   <data name="InvalidLink" xml:space="preserve">
-    <value>លីងដែលអ្នកបានបញ្ចូលមិនត្រឹមត្រូវទេ។&lt;br /&gt;សូមទាក់ទងទៅកាន់ផ្នែកបម្រើសេវាកម្មអតិថិជន ឬក៏</value>
+    <value>លីងដែលអ្នកបានបញ្ចូលនេះមិនត្រឹមត្រូវទេ &lt;br /&gt;សូមទាក់ទងផ្នែកបម្រើសេវាកម្មអតិថិជន ឬក៏</value>
   </data>
   <data name="ClickHere" xml:space="preserve">
     <value>ចុចនៅ​ទីនេះ</value>
+  </data>
+  <data name="RevenueShareByTurnover" xml:space="preserve">
+    <value>គណនាបែងចែកចំណូលដោយផ្អែកលើចំណូល</value>
+  </data>
+  <data name="RevenueShareByWinloss" xml:space="preserve">
+    <value>គណនាបែងចែកចំណូលដោយផ្អែកលើឈ្នះ/ចាញ់</value>
+  </data>
+  <data name="EarningBy" xml:space="preserve">
+    <value>ប្រាក់ចំណូលផ្អែកលើ</value>
+  </data>
+  <data name="Winloss" xml:space="preserve">
+    <value>ឈ្នះ/ចាញ់</value>
+  </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>គណនីបង់ប្រាក់ដែលអ្នកបានបញ្ចូលមិនមានទេនោះទេ សូមពិនិត្យមើលឡើងវិញ។</value>
   </data>
 </root>

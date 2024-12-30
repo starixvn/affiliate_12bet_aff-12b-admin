@@ -211,6 +211,21 @@
     <value>表情符号无效。</value>
   </data>
   <data name="YourAccountHasBeenSuspended" xml:space="preserve">
-    <value>您的账号已被停用。 请联系您的客户经理了解更多信息</value>
+    <value>您的账户已暂停使用，请联系您的客户经理了解更多信息。</value>
+  </data>
+  <data name="UserNameMaxLength30" xml:space="preserve">
+    <value>用户名不能超过30个字符。</value>
+  </data>
+  <data name="ErrInValidAff" xml:space="preserve">
+    <value>无效的合作伙伴</value>
+  </data>
+  <data name="ErrChannelExisted" xml:space="preserve">
+    <value>该渠道已存在，请检查后再试一次。</value>
+  </data>
+  <data name="ErrInternalError" xml:space="preserve">
+    <value>内部错误，请联系管理员。</value>
+  </data>
+  <data name="NameToLong20" xml:space="preserve">
+    <value>渠道名称不能超过20个字符，请检查后再试一次。</value>
   </data>
 </root>

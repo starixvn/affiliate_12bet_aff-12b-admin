@@ -210,4 +210,22 @@
   <data name="InvalidEmoji" xml:space="preserve">
     <value>Emoji tidak sesuai. </value>
   </data>
+  <data name="YourAccountHasBeenSuspended" xml:space="preserve">
+    <value>Akun Anda telah ditangguhkan. Harap hubungi Manajer Akun Anda untuk informasi lebih lanjut.</value>
+  </data>
+  <data name="UserNameMaxLength30" xml:space="preserve">
+    <value>Nama Pengguna tidak lebih dari 30 karakter.</value>
+  </data>
+  <data name="ErrInValidAff" xml:space="preserve">
+    <value>Afiliasi tidak valid.</value>
+  </data>
+  <data name="ErrChannelExisted" xml:space="preserve">
+    <value>Saluran sudah ada. Harap periksa kembali.</value>
+  </data>
+  <data name="ErrInternalError" xml:space="preserve">
+    <value>Terjadi kesalahan internal. Harap hubungi administrator.</value>
+  </data>
+  <data name="NameToLong20" xml:space="preserve">
+    <value>Nama Saluran tidak boleh melebihi 20 karakter. Harap periksa kembali.</value>
+  </data>
 </root>

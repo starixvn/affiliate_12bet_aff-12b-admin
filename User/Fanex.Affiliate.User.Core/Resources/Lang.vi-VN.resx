@@ -1842,7 +1842,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>$1 &amp; hơn</value>
   </data>
   <data name="RevenueShare" xml:space="preserve">
-    <value>Chia Sẻ Doanh Thu</value>
+    <value>Hoa hồng</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
     <value>Tiếng Trung (Phồn Thể)</value>
@@ -1872,7 +1872,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Tóm tắt</value>
   </data>
   <data name="AffiliateLink" xml:space="preserve">
-    <value>Liên kết dành cho đại lý</value>
+    <value>Đường dẫn liên kết</value>
   </data>
   <data name="LastLogin" xml:space="preserve">
     <value>Đăng nhập cuối</value>
@@ -1938,7 +1938,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Sao chép mã QR</value>
   </data>
   <data name="SaveQR" xml:space="preserve">
-    <value>Lưu mã QR</value>
+    <value>Lưu Mã QR</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Sao chép</value>
@@ -2515,5 +2515,17 @@ THANH TOÁN ỔN ĐỊNH</value>
   </data>
   <data name="ClickHere" xml:space="preserve">
     <value>nhấn vào đây.</value>
+  </data>
+  <data name="RevenueShareByTurnover" xml:space="preserve">
+    <value>Lợi nhuận tính theo tổng cược</value>
+  </data>
+  <data name="RevenueShareByWinloss" xml:space="preserve">
+    <value>Lợi nhuận tính theo thắng/thua</value>
+  </data>
+  <data name="EarningBy" xml:space="preserve">
+    <value>Thu nhập từ</value>
+  </data>
+  <data name="Winloss" xml:space="preserve">
+    <value>Thắng/ Thua</value>
   </data>
 </root>
