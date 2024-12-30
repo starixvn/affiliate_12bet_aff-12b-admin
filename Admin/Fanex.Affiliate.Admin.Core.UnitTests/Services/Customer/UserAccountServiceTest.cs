@@ -139,7 +139,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var userAccountRepository = new Mock<IDynamicRepository>();
-            userAccountRepository.Setup(t => t.Fetch<PaymentMethodInfo>(It.IsAny<PaymentMethodCriteria>(), It.IsAny<string>())).Returns(new List<PaymentMethodInfo> { new PaymentMethodInfo { PaymentId = "123", PaymentName = "abc" } }).Callback<ICriteria>(p => (p as PaymentMethodCriteria).MinAmount = 100m);
+            userAccountRepository.Setup(t => t.Fetch<PaymentMethodInfo>(It.IsAny<PaymentMethodCriteria>(), It.IsAny<string>())).Returns(new List<PaymentMethodInfo> { new PaymentMethodInfo { PaymentId = "123", PaymentName = "abc" } }).Callback<ICriteria, string>((p, _) => (p as PaymentMethodCriteria).MinAmount = 100m);
             var service = CreateUserAccountService(userAccountRepository: userAccountRepository.Object);
 
             // Action

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Payment
 {
@@ -8,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Payment
     {
         public long TransId { get; set; }
 
-        
+
         public DateTime TransDate { get; set; }
 
         public string Status { get; set; }
@@ -17,7 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Payment
 
         public decimal Amount { get; set; }
 
-        
+
         public DateTime CompletedDate { get; set; }
 
         public string Creator { get; set; }

@@ -68,6 +68,11 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
             "text": "Active Player",
           },
           SingleHeaderColumn {
+            "key": "QualifiedMember",
+            "showable": true,
+            "text": "Qualified Member",
+          },
+          SingleHeaderColumn {
             "key": "NoOfSubAff",
             "showable": true,
             "text": "Sub-Affiliate",
@@ -271,6 +276,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "ActivePlayer",
             "showable": true,
             "text": "Active Player",
+          },
+          SingleHeaderColumn {
+            "key": "QualifiedMember",
+            "showable": true,
+            "text": "Qualified Member",
           },
           SingleHeaderColumn {
             "key": "NoOfSubAff",
@@ -484,6 +494,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "ActivePlayer",
             "showable": true,
             "text": "Active Player",
+          },
+          SingleHeaderColumn {
+            "key": "QualifiedMember",
+            "showable": true,
+            "text": "Qualified Member",
           },
           SingleHeaderColumn {
             "key": "NoOfSubAff",

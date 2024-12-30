@@ -11,8 +11,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
         [Range(0, (double)Validation.InfinityAmount, ErrorMessage = "Min Amount not valid!")]
         public decimal MinAmount { get; set; }
 
-        [Range(0, Validation.InfinityQualifiedMember, ErrorMessage = "Min Actived Players not valid!")]
-        public int MinAm { get; set; }
+        [Range(0, Validation.InfinityQualifiedMember, ErrorMessage = "Min Qualified Member not valid!")]
+        public int MinQm { get; set; }
 
         [Range(Validation.Zero, Validation.MaxPercentage, ErrorMessage = "Commission is incorrect!")]
         public decimal Commission { get; set; }

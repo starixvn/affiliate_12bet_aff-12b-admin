@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel.Statistics
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel.Statistics
 {
     public class ClickStatistics
     {

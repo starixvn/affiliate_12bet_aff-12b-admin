@@ -18,8 +18,8 @@ exports[`commission group - TierSettingItem Should render correctly 1`] = `
   </td>
   <td>
     <Input
-      id="MinAm1"
-      name="MinAm"
+      id="MinQm1"
+      name="MinQm"
       onChange={[Function]}
       type="text"
       value="0"
@@ -6069,8 +6069,8 @@ exports[`commission group - TierSettingItem Should render correctly with MaxAmou
   </td>
   <td>
     <Input
-      id="MinAm1"
-      name="MinAm"
+      id="MinQm1"
+      name="MinQm"
       onChange={[Function]}
       type="text"
       value="10"

@@ -26,7 +26,7 @@ export class TierSetting extends Component {
     handleAdd = () => {
         const { selectedGroup, groupProductId } = this.props;
         let defaultMinAmount = 0;
-        let defaultMinAm = 5;
+        let defaultMinQm = 5;
         let defaultCommission = 0;
 
         const tierSettingListByGroupProduct = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId);
@@ -41,7 +41,7 @@ export class TierSetting extends Component {
             TierId: itemCount + 1,
             GroupProductId: this.props.groupProductId,
             MinAmount: defaultMinAmount,
-            MinAm: defaultMinAm,
+            MinQm: defaultMinQm,
             Commission: defaultCommission
         };
 
@@ -56,9 +56,9 @@ export class TierSetting extends Component {
     }
 
     handleChangeInput = (tierId, tierItemValue) => {
-        const { MinAmount, MinAm } = tierItemValue;
+        const { MinAmount, MinQm } = tierItemValue;
         if ((!MinAmount || isValidNumber(MinAmount)) &&
-            (!MinAm || isValidNumber(MinAm))) {
+            (!MinQm || isValidNumber(MinQm))) {
             const { selectedGroup, groupProductId } = this.props;
 
             const tierSettingList = selectedGroup.TierSettingList.map(item => {
@@ -89,7 +89,7 @@ export class TierSetting extends Component {
                                 <tr>
                                     <th style={{ width: 40 }}>Tier</th>
                                     <th>{isTurnover ? MinNetTurnover : MinNetWin}</th>
-                                    <th>Min Active Player</th>
+                                    <th>Min Qualified Member</th>
                                     <th style={{ width: 85 }}>Rev. Share%</th>
                                     <th style={{ width: 50 }}>Action</th>
                                 </tr>

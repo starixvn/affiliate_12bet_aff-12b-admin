@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.UserPanel.Statistics;
-using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {

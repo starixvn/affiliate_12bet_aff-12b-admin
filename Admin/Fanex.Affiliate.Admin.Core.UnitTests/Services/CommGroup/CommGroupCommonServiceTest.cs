@@ -168,14 +168,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
                     {
                         Commission = 0.01m,
                         MinAmount = 0,
-                        MinAm = 0,
+                        MinQm = 0,
                         TierId = 1
                     },
                     new TierSettingParam
                     {
                         Commission = 0.10m,
                         MinAmount = 101,
-                        MinAm = 101,
+                        MinQm = 101,
                         TierId = 2
                     }
                 }

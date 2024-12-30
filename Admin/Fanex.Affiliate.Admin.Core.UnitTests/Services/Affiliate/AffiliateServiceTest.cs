@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<ApproveAffCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(a => (a as ApproveAffCommand).AffCode = "123456");
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<ApproveAffCommand>(), It.IsAny<string>())).Callback<INonQueryCommand, string>((a, _) => (a as ApproveAffCommand).AffCode = "123456");
 
             // Action
             var service = new AffiliateService(dynamicRepository.Object);

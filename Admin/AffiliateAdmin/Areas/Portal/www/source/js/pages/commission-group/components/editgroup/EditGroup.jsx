@@ -12,6 +12,7 @@ import { handleKillRateListData, validate } from '../../modules/service';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import P2pProductSetting from '../shared/p2p-deduction';
 import SubAffCommRateSetting from '../shared/sub-aff-comm-rate';
+import QmTurnoverSetting from '../shared/QmTurnoverSetting';
 
 export class EditGroup extends React.Component {
     constructor(props) {
@@ -89,6 +90,7 @@ export class EditGroup extends React.Component {
                 <CommGroupInfo />
                 <SubAffCommRateSetting />
                 <P2pProductSetting />
+                <QmTurnoverSetting />
                 <DeductionSetting />
                 <p className="text-danger">{messages.note}</p>
                 <button type="button" className="my-2 btn btn-success btn-save" onClick={this.handleSave}>SAVE</button>

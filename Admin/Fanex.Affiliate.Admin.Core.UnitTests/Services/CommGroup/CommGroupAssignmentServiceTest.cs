@@ -171,7 +171,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             commGroupCommonService.Setup(comm => comm.CreateCommissionGroup(param)).Returns(new ResultInfo());
 
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => (c as AssignCommGroupCommand).ErrCode = 999);
+            dynamicRepository.Setup(comm => comm.ExecuteAsync(It.IsAny<AssignCommGroupCommand>(), It.IsAny<string>())).Callback<INonQueryCommand, string>((c, _) => (c as AssignCommGroupCommand).ErrCode = 999);
 
             var service = CreateCommGroupAssignmentService(dynamicRepository.Object, null, null, commGroupCommonService.Object);
 

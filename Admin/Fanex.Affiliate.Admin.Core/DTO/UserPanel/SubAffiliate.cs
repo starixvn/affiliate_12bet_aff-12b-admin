@@ -1,12 +1,10 @@
-﻿using Newtonsoft.Json;
-
-namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
     public class SubAffiliate
     {
         public int AffId { get; set; }
 
-        
+
         public string UserName { get; set; }
 
         public string AffName => UserName;

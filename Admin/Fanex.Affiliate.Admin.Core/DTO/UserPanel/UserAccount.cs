@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -23,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Phone { get; set; }
 
-        
+
         public string ContactApps { get; set; }
 
         public string Address { get; set; }

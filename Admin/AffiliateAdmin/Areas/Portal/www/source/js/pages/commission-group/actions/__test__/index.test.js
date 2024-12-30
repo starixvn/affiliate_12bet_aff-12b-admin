@@ -92,6 +92,7 @@ describe('commission group actions', () => {
                                 ProductIds: "2,9,10,11,12"
                             }
                         ],
+                        QmTurnover: 100,
                         RowIdx: 1,
                         TierSettingList: [
                             {
@@ -100,7 +101,7 @@ describe('commission group actions', () => {
                                 MaxAmount: 15,
                                 MaxAp: 5,
                                 MinAmount: 0,
-                                MinAm: 0,
+                                MinQm: 0,
                                 TierId: 1
                             },
                             {
@@ -109,7 +110,7 @@ describe('commission group actions', () => {
                                 MaxAmount: 100000000000000,
                                 MaxAp: 1000000000,
                                 MinAmount: 16,
-                                MinAm: 6,
+                                MinQm: 6,
                                 TierId: 1
                             }
                         ]
@@ -196,6 +197,7 @@ describe('commission group actions', () => {
                 GroupName: "",
                 PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
                 P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2,5", Commission: 0.1 }],
+                QmTurnover: 100,
                 TierSettingList: []
             },
             status: 200

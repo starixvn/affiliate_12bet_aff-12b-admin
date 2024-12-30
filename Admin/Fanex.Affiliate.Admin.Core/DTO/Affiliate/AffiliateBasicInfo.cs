@@ -1,7 +1,4 @@
-﻿
-using Newtonsoft.Json;
-
-namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
     public class AffiliateBasicInfo
     {

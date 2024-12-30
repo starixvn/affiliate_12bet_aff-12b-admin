@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Report
 {
@@ -11,7 +10,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public string PaymentCurrency { get; set; }
 
-        
         public DateTime? MonthDate { get; set; }
 
         public string Description { get; set; }
@@ -27,6 +25,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
         public int Fdm { get; set; }
 
         public int ActivePlayer { get; set; }
+
+        public int QualifiedMember { get; set; }
 
         public decimal Deposit { get; set; }
 

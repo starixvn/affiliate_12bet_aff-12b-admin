@@ -26,7 +26,7 @@ namespace AffiliateAdmin
                     .StartNewSession()
                     .Register(false)
                     .Run();
-    
+
 
             AreaRegistration.RegisterAllAreas();
             LoggingConfig.RegisterSentry();

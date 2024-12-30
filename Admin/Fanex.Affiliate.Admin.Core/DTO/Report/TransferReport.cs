@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Report
 {
@@ -7,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
     {
         public int TransId { get; set; }
 
-        
+
         public DateTime CreatedDate { get; set; }
 
         public string AffName { get; set; }

@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var param = "12BETAFF226";
             var passedParam = string.Empty;
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.Fetch<OnlineList>(It.IsAny<AffiliateOnlineCriteria>(), It.IsAny<string>())).Returns(new List<OnlineList> { new OnlineList() }).Callback<ICriteria>(p => passedParam = (p as AffiliateOnlineCriteria).Username);
+            repository.Setup(comm => comm.Fetch<OnlineList>(It.IsAny<AffiliateOnlineCriteria>(), It.IsAny<string>())).Returns(new List<OnlineList> { new OnlineList() }).Callback<ICriteria, string>((p, _) => passedParam = (p as AffiliateOnlineCriteria).Username);
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
@@ -324,7 +324,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var param = new UpdateStatusParam { AffId = 1271808, Status = "disapproved" };
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.ExecuteAsync(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => (c as UpdateStatusCommand).ErrCode = -999);
+            repository.Setup(comm => comm.ExecuteAsync(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>())).Callback<INonQueryCommand, string>((c, _) => (c as UpdateStatusCommand).ErrCode = -999);
 
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 

@@ -13,6 +13,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { popupEventNames } from '../../../common/modules/constants/commissionGroup';
 import P2pProductSetting from '../shared/p2p-deduction';
 import SubAffCommRateSetting from '../shared/sub-aff-comm-rate';
+import QmTurnoverSetting from '../shared/QmTurnoverSetting';
 
 export class AssignPrivateGroup extends React.Component {
     constructor(props) {
@@ -134,6 +135,7 @@ export class AssignPrivateGroup extends React.Component {
                 </Alert>
                 <SubAffCommRateSetting />
                 <P2pProductSetting />
+                <QmTurnoverSetting />
                 <DeductionSetting />
                 <p className="text-danger">{messages.note}</p>
                 <button type="button" className="my-2 btn btn-success btn-save" onClick={this.handleSave}>SAVE</button>

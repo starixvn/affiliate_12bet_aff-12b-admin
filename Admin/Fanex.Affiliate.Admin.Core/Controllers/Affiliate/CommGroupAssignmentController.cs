@@ -151,8 +151,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     DepositFee = commGroup.DepositFee,
                     WithdrawalFee = commGroup.WithdrawalFee,
                     SubAffCommRate = commGroup.SubAffCommRate,
+                    QmTurnover = commGroup.QmTurnover,
                     IsActivePlayerSum = commGroup.IsActivePlayerSum,
-                    Ip = Request.UserHostAddress
+                    Ip = Request.GetClientIP()
                 };
 
                 var emailParam = new AffInformationEmail

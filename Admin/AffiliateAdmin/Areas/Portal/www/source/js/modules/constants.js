@@ -11,8 +11,6 @@ export const shortedMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul
 export const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export const money = {
-    MaxValue: 922337203685477,
-    MinValue: -922337203685477,
     AllowedMaxValue: 100000000000,
     AllowedMinValue: -100000000000
 }

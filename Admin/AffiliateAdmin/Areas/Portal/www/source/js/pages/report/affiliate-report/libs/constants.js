@@ -43,6 +43,7 @@ export const reportKey = {
     Signup: 'Signup',
     Fdm: 'Fdm',
     ActivePlayer: 'ActivePlayer',
+    QualifiedMember: 'QualifiedMember',
     NoOfSubAff: 'NoOfSubAff',
     TotalDeposit: 'TotalDeposit',
     Deposit: 'Deposit',
@@ -80,6 +81,7 @@ export const headerText = {
     [reportKey.Signup]: 'Signup',
     [reportKey.Fdm]: 'FDM',
     [reportKey.ActivePlayer]: 'Active Player',
+    [reportKey.QualifiedMember]: 'Qualified Member',
     [reportKey.NoOfSubAff]: 'Sub-Affiliate',
     [reportKey.TotalDeposit]: 'Total Deposit',
     [reportKey.Deposit]: 'Deposit',
@@ -117,6 +119,7 @@ export const headerConfig = {
     [reportKey.Signup]: { label: headerText[reportKey.Signup] },
     [reportKey.Fdm]: { label: headerText[reportKey.Fdm] },
     [reportKey.ActivePlayer]: { label: headerText[reportKey.ActivePlayer] },
+    [reportKey.QualifiedMember]: { label: headerText[reportKey.QualifiedMember] },
     [reportKey.NoOfSubAff]: { label: headerText[reportKey.NoOfSubAff] },
     [reportKey.TotalDeposit]: { label: headerText[reportKey.TotalDeposit] },
     [reportKey.MemberStatistics]: {

@@ -12,6 +12,7 @@ describe('commission group - assign private group', () => {
         GroupName: "",
         GroupTypeId: 1,
         SubAffCommRate: 0.1,
+        QmTurnover: 100,
         IsActivePlayerSum: true,
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
         P2pDeductionList: [{ DeductedPercentage: 0.02, DeductionId: 15, ProductIds: "2,5", Commission: 0.01 }],
@@ -25,9 +26,10 @@ describe('commission group - assign private group', () => {
         Description: "",
         GroupId: 0,
         GroupName: "",
+        QmTurnover: 100,
         PlatformFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
         P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2,5", Commission: 0.1 }],
-        TierSettingList: [{ GroupProductId: 123, TierId: 1, MinAmount: 0, MinAm: 5, Commission: 0 }],
+        TierSettingList: [{ GroupProductId: 123, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 }],
         KillRateFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 16, ProductIds: "" }],
     };
 
@@ -211,7 +213,7 @@ describe('commission group - assign private group', () => {
     })
 
     it('_validate - TierSettingList has MinAmount > MaxAmount', () => {
-        const selected_Group = Object.assign({}, selectedGroup, { TierSettingList: [{ TierId: 1, MinAmount: 1000000000000, MaxAmount: 100000000000, MinAm: 0, MaxAp: 1000000000, Commission: 0 }] });
+        const selected_Group = Object.assign({}, selectedGroup, { TierSettingList: [{ TierId: 1, MinAmount: 1000000000000, MaxAmount: 100000000000, MinQm: 0, MaxAp: 1000000000, Commission: 0 }] });
         const props = Object.assign({}, defaultProps, { selectedGroup: selected_Group });
         const wrapper = shallow(<AssignPrivateGroup {...props} />);
 
@@ -219,8 +221,8 @@ describe('commission group - assign private group', () => {
 
         expect(result).toEqual({ isValid: false, messageList: ["Min Net Win must be lesser than or equal to 1,000,000,000!"] });
     })
-    it('_validate - TierSettingList has MinAm > MaxAp', () => {
-        const selected_Group = Object.assign({}, selectedGroup, { TierSettingList: [{ TierId: 1, MinAmount: 10, MaxAmount: 100000000000, MinAm: 10000000000, MaxAp: 1000000000, Commission: 0 }] });
+    it('_validate - TierSettingList has MinQm > MaxAp', () => {
+        const selected_Group = Object.assign({}, selectedGroup, { TierSettingList: [{ TierId: 1, MinAmount: 10, MaxAmount: 100000000000, MinQm: 10000000000, MaxAp: 1000000000, Commission: 0 }] });
         const props = Object.assign({}, defaultProps, { selectedGroup: selected_Group });
         const wrapper = shallow(<AssignPrivateGroup {...props} />);
 

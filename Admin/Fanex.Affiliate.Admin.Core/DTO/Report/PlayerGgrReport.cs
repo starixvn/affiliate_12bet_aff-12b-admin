@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Report
@@ -10,10 +9,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public string PlayerName { get; set; }
 
-        
+
         public DateTime? RegistrationDate { get; set; }
 
-        
+
         public DateTime? FdmDate { get; set; }
 
         public decimal TotalTurnover { get; set; }

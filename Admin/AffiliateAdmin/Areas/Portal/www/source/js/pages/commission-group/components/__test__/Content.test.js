@@ -21,6 +21,7 @@ describe('commission group - Content', () => {
         GroupId: 133,
         GroupName: "NewGroup",
         NoAffs: 8,
+        QmTurnover: 100,
         PlatformFeeList: [{
             DeductedPercentage: 0.17,
             DeductionId: 10,
@@ -35,7 +36,7 @@ describe('commission group - Content', () => {
             MaxAmount: 100000000000000,
             MaxAp: 1000000000,
             MinAmount: 0,
-            MinAm: 0,
+            MinQm: 0,
             TierId: 1
         }]
     }

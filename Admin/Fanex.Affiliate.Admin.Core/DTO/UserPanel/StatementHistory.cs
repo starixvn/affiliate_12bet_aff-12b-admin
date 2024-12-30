@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
@@ -9,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
     {
         public long TransId { get; set; }
 
-        
+
         public DateTime MonthDate { get; set; }
 
         public int TransType { get; set; }
@@ -20,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Creator { get; set; }
 
-        
+
         public string Description { get; set; }
 
         public byte? CalculatedType { get; set; }

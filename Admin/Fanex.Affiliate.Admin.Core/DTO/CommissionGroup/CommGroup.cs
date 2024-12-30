@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
@@ -20,6 +19,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
         public int NoAffs { get; set; }
 
         public decimal SubAffCommRate { get; set; }
+
+        public decimal QmTurnover { get; set; }
 
         public bool IsActivePlayerSum { get; set; }
 

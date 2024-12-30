@@ -125,7 +125,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 var createParam = new CreateUpdateCommissionGroupParam
                 {
                     UserId = SessionService.UserId,
-                    Ip = Request.UserHostAddress,
+                    Ip = Request.GetClientIP(),
                     GroupName = Server.HtmlEncode(commGroup.GroupName.Trim()),
                     GroupTypeId = commGroup.GroupTypeId,
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
@@ -136,6 +136,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     DepositFee = commGroup.DepositFee,
                     WithdrawalFee = commGroup.WithdrawalFee,
                     SubAffCommRate = commGroup.SubAffCommRate,
+                    QmTurnover = commGroup.QmTurnover,
                     IsActivePlayerSum = commGroup.IsActivePlayerSum
                 };
 
@@ -165,7 +166,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     UserId = SessionService.UserId,
                     GroupId = commGroup.GroupId,
                     GroupName = Server.HtmlEncode(commGroup.GroupName.Trim()),
-                    Ip = Request.UserHostAddress,
+                    Ip = Request.GetClientIP(),
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     TierSettingList = commGroup.TierSettingList,
                     P2pDeductionList = commGroup.P2pDeductionList,
@@ -174,6 +175,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     DepositFee = commGroup.DepositFee,
                     WithdrawalFee = commGroup.WithdrawalFee,
                     SubAffCommRate = commGroup.SubAffCommRate,
+                    QmTurnover = commGroup.QmTurnover,
                     IsActivePlayerSum = commGroup.IsActivePlayerSum
                 };
 

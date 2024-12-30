@@ -11,6 +11,8 @@ namespace Fanex.Affiliate.Admin.Core.Commands.CommissionGroup
         [SpParam(SqlParamName = "SubCommRate")]
         public decimal SubAffCommRate { get; set; }
 
+        public decimal QmTurnover { get; set; }
+
         public bool IsActivePlayerSum { get; set; }
 
         public string Description { get; set; }

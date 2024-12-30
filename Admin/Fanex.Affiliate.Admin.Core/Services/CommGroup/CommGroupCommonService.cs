@@ -81,6 +81,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             command.GroupName = param.GroupName;
             command.Description = param.Description;
             command.SubAffCommRate = param.SubAffCommRate;
+            command.QmTurnover = param.QmTurnover;
             command.IsActivePlayerSum = param.IsActivePlayerSum;
             command.Ip = param.Ip;
             command.TierSettingXml = tierSettingXml;
@@ -118,7 +119,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                     var productIds = platformFeeList.FirstOrDefault(p => p.GroupProductId == item.GroupProductId)?.ProductIds;
 
                     var row = $"<row id=\"{item.TierId}\" minamount=\"{item.MinAmount}\"" +
-                        $" minam=\"{item.MinAm}\" commission=\"{item.Commission}\" productids=\"{productIds}\" />";
+                        $" minqm=\"{item.MinQm}\" commission=\"{item.Commission}\" productids=\"{productIds}\" />";
                     result.Append(row);
                 }
             }

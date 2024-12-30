@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Tracker
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertJobTrackerCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => (c as InsertJobTrackerCommand).PushTrackerId = isDBNull ? 0 : 123);
+            dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertJobTrackerCommand>(), It.IsAny<string>())).Callback<INonQueryCommand, string>((c, _) => (c as InsertJobTrackerCommand).PushTrackerId = isDBNull ? 0 : 123);
 
             // Action
             var service = new JobTrackerService(dynamicRepository.Object);

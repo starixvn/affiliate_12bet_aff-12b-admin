@@ -191,7 +191,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
 
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(l => l.Get<PaymentRequestDetail>(It.IsAny<PaymentRequestDetailCriteria>(), It.IsAny<string>())).Returns(new PaymentRequestDetail { Status = "processing" });
-            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(u => (u as UpdatePaymentRequestCommand).ErrCode = ErrCode.GeneralErrorCode);
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdatePaymentRequestCommand>(), It.IsAny<string>())).Callback<INonQueryCommand, string>((c, _) => (c as UpdatePaymentRequestCommand).ErrCode = ErrCode.GeneralErrorCode);
 
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), null)).Returns(new AffiliateBasicInfo { PreferredLanguage = "vi-VN", AffType = 4 });

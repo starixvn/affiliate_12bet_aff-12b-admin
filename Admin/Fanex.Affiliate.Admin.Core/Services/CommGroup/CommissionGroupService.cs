@@ -47,6 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                              GroupTypeName = c.GroupTypeName,
                              GroupTypeBy = c.GroupTypeBy,
                              SubAffCommRate = c.SubAffCommRate,
+                             QmTurnover = c.QmTurnover,
                              CreatedDate = c.CreatedDate,
                              Creator = c.Creator,
                              Description = c.Description,

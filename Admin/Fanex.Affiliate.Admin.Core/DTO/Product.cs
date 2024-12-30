@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Fanex.Affiliate.Admin.Core.DTO
+﻿namespace Fanex.Affiliate.Admin.Core.DTO
 {
     public class Product
     {

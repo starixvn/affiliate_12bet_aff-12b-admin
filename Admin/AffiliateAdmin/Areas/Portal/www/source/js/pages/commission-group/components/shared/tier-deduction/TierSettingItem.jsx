@@ -22,7 +22,7 @@ export default class TierSettingItem extends React.Component {
 
     render() {
         const { data, handleClick, btnText } = this.props;
-        const { TierId, MinAmount, MinAm, Commission } = data;
+        const { TierId, MinAmount, MinQm, Commission } = data;
 
         return (
             <tr>
@@ -32,7 +32,7 @@ export default class TierSettingItem extends React.Component {
                         value={format(MinAmount)} onChange={this.handleChange} />
                 </td>
                 <td>
-                    <Input type="text" name="MinAm" id={"MinAm" + TierId} value={format(MinAm)} onChange={this.handleChange} />
+                    <Input type="text" name="MinQm" id={"MinQm" + TierId} value={format(MinQm)} onChange={this.handleChange} />
                 </td>
                 <td>
                     <select className="form-control" name="Commission"

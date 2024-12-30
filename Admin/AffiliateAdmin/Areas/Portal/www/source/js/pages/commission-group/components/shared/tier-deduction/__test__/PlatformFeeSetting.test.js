@@ -14,8 +14,8 @@ describe('commission group - platform fee setting', () => {
         P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2", Commission: 0.1 },
         { DeductedPercentage: 0.1, DeductionId: 15, ProductIds: "5", Commission: 0.15 }],
         TierSettingList: [
-            { GroupProductId: 123, TierId: 1, MinAmount: 0, MinAm: 5, Commission: 0 },
-            { GroupProductId: 234, TierId: 1, MinAmount: 0, MinAm: 5, Commission: 0 }
+            { GroupProductId: 123, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 },
+            { GroupProductId: 234, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 }
         ],
         KillRateFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.01, DeductionId: 16, ProductIds: "1,3" },
         { GroupProductId: 234, DeductedPercentage: 0.02, DeductionId: 16, ProductIds: "4" }],

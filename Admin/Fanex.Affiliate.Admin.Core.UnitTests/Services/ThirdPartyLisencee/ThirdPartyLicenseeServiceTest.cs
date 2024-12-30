@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.DTO.Api;
 using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
 using Fanex.Affiliate.Admin.Core.Services.Tracker;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
-using Moq;
 using NSubstitute;
 using System.Threading.Tasks;
 using Xunit;

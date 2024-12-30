@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 {
@@ -13,7 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string Creator { get; set; }
 
-        
+
         public DateTime? CreateDate { get; set; }
 
         public string CreatedDateText => CreateDate?.ToString("MM/dd/yyyy");

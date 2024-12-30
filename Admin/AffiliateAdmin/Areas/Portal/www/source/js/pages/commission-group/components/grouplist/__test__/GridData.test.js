@@ -10,7 +10,7 @@ describe('commission group - GridData ', () => {
         MaxAmount: 100000000000,
         MaxAp: 1000000000,
         MinAmount: 0,
-        MinAm: 0,
+        MinQm: 0,
         TierId: 1
     };
     const dataItem = {
@@ -38,6 +38,7 @@ describe('commission group - GridData ', () => {
         Description: "",
         GroupId: 153,
         GroupName: "CG22125",
+        QmTurnover: 100,
         NoAffs: 2,
         PlatformFeeList: [
             {
@@ -230,6 +231,7 @@ describe('commission group - GridData ', () => {
             GroupId: 1271808,
             GroupName: "12BETAFF226",
             NoAffs: 2,
+            QmTurnover: 100,
             PlatformFeeList: [
                 {
                     DeductedPercentage: 0.17,
@@ -288,6 +290,7 @@ describe('commission group - GridData ', () => {
             GroupId: 153,
             GroupName: "CG22125",
             NoAffs: 2,
+            QmTurnover: 100,
             PlatformFeeList: [
                 {
                     DeductedPercentage: 0.17,

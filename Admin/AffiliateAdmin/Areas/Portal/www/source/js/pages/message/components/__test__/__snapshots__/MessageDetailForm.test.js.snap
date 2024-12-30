@@ -145,13 +145,13 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentCn"
+              key="Message_cs"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentCn"
+                for="Message_cs"
                 sm={2}
                 tag="label"
                 widths={
@@ -179,8 +179,8 @@ exports[`message - components - MessageDetailForm  render correctly with current
               >
                 <Input
                   disabled={true}
-                  id="MessageContentCn"
-                  name="MessageContentCn"
+                  id="Message_cs"
+                  name="Message_cs"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -190,13 +190,13 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEn"
+              key="Message_en"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEn"
+                for="Message_en"
                 sm={2}
                 tag="label"
                 widths={
@@ -224,8 +224,8 @@ exports[`message - components - MessageDetailForm  render correctly with current
               >
                 <Input
                   disabled={true}
-                  id="MessageContentEn"
-                  name="MessageContentEn"
+                  id="Message_en"
+                  name="Message_en"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -235,13 +235,13 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEs"
+              key="Message_es"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEs"
+                for="Message_es"
                 sm={2}
                 tag="label"
                 widths={
@@ -269,8 +269,8 @@ exports[`message - components - MessageDetailForm  render correctly with current
               >
                 <Input
                   disabled={true}
-                  id="MessageContentEs"
-                  name="MessageContentEs"
+                  id="Message_es"
+                  name="Message_es"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -280,13 +280,13 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentId"
+              key="Message_id"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentId"
+                for="Message_id"
                 sm={2}
                 tag="label"
                 widths={
@@ -314,8 +314,8 @@ exports[`message - components - MessageDetailForm  render correctly with current
               >
                 <Input
                   disabled={true}
-                  id="MessageContentId"
-                  name="MessageContentId"
+                  id="Message_id"
+                  name="Message_id"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -325,13 +325,13 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentJp"
+              key="Message_jp"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentJp"
+                for="Message_jp"
                 sm={2}
                 tag="label"
                 widths={
@@ -359,8 +359,8 @@ exports[`message - components - MessageDetailForm  render correctly with current
               >
                 <Input
                   disabled={true}
-                  id="MessageContentJp"
-                  name="MessageContentJp"
+                  id="Message_jp"
+                  name="Message_jp"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -370,13 +370,13 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentKr"
+              key="Message_ko"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentKr"
+                for="Message_ko"
                 sm={2}
                 tag="label"
                 widths={
@@ -404,8 +404,8 @@ exports[`message - components - MessageDetailForm  render correctly with current
               >
                 <Input
                   disabled={true}
-                  id="MessageContentKr"
-                  name="MessageContentKr"
+                  id="Message_ko"
+                  name="Message_ko"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -415,13 +415,13 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTh"
+              key="Message_th"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTh"
+                for="Message_th"
                 sm={2}
                 tag="label"
                 widths={
@@ -449,8 +449,8 @@ exports[`message - components - MessageDetailForm  render correctly with current
               >
                 <Input
                   disabled={true}
-                  id="MessageContentTh"
-                  name="MessageContentTh"
+                  id="Message_th"
+                  name="Message_th"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -460,13 +460,13 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTw"
+              key="Message_ch"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTw"
+                for="Message_ch"
                 sm={2}
                 tag="label"
                 widths={
@@ -494,8 +494,8 @@ exports[`message - components - MessageDetailForm  render correctly with current
               >
                 <Input
                   disabled={true}
-                  id="MessageContentTw"
-                  name="MessageContentTw"
+                  id="Message_ch"
+                  name="Message_ch"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -505,13 +505,13 @@ exports[`message - components - MessageDetailForm  render correctly with current
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentVi"
+              key="Message_vn"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentVi"
+                for="Message_vn"
                 sm={2}
                 tag="label"
                 widths={
@@ -539,8 +539,8 @@ exports[`message - components - MessageDetailForm  render correctly with current
               >
                 <Input
                   disabled={true}
-                  id="MessageContentVi"
-                  name="MessageContentVi"
+                  id="Message_vn"
+                  name="Message_vn"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -736,13 +736,13 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentCn"
+              key="Message_cs"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentCn"
+                for="Message_cs"
                 sm={2}
                 tag="label"
                 widths={
@@ -770,8 +770,8 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentCn"
-                  name="MessageContentCn"
+                  id="Message_cs"
+                  name="Message_cs"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -781,13 +781,13 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEn"
+              key="Message_en"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEn"
+                for="Message_en"
                 sm={2}
                 tag="label"
                 widths={
@@ -815,8 +815,8 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentEn"
-                  name="MessageContentEn"
+                  id="Message_en"
+                  name="Message_en"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -826,13 +826,13 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEs"
+              key="Message_es"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEs"
+                for="Message_es"
                 sm={2}
                 tag="label"
                 widths={
@@ -860,8 +860,8 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentEs"
-                  name="MessageContentEs"
+                  id="Message_es"
+                  name="Message_es"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -871,13 +871,13 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentId"
+              key="Message_id"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentId"
+                for="Message_id"
                 sm={2}
                 tag="label"
                 widths={
@@ -905,8 +905,8 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentId"
-                  name="MessageContentId"
+                  id="Message_id"
+                  name="Message_id"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -916,13 +916,13 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentJp"
+              key="Message_jp"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentJp"
+                for="Message_jp"
                 sm={2}
                 tag="label"
                 widths={
@@ -950,8 +950,8 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentJp"
-                  name="MessageContentJp"
+                  id="Message_jp"
+                  name="Message_jp"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -961,13 +961,13 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentKr"
+              key="Message_ko"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentKr"
+                for="Message_ko"
                 sm={2}
                 tag="label"
                 widths={
@@ -995,8 +995,8 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentKr"
-                  name="MessageContentKr"
+                  id="Message_ko"
+                  name="Message_ko"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1006,13 +1006,13 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTh"
+              key="Message_th"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTh"
+                for="Message_th"
                 sm={2}
                 tag="label"
                 widths={
@@ -1040,8 +1040,8 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentTh"
-                  name="MessageContentTh"
+                  id="Message_th"
+                  name="Message_th"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1051,13 +1051,13 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTw"
+              key="Message_ch"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTw"
+                for="Message_ch"
                 sm={2}
                 tag="label"
                 widths={
@@ -1085,8 +1085,8 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentTw"
-                  name="MessageContentTw"
+                  id="Message_ch"
+                  name="Message_ch"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1096,13 +1096,13 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentVi"
+              key="Message_vn"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentVi"
+                for="Message_vn"
                 sm={2}
                 tag="label"
                 widths={
@@ -1130,8 +1130,8 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentVi"
-                  name="MessageContentVi"
+                  id="Message_vn"
+                  name="Message_vn"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1309,13 +1309,13 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentCn"
+              key="Message_cs"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentCn"
+                for="Message_cs"
                 sm={2}
                 tag="label"
                 widths={
@@ -1343,8 +1343,8 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
               >
                 <Input
                   disabled={true}
-                  id="MessageContentCn"
-                  name="MessageContentCn"
+                  id="Message_cs"
+                  name="Message_cs"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1354,13 +1354,13 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEn"
+              key="Message_en"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEn"
+                for="Message_en"
                 sm={2}
                 tag="label"
                 widths={
@@ -1388,8 +1388,8 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
               >
                 <Input
                   disabled={true}
-                  id="MessageContentEn"
-                  name="MessageContentEn"
+                  id="Message_en"
+                  name="Message_en"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1399,13 +1399,13 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEs"
+              key="Message_es"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEs"
+                for="Message_es"
                 sm={2}
                 tag="label"
                 widths={
@@ -1433,8 +1433,8 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
               >
                 <Input
                   disabled={true}
-                  id="MessageContentEs"
-                  name="MessageContentEs"
+                  id="Message_es"
+                  name="Message_es"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1444,13 +1444,13 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentId"
+              key="Message_id"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentId"
+                for="Message_id"
                 sm={2}
                 tag="label"
                 widths={
@@ -1478,8 +1478,8 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
               >
                 <Input
                   disabled={true}
-                  id="MessageContentId"
-                  name="MessageContentId"
+                  id="Message_id"
+                  name="Message_id"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1489,13 +1489,13 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentJp"
+              key="Message_jp"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentJp"
+                for="Message_jp"
                 sm={2}
                 tag="label"
                 widths={
@@ -1523,8 +1523,8 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
               >
                 <Input
                   disabled={true}
-                  id="MessageContentJp"
-                  name="MessageContentJp"
+                  id="Message_jp"
+                  name="Message_jp"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1534,13 +1534,13 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentKr"
+              key="Message_ko"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentKr"
+                for="Message_ko"
                 sm={2}
                 tag="label"
                 widths={
@@ -1568,8 +1568,8 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
               >
                 <Input
                   disabled={true}
-                  id="MessageContentKr"
-                  name="MessageContentKr"
+                  id="Message_ko"
+                  name="Message_ko"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1579,13 +1579,13 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTh"
+              key="Message_th"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTh"
+                for="Message_th"
                 sm={2}
                 tag="label"
                 widths={
@@ -1613,8 +1613,8 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
               >
                 <Input
                   disabled={true}
-                  id="MessageContentTh"
-                  name="MessageContentTh"
+                  id="Message_th"
+                  name="Message_th"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1624,13 +1624,13 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTw"
+              key="Message_ch"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTw"
+                for="Message_ch"
                 sm={2}
                 tag="label"
                 widths={
@@ -1658,8 +1658,8 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
               >
                 <Input
                   disabled={true}
-                  id="MessageContentTw"
-                  name="MessageContentTw"
+                  id="Message_ch"
+                  name="Message_ch"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1669,13 +1669,13 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentVi"
+              key="Message_vn"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentVi"
+                for="Message_vn"
                 sm={2}
                 tag="label"
                 widths={
@@ -1703,8 +1703,8 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
               >
                 <Input
                   disabled={true}
-                  id="MessageContentVi"
-                  name="MessageContentVi"
+                  id="Message_vn"
+                  name="Message_vn"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1900,13 +1900,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentCn"
+              key="Message_cs"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentCn"
+                for="Message_cs"
                 sm={2}
                 tag="label"
                 widths={
@@ -1934,8 +1934,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={true}
-                  id="MessageContentCn"
-                  name="MessageContentCn"
+                  id="Message_cs"
+                  name="Message_cs"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1945,13 +1945,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEn"
+              key="Message_en"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEn"
+                for="Message_en"
                 sm={2}
                 tag="label"
                 widths={
@@ -1979,8 +1979,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={true}
-                  id="MessageContentEn"
-                  name="MessageContentEn"
+                  id="Message_en"
+                  name="Message_en"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -1990,13 +1990,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEs"
+              key="Message_es"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEs"
+                for="Message_es"
                 sm={2}
                 tag="label"
                 widths={
@@ -2024,8 +2024,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={true}
-                  id="MessageContentEs"
-                  name="MessageContentEs"
+                  id="Message_es"
+                  name="Message_es"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2035,13 +2035,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentId"
+              key="Message_id"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentId"
+                for="Message_id"
                 sm={2}
                 tag="label"
                 widths={
@@ -2069,8 +2069,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={true}
-                  id="MessageContentId"
-                  name="MessageContentId"
+                  id="Message_id"
+                  name="Message_id"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2080,13 +2080,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentJp"
+              key="Message_jp"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentJp"
+                for="Message_jp"
                 sm={2}
                 tag="label"
                 widths={
@@ -2114,8 +2114,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={true}
-                  id="MessageContentJp"
-                  name="MessageContentJp"
+                  id="Message_jp"
+                  name="Message_jp"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2125,13 +2125,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentKr"
+              key="Message_ko"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentKr"
+                for="Message_ko"
                 sm={2}
                 tag="label"
                 widths={
@@ -2159,8 +2159,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={true}
-                  id="MessageContentKr"
-                  name="MessageContentKr"
+                  id="Message_ko"
+                  name="Message_ko"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2170,13 +2170,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTh"
+              key="Message_th"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTh"
+                for="Message_th"
                 sm={2}
                 tag="label"
                 widths={
@@ -2204,8 +2204,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={true}
-                  id="MessageContentTh"
-                  name="MessageContentTh"
+                  id="Message_th"
+                  name="Message_th"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2215,13 +2215,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTw"
+              key="Message_ch"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTw"
+                for="Message_ch"
                 sm={2}
                 tag="label"
                 widths={
@@ -2249,8 +2249,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={true}
-                  id="MessageContentTw"
-                  name="MessageContentTw"
+                  id="Message_ch"
+                  name="Message_ch"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2260,13 +2260,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentVi"
+              key="Message_vn"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentVi"
+                for="Message_vn"
                 sm={2}
                 tag="label"
                 widths={
@@ -2294,8 +2294,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={true}
-                  id="MessageContentVi"
-                  name="MessageContentVi"
+                  id="Message_vn"
+                  name="Message_vn"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2491,13 +2491,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentCn"
+              key="Message_cs"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentCn"
+                for="Message_cs"
                 sm={2}
                 tag="label"
                 widths={
@@ -2525,8 +2525,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentCn"
-                  name="MessageContentCn"
+                  id="Message_cs"
+                  name="Message_cs"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2536,13 +2536,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEn"
+              key="Message_en"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEn"
+                for="Message_en"
                 sm={2}
                 tag="label"
                 widths={
@@ -2570,8 +2570,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentEn"
-                  name="MessageContentEn"
+                  id="Message_en"
+                  name="Message_en"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2581,13 +2581,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentEs"
+              key="Message_es"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentEs"
+                for="Message_es"
                 sm={2}
                 tag="label"
                 widths={
@@ -2615,8 +2615,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentEs"
-                  name="MessageContentEs"
+                  id="Message_es"
+                  name="Message_es"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2626,13 +2626,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentId"
+              key="Message_id"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentId"
+                for="Message_id"
                 sm={2}
                 tag="label"
                 widths={
@@ -2660,8 +2660,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentId"
-                  name="MessageContentId"
+                  id="Message_id"
+                  name="Message_id"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2671,13 +2671,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentJp"
+              key="Message_jp"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentJp"
+                for="Message_jp"
                 sm={2}
                 tag="label"
                 widths={
@@ -2705,8 +2705,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentJp"
-                  name="MessageContentJp"
+                  id="Message_jp"
+                  name="Message_jp"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2716,13 +2716,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentKr"
+              key="Message_ko"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentKr"
+                for="Message_ko"
                 sm={2}
                 tag="label"
                 widths={
@@ -2750,8 +2750,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentKr"
-                  name="MessageContentKr"
+                  id="Message_ko"
+                  name="Message_ko"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2761,13 +2761,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTh"
+              key="Message_th"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTh"
+                for="Message_th"
                 sm={2}
                 tag="label"
                 widths={
@@ -2795,8 +2795,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentTh"
-                  name="MessageContentTh"
+                  id="Message_th"
+                  name="Message_th"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2806,13 +2806,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentTw"
+              key="Message_ch"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentTw"
+                for="Message_ch"
                 sm={2}
                 tag="label"
                 widths={
@@ -2840,8 +2840,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentTw"
-                  name="MessageContentTw"
+                  id="Message_ch"
+                  name="Message_ch"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"
@@ -2851,13 +2851,13 @@ exports[`message - components - MessageDetailForm  render correctly with update 
             </FormGroup>
             <FormGroup
               className="mb-2"
-              key="MessageContentVi"
+              key="Message_vn"
               row={true}
               tag="div"
             >
               <Label
                 className="d-flex justify-content-end align-items-center text-right"
-                for="MessageContentVi"
+                for="Message_vn"
                 sm={2}
                 tag="label"
                 widths={
@@ -2885,8 +2885,8 @@ exports[`message - components - MessageDetailForm  render correctly with update 
               >
                 <Input
                   disabled={false}
-                  id="MessageContentVi"
-                  name="MessageContentVi"
+                  id="Message_vn"
+                  name="Message_vn"
                   onChange={[Function]}
                   rows="4"
                   type="textarea"

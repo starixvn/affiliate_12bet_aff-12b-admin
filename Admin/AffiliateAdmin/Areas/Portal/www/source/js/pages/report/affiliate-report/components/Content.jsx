@@ -31,7 +31,7 @@ export class Content extends Component {
 
     handleExportExcel = async () => {
         this.props.toggleLoader(true);
-        const { param, reportTitle, currentViewLevel, isCheckedDatePicker } = this.props;
+        const { param, reportTitle, currentViewLevel } = this.props;
         const isMainView = currentViewLevel === viewLevel.main;
         const newParam = Object.assign({}, param, { IsExportExcel: true });
         const data = await this.props.fetchData(newParam, isMainView);
@@ -108,7 +108,7 @@ export class Content extends Component {
     }
 
     render() {
-        const { reportTitle, isN8B } = this.props;
+        const { reportTitle } = this.props;
         const headerRow = this._buildHeader();
 
         return (
@@ -116,13 +116,6 @@ export class Content extends Component {
                 {
                     reportTitle && (
                         <React.Fragment>
-                            {
-                                isN8B && (
-                                    <p className="affiliate-report-note">
-                                        Notes: First Comm Rate and Earning will calculate at 5th July 2020
-                                    </p>
-                                )
-                            }
                             <ReportTitle content={this._buildReportTitle()} />
                         </React.Fragment>
                     )
@@ -133,8 +126,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ reportTitle, currentViewLevel, param, isN8B, isCheckedDatePicker }) {
-    return Object.assign({}, { reportTitle, currentViewLevel, param, isN8B, isCheckedDatePicker });
+function mapStateToProps({ reportTitle, currentViewLevel, param, isCheckedDatePicker }) {
+    return Object.assign({}, { reportTitle, currentViewLevel, param, isCheckedDatePicker });
 }
 
 function mapDispatchToProps(dispatch) {

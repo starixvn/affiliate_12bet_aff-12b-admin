@@ -83,6 +83,7 @@ export class GridData extends Component {
                 <Cell header={true} rowSpan="2" colWidth={120}>Deposit Fee</Cell>
                 <Cell header={true} rowSpan="2" colWidth={120}>Withdrawal Fee</Cell>
                 <Cell header={true} rowSpan="2" colWidth={120}>Sub-Affiliate Comm Rate</Cell>
+                <Cell header={true} rowSpan="2" colWidth={70}>QM Turnover</Cell>
                 <Cell header={true} rowSpan="2" colWidth={50}>Action</Cell>
             </Row>,
             <Row key="sub-theard" className="d-none">
@@ -100,13 +101,13 @@ export class GridData extends Component {
 
         for (let tierSetting of tierSettingList) {
             const minAmount = format(tierSetting.MinAmount);
-            const minAp = format(tierSetting.MinAm);
+            const minQm = format(tierSetting.MinQm);
 
             rows.push(
                 (<Row key={`row-${tierSetting.TierId}-${tierSetting.ProductIds}`}>
                     <Cell className="text-center cell-tier">{tierSetting.TierId}</Cell>
                     <Cell className="text-right cell-tier" title={minAmount}>{minAmount}</Cell>
-                    <Cell className="text-right cell-tier" title={minAp}>{minAp}</Cell>
+                    <Cell className="text-right cell-tier" title={minQm}>{minQm}</Cell>
                     <Cell className="text-right cell-tier">{`${format(tierSetting.Commission * 100, 1)}%`}</Cell>
                 </Row>)
             );
@@ -123,7 +124,7 @@ export class GridData extends Component {
             for (let index = 0; index < gridData.length; index++) {
                 const item = gridData[index];
 
-                const { TierSettingList, P2pDeductionList, PlatformFeeList, KillRateFeeList, DepositFee, WithdrawalFee, SubAffCommRate, ...group } = item;
+                const { TierSettingList, P2pDeductionList, PlatformFeeList, KillRateFeeList, DepositFee, WithdrawalFee, SubAffCommRate, QmTurnover, ...group } = item;
                 const tierSettingRowSpan = TierSettingList.length;
                 const platformFeeRowSpan = PlatformFeeList.length;
                 const p2pDeductionRowSpan = P2pDeductionList.length;
@@ -132,6 +133,7 @@ export class GridData extends Component {
                 const depositFee = DepositFee && (DepositFee.IsDeductedPercent ? `${format(DepositFee.DeductedPercentage * 100, 1)}%` : formatDecimal(Number(DepositFee.DeductedAmount)));
                 const withdrawalFee = WithdrawalFee && (WithdrawalFee.IsDeductedPercent ? `${format(WithdrawalFee.DeductedPercentage * 100, 1)}%` : formatDecimal(Number(WithdrawalFee.DeductedAmount)));
                 const subAffCommRate = SubAffCommRate && `${format(SubAffCommRate * 100, 1)}%`;
+                const qmTurnover = formatDecimal(Number(QmTurnover));
 
                 const isTurnover = item.GroupTypeId === groupTypeList.Turnover;
 
@@ -168,6 +170,7 @@ export class GridData extends Component {
                                         <Cell className="text-right" rowSpan={rowSpan} title={depositFee}>{depositFee}</Cell>
                                         <Cell className="text-right" rowSpan={rowSpan} title={withdrawalFee}>{withdrawalFee}</Cell>
                                         <Cell className="text-right" rowSpan={rowSpan} title={subAffCommRate}>{subAffCommRate}</Cell>
+                                        <Cell className="text-right" rowSpan={rowSpan} title={qmTurnover}>{qmTurnover}</Cell>
                                         <Cell className="text-center" rowSpan={rowSpan}>
                                             <button className="btn btn-link" onClick={(e) => this.props.onEdit(item.GroupId)}>
                                                 <span className="oi oi-pencil text-secondary"></span>
@@ -214,7 +217,7 @@ export class GridData extends Component {
                             </Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Tier</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">{isTurnover ? MinNetTurnover : MinNetWin}</Cell>
-                            <Cell className="font-weight-bold text-center cell-deduction">Min Active Player</Cell>
+                            <Cell className="font-weight-bold text-center cell-deduction">Min Qualified Member</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Rev. Share%</Cell>
                         </Row>
                     );

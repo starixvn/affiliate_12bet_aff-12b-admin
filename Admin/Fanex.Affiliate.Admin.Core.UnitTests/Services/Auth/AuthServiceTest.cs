@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
             // Arrange
             var onUserId = 123456;
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(re => re.Execute(It.IsAny<LoginOnUserCommand>(), It.IsAny<string>())).Callback<INonQueryCommand>(c => (c as LoginOnUserCommand).OnUserId = onUserId);
+            dynamicRepository.Setup(re => re.Execute(It.IsAny<LoginOnUserCommand>(), It.IsAny<string>())).Callback<INonQueryCommand, string>((c, _) => (c as LoginOnUserCommand).OnUserId = onUserId);
 
             // Action
             var service = new AuthService(dynamicRepository.Object);
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
             service.Logout(123);
 
             // Assert
-            dynamicRepository.Received().Execute(Arg.Any<LogoutCommand>(), It.IsAny<string>());
+            dynamicRepository.Received().Execute(Arg.Any<LogoutCommand>());
         }
 
         [Fact]

@@ -277,6 +277,9 @@
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
     <Content Include="Areas\Portal\www\dist\vendors\moment.js" />
     <Content Include="Areas\Portal\www\dist\vendors\react.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnoverSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\QmTurnOverSetting.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\redux\QmTurnOverSetting.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerConfigs.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerFake.js" />
     <Content Include="favicon.ico" />

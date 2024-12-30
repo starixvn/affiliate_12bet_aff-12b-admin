@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Fanex.Affiliate.Admin.Core.DTO.Message
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.Message
 {
     public class MessageDetail
     {
