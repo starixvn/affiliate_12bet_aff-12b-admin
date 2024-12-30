@@ -1,18 +1,17 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using System.Collections.Generic;
-using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
@@ -23,9 +22,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         private readonly IAppSetting AppSetting;
         private readonly ISystemService LanguageService;
         private readonly ICaptchaService CaptchaService;
-        private readonly IAccountRepository AccountRepo;
         private readonly IAuthService AuthService;
         private readonly IVerificationService VerificationService;
+        private readonly IAccountService AccountService;
 
         public VerificationAccountControllerTest()
         {
@@ -33,9 +32,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             AppSetting = Substitute.For<IAppSetting>();
             LanguageService = NSubstituteMockingHelper.FakeLanguageService();
             CaptchaService = Substitute.For<ICaptchaService>();
-            AccountRepo = Substitute.For<IAccountRepository>();
             AuthService = Substitute.For<IAuthService>();
             VerificationService = Substitute.For<IVerificationService>();
+            AccountService = Substitute.For<IAccountService>();
 
             MockingUrlHelperExtension.FakeGetFavoriteShortedLanguage();
         }
@@ -62,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             SessionService.VerificationSession.Returns(new VerificationSession());
             var userInfo = GetUserInfo();
             userInfo.Email = email;
-            AccountRepo.GetUserInfoById(0, false).ReturnsForAnyArgs(userInfo);
+            AccountService.GetUserInfoById(0, false).ReturnsForAnyArgs(userInfo);
             var hidedEmail = EmailHelper.HideEmailPart(userInfo.Email);
 
             var result = controller.Index() as ViewResult;
@@ -163,7 +162,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sendCodeResult = GetSuccessSendCodeResult();
             VerificationService.SendCode(null).ReturnsForAnyArgs(sendCodeResult);
             SetUpAppSetting();
-            AccountRepo.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
+            AccountService.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
             CaptchaService.IsValid(null, null, null).ReturnsForAnyArgs(true);
             VerificationService.IsValidOtp(null).ReturnsForAnyArgs(true);
             var loginResult = GetFailedLoginResult();
@@ -205,7 +204,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sendCodeResult = GetSuccessSendCodeResult();
             VerificationService.SendCode(null).ReturnsForAnyArgs(sendCodeResult);
             SetUpAppSetting();
-            AccountRepo.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
+            AccountService.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
             CaptchaService.IsValid(null, null, null).ReturnsForAnyArgs(true);
             VerificationService.IsValidOtp(null).ReturnsForAnyArgs(false);
 
@@ -226,7 +225,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sendCodeResult = GetSuccessSendCodeResult();
             VerificationService.SendCode(null).ReturnsForAnyArgs(sendCodeResult);
             SetUpAppSetting();
-            AccountRepo.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
+            AccountService.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
             CaptchaService.IsValid(null, null, null).ReturnsForAnyArgs(true);
             VerificationService.IsValidOtp(null).ReturnsForAnyArgs(true);
             AuthService.GetLoginResult(null, false).ReturnsForAnyArgs(new LoginResultViewModel());
@@ -248,7 +247,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sendCodeResult = GetSuccessSendCodeResult();
             VerificationService.SendCode(null).ReturnsForAnyArgs(sendCodeResult);
             SetUpAppSetting();
-            AccountRepo.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
+            AccountService.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
             CaptchaService.IsValid(null, null, null).ReturnsForAnyArgs(true);
             VerificationService.IsValidOtp(null).ReturnsForAnyArgs(true);
             var loginResult = GetSuccessLoginResult();
@@ -271,8 +270,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sendCodeResult = GetSuccessSendCodeResult();
             VerificationService.SendCode(null).ReturnsForAnyArgs(sendCodeResult);
             SetUpAppSetting();
-            AccountRepo.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
-            AccountRepo.GetAccountInfo(0).ReturnsForAnyArgs(CreateAccountInfo());
+            AccountService.GetUserInfoById(0, false).ReturnsForAnyArgs(new UserInfo());
+            AccountService.GetAccountInfo(0).ReturnsForAnyArgs(CreateAccountInfo());
             CaptchaService.IsValid(null, null, null).ReturnsForAnyArgs(true);
             VerificationService.IsValidOtp(null).ReturnsForAnyArgs(true);
             var loginResult = GetSuccessLoginResult();
@@ -343,7 +342,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             AppSetting.GetValue("SendCodeIntervalInMinute").Returns("20");
         }
 
-        private SendCodeResult GetSuccessSendCodeResult()
+        private static SendCodeResult GetSuccessSendCodeResult()
             => new SendCodeResult
             {
                 CanSendCode = true,
@@ -352,7 +351,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 NewSendCodeTime = 1234
             };
 
-        private SendCodeResult GetFailedSendCodeResult()
+        private static SendCodeResult GetFailedSendCodeResult()
             => new SendCodeResult
             {
                 CanSendCode = false,
@@ -360,13 +359,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
         private VerificationAccountController CreateController()
         {
-            var controller = new VerificationAccountController(SessionService,
+            var controller = new VerificationAccountController(
+                SessionService,
                 AppSetting,
                 LanguageService,
                 CaptchaService,
-                AccountRepo,
                 AuthService,
-                VerificationService);
+                VerificationService,
+                AccountService);
 
             NSubstituteMockingHelper.FakeController(controller);
             NSubstituteMockingHelper.FakeAjaxRequest(controller.Request);

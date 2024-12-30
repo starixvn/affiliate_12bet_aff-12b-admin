@@ -1,15 +1,14 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers.UserPanel;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Moq;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
@@ -21,10 +20,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         {
             // Arrange
             var expectedMemberList = new List<Member> { new Member(), new Member() };
-            var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(m => m.GetMemberList(It.IsAny<MemberParam>())).Returns(expectedMemberList);
+            var memberService = new Mock<IMemberService>();
+            memberService.Setup(m => m.GetMemberList(It.IsAny<MemberParam>())).Returns(expectedMemberList);
 
-            var controller = CreateController(memberRepository.Object);
+            var controller = CreateController(memberService.Object);
 
             // Action
             var actionResult = controller.Index() as ViewResult;
@@ -42,15 +41,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             MemberParam passedMemberParam = null;
             var expectedMemberList = new List<Member>();
-            var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(m => m.GetMemberList(It.IsAny<MemberParam>()))
+            var memberService = new Mock<IMemberService>();
+            memberService.Setup(m => m.GetMemberList(It.IsAny<MemberParam>()))
                 .Returns(expectedMemberList)
                 .Callback<MemberParam>(p => passedMemberParam = p);
 
             var sessionService = MockingHelper.GetSessionService();
             sessionService.IsInternal = isInternal;
 
-            var controller = CreateController(memberRepository.Object, sessionService);
+            var controller = CreateController(memberService.Object, sessionService);
 
             var expectedParam = new MemberParam
             {
@@ -77,12 +76,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             const int ExpectedTotalItem = 100;
             var memberList = new List<Member>();
-            var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(m => m.GetMemberList(It.IsAny<MemberParam>()))
+            var memberService = new Mock<IMemberService>();
+            memberService.Setup(m => m.GetMemberList(It.IsAny<MemberParam>()))
                 .Returns(memberList)
                 .Callback<MemberParam>(p => p.NRows = ExpectedTotalItem);
 
-            var controller = CreateController(memberRepository.Object);
+            var controller = CreateController(memberService.Object);
 
             // Action
             controller.Index();
@@ -100,19 +99,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void GetMemberList_WhenCall_CallRepositoryWithCorrectParam(bool isInternal)
         {
             // Arrange
-            var memberRepository = new Mock<IMemberRepository>();
+            var memberService = new Mock<IMemberService>();
 
             var sessionService = MockingHelper.GetSessionService();
             sessionService.IsInternal = isInternal;
 
-            var controller = CreateController(memberRepository.Object, sessionService);
+            var controller = CreateController(memberService.Object, sessionService);
             var memberParam = new MemberParam();
 
             // Action
             controller.GetMemberList(memberParam);
 
             // Assert
-            memberRepository.Verify(m => m.GetMemberList(memberParam), Times.Once);
+            memberService.Verify(m => m.GetMemberList(memberParam), Times.Once);
             Assert.Equal(isInternal, memberParam.IsInternal);
             Assert.Equal(Constant.DefaultAffId, memberParam.AffId);
         }
@@ -122,10 +121,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         {
             // Arrange
             var memberList = new List<Member>();
-            var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(m => m.GetMemberList(It.IsAny<MemberParam>())).Returns(memberList);
+            var memberService = new Mock<IMemberService>();
+            memberService.Setup(m => m.GetMemberList(It.IsAny<MemberParam>())).Returns(memberList);
 
-            var controller = CreateController(memberRepository.Object);
+            var controller = CreateController(memberService.Object);
 
             const string ExpectedViewName = "~/Views/UserPanel/Member/_DataContent.cshtml";
 
@@ -145,12 +144,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             const int ExpectedStartRowNumber = 21;
 
             var memberList = new List<Member>();
-            var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(m => m.GetMemberList(It.IsAny<MemberParam>()))
+            var memberService = new Mock<IMemberService>();
+            memberService.Setup(m => m.GetMemberList(It.IsAny<MemberParam>()))
                 .Returns(memberList)
                 .Callback<MemberParam>(p => p.NRows = ExpectedTotalItem);
 
-            var controller = CreateController(memberRepository.Object);
+            var controller = CreateController(memberService.Object);
             var memberParam = new MemberParam { PageSize = 20, PageIndex = 2 };
 
             // Action
@@ -164,14 +163,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         }
 
         private static MemberController CreateController(
-            IMemberRepository memberRepository,
+            IMemberService memberService,
             ISessionService sessionService = null,
             ISystemService languageService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
             languageService = languageService ?? Mock.Of<ISystemService>();
 
-            return new MemberController(sessionService, languageService, memberRepository);
+            return new MemberController(sessionService, languageService, memberService);
         }
     }
 }

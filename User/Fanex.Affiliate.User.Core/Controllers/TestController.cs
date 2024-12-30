@@ -287,7 +287,7 @@
                 User = GetUserInfo(language, isText),
                 MailContact = _mailContact,
                 TransId = TranId,
-                RequestDate = DateTime.Now.Date,
+                RequestDate = DateTimeHelper.Today,
                 Amount = Amount,
                 RootDomain = rootUrl,
                 MailTo = _mailContact,

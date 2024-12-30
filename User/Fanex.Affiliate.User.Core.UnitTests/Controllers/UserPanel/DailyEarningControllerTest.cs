@@ -1,21 +1,21 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
+
     public class DailyEarningControllerTest
     {
         [Fact]
@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             {
                 AffId = Constant.DefaultAffId,
                 ProductId = 1,
-                MonthDate = new DateTime(2018, 11, 08),
+                MonthDate = DateTimeHelper.CreateDateTime(2018, 11, 08),
                 IsOnlyContent = false,
                 IsInternal = false
             };
@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 }
             };
 
-            var expectDailyEarningResult = new DailyEarningResult
+            var expectDailyEarningResult = new EntityResult<DailyEarning>()
             {
                 MainDataList = new List<DailyEarning>(),
                 Total = null
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             };
 
             var productList = new List<ProductItem>();
-            var dailyEarningResult = new DailyEarningResult();
+            var dailyEarningResult = new EntityResult<DailyEarning>();
 
             var statementHistoryService = new Mock<IStatementHistoryService>();
             statementHistoryService.Setup(s => s.GetProductList(param.IsInternal)).Returns(productList);
@@ -110,7 +110,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             };
 
             var productList = new List<ProductItem>();
-            var dailyEarningResult = new DailyEarningResult();
+            var dailyEarningResult = new EntityResult<DailyEarning>();
 
             var statementHistoryService = new Mock<IStatementHistoryService>();
             statementHistoryService.Setup(s => s.GetProductList(param.IsInternal)).Returns(productList);
@@ -138,7 +138,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             };
 
             var productList = new List<ProductItem>();
-            var dailyEarningResult = new DailyEarningResult();
+            var dailyEarningResult = new EntityResult<DailyEarning>();
 
             var statementHistoryService = new Mock<IStatementHistoryService>();
             statementHistoryService.Setup(s => s.GetProductList(param.IsInternal)).Returns(productList);
@@ -156,15 +156,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private static DailyEarningController CreateController(
              IStatementHistoryService statementHistoryService = null,
              ISessionService sessionService = null,
-             ISystemService languageService = null,
-             ICurrencyRepository currencyRepository = null)
+             ISystemService languageService = null)
         {
-            var appSetting = Mock.Of<IAppSetting>();
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
-            var fakeCurrencyRepository = currencyRepository ?? Mock.Of<ICurrencyRepository>();
             var fakeStatementHistoryService = statementHistoryService ?? Mock.Of<IStatementHistoryService>();
-            var controller = new DailyEarningController(fakeSessionService, fakeLanguageService, fakeStatementHistoryService, fakeCurrencyRepository);
+            var controller = new DailyEarningController(fakeSessionService, fakeLanguageService, fakeStatementHistoryService);
 
             return MockingHelper.FakeController(controller) as DailyEarningController;
         }

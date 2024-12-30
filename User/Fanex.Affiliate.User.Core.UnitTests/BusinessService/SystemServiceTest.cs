@@ -5,25 +5,27 @@
     using System.IO;
     using System.Linq;
     using System.Web;
+    using Criterias;
+    using Data.Repository;
     using DTO;
+    using DTO.UserPanel.MediaGallery;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository;
-    using TestHelper;
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
+    using TestHelper;
     using Xunit;
 
-    public class LanguageServiceTest
+    public class SystemServiceTest
     {
-        private readonly ISystemRepository Repo;
+        private readonly IDynamicRepository Repository;
         private readonly ISessionService SessionService;
         private readonly IMemoryCacheService CacheServive;
 
-        public LanguageServiceTest()
+        public SystemServiceTest()
         {
-            Repo = Substitute.For<ISystemRepository>();
+            Repository = Substitute.For<IDynamicRepository>();
             SessionService = NSubstituteMockingHelper.FakeSessionService();
             CacheServive = Substitute.For<IMemoryCacheService>();
         }
@@ -74,34 +76,32 @@
             var service = CreateService();
             CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).Returns(CreateLanguages());
 
-            service.GetLanguageList();
+            service.GetLanguageList(false);
 
-            Repo.DidNotReceiveWithAnyArgs().GetLanguageList(false);
+            Repository.DidNotReceiveWithAnyArgs().Fetch<Language>(Arg.Any<GetLanguageListCriteria>());
         }
 
         [Fact]
         public void GetSystemLanguage_WhenNotHaveInfoInCacheAndRepo_ReturnEmptyList()
         {
-            var service = CreateService();
             CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).ReturnsNull();
-            Repo.GetLanguageList(false).ReturnsNullForAnyArgs();
+            Repository.Fetch<LanguageType>(new GetLanguageListCriteria(false)).ReturnsForAnyArgs(new List<LanguageType>());
+            var service = CreateService();
 
-            var result = service.GetLanguageList();
+            var result = service.GetLanguageList(false);
 
-            Repo.ReceivedWithAnyArgs().GetLanguageList(false);
             Assert.Empty(result);
         }
 
         [Fact]
         public void GetSystemLange_WhenRepoHaveInfoButCacheIsNot_SaveInfoInCache()
         {
-            var service = CreateService();
             CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).ReturnsNull();
-            Repo.GetLanguageList(false).ReturnsForAnyArgs(CreateLanguages());
+            Repository.Fetch<LanguageType>(Arg.Any<GetLanguageListCriteria>()).ReturnsForAnyArgs(CreateLanguageTypes());
+            var service = CreateService();
 
             var result = service.GetLanguageList();
 
-            Repo.ReceivedWithAnyArgs().GetLanguageList(false);
             CacheServive.ReceivedWithAnyArgs().Set(null, default(IEnumerable<Language>));
             Assert.NotEmpty(result);
         }
@@ -139,7 +139,22 @@
                 }
             };
 
+        private static IEnumerable<LanguageType> CreateLanguageTypes()
+            => new List<LanguageType>
+            {
+                new LanguageType
+                {
+                    DisplayName = "VietNam", MarketId = "vi-VN", MarketName = "VietNam", MarketNativeName = "Viet Nam",
+                    ShortedCode = "vn"
+                },
+                new LanguageType
+                {
+                    DisplayName = "American", MarketId = "en-US", MarketName = "American", MarketNativeName = "American",
+                    ShortedCode = "en"
+                }
+            };
+
         private SystemService CreateService()
-            => new SystemService(Repo, SessionService, CacheServive);
+            => new SystemService(Repository, SessionService, CacheServive);
     }
 }

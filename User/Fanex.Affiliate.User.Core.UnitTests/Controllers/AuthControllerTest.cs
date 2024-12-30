@@ -3,22 +3,20 @@
     using System.Collections.Generic;
     using System.Security.Principal;
     using System.Web.Mvc;
-    using Core.Extensions;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.Controllers;
-    using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.DTO;
-    using Fanex.Affiliate.User.Core.DTO.Auth;
-    using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-    using Fanex.Affiliate.User.Core.MetalModels;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
-    using Fanex.Affiliate.User.Core.Resources;
-    using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-    using Fanex.Affiliate.User.Core.Utilities;
-    using Fanex.Affiliate.User.Core.ViewModels;
-    using Moq;
+    using Core.BusinessService;
+    using Core.Controllers;
+    using Core.CoreService;
+    using Core.Utilities;
+    using DTO;
+    using DTO.Auth;
+    using DTO.UserPanel;
+    using DTO.VerificationAccount;
+    using MetalModels;
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
+    using Resources;
+    using TestHelper;
+    using ViewModels;
     using Xunit;
 
     public class AuthControllerTest
@@ -28,7 +26,7 @@
         private readonly ISystemService LanguageService;
         private readonly IAuthService AuthService;
         private readonly ICaptchaService CaptchaService;
-        private readonly IAccountRepository AccountRepository;
+        private readonly IAccountService AccountService;
 
         public AuthControllerTest()
         {
@@ -37,7 +35,7 @@
             LanguageService = NSubstituteMockingHelper.FakeLanguageService();
             AuthService = Substitute.For<IAuthService>();
             CaptchaService = Substitute.For<ICaptchaService>();
-            AccountRepository = Substitute.For<IAccountRepository>();
+            AccountService = Substitute.For<IAccountService>();
 
             MockingUrlHelperExtension.FakeGetFavoriteShortedLanguage();
         }
@@ -241,7 +239,7 @@
             var loginResult = GetValidLoginResultViewModel();
             AuthService.GetLoginResult(null, false).ReturnsForAnyArgs(loginResult);
             AppSetting.AllowedAffiliateTypes.Returns(new List<string> { "Asian" });
-            AccountRepository.GetAccountInfo(Arg.Any<int>()).Returns(new DTO.UserPanel.AccountInformation { DefaultBaseCurrency = 1 });
+            AccountService.GetAccountInfo(Arg.Any<int>()).Returns(new AccountInformation { DefaultBaseCurrency = 1 });
 
             var result = controller.SignIn(param) as JsonResult;
             var model = result.Data as ResultInfo;
@@ -321,7 +319,7 @@
             var loginResult = GetValidLoginResultViewModel();
             AuthService.GetLoginResult(default(UserLoginParam), true).ReturnsForAnyArgs(loginResult);
             AppSetting.AllowedAffiliateTypes.Returns(new List<string> { "Asian" });
-            AccountRepository.GetAccountInfo(Arg.Any<int>()).Returns(new DTO.UserPanel.AccountInformation { DefaultBaseCurrency = 1 });
+            AccountService.GetAccountInfo(Arg.Any<int>()).Returns(new AccountInformation { DefaultBaseCurrency = 1 });
 
             var result = controller.AdminLogin(param) as RedirectResult;
 
@@ -382,7 +380,7 @@
         }
 
         private AuthController CreateController()
-            => new AuthController(SessionService, AppSetting, LanguageService, AuthService, AccountRepository, CaptchaService);
+            => new AuthController(SessionService, AppSetting, LanguageService, AuthService, CaptchaService, AccountService);
 
         private UserLoginParam GetValidParam()
             => new UserLoginParam

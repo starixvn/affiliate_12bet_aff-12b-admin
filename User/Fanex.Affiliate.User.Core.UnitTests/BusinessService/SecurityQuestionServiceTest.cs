@@ -1,40 +1,42 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.Repository;
-using NSubstitute;
-using System.Collections.Generic;
-using Xunit;
-
-namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
+    using System.Collections.Generic;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using NSubstitute;
+    using Xunit;
+
     public class SecurityQuestionServiceTest
     {
-        private readonly ISecurityQuestionRepository SecurityQuestionRepo;
+        private readonly IDynamicRepository _repository;
 
         public SecurityQuestionServiceTest()
         {
-            SecurityQuestionRepo = Substitute.For<ISecurityQuestionRepository>();
+            _repository = Substitute.For<IDynamicRepository>();
         }
 
         [Fact]
         public void GetSecurityQuestions_WhenCall_RepoCall()
         {
             var service = CreateService();
-            SecurityQuestionRepo.GetSecurityQuestions(null).ReturnsForAnyArgs(CreateSecurityQuestion());
+            _repository.Fetch<SecurityQuestion>(Arg.Any<GetSecurityQuestionsCriteria>())
+                .Returns(CreateSecurityQuestion());
 
             var result = service.GetSecurityQuestions("vn");
 
-            SecurityQuestionRepo.Received().GetSecurityQuestions("vn");
+            _repository.Received().Fetch<SecurityQuestion>(Arg.Any<GetSecurityQuestionsCriteria>());
             Assert.NotEmpty(result);
         }
 
-        private IEnumerable<SecurityQuestion> CreateSecurityQuestion()
+        private static IEnumerable<SecurityQuestion> CreateSecurityQuestion()
             => new List<SecurityQuestion>
             {
                 new SecurityQuestion {Question = "abc", QuestionId = 1 }
             };
 
         private SecurityQuestionService CreateService()
-            => new SecurityQuestionService(SecurityQuestionRepo);
+            => new SecurityQuestionService(_repository);
     }
 }

@@ -2,21 +2,30 @@
 {
     using System.Threading.Tasks;
     using Apis;
+    using Commands.Account;
     using Core.Constants.Apis;
     using Core.Utilities;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
     using DTO.Apis;
     using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.DTO;
-    using Fanex.Affiliate.User.Core.MetalModels;
-    using Fanex.Affiliate.User.Core.MetalModels.Email;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
-    using Fanex.Affiliate.User.Core.Resources;
-    using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+    using MetalModels;
+    using MetalModels.Email;
     using Moq;
+    using Resources;
+    using TestHelper;
     using Xunit;
 
     public class AccountServiceTest
     {
+        private readonly Mock<IDynamicRepository> _repository;
+
+        public AccountServiceTest()
+        {
+            _repository = new Mock<IDynamicRepository> { CallBase = true };
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -24,19 +33,19 @@
         {
             // Arrange
             var signUpParam = new UserSignUpParam { IsLocal = isLocalTest };
-            var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(new ResultInfo());
+            _repository.Setup(_ => _.Execute(It.IsAny<CreateAffiliateCommand>())).Returns(1);
+
             var mockApi = new Mock<ILicenseeApi>();
             mockApi.Setup(a => a.GetCustomerInfoAsync(It.IsAny<string>(), It.IsAny<int>()))
                             .ReturnsAsync(new MemberSiteCustomerInfo { Status = CustomerStatus.RUNNING });
 
-            var accountService = CreateAccountService(accountRepository.Object, mockApi.Object);
+            var accountService = CreateAccountService(_repository.Object, mockApi.Object);
 
             // Action
             await accountService.CreateAffiliateAsync(signUpParam, new EmailSignUpParam());
 
             // Assert
-            accountRepository.Verify(ac => ac.CreateAffiliate(signUpParam), Times.Once);
+            _repository.Verify(ac => ac.Execute(It.IsAny<CreateAffiliateCommand>()), Times.Once);
         }
 
         [Fact]
@@ -45,16 +54,14 @@
             // Arrange
             const string PlayerUserName = "player";
             var signUpParam = new UserSignUpParam { Player_UserName = PlayerUserName };
-            var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(new ResultInfo { IsOk = false, Message = "Failed" });
 
-            var accountService = CreateAccountService(accountRepository.Object);
+            var accountService = CreateAccountService(_repository.Object);
 
             // Action
             await accountService.CreateAffiliateAsync(signUpParam, new EmailSignUpParam());
 
             // Assert
-            accountRepository.Verify(ac => ac.CreateAffiliate(signUpParam), Times.Never);
+            _repository.Verify(ac => ac.Execute(It.IsAny<CreateAffiliateCommand>()), Times.Never);
         }
 
         [Fact]
@@ -69,7 +76,7 @@
 
             var expectedResult = new ResultInfo { IsOk = false, Message = Lang.UserNameClosed };
 
-            var accountService = CreateAccountService(Mock.Of<IAccountRepository>(), mockApi.Object);
+            var accountService = CreateAccountService(_repository.Object, mockApi.Object);
 
             // Action
             var result = await accountService.CreateAffiliateAsync(signUpParam, new EmailSignUpParam());
@@ -91,7 +98,7 @@
 
             var expectedResult = new ResultInfo { IsOk = false, Message = Lang.UserNameSuspended };
 
-            var accountService = CreateAccountService(Mock.Of<IAccountRepository>(), mockApi.Object);
+            var accountService = CreateAccountService(_repository.Object, mockApi.Object);
 
             // Action
             var result = await accountService.CreateAffiliateAsync(signUpParam, new EmailSignUpParam());
@@ -112,8 +119,7 @@
                             .ReturnsAsync(new MemberSiteCustomerInfo { Status = null });
 
             var expectedResult = new ResultInfo { IsOk = false, Message = Lang.errDepositDBConnectFailed };
-
-            var accountService = CreateAccountService(Mock.Of<IAccountRepository>(), mockApi.Object);
+            var accountService = CreateAccountService(_repository.Object, mockApi.Object);
 
             // Action
             var result = await accountService.CreateAffiliateAsync(signUpParam, new EmailSignUpParam());
@@ -129,19 +135,27 @@
             // Arrange
             var expectedResultInfo = new ResultInfo { IsOk = true, Message = string.Empty };
             var signUpParam = new UserSignUpParam { IsLocal = true };
-            var accountRepository = new Mock<IAccountRepository>();
             var mockApi = new Mock<ILicenseeApi>();
-            accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(expectedResultInfo);
+            _repository.Setup(_ => _.Execute(It.IsAny<CreateAffiliateCommand>()))
+                .Returns(0)
+                .Callback<CreateAffiliateCommand>(r =>
+                {
+                    r.ErrCode = 0;
+                    r.ErrMsg = string.Empty;
+                });
+
             mockApi.Setup(a => a.GetCustomerInfoAsync(It.IsAny<string>(), It.IsAny<int>()))
                  .ReturnsAsync(new MemberSiteCustomerInfo { Status = CustomerStatus.RUNNING, CurrencyId = 123 });
 
-            var accountService = CreateAccountService(accountRepository.Object, mockApi.Object);
+            var accountService = CreateAccountService(_repository.Object, mockApi.Object);
 
             // Action
             var result = await accountService.CreateAffiliateAsync(signUpParam, new EmailSignUpParam());
 
             // Assert
-            Assert.Equal(expectedResultInfo, result);
+            Assert.Equal(expectedResultInfo.Code, result.Code);
+            Assert.Equal(expectedResultInfo.IsOk, result.IsOk);
+            Assert.Equal(expectedResultInfo.Message, result.Message);
         }
 
         [Fact]
@@ -151,17 +165,17 @@
             const string ExpectedCsdEmail = Constant.DefaultMailContact;
             NoticeEmailParam passedParam = null;
 
-            var signUpParam = new UserSignUpParam { IsLocal = true, Email = Constant.DefaultMailUser };
-            var accountRepository = GetMockAccountRepository(signUpParam: signUpParam);
-
+            var signUpParam = new UserSignUpParam { IsLocal = true, Email = Constant.DefaultMailUser, UserName = Constant.DefaultUserName };
             var emailService = new Mock<IEmailService>();
             var mockApi = new Mock<ILicenseeApi>();
+
             emailService.Setup(e => e.SendNoticeEmailToCsd(It.IsAny<NoticeEmailParam>()))
                             .Callback<NoticeEmailParam>(p => passedParam = p);
+
             mockApi.Setup(a => a.GetCustomerInfoAsync(It.IsAny<string>(), It.IsAny<int>()))
                             .ReturnsAsync(new MemberSiteCustomerInfo { Status = CustomerStatus.RUNNING });
 
-            var accountService = CreateAccountService(accountRepository, mockApi.Object, emailService.Object);
+            var accountService = CreateAccountService(_repository.Object, mockApi.Object, emailService.Object);
 
             var emailParam = CreateEmailParam();
 
@@ -179,10 +193,9 @@
         {
             //Arrange
             var affId = 1;
-            var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(a => a.GetGeneralAffInfo(affId, It.IsAny<string>())).Returns(new GeneralAffInfo { AffId = affId, AffCode = "12345" });
-
-            var service = CreateAccountService(accountRepository.Object);
+            _repository.Setup(_ => _.Get<GeneralAffInfo>(It.IsAny<GetGeneralAffInfoCriteria>()))
+                .Returns(new GeneralAffInfo { AffId = 1, AffCode = "100", IsMaxSubLevel = false });
+            var service = CreateAccountService(_repository.Object);
 
             //Action
             var result = service.GetGeneralAffInfo(affId, string.Empty);
@@ -196,7 +209,7 @@
         public void GetGeneralAffInfo_WhenCallWithInvalid_ReturnCorrectData()
         {
             //Arrange
-            var service = CreateAccountService(Mock.Of<IAccountRepository>());
+            var service = CreateAccountService(_repository.Object);
 
             //Action
             var result = service.GetGeneralAffInfo(123, string.Empty);
@@ -213,7 +226,7 @@
             mockApi.Setup(a => a.GetCustomerInfoAsync(It.IsAny<string>(), It.IsAny<int>()))
                  .ReturnsAsync(new MemberSiteCustomerInfo { Status = CustomerStatus.RUNNING });
 
-            var accountService = CreateAccountService(Mock.Of<IAccountRepository>(), mockApi.Object);
+            var accountService = CreateAccountService(_repository.Object, mockApi.Object);
 
             // Action
             var result = await accountService.CheckAndUnlockUserIfLocked("123abc");
@@ -231,7 +244,7 @@
             mockApi.Setup(a => a.GetCustomerInfoAsync(It.IsAny<string>(), It.IsAny<int>()))
                  .ReturnsAsync(new MemberSiteCustomerInfo { Status = CustomerStatus.LOCKED });
 
-            var accountService = CreateAccountService(Mock.Of<IAccountRepository>(), mockApi.Object);
+            var accountService = CreateAccountService(_repository.Object, mockApi.Object);
 
             // Action
             var result = await accountService.CheckAndUnlockUserIfLocked("123abc");
@@ -240,23 +253,9 @@
             Assert.True(result.IsOk);
         }
 
-        private static AccountService CreateAccountService(IAccountRepository repository, ILicenseeApi api = null, IEmailService emailService = null)
+        private static AccountService CreateAccountService(IDynamicRepository repository, ILicenseeApi api = null, IEmailService emailService = null)
         {
             return new AccountService(repository, emailService ?? Mock.Of<IEmailService>(), api ?? Mock.Of<ILicenseeApi>(), Mock.Of<IAppSetting>());
-        }
-
-        private IAccountRepository GetMockAccountRepository(UserSignUpParam signUpParam = null)
-        {
-            var accountRepository = new Mock<IAccountRepository>();
-            signUpParam = signUpParam ?? new UserSignUpParam { IsLocal = true };
-            accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam))
-                    .Returns(new ResultInfo { IsOk = true })
-                    .Callback<UserSignUpParam>(p =>
-                    {
-                        p.UserName = Constant.DefaultUserName;
-                    });
-
-            return accountRepository.Object;
         }
 
         private EmailSignUpParam CreateEmailParam()

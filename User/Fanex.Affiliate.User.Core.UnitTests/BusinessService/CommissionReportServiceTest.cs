@@ -1,30 +1,33 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System;
     using System.Collections.Generic;
     using Core.Constants;
+    using Core.Utilities;
+    using Criterias;
+    using Data.Repository;
+    using DTO.UserPanel;
     using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.DTO.UserPanel;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using MetalModels.UserPanel;
-    using NSubstitute;
+    using Moq;
     using Xunit;
 
     public class CommissionReportServiceTest
     {
-        private ICommissionReportRepository Repo { get; }
+        private readonly Mock<IDynamicRepository> _repository;
 
         public CommissionReportServiceTest()
         {
-            Repo = Substitute.For<ICommissionReportRepository>();
+            _repository = new Mock<IDynamicRepository> { CallBase = true };
         }
 
         [Fact]
         public void GenerateCommissionReportData_WhenRepoReturnDataNotNull_NotThrowException()
         {
-            var service = new CommissionReportService(Repo);
-            var param = new CommissionReportParam { AffId = 1, BaseCurrency = 20, WinLostDate = DateTime.Now };
-            Repo.GetAffiliateCommission(param).ReturnsForAnyArgs(GetAffiliateCommission());
+            var param = new CommissionReportParam { AffId = 1, BaseCurrency = 20, WinLostDate = DateTimeHelper.Now };
+            _repository.Setup(_ => _.Fetch<AffiliateCommission>(It.IsAny<GetAffiliateCommissionCriteria>()))
+                .Returns(GetAffiliateCommission());
+
+            var service = new CommissionReportService(_repository.Object);
 
             var result = service.GenerateCommissionReportData(param);
 
@@ -36,7 +39,7 @@
             {
             new AffiliateCommission
             {
-                MonthDate = new DateTime(2020, 01,01),
+                MonthDate = DateTimeHelper.CreateDateTime(2020, 01,01),
                 Bonus = 100,
                 CalculatedType = 0,
                 Commission = 100,
@@ -51,7 +54,7 @@
             },
             new AffiliateCommission
             {
-                MonthDate = new DateTime(2020, 01,01),
+                MonthDate = DateTimeHelper.CreateDateTime(2020, 01,01),
                 Bonus = 100,
                 CalculatedType = 0,
                 Commission = 100,
@@ -66,7 +69,7 @@
             },
             new AffiliateCommission
             {
-                MonthDate = new DateTime(2020, 01,01),
+                MonthDate = DateTimeHelper.CreateDateTime(2020, 01, 01),
                 Bonus = 100,
                 CalculatedType = 1,
                 Commission = 100,
@@ -81,7 +84,7 @@
             },
             new AffiliateCommission
             {
-                MonthDate = new DateTime(2020, 02,01),
+                MonthDate = DateTimeHelper.CreateDateTime(2020, 02,01),
                 Bonus = 100,
                 CalculatedType = 2,
                 Commission = 100,

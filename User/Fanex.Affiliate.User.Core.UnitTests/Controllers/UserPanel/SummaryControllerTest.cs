@@ -7,17 +7,18 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 using Moq;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
+
     public class SummaryControllerTest
     {
-        private readonly DateTime monthDate = new DateTime(2019, 12, 20);
+        private readonly DateTime monthDate = DateTimeHelper.CreateDateTime(2019, 12, 20);
 
         [Fact]
         public void Index_WhenCall_ReturnCorrectPartialView()
@@ -114,7 +115,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
-            var partialViewResult = controller.SubAffDetails(new SubAffDetailParam { MonthDate = new DateTime(2020, 12, 01) }) as PartialViewResult;
+            var partialViewResult = controller.SubAffDetails(new SubAffDetailParam { MonthDate = DateTimeHelper.CreateDateTime(2020, 12, 01) }) as PartialViewResult;
             var result = partialViewResult.Model as List<SubAffDetail>;
             // Assert
             Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/SubAffDetails.cshtml", partialViewResult.ViewName);

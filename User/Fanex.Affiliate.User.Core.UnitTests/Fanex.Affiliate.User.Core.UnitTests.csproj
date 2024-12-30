@@ -58,6 +58,9 @@
     <Reference Include="Fanex.Data, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.4.2.2\lib\net461\Fanex.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Data.Repository, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.Repository.4.2.2\lib\net461\Fanex.Data.Repository.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.1.1\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
@@ -153,7 +156,7 @@
     <Compile Include="BusinessService\CommissionReportServiceTest.cs" />
     <Compile Include="BusinessService\CryptographyServiceTest.cs" />
     <Compile Include="BusinessService\EmailServiceTest.cs" />
-    <Compile Include="BusinessService\LanguageServiceTest.cs" />
+    <Compile Include="BusinessService\SystemServiceTest.cs" />
     <Compile Include="BusinessService\MarketingServiceTest.cs" />
     <Compile Include="BusinessService\NewsLetterServiceTest.cs" />
     <Compile Include="BusinessService\NewsServiceTest.cs" />
@@ -184,7 +187,6 @@
     <Compile Include="Controllers\UserPanel\MarketingControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MediaGalleryControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberControllerTest.cs" />
-    <Compile Include="Controllers\UserPanel\MemberTransactionControllerTest.cs" />
     <Compile Include="Controllers\SignupControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\NewsLetterControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\OffersForMeControllerTest.cs" />

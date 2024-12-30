@@ -1,20 +1,18 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 using Xunit;
-using Fanex.Affiliate.User.Core.DTO.Auth;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
@@ -25,7 +23,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private readonly ISystemService LanguageService;
         private readonly IAppSetting AppSetting;
         private readonly IStatementHistoryService Repo;
-        private readonly ICurrencyRepository CurrencyRepo;
 
         public StatementHistoryControllerTest()
         {
@@ -33,7 +30,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             LanguageService = NSubstituteMockingHelper.FakeLanguageService();
             AppSetting = Substitute.For<IAppSetting>();
             Repo = Substitute.For<IStatementHistoryService>();
-            CurrencyRepo = Substitute.For<ICurrencyRepository>();
         }
 
         [Theory]
@@ -41,7 +37,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         [InlineData("abc")]
         public void Index_WhenCallWithNoParm_ReturnCorrectViewWithDefaultValue(string baseCurrency)
         {
-            CurrencyRepo.GetBaseCurrencyList().Returns(new List<Currency> { new Currency { ExchangeId = 123, Code = "USD" } });
+            LanguageService.GetBaseCurrencyList().Returns(new List<Currency> { new Currency { ExchangeId = 123, Code = "USD" } });
             var defaultParam = new StatementHistoryParam
             {
                 AffId = SessionService.UserSession.AffId,
@@ -133,7 +129,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                     param.NRows = 1;
                 });
             Repo.GetStatementHistory(Arg.Any<StatementHistoryParam>()).Returns(new List<StatementHistory> {
-            new StatementHistory { TransType = transType, MonthDate = new DateTime(2020, 12, 07), Status = status, CalculatedType = calculatedType, Description = "test" }
+            new StatementHistory { TransType = transType, MonthDate = DateTimeHelper.CreateDateTime(2020, 12, 07), Status = status, CalculatedType = calculatedType, Description = "test" }
         });
 
             var result = controller.Index(param) as PartialViewResult;
@@ -171,7 +167,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                     param.NRows = 1;
                 });
             Repo.GetStatementHistory(Arg.Any<StatementHistoryParam>()).Returns(new List<StatementHistory> {
-            new StatementHistory { TransType = transType, MonthDate = new DateTime(2020, 12, 07), Status = status, CalculatedType = null, Description = "test" }
+            new StatementHistory { TransType = transType, MonthDate = DateTimeHelper.CreateDateTime(2020, 12, 07), Status = status, CalculatedType = null, Description = "test" }
         });
 
             var result = controller.Index(param) as PartialViewResult;
@@ -221,20 +217,20 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                     param.NRows = 4;
                 });
             Repo.GetStatementHistory(Arg.Any<StatementHistoryParam>()).Returns(new List<StatementHistory> {
-                    new StatementHistory { TransType = TransType.SubAffBonus, MonthDate = new DateTime(2020, 09, 10), Status = null, CalculatedType = null },
+                    new StatementHistory { TransType = TransType.SubAffBonus, MonthDate = DateTimeHelper.CreateDateTime(2020, 09, 10), Status = null, CalculatedType = null },
 
-                    new StatementHistory { TransType = TransType.Commission, MonthDate = new DateTime(2020, 07, 10), Status = null, CalculatedType = null },
+                    new StatementHistory { TransType = TransType.Commission, MonthDate = DateTimeHelper.CreateDateTime(2020, 07, 10), Status = null, CalculatedType = null },
 
-                    new StatementHistory { TransType = TransType.Commission, MonthDate = new DateTime(2020, 06, 10), Status = null, CalculatedType = null },
-                    new StatementHistory { TransType = TransType.SubAffBonus, MonthDate = new DateTime(2020, 06, 10), Status = null, CalculatedType = null },
+                    new StatementHistory { TransType = TransType.Commission, MonthDate = DateTimeHelper.CreateDateTime(2020, 06, 10), Status = null, CalculatedType = null },
+                    new StatementHistory { TransType = TransType.SubAffBonus, MonthDate = DateTimeHelper.CreateDateTime(2020, 06, 10), Status = null, CalculatedType = null },
 
-                    new StatementHistory { TransType = TransType.Commission, MonthDate = new DateTime(2020, 05, 10), Status = null, CalculatedType = null },
-                    new StatementHistory { TransType = TransType.SubAffBonus, MonthDate = new DateTime(2020, 05, 10), Status = "Current", CalculatedType = 1 },
+                    new StatementHistory { TransType = TransType.Commission, MonthDate = DateTimeHelper.CreateDateTime(2020, 05, 10), Status = null, CalculatedType = null },
+                    new StatementHistory { TransType = TransType.SubAffBonus, MonthDate = DateTimeHelper.CreateDateTime(2020, 05, 10), Status = "Current", CalculatedType = 1 },
 
-                    new StatementHistory { TransType = TransType.Commission, MonthDate = new DateTime(2020, 04, 10), Status = "Current", CalculatedType = 1 },
-                    new StatementHistory { TransType = TransType.SubAffBonus, MonthDate = new DateTime(2020, 04, 10), Status = "Current", CalculatedType = 1 },
+                    new StatementHistory { TransType = TransType.Commission, MonthDate = DateTimeHelper.CreateDateTime(2020, 04, 10), Status = "Current", CalculatedType = 1 },
+                    new StatementHistory { TransType = TransType.SubAffBonus, MonthDate = DateTimeHelper.CreateDateTime(2020, 04, 10), Status = "Current", CalculatedType = 1 },
 
-                    new StatementHistory { TransType = TransType.Payment, MonthDate = new DateTime(2020, 03, 10), Status = "Current", CalculatedType = 0 }
+                    new StatementHistory { TransType = TransType.Payment, MonthDate = DateTimeHelper.CreateDateTime(2020, 03, 10), Status = "Current", CalculatedType = 0 }
                 });
 
             var result = controller.Index(param) as PartialViewResult;
@@ -246,6 +242,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         }
 
         private StatementHistoryController CreateController()
-            => new StatementHistoryController(SessionService, LanguageService, AppSetting, Repo, CurrencyRepo);
+            => new StatementHistoryController(SessionService, LanguageService, AppSetting, Repo);
     }
 }

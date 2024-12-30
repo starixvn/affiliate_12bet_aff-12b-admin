@@ -8,7 +8,6 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
@@ -21,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
     {
         private readonly ISessionService SessionService;
         private readonly IAppSetting AppSetting;
-        private readonly IAccountRepository AccountRepo;
+        private readonly IAccountService AccountService;
         private readonly ICryptographyService CryptographyService;
         private readonly ISystemService LanguageService;
         private readonly IEmailService EmailService;
@@ -34,7 +33,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             SessionService = NSubstituteMockingHelper.FakeSessionService();
             AppSetting = Substitute.For<IAppSetting>();
-            AccountRepo = Substitute.For<IAccountRepository>();
+            AccountService = Substitute.For<IAccountService>();
             CryptographyService = Substitute.For<ICryptographyService>();
             LanguageService = NSubstituteMockingHelper.FakeLanguageService();
             EmailService = Substitute.For<IEmailService>();
@@ -76,12 +75,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = CreateController();
             NSubstituteMockingHelper.FakeController(controller);
             controller.Url = new UrlHelper(new RequestContext(controller.HttpContext, controller.RouteData));
-            AccountRepo.GetUserInfoByEmail(default(UserInfoByEmailParam))
-                .ReturnsForAnyArgs(c =>
-                {
-                    ((UserInfoByEmailParam)c[0]).ErrCode = errCode;
-                    return new UserInfo();
-                });
+            AccountService.GetUserInfoByEmail(default(UserInfoByEmailParam))
+                .ReturnsForAnyArgs(c => (errCode, new UserInfo()));
             SetupHttpContext();
 
             var result = controller.Forgot(Email) as JsonResult;
@@ -96,12 +91,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = CreateController();
             NSubstituteMockingHelper.FakeController(controller);
             controller.Url = new UrlHelper(new RequestContext(controller.HttpContext, controller.RouteData));
-            AccountRepo.GetUserInfoByEmail(default(UserInfoByEmailParam))
-                .ReturnsForAnyArgs(c =>
-                {
-                    ((UserInfoByEmailParam)c[0]).ErrCode = 0;
-                    return new UserInfo();
-                });
+            AccountService.GetUserInfoByEmail(default(UserInfoByEmailParam))
+                .ReturnsForAnyArgs(c => (0, new UserInfo()));
             SetupHttpContext();
 
             var result = controller.Forgot(Email) as JsonResult;
@@ -131,12 +122,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             var controller = CreateController();
             NSubstituteMockingHelper.FakeController(controller, GetControllerRouteData());
-            AccountRepo.RecoverPassword(default(PasswordRecoveryParam))
-                .ReturnsForAnyArgs(c =>
-                {
-                    ((PasswordRecoveryParam)c[0]).ErrCode = InvalidUrlAddress;
-                    return new UserInfo();
-                });
+            AccountService.RecoverPassword(default(PasswordRecoveryParam))
+                .ReturnsForAnyArgs(c => (InvalidUrlAddress, new UserInfo()));
 
             var result = controller.RecoverPassword("abc", 1) as RedirectToRouteResult;
 
@@ -150,12 +137,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             var controller = CreateController();
             NSubstituteMockingHelper.FakeController(controller, GetControllerRouteData());
-            AccountRepo.RecoverPassword(default(PasswordRecoveryParam))
-                .ReturnsForAnyArgs(c =>
-                {
-                    ((PasswordRecoveryParam)c[0]).ErrCode = 0;
-                    return new UserInfo();
-                });
+            AccountService.RecoverPassword(default(PasswordRecoveryParam))
+                .ReturnsForAnyArgs(c => (0, new UserInfo()));
 
             var result = controller.RecoverPassword("abc", 1) as RedirectToRouteResult;
 
@@ -263,7 +246,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             SessionService.IsInternal.Returns(false);
             SetupHttpContext();
             CryptographyService.EncryptPassword(default(string), default(string)).ReturnsForAnyArgs("12345");
-            AccountRepo.UpdatePassword(default(UpdatePasswordParam)).ReturnsForAnyArgs(new ResultInfo { IsOk = false, Message = "error" });
+            AccountService.UpdatePassword(default(UpdatePasswordParam)).ReturnsForAnyArgs(new ResultInfo { IsOk = false, Message = "error" });
 
             var result = controller.Update(param) as JsonResult;
             var data = result.Data as ResultInfo;
@@ -282,7 +265,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             SessionService.IsInternal.Returns(false);
             SetupHttpContext();
             CryptographyService.EncryptPassword(default(string), default(string)).ReturnsForAnyArgs("12345");
-            AccountRepo.UpdatePassword(default(UpdatePasswordParam)).ReturnsForAnyArgs(new ResultInfo { IsOk = true });
+            AccountService.UpdatePassword(default(UpdatePasswordParam)).ReturnsForAnyArgs(new ResultInfo { IsOk = true });
 
             var result = controller.Update(param) as JsonResult;
             var data = result.Data as ResultInfo;
@@ -315,6 +298,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         private PasswordController CreateController()
-            => new PasswordController(SessionService, AppSetting, AccountRepo, CryptographyService, LanguageService, EmailService);
+            => new PasswordController(SessionService, AppSetting, AccountService, CryptographyService, LanguageService, EmailService);
     }
 }

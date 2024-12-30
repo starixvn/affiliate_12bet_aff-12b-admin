@@ -2,32 +2,34 @@
 {
     using System;
     using System.Collections.Generic;
+    using Commands.Marketing;
+    using Criterias;
+    using Data.Repository;
     using DTO;
     using DTO.UserPanel;
+    using DTO.UserPanel.MediaGallery;
     using Enum;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-    using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
-    using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
     using Fanex.Affiliate.User.Core.Utilities;
     using MetalModels;
+    using MetalModels.UserPanel;
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
+    using TestHelper;
     using Xunit;
 
     public class MarketingServiceTest
     {
-        private readonly IMarketingRepository Repo;
+        private readonly IDynamicRepository Repo;
         private readonly IMemoryCacheService CacheService;
         private readonly ISystemService LanguageService;
         private readonly IAppSetting AppSetting;
 
         public MarketingServiceTest()
         {
-            Repo = Substitute.For<IMarketingRepository>();
+            Repo = Substitute.For<IDynamicRepository>();
             CacheService = Substitute.For<IMemoryCacheService>();
             LanguageService = NSubstituteMockingHelper.FakeLanguageService();
             AppSetting = Substitute.For<IAppSetting>();
@@ -41,7 +43,7 @@
 
             service.GetCategoryList(false, AffiliateLinkType.AffiliateLink, false);
 
-            Repo.DidNotReceiveWithAnyArgs().GetCategoryList(null, false);
+            Repo.DidNotReceiveWithAnyArgs().Fetch<CategoryType>(Arg.Any<GetCategoryListCriteria>());
         }
 
         [Theory]
@@ -51,11 +53,11 @@
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<CategoryType>>(null).ReturnsNullForAnyArgs();
-            Repo.GetCategoryList(null, false).ReturnsNullForAnyArgs();
+            Repo.Fetch<CategoryType>(Arg.Any<GetCategoryListCriteria>()).ReturnsNullForAnyArgs();
 
             var result = service.GetCategoryList(isMediaPage, AffiliateLinkType.AffiliateLink, false);
 
-            Repo.ReceivedWithAnyArgs().GetCategoryList(null, false);
+            Repo.ReceivedWithAnyArgs().Fetch<CategoryType>(Arg.Any<GetCategoryListCriteria>());
             CacheService.ReceivedWithAnyArgs().Set(null, default(IEnumerable<CategoryType>));
             Assert.Empty(result);
         }
@@ -65,11 +67,11 @@
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList).ReturnsNull();
-            Repo.GetCurrencyList(false).ReturnsForAnyArgs(Constant.CurrencyType);
+            Repo.Fetch<CurrencyType>(Arg.Any<GetCurrencyListCriteria>()).ReturnsForAnyArgs(Constant.CurrencyType);
 
             service.GetCurrencyList(false);
 
-            Repo.Received().GetCurrencyList(false);
+            Repo.Received().Fetch<CurrencyType>(Arg.Any<GetCurrencyListCriteria>());
             CacheService.Received().Set(CacheKey.CurrencyList, Arg.Compat.Any<IEnumerable<CurrencyType>>());
         }
 
@@ -78,7 +80,7 @@
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList).ReturnsNull();
-            Repo.GetCurrencyList(false).ReturnsNullForAnyArgs();
+            Repo.Fetch<CurrencyType>(Arg.Any<GetCurrencyListCriteria>()).ReturnsNullForAnyArgs();
 
             var result = service.GetCurrencyList(false);
 
@@ -93,7 +95,7 @@
 
             service.GetCurrencyList(false);
 
-            Repo.DidNotReceive().GetCurrencyList(false);
+            Repo.DidNotReceive().Fetch<CurrencyType>(Arg.Any<GetCurrencyListCriteria>());
             CacheService.DidNotReceive().Set(CacheKey.CurrencyList, Arg.Compat.Any<IEnumerable<CurrencyType>>());
         }
 
@@ -115,7 +117,7 @@
 
             service.GetSizeList(param, false);
 
-            Repo.Received().GetSizeList(param, false);
+            Repo.Received().Fetch<SizeType>(Arg.Any<GetSizeListCriteria>());
         }
 
         [Fact]
@@ -123,11 +125,11 @@
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).ReturnsNull();
-            Repo.GetAvailableDomainList(0, true, false).ReturnsForAnyArgs(Constant.DomainList);
+            Repo.Fetch<Domain>(Arg.Any<GetAffDomainListCriteria>()).ReturnsForAnyArgs(Constant.DomainList);
 
             var result = service.GetAvailableDomainList(0, AffiliateLinkType.AffiliateLink, false);
 
-            Repo.Received().GetAvailableDomainList(0, true, false);
+            Repo.Received().Fetch<Domain>(Arg.Any<GetAffDomainListCriteria>());
             CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
             Assert.NotEmpty(result);
         }
@@ -137,11 +139,11 @@
         {
             var service = CreateService();
             CacheService.Get<IEnumerable<Domain>>(CacheKey.SubDomainList).ReturnsNull();
-            Repo.GetAvailableDomainList(0, true, false).ReturnsNullForAnyArgs();
+            Repo.Fetch<Domain>(Arg.Any<GetSubAffDomainListCriteria>()).ReturnsNullForAnyArgs();
 
             var result = service.GetAvailableDomainList(0, AffiliateLinkType.SubAffiliateLink, false);
 
-            Repo.Received().GetAvailableDomainList(0, false, false);
+            Repo.Received().Fetch<Domain>(Arg.Any<GetSubAffDomainListCriteria>());
             CacheService.Received().Set(CacheKey.SubDomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
             Assert.Empty(result);
         }
@@ -206,12 +208,12 @@
             var service = CreateService();
             var param = CreateMarketingBannerParam();
             var bannerList = CreateMarketingItemList(language);
-            Repo.GetBannerList(param).Returns(bannerList);
+            Repo.Fetch<MarketingItem>(Arg.Any<GetBannerListCriteria>()).Returns(bannerList);
             LanguageService.GetLanguageList().Returns(GetLanguageList());
 
             var result = service.GetBannerList(param);
 
-            Repo.Received().GetBannerList(param);
+            Repo.Received().Fetch<MarketingItem>(Arg.Any<GetBannerListCriteria>());
             Assert.Equal(bannerList, result);
         }
 
@@ -220,12 +222,12 @@
         {
             var service = CreateService();
             var param = CreateMarketingBannerParam();
-            Repo.GetBannerList(param).Returns(new List<MarketingItem>());
+            Repo.Fetch<MarketingItem>(Arg.Any<GetBannerListCriteria>()).Returns(new List<MarketingItem>());
             LanguageService.GetLanguageList().Returns(GetLanguageList());
 
             var result = service.GetBannerList(param);
 
-            Repo.Received().GetBannerList(param);
+            Repo.Received().Fetch<MarketingItem>(Arg.Any<GetBannerListCriteria>());
             Assert.Empty(result);
         }
 
@@ -236,7 +238,7 @@
 
             service.GetLandingPageList(string.Empty, false);
 
-            Repo.Received().GetLandingPageList(false);
+            Repo.Received().Fetch<LandingPage>(Arg.Any<GetLandingPageListCriteria>());
         }
 
         [Fact]
@@ -290,19 +292,19 @@
         [InlineData(0, "", true)]
         public void AddMarketingChannel_WhenCall_RepoCall(int code, string errMsg, bool isOk)
         {
-            var resultInfoExpected = new ResultInfo
-            {
-                Code = code,
-                Message = errMsg,
-                IsOk = isOk
-            };
-
             var service = CreateService();
-            Repo.AddMarketingChannel(Arg.Any<int>(), Arg.Any<string>(), Arg.Any<string>()).Returns(resultInfoExpected);
+            Repo.Execute(Arg.Any<AddMarketingChannelCommand>())
+                .Returns(0)
+                .AndDoes(call =>
+                {
+                    var command = call.Arg<AddMarketingChannelCommand>();
+                    command.ErrMsg = errMsg;
+                    command.ErrCode = code;
+                });
 
             var result = service.AddMarketingChannel(1, "xyz");
 
-            Repo.Received().AddMarketingChannel(1, "xyz", "xyz");
+            Repo.Received().Execute(Arg.Any<AddMarketingChannelCommand>());
             Assert.Equal(isOk, result.IsOk);
         }
 
@@ -313,7 +315,7 @@
 
             service.GetChannels(123);
 
-            Repo.Received().GetMarketingChannels(123);
+            Repo.Received().Fetch<MarketingChannel>(Arg.Any<GetMarketingChannelsCriteria>());
         }
 
         [Theory]
@@ -323,19 +325,20 @@
         [InlineData(0, "", true)]
         public void ToggleMarketingLink_WhenCall_RepoCall(int code, string errMsg, bool isOk)
         {
-            var resultInfoExpected = new ResultInfo
-            {
-                Code = code,
-                Message = errMsg,
-                IsOk = isOk
-            };
             var service = CreateService();
             var param = new MarketingLinkParam();
-            Repo.ToggleMarketingLink(Arg.Any<MarketingLinkParam>()).Returns(resultInfoExpected);
+            Repo.Execute(Arg.Any<ToggleMarketingLinkCommand>())
+                .Returns(0)
+                .AndDoes(call =>
+                {
+                    var command = call.Arg<ToggleMarketingLinkCommand>();
+                    command.ErrMsg = errMsg;
+                    command.ErrCode = code;
+                });
 
             var result = service.ToggleMarketingLink(param);
 
-            Repo.Received().ToggleMarketingLink(param);
+            Repo.Received().Execute(Arg.Any<ToggleMarketingLinkCommand>());
             Assert.Equal(isOk, result.IsOk);
         }
 
@@ -346,7 +349,7 @@
 
             service.GetUsingMarketingLinks(123);
 
-            Repo.Received().GetUsingMarketingLink(123);
+            Repo.Received().Fetch<MarketingChannelLink>(Arg.Any<GetUsingMarketingLinkCriteria>());
         }
 
         private MarketingBannerParam CreateMarketingBannerParam()
