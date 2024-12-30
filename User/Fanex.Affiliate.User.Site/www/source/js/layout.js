@@ -25,7 +25,6 @@ var Layout = (function ($) {
             _me.registerAjaxHandlerError();
             _me.initEvent();
             _me.renderHotNews();
-            _me.renderContactManagerDialog();
         },
         initEvent: function () {
             $("#selectedLanguage").on("click", function (e) {
@@ -129,29 +128,6 @@ var Layout = (function ($) {
                     $marquee.css("animation-duration", timeTaken + "s");
                 }
             });
-        },
-
-        renderContactManagerDialog: function () {
-            window.setTimeout(function () {
-                let hasDialogStorage = window.sessionStorage.getItem("__Contact_Dialog");
-                let isShowLoginDialog = $("#loginDialog").is(":visible");
-
-                if (!hasDialogStorage && !isShowLoginDialog) {
-                    $.ajax({
-                        type: "GET",
-                        url: _me.handleResolveRelativeLangUrl("ContactUs/AffiliateManager"),
-                        dataType: "html",
-                        cache: false,
-                        success: function (response) {
-                            $("#contactAffManager").html(response);
-
-                            $("#contactManagerDialog").modal({ backdrop: "static" });
-
-                            window.sessionStorage.setItem("__Contact_Dialog", "true");
-                        }
-                    });
-                }
-            }, 30000);
         },
 
         changeLanguage: function (selectedLanguage) {
