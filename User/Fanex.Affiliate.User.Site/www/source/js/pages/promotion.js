@@ -15,9 +15,8 @@
     }
     var _me = {
         initialize: function () {
-            topBanner();
+            //topBanner();
             _me.initEvent();
-            window.sessionStorage.removeItem("__Contact_Dialog");
         },
         initEvent: function () {
             $('.promotion-banner-tracking').on('click', function (event) {

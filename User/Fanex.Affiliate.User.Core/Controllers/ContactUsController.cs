@@ -104,11 +104,5 @@
 
             return Json(result);
         }
-
-        [HttpGet]
-        public ActionResult AffiliateManager()
-        {
-            return View("~/Views/ContactUs/AffManagerPopup.cshtml", model: SessionService.CurrentLanguage);
-        }
     }
 }
