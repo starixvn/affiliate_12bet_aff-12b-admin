@@ -146,7 +146,7 @@ export class PlatformFeeSetting extends PureComponent {
                         <FormGroup check>
                             <Label check>
                                 <Input type="checkbox" name="IsActivePlayerSum" checked={IsActivePlayerSum}
-                                    onChange={() => this.handleCheck(!IsActivePlayerSum)} />Count Active Player across all products(exclude Free Bet)
+                                    onChange={() => this.handleCheck(!IsActivePlayerSum)} />Count Qualified Player across all products(exclude Free Bet)
                             </Label>
                         </FormGroup>
                     </Form>

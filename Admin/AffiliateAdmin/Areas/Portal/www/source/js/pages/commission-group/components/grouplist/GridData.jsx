@@ -83,7 +83,7 @@ export class GridData extends Component {
                 <Cell header={true} rowSpan="2" colWidth={120}>Deposit Fee</Cell>
                 <Cell header={true} rowSpan="2" colWidth={120}>Withdrawal Fee</Cell>
                 <Cell header={true} rowSpan="2" colWidth={120}>Sub-Affiliate Comm Rate</Cell>
-                <Cell header={true} rowSpan="2" colWidth={70}>QM Turnover</Cell>
+                <Cell header={true} rowSpan="2" colWidth={70}>QP Turnover</Cell>
                 <Cell header={true} rowSpan="2" colWidth={50}>Action</Cell>
             </Row>,
             <Row key="sub-theard" className="d-none">
@@ -217,7 +217,7 @@ export class GridData extends Component {
                             </Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Tier</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">{isTurnover ? MinNetTurnover : MinNetWin}</Cell>
-                            <Cell className="font-weight-bold text-center cell-deduction">Min Qualified Member</Cell>
+                            <Cell className="font-weight-bold text-center cell-deduction">Min Qualified Player</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Rev. Share%</Cell>
                         </Row>
                     );

@@ -114,7 +114,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 
             if (tierSettingList.Any(item => item.MinQm > Validation.InfinityQualifiedMember))
             {
-                UpdateResult(result, "Min QM must be lesser than or equal to 1,000,000,000!");
+                UpdateResult(result, "Min QP must be lesser than or equal to 1,000,000,000!");
             }
 
             return result;

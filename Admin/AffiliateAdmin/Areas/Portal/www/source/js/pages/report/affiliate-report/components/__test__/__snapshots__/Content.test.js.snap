@@ -70,7 +70,7 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
           SingleHeaderColumn {
             "key": "QualifiedMember",
             "showable": true,
-            "text": "Qualified Member",
+            "text": "Qualified Player",
           },
           SingleHeaderColumn {
             "key": "NoOfSubAff",
@@ -280,7 +280,7 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
           SingleHeaderColumn {
             "key": "QualifiedMember",
             "showable": true,
-            "text": "Qualified Member",
+            "text": "Qualified Player",
           },
           SingleHeaderColumn {
             "key": "NoOfSubAff",
@@ -498,7 +498,7 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
           SingleHeaderColumn {
             "key": "QualifiedMember",
             "showable": true,
-            "text": "Qualified Member",
+            "text": "Qualified Player",
           },
           SingleHeaderColumn {
             "key": "NoOfSubAff",

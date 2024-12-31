@@ -908,10 +908,10 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           </th>
           <th
             rowSpan="2"
-            title="Qualified Member"
+            title="Qualified Player"
             width={55}
           >
-            Qualified Member
+            Qualified Player
           </th>
           <th
             rowSpan="2"
@@ -1664,10 +1664,10 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </th>
     <th
       rowSpan="2"
-      title="Qualified Member"
+      title="Qualified Player"
       width={55}
     >
-      Qualified Member
+      Qualified Player
     </th>
     <th
       rowSpan="2"
@@ -1897,10 +1897,10 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </th>
     <th
       rowSpan="2"
-      title="Qualified Member"
+      title="Qualified Player"
       width={55}
     >
-      Qualified Member
+      Qualified Player
     </th>
     <th
       rowSpan="2"
@@ -2135,10 +2135,10 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
           </th>
           <th
             rowSpan="2"
-            title="Qualified Member"
+            title="Qualified Player"
             width={55}
           >
-            Qualified Member
+            Qualified Player
           </th>
           <th
             rowSpan="2"

@@ -38,7 +38,7 @@ exports[`commission group - platform fee setting should render correctly 1`] = `
             onChange={[Function]}
             type="checkbox"
           />
-          Count Active Player across all products(exclude Free Bet)
+          Count Qualified Player across all products(exclude Free Bet)
         </Label>
       </FormGroup>
     </Form>

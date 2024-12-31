@@ -46,7 +46,7 @@ exports[`commission group - TierSetting Should render correctly 1`] = `
               Min Net Win
             </th>
             <th>
-              Min Qualified Member
+              Min Qualified Player
             </th>
             <th
               style={
@@ -179,7 +179,7 @@ exports[`commission group - TierSetting Should render correctly with TierSetting
               Min Net Win
             </th>
             <th>
-              Min Qualified Member
+              Min Qualified Player
             </th>
             <th
               style={

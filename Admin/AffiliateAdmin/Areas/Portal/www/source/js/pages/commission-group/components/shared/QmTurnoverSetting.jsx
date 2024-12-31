@@ -12,8 +12,6 @@ import { money } from '../../../../modules/constants';
 export class QmTurnoverSetting extends React.Component {
     constructor(props) {
         super(props);
-
-        this.CurrentQmTurnover = this.props.selectedGroup.QmTurnover;
     }
 
     handleChange = (event) => {
@@ -28,34 +26,19 @@ export class QmTurnoverSetting extends React.Component {
     }
 
     render() {
-        const { QmTurnover, GroupId } = this.props.selectedGroup;
-        const isCreating = GroupId === 0;
+        const { QmTurnover } = this.props.selectedGroup;
 
         return (
             <fieldset>
-                <legend><h6 className="font-weight-bold">QM Turnover</h6></legend>
-                <p>A member is considered a Qualified Member (QM) when his/her turnover in a month is equivalent to</p>
-                {
-                    isCreating ? (
-                        <Form inline>
-                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                <Label for="QmTurnover" className="mr-sm-2">USD</Label>
-                                <Input name="QmTurnover" id="QmTurnover" value={format(QmTurnover)}
-                                    onChange={this.handleChange} />
-                            </FormGroup>
-                        </Form>) : (
-                        <Form inline>
-                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                <Label className="mr-sm-2">Current: {format(this.CurrentQmTurnover || 0)} | New: </Label>
-                            </FormGroup>
-                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                <Label for="QmTurnover" className="mr-sm-2">USD</Label>
-                                <Input name="QmTurnover" id="QmTurnover" value={format(QmTurnover || 0)}
-                                    onChange={this.handleChange} />
-                            </FormGroup>
-                        </Form>)
-                }
-
+                <legend><h6 className="font-weight-bold">QP Turnover</h6></legend>
+                <p>A member is considered a Qualified Player (QP) when his/her turnover in a month is equivalent to</p>
+                <Form inline>
+                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <Label for="QmTurnover" className="mr-sm-2">USD</Label>
+                        <Input name="QmTurnover" id="QmTurnover" value={format(QmTurnover)}
+                            onChange={this.handleChange} />
+                    </FormGroup>
+                </Form>
             </fieldset>
         )
     }

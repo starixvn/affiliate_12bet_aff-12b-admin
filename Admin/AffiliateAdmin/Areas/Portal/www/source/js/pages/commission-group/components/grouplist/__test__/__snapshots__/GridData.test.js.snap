@@ -224,7 +224,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly 1`] = 
       sortable={false}
       sorting={false}
     >
-      Min Qualified Member
+      Min Qualified Player
     </t>
     <t
       asc={true}
@@ -528,7 +528,7 @@ exports[`commission group - GridData  _renderGroupData - render correctly with g
       sortable={false}
       sorting={false}
     >
-      Min Qualified Member
+      Min Qualified Player
     </t>
     <t
       asc={true}
@@ -715,7 +715,7 @@ exports[`commission group - GridData  _renderHeader - render correctly 1`] = `
       sortable={false}
       sorting={false}
     >
-      QM Turnover
+      QP Turnover
     </t>
     <t
       asc={true}
@@ -1012,7 +1012,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sortable={false}
               sorting={false}
             >
-              Min Qualified Member
+              Min Qualified Player
             </t>
             <t
               asc={true}
@@ -1196,7 +1196,7 @@ exports[`commission group - GridData  Should render correctly 1`] = `
               sortable={false}
               sorting={false}
             >
-              QM Turnover
+              QP Turnover
             </t>
             <t
               asc={true}
@@ -1402,7 +1402,7 @@ exports[`commission group - GridData  Should render correctly with data is null 
               sortable={false}
               sorting={false}
             >
-              QM Turnover
+              QP Turnover
             </t>
             <t
               asc={true}
@@ -1707,7 +1707,7 @@ exports[`commission group - GridData  Should render correctly with fees is amoun
               sortable={false}
               sorting={false}
             >
-              Min Qualified Member
+              Min Qualified Player
             </t>
             <t
               asc={true}
@@ -1891,7 +1891,7 @@ exports[`commission group - GridData  Should render correctly with fees is amoun
               sortable={false}
               sorting={false}
             >
-              QM Turnover
+              QP Turnover
             </t>
             <t
               asc={true}
@@ -2199,7 +2199,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sortable={false}
               sorting={false}
             >
-              Min Qualified Member
+              Min Qualified Player
             </t>
             <t
               asc={true}
@@ -2383,7 +2383,7 @@ exports[`commission group - GridData  Should render correctly with is private gr
               sortable={false}
               sorting={false}
             >
-              QM Turnover
+              QP Turnover
             </t>
             <t
               asc={true}

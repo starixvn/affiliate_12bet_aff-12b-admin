@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
         [Range(Validation.Zero, Validation.MaxPercentage, ErrorMessage = "Sub-Affiliate Commission Rate is incorrect!")]
         public decimal SubAffCommRate { get; set; }
 
-        [Range(Validation.Zero, Money.AllowedMaxValue, ErrorMessage = "QmTurnover not valid!")]
+        [Range(Validation.Zero, Money.AllowedMaxValue, ErrorMessage = "QpTurnover not valid!")]
         public decimal QmTurnover { get; set; }
 
         public bool IsActivePlayerSum { get; set; }

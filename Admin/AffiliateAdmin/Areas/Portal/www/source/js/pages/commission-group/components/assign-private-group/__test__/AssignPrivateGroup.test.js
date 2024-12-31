@@ -228,7 +228,7 @@ describe('commission group - assign private group', () => {
 
         const result = wrapper.instance()._validate();
 
-        expect(result).toEqual({ isValid: false, messageList: ["Min Active Player must be lesser than or equal to 100,000,000,000!"] });
+        expect(result).toEqual({ isValid: false, messageList: ["Min Qualified Player must be lesser than or equal to 100,000,000,000!"] });
     })
 
     it('_validate - PlatformFeeList has ProductId is null', () => {

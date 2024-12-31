@@ -81,7 +81,7 @@ export const headerText = {
     [reportKey.Signup]: 'Signup',
     [reportKey.Fdm]: 'FDM',
     [reportKey.ActivePlayer]: 'Active Player',
-    [reportKey.QualifiedMember]: 'Qualified Member',
+    [reportKey.QualifiedMember]: 'Qualified Player',
     [reportKey.NoOfSubAff]: 'Sub-Affiliate',
     [reportKey.TotalDeposit]: 'Total Deposit',
     [reportKey.Deposit]: 'Deposit',
