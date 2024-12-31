@@ -36,6 +36,8 @@ namespace Fanex.Affiliate.Link.Constants
         private const string AFF16343_ID = "92043431";
         private const string AFF16344_ID = "92043432";
 
+        private const string AFF16341_ID = "92043429";
+
         //Fake Mapping best5689
         private const string FakeMapping_Join_Best5689_Com = "aff-12bet.nexdev.net/12BetGo,join.best5689.com";
         private const string FakeMapping_12aff_Best5689_Com = "aff-12bet.nexdev.net/12BetGo,12aff.best5689.com";
@@ -75,6 +77,8 @@ namespace Fanex.Affiliate.Link.Constants
             [AFF16342_ID] = "aff-12bet.nexdev.net/12BetGo,go.apa56.com",
             [AFF16343_ID] = "aff-12bet.nexdev.net/12BetGo,go.9012ijk.com",
             [AFF16344_ID] = "aff-12bet.nexdev.net/12BetGo,go.sbc31.com",
+
+            [AFF16341_ID] = "aff-12bet.nexdev.net/12BetGo,go.12qiuball.com",
         };
     }
 }
