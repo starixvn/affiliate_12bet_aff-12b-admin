@@ -47,7 +47,7 @@
             return FetchTDataWithPaging<MessageHistory>(param.MapTo<GetMessageListCriteria>(), param);
         }
 
-        private static LatestHotNews GetMessageData(IDictionary<string, object> obj)
+        private static LatestHotNews GetMessageData(dynamic obj)
         {
             if (obj is null)
             {
