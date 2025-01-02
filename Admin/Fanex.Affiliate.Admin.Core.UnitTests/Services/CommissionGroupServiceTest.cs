@@ -81,15 +81,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
                     Commission = 0.2m
                 }
             };
-            var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(It.IsAny<GetCommissionGroupCriteria>(), It.IsAny<string>())).Returns((commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList));
-            var service = CreateCommissionGroupService(commGroupRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(It.IsAny<GetCommissionGroupCriteria>(), It.IsAny<string>())).Returns((commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList));
+            var service = CreateCommissionGroupService(dynamicRepository.Object);
 
             // Action
             var commissionGroupList = service.GetCommissionGroupList(new GetCommissionGroupParam());
 
             // Assert
             Assert.Single(commissionGroupList);
+            dynamicRepository.Verify(d => d.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(It.Is<GetCommissionGroupCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
         }
 
         [Fact]
@@ -131,22 +132,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         {
             // Arrange
             var param = new DeleteCommissionGroupParam();
-            var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.Execute(It.IsAny<DeleteCommGroupCommand>(), It.IsAny<string>()));
-            var service = CreateCommissionGroupService(commGroupRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<DeleteCommGroupCommand>(), It.IsAny<string>()));
+            var service = CreateCommissionGroupService(dynamicRepository.Object);
 
             // Action
             var result = service.DeleteCommissionGroup(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<DeleteCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
         private static CommissionGroupService CreateCommissionGroupService(
-            IDynamicRepository commGroupRepository = null,
+            IDynamicRepository dynamicRepository = null,
             ICommGroupCommonService commGroupCommonService = null)
         {
-            var fakeCommissionGroupRepository = commGroupRepository ?? Mock.Of<IDynamicRepository>();
+            var fakeCommissionGroupRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
             var fakeCommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();
 
             return new CommissionGroupService(fakeCommissionGroupRepository, fakeCommGroupCommonService);

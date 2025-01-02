@@ -42,6 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             var result = service.GetPaymentRequestList(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<PaymentRequest>(It.Is<PaymentRequestCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
@@ -59,6 +60,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             var result = service.GetPaymentRequestDetail(transId);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<PaymentRequestDetail>(It.Is<PaymentRequestDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Equal(transId, result.TransId);
         }
 
@@ -122,6 +124,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Payment
             var result = service.UpdatePaymentRequest(new PaymentRequestUpdateParam(), new PaymentRequestUpdateEmail());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdatePaymentRequestCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 

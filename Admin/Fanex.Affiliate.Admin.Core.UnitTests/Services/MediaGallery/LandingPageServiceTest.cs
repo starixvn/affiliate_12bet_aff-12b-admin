@@ -24,6 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.GetLandingPageList();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<LandingPage>(It.Is<LandingPageCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -40,6 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.GetLandingPageById(pageId);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<LandingPage>(It.Is<LandingPageCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Equal(pageId, result.PageId);
         }
 
@@ -56,6 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.InsertLandingPage(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertLandingPageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -87,6 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.UpdateLandingPage(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateLandingPageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -118,6 +122,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.DeleteLandingPage(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<DeleteLandingPageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 

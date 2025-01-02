@@ -25,6 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
             var result = service.GetMemberList(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<MemberInfo>(It.Is<MemberCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
@@ -40,6 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
             var result = service.GetMemberDetail(123);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<PlayerActionInfo>(It.Is<MemberDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.NotNull(result);
         }
 
@@ -56,6 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
             var result = service.UpdateMember(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateMemberCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 

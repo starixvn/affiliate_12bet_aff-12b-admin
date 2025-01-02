@@ -26,6 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             var result = service.GetMainReportData(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.FetchMultiple<AffiliateReport, AffiliateReport>(It.Is<AffiliateReportCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
@@ -56,6 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
             var result = service.GetDetailReportData(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.FetchMultiple<AffiliateReport, AffiliateReport>(It.Is<AffiliateReportDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
@@ -63,14 +65,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
         public void GetReportCutOffDate_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var repository = new Mock<IDynamicRepository>();
-            repository.Setup(r => r.Get<DateTime>(It.IsAny<ReportCutOffDateCriteria>(), It.IsAny<string>())).Returns(new DateTime(2023, 11, 01));
-            var service = CreateAffiliateReportService(repository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(r => r.Get<DateTime>(It.IsAny<ReportCutOffDateCriteria>(), It.IsAny<string>())).Returns(new DateTime(2023, 11, 01));
+            var service = CreateAffiliateReportService(dynamicRepository.Object);
 
             // Action
             var result = service.GetReportCutOffDate();
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<DateTime>(It.Is<ReportCutOffDateCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Equal("01/11/2023", result.ToString("dd/MM/yyyy"));
         }
 

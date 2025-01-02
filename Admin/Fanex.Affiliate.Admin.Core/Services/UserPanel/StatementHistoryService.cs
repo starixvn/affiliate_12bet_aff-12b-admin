@@ -120,15 +120,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         private static StatementHistory GetMonthlyTotal(DateTime monthDate, StatementHistory monthlyCom, IEnumerable<StatementHistory> children)
         {
+            var firstChild = children.FirstOrDefault() ?? new StatementHistory();
+
             return new StatementHistory
             {
-                Creator = monthlyCom?.Creator ?? children.FirstOrDefault()?.Creator,
+                Creator = monthlyCom?.Creator ?? firstChild.Creator,
                 Amount = children.Sum(s => s.Amount),
                 MonthDate = monthDate,
                 Children = children,
-                Status = monthlyCom?.Status ?? children.FirstOrDefault()?.Status,
+                Status = monthlyCom?.Status ?? firstChild.Status,
                 TransType = TransType.MonthlyTotal,
-                CalculatedType = monthlyCom?.CalculatedType ?? children.FirstOrDefault()?.CalculatedType
+                CalculatedType = monthlyCom?.CalculatedType ?? firstChild.CalculatedType,
             };
         }
 

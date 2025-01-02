@@ -24,6 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Tracker
             // Assert
             Assert.Equal(isDBNull ? 0 : 123, Id);
             Assert.True(Result.IsSuccessful);
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertJobTrackerCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
         }
 
         [Fact]
@@ -31,7 +32,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Tracker
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertJobTrackerCommand>(), It.IsAny<string>()));
 
             // Action
             var service = new JobTrackerService(dynamicRepository.Object);
@@ -39,6 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Tracker
 
             // Assert
             Assert.True(result.IsSuccessful);
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateJobTrackerCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
         }
     }
 }

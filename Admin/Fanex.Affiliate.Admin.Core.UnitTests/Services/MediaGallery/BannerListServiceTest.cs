@@ -10,6 +10,7 @@ using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
 using Moq;
+using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,6 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.GetBannerList(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<BannerInfo>(It.Is<BannerCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
@@ -87,6 +89,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.GetBannerDetail(selectedBannerId, 1);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<BannerInfo>(It.Is<BannerDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Equal(selectedBannerId, result.BannerId);
         }
 
@@ -272,6 +275,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.InsertBanner(new MockingFile[1] { (new MockingFile(stream: MemoryStream, fileName: "abc.png")) }, new InsertUpdateMultipleBannersParam { InputFileNames = "", Currencies = "USD" });
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertBannerCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.False(result.IsSuccessful);
         }
 
@@ -294,6 +298,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.InsertBanner(new MockingFile[1] { (new MockingFile(stream: MemoryStream, fileName: "abc.png")) }, new InsertUpdateMultipleBannersParam { InputFileNames = "", Currencies = "USD" });
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertBannerCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -444,15 +449,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var bannerValidationService = new Mock<IBannerValidationService>();
             bannerValidationService.Setup(b => b.CheckFileInFolder(It.IsAny<string>(), It.IsAny<string>())).Returns(new ResultInfo { Code = ErrCode.ErrTheFileNameAlreadyExists });
             bannerValidationService.Setup(b => b.ValidateFile(It.IsAny<string>(), It.IsAny<int>())).Returns(new ResultInfo());
-            var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<UpdateBannerCommand>(), It.IsAny<string>()));
-            var service = CreateBannerListService(dynamicRepository.Object, appSetting.Object, systemFile.Object, bannerValidationService.Object);
+            var dynamicRepository = Substitute.For<IDynamicRepository>();
+            dynamicRepository.Get<BannerInfo>(Arg.Any<BannerDetailCriteria>(), Arg.Any<string>()).Returns(new BannerInfo { FileName = "CategoryMedia/Players/abc.png" });
+            dynamicRepository.Execute(Arg.Any<UpdateBannerCommand>(), Arg.Any<string>());
+            var service = CreateBannerListService(dynamicRepository, appSetting.Object, systemFile.Object, bannerValidationService.Object);
 
             // Action
             var result = service.UpdateBanner(new MockingFile(stream: MemoryStream, fileName: "abc.png"), new InsertUpdateMultipleBannersParam { InputFileNames = "abc.png", UserType = 1, Currencies = "USD" });
 
             // Assert
+            dynamicRepository.ReceivedWithAnyArgs().Execute(Arg.Compat.Is<UpdateBannerCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), Arg.Any<string>());
             Assert.True(result.IsSuccessful);
         }
 
@@ -505,19 +511,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             string[] bannerFolders = { "abc" };
             var param = new DeleteBannerParam { BannerIdList = "123", UserType = 1 };
-            var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(s => s.Get<BannerInfo>(It.IsAny<BannerDetailCriteria>(), It.IsAny<string>())).Returns(new BannerInfo { FileName = "abc.gif" });
-            dynamicRepository.Setup(s => s.Execute(It.IsAny<DeleteBannerCommand>(), It.IsAny<string>()));
+            var dynamicRepository = Substitute.For<IDynamicRepository>();
+            dynamicRepository.Get<BannerInfo>(Arg.Any<BannerDetailCriteria>(), Arg.Any<string>()).Returns(new BannerInfo { FileName = "abc.gif" });
+            dynamicRepository.Execute(Arg.Any<DeleteBannerCommand>(), Arg.Any<string>());
             var appSetting = new Mock<IAppSetting>();
             appSetting.Setup(a => a.BannerFolders).Returns(bannerFolders);
             var systemFile = new Mock<ISystemFile>();
             systemFile.Setup(s => s.DeleteFile(It.IsAny<string>(), It.IsAny<string>()));
-            var service = CreateBannerListService(dynamicRepository.Object, appSetting.Object, systemFile.Object);
+            var service = CreateBannerListService(dynamicRepository, appSetting.Object, systemFile.Object);
 
             // Action
             var result = service.DeleteBanners(param);
 
             // Assert
+            dynamicRepository.ReceivedWithAnyArgs().Execute(Arg.Compat.Is<DeleteBannerCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), Arg.Any<string>());
             Assert.True(result.IsSuccessful);
         }
 
@@ -552,6 +559,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var result = service.GetSizeList(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<MediaGalleryFilterItem>(It.Is<MediaSizeCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 

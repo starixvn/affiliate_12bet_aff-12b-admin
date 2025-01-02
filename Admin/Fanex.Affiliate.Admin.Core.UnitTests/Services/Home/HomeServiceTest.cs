@@ -32,6 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
             var item = result.MainData.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<OnlineListInfo>(It.Is<UserOnlineCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal("11/15/2019 00:00:00", item.LoggedInText);
             Assert.Equal("11/15/2019 00:00:00", item.LastRequestText);

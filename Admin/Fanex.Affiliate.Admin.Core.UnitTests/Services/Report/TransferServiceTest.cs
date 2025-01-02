@@ -27,6 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Report
 
             // Assert
             Assert.Single(result.MainData);
+            dynamicRepository.Verify(d => d.Fetch<TransferReport>(It.Is<TransferReportCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
         }
 
         [Fact]

@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.MediaGallery
 
         public override string GetSettingKey() => SP_NAME;
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => BannerId > 0;
 
         public int BannerId { get; set; }
 

@@ -34,6 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
             var messageInfo = result.MainData.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<MessageInfo>(It.Is<MessageCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal("09/18/2019 00:00:00", messageInfo.PostedDateText);
             Assert.Equal("09/19/2019 00:00:00", messageInfo.UpdatedDateText);
@@ -72,6 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
             var result = service.GetMessageDetail(37);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<MessageDetail>(It.Is<MessageDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.NotNull(result);
         }
 
@@ -87,6 +89,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
             var result = service.InsertMessage(new InsertUpdateMessageParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertMessageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -117,6 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Message
             var result = service.DeleteMessages(new DeleteMessageParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<DeleteMessageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
     }
