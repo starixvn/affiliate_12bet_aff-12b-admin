@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Link.Extensions
     public static class HttpRequestExtensions
     {
         private const string IPv4Regex = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$";
-        
+
         public static string GetClientIP(this HttpRequest request)
         {
             return GetClientIP(new HttpRequestWrapper(request));

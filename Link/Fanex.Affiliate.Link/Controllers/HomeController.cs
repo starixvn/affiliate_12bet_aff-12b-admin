@@ -118,7 +118,6 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain)
         {
-            var a = IsValidAffMarketing(affCode);
             if (Request.Url != null)
             {
                 var urlReferrer = Request.UrlReferrer?.AbsoluteUri;

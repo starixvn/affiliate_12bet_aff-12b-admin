@@ -28,13 +28,15 @@ namespace Fanex.Affiliate.Link.Constants
         private const string AFF15775_Code = "13768";
         private const string AFF16214_Code = "11505";
         private const string AFF13506_Code = "12117";
+        private const string AFF13065_Code = "92040153";
         private const string AFF7782_Code = "17705";
         private const string AFF16050_Code = "15879";
+
+        private const string AFF16341_Code = "92043429";
 
         private const string AFF16342_Code = "92043430";
         private const string AFF16343_Code = "92043431";
         private const string AFF16344_Code = "92043432";
-        private const string AFF13065_Code = "92040153";
 
         //Fake Mapping
         private const string FakeMapping_Join_Best5689_Com = "aff-12b.nexdev.net/Go,join.best5689.com";
@@ -71,6 +73,8 @@ namespace Fanex.Affiliate.Link.Constants
             [AFF13065_Code] = FakeMapping_12aff_Best5689_Com,
             [AFF7782_Code] = FakeMapping_12aff_Best5689_Com,
             [AFF16050_Code] = FakeMapping_12aff_Best5689_Com,
+
+            [AFF16341_Code] = "aff-12bet.nexdev.net/Go,go.12qiuball.com",
 
             [AFF16342_Code] = "aff-12b.nexdev.net/Go,go.apa56.com",
             [AFF16343_Code] = "aff-12b.nexdev.net/Go,go.9012ijk.com",

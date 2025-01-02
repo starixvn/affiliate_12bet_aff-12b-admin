@@ -2,7 +2,6 @@
 {
     using Fanex.Affiliate.Link.Helpers;
     using Fanex.Data;
-    using Fanex.Data.SqlServer;
     using System;
     using System.Web;
     using System.Web.Mvc;
@@ -22,11 +21,9 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             DbSettingProviderManager
-                .StartNewSession()
-                .WithSqlServer()
-                .UseDefaultDbSettingProvider(resourcePath: "~/App_Data")
-                .UseDefaultConnectionStringProvider()
-                .Run();
+                    .StartNewSession()
+                    .Register(false)
+                    .Run();
 
         }
 
