@@ -863,22 +863,22 @@ button.swiper-pagination-bullet {
           margin: 10px 0;
           min-height: 85.5px; }
         @media (max-width: 1095px) and (min-width: 1025px) {
-          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .title, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.hi-IN .title, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .title, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .title {
+          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .title, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-IN .title, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .title, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .title {
             min-height: 78px; } }
         @media (max-width: 1365px) and (min-width: 1025px) {
-          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.hi-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
+          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
             min-height: 102.5px; } }
         @media (max-width: 1104px) and (min-width: 1025px) {
-          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.hi-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
+          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
             min-height: 119.5px; } }
         @media (max-width: 1024px) and (min-width: 768px) {
-          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.hi-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
+          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
             min-height: 102.5px; } }
         @media (max-width: 767px) and (min-width: 389px) {
-          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.hi-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
+          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
             min-height: 68.5px; } }
         @media (max-width: 340px) {
-          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.hi-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
+          .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-US .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.en-IN .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.bn-BD .content, .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.ja-JP .content {
             min-height: 102.5px; } }
         .block-aff-testimonial .mini-block .swiper-slide .items .aff-testimonial.id-ID .title {
           min-height: 78px; }
