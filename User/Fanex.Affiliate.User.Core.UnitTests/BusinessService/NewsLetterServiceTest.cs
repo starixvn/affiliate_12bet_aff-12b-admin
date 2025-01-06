@@ -27,7 +27,7 @@
             // Arrange
             var newsLetterId = 123;
             NewsLetter newsLetter = null;
-            _repository.Setup(p => p.Get<NewsLetter>(It.IsAny<GetNewsLetterByIdCriteria>())).Returns(newsLetter);
+            _repository.Setup(p => p.Get<NewsLetter>(It.IsAny<GetNewsLetterByIdCriteria>(), string.Empty)).Returns(newsLetter);
             var service = CreateNewsLetterService(_repository.Object);
 
             // Action
@@ -53,7 +53,7 @@
                 UploadDate = DateTimeHelper.Now
             };
 
-            _repository.Setup(p => p.Get<NewsLetter>(It.IsAny<GetNewsLetterByIdCriteria>())).Returns(newsLetter);
+            _repository.Setup(p => p.Get<NewsLetter>(It.IsAny<GetNewsLetterByIdCriteria>(), string.Empty)).Returns(newsLetter);
             var httpClientUtility = new Mock<IHttpClientUtility>();
             httpClientUtility.Setup(h => h.GetContent(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(content));
             var service = CreateNewsLetterService(_repository.Object, null, httpClientUtility.Object);
@@ -69,7 +69,7 @@
         public async Task GetCurrentContent_WhenCall_ReturnEmptyString()
         {
             // Arrange
-            _repository.Setup(p => p.Fetch<NewsLetter>(It.IsAny<GetNewsLettersByDateCriteria>())).Returns(new List<NewsLetter>());
+            _repository.Setup(p => p.Fetch<NewsLetter>(It.IsAny<GetNewsLettersByDateCriteria>(), string.Empty)).Returns(new List<NewsLetter>());
 
             var service = CreateNewsLetterService(newsLetterRepository: _repository.Object);
 
@@ -87,7 +87,7 @@
             var content = "test";
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.CurrentLanguage).Returns("en-US");
-            _repository.Setup(p => p.Fetch<NewsLetter>(It.IsAny<GetNewsLettersByDateCriteria>())).Returns(new List<NewsLetter> { new NewsLetter { Language = "en-US", FileName = "abc.html" } });
+            _repository.Setup(p => p.Fetch<NewsLetter>(It.IsAny<GetNewsLettersByDateCriteria>(), string.Empty)).Returns(new List<NewsLetter> { new NewsLetter { Language = "en-US", FileName = "abc.html" } });
             var httpClientUtility = new Mock<IHttpClientUtility>();
             httpClientUtility.Setup(h => h.GetContent(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(content));
 

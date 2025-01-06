@@ -26,7 +26,7 @@
             // Arrange
             var param = new PaymentParam();
             var paymentRepository = new Mock<IDynamicRepository>();
-            paymentRepository.Setup(p => p.Fetch<Payment>(It.IsAny<GetPaymentListCriteria>())).Returns(new List<Payment> { new Payment() });
+            paymentRepository.Setup(p => p.Fetch<Payment>(It.IsAny<GetPaymentListCriteria>(), string.Empty)).Returns(new List<Payment> { new Payment() });
             var service = CreatePaymentService(paymentRepository: paymentRepository.Object);
 
             // Action
@@ -45,8 +45,8 @@
             PaymentEmailParam passedEmailParam = null;
 
             var paymentRepository = new Mock<IDynamicRepository>();
-            paymentRepository.Setup(p => p.Execute(It.IsAny<CancelPaymentRequestCommand>())).Returns(0)
-                .Callback<CancelPaymentRequestCommand>(c =>
+            paymentRepository.Setup(p => p.Execute(It.IsAny<CancelPaymentRequestCommand>(), string.Empty)).Returns(0)
+                .Callback<CancelPaymentRequestCommand, string>((c, ip) =>
                 {
                     c.ErrCode = 0;
                     c.ErrMsg = string.Empty;
@@ -86,8 +86,8 @@
             var emailParam = new PaymentEmailParam();
 
             var paymentRepository = new Mock<IDynamicRepository>();
-            paymentRepository.Setup(p => p.Execute(It.IsAny<CancelPaymentRequestCommand>())).Returns(0)
-                .Callback<CancelPaymentRequestCommand>(c =>
+            paymentRepository.Setup(p => p.Execute(It.IsAny<CancelPaymentRequestCommand>(), string.Empty)).Returns(0)
+                .Callback<CancelPaymentRequestCommand, string>((c, ip) =>
                 {
                     c.ErrCode = errCode;
                     c.ErrMsg = message;
@@ -111,13 +111,13 @@
         public void CancelPaymentRequest_CancelSuccessfullyButUserInfoIsNull_DoNotSendEmail()
         {
             // Arrange
-            // Arrange
+
             var paymentParam = new PaymentCancelParam { AffId = Constant.DefaultAffId, IsInternal = false };
             var emailParam = new PaymentEmailParam();
 
             var paymentRepository = new Mock<IDynamicRepository>();
-            paymentRepository.Setup(p => p.Execute(It.IsAny<CancelPaymentRequestCommand>())).Returns(0)
-                .Callback<CancelPaymentRequestCommand>(c =>
+            paymentRepository.Setup(p => p.Execute(It.IsAny<CancelPaymentRequestCommand>(), string.Empty)).Returns(0)
+                .Callback<CancelPaymentRequestCommand, string>((c, ip) =>
                 {
                     c.ErrCode = 0;
                     c.ErrMsg = string.Empty;
@@ -175,9 +175,9 @@
             accountService.Setup(a => a.CheckAndUnlockUserIfLocked(accountInfo.PlayerUsername)).ReturnsAsync(new ResultInfo { IsOk = true });
 
             var paymentRepository = new Mock<IDynamicRepository>();
-            paymentRepository.Setup(p => p.Execute(It.IsAny<CreatePaymentRequestCommand>()))
+            paymentRepository.Setup(p => p.Execute(It.IsAny<CreatePaymentRequestCommand>(), string.Empty))
                 .Returns(0)
-                .Callback<CreatePaymentRequestCommand>(c =>
+                .Callback<CreatePaymentRequestCommand, string>((c, ip) =>
                 {
                     c.ErrCode = 100;
                     c.ErrMsg = ErrorMessage;
@@ -199,12 +199,11 @@
             // Arrange
             PaymentEmailParam passedEmailParam = null;
             var param = CreateValidPaymentCreationParam();
-            PaymentRequestInfo paymentRequest = null;
 
             var paymentRepository = new Mock<IDynamicRepository>();
-            paymentRepository.Setup(p => p.Execute(It.IsAny<CreatePaymentRequestCommand>()))
+            paymentRepository.Setup(p => p.Execute(It.IsAny<CreatePaymentRequestCommand>(), string.Empty))
                 .Returns(0)
-                .Callback<CreatePaymentRequestCommand>(c =>
+                .Callback<CreatePaymentRequestCommand, string>((c, ip) =>
                 {
                     c.ErrCode = 0;
                     c.ErrMsg = string.Empty;
@@ -250,12 +249,11 @@
             // Arrange
             PaymentEmailParam passedEmailParam = null;
             var param = CreatePaymentCreationParamHasTransDateIsNull();
-            PaymentRequestInfo paymentRequest = null;
 
             var paymentRepository = new Mock<IDynamicRepository>();
-            paymentRepository.Setup(p => p.Execute(It.IsAny<CreatePaymentRequestCommand>()))
+            paymentRepository.Setup(p => p.Execute(It.IsAny<CreatePaymentRequestCommand>(), string.Empty))
                 .Returns(0)
-                .Callback<CreatePaymentRequestCommand>(c =>
+                .Callback<CreatePaymentRequestCommand, string>((c, ip) =>
                 {
                     c.ErrCode = 0;
                     c.ErrMsg = string.Empty;
@@ -291,12 +289,11 @@
             // Arrange
             PaymentEmailParam passedEmailParam = null;
             var param = CreateValidPaymentCreationParam();
-            PaymentRequestInfo paymentRequest = null;
 
             var paymentRepository = new Mock<IDynamicRepository>();
-            paymentRepository.Setup(p => p.Execute(It.IsAny<CreatePaymentRequestCommand>()))
+            paymentRepository.Setup(p => p.Execute(It.IsAny<CreatePaymentRequestCommand>(), string.Empty))
                 .Returns(0)
-                .Callback<CreatePaymentRequestCommand>(c =>
+                .Callback<CreatePaymentRequestCommand, string>((c, ip) =>
                 {
                     c.ErrCode = 0;
                     c.ErrMsg = string.Empty;

@@ -33,7 +33,7 @@
         {
             // Arrange
             var signUpParam = new UserSignUpParam { IsLocal = isLocalTest };
-            _repository.Setup(_ => _.Execute(It.IsAny<CreateAffiliateCommand>())).Returns(1);
+            _repository.Setup(_ => _.Execute(It.IsAny<CreateAffiliateCommand>(), string.Empty)).Returns(1);
 
             var mockApi = new Mock<ILicenseeApi>();
             mockApi.Setup(a => a.GetCustomerInfoAsync(It.IsAny<string>(), It.IsAny<int>()))
@@ -45,7 +45,7 @@
             await accountService.CreateAffiliateAsync(signUpParam, new EmailSignUpParam());
 
             // Assert
-            _repository.Verify(ac => ac.Execute(It.IsAny<CreateAffiliateCommand>()), Times.Once);
+            _repository.Verify(ac => ac.Execute(It.IsAny<CreateAffiliateCommand>(), string.Empty), Times.Once);
         }
 
         [Fact]
@@ -61,7 +61,7 @@
             await accountService.CreateAffiliateAsync(signUpParam, new EmailSignUpParam());
 
             // Assert
-            _repository.Verify(ac => ac.Execute(It.IsAny<CreateAffiliateCommand>()), Times.Never);
+            _repository.Verify(ac => ac.Execute(It.IsAny<CreateAffiliateCommand>(), string.Empty), Times.Never);
         }
 
         [Fact]
@@ -136,9 +136,9 @@
             var expectedResultInfo = new ResultInfo { IsOk = true, Message = string.Empty };
             var signUpParam = new UserSignUpParam { IsLocal = true };
             var mockApi = new Mock<ILicenseeApi>();
-            _repository.Setup(_ => _.Execute(It.IsAny<CreateAffiliateCommand>()))
+            _repository.Setup(_ => _.Execute(It.IsAny<CreateAffiliateCommand>(), string.Empty))
                 .Returns(0)
-                .Callback<CreateAffiliateCommand>(r =>
+                .Callback<CreateAffiliateCommand, string>((r, ip) =>
                 {
                     r.ErrCode = 0;
                     r.ErrMsg = string.Empty;
@@ -193,7 +193,7 @@
         {
             //Arrange
             var affId = 1;
-            _repository.Setup(_ => _.Get<GeneralAffInfo>(It.IsAny<GetGeneralAffInfoCriteria>()))
+            _repository.Setup(_ => _.Get<GeneralAffInfo>(It.IsAny<GetGeneralAffInfoCriteria>(), string.Empty))
                 .Returns(new GeneralAffInfo { AffId = 1, AffCode = "100", IsMaxSubLevel = false });
             var service = CreateAccountService(_repository.Object);
 

@@ -31,7 +31,7 @@
 
             service.GetLatestHotNews(false);
 
-            NewsRepo.Verify(ac => ac.Get<dynamic>(It.IsAny<GetLastestHotNewsCriteria>()), Times.Never);
+            NewsRepo.Verify(ac => ac.Get<dynamic>(It.IsAny<GetLastestHotNewsCriteria>(), string.Empty), Times.Never);
         }
 
         [Fact]
@@ -41,11 +41,11 @@
 
             var fetchedData = GetData();
             CacheService.Setup(x => x.Get<LatestHotNews>(CacheKey.LatestHotNews)).Returns((LatestHotNews)null);
-            NewsRepo.Setup(x => x.Get<dynamic>(It.IsAny<GetLastestHotNewsCriteria>())).Returns(fetchedData);
+            NewsRepo.Setup(x => x.Get<dynamic>(It.IsAny<GetLastestHotNewsCriteria>(), string.Empty)).Returns(fetchedData);
 
             var result = service.GetLatestHotNews(false);
 
-            NewsRepo.Verify(ac => ac.Get<dynamic>(It.IsAny<GetLastestHotNewsCriteria>()), Times.Once);
+            NewsRepo.Verify(ac => ac.Get<dynamic>(It.IsAny<GetLastestHotNewsCriteria>(), string.Empty), Times.Once);
             CacheService.Verify(x => x.Set(CacheKey.LatestHotNews, result, 120), Times.Once);
         }
 
@@ -57,7 +57,7 @@
 
             service.GetMessageList(param);
 
-            NewsRepo.Verify(ac => ac.Fetch<MessageHistory>(It.IsAny<GetMessageListCriteria>()), Times.Once);
+            NewsRepo.Verify(ac => ac.Fetch<MessageHistory>(It.IsAny<GetMessageListCriteria>(), string.Empty), Times.Once);
         }
 
         private static LatestHotNews CreateLastetHotNews()

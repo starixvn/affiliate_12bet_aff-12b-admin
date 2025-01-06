@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             accountService.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(expectedAccount);
 
             var languageService = new Mock<ISystemService>();
-            languageService.Setup(l => l.GetLanguageList(It.IsAny<bool?>())).Returns(new List<Language> { new Language { Code = "en-US", EnglishName = "English" } });
+            languageService.Setup(l => l.GetSupportedLanguages(It.IsAny<bool?>())).Returns(new List<Language> { new Language { Code = "en-US", EnglishName = "English" } });
             var controller = CreateAccountController(null, accountService.Object, languageService.Object);
 
             // Action
@@ -173,6 +173,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void PostMyAccount_UpdateSuccessfully_PassedParamCorrectly()
         {
             // Arrange
+
             UpdateAccountParam passedParam = null;
             var accountService = new Mock<IAccountService>();
             accountService.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation());
@@ -208,7 +209,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.Equal(expectedResult, JsonConvert.SerializeObject(passedParam));
         }
 
-        private UpdateAccountParam CreateExpectedParam()
+        private static UpdateAccountParam CreateExpectedParam()
         {
             var appContactList = CreateContactAppList().Select(p => new ContactApp
             {
