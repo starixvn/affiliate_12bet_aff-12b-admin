@@ -246,7 +246,6 @@
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MarketingControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MediaGalleryControllerTest.cs" />
-    <Compile Include="Controllers\UserPanel\MemberControllerTest.cs" />
     <Compile Include="Controllers\SignupControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\NewsLetterControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\OffersForMeControllerTest.cs" />

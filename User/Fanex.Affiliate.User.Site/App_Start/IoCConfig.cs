@@ -101,7 +101,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<AccountOverviewService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatisticsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<UnderMaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope(); 
-            builder.RegisterType<MemberService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+
             builder.RegisterType<QrCodeGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<NewsLetterService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<OfferService>().AsImplementedInterfaces().InstancePerLifetimeScope();

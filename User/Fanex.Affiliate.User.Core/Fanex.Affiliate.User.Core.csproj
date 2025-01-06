@@ -268,8 +268,6 @@
     <Compile Include="BusinessService\AccountOverviewService.cs" />
     <Compile Include="BusinessService\IAccountOverviewService.cs" />
     <Compile Include="BusinessService\IStatementHistoryService.cs" />
-    <Compile Include="BusinessService\IMemberService.cs" />
-    <Compile Include="BusinessService\MemberService.cs" />
     <Compile Include="BusinessService\StatementHistoryService.cs" />
     <Compile Include="Commands\Account\CreateAffiliateCommand.cs" />
     <Compile Include="Commands\Account\CreateSecretKeyCommand.cs" />
@@ -310,7 +308,6 @@
     <Compile Include="Criterias\Marketing\GetSizeListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetSubAffDomainListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetUsingMarketingLinkCriteria.cs" />
-    <Compile Include="Criterias\Member\GetMemberListCriteria.cs" />
     <Compile Include="Criterias\NewsLetter\GetNewsLetterByIdCriteria.cs" />
     <Compile Include="Criterias\NewsLetter\GetNewsLettersByDateCriteria.cs" />
     <Compile Include="Criterias\News\GetLastestHotNewsCriteria.cs" />
@@ -398,7 +395,6 @@
     <Compile Include="Controllers\UserPanel\MarketingController.cs" />
     <Compile Include="Controllers\UserPanel\MarketingLinkStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\OffersForMeController.cs" />
-    <Compile Include="Controllers\UserPanel\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NotifyController.cs" />
     <Compile Include="Controllers\UserPanel\RevenueReportController.cs" />
@@ -534,7 +530,6 @@
     <Compile Include="DTO\UserPanel\Statistics\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\Banner.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\Domain.cs" />
-    <Compile Include="DTO\UserPanel\Member.cs" />
     <Compile Include="DTO\UserPanel\MessageHistory.cs" />
     <Compile Include="DTO\UserPanel\PlayerAccountCheckingResult.cs" />
     <Compile Include="DTO\UserPanel\Statistics\ReferrerStatistics.cs" />
@@ -575,7 +570,6 @@
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
     <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
     <Compile Include="MetalModels\SendCodeParam.cs" />
-    <Compile Include="MetalModels\UserPanel\MemberParam.cs" />
     <Compile Include="MetalModels\UserPanel\MessageHistoryParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentCreationParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentParam.cs" />

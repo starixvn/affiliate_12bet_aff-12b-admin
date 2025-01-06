@@ -409,7 +409,9 @@
     </Content>
     <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\build\js\mediagallery.js" />
-    <Content Include="www\build\js\mediagallery.min.js" />
+    <Content Include="www\build\js\mediagallery.min.js">
+      <DependentUpon>mediagallery.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\overview.min.js">
       <DependentUpon>overview.js</DependentUpon>
     </Content>
@@ -855,8 +857,6 @@
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\Csd\Content.en-US.cshtml" />
-    <Content Include="Views\UserPanel\Member\Index.cshtml" />
-    <Content Include="Views\UserPanel\Member\_DataContent.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -897,10 +897,6 @@
     <Content Include="www\build\js\login.js" />
     <Content Include="www\build\js\login.min.js">
       <DependentUpon>login.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\member.js" />
-    <Content Include="www\build\js\member.min.js">
-      <DependentUpon>member.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\messagehistory.js" />
     <Content Include="www\build\js\messagehistory.min.js">
@@ -964,10 +960,6 @@
     <Content Include="www\build\styles\css\commissionreport.css" />
     <Content Include="www\build\styles\css\commissionreport.min.css">
       <DependentUpon>commissionreport.css</DependentUpon>
-    </Content>
-    <Content Include="www\build\styles\css\member.css" />
-    <Content Include="www\build\styles\css\member.min.css">
-      <DependentUpon>member.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\messagehistory.css" />
     <Content Include="www\build\styles\css\messagehistory.min.css">
@@ -1045,7 +1037,6 @@
     <Content Include="www\source\js\pages\commission-report.js" />
     <Content Include="www\source\js\pages\faq.js" />
     <Content Include="www\source\js\pages\forgotpassword.js" />
-    <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
     <Content Include="www\source\js\pages\promotion.js" />
     <Content Include="www\source\js\pages\payment-request.js" />
@@ -1183,7 +1174,6 @@
     <Content Include="www\source\styles\pages\messagehistory.scss" />
     <Content Include="www\source\styles\pages\signup.scss" />
     <Content Include="Views\Signup\_CountryOption.cshtml" />
-    <Content Include="www\source\styles\pages\member.scss" />
     <Content Include="Views\Notify\Error.cshtml" />
     <Content Include="www\source\styles\pages\notify.scss" />
     <Content Include="Views\Notify\PageNotFound.cshtml" />
