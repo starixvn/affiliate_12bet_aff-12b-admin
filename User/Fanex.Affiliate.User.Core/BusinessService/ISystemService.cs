@@ -12,6 +12,8 @@
 
         IEnumerable<Language> GetLanguageList(bool? isInternal = null);
 
+        IEnumerable<Language> GetSupportedLanguages(bool? isInternal = null);
+
         bool IsValid(string langCode);
 
         string GetFavoriteShortedLanguage();
