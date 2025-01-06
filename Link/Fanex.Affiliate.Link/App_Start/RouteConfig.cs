@@ -8,6 +8,10 @@
     /// </summary>
     public static class RouteConfig
     {
+        private const string AFF_ID_CONSTRAINT = @"\d+";
+        private const string AFF_CODE_CONSTRAINT = @"\d+";
+        private const string LANGUAGE_CONSTRAINT = @"(\w{2}|hien|hitg|eneuro)";
+
         /// <summary>
         /// Register Routes.
         /// </summary>
@@ -42,8 +46,8 @@
                 constraints:
                 new
                 {
-                    affId = @"\d+",
-                    lang = @"(\w{2}|hien|hitg)"
+                    affId = AFF_ID_CONSTRAINT,
+                    lang = LANGUAGE_CONSTRAINT
                 });
 
             routes.MapRoute(
@@ -62,8 +66,8 @@
                 constraints:
                 new
                 {
-                    affId = @"\d+",
-                    lang = @"(\w{2}|hien|hitg)"
+                    affId = AFF_ID_CONSTRAINT,
+                    lang = LANGUAGE_CONSTRAINT
                 });
 
             routes.MapRoute(
@@ -82,7 +86,8 @@
                 constraints:
                 new
                 {
-                    lang = @"(\w{2}|hien|hitg)"
+                    affCode = AFF_CODE_CONSTRAINT,
+                    lang = LANGUAGE_CONSTRAINT
                 });
 
             routes.MapRoute(
@@ -102,7 +107,8 @@
                 constraints:
                 new
                 {
-                    lang = @"(\w{2}|hien|hitg)"
+                    affCode = AFF_CODE_CONSTRAINT,
+                    lang = LANGUAGE_CONSTRAINT
                 });
 
             routes.IgnoreRoute("go");
