@@ -8,7 +8,7 @@ using System.Globalization;
 using System.Threading;
 using Xunit;
 
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
+namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Common
 {
     public class SystemServiceTest
     {
@@ -16,15 +16,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetLanguageList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Language>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Language> { new Language() });
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Fetch<Language>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Language> { new Language() });
 
-            var service = CreateLanguageService(languageService.Object);
+            var service = CreatedynamicRepository(dynamicRepository.Object);
 
             // Action
             var result = service.GetLanguageList();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<Language>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -32,15 +33,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetBaseCurrencies_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Currency> { new Currency() });
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Currency> { new Currency() });
 
-            var service = CreateLanguageService(languageService.Object);
+            var service = CreatedynamicRepository(dynamicRepository.Object);
 
             // Action
             var result = service.GetBaseCurrencies();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<Currency>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -48,15 +50,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetCurrencies_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Currency> { new Currency() });
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Currency> { new Currency() });
 
-            var service = CreateLanguageService(languageService.Object);
+            var service = CreatedynamicRepository(dynamicRepository.Object);
 
             // Action
             var result = service.GetCurrencies();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<Currency>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -64,15 +67,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetPaymentCurrencies_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Currency> { new Currency() });
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Fetch<Currency>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Currency> { new Currency() });
 
-            var service = CreateLanguageService(languageService.Object);
+            var service = CreatedynamicRepository(dynamicRepository.Object);
 
             // Action
             var result = service.GetPaymentCurrencies();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<Currency>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -80,15 +84,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
         public void GetProductList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var languageService = new Mock<IDynamicRepository>();
-            languageService.Setup(l => l.Fetch<Product>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Product> { new Product() });
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Fetch<Product>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<Product> { new Product() });
 
-            var service = CreateLanguageService(languageService.Object);
+            var service = CreatedynamicRepository(dynamicRepository.Object);
 
             // Action
             var result = service.GetProductList();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<Product>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -100,7 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             var currentUICulture = new CultureInfo(languageCode);
             var currentCulture = CultureInfo.CreateSpecificCulture(languageCode);
 
-            var service = CreateLanguageService();
+            var service = CreatedynamicRepository();
 
             // Action
             service.SetCulture("en-US");
@@ -110,7 +115,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             Assert.Equal(Thread.CurrentThread.CurrentCulture, currentCulture);
         }
 
-        private static SystemService CreateLanguageService(IDynamicRepository dynamicRepository = null)
+        private static SystemService CreatedynamicRepository(IDynamicRepository dynamicRepository = null)
         {
             var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 

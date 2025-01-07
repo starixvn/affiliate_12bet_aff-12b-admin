@@ -42,7 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             if (affId >= Validation.MinId && noteId >= Validation.MinId)
             {
                 var noteInfo = _noteService.GetNoteContentById(affId, noteId);
-                return GenerateJsonNetResult(noteInfo != null ? new Note { NoteId = noteInfo.NoteId, NoteContent = Server.HtmlDecode(noteInfo.NoteContent) } : null);
+                return GenerateJsonNetResult(noteInfo != null ? new NoteBasicInfo { NoteId = noteInfo.NoteId, NoteContent = Server.HtmlDecode(noteInfo.NoteContent) } : null);
             }
 
             return new JsonNetResult();

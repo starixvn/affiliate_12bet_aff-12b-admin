@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.Administrator
 
         public override string GetSettingKey() => SP_NAME;
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => GroupId > 0;
 
         public int GroupId { get; set; }
     }

@@ -21,6 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetBalanceBroughtForward(123);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<BalanceBroughtForwardCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Equal(0, result);
         }
 
@@ -36,6 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.InsertAdjustment(new AdjustmentParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertAdjustmentCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
     }

@@ -33,6 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var item = result.MainData.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<PlayerDetail>(It.Is<PlayerDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal("11/24/2019 00:00:00", item.RegisteredDateText);
             Assert.Equal("11/24/2019 00:00:00", item.FirstDepositDateText);
@@ -54,6 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var item = result.MainData.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<PlayerDetail>(It.Is<PlayerDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal(string.Empty, item.RegisteredDateText);
             Assert.Equal(string.Empty, item.FirstDepositDateText);

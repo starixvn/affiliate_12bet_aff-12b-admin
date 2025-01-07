@@ -26,6 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var item = result.MainData.SingleOrDefault();
 
             // Assert
+            repository.Verify(d => d.Fetch<CustomerMember>(It.Is<CustomerMemberCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal("04/15/2020 00:00:00", item.RegisteredDateString);
         }
@@ -43,6 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var item = result.MainData.SingleOrDefault();
 
             // Assert
+            repository.Verify(d => d.Fetch<CustomerMember>(It.Is<CustomerMemberCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Null(item.RegisteredDateString);
         }

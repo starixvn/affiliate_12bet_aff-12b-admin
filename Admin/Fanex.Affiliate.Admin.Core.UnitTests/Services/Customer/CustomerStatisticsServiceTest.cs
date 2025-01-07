@@ -23,6 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetCustomerStatistics(new CustomerStatisticsParam { MonthDate = new DateTime() });
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<CustomerStatistics>(It.Is<CustomerStatisticsCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.NotNull(result);
         }
     }

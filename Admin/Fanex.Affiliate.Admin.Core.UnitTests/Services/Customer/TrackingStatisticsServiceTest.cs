@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetTrackingCodeList(1271808);
 
             // Assert
-            dynamicRepository.Verify(obj => obj.Fetch<TrackingInfo>(It.IsAny<TrackingCodeCriteria>(), It.IsAny<string>()), Times.Once);
+            dynamicRepository.Verify(d => d.Fetch<TrackingInfo>(It.Is<TrackingCodeCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
         }
 
 
@@ -43,6 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var item = result.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.FetchMultiple<TrackingStatistics, TrackingStatistics>(It.Is<TrackingStatisticsCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
             Assert.Equal("December-2019", item.MonthText);
             Assert.Equal("12/27/2019", item.DateText);
@@ -62,6 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var item = result.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<TrackingStatistics>(It.Is<TrackingStatisticsDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
     }

@@ -26,6 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var result = service.GetAffiliateBasicInfo(123, "aff");
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<AffiliateBasicInfo>(It.Is<AffBasicInfoCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.NotNull(result);
         }
 
@@ -41,6 +42,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var (result, affCode) = service.ApproveAffiliate(new ApproveAffiliateParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<ApproveAffCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
             Assert.NotNull(affCode);
         }
@@ -59,6 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var item = result.MainData.SingleOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<AffiliateInfo>(It.Is<AffiliateCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal("01/01/2020 00:00:00", item.RegistrationDateText);
             Assert.Equal("04/15/2020 00:00:00", item.ApprovalDateText);
@@ -79,6 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var item = result.MainData.SingleOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<AffiliateInfo>(It.Is<AffiliateCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal("01/01/2020 00:00:00", item.RegistrationDateText);
             Assert.Equal("N/A", item.ApprovalDateText);
@@ -97,6 +101,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var result = service.ToggleFavorite(new FavoriteParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<ToggleFavoriteCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -112,6 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Affiliate
             var result = service.ChangePassword(new PasswordParam { Password = "123abc", ConfirmPassword = "123abc" });
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<ChangeAffPasswordCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
     }

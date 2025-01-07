@@ -27,6 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var item = result.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<AdministratorInfo>(It.Is<AdministratorCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
             Assert.Equal("11/06/2019 00:00:00", item.CreatedDateText);
         }
@@ -44,6 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var item = result.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<AdministratorInfo>(It.Is<AdministratorCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
             Assert.Null(item.CreatedDateText);
         }
@@ -61,6 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.GetUserDetail(123);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<AdministratorInfo>(It.Is<AdministratorDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.NotNull(result);
         }
 
@@ -77,6 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.GetAccountPolicyList(123);
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<PolicyInfo>(It.Is<AccountPolicyCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -93,6 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.GetPolicyListByAccountIds("123");
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<PolicyInfo>(It.Is<PoliciesByGroupIdsCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -109,6 +114,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.InsertUser(new InsertUserParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertAccountCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -125,6 +131,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.InsertExistedUser(new InsertExistedUserParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertExistedAccountCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -141,6 +148,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.UpdateUser(new UpdateUserParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateAccountCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -157,6 +165,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.ChangeStatus(new ChangeStatusParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<ChangeAccountStatusCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -173,6 +182,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.UpdateAccountPolicy(new UpdatePolicyParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateAccountPolicyCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
         [Fact]
@@ -188,6 +198,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.ChangePassword(new UpdatePasswordParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<ChangeAccountPasswordCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
     }

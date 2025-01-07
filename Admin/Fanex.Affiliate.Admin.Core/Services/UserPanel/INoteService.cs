@@ -7,9 +7,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public interface INoteService
     {
-        EntityResult<NoteDetail> GetNoteList(AffiliatePagingParam param);
+        EntityResult<NoteInfo> GetNoteList(AffiliatePagingParam param);
 
-        Note GetNoteContentById(int affId, int noteId);
+        NoteBasicInfo GetNoteContentById(int affId, int noteId);
 
         ResultInfo InsertNote(InsertUpdateNoteParam param);
 

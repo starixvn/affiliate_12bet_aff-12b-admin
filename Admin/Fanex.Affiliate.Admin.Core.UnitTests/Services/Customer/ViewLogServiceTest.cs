@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetLogTypeList();
 
             // Assert
-            dynamicRepository.Verify(obj => obj.Fetch<LogType>(It.IsAny<BaseCriteria>(), It.IsAny<string>()), Times.Once);
+            dynamicRepository.Verify(d => d.Fetch<LogType>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
         }
 
         [Fact]
@@ -45,6 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var item = result.MainData.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<ViewLog>(It.Is<ViewLogCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal("12/27/2019 00:00:00", item.DateText);
         }

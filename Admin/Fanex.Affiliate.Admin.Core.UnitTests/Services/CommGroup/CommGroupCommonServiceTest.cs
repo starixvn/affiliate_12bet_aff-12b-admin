@@ -18,15 +18,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         {
             // Arrange
             var param = CreateValidCreateUpdateCommissionGroupParam();
-            var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.Execute(It.IsAny<InsertCommGroupCommand>(), It.IsAny<string>()));
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<InsertCommGroupCommand>(), It.IsAny<string>()));
 
-            var service = CreateCommGroupCommonService(commGroupRepository.Object);
+            var service = CreateCommGroupCommonService(dynamicRepository.Object);
 
             // Action
             var result = service.CreateCommissionGroup(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -35,15 +36,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         {
             // Arrange
             var param = CreateValidCreateUpdateCommissionGroupParamHasKillRate();
-            var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.Execute(It.IsAny<UpdateCommGroupCommand>(), It.IsAny<string>()));
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<UpdateCommGroupCommand>(), It.IsAny<string>()));
 
-            var service = CreateCommGroupCommonService(commGroupRepository.Object);
+            var service = CreateCommGroupCommonService(dynamicRepository.Object);
 
             // Action
             var result = service.UpdateCommissionGroup(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -51,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         public void GetDeductionList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commGroupRepository = new Mock<IDynamicRepository>();
+            var dynamicRepository = new Mock<IDynamicRepository>();
             var expectedResult = new List<DeductionItem>
                     {
                         new DeductionItem
@@ -59,13 +61,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
                             DeductedPercentage= 0, DeductionId= 14, DeductionName = "ExchangeCommissionShare"
                         }
                     };
-            commGroupRepository.Setup(comm => comm.Fetch<DeductionItem>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(expectedResult);
-            var service = CreateCommGroupCommonService(commGroupRepository.Object);
+            dynamicRepository.Setup(comm => comm.Fetch<DeductionItem>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(expectedResult);
+            var service = CreateCommGroupCommonService(dynamicRepository.Object);
 
             // Action
             var result = service.GetDeductionList();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<DeductionItem>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -73,18 +76,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         public void GetCommGroupTypes_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var commGroupRepository = new Mock<IDynamicRepository>();
+            var dynamicRepository = new Mock<IDynamicRepository>();
             var expectedResult = new List<CommGroupType>
                     {
                         new CommGroupType()
                     };
-            commGroupRepository.Setup(comm => comm.Fetch<CommGroupType>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(expectedResult);
-            var service = CreateCommGroupCommonService(commGroupRepository.Object);
+            dynamicRepository.Setup(comm => comm.Fetch<CommGroupType>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(expectedResult);
+            var service = CreateCommGroupCommonService(dynamicRepository.Object);
 
             // Action
             var result = service.GetCommGroupTypes();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<CommGroupType>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -102,23 +106,24 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
                     GroupTypeId = 1
                 }
             };
-            var commGroupRepository = new Mock<IDynamicRepository>();
-            commGroupRepository.Setup(comm => comm.Fetch<NormalCommGroup>(It.IsAny<GetNormalCommGroupCriteria>(), It.IsAny<string>())).Returns(expectedResult);
-            var service = CreateCommGroupCommonService(commGroupRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.Fetch<NormalCommGroup>(It.IsAny<GetNormalCommGroupCriteria>(), It.IsAny<string>())).Returns(expectedResult);
+            var service = CreateCommGroupCommonService(dynamicRepository.Object);
 
             // Action
             var result = service.GetNormalCommGroupList(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<NormalCommGroup>(It.Is<GetNormalCommGroupCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
         private static CommGroupCommonService CreateCommGroupCommonService(
-            IDynamicRepository commGroupRepository = null)
+            IDynamicRepository dynamicRepository = null)
         {
-            var fakeCommGroupRepository = commGroupRepository ?? Mock.Of<IDynamicRepository>();
+            var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 
-            return new CommGroupCommonService(fakeCommGroupRepository);
+            return new CommGroupCommonService(fakedynamicRepository);
         }
 
         private static CreateUpdateCommissionGroupParam CreateValidCreateUpdateCommissionGroupParam()

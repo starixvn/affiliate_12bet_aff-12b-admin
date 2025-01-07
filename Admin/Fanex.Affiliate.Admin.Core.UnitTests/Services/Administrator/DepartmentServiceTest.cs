@@ -25,6 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.GetDepartmentList();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<DepartmentInfo>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -40,6 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.GetDepartmentDetail(123);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<DepartmentInfo>(It.Is<DepartmentDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.NotNull(result);
         }
 
@@ -55,6 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.InsertDepartment(new InsertUpdateDepartmentParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<DepartmentCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -70,6 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.UpdateDepartment(new InsertUpdateDepartmentParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<DepartmentCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -85,6 +89,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.DeleteDepartment(new DeleteDepartmentParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<DeleteDepartmentCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -100,6 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.GetRolePolicy(123);
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<PolicyInfo>(It.Is<RolePolicyCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -115,6 +121,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Administrator
             var result = service.UpdateRolePolicy(new UpdatePolicyParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateRolePolicyCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
     }

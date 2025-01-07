@@ -38,6 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "", "", "");
 
             // Assert
+            repository.Verify(d => d.Get<AffiliateInfoOnLeftPanel>(It.Is<AffiliateInfoOnLeftPanelCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Null(result);
         }
 
@@ -64,6 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234", "345");
 
             // Assert
+            repository.Verify(d => d.Get<AffiliateInfoOnLeftPanel>(It.Is<AffiliateInfoOnLeftPanelCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Equal("12BETAFF226", result.AffName);
             Assert.Equal(AffType.Asian, result.AffType);
         }
@@ -91,6 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetAffiliateInfoOnLeftPanel("12BETAFF226", "123", "234", "345");
 
             // Assert
+            repository.Verify(d => d.Get<AffiliateInfoOnLeftPanel>(It.Is<AffiliateInfoOnLeftPanelCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Equal("12BETAFF226", result.AffName);
             Assert.Equal(AffType.European, result.AffType);
         }
@@ -109,6 +112,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetOnlineList(param);
 
             // Assert
+            repository.Verify(d => d.Fetch<OnlineList>(It.Is<AffiliateOnlineCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
             Assert.Equal(param, passedParam);
         }
@@ -126,6 +130,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetTransferLimitSetting(param);
 
             // Assert
+            repository.Verify(d => d.Get<TransferLimitSettingInfo>(It.Is<TransferLimitCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.NotNull(result);
         }
 
@@ -142,6 +147,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.UpdateTransferLimitSetting(param);
 
             // Assert
+            repository.Verify(d => d.Execute(It.Is<UpdateTransferLimitCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -166,13 +172,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             // Arrange
             var param = new UpdateAffTypeParam();
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.Execute(It.IsAny<UpdateLanguageCommand>(), It.IsAny<string>()));
+            repository.Setup(comm => comm.Execute(It.IsAny<UpdateAffTypeCommand>(), It.IsAny<string>()));
             var service = CreateCustomerLeftPanelService(customerLeftPanelRepository: repository.Object);
 
             // Action
             var result = service.UpdateAffType(param);
 
             // Assert
+            repository.Verify(d => d.Execute(It.Is<UpdateAffTypeCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -189,6 +196,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.UpdateLanguage(param);
 
             // Assert
+            repository.Verify(d => d.Execute(It.Is<UpdateLanguageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -209,7 +217,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "disapproved" };
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.Execute(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>()));
+            repository.Setup(comm => comm.ExecuteAsync(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2 });
 
@@ -219,6 +227,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateStatus(param, new AffInformationEmail());
 
             // Assert
+            repository.Verify(d => d.ExecuteAsync(It.Is<UpdateStatusCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -239,7 +248,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "disapproved" };
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.Execute(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>()));
+            repository.Setup(comm => comm.ExecuteAsync(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2, PreferredLanguage = "vi-VN" });
 
@@ -249,6 +258,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateStatus(param, new AffInformationEmail());
 
             // Assert
+            repository.Verify(d => d.ExecuteAsync(It.Is<UpdateStatusCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -269,7 +279,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "approved" };
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.Execute(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>()));
+            repository.Setup(comm => comm.ExecuteAsync(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2, PreferredLanguage = "vi-VN" });
             var thirdPartyLicenseeService = new Mock<IThirdPartyLicenseeService>();
@@ -281,6 +291,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateStatus(param, new AffInformationEmail());
 
             // Assert
+            repository.Verify(d => d.ExecuteAsync(It.Is<UpdateStatusCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -303,7 +314,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "approved" };
             var repository = new Mock<IDynamicRepository>();
-            repository.Setup(comm => comm.Execute(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>()));
+            repository.Setup(comm => comm.ExecuteAsync(It.IsAny<UpdateStatusCommand>(), It.IsAny<string>()));
             var affiliateService = new Mock<IAffiliateService>();
             affiliateService.Setup(aff => aff.GetAffiliateBasicInfo(It.IsAny<int>(), null)).Returns(new AffiliateBasicInfo { AffId = 1271808, AffType = 2, PreferredLanguage = "vi-VN" });
             var thirdPartyLicenseeService = new Mock<IThirdPartyLicenseeService>();
@@ -315,6 +326,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateStatus(param, new AffInformationEmail());
 
             // Assert
+            repository.Verify(d => d.ExecuteAsync(It.Is<UpdateStatusCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -332,6 +344,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateStatus(param, new AffInformationEmail());
 
             // Assert
+            repository.Verify(d => d.ExecuteAsync(It.Is<UpdateStatusCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.False(result.IsSuccessful);
         }
 

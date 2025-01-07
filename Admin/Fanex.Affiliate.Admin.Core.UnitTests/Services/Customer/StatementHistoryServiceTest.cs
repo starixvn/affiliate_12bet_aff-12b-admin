@@ -26,6 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetSubAffiliate(new SubAffiliateParam());
 
             // Assert
+            repository.Verify(d => d.FetchMultiple<SubAffiliate, SubAffiliate>(It.Is<SubAffiliateCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
@@ -43,6 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetDailyEarning(new DailyEarningParam());
 
             // Assert
+            repository.Verify(d => d.FetchMultiple<DailyEarning, DailyEarning>(It.Is<DailyEarningCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
@@ -59,6 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetDailyEarningDetail(new DailyEarningParam());
 
             // Assert
+            repository.Verify(d => d.Fetch<DailyEarningDetail>(It.Is<DailyEarningCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
@@ -83,6 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetStatementHistoryList(new AffiliatePagingByDateParam()).MainData.ToList();
 
             // Assert
+            repository.Verify(d => d.Fetch<StatementHistory>(It.Is<StatementHistoryCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Equal("2020-06-10", result[0].NormalizeDateText);
             Assert.Equal("Monthly Total", result[1].DescriptionDisplay);
             Assert.Equal("Uncalculated Month", result[0].DescriptionDisplay);

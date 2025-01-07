@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Message
         public string Message_id { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string Message_hi { get; set; }
+        public string Message_hi { get; set; } = string.Empty;
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Message_ms { get; set; } = string.Empty;

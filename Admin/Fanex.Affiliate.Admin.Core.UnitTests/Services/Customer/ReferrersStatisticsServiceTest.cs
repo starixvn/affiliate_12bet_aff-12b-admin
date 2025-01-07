@@ -23,6 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetReferrersList(new ReferrersParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<ReferrersStatistics>(It.Is<ReferrersStatisticsCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -38,6 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetReferrersDetailList(new ReferrersDetailParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<ReferrersStatistics>(It.Is<ReferrersStatisticsDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
     }

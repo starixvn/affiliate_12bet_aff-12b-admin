@@ -512,8 +512,8 @@
     <Compile Include="DTO\UserPanel\DailyEarningDetailResult.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
     <Compile Include="DTO\UserPanel\Statistics\LandingPageStatistics.cs" />
-    <Compile Include="DTO\UserPanel\Note.cs" />
-    <Compile Include="DTO\UserPanel\NoteDetail.cs" />
+    <Compile Include="DTO\UserPanel\NoteBasicInfo.cs" />
+    <Compile Include="DTO\UserPanel\NoteInfo.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
     <Compile Include="DTO\UserPanel\Statistics\ReferrersStatistics.cs" />
     <Compile Include="DTO\UserPanel\StatementHistory.cs" />

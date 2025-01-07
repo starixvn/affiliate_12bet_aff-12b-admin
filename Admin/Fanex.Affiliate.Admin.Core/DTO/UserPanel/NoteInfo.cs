@@ -3,10 +3,9 @@
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
     [Serializable]
-    public class NoteDetail : Note
+    public class NoteInfo : NoteBasicInfo
     {
         public string CreatedBy { get; set; }
-
 
         public DateTime? LastModify { get; set; }
 

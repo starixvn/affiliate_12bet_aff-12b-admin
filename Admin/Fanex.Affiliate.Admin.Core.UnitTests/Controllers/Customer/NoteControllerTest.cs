@@ -24,12 +24,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var param = new AffiliatePagingParam { AffId = 1271808, PageIndex = 1, PageSize = 20 };
             AffiliatePagingParam passedParam = null;
             var noteService = new Mock<INoteService>();
-            noteService.Setup(s => s.GetNoteList(param)).Returns(new EntityResult<NoteDetail> { MainData = new List<NoteDetail> { new NoteDetail() }, TotalItem = 1 }).Callback<AffiliatePagingParam>(p => passedParam = p);
+            noteService.Setup(s => s.GetNoteList(param)).Returns(new EntityResult<NoteInfo> { MainData = new List<NoteInfo> { new NoteInfo() }, TotalItem = 1 }).Callback<AffiliatePagingParam>(p => passedParam = p);
             var controller = CreateNoteController(noteService: noteService.Object);
 
             // Action
             var result = controller.GetNoteList(param) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<NoteDetail>;
+            var entityResult = result.Data as EntityResult<NoteInfo>;
 
             // Assert
             Assert.Single(entityResult.MainData);
@@ -56,12 +56,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         {
             // Arrange
             var noteService = new Mock<INoteService>();
-            noteService.Setup(s => s.GetNoteContentById(1271808, 123)).Returns(new Note { NoteId = 123, NoteContent = "abc" });
+            noteService.Setup(s => s.GetNoteContentById(1271808, 123)).Returns(new NoteBasicInfo { NoteId = 123, NoteContent = "abc" });
             var controller = CreateNoteController(noteService: noteService.Object);
 
             // Action
             var result = controller.GetNoteContentById(1271808, 123) as JsonNetResult;
-            var note = result.Data as Note;
+            var note = result.Data as NoteBasicInfo;
 
             // Assert
             Assert.Equal(123, note.NoteId);

@@ -21,6 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ChangeAdminPassword
             var result = service.ChangePassword(new ChangeAdminPasswordParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<ChangeAdminPasswordCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
     }

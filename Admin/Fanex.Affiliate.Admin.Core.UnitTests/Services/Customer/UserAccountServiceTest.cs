@@ -30,6 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetUserAccountInfo(1271808);
 
             // Assert
+            repository.Verify(d => d.Get<UserAccount>(It.Is<UserAccountCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.NotNull(result);
         }
 
@@ -46,6 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateUserAccountAsync(param);
 
             // Assert
+            repository.Verify(d => d.Execute(It.Is<UpdateUserAccountCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -67,6 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateUserAccountAsync(new UserAccountParam { PreferredPayment = "Player", PlayerUsername = "123", NoSiteDescription = "abc" });
 
             // Assert
+            repository.Verify(d => d.Execute(It.Is<UpdateUserAccountCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -87,6 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateUserAccountAsync(new UserAccountParam { PreferredPayment = "Player", PlayerUsername = "123", NoSiteDescription = "abc" });
 
             // Assert
+            repository.Verify(d => d.Execute(It.Is<UpdateUserAccountCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()), Times.Never);
             Assert.False(result.IsSuccessful);
             Assert.Equal(100, result.Code);
         }
@@ -138,28 +142,29 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         public void GetPaymentMethod_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var userAccountRepository = new Mock<IDynamicRepository>();
-            userAccountRepository.Setup(t => t.Fetch<PaymentMethodInfo>(It.IsAny<PaymentMethodCriteria>(), It.IsAny<string>())).Returns(new List<PaymentMethodInfo> { new PaymentMethodInfo { PaymentId = "123", PaymentName = "abc" } }).Callback<ICriteria, string>((p, _) => (p as PaymentMethodCriteria).MinAmount = 100m);
-            var service = CreateUserAccountService(userAccountRepository: userAccountRepository.Object);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(t => t.Fetch<PaymentMethodInfo>(It.IsAny<PaymentMethodCriteria>(), It.IsAny<string>())).Returns(new List<PaymentMethodInfo> { new PaymentMethodInfo { PaymentId = "123", PaymentName = "abc" } }).Callback<ICriteria, string>((p, _) => (p as PaymentMethodCriteria).MinAmount = 100m);
+            var service = CreateUserAccountService(repository: repository.Object);
 
             // Action
             var (paymentMethods, minAmount) = service.GetPaymentMethod();
 
             // Assert
+            repository.Verify(d => d.Fetch<PaymentMethodInfo>(It.Is<PaymentMethodCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(paymentMethods);
             Assert.Equal(100m, minAmount);
         }
 
         private static UserAccountService CreateUserAccountService(
-            IDynamicRepository userAccountRepository = null,
+            IDynamicRepository repository = null,
             ILicenseeService licenseeService = null,
             IAppSetting appSeting = null)
         {
-            var fakeUserAccountRepository = userAccountRepository ?? Mock.Of<IDynamicRepository>();
+            var fakerepository = repository ?? Mock.Of<IDynamicRepository>();
             var fakeAppSetting = appSeting ?? Mock.Of<IAppSetting>();
             var fakeLicenseeService = licenseeService ?? Mock.Of<ILicenseeService>();
 
-            return new UserAccountService(fakeUserAccountRepository, fakeLicenseeService, fakeAppSetting);
+            return new UserAccountService(fakerepository, fakeLicenseeService, fakeAppSetting);
         }
 
         private static UserAccountParam GetUserAccountParam()

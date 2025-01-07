@@ -21,9 +21,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<NoteDetail>(It.IsAny<NoteCriteria>(), It.IsAny<string>())).Returns(new List<NoteDetail>
+            dynamicRepository.Setup(r => r.Fetch<NoteInfo>(It.IsAny<NoteCriteria>(), It.IsAny<string>())).Returns(new List<NoteInfo>
             {
-                new NoteDetail { LastModify = new DateTime(2019, 11, 22) }
+                new NoteInfo { LastModify = new DateTime(2019, 11, 22) }
             });
 
             // Action
@@ -32,6 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var item = result.MainData.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<NoteInfo>(It.Is<NoteCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal("11/22/2019 00:00:00", item.LastModifyText);
         }
@@ -41,9 +42,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Fetch<NoteDetail>(It.IsAny<NoteCriteria>(), It.IsAny<string>())).Returns(new List<NoteDetail>
+            dynamicRepository.Setup(r => r.Fetch<NoteInfo>(It.IsAny<NoteCriteria>(), It.IsAny<string>())).Returns(new List<NoteInfo>
             {
-                new NoteDetail ()
+                new NoteInfo ()
             });
 
             // Action
@@ -52,6 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var item = result.MainData.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<NoteInfo>(It.Is<NoteCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
             Assert.Equal("N/A", item.LastModifyText);
         }
@@ -61,13 +63,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         {
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(r => r.Get<Note>(It.IsAny<NoteDetailCriteria>(), It.IsAny<string>())).Returns(new Note { NoteId = 37 });
+            dynamicRepository.Setup(r => r.Get<NoteBasicInfo>(It.IsAny<NoteDetailCriteria>(), It.IsAny<string>())).Returns(new NoteBasicInfo { NoteId = 37 });
 
             // Action
             var service = new NoteService(dynamicRepository.Object);
             var result = service.GetNoteContentById(1271808, 37);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<NoteBasicInfo>(It.Is<NoteDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Equal(37, result.NoteId);
         }
 
@@ -83,6 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.InsertNote(new InsertUpdateNoteParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertNoteCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -98,6 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.UpdateNote(new InsertUpdateNoteParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateNoteCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
     }

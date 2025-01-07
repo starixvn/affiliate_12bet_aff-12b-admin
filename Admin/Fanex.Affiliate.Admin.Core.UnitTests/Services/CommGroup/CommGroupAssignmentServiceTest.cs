@@ -41,6 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var result = await service.AssignGroup(param, affInfo, emailParam);
 
             // Assert
+            dynamicRepository.Verify(d => d.ExecuteAsync(It.Is<AssignCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -64,6 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var result = await service.AssignGroup(param, affInfo, emailParam);
 
             // Assert
+            dynamicRepository.Verify(d => d.ExecuteAsync(It.Is<AssignCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.False(result.IsSuccessful);
         }
 
@@ -103,6 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var result = await service.AssignGroup(param, affInfo, emailParam);
 
             // Assert
+            dynamicRepository.Verify(d => d.ExecuteAsync(It.Is<AssignCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -179,6 +182,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var result = await service.AssignPrivateGroup(param, affInfo, emailParam);
 
             // Assert
+            dynamicRepository.Verify(d => d.ExecuteAsync(It.Is<AssignCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.False(result.IsSuccessful);
         }
 
@@ -205,6 +209,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var result = await service.AssignPrivateGroup(param, affInfo, emailParam);
 
             // Assert
+            dynamicRepository.Verify(d => d.ExecuteAsync(It.Is<AssignCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.False(result.IsSuccessful);
         }
 
@@ -250,6 +255,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var result = await service.AssignPrivateGroup(param, affInfo, emailParam);
 
             // Assert
+            dynamicRepository.Verify(d => d.ExecuteAsync(It.Is<AssignCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -274,6 +280,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
             var result = await service.AssignPrivateGroup(param, affInfo, emailParam);
 
             // Assert
+            dynamicRepository.Verify(d => d.ExecuteAsync(It.Is<AssignCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 

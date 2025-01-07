@@ -27,6 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var item = result.FirstOrDefault();
 
             // Assert
+            repository.Verify(d => d.Fetch<DomainInfo>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
             Assert.Equal("09/10/2020", item.CreatedDateText);
         }
@@ -44,6 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var item = result.FirstOrDefault();
 
             // Assert
+            repository.Verify(d => d.Fetch<DomainInfo>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
             Assert.Null(item.CreatedDateText);
         }
@@ -60,6 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var result = service.InsertDomain(new InsertUpdateDomainParam(), "Aff_Admin_SubAffiliateDomain_Ins");
 
             // Assert
+            repository.Verify(d => d.Execute(It.Is<InsertDomainCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -75,6 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var result = service.UpdateDomain(new InsertUpdateDomainParam(), "Aff_Admin_SubAffiliateDomain_Upd");
 
             // Assert
+            repository.Verify(d => d.Execute(It.Is<UpdateDomainCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -90,6 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var result = service.DeleteDomain(new DeleteDomainParam(), "Aff_Admin_SubAffiliateDomain_Del");
 
             // Assert
+            repository.Verify(d => d.Execute(It.Is<DeleteDomainCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
     }

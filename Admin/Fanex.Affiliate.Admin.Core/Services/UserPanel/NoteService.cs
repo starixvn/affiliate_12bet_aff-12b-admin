@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
         public NoteService(
             IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
-        public EntityResult<NoteDetail> GetNoteList(AffiliatePagingParam param)
+        public EntityResult<NoteInfo> GetNoteList(AffiliatePagingParam param)
         {
             var criteria = new NoteCriteria
             {
@@ -23,10 +23,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 PageSize = param.PageSize,
             };
 
-            return FetchEntityResult<NoteDetail>(criteria);
+            return FetchEntityResult<NoteInfo>(criteria);
         }
 
-        public Note GetNoteContentById(int affId, int noteId)
+        public NoteBasicInfo GetNoteContentById(int affId, int noteId)
         {
             var criteria = new NoteDetailCriteria
             {
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 NoteId = noteId,
             };
 
-            return GetTData<Note>(criteria);
+            return GetTData<NoteBasicInfo>(criteria);
         }
 
         public ResultInfo InsertNote(InsertUpdateNoteParam param)

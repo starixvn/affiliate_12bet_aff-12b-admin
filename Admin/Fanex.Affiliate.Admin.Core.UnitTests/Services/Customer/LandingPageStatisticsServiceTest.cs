@@ -23,6 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetLandingPageStatisticsList(new LandingPageStatisticsParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<LandingPageStatistics>(It.Is<LandingPageStatisticsCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -38,6 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = service.GetLandingPageStatisticsDetailList(new LandingPageStatisticsDetailParam());
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<LandingPageStatistics>(It.Is<LandingPageStatisticsDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
     }
