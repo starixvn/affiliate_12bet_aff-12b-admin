@@ -1725,6 +1725,8 @@ table + .button-group {
     display: inline-flex;
     align-content: center;
     margin-right: 20px; }
+  .form-inline .form-group .date-wrapper .form-control {
+    background: #FFFFFF; }
 
 .form-control-static {
   min-height: 28px;
