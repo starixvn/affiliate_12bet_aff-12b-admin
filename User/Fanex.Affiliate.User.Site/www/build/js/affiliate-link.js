@@ -1293,7 +1293,7 @@ var MarketingBase = (function ($) {
                                 if (result.IsOk) {
                                     alert(window.dic.addChannelSuccess)
                                     $(this).append(new Option(result.Data.ChannelName, result.Data.ChannelCode, false, true));
-                                    $("button .btn-gen").removeAttr("disabled");
+                                    $("button.btn-gen").removeAttr("disabled");
                                 }
                                 else {
                                     alert(result.Message);
