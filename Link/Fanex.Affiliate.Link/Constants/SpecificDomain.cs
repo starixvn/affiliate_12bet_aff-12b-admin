@@ -4,39 +4,46 @@ namespace Fanex.Affiliate.Link.Constants
 {
     public static class SpecificDomain
     {
-        private const string AFF16105_Code = "17709";
-        private const string AFF16204_Code = "14867";
-        private const string AFF16205_Code = "16122";
+        //go.12real.com, go.12fifa18.com
+        private const string AFF16105_ID = "92043193";
 
-        private const string AFF16000_Code = "15015";
-        private const string AFF16186_Code = "17973";
-        private const string AFF16096_Code = "17336";
-        private const string AFF16097_Code = "10792";
+        //go.12real.com
+        private const string AFF16204_ID = "92043292";
+        private const string AFF16205_ID = "92043293";
 
-        private const string AFF15932_Code = "16480";
-        private const string AFF16325_Code = "10809";
-        private const string AFF16326_Code = "10303";
+        //join.best5689.com
+        private const string AFF16000_ID = "92043088";
+        private const string AFF16186_ID = "92043274";
+        private const string AFF16096_ID = "92043184";
+        private const string AFF16097_ID = "92043185";
+
+        //go.5689fun.com
+        private const string AFF15932_ID = "92043020";
+        private const string AFF16325_ID = "92043413";
+
+        //go.6789sutzo.com
+        private const string AFF16326_ID = "92043414";
 
         //12aff.best5689.com
-        private const string AFF130_Code = "11897";
-        private const string AFF16311_Code = "11434";
-        private const string AFF16314_Code = "15070";
-        private const string AFF16225_Code = "10455";
-        private const string AFF14617_Code = "14172";
-        private const string AFF13902_Code = "15181";
-        private const string AFF16313_Code = "13363";
-        private const string AFF15775_Code = "13768";
-        private const string AFF16214_Code = "11505";
-        private const string AFF13506_Code = "12117";
-        private const string AFF13065_Code = "92040153";
-        private const string AFF7782_Code = "17705";
-        private const string AFF16050_Code = "15879";
+        private const string AFF130_ID = "1257975";
+        private const string AFF16311_ID = "92043399";
+        private const string AFF16314_ID = "92043402";
+        private const string AFF16225_ID = "92043313";
+        private const string AFF14617_ID = "92041705";
+        private const string AFF13902_ID = "92040990";
+        private const string AFF16313_ID = "92043401";
+        private const string AFF15775_ID = "92042863";
+        private const string AFF16214_ID = "92043302";
+        private const string AFF13506_ID = "92040594";
+        private const string AFF13065_ID = "92040153";
+        private const string AFF7782_ID = "92034870";
+        private const string AFF16050_ID = "92043138";
 
-        private const string AFF16341_Code = "92043429";
+        private const string AFF16342_ID = "92043430";
+        private const string AFF16343_ID = "92043431";
+        private const string AFF16344_ID = "92043432";
 
-        private const string AFF16342_Code = "92043430";
-        private const string AFF16343_Code = "92043431";
-        private const string AFF16344_Code = "92043432";
+        private const string AFF16341_ID = "92043429";
 
         //Fake Mapping
         private const string FakeMapping_Join_Best5689_Com = "aff-12b.nexdev.net/Go,join.best5689.com";
@@ -45,40 +52,40 @@ namespace Fanex.Affiliate.Link.Constants
 
         public static readonly IReadOnlyDictionary<string, string> FakeSpecificDomainByAffOnLocal = new Dictionary<string, string>
         {
-            [AFF16105_Code] = "aff-12b.nexdev.net/Go,go.12fifa18.com",
+            [AFF16105_ID] = "aff-12b.nexdev.net/Go,go.12fifa18.com",
 
-            [AFF16204_Code] = FakeMapping_Go_12real_Com,
-            [AFF16205_Code] = FakeMapping_Go_12real_Com,
+            [AFF16204_ID] = FakeMapping_Go_12real_Com,
+            [AFF16205_ID] = FakeMapping_Go_12real_Com,
 
-            [AFF16000_Code] = FakeMapping_Join_Best5689_Com,
-            [AFF16186_Code] = FakeMapping_Join_Best5689_Com,
-            [AFF16096_Code] = FakeMapping_Join_Best5689_Com,
-            [AFF16097_Code] = FakeMapping_Join_Best5689_Com,
+            [AFF16000_ID] = FakeMapping_Join_Best5689_Com,
+            [AFF16186_ID] = FakeMapping_Join_Best5689_Com,
+            [AFF16096_ID] = FakeMapping_Join_Best5689_Com,
+            [AFF16097_ID] = FakeMapping_Join_Best5689_Com,
 
-            [AFF16325_Code] = "aff-12b.nexdev.net/Go,go.5689fun.com",
-            [AFF16326_Code] = "aff-12b.nexdev.net/Go,go.6789sutzo.com",
+            [AFF16325_ID] = "aff-12b.nexdev.net/Go,go.5689fun.com",
+            [AFF16326_ID] = "aff-12b.nexdev.net/Go,go.6789sutzo.com",
 
             //12aff.best5689.com
-            [AFF15932_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF130_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF16311_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF16314_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF16225_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF14617_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF13902_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF16313_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF15775_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF16214_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF13506_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF13065_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF7782_Code] = FakeMapping_12aff_Best5689_Com,
-            [AFF16050_Code] = FakeMapping_12aff_Best5689_Com,
+            [AFF15932_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF130_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF16311_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF16314_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF16225_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF14617_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF13902_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF16313_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF15775_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF16214_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF13506_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF13065_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF7782_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF16050_ID] = FakeMapping_12aff_Best5689_Com,
 
-            [AFF16341_Code] = "aff-12bet.nexdev.net/Go,go.12qiuball.com",
+            [AFF16341_ID] = "aff-12bet.nexdev.net/Go,go.12qiuball.com",
 
-            [AFF16342_Code] = "aff-12b.nexdev.net/Go,go.apa56.com",
-            [AFF16343_Code] = "aff-12b.nexdev.net/Go,go.9012ijk.com",
-            [AFF16344_Code] = "aff-12b.nexdev.net/Go,go.sbc31.com",
+            [AFF16342_ID] = "aff-12b.nexdev.net/Go,go.apa56.com",
+            [AFF16343_ID] = "aff-12b.nexdev.net/Go,go.9012ijk.com",
+            [AFF16344_ID] = "aff-12b.nexdev.net/Go,go.sbc31.com",
         };
     }
 }

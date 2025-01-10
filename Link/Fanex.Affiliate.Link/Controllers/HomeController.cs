@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     return View("Link");
                 }
 
-                return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain);
+                return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affId);
             }
             catch (Exception ex)
             {
@@ -101,6 +101,20 @@ namespace Fanex.Affiliate.Link.Controllers
             {
                 var affDomain = GetFullAffDomain(GetOriginalUrl(), pageCode);
 
+                if (IsLocal)
+                {
+                    var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affCode: affCode);
+
+                    if (affInfo.AffId == 0)
+                    {
+                        ViewBag.Result = LinkIsInvalidMessage;
+
+                        return View("Link");
+                    }
+
+                    return InsertAffiliate(affCode, pageCode, lang, affDomain, affInfo.AffId);
+                }
+
                 return InsertAffiliate(affCode, pageCode, lang, affDomain);
             }
             catch (Exception ex)
@@ -116,7 +130,7 @@ namespace Fanex.Affiliate.Link.Controllers
             return Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang);
         }
 
-        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain)
+        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain, int affId = 0)
         {
             if (Request.Url != null)
             {
@@ -151,7 +165,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     Country = Common.GetCountry(),
                     AffMediaLink = GetOriginalUrl()
                 };
-                HandleFakeSpecificDomainOnLocal(command);
+                HandleFakeSpecificDomainOnLocal(affId, command);
 
                 var redirectUrl = _trackingSystemService.InsertStatistic(command);
 
@@ -174,9 +188,9 @@ namespace Fanex.Affiliate.Link.Controllers
             return View("Link");
         }
 
-        private static void HandleFakeSpecificDomainOnLocal(TrackingSystemCommand param)
+        private static void HandleFakeSpecificDomainOnLocal(int affId, TrackingSystemCommand param)
         {
-            if (IsLocal && SpecificDomain.FakeSpecificDomainByAffOnLocal.TryGetValue(param.AffCode, out string fakeInfo))
+            if (IsLocal && SpecificDomain.FakeSpecificDomainByAffOnLocal.TryGetValue(affId.ToString(), out string fakeInfo))
             {
                 var infos = fakeInfo.Split(',');
                 var fakeDomain = infos[0];
