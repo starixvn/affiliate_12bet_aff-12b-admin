@@ -17,6 +17,7 @@ namespace AffiliateAdmin
             MvcHandler.DisableMvcResponseHeader = true;
 
             IoCConfig.Register();
+            LoggingConfig.RegisterSentry();
 
             SslConfig.RegisterHttpSecurityProtocol();
 
@@ -29,7 +30,6 @@ namespace AffiliateAdmin
 
 
             AreaRegistration.RegisterAllAreas();
-            LoggingConfig.RegisterSentry();
         }
 
         void Application_End(object sender, EventArgs e)
