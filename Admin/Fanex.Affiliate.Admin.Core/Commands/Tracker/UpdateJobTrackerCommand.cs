@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Commands.Tracker
 
         public override bool IsValid() => true;
 
-        public int PushTrackerId { get; set; }
+        public long PushTrackerId { get; set; }
 
         public int StatusId { get; set; }
 

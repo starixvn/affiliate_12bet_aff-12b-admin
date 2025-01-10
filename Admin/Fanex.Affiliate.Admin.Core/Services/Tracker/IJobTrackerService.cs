@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Tracker
 {
     public interface IJobTrackerService
     {
-        (int Id, ResultInfo Result) InsertDataTracker(InsertJobTrackerCommand command);
+        (long Id, ResultInfo Result) InsertDataTracker(InsertJobTrackerCommand command);
 
         ResultInfo UpdateDataTracker(UpdateJobTrackerCommand command);
     }

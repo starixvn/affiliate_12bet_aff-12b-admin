@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Commands.Tracker
 
         public string PushDataInfo { get; set; }
 
-        public int PushTrackerId { get; set; }
+        public long PushTrackerId { get; set; }
 
         public int ErrCode { get; set; }
 

@@ -29,8 +29,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee
 
         public async Task SendAffiliateInfo(AffiliateBasicInfo affInfo)
         {
+            if(affInfo.PlayerCustId == 0)
+            {
+                return;
+            }
+
             var affiliateInfo = new ApiAffiliateInfo
             {
+                AffiliateId = affInfo.AffId,
                 AffiliateCode = affInfo.AffCode,
                 AffiliateName = affInfo.UserName,
                 UserName = affInfo.PlayerUsername,

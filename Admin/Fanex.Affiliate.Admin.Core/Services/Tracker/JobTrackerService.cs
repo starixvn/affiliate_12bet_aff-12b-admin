@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Tracker
         public JobTrackerService(
             IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
-        public (int Id, ResultInfo Result) InsertDataTracker(InsertJobTrackerCommand command)
+        public (long Id, ResultInfo Result) InsertDataTracker(InsertJobTrackerCommand command)
         {
             DynamicRepository.Execute(command);
 
