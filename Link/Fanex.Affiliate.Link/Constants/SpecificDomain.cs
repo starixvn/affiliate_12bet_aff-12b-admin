@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.Link.Constants
             [AFF7782_ID] = FakeMapping_12aff_Best5689_Com,
             [AFF16050_ID] = FakeMapping_12aff_Best5689_Com,
 
-            [AFF16341_ID] = "aff-12bet.nexdev.net/Go,go.12qiuball.com",
+            [AFF16341_ID] = "aff-12b.nexdev.net/Go,go.12qiuball.com",
 
             [AFF16342_ID] = "aff-12b.nexdev.net/Go,go.apa56.com",
             [AFF16343_ID] = "aff-12b.nexdev.net/Go,go.9012ijk.com",
