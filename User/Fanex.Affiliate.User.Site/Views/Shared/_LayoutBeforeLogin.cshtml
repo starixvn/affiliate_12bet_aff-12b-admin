@@ -2,10 +2,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@using Fanex.Affiliate.User.Core.BusinessService
 @using Fanex.Affiliate.User.Core.CoreService
 
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var systemService = DependencyResolver.Current.GetService<ISystemService>();
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+
+    var favoriteShortedLanguage = systemService.GetFavoriteShortedLanguage();
+    var link = string.Format(appSetting.RedirectToOldVersLink, favoriteShortedLanguage);
+
+    var redirectOldLinkText = string.Format(Lang.RedirectOldLink, link);
 }
 
 @section alternateAndCanonicalTags{
@@ -89,6 +97,8 @@
                                 <button type="button" id="btnDialogLogin" class="btn-submit btn-block text-uppercase spacing-bt">@Lang.Login</button>
                                 <a href="@Url.RenderLanguageContent("~/Password")" class="link-login-popup">@Lang.ForgotLoginDetail</a>
                             </form>
+                            <br/>
+                            <p class="redirect-old-link">@Html.Raw(redirectOldLinkText)</p>
                         </div>
                     </div>
                 </div>

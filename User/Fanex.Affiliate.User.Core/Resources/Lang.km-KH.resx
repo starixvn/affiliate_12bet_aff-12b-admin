@@ -2551,4 +2551,7 @@
   <data name="UserNameNotExist" xml:space="preserve">
     <value>គណនីបង់ប្រាក់ដែលអ្នកបានបញ្ចូលមិនមានទេនោះទេ សូមពិនិត្យមើលឡើងវិញ។</value>
   </data>
+  <data name="RedirectOldLink" xml:space="preserve">
+    <value>click &lt;a href="{0}"&gt;here&lt;/a&gt; to access to old affiliate admin</value>
+  </data>
 </root>

@@ -5233,6 +5233,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; to access to old affiliate admin.
+        /// </summary>
+        public static string RedirectOldLink {
+            get {
+                return ResourceManager.GetString("RedirectOldLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify Email Address.
         /// </summary>
         public static string ReEmail {

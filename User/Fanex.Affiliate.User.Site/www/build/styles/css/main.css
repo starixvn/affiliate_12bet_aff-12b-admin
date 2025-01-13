@@ -1930,6 +1930,12 @@ input[type="radio"], input[type="checkbox"] {
         @media (max-width: 500px) {
           .login-dialog .modal-dialog .modal-content .modal-body .main-login {
             display: unset; } }
+        .login-dialog .modal-dialog .modal-content .modal-body .main-login .redirect-old-link {
+          font-size: 1.2rem;
+          margin: 0 -15px;
+          text-align: center; }
+          .login-dialog .modal-dialog .modal-content .modal-body .main-login .redirect-old-link a {
+            color: #D90F0F; }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .item {
           width: 50%;
           padding: 24px; }

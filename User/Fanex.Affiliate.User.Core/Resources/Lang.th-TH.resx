@@ -2550,4 +2550,7 @@
   <data name="ClickHere" xml:space="preserve">
     <value>คลิกที่นี่</value>
   </data>
+  <data name="RedirectOldLink" xml:space="preserve">
+    <value>คลิก&lt;a href="{0}"&gt;ที่นี่&lt;/a&gt;เพื่อเข้าถึงเว็บไซต์พันธมิตรเก่า</value>
+  </data>
 </root>

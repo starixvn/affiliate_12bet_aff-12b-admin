@@ -2546,4 +2546,7 @@
   <data name="ClickHere" xml:space="preserve">
     <value>点击此处。</value>
   </data>
+  <data name="RedirectOldLink" xml:space="preserve">
+    <value>点击&lt;a href="{0}"&gt;此处&lt;/a&gt;访问旧合作伙伴网站。</value>
+  </data>
 </root>

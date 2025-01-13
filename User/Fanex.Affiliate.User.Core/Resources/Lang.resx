@@ -2638,4 +2638,7 @@ CONSISTENT PAYMENT</value>
   <data name="ClickHere" xml:space="preserve">
     <value>click here.</value>
   </data>
+  <data name="RedirectOldLink" xml:space="preserve">
+    <value>click &lt;a href="{0}"&gt;here&lt;/a&gt; to access to old affiliate admin</value>
+  </data>
 </root>

@@ -50,6 +50,16 @@
                         display: unset;
                     }
 
+                    .redirect-old-link {
+                        font-size: 1.2rem;
+                        margin: 0 -15px;
+                        text-align: center;
+
+                        a {
+                            color: #D90F0F;
+                        }
+                    }
+
                     .item {
                         width: 50%;
                         padding: 24px;

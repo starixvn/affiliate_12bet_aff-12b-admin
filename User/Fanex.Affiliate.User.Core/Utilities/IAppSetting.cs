@@ -80,5 +80,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         bool IsUseMemberSiteProxy { get; }
 
         string SubAffTextLinkTemplate { get; }
+
+        string RedirectToOldVersLink { get; }
     }
 }
