@@ -44,10 +44,10 @@
             AppSettings.AppMailId = _appSetting.AppMailId;
             AppSettings.AppMailAddress = _appSetting.AppMailAddress;
 
-            using (var client = new MailDeliver())
-            {
-                client.SendMail(mailItem);
-            }
+            //using (var client = new MailDeliver())
+            //{
+            //    client.SendMail(mailItem);
+            //}
         }
     }
 }
