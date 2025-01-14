@@ -4972,6 +4972,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account balance carried forward from the previous system..
+        /// </summary>
+        public static string PreviousSystemBalanceDescription {
+            get {
+                return ResourceManager.GetString("PreviousSystemBalanceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prizes.
         /// </summary>
         public static string Prizes {

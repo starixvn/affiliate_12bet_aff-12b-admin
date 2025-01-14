@@ -2549,4 +2549,7 @@
   <data name="RedirectOldLink" xml:space="preserve">
     <value>点击&lt;a href="{0}"&gt;此处&lt;/a&gt;访问旧合作伙伴网站。</value>
   </data>
+  <data name="PreviousSystemBalanceDescription" xml:space="preserve">
+    <value>从旧系统结转的账户余额。</value>
+  </data>
 </root>

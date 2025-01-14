@@ -2540,4 +2540,7 @@
   <data name="RedirectOldLink" xml:space="preserve">
     <value>點&lt;a href="{0}"&gt;此&lt;/a&gt;前往舊合作夥伴網站。</value>
   </data>
+  <data name="PreviousSystemBalanceDescription" xml:space="preserve">
+    <value>從舊系統結轉的帳戶餘額。</value>
+  </data>
 </root>

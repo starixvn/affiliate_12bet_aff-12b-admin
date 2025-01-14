@@ -94,6 +94,8 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
                         return GetSubAffiliateDescription(CalculatedType);
                     case Constants.TransType.MonthlyTotal:
                         return GetMonthlyTotalDescription(CalculatedType);
+                    case Constants.TransType.Adjustment:
+                        return GetAdjustmentDescription(Description);
                     default:
                         return Description;
                 }
@@ -150,6 +152,15 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
                 default:
                     return Resources.Lang.CurrentMonthStatistics;
             }
+        }
+
+        private static string GetAdjustmentDescription(string description)
+        {
+            const string desc = "Account balance carried forward from the previous system.";
+
+            return description.Trim().Equals(desc, StringComparison.InvariantCultureIgnoreCase) 
+                ? Resources.Lang.PreviousSystemBalanceDescription 
+                : string.Empty;
         }
     }
 }
