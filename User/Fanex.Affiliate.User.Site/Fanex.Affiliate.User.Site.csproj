@@ -326,28 +326,16 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
     <Content Include="12monitor.aspx" />
-    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.local.xml">
+    <Content Include="App_Data\SpConfig\SpName.user-12b.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.production.xml">
+    <Content Include="App_Data\SpConfig\SpName.user-12b.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.sit.xml">
+    <Content Include="App_Data\SpConfig\SpName.user-12b.sit.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.uat.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.local.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.production.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.sit.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.uat.xml">
+    <Content Include="App_Data\SpConfig\SpName.user-12b.uat.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="App_Data\SpConfig\_SpName.txt">
@@ -368,30 +356,6 @@
     </Content>
     <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.local.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.production.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.sit.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.uat.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.local.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.production.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.sit.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.uat.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
     <Content Include="sitemap.xml" />
     <Content Include="www\build\js\channel-link-statistic.js" />
@@ -788,30 +752,18 @@
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="Views\Password\Update.cshtml" />
     <Content Include="Views\Auth\AuthenticationForm.cshtml" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.uat.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.sit.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.production.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.production.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.sit.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.uat.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.local.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.sit.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.uat.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.production.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.local.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.production.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.sit.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.uat.config" />
-    <Content Include="Configurations\Web\Transform\asian.local.config" />
-    <Content Include="Configurations\Web\Transform\asian.production.config" />
-    <Content Include="Configurations\Web\Transform\asian.sit.config" />
-    <Content Include="Configurations\Web\Transform\asian.uat.config" />
-    <Content Include="Configurations\Web\Transform\euro.local.config" />
-    <Content Include="Configurations\Web\Transform\euro.production.config" />
-    <Content Include="Configurations\Web\Transform\euro.sit.config" />
-    <Content Include="Configurations\Web\Transform\euro.uat.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.local.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.uat.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.sit.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.production.config" />
+    <Content Include="Configurations\AppSetting\Transform\local.config" />
+    <Content Include="Configurations\AppSetting\Transform\sit.config" />
+    <Content Include="Configurations\AppSetting\Transform\uat.config" />
+    <Content Include="Configurations\AppSetting\Transform\production.config" />
+    <Content Include="Configurations\Web\Transform\local.config" />
+    <Content Include="Configurations\Web\Transform\production.config" />
+    <Content Include="Configurations\Web\Transform\sit.config" />
+    <Content Include="Configurations\Web\Transform\uat.config" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.es-ES.cshtml" />
@@ -1412,7 +1364,31 @@
     <Content Include="Views\UserPanel\AccountOverView\Partial\_GeneratedQrCode.cshtml" />
     <Content Include="www\source\styles\scss\components\_toogle-button.scss" />
     <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
-    <None Include="packages.config" />
+    <Content Include="Configurations\AppSetting\AppSetting.user-12b.local.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.user-12b.production.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.user-12b.sit.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.user-12b.uat.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.user-12b.local.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.user-12b.production.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.user-12b.sit.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.user-12b.uat.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1425,30 +1401,6 @@
     </None>
     <Content Include="ConnectionString.config">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.production.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.sit.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.uat.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.production.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.sit.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.uat.config">
-      <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="Fanex.Affiliate.User.Site.ruleset" />
     <Content Include="package.json" />
