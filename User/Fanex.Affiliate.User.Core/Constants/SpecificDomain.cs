@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.User.Core.Constants
     public static class SpecificDomain
     {
         private const string DOMAIN_GO_LOCAL = "aff-12bet.nexdev.net/12BetGo";
-        private const string DOMAIN_GO1_LOCAL = "aff-12bet.nexdev.net/12BetGo1";
+        private const string DOMAIN_GOV2_LOCAL = "aff-12b.nexdev.net/Go";
         private const string DOMAIN_GO_12REAL_PRO = "go.12real.com";
         private const string DOMAIN_GO_JOIN_BEST5689_PRO = "join.best5689.com";
         private const string DOMAIN_GO_5689FUN_PRO = "go.5689fun.com";
@@ -21,6 +21,8 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string DOMAIN_GO_APA56_PRO = "go.apa56.com";
 
         private const string DOMAIN_GO_12QIUBALL_PRO = "go.12qiuball.com";
+        private const string DOMAIN_GO_ALL2356_PRO = "go.all2356.com";
+        private const string DOMAIN_GO_AMO38_PRO = "go.amo38.com";
 
         //go.12real.com, go.12fifa18.com
         private const string AFF16105_ID = "92043193";
@@ -62,6 +64,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string AFF16344_ID = "92043432";
 
         private const string AFF16341_ID = "92043429";
+        private const string AFF16386_ID = "92043474";
 
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnPro = new Dictionary<string, string>
         {
@@ -100,11 +103,12 @@ namespace Fanex.Affiliate.User.Core.Constants
             [AFF16344_ID] = DOMAIN_GO_SBC31_PRO,
 
             [AFF16341_ID] = DOMAIN_GO_12QIUBALL_PRO,
+            [AFF16386_ID] = $"{DOMAIN_GO_ALL2356_PRO},{DOMAIN_GO_AMO38_PRO}",
         };
 
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnLocal = new Dictionary<string, string>
         {
-            [AFF16105_ID] = $"{DOMAIN_GO_LOCAL},{DOMAIN_GO1_LOCAL}",
+            [AFF16105_ID] = $"{DOMAIN_GO_LOCAL},{DOMAIN_GOV2_LOCAL}",
             
             [AFF16204_ID] = DOMAIN_GO_LOCAL,
             [AFF16205_ID] = DOMAIN_GO_LOCAL,
@@ -139,6 +143,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             [AFF16344_ID] = DOMAIN_GO_LOCAL,
 
             [AFF16341_ID] = DOMAIN_GO_LOCAL,
+            [AFF16386_ID] = $"{DOMAIN_GO_LOCAL},{DOMAIN_GOV2_LOCAL}",
         };
     }
 }
