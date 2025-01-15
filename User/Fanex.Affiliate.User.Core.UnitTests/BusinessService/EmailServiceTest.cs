@@ -1,6 +1,6 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Enum;
-using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
@@ -8,7 +8,6 @@ using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using Newtonsoft.Json;
 using NSubstitute;
-using System;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
@@ -183,22 +182,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void SendContactUsEmail_WhenCall_SendMail()
-        {
-            var service = CreateService();
-            var param = CreateEmailBaseParam();
-            var contactUsParam = CreateContactUsParam();
-            var mainContent = "mail content";
-            MockingHelper.SetUpEnviroment();
-            MailProcessor.BuildTemplateContent(null, null, null).ReturnsForAnyArgs(mainContent);
-
-            service.SendContactUsEmail(param, contactUsParam);
-
-            MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<ContactUsParam>());
-            MailProcessor.Received().Send(mainContent, param.MailTo, Arg.Compat.Is<string>(c => c.Contains(contactUsParam.Subject)));
-        }
-
-        [Fact]
         public void SendVerificationEmail_WhenCall_SendMail()
         {
             var service = CreateService();
@@ -321,24 +304,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             IMValue = "0123456789",
             UserNumberContact = "0987654321"
         };
-
-        private static ContactUsParam CreateContactUsParam()
-            => new ContactUsParam
-            {
-                Affiliate = " 12",
-                Browser = "Chrome",
-                Captcha = "1234",
-                Content = "abc",
-                Creator = 1,
-                Email = "abc@email.com",
-                ErrCode = 0,
-                ErrMsg = "",
-                Ip = "127.0.0.1",
-                Mid = 2,
-                Sender = "sencder",
-                SessionId = "3",
-                Subject = "test subject"
-            };
 
         private EmailService CreateService()
             => new EmailService(AppSetting, MailProcessor, LanguageService);

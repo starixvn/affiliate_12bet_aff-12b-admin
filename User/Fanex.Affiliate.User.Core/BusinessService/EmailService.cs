@@ -1,11 +1,10 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
+﻿using System.Web;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Enum;
-using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using System.Web;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -94,14 +93,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             var emailContent = GetEmailTextContent(TemplateString.Csd, SystemLanguage.DefaultLanguageCode, emailParam);
             var subject = string.Format(Lang.CsdSubject, emailParam.UserName);
-
-            _mailProcessor.Send(emailContent, emailParam.MailTo, subject);
-        }
-
-        public void SendContactUsEmail(EmailBaseParam emailParam, ContactUsParam model)
-        {
-            var emailContent = GetEmailTextContent(TemplateString.ContactUs, SystemLanguage.DefaultLanguageCode, model);
-            var subject = $"12Bet Affiliates - Contact Us - {model.Subject}";
 
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject);
         }

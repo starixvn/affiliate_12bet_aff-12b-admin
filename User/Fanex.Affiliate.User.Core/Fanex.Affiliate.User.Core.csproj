@@ -561,7 +561,6 @@
     <Compile Include="Infrastructure\UrlSchema.cs" />
     <Compile Include="MetalModels\Attributes\RequiredByCheckedAttribute.cs" />
     <Compile Include="MetalModels\AuthResultBaseParam.cs" />
-    <Compile Include="MetalModels\ContactUsParam.cs" />
     <Compile Include="MetalModels\Email\VerificationAccountEmailParam.cs" />
     <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
     <Compile Include="MetalModels\Email\NoticeEmailParam.cs" />
