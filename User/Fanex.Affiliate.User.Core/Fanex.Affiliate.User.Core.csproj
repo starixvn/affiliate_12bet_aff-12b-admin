@@ -662,11 +662,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.zh-TW.resx</DependentUpon>
     </Compile>
-    <Compile Include="Service References\MemberInfoWebService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
     <Compile Include="Utilities\Common.cs" />
     <Compile Include="Utilities\ConverterUtils.cs" />
@@ -775,25 +770,9 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
-    <None Include="Service References\MemberInfoWebService\Service.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\MemberInfoWebService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MemberInfoWebService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MemberInfoWebService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MemberInfoWebService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\.sonarlint\12betaffuser\CSharp\SonarLint.xml">
