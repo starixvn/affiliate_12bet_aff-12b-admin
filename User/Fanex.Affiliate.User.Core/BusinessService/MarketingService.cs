@@ -77,7 +77,7 @@
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal = false)
         {
-            var criteria = param.MapTo<GetSizeListCriteria>(isInternal);
+            var criteria = param.MapTo<SizeParam, GetSizeListCriteria>(isInternal);
 
             return FetchTData<SizeType>(criteria);
         }
@@ -137,7 +137,7 @@
         {
             const int LengthOfSplittingSize = 2;
 
-            var bannerList = FetchTDataWithPaging<MarketingItem>(bannerParam.MapTo<GetBannerListCriteria>(), bannerParam);
+            var bannerList = FetchTDataWithPaging<MarketingItem>(bannerParam.MapTo<MarketingBannerParam, GetBannerListCriteria>(), bannerParam);
             foreach (var banner in bannerList)
             {
                 banner.FileName = bannerParam.BannerDomain + banner.FileName;
@@ -204,7 +204,7 @@
 
         public ResultInfo ToggleMarketingLink(MarketingLinkParam param)
         {
-            var result = ExecuteReturnResultInfo(param.MapTo<ToggleMarketingLinkCommand>());
+            var result = ExecuteReturnResultInfo(param.MapTo<MarketingLinkParam, ToggleMarketingLinkCommand>());
             var message = GenToggleErrMsg(result.Code);
 
             return new ResultInfo

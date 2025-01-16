@@ -17,7 +17,7 @@
 
         public IEnumerable<StatementHistory> GetStatementHistory(StatementHistoryParam statementHistoryParam)
         {
-            var criteria = statementHistoryParam.MapTo<GetStatementHistoryCriteria>();
+            var criteria = statementHistoryParam.MapTo<StatementHistoryParam, GetStatementHistoryCriteria>();
 
             return FetchTDataWithPaging<StatementHistory>(criteria, statementHistoryParam);
         }
@@ -31,14 +31,14 @@
 
         public EntityResult<DailyEarning> GetDailyEarning(DailyEarningParam dailyEarningParam)
         {
-            var criteria = dailyEarningParam.MapTo<GetDailyEarningCriteria>();
+            var criteria = dailyEarningParam.MapTo<DailyEarningParam, GetDailyEarningCriteria>();
 
             return FetchEntityResult<DailyEarning>(criteria);
         }
 
         public IEnumerable<SubAffComInfo> GetSubAffCommission(SubAffComParam subAffParam)
         {
-            var criteria = subAffParam.MapTo<GetSubAffCommissionCriteria>();
+            var criteria = subAffParam.MapTo<SubAffComParam, GetSubAffCommissionCriteria>();
 
             return FetchTData<SubAffComInfo>(criteria);
         }

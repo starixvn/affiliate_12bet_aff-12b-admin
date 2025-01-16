@@ -30,7 +30,7 @@
 
         public CommissionReportDataViewModel GenerateCommissionReportData(CommissionReportParam param)
         {
-            var rawData = FetchTData<AffiliateCommission>(param.MapTo<GetAffiliateCommissionCriteria>());
+            var rawData = FetchTData<AffiliateCommission>(param.MapTo<CommissionReportParam, GetAffiliateCommissionCriteria>());
 
             var byMonth = rawData.GroupBy(n => n.MonthDate)
                         .OrderByDescending(g => g.Key)

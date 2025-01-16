@@ -7,11 +7,11 @@
     {
         private const string IsInternalPropName = "IsInternal";
 
-        public static TDestination MapTo<TDestination>(this object source, bool isInternal = false) where TDestination : class, new()
+        public static TDestination MapTo<TSource, TDestination>(this TSource source, bool isInternal = false) where TDestination : class, new()
         {
             var destination = new TDestination();
 
-            if (source == null)
+            if (Equals(source, default(TSource)))
             {
                 return destination;
             }

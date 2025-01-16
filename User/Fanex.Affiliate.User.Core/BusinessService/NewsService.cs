@@ -44,7 +44,7 @@
 
         public IEnumerable<MessageHistory> GetMessageList(MessageHistoryParam param)
         {
-            return FetchTDataWithPaging<MessageHistory>(param.MapTo<GetMessageListCriteria>(), param);
+            return FetchTDataWithPaging<MessageHistory>(param.MapTo<MessageHistoryParam, GetMessageListCriteria>(), param);
         }
 
         private static LatestHotNews GetMessageData(dynamic obj)

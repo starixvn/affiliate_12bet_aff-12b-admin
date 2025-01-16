@@ -110,11 +110,11 @@
         private void UpdateVerificationInfo(VerificationOtpParam param, bool isValid)
         {
             var verificationParam = CreateVerificationParam(param);
-            var verificationInfo = GetTData<VerificationInfo>(param.MapTo<GetLoginInfoByUserDeviceCriteria>());
+            var verificationInfo = GetTData<VerificationInfo>(param.MapTo<VerificationOtpParam, GetLoginInfoByUserDeviceCriteria>());
 
             if (verificationInfo.FailedLoginCount.HasValue)
             {
-                var updateResult = ExecuteReturnResultInfo(verificationParam.MapTo<UpdateVerificationInfoCommand>());
+                var updateResult = ExecuteReturnResultInfo(verificationParam.MapTo<AuthResultBaseParam, UpdateVerificationInfoCommand>());
                 if (!updateResult.IsOk)
                 {
                     LogHelper.WriteError(updateResult.Message);
@@ -124,7 +124,7 @@
             {
                 if (isValid)
                 {
-                    var insertResult = ExecuteReturnResultInfo(verificationParam.MapTo<InsertUserDeviceInfoCommand>());
+                    var insertResult = ExecuteReturnResultInfo(verificationParam.MapTo<AuthResultBaseParam, InsertUserDeviceInfoCommand>());
                     if (!insertResult.IsOk)
                     {
                         LogHelper.WriteError(insertResult.Message);

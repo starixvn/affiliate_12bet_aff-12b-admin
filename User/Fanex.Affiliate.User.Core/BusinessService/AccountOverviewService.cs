@@ -22,7 +22,7 @@
 
         public IEnumerable<PlayerDetail> GetPlayerDetailList(PlayerDetailParam param)
         {
-            var criteria = param.MapTo<GetPlayerDetailListCriteria>();
+            var criteria = param.MapTo<PlayerDetailParam, GetPlayerDetailListCriteria>();
 
             return FetchTDataWithPaging<PlayerDetail>(criteria, param);
         }
@@ -39,7 +39,7 @@
 
         public IEnumerable<SubAffDetail> GetSubAffDetails(SubAffDetailParam param)
         {
-            return FetchTData<SubAffDetail>(param.MapTo<GetSubAffDetailsCriteria>());
+            return FetchTData<SubAffDetail>(param.MapTo<SubAffDetailParam, GetSubAffDetailsCriteria>());
         }
     }
 }

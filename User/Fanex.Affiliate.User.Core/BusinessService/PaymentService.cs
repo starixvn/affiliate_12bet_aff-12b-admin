@@ -30,7 +30,7 @@
 
         public IEnumerable<Payment> GetPaymentList(PaymentParam paymentParam)
         {
-            var criteria = paymentParam.MapTo<GetPaymentListCriteria>();
+            var criteria = paymentParam.MapTo<PaymentParam, GetPaymentListCriteria>();
             var result = FetchTData<Payment>(criteria);
 
             paymentParam.PreferredPayment = criteria.PreferredPayment;
@@ -44,7 +44,7 @@
         {
             cancelParam.Status = "Cancelled";
 
-            var resultInfo = ExecuteReturnResultInfo(cancelParam.MapTo<CancelPaymentRequestCommand>());
+            var resultInfo = ExecuteReturnResultInfo(cancelParam.MapTo<PaymentCancelParam,CancelPaymentRequestCommand>());
 
             if (resultInfo.IsOk)
             {
@@ -77,7 +77,7 @@
                     Amount = paymentCreationParam.Amount
                 };
 
-                var command = param.MapTo<CreatePaymentRequestCommand>();
+                var command = param.MapTo<PaymentRequestInfo, CreatePaymentRequestCommand>();
                 resultInfo = ExecuteReturnResultInfo(command);
 
                 if (resultInfo.IsOk)

@@ -48,7 +48,7 @@
             signUpParam.Player_CustId = cust.CustId;
             signUpParam.Player_Currency = cust.IsTest.GetValueOrDefault(true) ? TEST_CURRENCY : cust.CurrencyId.GetValueOrDefault();
 
-            var result = ExecuteReturnResultInfo(signUpParam.MapTo<CreateAffiliateCommand>());
+            var result = ExecuteReturnResultInfo(signUpParam.MapTo<UserSignUpParam, CreateAffiliateCommand>());
             if (result.IsOk)
             {
                 emailParam.MailTo = signUpParam.Email;
@@ -109,7 +109,7 @@
 
         public ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam)
         {
-            return ExecuteReturnResultInfo(accountUpdateParam.MapTo<UpdateAccountInfoCommand>());
+            return ExecuteReturnResultInfo(accountUpdateParam.MapTo<UpdateAccountParam, UpdateAccountInfoCommand>());
         }
 
         public UserInfo GetUserInfoById(int affId, bool isInternal)
@@ -126,7 +126,7 @@
 
         public (int, UserInfo) GetUserInfoByEmail(UserInfoByEmailParam userInfoParam)
         {
-            var criteria = userInfoParam.MapTo<GetUserInfoByEmailCriteria>();
+            var criteria = userInfoParam.MapTo<UserInfoByEmailParam, GetUserInfoByEmailCriteria>();
             var result = GetTData<UserInfo>(criteria);
 
             return (criteria.ErrCode, result);
@@ -134,7 +134,7 @@
 
         public (int, UserInfo) RecoverPassword(PasswordRecoveryParam passwordRecoveryParam)
         {
-            var criteria = passwordRecoveryParam.MapTo<GetRecoverPasswordCriteria>();
+            var criteria = passwordRecoveryParam.MapTo<PasswordRecoveryParam, GetRecoverPasswordCriteria>();
             var result = GetTData<UserInfo>(criteria);
 
             return (criteria.ErrCode, result);
@@ -142,7 +142,7 @@
 
         public ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam)
         {
-            return ExecuteReturnResultInfo(updatePasswordParam.MapTo<UpdatePasswordCommand>());
+            return ExecuteReturnResultInfo(updatePasswordParam.MapTo<UpdatePasswordParam, UpdatePasswordCommand>());
         }
 
         private static ResultInfo CheckPlayerUserNameValid(MemberSiteCustomerInfo cust)
