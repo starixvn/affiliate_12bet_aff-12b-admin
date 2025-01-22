@@ -1,6 +1,4 @@
-﻿using Fanex.Data;
-
-namespace Fanex.Affiliate.Admin.Core.Commands.Message
+﻿namespace Fanex.Affiliate.Admin.Core.Commands.Message
 {
     public abstract class BaseMessageCommand : BaseNonQueryCommand
     {
