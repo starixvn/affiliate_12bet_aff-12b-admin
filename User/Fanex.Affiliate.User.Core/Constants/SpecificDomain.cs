@@ -23,6 +23,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string DOMAIN_GO_12QIUBALL_PRO = "go.12qiuball.com";
         private const string DOMAIN_GO_ALL2356_PRO = "go.all2356.com";
         private const string DOMAIN_GO_AMO38_PRO = "go.amo38.com";
+        private const string DOMAIN_GO_12WINBALL_PRO = "go.12winball.com";
 
         //go.12real.com, go.12fifa18.com
         private const string AFF16105_ID = "92043193";
@@ -66,6 +67,8 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string AFF16341_ID = "92043429";
         private const string AFF16386_ID = "92043474";
 
+        private const string AFF16007_ID = "92043095";
+
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnPro = new Dictionary<string, string>
         {
             [AFF16105_ID] = $"{DOMAIN_GO_12REAL_PRO},{DOMAIN_GO_12FIFA18_PRO}",
@@ -104,6 +107,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
             [AFF16341_ID] = DOMAIN_GO_12QIUBALL_PRO,
             [AFF16386_ID] = $"{DOMAIN_GO_ALL2356_PRO},{DOMAIN_GO_AMO38_PRO}",
+
+            [AFF16007_ID] = DOMAIN_GO_12WINBALL_PRO,
         };
 
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnLocal = new Dictionary<string, string>
@@ -144,6 +149,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
             [AFF16341_ID] = DOMAIN_GO_LOCAL,
             [AFF16386_ID] = $"{DOMAIN_GO_LOCAL},{DOMAIN_GOV2_LOCAL}",
+
+            [AFF16007_ID] = DOMAIN_GO_LOCAL,
         };
     }
 }
