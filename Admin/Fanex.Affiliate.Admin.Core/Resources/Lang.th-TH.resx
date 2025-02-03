@@ -121,40 +121,40 @@
     <value>พันธมิตร</value>
   </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
-    <value>พันธมิตร 12bet - เรื่อง  ข้อมูลเพิ่มเติมเกี่ยวกับพันธมิตร</value>
+    <value>12Bet พันธมิตร - การแจ้งเตือนพันธมิตร</value>
   </data>
   <data name="EmailTitleAffApproved" xml:space="preserve">
     <value>เรื่อง  ข้อมูลเพิ่มเติมเกี่ยวกับพันธมิตร</value>
   </data>
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
-    <value>เรื่อง   รายละเอียดเพิ่มเติมพันธมิตร</value>
+    <value>คําแนะนําในการถอนเงิน</value>
   </data>
   <data name="EmailTitleAffDisapproved" xml:space="preserve">
     <value>เรื่อง  สถานะการสมัครของท่าน</value>
   </data>
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
-    <value>พันธมิตร 12bet - เรื่อง  สถานะการสมัครของท่าน</value>
+    <value>12Bet พันธมิตร - เรื่อง  สถานะการสมัครของท่าน</value>
   </data>
   <data name="EmailAutoNotification" xml:space="preserve">
     <value>อีเมลล์นี้ได้ถูกส่งโดยระบบ   กรุณาอย่าตอบกลับอีเมลล์นี้โดยตรง</value>
   </data>
   <data name="EmailSubjectAffInfor" xml:space="preserve">
-    <value>พันธมิตร 12bet - เรื่อง ผลการสมัครเป็นพันธมิตร</value>
+    <value>12Bet พันธมิตร - เรื่อง ผลการสมัครเป็นพันธมิตร</value>
   </data>
   <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
-    <value>พันธมิตร 12bet - เรื่อง   รายละเอียดเพิ่มเติมพันธมิตร</value>
+    <value>12Bet พันธมิตร - คําแนะนําในการถอนเงิน</value>
   </data>
   <data name="EmailTitleAffInfor" xml:space="preserve">
     <value>เรื่อง ผลการสมัครเป็นพันธมิตร</value>
   </data>
   <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
-    <value>พันธมิตร 12bet - เรื่อง  การขอถอนเงินของท่านได้รับการอนุมัติเรียบร้อยแล้ว</value>
+    <value>12Bet พันธมิตร - เรื่อง  การขอถอนเงินของท่านได้รับการอนุมัติเรียบร้อยแล้ว</value>
   </data>
   <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
     <value>เรื่อง  การขอถอนเงินของท่านได้รับการอนุมัติเรียบร้อยแล้ว</value>
   </data>
   <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
-    <value>พันธมิตร 12bet - เรื่อง  กาขอถอนเงินขอท่านได้ถูกปฎิเสธ</value>
+    <value>12Bet พันธมิตร - เรื่อง  กาขอถอนเงินขอท่านได้ถูกปฎิเสธ</value>
   </data>
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>เรื่อง  กาขอถอนเงินขอท่านได้ถูกปฎิเสธ</value>

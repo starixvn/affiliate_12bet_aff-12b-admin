@@ -39,8 +39,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Email
         private void SendApprovedAffEmail(AffInformationEmail emailParam)
         {
             var subject = Lang.EmailSubjectAffApproved;
-            var model = new EmailBase
+            var model = new AffApprovedEmail
             {
+                FirstName = emailParam.FirstName,
                 MailContact = emailParam.MailContact,
                 ContactInfo = emailParam.ContactInfo
             };

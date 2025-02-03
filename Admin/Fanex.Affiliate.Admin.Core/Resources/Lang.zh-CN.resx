@@ -121,13 +121,13 @@
     <value>合作伙伴</value>
   </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
-    <value>12Bet 合作伙伴 - 壹贰博合作伙伴通知</value>
+    <value>12Bet 合作伙伴 - 合作伙伴通知</value>
   </data>
   <data name="EmailTitleAffApproved" xml:space="preserve">
     <value>壹贰博合作伙伴通知</value>
   </data>
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
-    <value>壹贰博合作伙伴提款指南</value>
+    <value>提款教学</value>
   </data>
   <data name="EmailTitleAffDisapproved" xml:space="preserve">
     <value>您的加盟申请</value>
@@ -142,7 +142,7 @@
     <value>12Bet 合作伙伴 - 壹贰博合作伙伴通知</value>
   </data>
   <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
-    <value>12Bet 合作伙伴 - 壹贰博合作伙伴提款指南</value>
+    <value>12Bet 合作伙伴—提款教学</value>
   </data>
   <data name="EmailTitleAffInfor" xml:space="preserve">
     <value>您的合作伙伴帐户信息</value>

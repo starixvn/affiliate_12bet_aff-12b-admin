@@ -150,7 +150,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
             emailParam.IsApproved = param.IsApproved;
             emailParam.TransId = param.TransId;
-            emailParam.TransDate = paymentRequestDetail.TransDate.ToString("MM/dd/yyyy");
+            emailParam.TransDate = paymentRequestDetail.TransDate.ToString("MM/dd/yyyy HH:mm:ss");
             emailParam.Amount = paymentRequestDetail.Amount;
 
             _emailService.SendPaymentRequestUpdateEmail(emailParam);

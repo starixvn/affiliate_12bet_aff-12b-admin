@@ -121,40 +121,40 @@
     <value>Afiliasi</value>
   </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
-    <value>12Bet Affiliates - Afiliasi Pemberitahuan</value>
+    <value>12Bet Afiliasi - Notifikasi Afiliasi</value>
   </data>
   <data name="EmailTitleAffApproved" xml:space="preserve">
     <value>Afiliasi Pemberitahuan</value>
   </data>
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
-    <value>Afiliasi Penarikan Bimbingan</value>
+    <value>Panduan Penarikan Saldo</value>
   </data>
   <data name="EmailTitleAffDisapproved" xml:space="preserve">
     <value>Permohonan Anda</value>
   </data>
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
-    <value>12Bet Affiliates – Permohonan Anda</value>
+    <value>12Bet Afiliasi – Permohonan Anda</value>
   </data>
   <data name="EmailAutoNotification" xml:space="preserve">
     <value>Ini adalah email yang dibuat otomatis oleh sistem, jangan membalas email ini secara langsung.</value>
   </data>
   <data name="EmailSubjectAffInfor" xml:space="preserve">
-    <value>12Bet Affiliates - Informasi Afiliasi Anda</value>
+    <value>12Bet Afiliasi - Informasi Afiliasi Anda</value>
   </data>
   <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
-    <value>12Bet Affiliates - Afiliasi Penarikan Bimbingan</value>
+    <value>12Bet Afiliasi - Panduan Penarikan Saldo</value>
   </data>
   <data name="EmailTitleAffInfor" xml:space="preserve">
     <value>Informasi Afiliasi Anda</value>
   </data>
   <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
-    <value>12Bet Affiliates - [{0}] - Permintaan pembayaran Anda telah diproses dan diselesaikan dengan sukses</value>
+    <value>12Bet Afiliasi - [{0}] - Permintaan pembayaran Anda telah diproses dan diselesaikan dengan sukses</value>
   </data>
   <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
     <value>Permintaan pembayaran Anda telah diproses dan diselesaikan dengan sukses</value>
   </data>
   <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
-    <value>12Bet Affiliates - [{0}] - Permintaan pembayaran Anda telah ditolak</value>
+    <value>12Bet Afiliasi - [{0}] - Permintaan pembayaran Anda telah ditolak</value>
   </data>
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>Permintaan pembayaran Anda telah ditolak</value>

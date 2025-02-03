@@ -1265,7 +1265,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.bn-BD.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.en-US.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.es-ES.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.hi-IN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.id-ID.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.ja-JP.cshtml" />
@@ -1278,7 +1277,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.bn-BD.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.en-US.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.es-ES.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.hi-IN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.id-ID.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateDisapproved\Content.ja-JP.cshtml" />
@@ -1291,7 +1289,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.bn-BD.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.en-US.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.es-ES.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.hi-IN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.id-ID.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.ja-JP.cshtml" />
@@ -1305,7 +1302,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Html\Content.bn-BD.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Html\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Html\Content.en-US.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Html\Content.es-ES.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Html\Content.hi-IN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Html\Content.id-ID.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Html\Content.ja-JP.cshtml" />
@@ -1318,7 +1314,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.bn-BD.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.en-US.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.es-ES.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.hi-IN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.id-ID.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\ContactInfo\Text\Content.ja-JP.cshtml" />
@@ -1331,7 +1326,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.bn-BD.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.en-US.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.es-ES.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.hi-IN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.id-ID.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.ja-JP.cshtml" />
@@ -1344,7 +1338,6 @@
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.bn-BD.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.en-GB.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.en-US.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.es-ES.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.hi-IN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.id-ID.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.ja-JP.cshtml" />

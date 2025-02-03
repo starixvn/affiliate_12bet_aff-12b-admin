@@ -15,6 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.Commands.Administrator
         public int GroupId { get; set; }
 
         [SpParam(SqlParamName = "Creator")]
-        public new int UserId { get; set; }
+        public override int UserId { get; set; }
     }
 }

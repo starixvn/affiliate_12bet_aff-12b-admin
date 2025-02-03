@@ -4,13 +4,13 @@
     <tr>
         <td>
             <p style="color: #313131; margin: 0; line-height: 1.5">
-                敬爱的 @Model.FirstName,<br /><br />
+                敬爱的@(Model.FirstName)：<br /><br />
 
                 恭喜！您的合作伙伴申请已被批准，很高兴欢迎您成为12BET合作伙伴的一份子。<br /><br />
 
                 作为本公司的合作伙伴，您将有机会获得各种营销资源和工具，来让您的事业取得成功。请使用以下登录信息，访问您的12BET合作伙伴账户<br /><br />
 
-                网站链接：<a href="@Model.UserSiteUrl">@Model.UserSiteUrl</a><br />
+                网站链接：<a href="@(Model.UserSiteUrl + "/cs")">@Model.UserSiteUrl</a><br />
                 用户名：@Model.UserName<br />
                 密码：@Model.Password<br /><br />
 

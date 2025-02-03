@@ -433,6 +433,7 @@
     <Compile Include="DTO\Customer\TransferLimitSettingInfo.cs" />
     <Compile Include="DTO\Domain\DomainControlInfo.cs" />
     <Compile Include="DTO\Domain\DomainInfo.cs" />
+    <Compile Include="DTO\Email\AffApprovedEmail.cs" />
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
     <Compile Include="DTO\Home\GeneralInfo.cs" />
     <Compile Include="DTO\Home\OnlineListInfo.cs" />
@@ -595,9 +596,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.id-ID.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Lang.km-KH.Designer.cs">
-      <DependentUpon>Lang.km-KH.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\Lang.ko-KR.Designer.cs">
       <DependentUpon>Lang.ko-KR.resx</DependentUpon>
     </Compile>
@@ -734,7 +732,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Lang.km-KH.resx" />
     <EmbeddedResource Include="Resources\Lang.ko-KR.resx" />
     <EmbeddedResource Include="Resources\Lang.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

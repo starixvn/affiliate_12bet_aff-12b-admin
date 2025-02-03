@@ -4,13 +4,13 @@
     <tr>
         <td>
             <p style="color: #313131; margin: 0; line-height: 1.5">
-                @(Model.FirstName)제휴 사장님,<br /><br />
+                @(Model.FirstName) 제휴사님,<br /><br />
 
                 축하드립니다. 제휴 신청이 승인되었습니다. 이제 공식적으로 12BET 제휴 파트너로서 맞이하게 되어 기쁩니다.<br /><br />
 
                 파트너로서 성공에 도움이 되는 다양한 마케팅 리소스와 툴을 액세스할 수 있습니다. 12BET 제휴 계정에 액세스하려면 다음 로그인 정보를 이용하세요.<br /><br />
 
-                사이트 링크: <a href="@Model.UserSiteUrl">@Model.UserSiteUrl</a><br />
+                사이트 링크: <a href="@(Model.UserSiteUrl + "/ko")">@Model.UserSiteUrl</a><br />
                 아이디: @Model.UserName<br />
                 비밀번호: @Model.Password<br /><br />
 

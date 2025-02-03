@@ -1,24 +1,22 @@
-﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.EmailBase
+﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.AffApprovedEmail
 
 <table>
     <tr>
         <td>
             <p style="color: #313131; margin: 0; line-height: 1.5">
-                尊敬的客户,<br /><br />
+                敬爱的@(Model.FirstName)：<br /><br />
 
                 恭喜您，您已经成为了壹贰博的合作伙伴!<br /><br />
 
                 如需要更改您的任何个人信息或添加其他额外的网站，只需点击“我的帐户”即可更改。如果您在个人网站或者其他网站添加了多个壹贰博横幅或促销素材链接，请电邮通知我们您添加横幅的网址，以便统计。<br /><br />
 
-                有请注意，如果壹贰博横幅或促销素材链接在批准后的7天内，没有被更新在您注册时所填写的网站或其他已被壹贰博确认的网站，那么您的合作伙伴帐号可能会被关闭。如有任何特殊情况请事前通过邮件告知我们。<br /><br />
+                请通过电子邮件（<a href="mailto:@Model.MailContact">@Model.MailContact</a>）通知您计划张贴12BET广告横幅的确切网站网址。如果需要不同尺寸的横幅，请联系我们，我们将尽快为您安排。<br /><br />
 
-                同时，如您需要其他特定的横幅尺寸，请通知我们，我们也会为您安排准备。<br /><br />
+                请注意，若在您在会员资格批准后七天内，12BET 的横幅未放置于注册的网站（如有）或您通知的网址，且未事先向12BET 提出书面解释，您的合作伙伴账户可能面临关闭的风险。<br /><br />
 
                 祝愿您的网站流量早日为您带来可观的收入！<br /><br />
 
-                谢谢！<br /><br />
-
-                诚挚的,<br /><br />
+                感谢您的支持。<br /><br />
             </p>
         </td>
     </tr>

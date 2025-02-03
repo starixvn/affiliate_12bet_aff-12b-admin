@@ -166,8 +166,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             switch (functionName)
             {
                 case TemplateString.AffiliateApproved:
-                    return new EmailBase
+                    return new AffApprovedEmail
                     {
+                        FirstName = _firstName,
                         RootUrl = rootUrl,
                         Language = language,
                         IsHtml = isHtml,

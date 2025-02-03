@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.Admin.Core.Commands
 {
     public abstract class BaseNonQueryCommand : NonQueryCommand
     {
-        public int UserId { get; set; }
+        public virtual int UserId { get; set; }
 
         public string Ip { get; set; }
 

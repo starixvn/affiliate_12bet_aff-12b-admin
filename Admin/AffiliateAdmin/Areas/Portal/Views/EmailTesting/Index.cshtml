@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 
@@ -8,10 +9,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Email</title>
-    <link rel="icon" href=@Url.VersionedLink("~/favicon.ico")>
+    <link rel="icon" href="~/favicon.ico?v=1">
 </head>
 <body>
-    @Html.AntiForgeryToken()
     <div>
         <div>
             Format:
@@ -30,17 +30,29 @@
                 <input name="Language" id="enUS" type="radio" checked value="en-US" />
                 English
             </label>
-            <label for="bnBD">
-                <input name="Language" id="bnBD" type="radio" value="bn-BD" />
-                Bangladeshi
+            <label for="esES">
+                <input name="Language" id="esES" type="radio" value="es-ES" />
+                Spanish
             </label>
-            <label for="kmKH">
-                <input name="Language" id="kmKH" type="radio" value="km-KH" />
-                Cambodian
+            <label for="enGB">
+                <input name="Language" id="enGB" type="radio" value="en-GB" />
+                English (Europe)
+            </label>
+            <label for="hiIn">
+                <input name="Language" id="hiIn" type="radio" value="hi-IN" />
+                English (India)
             </label>
             <label for="idID">
                 <input name="Language" id="idID" type="radio" value="id-ID" />
                 Indonesian
+            </label>
+            <label for="jaJP">
+                <input name="Language" id="jaJP" type="radio" value="ja-JP" />
+                Japan
+            </label>
+            <label for="koKR">
+                <input name="Language" id="koKR" type="radio" value="ko-KR" />
+                Korean
             </label>
             <label for="thTH">
                 <input name="Language" id="thTH" type="radio" value="th-TH" />
@@ -54,13 +66,17 @@
                 <input name="Language" id="zhCN" type="radio" value="zh-CN" />
                 Chinese Simplified
             </label>
-            <label for="hiIN">
-                <input name="Language" id="hiIN" type="radio" value="hi-IN" />
-                Hindi
+            <label for="zhTW">
+                <input name="Language" id="zhTW" type="radio" value="zh-TW" />
+                Chinese Traditional
             </label>
-            <label for="msMY">
-                <input name="Language" id="msMY" type="radio" value="ms-MY" />
-                Malay
+            <label for="kmKH">
+                <input name="Language" id="kmKH" type="radio" value="km-KH" />
+                Cambodian
+            </label>
+            <label for="bnBD">
+                <input name="Language" id="bnBD" type="radio" value="bn-BD" />
+                English (Bangladesh)
             </label>
         </div>
 
@@ -70,9 +86,17 @@
                 <input name="Function" id="AffiliateDisapproved" type="radio" checked value="AffiliateDisapproved" />
                 AffiliateDisapproved
             </label>
+            <label for="AffiliateApproved">
+                <input name="Function" id="AffiliateApproved" type="radio" checked value="AffiliateApproved" />
+                AffiliateApproved
+            </label>
             <label for="AffiliateInformation">
                 <input name="Function" id="AffiliateInformation" type="radio" value="AffiliateInformation" />
                 AffiliateInformation
+            </label>
+            <label for="WithdrawalGuidance">
+                <input name="Function" id="WithdrawalGuidance" type="radio" value="WithdrawalGuidance" />
+                WithdrawalGuidance
             </label>
             <label for="PaymentRequest/Approved">
                 <input name="Function" id="PaymentRequest/Approved" type="radio" value="PaymentRequest/Approved" />
