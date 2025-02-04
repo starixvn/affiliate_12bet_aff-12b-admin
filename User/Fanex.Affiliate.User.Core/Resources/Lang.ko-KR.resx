@@ -313,7 +313,7 @@
     <value>취소요청</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>12Bet 제휴 - 결제요청 알림</value>
+    <value>12B 제휴사 - 지불 요청 접수</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>카보베르데</value>
@@ -1040,7 +1040,7 @@
     <value>신청서</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12Bet 제휴 - 귀하의 신청</value>
+    <value>12B 제휴사 - 신청 접수</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>신청를 잘 접수되었습니다.  &lt;br/&gt;
@@ -1189,13 +1189,13 @@
     <value>제목</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12Bet 제휴 - 귀하의 로그인 디테일</value>
+    <value>12B 제휴사 - 로그인 세부 정보</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>제목이 잘못되었습니다.</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12Bet 제휴 - 귀하의 새로운 비밀번호</value>
+    <value>12B 제휴사 - 새 비밀번호</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>제출</value>
@@ -1895,7 +1895,7 @@
     <value>플레이어</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>12Bet 제휴 - 계정 세부 정보 확인</value>
+    <value>12B 제휴사 - 확인 코드</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>신규 가입 / 입금</value>

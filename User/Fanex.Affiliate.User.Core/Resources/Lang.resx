@@ -319,7 +319,7 @@
     <value>Cancel Request</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>12Bet Affiliates - [{transid}] - Payment Request Notification</value>
+    <value>12B Affiliates - [{transid}] - Payment Request Received </value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>Cape Verde </value>
@@ -1100,7 +1100,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Application Form</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12Bet Affiliates - Your Application</value>
+    <value>12B Affiliate - Application Received</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>Thank you for submitting your application.&lt;br/&gt;
@@ -1255,13 +1255,13 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <comment>87923</comment>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12Bet Affiliates - Your login detail</value>
+    <value>12B Affiliate - Your login detail</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>Subject is invalid</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12Bet Affiliates - Your new password</value>
+    <value>12B Affiliate - Your new password</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
@@ -1797,7 +1797,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Verification your account detail</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>12Bet Affiliates - Verification your account detail</value>
+    <value>12B Affiliate - Verification Code</value>
   </data>
   <data name="ErrmsgEntryCaptcha" xml:space="preserve">
     <value>Please enter captcha!</value>

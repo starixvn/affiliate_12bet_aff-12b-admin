@@ -301,7 +301,7 @@
     <value>取消申請</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>12BET合作夥伴 - [{transid}] -支付申請通知</value>
+    <value>12B 合作伙伴—[{transid}]—已收到付款申请</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>維德角島</value>
@@ -1023,7 +1023,7 @@
     <value>申請表格</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12BET合作夥伴 - 您的申請</value>
+    <value>12B 合作伙伴—已收到申请 </value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>感謝您提交申請。&lt;br /&gt;
@@ -1172,13 +1172,13 @@
     <value>主旨</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12BET合作夥伴 - 您的登錄詳情</value>
+    <value>12B 合作伙伴—您的登录信息</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>主題無效</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12BET合作夥伴 - 您的新密碼</value>
+    <value>12B 合作伙伴—您的新密码</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
@@ -1899,7 +1899,7 @@
     <value>玩家</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>12BET合作夥伴 - 驗證帳戶細節</value>
+    <value>12B 合作伙伴—验证码</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>新註冊 / 存款 會員</value>

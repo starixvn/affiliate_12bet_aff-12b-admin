@@ -304,7 +304,7 @@
     <value>การขอยกเลิก</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>พันธมิตร 12bet - จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
+    <value>12B พันธมิตร - ได้รับคําขอชําระเงินแล้ว</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>เคพ เวิร์ด</value>
@@ -1026,7 +1026,7 @@
     <value>แบบฟอร์มการสมัคร</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>พันธมิตร 12bet - การสมัครของคุณ</value>
+    <value>12B พันธมิตร - ได้รับใบสมัคร</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>ขอบคุณที่ส่งใบสมัครของคุณมายัง พันธมิตร 12BET &lt;br/&gt;
@@ -1175,13 +1175,13 @@
     <value>เรื่อง</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>พันธมิตร 12bet - รายละเอียดการล๊อคอินของคุณ</value>
+    <value>12B พันธมิตร - ข้อมูลล็อคอินของคุณ</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>เรื่องไม่ถูกต้อง</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>พันธมิตร 12bet - รหัสผ่านตัวใหม่ของคุณ</value>
+    <value>12B พันธมิตร - รหัสผ่านใหม่ของคุณ</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>สมัคร</value>
@@ -1905,7 +1905,7 @@
     <value>ผู้เล่น</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>พันธมิตร 12Bet - ยืนยันรายละเอียดบัญชีของคุณ</value>
+    <value>12B พันธมิตร - รหัสยืนยัน</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>การสมัครใหม่ / ฝาก</value>

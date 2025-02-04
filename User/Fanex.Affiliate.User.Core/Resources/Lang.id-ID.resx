@@ -304,7 +304,7 @@
     <value>Batalkan Permintaan</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>Afiliasi 12Bet - [{transid}] - Pemberitahuan Permintaan Pembayaran</value>
+    <value>Afiliasi 12B - [{transid}] - Permintaan Pembayaran Diterima</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>Cape Verde </value>
@@ -1026,7 +1026,7 @@ Tim Dukungan Afiliasi 12BET</value>
     <value>Formulir Permohonan</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>Afiliasi 12Bet - Permohonan Anda</value>
+    <value>12B Afiliasi - Aplikasi Diterima</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>Terima kasih telah mengajukan permohonan Anda.&lt;br/&gt;
@@ -1175,13 +1175,13 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Subjek</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>Afiliasi 12Bet - Rincian login Anda</value>
+    <value>12B Afiliasi - Rincian login Anda</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>Subjek tidak valid</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>Afiliasi 12Bet - Kata sandi baru Anda</value>
+    <value>12B Afiliasi - Kata sandi baru Anda</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Kirim</value>
@@ -1908,7 +1908,7 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Verifikasi detail akun Anda</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>Afiliasi 12Bet - Verifikasi data akun Anda</value>
+    <value>12B Afiliasi - Kode Verifikasi</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>Daftar/Deposit terbaru</value>

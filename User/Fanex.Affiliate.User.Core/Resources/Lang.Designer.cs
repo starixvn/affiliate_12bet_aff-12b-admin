@@ -5296,7 +5296,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliates - Your Application.
+        ///   Looks up a localized string similar to 12B Affiliate - Application Received.
         /// </summary>
         public static string RegisSubject {
             get {

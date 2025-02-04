@@ -304,7 +304,7 @@
     <value>Yêu cầu hủy</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>Đại lý 12Bet - [{transid}] - Thông báo yêu cầu thanh toán</value>
+    <value>Đại Lý 12B - [{transid}] - Đã nhận được yêu cầu thanh toán</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>Cape Verde </value>
@@ -1026,7 +1026,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Mẫu đơn</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>Đại lý 12Bet - Đơn của bạn</value>
+    <value>Đại Lý 12B - Đã nhận được đơn đăng ký</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>Cảm ơn bạn đã gửi đơn.&lt;br/&gt;
@@ -1175,13 +1175,13 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Chủ Đề</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>Đại lý 12Bet - Chi tiết đăng nhập của bạn</value>
+    <value>Đại Lý 12B - Chi tiết tài khoản đăng nhập của bạn</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>Chủ thể không hợp lệ</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>Đại lý 12Bet - Mật khẩu mới của bạn</value>
+    <value>Đại Lý 12B - Mật khẩu mới của bạn</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Gửi</value>
@@ -1896,7 +1896,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Người chơi</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>Đại lý 12Bet - Xác minh chi tiết tài khoản của bạn</value>
+    <value>Đại Lý 12B - Mã xác minh</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>Đăng ký mới / Đã nạp tiền</value>
