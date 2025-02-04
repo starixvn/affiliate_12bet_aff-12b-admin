@@ -142,7 +142,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliate - Affiliate Notification.
+        ///   Looks up a localized string similar to 12B Affiliate - Affiliate Notification.
         /// </summary>
         public static string EmailSubjectAffApproved {
             get {
@@ -151,7 +151,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliate – Your Application.
+        ///   Looks up a localized string similar to 12B Affiliate - Application Rejected.
         /// </summary>
         public static string EmailSubjectAffDisapproved {
             get {
@@ -160,7 +160,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliate - Your Affiliate Information.
+        ///   Looks up a localized string similar to 12B Affiliate - Application Approved.
         /// </summary>
         public static string EmailSubjectAffInfor {
             get {
@@ -169,7 +169,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliate - [{0}] - Your payment request has been processed and completed successfully.
+        ///   Looks up a localized string similar to 12B Affiliate - [{0}] - Payment Request Approved.
         /// </summary>
         public static string EmailSubjectPaymentRequestApproved {
             get {
@@ -178,7 +178,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliate - [{0}] - Your payment request has been rejected.
+        ///   Looks up a localized string similar to 12B Affiliate - [{0}] - Payment Request Rejected.
         /// </summary>
         public static string EmailSubjectPaymentRequestRejected {
             get {
@@ -187,7 +187,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliate - Withdrawal Guidance.
+        ///   Looks up a localized string similar to 12B Affiliate Withdrawal Guidance.
         /// </summary>
         public static string EmailSubjectWithdrawalGuidance {
             get {
@@ -205,7 +205,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Application.
+        ///   Looks up a localized string similar to Application Rejected.
         /// </summary>
         public static string EmailTitleAffDisapproved {
             get {
@@ -214,7 +214,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Affiliate Information.
+        ///   Looks up a localized string similar to Application Approved.
         /// </summary>
         public static string EmailTitleAffInfor {
             get {
@@ -223,7 +223,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your payment request has been processed and completed successfully.
+        ///   Looks up a localized string similar to Payment Request Approved.
         /// </summary>
         public static string EmailTitlePaymentRequestApproved {
             get {
@@ -232,7 +232,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your payment request has been rejected.
+        ///   Looks up a localized string similar to Payment Request Rejected.
         /// </summary>
         public static string EmailTitlePaymentRequestRejected {
             get {

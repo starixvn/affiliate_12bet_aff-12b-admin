@@ -121,42 +121,42 @@
     <value>Hội viên</value>
   </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
-    <value>Đại Lý 12Bet - Thông báo đến Quý Đại Lý</value>
+    <value>Đại Lý 12B - Thông báo đến Quý Đại Lý</value>
   </data>
   <data name="EmailTitleAffApproved" xml:space="preserve">
-    <value>Xác nhận thành viên chương trình kết nối 12Bet</value>
+    <value>Thông báo đến Quý Đại Lý</value>
   </data>
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
     <value>Hướng dẫn rút tiền</value>
   </data>
   <data name="EmailTitleAffDisapproved" xml:space="preserve">
-    <value>Đơn đăng ký chương trình liên kết 12Bet bị từ chối</value>
+    <value>Đơn đăng ký bị từ chối</value>
   </data>
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
-    <value>Đại Lý 12Bet - Đơn đăng ký chương trình liên kết 12Bet bị từ chối</value>
+    <value>Đại Lý 12B - Đơn đăng ký bị từ chối</value>
   </data>
   <data name="EmailAutoNotification" xml:space="preserve">
     <value>Đây là email do hệ thống tạo tự động, vui lòng không trả lời trực tiếp email này.</value>
   </data>
   <data name="EmailSubjectAffInfor" xml:space="preserve">
-    <value>Đại Lý 12Bet - Thông tin của bạn</value>
+    <value>Đại Lý 12B - Đơn đăng ký được phê duyệt</value>
   </data>
   <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
-    <value>Đại Lý 12Bet - Hướng dẫn rút tiền</value>
+    <value>Đại Lý 12B - Hướng dẫn rút tiền</value>
   </data>
   <data name="EmailTitleAffInfor" xml:space="preserve">
-    <value>Thông tin của bạn</value>
+    <value>Đơn đăng ký được phê duyệt</value>
   </data>
   <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
-    <value>Đại Lý 12Bet - [{0}] - Yêu cầu thanh toán của bạn đã được xử lý và hoàn tất</value>
+    <value>Đại Lý 12B - [{0}] - Yêu cầu thanh toán được phê duyệt</value>
   </data>
   <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
-    <value>Yêu cầu thanh toán của bạn đã được xử lý và hoàn tất</value>
+    <value>Yêu cầu thanh toán được phê duyệt</value>
   </data>
   <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
-    <value>Đại Lý 12Bet - [{0}] - Yêu cầu thanh toán của bạn bị từ chối</value>
+    <value>Đại Lý 12B - [{0}] - Yêu cầu thanh toán bị từ chối</value>
   </data>
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
-    <value>Yêu cầu thanh toán của bạn bị từ chối</value>
+    <value>Yêu cầu thanh toán bị từ chối</value>
   </data>
 </root>

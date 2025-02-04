@@ -130,7 +130,7 @@
     <value>Domain Control</value>
   </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
-    <value>12Bet Affiliate - Affiliate Notification</value>
+    <value>12B Affiliate - Affiliate Notification</value>
   </data>
   <data name="EmailTitleAffApproved" xml:space="preserve">
     <value>Affiliate Notification</value>
@@ -148,10 +148,10 @@
     <value>The maximum length of file name is 50. Please either choose another file name or select another file.</value>
   </data>
   <data name="EmailTitleAffDisapproved" xml:space="preserve">
-    <value>Your Application</value>
+    <value>Application Rejected</value>
   </data>
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
-    <value>12Bet Affiliate – Your Application</value>
+    <value>12B Affiliate - Application Rejected</value>
   </data>
   <data name="PleaseEnterContent" xml:space="preserve">
     <value>Please enter the content of message, one language at least.</value>
@@ -264,24 +264,24 @@
     <value>This is a system auto generated email, please do not reply to this email directly.</value>
   </data>
   <data name="EmailSubjectAffInfor" xml:space="preserve">
-    <value>12Bet Affiliate - Your Affiliate Information</value>
+    <value>12B Affiliate - Application Approved</value>
   </data>
   <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
-    <value>12Bet Affiliate - Withdrawal Guidance</value>
+    <value>12B Affiliate Withdrawal Guidance</value>
   </data>
   <data name="EmailTitleAffInfor" xml:space="preserve">
-    <value>Your Affiliate Information</value>
+    <value>Application Approved</value>
   </data>
   <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
-    <value>12Bet Affiliate - [{0}] - Your payment request has been processed and completed successfully</value>
+    <value>12B Affiliate - [{0}] - Payment Request Approved</value>
   </data>
   <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
-    <value>Your payment request has been processed and completed successfully</value>
+    <value>Payment Request Approved</value>
   </data>
   <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
-    <value>12Bet Affiliate - [{0}] - Your payment request has been rejected</value>
+    <value>12B Affiliate - [{0}] - Payment Request Rejected</value>
   </data>
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
-    <value>Your payment request has been rejected</value>
+    <value>Payment Request Rejected</value>
   </data>
 </root>
