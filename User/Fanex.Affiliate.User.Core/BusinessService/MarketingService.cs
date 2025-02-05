@@ -91,9 +91,11 @@
 
             if (domainList == null)
             {
-                domainList = isMember
+                var domains = isMember
                     ? FetchTData<Domain>(new GetAffDomainListCriteria(affId, isInternal))
                     : FetchTData<Domain>(new GetSubAffDomainListCriteria(isInternal));
+
+                domainList = GetAvailableDomainsFromDate(domains);
 
                 var specificDomains = _appSetting.IsDev || _appSetting.IsLocal
                     ? SpecificDomain.SpecificDomainByAffOnLocal
@@ -314,6 +316,11 @@
         private static string NormalizeName(string channelName)
         {
             return channelName.Replace(" ", string.Empty).ToLowerInvariant();
+        }
+
+        private IEnumerable<Domain> GetAvailableDomainsFromDate(IEnumerable<Domain> domains)
+        {
+            return domains.Where(_ => DateTime.Compare(_.CreateDate, _appSetting.DomainAvailableFromDate) >= 0);
         }
     }
 }

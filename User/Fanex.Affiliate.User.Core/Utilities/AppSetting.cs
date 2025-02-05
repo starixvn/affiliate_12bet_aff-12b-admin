@@ -1,9 +1,9 @@
-﻿using Fanex.Affiliate.User.Core.Enum;
-using Fanex.Affiliate.User.Core.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using Fanex.Affiliate.User.Core.Enum;
+using Fanex.Affiliate.User.Core.Extensions;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -84,6 +84,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
         public string SubAffTextLinkTemplate => GetValue("SubAffTextLinkTemplate");
 
         public string RedirectToOldVersLink => GetValue("RedirectToOldVersLink");
+
+        public DateTime DomainAvailableFromDate => Convert.ToDateTime(GetValue("DomainAvailableFromDate"));
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
