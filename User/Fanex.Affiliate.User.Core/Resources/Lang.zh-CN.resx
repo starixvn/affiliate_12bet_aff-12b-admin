@@ -1359,13 +1359,13 @@
     <value>您的新密码</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>您的登录详情</value>
+    <value>您的登录信息</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>支付申请通知</value>
+    <value>已收到付款申请</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>您的加盟申请</value>
+    <value>已收到申请 </value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET 娱乐城</value>
@@ -1902,7 +1902,7 @@
     <value>总投注额</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>核实账户信息</value>
+    <value>验证码</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>玩家</value>

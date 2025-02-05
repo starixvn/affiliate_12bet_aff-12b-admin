@@ -1512,10 +1512,10 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Your login detail</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>Payment Request Notification</value>
+    <value>Payment Request Received</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>Your Application</value>
+    <value>Application Received</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>Revenue Report</value>
@@ -1794,7 +1794,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Table/Card Games</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>Verification your account detail</value>
+    <value>Verification Code</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
     <value>12B Affiliate - Verification Code</value>

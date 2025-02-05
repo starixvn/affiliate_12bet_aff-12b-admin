@@ -1367,13 +1367,13 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Kata sandi baru Anda</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>Detil login anda</value>
+    <value>Rincian login Anda</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>Pemberitahuan Permintaan Pembayaran</value>
+    <value>Permintaan Pembayaran Diterima</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>Permohonan Anda</value>
+    <value>Aplikasi Diterima</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET CASINO CLUBS</value>
@@ -1905,7 +1905,7 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Total turnover</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>Verifikasi detail akun Anda</value>
+    <value>Kode Verifikasi</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
     <value>12B Afiliasi - Kode Verifikasi</value>

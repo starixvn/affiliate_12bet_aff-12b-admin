@@ -1364,16 +1364,16 @@
     <value>ยูสเซอร์ที่จะใช้ถอนค่าคอมมิชชั่น</value>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
-    <value>รหัสผ่านตัวใหม่ของคุณ</value>
+    <value>รหัสผ่านใหม่ของคุณ</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>บัญชีพันธมิตร 12bet รายละเอียดการล๊อคอินของคุณ</value>
+    <value>ข้อมูลล็อคอินของคุณ</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
+    <value>ได้รับคําขอชําระเงินแล้ว</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>เรื่อง   สถานะการสมัครของท่าน</value>
+    <value>ได้รับใบสมัคร</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>คาสิโนคลับต่างๆใน12BET</value>
@@ -1899,7 +1899,7 @@
     <value>ยอดเล่นทั้งหมด</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>ยืนยันรายละเอียดบัญชีของคุณ</value>
+    <value>รหัสยืนยัน</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>ผู้เล่น</value>

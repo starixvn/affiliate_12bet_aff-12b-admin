@@ -1361,16 +1361,16 @@
     <value>12BET玩家帳戶</value>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
-    <value>您的新密碼</value>
+    <value>您的新密码</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>您的登錄詳情</value>
+    <value>您的登录信息</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>支付申請通知</value>
+    <value>已收到付款申请</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>您的加盟申請</value>
+    <value>已收到申请 </value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET 娛樂城</value>
@@ -1893,7 +1893,7 @@
     <value>總投注額</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>驗證帳戶信息</value>
+    <value>验证码</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>玩家</value>

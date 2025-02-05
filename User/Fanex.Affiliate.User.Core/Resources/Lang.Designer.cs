@@ -2195,7 +2195,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Payment Request Notification.
+        ///   Looks up a localized string similar to Payment Request Received.
         /// </summary>
         public static string EmailTitlePayment {
             get {
@@ -4684,7 +4684,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliates - [{transid}] - Payment Request Notification.
+        ///   Looks up a localized string similar to 12B Affiliates - [{transid}] - Payment Request Received .
         /// </summary>
         public static string PaymentSubject {
             get {
@@ -6048,7 +6048,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliates - Your login detail.
+        ///   Looks up a localized string similar to 12B Affiliate - Your login detail.
         /// </summary>
         public static string SubjectForgetPass {
             get {
@@ -6066,7 +6066,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliates - Your new password.
+        ///   Looks up a localized string similar to 12B Affiliate - Your new password.
         /// </summary>
         public static string SubjectNewPass {
             get {
@@ -6075,7 +6075,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliates - Verification your account detail.
+        ///   Looks up a localized string similar to 12B Affiliate - Verification Code.
         /// </summary>
         public static string SubjectVerificationAccount {
             get {

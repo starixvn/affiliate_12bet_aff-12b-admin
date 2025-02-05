@@ -1367,13 +1367,13 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Mật khẩu mới của bạn</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>Chi tiết đăng nhập của bạn</value>
+    <value>Chi tiết tài khoản đăng nhập của bạn</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>Yêu cầu thanh toán của bạn đã bị hủy bỏ</value>
+    <value>Đã nhận được yêu cầu thanh toán</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>Xác nhận đơn đăng ký chương trình kết nối 12BET</value>
+    <value>Đã nhận được đơn đăng ký</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET CASINO CLUBS</value>
@@ -1890,7 +1890,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Tổng doanh thu cược</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>Xác minh chi tiết tài khoản của bạn</value>
+    <value>Mã xác minh</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>Người chơi</value>

@@ -1387,16 +1387,16 @@
     <value>12BET 플레이어 계정</value>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
-    <value>고객님의 새 비밀번호입니다</value>
+    <value>새 비밀번호</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>고객의 로그인 정보</value>
+    <value>로그인 세부 정보</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>지불요청 알림</value>
+    <value>지불 요청 접수</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>회원등록 신청서</value>
+    <value>신청 접수</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET 카지노 클럽</value>
@@ -1889,7 +1889,7 @@
     <value>총 매출액</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>계정 세부 정보 확인</value>
+    <value>확인 코드</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>플레이어</value>
