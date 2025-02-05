@@ -2551,7 +2551,7 @@
     <value>คลิกที่นี่</value>
   </data>
   <data name="RedirectOldLink" xml:space="preserve">
-    <value>คลิก&lt;a href="{0}"&gt;ที่นี่&lt;/a&gt;เพื่อเข้าถึงเว็บไซต์พันธมิตรเก่า</value>
+    <value>คลิก&lt;a href="{0}"&gt;ที่นี่&lt;/a&gt;เเพื่อเข้าสู่เว็บไซต์พันธมิตรเวอร์ชันเดิม</value>
   </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>ยอดคงเหลือในบัญชีที่ยกยอดจากระบบเดิม</value>

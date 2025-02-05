@@ -2204,7 +2204,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Application.
+        ///   Looks up a localized string similar to Application Received.
         /// </summary>
         public static string EmailTitleSignUp {
             get {
@@ -2213,7 +2213,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verification your account detail.
+        ///   Looks up a localized string similar to Verification Code.
         /// </summary>
         public static string EmailTittleVerificationAccount {
             get {
@@ -5242,7 +5242,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; to access to old affiliate admin.
+        ///   Looks up a localized string similar to Click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; to access to old affiliate site.
         /// </summary>
         public static string RedirectOldLink {
             get {

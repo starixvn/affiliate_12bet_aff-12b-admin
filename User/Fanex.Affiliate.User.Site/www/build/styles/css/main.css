@@ -1931,9 +1931,10 @@ input[type="radio"], input[type="checkbox"] {
           .login-dialog .modal-dialog .modal-content .modal-body .main-login {
             display: unset; } }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .redirect-old-link {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
           margin: 0 -15px;
-          text-align: center; }
+          text-align: center;
+          font-weight: bold; }
           .login-dialog .modal-dialog .modal-content .modal-body .main-login .redirect-old-link a {
             color: #D90F0F; }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .item {
