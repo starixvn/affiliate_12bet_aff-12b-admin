@@ -775,7 +775,7 @@
     <Content Include="Configurations\Web\Transform\uat.config" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\RecoverPassword\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.ja-JP.cshtml" />
@@ -786,7 +786,7 @@
     <Content Include="Views\Shared\Email\RecoverPassword\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentCancel\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.ja-JP.cshtml" />
@@ -797,7 +797,7 @@
     <Content Include="Views\Shared\Email\PaymentCancel\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentRequest\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentRequest\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.ja-JP.cshtml" />
@@ -808,7 +808,7 @@
     <Content Include="Views\Shared\Email\PaymentRequest\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\NewPassword\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\NewPassword\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.ja-JP.cshtml" />
@@ -1101,7 +1101,7 @@
     <Content Include="www\source\styles\fonts\nokora\font.css" />
     <Content Include="Views\Shared\Email\Signup\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\Signup\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\Signup\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.ja-JP.cshtml" />
@@ -1190,7 +1190,7 @@
     <Content Include="www\source\styles\pages\verification-account.scss" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\VerificationAccount\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.ja-JP.cshtml" />
@@ -1219,12 +1219,6 @@
     <Content Include="www\source\styles\pages\promotion.scss" />
     <Content Include="Views\UserPanel\OffersForMe\Index.cshtml" />
     <Content Include="Views\UserPanel\OffersForMe\Preview.cshtml" />
-    <Content Include="Views\Shared\Email\NewPassword\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentCancel\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentRequest\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\RecoverPassword\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\Signup\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\VerificationAccount\Content.km-KH.cshtml" />
     <Content Include="www\source\styles\scss\components\_multiple-select.scss" />
     <Content Include="Views\Promotion\Partial\_Content.en-US.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.en-IN.cshtml" />
@@ -1235,10 +1229,6 @@
     <Content Include="Views\Promotion\Partial\_Content.vi-VN.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.zh-CN.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.zh-TW.cshtml" />
-    <Content Include="Views\CommissionStructure\Partial\_Content.km-KH.cshtml" />
-    <Content Include="Views\TermAndCondition\Partial\_Content.km-KH.cshtml" />
-    <Content Include="Views\Faq\Partial\_Content.km-KH.cshtml" />
-    <Content Include="Views\Promotion\Partial\_Content.km-KH.cshtml" />
     <Content Include="Views\CommissionStructure\Partial\_Content.bn-BD.cshtml" />
     <Content Include="Views\Faq\Partial\_Content.bn-BD.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.bn-BD.cshtml" />
@@ -1252,11 +1242,9 @@
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.bn-BD.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.es-ES.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.ja-JP.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.ko-KR.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.th-TH.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.vi-VN.cshtml" />
@@ -1265,11 +1253,10 @@
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.bn-BD.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.ja-JP.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.ko-KR.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.th-TH.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.vi-VN.cshtml" />
@@ -1296,7 +1283,6 @@
     <Content Include="Views\Home\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\Home\Partial\_Content.id-ID.cshtml" />
     <Content Include="Views\Home\Partial\_Content.ja-JP.cshtml" />
-    <Content Include="Views\Home\Partial\_Content.km-KH.cshtml" />
     <Content Include="Views\Home\Partial\_Content.ko-KR.cshtml" />
     <Content Include="Views\Home\Partial\_Content.th-TH.cshtml" />
     <Content Include="Views\Home\Partial\_Content.vi-VN.cshtml" />
@@ -1397,6 +1383,15 @@
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="packages.config" />
+    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.te-IN.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\NewPassword\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentRequest\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\Signup\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.km-KH.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

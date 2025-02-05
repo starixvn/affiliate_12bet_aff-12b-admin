@@ -11,6 +11,7 @@
     var currentLanguage = sessionService.CurrentLanguage;
     var hasThirdContactApp = AppContact.ThirdAppContactList.ContainsKey(currentLanguage);
     var secondAppName = AppContact.SecondAppContactList[currentLanguage];
+    var languageList = systemsService.GetSupportedLanguages().Where(l => !l.Code.Equals("km-KH"));
 }
 
 @model Fanex.Affiliate.User.Core.MetalModels.UserSignUpParam
@@ -264,7 +265,7 @@
                                         <label class="custom-label" for="PreferredLanguage">@Lang.Language <span class="red-warn">*</span></label>
                                         <select class="form-input form-select" name="PreferredLanguage" id="PreferredLanguage" data-val="true" data-val-required="@Lang.AffAccountLanguageErr">
                                             <option value="">@Lang.SelectOne</option>
-                                            @foreach (var item in systemsService.GetSupportedLanguages())
+                                            @foreach (var item in languageList)
                                             {
                                                 <option value="@item.Code">@item.NativeName</option>
                                             }

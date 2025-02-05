@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             ["in"] = _India_LanguageCode,
             ["id"] = _Indonesia_LanguageCode,
             ["jp"] = _Japan_LanguageCode,
-            ["kh"] = _Cambodia_LanguageCode,
+            ["kh"] = _English_LanguageCode,
             ["kr"] = _Korea_LanguageCode,
             ["ko"] = _Korea_LanguageCode,
             ["th"] = _Thailand_LanguageCode,

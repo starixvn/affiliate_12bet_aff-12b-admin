@@ -6,7 +6,7 @@
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var settingService = DependencyResolver.Current.GetService<IAppSetting>();
     var systemsService = DependencyResolver.Current.GetService<ISystemService>();
-    var languageList = systemsService.GetSupportedLanguages().Where(l => !l.Code.Equals("en-GB"));
+    var languageList = systemsService.GetSupportedLanguages().Where(l => !l.Code.Equals("en-GB") && !l.Code.Equals("km-KH"));
     var currentLanguage = sessionService.CurrentLanguage;
     var languageNativeName = languageList.FirstOrDefault(l => l.Code.Equals(currentLanguage))?.NativeName;
     var isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated && sessionService.UserSession != null;
