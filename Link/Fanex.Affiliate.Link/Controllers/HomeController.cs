@@ -20,8 +20,6 @@ namespace Fanex.Affiliate.Link.Controllers
     {
         #region Services
         private const string LOCAL_ENV = "LOCAL";
-        private const string OLD_MKT_SIGNUP_PAGE_CODE = "inrsignup";
-        private const string NEW_MKT_SIGNUP_PAGE_CODE = "mktsignup";
 
         private static readonly string[] MarketingForCommGroups = ConfigurationManager.AppSettings["MarketingForCommGroups"].ToString().Split(',');
         private static readonly string[] MarketingLandingPages = ConfigurationManager.AppSettings["MarketingLandingPages"].ToString().Split(',');
@@ -73,7 +71,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
                 var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affId: affId);
 
-                if (string.IsNullOrEmpty(affInfo.AffCode))
+                if (affInfo is null || string.IsNullOrEmpty(affInfo.AffCode))
                 {
                     ViewBag.Result = LinkIsInvalidMessage;
 
@@ -143,11 +141,12 @@ namespace Fanex.Affiliate.Link.Controllers
                     domainReferrer = Common.GetDomainReferrer(urlReferrer);
                 }
 
+                var pageCodeOnV2 = GetSupportedPageCodeOnV2(pageCode);
                 var command = new TrackingSystemCommand
                 {
                     AffDomain = affDomain,
                     AffCode = affCode,
-                    PageCode = IsMatching(pageCode, OLD_MKT_SIGNUP_PAGE_CODE) ? NEW_MKT_SIGNUP_PAGE_CODE : pageCode,
+                    PageCode = pageCodeOnV2,
                     LanguageCode = lang,
                     DeviceType = GetDeviceType(),
                     IP = Request.GetClientIP(),
@@ -176,7 +175,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
                     if ((isMarketingLandingPage && IsValidAffMarketing(affCode)) || !isMarketingLandingPage)
                     {
-                        var result = HandleRedirectUrl(redirectUrl, pageCode, command.LanguageCode, affCode);
+                        var result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, affCode);
 
                         return Redirect(result);
                     }
@@ -201,6 +200,16 @@ namespace Fanex.Affiliate.Link.Controllers
                     param.AffDomain = param.AffDomain.Replace(fakeDomain, realDomain);
                 }
             }
+        }
+
+        private static string GetSupportedPageCodeOnV2(string pageCode)
+        {
+            if(LandingPage.SupportedPageCodeOnV1.TryGetValue(pageCode.ToLowerInvariant(), out string pageCodeOnV2))
+            {
+                return pageCodeOnV2;
+            }
+
+            return pageCode;
         }
 
         private bool IsValidAffMarketing(string affCode)

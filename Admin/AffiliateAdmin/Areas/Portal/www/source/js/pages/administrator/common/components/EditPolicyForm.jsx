@@ -117,7 +117,7 @@ export class EditPolicyForm extends PureComponent {
                     {
                         isAccountPolicy && <th colSpan="2">Individual Permission</th>
                     }
-                    <th colSpan="2">Group Permision</th>
+                    <th colSpan="2">Group Permission</th>
                 </tr>
                 <tr>
                     {
