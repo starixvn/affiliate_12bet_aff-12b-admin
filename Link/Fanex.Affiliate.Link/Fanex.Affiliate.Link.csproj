@@ -229,6 +229,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UMConfig.cs" />
     <Compile Include="Constants\LandingPage.cs" />
+    <Compile Include="Constants\Language.cs" />
     <Compile Include="Criterias\CommGroupByAffCodeCriteria.cs" />
     <Compile Include="Criterias\GeneralAffiliateInfoCriteria.cs" />
     <Compile Include="Constants\HeaderKey.cs" />

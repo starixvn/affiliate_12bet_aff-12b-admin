@@ -29,9 +29,6 @@ namespace Fanex.Affiliate.Link.Controllers
         private readonly ITrackingSystemService _trackingSystemService;
         private readonly IGeneralAffiliateInfoService _generalAffiliateInfoDataAccess;
 
-        private const string BENGALI_SHORTED_CODE = "bn";
-        private const string BENGALI_COUNTRY_CODE = "bd";
-
         private const string LinkIsInvalidMessage = "This link does not exists. Please contact administrator!";
         private const string LinkIsIncorrectMessage = "This link is incorrect. Please contact administrator!";
 
@@ -247,14 +244,19 @@ namespace Fanex.Affiliate.Link.Controllers
             return (byte)(Common.IsMobile() ? 1 : 0);
         }
 
-        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode, string affCode)
+        private static string GetSupportedLanguageCodeOnMemberSiteV2(string languageCode)
         {
-            var customLanguageCode = languageCode;
-            if (IsMatching(BENGALI_SHORTED_CODE, languageCode))
+            if (Language.SupportedLanguageCodeOnV1.TryGetValue(languageCode.ToLowerInvariant(), out string languageCodeOnV2))
             {
-                customLanguageCode = BENGALI_COUNTRY_CODE;
+                return languageCodeOnV2;
             }
 
+            return languageCode;
+        }
+
+        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode, string affCode)
+        {
+            var customLanguageCode = GetSupportedLanguageCodeOnMemberSiteV2(languageCode);
             var redirectPattern = ConfigurationManager.AppSettings[$"Redirect_{pageCode.ToLowerInvariant()}_pattern"];
 
             if (!string.IsNullOrEmpty(redirectPattern))

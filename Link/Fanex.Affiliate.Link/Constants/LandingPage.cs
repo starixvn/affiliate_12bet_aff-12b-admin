@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Link.Constants
         public static readonly IReadOnlyDictionary<string, string> SupportedPageCodeOnV1 = new Dictionary<string, string>
         {
             ["signup"] = JOIN_PAGE_CODE,
-            [HOME_PAGE_CODE] = HOME_PAGE_CODE,
+            ["home"] = HOME_PAGE_CODE,
             ["12sports/cricket"] = HOME_PAGE_CODE,
             ["exchange"] = HOME_PAGE_CODE,
             ["sportsbook"] = "sports",
