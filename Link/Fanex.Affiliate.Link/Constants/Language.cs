@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Link.Constants
             ["hitg"] = INDIA_SHORTED_CODE,
             ["id"] = "id",
             ["jp"] = ENGLISH_SHORTED_CODE,
-            ["kh"] = "kh",
+            ["kh"] = ENGLISH_SHORTED_CODE,
             ["ko"] = "ko",
             ["th"] = "th",
             ["vn"] = "vn",
