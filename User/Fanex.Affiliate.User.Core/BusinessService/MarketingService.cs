@@ -95,13 +95,13 @@
                     ? FetchTData<Domain>(new GetAffDomainListCriteria(affId, isInternal))
                     : FetchTData<Domain>(new GetSubAffDomainListCriteria(isInternal));
 
-                domainList = GetAvailableDomainsFromDate(domains);
+                domainList = GetAvailableDomainsFromDate(domains, isMember);
 
                 var specificDomains = _appSetting.IsDev || _appSetting.IsLocal
                     ? SpecificDomain.SpecificDomainByAffOnLocal
                     : SpecificDomain.SpecificDomainByAffOnPro;
 
-                if (specificDomains.TryGetValue(affId.ToString(), out var domainNames))
+                if (isMember && specificDomains.TryGetValue(affId.ToString(), out var domainNames))
                 {
                     var names = domainNames.Split(',');
                     var specificDomainList = new List<Domain>();
@@ -318,9 +318,9 @@
             return channelName.Replace(" ", string.Empty).ToLowerInvariant();
         }
 
-        private IEnumerable<Domain> GetAvailableDomainsFromDate(IEnumerable<Domain> domains)
+        private IEnumerable<Domain> GetAvailableDomainsFromDate(IEnumerable<Domain> domains, bool isMember = false)
         {
-            return domains.Where(_ => DateTime.Compare(_.CreateDate, _appSetting.DomainAvailableFromDate) >= 0);
+            return isMember ? domains.Where(_ => DateTime.Compare(_.CreateDate, _appSetting.DomainAvailableFromDate) >= 0) : domains;
         }
     }
 }
