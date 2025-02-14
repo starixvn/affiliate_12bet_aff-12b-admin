@@ -1,4 +1,5 @@
 ﻿using Fanex.Data;
+using Newtonsoft.Json;
 using System;
 
 namespace Fanex.Affiliate.User.Core.DTO.UserPanel
@@ -32,10 +33,13 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 
         public string EarningBy { get; set; }
 
+        [JsonIgnore]
         public decimal P2pCommission { get; set; }
 
+        [JsonIgnore]
         public decimal SubAffCommission { get; set; }
 
+        [JsonIgnore]
         public decimal SubCommRate { get; set; }
 
         public int CalculatedType { get; set; }

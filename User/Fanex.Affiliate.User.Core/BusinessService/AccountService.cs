@@ -80,7 +80,10 @@
 
         public GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null)
         {
-            return GetTData<GeneralAffInfo>(new GetGeneralAffInfoCriteria(affId, affCode)) ?? new GeneralAffInfo();
+            var affInfo = GetTData<GeneralAffInfo>(new GetGeneralAffInfoCriteria(affId, affCode)) ?? new GeneralAffInfo();
+            affInfo.IsMaxSubLevel = true;
+
+            return affInfo;
         }
 
         public async Task<ResultInfo> CheckAndUnlockUserIfLocked(string userName)

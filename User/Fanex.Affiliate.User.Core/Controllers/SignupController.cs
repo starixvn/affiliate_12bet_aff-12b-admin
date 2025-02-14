@@ -68,7 +68,7 @@
                 affInfo = _accountService.GetGeneralAffInfo(affCode: affCode);
             }
 
-            if (affInfo.IsValidAff)
+            if (!affInfo.IsValidAff)
             {
                 SetCookie(affInfo.AffCode);
 
@@ -83,7 +83,6 @@
         public async Task<ActionResult> Index(UserSignUpParam param)
         {
             var result = new ResultInfo { IsOk = false };
-            var affParentCode = HttpContext.Request.Cookies[ParentCodeCookieName]?.Value;
             if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.GetClientIP()))
             {
                 result.Message = Lang.ValidationCode;
@@ -123,7 +122,6 @@
                     AffType = _appSetting.AllowedAffiliateTypes.FirstOrDefault(),
                     Ip = Request.GetClientIP(),
                     IsLocal = _appSetting.IsLocal,
-                    AffParentCode = affParentCode
                 };
 
                 var contactApp = EmailHelper.GetContactAppInfo(param.ContactAppList);

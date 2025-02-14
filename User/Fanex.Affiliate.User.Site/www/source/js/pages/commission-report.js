@@ -106,7 +106,7 @@
                 $('.sumrow.active').nextUntil('.sumrow').addClass('expanded');
             }
             else {
-                $('#reportData').html('<tr class="noInfo"><td class="text-center no-info" colspan=' + (langResource.isMaxLevel ? "16" : "17") + '>' + langResource.noInfo + '</td></tr>');
+                $('#reportData').html('<tr class="noInfo"><td class="text-center no-info" colspan=' + (langResource.isMaxLevel ? "13" : "16") + '>' + langResource.noInfo + '</td></tr>');
             }
         },
 
@@ -159,7 +159,7 @@
                 rowItems.push(commRateCell);
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.Commission)));
                 rowItems.push(_me.buildCell(dataRow.EarningByDisplay));
-                rowItems.push(_me.buildCell(formatDecimal(dataRow.P2pCommission)));
+                !langResource.isMaxLevel && rowItems.push(_me.buildCell(formatDecimal(dataRow.P2pCommission)));
                 !langResource.isMaxLevel && rowItems.push('<td class="text-right">' + subCommRate + '</td>');
                 !langResource.isMaxLevel && rowItems.push(_me.buildSubAffCell(formatDecimal(dataRow.SubAffCommission), date));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.TotalCommission)))
@@ -188,7 +188,7 @@
                     _me.buildCell('') +
                     _me.buildCell(formatDecimal(dataRow.Commission)) +
                     _me.buildCell('') +
-                    _me.buildCell(formatDecimal(dataRow.P2pCommission)) +
+                    (langResource.isMaxLevel ? '' : _me.buildCell(formatDecimal(dataRow.P2pCommission))) +
                     (langResource.isMaxLevel ? '' : _me.buildCell('')) +
                     (langResource.isMaxLevel ? '' : _me.buildCell(formatDecimal(dataRow.SubAffCommission))) +
                     _me.buildCell(formatDecimal(dataRow.TotalCommission)) +
