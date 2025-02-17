@@ -1,5 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
@@ -65,5 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
                 HttpContext.Current.Session[UserPermissionSessionKey] = value;
             }
         }
+
+        public bool HasHostPermission(string functionName) => UserPermissionList.Any(i => i.FunctionName.MatchWith(functionName) && i.IsHost);
     }
 }

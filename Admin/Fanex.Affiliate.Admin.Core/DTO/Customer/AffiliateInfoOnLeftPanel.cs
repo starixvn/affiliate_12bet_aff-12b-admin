@@ -28,9 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public string ContactApps { get; set; }
 
-
         public string SiteUrl { get; set; }
-
 
         public string MoreSiteUrls { get; set; }
 
@@ -52,6 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public string PreferredLanguage { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Phone { get; set; }
 
         public string AffLink { get; set; }

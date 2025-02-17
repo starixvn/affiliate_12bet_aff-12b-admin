@@ -81,5 +81,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public int? Player_CustId { get; set; }
 
         public int? Player_Currency { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool HasHostAffPersonalInfoPermission { get; set; }
     }
 }

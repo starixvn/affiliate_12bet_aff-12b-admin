@@ -9,5 +9,7 @@
         public AccountInformation AccountInformation { get; set; }
 
         public IEnumerable<SelectListItem> BaseCurrencyList { get; set; }
+
+        public bool IsInternal { get; set; }
     }
 }

@@ -66,6 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                         BankAccountNumber = Server.HtmlDecode(userAccountInfo.BankAccountNumber),
                         Question = Server.HtmlDecode(userAccountInfo.Question),
                         Answer = Server.HtmlDecode(userAccountInfo.Answer),
+                        HasHostAffPersonalInfoPermission = SessionService.HasHostPermission(Function.AffPersonalInfo),
                         MailOption = userAccountInfo.MailOption
                     };
 
@@ -115,7 +116,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     BankAccountNumber = Server.HtmlEncode(param.BankAccountNumber),
                     MailOption = param.MailOption,
                     HasWebSite = param.HasWebSite,
-                };
+                    HasHostAffPersonalInfoPermission = SessionService.HasHostPermission(Function.AffPersonalInfo),
+            };
                 AssignUserInfoParam(userAccountParam);
 
                 if (param.ContactAppList != null)

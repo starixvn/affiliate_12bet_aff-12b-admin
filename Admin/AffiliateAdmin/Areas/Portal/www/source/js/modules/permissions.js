@@ -9,6 +9,7 @@
     AffReport: "[AffReport]",
     Domain: "[Domain]",
     MemberEmail: "[MemberEmail]",
+    AffPersonalInfo: "[AffPersonalInfo]",
     Note: "[Note]",
     SecurityQA: "[SecurityQA]",
     EditAffStatus: "[EditAffiliateStatus]",
@@ -32,5 +33,5 @@ export class Permission {
         return this.permissions.find(p => p.FunctionName === functionName);
     }
 
-    hasPermission = (functionName) => !!this.getPermissionInfo(functionName)
+    hasPermission = (functionName) => !!this.getPermissionInfo(functionName);
 }

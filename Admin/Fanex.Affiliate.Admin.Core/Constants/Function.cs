@@ -33,5 +33,7 @@
         public const string EditAffStatus = "[EditAffiliateStatus]";
 
         public const string EditAffDetails = "[EditAffiliateDetails]";
+
+        public const string AffPersonalInfo = "[AffPersonalInfo]";
     }
 }

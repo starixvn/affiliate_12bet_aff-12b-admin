@@ -18,10 +18,11 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public bool? Gender { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Email { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Phone { get; set; }
-
 
         public string ContactApps { get; set; }
 
@@ -66,6 +67,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public string Answer { get; set; }
 
         public bool? MailOption { get; set; }
+
+        public bool HasHostAffPersonalInfoPermission { get; set; }
 
         public IEnumerable<ContactApp> ContactAppList { get; set; }
 

@@ -5,6 +5,10 @@
 @using Fanex.Affiliate.User.Core.CoreService
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.MyAccountViewModel
 
+@{ 
+    var shouldShowInfo = !Model.IsInternal;
+}
+
 @Html.InlineStyles("~/www/build/styles/css/my-account.css")
 
 <div class="account-information">
@@ -101,13 +105,13 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">@Lang.Email</label>
                     <div class="col-sm-4">
-                        <p class="form-control-static">@Model.AccountInformation.Email</p>
+                        <p class="form-control-static">@(shouldShowInfo ? Model.AccountInformation.Email : EmailHelper.HideEmailPart(Model.AccountInformation.Email))</p>
                     </div>
                 </div>
                 <div class="form-group validate-group">
                     <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(p => p.AccountInformation.Phone, new { @id = "Phone", @Name = "Phone", @class = "form-control" })
+                        @Html.TextBoxFor(p => p.AccountInformation.Phone, new { @id = "Phone", @Name = "Phone", @class = "form-control", @Value = @Model.AccountInformation.Phone.ReplaceAHalfOfString(shouldShowInfo) })
                     </div>
                     <div class="col-sm-offset-3 col-sm-9">
                         @Html.ValidationMessage("Phone", new { @class = "validate-input hide" })

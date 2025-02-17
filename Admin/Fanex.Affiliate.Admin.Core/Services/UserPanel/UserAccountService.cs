@@ -74,7 +74,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                     param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault() ? TEST_CURRENCY_ID : memberSiteCust.CurrencyId.GetValueOrDefault();
                 }
 
-                return UpdateUserAccount(param);
+                return UpdateUserAccount(param, curUserAccInfo);
             }
 
             return new ResultInfo
@@ -84,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             };
         }
 
-        private ResultInfo UpdateUserAccount(UserAccountParam param)
+        private ResultInfo UpdateUserAccount(UserAccountParam param, UserAccount curUserAccInfo)
         {
             var command = new UpdateUserAccountCommand
             {
@@ -118,6 +118,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 Player_CustId = param.Player_CustId,
                 Player_Currency = param.Player_Currency,
             };
+
+            if (!param.HasHostAffPersonalInfoPermission)
+            {
+                command.Email = curUserAccInfo.Email;
+                command.Phone = curUserAccInfo.Phone;
+            }    
 
             return ExecuteReturnResultInfo(command);
         }

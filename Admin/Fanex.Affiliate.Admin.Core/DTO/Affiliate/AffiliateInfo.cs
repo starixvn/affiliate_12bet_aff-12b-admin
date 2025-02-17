@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
@@ -24,6 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string Language { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Email { get; set; }
 
         public DateTime RegistrationDate { get; set; }
@@ -48,6 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string PlayerUserName { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Phone { get; set; }
 
         public string RegistrationDateText => RegistrationDate.ToString("MM/dd/yyyy HH:mm:ss");

@@ -12,5 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         string AffName { get; set; }
 
         IList<UserPermission> UserPermissionList { get; set; }
+
+        bool HasHostPermission(string functionName);
     }
 }

@@ -55,7 +55,7 @@ export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeN
     let message = '';
     const checkEmail = new RegExp(regexEmail);
     const isValidGender = userAccountInfo.Gender != null;
-    const isValidEmail = checkEmail.test(userAccountInfo.Email);
+    const isValidEmail = !userAccountInfo.HasHostAffPersonalInfoPermission || checkEmail.test(userAccountInfo.Email);
     const country = countriesList[userAccountInfo.Country] === undefined ? "" : userAccountInfo.Country;
     const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : `NoSiteDescription${licenseeName}`;
 

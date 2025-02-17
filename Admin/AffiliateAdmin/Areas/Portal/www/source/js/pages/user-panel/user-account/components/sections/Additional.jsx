@@ -40,6 +40,7 @@ export class Additional extends PureComponent {
 
     render() {
         const { userAccountInfo } = this.props;
+        const isShowSecurityQuestion = !!userAccountInfo.Question;
 
         return userAccountInfo && (
             <Form tag="div">
@@ -48,8 +49,8 @@ export class Additional extends PureComponent {
                 {renderInputForm('state', 'State', userAccountInfo.State, false, false, this.handleChange)}
                 {renderInputForm('postcode', 'Postcode/Zip', userAccountInfo.Postcode, false, true, this.handleChange)}
                 {this._renderCountry(userAccountInfo.Country)}
-                {renderInputForm('question', 'Security Question', userAccountInfo.Question, true)}
-                {renderInputForm('answer', 'Answer', userAccountInfo.Answer, true)}
+                {isShowSecurityQuestion && renderInputForm('question', 'Security Question', userAccountInfo.Question, true)}
+                {isShowSecurityQuestion && renderInputForm('answer', 'Answer', userAccountInfo.Answer, true)}
             </Form>
         )
     }

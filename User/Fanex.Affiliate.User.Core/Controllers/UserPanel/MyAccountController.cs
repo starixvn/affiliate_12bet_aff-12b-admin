@@ -75,6 +75,7 @@
 
             var model = new MyAccountViewModel
             {
+                IsInternal = SessionService.IsInternal,
                 AccountInformation = newAccountInfo,
                 BaseCurrencyList = CurrencyHelper.GetCurrencyList(baseCurrencyList, newAccountInfo.DefaultBaseCurrency)
             };

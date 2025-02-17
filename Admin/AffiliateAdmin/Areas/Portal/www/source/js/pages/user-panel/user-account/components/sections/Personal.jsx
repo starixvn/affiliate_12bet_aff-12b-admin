@@ -43,8 +43,8 @@ export class Personal extends PureComponent {
     _renderGenderForm(isMale) {
         return (
             <FormGroup row>
-                <Label for={name} sm={3} xl={2} className="required">Gender</Label>
-                <Col sm={9} xl={10}>
+                <Label sm={3} xl={2} className="required">Gender</Label>
+                <Col sm={9} xl={10} className="gender-group">
                     <FormGroup check className="d-inline-block mr-3">
                         <Label check>
                             <Input type="radio" checked={isMale != null && isMale} onChange={() => this.handleChangeGender(true)} />{' '} Male
@@ -62,6 +62,7 @@ export class Personal extends PureComponent {
 
     render() {
         const { userAccountInfo } = this.props;
+        const isOnlyView = !userAccountInfo.HasHostAffPersonalInfoPermission;
 
         return userAccountInfo && (
             <Form tag="div">
@@ -69,8 +70,8 @@ export class Personal extends PureComponent {
                 {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, true, this.handleChange)}
                 {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, true, this.handleChange)}
                 {this._renderGenderForm(userAccountInfo.Gender)}
-                {renderInputForm('email', 'Email Address', userAccountInfo.Email, false, true, this.handleChange)}
-                {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, false, true, this.handleChange)}
+                {renderInputForm('email', 'Email Address', userAccountInfo.Email, isOnlyView, true, this.handleChange)}
+                {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, isOnlyView, true, this.handleChange)}
                 {
                     this.arrayContactApps && this.arrayContactApps.map(contactApp => {
                         return (

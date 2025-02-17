@@ -21,5 +21,6 @@ namespace Fanex.Affiliate.Admin.Core.Constants
         public const string TargetId = "TargetId";
         public const string MonthDate = "MonthDate";
         public const string NRows = "NRows";
+        public const string Email = "Email";
     }
 }

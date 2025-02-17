@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         private static string ReplaceEmailName(string emailName, int charLengthToShow, int startIndex)
         {
             var hiddenCharCount = emailName.Length - charLengthToShow;
-            var stringReplace = new string('•', hiddenCharCount);
+            var stringReplace = new string('*', hiddenCharCount);
             var convertedEmailName = emailName
                 .Remove(startIndex, hiddenCharCount)
                 .Insert(startIndex, stringReplace);
