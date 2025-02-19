@@ -362,6 +362,10 @@
     <Content Include="www\build\js\channel-link-statistic.min.js">
       <DependentUpon>channel-link-statistic.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\contactus.js" />
+    <Content Include="www\build\js\contactus.min.js">
+      <DependentUpon>contactus.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\generated-qrcode.js" />
     <Content Include="www\build\js\generated-qrcode.min.js">
       <DependentUpon>generated-qrcode.js</DependentUpon>
@@ -725,6 +729,7 @@
     <Content Include="www\source\js\lib\swiper.min.js" />
     <Content Include="www\source\js\pages\account-overview\channel-link-statistic.js" />
     <Content Include="www\source\js\pages\commission-structure.js" />
+    <Content Include="www\source\js\pages\contactus.js" />
     <Content Include="www\source\js\pages\products.js" />
     <Content Include="www\source\js\pages\statistics\marketing-statistics.js" />
     <Content Include="www\source\js\pages\sub-affiliate-earning.js" />
@@ -1392,6 +1397,7 @@
     <Content Include="Views\Shared\Email\RecoverPassword\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -94,6 +94,9 @@
 		<Setting Key="Aff_Get_GeneralAffInfo" SpName="Aff_Get_GeneralAffInfo" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	</Function>
 
+  <Function Name="ContactUs">
+    <Setting Key="Aff_EmailHistoryIns" SpName="Aff_EmailHistoryIns" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+  </Function>
 	<Function Name="CommissionReport">
 		<Setting Key="Aff_User_Rpt_Commission" SpName="Aff_User_Rpt_Commission" DbName="DBAFF12B.Affiliate_12B.wsv_afinet"></Setting>
 	</Function>

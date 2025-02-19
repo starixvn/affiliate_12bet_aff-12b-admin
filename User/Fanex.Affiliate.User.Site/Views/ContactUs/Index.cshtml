@@ -6,7 +6,15 @@
     ViewBag.HeaderTitle = Lang.ContactUsHeaderTitle;
 }
 
+@using Fanex.Affiliate.User.Core.Utilities
+@model Fanex.Affiliate.User.Core.DTO.UserInfo
 @{
+    var isShowFullInfo = !(bool)ViewBag.IsInternal;
+    var name = Model != null ? $"{Model.FirstName.ReplaceAHalfOfString(isShowFullInfo)} {Model.LastName.ReplaceAHalfOfString(isShowFullInfo)}" : string.Empty;
+    var affiliate = Model?.UserName;
+    var email = Model?.Email;
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var mailContact = appSetting.MailContact;
     var currentLanguage = ViewBag.CurrentLanguage;
 }
 
@@ -24,6 +32,7 @@
             generalError: '@Error.General'
         }
     </script>
+    @Html.InlineScripts("~/www/build/js/contactus.js")
 }
 
 <div class="content">
@@ -291,6 +300,71 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="block block-contact-form">
+        <div class="page-container">
+            <h2 class="contact-title">
+                @Html.Raw(string.Format(Lang.PleaseDirectAnyComment, "<a href=\"mailto:" + mailContact + "\">" + mailContact + "</a>"))
+            </h2>
+            <div class="alert alert-success" role="alert" id="messageSuccess" style="display: none;">
+                @Html.Raw(Lang.MessageSentReview.Replace("{br}", "<br>"))
+            </div>
+            <div id="mainContent">
+                <form id="contactForm" class="form" autocomplete="off">
+                    @Html.AntiForgeryToken()
+
+                    <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
+                    <div class="form-group form-columns form-columns-2">
+                        <div class="items validate-group">
+                            <input type="text" class="form-input" placeholder="@Lang.Name" name="Sender" id="Sender" value="@name" />
+                            <div class="validate-input hide">
+                                @Lang.NameIsInvalid
+                            </div>
+                        </div>
+                        <div class="items">
+                            <input type="text" class="form-input" placeholder="@Lang.AffiliateID" name="Affiliate" id="Affiliate" value="@affiliate" />
+                        </div>
+                    </div>
+                    <div class="form-group form-columns form-columns-2">
+                        <div class="items validate-group">
+                            <input type="text" class="form-input" placeholder="@Lang.Subject" name="Subject" id="Subject" />
+                            <div class="validate-input hide">
+                                @Lang.SubjectIsInvalid
+                            </div>
+                        </div>
+                        <div class="items validate-group">
+                            <input type="text" class="form-input" placeholder="@Lang.Email1" name="Email" id="Email" value="@(isShowFullInfo ? email : EmailHelper.HideEmailPart(email))" autocomplete="off" />
+                            <div class="validate-input hide">
+                                @Lang.EmailAddressIsInvalid
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-columns form-columns-1">
+                        <div class="items validate-group">
+                            <textarea rows="4" cols="50" placeholder="@Lang.Comment" class="form-area" name="Content" id="Content"></textarea>
+                            <div class="validate-input hide">
+                                @Lang.CommentsIsInvalid
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-columns form-columns-button">
+                        <div class="items validate-group">
+                            <input type="text" class="form-input" placeholder="@Lang.ValidationCodeLabel" name="Captcha" id="Captcha" />
+                            <div class="validate-input hide">
+                                @Lang.ErrmsgEntryValidCode
+                            </div>
+                        </div>
+                        <div class="validation-value" id="contactUsCaptchaBtn">
+                            <img id="contactUsCaptchaImg" src="@Url.RenderLanguageContent("~/Auth/CaptchaImage?type=1&_v="+DateTime.Now.ToLongTimeString())" alt="captcha" />
+                        </div>
+                    </div>
+                    <div class="form-group group-button">
+                        <button class="custom-button" type="submit">@Lang.Submit</button>
+                        <button class="custom-button" type="reset" id="btnReset">@Lang.Reset</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

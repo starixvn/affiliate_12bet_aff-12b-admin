@@ -266,7 +266,9 @@
     <Compile Include="Apis\ILicenseeApi.cs" />
     <Compile Include="Apis\ITokenApi.cs" />
     <Compile Include="BusinessService\AccountOverviewService.cs" />
+    <Compile Include="BusinessService\ContactService.cs" />
     <Compile Include="BusinessService\IAccountOverviewService.cs" />
+    <Compile Include="BusinessService\IContactService.cs" />
     <Compile Include="BusinessService\IStatementHistoryService.cs" />
     <Compile Include="BusinessService\StatementHistoryService.cs" />
     <Compile Include="Commands\Account\CreateAffiliateCommand.cs" />
@@ -276,6 +278,7 @@
     <Compile Include="Commands\BaseNonQueryCommand.cs" />
     <Compile Include="Commands\Auth\CheckInCommand.cs" />
     <Compile Include="Commands\Auth\RecheckinCommand.cs" />
+    <Compile Include="Commands\ContactUs\CreateContactUsCommand.cs" />
     <Compile Include="Commands\Marketing\AddMarketingChannelCommand.cs" />
     <Compile Include="Commands\Marketing\ToggleMarketingLinkCommand.cs" />
     <Compile Include="Commands\Payment\CancelPaymentRequestCommand.cs" />
@@ -426,6 +429,7 @@
     <Compile Include="Infrastructure\AuthenticatedHttpClientHandler.cs" />
     <Compile Include="Infrastructure\JsonNetResult.cs" />
     <Compile Include="MetalModels\Apis\TokenRequestParam.cs" />
+    <Compile Include="MetalModels\ContactUsParam.cs" />
     <Compile Include="MetalModels\MarketingLinkParam.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGeneratingParam.cs" />
