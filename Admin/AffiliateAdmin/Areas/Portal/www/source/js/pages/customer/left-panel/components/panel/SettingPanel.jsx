@@ -10,7 +10,7 @@ import { updateAffType, updateStatus, getAffiliateInfo, getTransferLimitSetting 
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
 import NotificationPopup from '../../../../common/components/NotificationPopup';
 import TransferBalanceForPlayerSettingPopup from './TransferBalanceForPlayerSettingPopup';
-import { permissionResource, Permission } from '../../../../../modules/permissions';
+import ClaimPrincipal, { claimResource } from '../../../../../modules/claim';
 import { money } from '../../../../../modules/constants';
 import { format } from '../../../../../modules/numberFormat';
 
@@ -32,8 +32,9 @@ export class SettingPanel extends PureComponent {
             transferLimitSettingInfo: null,
         }
 
-        const currentPermissions = Permission.currentPermissions;
-        this.transferSettingPermission = currentPermissions.getPermissionInfo(permissionResource.TransferPlayerSetting);
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        this.canViewTransferSetting = claimsPrincipal.hasReadClaim(claimResource.TransferPlayerSetting);
+        this.canEditTransferSetting = claimsPrincipal.hasWriteClaim(claimResource.TransferPlayerSetting);
     }
 
     _toggleChangingAffType = (isChanging) => {
@@ -183,13 +184,13 @@ export class SettingPanel extends PureComponent {
                     </Col>
                 </Row>
                 {
-                    isApproved && this.transferSettingPermission && (
+                    isApproved && this.canViewTransferSetting && (
                         <Fragment>
                             <Row>
                                 <Col className="left-panel-wrap-line">{resource.TransferBalanceForPlayer}</Col>
                                 <Col className="text-right">
                                     {
-                                        this.transferSettingPermission.IsHost ? (
+                                        this.canEditTransferSetting ? (
                                             <Button color="link" className="left-panel-btn-link text-primary" onClick={this.handleOpenTransferSettingPopup}>
                                                 {transferSettingLabel}
                                             </Button>

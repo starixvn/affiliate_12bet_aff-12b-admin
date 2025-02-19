@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom';
 import SubMenuList from '../common/components/SubMenuList';
 import { menus } from './libs/menus';
-import { Permission } from '../../modules/permissions'
+import ClaimPrincipal from '../../modules/claim';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 export default class App extends React.PureComponent {
@@ -11,8 +11,8 @@ export default class App extends React.PureComponent {
     }
 
     getRenderMenuItems = () => {
-        const currentPermisisons = Permission.currentPermissions;
-        return menus.filter(m => currentPermisisons.hasPermission(m.permissionName))
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        return menus.filter(m => m.renderClaim == undefined || claimsPrincipal.hasClaim(m.renderClaim));
     }
 
     render() {

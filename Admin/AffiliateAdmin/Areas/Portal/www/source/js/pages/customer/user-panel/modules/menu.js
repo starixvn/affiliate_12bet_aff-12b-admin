@@ -1,6 +1,7 @@
 import React from 'react';
 import { userPanelMenuKey as menuKey } from '../../common/modules/constants';
 import { withUserPanel } from '../modules/withUserPanel';
+import { Claim, claimResource } from '../../../../modules/claim';
 
 const StatementHistory = React.lazy(() =>
     import( /* webpackChunkName: "statementHistory" */ '../../../user-panel/statement-history/components/AppContainer'));
@@ -13,7 +14,7 @@ const DailyEarningDetail = React.lazy(() =>
 const UserAccount = React.lazy(() =>
     import( /* webpackChunkName: "userAccount" */ '../../../user-panel/user-account/components/AppContainer'));
 const Note = React.lazy(() =>
-    import( /* webpackChunkName: "note" */ '../../../user-panel/note/components/AppContainer'));
+    import( /* webpackChunkName: "note" */ '../../../user-panel/note/index'));
 const PlayerDetail = React.lazy(() =>
     import( /* webpackChunkName: "playerDetail" */ '../../../user-panel/player-detail/components/AppContainer'));
 const Adjustment = React.lazy(() =>
@@ -34,8 +35,8 @@ export const userPanelMenuList = [
     { key: menuKey.subAffiliate, name: '', component: withUserPanel(SubAffiliate, menuKey.subAffiliate), parent: menuKey.statementHistory },
     { key: menuKey.dailyEarning, name: '', component: withUserPanel(DailyEarning, menuKey.dailyEarning), parent: menuKey.statementHistory },
     { key: menuKey.dailyEarningDetail, name: '', component: withUserPanel(DailyEarningDetail, menuKey.dailyEarningDetail), parent: menuKey.statementHistory },
-    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null },
-    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null },
+    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null, renderClaim: new Claim(claimResource.EditAffDetails) },
+    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null, renderClaim: [new Claim(claimResource.Note), new Claim(claimResource.MarketingTeamNote)] },
     { key: menuKey.playerDetail, name: 'Players Detail', component: withUserPanel(PlayerDetail, menuKey.playerDetail), parent: null },
     { key: menuKey.adjustment, name: 'Adjustment', component: withUserPanel(Adjustment, menuKey.adjustment), parent: null },
     //{ key: menuKey.trackingStatistics, name: 'Tracking Statistics', component: withUserPanel(TrackingStatistics, menuKey.trackingStatistics), parent: null },
@@ -46,6 +47,6 @@ export const userPanelMenuList = [
 ]
 
 export const userPanelPendingMenuList = [
-    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null },
-    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null }
+    { key: menuKey.edit, name: 'Edit', component: withUserPanel(UserAccount, menuKey.edit), parent: null, renderClaim: new Claim(claimResource.EditAffDetails) },
+    { key: menuKey.note, name: 'Note', component: withUserPanel(Note, menuKey.note), parent: null, renderClaim: [new Claim(claimResource.Note), new Claim(claimResource.MarketingTeamNote)] }
 ]

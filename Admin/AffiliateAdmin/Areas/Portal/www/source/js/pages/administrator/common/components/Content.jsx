@@ -59,9 +59,9 @@ export default class Content extends PureComponent {
         this.setState({ selectedUserId: userId, isShowUserPopup: true, isInsertExistedAcc });
     }
 
-    _handleShowPolicyPopup = (userId, userName) => {
+    _handleShowPolicyPopup = (userId, userName, groupName) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ selectedUserId: userId, isShowPolicyPopup: true, userName });
+        this.setState({ selectedUserId: userId, isShowPolicyPopup: true, userName, groupName });
     }
 
     _handleShowDepartmentPopup = (groupId, groupName) => {
@@ -163,7 +163,7 @@ export default class Content extends PureComponent {
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
                 <Cell className="text-center" title="Edit Account Policy">
-                    <Button color="link p-0" onClick={() => this._handleShowPolicyPopup(dataItem.UserId, userName)}>
+                    <Button color="link p-0" onClick={() => this._handleShowPolicyPopup(dataItem.UserId, userName, dataItem.GroupName)}>
                         {
                             isPopup ? 'Role Policy' : 'Account Policy'
                         }
@@ -206,6 +206,7 @@ export default class Content extends PureComponent {
                 />
                 <EditPolicyForm
                     selectedId={selectedUserId}
+                    groupName={groupName}
                     name={userName}
                     isAccountPolicy={true}
                     isShowPopup={isShowPolicyPopup}

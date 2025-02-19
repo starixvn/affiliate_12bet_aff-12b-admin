@@ -3,10 +3,14 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.UserPanel.Note
 {
     public class NoteCriteria : AffPagingCriteria
     {
-        const string SP_NAME = "Aff_Admin_AffiliateNote_Sel";
+        private readonly string _spPrefix;
 
-        public override string GetSettingKey() => SP_NAME;
+        public NoteCriteria(string spPrefix) {
+            _spPrefix = spPrefix;
+        }
 
-        public override bool IsValid() => AffId > 0;
+        public override string GetSettingKey() => $"{_spPrefix}_Sel";
+
+        public override bool IsValid() => !string.IsNullOrWhiteSpace(_spPrefix) && AffId > 0;
     }
 }

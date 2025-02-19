@@ -1,18 +1,14 @@
-﻿using Fanex.Data;
-
-namespace Fanex.Affiliate.Admin.Core.Commands.UserPanel.Note
+﻿namespace Fanex.Affiliate.Admin.Core.Commands.UserPanel.Note
 {
-    public class UpdateNoteCommand : BaseAffNonQueryCommand
+    public class UpdateNoteCommand : InsertNoteCommand
     {
-        private const string SP_NAME = "Aff_Admin_AffiliateNote_Upd";
+        public UpdateNoteCommand(string spPrefix, int noteId) : base(spPrefix)
+        {
+            NoteId = noteId;
+        }
 
-        public override string GetSettingKey() => SP_NAME;
+        public override string GetSettingKey() => $"{_spPrefix}_Upd";
 
-        public override bool IsValid() => AffId > 0;
-
-        public int NoteId { get; set; }
-
-        [SpParam(SqlParamName = "Note")]
-        public string NoteContent { get; set; }
+        public int NoteId { get; }
     }
 }

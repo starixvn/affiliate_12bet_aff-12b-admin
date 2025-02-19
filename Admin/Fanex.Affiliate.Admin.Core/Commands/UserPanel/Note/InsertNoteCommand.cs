@@ -4,11 +4,16 @@ namespace Fanex.Affiliate.Admin.Core.Commands.UserPanel.Note
 {
     public class InsertNoteCommand : BaseAffNonQueryCommand
     {
-        private const string SP_NAME = "Aff_Admin_AffiliateNote_Ins";
+        protected readonly string _spPrefix;
 
-        public override string GetSettingKey() => SP_NAME;
+        public InsertNoteCommand(string spPrefix)
+        {
+            _spPrefix = spPrefix;
+        }
 
-        public override bool IsValid() => AffId > 0;
+        public override string GetSettingKey() => $"{_spPrefix}_Ins";
+
+        public override bool IsValid() => !string.IsNullOrWhiteSpace(_spPrefix) && AffId > 0;
 
         [SpParam(SqlParamName = "Note")]
         public string NoteContent { get; set; }

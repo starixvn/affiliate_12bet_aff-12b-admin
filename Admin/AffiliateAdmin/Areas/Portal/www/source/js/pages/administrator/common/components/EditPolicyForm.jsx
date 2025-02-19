@@ -184,8 +184,8 @@ export class EditPolicyForm extends PureComponent {
 
     render() {
         const { data, isShowMessage, isSuccess, message } = this.state;
-        const { isAccountPolicy, name, isShowPopup, isGetByIdList } = this.props;
-        const title = isAccountPolicy ? (isGetByIdList ? name : `IT - ${name}`) : `Edit Policy: ${name}`;
+        const { isAccountPolicy, name, isShowPopup, isGetByIdList, groupName } = this.props;
+        const title = isAccountPolicy ? (isGetByIdList ? name : `${groupName} - ${name}`) : `Edit Policy: ${name}`;
 
         return data && (
             <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>

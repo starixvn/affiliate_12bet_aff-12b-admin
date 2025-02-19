@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Auth
 {
@@ -18,5 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
         void Logout(int onUserId);
 
         ResultInfo CheckPermission(CheckPermissionParam param);
+
+        IEnumerable<Claim> GetClaims(int userId, IList<UserPermission> permissions);
     }
 }

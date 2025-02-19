@@ -11,6 +11,7 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using ONEbook.UM.AspNetMVC.Filters;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -62,10 +63,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             var result = _authService.Login(param);
 
-            var permissionList = param.UserId > 0 ? _authService.GetPermissionList(param.UserId) : new List<UserPermission>();
-
             if (result.IsSuccessful && param.UserId > 0)
             {
+                var permissionList = _authService.GetPermissionList(param.UserId);
+
                 if (permissionList.Any())
                 {
                     var authTicket = new FormsAuthenticationTicket(param.UserName, true, 20);
@@ -81,6 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
                     _sessionService.UserId = param.UserId;
                     _sessionService.UserPermissionList = permissionList;
+                    _sessionService.ClaimIdentities = new List<ClaimsIdentity> { new ClaimsIdentity(_authService.GetClaims(param.UserId, permissionList)) };
                     var onUserId = _authService.LoginOnUser(param, HttpContext.Session.SessionID, _appSetting.ServerId);
                     _sessionService.OnUserId = onUserId;
 

@@ -13,3 +13,7 @@ export const getTrackingCodeList = async (affId) => {
     const response = await post('Portal/CommonSetting/GetTrackingCodeList', { affId });
     return response && response.status === 200 ? response.data : [];
 }
+
+export const isValidMenuByRenderClaim = (claimsPrincipal, menu) => {
+    return menu.renderClaim == undefined || claimsPrincipal.hasClaim(menu.renderClaim) || (Array.isArray(menu.renderClaim) && menu.renderClaim.some(claim => claimsPrincipal.hasClaim(claim)));
+}

@@ -2,6 +2,8 @@
 {
     public static class Function
     {
+        public const string WritePermission = "Write";
+
         public const string UserControl = "[UserControl]";
 
         public const string Affiliate = "[Affiliate]";
@@ -19,6 +21,8 @@
         public const string AffReport = "[AffReport]";
 
         public const string Note = "[Note]";
+
+        public const string MarketingTeamNote = "[MarketingTeamNote]";
 
         public const string SecurityQa = "[SecurityQA]";
 

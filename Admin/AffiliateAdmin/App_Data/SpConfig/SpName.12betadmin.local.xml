@@ -97,7 +97,7 @@
   <Function Name="Customer">
     <Setting Key="Aff_Admin_PlayersDetail_Sel" SpName="Aff_Admin_PlayersDetail_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Member_Sel" SpName="Aff_Admin_Member_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_AffiliateNote_Sel" SpName="Aff_Admin_AffiliateNote_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+    <Setting Key="Aff_Admin_AffiliateNote_Sel" SpName="Aff_Admin_AffiliateNote_Sel_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="UpdatedName" ObjectProperty="CreatedBy" />
       <Mapping DataField="UpdatedDate" ObjectProperty="LastModify" />
       <Mapping DataField="Note" ObjectProperty="NoteContent" />
@@ -105,8 +105,15 @@
     <Setting Key="Aff_Admin_AffiliateNote_Detail_Sel" SpName="Aff_Admin_AffiliateNote_Detail_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="Note" ObjectProperty="NoteContent" />
     </Setting>
-    <Setting Key="Aff_Admin_AffiliateNote_Ins" SpName="Aff_Admin_AffiliateNote_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_AffiliateNote_Ins" SpName="Aff_Admin_AffiliateNote_Ins_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_AffiliateNote_Upd" SpName="Aff_Admin_AffiliateNote_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_AffiliateMarketingNote_Sel" SpName="Aff_Admin_AffiliateMarketingNote_Sel_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="UpdatedName" ObjectProperty="CreatedBy" />
+      <Mapping DataField="UpdatedDate" ObjectProperty="LastModify" />
+      <Mapping DataField="Note" ObjectProperty="NoteContent" />
+    </Setting>
+    <Setting Key="Aff_Admin_AffiliateMarketingNote_Ins" SpName="Aff_Admin_AffiliateMarketingNote_Ins_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_AffiliateMarketingNote_Upd" SpName="Aff_Admin_AffiliateMarketingNote_Upd_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="DomainReferrer" ObjectProperty="SiteUrl" />
       <Mapping DataField="URLReferrer" ObjectProperty="WebsiteUrl" />

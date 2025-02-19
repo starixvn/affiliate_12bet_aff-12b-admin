@@ -5,6 +5,7 @@ import leftPanel from '../../left-panel/reducers';
 import { affCommonInfo, today, languageList, productList, currencyList, baseCurrencyList, isProduction, licenseeName } from './commonReducer';
 import { userPanelReducer, selectedUserPanel, isShowLoaderUserPanel } from '../../user-panel/reducers';
 import customerStatistics from '../../customer-statistics/reducers';
+import { claimsPrincipal } from '../../../../reducers/claimReducer';
 
 const allReducers = combineReducers({
     today,
@@ -14,6 +15,7 @@ const allReducers = combineReducers({
     baseCurrencyList,
     isProduction,
     licenseeName,
+    claimsPrincipal,
     selectedUserPanel,
     isShowLoaderUserPanel,
     affCommonInfo,

@@ -1,13 +1,17 @@
 ﻿using DNAide.Utils;
 using Fanex.Affiliate.Admin.Core.Commands.Auth;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.Administrator;
 using Fanex.Affiliate.Admin.Core.Criterias.Auth;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Administrator;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Auth
 {
@@ -79,6 +83,35 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
             DynamicRepository.Execute(command);
 
             return new ResultInfo(command.ErrCode, command.ErrMsg);
+        }
+
+        public IEnumerable<Claim> GetClaims(int userId, IList<UserPermission> permissions)
+        {
+            var accountCriteria = new AdministratorDetailCriteria { UserId = userId };
+            var account = GetTData<AdministratorInfo>(accountCriteria);
+
+            return BuildClaims(account, permissions);
+        }
+
+        private static IEnumerable<Claim> BuildClaims(AdministratorInfo adminInfo, IList<UserPermission> permissions)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, adminInfo.UserId.ToString()),
+                new Claim(ClaimTypes.GivenName, adminInfo.UserName),
+                new Claim(ClaimTypes.Role, adminInfo.GroupId.ToString())
+            };
+
+            claims.AddRange(permissions.Select(p => BuildClaimFromPermission(p)));
+
+            return claims;
+        }
+
+        private static Claim BuildClaimFromPermission(UserPermission p)
+        {
+            var claimValue = p.IsHost ? Function.WritePermission : string.Empty;
+            var claim = new Claim(p.FunctionName, claimValue);
+            return claim;
         }
     }
 }

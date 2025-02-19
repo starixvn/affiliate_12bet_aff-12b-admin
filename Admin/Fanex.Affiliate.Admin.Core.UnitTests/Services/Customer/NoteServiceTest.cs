@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             });
 
             // Action
-            var service = new NoteService(dynamicRepository.Object);
+            var service = new NoteBaseService(dynamicRepository.Object);
             var result = service.GetNoteList(new AffiliatePagingParam());
             var item = result.MainData.FirstOrDefault();
 
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             });
 
             // Action
-            var service = new NoteService(dynamicRepository.Object);
+            var service = new NoteBaseService(dynamicRepository.Object);
             var result = service.GetNoteList(new AffiliatePagingParam());
             var item = result.MainData.FirstOrDefault();
 
@@ -66,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dynamicRepository.Setup(r => r.Get<NoteBasicInfo>(It.IsAny<NoteDetailCriteria>(), It.IsAny<string>())).Returns(new NoteBasicInfo { NoteId = 37 });
 
             // Action
-            var service = new NoteService(dynamicRepository.Object);
+            var service = new NoteBaseService(dynamicRepository.Object);
             var result = service.GetNoteContentById(1271808, 37);
 
             // Assert
@@ -82,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dynamicRepository.Setup(r => r.Execute(It.IsAny<InsertNoteCommand>(), It.IsAny<string>()));
 
             // Action
-            var service = new NoteService(dynamicRepository.Object);
+            var service = new NoteBaseService(dynamicRepository.Object);
             var result = service.InsertNote(new InsertUpdateNoteParam());
 
             // Assert
@@ -98,7 +98,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dynamicRepository.Setup(r => r.Execute(It.IsAny<UpdateNoteCommand>(), It.IsAny<string>()));
 
             // Action
-            var service = new NoteService(dynamicRepository.Object);
+            var service = new NoteBaseService(dynamicRepository.Object);
             var result = service.UpdateNote(new InsertUpdateNoteParam());
 
             // Assert

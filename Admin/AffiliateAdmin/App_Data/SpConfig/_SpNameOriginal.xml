@@ -107,6 +107,13 @@
     </Setting>
     <Setting Key="Aff_Admin_AffiliateNote_Ins" SpName="Aff_Admin_AffiliateNote_Ins" DbName="" />
     <Setting Key="Aff_Admin_AffiliateNote_Upd" SpName="Aff_Admin_AffiliateNote_Upd" DbName="" />
+    <Setting Key="Aff_Admin_AffiliateMarketingNote_Sel" SpName="Aff_Admin_AffiliateMarketingNote_Sel" DbName="" >
+      <Mapping DataField="UpdatedName" ObjectProperty="CreatedBy" />
+      <Mapping DataField="UpdatedDate" ObjectProperty="LastModify" />
+      <Mapping DataField="Note" ObjectProperty="NoteContent" />
+    </Setting>
+    <Setting Key="Aff_Admin_AffiliateMarketingNote_Ins" SpName="Aff_Admin_AffiliateMarketingNote_Ins" DbName="" />
+    <Setting Key="Aff_Admin_AffiliateMarketingNote_Upd" SpName="Aff_Admin_AffiliateMarketingNote_Upd" DbName="" />
     <Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="" >
       <Mapping DataField="DomainReferrer" ObjectProperty="SiteUrl" />
       <Mapping DataField="URLReferrer" ObjectProperty="WebsiteUrl" />

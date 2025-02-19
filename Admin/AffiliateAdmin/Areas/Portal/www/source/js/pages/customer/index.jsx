@@ -6,6 +6,7 @@ import reducer from './mainpage/reducers';
 import AppContainer from './mainpage/components/AppContainer';
 import { configureStore } from '../../modules/store';
 import { convertListToMutilpleSelected } from '../../modules/utils';
+import ClaimPrincipal from '../../modules/claim';
 
 export default class App extends React.PureComponent {
     constructor(props) {
@@ -13,8 +14,8 @@ export default class App extends React.PureComponent {
 
         const { currencyList } = window.initialState;
         const newCurrencyList = convertListToMutilpleSelected(currencyList, "ExchangeId", "Code");
-
-        this.store = configureStore(Object.assign({}, window.initialState, { currencyList: newCurrencyList }), reducer);
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        this.store = configureStore({ ...window.initialState, currencyList: newCurrencyList, claimsPrincipal }, reducer);
     }
 
     render() {

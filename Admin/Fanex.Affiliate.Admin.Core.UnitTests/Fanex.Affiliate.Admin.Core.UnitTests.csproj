@@ -230,7 +230,7 @@
     <Compile Include="Controllers\Customer\CustomerMemberControllerTest.cs" />
     <Compile Include="Controllers\Customer\CustomerStatisticsControllerTest.cs" />
     <Compile Include="Controllers\Customer\LandingPageStatisticsControllerTest.cs" />
-    <Compile Include="Controllers\Customer\NoteControllerTest.cs" />
+    <Compile Include="Controllers\Customer\AffNoteControllerTest.cs" />
     <Compile Include="Controllers\Customer\PlayerDetailControllerTest.cs" />
     <Compile Include="Controllers\Customer\ReferrersControllerTest.cs" />
     <Compile Include="Controllers\Customer\StatementHistoryControllerTest.cs" />

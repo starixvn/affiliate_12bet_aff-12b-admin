@@ -6,7 +6,7 @@
 @{
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var permissions = sessionService.UserPermissionList;
+    var claims = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
     var menus = new Dictionary<string, string>
 {
         {"Customer",Function.Affiliate },
@@ -23,10 +23,10 @@
     {
         if (string.Equals("Report", m.Key, StringComparison.OrdinalIgnoreCase))
         {
-            return permissions.Any(p => p.FunctionName == m.Value || p.FunctionName == Function.TransferPlayerReport);
+            return claims.Any(p => p.Type == m.Value || p.Type == Function.TransferPlayerReport);
         }
 
-        if (permissions.Any(p => p.FunctionName == m.Value))
+        if (claims.Any(p => p.Type == m.Value))
         {
             return true;
         }
@@ -69,7 +69,7 @@
 </ul>
 <script type="text/javascript">
     window.globalVariables = {
-        permissions: @Html.Raw(Json.Encode(permissions)),
+        claims: @Html.Raw(claims.ToJson()),
     }
     var controllerName = '@controllerName';
     let element;

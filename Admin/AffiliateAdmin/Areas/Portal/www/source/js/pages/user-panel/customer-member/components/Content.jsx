@@ -5,14 +5,14 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resource, maxWidth } from '../modules/constants';
-import { permissionResource, Permission } from '../../../../modules/permissions';
 import { toggleLoaderUserPanel, setPagingOption, fetchData } from '../actions';
+import ClaimPrincipal, { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
-        const currentPermissions = Permission.currentPermissions;
-        this.canViewMemberEmail = currentPermissions.getPermissionInfo(permissionResource.MemberEmail);
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        this.canViewMemberEmail = claimsPrincipal.hasReadClaim(claimResource.MemberEmail);
 
         this.state = {
             data: null
