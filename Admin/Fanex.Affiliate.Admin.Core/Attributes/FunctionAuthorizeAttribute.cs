@@ -1,15 +1,15 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Services.Common;
 using System;
-using System.Linq;
 using System.Net;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
-    public sealed class FunctionAuthorizeAttribute : ActionFilterAttribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
+    public class FunctionAuthorizeAttribute : ActionFilterAttribute
     {
         public string FunctionName { get; set; }
 
@@ -18,11 +18,11 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var context = filterContext.HttpContext;
-            var isSkipCheckAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowByPassFunctionAuthorizeAttribute), true);
+            var skipCheckAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowByPassFunctionAuthorizeAttribute), true);
 
-            if (!string.IsNullOrEmpty(FunctionName) && !isSkipCheckAuthorization)
+            if (!(skipCheckAuthorization || string.IsNullOrEmpty(FunctionName)))
             {
-                var hasPerimission = HasPerimission();
+                var hasPerimission = HasPerimission(filterContext.HttpContext.User);
 
                 if (!hasPerimission)
                 {
@@ -46,12 +46,19 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             base.OnActionExecuting(filterContext);
         }
 
-        private bool HasPerimission()
+        protected virtual bool HasPerimission(IPrincipal principal)
         {
-            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-            var permissionList = sessionService.UserPermissionList;
+            if (principal is ClaimsPrincipal claims)
+            {
+                return HasFuncClaim(claims, FunctionName);
+            }
 
-            return permissionList.Any(i => i.FunctionName.MatchWith(this.FunctionName) && (i.IsHost || i.IsHost == IsHost));
+            return false;
+        }
+
+        protected bool HasFuncClaim(ClaimsPrincipal claimsPrincipal, string funcName)
+        {
+            return IsHost ? claimsPrincipal.HasWriteClaim(funcName) : claimsPrincipal.HasClaim(funcName);
         }
     }
 }
