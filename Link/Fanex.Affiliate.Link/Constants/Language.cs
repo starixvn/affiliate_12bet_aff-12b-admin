@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.Link.Constants
             ["eneuro"] = ENGLISH_SHORTED_CODE,
             ["ch"] = "cs",
             ["bn"] = BENGALI_SHORTED_CODE,
-            ["hien"] = INDIA_SHORTED_CODE,
+            ["hien"] = ENGLISH_SHORTED_CODE,
             ["hitg"] = INDIA_SHORTED_CODE,
             ["id"] = "id",
             ["jp"] = ENGLISH_SHORTED_CODE,
