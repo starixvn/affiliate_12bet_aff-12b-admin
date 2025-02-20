@@ -262,13 +262,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SpConfig\SpName.12betadmin.local.xml">
+    <Content Include="App_Data\SpConfig\SpName.admin-12b.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betadmin.production.xml">
+    <Content Include="App_Data\SpConfig\SpName.admin-12b.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betadmin.uat.xml">
+    <Content Include="App_Data\SpConfig\SpName.admin-12b.uat.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="Areas\Portal\www\dist\imgs\theme\12bet.png" />

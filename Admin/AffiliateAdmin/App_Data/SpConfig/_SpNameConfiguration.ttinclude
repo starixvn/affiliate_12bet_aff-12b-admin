@@ -6,7 +6,7 @@
 <#
 	var licenseeDbNameList = new System.Collections.Generic.Dictionary<string, string>
 	{
-		{"12bet", "DBAFF12B.Affiliate_12B.wsv_afinet"},
+		{"12b", "DBAFF12B.Affiliate_12B.wsv_afinet"},
 	};
 
 	var environments = new string[] { "uat", "production", "local" };
@@ -15,8 +15,8 @@
 
 	sites.Add(new SiteInfo(){
 				Environment = "DEV",
-				LicenseeName = "12bet",
-				DbName = licenseeDbNameList["12bet"]
+				LicenseeName = "12b",
+				DbName = licenseeDbNameList["12b"]
 			});
 
 	foreach(var environment in environments)
