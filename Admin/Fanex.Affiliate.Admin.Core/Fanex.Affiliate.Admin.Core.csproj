@@ -244,6 +244,7 @@
     <Compile Include="Commands\Administrator\UpdateRolePolicyCommand.cs" />
     <Compile Include="Commands\Affiliate\ApproveAffCommand.cs" />
     <Compile Include="Commands\Affiliate\ChangeAffPasswordCommand.cs" />
+    <Compile Include="Commands\Affiliate\DeleteEmailHistoryCommand.cs" />
     <Compile Include="Commands\Affiliate\ToggleFavoriteCommand.cs" />
     <Compile Include="Commands\Affiliate\UpdatePaymentRequestCommand.cs" />
     <Compile Include="Commands\Auth\LoginCommand.cs" />
@@ -317,6 +318,7 @@
     <Compile Include="Controllers\Administrator\AdministratorController.cs" />
     <Compile Include="Controllers\Administrator\DepartmentController.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
+    <Compile Include="Controllers\Affiliate\EmailHistoryController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ReadOnlySessionBaseController.cs" />
@@ -372,6 +374,8 @@
     <Compile Include="Criterias\Customer\CustomerStatisticsCriteria.cs" />
     <Compile Include="Criterias\Customer\TransferLimitCriteria.cs" />
     <Compile Include="Criterias\Domain\DomainControlCriteria.cs" />
+    <Compile Include="Criterias\EmailHistory\EmailHistoryCriteria.cs" />
+    <Compile Include="Criterias\EmailHistory\EmailHistoryDetailCriteria.cs" />
     <Compile Include="Criterias\Home\UserOnlineCriteria.cs" />
     <Compile Include="Criterias\AffPagingCriteria.cs" />
     <Compile Include="Criterias\Administrator\AdministratorCriteria.cs" />
@@ -437,6 +441,8 @@
     <Compile Include="DTO\Customer\TransferLimitSettingInfo.cs" />
     <Compile Include="DTO\Domain\DomainControlInfo.cs" />
     <Compile Include="DTO\Domain\DomainInfo.cs" />
+    <Compile Include="DTO\EmailHistory\EmailHistoryDetailInfo.cs" />
+    <Compile Include="DTO\EmailHistory\EmailHistoryInfo.cs" />
     <Compile Include="DTO\Email\AffApprovedEmail.cs" />
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
     <Compile Include="DTO\Home\GeneralInfo.cs" />
@@ -468,6 +474,7 @@
     <Compile Include="DTO\UserPanel\SubAffiliate.cs" />
     <Compile Include="DTO\UserPanel\TrackingInfo.cs" />
     <Compile Include="Exceptions\LicenseePaymentException.cs" />
+    <Compile Include="Extensions\AutoMapperExtension.cs" />
     <Compile Include="Extensions\ClaimPrincipalExtension.cs" />
     <Compile Include="Extensions\HttpRequestExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
@@ -495,6 +502,8 @@
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
     <Compile Include="MetaModels\Domain\InsertUpdateDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\InsertUpdateDomainParam.cs" />
+    <Compile Include="MetaModels\EmailHistory\DeleteEmailHistoryParam.cs" />
+    <Compile Include="MetaModels\EmailHistory\EmailHistoryParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />
@@ -585,6 +594,8 @@
     <Compile Include="Configurations\IoCConfig.cs" />
     <Compile Include="Services\Domain\CommonDomainService.cs" />
     <Compile Include="Services\Domain\ICommonDomainService.cs" />
+    <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
+    <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
     <Compile Include="Services\Tracker\IJobTrackerService.cs" />
     <Compile Include="Services\Tracker\JobTrackerService.cs" />
     <Compile Include="Services\UserPanel\Statistics\ILandingPageStatisticsService.cs" />

@@ -10,6 +10,8 @@
 
         public const string Payment = "[Payment]";
 
+        public const string EmailHistory = "[EmailHistory]";
+
         public const string Media = "[Media]";
 
         public const string AffExRate = "[AffEx.Rate]";

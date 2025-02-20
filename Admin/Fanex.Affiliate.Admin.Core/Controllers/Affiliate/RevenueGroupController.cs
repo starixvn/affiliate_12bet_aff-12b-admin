@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.RevenueGroup)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class RevenueGroupController : ReadOnlySessionBaseController
     {
         private const int MaxLength = 100;
@@ -42,13 +42,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         }
 
         [HttpGet]
+        [FunctionAuthorize(FunctionName = Function.RevenueGroup)]
         public ActionResult Index()
         {
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate"), FunctionName = Function.Affiliate },
                 new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest"), FunctionName = Function.Payment },
-                new SubMenu { Name = Lang.RevenueGroup, Url = Url.Content("~/Portal/RevenueGroup"), FunctionName = Function.RevenueGroup, IsActive = true }
+                new SubMenu { Name = Lang.RevenueGroup, Url = Url.Content("~/Portal/RevenueGroup"), FunctionName = Function.RevenueGroup, IsActive = true },
+                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory"), FunctionName = Function.EmailHistory }
             };
             var productList = _systemService.GetProductList();
 
@@ -64,6 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             return View("~/Areas/Portal/Views/Affiliate/CommissionGroup.cshtml", viewModel);
         }
 
+        [FunctionAuthorize(FunctionName = Function.RevenueGroup)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetCommissionGroupList(GetCommissionGroupParam param)
@@ -77,6 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             return GenerateJsonNetResult(viewModel);
         }
 
+        [FunctionAuthorize(FunctionName = Function.RevenueGroup)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetCommissionGroup(GetCommissionGroupParam param)

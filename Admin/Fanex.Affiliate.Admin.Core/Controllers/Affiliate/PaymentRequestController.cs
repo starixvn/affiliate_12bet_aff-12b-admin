@@ -16,7 +16,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.Payment)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class PaymentRequestController : ReadOnlySessionBaseController
     {
         private readonly IPaymentService _paymentRequestService;
@@ -31,13 +31,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             _authService = authService;
         }
 
+        [FunctionAuthorize(FunctionName = Function.Payment)]
         public ActionResult Index(PaymentRequestParamFromHome param)
         {
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate"), FunctionName = Function.Affiliate },
                 new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest"), FunctionName = Function.Payment, IsActive = true },
-                new SubMenu { Name = Lang.RevenueGroup, Url = Url.Content("~/Portal/RevenueGroup"), FunctionName = Function.RevenueGroup }
+                new SubMenu { Name = Lang.RevenueGroup, Url = Url.Content("~/Portal/RevenueGroup"), FunctionName = Function.RevenueGroup },
+                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory"), FunctionName = Function.EmailHistory }
             };
 
             param.SubMenuList = subMenu;
@@ -47,6 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Payment)]
         public ActionResult GetPaymentRequestList(PaymentRequestParam param)
         {
             if (ModelState.IsValid)
@@ -59,6 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Payment)]
         public ActionResult GetPaymentRequestDetail(long transId)
         {
             if (transId >= Validation.MinId)

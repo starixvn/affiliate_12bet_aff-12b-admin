@@ -284,4 +284,7 @@
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>Payment Request Rejected</value>
   </data>
+  <data name="EmailHistory" xml:space="preserve">
+    <value>Email History</value>
+  </data>
 </root>

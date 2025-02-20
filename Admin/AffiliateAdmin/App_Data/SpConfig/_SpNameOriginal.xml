@@ -175,6 +175,17 @@
       <Mapping DataField="TypeName" ObjectProperty="AffTypeName" />
     </Setting>
   </Function>
+  <Function Name="EmailHistory">
+    <Setting Key="Aff_Admin_EmailHistory_Sel" SpName="Aff_Admin_EmailHistory_Sel" DbName="" >
+      <Mapping DataField="MID" ObjectProperty="EmailId" />
+      <Mapping DataField="CreatedDate" ObjectProperty="SentDate" />
+    </Setting>
+    <Setting Key="Aff_Admin_EmailHistory_Detail_Sel" SpName="Aff_Admin_EmailHistory_Detail_Sel" DbName="" >
+      <Mapping DataField="MID" ObjectProperty="EmailId" />
+      <Mapping DataField="CreatedDate" ObjectProperty="SentDate" />
+    </Setting>
+    <Setting Key="Aff_Admin_EmailHistory_Del" SpName="Aff_Admin_EmailHistory_Del" DbName="" />
+  </Function>
   <Function Name="Message">
     <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName=""  >
       <Mapping DataField="Message_Cn" ObjectProperty="Message_cs" />

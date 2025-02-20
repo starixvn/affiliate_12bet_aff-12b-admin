@@ -8,6 +8,7 @@
         public const int MaxPageIndex = int.MaxValue;
         public const int MinPageSize = 1;
         public const int MaxPageSize = 500;
+        public const int MinSearchBy = 0;
         public const int MaxSearchBy = int.MaxValue;
 
         public const long InfinityAmount = 100_000_000_000;

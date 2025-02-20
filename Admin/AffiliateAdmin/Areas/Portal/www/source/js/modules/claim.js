@@ -4,6 +4,7 @@
     UserControl: "[UserControl]",
     Affiliate: "[Affiliate]",
     Payment: "[Payment]",
+    EmailHistory: "[EmailHistory]",
     Media: "[Media]",
     AffExRate: "[AffEx.Rate]",
     HotNews: "[HotNews]",
