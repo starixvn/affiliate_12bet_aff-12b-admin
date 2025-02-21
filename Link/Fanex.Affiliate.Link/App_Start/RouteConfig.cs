@@ -111,6 +111,25 @@
                     lang = LANGUAGE_CONSTRAINT
                 });
 
+            routes.MapRoute(
+                name: "LinkWithoutChannel",
+                url: "{pageCode}/{affCode}/{lang}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "Link",
+                    pageCode = UrlParameter.Optional,
+                    affCode = UrlParameter.Optional,
+                    lang = UrlParameter.Optional
+                },
+                constraints:
+                new
+                {
+                    affCode = AFF_CODE_CONSTRAINT,
+                    lang = LANGUAGE_CONSTRAINT
+                });
+
             routes.IgnoreRoute("go");
         }
     }
