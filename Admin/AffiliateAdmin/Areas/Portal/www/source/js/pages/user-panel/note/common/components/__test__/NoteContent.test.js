@@ -3,7 +3,7 @@ import { NoteContent } from '../NoteContent';
 import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../../modules/constants';
 
-describe('note - components - Content', () => {
+describe('note - common - components - Content', () => {
     const noteList = [
         {
             CreatedBy: "AAHubert",

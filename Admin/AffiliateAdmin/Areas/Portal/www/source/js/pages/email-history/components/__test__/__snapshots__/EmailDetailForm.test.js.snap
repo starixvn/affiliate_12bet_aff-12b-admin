@@ -29,6 +29,7 @@ exports[`email history - components - EmailDetailForm  render correctly with hav
     role="dialog"
     scrollable={false}
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -305,6 +306,7 @@ exports[`email history - components - EmailDetailForm  render correctly with hav
     role="dialog"
     scrollable={false}
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >

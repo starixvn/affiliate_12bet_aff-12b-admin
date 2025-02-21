@@ -76,6 +76,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "edit",
           "name": "Edit",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[EditAffiliateDetails]",
+            "value": undefined,
+          },
         },
         Object {
           "component": Object {
@@ -88,6 +92,16 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "note",
           "name": "Note",
           "parent": null,
+          "renderClaim": Array [
+            Claim {
+              "type": "[Note]",
+              "value": undefined,
+            },
+            Claim {
+              "type": "[MarketingTeamNote]",
+              "value": undefined,
+            },
+          ],
         },
         Object {
           "component": Object {
@@ -206,6 +220,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "edit",
           "name": "Edit",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[EditAffiliateDetails]",
+            "value": undefined,
+          },
         },
         Object {
           "component": Object {
@@ -218,6 +236,16 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "note",
           "name": "Note",
           "parent": null,
+          "renderClaim": Array [
+            Claim {
+              "type": "[Note]",
+              "value": undefined,
+            },
+            Claim {
+              "type": "[MarketingTeamNote]",
+              "value": undefined,
+            },
+          ],
         },
       ]
     }

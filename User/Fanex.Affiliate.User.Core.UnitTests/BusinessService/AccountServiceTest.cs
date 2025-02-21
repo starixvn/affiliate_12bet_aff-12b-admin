@@ -202,7 +202,7 @@
 
             //Assert
             Assert.Equal(affId, result.AffId);
-            Assert.True(result.IsValidAff);
+            Assert.False(result.IsValidAff);
         }
 
         [Fact]

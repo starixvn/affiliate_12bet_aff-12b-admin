@@ -126,7 +126,7 @@ exports[`email history - components - Filter  render correctly with SearchBy All
         }
         isEnable={false}
         maxDate="6/28/2019"
-        minDate={2009-11-30T17:00:00.000Z}
+        minDate={2020-01-30T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>
@@ -333,7 +333,7 @@ exports[`email history - components - Filter  render correctly with SearchBy Sen
         }
         isEnable={false}
         maxDate="6/28/2019"
-        minDate={2009-11-30T17:00:00.000Z}
+        minDate={2020-01-30T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`note - components - NoteModificationForm  render correctly with add Note 1`] = `
+exports[`note - common - components - NoteModificationForm  render correctly with add Note 1`] = `
 <Modal
   autoFocus={true}
   backdrop="static"
@@ -174,7 +174,7 @@ exports[`note - components - NoteModificationForm  render correctly with add Not
 </Modal>
 `;
 
-exports[`note - components - NoteModificationForm  render correctly with update Note 1`] = `
+exports[`note - common - components - NoteModificationForm  render correctly with update Note 1`] = `
 <Modal
   autoFocus={true}
   backdrop="static"

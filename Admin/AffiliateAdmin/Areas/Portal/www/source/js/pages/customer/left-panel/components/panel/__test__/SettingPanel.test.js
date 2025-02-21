@@ -4,6 +4,11 @@ import { shallow } from 'enzyme';
 import CommissionGroupPopup from '../../../../../common/components/CommissionGroupPopup';
 
 describe('left panel - components - panel - SettingPanel', () => {
+    afterAll(() => {
+        jest.resetAllMocks();
+    });
+
+
     const affiliateInfo = {
         AffId: 1271808,
         AffLink: "http://localhost:55690/Auth/AdminLogin?chalengeStr=esh5u7&accKey=E16156C28&custName=12BETAFF226&accId=1000000026&accOnId=8405",
@@ -37,6 +42,11 @@ describe('left panel - components - panel - SettingPanel', () => {
             { AffTypeId: 1, AffTypeName: "Asian" }
         ]
     }
+
+    beforeEach(() => {
+        window.globalVariables = {};
+        window.initialState = {};
+    })
 
     it('render correctly', () => {
         const result = shallow(<SettingPanel {...defaultProps} />);

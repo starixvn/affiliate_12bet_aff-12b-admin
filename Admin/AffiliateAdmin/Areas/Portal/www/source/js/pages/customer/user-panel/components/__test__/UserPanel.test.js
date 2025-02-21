@@ -7,6 +7,7 @@ describe('customer - user-panel - components - UserPanel', () => {
         selectedUserPanel: 'statementHistory',
         isShowLoader: true,
         onClickMenu: jest.fn(),
+        claimsPrincipal: { hasClaim: jest.fn(() => true) },
         isPending: false
     }
 

@@ -41,6 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var param = GetUserAccountParam();
             var repository = new Mock<IDynamicRepository>();
             repository.Setup(comm => comm.Execute(It.IsAny<UpdateUserAccountCommand>(), It.IsAny<string>()));
+            repository.Setup(comm => comm.Get<UserAccount>(It.IsAny<UserAccountCriteria>(), It.IsAny<string>())).Returns(new UserAccount());
             var service = CreateUserAccountService(repository.Object);
 
             // Action

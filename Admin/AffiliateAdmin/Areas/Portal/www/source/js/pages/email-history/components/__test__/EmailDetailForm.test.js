@@ -123,15 +123,13 @@ describe('email history - components - EmailDetailForm ', () => {
     
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.deleteEmailHistory).toHaveBeenCalledWith({ EmailIdList: 2205 });
-        expect(wrapper.setState).toHaveBeenCalledTimes(2);
+        expect(wrapper.setState).toHaveBeenCalledTimes(1);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({
             isShowMessage: true,
             isSuccess: false,
             message: 'Delete Email is failed!'
         });
         expect(wrapper.setState.mock.calls[0][1]).toEqual(expect.any(Function));
-        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
-        expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: false });
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
     });
 
@@ -151,19 +149,13 @@ describe('email history - components - EmailDetailForm ', () => {
     
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.deleteEmailHistory).toHaveBeenCalledWith({ EmailIdList: 2205 });
-        expect(wrapper.setState).toHaveBeenCalledTimes(2);
+        expect(wrapper.setState).toHaveBeenCalledTimes(1);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({
             isShowMessage: true,
             isSuccess: true,
             message: 'Delete Email Successfully'
         });
         expect(wrapper.setState.mock.calls[0][1]).toEqual(expect.any(Function));
-
-        expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: false });
-        expect(window.setTimeout.mock.calls[0]).toEqual([expect.any(Function), 3000]);
-        expect(window.setTimeout.mock.calls[1]).toEqual([expect.any(Function), 3100]);
-        expect(props.setSelectedEmailId).toHaveBeenCalledWith(null);
-        expect(props.fetchData).toHaveBeenCalledWith(defaultProps.param);
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
     });
 

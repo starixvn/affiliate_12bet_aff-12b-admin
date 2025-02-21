@@ -123,7 +123,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             {
                 command.Email = curUserAccInfo.Email;
                 command.Phone = curUserAccInfo.Phone;
-            }    
+            }
 
             return ExecuteReturnResultInfo(command);
         }
