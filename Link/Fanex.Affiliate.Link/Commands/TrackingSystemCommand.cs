@@ -15,6 +15,8 @@
 
         public string LanguageCode { get; set; }
 
+        public string ChannelCode { get; set; }
+
         public string IP { get; set; }
 
         public string Browser { get; set; }

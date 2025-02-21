@@ -225,8 +225,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Commands\TrackingSystemCommand.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
+    <Compile Include="Criterias\MarketingChannelCriteria.cs" />
     <Compile Include="DTOs\CommGroup.cs" />
     <Compile Include="DTOs\AffiliateInfo.cs" />
+    <Compile Include="DTOs\MarketingChannel.cs" />
     <Compile Include="Services\Impl\GeneralAffiliateInfoService.cs" />
     <Compile Include="Extensions\HttpRequestExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -235,9 +237,11 @@
     <Compile Include="Helpers\Common.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Impl\MemoryCacheService.cs" />
     <Compile Include="Services\Impl\TrackingSystemService.cs" />
     <Compile Include="Services\Impl\UnderMaintenanceService.cs" />
     <Compile Include="Services\Interface\IGeneralAffiliateInfoService.cs" />
+    <Compile Include="Services\Interface\IMemoryCacheService.cs" />
     <Compile Include="Services\Interface\ITrackingSystemService.cs" />
     <Compile Include="Services\Interface\IUnderMaintenanceService.cs" />
   </ItemGroup>
