@@ -1,13 +1,19 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.UserPanel.UserAccount;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.Affiliate;
 using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.UserAccount;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,15 +23,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
     {
         private readonly ILicenseeService _licenseeService;
         private readonly IAppSetting _appSetting;
+        private readonly IThirdPartyLicenseeService _thirdPartyLicenseeService;
 
         private const int TEST_CURRENCY_ID = 20;
 
         public UserAccountService(IDynamicRepository dynamicRepository,
             ILicenseeService licenseeService,
-            IAppSetting appSetting) : base(dynamicRepository)
+            IAppSetting appSetting,
+            IThirdPartyLicenseeService thirdPartyLicenseeService) : base(dynamicRepository)
         {
             _licenseeService = licenseeService;
             _appSetting = appSetting;
+            _thirdPartyLicenseeService = thirdPartyLicenseeService;
         }
 
         public UserAccount GetUserAccountInfo(int affId)
@@ -74,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                     param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault() ? TEST_CURRENCY_ID : memberSiteCust.CurrencyId.GetValueOrDefault();
                 }
 
-                return UpdateUserAccount(param, curUserAccInfo);
+                return await UpdateUserAccount(param, curUserAccInfo);
             }
 
             return new ResultInfo
@@ -84,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             };
         }
 
-        private ResultInfo UpdateUserAccount(UserAccountParam param, UserAccount curUserAccInfo)
+        private async Task<ResultInfo> UpdateUserAccount(UserAccountParam param, UserAccount curUserAccInfo)
         {
             var command = new UpdateUserAccountCommand
             {
@@ -125,7 +134,41 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 command.Phone = curUserAccInfo.Phone;
             }
 
-            return ExecuteReturnResultInfo(command);
+            var result = await ExecuteReturnResultInfoAsync(command);
+
+            if (result.IsSuccessful)
+            {
+                await SendAffiliateInfoToLicensee(param.AffId, curUserAccInfo);
+            }
+
+            return result;
+        }
+
+        private async Task SendAffiliateInfoToLicensee(int affId, UserAccount curInfo)
+        {
+            try
+            {
+                var criteria = new AffBasicInfoCriteria { AffId = affId };
+                var affInfo = GetTData<AffiliateBasicInfo>(criteria);
+
+                if (affInfo != null)
+                {
+                    bool isUpdatedAffInfo = affInfo.FirstName.MatchWith(curInfo.FirstName)
+                                                  && affInfo.LastName.MatchWith(curInfo.LastName)
+                                                  && affInfo.Email.MatchWith(curInfo.Email)
+                                                  && affInfo.Phone.MatchWith(curInfo.Phone);
+                    bool isUpdatedSensitiveInfo = isUpdatedAffInfo || !affInfo.PlayerUsername.MatchWith(curInfo.PlayerUsername);
+
+                    if (isUpdatedSensitiveInfo)
+                    {
+                        await _thirdPartyLicenseeService.SendAffiliateInfo(affInfo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+            }
         }
 
         private ResultInfo ValidateWebSite(UserAccountParam param)
