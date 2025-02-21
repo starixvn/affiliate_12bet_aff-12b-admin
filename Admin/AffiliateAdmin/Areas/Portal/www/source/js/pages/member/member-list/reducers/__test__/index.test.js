@@ -1,5 +1,5 @@
-﻿import * as types from '../../actions/types'
-import * as reducers from '../index'
+﻿import * as types from '../../actions/types';
+import * as reducers from '../index';
 
 const runTestReducer = ({ name, value, action, expectedResult }) => {
     it(`should handle ${name} reducer with type ${action.type}`, () => {

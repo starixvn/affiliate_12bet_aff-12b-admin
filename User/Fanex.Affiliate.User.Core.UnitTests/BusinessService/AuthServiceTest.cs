@@ -1,47 +1,36 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Auth;
-using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Affiliate.User.Core.Utilities;
-using NSubstitute;
-using NSubstitute.ReturnsExtensions;
-using System;
-using System.Collections.Generic;
-using Xunit;
-
-namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
+    using System;
+    using Commands;
+    using Core.BusinessService;
+    using Core.Utilities;
+    using Criterias;
+    using Data.Repository;
+    using DTO.Auth;
+    using DTO.VerificationAccount;
+    using MetalModels;
+    using NSubstitute;
+    using NSubstitute.ReturnsExtensions;
+    using Resources;
+    using Xunit;
+
     public class AuthServiceTest
     {
-        private readonly IAuthRepository AuthRepo;
-        private readonly ICryptographyService CryptographyService;
-        private readonly IAppSetting AppSetting;
-        private readonly IFeedbackService FeedbackService;
-        private readonly IVerificationRepository VerificationRepo;
+        private readonly IDynamicRepository _repository = Substitute.For<IDynamicRepository>();
+        private readonly ICryptographyService _cryptographyService = Substitute.For<ICryptographyService>();
+        private readonly IAppSetting _appSetting = Substitute.For<IAppSetting>();
 
-        const string Password = "Password";
-        const string UserName = "aff123";
+        private const string Password = "Password";
+        private const string UserName = "aff123";
 
         private static string LoginQueryString => $"u={UserName}&p={Password}";
-
-        public AuthServiceTest()
-        {
-            AuthRepo = Substitute.For<IAuthRepository>();
-            CryptographyService = Substitute.For<ICryptographyService>();
-            AppSetting = Substitute.For<IAppSetting>();
-            FeedbackService = Substitute.For<IFeedbackService>();
-            VerificationRepo = Substitute.For<IVerificationRepository>();
-        }
 
         [Fact]
         public void GetLoginResult_WhenLoginWithInternalAdminUserWithNotExist_ReturnErrorResult()
         {
             var param = CreateLoginParam();
             var service = CreateService();
-            AuthRepo.GetUserInfo(Arg.Compat.Any<string>(), true).ReturnsNull();
+            _repository.Get<AuthorizedUserInfo>(Arg.Any<GetUserInfoCriteria>()).ReturnsNullForAnyArgs();
 
             var result = service.GetLoginResult(param, true);
 
@@ -50,27 +39,25 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLoginResult_WhenLoginWithInternalClosedAdminUser_ReturnErrorResult()
+        public void GetLoginResult_WhenLoginWithInternalSuspendedAfUser_ReturnOK()
         {
             var param = CreateLoginParam();
-            var userInfo = CreateAutherizedUserInfo();
-            userInfo.IsClosed = true;
+            var userInfo = CreateSuspendedUserInfo();
             var service = CreateService();
-            AuthRepo.GetUserInfo(Arg.Compat.Any<string>(), true).Returns(userInfo);
+            _repository.Get<AuthorizedUserInfo>(Arg.Any<GetUserInfoCriteria>()).Returns(userInfo);
 
             var result = service.GetLoginResult(param, true);
 
-            Assert.False(result.Result.IsOk);
-            Assert.Equal(Error.LoginClosedAccount, result.Result.Message);
+            Assert.True(result.Result.IsOk);
         }
 
         [Fact]
         public void GetLoginResult_WhenLoginInternalSuccess_ReturnOk()
         {
             var param = CreateLoginParam();
-            var userInfo = CreateAutherizedUserInfo();
+            var userInfo = CreateAuthorizedUserInfo();
             var service = CreateService();
-            AuthRepo.GetUserInfo(Arg.Compat.Any<string>(), true).Returns(userInfo);
+            _repository.Get<AuthorizedUserInfo>(Arg.Any<GetUserInfoCriteria>()).Returns(userInfo);
 
             var result = service.GetLoginResult(param, true);
 
@@ -82,11 +69,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetLoginResult_WhenLoginWithInvalidTimeStamp_ReturnFailResult()
         {
             var service = CreateService();
-            SetUpLoginNormaiUserPassedAllCheckCondition();
+            SetUpLoginNormalUserPassedAllCheckCondition();
             var param = CreateLoginParam();
             var nowTick = DateTimeOffset.UtcNow.AddHours(-1).ToUnixTimeMilliseconds();
             var loginQueryString = $"{LoginQueryString}&t={nowTick}";
-            CryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(loginQueryString);
+            _cryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(loginQueryString);
 
             var result = service.GetLoginResult(param, false);
 
@@ -98,11 +85,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetLoginResult_WhenQueryStringHaveEmptyUserName_ReturnFailResult()
         {
             var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var queryString = $"u={String.Empty}&p={Password}&t={nowTick}";
+            var queryString = $"u={string.Empty}&p={Password}&t={nowTick}";
             var service = CreateService();
-            SetUpLoginNormaiUserPassedAllCheckCondition();
+            SetUpLoginNormalUserPassedAllCheckCondition();
             var param = CreateLoginParam();
-            CryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(queryString);
+            _cryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(queryString);
 
             var result = service.GetLoginResult(param, false);
 
@@ -114,11 +101,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetLoginResult_WhenQueryStringHaveEmptyPassword_ReturnFailResult()
         {
             var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var queryString = $"u={UserName}&p={String.Empty}&t={nowTick}";
+            var queryString = $"u={UserName}&p={string.Empty}&t={nowTick}";
             var service = CreateService();
-            SetUpLoginNormaiUserPassedAllCheckCondition();
+            SetUpLoginNormalUserPassedAllCheckCondition();
             var param = CreateLoginParam();
-            CryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(queryString);
+            _cryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(queryString);
 
             var result = service.GetLoginResult(param, false);
 
@@ -127,29 +114,28 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         [Fact]
-        public void GetLoginResult_WhenUserIsClosed_ReturnFailResult()
+        public void GetLoginResult_WhenUserIsSuspended_ReturnFailResult()
         {
             var service = CreateService();
             var param = CreateLoginParam();
-            SetUpLoginNormaiUserPassedAllCheckCondition();
-            var user = CreateAutherizedUserInfo();
-            user.IsClosed = true;
-            AuthRepo.GetUserInfo(null, false).ReturnsForAnyArgs(user);
+            SetUpLoginNormalUserPassedAllCheckCondition();
+            var user = CreateSuspendedUserInfo();
+            _repository.Get<AuthorizedUserInfo>(Arg.Any<GetUserInfoCriteria>()).ReturnsForAnyArgs(user);
 
             var result = service.GetLoginResult(param, false);
 
             Assert.False(result.Result.IsOk);
-            Assert.Contains(Error.LoginClosedAccount, result.Result.Message);
+            Assert.Contains(Error.YourAccountHasBeenSuspended, result.Result.Message);
         }
 
         [Fact]
         public void GetLoginResult_WhenUserVerifiedInfoNotExist_ReturnFailResult()
         {
             var service = CreateService();
-            SetUpLoginNormaiUserPassedAllCheckCondition();
+            SetUpLoginNormalUserPassedAllCheckCondition();
             var param = CreateLoginParam();
             param.IsVerifyingAccount = false;
-            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsNullForAnyArgs();
+            _repository.Get<VerificationInfo>(Arg.Any<GetLoginInfoByUserDeviceCriteria>()).ReturnsNullForAnyArgs();
 
             var result = service.GetLoginResult(param, false);
 
@@ -161,10 +147,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetLoginResult_WhenUserVerifyFail_ReturnFailResult()
         {
             var service = CreateService();
-            SetUpLoginNormaiUserPassedAllCheckCondition();
+            SetUpLoginNormalUserPassedAllCheckCondition();
             var param = CreateLoginParam();
             param.IsVerifyingAccount = false;
-            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(CreateFailVerficationInfo());
+            _repository.Get<VerificationInfo>(Arg.Any<GetLoginInfoByUserDeviceCriteria>()).ReturnsForAnyArgs(CreateFailVerificationInfo());
 
             var result = service.GetLoginResult(param, false);
 
@@ -176,11 +162,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetLoginResult_WhenNotMatchPassword_ReturnFailResult()
         {
             var service = CreateService();
-            SetUpLoginNormaiUserPassedAllCheckCondition();
+            SetUpLoginNormalUserPassedAllCheckCondition();
             var param = CreateLoginParam();
             param.IsVerifyingAccount = false;
-            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(CreateSuccessfulVerficationInfo());
-            CryptographyService.EncryptPassword(null).ReturnsForAnyArgs("abc");
+            _repository.Get<VerificationInfo>(Arg.Any<GetLoginInfoByUserDeviceCriteria>()).ReturnsForAnyArgs(CreateSuccessfulVerificationInfo());
+            _cryptographyService.EncryptPassword(null).ReturnsForAnyArgs("abc");
 
             var result = service.GetLoginResult(param, false);
 
@@ -192,9 +178,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void GetLoginResult_WhenLoginSuccess_ReturnOkResult()
         {
             var service = CreateService();
-            SetUpLoginNormaiUserPassedAllCheckCondition();
+            SetUpLoginNormalUserPassedAllCheckCondition();
             var param = CreateLoginParam();
-
             var result = service.GetLoginResult(param, false);
 
             Assert.True(result.Result.IsOk);
@@ -207,7 +192,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             service.GetOnUserId(new OnUserIdParam());
 
-            AuthRepo.ReceivedWithAnyArgs().GetOnUserId(null);
+            _repository.ReceivedWithAnyArgs().Execute(Arg.Any<CheckInCommand>());
         }
 
         [Fact]
@@ -215,9 +200,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var service = CreateService();
 
-            service.GetInternalLoginInfo(1);
+            service.GetSessionId(1);
 
-            AuthRepo.ReceivedWithAnyArgs().GetInternalLoginInfo(1);
+            _repository.ReceivedWithAnyArgs().Get<string>(Arg.Any<GetSessionIdCriteria>());
         }
 
         [Fact]
@@ -227,78 +212,41 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             service.Recheckin(1, false);
 
-            AuthRepo.ReceivedWithAnyArgs().Recheckin(1, false);
+            _repository.ReceivedWithAnyArgs().Execute(Arg.Any<RecheckinCommand>());
         }
 
-        [Fact]
-        public void IsValidIdleTime_WhenCall_RepoCalled()
-        {
-            var now = DateTime.Now;
-            var service = CreateService();
-
-            service.IsValidIdleTime(now);
-
-            FeedbackService.ReceivedWithAnyArgs().IsValidIdleTime(now);
-        }
-
-        [Fact]
-        public void IsValidAff_WhenCall_RepoCalled()
-        {
-            var service = CreateService();
-
-            service.IsValidAff(123);
-
-            FeedbackService.ReceivedWithAnyArgs().IsValidAff(123);
-        }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void GetInternalLoginClaim_WhenCall_RepoCalled(bool isHost)
-        {
-            AuthRepo.GetInternalLoginPermission(Arg.Any<int>()).Returns(new List<InternalPermission> {
-                new InternalPermission
-                {
-                    FunctionName = "[123]",
-                    IsHost = isHost
-                }
-            });
-
-            var service = CreateService();
-
-            var result = service.GetInternalLoginClaim(1);
-
-            AuthRepo.ReceivedWithAnyArgs().GetInternalLoginPermission(1);
-            Assert.NotEmpty(result);
-        }
-
-        private void SetUpLoginNormaiUserPassedAllCheckCondition()
+        private void SetUpLoginNormalUserPassedAllCheckCondition()
         {
             var nowTick = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             var loginQueryString = $"{LoginQueryString}&t={nowTick}";
-            CryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(loginQueryString);
-            AppSetting.LoginTimeout.Returns(30);
-            AuthRepo.GetUserInfo(null, false).ReturnsForAnyArgs(CreateAutherizedUserInfo());
-            CryptographyService.EncryptPassword(null).ReturnsForAnyArgs("password");
-            AuthRepo.UpdateLoginResult(null).ReturnsForAnyArgs(new LoginResultInfo
-            {
-                IsOk = true
-            });
+            _cryptographyService.RsaDecrypt(null, null).ReturnsForAnyArgs(loginQueryString);
+            _appSetting.LoginTimeout.Returns(30);
+            _repository.Get<AuthorizedUserInfo>(Arg.Any<GetUserInfoCriteria>()).ReturnsForAnyArgs(CreateAuthorizedUserInfo());
+            _cryptographyService.EncryptPassword(null).ReturnsForAnyArgs("password");
+            _repository.Execute(Arg.Any<UpdateLoginResultCommand>())
+                .Returns(0)
+                .AndDoes(c =>
+                {
+                    var command = c.Arg<UpdateLoginResultCommand>();
+                    command.ErrCode = 0;
+                    command.ErrMsg = string.Empty;
+                });
         }
 
-        private static VerificationInfo CreateFailVerficationInfo()
+        private static VerificationInfo CreateFailVerificationInfo()
             => new VerificationInfo
             {
                 DeviceCount = 11,
                 FailedLoginCount = null
             };
 
-        private static VerificationInfo CreateSuccessfulVerficationInfo()
+        private static VerificationInfo CreateSuccessfulVerificationInfo()
             => new VerificationInfo
             {
                 DeviceCount = 11,
                 FailedLoginCount = 1
             };
+
 
         private static UserLoginParam CreateLoginParam()
             => new UserLoginParam
@@ -313,21 +261,33 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 ValidationKey = "1234"
             };
 
-        private static AuthorizedUserInfo CreateAutherizedUserInfo()
+        private static AuthorizedUserInfo CreateAuthorizedUserInfo()
             => new AuthorizedUserInfo
             {
                 AffId = 1,
                 AffType = "Asia",
                 GroupName = "group",
-                IsClosed = false,
                 OnUserId = 1,
                 Password = "password",
                 PreferredLanguage = "vn-vi",
-                Status = "active",
+                Status = "Approved",
+                UserName = "test"
+            };
+
+        private static AuthorizedUserInfo CreateSuspendedUserInfo()
+            => new AuthorizedUserInfo
+            {
+                AffId = 1,
+                AffType = "Asia",
+                GroupName = "group",
+                OnUserId = 1,
+                Password = "password",
+                PreferredLanguage = "vn-vi",
+                Status = "Suspended",
                 UserName = "test"
             };
 
         private AuthService CreateService()
-            => new AuthService(AuthRepo, CryptographyService, AppSetting, FeedbackService, VerificationRepo);
+            => new AuthService(_repository, _cryptographyService, _appSetting);
     }
 }

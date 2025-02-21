@@ -24,11 +24,29 @@ describe('left panel - components - SearchBox', () => {
     it('componentDidMount - should call getAffiliateInfo with affName is not null', () => {
         const getAffiliateInfo = jest.fn();
         const props = Object.assign({}, { getAffiliateInfo, affName: '12BETAFF226' });
-        const wrapper = shallow(<SearchBox {...props} />);
+        const wrapper = new SearchBox(props);
 
-        wrapper.instance().componentDidMount();
+        wrapper.componentDidMount();
 
         expect(props.getAffiliateInfo).toHaveBeenCalledWith('12BETAFF226');
+    });
+
+    it('componentDidUpdate - should call setState if param change', () => {
+        const props = { affName: "12BETAFF001" };
+        const wrapper = new SearchBox(props);
+        wrapper.setState = jest.fn();
+        wrapper.componentDidUpdate({ affName: '' });
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ affName: "12BETAFF001" });
+    });
+
+    it('componentDidUpdate - should not call setState', () => {
+        const props = { affName: "12BETAFF001" };
+        const wrapper = new SearchBox(props);
+        wrapper.setState = jest.fn();
+        wrapper.componentDidUpdate({ affName: '12BETAFF001' });
+
+        expect(wrapper.setState).not.toHaveBeenCalled();
     });
 
     it('handleChange - should call setState when change search input', () => {

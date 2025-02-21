@@ -4,16 +4,12 @@ import { shallow } from 'enzyme';
 import { defaultPagingOption } from '../../../../../modules/constants';
 
 describe('landing page statistics - components - Detail', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-
-    const selectedPageDetailFilter = {
+    const selectedPage = {
         languageCode: "hien",
         selectedPage: "sportsbook"
     };
     const defaultProps = {
-        selectedPageDetailFilter,
+        selectedPage,
         pagingOption: defaultPagingOption,
         param: {
             affId: 1271808,
@@ -32,7 +28,7 @@ describe('landing page statistics - components - Detail', () => {
                 Signups: 0,
                 TotalClick: 8,
                 UniqueClick: 4,
-                WebsiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MediaGallery"
+                WebsiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MediaGallery"
             },
             {
                 Fdm: 0,
@@ -55,7 +51,7 @@ describe('landing page statistics - components - Detail', () => {
 
     it('render correctly with have data', () => {
         const result = shallow(<Detail {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: data.MainData });
 
         expect(result).toMatchSnapshot();
@@ -63,19 +59,19 @@ describe('landing page statistics - components - Detail', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Detail {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: {} });
 
         expect(result).toMatchSnapshot();
     });
 
     it('componentDidUpdate - should call fetchData if param change', () => {
-        const props = Object.assign({}, defaultProps, { selectedPageDetailFilter });
+        const props = Object.assign({}, defaultProps, { selectedPage });
         const componentInstance = new Detail(props);
         componentInstance.fetchData = jest.fn();
         componentInstance.componentDidUpdate({ languageCode: "", selectedPage: "" });
 
-        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...defaultProps.param, ...selectedPageDetailFilter, pageIndex: 1, pageSize: 20 });
+        expect(componentInstance.fetchData).toHaveBeenCalledWith({ ...defaultProps.param, ...selectedPage, pageIndex: 1, pageSize: 20 });
     });
 
     it('fetchDetailData - should call toggleLoaderUserPanel, setState and setPagingOption with correct parameter', async () => {
@@ -86,7 +82,7 @@ describe('landing page statistics - components - Detail', () => {
         const props = Object.assign({}, defaultProps, { toggleLoaderUserPanel, setPagingOption, fetchDetailData });
         const componentInstance = new Detail(props);
         componentInstance.setState = jest.fn();
-        const param = Object.assign({}, defaultProps.param, { ...selectedPageDetailFilter, pageIndex: 1, pageSize: 20 });
+        const param = Object.assign({}, defaultProps.param, { ...selectedPage, pageIndex: 1, pageSize: 20 });
         await componentInstance.fetchData(param);
 
         expect(props.toggleLoaderUserPanel).toHaveBeenCalledTimes(2);
@@ -122,7 +118,7 @@ describe('landing page statistics - components - Detail', () => {
         const setPagingOption = jest.fn();
         const pageIndex = 2;
         const pageSize = 50;
-        const paramExpect = Object.assign({}, defaultProps.param, { ...selectedPageDetailFilter, pageIndex, pageSize });
+        const paramExpect = Object.assign({}, defaultProps.param, { ...selectedPage, pageIndex, pageSize });
 
         const props = Object.assign({}, defaultProps, { setPagingOption });
         const componentInstance = new Detail(props);

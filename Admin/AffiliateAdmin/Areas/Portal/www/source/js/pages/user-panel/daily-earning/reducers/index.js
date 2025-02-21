@@ -5,7 +5,7 @@ import createReducer from '../../../../modules/createReducer';
 
 export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
-        return {...action.data };
+        return { ...action.data };
     }
 })
 

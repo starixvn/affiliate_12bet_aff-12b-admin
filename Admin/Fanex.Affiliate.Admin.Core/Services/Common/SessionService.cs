@@ -1,12 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Web;
-using static Fanex.Affiliate.Admin.Core.Constants.SessionKey;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
     public class SessionService : ISessionService
     {
+        private const string UserPermissionSessionKey = "__UserPermissionSessionKey";
+        public const string ClaimSessionKey = "_Claim12BSessionKey";
+
+        private const string UserIdKey = "__CustID";
+        private const string OnUserIDKey = "__OnUserIDKey";
+        private const string AffNameKey = "AffName";
+
         public int UserId
         {
             get
@@ -33,20 +42,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             }
         }
 
-        public int AffId
-        {
-            get
-            {
-                var temp = HttpContext.Current.Session[AffIdKey];
-
-                return temp == null ? 0 : (int)temp;
-            }
-            set
-            {
-                HttpContext.Current.Session[AffIdKey] = value;
-            }
-        }
-
         public string AffName
         {
             get
@@ -61,6 +56,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             }
         }
 
+        public IList<UserPermission> UserPermissionList
+        {
+
+            get
+            {
+                var value = HttpContext.Current.Session[UserPermissionSessionKey];
+                return value != null ? value as IList<UserPermission> : new List<UserPermission>();
+            }
+            set
+            {
+                HttpContext.Current.Session[UserPermissionSessionKey] = value;
+            }
+        }
+
         public IEnumerable<ClaimsIdentity> ClaimIdentities
         {
             get => HttpContext.Current.Session[ClaimSessionKey] as IEnumerable<ClaimsIdentity>;
@@ -69,20 +78,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         public ClaimsPrincipal UserClaim => HttpContext.Current.User as ClaimsPrincipal;
 
-        public string RequestIp
-        {
-            get
-            {
-                var request = HttpContext.Current.Request;
-                string ipList = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-
-                if (!string.IsNullOrEmpty(ipList))
-                {
-                    return ipList.Split(',')[0];
-                }
-
-                return request.ServerVariables["REMOTE_ADDR"];
-            }
-        }
+        public bool HasHostPermission(string functionName) => UserPermissionList.Any(i => i.FunctionName.MatchWith(functionName) && i.IsHost);
     }
 }

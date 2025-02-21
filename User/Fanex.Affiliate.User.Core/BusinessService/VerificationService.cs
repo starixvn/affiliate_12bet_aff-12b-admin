@@ -1,49 +1,48 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.MetalModels.Email;
-using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Utilities;
-using OtpNet;
-using System;
-using System.Security.Cryptography;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class VerificationService : IVerificationService
+    using System.Security.Cryptography;
+    using Commands;
+    using Constants;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO.VerificationAccount;
+    using Extensions;
+    using MetalModels;
+    using MetalModels.Email;
+    using OtpNet;
+    using Utilities;
+
+    public class VerificationService : BaseDynamicService, IVerificationService
     {
         private const int SecretKeyExistedCode = 101;
 
         private readonly ITwoFactorAuthService _twoFactorAuthService;
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountService _accountService;
         private readonly IEmailService _mailService;
         private readonly ICryptographyService _cryptographyService;
         private readonly IWrapperUtility _wrapperUtility;
-        private readonly IVerificationRepository _verificationRepository;
 
         public VerificationService(
+            IDynamicRepository dynamicRepository,
             ITwoFactorAuthService twoFactorAuthService,
-            IAccountRepository accountRepository,
             IEmailService mailService,
             ICryptographyService cryptographyService,
             IWrapperUtility wrapperUtility,
-            IVerificationRepository verificationRepository)
+            IAccountService accountService) : base(dynamicRepository)
         {
             _twoFactorAuthService = twoFactorAuthService;
-            _accountRepository = accountRepository;
+            _accountService = accountService;
             _mailService = mailService;
             _cryptographyService = cryptographyService;
             _wrapperUtility = wrapperUtility;
-            _verificationRepository = verificationRepository;
         }
 
         public SendCodeResult SendCode(SendCodeParam param)
         {
             if (CanSendCode(param.SentCodeTime, param.IntervalInMinute))
             {
-                var userInfo = _accountRepository.GetUserInfoById(param.AffId, false);
+                var userInfo = _accountService.GetUserInfoById(param.AffId, false);
                 if (!param.Email.MatchWith(userInfo.Email))
                 {
                     return CreateSendCodeFailedResult(isValidEmail: false);
@@ -111,14 +110,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private void UpdateVerificationInfo(VerificationOtpParam param, bool isValid)
         {
             var verificationParam = CreateVerificationParam(param);
-            var verificationInfo = _verificationRepository.GetLoginInfoByUserDevice(
-                    verificationParam.AffId,
-                    verificationParam.IpAddress,
-                    verificationParam.DeviceInfo);
+            var verificationInfo = GetTData<VerificationInfo>(param.MapTo<VerificationOtpParam, GetLoginInfoByUserDeviceCriteria>());
 
             if (verificationInfo.FailedLoginCount.HasValue)
             {
-                var updateResult = _verificationRepository.UpdateVerificationInfo(verificationParam);
+                var updateResult = ExecuteReturnResultInfo(verificationParam.MapTo<AuthResultBaseParam, UpdateVerificationInfoCommand>());
                 if (!updateResult.IsOk)
                 {
                     LogHelper.WriteError(updateResult.Message);
@@ -128,7 +124,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 if (isValid)
                 {
-                    var insertResult = _verificationRepository.InsertUserDeviceInfo(verificationParam);
+                    var insertResult = ExecuteReturnResultInfo(verificationParam.MapTo<AuthResultBaseParam, InsertUserDeviceInfoCommand>());
                     if (!insertResult.IsOk)
                     {
                         LogHelper.WriteError(insertResult.Message);
@@ -159,7 +155,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             var now = _wrapperUtility.GetNowDateTime();
 
-            return new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
+            return DateTimeHelper.CreateDateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
         }
 
         private static string CreateHashMessage(string message, string secret)
@@ -168,12 +164,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private string TryCreateSecretKey(int affId)
         {
             var secretKey = GenerateSecretKey();
-            var resultCode = _accountRepository.CreateSecretKey(affId, secretKey);
+            var resultCode = _accountService.CreateSecretKey(affId, secretKey);
 
             while (resultCode == SecretKeyExistedCode)
             {
                 secretKey = GenerateSecretKey();
-                resultCode = _accountRepository.CreateSecretKey(affId, secretKey);
+                resultCode = _accountService.CreateSecretKey(affId, secretKey);
             }
 
             return secretKey;

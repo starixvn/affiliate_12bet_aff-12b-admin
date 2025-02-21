@@ -14,10 +14,10 @@ export const AppContainer = (props) => {
     return (
         <AppLayout>
             <Loader show={props.isShowLoader} />
-            <div className="ml-4 my-2 pl-3">
+            <div className="pt-2 pb-2">
                 Below you see tasks that are waiting for your approval and overview of the affiliate program
-            </ div>
-            <Col xl={6} className="home">
+            </div>
+            <Col xl={7} className="home">
                 <Row>
                     <Col sm={6}>
                         <TasksWaitingForApproval />

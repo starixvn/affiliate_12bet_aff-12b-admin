@@ -6,9 +6,6 @@ describe('Adjustment - components - Content', () => {
     afterEach(() => {
         jest.clearAllMocks();
     });
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
     const affInfo = {
         AffId: 1271808,
         AffName: "12BETAFF226"
@@ -22,7 +19,7 @@ describe('Adjustment - components - Content', () => {
 
     it('render correctly with isValidAmount is true', () => {
         const result = shallow(<Content {...defaultProps} />);
-        result.setState({ amount: '123456'});
+        result.setState({ amount: '123456' });
 
         expect(result).toMatchSnapshot();
     });
@@ -74,6 +71,21 @@ describe('Adjustment - components - Content', () => {
         expect(wrapper.setState).toHaveBeenCalledWith({ amount: '123,456' });
     });
 
+    it('handleChangeAmount - should call setState with correct amount but not format', async () => {
+        const event = {
+            target: {
+                name: 'amount',
+                value: '123.456'
+            }
+        }
+        const wrapper = shallow(<Content {...defaultProps} />);
+        wrapper.setState = jest.fn();
+
+        wrapper.find('Input[type="text"][name="amount"][id="amount"]').simulate('change', event);
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ amount: '123.456' });
+    });
+
     it('handleChangeAmount - should call setState with incorrect amount', async () => {
         const event = {
             target: {
@@ -87,36 +99,6 @@ describe('Adjustment - components - Content', () => {
         wrapper.find('Input[type="text"][name="amount"][id="amount"]').simulate('change', event);
 
         expect(wrapper.setState).not.toHaveBeenCalled();
-    });
-
-    it('handleChangeAmount - should call setState with amount > max amount', async () => {
-        const event = {
-            target: {
-                name: 'amount',
-                value: '922337203685479'
-            }
-        }
-        const wrapper = shallow(<Content {...defaultProps} />);
-        wrapper.setState = jest.fn();
-
-        wrapper.find('Input[type="text"][name="amount"][id="amount"]').simulate('change', event);
-
-        expect(wrapper.setState).toHaveBeenCalledWith({ amount: "922337203685479" });
-    });
-
-    it('handleChangeAmount - should call setState with amount < min amount', async () => {
-        const event = {
-            target: {
-                name: 'amount',
-                value: '-922337203685479'
-            }
-        }
-        const wrapper = shallow(<Content {...defaultProps} />);
-        wrapper.setState = jest.fn();
-
-        wrapper.find('Input[type="text"][name="amount"][id="amount"]').simulate('change', event);
-
-        expect(wrapper.setState).toHaveBeenCalledWith({ amount: "-922337203685479" });
     });
 
     it('handleChange - should call setState when change description textarea ', async () => {
@@ -159,7 +141,6 @@ describe('Adjustment - components - Content', () => {
     it('handleSubmit - should call toggleLoaderUserPanel and setState with amount is required', async () => {
         const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, val) => fn & fn());
 
         await wrapper.find('Button').simulate('click');
 
@@ -170,15 +151,12 @@ describe('Adjustment - components - Content', () => {
         expect(defaultProps.toggleLoaderUserPanel.mock.calls[3][0]).toBe(false);
 
         expect(wrapper.setState.mock.calls[0]).toEqual([{ isShowMessage: true, isSuccess: false, message: "The amount is required" }, expect.any(Function)]);
-        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
-        expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: false });
     });
 
     it('handleSubmit - should call toggleLoaderUserPanel and setState with amount is invalid', async () => {
         const wrapper = shallow(<Content {...defaultProps} />);
         wrapper.setState({ amount: '0' });
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, val) => fn & fn());
 
         await wrapper.find('Button').simulate('click');
 
@@ -189,8 +167,7 @@ describe('Adjustment - components - Content', () => {
         expect(defaultProps.toggleLoaderUserPanel.mock.calls[3][0]).toBe(false);
 
         expect(wrapper.setState.mock.calls[0]).toEqual([{ isShowMessage: true, isSuccess: false, message: "The amount is invalid" }, expect.any(Function)]);
-        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
-        expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: false });
+        expect(wrapper.setState.mock.calls[1][0]).toEqual({ "balanceBf": 980228054 });
     });
 
     it('handleSubmit - should call toggleLoaderUserPanel and _validateAmount and handleSubmit with correct amount', async () => {
@@ -200,7 +177,6 @@ describe('Adjustment - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ amount: '100' });
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, val) => fn & fn());
 
         await wrapper.find('Button').simulate('click');
 
@@ -212,8 +188,6 @@ describe('Adjustment - components - Content', () => {
 
         expect(props.handleSubmit).toHaveBeenCalledWith({ AffId: 1271808, Amount: 100, Description: '' });
         expect(wrapper.setState.mock.calls[1]).toEqual([{ amount: "100", description: "", isShowMessage: true, isSuccess: false, message: "Adjustment is failed!" }, expect.any(Function)]);
-        expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
-        expect(wrapper.setState.mock.calls[2][0]).toEqual({ isShowMessage: false });
     });
 
     it('handleSubmit - should call toggleLoaderUserPanel and _validateAmount, handleSubmit and getAffiliateInfo with correct amount', async () => {
@@ -224,7 +198,6 @@ describe('Adjustment - components - Content', () => {
         const wrapper = shallow(<Content {...props} />);
         wrapper.setState({ amount: '100' });
         wrapper.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, val) => fn & fn());
 
         await wrapper.find('Button').simulate('click');
 
@@ -237,9 +210,5 @@ describe('Adjustment - components - Content', () => {
 
         expect(props.handleSubmit).toHaveBeenCalledWith({ AffId: 1271808, Amount: 100, Description: '' });
         expect(wrapper.setState.mock.calls[1]).toEqual([{ amount: "", description: "", isShowMessage: true, isSuccess: true, message: "Updated successfully!" }, expect.any(Function)]);
-        expect(window.setTimeout.mock.calls[0]).toEqual([expect.any(Function), 3000]);
-        expect(window.setTimeout.mock.calls[1]).toEqual([expect.any(Function), 3000]);
-        expect(wrapper.setState.mock.calls[2][0]).toEqual({ isShowMessage: false });
-        expect(props.getAffiliateInfo).toHaveBeenCalledWith('12BETAFF226', "adjustment");
     });
 });

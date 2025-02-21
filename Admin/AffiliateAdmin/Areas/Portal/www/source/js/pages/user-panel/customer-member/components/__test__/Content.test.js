@@ -12,21 +12,22 @@ describe('customer member - components - Content', () => {
             isGetAll: false,
             memberType: '0',
             toDate: "7/01/2019"
-        },
-        isDisplayFullName: true
+        }
     }
 
     const data = [
         {
             CurrencyName: "TB",
+            Email: "",
             FirstName: "",
             LastName: "",
             RegisteredDate: "2017-07-02T13:44:00",
             RegisteredDateString: "07/02/2017 01:44:00 PM",
-            UserName: "12Bet$thongchart14"
+            UserName: "12BET$thongchart14"
         },
         {
             CurrencyName: "RMB",
+            Email: "",
             FirstName: "firstname_1271808",
             LastName: "lastname_1271808",
             RegisteredDate: "2017-07-03T13:14:00",
@@ -43,6 +44,15 @@ describe('customer member - components - Content', () => {
 
     it('render correctly with have data', () => {
         const result = shallow(<Content {...defaultProps} />);
+
+        result.instance().setState({ data });
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('render correctly with have data and canViewMemberEmail is true', () => {
+        const props = Object.assign({}, defaultProps, { canViewMemberEmail: true });
+        const result = shallow(<Content {...props} />);
 
         result.instance().setState({ data });
 

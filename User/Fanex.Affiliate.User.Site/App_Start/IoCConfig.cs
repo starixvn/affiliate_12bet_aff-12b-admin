@@ -1,29 +1,23 @@
-﻿using Autofac;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
+using System.Reflection;
+using System.Web.Compilation;
+using System.Web.Mvc;
+using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.User.Core.Apis;
-using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.BusinessService.Apis;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Infrastructure;
-using Fanex.Affiliate.User.Core.MemberInfoWebService;
-using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Caching;
 using Fanex.Caching.Memory;
+using Fanex.Data.Repository;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.NETFramework;
 using ONEbook.UM.Transport;
 using Refit;
-using System;
-using System.Configuration;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Web.Compilation;
-using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -32,14 +26,15 @@ namespace Fanex.Affiliate.User.Site
         public static void Register()
         {
             var builder = new ContainerBuilder();
-            //Register repository
-            builder.RegisterLicenseeCustDbApi();
-            RegisterDependencies(builder);
 
-            var asselmblyList = GetExecutingAssembly();
-            // Register your MVC controllers. (MvcApplication is the name of
-            // the class in Global.asax.)
-            builder.RegisterControllers(asselmblyList);
+            var assemblyList = GetExecutingAssembly();
+            builder.RegisterAssemblyTypes(assemblyList).AsImplementedInterfaces();
+
+            RegisterDependencies(builder);
+            builder.RegisterMemberSiteApi();
+
+            // Register your MVC controllers. (MvcApplication is the name of the class in Global.asax.)
+            builder.RegisterControllers(assemblyList);
 
             // OPTIONAL: Register web abstractions like HttpContextBase.
             builder.RegisterModule<AutofacWebTypesModule>();
@@ -65,8 +60,7 @@ namespace Fanex.Affiliate.User.Site
                 assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(i => !i.IsDynamic).ToArray();
             }
 
-            return assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate.User", StringComparison.InvariantCulture))
-                .ToArray();
+            return assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate.User", StringComparison.InvariantCulture)).ToArray();
         }
 
         private static void RegisterDependencies(ContainerBuilder builder)
@@ -74,84 +68,24 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterInstance(new UMClientConfiguration().Initialize());
             builder.RegisterInstance<ICache>(new MemoryCache(new MemoryCacheOptions()));
             builder.RegisterInstance<ICacheService>(new CacheService());
+            builder.RegisterInstance<IDynamicRepository>(new DynamicRepository());
 
             builder.RegisterType<UMCacheService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<IPHelperImpl>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UMRestClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<HttpContextHelper>().AsImplementedInterfaces().SingleInstance();
-
-            builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<SystemService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<AccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<MarketingRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<MarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<StatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CryptographyService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<NewsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<NewsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<EmailService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<StatementHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<PaymentRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<AccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<PaymentService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<MemberRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<EmailHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<ContactService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<ServiceSoapClient>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<MemberInfoServiceWrapper>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<MemberTransactionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CommissionReportRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CommissionReportService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CaptchaService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<TwoFactorAuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<VerificationService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<WrapperUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<VerificationRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<SecurityQuestionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<SecurityQuestionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<AccountOverviewRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<StatisticsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<UnderMaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<IpAddressRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<FeedbackService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<FeedbackRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-
-            builder.RegisterType<QrCodeGeneratorService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<LicenseeCustDbApiService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-
-            builder.RegisterType<ObjectDBBuilder>().AsImplementedInterfaces().UsingConstructor().InstancePerLifetimeScope();
-            builder.RegisterType<SystemRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<DateTimeProvider>().AsImplementedInterfaces().InstancePerLifetimeScope();
-
-            builder.RegisterType<NewsLetterRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<NewsLetterService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<OfferService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<OfferRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<HttpClientUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
-        private static void RegisterLicenseeCustDbApi(this ContainerBuilder builder)
+        private static void RegisterMemberSiteApi(this ContainerBuilder builder)
         {
-            var licenseeCustDbApiUrl = ConfigurationManager.AppSettings["LicenseeCustDbApiUrl"];
-            var licenseeCustDbApiProxyUrl = ConfigurationManager.AppSettings["LicenseeCustDbApiProxyUrl"];
-            var isUseProxyToGetLicenseeCustDbApi = ConfigurationManager.AppSettings["IsUseProxyToGetLicenseeCustDbApi"];
-            var defaultFuncHttpHandler = new HttpClientHandler
-            {
-                Proxy = Convert.ToBoolean(isUseProxyToGetLicenseeCustDbApi)
-                  ? new WebProxy(new Uri(licenseeCustDbApiProxyUrl))
-                  : null,
-                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-            };
+            var appSetting = new AppSetting();
+            var cacheService = new MemoryCacheService(new MemoryCache(new MemoryCacheOptions()));
+            var handler = new AuthenticatedHttpClientHandler(appSetting, cacheService);
 
-            builder.RegisterInstance(RestService.For<ILicenseeCustDbApi>(
-                new HttpClient(defaultFuncHttpHandler)
+            builder.RegisterInstance(RestService.For<ILicenseeApi>(
+                new HttpClient(handler)
                 {
-                    BaseAddress = new Uri(licenseeCustDbApiUrl)
+                    BaseAddress = new Uri(appSetting.MemberSiteApiUrl)
                 }));
         }
     }

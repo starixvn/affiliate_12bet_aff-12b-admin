@@ -1,16 +1,15 @@
 ﻿import React, { Fragment } from 'react';
-import AffNoteContent from './AffNoteContent';
-import ModifyAffNote from './ModifyAffNote';
+import Content from './Content';
+import ModificationForm from './ModificationForm';
 
 export const AppContainer = () => {
 
     return (
         <Fragment>
-            <AffNoteContent />
-            <ModifyAffNote />
+            <Content />
+            <ModificationForm />
         </Fragment>
     );
 }
-
 
 export default React.memo(AppContainer);

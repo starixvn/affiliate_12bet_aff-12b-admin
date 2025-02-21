@@ -2,20 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SelectLabel = (props) => {
-    const { id, selectedValue, isDisable } = props;
+    const { selectedText, isDisable } = props;
 
     return (
-        <button type="button" className="select-button" id={`button-${id}`} disabled={isDisable}
+        <button type="button" className="select-label" disabled={isDisable}
             onClick={props.onToggle}>
-            <span className="text-display" title={selectedValue}>{selectedValue}</span>
+            <span className="text-display" title={selectedText}>{selectedText}</span>
             <b className="caret"></b>
         </button>
     )
 }
 
 SelectLabel.propTypes = {
-    id: PropTypes.string.isRequired,
-    selectedValue: PropTypes.string.isRequired,
+    selectedText: PropTypes.string.isRequired,
     isDisable: PropTypes.bool
 }
 

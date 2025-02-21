@@ -1,74 +1,86 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using BusinessService;
     using Constants;
+    using CoreService;
     using DTO;
     using DTO.UserPanel;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Extensions;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
-    using Fanex.Affiliate.User.Core.Utilities;
+    using Extensions;
+    using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
     using MetalModels;
     using Newtonsoft.Json;
     using Resources;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
+    using Utilities;
 
     [CustomAuthorize]
     public class MyAccountController : BaseController
     {
         private const string SimplifiedChineseCode = "zh-CN";
         private const string TraditionalChineseCode = "zh-TW";
-        private readonly ISessionService _sessionService;
-        private readonly IAccountRepository _accountRepository;
-        public MyAccountController(ISessionService sessionService,
-            ISystemService languageService, IAccountRepository accountRepository)
-            : base(sessionService, languageService)
+
+        private readonly IAccountService _accountService;
+
+        public MyAccountController(
+            ISessionService sessionService,
+            ISystemService systemsService, 
+            IAccountService accountService) : base(sessionService, systemsService)
         {
-            _sessionService = sessionService;
-            _accountRepository = accountRepository;
+            _accountService = accountService;
         }
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index()
         {
-            var model = _accountRepository.GetAccountInfo(_sessionService.UserSession.AffId);
-            var accountInformation = new AccountInformation
+            var accountInfo = _accountService.GetAccountInfo(SessionService.UserSession.AffId);
+            var newAccountInfo = new AccountInformation
             {
-                AffId = model.AffId,
-                UserName = model.UserName,
-                Gender = model.Gender,
-                Email = Server.HtmlDecode(model.Email),
-                Phone = Server.HtmlDecode(model.Phone),
-                ContactApps = Server.HtmlDecode(model.ContactApps),
-                Address = Server.HtmlDecode(model.Address),
-                City = Server.HtmlDecode(model.City),
-                State = Server.HtmlDecode(model.State),
-                Country = Server.HtmlDecode(model.Country),
-                SiteUrl = Server.HtmlDecode(model.SiteUrl),
-                MoreSiteUrls = Server.HtmlDecode(model.MoreSiteUrls),
-                PreferredPayment = Server.HtmlDecode(model.PreferredPayment),
-                PlayerUsername = Server.HtmlDecode(model.PlayerUsername),
-                Postal = Server.HtmlDecode(model.Postal),
-                TargetCountryCode = model.TargetCountryCode,
-                PreferredLanguage = model.PreferredLanguage,
-                NoSiteDesc = Server.HtmlDecode(model.NoSiteDesc),
-                IsRenderState = _sessionService.CurrentLanguage == SimplifiedChineseCode || _sessionService.CurrentLanguage == TraditionalChineseCode,
-                HasWebSite = model.HasWebSite
+                AffId = accountInfo.AffId,
+                UserName = accountInfo.UserName,
+                AffCode = accountInfo.AffCode,
+                Gender = accountInfo.Gender,
+                Email = Server.HtmlDecode(accountInfo.Email),
+                Phone = Server.HtmlDecode(accountInfo.Phone),
+                ContactApps = Server.HtmlDecode(accountInfo.ContactApps),
+                Address = Server.HtmlDecode(accountInfo.Address),
+                City = Server.HtmlDecode(accountInfo.City),
+                State = Server.HtmlDecode(accountInfo.State),
+                Country = Server.HtmlDecode(accountInfo.Country),
+                SiteUrl = Server.HtmlDecode(accountInfo.SiteUrl),
+                MoreSiteUrls = Server.HtmlDecode(accountInfo.MoreSiteUrls),
+                PreferredPayment = Server.HtmlDecode(accountInfo.PreferredPayment),
+                PlayerUsername = Server.HtmlDecode(accountInfo.PlayerUsername),
+                Postal = Server.HtmlDecode(accountInfo.Postal),
+                PreferredLanguage = accountInfo.PreferredLanguage,
+                NoSiteDesc = Server.HtmlDecode(accountInfo.NoSiteDesc),
+                IsRenderState = SessionService.CurrentLanguage == SimplifiedChineseCode || SessionService.CurrentLanguage == TraditionalChineseCode,
+                HasWebSite = accountInfo.HasWebSite,
+                AffCurrency = accountInfo.AffCurrency,
+                DefaultBaseCurrency = accountInfo.DefaultBaseCurrency
             };
 
-            if (!string.IsNullOrEmpty(accountInformation.ContactApps))
+            if (!string.IsNullOrEmpty(newAccountInfo.ContactApps))
             {
-                accountInformation.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(accountInformation.ContactApps).OrderBy(p => p.Order);
+                newAccountInfo.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(newAccountInfo.ContactApps).OrderBy(p => p.Order);
             }
 
-            var preferredLanguage = accountInformation.PreferredLanguage;
-            var languageName = SystemService.GetSystemTargetLanguages().FirstOrDefault(l => l.LanguageCode.Equals(preferredLanguage))?.LanguageName ?? preferredLanguage;
-            accountInformation.LanguageName = SystemHelper.GetLanguageText(languageName);
+            var preferredLanguage = newAccountInfo.PreferredLanguage;
+            var languageName = SystemService.GetSupportedLanguages().FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName ?? preferredLanguage;
+            newAccountInfo.LanguageName = SystemLanguage.GetLanguageText(languageName);
 
-            return View("~/Views/UserPanel/MyAccount/index.cshtml", accountInformation);
+            var baseCurrencyList = SystemService.GetBaseCurrencyList();
+
+            var model = new MyAccountViewModel
+            {
+                IsInternal = SessionService.IsInternal,
+                AccountInformation = newAccountInfo,
+                BaseCurrencyList = CurrencyHelper.GetCurrencyList(baseCurrencyList, newAccountInfo.DefaultBaseCurrency)
+            };
+
+            return View("~/Views/UserPanel/MyAccount/index.cshtml", model);
         }
 
         [HttpPost]
@@ -76,7 +88,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Index(AccountInformation model)
         {
-            if (_sessionService.IsInternal)
+            if (SessionService.IsInternal)
             {
                 return Json(new ResultInfo { IsOk = false, Message = Lang.ErrAuthorized });
             }
@@ -86,18 +98,11 @@
                 return Json(new ResultInfo { IsOk = false, Message = Error.RequireIMAccount });
             }
 
-            var userSession = _sessionService.UserSession;
-            var userAccount = _accountRepository.GetAccountInfo(userSession.AffId);
-            model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername) ?
-                userAccount.PlayerUsername :
-                Server.HtmlEncode(model.PlayerUsername);
-
-            var depositAccount = _accountRepository.GetDepositPlayerAccount(model.PlayerUsername);
-
-            if (!depositAccount.IsValid)
-            {
-                return Json(new ResultInfo { IsOk = false, Message = Lang.errDepositDBConnectFailed });
-            }
+            var userSession = SessionService.UserSession;
+            var userAccount = _accountService.GetAccountInfo(userSession.AffId);
+            model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername) 
+                ? userAccount.PlayerUsername 
+                : Server.HtmlEncode(model.PlayerUsername);
 
             var accountUpdateParam = new UpdateAccountParam
             {
@@ -106,10 +111,9 @@
                 SiteUrl = Server.HtmlEncode(model.SiteUrl ?? string.Empty),
                 MoreSiteUrls = Server.HtmlEncode(model.MoreSiteUrls ?? string.Empty),
                 NoSiteDesc = Server.HtmlEncode(model.NoSiteDesc ?? string.Empty),
-                TargetCountryCode = Server.HtmlEncode(model.TargetCountryCode),
-                Player_UserName = model.PlayerUsername,
                 Ip = Request.GetClientIP(),
-                Language = _sessionService.CurrentLanguage,
+                Language = SessionService.CurrentLanguage,
+                DefaultBaseCurrency = model.DefaultBaseCurrency,
                 ContactApps = JsonConvert.SerializeObject(model.ContactAppList.Select(p => new ContactApp
                 {
                     Name = Server.HtmlEncode(p.Name),
@@ -118,7 +122,11 @@
                 })),
             };
 
-            var updatingResult = _accountRepository.UpdateAccountInformation(accountUpdateParam);
+            var updatingResult = _accountService.UpdateAccountInformation(accountUpdateParam);
+            if (updatingResult.IsOk)
+            {
+                userSession.BaseCurrency = accountUpdateParam.DefaultBaseCurrency;
+            }
 
             return Json(updatingResult);
         }

@@ -6,10 +6,9 @@ import { Alert, Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, 
 import { setSelectedMessageId, getMessageDetail, fetchData, insertMessage, updateMessage, toggleLoader, deleteMessages } from '../actions';
 
 import { htmlDecode } from '../../../modules/htmlHelper';
-import { resource, languages, popupTitle, messages, defaultMessageContentList, messageInsertId, messageCurrentId } from '../libs/constants';
+import { resource, popupTitle, messages, messageInsertId, messageCurrentId } from '../libs/constants';
 import Notification from '../../common/components/NotificationPopup';
 import ButtonDeleteItems from '../../common/components/ButtonDeleteItems';
-import { claimResource } from '../../../modules/claim';
 
 export class MessageDetailForm extends PureComponent {
     constructor(props) {
@@ -18,7 +17,7 @@ export class MessageDetailForm extends PureComponent {
         this.state = {
             isClickedEdit: false,
             important: false,
-            messageContentList: defaultMessageContentList,
+            messageContentList: this.props.defaultMessageContentList,
             isShowMessage: false,
             isSuccess: true,
             message: '',
@@ -44,26 +43,19 @@ export class MessageDetailForm extends PureComponent {
         const item = await this.props.getMessageDetail(selectedMessageId);
 
         if (item) {
-            this.setState(prevState => {
-                const messageContentList = {};
+            const messageContentList = {};
 
-                Object.keys(prevState.messageContentList).map(key => {
-                    messageContentList[key] = htmlDecode(item[key]);
-                })
+            Object.keys(this.state.messageContentList).map(key => {
+                messageContentList[key] = htmlDecode(item[key]);
+            })
 
-                return { messageContentList, important: item.Important };
-            });
+            this.setState({ messageContentList, important: item.Important });
         }
     }
 
     _handleChangeMessageContent = (event) => {
-        const { name, value } = event.target;
-
-        this.setState(prevState => {
-            const messageContentList = Object.assign({}, prevState.messageContentList, { [name]: value })
-
-            return { messageContentList };
-        })
+        const messageContentList = Object.assign({}, this.state.messageContentList, { [event.target.name]: event.target.value })
+        this.setState({ messageContentList })
     }
 
     _handleFetchData = () => {
@@ -138,12 +130,12 @@ export class MessageDetailForm extends PureComponent {
 
     _handleClosePopup = () => {
         this.props.setSelectedMessageId(null);
-        this.setState({ isClickedEdit: false, important: false, messageContentList: defaultMessageContentList });
+        this.setState({ isClickedEdit: false, important: false, messageContentList: this.props.defaultMessageContentList });
     }
 
     render() {
         const { important, messageContentList, isClickedEdit, isSuccess, isShowMessage, message, messageNotification, isInsert } = this.state;
-        const { selectedMessageId, isModifiable } = this.props;
+        const { selectedMessageId, languages } = this.props;
         const isShowPopup = selectedMessageId !== null;
         const isCurrentMessage = selectedMessageId === messageCurrentId;
         const title = isInsert ? popupTitle.Add : (isCurrentMessage ? popupTitle.Current : `${popupTitle.Detail} (ID=${selectedMessageId})`);
@@ -151,7 +143,7 @@ export class MessageDetailForm extends PureComponent {
 
         return (
             <React.Fragment>
-                <Modal isOpen={isShowPopup} size="lg" toggle={this._handleClosePopup} backdrop="static" innerRef={this.modalRef}>
+                <Modal isOpen={isShowPopup} size="lg" toggle={this._handleClosePopup} backdrop='static' innerRef={this.modalRef}>
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">
@@ -161,7 +153,7 @@ export class MessageDetailForm extends PureComponent {
                                 </Alert>
                                 <Form tag="form" className="mb-2 p-1 border" autoComplete="off">
                                     <FormGroup row className="mb-2">
-                                        <Label for="important" sm={2} className="text-right">{resource.Important}</Label>
+                                        <Label htmlFor="important" sm={2} className="text-right">{resource.Important}</Label>
                                         <Col sm={10}>
                                             <Input name="important" type="checkbox" className="important-checkbox" checked={important} disabled={isDisabled} onChange={() => this.setState({ important: !important })} />
                                         </Col>
@@ -181,8 +173,7 @@ export class MessageDetailForm extends PureComponent {
                                     }
                                 </Form>
                                 {
-                                    isModifiable &&
-                                    (isInsert ? (<Button type="button" color="success" onClick={this._handleSave}>{resource.Add}</Button>)
+                                    isInsert ? (<Button type="button" color="success" onClick={this._handleSave}>{resource.Add}</Button>)
                                         : (
                                             <React.Fragment>
                                                 {
@@ -197,7 +188,7 @@ export class MessageDetailForm extends PureComponent {
                                                     messages={messages}
                                                 />
                                             </React.Fragment>
-                                        ))
+                                        )
                                 }
                                 <Button type="button" color="info" className="ml-2" onClick={this._handleClosePopup}>{resource.Cancel}</Button>
                             </div>
@@ -216,13 +207,12 @@ export class MessageDetailForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedMessageId, param, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MessageMenu);
-    return Object.assign({}, { selectedMessageId, param, isModifiable });
+function mapStateToProps({ selectedMessageId, param, defaultMessageContentList, languages }) {
+    return Object.assign({}, { selectedMessageId, param, defaultMessageContentList, languages });
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setSelectedMessageId, getMessageDetail, fetchData, insertMessage, updateMessage, toggleLoader, deleteMessages }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessageDetailForm);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(MessageDetailForm));

@@ -1,93 +1,101 @@
-﻿using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository.Domain;
+﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
+using Fanex.Affiliate.Admin.Core.Criterias.Domain;
+using Fanex.Affiliate.Admin.Core.DTO.Domain;
+using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using NSubstitute;
+using Fanex.Data.Repository;
+using Moq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 {
     public class DomainControlServiceTest
     {
-        private readonly IDomainService _domainService;
-        private readonly IDomainControlRepository _domainControlRepository;
-
-        public DomainControlServiceTest()
+        [Fact]
+        public void GetDomainControlList_WhenCall_ReturnCorrectData()
         {
-            _domainService = Substitute.For<IDomainService>();
-            _domainControlRepository = Substitute.For<IDomainControlRepository>();
+            // Arrange
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>(), It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo { CreatedDate = new DateTime(2019, 10, 29) } });
+
+            // Action
+            var service = new DomainControlService(repository.Object);
+            var result = service.GetDomainControlList("en-GB");
+            var item = result.FirstOrDefault();
+
+            // Assert
+            repository.Verify(d => d.Fetch<DomainControlInfo>(It.Is<DomainControlCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
+            Assert.Single(result);
+            Assert.Equal("10/29/2019", item.CreatedDateText);
         }
 
         [Fact]
-        public void GetDomainControlList_WhenCall_Excute()
+        public void GetDomainControlList_WhenCall_ReturnCorrectDataHasNull()
         {
             // Arrange
-            var param = "123";
-            var service = CreateDomainControlService;
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>(), It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() });
 
             // Action
-            service.GetDomainControlList(param);
+            var service = new DomainControlService(repository.Object);
+            var result = service.GetDomainControlList("en-GB");
+            var item = result.FirstOrDefault();
 
             // Assert
-            _domainControlRepository.Received().GetDomainControlList(param);
+            repository.Verify(d => d.Fetch<DomainControlInfo>(It.Is<DomainControlCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
+            Assert.Single(result);
+            Assert.Null(item.CreatedDateText);
         }
 
         [Fact]
-        public void GetDomainControlById_WhenCall_Excute()
+        public void InsertDomainControl_WhenCallWithValidParam_InsertSuccessfully()
         {
             // Arrange
-            var param = 123;
-            var service = CreateDomainControlService;
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Execute(It.IsAny<InsertDomainControlCommand>(), It.IsAny<string>()));
 
             // Action
-            service.GetDomainControlById(param);
+            var service = new DomainControlService(repository.Object);
+            var result = service.InsertDomainControl(new InsertUpdateDomainControlParam());
 
             // Assert
-            _domainControlRepository.Received().GetDomainControlById(param);
+            repository.Verify(d => d.Execute(It.Is<InsertDomainControlCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
+            Assert.True(result.IsSuccessful);
         }
 
         [Fact]
-        public void InsertDomainControl_WhenCall_Excute()
+        public void UpdateDomainControl_WhenCallWithValidParam_UpdateSuccessfully()
         {
             // Arrange
-            var param = new InsertDomainControlParam();
-            var service = CreateDomainControlService;
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Execute(It.IsAny<UpdateDomainControlCommand>(), It.IsAny<string>()));
 
             // Action
-            service.InsertDomainControl(param);
+            var service = new DomainControlService(repository.Object);
+            var result = service.UpdateDomainControl(new InsertUpdateDomainControlParam());
 
             // Assert
-            _domainControlRepository.Received().InsertDomainControl(param);
+            repository.Verify(d => d.Execute(It.Is<UpdateDomainControlCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
+            Assert.True(result.IsSuccessful);
         }
 
         [Fact]
-        public void UpdateDomainControl_WhenCall_Excute()
+        public void DeleteDomainControl_WhenCallWithValidParam_DeleteSuccessfully()
         {
             // Arrange
-            var param = new UpdateDomainControlParam();
-            var service = CreateDomainControlService;
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Execute(It.IsAny<DeleteDomainControlCommand>(), It.IsAny<string>()));
 
             // Action
-            service.UpdateDomainControl(param);
+            var service = new DomainControlService(repository.Object);
+            var result = service.DeleteDomainControl(new DeleteDomainControlParam());
 
             // Assert
-            _domainControlRepository.Received().UpdateDomainControl(param);
+            repository.Verify(d => d.Execute(It.Is<DeleteDomainControlCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
+            Assert.True(result.IsSuccessful);
         }
-
-        [Fact]
-        public void DeleteDomainControl_WhenCall_Excute()
-        {
-            // Arrange
-            var param = new DeleteDomainControlParam();
-            var service = CreateDomainControlService;
-
-            // Action
-            service.DeleteDomainControl(param);
-
-            // Assert
-            _domainControlRepository.Received().DeleteDomainControl(param);
-        }
-
-        private DomainControlService CreateDomainControlService
-            => new DomainControlService(_domainControlRepository, _domainService);
     }
 }

@@ -3,8 +3,8 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
@@ -20,13 +20,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var param = new ReferrersParam();
             ReferrersParam passedParam = null;
-            var ReferrersRepository = new Mock<IReferrersRepository>();
-            ReferrersRepository.Setup(t => t.GetReferrersList(param)).Returns(new List<Referrers> { new Referrers() }).Callback<ReferrersParam>(p => passedParam = p);
-            var controller = CreateReferrersController(ReferrersRepository: ReferrersRepository.Object);
+            var ReferrersStatisticsService = new Mock<IReferrersStatisticsService>();
+            ReferrersStatisticsService.Setup(t => t.GetReferrersList(param)).Returns(new List<ReferrersStatistics> { new ReferrersStatistics() }).Callback<ReferrersParam>(p => passedParam = p);
+            var controller = CreateReferrersController(ReferrersStatisticsService: ReferrersStatisticsService.Object);
 
             // Action
             var result = controller.GetReferrersList(param) as JsonNetResult;
-            var entityResult = result.Data as IEnumerable<Referrers>;
+            var entityResult = result.Data as IEnumerable<ReferrersStatistics>;
 
             // Assert
             Assert.Single(entityResult);
@@ -53,13 +53,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var param = new ReferrersDetailParam();
             ReferrersDetailParam passedParam = null;
-            var ReferrersRepository = new Mock<IReferrersRepository>();
-            ReferrersRepository.Setup(t => t.GetReferrersDetailList(param)).Returns(new EntityResult<Referrers> { MainData = new List<Referrers> { new Referrers() }, TotalItem = 1 }).Callback<ReferrersDetailParam>(p => passedParam = p);
-            var controller = CreateReferrersController(ReferrersRepository: ReferrersRepository.Object);
+            var ReferrersStatisticsService = new Mock<IReferrersStatisticsService>();
+            ReferrersStatisticsService.Setup(t => t.GetReferrersDetailList(param)).Returns(new EntityResult<ReferrersStatistics> { MainData = new List<ReferrersStatistics> { new ReferrersStatistics() }, TotalItem = 1 }).Callback<ReferrersDetailParam>(p => passedParam = p);
+            var controller = CreateReferrersController(ReferrersStatisticsService: ReferrersStatisticsService.Object);
 
             // Action
             var result = controller.GetReferrersDetailList(param) as JsonNetResult;
-            var entityResult = result.Data as EntityResult<Referrers>;
+            var entityResult = result.Data as EntityResult<ReferrersStatistics>;
 
             // Assert
             Assert.Single(entityResult.MainData);
@@ -83,13 +83,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private ReferrersController CreateReferrersController(
             ISessionService sessionService = null,
-            IReferrersRepository ReferrersRepository = null
+            IReferrersStatisticsService ReferrersStatisticsService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeReferrersRepository = ReferrersRepository ?? Mock.Of<IReferrersRepository>();
+            var fakeReferrersStatisticsService = ReferrersStatisticsService ?? Mock.Of<IReferrersStatisticsService>();
 
-            return new ReferrersController(fakeSessionService, fakeReferrersRepository);
+            return new ReferrersController(fakeSessionService, fakeReferrersStatisticsService);
         }
     }
 }

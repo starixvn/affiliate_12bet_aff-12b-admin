@@ -10,7 +10,6 @@
 	var manager = TemplateFileManager.Create(this);
 
 	const string SpNameTemplate = "SpName=\"{0}\"";
-	var sites = new string[] {"asian", "euro"};
 	var environments = new string[] { "dev", "local", "sit", "uat", "production" };
 
 	var originalSpName = System.IO.File.ReadAllText(@"Fanex.Affiliate.User.Site\App_Data\SpConfig\_SpNameOriginal.xml");
@@ -19,32 +18,29 @@
 
 	foreach(var env in environments)
 	{
-		foreach(var site in sites)
+		var fileName = env == "dev" ? "SpName.xml" : string.Format("SpName.user-12b.{0}.xml", env);
+		var spContent = originalSpName;
+		manager.StartNewFile(fileName);
+
+		foreach(var element in elements)
 		{
-			var fileName = env == "dev" ? "SpName.xml" : string.Format("SpName.12betuser-{0}.{1}.xml", site, env);
-			var spContent = originalSpName;
-			manager.StartNewFile(fileName);
+			var configEnvironments = element.Attribute("Environment").Value.Trim().Split(',');
 
-			foreach(var element in elements)
+			if(configEnvironments.Any(e => e.ToLower() == env))
 			{
-				var configEnvironments = element.Attribute("Environment").Value.Trim().Split(',');
+				var spName = element.Attribute("SpName").Value.Trim();
+				var suffix = element.Attribute("Suffix").Value.Trim();
 
-				if(configEnvironments.Any(e => e.ToLower() == env))
-				{
-					var spName = element.Attribute("SpName").Value.Trim();
-					var suffix = element.Attribute("Suffix").Value.Trim();
-
-					spContent = Regex.Replace(
-							spContent,
-							string.Format(SpNameTemplate, spName),
-							string.Format(SpNameTemplate, spName + suffix),
-							RegexOptions.IgnoreCase);
-				}
+				spContent = Regex.Replace(
+						spContent,
+						string.Format(SpNameTemplate, spName),
+						string.Format(SpNameTemplate, spName + suffix),
+						RegexOptions.IgnoreCase);
 			}
+		}
 #>
 <#=spContent#>
 <#
-		}
 	}
 
 	manager.Process();

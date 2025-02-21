@@ -1,29 +1,27 @@
-﻿using Fanex.Affiliate.User.Core.CoreService;
-using System;
+﻿using System;
 using System.Net;
-using System.Security.Claims;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Fanex.Affiliate.User.Core.CoreService;
 
 namespace Fanex.Affiliate.User.Core.Filters
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public sealed class CustomAuthorizeAttribute : AuthorizeAttribute
     {
-        public string PermissionName { get; set; }
-
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             var sessionService = DependencyResolver.Current.GetService<ISessionService>();
 
-            var skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true)
-            || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true);
+            var skipAuthorization = CheckExistAttribute(filterContext, typeof(AllowAnonymousAttribute));
             var context = filterContext.RequestContext.HttpContext;
             base.OnAuthorization(filterContext);
+
             if (!skipAuthorization)
             {
-                var authorized = sessionService.UserSession != null && context.Request.IsAuthenticated
-                    && context.User.Identity.IsAuthenticated;
+                var authorized = sessionService.UserSession != null 
+                                 && context.Request.IsAuthenticated 
+                                 && context.User.Identity.IsAuthenticated;
 
                 if (!authorized)
                 {
@@ -33,24 +31,6 @@ namespace Fanex.Affiliate.User.Core.Filters
                     context.Response.Cookies.Clear();
 
                 }
-                else
-                {
-                    if (!string.IsNullOrEmpty(PermissionName) && sessionService.IsInternal)
-                    {
-                        ClaimPermission(filterContext);
-                    }
-                }
-            }
-        }
-
-        private void ClaimPermission(AuthorizationContext filterContext)
-        {
-            var claims = filterContext.HttpContext.User as ClaimsPrincipal;
-            var hasPermission = claims.HasClaim(c => c.Type == PermissionName);
-
-            if (!hasPermission)
-            {
-                HandleResponse(filterContext);
             }
         }
 
@@ -78,5 +58,9 @@ namespace Fanex.Affiliate.User.Core.Filters
                 filterContext.Result = new RedirectToRouteResult("Default", new RouteValueDictionary(routeValue));
             }
         }
+
+        private static bool CheckExistAttribute(AuthorizationContext filterContext, Type attrType)
+            => filterContext.ActionDescriptor.IsDefined(attrType, true)
+               || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(attrType, true);
     }
 }

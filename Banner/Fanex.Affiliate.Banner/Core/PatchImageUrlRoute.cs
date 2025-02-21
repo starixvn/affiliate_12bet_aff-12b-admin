@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Web;
-using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Fanex.Affiliate.Banner.Core
@@ -46,7 +44,7 @@ namespace Fanex.Affiliate.Banner.Core
             if (!string.IsNullOrWhiteSpace(extension)
                 && fileAndFolders.Count() > 2
                 && SupportedExtension.Any(e => e.Equals(extension, StringComparison.OrdinalIgnoreCase))
-                && fileAndFolders[0].Equals(Folder, StringComparison.OrdinalIgnoreCase)) 
+                && fileAndFolders[0].Equals(Folder, StringComparison.OrdinalIgnoreCase))
             {
                 var currentFilePath = httpContext.Request.PhysicalPath;
                 if (!File.Exists(currentFilePath))

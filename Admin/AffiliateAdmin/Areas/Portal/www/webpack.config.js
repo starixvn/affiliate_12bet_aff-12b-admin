@@ -30,26 +30,26 @@ module.exports = env => {
         output: {
             path: projectPath.rootPath,
             filename: "[name].js",
-            chunkFilename: relativeOutputPath + '/js/dynamic-chunks/[chunkhash].chunk.js'
+            chunkFilename: relativeOutputPath + '/js/dynamic-chunks/[name]-[chunkhash].chunk.js'
         },
         module: {
             rules: [{
-                    test: /\.(js|jsx)$/,
-                    use: "babel-loader",
-                    exclude: /(node_modules|bower_components)/
-                },
-                {
-                    test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
-                    use: [{
-                        loader: "url-loader",
-                        options: {
-                            limit: 4096,
-                            name: "[name].[ext]",
-                            outputPath: relativeOutputPath + "/style/assets/",
-                            publicPath: "assets/"
-                        }
-                    }]
-                }
+                test: /\.(js|jsx)$/,
+                use: "babel-loader",
+                exclude: /(node_modules|bower_components)/
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
+                use: [{
+                    loader: "url-loader",
+                    options: {
+                        limit: 6144,
+                        name: "[name].[ext]",
+                        outputPath: relativeOutputPath + "/style/assets/",
+                        publicPath: "assets/"
+                    }
+                }]
+            }
             ]
         },
         node: {
@@ -59,7 +59,7 @@ module.exports = env => {
             { './jszip': 'jszip' },
             { './ods': 'ods' },
             { './cptable': 'var cptable' }
-        ],
+        ]
     });
 
     // Configuration for client-side bundle suitable for running in browsers
@@ -70,29 +70,28 @@ module.exports = env => {
             rules: [{
                 test: /\.s?[ac]ss$/,
                 use: [{
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                    },
-                    {
-                        loader: 'css-loader',
-                    }, {
-                        loader: 'resolve-url-loader',
-                    }, {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true,
-                            sourceMapContents: false
-                        }
+                    loader: 'style-loader',
+                },
+                {
+                    loader: MiniCssExtractPlugin.loader,
+                },
+                {
+                    loader: 'css-loader',
+                }, {
+                    loader: 'resolve-url-loader',
+                }, {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: true,
+                        sourceMapContents: false
                     }
+                }
                 ]
             }]
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: "[name].css",
-                chunkFilename: relativeOutputPath + "/style/dynamic-chunk/[name].css",
+                filename: "[name].css"
             }),
             new webpack.DllReferencePlugin({
                 context: __dirname,
@@ -102,8 +101,8 @@ module.exports = env => {
                 context: __dirname,
                 manifest: require(`${clientBundleOutputDir}/vendors/moment-manifest.json`)
             })
-        ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(pathsToClean, cleanOptions), ]),
-        devtool: isDevBuild ? "source-map" : undefined,
+        ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(pathsToClean, cleanOptions),]),
+        devtool: isDevBuild ? "source-map" : undefined
     });
 
     const layoutBundleConfig = merge(sharedConfig(), {

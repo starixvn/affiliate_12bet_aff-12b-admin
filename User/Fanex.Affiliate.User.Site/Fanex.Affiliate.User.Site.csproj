@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fanex.Affiliate.User.Site</RootNamespace>
     <AssemblyName>Fanex.Affiliate.User.Site</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -26,6 +26,8 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <WebGreaseLibPath>..\..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,22 +53,18 @@
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="EasyNetQ, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EasyNetQ.2.3.3\lib\net451\EasyNetQ.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.2.3\lib\net461\Fanex.Caching.dll</HintPath>
@@ -74,23 +72,17 @@
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Data, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.4.2.2\lib\net461\Fanex.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Data.SqlServer, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.SqlServer.4.2.2\lib\net461\Fanex.Data.SqlServer.dll</HintPath>
+    <Reference Include="Fanex.Data.ProxyClient, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.ProxyClient.1.0.3\lib\net472\Fanex.Data.ProxyClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.2.0.1\lib\net461\Fanex.Logging.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Fanex.Logging.2.0.1.1\lib\net461\Fanex.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging.RabbitMQ, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.RabbitMQ.1.0.1\lib\net461\Fanex.Logging.RabbitMQ.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging.Sentry.RavenClient, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Logging.Sentry.RavenClient.1.0.1\lib\net461\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Fanex.Logging.Sentry.RavenClient.1.0.1.2\lib\net471\Fanex.Logging.Sentry.RavenClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.MailDeliver.MailClient.2.0.8\lib\net461\Fanex.MailDeliver.MailClient.dll</HintPath>
@@ -100,71 +92,58 @@
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
-      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Caching.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ONEbook.UM, Version=3.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ONEbook.UM.3.1.3\lib\net461\ONEbook.UM.dll</HintPath>
@@ -180,42 +159,92 @@
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RabbitMQ.Client.5.0.1\lib\net451\RabbitMQ.Client.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Refit, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2f9b1262776509f5, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Refit.5.0.23\lib\net461\Refit.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="SharpRaven, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\SharpRaven.2.4.0\lib\net471\SharpRaven.dll</HintPath>
     </Reference>
     <Reference Include="SimpleInjector, Version=5.0.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SimpleInjector.5.3.0\lib\net461\SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Configuration.ConfigurationManager.5.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WinHttpHandler, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.Http.WinHttpHandler.5.0.0\lib\net461\System.Net.Http.WinHttpHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
@@ -224,60 +253,60 @@
       <HintPath>..\..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Json.8.0.4\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
-      <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Net.Http">
-    </Reference>
     <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="VaultSharp, Version=1.17.5.1, Culture=neutral, PublicKeyToken=cb3d4aad92b0eded, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\VaultSharp.1.17.5.1\lib\net472\VaultSharp.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -297,28 +326,16 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
     <Content Include="12monitor.aspx" />
-    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.local.xml">
+    <Content Include="App_Data\SpConfig\SpName.user-12b.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.production.xml">
+    <Content Include="App_Data\SpConfig\SpName.user-12b.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.sit.xml">
+    <Content Include="App_Data\SpConfig\SpName.user-12b.sit.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-asian.uat.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.local.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.production.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.sit.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.12betuser-euro.uat.xml">
+    <Content Include="App_Data\SpConfig\SpName.user-12b.uat.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="App_Data\SpConfig\_SpName.txt">
@@ -340,33 +357,29 @@
     <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.local.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.production.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.sit.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.uat.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.local.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.production.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.sit.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.uat.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
     <Content Include="sitemap.xml" />
+    <Content Include="www\build\js\channel-link-statistic.js" />
+    <Content Include="www\build\js\channel-link-statistic.min.js">
+      <DependentUpon>channel-link-statistic.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\contactus.js" />
+    <Content Include="www\build\js\contactus.min.js">
+      <DependentUpon>contactus.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\generated-qrcode.js" />
+    <Content Include="www\build\js\generated-qrcode.min.js">
+      <DependentUpon>generated-qrcode.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\lib\bootstrap.min.js" />
+    <Content Include="www\build\js\lib\bootstrap2-toggle.js" />
+    <Content Include="www\build\js\lib\bootstrap2-toggle.min.js">
+      <DependentUpon>bootstrap2-toggle.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
+    <Content Include="www\build\js\mediagallery.js" />
+    <Content Include="www\build\js\mediagallery.min.js">
+      <DependentUpon>mediagallery.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\overview.min.js">
       <DependentUpon>overview.js</DependentUpon>
     </Content>
@@ -391,8 +404,16 @@
     <Content Include="www\build\js\statistics\landingpagestatistics.min.js">
       <DependentUpon>landingpagestatistics.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\statistics\marketing-statistics.js" />
+    <Content Include="www\build\js\statistics\marketing-statistics.min.js">
+      <DependentUpon>marketing-statistics.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\statistics\referrerstatistics.min.js">
       <DependentUpon>referrerstatistics.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\sub-affiliate-earning.js" />
+    <Content Include="www\build\js\sub-affiliate-earning.min.js">
+      <DependentUpon>sub-affiliate-earning.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\summary.min.js">
       <DependentUpon>summary.js</DependentUpon>
@@ -415,9 +436,12 @@
     <Content Include="www\build\styles\fonts\myriadPro\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\Images\404-illus.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-subaff.png" />
+    <Content Include="www\build\styles\Images\account-overview\qr-disabled.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-US.jpg" />
-    <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.hi-IN.jpg" />
+    <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-IN.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.id-ID.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.km-KH.jpg" />
@@ -428,7 +452,7 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.en-US.jpg" />
-    <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.hi-IN.jpg" />
+    <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.en-IN.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.id-ID.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.km-KH.jpg" />
@@ -440,7 +464,7 @@
     <Content Include="www\build\styles\Images\home\5-stars.svg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.en-US.jpg" />
-    <Content Include="www\build\styles\Images\home\top-banner\item\desktop.hi-IN.jpg" />
+    <Content Include="www\build\styles\Images\home\top-banner\item\desktop.en-IN.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.id-ID.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.km-KH.jpg" />
@@ -451,7 +475,7 @@
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.en-US.jpg" />
-    <Content Include="www\build\styles\Images\home\top-banner\item\mobile.hi-IN.jpg" />
+    <Content Include="www\build\styles\Images\home\top-banner\item\mobile.en-IN.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.id-ID.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.ja-JP.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.km-KH.jpg" />
@@ -472,7 +496,7 @@
     <Content Include="www\build\styles\Images\logo\zh-TW.png" />
     <Content Include="www\build\styles\Images\logo\zh-CN.png" />
     <Content Include="www\build\styles\Images\logo\en-US.png" />
-    <Content Include="www\build\styles\Images\logo\hi-IN.png" />
+    <Content Include="www\build\styles\Images\logo\en-IN.png" />
     <Content Include="www\build\styles\Images\logo\id-ID.png" />
     <Content Include="www\build\styles\Images\logo\ja-JP.png" />
     <Content Include="www\build\styles\Images\logo\km-KH.png" />
@@ -531,7 +555,7 @@
     <Content Include="www\build\styles\Images\footer\cr-gamleaware.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.id-ID.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.ja-JP.png" />
-    <Content Include="www\build\styles\Images\footer\cr-nosponsor.hi-IN.png" />
+    <Content Include="www\build\styles\Images\footer\cr-nosponsor.en-IN.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.bn-BD.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.en-US.png" />
     <Content Include="www\build\styles\Images\footer\cr-nosponsor.km-KH.png" />
@@ -609,8 +633,8 @@
     <Content Include="www\build\styles\Images\langs\cs.svg" />
     <Content Include="www\build\styles\Images\langs\en.png" />
     <Content Include="www\build\styles\Images\langs\en.svg" />
-    <Content Include="www\build\styles\Images\langs\hi.png" />
-    <Content Include="www\build\styles\Images\langs\hi.svg" />
+    <Content Include="www\build\styles\Images\langs\hien.png" />
+    <Content Include="www\build\styles\Images\langs\hien.svg" />
     <Content Include="www\build\styles\Images\langs\id.png" />
     <Content Include="www\build\styles\Images\langs\id.svg" />
     <Content Include="www\build\styles\Images\langs\ja.png" />
@@ -647,17 +671,26 @@
     <Content Include="www\build\styles\Images\product\p2p\ky.png" />
     <Content Include="www\build\styles\Images\product\p2p\saba-sports.png" />
     <Content Include="www\build\styles\Images\product\slot\advant-play.png" />
-    <Content Include="www\build\styles\Images\product\slot\betsoft.png" />
-    <Content Include="www\build\styles\Images\product\slot\flowgaming.png" />
+    <Content Include="www\build\styles\Images\product\slot\cq9-gaming.png" />
+    <Content Include="www\build\styles\Images\product\slot\ebet.png" />
+    <Content Include="www\build\styles\Images\product\slot\evolution.png" />
     <Content Include="www\build\styles\Images\product\slot\gameplay-interactive.png" />
+    <Content Include="www\build\styles\Images\product\slot\jili.png" />
+    <Content Include="www\build\styles\Images\product\slot\joker.png" />
     <Content Include="www\build\styles\Images\product\slot\netent.png" />
+    <Content Include="www\build\styles\Images\product\slot\nolimit-city.png" />
+    <Content Include="www\build\styles\Images\product\slot\pg-soft.png" />
     <Content Include="www\build\styles\Images\product\slot\playtech.png" />
+    <Content Include="www\build\styles\Images\product\slot\play_n-go.png" />
     <Content Include="www\build\styles\Images\product\slot\pragmatic-play.png" />
+    <Content Include="www\build\styles\Images\product\slot\red-tiger.png" />
     <Content Include="www\build\styles\Images\product\slot\saba-sports.png" />
     <Content Include="www\build\styles\Images\product\slot\skywind.png" />
+    <Content Include="www\build\styles\Images\product\slot\spadegaming.png" />
+    <Content Include="www\build\styles\Images\product\slot\spribe.png" />
+    <Content Include="www\build\styles\Images\product\sports\9-wickets.png" />
     <Content Include="www\build\styles\Images\product\sports\banner-mobile.png" />
     <Content Include="www\build\styles\Images\product\sports\banner.png" />
-    <Content Include="www\build\styles\Images\product\sports\bet-radar.png" />
     <Content Include="www\build\styles\Images\product\sports\br-sports.png" />
     <Content Include="www\build\styles\Images\product\sports\bti-sports.png" />
     <Content Include="www\build\styles\Images\product\sports\saba-sports.png" />
@@ -667,7 +700,7 @@
     <Content Include="www\build\styles\Images\qr-icon\zh-TW.png" />
     <Content Include="www\build\styles\Images\qr-icon\zh-CN.png" />
     <Content Include="www\build\styles\Images\qr-icon\en-US.png" />
-    <Content Include="www\build\styles\Images\qr-icon\hi-IN.png" />
+    <Content Include="www\build\styles\Images\qr-icon\en-IN.png" />
     <Content Include="www\build\styles\Images\qr-icon\id-ID.png" />
     <Content Include="www\build\styles\Images\qr-icon\ja-JP.png" />
     <Content Include="www\build\styles\Images\qr-icon\km-KH.png" />
@@ -691,10 +724,15 @@
     <Content Include="www\build\styles\Images\product\live-casino\banner-mobile.png" />
     <Content Include="www\build\styles\Images\talk.svg" />
     <Content Include="www\build\styles\Images\under-maintenance\banner-um.svg" />
+    <Content Include="www\source\js\lib\bootstrap2-toggle.js" />
     <Content Include="www\source\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\source\js\lib\swiper.min.js" />
+    <Content Include="www\source\js\pages\account-overview\channel-link-statistic.js" />
     <Content Include="www\source\js\pages\commission-structure.js" />
+    <Content Include="www\source\js\pages\contactus.js" />
     <Content Include="www\source\js\pages\products.js" />
+    <Content Include="www\source\js\pages\statistics\marketing-statistics.js" />
+    <Content Include="www\source\js\pages\sub-affiliate-earning.js" />
     <Content Include="www\source\styles\scss\vendors\swiper.css" />
     <None Include="Configurations\AppSetting\AppSetting.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -728,34 +766,22 @@
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="Views\Password\Update.cshtml" />
     <Content Include="Views\Auth\AuthenticationForm.cshtml" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.uat.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.sit.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.production.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.production.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.sit.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.uat.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.local.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.sit.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.uat.config" />
-    <Content Include="Configurations\AppSetting\Transform\asian.production.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.local.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.production.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.sit.config" />
-    <Content Include="Configurations\AppSetting\Transform\euro.uat.config" />
-    <Content Include="Configurations\Web\Transform\asian.local.config" />
-    <Content Include="Configurations\Web\Transform\asian.production.config" />
-    <Content Include="Configurations\Web\Transform\asian.sit.config" />
-    <Content Include="Configurations\Web\Transform\asian.uat.config" />
-    <Content Include="Configurations\Web\Transform\euro.local.config" />
-    <Content Include="Configurations\Web\Transform\euro.production.config" />
-    <Content Include="Configurations\Web\Transform\euro.sit.config" />
-    <Content Include="Configurations\Web\Transform\euro.uat.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.local.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.uat.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.sit.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.production.config" />
+    <Content Include="Configurations\AppSetting\Transform\local.config" />
+    <Content Include="Configurations\AppSetting\Transform\sit.config" />
+    <Content Include="Configurations\AppSetting\Transform\uat.config" />
+    <Content Include="Configurations\AppSetting\Transform\production.config" />
+    <Content Include="Configurations\Web\Transform\local.config" />
+    <Content Include="Configurations\Web\Transform\production.config" />
+    <Content Include="Configurations\Web\Transform\sit.config" />
+    <Content Include="Configurations\Web\Transform\uat.config" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\RecoverPassword\Content.es-ES.cshtml" />
-    <Content Include="Views\Shared\Email\RecoverPassword\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.te-IN.cshtml" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.ko-KR.cshtml" />
@@ -765,8 +791,8 @@
     <Content Include="Views\Shared\Email\RecoverPassword\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentCancel\Content.es-ES.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentCancel\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.te-IN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\PaymentCancel\Content.ko-KR.cshtml" />
@@ -776,8 +802,8 @@
     <Content Include="Views\Shared\Email\PaymentCancel\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentRequest\Content.es-ES.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentRequest\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentRequest\Content.te-IN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentRequest\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.ko-KR.cshtml" />
@@ -787,8 +813,8 @@
     <Content Include="Views\Shared\Email\PaymentRequest\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\NewPassword\Content.es-ES.cshtml" />
-    <Content Include="Views\Shared\Email\NewPassword\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\NewPassword\Content.te-IN.cshtml" />
+    <Content Include="Views\Shared\Email\NewPassword\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.ko-KR.cshtml" />
@@ -797,10 +823,6 @@
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\Csd\Content.en-US.cshtml" />
-    <Content Include="Views\UserPanel\Feedback\Index.cshtml" />
-    <Content Include="Views\UserPanel\Member\Index.cshtml" />
-    <Content Include="Views\UserPanel\Member\_DataContent.cshtml" />
-    <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -815,10 +837,6 @@
     <Content Include="www\build\js\affiliate-link.js" />
     <Content Include="www\build\js\affiliate-link.min.js">
       <DependentUpon>affiliate-link.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\contactus.js" />
-    <Content Include="www\build\js\contactus.min.js">
-      <DependentUpon>contactus.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\daily-earning.js" />
     <Content Include="www\build\js\daily-earning.min.js">
@@ -845,14 +863,6 @@
     <Content Include="www\build\js\login.min.js">
       <DependentUpon>login.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\mediagallery.js" />
-    <Content Include="www\build\js\mediagallery.min.js">
-      <DependentUpon>mediagallery.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\member.js" />
-    <Content Include="www\build\js\member.min.js">
-      <DependentUpon>member.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\messagehistory.js" />
     <Content Include="www\build\js\messagehistory.min.js">
       <DependentUpon>messagehistory.js</DependentUpon>
@@ -874,17 +884,9 @@
     <Content Include="www\build\js\pages\faq.min.js">
       <DependentUpon>faq.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\pages\feedback.js" />
-    <Content Include="www\build\js\pages\feedback.min.js">
-      <DependentUpon>feedback.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\pages\login.js" />
     <Content Include="www\build\js\pages\login.min.js">
       <DependentUpon>login.js</DependentUpon>
-    </Content>
-    <Content Include="www\build\js\pages\logout.js" />
-    <Content Include="www\build\js\pages\logout.min.js">
-      <DependentUpon>logout.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\pages\promotion.js" />
     <Content Include="www\build\js\pages\terms-and-coditions.js" />
@@ -923,14 +925,6 @@
     <Content Include="www\build\styles\css\commissionreport.css" />
     <Content Include="www\build\styles\css\commissionreport.min.css">
       <DependentUpon>commissionreport.css</DependentUpon>
-    </Content>
-    <Content Include="www\build\styles\css\feedback.css" />
-    <Content Include="www\build\styles\css\feedback.min.css">
-      <DependentUpon>feedback.css</DependentUpon>
-    </Content>
-    <Content Include="www\build\styles\css\member.css" />
-    <Content Include="www\build\styles\css\member.min.css">
-      <DependentUpon>member.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\messagehistory.css" />
     <Content Include="www\build\styles\css\messagehistory.min.css">
@@ -986,17 +980,6 @@
     <Content Include="www\build\styles\fonts\tahoma\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
-    <Content Include="www\build\styles\Images\feedback\dissatisfaction-active.png" />
-    <Content Include="www\build\styles\Images\feedback\dissatisfaction.png" />
-    <Content Include="www\build\styles\Images\feedback\letter-icon.png" />
-    <Content Include="www\build\styles\Images\feedback\neutral-active.png" />
-    <Content Include="www\build\styles\Images\feedback\neutral.png" />
-    <Content Include="www\build\styles\Images\feedback\satisfied-active.png" />
-    <Content Include="www\build\styles\Images\feedback\satisfied.png" />
-    <Content Include="www\build\styles\Images\feedback\unsatisfied-active.png" />
-    <Content Include="www\build\styles\Images\feedback\unsatisfied.png" />
-    <Content Include="www\build\styles\Images\feedback\very-please-active.png" />
-    <Content Include="www\build\styles\Images\feedback\very-please.png" />
     <Content Include="www\build\styles\Images\header-bg.png" />
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\source\js\components\authhelper.js" />
@@ -1017,12 +1000,8 @@
     <Content Include="www\source\js\pages\account-overview\player-detail.js" />
     <Content Include="www\source\js\pages\account-overview\summary.js" />
     <Content Include="www\source\js\pages\commission-report.js" />
-    <Content Include="www\source\js\pages\contactus.js" />
     <Content Include="www\source\js\pages\faq.js" />
-    <Content Include="www\source\js\pages\feedback.js" />
     <Content Include="www\source\js\pages\forgotpassword.js" />
-    <Content Include="www\source\js\pages\logout.js" />
-    <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
     <Content Include="www\source\js\pages\promotion.js" />
     <Content Include="www\source\js\pages\payment-request.js" />
@@ -1127,8 +1106,8 @@
     <Content Include="www\source\styles\fonts\nokora\font.css" />
     <Content Include="Views\Shared\Email\Signup\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\Signup\Content.es-ES.cshtml" />
-    <Content Include="Views\Shared\Email\Signup\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\Signup\Content.te-IN.cshtml" />
+    <Content Include="Views\Shared\Email\Signup\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.ko-KR.cshtml" />
@@ -1160,7 +1139,6 @@
     <Content Include="www\source\styles\pages\messagehistory.scss" />
     <Content Include="www\source\styles\pages\signup.scss" />
     <Content Include="Views\Signup\_CountryOption.cshtml" />
-    <Content Include="www\source\styles\pages\member.scss" />
     <Content Include="Views\Notify\Error.cshtml" />
     <Content Include="www\source\styles\pages\notify.scss" />
     <Content Include="Views\Notify\PageNotFound.cshtml" />
@@ -1169,7 +1147,6 @@
     <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_PaymentList.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_RequestPayout.cshtml" />
     <Content Include="Views\TermAndCondition\Popup.cshtml" />
-    <Content Include="Views\UserPanel\MemberTransaction\Index.cshtml" />
     <Content Include="www\source\styles\scss\components\_modal.scss" />
     <Content Include="www\source\styles\scss\base\_pureicon.scss" />
     <Content Include="www\source\styles\scss\layout\_footer.scss" />
@@ -1185,9 +1162,9 @@
     <Content Include="Views\Faq\Partial\_Content.th-TH.cshtml" />
     <Content Include="Views\Faq\Partial\_Content.ko-KR.cshtml" />
     <Content Include="Views\Faq\Partial\_Content.ja-JP.cshtml" />
-    <Content Include="Views\Faq\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Faq\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.en-US.cshtml" />
-    <Content Include="Views\TermAndCondition\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\TermAndCondition\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.id-ID.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.ja-JP.cshtml" />
     <Content Include="Views\TermAndCondition\Partial\_Content.ko-KR.cshtml" />
@@ -1200,7 +1177,7 @@
     <Content Include="www\build\styles\fonts\tahoma\TAHOMABD.TTF" />
     <Content Include="www\build\styles\fonts\tahoma\TAHOMA_0.TTF" />
     <Content Include="Views\CommissionStructure\Partial\_Content.en-US.cshtml" />
-    <Content Include="Views\CommissionStructure\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\CommissionStructure\Partial\_Content.id-ID.cshtml" />
     <Content Include="Views\CommissionStructure\Partial\_Content.ja-JP.cshtml" />
     <Content Include="Views\CommissionStructure\Partial\_Content.ko-KR.cshtml" />
@@ -1214,13 +1191,12 @@
     <Content Include="www\build\styles\fonts\myriadPro\Myriad-Pro-Bold.ttf" />
     <Content Include="www\build\styles\fonts\myriadPro\Myriad-Pro-Italic.ttf" />
     <Content Include="Views\UnderMaintenance\Index.cshtml" />
-    <Content Include="packages.config" />
     <Content Include="Views\VerificationAccount\Index.cshtml" />
     <Content Include="www\source\styles\pages\verification-account.scss" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\VerificationAccount\Content.es-ES.cshtml" />
-    <Content Include="Views\Shared\Email\VerificationAccount\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.te-IN.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.ja-JP.cshtml" />
     <Content Include="Views\Shared\Email\VerificationAccount\Content.ko-KR.cshtml" />
@@ -1240,7 +1216,6 @@
     <Content Include="Views\UserPanel\AccountOverView\Partial\_GenerateLinkForm.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Partial\_SearchForm.cshtml" />
     <Content Include="Views\UserPanel\AccountOverView\Partial\_QrCodeLinkList.cshtml" />
-    <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
     <Content Include="www\source\styles\scss\base\_flex.scss" />
     <Content Include="Views\UserPanel\NewsLetter\Index.cshtml" />
     <Content Include="Views\UserPanel\NewsLetter\Preview.cshtml" />
@@ -1249,17 +1224,9 @@
     <Content Include="www\source\styles\pages\promotion.scss" />
     <Content Include="Views\UserPanel\OffersForMe\Index.cshtml" />
     <Content Include="Views\UserPanel\OffersForMe\Preview.cshtml" />
-    <Content Include="www\source\styles\pages\feedback.scss" />
-    <Content Include="www\build\styles\Images\feedback\letter-icon.webp" />
-    <Content Include="Views\Shared\Email\NewPassword\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentCancel\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\PaymentRequest\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\RecoverPassword\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\Signup\Content.km-KH.cshtml" />
-    <Content Include="Views\Shared\Email\VerificationAccount\Content.km-KH.cshtml" />
     <Content Include="www\source\styles\scss\components\_multiple-select.scss" />
     <Content Include="Views\Promotion\Partial\_Content.en-US.cshtml" />
-    <Content Include="Views\Promotion\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Promotion\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.id-ID.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.ja-JP.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.ko-KR.cshtml" />
@@ -1267,10 +1234,6 @@
     <Content Include="Views\Promotion\Partial\_Content.vi-VN.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.zh-CN.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.zh-TW.cshtml" />
-    <Content Include="Views\CommissionStructure\Partial\_Content.km-KH.cshtml" />
-    <Content Include="Views\TermAndCondition\Partial\_Content.km-KH.cshtml" />
-    <Content Include="Views\Faq\Partial\_Content.km-KH.cshtml" />
-    <Content Include="Views\Promotion\Partial\_Content.km-KH.cshtml" />
     <Content Include="Views\CommissionStructure\Partial\_Content.bn-BD.cshtml" />
     <Content Include="Views\Faq\Partial\_Content.bn-BD.cshtml" />
     <Content Include="Views\Promotion\Partial\_Content.bn-BD.cshtml" />
@@ -1284,11 +1247,9 @@
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.bn-BD.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.es-ES.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.ja-JP.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.ko-KR.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.th-TH.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.vi-VN.cshtml" />
@@ -1297,11 +1258,10 @@
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.bn-BD.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.en-US.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.es-ES.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.te-IN.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.en-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.id-ID.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.ja-JP.cshtml" />
-    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.km-KH.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.ko-KR.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.th-TH.cshtml" />
     <Content Include="Views\Shared\Email\ContactInfo\Text\Content.vi-VN.cshtml" />
@@ -1325,10 +1285,9 @@
     <Content Include="www\source\styles\scss\components\_faq.scss" />
     <Content Include="Views\Home\Partial\_Content.bn-BD.cshtml" />
     <Content Include="Views\Home\Partial\_Content.en-US.cshtml" />
-    <Content Include="Views\Home\Partial\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Home\Partial\_Content.en-IN.cshtml" />
     <Content Include="Views\Home\Partial\_Content.id-ID.cshtml" />
     <Content Include="Views\Home\Partial\_Content.ja-JP.cshtml" />
-    <Content Include="Views\Home\Partial\_Content.km-KH.cshtml" />
     <Content Include="Views\Home\Partial\_Content.ko-KR.cshtml" />
     <Content Include="Views\Home\Partial\_Content.th-TH.cshtml" />
     <Content Include="Views\Home\Partial\_Content.vi-VN.cshtml" />
@@ -1354,7 +1313,7 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.zh-CN.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.bn-BD.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.en-US.webp" />
-    <Content Include="www\build\styles\Images\home\top-banner\item\desktop.hi-IN.webp" />
+    <Content Include="www\build\styles\Images\home\top-banner\item\desktop.en-IN.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.id-ID.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.ja-JP.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.km-KH.webp" />
@@ -1364,7 +1323,7 @@
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.zh-TW.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.bn-BD.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.en-US.webp" />
-    <Content Include="www\build\styles\Images\home\top-banner\item\mobile.hi-IN.webp" />
+    <Content Include="www\build\styles\Images\home\top-banner\item\mobile.en-IN.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.id-ID.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.ja-JP.webp" />
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.km-KH.webp" />
@@ -1374,7 +1333,7 @@
     <Content Include="www\build\styles\Images\home\top-banner\item\mobile.zh-TW.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.bn-BD.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.en-US.webp" />
-    <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.hi-IN.webp" />
+    <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.en-IN.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.id-ID.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.ja-JP.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.km-KH.webp" />
@@ -1384,7 +1343,7 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.zh-TW.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.bn-BD.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-US.webp" />
-    <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.hi-IN.webp" />
+    <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-IN.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.id-ID.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.ja-JP.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.km-KH.webp" />
@@ -1393,6 +1352,52 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.vi-VN.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.zh-TW.webp" />
     <Content Include="Views\Home\Partial\_AffTestimonialContentBlock.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Summary\SubAffDetails.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistory\SubAffEarning.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_SubAffEarningContent.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\MarketingPageStatistics\Index.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\StatisticsPartial\_MarketingPageStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_ChannelLinkStatistic.cshtml" />
+    <Content Include="www\source\styles\scss\components\_qr_code.scss" />
+    <Content Include="www\source\styles\scss\components\_table-sticky.scss" />
+    <Content Include="Views\UserPanel\AccountOverView\Partial\_GeneratedQrCode.cshtml" />
+    <Content Include="www\source\styles\scss\components\_toogle-button.scss" />
+    <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
+    <Content Include="Configurations\AppSetting\AppSetting.user-12b.local.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.user-12b.production.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.user-12b.sit.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.user-12b.uat.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.user-12b.local.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.user-12b.production.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.user-12b.sit.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.user-12b.uat.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Html\Content.te-IN.cshtml" />
+    <Content Include="Views\Shared\Email\ContactInfo\Text\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\NewPassword\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentRequest\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\Signup\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.km-KH.cshtml" />
+    <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1405,30 +1410,6 @@
     </None>
     <Content Include="ConnectionString.config">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.production.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.sit.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-asian.uat.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.production.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.sit.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.12betuser-euro.uat.config">
-      <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="Fanex.Affiliate.User.Site.ruleset" />
     <Content Include="package.json" />
@@ -1500,7 +1481,6 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -1533,11 +1513,11 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets'))" />
     <Error Condition="!Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets'))" />
     <Error Condition="!Exists('..\..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\BuildWebCompiler.1.12.394\build\BuildWebCompiler.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\Refit.5.0.23\build\net461\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Refit.5.0.23\build\net461\refit.targets'))" />
   </Target>
   <Import Project="..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets" Condition="Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" />

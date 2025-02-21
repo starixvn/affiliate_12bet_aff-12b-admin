@@ -58,7 +58,7 @@ describe('referrers actions', () => {
             pageSize: 20,
             toDate: "7/3/2019"
         }
-        
+
         const result = await actions['fetchData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/StatementHistory/GetStatementHistoryList', param);

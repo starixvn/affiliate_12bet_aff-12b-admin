@@ -1,80 +1,84 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Row, Col } from 'reactstrap';
+import { bindActionCreators } from 'redux';
+import { Row, Col, Button } from 'reactstrap';
 
-import { status, resource } from '../libs/constants';
+import { statusForSuspend, resource } from '../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import Language from './general-info/Language';
 import ContactApp from './general-info/ContactApp';
 import ApprovedStatusInfo from './general-info/ApprovedStatusInfo';
-import ContactNumber from './general-info/ContactNumber';
-import { claimResource } from '../../../../modules/claim';
+import { setAffName } from '../actions';
+import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
 
 export const GeneralInfo = (props) => {
-    const { affiliateInfo, claimsPrincipal, isManagePendingAffVisible, isManagePendingAffModifiable } = props;
-    const isApproved = affiliateInfo.Status && affiliateInfo.Status.toLowerCase() === status.Approved;
-    const siteUrl = affiliateInfo.SiteUrl && htmlDecode(affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl);
+    const { affiliateInfo } = props;
+    const status = affiliateInfo.Status.toLowerCase();
+    const isApproved = status === statusForSuspend.Approved || status === statusForSuspend.Suspended;
+    const siteUrl = htmlDecode(affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl);
+
+    const _handleClickParentAffiliate = (parentAffName) => {
+        props.setAffName(parentAffName);
+        props.getAffiliateInfo(parentAffName);
+    }
 
     return (
         <div className="general-info pt-2">
             <Row className="border-0 py-1">
+                <Col sm={5}>{resource.ParentAffiliate}</Col>
+                <Col sm={7} className='text-right d-inline-block'>
+                    <Button color="link" className="p-0" onClick={() => _handleClickParentAffiliate(affiliateInfo.ParentAffName)}>
+                        {affiliateInfo.ParentAffName}
+                    </Button>
+                </Col>
+            </Row>
+            <Row>
                 <Col sm={5}>{resource.Affiliate}</Col>
                 <Col sm={7} className='text-right d-inline-block'>
                     {
-                       isApproved && !affiliateInfo.IsClosed ?
+                        isApproved ?
                             (<a href={affiliateInfo.AffLink} target='_blank'>{affiliateInfo.AffName}</a>) :
                             (<span>{affiliateInfo.AffName}</span>)
-                    }{' '}
-                    [<span>{affiliateInfo.AffId}</span>]
-                    </Col>
+                    }
+                </Col>
+            </Row>
+            <Row>
+                <Col sm={5}>{resource.AffiliateCode}</Col>
+                <Col sm={7} className='text-right'>{affiliateInfo.AffCode}</Col>
             </Row>
             <Row>
                 <Col sm={5}>{resource.FirstName}</Col>
-                <Col sm={7} className='text-right'>{affiliateInfo.FirstName}</Col>
+                <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.FirstName)}</Col>
             </Row>
             <Row>
                 <Col sm={5}>{resource.LastName}</Col>
-                <Col sm={7} className='text-right'>{affiliateInfo.LastName}</Col>
+                <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.LastName)}</Col>
             </Row>
             <Row>
                 <Col sm={5}>{resource.Gender}</Col>
                 <Col sm={7} className='text-right'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender ? resource.Male : resource.Female)}</Col>
             </Row>
-            {
-                (claimsPrincipal.hasReadClaim(claimResource.AffPhone) || isManagePendingAffVisible) &&
-                <Row>
-                    <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
-                    <ContactNumber sm={7} className='text-right' isStatic={true}>{htmlDecode(affiliateInfo.Phone)}</ContactNumber>
-                </Row>
-            }
+            <Row>
+                <Col sm={5} className="pr-0">{resource.ContactNumber}</Col>
+                <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.Phone)}</Col>
+            </Row>
             <ContactApp />
-            {
-                (claimsPrincipal.hasReadClaim(claimResource.AffTargetCountry) || isManagePendingAffVisible) &&
-                <Row>
-                    <Col sm={5}>{resource.TargetCountry}</Col>
-                    <Col sm={7} className='text-right'>{affiliateInfo.TargetCountryName}</Col>
-                </Row>
-            }
-            {
-                (claimsPrincipal.hasReadClaim(claimResource.LanguageAmendment) || isManagePendingAffVisible) &&
-                <Row>
-                    <Col sm={5}>{resource.Language}</Col>
-                    <Col sm={7} className='text-right'>
-                        <Language isStatic={!(claimsPrincipal.hasWriteClaim(claimResource.LanguageAmendment) || isManagePendingAffModifiable)} />
-                    </Col>
-                </Row>
-            }
-            {
-                (claimsPrincipal.hasReadClaim(claimResource.AffWebUrl) || isManagePendingAffVisible) &&
-                <Row>
-                    <Col sm={5}>{resource.WebsiteUrl}</Col>
-                    <Col sm={7} className='text-right text-truncate'>
-                        <a target='_blank' title={siteUrl} href={`http://anonym.to/?${siteUrl}`}>
-                            {affiliateInfo.SiteUrl && htmlDecode(affiliateInfo.SiteUrl.replace('http://', '').replace('www.', ''))}
-                        </a>
-                    </Col>
-                </Row>
-            }
+            <Row>
+                <Col sm={5}>{resource.ApprovedBy}</Col>
+                <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.ApprovedBy) || 'N/A'}</Col>
+            </Row>
+            <Row>
+                <Col sm={5}>{resource.Language}</Col>
+                <Col sm={7} className='text-right text-primary'><Language /></Col>
+            </Row>
+            <Row>
+                <Col sm={5}>{resource.WebsiteUrl}</Col>
+                <Col sm={7} className='text-right text-truncate'>
+                    <a target='_blank' title={siteUrl} href={`http://anonym.to/?${siteUrl}`}>
+                        {htmlDecode(affiliateInfo.SiteUrl.replace('http://', '').replace('www.', ''))}
+                    </a>
+                </Col>
+            </Row>
             <Row>
                 <Col sm={5}>{resource.LastLogin}</Col>
                 <Col sm={7} className='text-right'>{affiliateInfo.LastLoginDateText}</Col>
@@ -94,12 +98,13 @@ export const GeneralInfo = (props) => {
     )
 }
 
-function mapStateToProps({ leftPanel, claimsPrincipal }) {
+function mapStateToProps({ leftPanel }) {
     const { affiliateInfo } = leftPanel;
-    const isPendingAff = affiliateInfo.IsPendingAff;
-    const isManagePendingAffVisible = isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
-    const isManagePendingAffModifiable = isPendingAff && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
-    return Object.assign({}, { affiliateInfo, claimsPrincipal, isManagePendingAffVisible, isManagePendingAffModifiable });
+    return Object.assign({}, { affiliateInfo });
 }
 
-export default connect(mapStateToProps)(React.memo(GeneralInfo));
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ getAffiliateInfo, setAffName }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(GeneralInfo));

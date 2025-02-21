@@ -2,15 +2,18 @@
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Payment
 {
-    public interface IPaymentRequestService
+    public interface IPaymentService
     {
         EntityResult<PaymentRequest> GetPaymentRequestList(PaymentRequestParam param);
 
         PaymentRequestDetail GetPaymentRequestDetail(long transId);
 
-        ResultInfo UpdatePaymentRequest(PaymentUpdateParam param, PaymentRequestUpdateEmail emailParam);
+        ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam);
+
+        Task<ResultInfo> HandlePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam);
     }
 }

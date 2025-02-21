@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
-import MyLink from '../../../common/components/MyLink';
 import { Table, Spinner } from 'reactstrap';
-import { rowTitle, resource } from '../libs/constants';
-import { shortedMonthNames, minMonthDate, selectedAllProduct, deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
+import { rowTitle, resource } from '../modules/constants';
+import { shortedMonthNames, minMonthDate, deviceTypes, pcLaptop, mobile } from '../../../../modules/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
-import { redirectToPlayerDetail, redirectToReferrers } from '../../user-panel/actions';
+import { redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers } from '../../user-panel/actions';
 import { setMonthDate, fetchData } from '../actions';
-import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -78,64 +76,46 @@ export class Content extends PureComponent {
                 </tr>
             </thead>
         )
-                                }
+    }
 
     _renderData(monthDate, data) {
         data = data || {};
-        const { isDisplayTurnOver, isDisplayActivePlayer, today } = this.props;
-        const depositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
-        const depositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
-        const fdmDepositByMonth = formatDecimalWithCurrencySymbol(data.FdmDepositByMonth);
-        const turnoverByMonth = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
-        const turnoverTotal = isDisplayTurnOver && formatDecimalWithCurrencySymbol(data.TurnoverTotal);
-        const winlostByMonth = formatDecimalWithCurrencySymbol(data.WinlostByMonth);
-        const winlostTotal = formatDecimalWithCurrencySymbol(data.WinlostTotal);
+        const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
+        const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
+        const TurnoverByMonth = formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
+        const TurnoverTotal = formatDecimalWithCurrencySymbol(data.TurnoverTotal);
+        const GgrByMonth = formatDecimalWithCurrencySymbol(data.GgrByMonth);
+        const GgrTotal = formatDecimalWithCurrencySymbol(data.GgrTotal);
 
         const startMonthString = `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`;
 
-        const date = new Date(today);
         const endMonth = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0);
-        const isCurrentMonth = date.getFullYear() === endMonth.getFullYear() && date.getMonth() === endMonth.getMonth();
-        const endMonthString = `${endMonth.getMonth() + 1}/${isCurrentMonth ? date.getDate() : endMonth.getDate()}/${endMonth.getFullYear()}`;
+        const endMonthString = `${endMonth.getMonth() + 1}/${endMonth.getDate()}/${endMonth.getFullYear()}`;
 
         return (
             <tbody>
                 {
                     this._buildRow(rowTitle.NewSignups,
-                        `${format(data.NewSignUpByMonth)}/${format(data.NewFdmByMonth)}`,
-                        `${format(data.NewSignUpTotal)}/${format(data.NewFdmTotal)}`)
+                        `${format(data.SignupsByMonth)}/${format(data.FdmByMonth)}`,
+                        `${format(data.SignupsTotal)}/${format(data.FdmTotal)}`)
                 }
-                {
-                    isDisplayActivePlayer && this._buildRow(rowTitle.TotalActive,
-                        (
-                            data.ActivePlayerByMonth > 0 ? (
-                                <MyLink onClick={() => this.props.redirectToPlayerDetail({ productId: selectedAllProduct, monthDate: endMonthString, isClickLink: true })}>
-                                    {format(data.ActivePlayerByMonth)}
-                                </MyLink>
-                            ) : format(data.ActivePlayerByMonth)
-                        ),
-                        resource.NA)
-                }
-                { isDisplayActivePlayer && this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
-                {isDisplayActivePlayer && this._buildRow(rowTitle.TotalDeposits, `${depositByMonth}/${fdmDepositByMonth}`, `${depositTotal}/N/A`)}
-                { isDisplayTurnOver && this._buildRow(rowTitle.Turnover, turnoverByMonth, turnoverTotal)}
-                {this._buildRow(rowTitle.Winlost, winlostByMonth, winlostTotal)}
+                {this._buildRow(rowTitle.TotalActive, format(data.ActivePlayersByMonth), resource.NA)}
+                {this._buildRow(rowTitle.TotalSubAff, format(data.NoOfSubAffByMonth), format(data.NoOfSubAffTotal))}
+                {this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
+                {this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
+                {this._buildRow(rowTitle.Ggr, GgrByMonth, GgrTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (
-                            <MyLink onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
-                                {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
-                            </MyLink>
-                        ),
+                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
+                            {format(data.UniqueClickPCByMonth)}/{format(data.TotalClickPCByMonth)}
+                        </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (
-                            <MyLink onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[mobile], isClickLink: true })}>
-                                {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
-                            </MyLink>
-                         ),
+                        (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[mobile], isClickLink: true })}>
+                            {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
+                        </a>),
                         resource.NA)
                 }
             </tbody>
@@ -167,15 +147,13 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, today, customerStatistics, claimsPrincipal }) {
+function mapStateToProps({ affCommonInfo, today, customerStatistics }) {
     const { affId } = affCommonInfo;
-    const isDisplayTurnOver = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
-    const isDisplayActivePlayer = claimsPrincipal.hasReadClaim(claimResource.AffPlayerDetail)
-    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId, isDisplayTurnOver, isDisplayActivePlayer });
+    return Object.assign({}, { monthDate: customerStatistics.monthDate, today, affId });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setMonthDate, redirectToPlayerDetail, redirectToReferrers, fetchData }, dispatch);
+    return bindActionCreators({ setMonthDate, redirectToPlayerDetail, redirectToTrackingStatistics, redirectToReferrers, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -319,7 +319,7 @@
     <value>Cancel Request</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>12Bet Affiliates - [{transid}] - Payment Request Notification</value>
+    <value>12B Affiliates - [{transid}] - Payment Request Received </value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>Cape Verde </value>
@@ -468,7 +468,7 @@
     <value>Denmark </value>
   </data>
   <data name="Deposit" xml:space="preserve">
-    <value>Deposit</value>
+    <value>Deposited</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -1100,7 +1100,7 @@ Best regards, &lt;br /&gt;&lt;br /&gt;
     <value>Application Form</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12Bet Affiliates - Your Application</value>
+    <value>12B Affiliate - Application Received</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>Thank you for submitting your application.&lt;br/&gt;
@@ -1124,7 +1124,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Request Amount</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>Input Request Amount (USD)</value>
+    <value>Input Request Amount</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>Request Payout</value>
@@ -1255,13 +1255,13 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <comment>87923</comment>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12Bet Affiliates - Your login detail</value>
+    <value>12B Affiliate - Your login detail</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>Subject is invalid</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12Bet Affiliates - Your new password</value>
+    <value>12B Affiliate - Your new password</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
@@ -1512,13 +1512,13 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Your login detail</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>Payment Request Notification</value>
+    <value>Payment Request Received</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>Your Application</value>
+    <value>Application Received</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
-    <value>Commission Report</value>
+    <value>Revenue Report</value>
     <comment>87923</comment>
   </data>
   <data name="Temporary" xml:space="preserve">
@@ -1534,7 +1534,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <comment>87923</comment>
   </data>
   <data name="CommRate" xml:space="preserve">
-    <value>Comm. Rate</value>
+    <value>Revenue Rate</value>
     <comment>87923</comment>
   </data>
   <data name="GrossWinLoss" xml:space="preserve">
@@ -1794,10 +1794,10 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Table/Card Games</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>Verification your account detail</value>
+    <value>Verification Code</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>12Bet Affiliates - Verification your account detail</value>
+    <value>12B Affiliate - Verification Code</value>
   </data>
   <data name="ErrmsgEntryCaptcha" xml:space="preserve">
     <value>Please enter captcha!</value>
@@ -2009,7 +2009,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Overview</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
-    <value>New Sign Up</value>
+    <value>New Signups</value>
   </data>
   <data name="DepositedMembers" xml:space="preserve">
     <value>Deposited Members</value>
@@ -2201,7 +2201,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>FDM Extra Comm</value>
   </data>
   <data name="TotalCommission" xml:space="preserve">
-    <value>Total Commission</value>
+    <value>Total Revenue Share</value>
   </data>
   <data name="MonthlyEarning" xml:space="preserve">
     <value>Monthly Earning</value>
@@ -2451,5 +2451,197 @@ CONSISTENT PAYMENT</value>
   </data>
   <data name="Aff286TestimonialContent" xml:space="preserve">
     <value>"Joining 12BET has been a great decision for me. The affiliate program is easy to join, and the commission payments are always consistent. It's a solid partnership."</value>
+  </data>
+  <data name="ActivePlayers" xml:space="preserve">
+    <value>Number of Active Players</value>
+  </data>
+  <data name="SubAffDownline" xml:space="preserve">
+    <value>Sub-Affiliate Downline</value>
+  </data>
+  <data name="SubAffEarning" xml:space="preserve">
+    <value>Sub-Affiliate Earning</value>
+  </data>
+  <data name="SubAffiliate" xml:space="preserve">
+    <value>Sub-Affiliate</value>
+  </data>
+  <data name="GGR" xml:space="preserve">
+    <value>GGR</value>
+  </data>
+  <data name="MinRequired" xml:space="preserve">
+    <value>Min required</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>FDM Date</value>
+  </data>
+  <data name="Rebate" xml:space="preserve">
+    <value>Rebate</value>
+  </data>
+  <data name="DepositFee" xml:space="preserve">
+    <value>Deposit Fee</value>
+  </data>
+  <data name="WithdrawalFee" xml:space="preserve">
+    <value>Withdrawal Fee</value>
+  </data>
+  <data name="ApprovalDate" xml:space="preserve">
+    <value>Approval Date</value>
+  </data>
+  <data name="NumberOfActivePlayers" xml:space="preserve">
+    <value>No. of Active Players</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="SuspensionDate" xml:space="preserve">
+    <value>Suspension Date</value>
+  </data>
+  <data name="SuspensionSatus" xml:space="preserve">
+    <value>Suspension Status</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>Total GGR</value>
+  </data>
+  <data name="SubAffDetail" xml:space="preserve">
+    <value>Sub-Affiliate Details</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>Get All</value>
+  </data>
+  <data name="BaseCurrency" xml:space="preserve">
+    <value>Base Currency</value>
+  </data>
+  <data name="RevenueShareByTurnover" xml:space="preserve">
+    <value>Calculate Revenue Share by Turnover</value>
+  </data>
+  <data name="RevenueShareByWinloss" xml:space="preserve">
+    <value>Calculate Revenue Share by Winloss</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>Revenue Share</value>
+  </data>
+  <data name="UncalculatedCommission" xml:space="preserve">
+    <value>Uncalculated Revenue Share</value>
+  </data>
+  <data name="CurrentCommission" xml:space="preserve">
+    <value>Current Revenue Share</value>
+  </data>
+  <data name="CurrencyLabel" xml:space="preserve">
+    <value>USD</value>
+  </data>
+  <data name="AffiliateCurrency" xml:space="preserve">
+    <value>Affiliate Currency</value>
+  </data>
+  <data name="DefaultBaseCurrency" xml:space="preserve">
+    <value>Default Base Currency</value>
+  </data>
+  <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
+    <value>Currency unit shown in all reports</value>
+  </data>
+  <data name="EarningBy" xml:space="preserve">
+    <value>Earning By</value>
+  </data>
+  <data name="P2pRevenueShare" xml:space="preserve">
+    <value>P2P Rev. Share</value>
+  </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>Sub-Affiliate Comm Rate</value>
+  </data>
+  <data name="RoyaltyFee" xml:space="preserve">
+    <value>Royalty Fee</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>The highest share % of multiple groups</value>
+  </data>
+  <data name="Winloss" xml:space="preserve">
+    <value>Winloss</value>
+  </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>The payment account you entered does not exist. Please check again.</value>
+  </data>
+  <data name="UserNameSuspended" xml:space="preserve">
+    <value>The payment account you entered is Suspended. Please check again.</value>
+  </data>
+  <data name="UserNameClosed" xml:space="preserve">
+    <value>The payment account you entered is Closed. Please check again.</value>
+  </data>
+  <data name="MarketLinkStatistics" xml:space="preserve">
+    <value>Marketing Page Statistics</value>
+  </data>
+  <data name="PageName" xml:space="preserve">
+    <value>Page Name</value>
+  </data>
+  <data name="IncludeInActiveLink" xml:space="preserve">
+    <value>Include Inactive Tracking Link</value>
+  </data>
+  <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
+    <value>Verify Email Address is required</value>
+  </data>
+  <data name="AffilateLink" xml:space="preserve">
+    <value>Affiliate Link</value>
+  </data>
+  <data name="SubAffiliateLink" xml:space="preserve">
+    <value>Sub-Aff. Link</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add new...</value>
+  </data>
+  <data name="AffiliateLinkType" xml:space="preserve">
+    <value>Link type</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>Channel</value>
+  </data>
+  <data name="TrackingAndQrCode" xml:space="preserve">
+    <value>Tracking Links &amp; QR Codes</value>
+  </data>
+  <data name="MarketingPage" xml:space="preserve">
+    <value>Marketing Page</value>
+  </data>
+  <data name="EnterChannel" xml:space="preserve">
+    <value>Please enter Channel Name:</value>
+  </data>
+  <data name="AddChannelSuccess" xml:space="preserve">
+    <value>Add channel succeeded</value>
+  </data>
+  <data name="ConfirmActiveLink" xml:space="preserve">
+    <value>Are you sure about this action? By confirming this action, you will active this tracking link.</value>
+  </data>
+  <data name="ConfirmDeactiveLink" xml:space="preserve">
+    <value>Are you sure about this action? By confirming this action, you will deactive this tracking link.</value>
+  </data>
+  <data name="NumberOfLink" xml:space="preserve">
+    <value>No. of Links</value>
+  </data>
+  <data name="CopyQRCode" xml:space="preserve">
+    <value>Copy QR Code</value>
+  </data>
+  <data name="SaveQRCode" xml:space="preserve">
+    <value>Save QR Code</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>Sub Category</value>
+  </data>
+  <data name="SearchAndGenQR" xml:space="preserve">
+    <value>Search and Generate</value>
+  </data>
+  <data name="MediaGallery" xml:space="preserve">
+    <value>Media Gallery</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="InvalidLink" xml:space="preserve">
+    <value>The link you has entered is not valid.&lt;br /&gt;Please contact Customer Service Department or</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>click here.</value>
+  </data>
+  <data name="RedirectOldLink" xml:space="preserve">
+    <value>Click &lt;a href="{0}"&gt;here&lt;/a&gt; to access to old affiliate site</value>
+  </data>
+  <data name="PreviousSystemBalanceDescription" xml:space="preserve">
+    <value>Account balance carried forward from the previous system.</value>
   </data>
 </root>

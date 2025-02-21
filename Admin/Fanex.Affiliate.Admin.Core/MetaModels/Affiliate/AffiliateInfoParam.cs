@@ -1,24 +1,25 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.Affiliate
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Fanex.Affiliate.Admin.Core.MetaModels.Affiliate
 {
     public class AffiliateInfoParam
     {
         public int UserId { get; set; }
 
-        public string AffId { get; set; }
+        public string AffCode { get; set; }
 
-        public int AffIdNumber { get; set; }
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string GroupIds { get; set; }
 
-        public int GroupId { get; set; }
-
-        public string TargetCountryCodes { get; set; }
-
-        public string PreferenceLanguages { get; set; }
+        public string Language { get; set; }
 
         public string Status { get; set; }
 
-        public string ProcessingStatus { get; set; }
+        public string ParentAffName { get; set; }
 
         public string UserName { get; set; }
+
+        public string AffPlayer { get; set; }
 
         public string Email { get; set; }
 

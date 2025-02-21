@@ -114,7 +114,7 @@ exports[`message - components - Filter  render correctly 1`] = `
         }
         isEnable={false}
         maxDate="9/19/2019"
-        minDate={2009-11-30T17:00:00.000Z}
+        minDate={2020-01-30T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>

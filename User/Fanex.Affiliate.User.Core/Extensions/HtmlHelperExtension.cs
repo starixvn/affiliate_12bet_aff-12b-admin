@@ -43,8 +43,10 @@ namespace Fanex.Affiliate.User.Core.Extensions
 
         private static string LoadBundleContent(HttpContextBase httpContext, string bundleVirtualPath)
         {
-            var bundleContext = new BundleContext(httpContext, BundleTable.Bundles, bundleVirtualPath);
-            bundleContext.EnableOptimizations = true;
+            var bundleContext = new BundleContext(httpContext, BundleTable.Bundles, bundleVirtualPath) 
+            {
+                    EnableOptimizations = true
+            };
             var bundle = new Bundle(bundleVirtualPath).Include(bundleVirtualPath);
             var bundleResponse = bundle.GenerateBundleResponse(bundleContext);
 

@@ -16,7 +16,7 @@ describe('user account - components - sections - Personal', () => {
         State: "700000",
         Postcode: "700000",
         Country: "Viet Nam",
-        SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+        SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
         MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
         NoSiteDescription: "",
         PreferredPayment: "Player",
@@ -31,11 +31,10 @@ describe('user account - components - sections - Personal', () => {
         Question: "What?",
         Answer: "What?",
         MailOption: false,
-        ContactAppList: [{Name: "MSN/YM/QQ", Value: "@123 Lê Văn", Order: 0}]
+        ContactAppList: [{ Name: "MSN/YM/QQ", Value: "@123 Lê Văn", Order: 0 }]
     };
     const defaultProps = {
         userAccountInfo,
-        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
         setUserAccountInfo: jest.fn()
     }
 
@@ -48,9 +47,9 @@ describe('user account - components - sections - Personal', () => {
     it('handleChange - should call setUserAccountInfo', () => {
         const result = shallow(<Personal {...defaultProps} />);
 
-        result.instance().handleChange({ target: { name: 'username', value: 'ABC' }});
+        result.instance().handleChange({ target: { name: 'username', value: 'ABC' } });
 
-        expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, Username: 'ABC'});
+        expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, Username: 'ABC' });
     });
 
     it('handleChangeGender - should be called when check Male', () => {
@@ -72,8 +71,8 @@ describe('user account - components - sections - Personal', () => {
     it('handleChangeContactApps - should call setUserAccountInfo', () => {
         const result = shallow(<Personal {...defaultProps} />);
 
-        result.instance().handleChangeContactApps({ target: { name: "MSN/YM/QQ", value: 'abc123' }});
+        result.instance().handleChangeContactApps({ target: { name: "MSN/YM/QQ", value: 'abc123' } });
 
-        expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, ContactAppList: [{Name: "MSN/YM/QQ", Value: "abc123", Order: 0}]});
+        expect(defaultProps.setUserAccountInfo).toHaveBeenCalledWith({ ...userAccountInfo, ContactAppList: [{ Name: "MSN/YM/QQ", Value: "abc123", Order: 0 }] });
     });
 });

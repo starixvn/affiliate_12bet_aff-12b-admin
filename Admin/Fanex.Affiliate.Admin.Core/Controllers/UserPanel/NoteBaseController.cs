@@ -1,38 +1,34 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
-{
-    using Fanex.Affiliate.Admin.Core.Attributes;
-    using Fanex.Affiliate.Admin.Core.Constants;
-    using Fanex.Affiliate.Admin.Core.DTO;
-    using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-    using Fanex.Affiliate.Admin.Core.Extensions;
-    using Fanex.Affiliate.Admin.Core.MetaModels;
-    using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-    using Fanex.Affiliate.Admin.Core.Services.Common;
-    using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-    using System.Web.Mvc;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using System.Web.Mvc;
 
-    [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
+namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
+{
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class NoteBaseController : ReadOnlySessionBaseController
     {
-        private readonly INoteServiceBase _noteService;
+        private readonly INoteBaseService _noteBaseService;
 
         public NoteBaseController(
             ISessionService sessionService,
-            INoteServiceBase noteService,
-            string noteType) : base(sessionService)
+            INoteBaseService noteBaseService,
+            string spPrefix) : base(sessionService)
         {
-            _noteService = noteService;
-            _noteService.FunctionName = noteType;
+            _noteBaseService = noteBaseService;
+            _noteBaseService.SpPrefix = spPrefix;
         }
 
         protected ActionResult GetNoteList(AffiliatePagingParam param)
         {
             if (ModelState.IsValid)
             {
-                return new JsonNetResult
-                {
-                    Data = _noteService.GetNoteList(param)
-                };
+                return GenerateJsonNetResult(_noteBaseService.GetNoteList(param));
             }
 
             return new JsonNetResult();
@@ -42,15 +38,10 @@
         {
             if (affId >= Validation.MinId && noteId >= Validation.MinId)
             {
-                var noteInfo = _noteService.GetNoteContentById(affId, noteId);
-                return new JsonNetResult
-                {
-                    Data = noteInfo != null ? new Note
-                    {
-                        NoteId = noteInfo.NoteId,
-                        NoteContent = Server.HtmlDecode(noteInfo.NoteContent)
-                    } : null
-                };
+                var noteInfo = _noteBaseService.GetNoteContentById(affId, noteId);
+                var decodedNoteInfo = noteInfo != null ? new NoteBasicInfo { NoteId = noteInfo.NoteId, NoteContent = Server.HtmlDecode(noteInfo.NoteContent) } : null;
+                
+                return GenerateJsonNetResult(decodedNoteInfo);
             }
 
             return new JsonNetResult();
@@ -62,20 +53,10 @@
             {
                 var insertNoteParam = AssignCommonParam(param);
 
-                return new JsonNetResult
-                {
-                    Data = _noteService.InsertNote(insertNoteParam)
-                };
+                return GenerateJsonNetResult(_noteBaseService.InsertNote(insertNoteParam));
             }
 
-            return new JsonNetResult
-            {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Insert Note is failed!"
-                }
-            };
+            return GenerateErrResult("Insert Note is failed!");
         }
 
         protected ActionResult UpdateNote(InsertUpdateNoteParam param)
@@ -84,20 +65,10 @@
             {
                 var updateNoteParam = AssignCommonParam(param);
 
-                return new JsonNetResult
-                {
-                    Data = _noteService.UpdateNote(updateNoteParam)
-                };
+                return GenerateJsonNetResult(_noteBaseService.UpdateNote(updateNoteParam));
             }
 
-            return new JsonNetResult
-            {
-                Data = new ResultInfo
-                {
-                    Code = Code.GeneralErrorCode,
-                    Message = "Update Note is failed!"
-                }
-            };
+            return GenerateErrResult("Update Note is failed!");
         }
 
         private InsertUpdateNoteParam AssignCommonParam(InsertUpdateNoteParam param)

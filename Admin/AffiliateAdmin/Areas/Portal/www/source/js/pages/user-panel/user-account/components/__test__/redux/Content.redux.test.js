@@ -16,22 +16,20 @@ describe('user account - Content - connect', () => {
             },
             edit: {
                 userAccountInfo: {},
-                hasWriteEditAffClaim: true,
                 moreSiteUrlsList: []
             },
-            claimsPrincipal: {}
+            licenseeName: 'XYZ'
         }
         store = mockStore(initialState)
         wrapper = shallow(<Content store={store} />).dive()
     })
 
     it('should show correct value', () => {
-        const { affId, affName, userAccountInfo, moreSiteUrlsList, claimsPrincipal, hasWriteEditAffClaim } = wrapper.props();
+        const { affId, affName, userAccountInfo, moreSiteUrlsList, licenseeName } = wrapper.props();
         expect(affId).toEqual('123')
         expect(affName).toEqual('ABC')
         expect(moreSiteUrlsList).toEqual([])
         expect(userAccountInfo).toEqual({})
-        expect(claimsPrincipal).toEqual({})
-        expect(hasWriteEditAffClaim).toBeTruthy()
+        expect(licenseeName).toEqual('XYZ')
     })
 })

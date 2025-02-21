@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using Fanex.Affiliate.User.Core.Resources;
 
 namespace Fanex.Affiliate.User.Core.Constants
 {
@@ -7,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Constants
     {
         private const string _English_LanguageCode = "en-US";
         private const string _Bangladesh_LanguageCode = "bn-BD";
-        private const string _India_LanguageCode = "hi-IN";
+        private const string _India_LanguageCode = "en-IN";
         private const string _Indonesia_LanguageCode = "id-ID";
         private const string _Japan_LanguageCode = "ja-JP";
         private const string _Cambodia_LanguageCode = "km-KH";
@@ -21,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         {
             [_English_LanguageCode] = "en",
             [_Bangladesh_LanguageCode] = "bn",
-            [_India_LanguageCode] = "hi",
+            [_India_LanguageCode] = "hien",
             [_Indonesia_LanguageCode] = "id",
             [_Japan_LanguageCode] = "jp",
             [_Cambodia_LanguageCode] = "kh",
@@ -58,7 +59,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             ["in"] = _India_LanguageCode,
             ["id"] = _Indonesia_LanguageCode,
             ["jp"] = _Japan_LanguageCode,
-            ["kh"] = _Cambodia_LanguageCode,
+            ["kh"] = _English_LanguageCode,
             ["kr"] = _Korea_LanguageCode,
             ["ko"] = _Korea_LanguageCode,
             ["th"] = _Thailand_LanguageCode,
@@ -254,6 +255,11 @@ namespace Fanex.Affiliate.User.Core.Constants
         public static string GetAffManagerContactInfo(string currentLanguage)
         {
             return _supportedAffManagerContactInfos.ContainsKey(currentLanguage) ? _supportedAffManagerContactInfos[currentLanguage] : _supportedAffManagerContactInfos[EnglishLanguageCode];
+        }
+
+        public static string GetLanguageText(string value)
+        {
+            return Lang.ResourceManager.GetString(value.Replace(" ", "")) ?? value;
         }
     }
 }

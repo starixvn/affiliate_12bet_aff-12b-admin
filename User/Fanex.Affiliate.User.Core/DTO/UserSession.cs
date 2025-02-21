@@ -11,13 +11,23 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
 
         public int AffId { get; set; }
 
-        public int? UserId { get; set; }
+        public int AffCode { get; set; }
 
         public int OnUserId { get; set; }
 
         public string AffType { get; set; }
 
         public string GroupName { get; set; }
+
+        public bool IsMaxSubLevel { get; set; }
+
+        public bool IsDepositFeePercent { get; set; }
+
+        public bool IsWithdrawalFeePercent { get; set; }
+
+        public int BaseCurrency { get; set; }
+
+        public bool DisabledTransfer { get; set; }
 
         public int OfferPageId { get; set; }
     }

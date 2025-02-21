@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 {
@@ -7,7 +6,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
     {
         public string Ip { get; set; }
 
-        [JsonIgnore]
         public DateTime ReloadTime { get; set; }
 
         public string ReloadTimeText => ReloadTime.ToString("MM/dd/yyyy HH:mm:ss");

@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
@@ -7,20 +7,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
     {
         void SetCulture(string languageCode);
 
-        IEnumerable<Language> GetInChangeMarkets();
-
-        IEnumerable<Language> GetAllInChangeMarkets();
+        IEnumerable<Language> GetLanguageList();
 
         IEnumerable<Product> GetProductList();
 
-        IEnumerable<AffType> GetAffTypeList();
+        IEnumerable<Currency> GetBaseCurrencies();
 
-        IEnumerable<Country> GetCountryList();
+        IEnumerable<Currency> GetCurrencies();
 
-        IEnumerable<TargetCountry> GetTargetCountryListByUser();
-
-        IEnumerable<Language> GetTargetLanguageListByUser();
-
-        IEnumerable<Language> GetAllTargetLanguageListByUser();
+        IEnumerable<Currency> GetPaymentCurrencies();
     }
 }

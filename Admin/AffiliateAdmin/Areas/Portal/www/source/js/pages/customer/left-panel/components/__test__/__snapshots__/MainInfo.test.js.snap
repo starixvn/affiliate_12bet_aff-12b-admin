@@ -7,9 +7,4 @@ exports[`left panel - components - MainInfo render correctly with affiliateInfo 
 </div>
 `;
 
-exports[`left panel - components - MainInfo render correctly with affiliateInfo is null 1`] = `
-<div>
-  <Connect(Component) />
-  <Connect(Component) />
-</div>
-`;
+exports[`left panel - components - MainInfo render correctly with affiliateInfo is null 1`] = `""`;

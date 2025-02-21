@@ -30,6 +30,57 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
         ]
       }
     >
+      Parent Affiliate
+    </Col>
+    <Col
+      className="text-right d-inline-block"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Button
+        className="p-0"
+        color="link"
+        onClick={[Function]}
+        tag="button"
+      >
+        12BETAFF001
+      </Button>
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
       Affiliate
     </Col>
     <Col
@@ -50,15 +101,51 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
         href="http://localhost:55690/Auth/AdminLogin?chalengeStr=esh5u7&accKey=E16156C28&custName=12BETAFF226&accId=1000000026&accOnId=8405"
         target="_blank"
       >
-        12BETAFF226
+        12BETAFF002
       </a>
-       
-      [
-      <span>
-        1271808
-      </span>
-      ]
     </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Affiliate Code
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    />
   </Row>
   <Row
     tag="div"
@@ -220,13 +307,22 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
     >
       Contact Number
     </Col>
-    <Connect(ContactNumber)
+    <Col
       className="text-right"
-      isStatic={true}
       sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
     >
       abc
-    </Connect(ContactNumber)>
+    </Col>
   </Row>
   <Connect(Component) />
   <Row
@@ -254,7 +350,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
         ]
       }
     >
-      Target Country
+      Approved By
     </Col>
     <Col
       className="text-right"
@@ -269,7 +365,9 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
           "xl",
         ]
       }
-    />
+    >
+      undefined
+    </Col>
   </Row>
   <Row
     tag="div"
@@ -299,7 +397,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
       Language
     </Col>
     <Col
-      className="text-right"
+      className="text-right text-primary"
       sm={7}
       tag="div"
       widths={
@@ -312,9 +410,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
         ]
       }
     >
-      <Connect(Language)
-        isStatic={false}
-      />
+      <Connect(Language) />
     </Col>
   </Row>
   <Row
@@ -359,11 +455,11 @@ exports[`left panel - components - Content render correctly with affiliateInfo 1
       }
     >
       <a
-        href="http://anonym.to/?http://https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount"
+        href="http://anonym.to/?http://https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount"
         target="_blank"
-        title="http://https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount"
+        title="http://https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount"
       >
-        https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount
+        https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount
       </a>
     </Col>
   </Row>
@@ -494,6 +590,57 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
         ]
       }
     >
+      Parent Affiliate
+    </Col>
+    <Col
+      className="text-right d-inline-block"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Button
+        className="p-0"
+        color="link"
+        onClick={[Function]}
+        tag="button"
+      >
+        12BETAFF001
+      </Button>
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
       Affiliate
     </Col>
     <Col
@@ -511,15 +658,51 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
       }
     >
       <span>
-        12BETAFF016
+        12BETAFF002
       </span>
-       
-      [
-      <span>
-        1219631
-      </span>
-      ]
     </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Affiliate Code
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    />
   </Row>
   <Row
     tag="div"
@@ -675,13 +858,22 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
     >
       Contact Number
     </Col>
-    <Connect(ContactNumber)
+    <Col
       className="text-right"
-      isStatic={true}
       sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
     >
       123456789
-    </Connect(ContactNumber)>
+    </Col>
   </Row>
   <Connect(Component) />
   <Row
@@ -709,7 +901,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
         ]
       }
     >
-      Target Country
+      Approved By
     </Col>
     <Col
       className="text-right"
@@ -724,7 +916,9 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
           "xl",
         ]
       }
-    />
+    >
+      N/A
+    </Col>
   </Row>
   <Row
     tag="div"
@@ -754,7 +948,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
       Language
     </Col>
     <Col
-      className="text-right"
+      className="text-right text-primary"
       sm={7}
       tag="div"
       widths={
@@ -767,9 +961,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo h
         ]
       }
     >
-      <Connect(Language)
-        isStatic={false}
-      />
+      <Connect(Language) />
     </Col>
   </Row>
   <Row
@@ -948,6 +1140,57 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
         ]
       }
     >
+      Parent Affiliate
+    </Col>
+    <Col
+      className="text-right d-inline-block"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Button
+        className="p-0"
+        color="link"
+        onClick={[Function]}
+        tag="button"
+      >
+        12BETAFF001
+      </Button>
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
       Affiliate
     </Col>
     <Col
@@ -968,15 +1211,51 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
         href="http://localhost:55690/Auth/AdminLogin?chalengeStr=640eh6&accKey=3F9ADA82AD&custName=12BETAFF001&accId=1000000026&accOnId=8405"
         target="_blank"
       >
-        12BETAFF001
+        12BETAFF002
       </a>
-       
-      [
-      <span>
-        927841
-      </span>
-      ]
     </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Affiliate Code
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    />
   </Row>
   <Row
     tag="div"
@@ -1138,13 +1417,22 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
     >
       Contact Number
     </Col>
-    <Connect(ContactNumber)
+    <Col
       className="text-right"
-      isStatic={true}
       sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
     >
       123456
-    </Connect(ContactNumber)>
+    </Col>
   </Row>
   <Connect(Component) />
   <Row
@@ -1172,7 +1460,347 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
         ]
       }
     >
-      Target Country
+      Approved By
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      sa
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Language
+    </Col>
+    <Col
+      className="text-right text-primary"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Connect(Language) />
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Website URL
+    </Col>
+    <Col
+      className="text-right text-truncate"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <a
+        href="http://anonym.to/?http://www.betwiki.net"
+        target="_blank"
+        title="http://www.betwiki.net"
+      >
+        betwiki.net
+      </a>
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Last Login
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      04/12/2019 04:11:00
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Last Login IP
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <a
+        href="http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=10.18.200.125&j=1"
+        target="_blank"
+      >
+        10.18.200.125
+      </a>
+    </Col>
+  </Row>
+  <Connect(Component) />
+</div>
+`;
+
+exports[`left panel - components - Content render correctly with affiliateInfo not has http in siteurl 2`] = `
+<div
+  className="general-info pt-2"
+>
+  <Row
+    className="border-0 py-1"
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Parent Affiliate
+    </Col>
+    <Col
+      className="text-right d-inline-block"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Button
+        className="p-0"
+        color="link"
+        onClick={[Function]}
+        tag="button"
+      >
+        12BETAFF001
+      </Button>
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Affiliate
+    </Col>
+    <Col
+      className="text-right d-inline-block"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <a
+        href="http://localhost:55690/Auth/AdminLogin?chalengeStr=640eh6&accKey=3F9ADA82AD&custName=12BETAFF001&accId=1000000026&accOnId=8405"
+        target="_blank"
+      >
+        12BETAFF002
+      </a>
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Affiliate Code
     </Col>
     <Col
       className="text-right"
@@ -1214,7 +1842,7 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
         ]
       }
     >
-      Language
+      First Name
     </Col>
     <Col
       className="text-right"
@@ -1230,9 +1858,229 @@ exports[`left panel - components - Content render correctly with affiliateInfo n
         ]
       }
     >
-      <Connect(Language)
-        isStatic={false}
-      />
+      媒体册 获取以更新吧！
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Last Name
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      媒体册 获取以更新吧！
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Gender
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Female
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      className="pr-0"
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Contact Number
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      123456
+    </Col>
+  </Row>
+  <Connect(Component) />
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Approved By
+    </Col>
+    <Col
+      className="text-right"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      sa
+    </Col>
+  </Row>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      sm={5}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Language
+    </Col>
+    <Col
+      className="text-right text-primary"
+      sm={7}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Connect(Language) />
     </Col>
   </Row>
   <Row

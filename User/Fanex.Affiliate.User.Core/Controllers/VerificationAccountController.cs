@@ -1,4 +1,7 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using System.Web.Mvc;
+using System.Web.UI;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
@@ -6,13 +9,9 @@ using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using System;
-using System.Web.Mvc;
-using System.Web.UI;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -21,19 +20,18 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private const int CaptchaImgWidth = 74;
         private const int CaptchaImgHeight = 26;
 
-        private readonly IAccountRepository _accountRepository;
         private readonly IVerificationService _verificationService;
 
         public VerificationAccountController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
+            ISystemService systemsService,
             ICaptchaService captchaService,
-            IAccountRepository accountRepository,
             IAuthService authService,
-            IVerificationService verificationService) : base(sessionService, languageService, appSetting, captchaService, authService)
+            IVerificationService verificationService,
+            IAccountService accountService) 
+            : base(sessionService, systemsService, appSetting, captchaService, authService, accountService)
         {
-            _accountRepository = accountRepository;
             _verificationService = verificationService;
         }
 
@@ -47,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Redirect(Url.RenderLanguageContent("~/Home"));
             }
 
-            var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);
+            var userInfo = AccountService.GetUserInfoById(verificationSession.AffId, false);
 
             var viewModel = new VerificationAccountViewModel
             {
@@ -115,10 +113,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Json(CreateVerifyAccountResult(GetErrorResult(Error.General)));
             }
 
-            var requestValidtionResult = ValidateLoginRequest(param.Captcha, verificationSession.Captcha);
-            if (!requestValidtionResult.IsOk)
+            var requestValidationResult = ValidateLoginRequest(param.Captcha, verificationSession.Captcha);
+            if (!requestValidationResult.IsOk)
             {
-                return Json(CreateVerifyAccountResult(requestValidtionResult));
+                return Json(CreateVerifyAccountResult(requestValidationResult));
             }
 
             var verificationOtpParam = CreateVerificationOtpParam(param);
@@ -184,7 +182,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private VerificationOtpParam CreateVerificationOtpParam(VerificationAccountParam param)
         {
             var verificationSession = SessionService.VerificationSession;
-            var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);
+            var userInfo = AccountService.GetUserInfoById(verificationSession.AffId, false);
 
             return new VerificationOtpParam
             {

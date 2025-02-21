@@ -1,23 +1,23 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System;
+    using System.Web.Mvc;
     using Enum;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
     using Filters;
     using MetalModels.UserPanel;
-    using System;
-    using System.Collections.Generic;
-    using System.Web.Mvc;
+    using Utilities;
     using ViewModels.UserPanel.Statistics;
 
     [CustomAuthorize]
     public class ReferrersStatisticsController : BaseController
     {
         private readonly IStatisticsService _statisticsService;
-        public ReferrersStatisticsController(ISessionService sessionService, ISystemService languageService,
+        public ReferrersStatisticsController(ISessionService sessionService, ISystemService systemsService,
             IStatisticsService statisticsService
-            ) : base(sessionService, languageService)
+            ) : base(sessionService, systemsService)
         {
             _statisticsService = statisticsService;
         }
@@ -27,23 +27,19 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            var now = DateTime.Now;
-            var isInternal = SessionService.IsInternal;
-
+            var now = DateTimeOffset.Now.ToOffset(new TimeSpan(GMT.PlusEight, 0, 0));
             var referrerStatisticsParam = new ReferrerStatisticsParam
             {
                 AffId = SessionService.UserSession.AffId,
-                IsInternal = isInternal,
-                FromDate = new DateTime(now.Year, now.Month, 1),
-                ToDate = now,
-                CountryCodes = _statisticsService.GetCountryCodes(isInternal),
+                IsInternal = SessionService.IsInternal,
+                FromDate = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1),
+                ToDate = now.DateTime,
                 DeviceType = (byte)DeviceType.PCDevice
             };
 
             var viewModel = new ReferrerStatisticsViewModel
             {
                 DataList = _statisticsService.GetReferrerStatistics(referrerStatisticsParam),
-                CountryList = _statisticsService.GetCountryList(isInternal),
                 FromDate = referrerStatisticsParam.FromDate,
                 ToDate = referrerStatisticsParam.ToDate
             };
@@ -60,7 +56,7 @@
 
             var viewModel = new ReferrerStatisticsViewModel
             {
-                DataList = ModelState.IsValid ? _statisticsService.GetReferrerStatistics(referrerStatisticsParam) : new List<ReferrerStatistics>()
+                DataList = _statisticsService.GetReferrerStatistics(referrerStatisticsParam)
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_ReferrersStatisticsContent.cshtml", viewModel);

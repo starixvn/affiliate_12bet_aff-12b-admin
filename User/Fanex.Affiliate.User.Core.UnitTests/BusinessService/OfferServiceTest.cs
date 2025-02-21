@@ -1,15 +1,16 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System.Threading.Tasks;
+using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Criterias;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
+using Fanex.Data.Repository;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
+
     public class OfferServiceTest
     {
         [Fact]
@@ -18,8 +19,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Arrange
             var offerId = 123;
             Offer offer = null;
-            var offerRepository = new Mock<IOfferRepository>();
-            offerRepository.Setup(p => p.GetOfferById(offerId)).Returns(offer);
+            var offerRepository = new Mock<IDynamicRepository>();
+            offerRepository.Setup(p => p.Get<Offer>(It.IsAny<GetOfferByIdCriteria>(), string.Empty)).Returns(offer);
             var service = CreateOfferService(offerRepository.Object);
 
             // Action
@@ -38,14 +39,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Offer offer = new Offer
             {
                 FileName = "abc.html",
-                EffectiveFromDate = DateTime.Now,
-                EffectiveToDate = DateTime.Now,
+                EffectiveFromDate = DateTimeHelper.Now,
+                EffectiveToDate = DateTimeHelper.Now,
                 Language = Constant.DefaultLanguage,
                 PageId = 1,
-                UploadDate = DateTime.Now
+                UploadDate = DateTimeHelper.Now
             };
-            var offerRepository = new Mock<IOfferRepository>();
-            offerRepository.Setup(p => p.GetOfferById(offerId)).Returns(offer);
+            var offerRepository = new Mock<IDynamicRepository>();
+            offerRepository.Setup(p => p.Get<Offer>(It.IsAny<GetOfferByIdCriteria>(), string.Empty)).Returns(offer);
             var httpClientUtility = new Mock<IHttpClientUtility>();
             httpClientUtility.Setup(h => h.GetContent(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(content));
             var service = CreateOfferService(offerRepository.Object, httpClientUtility.Object);
@@ -58,13 +59,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         }
 
         private static OfferService CreateOfferService(
-            IOfferRepository offerRepository = null,
+            IDynamicRepository offerRepository = null,
             IHttpClientUtility httpClientUtility = null)
         {
-            var fakeOfferRepository = offerRepository ?? Mock.Of<IOfferRepository>();
+            var fakeOfferRepository = offerRepository ?? Mock.Of<IDynamicRepository>();
             var fakeHttpClientUtility = httpClientUtility ?? Mock.Of<IHttpClientUtility>();
 
-            return new OfferService(fakeHttpClientUtility, fakeOfferRepository);
+            return new OfferService(fakeOfferRepository, fakeHttpClientUtility);
         }
     }
 }

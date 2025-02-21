@@ -4,11 +4,10 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { headerText, globalResource, selectedAllProduct, maxWidth, SortByIdList } from '../libs/constants';
-import { setPagingOption, toggleLoaderUserPanel, fetchData, setSortedParam } from '../actions';
+import { headerText, globalResource, selectedAllProduct, maxWidth, SortByIdList } from '../modules/constants';
+import { setPagingOption, toggleLoaderUserPanel, fetchData, setSortingColumn } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import SortingCell from './SortingCell';
-import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -27,6 +26,10 @@ export class Content extends PureComponent {
             const postParam = { ...param, pageIndex: 1, pageSize: pagingOption.PageSize };
             this._fetchData(postParam);
         }
+
+        if (param.isClickLink || isDifferent) {
+            this.setState({ isSortAsc: false, sortingColumn: 'Turnover' });
+        }
     }
 
     async _fetchData(param) {
@@ -42,93 +45,109 @@ export class Content extends PureComponent {
         this.props.toggleLoaderUserPanel(false);
     }
 
-    handleClickHeader = (selectedId) => {
-        const { param, pagingOption, sortedParam } = this.props;
-        const { isSortAsc, sortById } = sortedParam;
-        const postParam = { ...param, pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize, sortById: selectedId };
+    handleClickHeader = (selectedColumn) => {
 
-        if (sortById === selectedId) {
-            this._fetchData({ ...postParam, isSortAsc: !isSortAsc });
-            this.props.setSortedParam({ sortById: selectedId, isSortAsc: !isSortAsc });
+        const { param, pagingOption, sortingColumn } = this.props;
+        const postParam = { ...param, pageIndex: pagingOption.PageIndex, pageSize: pagingOption.PageSize, sortById: SortByIdList[sortingColumn.ColumnName] };
+
+        if (sortingColumn.ColumnName === selectedColumn) {
+            const newSortingColumn = Object.assign({}, sortingColumn, { IsSortAsc: !sortingColumn.IsSortAsc });
+            this.props.setSortingColumn(newSortingColumn);
+            this._fetchData({ ...postParam, isSortAsc: !sortingColumn.IsSortAsc });
 
         } else {
-            this._fetchData({ ...postParam, isSortAsc: false });
-            this.props.setSortedParam({ sortById: selectedId, isSortAsc: false });
+            this.props.setSortingColumn({ IsSortAsc: false, ColumnName: selectedColumn });
+            this._fetchData({ ...postParam, isSortAsc: false, sortById: SortByIdList[selectedColumn] });
         }
     }
-
     _renderHeader() {
-        const { isSortAsc, sortById } = this.props.sortedParam;
+        const { sortingColumn, isDepositFeePercent, isWithdrawalFeePercent } = this.props;
 
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Username} title={headerText.UserName} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.IbcUsername} title={headerText.IbcUserName} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.RegisteredDate} title={headerText.RegisteredDate} handleClickHeader={this.handleClickHeader} />
-                {this.props.isDisplayTurnOver && <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Turnover} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />}
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Winloss} title={headerText.Winloss} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Deposit} title={headerText.Deposit} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Withdrawal} title={headerText.Withdrawal} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.Bonus} title={headerText.Bonus} handleClickHeader={this.handleClickHeader} />
-                <SortingCell isSortAsc={isSortAsc} sortingColumn={sortById} columnValue={SortByIdList.BankingFee} title={headerText.BankingFee} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'Username'} title={headerText.UserName} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'IbcUsername'} title={headerText.IbcUserName} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'RegisteredDate'} title={headerText.RegisteredDateText} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'FirstDepositDate'} title={headerText.FirstDepositDateText} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'FirstDepositAmount'} title={headerText.FirstDepositAmount} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'Turnover'} title={headerText.Turnover} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'Ggr'} title={headerText.Ggr} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'Deposit'} title={headerText.Deposit} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'Withdrawal'} title={headerText.Withdrawal} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'Bonus'} title={headerText.Bonus} handleClickHeader={this.handleClickHeader} />
+                <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'Rebate'} title={headerText.Rebate} handleClickHeader={this.handleClickHeader} />
+                {isDepositFeePercent && <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'DepositFee'} title={headerText.DepositFee} handleClickHeader={this.handleClickHeader} />}
+                {isWithdrawalFeePercent && <SortingCell isSortAsc={sortingColumn.IsSortAsc} sortingColumn={sortingColumn.ColumnName} columnName={'WithdrawalFee'} title={headerText.WithdrawalFee} handleClickHeader={this.handleClickHeader} />}
             </Row>
         )
     }
 
     _renderDataSection(dataList) {
-        const { param } = this.props;
+        const { param, isDepositFeePercent, isWithdrawalFeePercent } = this.props;
         const productColumnClassName = param.productId === selectedAllProduct ? 'text-right' : 'text-right highlight';
         const dataRows = [];
 
         if (dataList.length) {
-            const { pagingOption, isDisplayTurnOver } = this.props;
+            const { pagingOption } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
 
-                dataRows.push(this._buildDataRow(dataItem, startIndex + i, productColumnClassName, isDisplayTurnOver));
+                dataRows.push(this._buildDataRow(dataItem, startIndex + i, productColumnClassName, isDepositFeePercent, isWithdrawalFeePercent));
             }
         }
         else {
-            dataRows.push(<Row>
-                <Cell className="text-center" colSpan="9">{globalResource.NoInfo}</Cell>
+            const colSpan = 12 + (isDepositFeePercent ? 1 : 0) + (isWithdrawalFeePercent ? 1 : 0)
+            dataRows.push(<Row key="no-info">
+                <Cell className="text-center" colSpan={colSpan}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, rowNumber, productColumnClassName, isDisplayTurnOver) {
-        const turnover = isDisplayTurnOver && formatDecimal(dataItem.Turnover);
-        const winloss = formatDecimal(dataItem.Winloss);
+    _buildDataRow(dataItem, rowNumber, productColumnClassName, isDepositFeePercent, isWithdrawalFeePercent) {
+        const turnover = formatDecimal(dataItem.Turnover);
+        const ggr = formatDecimal(dataItem.Ggr);
         const bonus = formatDecimal(dataItem.Bonus);
+        const rebate = formatDecimal(dataItem.Rebate);
         const deposit = formatDecimal(dataItem.Deposit);
         const withdrawal = formatDecimal(dataItem.Withdrawal);
-        const bankingFee = formatDecimal(dataItem.BankingFee);
+        const depositFee = formatDecimal(dataItem.DepositFee);
+        const withdrawalFee = formatDecimal(dataItem.WithdrawalFee);
         const userName = htmlDecode(dataItem.UserName);
+        const firstDepositAmount = dataItem.FirstDepositAmount == null ? '' : formatDecimal(dataItem.FirstDepositAmount);
 
         return (
-            <Row>
+            <Row key={`raw-data-${rowNumber}`}>
                 <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>
                 <Cell title={userName}>{userName}</Cell>
                 <Cell title={dataItem.IbcUserName}>{dataItem.IbcUserName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateText}>{dataItem.RegisteredDateText}</Cell>
-                {isDisplayTurnOver && <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>}
-                <Cell className={productColumnClassName} title={winloss}>{winloss}</Cell>
+                <Cell className="text-center" title={dataItem.FirstDepositDateText}>{dataItem.FirstDepositDateText}</Cell>
+                <Cell className="text-right" title={firstDepositAmount}>{firstDepositAmount}</Cell>
+                <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
+                <Cell className={productColumnClassName} title={ggr}>{ggr}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
-                <Cell className="text-right" title={bankingFee}>{bankingFee}</Cell>
+                <Cell className="text-right" title={rebate}>{rebate}</Cell>
+                {
+                    isDepositFeePercent && <Cell className="text-right" title={depositFee}>{depositFee}</Cell>
+                }
+                {
+                    isWithdrawalFeePercent && <Cell className="text-right" title={withdrawalFee}>{withdrawalFee}</Cell>
+                }
             </Row>
         )
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const { param, sortedParam } = this.props;
-        const newParam = Object.assign({}, param, { pageIndex, pageSize, ...sortedParam });
+        const { param, sortingColumn } = this.props;
 
+        const newParam = Object.assign({}, param, { pageIndex, pageSize, sortById: SortByIdList[sortingColumn.ColumnName], isSortAsc: sortingColumn.IsSortAsc });
         this._fetchData(newParam);
     }
 
@@ -153,16 +172,15 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, playerDetail, claimsPrincipal }) {
-    const { param, pagingOption, sortedParam } = playerDetail;
-    const { affId } = affCommonInfo;
-    const isDisplayTurnOver = claimsPrincipal.hasReadClaim(claimResource.TurnOver);
+function mapStateToProps({ affCommonInfo, playerDetail }) {
+    const { param, pagingOption, sortingColumn } = playerDetail;
+    const { affId, isDepositFeePercent, isWithdrawalFeePercent } = affCommonInfo;
 
-    return Object.assign({}, { param, pagingOption, affId, isDisplayTurnOver, sortedParam });
+    return Object.assign({}, { param, pagingOption, affId, sortingColumn, isDepositFeePercent, isWithdrawalFeePercent });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData, setSortedParam }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoaderUserPanel, fetchData, setSortingColumn }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

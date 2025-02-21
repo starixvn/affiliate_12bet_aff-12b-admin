@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import Loader from '../Loader';
-import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 describe('Loader', () => {
@@ -15,7 +14,7 @@ describe('Loader', () => {
     it('render - correctly with correct props', () => {
         const renderer = new ShallowRenderer();
 
-        const result = renderer.render(<Loader backdrop="static" show={true} style={{ color: 'red' }} />);
+        const result = renderer.render(<Loader backdrop={false} show={true} style={{ color: 'red' }} />);
 
         expect(result).toMatchSnapshot();
     });

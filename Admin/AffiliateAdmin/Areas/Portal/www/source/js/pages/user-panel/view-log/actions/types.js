@@ -1,2 +1,2 @@
-﻿export const SET_PARAM = 'USER_PANEL/VIEW_LOG/SET_PARAM';
-export const SET_SHOW_ID_LIST = 'USER_PANEL/VIEW_LOG/SET_SHOW_ID_LIST';
+﻿export const SET_PARAM = 'SET_PARAM';
+export const SET_SHOW_ID_LIST = 'SET_SHOW_ID_LIST';

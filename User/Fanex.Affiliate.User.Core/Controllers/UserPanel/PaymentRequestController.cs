@@ -1,30 +1,30 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using Constants;
-    using DTO;
-    using Extensions;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.CoreService;
-    using Filters;
-    using MetalModels.Email;
-    using MetalModels.UserPanel;
-    using Resources;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using BusinessService;
+    using Constants;
+    using CoreService;
+    using DTO;
+    using Extensions;
+    using Filters;
+    using MetalModels.Email;
+    using MetalModels.UserPanel;
+    using Resources;
     using Utilities;
     using ViewModels.UserPanel;
 
-    [CustomAuthorize(PermissionName = ClaimConstant.PaymentRequest)]
+    [CustomAuthorize]
     public class PaymentRequestController : BaseController
     {
         private readonly IPaymentService _paymentService;
         private readonly IAppSetting _appSetting;
         public PaymentRequestController(ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService languageService,
-            IPaymentService paymentService) : base(sessionService, languageService)
+            ISystemService systemsService,
+            IPaymentService paymentService) : base(sessionService, systemsService)
         {
             _paymentService = paymentService;
             _appSetting = appSetting;
@@ -33,14 +33,14 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel(DateTime.Now.Year));
+            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel(DateTimeOffset.Now.Year));
         }
 
         [HttpPost]
         [AjaxOnly]
         public ActionResult GetPaymentListByYear(int year)
         {
-            var viewModel = year >= 2009 && year <= DateTime.Now.Year ? GetViewModel(year) : GetViewModel(DateTime.Now.Year);
+            var viewModel = year >= 2009 && year <= DateTimeHelper.CurrentYear ? GetViewModel(year) : GetViewModel(DateTimeHelper.CurrentYear);
 
             return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", viewModel);
         }
@@ -48,7 +48,7 @@
         [AjaxOnly]
         public ActionResult PaymentRequestPartial()
         {
-            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel(DateTime.Now.Year));
+            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel(DateTimeHelper.CurrentYear));
         }
 
         [HttpPost]
@@ -70,6 +70,7 @@
                 paymentCreationParam.Ip = Request.GetClientIP();
                 paymentCreationParam.IsInternal = SessionService.IsInternal;
                 paymentCreationParam.IsLocalTest = !_appSetting.IsProduction;
+                paymentCreationParam.TransDate = paymentCreationParam.TransDate ?? DateTimeOffset.Now.DateTime;
 
                 var emailParam = new PaymentEmailParam
                 {
@@ -101,7 +102,7 @@
             }
             else
             {
-                cancelParam.UserId = SessionService.UserSession.AffId;
+                cancelParam.AffId = SessionService.UserSession.AffId;
                 cancelParam.Language = SessionService.CurrentLanguage;
                 cancelParam.Ip = Request.GetClientIP();
 
@@ -136,15 +137,14 @@
             };
             var paymentList = _paymentService.GetPaymentList(paymentParam);
 
-
             var viewModel = new PaymentViewModel
             {
                 PaymentList = paymentList,
                 BalBroughtForward = paymentParam.BalBroughtForward,
                 MinAmount = paymentParam.MinAmount,
                 PreferredPayment = paymentParam.PreferredPayment,
-                PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Pending)),
-                IsValidDate = _paymentService.IsInDateRange() || !_appSetting.IsProduction
+                PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Processing)),
+                IsValidDate = true
             };
 
             return viewModel;

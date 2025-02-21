@@ -45,10 +45,13 @@
         margin-right: 30px;
 
         label {
-            width: 80px;
 
             &.w150 {
                 width: 150px;
+            }
+
+            &.w120 {
+                width: 120px;
             }
 
             &.w100 {
@@ -57,13 +60,25 @@
         }
 
         .form-control {
-            width: 200px;
+            width: 150px;
         }
     }
 }
 
 .form-inline {
     margin-bottom: 5px;
+
+    .form-group {
+        label {
+            display: inline-flex;
+            align-content: center;
+            margin-right: 20px;
+        }
+
+        .date-wrapper .form-control {
+            background: #FFFFFF;
+        }
+    }
 }
 
 .form-control-static {

@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
@@ -8,15 +7,13 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using ONEbook.UM.AspNetMVC.Filters;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [CustomAuthorize]
-    [CheckUMFilter]
-    [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
-    public class CustomerLeftPanelController : Controller
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
+    public class CustomerLeftPanelController : BaseController
     {
         private readonly ICustomerLeftPanelService _customerLeftPanelService;
         private readonly ISessionService _sessionService;
@@ -26,27 +23,27 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             ICustomerLeftPanelService customerLeftPanelService
             )
         {
-            _sessionService = sessionService;
             _customerLeftPanelService = customerLeftPanelService;
+            _sessionService = sessionService;
         }
 
         [ValidateAntiForgeryHeader]
-        [UpdateUnauthorizedProperty]
         [HttpPost]
+        [UnauthorizedPropertyCensor]
         public ActionResult GetAffiliateInfo(string affUsername)
         {
             if (string.IsNullOrEmpty(affUsername))
             {
-                return new JsonResult();
+                return new JsonNetResult();
             }
 
+            var accId = _sessionService.UserId.ToString();
+            var accOnId = _sessionService.OnUserId.ToString();
+            var sessionId = Session.SessionID;
+            var affiliateInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, accId, accOnId, sessionId);
             _sessionService.AffName = affUsername;
-            var affInfo = _customerLeftPanelService.GetAffiliateInfoOnLeftPanel(affUsername, _sessionService.OnUserId.ToString(), Session.SessionID);
 
-            return new JsonNetResult
-            {
-                Data = affInfo
-            };
+            return GenerateJsonNetResult(affiliateInfo);
         }
 
         [ValidateAntiForgeryHeader]
@@ -55,18 +52,42 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             if (string.IsNullOrEmpty(affUsername))
             {
-                return new JsonResult();
+                return new JsonNetResult();
             }
 
-            return new JsonNetResult
-            {
-                Data = _customerLeftPanelService.GetOnlineList(affUsername)
-            };
+            return GenerateJsonNetResult(_customerLeftPanelService.GetOnlineList(affUsername));
         }
 
         [ValidateAntiForgeryHeader]
-        [MultiFunctionAuthorize(FunctionName = Function.LanguageAmendment, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
+        [FunctionAuthorize(FunctionName = Function.TransferPlayerSetting)]
+        public ActionResult GetTransferLimitSetting(string affId)
+        {
+            if (string.IsNullOrEmpty(affId) || !int.TryParse(affId, out int parsedId))
+            {
+                return new JsonNetResult();
+            }
+
+            return GenerateJsonNetResult(_customerLeftPanelService.GetTransferLimitSetting(parsedId));
+        }
+
+        [ValidateAntiForgeryHeader]
+        [HttpPost]
+        [FunctionAuthorize(FunctionName = Function.TransferPlayerSetting, IsHost = true)]
+        public ActionResult UpdateTransferLimitSetting(TransferLimitSettingParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                AssignUserInfoParam(param);
+
+                return GenerateJsonNetResult(_customerLeftPanelService.UpdateTransferLimitSetting(param));
+            }
+            return GenerateModelStateErrResult();
+        }
+
+        [ValidateAntiForgeryHeader]
+        [HttpPost]
+        [FunctionAuthorize(FunctionName = Function.EditAffDetails, IsHost = true)]
         public ActionResult UpdateLanguage(UpdateLanguageParam param)
         {
             if (ModelState.IsValid)
@@ -76,42 +97,31 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     AffId = param.AffId,
                     PreferredLanguage = Server.HtmlEncode(param.PreferredLanguage)
                 };
-                AssignParam(updateLanguageParam);
+                AssignUserInfoParam(updateLanguageParam);
 
-                return new JsonNetResult
-                {
-                    Data = _customerLeftPanelService.UpdateLanguage(updateLanguageParam)
-                };
+                return GenerateJsonNetResult(_customerLeftPanelService.UpdateLanguage(updateLanguageParam));
             }
-            return new JsonResult
-            {
-                Data = ResultInfo.GenerateErr("Update Language is failed!")
-            };
+            return GenerateErrResult("Update Language is failed!");
         }
 
         [ValidateAntiForgeryHeader]
-        [MultiFunctionAuthorize(FunctionName = Function.AffiliateInfo, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
+        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         public ActionResult UpdateAffType(UpdateAffTypeParam param)
         {
             if (ModelState.IsValid)
             {
-                AssignParam(param);
-                return new JsonNetResult
-                {
-                    Data = _customerLeftPanelService.UpdateAffType(param)
-                };
+                AssignUserInfoParam(param);
+
+                return GenerateJsonNetResult(_customerLeftPanelService.UpdateAffType(param));
             }
-            return new JsonResult
-            {
-                Data = ResultInfo.GenerateErr("Update Affiliate Type is failed!")
-            };
+            return GenerateErrResult("Update Affiliate Type is failed!");
         }
 
         [ValidateAntiForgeryHeader]
-        [MultiFunctionAuthorize(FunctionName = Function.AffiliateInfo, FunctionNameOption = Function.ManagePendingAff, IsHost = true)]
         [HttpPost]
-        public ActionResult UpdateStatus(UpdateStatusParam param)
+        [FunctionAuthorize(FunctionName = Function.EditAffStatus, IsHost = true)]
+        public async Task<ActionResult> UpdateStatus(UpdateStatusParam param)
         {
             if (ModelState.IsValid)
             {
@@ -120,44 +130,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     AffId = param.AffId,
                     Status = Server.HtmlEncode(param.Status)
                 };
-                AssignParam(updateStatusParam);
+                AssignUserInfoParam(updateStatusParam);
 
                 var emailParam = new AffInformationEmail
                 {
                     RootUrl = SiteDomainHelper.GetRootUrl(this)
                 };
 
-                return new JsonNetResult
-                {
-                    Data = _customerLeftPanelService.UpdateStatus(updateStatusParam, emailParam)
-                };
+                return GenerateJsonNetResult(await _customerLeftPanelService.UpdateStatus(updateStatusParam, emailParam));
             }
-            return new JsonResult
-            {
-                Data = ResultInfo.GenerateErr("Update Status is failed!")
-            };
+
+            return GenerateModelStateErrResult();
         }
 
-        [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.AffiliateInfo, IsHost = true)]
-        [HttpPost]
-        public ActionResult UpdateClosedStatus(UpdateClosedStatusParam param)
-        {
-            if (ModelState.IsValid)
-            {
-                AssignParam(param);
-                return new JsonNetResult
-                {
-                    Data = _customerLeftPanelService.UpdateClosedStatus(param)
-                };
-            }
-            return new JsonResult
-            {
-                Data = ResultInfo.GenerateErr("Update Closed Status is failed!")
-            };
-        }
-
-        private void AssignParam(AffiliateBasicInfoParam param)
+        private void AssignUserInfoParam(UserInfoParam param)
         {
             param.UserId = _sessionService.UserId;
             param.Ip = Request.GetClientIP();

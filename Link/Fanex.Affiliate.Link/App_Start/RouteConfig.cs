@@ -8,6 +8,10 @@
     /// </summary>
     public static class RouteConfig
     {
+        private const string AFF_ID_CONSTRAINT = @"\d+";
+        private const string AFF_CODE_CONSTRAINT = @"\d+";
+        private const string LANGUAGE_CONSTRAINT = @"(\w{2}|hien|hitg|eneuro)";
+
         /// <summary>
         /// Register Routes.
         /// </summary>
@@ -15,23 +19,6 @@
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-               name: "LinkNoLanguage",
-               url: "{affId}/{pageCode}/index.html",
-               defaults:
-               new
-               {
-                   controller = "Home",
-                   action = "Link",
-                   affId = UrlParameter.Optional,
-                   pageCode = UrlParameter.Optional
-               },
-               constraints:
-               new
-               {
-                   affId = @"\d+"
-               });
 
             routes.MapRoute(
                 name: "Default",
@@ -45,60 +32,83 @@
                 });
 
             routes.MapRoute(
-               name: "Link",
-               url: "{affId}/{pageCode}/{lang}/index.html",
-               defaults:
-               new
-               {
-                   controller = "Home",
-                   action = "Link",
-                   affId = UrlParameter.Optional,
-                   pageCode = UrlParameter.Optional,
-                   lang = UrlParameter.Optional
-               },
-               constraints:
-               new
-               {
-                   affId = @"\d+"
-               });
-
-            routes.MapRoute(
-                name: "CommonLink",
-                url: "{affId}/{pageCode}/{lang}/{targetCountry}/index.html", //May be "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}"
+                name: "OldLink",
+                url: "{affId}/{pageCode}/{lang}/index.html",
                 defaults:
                 new
                 {
                     controller = "Home",
-                    action = "CommonLink",
+                    action = "OldLink",
                     affId = UrlParameter.Optional,
                     pageCode = UrlParameter.Optional,
-                    lang = UrlParameter.Optional,
-                    targetCountry = UrlParameter.Optional
+                    lang = UrlParameter.Optional
                 },
                 constraints:
                 new
                 {
-                    affId = @"\d+"
+                    affId = AFF_ID_CONSTRAINT,
+                    lang = LANGUAGE_CONSTRAINT
                 });
 
             routes.MapRoute(
-                name: "SpecialPageCodeLink",
-                url: "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}/{targetCountry}/index.html",
+                name: "SpecialPageCodeOldLink",
+                url: "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "SpecialPageCodeOldLink",
+                    affId = UrlParameter.Optional,
+                    pageCodePart1 = UrlParameter.Optional,
+                    pageCodePart2 = UrlParameter.Optional,
+                    lang = UrlParameter.Optional
+                },
+                constraints:
+                new
+                {
+                    affId = AFF_ID_CONSTRAINT,
+                    lang = LANGUAGE_CONSTRAINT
+                });
+
+            routes.MapRoute(
+                name: "ChannelLink",
+                url: "{pageCode}/{affCode}/{lang}/{channel}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "Link",
+                    pageCode = UrlParameter.Optional,
+                    affCode = UrlParameter.Optional,
+                    lang = UrlParameter.Optional,
+                    channel = UrlParameter.Optional
+                },
+                constraints:
+                new
+                {
+                    affCode = AFF_CODE_CONSTRAINT,
+                    lang = LANGUAGE_CONSTRAINT
+                });
+
+            routes.MapRoute(
+                name: "SpecialPageCodeChannelLink",
+                url: "{pageCodePart1}/{pageCodePart2}/{affCode}/{lang}/{channel}/index.html",
                 defaults:
                 new
                 {
                     controller = "Home",
                     action = "SpecialPageCodeLink",
-                    affId = UrlParameter.Optional,
                     pageCodePart1 = UrlParameter.Optional,
                     pageCodePart2 = UrlParameter.Optional,
+                    affCode = UrlParameter.Optional,
                     lang = UrlParameter.Optional,
-                    targetCountry = UrlParameter.Optional
+                    channel = UrlParameter.Optional
                 },
                 constraints:
                 new
                 {
-                    affId = @"\d+"
+                    affCode = AFF_CODE_CONSTRAINT,
+                    lang = LANGUAGE_CONSTRAINT
                 });
 
             routes.IgnoreRoute("go");

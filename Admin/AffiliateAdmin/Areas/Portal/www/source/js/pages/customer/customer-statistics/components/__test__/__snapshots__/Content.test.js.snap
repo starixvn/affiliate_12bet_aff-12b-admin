@@ -28,8 +28,8 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
                 />
               }
               isReadonly={true}
-              minMonth={12}
-              minYear={2009}
+              minMonth={1}
+              minYear={2020}
               onFormat={[Function]}
               onSelect={[Function]}
               open={false}
@@ -92,39 +92,37 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         </td>
       </tr>
       <tr
-        key="Total Qualified Active Players"
+        key="Total Sub-Affiliates"
       >
         <td
           className="font-weight-bold"
         >
-          Total Qualified Active Players
+          Total Sub-Affiliates
         </td>
         <td
           className="text-right"
         />
         <td
           className="text-right"
-        >
-          N/A
-        </td>
+        />
       </tr>
       <tr
-        key="Total Deposit/FDM's Deposit"
+        key="Total Deposits"
       >
         <td
           className="font-weight-bold"
         >
-          Total Deposit/FDM's Deposit
+          Total Deposits
         </td>
         <td
           className="text-right"
         >
-          -$/-$
+          -
         </td>
         <td
           className="text-right"
         >
-          -$/N/A
+          -
         </td>
       </tr>
       <tr
@@ -138,49 +136,50 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         <td
           className="text-right"
         >
-          -$
+          -
         </td>
         <td
           className="text-right"
         >
-          -$
+          -
         </td>
       </tr>
       <tr
-        key="Winlost"
+        key="GGR"
       >
         <td
           className="font-weight-bold"
         >
-          Winlost
+          GGR
         </td>
         <td
           className="text-right"
         >
-          -$
+          -
         </td>
         <td
           className="text-right"
         >
-          -$
+          -
         </td>
       </tr>
       <tr
-        key="Tracking Rate for PC/Laptop (Unique/Total) New!!!!!"
+        key="Tracking Rate for PC/Laptop (Unique/Total)"
       >
         <td
           className="font-weight-bold"
         >
-          Tracking Rate for PC/Laptop (Unique/Total) New!!!!!
+          Tracking Rate for PC/Laptop (Unique/Total)
         </td>
         <td
           className="text-right"
         >
-          <Memo(MyLink)
+          <a
+            href="javascript:;"
             onClick={[Function]}
           >
             /
-          </Memo(MyLink)>
+          </a>
         </td>
         <td
           className="text-right"
@@ -189,21 +188,22 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         </td>
       </tr>
       <tr
-        key="Tracking Rate for Mobile (Unique/Total) New!!!!!"
+        key="Tracking Rate for Mobile (Unique/Total)"
       >
         <td
           className="font-weight-bold"
         >
-          Tracking Rate for Mobile (Unique/Total) New!!!!!
+          Tracking Rate for Mobile (Unique/Total)
         </td>
         <td
           className="text-right"
         >
-          <Memo(MyLink)
+          <a
+            href="javascript:;"
             onClick={[Function]}
           >
             /
-          </Memo(MyLink)>
+          </a>
         </td>
         <td
           className="text-right"
@@ -244,8 +244,8 @@ exports[`customer statistics - components - Content Should render correctly with
                 />
               }
               isReadonly={true}
-              minMonth={12}
-              minYear={2009}
+              minMonth={1}
+              minYear={2020}
               onFormat={[Function]}
               onSelect={[Function]}
               open={false}
@@ -310,41 +310,37 @@ exports[`customer statistics - components - Content Should render correctly with
         </td>
       </tr>
       <tr
-        key="Total Qualified Active Players"
+        key="Total Sub-Affiliates"
       >
         <td
           className="font-weight-bold"
         >
-          Total Qualified Active Players
+          Total Sub-Affiliates
         </td>
         <td
           className="text-right"
-        >
-          0
-        </td>
+        />
         <td
           className="text-right"
-        >
-          N/A
-        </td>
+        />
       </tr>
       <tr
-        key="Total Deposit/FDM's Deposit"
+        key="Total Deposits"
       >
         <td
           className="font-weight-bold"
         >
-          Total Deposit/FDM's Deposit
+          Total Deposits
         </td>
         <td
           className="text-right"
         >
-          $0.00/$0.00
+          0.00
         </td>
         <td
           className="text-right"
         >
-          $951.44/N/A
+          951.44
         </td>
       </tr>
       <tr
@@ -358,51 +354,52 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          $0.00
+          0.00
         </td>
         <td
           className="text-right"
         >
-          $1,061,706.98
+          1,061,706.98
         </td>
       </tr>
       <tr
-        key="Winlost"
+        key="GGR"
       >
         <td
           className="font-weight-bold"
         >
-          Winlost
+          GGR
         </td>
         <td
           className="text-right"
         >
-          $0.00
+          0.00
         </td>
         <td
           className="text-right"
         >
-          -$42,950.02
+          -42,950.02
         </td>
       </tr>
       <tr
-        key="Tracking Rate for PC/Laptop (Unique/Total) New!!!!!"
+        key="Tracking Rate for PC/Laptop (Unique/Total)"
       >
         <td
           className="font-weight-bold"
         >
-          Tracking Rate for PC/Laptop (Unique/Total) New!!!!!
+          Tracking Rate for PC/Laptop (Unique/Total)
         </td>
         <td
           className="text-right"
         >
-          <Memo(MyLink)
+          <a
+            href="javascript:;"
             onClick={[Function]}
           >
             0
             /
             0
-          </Memo(MyLink)>
+          </a>
         </td>
         <td
           className="text-right"
@@ -411,23 +408,24 @@ exports[`customer statistics - components - Content Should render correctly with
         </td>
       </tr>
       <tr
-        key="Tracking Rate for Mobile (Unique/Total) New!!!!!"
+        key="Tracking Rate for Mobile (Unique/Total)"
       >
         <td
           className="font-weight-bold"
         >
-          Tracking Rate for Mobile (Unique/Total) New!!!!!
+          Tracking Rate for Mobile (Unique/Total)
         </td>
         <td
           className="text-right"
         >
-          <Memo(MyLink)
+          <a
+            href="javascript:;"
             onClick={[Function]}
           >
             0
             /
             0
-          </Memo(MyLink)>
+          </a>
         </td>
         <td
           className="text-right"
@@ -468,8 +466,8 @@ exports[`customer statistics - components - Content Should render correctly with
                 />
               }
               isReadonly={true}
-              minMonth={12}
-              minYear={2009}
+              minMonth={1}
+              minYear={2020}
               onFormat={[Function]}
               onSelect={[Function]}
               open={false}
@@ -525,11 +523,7 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          <Memo(MyLink)
-            onClick={[Function]}
-          >
-            2
-          </Memo(MyLink)>
+          2
         </td>
         <td
           className="text-right"
@@ -538,41 +532,37 @@ exports[`customer statistics - components - Content Should render correctly with
         </td>
       </tr>
       <tr
-        key="Total Qualified Active Players"
+        key="Total Sub-Affiliates"
       >
         <td
           className="font-weight-bold"
         >
-          Total Qualified Active Players
+          Total Sub-Affiliates
         </td>
         <td
           className="text-right"
-        >
-          0
-        </td>
+        />
         <td
           className="text-right"
-        >
-          N/A
-        </td>
+        />
       </tr>
       <tr
-        key="Total Deposit/FDM's Deposit"
+        key="Total Deposits"
       >
         <td
           className="font-weight-bold"
         >
-          Total Deposit/FDM's Deposit
+          Total Deposits
         </td>
         <td
           className="text-right"
         >
-          $0.00/$0.00
+          0.00
         </td>
         <td
           className="text-right"
         >
-          $951.44/N/A
+          951.44
         </td>
       </tr>
       <tr
@@ -586,51 +576,52 @@ exports[`customer statistics - components - Content Should render correctly with
         <td
           className="text-right"
         >
-          $0.00
+          0.00
         </td>
         <td
           className="text-right"
         >
-          $1,061,706.98
+          1,061,706.98
         </td>
       </tr>
       <tr
-        key="Winlost"
+        key="GGR"
       >
         <td
           className="font-weight-bold"
         >
-          Winlost
+          GGR
         </td>
         <td
           className="text-right"
         >
-          $0.00
+          0.00
         </td>
         <td
           className="text-right"
         >
-          -$42,950.02
+          -42,950.02
         </td>
       </tr>
       <tr
-        key="Tracking Rate for PC/Laptop (Unique/Total) New!!!!!"
+        key="Tracking Rate for PC/Laptop (Unique/Total)"
       >
         <td
           className="font-weight-bold"
         >
-          Tracking Rate for PC/Laptop (Unique/Total) New!!!!!
+          Tracking Rate for PC/Laptop (Unique/Total)
         </td>
         <td
           className="text-right"
         >
-          <Memo(MyLink)
+          <a
+            href="javascript:;"
             onClick={[Function]}
           >
             0
             /
             0
-          </Memo(MyLink)>
+          </a>
         </td>
         <td
           className="text-right"
@@ -639,23 +630,24 @@ exports[`customer statistics - components - Content Should render correctly with
         </td>
       </tr>
       <tr
-        key="Tracking Rate for Mobile (Unique/Total) New!!!!!"
+        key="Tracking Rate for Mobile (Unique/Total)"
       >
         <td
           className="font-weight-bold"
         >
-          Tracking Rate for Mobile (Unique/Total) New!!!!!
+          Tracking Rate for Mobile (Unique/Total)
         </td>
         <td
           className="text-right"
         >
-          <Memo(MyLink)
+          <a
+            href="javascript:;"
             onClick={[Function]}
           >
             0
             /
             0
-          </Memo(MyLink)>
+          </a>
         </td>
         <td
           className="text-right"

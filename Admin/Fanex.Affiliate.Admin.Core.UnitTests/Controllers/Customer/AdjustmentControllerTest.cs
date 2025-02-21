@@ -1,7 +1,10 @@
-﻿using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.Auth;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
@@ -51,13 +54,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var param = new AdjustmentParam { AffId = 1271808, Amount = 123 };
             AdjustmentParam passedParam = null;
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo());
+
             var adjustmentService = new Mock<IAdjustmentService>();
             adjustmentService.Setup(s => s.GetBalanceBroughtForward(param.AffId)).Returns(1234);
             adjustmentService.Setup(s => s.InsertAdjustment(It.IsAny<AdjustmentParam>())).Returns(new ResultInfo()).Callback<AdjustmentParam>(p => passedParam = p);
-            var controller = CreateAdjustmentController(adjustmentService: adjustmentService.Object);
+            var controller = CreateAdjustmentController(null, adjustmentService.Object, authService.Object);
 
             // Action
-            var result = controller.InsertAdjustment(param) as JsonResult;
+            var result = controller.InsertAdjustment(param) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert
@@ -70,9 +76,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         {
             // Arrange
             var param = new AdjustmentParam { AffId = 1271808, Amount = 123 };
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo());
+
             var adjustmentService = new Mock<IAdjustmentService>();
             adjustmentService.Setup(s => s.GetBalanceBroughtForward(param.AffId)).Returns(922337203685999m);
-            var controller = CreateAdjustmentController(adjustmentService: adjustmentService.Object);
+            var controller = CreateAdjustmentController(null, adjustmentService.Object, authService.Object);
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
@@ -88,6 +97,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void InsertAdjustment_WhenCallWithInvalidAffId_ReturnError()
         {
             // Arrange
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo());
+
             var controller = CreateAdjustmentController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
@@ -100,15 +112,34 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             Assert.Equal("Affiliate not exists!", data.Message);
         }
 
+        [Fact]
+        public void InsertAdjustment_WhenCallWithNotHavePermission_ReturnError()
+        {
+            // Arrange
+            var param = new AdjustmentParam { AffId = 1271808, Amount = 123 };
+            var authService = new Mock<IAuthService>();
+            authService.Setup(a => a.CheckPermission(It.IsAny<CheckPermissionParam>())).Returns(new ResultInfo { Code = ErrCode.GeneralErrorCode });
+            var controller = CreateAdjustmentController(null, null, authService.Object);
+
+            // Action
+            var result = controller.InsertAdjustment(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+        }
+
         private AdjustmentController CreateAdjustmentController(
             ISessionService sessionService = null,
-            IAdjustmentService adjustmentService = null
+            IAdjustmentService adjustmentService = null,
+            IAuthService authService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeAdjustmentService = adjustmentService ?? Mock.Of<IAdjustmentService>();
+            var fakeauthService = authService ?? Mock.Of<IAuthService>();
 
-            var controller = new AdjustmentController(fakeSessionService, fakeAdjustmentService);
+            var controller = new AdjustmentController(fakeSessionService, fakeAdjustmentService, fakeauthService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

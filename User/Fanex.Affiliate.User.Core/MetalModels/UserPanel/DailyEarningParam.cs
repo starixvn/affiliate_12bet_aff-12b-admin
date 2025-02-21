@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public byte? ProductId { get; set; }
 
+        public int BaseCurrency { get; set; }
+
         public DateTime? MonthDate { get; set; }
 
         [SpParam(Ignored = true)]

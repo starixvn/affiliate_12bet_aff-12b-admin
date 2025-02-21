@@ -14,8 +14,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
         public TermAndConditionControllerTest()
         {
-            SessionService = NSubtituteMockingHelper.FakeSessionService();
-            LanguageService = NSubtituteMockingHelper.FakeLanguageService();
+            SessionService = NSubstituteMockingHelper.FakeSessionService();
+            LanguageService = NSubstituteMockingHelper.FakeLanguageService();
         }
 
         [Fact]

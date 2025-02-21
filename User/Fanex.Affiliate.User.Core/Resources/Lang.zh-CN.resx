@@ -304,7 +304,7 @@
     <value>取消申请</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>12BET合作伙伴 - [{transid}] - 支付申请通知</value>
+    <value>12B 合作伙伴—[{transid}]—已收到付款申请</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>维德角岛</value>
@@ -439,7 +439,7 @@
     <value>丹麦</value>
   </data>
   <data name="Deposit" xml:space="preserve">
-    <value>存款</value>
+    <value>已存款</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>描述</value>
@@ -1018,7 +1018,7 @@
     <value>申请表格</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12BET合作伙伴 - 您的申请</value>
+    <value>12B 合作伙伴—已收到申请 </value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>感谢您提交申请。&lt;br /&gt;
@@ -1038,7 +1038,7 @@
     <value>提款金额</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>输入要求的金额 ($美金)</value>
+    <value>输入要求的金额</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>要求提款 </value>
@@ -1167,13 +1167,13 @@
     <value>主旨</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12BET合作伙伴 - 您的登录详情</value>
+    <value>12B 合作伙伴—您的登录信息</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>主题无效</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12BET合作伙伴 - 您的新密码</value>
+    <value>12B 合作伙伴—您的新密码</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
@@ -1359,13 +1359,13 @@
     <value>您的新密码</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>您的登录详情</value>
+    <value>您的登录信息</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>支付申请通知</value>
+    <value>已收到付款申请</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>您的加盟申请</value>
+    <value>已收到申请 </value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET 娱乐城</value>
@@ -1524,7 +1524,7 @@
     <value>存款手续费</value>
   </data>
   <data name="CommRate" xml:space="preserve">
-    <value>佣金比例</value>
+    <value>子代理佣金比例</value>
   </data>
   <data name="CommShorted" xml:space="preserve">
     <value>佣金</value>
@@ -1837,7 +1837,7 @@
     <value>$1及以上</value>
   </data>
   <data name="RevenueShare" xml:space="preserve">
-    <value>佣金分成</value>
+    <value>收入占比</value>
   </data>
   <data name="CambodiaSupport" xml:space="preserve">
     <value>柬埔寨客服</value>
@@ -1864,7 +1864,7 @@
     <value>MMK</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
-    <value>新注册会员</value>
+    <value>新的注册</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
     <value>感谢您与我们联系. &lt;br /&gt;
@@ -1902,13 +1902,13 @@
     <value>总投注额</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>核实账户信息</value>
+    <value>验证码</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>玩家</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>12BET合作伙伴 - 验证账户细节</value>
+    <value>12B 合作伙伴—验证码</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>新注册 / 存款 会员</value>
@@ -1950,7 +1950,7 @@
     <value>复制二维码</value>
   </data>
   <data name="SaveQR" xml:space="preserve">
-    <value>储存二维码</value>
+    <value>保存二维码</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>复制</value>
@@ -2122,9 +2122,6 @@
   </data>
   <data name="FdmExtraComm" xml:space="preserve">
     <value>首次存款新会员额外佣金</value>
-  </data>
-  <data name="TotalCommission" xml:space="preserve">
-    <value>总佣金</value>
   </data>
   <data name="Hindi" xml:space="preserve">
     <value>印地语</value>
@@ -2365,5 +2362,194 @@
 这个合作伙伴计画加入容易，&lt;br/&gt;
 而且佣金支付一直都很稳定。&lt;br/&gt;
 这是一个稳固的合作伙伴关系。</value>
+  </data>
+  <data name="GGR" xml:space="preserve">
+    <value>博彩收入（GGR）</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>首存日期</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>博彩总收入</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>佣金盈利</value>
+  </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>次级合作伙伴佣金占比</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>在多组中所占比例最高的%</value>
+  </data>
+  <data name="CurrencyLabel" xml:space="preserve">
+    <value>USD</value>
+  </data>
+  <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
+    <value>需要验证电子邮件地址</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>子类别</value>
+  </data>
+  <data name="ActivePlayers" xml:space="preserve">
+    <value>活跃会员人数</value>
+  </data>
+  <data name="SubAffDownline" xml:space="preserve">
+    <value>次级合作伙伴下线</value>
+  </data>
+  <data name="SubAffEarning" xml:space="preserve">
+    <value>次级合作伙伴收益</value>
+  </data>
+  <data name="SubAffiliate" xml:space="preserve">
+    <value>次级合作伙伴</value>
+  </data>
+  <data name="MinRequired" xml:space="preserve">
+    <value>最低需求</value>
+  </data>
+  <data name="Rebate" xml:space="preserve">
+    <value>返利</value>
+  </data>
+  <data name="DepositFee" xml:space="preserve">
+    <value>存款手续费</value>
+  </data>
+  <data name="WithdrawalFee" xml:space="preserve">
+    <value>提款手续费</value>
+  </data>
+  <data name="ApprovalDate" xml:space="preserve">
+    <value>审核日期</value>
+  </data>
+  <data name="NumberOfActivePlayers" xml:space="preserve">
+    <value>活跃会员人数</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="SuspensionDate" xml:space="preserve">
+    <value>暂停日期</value>
+  </data>
+  <data name="SuspensionSatus" xml:space="preserve">
+    <value>暂停状态</value>
+  </data>
+  <data name="SubAffDetail" xml:space="preserve">
+    <value>次级合作伙伴详情</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>选择全部</value>
+  </data>
+  <data name="BaseCurrency" xml:space="preserve">
+    <value>基准货币</value>
+  </data>
+  <data name="RevenueShareByTurnover" xml:space="preserve">
+    <value>按流水计算收入占比</value>
+  </data>
+  <data name="RevenueShareByWinloss" xml:space="preserve">
+    <value>按输赢结果计算收入占比</value>
+  </data>
+  <data name="UncalculatedCommission" xml:space="preserve">
+    <value>未计算的收入占比</value>
+  </data>
+  <data name="CurrentCommission" xml:space="preserve">
+    <value>当前收入占比</value>
+  </data>
+  <data name="AffiliateCurrency" xml:space="preserve">
+    <value>合作伙伴货币</value>
+  </data>
+  <data name="DefaultBaseCurrency" xml:space="preserve">
+    <value>默认基准货币</value>
+  </data>
+  <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
+    <value>报告中显示的货币单位</value>
+  </data>
+  <data name="EarningBy" xml:space="preserve">
+    <value>收入来源</value>
+  </data>
+  <data name="P2pRevenueShare" xml:space="preserve">
+    <value>点对点收入占比</value>
+  </data>
+  <data name="RoyaltyFee" xml:space="preserve">
+    <value>权利金</value>
+  </data>
+  <data name="Winloss" xml:space="preserve">
+    <value>输赢结果</value>
+  </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>您输入的付款账户不存在，请检查后再试一次。</value>
+  </data>
+  <data name="UserNameSuspended" xml:space="preserve">
+    <value>您输入的付款账户已暂停使用，请检查后再试一次。</value>
+  </data>
+  <data name="UserNameClosed" xml:space="preserve">
+    <value>您输入的付款账户已关闭，请检查后再试一次。</value>
+  </data>
+  <data name="MarketLinkStatistics" xml:space="preserve">
+    <value>营销页面统计</value>
+  </data>
+  <data name="PageName" xml:space="preserve">
+    <value>页面名称</value>
+  </data>
+  <data name="IncludeInActiveLink" xml:space="preserve">
+    <value>包含无效的跟踪链接</value>
+  </data>
+  <data name="SubAffiliateLink" xml:space="preserve">
+    <value>次级合作伙伴链接</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>添加...</value>
+  </data>
+  <data name="AffiliateLinkType" xml:space="preserve">
+    <value>链接类型</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>渠道</value>
+  </data>
+  <data name="TrackingAndQrCode" xml:space="preserve">
+    <value>跟踪链接及二维码</value>
+  </data>
+  <data name="MarketingPage" xml:space="preserve">
+    <value>营销页面</value>
+  </data>
+  <data name="EnterChannel" xml:space="preserve">
+    <value>请输入渠道名称：</value>
+  </data>
+  <data name="AddChannelSuccess" xml:space="preserve">
+    <value>添加渠道成功</value>
+  </data>
+  <data name="ConfirmActiveLink" xml:space="preserve">
+    <value>确定是否执行此操作吗？确认后将激活此跟踪链接。</value>
+  </data>
+  <data name="ConfirmDeactiveLink" xml:space="preserve">
+    <value>确定是否执行此操作吗？确认后将停用此跟踪链接。</value>
+  </data>
+  <data name="NumberOfLink" xml:space="preserve">
+    <value>链接数量</value>
+  </data>
+  <data name="CopyQRCode" xml:space="preserve">
+    <value>复制二维码</value>
+  </data>
+  <data name="SaveQRCode" xml:space="preserve">
+    <value>保存二维码</value>
+  </data>
+  <data name="SearchAndGenQR" xml:space="preserve">
+    <value>搜索和生成</value>
+  </data>
+  <data name="MediaGallery" xml:space="preserve">
+    <value>媒体库</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="InvalidLink" xml:space="preserve">
+    <value>您输入的链接无效，&lt;br /&gt;请联系客服部门或</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>点击此处。</value>
+  </data>
+  <data name="RedirectOldLink" xml:space="preserve">
+    <value>点击&lt;a href="{0}"&gt;此处&lt;/a&gt;访问旧合作伙伴网站。</value>
+  </data>
+  <data name="PreviousSystemBalanceDescription" xml:space="preserve">
+    <value>从旧系统结转的账户余额。</value>
   </data>
 </root>

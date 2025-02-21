@@ -2,14 +2,7 @@
     var _pageSize = 20;
     var _pageIndex = 0;
     var _selectedPage;
-    var _isReportByCountry;
-    var _selectedReportByValue;
-    const ReportByCountry = "Country";
-    let countrySelector = null;
-
-    function initCountrySelector() {
-        countrySelector = $('#country').multipleSelector();
-    }
+    var _selectedLanguage;
 
     function initPager() {
         $("#statisticsDetailPager").pager({
@@ -49,7 +42,6 @@
         initialize: function () {
             initDatePicker('FromDate', 'fromPicker');
             initDatePicker('ToDate', 'toPicker');
-            initCountrySelector();
             _me.initEvent();
         },
 
@@ -62,9 +54,7 @@
                     fromDate: $('#FromDate').val(),
                     toDate: $('#ToDate').val(),
                     deviceType: $('#DeviceType').val(),
-                    reportBy: $('#ReportBy').val(),
                     sportCode: $('#SportCode').val(),
-                    countryCodes: countrySelector.getSelectedValues(),
                     languageCode: $('#Language').val()
                 };
                 _me.getMainView(params);
@@ -72,23 +62,12 @@
 
             $('#statisticsTable').on('click', '.statisticsItem', function () {
                 _selectedPage = $(this).data('page');
-                _isReportByCountry = ($(this).data('isreportbycountry')).toLowerCase() == 'true';
-                _selectedReportByValue = $(this).data('reportbyvalue');
+                _selectedLanguage = $(this).data('language');
                 _pageIndex = 0;
                 var params = _me.getDetailParam();
 
                 $('#statisticsDetailPager').show();
                 _me.getDetailView(params, initPager);
-            });
-
-            $('#ReportBy').on('change', function () {
-                if ($(this).val() == ReportByCountry) {
-                    $('.country-filter').show();
-                    $('.language-filter').hide();
-                } else {
-                    $('.country-filter').hide();
-                    $('.language-filter').show();
-                }
             });
         },
 
@@ -113,7 +92,7 @@
         },
 
         getDetailView: function (params, onSuccess) {
-            if (!params.sportCode || !(params.languageCode || params.countryCode)) {
+            if (!params.sportCode || !params.languageCode) {
                 return;
             }
 
@@ -141,8 +120,7 @@
         getDetailParam: function () {
             return {
                 sportCode: _selectedPage,
-                countryCode: _isReportByCountry ? _selectedReportByValue : "",
-                languageCode: _isReportByCountry ? "" : _selectedReportByValue,
+                languageCode: _selectedLanguage,
                 fromDate: $('#FromDate').val(),
                 toDate: $('#ToDate').val(),
                 deviceType: $('#DeviceType').val(),

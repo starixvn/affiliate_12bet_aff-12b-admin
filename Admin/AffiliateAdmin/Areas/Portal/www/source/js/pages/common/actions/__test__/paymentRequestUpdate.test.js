@@ -27,7 +27,7 @@ describe('paymentRequestUpdate actions', () => {
         expect(result).toEqual(null);
     })
 
-    
+
     it('should create action to updatePaymentRequest with correct parameter', async () => {
         const expectedResponse = { data: { IsSuccessful: true, Message: '' }, status: 200 };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
@@ -55,7 +55,7 @@ describe('paymentRequestUpdate actions', () => {
             AdminDesc: null,
             AffDesc: null
         }
-        
+
         const result = await updatePaymentRequest(param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/PaymentRequest/UpdatePaymentRequest', param);

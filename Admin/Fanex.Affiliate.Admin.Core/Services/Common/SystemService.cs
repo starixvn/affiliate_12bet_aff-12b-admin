@@ -1,63 +1,49 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.Repository.Common;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
-    public class SystemService : ISystemService
+    public class SystemService : BaseDynamicService, ISystemService
     {
-        private readonly ISystemRepository _systemService;
-        private readonly ISessionService _sessionService;
+        public SystemService(
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
-        public SystemService(ISystemRepository systemService, ISessionService sessionService)
+        public IEnumerable<Language> GetLanguageList()
         {
-            _systemService = systemService;
-            _sessionService = sessionService;
-        }
+            const string SpKey = "Aff_Market_Sel";
 
-        public IEnumerable<Language> GetInChangeMarkets()
-        {
-            return GetAllInChangeMarkets().Where(l => !l.LanguageCode.Equals("te-IN"));
-        }
-
-        public IEnumerable<Language> GetAllInChangeMarkets()
-        {
-            var languages = _systemService.GetLanguageList();
-            var inChangeMarket = _sessionService.UserClaim.FindAll(Constants.Function.InChargeMarket).Select(c => c.Value);
-            return languages.Where(l => inChangeMarket.Contains(l.LanguageCode));
+            return FetchTData<Language>(SpKey);
         }
 
         public IEnumerable<Product> GetProductList()
         {
-            return _systemService.GetProductList();
+            const string SpKey = "Aff_ProductList_Sel";
+
+            return FetchTData<Product>(SpKey);
         }
 
-        public IEnumerable<AffType> GetAffTypeList()
+        public IEnumerable<Currency> GetBaseCurrencies()
         {
-            return _systemService.GetAffTypeList();
+            const string SpKey = "Aff_BaseCurrency_Sel";
+
+            return FetchTData<Currency>(SpKey);
         }
 
-        public IEnumerable<Country> GetCountryList()
+        public IEnumerable<Currency> GetCurrencies()
         {
-            return _systemService.GetCountryList();
+            const string SpKey = "Aff_Currency_Sel";
+
+            return FetchTData<Currency>(SpKey);
         }
 
-        public IEnumerable<TargetCountry> GetTargetCountryListByUser()
+        public IEnumerable<Currency> GetPaymentCurrencies()
         {
-            return _systemService.GetTargetCountryList(_sessionService.UserId);
-        }
+            const string SpKey = "Aff_PaymentCurrency_Sel";
 
-        public IEnumerable<Language> GetTargetLanguageListByUser()
-        {
-            return GetAllTargetLanguageListByUser().Where(l => !l.LanguageCode.Equals("te-IN"));
-        }
-
-        public IEnumerable<Language> GetAllTargetLanguageListByUser()
-        {
-            return _systemService.GetTargetLanguageList(_sessionService.UserId);
+            return FetchTData<Currency>(SpKey);
         }
 
         public void SetCulture(string languageCode)

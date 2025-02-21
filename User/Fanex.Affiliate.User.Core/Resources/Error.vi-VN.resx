@@ -187,7 +187,7 @@
     <value>Địa chỉ Email không quá 50 ký tự.</value>
   </data>
   <data name="AnswerMaxLength" xml:space="preserve">
-    <value>Câu trả lời của bạn không quá 250 ký tự.</value>
+    <value>Câu trả lời của bạn không quá 300 ký tự.</value>
   </data>
   <data name="UserNameMaxLength" xml:space="preserve">
     <value>Tên đăng nhập không quá 50 ký tự.</value>
@@ -209,5 +209,23 @@
   </data>
   <data name="InvalidEmoji" xml:space="preserve">
     <value>Biểu tượng cảm xúc không hợp lệ.</value>
+  </data>
+  <data name="YourAccountHasBeenSuspended" xml:space="preserve">
+    <value>Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Quản lý tài khoản để được hỗ trợ.</value>
+  </data>
+  <data name="UserNameMaxLength30" xml:space="preserve">
+    <value>Tên người dùng không được nhiều hơn 30 ký tự</value>
+  </data>
+  <data name="ErrInValidAff" xml:space="preserve">
+    <value>Đại lý không hợp lệ</value>
+  </data>
+  <data name="ErrChannelExisted" xml:space="preserve">
+    <value>Tên kênh đã tồn tại. Hãy kiểm tra lại lần nữa.</value>
+  </data>
+  <data name="ErrInternalError" xml:space="preserve">
+    <value>Lỗi nội bộ. Vui lòng liên hệ quản trị viên.</value>
+  </data>
+  <data name="NameToLong20" xml:space="preserve">
+    <value>Tên kênh không thể vượt quá 20 ký tự. Vui lòng thử lại</value>
   </data>
 </root>

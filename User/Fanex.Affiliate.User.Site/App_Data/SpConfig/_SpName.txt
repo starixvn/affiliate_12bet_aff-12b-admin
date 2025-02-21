@@ -2,13 +2,8 @@
 
 // Generated helper templates
 // Generated items
-// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.12betuser-euro.production.xml
-// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.12betuser-asian.production.xml
-// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.12betuser-euro.uat.xml
-// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.12betuser-asian.uat.xml
-// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.12betuser-euro.sit.xml
-// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.12betuser-asian.sit.xml
-// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.12betuser-euro.local.xml
-// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.12betuser-asian.local.xml
-// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.xml
+// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.user-12b.production.xml
+// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.user-12b.uat.xml
+// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.user-12b.sit.xml
+// Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.user-12b.local.xml
 // Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.xml

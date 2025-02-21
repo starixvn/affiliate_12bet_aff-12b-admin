@@ -1,28 +1,29 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.System;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.Repository;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Web;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class SystemService : ISystemService
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
+    using System.Web;
+    using Constants;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using DTO.UserPanel;
+    using DTO.UserPanel.MediaGallery;
+    using Extensions;
+
+    public class SystemService : BaseDynamicService, ISystemService
     {
         private readonly ISessionService _sessionService;
-        private readonly ISystemRepository _systemRepository;
         private readonly IMemoryCacheService _cacheService;
 
         public SystemService(
-            ISystemRepository systemRepository,
+            IDynamicRepository dynamicRepository,
             ISessionService sessionService,
-            IMemoryCacheService cacheService)
+            IMemoryCacheService cacheService) : base(dynamicRepository)
         {
-            _systemRepository = systemRepository;
             _sessionService = sessionService;
             _cacheService = cacheService;
         }
@@ -49,61 +50,42 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return SystemLanguage.GetCurrentShortedLanguage(favoriteLanguage);
         }
 
-        public IEnumerable<TargetCountry> GetSystemTargetCountries()
+        public IEnumerable<Language> GetSupportedLanguages(bool? isInternal = null)
         {
-            var isInternal = _sessionService.IsInternal;
-            var cacheKey = isInternal ? CacheKey.InternalTargetCountryList : CacheKey.TargetCountryList;
+            return GetAllLanguages(isInternal).Where(l => !l.Code.Equals("te-IN"));
+        }
 
-            var targetCountryList = _cacheService.Get<IEnumerable<TargetCountry>>(cacheKey);
-            if (targetCountryList == null)
+        public IEnumerable<Language> GetLanguageList(bool? isInternal = null)
+        {
+            var languageList = _cacheService.Get<IEnumerable<Language>>(CacheKey.LanguageList);
+
+            if (languageList == null)
             {
-                targetCountryList = _systemRepository.GetTargetCountryList(isInternal, _sessionService.UserSession?.UserId);
-                _cacheService.Set(cacheKey, targetCountryList);
+                languageList = GetAllLanguages(isInternal);
+                _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 
-            return targetCountryList ?? new List<TargetCountry>();
+            return languageList;
         }
 
-        public IEnumerable<TargetLanguage> GetSystemTargetLanguages()
+        private IEnumerable<Language> GetAllLanguages(bool? isInternal = null)
         {
-            var isInternal = _sessionService.IsInternal;
-            var cacheKey = isInternal ? CacheKey.InternalTargetLanguageList : CacheKey.TargetLanguageList;
+            var isForInternal = isInternal ?? _sessionService.IsInternal;
+            var languages = FetchTData<LanguageType>(new GetLanguageListCriteria(isForInternal));
 
-
-            var targetLanguageList = _cacheService.Get<IEnumerable<TargetLanguage>>(cacheKey);
-            if (targetLanguageList == null)
-            {
-                targetLanguageList = GetAllSystemTargetLanguages().Where(l => !l.LanguageCode.Equals("hi") && !l.LanguageCode.Equals("te-IN"));
-                _cacheService.Set(cacheKey, targetLanguageList);
-            }
-
-            return targetLanguageList ?? new List<TargetLanguage>();
+            return languages
+                .Select(l => new Language
+                {
+                    Code = l.MarketId,
+                    DisplayName = l.DisplayName,
+                    EnglishName = l.MarketName,
+                    NativeName = l.MarketNativeName,
+                    ShortedCode = l.ShortedCode
+                });
         }
 
-
-        public IEnumerable<TargetLanguage> GetAllSystemTargetLanguages()
-        {
-            var isInternal = _sessionService.IsInternal;
-            var cacheKey = isInternal ? CacheKey.InternalAllTargetLanguageList : CacheKey.AllTargetLanguageList;
-
-
-            var targetLanguageList = _cacheService.Get<IEnumerable<TargetLanguage>>(cacheKey);
-            if (targetLanguageList == null)
-            {
-                targetLanguageList = _systemRepository.GetTargetLanguageListByCountry(isInternal, userId: _sessionService.UserSession?.UserId);
-                _cacheService.Set(cacheKey, targetLanguageList);
-            }
-
-            return targetLanguageList ?? new List<TargetLanguage>();
-        }
-
-        public IEnumerable<TargetLanguage> GetSystemTargetLanguagesByCountry(string targetCountry)
-        {
-            return _systemRepository.GetTargetLanguageListByCountry(_sessionService.IsInternal, targetCountry, _sessionService.UserSession?.UserId);
-        }
-
-        public bool IsValid(string langCode, bool isAfterLogin = true)
-            => !string.IsNullOrWhiteSpace(langCode) && GetSystemTargetLanguages().Any(l => Equals(l.LanguageCode, langCode));
+        public bool IsValid(string langCode)
+            => !string.IsNullOrWhiteSpace(langCode) && GetLanguageList().Any(l => Equals(l.Code, langCode));
 
         public void SetCulture(string languageCode)
         {
@@ -112,6 +94,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             Thread.CurrentThread.CurrentCulture.DateTimeFormat = CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat;
             Thread.CurrentThread.CurrentCulture.NumberFormat = CultureInfo.CreateSpecificCulture("en-US").NumberFormat;
+        }
+
+        public IEnumerable<Currency> GetBaseCurrencyList()
+        {
+            return FetchTData<Currency>(new GetBaseCurrencyListCriteria());
         }
     }
 }

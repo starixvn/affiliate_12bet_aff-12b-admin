@@ -1,17 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
-    [Serializable]
     public class ViewLog
     {
-        public int Id { get; set; }
+        public int LogId { get; set; }
 
-        [JsonIgnore]
         public DateTime Date { get; set; }
 
-        public string UpdatedBy { get; set; }
+        public string UpdatedName { get; set; }
 
         public string Description { get; set; }
 
@@ -19,6 +16,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Ip { get; set; }
 
-        public string DateText => Date.ToString("MM/dd/yyyy hh:mm:ss tt");
+        public string DateText => Date.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

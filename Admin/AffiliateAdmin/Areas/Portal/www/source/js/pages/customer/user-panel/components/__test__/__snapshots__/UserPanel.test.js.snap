@@ -14,7 +14,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     }
   />
   <Memo(UserPanelMenu)
-    isWaitingApproval={false}
+    isPending={false}
     menuList={
       Array [
         Object {
@@ -28,6 +28,18 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "statementHistory",
           "name": "Statement History",
           "parent": null,
+        },
+        Object {
+          "component": Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(UserPanelItem)",
+            "type": [Function],
+          },
+          "key": "subAffiliate",
+          "name": "",
+          "parent": "statementHistory",
         },
         Object {
           "component": Object {
@@ -64,10 +76,6 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "edit",
           "name": "Edit",
           "parent": null,
-          "renderClaim": Claim {
-            "type": "[AffCustomerEdit]",
-            "value": undefined,
-          },
         },
         Object {
           "component": Object {
@@ -80,16 +88,6 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "note",
           "name": "Note",
           "parent": null,
-          "renderClaim": Array [
-            Claim {
-              "type": "[Note]",
-              "value": undefined,
-            },
-            Claim {
-              "type": "[MarketingTeamNote]",
-              "value": undefined,
-            },
-          ],
         },
         Object {
           "component": Object {
@@ -102,10 +100,6 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "playerDetail",
           "name": "Players Detail",
           "parent": null,
-          "renderClaim": Claim {
-            "type": "[AffPlayerDetail]",
-            "value": undefined,
-          },
         },
         Object {
           "component": Object {
@@ -118,10 +112,6 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "adjustment",
           "name": "Adjustment",
           "parent": null,
-          "renderClaim": Claim {
-            "type": "[AffAdjustment]",
-            "value": "Write",
-          },
         },
         Object {
           "component": Object {
@@ -132,12 +122,8 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
             "type": [Function],
           },
           "key": "member",
-          "name": "Member",
+          "name": "Player",
           "parent": null,
-          "renderClaim": Claim {
-            "type": "[AffMemberDetail]",
-            "value": undefined,
-          },
         },
         Object {
           "component": Object {
@@ -148,12 +134,8 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
             "type": [Function],
           },
           "key": "viewLog",
-          "name": "View Log (Old)",
+          "name": "View Log",
           "parent": null,
-          "renderClaim": Claim {
-            "type": "[ViewLog]",
-            "value": undefined,
-          },
         },
         Object {
           "component": Object {
@@ -210,7 +192,7 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
     }
   />
   <Memo(UserPanelMenu)
-    isWaitingApproval={true}
+    isPending={true}
     menuList={
       Array [
         Object {
@@ -224,10 +206,6 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "edit",
           "name": "Edit",
           "parent": null,
-          "renderClaim": Claim {
-            "type": "[AffCustomerEdit]",
-            "value": undefined,
-          },
         },
         Object {
           "component": Object {
@@ -240,16 +218,6 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "note",
           "name": "Note",
           "parent": null,
-          "renderClaim": Array [
-            Claim {
-              "type": "[Note]",
-              "value": undefined,
-            },
-            Claim {
-              "type": "[MarketingTeamNote]",
-              "value": undefined,
-            },
-          ],
         },
       ]
     }

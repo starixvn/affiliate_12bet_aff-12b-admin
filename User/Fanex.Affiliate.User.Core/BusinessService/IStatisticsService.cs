@@ -1,23 +1,18 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using System.Collections.Generic;
-using System.Web.Mvc;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
+    using System.Collections.Generic;
+    using DTO.UserPanel;
+    using DTO.UserPanel.Statistics;
+    using MetalModels.UserPanel;
+
     public interface IStatisticsService
     {
-        IEnumerable<SelectListItem> GetCountryList(bool isInternal);
-
-        string GetCountryCodes(bool isInternal);
-
         IEnumerable<ReferrerStatistics> GetReferrerStatistics(ReferrerStatisticsParam referrerStatisticsParam);
 
         IEnumerable<ReferrerStatistics> GetStatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam);
 
         IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam);
 
-        IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal);
+        IEnumerable<MarketingPageStatistics> GetMarketingPageStatistics(MarketingPageStatisticsParam param);
     }
 }

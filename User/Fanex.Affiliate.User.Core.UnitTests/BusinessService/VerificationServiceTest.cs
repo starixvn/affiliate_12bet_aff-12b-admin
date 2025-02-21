@@ -1,35 +1,36 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.User.Core.Utilities;
-using NSubstitute;
-using System;
-using System.Security.Cryptography;
-using Xunit;
-
-namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
+    using System;
+    using System.Security.Cryptography;
+    using Commands;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using DTO.VerificationAccount;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Utilities;
+    using MetalModels;
+    using NSubstitute;
+    using TestHelper;
+    using Xunit;
+
     public class VerificationServiceTest
     {
         private readonly ITwoFactorAuthService TwoFactorAuthService;
-        private readonly IAccountRepository AccountRepo;
+        private readonly IAccountService AccountService;
         private readonly IEmailService MailService;
         private readonly ICryptographyService CryptoService;
         private readonly IWrapperUtility WrapperUtility;
-        private readonly IVerificationRepository VerificationRepo;
+        private readonly IDynamicRepository DynamicRepository;
 
         public VerificationServiceTest()
         {
+            DynamicRepository = Substitute.For<IDynamicRepository>();
             TwoFactorAuthService = Substitute.For<ITwoFactorAuthService>();
-            AccountRepo = Substitute.For<IAccountRepository>();
+            AccountService = Substitute.For<IAccountService>();
             MailService = Substitute.For<IEmailService>();
             CryptoService = Substitute.For<ICryptographyService>();
             WrapperUtility = Substitute.For<IWrapperUtility>();
-            VerificationRepo = Substitute.For<IVerificationRepository>();
         }
 
         [Fact]
@@ -37,7 +38,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             var service = CreateService();
             var param = CreateSendCodeParam();
-            var now = new DateTime(2020, 1, 1);
+            var now = DateTimeHelper.CreateDateTime(2020, 1, 1);
             var interval = 10;
             var lastSendTime = now.AddMinutes(-5);
             param.SentCodeTime = lastSendTime.Ticks;
@@ -56,8 +57,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreateSendCodeParam();
             var userInfo = CreateUserInfo();
             userInfo.Email = "anxcj@com.vn";
-            WrapperUtility.GetNowDateTime().Returns(DateTime.Now);
-            AccountRepo.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
+            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Now);
+            AccountService.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
 
             var result = service.SendCode(param);
 
@@ -71,15 +72,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var param = CreateSendCodeParam();
             var userInfo = CreateUserInfo();
             userInfo.SecretKey = null;
-            WrapperUtility.GetNowDateTime().Returns(DateTime.Now);
+            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Now);
             WrapperUtility.GetRandomGenerator().Returns(new Random());
-            AccountRepo.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
+            AccountService.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
             TwoFactorAuthService.GenerateHotp(null, 0).ReturnsForAnyArgs("12345");
-            AccountRepo.CreateSecretKey(0, null).ReturnsForAnyArgs(101, 102);
+            AccountService.CreateSecretKey(0, null).ReturnsForAnyArgs(101, 102);
 
             service.SendCode(param);
 
-            AccountRepo.ReceivedWithAnyArgs(2).CreateSecretKey(0, null);
+            AccountService.ReceivedWithAnyArgs(2).CreateSecretKey(0, null);
             Assert.False(string.IsNullOrWhiteSpace(userInfo.SecretKey));
         }
 
@@ -89,20 +90,20 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var service = CreateService();
             var param = CreateSendCodeParam();
             var userInfo = CreateUserInfo();
-            WrapperUtility.GetNowDateTime().Returns(DateTime.Now);
+            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Now);
             WrapperUtility.GetRandomGenerator().Returns(new Random());
-            AccountRepo.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
+            AccountService.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
             TwoFactorAuthService.GenerateHotp(null, 0).ReturnsForAnyArgs("12345");
 
             service.SendCode(param);
 
-            AccountRepo.DidNotReceiveWithAnyArgs().CreateSecretKey(0, null);
+            AccountService.DidNotReceiveWithAnyArgs().CreateSecretKey(0, null);
         }
 
         [Theory]
-        [InlineData(false)]
-        [InlineData(true)]
-        public void IsValidOtp_WhenLoginFail_UpdateVerificationInfo(bool isOK)
+        [InlineData(100)]
+        [InlineData(0)]
+        public void IsValidOtp_WhenLoginFail_UpdateVerificationInfo(int errCode)
         {
             MockingHelper.SetUpLogEngineEnviroment();
             var service = CreateService();
@@ -113,19 +114,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 FailedLoginCount = 1
             };
 
-            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(verificationInfo);
-            VerificationRepo.UpdateVerificationInfo(null).ReturnsForAnyArgs(new ResultInfo { IsOk = isOK });
+            DynamicRepository.Get<VerificationInfo>(Arg.Any<GetLoginInfoByUserDeviceCriteria>()).ReturnsForAnyArgs(verificationInfo);
+            DynamicRepository.Execute(Arg.Any<UpdateVerificationInfoCommand>())
+                .Returns(0)
+                .AndDoes(call =>
+                {
+                    var command = call.Arg<UpdateVerificationInfoCommand>();
+                    command.ErrCode = errCode;
+                });
 
             service.IsValidOtp(param);
 
-            VerificationRepo.ReceivedWithAnyArgs().UpdateVerificationInfo(null);
+            DynamicRepository.ReceivedWithAnyArgs().Execute(Arg.Any<UpdateVerificationInfoCommand>());
         }
 
         [Theory]
-        [InlineData(false)]
-        [InlineData(true)]
-        public void IsValidOtp_WhenLoginOkAndUseValidOtp_InsertUserDeviceToRepo(bool isOK)
+        [InlineData(100)]
+        [InlineData(0)]
+        public void IsValidOtp_WhenLoginOkAndUseValidOtp_InsertUserDeviceToRepo(int errCode)
         {
+            MockingHelper.SetUpLogEngineEnviroment();
             var service = CreateService();
             var param = CreateVerificationOtpParam();
             var authMsg = param.LoginInfo + param.HashKey + param.Captcha + param.OtpCode;
@@ -136,13 +144,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 FailedLoginCount = null
             };
 
-            TwoFactorAuthService.VerifyHotp(null, 0, null).ReturnsForAnyArgs(true);
-            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(verificationInfo);
-            VerificationRepo.InsertUserDeviceInfo(null).ReturnsForAnyArgs(new ResultInfo { IsOk = isOK });
+            DynamicRepository.Get<VerificationInfo>(Arg.Any<GetLoginInfoByUserDeviceCriteria>()).ReturnsForAnyArgs(verificationInfo);
+            DynamicRepository.Execute(Arg.Any<InsertUserDeviceInfoCommand>())
+                .Returns(0)
+                .AndDoes(call =>
+                {
+                    var command = call.Arg<InsertUserDeviceInfoCommand>();
+                    command.ErrCode = errCode;
+                });
+            TwoFactorAuthService.VerifyHotp(param.SecretKey, param.Counter, param.OtpCode).Returns(true);
 
             var result = service.IsValidOtp(param);
 
-            VerificationRepo.ReceivedWithAnyArgs().InsertUserDeviceInfo(null);
+            DynamicRepository.ReceivedWithAnyArgs().Execute(Arg.Any<InsertUserDeviceInfoCommand>());
             Assert.True(result);
         }
 
@@ -160,11 +174,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
 
             TwoFactorAuthService.VerifyHotp(null, 0, null).ReturnsForAnyArgs(false);
-            VerificationRepo.GetLoginInfoByUserDevice(0, null, null).ReturnsForAnyArgs(verificationInfo);
+            DynamicRepository.Get<VerificationInfo>(Arg.Any<GetLoginInfoByUserDeviceCriteria>()).ReturnsForAnyArgs(verificationInfo);
 
             var result = service.IsValidOtp(param);
 
-            VerificationRepo.DidNotReceiveWithAnyArgs().InsertUserDeviceInfo(null);
+            DynamicRepository.DidNotReceiveWithAnyArgs().Execute(Arg.Any<InsertUserDeviceInfoCommand>());
             Assert.False(result);
         }
 
@@ -202,7 +216,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 UserAgent = "chrome"
             };
 
-        private UserInfo CreateUserInfo()
+        private static UserInfo CreateUserInfo()
             => new UserInfo
             {
                 AffId = 1,
@@ -215,7 +229,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 UserName = "username"
             };
 
-        private SendCodeParam CreateSendCodeParam()
+        private static SendCodeParam CreateSendCodeParam()
             => new SendCodeParam
             {
                 AffId = 1,
@@ -227,6 +241,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             };
 
         private VerificationService CreateService()
-            => new VerificationService(TwoFactorAuthService, AccountRepo, MailService, CryptoService, WrapperUtility, VerificationRepo);
+            => new VerificationService(DynamicRepository, TwoFactorAuthService, MailService, CryptoService, WrapperUtility, AccountService);
     }
 }

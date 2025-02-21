@@ -1,9 +1,9 @@
-﻿using Fanex.Affiliate.User.Core.Enum;
-using Fanex.Affiliate.User.Core.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using Fanex.Affiliate.User.Core.Enum;
+using Fanex.Affiliate.User.Core.Extensions;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -33,8 +33,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string EmailBackgroundUrl => GetValue("EmailBackgroundUrl");
 
-        public string MediaScriptUrl => GetValue("MediaScriptUrl");
-
         public string MailContact => GetValue("MailContact");
 
         public string MailCc => GetValue("MailCc");
@@ -59,10 +57,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string ResourceDomain => GetValue("ResourceDomain");
 
-        public string CcMail => GetValue("CcMail");
-
-        public string BccMail => GetValue("BccMail");
-
         public string AppMailAddress => GetValue("app_mail_address");
 
         public string AppMailId => GetValue("app_mail_id");
@@ -71,13 +65,27 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public IEnumerable<string> MarketingLandingPages => GetValue("MarketingLandingPages").Split(',');
 
-        public string LicenseeCustDbApiUrl => GetValue("LicenseeCustDbApiUrl");
+        public string MemberSiteApiUrl => GetValue("MemberSiteApiUrl");
 
-        public bool IsUseProxyToGetLicenseeCustDbApi => Convert.ToBoolean(GetValue("IsUseProxyToGetLicenseeCustDbApi"));
+        public string AccountSiteApiUrl => GetValue("AccountSiteApiUrl");
 
-        public string LicenseeCustDbApiProxyUrl => GetValue("LicenseeCustDbApiProxyUrl");
+        public int MemberSiteId => Convert.ToInt32(GetValue("MemberSiteId"));
 
-        public string LicenseeCustDbApiAuthenKey => GetValue("LicenseeCustDbApiAuthenKey");
+        public string MemberSiteProxyUrl => GetValue("MemberSiteProxyUrl");
+
+        public string MemberSiteApiUsername => GetValue("MemberSiteApiUsername");
+
+        public string MemberSiteApiPassword => GetValue("MemberSiteApiPassword");
+
+        public int MemberSiteApiTokenCacheTimeOut => Convert.ToInt32(GetValue("MemberSiteApiTokenCacheTimeOut"));
+
+        public bool IsUseMemberSiteProxy => Convert.ToBoolean(GetValue("IsUseProxyToGetMemberSiteApi"));
+
+        public string SubAffTextLinkTemplate => GetValue("SubAffTextLinkTemplate");
+
+        public string RedirectToOldVersLink => GetValue("RedirectToOldVersLink");
+
+        public DateTime DomainAvailableFromDate => Convert.ToDateTime(GetValue("DomainAvailableFromDate"));
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }

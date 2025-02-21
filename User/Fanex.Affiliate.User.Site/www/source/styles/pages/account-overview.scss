@@ -2,6 +2,9 @@
 @import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
 @import "../scss/components/pager";
+@import '../scss/components/table-sticky';
+@import '../scss/components/toogle-button';
+@import '../scss/components/qr_code';
 
 .account-overview {
     .menu {
@@ -96,7 +99,7 @@
                 justify-content: flex-start;
                 align-items: center;
                 height: 70px;
-                width: 570px;
+                width: 710px;
                 border-radius: 5px;
                 margin-bottom: 10px;
 
@@ -123,10 +126,19 @@
                     background: -o-linear-gradient(180deg, #C26A17 0%, #9E5613 100%);
                     background: linear-gradient(180deg, #C26A17 0%, #9E5613 100%);
                 }
+
+                &-four {
+                    background: -ms-linear-gradient(180deg, #158469 0%, #2C9078 100%);
+                    background: -webkit-linear-gradient(180deg, #158469 0%, #2C9078 100%);
+                    background: -moz-linear-gradient(180deg, #158469 0%, #2C9078 100%);
+                    background: -o-linear-gradient(180deg, #158469 0%, #2C9078 100%);
+                    background: linear-gradient(180deg, #158469 0%, #2C9078 100%);
+                }
             }
 
             .img-icon {
                 padding: 10px;
+                min-width: 60px;
             }
 
             .info-panel {
@@ -137,11 +149,15 @@
                 text-align: center;
                 color: #fff;
                 border-left: 1px solid #f9f9f9;
-                width: 250px;
+                width: 330px;
 
                 &-title {
                     width: 100%;
                     font-size: 1.5rem;
+
+                    &.vi-VN {
+                        font-size: 1.4rem;
+                    }
                 }
 
                 &-content {
@@ -262,7 +278,17 @@
                         }
                     }
 
+                    #overview-table {
+                        tr {
+                            min-width: 1640px;
+                        }
+                    }
+
                     #player-detail-table {
+                        tr {
+                            min-width: 1340px;
+                        }
+
                         .th {
                             cursor: pointer;
                         }
@@ -309,13 +335,25 @@
                             }
                         }
                     }
+
+                    #sub-aff-detail-table {
+                        tr {
+                            min-width: 1335px;
+                        }
+                    }
                 }
             }
         }
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 360px) {
+    .summary-content .dashboard-section .info-panel-title.vi-VN {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 750px) {
     .account-overview {
         .summary {
             &-content {
@@ -393,6 +431,41 @@
                     }
                 }
             }
+        }
+    }
+}
+
+
+@media (min-width: 1420px) {
+    .dashboard-section {
+        display: flex;
+
+        & .dashboard-section-col {
+            width: 50%;
+        }
+    }
+}
+
+
+.wrapper-layout-after-login {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+
+    @include TableAndMobile {
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+
+    @include Mobile {
+        gap: 12px;
+    }
+
+    .column {
+        width: 50%;
+
+        @include TableAndMobile {
+            width: 100%;
         }
     }
 }

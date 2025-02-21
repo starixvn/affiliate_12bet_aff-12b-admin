@@ -1,19 +1,19 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
-{
-    using Fanex.Affiliate.Admin.Core.Attributes;
-    using Fanex.Affiliate.Admin.Core.Constants;
-    using Fanex.Affiliate.Admin.Core.MetaModels;
-    using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-    using Fanex.Affiliate.Admin.Core.Services.Common;
-    using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-    using System.Web.Mvc;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using System.Web.Mvc;
 
-    [FunctionAuthorize(FunctionName = Function.Note)]
+namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
+{
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class AffNoteController : NoteBaseController
     {
         public AffNoteController(
             ISessionService sessionService,
-            INoteServiceBase noteService) : base(sessionService, noteService, NoteType.AffNote)
+            INoteBaseService noteService) : base(sessionService, noteService, NoteSpPrefix.AffNote)
         { }
 
         [HttpPost]
@@ -25,6 +25,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Note)]
         public ActionResult GetAffNoteContentById(int affId, int noteId)
         {
             return GetNoteContentById(affId, noteId);

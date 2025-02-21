@@ -21,8 +21,6 @@ describe('player detail - Filter - connect', () => {
         const expectedResult = {
             param: { abc: 123 },
             affId: 1271808,
-            hasTurnOverPermission: true,
-            isDisplayExportExcelBtn: true,
             today: '25/09/2019'
         };
         const state = {
@@ -33,7 +31,6 @@ describe('player detail - Filter - connect', () => {
             playerDetail: {
                 param: { abc: 123 },
             },
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 
@@ -47,7 +44,9 @@ describe('player detail - Filter - connect', () => {
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
             setParam: actions['setParam'],
-            exportExcel: actions['exportExcel'],
+            fetchData: actions['fetchData'],
+            getCurrencies: actions['getCurrencies'],
+            setSortingColumn: actions['setSortingColumn'],
             getProductList: actions['getProductList']
         }
 

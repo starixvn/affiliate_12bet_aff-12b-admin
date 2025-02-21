@@ -3,20 +3,6 @@ import { Filter } from '../Filter';
 import { shallow } from 'enzyme';
 
 describe('daily earning - components - Filter', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-
-    const defaultProps = {
-        param: {
-            affId: 1271808,
-            monthDate: "Jan-2019",
-            productId: 0
-        },
-        setParam: jest.fn(),
-        getProductList: jest.fn(() => productList)
-    }
-
     const productList = [
         {
             ProductId: 1,
@@ -32,52 +18,93 @@ describe('daily earning - components - Filter', () => {
         }
     ]
 
+    const baseCurrencyList = [
+        {
+            ExchangeId: 20,
+            Code: 'UUS'
+        }
+    ]
+
+    const currencyList = [
+        {
+            key: 20,
+            name: 'UUS',
+            checked: true
+        }
+    ]
+
+    const defaultProps = {
+        param: {
+            affId: 1271808,
+            monthDate: "Jan-2019",
+            productId: 0,
+            baseCurrencyId: '',
+            currencyIds: ''
+        },
+        setParam: jest.fn(),
+        productList,
+        currencyList,
+        baseCurrencyList
+    }
+
     it('render correctly', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
 
         expect(wrapper).toMatchSnapshot();
     });
 
-    it('render correctly with has productList', async () => {
-        const wrapper = await shallow(<Filter {...defaultProps} />);
+    it('render correctly with empty', async () => {
+        const props = Object.assign({}, defaultProps, {
+            productList: null,
+            currencyList: null,
+            baseCurrencyList: null
+        })
+        const wrapper = await shallow(<Filter {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
 
-    it('componentDidMount - should call handleSetParam and _fetchProductList', () => {
+    it('handleChangeProduct - should call setState and handleSetParam', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
+        wrapper.setState = jest.fn((obj, func) => func && func());
         const instance = wrapper.instance();
         instance.handleSetParam = jest.fn();
-        instance._fetchProductList = jest.fn();
 
-        instance.componentDidMount();
+        instance.handleChangeProduct(1);
 
-        expect(instance.handleSetParam).toHaveBeenCalledWith(0);
-        expect(instance._fetchProductList).toHaveBeenCalled();
+        expect(wrapper.setState).toHaveBeenCalledWith({ selectedProduct: 1 }, expect.any(Function));
+        expect(wrapper.instance().handleSetParam).toHaveBeenCalled();
     });
 
-    it('handleChangeProduct - should call setState and handleSetParam when change product select', () => {
-        const event = {
-            target: {
-                value: 1
-            }
-        }
+    it('handleChangeBaseCurrency - should call setState and handleSetParam', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
-        wrapper.setState = jest.fn();
-        wrapper.instance().handleSetParam = jest.fn();
+        wrapper.setState = jest.fn((obj, func) => func && func());
+        const instance = wrapper.instance();
+        instance.handleSetParam = jest.fn();
 
-        wrapper.find('Input[type="select"][name="Product"][id="Product"]').simulate('change', event)
+        instance.handleChangeBaseCurrency({ target: {value: '123'}});
 
-        expect(wrapper.setState).toHaveBeenCalledWith({ selectedProduct: 1 });
-        expect(wrapper.instance().handleSetParam).toHaveBeenCalledWith(1);
+        expect(wrapper.setState).toHaveBeenCalledWith({ selectedBaseCurrency: 123 }, expect.any(Function));
+        expect(wrapper.instance().handleSetParam).toHaveBeenCalled();
+    });
+
+    it('handleChangeCurrency - should call setState and handleSetParam', () => {
+        const wrapper = shallow(<Filter {...defaultProps} />);
+        wrapper.setState = jest.fn((obj, func) => func && func());
+        const instance = wrapper.instance();
+        instance.handleSetParam = jest.fn();
+
+        instance.handleChangeCurrency({}, '20');
+
+        expect(wrapper.setState).toHaveBeenCalledWith({ currencyList, selectedCurrencyList: '20' }, expect.any(Function));
+        expect(wrapper.instance().handleSetParam).toHaveBeenCalled();
     });
 
     it('handleSetParam - should be called when From change', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
-        
+
         wrapper.instance().handleSetParam(1);
 
-        expect(defaultProps.getProductList).toHaveBeenCalled();
-        expect(defaultProps.setParam).toHaveBeenCalledWith({ affId: 1271808, monthDate: "Jan-2019", productId: 1 });
+        expect(defaultProps.setParam).toHaveBeenCalledWith({ affId: 1271808, monthDate: "Jan-2019", productId: 0, baseCurrencyId: 20, currencyIds: '20' });
     });
 });

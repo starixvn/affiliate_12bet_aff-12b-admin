@@ -3,33 +3,47 @@ import { shallow } from 'enzyme';
 import SortingCell from '../SortingCell';
 
 describe('players detail - components - SortingCell', () => {
-    const defaultProps = {
-        isSortAsc: false,
-        sortingColumn: 5,
-        columnValue: 5,
-        title: 'Turnover',
-        handleClickHeader: jest.fn()
-    }
-
     it('render correctly with sort ASC', () => {
-        const props = Object.assign({}, defaultProps, { isSortAsc: true });
+        const props = {
+            isSortAsc: true,
+            sortingColumn: 'Turnover',
+            columnName: 'Turnover',
+            title: 'Turnover',
+            handleClickHeader: jest.fn()
+        }
 
         const result = shallow(<SortingCell {...props} />);
 
-    expect(result).toMatchSnapshot();
+        expect(result).toMatchSnapshot();
     });
 
     it('render correctly with sort DESC', () => {
-        const result = shallow(<SortingCell {...defaultProps} />);
+        const props = {
+            isSortAsc: false,
+            sortingColumn: 'Turnover',
+            columnName: 'Turnover',
+            title: 'Turnover',
+            handleClickHeader: jest.fn()
+        }
+
+        const result = shallow(<SortingCell {...props} />);
 
         expect(result).toMatchSnapshot();
     });
 
     it('handleClickHeader should be called when click button', () => {
-        const result = shallow(<SortingCell {...defaultProps} />);
+        const props = {
+            isSortAsc: false,
+            sortingColumn: 'Turnover',
+            columnName: 'Turnover',
+            title: 'Turnover',
+            handleClickHeader: jest.fn()
+        }
+
+        const result = shallow(<SortingCell {...props} />);
 
         result.find('Button').simulate('click');
 
-        expect(defaultProps.handleClickHeader).toHaveBeenCalledWith(5);
+        expect(props.handleClickHeader).toHaveBeenCalledWith('Turnover');
     });
 });

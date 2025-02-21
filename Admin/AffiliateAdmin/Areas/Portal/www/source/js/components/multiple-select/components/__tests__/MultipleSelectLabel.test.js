@@ -12,15 +12,12 @@ const defaultSelectedItem = {
 };
 const defaultProps = {
     selectedItems: [],
+    isSelectedAll: false,
     noneSelectedLabel: NO_SELECTED_LABEL,
     maxDisplayItemCount: MAX_SELECTED_ITEM_FOR_DISPLAY
 }
 
 describe('MultipleSelectLabel ', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    })
-
     describe('render', () => {
         it('rendered content should match to snap shot', () => {
             const label = renderer.create(<MultipleSelectLabel {...defaultProps} />);

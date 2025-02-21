@@ -5,9 +5,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class ReferrersDetailParam : ReferrersParam
     {
-        public string SelectedSiteUrl { get; set; }
 
-        public string SelectedCountry { get; set; }
+        public string SelectedSiteUrl { get; set; }
 
         [Range(Validation.MinPageIndex, Validation.MaxPageIndex)]
         public int PageIndex { get; set; }

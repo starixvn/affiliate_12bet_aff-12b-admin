@@ -19,7 +19,7 @@
         /// <summary>
         /// Contains all operating system mapping.
         /// </summary>
-        private static readonly IDictionary<string, string> _operatingSystemMapping = new Dictionary<string, string>
+        private static readonly IReadOnlyDictionary<string, string> _operatingSystemMapping = new Dictionary<string, string>
         {
                 { "Windows NT 6.1", "Windows 7" },
                 { "Windows NT 6.0", "Windows Vista" },
@@ -39,7 +39,7 @@
         /// <summary>
         /// Contains all device mapping.
         /// </summary>
-        private static readonly IDictionary<string, string> _deviceMapping = new Dictionary<string, string>
+        private static readonly IReadOnlyDictionary<string, string> _deviceMapping = new Dictionary<string, string>
         {
                 { "iphone", "iPhone" },
                 { "ipad", "iPad" },
@@ -115,7 +115,12 @@
 
             var deviceKey = _deviceMapping.Keys.FirstOrDefault(key => userAgent.ToLower().Contains(key));
 
-            return string.IsNullOrEmpty(deviceKey) ? (IsMobile() ? "Mobile" : @"Computer/Laptop") : _deviceMapping[deviceKey];
+            if (string.IsNullOrEmpty(deviceKey))
+            {
+                return IsMobile() ? "Mobile" : @"Computer/Laptop";
+            }
+
+            return _deviceMapping[deviceKey];
         }
 
         /// <summary>
@@ -157,7 +162,7 @@
             }
 
             var u = request.ServerVariables["HTTP_USER_AGENT"];
-            if(string.IsNullOrEmpty(u) || u.Length < ValidLength)
+            if (string.IsNullOrEmpty(u) || u.Length < ValidLength)
             {
                 return false;
             }

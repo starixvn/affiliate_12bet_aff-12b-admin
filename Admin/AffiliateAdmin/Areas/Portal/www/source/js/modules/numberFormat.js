@@ -12,7 +12,7 @@ export function format(value, digits = 0) {
     return roundedValue.toFixed(digits).replace(digits > 2 ? /(\d)(?=(\d{3})+(\.))/g : /(\d)(?=(\d{3})+(\.|$))/g, "$1,");
 }
 
-export function formatDecimalWithCurrencySymbol(value, currencySymbol = "$") {
+export function formatDecimalWithCurrencySymbol(value, currencySymbol = "") {
     return isNegativeDecimal(value) ? `-${currencySymbol}${formatDecimal(Math.abs(value))}` : `${currencySymbol}${formatDecimal(value)}`;
 }
 

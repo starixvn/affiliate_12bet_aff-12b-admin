@@ -1,14 +1,16 @@
-﻿using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.MetalModels.Attributes;
-using Fanex.Affiliate.User.Core.Resources;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Fanex.Affiliate.User.Core.MetalModels.Attributes;
+using Fanex.Affiliate.User.Core.Resources;
 
 namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {
     public class AccountInformation
     {
         public int AffId { get; set; }
+
+        public string AffCode { get; set; }
 
         public string UserName { get; set; }
 
@@ -35,8 +37,6 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = false, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "DescWebsite")]
         public string NoSiteDesc { get; set; }
 
-        public string TargetCountryCode { get; set; }
-
         public string PreferredLanguage { get; set; }
 
         public string PreferredPayment { get; set; }
@@ -47,9 +47,9 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 
         public bool IsRenderState { get; set; }
 
-        public bool IsPlayerAccount => !string.IsNullOrEmpty(PreferredPayment) && PreferredPayment.MatchWith("Player");
+        public bool IsPlayerAccount => !string.IsNullOrEmpty(PreferredPayment) && PreferredPayment.Equals("Player", StringComparison.OrdinalIgnoreCase);
 
-        public IEnumerable<string> MoreWebsiteUrlList => string.IsNullOrEmpty(MoreSiteUrls) ? new string[0] : MoreSiteUrls.Split(';');
+        public IEnumerable<string> MoreWebsiteUrlList => string.IsNullOrEmpty(MoreSiteUrls) ? Array.Empty<string>() : MoreSiteUrls.Split(';');
 
         public string LanguageName { get; set; }
 
@@ -58,5 +58,13 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         public string ContactApps { get; set; }
 
         public IEnumerable<ContactApp> ContactAppList { get; set; }
+
+        public string AffCurrency { get; set; }
+
+        public int DefaultBaseCurrency { get; set; }
+
+        public decimal TransferLimit { get; set; }
+
+        public int PlayerCurrencyId { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
+﻿
+namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
 {
     public class AssignGroupParam : AffiliateBasicInfoParam
     {

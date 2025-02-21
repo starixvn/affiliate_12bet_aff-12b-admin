@@ -1,6 +1,5 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
@@ -21,7 +20,9 @@ describe('banner list - Filter - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             categoryList: [{ 123: 'Bonus' }],
+            isDisableCurrency: true,
             languageList: [{ LanguageCode: 'en-US', LanguageName: 'English' }],
+            currencyList: [{ 234: 'EURO' }],
             sizeList: [{ Id: 123, Name: '300x250' }],
             affTypeList: [{ AffTypeId: 2, AfTypeName: 'Asia' }],
             paramFromHome: { IsFromHome: true },
@@ -29,7 +30,9 @@ describe('banner list - Filter - connect', () => {
         };
         const state = {
             categoryList: [{ 123: 'Bonus' }],
+            isDisableCurrency: true,
             languageList: [{ LanguageCode: 'en-US', LanguageName: 'English' }],
+            currencyList: [{ 234: 'EURO' }],
             sizeList: [{ Id: 123, Name: '300x250' }],
             affTypeList: [{ AffTypeId: 2, AfTypeName: 'Asia' }],
             paramFromHome: { IsFromHome: true },
@@ -48,6 +51,8 @@ describe('banner list - Filter - connect', () => {
         const expectedActionCreator = {
             setParam: actions['setParam'],
             setParamFromHome: actions['setParamFromHome'],
+            getCategoryList: actions['getCategoryList'],
+            setDisableCurrency: actions['setDisableCurrency'],
             getSizeList: actions['getSizeList']
         }
 

@@ -1,57 +1,46 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
-using Fanex.Affiliate.Admin.Core.Enum;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository.Domain;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public class DomainService : IDomainService
     {
-        private readonly IDomainRepository _domainRepository;
+        private readonly ICommonDomainService _commonDomainService;
 
         public DomainService(
-            IDomainRepository domainRepository)
+            ICommonDomainService commonDomainService)
         {
-            _domainRepository = domainRepository;
-        }
-        public IEnumerable<TargetCountry> GetTargetCountryList(TargetCountryParam param)
-        {
-            return _domainRepository.GetTargetCountryList(param).ExcludeEmpty();
+            _commonDomainService = commonDomainService;
         }
 
-        public IEnumerable<TargetCountry> GetVisibleTargetCountryListNotUsing(TargetCountryParam param)
+        public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain)
         {
-            return GetTargetCountryList(param)?.Where(m => m.Status != (byte)TargetCountryStatus.Using);
+            var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_LicenseeDomain_Sel";
+
+            return _commonDomainService.GetDomainList(spKey);
         }
 
-        public IEnumerable<DomainInfo> GetDomainList(int userId, bool isAffDomain = true)
+        public ResultInfo InsertDomain(InsertUpdateDomainParam param)
         {
-            return _domainRepository.GetDomainList(userId, isAffDomain);
+            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Ins" : "Aff_Admin_LicenseeDomain_Ins";
+
+            return _commonDomainService.InsertDomain(param, spKey);
         }
 
-        public DomainInfo GetDomainById(int userId, int domainId, bool isAffDomain = true)
+        public ResultInfo UpdateDomain(InsertUpdateDomainParam param)
         {
-            return _domainRepository.GetDomainById(userId, domainId, isAffDomain);
-        }
+            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Upd" : "Aff_Admin_LicenseeDomain_Upd";
 
-        public ResultInfo InsertDomain(InsertDomainParam param)
-        {
-            return _domainRepository.InsertDomain(param);
-        }
-
-        public ResultInfo UpdateDomain(UpdateDomainParam param)
-        {
-            return _domainRepository.UpdateDomain(param);
+            return _commonDomainService.UpdateDomain(param, spKey);
         }
 
         public ResultInfo DeleteDomain(DeleteDomainParam param)
         {
-            return _domainRepository.DeleteDomain(param);
+            var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Del" : "Aff_Admin_LicenseeDomain_Del";
+
+            return _commonDomainService.DeleteDomain(param, spKey);
         }
     }
 }

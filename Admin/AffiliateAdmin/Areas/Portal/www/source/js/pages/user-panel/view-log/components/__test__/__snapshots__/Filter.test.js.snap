@@ -14,46 +14,6 @@ exports[`view log - components - Filter render correctly 1`] = `
     >
       <Label
         className="mr-sm-2"
-        for="logActionIds"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        Action
-      </Label>
-      <Input
-        id="logActionIds"
-        name="logActionIds"
-        onChange={[Function]}
-        type="select"
-        value=""
-      >
-        <option
-          value=""
-        >
-          All
-        </option>
-        <option
-          key="logAction-123"
-          value="123"
-        >
-          Test
-        </option>
-      </Input>
-    </FormGroup>
-    <FormGroup
-      className="mr-sm-2"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
         tag="label"
         widths={
           Array [
@@ -68,7 +28,7 @@ exports[`view log - components - Filter render correctly 1`] = `
         From
       </Label>
       <t
-        date="6/27/2019"
+        date="01/01/2020"
         format="MM/DD/YYYY"
         iconElement={
           <span
@@ -76,8 +36,8 @@ exports[`view log - components - Filter render correctly 1`] = `
           />
         }
         isEnable={true}
-        maxDate="12/27/2019"
-        minDate={2009-11-30T17:00:00.000Z}
+        maxDate="3/12/2020"
+        minDate={2020-01-30T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>
@@ -101,7 +61,7 @@ exports[`view log - components - Filter render correctly 1`] = `
         To
       </Label>
       <t
-        date="12/27/2019"
+        date="3/12/2020"
         format="MM/DD/YYYY"
         iconElement={
           <span
@@ -109,8 +69,8 @@ exports[`view log - components - Filter render correctly 1`] = `
           />
         }
         isEnable={true}
-        maxDate="12/27/2019"
-        minDate="6/27/2019"
+        maxDate="3/12/2020"
+        minDate="01/01/2020"
         onChange={[Function]}
       />
     </FormGroup>

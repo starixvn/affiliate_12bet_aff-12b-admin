@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText, globalResource, maxWidth } from '../libs/constants';
-import { setSelectedSiteDetailFilter, toggleLoaderUserPanel, fetchData } from '../actions';
+import { headerText, globalResource, maxWidth } from '../modules/constants';
+import { setSelectedSiteUrl, toggleLoaderUserPanel, fetchData } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class Content extends Component {
@@ -28,7 +28,9 @@ export class Content extends Component {
     async fetchData(param) {
         this.props.toggleLoaderUserPanel(true);
 
-        const data = await this.props.fetchData(param);
+        const { affId } = this.props;
+        const postData = { ...param, affId };
+        const data = await this.props.fetchData(postData);
 
         this.setState({ gridData: data });
         this.props.toggleLoaderUserPanel(false);
@@ -37,8 +39,7 @@ export class Content extends Component {
     _renderHeader() {
         return (
             <Row key='thead'>
-                <Cell header={true} colWidth={370} title={headerText.SiteUrls}>{headerText.SiteUrls}</Cell>
-                <Cell header={true} colWidth={210} title={headerText.Country}>{headerText.Country}</Cell>
+                <Cell header={true} colWidth={580} title={headerText.SiteUrls}>{headerText.SiteUrls}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.TotalClick}>{headerText.TotalClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.UniqueClick}>{headerText.UniqueClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Signups}>{headerText.Signups}</Cell>
@@ -58,8 +59,8 @@ export class Content extends Component {
         }
         else {
             dataRows.push(
-                <Row>
-                    <Cell className="text-center" colSpan="6">{globalResource.NoInfo}</Cell>
+                <Row key="no-info">
+                    <Cell className="text-center" colSpan="5">{globalResource.NoInfo}</Cell>
                 </Row>
             );
         }
@@ -69,25 +70,19 @@ export class Content extends Component {
 
     _buildDataRow(dataItem, index) {
         const siteUrl = htmlDecode(dataItem.SiteUrl);
-
-        return siteUrl.toLowerCase() == "old url" ? null : (
+        return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={siteUrl}>
-                    {siteUrl.toLowerCase() == "none" ? siteUrl : (<Button color="link" className="p-0" onClick={() => this.handleSelectedSiteDetailFilter(dataItem.SiteUrl, dataItem.CountryCode)}>
+                    {(siteUrl == "Old URL" || siteUrl == "none") ? siteUrl : (<Button color="link" className="p-0" onClick={() => this.props.setSelectedSiteUrl(dataItem.SiteUrl)}>
                         {siteUrl}
                     </Button>)}
                 </Cell>
-                <Cell title={dataItem.Country} className="text-center">{dataItem.Country}</Cell>
                 <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>
                 <Cell title={dataItem.UniqueClick} className="text-right">{dataItem.UniqueClick}</Cell>
                 <Cell title={dataItem.Signups} className="text-right">{dataItem.Signups}</Cell>
                 <Cell title={dataItem.Fdm} className="text-right">{dataItem.Fdm}</Cell>
             </Row>
         )
-    }
-
-    handleSelectedSiteDetailFilter = (selectedSiteUrl, selectedCountry) => {
-        this.props.setSelectedSiteDetailFilter({ selectedSiteUrl, selectedCountry });
     }
 
     render() {
@@ -108,16 +103,18 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ clickStatistics }) {
+function mapStateToProps({ affCommonInfo, clickStatistics }) {
     const { param } = clickStatistics;
+    const { affId } = affCommonInfo;
 
     return Object.assign({}, {
+        affId,
         param
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoaderUserPanel, setSelectedSiteDetailFilter, fetchData }, dispatch);
+    return bindActionCreators({ toggleLoaderUserPanel, setSelectedSiteUrl, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

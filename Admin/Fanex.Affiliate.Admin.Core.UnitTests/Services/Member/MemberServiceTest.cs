@@ -1,8 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Commands.Member;
+using Fanex.Affiliate.Admin.Core.Criterias.Member;
 using Fanex.Affiliate.Admin.Core.DTO.Member;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
-using Fanex.Affiliate.Admin.Core.Repository.Member;
 using Fanex.Affiliate.Admin.Core.Services.Member;
+using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -16,38 +17,56 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         {
             // Arrange
             var param = new MemberParam();
-            var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(comm => comm.GetMemberList(param)).Returns(new EntityResult<MemberInfo> { MainData = new List<MemberInfo> { new MemberInfo() }, TotalItem = 1 });
-            var service = CreateMemberService(memberRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.Fetch<MemberInfo>(It.IsAny<MemberCriteria>(), It.IsAny<string>())).Returns(new List<MemberInfo> { new MemberInfo() });
+            var service = CreateMemberService(dynamicRepository.Object);
 
             // Action
             var result = service.GetMemberList(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<MemberInfo>(It.Is<MemberCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
         [Fact]
-        public void UpdateMemberStatus_WhenCall_ReturnCorrectData()
+        public void GetMemberDetail_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new UpdateMemberStatusParam();
-            var memberRepository = new Mock<IMemberRepository>();
-            memberRepository.Setup(comm => comm.UpdateMemberStatus(param)).Returns(new ResultInfo());
-            var service = CreateMemberService(memberRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.Get<PlayerActionInfo>(It.IsAny<MemberDetailCriteria>(), It.IsAny<string>())).Returns(new PlayerActionInfo());
+            var service = CreateMemberService(dynamicRepository.Object);
 
             // Action
-            var result = service.UpdateMemberStatus(param);
+            var result = service.GetMemberDetail(123);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<PlayerActionInfo>(It.Is<MemberDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void UpdateMember_WhenCall_UpdateSuccessfully()
+        {
+            // Arrange
+            var param = new UpdateMemberParam();
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(comm => comm.Execute(It.IsAny<UpdateMemberCommand>(), It.IsAny<string>()));
+            var service = CreateMemberService(dynamicRepository.Object);
+
+            // Action
+            var result = service.UpdateMember(param);
+
+            // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateMemberCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
-        private static MemberService CreateMemberService(IMemberRepository memberRepository = null)
+        private static MemberService CreateMemberService(IDynamicRepository dynamicRepository = null)
         {
-            var fakeMemberRepository = memberRepository ?? Mock.Of<IMemberRepository>();
+            var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 
-            return new MemberService(fakeMemberRepository);
+            return new MemberService(fakedynamicRepository);
         }
     }
 }

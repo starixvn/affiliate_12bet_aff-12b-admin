@@ -1,24 +1,22 @@
-﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Extensions;
+﻿using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using ONEbook.UM.AspNetMVC.Filters;
 using System.Web.Mvc;
 using System.Web.SessionState;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [CustomAuthorize]
-    [CheckUMFilter]
     [SessionState(SessionStateBehavior.ReadOnly)]
-    public class ReadOnlySessionBaseController : Controller
+    public class ReadOnlySessionBaseController : BaseController
     {
-        protected ISessionService SessionService { get; }
+        private readonly ISessionService _sessionService;
 
-        protected ReadOnlySessionBaseController(ISessionService sessionService)
+        public ReadOnlySessionBaseController(ISessionService sessionService)
         {
-            SessionService = sessionService;
+            _sessionService = sessionService;
         }
+
+        protected ISessionService SessionService => _sessionService;
 
         protected void AssignUserInfoParam(UserInfoParam param)
         {

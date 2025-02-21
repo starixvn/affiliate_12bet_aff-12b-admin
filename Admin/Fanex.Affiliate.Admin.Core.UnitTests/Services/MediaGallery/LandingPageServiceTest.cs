@@ -1,8 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Commands.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -15,14 +16,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         public void GetLandingPageList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(l => l.GetLandingPageList(It.IsAny<int>())).Returns(new List<LandingPage> { new LandingPage() });
-            var service = CreateLandingPageService(landingPageRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Fetch<LandingPage>(It.IsAny<LandingPageCriteria>(), It.IsAny<string>())).Returns(new List<LandingPage> { new LandingPage() });
+            var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
-            var result = service.GetLandingPageList(123);
+            var result = service.GetLandingPageList();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<LandingPage>(It.Is<LandingPageCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
         }
 
@@ -31,17 +33,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var pageId = 123;
-            int passedParam = 0;
-            var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(l => l.GetLandingPageById(pageId, It.IsAny<int>())).Returns(new LandingPage { PageId = 123 }).Callback<int>(p => passedParam = p);
-            var service = CreateLandingPageService(landingPageRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Get<LandingPage>(It.IsAny<LandingPageCriteria>(), It.IsAny<string>())).Returns(new LandingPage { PageId = 123 });
+            var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
-            var result = service.GetLandingPageById(pageId, 234);
+            var result = service.GetLandingPageById(pageId);
 
             // Assert
+            dynamicRepository.Verify(d => d.Get<LandingPage>(It.Is<LandingPageCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Equal(pageId, result.PageId);
-            Assert.Equal(pageId, passedParam);
         }
 
         [Fact]
@@ -49,17 +50,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var param = new InsertUpdateLandingPageParam { PageCode = "123" };
-            InsertUpdateLandingPageParam passedParam = null;
-            var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(l => l.InsertLandingPage(param)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
-            var service = CreateLandingPageService(landingPageRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<InsertLandingPageCommand>(), It.IsAny<string>()));
+            var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
-            var result = service.HandleSaveLandingPage(param, true);
+            var result = service.InsertLandingPage(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<InsertLandingPageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -70,11 +70,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService();
 
             // Action
-            var result = service.HandleSaveLandingPage(param, true);
+            var result = service.InsertLandingPage(param);
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("Special characters are not allowed:\n the blank/empty space and ; ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `", result.Message);
+            Assert.Equal("Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `", result.Message);
         }
 
         [Fact]
@@ -82,17 +82,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var param = new InsertUpdateLandingPageParam { PageCode = "abc" };
-            InsertUpdateLandingPageParam passedParam = null;
-            var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(l => l.UpdateLandingPage(param)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
-            var service = CreateLandingPageService(landingPageRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<UpdateLandingPageCommand>(), It.IsAny<string>()));
+            var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
-            var result = service.HandleSaveLandingPage(param);
+            var result = service.UpdateLandingPage(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<UpdateLandingPageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
         [Fact]
@@ -103,11 +102,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService();
 
             // Action
-            var result = service.HandleSaveLandingPage(param);
+            var result = service.UpdateLandingPage(param);
 
             // Assert
             Assert.False(result.IsSuccessful);
-            Assert.Equal("Special characters are not allowed:\n the blank/empty space and ; ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `", result.Message);
+            Assert.Equal("Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `", result.Message);
         }
 
         [Fact]
@@ -115,24 +114,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
         {
             // Arrange
             var param = new DeleteLandingPageParam();
-            DeleteLandingPageParam passedParam = null;
-            var landingPageRepository = new Mock<ILandingPageRepository>();
-            landingPageRepository.Setup(l => l.DeleteLandingPage(param)).Returns(new ResultInfo()).Callback<DeleteLandingPageParam>(p => passedParam = p);
-            var service = CreateLandingPageService(landingPageRepository.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Execute(It.IsAny<DeleteLandingPageCommand>(), It.IsAny<string>()));
+            var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
             var result = service.DeleteLandingPage(param);
 
             // Assert
+            dynamicRepository.Verify(d => d.Execute(It.Is<DeleteLandingPageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
-            Assert.Equal(param, passedParam);
         }
 
-        private static LandingPageService CreateLandingPageService(ILandingPageRepository landingPageRepository = null)
+        private static LandingPageService CreateLandingPageService(IDynamicRepository dynamicRepository = null)
         {
-            var fakeLandingPageRepository = landingPageRepository ?? Mock.Of<ILandingPageRepository>();
+            var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 
-            return new LandingPageService(fakeLandingPageRepository);
+            return new LandingPageService(fakedynamicRepository);
         }
     }
 }

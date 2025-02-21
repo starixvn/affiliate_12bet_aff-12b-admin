@@ -274,6 +274,9 @@ input[type="checkbox"], input[type="radio"] {
   .flex .flex-lg-9 {
     width: 75%; } }
 
+.flex.space-between {
+  justify-content: space-between; }
+
 @media (min-width: 1024px) {
   .flex .flex-md-3 {
     width: 25%; }
@@ -321,8 +324,8 @@ input[type="checkbox"], input[type="radio"] {
     background-image: url("../Images/langs/ko.png"); }
   .flag-ja-JP {
     background-image: url("../Images/langs/ja.png"); }
-  .flag-hi-IN {
-    background-image: url("../Images/langs/hi.png"); }
+  .flag-en-IN {
+    background-image: url("../Images/langs/hien.png"); }
   .flag-km-KH {
     background-image: url("../Images/langs/kh.png"); }
   .flag-bn-BD {
@@ -1336,6 +1339,9 @@ label.require:after {
     .info-group .item .value {
       text-align: right; }
 
+.display-none {
+  display: none; }
+
 .btn {
   display: inline-block;
   padding: 0 8px;
@@ -1452,6 +1458,12 @@ label.require:after {
   @media (min-width: 992px) {
     .btn-login-mobile {
       display: none; } }
+
+.btn-transparent {
+  background-color: transparent; }
+
+.btn.btn-transparent :hover {
+  color: cornflowerblue; }
 
 .table-medium {
   width: 70%; }
@@ -1698,17 +1710,23 @@ table + .button-group {
   display: inline-flex;
   align-items: center;
   margin-right: 30px; }
-  .form-filter .form-group label {
-    width: 80px; }
-    .form-filter .form-group label.w150 {
-      width: 150px; }
-    .form-filter .form-group label.w100 {
-      width: 100px; }
+  .form-filter .form-group label.w150 {
+    width: 150px; }
+  .form-filter .form-group label.w120 {
+    width: 120px; }
+  .form-filter .form-group label.w100 {
+    width: 100px; }
   .form-filter .form-group .form-control {
-    width: 200px; }
+    width: 150px; }
 
 .form-inline {
   margin-bottom: 5px; }
+  .form-inline .form-group label {
+    display: inline-flex;
+    align-content: center;
+    margin-right: 20px; }
+  .form-inline .form-group .date-wrapper .form-control {
+    background: #FFFFFF; }
 
 .form-control-static {
   min-height: 28px;
@@ -1912,6 +1930,13 @@ input[type="radio"], input[type="checkbox"] {
         @media (max-width: 500px) {
           .login-dialog .modal-dialog .modal-content .modal-body .main-login {
             display: unset; } }
+        .login-dialog .modal-dialog .modal-content .modal-body .main-login .redirect-old-link {
+          font-size: 1.3rem;
+          margin: 0 -15px;
+          text-align: center;
+          font-weight: bold; }
+          .login-dialog .modal-dialog .modal-content .modal-body .main-login .redirect-old-link a {
+            color: #D90F0F; }
         .login-dialog .modal-dialog .modal-content .modal-body .main-login .item {
           width: 50%;
           padding: 24px; }
@@ -2094,43 +2119,3 @@ input[type="radio"], input[type="checkbox"] {
             @media (max-width: 500px) {
               .login-dialog .modal-dialog .modal-content .modal-body .main-login .group-text #signUpToAffiliateProgram {
                 font-weight: 500; } }
-
-.contact-manager-dialog .modal-dialog {
-  max-width: 492px;
-  position: relative; }
-  @media (max-width: 500px) {
-    .contact-manager-dialog .modal-dialog {
-      max-width: 335px;
-      margin: 20px auto; } }
-  .contact-manager-dialog .modal-dialog .modal-content {
-    border-radius: 12px;
-    overflow: hidden;
-    background: transparent; }
-    .contact-manager-dialog .modal-dialog .modal-content .modal-body {
-      padding: 0;
-      background-color: #ffffff; }
-      .contact-manager-dialog .modal-dialog .modal-content .modal-body .close {
-        -webkit-appearance: none;
-        position: absolute;
-        right: 0px;
-        border-radius: 50%;
-        font-size: 26px;
-        font-weight: bold;
-        cursor: pointer;
-        color: #ffffff;
-        background-color: #d90f0f;
-        border: 1px solid #9e9e9e;
-        width: 26px;
-        height: 26px;
-        opacity: 1;
-        padding: 0;
-        text-shadow: none;
-        z-index: 10; }
-      .contact-manager-dialog .modal-dialog .modal-content .modal-body .contact-manager-dialog-img {
-        width: 100%; }
-      .contact-manager-dialog .modal-dialog .modal-content .modal-body .contact-manager-dialog-btn {
-        text-align: center;
-        padding: 12px; }
-        @media (max-width: 500px) {
-          .contact-manager-dialog .modal-dialog .modal-content .modal-body .contact-manager-dialog-btn .custom-button {
-            font-size: 14px; } }

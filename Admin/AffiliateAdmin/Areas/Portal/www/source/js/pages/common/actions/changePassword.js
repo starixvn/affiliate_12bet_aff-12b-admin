@@ -16,7 +16,7 @@ export const updateChangeAffPasswword = (param) => async () => {
 }
 
 export const updateChangeAdminPasswword = (param) => async () => {
-    const url = 'Portal/AdminInfo/ChangePassword';
+    const url = 'Portal/Administrator/ChangePassword';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;

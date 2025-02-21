@@ -21,11 +21,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var param = new CustomerMemberParam();
             CustomerMemberParam passedParam = null;
             var customerMemberService = new Mock<ICustomerMemberService>();
-            customerMemberService.Setup(t => t.GetCustomerMemberList(param)).Returns(new EntityResult<CustomerMember> { MainData = new List<CustomerMember> { new CustomerMember() }, TotalItem = 1 }).Callback<CustomerMemberParam>(p => passedParam = p);
+            customerMemberService.Setup(t => t.GetCustomerMember(param)).Returns(new EntityResult<CustomerMember> { MainData = new List<CustomerMember> { new CustomerMember() }, TotalItem = 1 }).Callback<CustomerMemberParam>(p => passedParam = p);
             var controller = CreateCustomerMemberController(customerMemberService: customerMemberService.Object);
 
             // Action
             var result = controller.GetCustomerMember(param) as JsonNetResult;
+
             var entityResult = result.Data as EntityResult<CustomerMember>;
 
             // Assert

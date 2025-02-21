@@ -1,23 +1,24 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.Controllers.UserPanel;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.Auth;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Controllers.UserPanel;
+using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+using Fanex.Affiliate.User.Core.Utilities;
+using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
+using Moq;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
+
     public class SummaryControllerTest
     {
-        private readonly DateTime monthDate = new DateTime(2019, 12, 20);
+        private readonly DateTime monthDate = DateTimeHelper.CreateDateTime(2019, 12, 20);
 
         [Fact]
         public void Index_WhenCall_ReturnCorrectPartialView()
@@ -37,9 +38,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         {
             // Arrange
             var expectedResult = new OverviewSummary { ActivePlayers = 123 };
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetUserOverviewSummary(It.IsAny<int>(), monthDate)).Returns(expectedResult);
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetUserOverviewSummary(It.IsAny<int>(), monthDate)).Returns(expectedResult);
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
             var partialViewResult = controller.Dashboard(monthDate) as PartialViewResult;
@@ -53,9 +54,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void Overview_WhenCall_ReturnCorrectPartialView()
         {
             // Arrange
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetUserOverviewDetailList(It.IsAny<int>(), monthDate)).Returns(new List<OverviewDetail>());
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetUserOverviewDetailList(It.IsAny<int>(), monthDate)).Returns(new List<OverviewDetail>());
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
             var partialViewResult = controller.Overview(monthDate) as PartialViewResult;
@@ -66,85 +67,23 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         }
 
         [Fact]
-        public void PlayersDetails_WhenCallHasTurnOverClaim_ReturnCorrectPartialView()
+        public void PlayersDetails_WhenCall_ReturnCorrectPartialView()
         {
             // Arrange
-            var param = new PlayerDetailParam { MonthDate = monthDate };
+            var param = new PlayerDetailParam { MonthDate = monthDate, IsSortAsc = true };
             PlayerDetailParam passedParam = null;
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
-
-            MockingHelper.SetUpEnviroment("[AffTurnover]", true);
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
             var partialViewResult = controller.PlayersDetails(param) as PartialViewResult;
-            var result = partialViewResult.Model as IEnumerable<PlayerDetail>;
+            var result = partialViewResult.Model as PlayerDetailViewModel;
 
             // Assert
             Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", partialViewResult.ViewName);
             Assert.Equal(param.MonthDate, passedParam.MonthDate);
-            Assert.Equal(5, param.SortById);
-            Assert.Single(result);
-        }
-
-        [Fact]
-        public void PlayersDetails_WhenCallNotHasTurnOverClaim_ReturnCorrectPartialView()
-        {
-            // Arrange
-            var param = new PlayerDetailParam { MonthDate = monthDate };
-            PlayerDetailParam passedParam = null;
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
-
-            MockingHelper.SetUpEnviroment("[AffTurnover]", false);
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
-
-            // Action
-            var partialViewResult = controller.PlayersDetails(param) as PartialViewResult;
-            var result = partialViewResult.Model as IEnumerable<PlayerDetail>;
-
-            // Assert
-            Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", partialViewResult.ViewName);
-            Assert.Equal(param.MonthDate, passedParam.MonthDate);
-            Assert.Equal(6, param.SortById);
-            Assert.Single(result);
-        }
-
-        [Fact]
-        public void PlayersDetails_WhenCallNotHasTurnOverClaimButIsIndiaLanguage_ReturnCorrectPartialView()
-        {
-            // Arrange
-            var param = new PlayerDetailParam { MonthDate = monthDate };
-            PlayerDetailParam passedParam = null;
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
-
-            MockingHelper.SetUpEnviroment("[AffTurnover]", false);
-            var session = Mock.Of<ISessionService>(ss =>
-                ss.CaptchaCode == Constant.Captcha &&
-                ss.CurrentLanguage == Constant.DefaultLanguage &&
-                !ss.IsInternal &&
-                ss.UserSession == new UserSession
-                {
-                    AffId = Constant.DefaultAffId,
-                    AffType = Constant.AffTypeAsian,
-                    OnUserId = 1,
-                    PreferredLanguage = SystemLanguage.IndiaLanguageCode,
-                    UserName = Constant.DefaultUserName
-                }
-            );
-            var controller = CreateController(session, accountOverviewRepository: accountOverviewRepository.Object);
-
-            // Action
-            var partialViewResult = controller.PlayersDetails(param) as PartialViewResult;
-            var result = partialViewResult.Model as IEnumerable<PlayerDetail>;
-
-            // Assert
-            Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/PlayersDetails.cshtml", partialViewResult.ViewName);
-            Assert.Equal(param.MonthDate, passedParam.MonthDate);
-            Assert.Equal(1, param.SortById);
-            Assert.Single(result);
+            Assert.Single(result.PlayerDetailList);
         }
 
         [Fact]
@@ -153,30 +92,46 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             var param = new PlayerDetailParam { MonthDate = monthDate };
             PlayerDetailParam passedParam = null;
-            var accountOverviewRepository = new Mock<IAccountOverviewRepository>();
-            accountOverviewRepository.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
-            var controller = CreateController(accountOverviewRepository: accountOverviewRepository.Object);
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetPlayerDetailList(param)).Returns(new List<PlayerDetail> { new PlayerDetail() }).Callback<PlayerDetailParam>(p => passedParam = p);
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
 
             // Action
             var partialViewResult = controller.PlayersDetailsContent(param) as PartialViewResult;
-            var result = partialViewResult.Model as IEnumerable<PlayerDetail>;
+            var result = partialViewResult.Model as PlayerDetailViewModel;
 
             // Assert
             Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/PlayersDetailsContent.cshtml", partialViewResult.ViewName);
             Assert.Equal(param.MonthDate, passedParam.MonthDate);
-            Assert.Single(result);
+            Assert.Single(result.PlayerDetailList);
+        }
+
+        [Fact]
+        public void SubAffDetails_WhenCall_ReturnCorrectPartialView()
+        {
+            // Arrange
+            var accountOverviewService = new Mock<IAccountOverviewService>();
+            accountOverviewService.Setup(a => a.GetSubAffDetails(It.IsAny<SubAffDetailParam>())).Returns(new List<SubAffDetail> { new SubAffDetail() });
+            var controller = CreateController(accountOverviewService: accountOverviewService.Object);
+
+            // Action
+            var partialViewResult = controller.SubAffDetails(new SubAffDetailParam { MonthDate = DateTimeHelper.CreateDateTime(2020, 12, 01) }) as PartialViewResult;
+            var result = partialViewResult.Model as List<SubAffDetail>;
+            // Assert
+            Assert.Equal("~/Views/UserPanel/AccountOverView/Summary/SubAffDetails.cshtml", partialViewResult.ViewName);
+            Assert.NotEmpty(result);
         }
 
         private static SummaryController CreateController(
-        ISessionService sessionService = null,
-        ISystemService languageService = null,
-        IAccountOverviewRepository accountOverviewRepository = null)
+            ISessionService sessionService = null,
+            ISystemService languageService = null,
+            IAccountOverviewService accountOverviewService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
             languageService = languageService ?? Mock.Of<ISystemService>();
-            accountOverviewRepository = accountOverviewRepository ?? Mock.Of<IAccountOverviewRepository>();
+            accountOverviewService = accountOverviewService ?? Mock.Of<IAccountOverviewService>();
 
-            return new SummaryController(sessionService, languageService, accountOverviewRepository);
+            return new SummaryController(sessionService, languageService, accountOverviewService);
         }
     }
 }

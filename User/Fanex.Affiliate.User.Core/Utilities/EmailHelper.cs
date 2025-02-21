@@ -14,7 +14,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
         private const int MandatoryLengthForSplittingEmail = 2;
 
         private const string ContactInfoHtml = "ContactInfo/Html";
-
         private const string ContactInfoText = "ContactInfo/Text";
 
         public static string HideEmailPart(string email, int emailLengthToCheck = 8)
@@ -37,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public static string GetContactInfoContent(EmailBaseParam param, Func<string, string, object, string> getEmailTextContent, string emailBackgroundUrl)
         {
-            if (param is null || param.User is null)
+            if (param?.User is null)
             {
                 return string.Empty;
             }
@@ -55,20 +54,18 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 contactApp = contactAppList.FirstOrDefault(c => c.Order == PRIORITY_2);
             }
 
-            if (string.IsNullOrEmpty(contactApp?.Value))
-            {
-                return contactAppList.FirstOrDefault(c => c.Order == PRIORITY_3);
-            }
-
-            return contactApp;
+            return string.IsNullOrEmpty(contactApp?.Value) 
+                ? contactAppList.FirstOrDefault(c => c.Order == PRIORITY_3) 
+                : contactApp;
         }
 
         private static string ReplaceEmailName(string emailName, int charLengthToShow, int startIndex)
         {
             var hiddenCharCount = emailName.Length - charLengthToShow;
-            var stringReplace = new string('•', hiddenCharCount);
-            var convertedEmailName = emailName.Remove(startIndex, hiddenCharCount)
-                                                .Insert(startIndex, stringReplace);
+            var stringReplace = new string('*', hiddenCharCount);
+            var convertedEmailName = emailName
+                .Remove(startIndex, hiddenCharCount)
+                .Insert(startIndex, stringReplace);
 
             return convertedEmailName;
         }

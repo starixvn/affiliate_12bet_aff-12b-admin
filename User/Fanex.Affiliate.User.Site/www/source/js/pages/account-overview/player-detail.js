@@ -1,7 +1,8 @@
 ﻿var PlayersDetails = (function ($) {
     var _pageSize = 20;
     var _pageIndex = 0;
-    var _sortingColumn = window.Permission.HasTurnOverPermission ? 'Turnover' : (window.Permission.IsIndiaAffiliate ? 'Username' : 'Winloss');
+    var _sortingColumn = 'Turnover';
+    var _sortById = 5;
     var _isSortingAsc = false;
     const SortByIdList = {
         Username: 1,
@@ -9,9 +10,12 @@
         Deposit: 3,
         Withdrawal: 4,
         Turnover: 5,
-        Winloss: 6,
+        GGR: 6,
         Bonus: 7,
-        BankingFee: 8
+        Rebate: 8,
+        DepositFee: 9,
+        WithdrawalFee: 10,
+        FdmDate: 11,
     };
 
     function initPager() {
@@ -24,7 +28,7 @@
                 _pageIndex = pageIndex;
                 _pageSize = pageSize;
 
-                var params = _me.getPlayersDetailsParam(SortByIdList[_sortingColumn]);
+                var params = _me.getPlayersDetailsParam();
                 _me.renderPlayersDetails(params);
             }
         });
@@ -34,7 +38,7 @@
         initialize: function () {
             initPager();
             _me.initEvent();
-            _me.activeSortIcon($('#' + _sortingColumn));
+            _me.activeSortIcon($('#defaultSorting'));
             _me.togglePager();
         },
 
@@ -50,14 +54,13 @@
             $("#player-detail-pager").toggle(totalItem !== 0);
         },
 
-        getPlayersDetailsParam: function (sortById, isSortAsc) {
-
+        getPlayersDetailsParam: function () {
             return {
                 MonthDate: $("#MonthDate").data("original-date"),
                 PageSize: _pageSize,
                 PageIndex: _pageIndex + 1,
-                SortById: sortById || SortByIdList.Winloss,
-                IsSortAsc: isSortAsc
+                SortById: _sortById,
+                IsSortAsc: _isSortingAsc
             };
         },
 
@@ -93,11 +96,12 @@
                 _sortingColumn = columnName;
             }
 
+            _sortById = SortByIdList[columnName];
             var sortingSelector = _isSortingAsc ? '.asc' : '.desc';
             var $sortIcon = $element.find(sortingSelector);
             _me.activeSortIcon($sortIcon);
 
-            var params = _me.getPlayersDetailsParam(SortByIdList[columnName], _isSortingAsc);
+            var params = _me.getPlayersDetailsParam();
             _me.renderPlayersDetails(params);
         },
         activeSortIcon: function ($element) {

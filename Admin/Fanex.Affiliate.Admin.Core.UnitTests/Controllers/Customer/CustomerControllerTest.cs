@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
@@ -16,10 +17,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var systemServive = new Mock<ISystemService>();
-            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var languageService = new Mock<ISystemService>();
+            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateCustomerController(systemServive: systemServive.Object);
+            var controller = CreateCustomerController(languageService: languageService.Object);
 
             // Action
             var viewResult = controller.Index("12BETAFF226") as ViewResult;
@@ -37,10 +38,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Arrange
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.AffName).Returns("12BETAFF226");
-            var systemServive = new Mock<ISystemService>();
-            systemServive.Setup(l => l.GetInChangeMarkets()).Returns(new List<Language> { new Language() });
+            var languageService = new Mock<ISystemService>();
+            languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
 
-            var controller = CreateCustomerController(systemServive: systemServive.Object);
+            var controller = CreateCustomerController(languageService: languageService.Object);
 
             // Action
             var viewResult = controller.Index("") as ViewResult;
@@ -54,13 +55,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
         private CustomerController CreateCustomerController(
             ISessionService sessionService = null,
-            ISystemService systemServive = null
+            ISystemService languageService = null,
+            IAffTypeService affTypeService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakesystemServive = systemServive ?? Mock.Of<ISystemService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
+            var fakeAffTypeService = affTypeService ?? Mock.Of<IAffTypeService>();
 
-            return new CustomerController(fakeSessionService, fakesystemServive);
+            return new CustomerController(fakeSessionService, fakeLanguageService, fakeAffTypeService);
         }
     }
 }

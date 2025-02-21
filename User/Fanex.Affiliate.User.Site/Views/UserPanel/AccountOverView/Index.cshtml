@@ -1,9 +1,8 @@
 ﻿@{
     Layout = null;
 }
-@using Fanex.Affiliate.User.Core.Utilities
-@using Fanex.Affiliate.User.Core.Constants
-@model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview.LastLoginInfo
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.AccountOverviewViewModel
 
 @Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
 
@@ -11,16 +10,14 @@
     <div class="tab-menu" id="account-overview-menu">
         <ul class="menu list-unstyled">
             <li><a href="javascript:;" data-name="Summary" class="menu-item account-overview-menu-item" id="menuSummary">@Lang.Summary</a></li>
-            @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.MediaGallery))
-            {
-                <li><a href="javascript:;" data-name="AffiliateLink" class="menu-item account-overview-menu-item" id="menuAffiliateLink">@Lang.AffiliateLink</a></li>
-                <li><a href="javascript:;" data-name="MediaGallery" class="menu-item account-overview-menu-item" id="menuMediaGallery">@Lang.Banner</a></li>
-            }
+            <li><a href="javascript:;" data-name="AffiliateLink" class="menu-item account-overview-menu-item" id="menuAffiliateLink">@Lang.AffiliateLink</a></li>
+            <li><a href="javascript:;" data-name="MediaGallery" class="menu-item account-overview-menu-item" id="menuMediaGallery">@Lang.MediaGallery</a></li>
         </ul>
     </div>
     <div class="bg-orange">
-        <span class="text"><strong>@Lang.LastLogin:</strong> @(Model?.LastLoginDate.ToString("dd-MMM-yyyy hh:mm tt"))</span>
-        <span class="text"><strong>@Lang.LastLoginIpAddress:</strong> @(Model?.LastLoginIP)</span>
+        <span class="text"><strong>@Lang.LastLogin:</strong> @(Model.LastLoginInfo.LastLoginDate?.ToString("dd-MMM-yyyy hh:mm tt"))</span>
+        <span class="text"><strong>@Lang.LastLoginIpAddress:</strong> @(Model.LastLoginInfo.LastLoginIP)</span>
+        <span class="text"><strong>@(Lang.AffiliateID):</strong> @(Model.LastLoginInfo.AffCode)</span>
     </div>
     <div id="account-overview-content"></div>
 </div>

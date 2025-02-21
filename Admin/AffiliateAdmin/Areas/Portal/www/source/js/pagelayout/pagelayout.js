@@ -16,10 +16,10 @@ var PageLayout = (function ($) {
             });
         },
 
-        initClock: function(){
+        initClock: function () {
             $('#clock').jclock({
                 utc: true,
-                utcOffset: -4,
+                utcOffset: +8,
                 format: '%H:%M:%S %b %d, %Y GMT'
             });
         }

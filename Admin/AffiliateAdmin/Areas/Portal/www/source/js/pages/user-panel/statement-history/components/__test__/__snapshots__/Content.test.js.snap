@@ -151,7 +151,7 @@ exports[`statement history - components - Content render correctly with have dat
         Array [
           <React.Fragment>
             <t
-              className="b/f"
+              className="current"
             >
               <t
                 asc={true}
@@ -171,7 +171,7 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="Jun-2019"
+                title="Jun-2020"
               >
                 <Button
                   className="p-0 th-wrapper"
@@ -187,7 +187,7 @@ exports[`statement history - components - Content render correctly with have dat
                     />
                   </div>
                   <span>
-                    Jun-2019
+                    Jun-2020
                   </span>
                 </Button>
               </t>
@@ -198,7 +198,7 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title={0}
+                title="Monthly Total"
               >
                 Monthly Total
               </t>
@@ -209,9 +209,9 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="$0.00"
+                title="0.00"
               >
-                $0.00
+                0.00
               </t>
               <t
                 asc={true}
@@ -220,9 +220,9 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="B/F"
+                title="Current"
               >
-                B/F
+                Current
               </t>
               <t
                 asc={true}
@@ -231,9 +231,9 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="System"
+                title=""
               >
-                System
+                
               </t>
               <t
                 asc={true}
@@ -241,15 +241,15 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="undefined"
+                title="Current Month Statistics"
               >
-                undefined
+                Current Month Statistics
               </t>
             </t>
           </React.Fragment>,
           <React.Fragment>
             <t
-              className="processing"
+              className="cancelled"
             >
               <t
                 asc={true}
@@ -269,9 +269,9 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="Jun-2019"
+                title="25-May-2020"
               >
-                Jun-2019
+                25-May-2020
               </t>
               <t
                 asc={true}
@@ -280,7 +280,89 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title={202}
+                title="Monthly Earning"
+              >
+                Monthly Earning
+              </t>
+              <t
+                asc={true}
+                className="text-right"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+                title="100.00"
+              >
+                100.00
+              </t>
+              <t
+                asc={true}
+                className="text-center"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+                title="Cancelled"
+              >
+                Cancelled
+              </t>
+              <t
+                asc={true}
+                className="text-center"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+                title="System"
+              >
+                System
+              </t>
+              <t
+                asc={true}
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+                title=""
+              >
+                
+              </t>
+            </t>
+          </React.Fragment>,
+          <React.Fragment>
+            <t
+              className="processing"
+            >
+              <t
+                asc={true}
+                className="text-center"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+                title={3}
+              >
+                3
+              </t>
+              <t
+                asc={true}
+                className="text-center"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+                title="25-May-2020"
+              >
+                25-May-2020
+              </t>
+              <t
+                asc={true}
+                className="text-center"
+                header={false}
+                onClick={[Function]}
+                sortable={false}
+                sorting={false}
+                title="Payment Request"
               >
                 Payment Request
               </t>
@@ -291,7 +373,7 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="$125.00"
+                title="100.00"
               >
                 <Button
                   className="p-0"
@@ -299,7 +381,7 @@ exports[`statement history - components - Content render correctly with have dat
                   onClick={[Function]}
                   tag="button"
                 >
-                  $125.00
+                  100.00
                 </Button>
               </t>
               <t
@@ -327,9 +409,9 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="AAwalter"
+                title="System"
               >
-                AAwalter
+                System
               </t>
               <t
                 asc={true}
@@ -337,255 +419,9 @@ exports[`statement history - components - Content render correctly with have dat
                 onClick={[Function]}
                 sortable={false}
                 sorting={false}
-                title="undefined"
+                title=""
               >
-                undefined
-              </t>
-            </t>
-          </React.Fragment>,
-          <React.Fragment>
-            <t
-              className="b/f"
-            >
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title={3}
-              >
-                3
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="Jun-2019"
-              >
-                Jun-2019
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title={203}
-              >
-                Adjustment
-              </t>
-              <t
-                asc={true}
-                className="text-right"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="-$100.00"
-              >
-                -$100.00
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="B/F"
-              >
-                B/F
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="AAwalter"
-              >
-                AAwalter
-              </t>
-              <t
-                asc={true}
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="undefined"
-              >
-                undefined
-              </t>
-            </t>
-          </React.Fragment>,
-          <React.Fragment>
-            <t
-              className="b/f"
-            >
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title={4}
-              >
-                4
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="Jun-2019"
-              >
-                Jun-2019
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title={0}
-              >
-                Transaction
-              </t>
-              <t
-                asc={true}
-                className="text-right"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="$105.00"
-              >
-                $105.00
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="B/F"
-              >
-                B/F
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="AAwalter"
-              >
-                AAwalter
-              </t>
-              <t
-                asc={true}
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="undefined"
-              >
-                undefined
-              </t>
-            </t>
-          </React.Fragment>,
-          <React.Fragment>
-            <t
-              className="b/f"
-            >
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title={5}
-              >
-                5
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="Jun-2019"
-              >
-                Jun-2019
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title={-1}
-              >
-                Monthly Earning
-              </t>
-              <t
-                asc={true}
-                className="text-right"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="$105.00"
-              >
-                $105.00
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="B/F"
-              >
-                B/F
-              </t>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="AAwalter"
-              >
-                AAwalter
-              </t>
-              <t
-                asc={true}
-                header={false}
-                onClick={[Function]}
-                sortable={false}
-                sorting={false}
-                title="undefined"
-              >
-                undefined
+                
               </t>
             </t>
           </React.Fragment>,

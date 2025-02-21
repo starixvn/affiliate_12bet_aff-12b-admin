@@ -2,6 +2,7 @@
 using Autofac.Core.Lifetime;
 using Autofac.Integration.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
 {
@@ -39,6 +40,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
             }
 
             return this._scope;
+        }
+
+        ValueTask ILifetimeScopeProvider.EndLifetimeScope()
+        {
+            throw new NotImplementedException();
         }
     }
 }

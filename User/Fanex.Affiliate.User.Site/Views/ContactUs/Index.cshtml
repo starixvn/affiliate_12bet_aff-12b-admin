@@ -7,16 +7,14 @@
 }
 
 @using Fanex.Affiliate.User.Core.Utilities
-@using Fanex.Affiliate.User.Core.Constants
 @model Fanex.Affiliate.User.Core.DTO.UserInfo
 @{
-    var hasAffPersonalInfoPermission = ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.AffPersonalInfo);
-    var name = Model != null ? $"{Model?.FirstName.ReplaceAHalfOfString(hasAffPersonalInfoPermission)} {Model?.LastName.ReplaceAHalfOfString(hasAffPersonalInfoPermission)}" : string.Empty;
+    var isShowFullInfo = !(bool)ViewBag.IsInternal;
+    var name = Model != null ? $"{Model.FirstName.ReplaceAHalfOfString(isShowFullInfo)} {Model.LastName.ReplaceAHalfOfString(isShowFullInfo)}" : string.Empty;
     var affiliate = Model?.UserName;
     var email = Model?.Email;
-    var appSetting = new AppSetting();
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
     var mailContact = appSetting.MailContact;
-    var isMobile = Request.Browser.IsMobileDevice;
     var currentLanguage = ViewBag.CurrentLanguage;
 }
 
@@ -305,7 +303,6 @@
             </div>
         </div>
     </div>
-
     <div class="block block-contact-form">
         <div class="page-container">
             <h2 class="contact-title">
@@ -327,7 +324,7 @@
                             </div>
                         </div>
                         <div class="items">
-                            <input type="text" class="form-input" placeholder="@Lang.AffiliateID" name="Affiliate" id="Affiliate" value="@affiliate" />
+                            <input type="text" class="form-input" placeholder="@Lang.Affiliate" name="Affiliate" id="Affiliate" value="@affiliate" />
                         </div>
                     </div>
                     <div class="form-group form-columns form-columns-2">
@@ -337,15 +334,12 @@
                                 @Lang.SubjectIsInvalid
                             </div>
                         </div>
-                        @if (ClaimUtitlity.HasClaimOnlyInternalLogin(ClaimConstant.EmailType))
-                        {
-                            <div class="items validate-group">
-                                <input type="text" class="form-input" placeholder="@Lang.Email1" name="Email" id="Email" value="@email" autocomplete="off" />
-                                <div class="validate-input hide">
-                                    @Lang.EmailAddressIsInvalid
-                                </div>
+                        <div class="items validate-group">
+                            <input type="text" class="form-input" placeholder="@Lang.Email1" name="Email" id="Email" value="@(isShowFullInfo ? email : EmailHelper.HideEmailPart(email))" autocomplete="off" />
+                            <div class="validate-input hide">
+                                @Lang.EmailAddressIsInvalid
                             </div>
-                        }
+                        </div>
                     </div>
                     <div class="form-group form-columns form-columns-1">
                         <div class="items validate-group">
@@ -374,5 +368,5 @@
             </div>
         </div>
     </div>
-
     @RazorHelper.RenderMovingTopButton()
+</div>

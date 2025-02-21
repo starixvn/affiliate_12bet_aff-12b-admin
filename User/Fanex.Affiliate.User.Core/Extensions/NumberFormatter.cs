@@ -7,19 +7,19 @@
     {
         private static readonly CultureInfo DefaultCulture = new CultureInfo("en-US");
 
-        public static string FormatNumber(this int value, byte digit = 2)
+        public static string FormatNumber(this int value)
         {
             return value.ToString("#,##0");
         }
 
-        public static string ToStringMoneyWithSymbol(this decimal value, byte digit = 2, string symbol = "$")
+        public static string ToStringMoneyWithSymbol(this decimal value, string symbol = "", byte digit = 2)
         {
             return IsShowNegative(value, digit) ? $"-{symbol}{Math.Abs(value).FormatDecimal(digit)}" : $"{symbol}{value.FormatDecimal(digit)}";
         }
 
         public static string FormatDecimal(this decimal value, byte digit = 2)
         {
-            var format = "N" + digit.ToString();
+            var format = "N" + digit;
             return value.ToString(format, DefaultCulture.NumberFormat);
         }
 

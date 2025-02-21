@@ -1,10 +1,7 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
+﻿using System.Web;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Web;
 using static Fanex.Affiliate.User.Core.Constants.SessionKey;
 
 namespace Fanex.Affiliate.User.Core.CoreService
@@ -15,22 +12,6 @@ namespace Fanex.Affiliate.User.Core.CoreService
         {
             get { return HttpContext.Current.Session[CaptchaCodeKey] as string; }
             set { HttpContext.Current.Session[CaptchaCodeKey] = value; }
-        }
-
-        public DateTime? LastestRequestTime
-        {
-            get
-            {
-                var time = HttpContext.Current.Session[LastestRequestTimeKey];
-                return (DateTime?)time;
-            }
-            set { HttpContext.Current.Session[LastestRequestTimeKey] = value; }
-        }
-
-        public bool IsOpenedFeedback
-        {
-            get { return (bool)(HttpContext.Current.Session[IsOpenedFeedbackKey] ?? false); }
-            set { HttpContext.Current.Session[IsOpenedFeedbackKey] = value; }
         }
 
         public UserSession UserSession
@@ -91,15 +72,18 @@ namespace Fanex.Affiliate.User.Core.CoreService
             var userSession = new UserSession
             {
                 AffId = authorizedUser.AffId,
+                AffCode = authorizedUser.AffCode,
                 UserName = authorizedUser.UserName,
                 PreferredLanguage = string.IsNullOrEmpty(authorizedUser.PreferredLanguage) ?
-                                        SystemLanguage.DefaultLanguageCode :
-                                        authorizedUser.PreferredLanguage,
+                    SystemLanguage.DefaultLanguageCode :
+                    authorizedUser.PreferredLanguage,
                 OnUserId = authorizedUser.OnUserId,
                 AffType = authorizedUser.AffType,
                 GroupName = authorizedUser.GroupName,
-                UserId = authorizedUser.UserId,
-                OfferPageId = authorizedUser.OfferPageId
+                IsMaxSubLevel = authorizedUser.IsMaxSubLevel,
+                IsDepositFeePercent = authorizedUser.IsDepositFeePercent,
+                IsWithdrawalFeePercent = authorizedUser.IsWithdrawalFeePercent,
+                DisabledTransfer = true //authorizedUser.DisabledTransfer //Hide Transfer Player
             };
 
             HttpContext.Current.Session[UserSessionKey] = userSession;
@@ -109,12 +93,6 @@ namespace Fanex.Affiliate.User.Core.CoreService
         {
             get { return HttpContext.Current.Session[VerificationSessionKey] as VerificationSession; }
             set { HttpContext.Current.Session[VerificationSessionKey] = value; }
-        }
-
-        public IEnumerable<ClaimsIdentity> ClaimsIdentities
-        {
-            get => HttpContext.Current.Session[ClaimIdentitiesKey] as IEnumerable<ClaimsIdentity>;
-            set => HttpContext.Current.Session[ClaimIdentitiesKey] = value;
         }
     }
 }

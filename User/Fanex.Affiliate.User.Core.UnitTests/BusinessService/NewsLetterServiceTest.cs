@@ -1,28 +1,34 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.User.Core.Utilities;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Criterias;
+    using Data.Repository;
+    using DTO.UserPanel;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Utilities;
+    using Moq;
+    using TestHelper;
+    using Xunit;
+
     public class NewsLetterServiceTest
     {
+        private readonly Mock<IDynamicRepository> _repository;
+
+        public NewsLetterServiceTest()
+        {
+            _repository = new Mock<IDynamicRepository> { CallBase = true };
+        }
+
         [Fact]
         public async Task GetNewsLetterById_WhenCall_ReturnEmptyString()
         {
             // Arrange
             var newsLetterId = 123;
             NewsLetter newsLetter = null;
-            var newsLetterRepository = new Mock<INewsLetterRepository>();
-            newsLetterRepository.Setup(p => p.GetNewsLetterById(newsLetterId)).Returns(newsLetter);
-            var service = CreateNewsLetterService(newsLetterRepository.Object);
+            _repository.Setup(p => p.Get<NewsLetter>(It.IsAny<GetNewsLetterByIdCriteria>(), string.Empty)).Returns(newsLetter);
+            var service = CreateNewsLetterService(_repository.Object);
 
             // Action
             var result = await service.GetContentById(newsLetterId);
@@ -40,17 +46,17 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             NewsLetter newsLetter = new NewsLetter
             {
                 FileName = "abc.html",
-                EffectiveFrom = DateTime.Now,
-                EffectiveTo = DateTime.Now,
+                EffectiveFrom = DateTimeHelper.Now,
+                EffectiveTo = DateTimeHelper.Now,
                 Language = Constant.DefaultLanguage,
                 NewsLetterId = 1,
-                UploadDate = DateTime.Now
+                UploadDate = DateTimeHelper.Now
             };
-            var newsLetterRepository = new Mock<INewsLetterRepository>();
-            newsLetterRepository.Setup(p => p.GetNewsLetterById(newsLetterId)).Returns(newsLetter);
+
+            _repository.Setup(p => p.Get<NewsLetter>(It.IsAny<GetNewsLetterByIdCriteria>(), string.Empty)).Returns(newsLetter);
             var httpClientUtility = new Mock<IHttpClientUtility>();
             httpClientUtility.Setup(h => h.GetContent(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(content));
-            var service = CreateNewsLetterService(newsLetterRepository.Object, null, httpClientUtility.Object);
+            var service = CreateNewsLetterService(_repository.Object, null, httpClientUtility.Object);
 
             // Action
             var result = await service.GetContentById(newsLetterId);
@@ -63,10 +69,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public async Task GetCurrentContent_WhenCall_ReturnEmptyString()
         {
             // Arrange
-            var newsLetterRepository = new Mock<INewsLetterRepository>();
-            newsLetterRepository.Setup(p => p.GetNewsLettersByDate(It.IsAny<DateTime>())).Returns(new List<NewsLetter>());
+            _repository.Setup(p => p.Fetch<NewsLetter>(It.IsAny<GetNewsLettersByDateCriteria>(), string.Empty)).Returns(new List<NewsLetter>());
 
-            var service = CreateNewsLetterService(newsLetterRepository: newsLetterRepository.Object);
+            var service = CreateNewsLetterService(newsLetterRepository: _repository.Object);
 
             // Action
             var result = await service.GetCurrentContent();
@@ -82,12 +87,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var content = "test";
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.CurrentLanguage).Returns("en-US");
-            var newsLetterRepository = new Mock<INewsLetterRepository>();
-            newsLetterRepository.Setup(p => p.GetNewsLettersByDate(It.IsAny<DateTime>())).Returns(new List<NewsLetter> { new NewsLetter { Language = "en-US", FileName = "abc.html" } });
+            _repository.Setup(p => p.Fetch<NewsLetter>(It.IsAny<GetNewsLettersByDateCriteria>(), string.Empty)).Returns(new List<NewsLetter> { new NewsLetter { Language = "en-US", FileName = "abc.html" } });
             var httpClientUtility = new Mock<IHttpClientUtility>();
             httpClientUtility.Setup(h => h.GetContent(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(content));
 
-            var service = CreateNewsLetterService(newsLetterRepository.Object, sessionService.Object, httpClientUtility.Object);
+            var service = CreateNewsLetterService(_repository.Object, sessionService.Object, httpClientUtility.Object);
 
             // Action
             var result = await service.GetCurrentContent();
@@ -96,27 +100,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Assert.Equal(content, result);
         }
 
-        [Fact]
-        public void HasNewCurrentTime_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var newsLetterRepository = new Mock<INewsLetterRepository>();
-            newsLetterRepository.Setup(p => p.GetNewsLettersByDate(It.IsAny<DateTime>())).Returns(new List<NewsLetter> { new NewsLetter() });
-            var service = CreateNewsLetterService(newsLetterRepository: newsLetterRepository.Object);
-
-            // Action
-            var result = service.HasNewCurrentTime();
-
-            // Assert
-            Assert.True(result);
-        }
-
         private static NewsLetterService CreateNewsLetterService(
-            INewsLetterRepository newsLetterRepository = null,
+            IDynamicRepository newsLetterRepository = null,
             ISessionService sessionService = null,
             IHttpClientUtility httpClientUtility = null)
         {
-            var fakeNewsLetterRepository = newsLetterRepository ?? Mock.Of<INewsLetterRepository>();
+            var fakeNewsLetterRepository = newsLetterRepository ?? Mock.Of<IDynamicRepository>();
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeHttpClientUtility = httpClientUtility ?? Mock.Of<IHttpClientUtility>();
 

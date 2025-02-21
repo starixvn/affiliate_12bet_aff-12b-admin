@@ -1,6 +1,5 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
@@ -20,16 +19,16 @@ describe('domain control - DomainControlPopup - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            selectedDomainId: 123,
-            selectedTargetCountryCode: 'en-GB',
-            targetCountryList: [],
+            selectedDomain: { domainId: 123 },
+            selectedMarket: 'en-GB',
+            marketList: [],
             affDomainList: [],
             redirectDomainList: []
         };
         const state = {
-            selectedDomainId: 123,
-            selectedTargetCountryCode: 'en-GB',
-            targetCountryList: [],
+            selectedDomain: { domainId: 123 },
+            selectedMarket: 'en-GB',
+            marketList: [],
             affDomainList: [],
             redirectDomainList: [],
             anotherProp: "Not included"
@@ -48,9 +47,7 @@ describe('domain control - DomainControlPopup - connect', () => {
             fetchData: actions['fetchData'],
             updateDomain: actions['updateDomain'],
             toggleLoader: actions['toggleLoader'],
-            getDomainControlById: actions['getDomainControlById'],
-            getTargetCountryListByDomains: actions['getTargetCountryListByDomains'],
-            setSelectedDomainId: actions['setSelectedDomainId']
+            setSelectedDomain: actions['setSelectedDomain']
         }
 
         const dispatch = {};

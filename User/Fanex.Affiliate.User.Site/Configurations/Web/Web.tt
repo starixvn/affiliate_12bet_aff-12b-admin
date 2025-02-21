@@ -6,19 +6,15 @@
 <#
 string projectPath = Host.ResolveAssemblyReference("$(SolutionDir)") + @"\User\Fanex.Affiliate.User.Site\";
 var environments = new string[] {"local", "sit", "uat", "production" };
-var sites = new string[] {"asian", "euro"};
 foreach(var environment in environments)
 {
-	foreach(var site in sites)
+	var fileName = string.Format("{0}.config", environment);
+	using(var transform = new Microsoft.Web.XmlTransform.XmlTransformation(projectPath + @"Configurations\Web\Transform\" + fileName))
 	{
-		var fileName = string.Format("{0}.{1}.config", site, environment);
-		using(var transform = new Microsoft.Web.XmlTransform.XmlTransformation(projectPath + @"Configurations\Web\Transform\" + fileName))
-		{
-			var document = new XmlDocument();
-			document.Load(projectPath + "Web.config");
-			transform.Apply(document);
-			document.Save(projectPath + @"Configurations\Web\Web.12betuser-" + fileName);
-		}
- }
+		var document = new XmlDocument();
+		document.Load(projectPath + "Web.config");
+		transform.Apply(document);
+		document.Save(projectPath + @"Configurations\Web\Web.user-12b." + fileName);
+	}
 }
 #>

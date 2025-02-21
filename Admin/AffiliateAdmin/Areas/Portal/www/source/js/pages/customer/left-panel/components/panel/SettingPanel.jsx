@@ -1,16 +1,18 @@
-/// <reference path="../../../common/libs/constants.js" />
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Panel from '../Panel';
 import { Row, Col, Button } from 'reactstrap';
 
-import { affType, resource, status, messages } from '../../libs/constants';
-import { updateAffType, updateClosedStatus, updateStatus, getAffiliateInfo } from '../../actions';
+import { resource, status, messages, statusForSuspend } from '../../libs/constants';
+import { updateAffType, updateStatus, getAffiliateInfo, getTransferLimitSetting } from '../../actions';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
-import { NotificationPopup } from '../../../../common/components/NotificationPopup';
-import { claimResource } from '../../../../../modules/claim';
+import NotificationPopup from '../../../../common/components/NotificationPopup';
+import TransferBalanceForPlayerSettingPopup from './TransferBalanceForPlayerSettingPopup';
+import ClaimPrincipal, { claimResource } from '../../../../../modules/claim';
+import { money } from '../../../../../modules/constants';
+import { format } from '../../../../../modules/numberFormat';
 
 export class SettingPanel extends PureComponent {
     constructor(props) {
@@ -22,52 +24,70 @@ export class SettingPanel extends PureComponent {
         this.state = {
             isChangingAffType: false,
             isChangingAffStatus: false,
-            isAssignCommGroup: false,
+            isAssignCommissionGroup: false,
             selectedStatus: '',
-            isClosed: false,
             messageNotification: '',
             isConfirmPopup: true,
-            isConfirmStatus: true
+            isConfirmStatus: true,
+            transferLimitSettingInfo: null,
         }
+
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        this.canViewTransferSetting = claimsPrincipal.hasReadClaim(claimResource.TransferPlayerSetting);
+        this.canEditTransferSetting = claimsPrincipal.hasWriteClaim(claimResource.TransferPlayerSetting);
     }
 
-    toggleChangingAffType = (isChanging) => {
+    _toggleChangingAffType = (isChanging) => {
         this.setState({ isChangingAffType: isChanging }, () => isChanging && this.affTypeDropdown.current.focus());
     }
 
-    toggleChangingAffStatus = (isChanging) => {
+    handleOpenChangingAffType = () => {
+        this._toggleChangingAffType(true)
+    }
+
+    handleCloseChangingAffType = () => {
+        this._toggleChangingAffType(false)
+    }
+
+    _toggleChangingAffStatus = (isChanging) => {
         this.setState({ isChangingAffStatus: isChanging }, () => isChanging && this.affStatusDropdown.current.focus());
     }
 
+    handleOpenChangingAffStatus = () => {
+        this._toggleChangingAffStatus(true)
+    }
+
+    handleCloseChangingAffStatus = () => {
+        this._toggleChangingAffStatus(false)
+    }
+
     toggleAssignCommissionPopup = (isChanging) => {
-        this.setState({ isAssignCommGroup: isChanging })
+        this.setState({ isAssignCommissionGroup: isChanging })
     }
 
     handleCloseNotificationPopup = (confirmResult) => {
         this.setState({ messageNotification: '' });
 
-        const { isConfirmStatus, selectedStatus, isClosed } = this.state;
+        const { isConfirmStatus, selectedStatus } = this.state;
         if (isConfirmStatus && confirmResult && selectedStatus) {
-            this._changeStatus(selectedStatus);
-        }
-
-        if (!isConfirmStatus && confirmResult) {
-            this._openCloseAff(isClosed);
+            this._saveStatus(selectedStatus);
         }
     }
 
-    _handleChangeStatus = (event) => {
+    handleChangeStatus = (event) => {
         this.setState({ messageNotification: messages.areYouChangeStatus, isConfirmPopup: true, isConfirmStatus: true, selectedStatus: event.target.value });
     }
 
-    _changeStatus = async (selectedStatus) => {
-        if (selectedStatus && selectedStatus.toLowerCase() === status.Approved) {
-            this.setState({ isAssignCommGroup: true });
+    _saveStatus = async (selectedStatus) => {
+        const { affiliateInfo } = this.props;
+
+        if (selectedStatus && selectedStatus.toLowerCase() === status.Approved && !affiliateInfo.AffCode) {
+            this.setState({ isAssignCommissionGroup: true });
         } else {
-            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: selectedStatus });
+            const param = Object.assign({}, { AffId: affiliateInfo.AffId, Status: selectedStatus });
             const result = await this.props.updateStatus(param);
 
-            if (result && result.IsSuccessful) {
+            if (result.IsSuccessful) {
                 this.setState({ messageNotification: messages.statusUpdatedSuccess, isConfirmPopup: false });
                 this.props.getAffiliateInfo(this.props.affName);
             }
@@ -77,130 +97,118 @@ export class SettingPanel extends PureComponent {
         }
     }
 
-    _handleOpenCloseAff = () => {
-        const { affiliateInfo, today } = this.props;
-        const currentDate = new Date(today).getDate();
-
-        const isClosed = !affiliateInfo.IsClosed;
-
-        //closes an affiliate between the 1st and 5th of the month
-        const isSpecialDate = currentDate > 0 && currentDate < 6;
-        const specialMessage = isClosed && isSpecialDate ? messages.closedAffOnSpecialDate : '';
-
-        this.setState({ messageNotification: `${specialMessage}Are you sure you want to ${isClosed ? 'close' : 'open'} this affiliate?`, isConfirmPopup: true, isConfirmStatus: false, isClosed });
-    }
-
-    _openCloseAff = async (isClosed) => {
-        const param = { AffId: this.props.affiliateInfo.AffId, IsClosed: isClosed };
-        const result = await this.props.updateClosedStatus(param);
-
-        if (result && result.IsSuccessful) {
-            this.setState({ messageNotification: messages.statusUpdatedSuccess, isConfirmPopup: false });
-            this.props.getAffiliateInfo(this.props.affName);
-        }
-        else {
-            this.setState({ messageNotification: result.Message, isConfirmPopup: false });
-        }
-    }
-
     handleChangeAffType = async (event) => {
         const affType = event.target.value;
         const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, AffType: affType });
         const result = await this.props.updateAffType(param);
 
-        if (result && result.IsSuccessful) {
+        if (result.IsSuccessful) {
             this.props.getAffiliateInfo(this.props.affName);
-            this.toggleChangingAffType(false);
+            this._toggleChangingAffType(false);
         }
         else {
-            this.setState({ messageNotification: result.Message, isConfirmPopup: false });
+            this.setState({ messageNotification: messages.affTypeUpdatedFail, isConfirmPopup: false });
         }
     }
 
+    toggleTransferSettingPopup = (info) => {
+        this.setState({ transferLimitSettingInfo: info });
+    }
+
+    handleOpenTransferSettingPopup = async () => {
+        const { affiliateInfo } = this.props;
+        const transferLimitSettingInfo = await this.props.getTransferLimitSetting(affiliateInfo.AffId);
+
+        this.toggleTransferSettingPopup(transferLimitSettingInfo)
+    }
+
+    handleCloseTransferSettingPopup = () => {
+        this.toggleTransferSettingPopup(null)
+    }
+
     render() {
-        const { affiliateInfo, isApproved, isStatusVisible, isStatusModifiable,
-            isAssignCommGroupVisible, isCommGroupVisible, isAffTypeModifiable, isManagePendingAffVisible, isManagePendingAffModifiable } = this.props;
-        const { isChangingAffType, isChangingAffStatus, isAssignCommGroup, messageNotification, isConfirmPopup } = this.state;
-        const isReadOnly = isStatusVisible && !isStatusModifiable && !isManagePendingAffModifiable;
+        const { affiliateInfo, isApproved, affTypeList } = this.props;
+        const { isChangingAffType, isChangingAffStatus, isAssignCommissionGroup, messageNotification, isConfirmPopup, transferLimitSettingInfo } = this.state;
+        const affType = affTypeList && affTypeList.filter(a => a.AffTypeId == affiliateInfo.AffType);
+        const transferSettingLabel = affiliateInfo.IsDisabledTransfer ? resource.Disabled : (affiliateInfo.TransferLimit === money.AllowedMaxValue ? resource.Unlimited : `${affiliateInfo.PlayerCurrency} ${format(affiliateInfo.TransferLimit)}`);
 
         return (
             <Panel heading={resource.Setting}>
                 <Row>
                     <Col>{resource.AffiliateType}</Col>
-                    <Col className="text-right">
-                        {
-                            (isAffTypeModifiable || isManagePendingAffModifiable) ? (
-                                <div className="text-primary">
-                                    <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
-                                        onChange={this.handleChangeAffType} onBlur={() => this.toggleChangingAffType(false)} ref={this.affTypeDropdown}>
-                                        {
-                                            Object.keys(affType).map((key, index) => {
-                                                return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
-                                            })
-                                        }
-                                    </select>
-                                    <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={() => this.toggleChangingAffType(true)}>
-                                        {affType[affiliateInfo.AffType]}
-                                    </Button>
-                                </div>
-                            ) : affType[affiliateInfo.AffType]
-                        }
+                    <Col className="text-right text-primary">
+                        <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} value={affiliateInfo.AffType}
+                            onChange={this.handleChangeAffType} onBlur={this.handleCloseChangingAffType} ref={this.affTypeDropdown}>
+                            {
+                                affTypeList && affTypeList.map(item => {
+                                    return (<option value={item.AffTypeId} key={`affinfo-type-${item.AffTypeId}`}>{item.AffTypeName}</option>)
+                                })
+                            }
+                        </select>
+                        <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffType ? 'none' : 'inline-block' }} onClick={this.handleOpenChangingAffType}>
+                            {
+                                affType.length ? affType[0].AffTypeName : affiliateInfo.AffType
+                            }
+                        </Button>
                     </Col>
                 </Row>
-                { isStatusVisible &&
-                    <Row>
-                        <Col>{resource.Status}</Col>
-                        <Col className="text-right">
-                            {
-                                isApproved || isReadOnly ?
-                                    affiliateInfo.Status :
-                                    (
-                                        < div className="text-primary">
-                                            <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} value={affiliateInfo.Status}
-                                                onChange={this._handleChangeStatus}
-                                                onBlur={() => this.toggleChangingAffStatus(false)}
-                                                ref={this.affStatusDropdown}>
-                                                {
-                                                (isAssignCommGroupVisible || isManagePendingAffVisible) && <option value="Approved">Approved</option>
-                                                }
-                                                <option value="Disapproved">Disapproved</option>
-                                                <option value="Pending">Pending</option>
-                                            </select>
-                                            <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
-                                                onClick={() => this.toggleChangingAffStatus(true)}>
-                                                {affiliateInfo.Status}
-                                            </Button>
-                                        </div>
-                                    )
-                            }
-                            {
-                                (isAssignCommGroupVisible || isManagePendingAffVisible) && <CommissionGroupPopup
-                                    showPopupCommGroup={isAssignCommGroup}
-                                    isPrivateGroup={false}
-                                    isNewAffiliate={true}
-                                    isCommGroupVisible={isCommGroupVisible}
-                                    affName={affiliateInfo.AffName}
-                                    affId={affiliateInfo.AffId}
-                                    setShowPopupCommGroup={this.toggleAssignCommissionPopup}
-                                    getAffiliateInfo={this.props.getAffiliateInfo}
-                                />
-                            }
-                        </Col>
-                    </Row>
-                }
+                <Row>
+                    <Col>{resource.Status}</Col>
+                    <Col className="text-right">
+                        <div className="text-primary">
+                            <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} value={affiliateInfo.Status}
+                                onChange={this.handleChangeStatus}
+                                onBlur={this.handleCloseChangingAffStatus}
+                                ref={this.affStatusDropdown}>
+                                {
+                                    Object.keys(isApproved ? statusForSuspend : status).map(key => {
+                                        return (<option value={key} key={`status-${key}`}>{key}</option>)
+                                    })
+                                }
+                            </select>
+                            <Button color="link" className="left-panel-btn-link" style={{ display: isChangingAffStatus ? 'none' : 'inline-block' }}
+                                onClick={this.handleOpenChangingAffStatus}>
+                                {affiliateInfo.Status}
+                            </Button>
+                        </div>
+                        <CommissionGroupPopup
+                            showPopupCommGroup={isAssignCommissionGroup}
+                            isPrivateGroup={false}
+                            isNewAffiliate={true}
+                            affName={affiliateInfo.AffName}
+                            affId={affiliateInfo.AffId}
+                            groupTypeId={affiliateInfo.GroupTypeId}
+                            setShowPopupCommGroup={this.toggleAssignCommissionPopup}
+                            getAffiliateInfo={this.props.getAffiliateInfo}
+                        />
+                    </Col>
+                </Row>
                 {
-                    isApproved && isStatusVisible && (
-                        <Row>
-                            <Col>{resource.Closed}</Col>
-                            { isStatusModifiable
-                                ? (<Col className="text-right text-primary">
-                                    <Button color="link" className="left-panel-btn-link btn-closed" onClick={this._handleOpenCloseAff}>
-                                        {affiliateInfo.IsClosed ? resource.Yes : resource.No}
-                                    </Button>
-                                </Col>)
-                                : (<Col className="text-right">{affiliateInfo.IsClosed ? resource.Yes : resource.No}</Col>)
+                    isApproved && this.canViewTransferSetting && (
+                        <Fragment>
+                            <Row>
+                                <Col className="left-panel-wrap-line">{resource.TransferBalanceForPlayer}</Col>
+                                <Col className="text-right">
+                                    {
+                                        this.canEditTransferSetting ? (
+                                            <Button color="link" className="left-panel-btn-link text-primary" onClick={this.handleOpenTransferSettingPopup}>
+                                                {transferSettingLabel}
+                                            </Button>
+                                        ) : transferSettingLabel
+                                    }
+                                </Col>
+                            </Row>
+                            {
+                                transferLimitSettingInfo && (
+                                    <TransferBalanceForPlayerSettingPopup
+                                        affId={affiliateInfo.AffId}
+                                        affName={affiliateInfo.AffName}
+                                        settingInfo={transferLimitSettingInfo}
+                                        onClose={this.handleCloseTransferSettingPopup} />
+                                )
                             }
-                        </Row>)
+                        </Fragment>
+                    )
                 }
                 {
                     !!messageNotification && <NotificationPopup
@@ -214,26 +222,14 @@ export class SettingPanel extends PureComponent {
     }
 }
 
-function mapStateToProps({ leftPanel, claimsPrincipal, today }) {
-    const { affiliateInfo, affName } = leftPanel;
-    const isStatusModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffiliateInfo);
-    const isAssignCommGroupVisible = claimsPrincipal.hasReadClaim(claimResource.AssignCommGroup);
-    const isCommGroupVisible = claimsPrincipal.hasReadClaim(claimResource.CommissionGroup);
-    const isAffTypeModifiable = claimsPrincipal.hasWriteClaim(claimResource.AffiliateInfo);
-    
-    const isPendingAff = affiliateInfo.IsPendingAff;
-    const isManagePendingAffVisible = isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
-    const isManagePendingAffModifiable = isPendingAff && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
-    const isStatusVisible = claimsPrincipal.hasReadClaim(claimResource.AffAccountStatus) || isManagePendingAffVisible;
+function mapStateToProps({ leftPanel }) {
+    const { affiliateInfo, affName, affTypeList } = leftPanel;
 
-    return Object.assign({}, {
-        affiliateInfo, affName, isStatusVisible, isStatusModifiable, today,
-        isAssignCommGroupVisible, isCommGroupVisible, isAffTypeModifiable, isManagePendingAffVisible, isManagePendingAffModifiable
-    });
+    return Object.assign({}, { affiliateInfo, affName, affTypeList });
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getAffiliateInfo, updateAffType, updateClosedStatus, updateStatus }, dispatch);
+    return bindActionCreators({ getAffiliateInfo, updateAffType, updateStatus, getTransferLimitSetting }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingPanel);

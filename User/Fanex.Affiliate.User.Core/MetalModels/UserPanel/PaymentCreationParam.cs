@@ -1,5 +1,4 @@
-﻿using Fanex.Data;
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
@@ -17,17 +16,10 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public long TransId { get; set; }
 
-        public int ErrCode { get; set; }
-
-        public string ErrMsg { get; set; }
-
-        [SpParam(Ignored = true)]
         public decimal MinAmount { get; set; }
 
-        [SpParam(Ignored = true)]
         public decimal BalBroughtForward { get; set; }
 
-        [SpParam(Ignored = true)]
         public bool IsLocalTest { get; set; }
     }
 }

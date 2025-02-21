@@ -1,9 +1,7 @@
-﻿using Fanex.Affiliate.Admin.Core.Services.Common;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using System.Collections.Generic;
-using System.IO;
-using System.Security.Claims;
-using System.Web;
-using System.Web.SessionState;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Common
@@ -11,11 +9,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Common
     public class SessionServiceTest
     {
         [Fact]
-        public void PropertyUserId_WhenCall_PropertyStoreCorrectly()
+        public void PropertyUserId_WhenCall_UserIdCorrectly()
         {
-            SetUpHttpContextSession();
+            MockingHelper.SetUpHttpContextSession();
             var service = CreateService();
-            var userId = 12345;
+            var userId = 123;
 
             service.UserId = userId;
 
@@ -23,122 +21,76 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Common
         }
 
         [Fact]
-        public void PropertyUserId_WhenCall_ReturnCorrectData()
+        public void PropertyUserId_WhenCall_ReturnZero()
         {
-            SetUpHttpContextSession();
+            MockingHelper.SetUpHttpContextSession();
             var service = CreateService();
 
             Assert.Equal(0, service.UserId);
         }
 
         [Fact]
-        public void PropertyOnUserId_WhenCall_PropertyStoreCorrectly()
+        public void PropertyOnUserId_WhenCall_OnUserIdCorrectly()
         {
-            SetUpHttpContextSession();
+            MockingHelper.SetUpHttpContextSession();
             var service = CreateService();
-            var OnUserId = 12345;
+            var onUserId = 123;
 
-            service.OnUserId = OnUserId;
+            service.OnUserId = onUserId;
 
-            Assert.Equal(OnUserId, service.OnUserId);
+            Assert.Equal(onUserId, service.OnUserId);
         }
 
         [Fact]
-        public void PropertyOnUserId_WhenCall_ReturnCorrectData()
+        public void PropertyOnUserId_WhenCall_ReturnZero()
         {
-            SetUpHttpContextSession();
+            MockingHelper.SetUpHttpContextSession();
             var service = CreateService();
 
             Assert.Equal(0, service.OnUserId);
         }
 
         [Fact]
-        public void PropertyAffId_WhenCall_PropertyStoreCorrectly()
+        public void PropertyAffName_WhenCall_AffIdCorrectly()
         {
-            SetUpHttpContextSession();
+            MockingHelper.SetUpHttpContextSession();
             var service = CreateService();
-            var AffId = 12345;
+            var affName = "abc";
 
-            service.AffId = AffId;
+            service.AffName = affName;
 
-            Assert.Equal(AffId, service.AffId);
+            Assert.Equal(affName, service.AffName);
         }
 
         [Fact]
-        public void PropertyOnAffId_WhenCall_ReturnCorrectData()
+        public void PropertyAffName_WhenCall_ReturnEmpty()
         {
-            SetUpHttpContextSession();
+            MockingHelper.SetUpHttpContextSession();
             var service = CreateService();
 
-            Assert.Equal(0, service.AffId);
+            Assert.Equal(string.Empty, service.AffName);
         }
 
         [Fact]
-        public void PropertyAffName_WhenCall_PropertyStoreCorrectly()
+        public void PropertyUserPermissionList_WhenCall_UserPermissionListCorrectly()
         {
-            SetUpHttpContextSession();
+            MockingHelper.SetUpHttpContextSession();
             var service = CreateService();
-            var AffName = "12345";
 
-            service.AffName = AffName;
+            service.UserPermissionList = new List<UserPermission> { new UserPermission() };
 
-            Assert.Equal(AffName, service.AffName);
+            Assert.Single(service.UserPermissionList);
         }
 
         [Fact]
-        public void PropertyAffName_WhenCall_ReturnCorrectData()
+        public void PropertyUserPermissionList_WhenCall_ReturnEmpty()
         {
-            SetUpHttpContextSession();
+            MockingHelper.SetUpHttpContextSession();
             var service = CreateService();
 
-            Assert.Empty(service.AffName);
+            Assert.Empty(service.UserPermissionList);
         }
 
-        [Fact]
-        public void PropertyClaimIdentities_WhenCall_PropertyStoreCorrectly()
-        {
-            SetUpHttpContextSession();
-            var service = CreateService();
-            var ClaimIdentities = new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim("Test", "Write") }) };
-
-            service.ClaimIdentities = ClaimIdentities;
-
-            Assert.Equal(ClaimIdentities, service.ClaimIdentities);
-        }
-
-        [Fact]
-        public void PropertyUserClaim_WhenCall_ReturnCorrectData()
-        {
-            SetUpHttpContextSession();
-            var service = CreateService();
-
-            Assert.Null(service.UserClaim);
-        }
-
-        [Theory]
-        [InlineData("")]
-        [InlineData("123,234")]
-        public void RequestIp_WhenCall_ReturnCorrectData(string ips)
-        {
-            SetUpHttpContextSession(ips);
-            var service = CreateService();
-
-            Assert.Null(service.RequestIp);
-        }
-
-        private static SessionService CreateService()
-            => new SessionService();
-
-        private static void SetUpHttpContextSession(string ips = null)
-        {
-            var request = new HttpRequest(null, "http://abco.com", $"?HTTP_X_FORWARDED_FOR={ips}");
-            var response = new HttpResponse(new StringWriter());
-            HttpContext.Current = new HttpContext(request, response);
-            var sessionContainer = new HttpSessionStateContainer("id", new SessionStateItemCollection(),
-                                         new HttpStaticObjectsCollection(), 10, true,
-                                         HttpCookieMode.AutoDetect,
-                                         SessionStateMode.InProc, false);
-            SessionStateUtility.AddHttpSessionStateToContext(HttpContext.Current, sessionContainer);
-        }
+        private static SessionService CreateService() => new SessionService();
     }
 }

@@ -4,26 +4,26 @@ import { connect } from 'react-redux';
 import CommissionPanel from './panel/CommissionPanel';
 import SettingPanel from './panel/SettingPanel';
 import OnlineInfoPanel from './panel/OnlineInfoPanel';
-import { status } from '../libs/constants';
-import { claimResource } from '../../../../modules/claim';
+import { statusForSuspend } from '../libs/constants';
 
 export const PanelList = (props) => {
-    const { affiliateInfo, claimsPrincipal } = props;
-    const isApproved = affiliateInfo.Status && affiliateInfo.Status.toLowerCase() === status.Approved;
+    const { affiliateInfo } = props;
+    const status = affiliateInfo.Status.toLowerCase();
+    const isApproved = status === statusForSuspend.Approved || status === statusForSuspend.Suspended;
 
     return (
         <React.Fragment>
-            {isApproved && claimsPrincipal.hasReadClaim(claimResource.AssignCommGroup) && <CommissionPanel />}
+            {isApproved && <CommissionPanel />}
             {<SettingPanel isApproved={isApproved} />}
             {isApproved && <OnlineInfoPanel />}
         </React.Fragment>
     )
 }
 
-function mapStateToProps({ leftPanel, claimsPrincipal }) {
+function mapStateToProps({ leftPanel }) {
     const { affiliateInfo } = leftPanel;
 
-    return Object.assign({}, { affiliateInfo, claimsPrincipal });
-}
+    return Object.assign({}, { affiliateInfo });
+};
 
 export default connect(mapStateToProps)(React.memo(PanelList));

@@ -7,31 +7,34 @@ import AppLayout from '../../../../layouts/AppLayout';
 import LeftPanel from '../../left-panel/components/AppContainer';
 import UserPanel from '../../user-panel/components/UserPanel';
 import { setSelectedUserPanel } from '../../user-panel/actions';
-import Loader from '../../../../components/Loader';
-import { status } from '../../common/libs/constants';
+import { setUserPanelMenuCookie } from '../../../../modules/utils';
 
 export const CustomerStatistics = React.lazy(() =>
     import(/* webpackChunkName: "customer-statistics" */ '../../customer-statistics/components/AppContainer'));
 
 export const AppContainer = (props) => {
-    const { selectedUserPanel, affCommonInfo, isShowLoader } = props;
-    const statusLowerCase = affCommonInfo && affCommonInfo.status && affCommonInfo.status.toLowerCase();
-    const isWaitingApproval = statusLowerCase === status.Pending || statusLowerCase === status.Disapproved;
+    const { affId, selectedUserPanel, status } = props;
+    const isPending = status && (status.toLowerCase() === 'pending' || status.toLowerCase() === 'disapproved');
+
+    const handleClickUserPanelMenu = (userPanelMenu) => {
+        setUserPanelMenuCookie(userPanelMenu);
+
+        props.setSelectedUserPanel(userPanelMenu);
+    }
 
     return (
         <AppLayout>
-            <Loader show={isShowLoader} />
             <div className='data-content m-2'>
                 <Row>
                     <div className="left-panel">
                         <LeftPanel />
                     </div>
                     {
-                        affCommonInfo && affCommonInfo.affId && (
+                        affId && (
                             <div className="right-panel mx-2">
                                 <div className="customer-statistics">
                                     {
-                                        !isWaitingApproval &&
+                                        !isPending &&
                                         <Suspense fallback={null}>
                                             <CustomerStatistics />
                                         </Suspense>
@@ -40,9 +43,7 @@ export const AppContainer = (props) => {
                                 <div className="user-panel">
                                     {
                                         selectedUserPanel &&
-                                        <Suspense fallback={null}>
-                                            <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={props.setSelectedUserPanel} isWaitingApproval={isWaitingApproval} />
-                                        </Suspense>
+                                        <UserPanel selectedUserPanel={selectedUserPanel} onClickMenu={handleClickUserPanelMenu} isPending={isPending} />
                                     }
                                 </div>
                             </div>
@@ -54,8 +55,10 @@ export const AppContainer = (props) => {
     );
 }
 
-function mapStateToProps({ selectedUserPanel, affCommonInfo, isShowLoader }) {
-    return Object.assign({}, { selectedUserPanel, affCommonInfo, isShowLoader });
+function mapStateToProps({ selectedUserPanel, affCommonInfo }) {
+    const { affId, status } = affCommonInfo || { affId: null, status: null }
+
+    return Object.assign({}, { selectedUserPanel, affId, status });
 }
 
 function mapDispatchToProps(dispatch) {

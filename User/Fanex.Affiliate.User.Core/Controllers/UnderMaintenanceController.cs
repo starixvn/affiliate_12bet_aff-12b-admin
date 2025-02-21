@@ -9,13 +9,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
     public class UnderMaintenanceController : Controller
     {
         private readonly ISessionService _sessionService;
-        protected readonly ISystemService _languageService;
+        protected readonly ISystemService _systemsService;
         private readonly IUnderMaintenanceService _underMaintenanceService;
         public UnderMaintenanceController(ISessionService sessionService,
-            ISystemService languageService, IUnderMaintenanceService underMaintenanceService)
+            ISystemService systemsService, IUnderMaintenanceService underMaintenanceService)
         {
             _sessionService = sessionService;
-            _languageService = languageService;
+            _systemsService = systemsService;
             _underMaintenanceService = underMaintenanceService;
         }
 
@@ -23,13 +23,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             base.Initialize(requestContext);
 
-            var favoriteLanguage = _languageService.GetFavoriteLanguage();
+            var favoriteLanguage = _systemsService.GetFavoriteLanguage();
             var sessionLang = _sessionService.CurrentLanguage;
             if (favoriteLanguage != sessionLang)
             {
                 _sessionService.CurrentLanguage = favoriteLanguage;
             }
-            _languageService.SetCulture(favoriteLanguage);
+            _systemsService.SetCulture(favoriteLanguage);
         }
 
         [HttpGet]

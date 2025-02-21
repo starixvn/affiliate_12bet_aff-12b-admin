@@ -1,14 +1,17 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.EmailHistory;
+using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.EmailHistory;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
-    [FunctionAuthorize(FunctionName = Function.EmailHistory)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class EmailHistoryController : ReadOnlySessionBaseController
     {
         private readonly IEmailHistoryService _emailHistoryService;
@@ -22,12 +25,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         public ActionResult Index()
         {
-            return View("~/Areas/Portal/Views/Affiliate/Index.cshtml");
+            var subMenu = new List<SubMenu>
+            {
+                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate"), FunctionName = Function.Affiliate },
+                new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest"), FunctionName = Function.Payment },
+                new SubMenu { Name = Lang.RevenueGroup, Url = Url.Content("~/Portal/RevenueGroup"), FunctionName = Function.RevenueGroup },
+                new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory"), FunctionName = Function.EmailHistory, IsActive = true }
+            };
+
+            return View("~/Areas/Portal/Views/Affiliate/EmailHistory.cshtml", model: subMenu);
         }
 
+        [FunctionAuthorize(FunctionName = Function.EmailHistory)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [UpdateUnauthorizedProperty]
+        [UnauthorizedPropertyCensor]
         public ActionResult GetEmailHistoryList(EmailHistoryParam param)
         {
             if (ModelState.IsValid)
@@ -72,7 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 };
             }
 
-            return ModelState.GenerateErrorResult();
+            return GenerateModelStateErrResult();
         }
     }
 }

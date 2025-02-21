@@ -31,10 +31,11 @@ exports[`common - components - CommissionGroupPopup render correctly 1`] = `
     size=""
     style={
       Object {
-        "maxWidth": 570,
+        "maxWidth": 650,
       }
     }
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -48,7 +49,7 @@ exports[`common - components - CommissionGroupPopup render correctly 1`] = `
       <span
         className="iconpopup"
       />
-      Assign Commission Group For New Affiliate
+      Assign Revenue Group For New Affiliate
     </ModalHeader>
     <ModalBody
       tag="div"
@@ -57,7 +58,7 @@ exports[`common - components - CommissionGroupPopup render correctly 1`] = `
         className="modal-body-wrapper"
         style={
           Object {
-            "height": 240,
+            "height": 340,
             "padding": 0,
           }
         }
@@ -65,7 +66,7 @@ exports[`common - components - CommissionGroupPopup render correctly 1`] = `
         <iframe
           frameBorder="0"
           height="100%"
-          src="/Portal/CommGroupAssignment/AssignGroup?affId=1271808"
+          src="/Portal/CommGroupAssignment/AssignGroup?affId=1271808&groupTypeId=undefined"
           width="100%"
         />
       </div>
@@ -102,13 +103,14 @@ exports[`common - components - CommissionGroupPopup render correctly with Privat
     returnFocusAfterClose={true}
     role="dialog"
     scrollable={false}
-    size=""
+    size="lg"
     style={
       Object {
-        "maxWidth": 570,
+        "maxWidth": "",
       }
     }
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -122,25 +124,22 @@ exports[`common - components - CommissionGroupPopup render correctly with Privat
       <span
         className="iconpopup"
       />
-      Edit Commission Group for 12BETAFF226
+      Edit the Revenue Group for 12BETAFF226
     </ModalHeader>
     <ModalBody
       tag="div"
     >
       <div
-        className="modal-body-wrapper"
+        className="modal-body-wrapper embed-responsive embed-responsive-4by3"
         style={
           Object {
-            "height": 240,
-            "padding": 0,
+            "height": 635,
           }
         }
       >
         <iframe
-          frameBorder="0"
-          height="100%"
-          src="/Portal/CommGroupAssignment/AssignGroup?affId=1271808"
-          width="100%"
+          className="embed-responsive-item"
+          src="/Portal/CommGroupAssignment/AssignPrivateGroup?affId=1271808&groupTypeId=undefined"
         />
       </div>
     </ModalBody>

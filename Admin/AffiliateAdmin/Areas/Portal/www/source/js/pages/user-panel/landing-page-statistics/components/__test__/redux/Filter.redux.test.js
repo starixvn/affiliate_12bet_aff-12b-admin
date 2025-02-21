@@ -21,16 +21,16 @@ describe('langing page statistics - Filter - connect', () => {
         const expectedResult = {
             today: '09/252019',
             languageList: { 'en-US': 'English' },
-            shortCodeLanguageList: [],
+            shortCodeLanguageList: {},
             affId: 1271808
         };
         const state = {
             today: '09/252019',
             languageList: { 'en-US': 'English' },
+            landingPageStatistics: { shortCodeLanguageList: {} },
             affCommonInfo: {
                 affId: 1271808
             },
-            landingPageStatistics: { shortCodeLanguageList: [] },
             anotherProp: "Not included"
         };
 
@@ -44,10 +44,8 @@ describe('langing page statistics - Filter - connect', () => {
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
             setParam: actions['setParam'],
-            setIsGroupByCountry: actions['setIsGroupByCountry'],
-            setSelectedPageDetailFilter: actions['setSelectedPageDetailFilter'],
+            setSelectedPage: actions['setSelectedPage'],
             setShortCodeLanguageList: actions['setShortCodeLanguageList'],
-            getCountryList: actions['getCountryList'],
             getPageList: actions['getPageList']
         }
 

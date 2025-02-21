@@ -1514,7 +1514,7 @@ var MessageHistory = (function ($) {
                 return formatDateUnit(month) + "/" + formatDateUnit(day) + "/" + year;
             },
             onOpen: function () {
-                if (!$("#chkSearchAll").prop("checked")) {
+                if ($("#chkSearchAll").prop("checked")) {
                     this.hide();
                 }
             }
@@ -1537,12 +1537,12 @@ var MessageHistory = (function ($) {
 
             $("#chkSearchAll").on("click", function () {
                 var isChecked = $(this).prop("checked");
-                _me.toggleDate(!isChecked);
+                _me.toggleDate(isChecked);
             });
         },
 
         getParams: function () {
-            var hasDateRange = $("#chkSearchAll").prop("checked");
+            var hasDateRange = !$("#chkSearchAll").prop("checked");
             var seachBy = $("#Search").val();
 
             return {

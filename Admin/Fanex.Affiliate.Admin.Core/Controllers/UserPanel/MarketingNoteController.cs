@@ -1,19 +1,19 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
-{
-    using Fanex.Affiliate.Admin.Core.Attributes;
-    using Fanex.Affiliate.Admin.Core.Constants;
-    using Fanex.Affiliate.Admin.Core.MetaModels;
-    using MetaModels.UserPanel;
-    using Services.Common;
-    using Services.UserPanel;
-    using System.Web.Mvc;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using System.Web.Mvc;
 
-    [FunctionAuthorize(FunctionName = Function.MarketingTeamNote)]
+namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
+{
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class MarketingNoteController : NoteBaseController
     {
         public MarketingNoteController(
             ISessionService sessionService,
-            INoteServiceBase noteService) : base(sessionService, noteService, NoteType.MarketingNote)
+            INoteBaseService noteService) : base(sessionService, noteService, NoteSpPrefix.MarketingNote)
         { }
 
         [HttpPost]
@@ -25,6 +25,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.MarketingTeamNote)]
         public ActionResult GetMarketingNoteContentById(int affId, int noteId)
         {
             return GetNoteContentById(affId, noteId);

@@ -1,5 +1,6 @@
 ﻿import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
+import AppLayout from '../../layouts/AppLayout';
 import AppContainer from './components/AppContainer';
  
 export default class App extends PureComponent {
@@ -9,7 +10,9 @@ export default class App extends PureComponent {
  
     render() {
         return (
-            <AppContainer />
+            <AppLayout>
+                <AppContainer />
+            </AppLayout>
         );
     }
 }

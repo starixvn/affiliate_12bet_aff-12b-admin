@@ -24,9 +24,7 @@ describe('statement history - Filter - connect', () => {
         };
         const state = {
             today: '25/09/2019',
-            statementHistory: {
-                param: {}
-            },
+            statementHistory: { param: {} },
             anotherProp: "Not included"
         };
 

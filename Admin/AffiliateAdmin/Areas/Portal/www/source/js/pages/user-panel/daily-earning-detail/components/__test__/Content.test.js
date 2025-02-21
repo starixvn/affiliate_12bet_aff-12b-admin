@@ -3,10 +3,9 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 
 describe('daily earning detail - components - Content', () => {
-    const param ={
+    const param = {
         affId: 1271808,
         monthDate: "06 January 2019",
-        isDisplayTurnOver: true,
         productId: 0
     };
 
@@ -21,8 +20,8 @@ describe('daily earning detail - components - Content', () => {
             CustId: 31951570,
             Deposit: 0,
             IbcUserName: "12BETEURO02237",
-            UserName: "12bet$cicutadino",
-            WinLost: 4.1405,
+            UserName: "12BET$cicutadino",
+            Ggr: 4.1405,
             Withdrawal: 0
         },
         {
@@ -31,8 +30,8 @@ describe('daily earning detail - components - Content', () => {
             CustId: 33221781,
             Deposit: 0,
             IbcUserName: "12BETGBP02004",
-            UserName: "12bet$Munir12",
-            WinLost: -540.2242,
+            UserName: "12BET$Munir12",
+            Ggr: -540.2242,
             Withdrawal: 0
         }
     ];
@@ -43,7 +42,7 @@ describe('daily earning detail - components - Content', () => {
         CustId: 0,
         Deposit: 0,
         UserName: null,
-        WinLost: -536.0837,
+        Ggr: -536.0837,
         Withdrawal: 0
     };
 
@@ -54,8 +53,7 @@ describe('daily earning detail - components - Content', () => {
     });
 
     it('render correctly with have data', () => {
-        const props = { ...defaultProps, isDisplayTurnOver: false }
-        const result = shallow(<Content {...props} />);
+        const result = shallow(<Content {...defaultProps} />);
 
         result.instance().setState({ gridData, total, isSelectedAllProducts: false });
 

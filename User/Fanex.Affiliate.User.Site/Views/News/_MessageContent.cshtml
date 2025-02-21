@@ -30,13 +30,14 @@
                     index++;
                 }
             }
+            else
+            {
+                <tr>
+                    <td class="text-center" colspan="4">@Lang.NoInfo</td>
+                </tr>
+            }
         </tbody>
     </table>
-
-    @if (!hasData)
-    {
-        <p class="text-center">@Lang.NoInfo</p>
-    }
 
     <input id="TotalItem" type="hidden" value="@Model.TotalItems" />
 </div>

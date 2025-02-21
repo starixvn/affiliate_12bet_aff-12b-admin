@@ -1,15 +1,13 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.StatementHistory;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
-using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
+using Fanex.Data.Repository;
 using Moq;
+using System;
 using System.Collections.Generic;
-using System.Security.Claims;
+using System.Linq;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
@@ -17,18 +15,36 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
     public class StatementHistoryServiceTest
     {
         [Fact]
+        public void GetSubAffiliate_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.FetchMultiple<SubAffiliate, SubAffiliate>(It.IsAny<SubAffiliateCriteria>(), It.IsAny<string>())).Returns((new List<SubAffiliate> { new SubAffiliate() }, new List<SubAffiliate> { new SubAffiliate() }));
+
+            // Action
+            var service = CreateStatementHistoryService(repository.Object);
+            var result = service.GetSubAffiliate(new SubAffiliateParam());
+
+            // Assert
+            repository.Verify(d => d.FetchMultiple<SubAffiliate, SubAffiliate>(It.Is<SubAffiliateCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
+            Assert.Single(result.MainData);
+        }
+
+        [Fact]
         public void GetDailyEarning_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new DailyEarningParam();
-            var repository = new Mock<IStatementHistoryRepository>();
-            repository.Setup(comm => comm.GetDailyEarning(param)).Returns(new DailyEarningResult { MainData = new List<DailyEarning> { new DailyEarning() }, Total = new DailyEarning() });
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.FetchMultiple<DailyEarning, DailyEarning>(It.IsAny<DailyEarningCriteria>(), It.IsAny<string>())).Returns((new List<DailyEarning> { new DailyEarning() }, new List<DailyEarning> { new DailyEarning() }));
+
+            // Action
             var service = CreateStatementHistoryService(repository.Object);
 
             // Action
-            var result = service.GetDailyEarning(param);
+            var result = service.GetDailyEarning(new DailyEarningParam());
 
             // Assert
+            repository.Verify(d => d.FetchMultiple<DailyEarning, DailyEarning>(It.Is<DailyEarningCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
@@ -36,67 +52,54 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         public void GetDailyEarningDetail_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new DailyEarningParam();
-            var repository = new Mock<IStatementHistoryRepository>();
-            repository.Setup(comm => comm.GetDailyEarningDetail(param)).Returns(new List<DailyEarningDetail> { new DailyEarningDetail() });
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Fetch<DailyEarningDetail>(It.IsAny<DailyEarningCriteria>(), It.IsAny<string>())).Returns((new List<DailyEarningDetail> { new DailyEarningDetail() }));
+
             var service = CreateStatementHistoryService(repository.Object);
 
             // Action
-            var result = service.GetDailyEarningDetail(param);
+            var result = service.GetDailyEarningDetail(new DailyEarningParam());
 
             // Assert
+            repository.Verify(d => d.Fetch<DailyEarningDetail>(It.Is<DailyEarningCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
         }
 
         [Fact]
-        public void GetStatementHistoryList_WhenCallWithFullPermission_ReturnCorrectData()
+        public void GetStatementHistoryList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var param = new AffiliatePagingByDateParam();
-            var sessionService = new Mock<ISessionService>();
-            sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> {
-                new Claim(Function.AffAdjustment, "Write"),
-                new Claim(Function.PaymentRequest, "Write")
-            }) }));
-
-            var repository = new Mock<IStatementHistoryRepository>();
-            repository.Setup(comm => comm.GetStatementHistoryList(param)).Returns(new EntityResult<StatementHistory> { MainData = new List<StatementHistory> { new StatementHistory() }, TotalItem = 1 });
-            var service = CreateStatementHistoryService(repository.Object, sessionService.Object);
-
-            // Action
-            var result = service.GetStatementHistoryList(param);
-
-            // Assert
-            Assert.Single(result.MainData);
-        }
-
-        [Fact]
-        public void GetStatementHistoryList_WhenCallWithNotHasPermission_ReturnCorrectData()
-        {
-            // Arrange
-            var param = new AffiliatePagingByDateParam();
-            var sessionService = new Mock<ISessionService>();
-            sessionService.Setup(s => s.UserClaim).Returns(new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim>()) }));
-
-            var repository = new Mock<IStatementHistoryRepository>();
-            repository.Setup(comm => comm.GetStatementHistoryList(param)).Returns(new EntityResult<StatementHistory> { MainData = new List<StatementHistory> { new StatementHistory() }, TotalItem = 1 });
-            var service = CreateStatementHistoryService(repository.Object, sessionService.Object);
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(comm => comm.Fetch<StatementHistory>(It.IsAny<StatementHistoryCriteria>(), It.IsAny<string>())).Returns(new List<StatementHistory> {
+                new StatementHistory { TransType = 201, MonthDate = new DateTime(2020, 06, 10), Status = "Current", CalculatedType = 1 },
+                new StatementHistory { TransType = 204, MonthDate = new DateTime(2020, 06, 10), Status = "Current", CalculatedType = 1 },
+                new StatementHistory { TransType = 201, MonthDate = new DateTime(2020, 05, 10), Status = "Current", CalculatedType = 2 },
+                new StatementHistory { TransType = 204, MonthDate = new DateTime(2020, 05, 10), Status = "Current", CalculatedType = 2 },
+                new StatementHistory { TransType = 201, MonthDate = new DateTime(2020, 04, 10), Status = "Current", CalculatedType = 0 },
+                new StatementHistory { TransType = 204, MonthDate = new DateTime(2020, 04, 10), Status = "Current", CalculatedType = 0 },
+                new StatementHistory { TransType = 204, MonthDate = new DateTime(2020, 03, 10), Status = "Current" },
+                new StatementHistory { TransType = 200, MonthDate = new DateTime(2020, 06, 10), Status = "Cancelled", Description = "test" }
+            });
+            var service = CreateStatementHistoryService(repository.Object);
 
             // Action
-            var result = service.GetStatementHistoryList(param);
+            var result = service.GetStatementHistoryList(new AffiliatePagingByDateParam()).MainData.ToList();
 
             // Assert
-            Assert.Single(result.MainData);
+            repository.Verify(d => d.Fetch<StatementHistory>(It.Is<StatementHistoryCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
+            Assert.Equal("2020-06-10", result[0].NormalizeDateText);
+            Assert.Equal("Monthly Total", result[1].DescriptionDisplay);
+            Assert.Equal("Uncalculated Month", result[0].DescriptionDisplay);
+            Assert.Equal("Current Month Statistics", result[2].DescriptionDisplay);
+            Assert.Equal("Current Month Statistics", result[3].DescriptionDisplay);
+            Assert.Equal("test", result[4].DescriptionDisplay);
         }
 
-        private static StatementHistoryService CreateStatementHistoryService(
-            IStatementHistoryRepository statementHistoryRepository = null,
-            ISessionService sessionService = null)
+        private static StatementHistoryService CreateStatementHistoryService(IDynamicRepository dynamicRepository = null)
         {
-            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeStatementHistoryRepository = statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>();
+            var fakeIDynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 
-            return new StatementHistoryService(fakeStatementHistoryRepository, fakeSessionService);
+            return new StatementHistoryService(fakeIDynamicRepository);
         }
     }
 }

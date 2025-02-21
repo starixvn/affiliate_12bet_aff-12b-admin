@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.EmailHistory
 {

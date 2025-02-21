@@ -3,7 +3,6 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 
 import { defaultPagingOption } from '../../../../../modules/constants';
-import { NotificationPopup } from '../../../../common/components/NotificationPopup';
 
 describe('member list - components - Content ', () => {
 
@@ -12,25 +11,21 @@ describe('member list - components - Content ', () => {
             AffName: "12BETAFF017",
             CreatedDate: "2017-07-06T10:24:00",
             CreatedDateText: "07/06/2017 10:24:00",
-            CurrentBalance: 0,
             FirstName: "",
             IbcUserName: "12BETRMB0239317",
             LastName: "",
             MemberId: 26522982,
-            IsRemoved: false,
-            UserName: "12Bet$wjpwjp"
+            UserName: "12BET$wjpwjp"
         },
         {
             AffName: "12BETAFF177",
             CreatedDate: "2017-07-05T18:25:00",
             CreatedDateText: "07/05/2017 18:25:00",
-            CurrentBalance: 0,
             FirstName: "",
             IbcUserName: "12BETRMB0239312",
             LastName: "",
             MemberId: 26518302,
-            IsRemoved: true,
-            UserName: "12Bet$jingguoan"
+            UserName: "12BET$jingguoan"
         }
     ];
 
@@ -45,12 +40,9 @@ describe('member list - components - Content ', () => {
     const defaultProps = {
         pagingOption: defaultPagingOption,
         shouldResetScrollPosition: true,
-        isModifiable: true,
-        isShowMemberName: true,
         param,
         gridData,
-        fetchData: jest.fn(),
-        toggleLoader: jest.fn()
+        fetchData: jest.fn()
     };
 
     it('render correctly', () => {
@@ -81,14 +73,6 @@ describe('member list - components - Content ', () => {
         expect(result).toMatchSnapshot();
     });
 
-    it('render correctly with gridData is empty and not isShowMemberName', () => {
-        const props = Object.assign({}, defaultProps, { gridData: [] })
-        const result = shallow(<Content {...props} />);
-        result.setState({ isShowMemberName: false });
-
-        expect(result).toMatchSnapshot();
-    });
-
     it('componentDidUpdate - should call fetchData', () => {
         const result = shallow(<Content {...defaultProps} />);
 
@@ -99,106 +83,12 @@ describe('member list - components - Content ', () => {
     });
 
     it('_handlePaging - should be called when onPaging in Table', () => {
-        const props = Object.assign({}, defaultProps, { setParam: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setPagingOption: jest.fn(), setParam: jest.fn() });
         const result = shallow(<Content {...props} />);
 
         result.instance()._handlePaging(50, 50);
 
+        expect(props.setPagingOption).toHaveBeenCalledWith({ PageIndex: 50, PageSize: 50 });
         expect(props.setParam).toHaveBeenCalledWith({ PageIndex: 50, PageSize: 50, AffName: '', UserName: '', IbcUserName: '' });
-    });
-
-    it('_handleupdateMemberStatus - should be called when click remove checkbox', () => {
-        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), setShouldResetScrollPosition: jest.fn() });
-
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState = jest.fn();
-        const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
-
-        dataRow.find('input').at(0).simulate('change');
-
-        expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(wrapper.setState).toHaveBeenCalledWith({ message: 'Are you sure you want to remove the selected member from this affiliate?', isConfirmPopup: true, isRemoved: true, selectedMemberId: 26522982 });
-    });
-
-    it('_handleupdateMemberStatus - should be called when click instance checkbox', () => {
-        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), setShouldResetScrollPosition: jest.fn() });
-
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState = jest.fn();
-        const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
-
-        dataRow.find('input').at(1).simulate('change');
-
-        expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(wrapper.setState).toHaveBeenCalledWith({ message: 'Do you want to reinstate the selected member for this affiliate?', isConfirmPopup: true, isRemoved: false, selectedMemberId: 26518302 });
-    });
-
-    it('_handleCloseNotificationPopup - should be called when call onClose with true in NotificationPopup', () => {
-        const wrapper = shallow(<Content {...defaultProps} />);
-        wrapper.instance()._updateMemberStatus = jest.fn();
-        wrapper.setState({ message: 'Has NotificationPopup', isConfirmPopup: true, selectedMemberId: 26522982 });
-
-        wrapper.find(NotificationPopup).props().onClose(true);
-
-        expect(wrapper.instance()._updateMemberStatus).toHaveBeenCalledWith(26522982);
-    });
-
-    it('_handleCloseNotificationPopup - should be called when call onClose with false in NotificationPopup', () => {
-        const wrapper = shallow(<Content {...defaultProps} />);
-        wrapper.instance()._updateMemberStatus = jest.fn();
-        wrapper.setState({ message: 'Has NotificationPopup', isConfirmPopup: true, selectedMemberId: 26522982 });
-
-        wrapper.find(NotificationPopup).props().onClose(false);
-
-        expect(wrapper.instance()._updateMemberStatus).not.toHaveBeenCalled();
-    });
-
-    it('_updateMemberStatus - should call updateMemberStatus with reinstated successfully', async () => {
-        const expectedResult = { IsSuccessful: true, Message: "" };
-        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), updateMemberStatus: jest.fn(() => expectedResult) });
-        const wrapper = shallow(<Content {...props} />);
-
-        await wrapper.instance()._updateMemberStatus(26522982);
-
-        expect(props.updateMemberStatus).toHaveBeenCalledWith(26522982, false);
-        expect(props.fetchData).toHaveBeenCalledWith(param);
-    });
-
-    it('_updateMemberStatus - should call updateMemberStatus with removed successfully', async () => {
-        const expectedResult = { IsSuccessful: true, Message: "" };
-        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), updateMemberStatus: jest.fn(() => expectedResult) });
-        const wrapper = shallow(<Content {...props} />);
-        const instance = wrapper.instance();
-        instance.setState({ isRemoved: true })
-        instance.setState = jest.fn();
-
-        await instance._updateMemberStatus(26522982);
-
-        expect(props.updateMemberStatus).toHaveBeenCalledWith(26522982, true);
-        expect(props.fetchData).toHaveBeenCalledWith(param);
-        expect(instance.setState).toHaveBeenCalledWith({ message: 'The selected member has been removed successfully!', isConfirmPopup: false });
-    });
-
-    it('_updateMemberStatus - should call updateMemberStatus with reinstated is failed', async () => {
-        const expectedResult = { IsSuccessful: false, Message: "Reinstated is failed!" };
-        const props = Object.assign({}, defaultProps, { fetchData: jest.fn(), updateMemberStatus: jest.fn(() => expectedResult) });
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState = jest.fn();
-
-        await wrapper.instance()._updateMemberStatus(26522982);
-
-        expect(props.updateMemberStatus).toHaveBeenCalledWith(26522982, false);
-        expect(wrapper.setState).toHaveBeenCalledWith({ message: "Reinstated is failed!", isConfirmPopup: false });
-    });
-
-    it('_updateMemberStatus - should call updateMemberStatus with error', async () => {
-        const props = Object.assign({}, defaultProps, { updateMemberStatus: jest.fn() });
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState = jest.fn();
-
-        await wrapper.instance()._updateMemberStatus(26522982);
-
-        expect(props.updateMemberStatus).toHaveBeenCalledWith(26522982, false);
-        expect(wrapper.setState).not.toHaveBeenCalled();
     });
 })

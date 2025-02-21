@@ -13,9 +13,9 @@
         private readonly IStatisticsService _statisticsService;
         public StatisticsController(
             ISessionService sessionService,
-            ISystemService languageService,
+            ISystemService systemsService,
             IStatisticsService statisticsService
-            ) : base(sessionService, languageService)
+            ) : base(sessionService, systemsService)
         {
             _statisticsService = statisticsService;
         }

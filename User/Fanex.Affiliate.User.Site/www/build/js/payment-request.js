@@ -24,8 +24,15 @@ var PaymentRequest = (function ($) {
 
             $("#paymentRequest").on("input propertychange paste", "#Amount", function () {
                 var reg = /^0+/gi;
+
                 if (this.value.match(reg)) {
                     this.value = this.value.replace(reg, '');
+                }
+
+                if (Number(this.value) > 0) {
+                    $("#btnRequestPayout").removeClass("disabled");
+                } else {
+                    $("#btnRequestPayout").addClass("disabled");
                 }
             });
 

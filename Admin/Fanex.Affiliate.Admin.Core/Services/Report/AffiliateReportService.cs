@@ -1,55 +1,82 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.Report;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository.Report;
+using Fanex.Data.Repository;
 using System;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Report
 {
-    public class AffiliateReportService : IAffiliateReportService
+    public class AffiliateReportService : BaseDynamicService, IAffiliateReportService
     {
-        private readonly IAffiliateReportRepository _affiliateReportRepository;
+        private const int ValidMonthArrange = 5;
+        private const int ValidDateArrange = 6;
 
-        public AffiliateReportService(IAffiliateReportRepository affiliateReportRepository)
-        {
-            _affiliateReportRepository = affiliateReportRepository;
-        }
+        public AffiliateReportService(IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
-        public EntityResult<AffiliateReport> GetMainReportData(AffiliateReportMainParam param)
+        public EntityResult<AffiliateReport> GetMainReportData(AffiliateReportParam param)
         {
             if (!IsValidParam(param))
             {
                 return new EntityResult<AffiliateReport>();
             }
 
-            return _affiliateReportRepository.GetMainReportData(param);
+            var criteria = new AffiliateReportCriteria
+            {
+                GroupIds = param.GroupIds,
+                PreferredLanguage = param.PreferredLanguage,
+                PaymentCurrencies = param.PaymentCurrencyIds,
+                IsExcludeNegvBBF = param.IsExcludeNegvBBF,
+                IsExcludeNegvCurrentBBF = param.IsExcludeNegvCurrentBBF,
+                IsGetMonthly = param.IsGetMonthly,
+            };
+            AssignBaseAffiliateReportCriteria(criteria, param);
+
+            return FetchEntityResultHasItemTotal<AffiliateReport>(criteria);
         }
 
-        public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportMainParam param)
+        public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportParam param)
         {
-            return _affiliateReportRepository.GetDetailReportData(param);
+            var criteria = new AffiliateReportDetailCriteria
+            {
+                EarningType = param.EarningBy,
+                IsGetAll = param.IsGetAll,
+            };
+            AssignBaseAffiliateReportCriteria(criteria, param);
+
+            return FetchEntityResultHasItemTotal<AffiliateReport>(criteria);
         }
 
-        public IList<string> SearchAffiliateList(string userName)
+        public DateTime GetReportCutOffDate()
         {
-            const byte MinCharacterLength = 2;
-
-            return string.IsNullOrEmpty(userName) || userName.Length < MinCharacterLength ?
-                new List<string>() :
-                _affiliateReportRepository.SearchAffiliateList(userName);
+            return DynamicRepository.Get<DateTime>(new ReportCutOffDateCriteria());
         }
 
-        private static bool IsValidParam(AffiliateReportMainParam param)
+        private static bool IsValidParam(AffiliateReportParam param)
         {
             return !string.IsNullOrEmpty(param.ProductIds) && IsValidDateRange(param.FromDate, param.ToDate, param.IsGetMonthly);
         }
 
         private static bool IsValidDateRange(DateTime from, DateTime to, bool isGetMonthly = true)
         {
-            var maxMonth = from.AddMonths(isGetMonthly ? 5 : 6);
+            var maxMonth = from.AddMonths(isGetMonthly ? ValidMonthArrange : ValidDateArrange);
 
             return DateTime.Compare(maxMonth, to) >= 0;
+        }
+
+        private static void AssignBaseAffiliateReportCriteria(BaseAffiliateReportCriteria criteria, AffiliateReportParam param)
+        {
+            criteria.Username = param.UserName;
+            criteria.FromDate = param.FromDate;
+            criteria.ToDate = param.ToDate;
+            criteria.ProductIds = param.ProductIds;
+            criteria.SortType = param.SortType;
+            criteria.SortDirectionType = param.SortDirectionType;
+            criteria.PageIndex = param.PageIndex;
+            criteria.PageSize = param.PageSize;
+            criteria.IsExportExcel = param.IsExportExcel;
+            criteria.BaseCurrency = param.BaseCurrencyId;
+            criteria.Currencies = param.CurrencyIds;
         }
     }
 }

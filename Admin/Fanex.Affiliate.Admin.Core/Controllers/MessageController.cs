@@ -2,8 +2,6 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Message;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Message;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -13,23 +11,28 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.MessageMenu)]
+    [FunctionAuthorize(FunctionName = Function.HotNews)]
     public class MessageController : ReadOnlySessionBaseController
     {
         private const int threeMilliSecond = 3;
         private readonly IMessageService _messageSevice;
+        private readonly ISystemService _languageService;
 
         public MessageController(
             ISessionService sessionService,
-            IMessageService messageSevice) : base(sessionService)
+            IMessageService messageSevice,
+            ISystemService languageService) : base(sessionService)
         {
             _messageSevice = messageSevice;
+            _languageService = languageService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var mode = _languageService.GetLanguageList();
+
+            return View(mode);
         }
 
         [HttpPost]
@@ -40,35 +43,26 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 param.ToDate = param.ToDate.AddDays(1).AddMilliseconds(-threeMilliSecond);
 
-                return new JsonNetResult
-                {
-                    Data = _messageSevice.GetMessageList(param)
-                };
+                return GenerateJsonNetResult(_messageSevice.GetMessageList(param));
             }
 
-            return new JsonNetResult
+            return GenerateJsonNetResult(new EntityResult<MessageInfo>
             {
-                Data = new EntityResult<MessageInfo>
-                {
-                    MainData = new List<MessageInfo>(),
-                    TotalItem = 0
-                }
-            };
+                MainData = new List<MessageInfo>(),
+                TotalItem = 0
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetMessageDetail(int selectedMessageId)
         {
-            return new JsonNetResult
-            {
-                Data = _messageSevice.GetMessageDetail(selectedMessageId)
-            };
+            return GenerateJsonNetResult(_messageSevice.GetMessageDetail(selectedMessageId));
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MessageMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.HotNews, IsHost = true)]
         public ActionResult InsertMessage(InsertUpdateMessageParam param)
         {
             if (param.IsValid())
@@ -76,21 +70,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 var encodeParam = EncodeParam(param);
                 AssignUserInfoParam(encodeParam);
 
-                return new JsonNetResult
-                {
-                    Data = _messageSevice.InsertMessage(encodeParam)
-                };
+                return GenerateJsonNetResult(_messageSevice.InsertMessage(encodeParam));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(Lang.PleaseEnterContent)
-            };
+            return GenerateErrResult(Lang.PleaseEnterContent);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MessageMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.HotNews, IsHost = true)]
         public ActionResult UpdateMessage(InsertUpdateMessageParam param)
         {
             var isValidMessageId = param.MessageId >= Validation.MinId;
@@ -99,37 +87,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 var encodeParam = EncodeParam(param);
                 AssignUserInfoParam(encodeParam);
 
-                return new JsonNetResult
-                {
-                    Data = _messageSevice.UpdateMessage(encodeParam)
-                };
+                return GenerateJsonNetResult(_messageSevice.UpdateMessage(encodeParam));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(!isValidMessageId ? Lang.MessageIdIsInvalid : Lang.PleaseEnterContent)
-            };
+            return GenerateErrResult(!isValidMessageId ? Lang.MessageIdIsInvalid : Lang.PleaseEnterContent);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MessageMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.HotNews, IsHost = true)]
         public ActionResult DeleteMessages(DeleteMessageParam param)
         {
             if (ModelState.IsValid)
             {
                 AssignUserInfoParam(param);
 
-                return new JsonNetResult
-                {
-                    Data = _messageSevice.DeleteMessages(param)
-                };
+                return GenerateJsonNetResult(_messageSevice.DeleteMessages(param));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(Lang.PleaseSelectMessage)
-            };
+            return GenerateErrResult(Lang.PleaseSelectMessage);
         }
 
         private InsertUpdateMessageParam EncodeParam(InsertUpdateMessageParam param)
@@ -138,17 +114,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 MessageId = param.MessageId,
                 Important = param.Important,
-                MessageContentEn = Server.HtmlEncode(param.MessageContentEn),
-                MessageContentBn = Server.HtmlEncode(param.MessageContentBn),
-                MessageContentCn = Server.HtmlEncode(param.MessageContentCn),
-                MessageContentTw = Server.HtmlEncode(param.MessageContentTw),
-                MessageContentEs = Server.HtmlEncode(param.MessageContentEs),
-                MessageContentTh = Server.HtmlEncode(param.MessageContentTh),
-                MessageContentVi = Server.HtmlEncode(param.MessageContentVi),
-                MessageContentId = Server.HtmlEncode(param.MessageContentId),
-                MessageContentKh = Server.HtmlEncode(param.MessageContentKh),
-                MessageContentKr = Server.HtmlEncode(param.MessageContentKr),
-                MessageContentJp = Server.HtmlEncode(param.MessageContentJp)
+                Message_en = Server.HtmlEncode(param.Message_en),
+                Message_cs = Server.HtmlEncode(param.Message_cs),
+                Message_th = Server.HtmlEncode(param.Message_th),
+                Message_vn = Server.HtmlEncode(param.Message_vn),
+                Message_id = Server.HtmlEncode(param.Message_id),
+                Message_hi = Server.HtmlEncode(param.Message_hi),
+                Message_ms = Server.HtmlEncode(param.Message_ms),
+                Message_bn = Server.HtmlEncode(param.Message_bn),
+                Message_kh = Server.HtmlEncode(param.Message_kh),
             };
         }
     }

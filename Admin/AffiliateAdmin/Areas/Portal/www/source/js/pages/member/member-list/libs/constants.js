@@ -3,14 +3,16 @@
 export { globalResource };
 
 export const headerText = {
-    Index: globalResource.Index,
+    Index: '#',
     Affiliate: 'Affiliate',
     UserName: 'User Name',
-    IbcUserName: 'IBC User Name',
+    IbcUserName: globalResource.SystemUserName,
     FirstName: 'First Name',
     LastName: 'Last Name',
-    CurrentBalance: 'Current Balance Member',
-    CreatedDate: 'Created Date',
-    Remove: 'Remove',
+    CreatedDate: 'Registration Date',
+    Removed: 'Removed',
+    Status: 'Status',
+    LastActionDate: 'Last Action Date',
+    Edit: 'Edit',
     Search: globalResource.Search
 }

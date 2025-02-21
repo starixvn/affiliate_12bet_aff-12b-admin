@@ -18,8 +18,12 @@
 
         public decimal Commission { get; set; }
 
-        public decimal FDMCommission { get; set; }
-
         public decimal FdmDeposit { get; set; }
+
+        public int NoOfSubAff { get; set; }
+
+        public decimal SubAffCommission { get; set; }
+
+        public bool IsMaxSubLevel { get; set; }
     }
 }

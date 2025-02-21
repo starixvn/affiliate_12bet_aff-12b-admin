@@ -47,6 +47,7 @@ describe('statement history - Content - connect', () => {
             setPagingOption: actions['setPagingOption'],
             fetchData: actions['fetchData'],
             setTransactionId: actions['setTransactionId'],
+            redirectToSubAffiliate: actions['redirectToSubAffiliate'],
             setExpandMonthDateList: actions['setExpandMonthDateList'],
             redirectToDailyEarning: actions['redirectToDailyEarning']
         }

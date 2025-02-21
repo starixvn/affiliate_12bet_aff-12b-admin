@@ -13,12 +13,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
         public HandleLegacyUrlRoute(IDictionary<string, UrlSchema> urlMap)
         {
-            if (urlMap == null)
-            {
-                throw new ArgumentNullException(nameof(urlMap));
-            }
-
-            this.urlMap = urlMap;
+            this.urlMap = urlMap ?? throw new ArgumentNullException(nameof(urlMap));
         }
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
@@ -29,10 +24,14 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
                 var item = urlMap.Where(i => path.Contains(i.Key)).DefaultIfEmpty(urlMap.First())
                     .First().Value;
 
-                var routeData = new RouteData(this, new MvcRouteHandler());
-
-                routeData.Values["controller"] = item.Controller;
-                routeData.Values["action"] = item.Action;
+                var routeData = new RouteData(this, new MvcRouteHandler())
+                {
+                    Values =
+                    {
+                        ["controller"] = item.Controller,
+                        ["action"] = item.Action
+                    }
+                };
 
                 return routeData;
             }

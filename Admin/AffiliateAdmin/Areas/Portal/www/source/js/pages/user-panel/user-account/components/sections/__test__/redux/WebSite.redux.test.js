@@ -20,16 +20,13 @@ describe('user account - WebSite - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             userAccountInfo: { affId: 1271808 },
-            hasWriteClaim: true,
             moreSiteUrlsList: { skype: 'abc' }
         };
         const state = {
             edit: {
                 userAccountInfo: { affId: 1271808 },
-                hasWriteEditAffClaim: true,
                 moreSiteUrlsList: { skype: 'abc' }
             },
-            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

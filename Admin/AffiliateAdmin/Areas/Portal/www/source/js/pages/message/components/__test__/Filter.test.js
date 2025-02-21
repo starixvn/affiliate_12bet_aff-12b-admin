@@ -32,7 +32,7 @@ describe('message - components - Filter ', () => {
         const props = Object.assign({}, defaultProps, { setParam });
         const wrapper = shallow(<Filter {...props} />);
 
-        wrapper.find('Input[type="select"][name="searchBy"]').simulate('change', { target: { value: '1' }});
+        wrapper.find('Input[type="select"][name="searchBy"]').simulate('change', { target: { value: '1' } });
         wrapper.find('Button').simulate('click');
 
         expect(props.setParam).toHaveBeenCalledWith({ FromDate: "9/19/2019", IsGetAll: true, PageIndex: 1, PageSize: 20, SearchById: '1', ToDate: "9/19/2019" });
@@ -63,7 +63,7 @@ describe('message - components - Filter ', () => {
     it('_handleChangeFromDate - should be called when change From DatePicker', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
 
-        wrapper.find(DatePicker).at(0).simulate('change', { format: jest.fn(() => '09/09/2019')});
+        wrapper.find(DatePicker).at(0).simulate('change', { format: jest.fn(() => '09/09/2019') });
 
         expect(wrapper.find(DatePicker).at(0).prop('date')).toEqual('09/09/2019');
         expect(wrapper.find(DatePicker).at(1).prop('date')).toEqual('9/19/2019');
@@ -72,7 +72,7 @@ describe('message - components - Filter ', () => {
     it('_handleChangeToDate - should be called when change From DatePicker', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
 
-        wrapper.find(DatePicker).at(1).simulate('change', { format: jest.fn(() => '26/09/2019')});
+        wrapper.find(DatePicker).at(1).simulate('change', { format: jest.fn(() => '26/09/2019') });
 
         expect(wrapper.find(DatePicker).at(0).prop('date')).toEqual('9/19/2019');
         expect(wrapper.find(DatePicker).at(1).prop('date')).toEqual('26/09/2019');

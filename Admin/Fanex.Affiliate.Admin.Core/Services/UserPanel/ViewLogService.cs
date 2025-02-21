@@ -1,53 +1,37 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.UserPanel;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository;
-using System;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class ViewLogService : BaseRepository, IViewLogService
+    public class ViewLogService : BaseDynamicService, IViewLogService
     {
+        public ViewLogService(
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
+
+        public IEnumerable<LogType> GetLogTypeList()
+        {
+            const string SpKey = "Aff_Admin_LogType_Sel";
+
+            return FetchTData<LogType>(SpKey);
+        }
+
         public EntityResult<ViewLog> GetViewLogList(ViewLogParam param)
         {
-            const string SpKey = "Aff_Admin_AffiliateLog_Sel";
-            var result = new EntityResult<ViewLog>();
-            var dataList = new List<ViewLog>();
-
-            using (var objectDb = GetObjectDb(SpKey))
+            var criteria = new ViewLogCriteria
             {
-                objectDb.SetParameterValue("AffID", param.AffId);
-                objectDb.SetParameterValue("LogActionIds", param.LogActionIds);
-                objectDb.SetParameterValue("FromDate", param.FromDate);
-                objectDb.SetParameterValue("ToDate", param.ToDate);
-                objectDb.SetParameterValue("PageIndex", param.PageIndex);
-                objectDb.SetParameterValue("PageSize", param.PageSize);
+                AffId = param.AffId,
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize,
+                LogType = param.LogType,
+                FromDate = param.FromDate,
+                ToDate = param.ToDate,
+            };
 
-                objectDb.SetParameterValue("NRows", DefaultValue.Int);
-
-                using (var reader = objectDb.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        dataList.Add(new ViewLog
-                        {
-                            Id = Convert.ToInt32(reader["LogId"]),
-                            Date = Convert.ToDateTime(reader["Date"]),
-                            UpdatedBy = Convert.ToString(reader["UpdatedName"]),
-                            Action = Convert.ToString(reader["Action"]),
-                            Description = Convert.ToString(reader["Description"]),
-                            Ip = Convert.ToString(reader["IP"]),
-                        });
-                    }
-                }
-
-                result.MainData = dataList;
-                result.TotalItem = GetTotalRow(objectDb);
-            }
-
-            return result;
+            return FetchEntityResult<ViewLog>(criteria);
         }
     }
 }

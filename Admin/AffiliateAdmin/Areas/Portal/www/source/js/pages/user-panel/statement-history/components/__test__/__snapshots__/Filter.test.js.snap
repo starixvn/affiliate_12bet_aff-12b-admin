@@ -28,7 +28,7 @@ exports[`statement history - components - Filter render correctly 1`] = `
         From
       </Label>
       <t
-        date="1/11/2019"
+        date="01/01/2020"
         format="MM/DD/YYYY"
         iconElement={
           <span
@@ -36,8 +36,8 @@ exports[`statement history - components - Filter render correctly 1`] = `
           />
         }
         isEnable={true}
-        maxDate="7/11/2019"
-        minDate={2009-11-30T17:00:00.000Z}
+        maxDate="3/12/2020"
+        minDate={2020-01-30T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>
@@ -61,7 +61,7 @@ exports[`statement history - components - Filter render correctly 1`] = `
         To
       </Label>
       <t
-        date="7/11/2019"
+        date="3/12/2020"
         format="MM/DD/YYYY"
         iconElement={
           <span
@@ -69,8 +69,8 @@ exports[`statement history - components - Filter render correctly 1`] = `
           />
         }
         isEnable={true}
-        maxDate="7/11/2019"
-        minDate="1/11/2019"
+        maxDate="3/12/2020"
+        minDate="01/01/2020"
         onChange={[Function]}
       />
     </FormGroup>

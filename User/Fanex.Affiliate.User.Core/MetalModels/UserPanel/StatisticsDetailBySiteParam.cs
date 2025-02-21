@@ -4,8 +4,6 @@
     {
         public string Domain { get; set; }
 
-        public string CountryCode { get; set; }
-
         public string SportCode { get; set; }
 
         public string LanguageCode { get; set; }
@@ -14,6 +12,9 @@
 
         public int? PageIndex { get; set; }
 
+        /// <summary>
+        /// TODO: Review
+        /// </summary>
         public int TotalPages { get; set; }
 
         public int NRows { get; set; }

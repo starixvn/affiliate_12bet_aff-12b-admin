@@ -9,5 +9,9 @@
         public decimal Amount { get; set; }
 
         public string TransDate { get; set; }
+
+        public bool IsApproved { get; set; }
+
+        public string DefaultCurrency { get; set; }
     }
 }

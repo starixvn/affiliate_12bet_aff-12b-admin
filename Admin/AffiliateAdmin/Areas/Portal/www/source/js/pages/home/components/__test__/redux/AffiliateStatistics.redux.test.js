@@ -17,12 +17,10 @@ describe('home - AffiliateStatistics - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            generalInfo: { PaymentRequestNumber: 1 },
-            isShowAffLink: true
+            generalInfo: { PaymentReqNum: 1 },
         };
         const state = {
-            generalInfo: { PaymentRequestNumber: 1 },
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
+            generalInfo: { PaymentReqNum: 1 },
             anotherProp: "Not included"
         };
 

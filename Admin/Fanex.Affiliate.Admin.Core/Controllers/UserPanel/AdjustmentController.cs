@@ -1,9 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Auth;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using System;
@@ -11,16 +11,19 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.AffAdjustment)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class AdjustmentController : ReadOnlySessionBaseController
     {
+        private readonly IAuthService _authService;
         private readonly IAdjustmentService _adjustmentService;
         private const int DefaultBalanceBfValue = 0;
 
         public AdjustmentController(
             ISessionService sessionService,
-            IAdjustmentService adjustmentService) : base(sessionService)
+            IAdjustmentService adjustmentService,
+            IAuthService authService) : base(sessionService)
         {
+            _authService = authService;
             _adjustmentService = adjustmentService;
         }
 
@@ -30,26 +33,32 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (affId >= Validation.MinId)
             {
-                return new JsonNetResult
-                {
-                    Data = _adjustmentService.GetBalanceBroughtForward(affId)
-                };
+                return GenerateJsonNetResult(_adjustmentService.GetBalanceBroughtForward(affId));
             }
 
-            return new JsonNetResult
-            {
-                Data = DefaultBalanceBfValue
-            };
+            return GenerateJsonNetResult(DefaultBalanceBfValue);
 
         }
 
-        [FunctionAuthorize(FunctionName = Function.AffAdjustment, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Payment, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult InsertAdjustment(AdjustmentParam param)
         {
             if (param.AffId >= Validation.MinId)
             {
+                var permissionParam = new CheckPermissionParam
+                {
+                    CustId = SessionService.UserId,
+                    FuncName = Function.Affiliate
+                };
+
+                var result = _authService.CheckPermission(permissionParam);
+                if (!result.IsSuccessful)
+                {
+                    return GenerateJsonNetResult(result);
+                }
+
                 var absBalanceBf = Math.Abs(_adjustmentService.GetBalanceBroughtForward(param.AffId));
 
                 if (ModelState.IsValid && param.IsValid(absBalanceBf))
@@ -58,24 +67,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     {
                         AffId = param.AffId,
                         Amount = param.Amount,
-                        Description = Server.HtmlEncode(param.Description),
-                        AffDescription = Server.HtmlEncode(param.AffDescription)
+                        Description = Server.HtmlEncode(param.Description)
                     };
                     AssignUserInfoParam(adjustmentParam);
 
-                    return Json(_adjustmentService.InsertAdjustment(adjustmentParam));
+                    return GenerateJsonNetResult(_adjustmentService.InsertAdjustment(adjustmentParam));
                 }
 
-                return new JsonNetResult
-                {
-                    Data = ResultInfo.GenerateErr(Lang.AmountIsInvalid)
-                };
+                return GenerateErrResult(Lang.AmountIsInvalid);
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr("Affiliate not exists!")
-            };
+            return GenerateErrResult("Affiliate not exists!");
         }
     }
 }

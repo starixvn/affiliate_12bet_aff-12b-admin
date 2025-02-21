@@ -1,47 +1,68 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.StatementHistory;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
-using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class StatementHistoryService : IStatementHistoryService
+    public class StatementHistoryService : BaseDynamicService, IStatementHistoryService
     {
-        private readonly IStatementHistoryRepository _statementHistoryRepository;
-        private readonly ISessionService _sessionService;
+        public StatementHistoryService(
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
-        public StatementHistoryService(IStatementHistoryRepository statementHistoryRepository, ISessionService sessionService)
+        public EntityResult<SubAffiliate> GetSubAffiliate(SubAffiliateParam param)
         {
-            _statementHistoryRepository = statementHistoryRepository;
-            _sessionService = sessionService;
+            var criteria = new SubAffiliateCriteria
+            {
+                AffId = param.AffId,
+                MonthDate = param.MonthDate,
+                CurrencyId = param.CurrencyId,
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize,
+            };
+
+            return FetchEntityResultHasItemTotal<SubAffiliate>(criteria);
         }
 
         public DailyEarningResult GetDailyEarning(DailyEarningParam param)
         {
-            return _statementHistoryRepository.GetDailyEarning(param);
+            const string SpKey = "Aff_DailyEarning_Sel";
+
+            var criteria = GetDailyEarningCriteria(SpKey, param);
+
+            var (dataList, itemTotal) = DynamicRepository.FetchMultiple<DailyEarning, DailyEarning>(criteria);
+
+            return new DailyEarningResult
+            {
+                MainData = dataList,
+                Total = itemTotal.FirstOrDefault()
+            };
         }
 
         public DailyEarningDetailResult GetDailyEarningDetail(DailyEarningParam param)
         {
-            var rawData = _statementHistoryRepository.GetDailyEarningDetail(param);
+            const string SpKey = "Aff_DailyEarning_Detail_Sel";
+
+            var criteria = GetDailyEarningCriteria(SpKey, param);
+
+            var rawData = FetchTData<DailyEarningDetail>(criteria);
 
             var total = new DailyEarningDetail();
 
             foreach (var item in rawData)
             {
-                total.WinLost += item.WinLost;
                 total.Turnover += item.Turnover;
+                total.Ggr += item.Ggr;
                 total.Deposit += item.Deposit;
                 total.Withdrawal += item.Withdrawal;
                 total.Bonus += item.Bonus;
-                total.BankingFee += item.BankingFee;
+                total.Rebate += item.Rebate;
             }
 
             return new DailyEarningDetailResult
@@ -53,73 +74,81 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public EntityResult<StatementHistory> GetStatementHistoryList(AffiliatePagingByDateParam param)
         {
-            var customStatementList = new List<StatementHistory>();
-            var data = _statementHistoryRepository.GetStatementHistoryList(param);
-            var mainData = FilterDataHaveClaimToQuery(data.MainData);
-
-            foreach (var item in mainData)
+            var vms = new List<StatementHistory>();
+            var critera = new StatementHistoryCriteria
             {
-                if (item.TransType == TransType.MonthlyEarning || item.TransType == TransType.NewFdmCommissionBonus)
+                AffId = param.AffId,
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize,
+                FromDate = param.FromDate,
+                ToDate = param.ToDate,
+            };
+            var result = FetchEntityResult<StatementHistory>(critera);
+
+            foreach (var item in result.MainData)
+            {
+                if (item.TransType == TransType.MonthlyEarning || item.TransType == TransType.SubAffiliate)
                 {
-                    if (CheckIfExistMonthlyTotal(item.Date, customStatementList))
+                    if (CheckIfExistMonthlyTotal(item.MonthDate, vms))
                     {
                         continue;
                     }
-                    customStatementList.Add(CreateMonthlyTotal(item.Date, mainData));
+                    vms.Add(CreateMonthlyTotal(item.MonthDate, result.MainData));
                 }
                 else
                 {
-                    customStatementList.Add(item);
+                    vms.Add(item);
                 }
             }
 
             return new EntityResult<StatementHistory>
             {
-                MainData = customStatementList,
-                TotalItem = mainData.Count()
+                MainData = vms,
+                TotalItem = result.TotalItem
             };
-        }
-
-        private IEnumerable<StatementHistory> FilterDataHaveClaimToQuery(IEnumerable<StatementHistory> mainData)
-        {
-            var claimPrincipal = _sessionService.UserClaim;
-            var result = mainData;
-            if (!claimPrincipal.HasClaim(Function.AffAdjustment))
-            {
-                result = result.Where(r => r.TransType != TransType.Adjustment);
-            }
-
-            if (!claimPrincipal.HasClaim(Function.PaymentRequest))
-            {
-                result = result.Where(r => r.TransType != TransType.PaymentRequest);
-            }
-
-            return result;
         }
 
         private static StatementHistory CreateMonthlyTotal(DateTime monthDate, IEnumerable<StatementHistory> statementHistoryList)
         {
-            var children = statementHistoryList.Where(s => s.Date == monthDate)
-                .Where(s => s.TransType == TransType.MonthlyEarning || s.TransType == TransType.NewFdmCommissionBonus);
+            var children = statementHistoryList.Where(s => s.MonthDate == monthDate)
+                .Where(s => s.TransType == TransType.SubAffiliate || s.TransType == TransType.MonthlyEarning);
 
             var monthlyCom = children.FirstOrDefault(s => s.TransType == TransType.MonthlyEarning);
 
-            var monthlyTotal = new StatementHistory
-            {
-                Creator = monthlyCom?.Creator ?? children.FirstOrDefault().Creator,
-                Amount = children.Sum(s => s.Amount),
-                Date = monthDate,
-                Children = children,
-                Status = monthlyCom?.Status ?? children.FirstOrDefault().Status,
-                TransType = TransType.MonthlyTotal,
-                Description = monthlyCom?.Description ?? children.FirstOrDefault().Description
-            };
-            return monthlyTotal;
+            return GetMonthlyTotal(monthDate, monthlyCom, children);
         }
 
-        private static bool CheckIfExistMonthlyTotal(DateTime monthDate, List<StatementHistory> customStatementList)
+        private static StatementHistory GetMonthlyTotal(DateTime monthDate, StatementHistory monthlyCom, IEnumerable<StatementHistory> children)
         {
-            return customStatementList.Any(m => m.Date == monthDate && m.TransType == TransType.MonthlyTotal);
+            var firstChild = children.FirstOrDefault() ?? new StatementHistory();
+
+            return new StatementHistory
+            {
+                Creator = monthlyCom?.Creator ?? firstChild.Creator,
+                Amount = children.Sum(s => s.Amount),
+                MonthDate = monthDate,
+                Children = children,
+                Status = monthlyCom?.Status ?? firstChild.Status,
+                TransType = TransType.MonthlyTotal,
+                CalculatedType = monthlyCom?.CalculatedType ?? firstChild.CalculatedType,
+            };
+        }
+
+        private static bool CheckIfExistMonthlyTotal(DateTime monthDate, List<StatementHistory> vms)
+        {
+            return vms.Exists(m => m.MonthDate == monthDate && m.TransType == TransType.MonthlyTotal);
+        }
+
+        private static DailyEarningCriteria GetDailyEarningCriteria(string spKey, DailyEarningParam param)
+        {
+            return new DailyEarningCriteria(spKey)
+            {
+                AffId = param.AffId,
+                ProductId = param.ProductId,
+                MonthDate = param.MonthDate,
+                BaseCurrencyId = param.BaseCurrencyId,
+                CurrencyIds = param.CurrencyIds,
+            };
         }
     }
 }

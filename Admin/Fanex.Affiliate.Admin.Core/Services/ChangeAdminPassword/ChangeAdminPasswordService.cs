@@ -1,29 +1,26 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Commands;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.ChangeAdminPassword;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Data.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Services.ChangeAdminPassword
 {
-    public class ChangeAdminPasswordService : BaseRepository, IChangeAdminPasswordService
+    public class ChangeAdminPasswordService : BaseDynamicService, IChangeAdminPasswordService
     {
+        public ChangeAdminPasswordService(
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
         public ResultInfo ChangePassword(ChangeAdminPasswordParam param)
         {
-            const string SpKey = "Aff_Admin_ChangePassword";
-
-            using (var objectDb = GetObjectDb(SpKey))
+            var command = new ChangeAdminPasswordCommand
             {
-                objectDb.SetParameterValue("oldpwd", param.OldPassword);
-                objectDb.SetParameterValue("NewPwd", param.NewPassword);
-                objectDb.SetParameterValue("CustId", param.UserId);
-                objectDb.SetParameterValue("UserID", param.UserId);
-                objectDb.SetParameterValue("IP", param.Ip);
+                CustId = param.UserId,
+                OldPwd = param.OldPassword,
+                NewPwd = param.NewPassword,
+                UserId = param.UserId,
+                Ip = param.Ip,
+            };
 
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery();
-
-                return GetResultInfo(objectDb);
-            }
+            return ExecuteReturnResultInfo(command);
         }
     }
 }

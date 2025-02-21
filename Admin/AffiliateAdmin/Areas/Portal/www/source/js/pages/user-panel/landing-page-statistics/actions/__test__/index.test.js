@@ -11,8 +11,7 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setSelectedPageDetailFilter', type: types.SET_SELECTED_PAGE_DETAIL_FILTER, data: {} },
-    { name: 'setIsGroupByCountry', type: types.SET_IS_GROUP_BY_COUNTRY, data: false },
+    { name: 'setSelectedPage', type: types.SET_SELECTED_PAGE, data: 'abc.com' },
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
     { name: 'setShortCodeLanguageList', type: types.SET_SHORT_CODE_LANGUAGE_LIST, data: 'vn' },
 ]
@@ -59,7 +58,7 @@ describe('landing page actions', () => {
             affId: 1271808,
             deviceType: 0,
             fromDate: "07/01/2018",
-            languageCode: "en",
+            languageCode: "",
             selectedPage: "",
             toDate: "7/3/2019"
         }
@@ -99,7 +98,7 @@ describe('landing page actions', () => {
                         Signups: 0,
                         TotalClick: 8,
                         UniqueClick: 4,
-                        WebsiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MediaGallery"
+                        WebsiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MediaGallery"
                     },
                     {
                         Fdm: 0,

@@ -7,6 +7,8 @@ namespace Fanex.Affiliate.User.Core.DTO.VerificationAccount
     {
         public int AffId { get; set; }
 
+        public string PreferredLanguage { get; set; }
+
         public int Counter { get; set; }
 
         public string Captcha { get; set; }

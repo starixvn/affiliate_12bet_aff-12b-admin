@@ -14,8 +14,8 @@ exports[`common - components - UserPanelSubMenu render correctly 1`] = `
     >
       <NavLink
         active={true}
-        href="#"
-        onClick={[Function]}
+        href="javascript:;"
+        onClick={[MockFunction]}
         tag="a"
       >
         Statement History
@@ -27,8 +27,8 @@ exports[`common - components - UserPanelSubMenu render correctly 1`] = `
     >
       <NavLink
         active={false}
-        href="#"
-        onClick={[Function]}
+        href="javascript:;"
+        onClick={[MockFunction]}
         tag="a"
       >
         Edit

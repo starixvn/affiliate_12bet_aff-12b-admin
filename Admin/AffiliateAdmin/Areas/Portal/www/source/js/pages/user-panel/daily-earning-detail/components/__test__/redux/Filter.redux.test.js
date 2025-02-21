@@ -35,8 +35,7 @@ describe('daily earning detail - Filter - connect', () => {
         const mockBindAction = jest.fn();
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
-            setParam: actions['setParam'],
-            getProductList: actions['getProductList']
+            setParam: actions['setParam']
         }
 
         const dispatch = {};

@@ -7,22 +7,18 @@
     <tr>
         <td>
             <p style="color: #313131; margin: 0; line-height: 1.5">
-                尊敬的客户 @userInfo.FirstName<br /><br />
+                尊敬的@(userInfo.FirstName)<br /><br />
 
-                您好，感谢您对我们壹贰博合作伙伴计划的关注与支持。<br /><br />
-
-                根据您的要求，我们已经重置了您的密码。您的帐户信息如下：<br /><br />
+                根据您的申请，我们已经为您重置密码。您的帐户信息如下：<br /><br />
 
                 ----------------------------------------<br />
                 用户名：@userInfo.UserName<br />
                 密码：@Model.NewPassword<br />
                 ------------------------------------------<br /><br />
 
-                您可以随时登录我们网站<a href="@Model.RootDomain">@Model.RootDomain</a>更改密码。<br /><br />
+                您可以随时登录网站 <a href="@Model.RootDomain">@Model.RootDomain</a> 更改密码。<br /><br />
 
-                如果您遇到任何疑问需要帮助，欢迎随时联系我们。<br /><br />
-
-                诚挚的<br /><br />
+                祝您有个愉快的一天！<br /><br />
             </p>
         </td>
     </tr>

@@ -3,11 +3,8 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 
 describe('referrers - components - Content', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-
     const defaultProps = {
+        affId: 1271808,
         param: {
             deviceType: 0,
             fromDate: "7/1/2019",
@@ -20,8 +17,6 @@ describe('referrers - components - Content', () => {
             Fdm: 0,
             Signups: 0,
             SiteUrl: "ha.nexdev.net",
-            CountryCode: "en",
-            CountryName: "England",
             TotalClick: 28,
             UniqueClick: 18,
             WebsiteUrl: ""
@@ -30,8 +25,6 @@ describe('referrers - components - Content', () => {
             Fdm: 0,
             Signups: 0,
             SiteUrl: "none",
-            CountryCode: "en",
-            CountryName: "England",
             TotalClick: 1,
             UniqueClick: 1,
             WebsiteUrl: ""
@@ -40,8 +33,6 @@ describe('referrers - components - Content', () => {
             Fdm: 0,
             Signups: 0,
             SiteUrl: "Old URL",
-            CountryCode: "-",
-            CountryName: "Unknown",
             TotalClick: 0,
             UniqueClick: 0,
             WebsiteUrl: ""
@@ -56,7 +47,7 @@ describe('referrers - components - Content', () => {
 
     it('render correctly with have data', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData });
 
         expect(result).toMatchSnapshot();
@@ -64,7 +55,7 @@ describe('referrers - components - Content', () => {
 
     it('render correctly with have data is empty', () => {
         const result = shallow(<Content {...defaultProps} />);
-        
+
         result.instance().setState({ gridData: {} });
 
         expect(result).toMatchSnapshot();
@@ -101,7 +92,7 @@ describe('referrers - components - Content', () => {
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith({ ...defaultProps.param });
+        expect(props.fetchData).toHaveBeenCalledWith({ ...defaultProps.param, affId: defaultProps.affId });
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: [{ Id: 123 }] });
     });
 
@@ -120,18 +111,18 @@ describe('referrers - components - Content', () => {
         expect(props.toggleLoaderUserPanel.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoaderUserPanel.mock.calls[1][0]).toBe(false);
 
-        expect(props.fetchData).toHaveBeenCalledWith({ ...param });
+        expect(props.fetchData).toHaveBeenCalledWith({ ...param, affId: defaultProps.affId });
         expect(componentInstance.setState).toHaveBeenCalledWith({ gridData: null });
     });
 
-    it('setSelectedSiteDetailFilter - should be called when click url Button', () => {
-        const props = Object.assign({}, defaultProps, { setSelectedSiteDetailFilter: jest.fn() });
+    it('setSelectedSiteUrl - should be called when click url Button', () => {
+        const props = Object.assign({}, defaultProps, { setSelectedSiteUrl: jest.fn() });
         const wrapper = shallow(<Content {...props} />);
 
         const dataRow = shallow(<div>{wrapper.instance()._buildDataRow(gridData[0], 1)}</div>);
 
         dataRow.find('Button').at(0).simulate('click');
 
-        expect(props.setSelectedSiteDetailFilter).toHaveBeenCalledWith({ "selectedCountry": "en", "selectedSiteUrl": "ha.nexdev.net" });
+        expect(props.setSelectedSiteUrl).toHaveBeenCalledWith("ha.nexdev.net");
     });
 });

@@ -1,52 +1,54 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService.Apis;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.MetalModels.Email;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Resources;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class AccountService : IAccountService
+    using System.Threading.Tasks;
+    using Apis;
+    using Commands;
+    using Commands.Account;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using DTO.UserPanel;
+    using Fanex.Affiliate.User.Core.Constants.Apis;
+    using Fanex.Affiliate.User.Core.DTO.Apis;
+    using MetalModels;
+    using MetalModels.Email;
+    using Resources;
+    using Utilities;
+
+    public class AccountService : BaseDynamicService, IAccountService
     {
-        private readonly IAccountRepository _accountRepository;
-
         private readonly IEmailService _emailService;
+        private readonly ILicenseeApi _licenseeApi;
+        private readonly IAppSetting _appSetting;
 
-        private readonly ILicenseeCustDbApiService _licenseeCustDbApiService;
-
-        private static readonly IDictionary<int, string> MessageByCode = new Dictionary<int, string>
-        {
-            [101] = Lang.errUserNotFound,
-            [102] = Lang.errExistAccount
-        };
+        private const int TEST_CURRENCY = 20;
 
         public AccountService(
-            IAccountRepository accountRepository,
+            IDynamicRepository dynamicRepository,
             IEmailService emailService,
-            ILicenseeCustDbApiService licenseeCustDbApiService)
+            ILicenseeApi licenseeApi,
+            IAppSetting appSetting) : base(dynamicRepository)
         {
-            _accountRepository = accountRepository;
             _emailService = emailService;
-            _licenseeCustDbApiService = licenseeCustDbApiService;
+            _licenseeApi = licenseeApi;
+            _appSetting = appSetting;
         }
 
-        public ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailSignUpParam emailParam)
+        public async Task<ResultInfo> CreateAffiliateAsync(UserSignUpParam signUpParam, EmailSignUpParam emailParam)
         {
-            if (!signUpParam.IsLocal)
-            {
-                var depositAccount = _accountRepository.GetDepositPlayerAccount(signUpParam.Player_UserName);
+            var cust = await GetMemberSiteCustomer(signUpParam.Player_UserName);
+            var validInfo = CheckPlayerUserNameValid(cust);
 
-                if (!depositAccount.IsValid)
-                {
-                    return new ResultInfo { IsOk = false, Message = Lang.errDepositDBConnectFailed };
-                }
+            if (!validInfo.IsOk)
+            {
+                return validInfo;
             }
 
-            var result = _accountRepository.CreateAffiliate(signUpParam);
+            signUpParam.Player_CustId = cust.CustId;
+            signUpParam.Player_Currency = cust.IsTest.GetValueOrDefault(true) ? TEST_CURRENCY : cust.CurrencyId.GetValueOrDefault();
+
+            var result = ExecuteReturnResultInfo(signUpParam.MapTo<UserSignUpParam, CreateAffiliateCommand>());
             if (result.IsOk)
             {
                 emailParam.MailTo = signUpParam.Email;
@@ -76,63 +78,111 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return result;
         }
 
-        /// <summary>
-        /// CodeReview:
-        /// clean code
-        /// </summary>
-        public async Task<ResultInfo> CheckPlayerAccountIsActivedAsync(int affId, string language)
+        public GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null)
         {
-            var checkingResult = _accountRepository.CheckPlayerAccountIsActived(affId, language);
+            var affInfo = GetTData<GeneralAffInfo>(new GetGeneralAffInfoCriteria(affId, affCode)) ?? new GeneralAffInfo();
+            affInfo.IsMaxSubLevel = true;
 
-            if (!checkingResult.IsOk)
-            {
-                return await ActivePlayerAccountAsync(checkingResult.PlayerUserName);
-            }
-
-            return checkingResult;
+            return affInfo;
         }
 
-        private async Task<ResultInfo> ActivePlayerAccountAsync(string playerUserName)
+        public async Task<ResultInfo> CheckAndUnlockUserIfLocked(string userName)
         {
-            var depositAccount = _accountRepository.GetDepositPlayerAccount(playerUserName);
-
-            if (!depositAccount.IsValid)
+            var cust = await GetMemberSiteCustomer(userName);
+            var result = CheckPlayerUserNameValid(cust);
+            if (cust?.Status == CustomerStatus.LOCKED)
             {
-                return new ResultInfo
-                {
-                    IsOk = false,
-                    Message = Lang.errDepositDBConnectFailed
-                };
+                var apiResult = await _licenseeApi.UnlockUser(new[] { cust.CustId });
+                result.IsOk = apiResult.IsSuccess;
+                result.Message = apiResult.ErrMsg;
             }
-
-            var insertingResult = await _licenseeCustDbApiService.Insert12BetPlayerAccountToIBCAsync(depositAccount);
-            if (!insertingResult.IsSuccessful)
-            {
-                return new ResultInfo
-                {
-                    IsOk = insertingResult.IsSuccessful,
-                    Message = Lang.errDepositDBConnectFailed
-                };
-            }
-            return UpdatePlayerAccountStatus(playerUserName, insertingResult.Result.CustID, insertingResult.Result.Username);
+            return result;
         }
 
-        private ResultInfo UpdatePlayerAccountStatus(string playerUserName, int custId, string ibcUserName)
+        public async Task<MemberSiteCustomerInfo> GetMemberSiteCustomer(string userName)
         {
-            var depositAccountParam = new DepositPlayerAccountParam
+            var siteId = _appSetting.MemberSiteId;
+            return await _licenseeApi.GetCustomerInfoAsync(userName, siteId);
+        }
+
+        public AccountInformation GetAccountInfo(int affId)
+        {
+            return GetTData<AccountInformation>(new GetAccountInfoCriteria(affId));
+        }
+
+        public ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam)
+        {
+            return ExecuteReturnResultInfo(accountUpdateParam.MapTo<UpdateAccountParam, UpdateAccountInfoCommand>());
+        }
+
+        public UserInfo GetUserInfoById(int affId, bool isInternal)
+        {
+            return GetTData<UserInfo>(new GetUserInfoByIdCriteria(affId, isInternal));
+        }
+
+        public int CreateSecretKey(int affId, string secretKey)
+        {
+            var result = ExecuteReturnResultInfo(new CreateSecretKeyCommand(affId, secretKey));
+
+            return result.Code;
+        }
+
+        public (int, UserInfo) GetUserInfoByEmail(UserInfoByEmailParam userInfoParam)
+        {
+            var criteria = userInfoParam.MapTo<UserInfoByEmailParam, GetUserInfoByEmailCriteria>();
+            var result = GetTData<UserInfo>(criteria);
+
+            return (criteria.ErrCode, result);
+        }
+
+        public (int, UserInfo) RecoverPassword(PasswordRecoveryParam passwordRecoveryParam)
+        {
+            var criteria = passwordRecoveryParam.MapTo<PasswordRecoveryParam, GetRecoverPasswordCriteria>();
+            var result = GetTData<UserInfo>(criteria);
+
+            return (criteria.ErrCode, result);
+        }
+
+        public ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam)
+        {
+            return ExecuteReturnResultInfo(updatePasswordParam.MapTo<UpdatePasswordParam, UpdatePasswordCommand>());
+        }
+
+        private static ResultInfo CheckPlayerUserNameValid(MemberSiteCustomerInfo cust)
+        {
+            var validInfo = new ResultInfo
             {
-                DepUserName = playerUserName,
-                IbcCustId = custId,
-                IbcUserName = ibcUserName
+                IsOk = false
             };
 
-            var updateResult = _accountRepository.UpdatePlayerAccountStatusForDeposit(depositAccountParam);
-            if (MessageByCode.ContainsKey(depositAccountParam.ErrorCode))
+            if (cust == null)
             {
-                updateResult.Message = MessageByCode[depositAccountParam.ErrorCode];
+                validInfo.Message = Lang.UserNameNotExist;
+            }
+            else
+            {
+                switch (cust.Status)
+                {
+                    case CustomerStatus.RUNNING:
+                        validInfo.IsOk = true;
+                        break;
+                    case CustomerStatus.SUSPENDED:
+                        validInfo.IsOk = false;
+                        validInfo.Message = Lang.UserNameSuspended;
+                        break;
+                    case CustomerStatus.CLOSED:
+                    case CustomerStatus.LOCKED:
+                        validInfo.IsOk = false;
+                        validInfo.Message = Lang.UserNameClosed;
+                        break;
+                    default:
+                        validInfo.IsOk = false;
+                        validInfo.Message = Lang.errDepositDBConnectFailed;
+                        break;
+                }
             }
 
-            return updateResult;
+            return validInfo;
         }
     }
 }

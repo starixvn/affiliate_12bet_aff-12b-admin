@@ -1,12 +1,12 @@
-﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.EmailBase
+﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.AffApprovedEmail
 
 <table>
     <tr>
         <td>
-            <p style="color: #313131; margin: 0; line-height: 1.5">
-                Dear valued Affiliate,<br /><br />
+            <p style="color: #313131; margin: 0; line-height: 1.5;">
+                Dear @Model.FirstName,<br /><br />
 
-                Congratulations, you are now a valued 12BET Affiliate member!<br /><br />
+                Congratulations, you are now a valued 12Bet Affiliate member!<br /><br />
 
                 To assist us in serving you better please update any latest change in your personal details and  include your  additional URL (if any) in "My Account" at our 12Bet Affiliate site.<br /><br />
                 Kindly notify us by e-mail to <a href="mailto:@Model.MailContact">@Model.MailContact</a> the exact website URL or URLs you are planning to put up 12Bet’s banners. If there is a need for different sizes banners, kindly contact us and we will arrange them soonest for you.<br /><br />

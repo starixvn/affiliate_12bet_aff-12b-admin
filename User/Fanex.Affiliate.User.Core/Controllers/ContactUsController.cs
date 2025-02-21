@@ -1,37 +1,37 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using BusinessService;
-    using CoreService;
-    using DTO;
-    using Fanex.Affiliate.User.Core.Extensions;
-    using Fanex.Affiliate.User.Core.Filters;
-    using MetalModels;
-    using MetalModels.Email;
-    using Repository.UserPanel;
-    using Resources;
     using System.Linq;
     using System.Web.Mvc;
-    using Utilities;
+    using BusinessService;
+    using CoreService;
+    using Fanex.Affiliate.User.Core.DTO;
+    using Fanex.Affiliate.User.Core.Extensions;
+    using Fanex.Affiliate.User.Core.MetalModels;
+    using Fanex.Affiliate.User.Core.MetalModels.Email;
+    using Fanex.Affiliate.User.Core.Resources;
+    using Fanex.Affiliate.User.Core.Utilities;
+    using Filters;
 
     public class ContactUsController : BaseController
     {
         private readonly IContactService _contactService;
 
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountService _accountService;
 
         private readonly ICaptchaService _captchaService;
         private readonly IAppSetting _appSetting;
+
         public ContactUsController(
             ISessionService sessionService,
-            IAppSetting appSetting,
             ISystemService languageService,
+            IAppSetting appSetting,
             IContactService contactService,
-            IAccountRepository accountRepository,
+            IAccountService accountService,
             ICaptchaService captchaService)
             : base(sessionService, languageService)
         {
             _contactService = contactService;
-            _accountRepository = accountRepository;
+            _accountService = accountService;
             _captchaService = captchaService;
             _appSetting = appSetting;
         }
@@ -41,12 +41,14 @@
         public ActionResult Index()
         {
             ViewBag.CurrentLanguage = SessionService.CurrentLanguage;
+            ViewBag.IsInternal = SessionService.IsInternal;
+
             if (SessionService.UserSession == null)
             {
                 return View();
             }
 
-            var model = _accountRepository.GetUserInfoById(SessionService.UserSession.AffId, SessionService.IsInternal);
+            var model = _accountService.GetUserInfoById(SessionService.UserSession.AffId, SessionService.IsInternal);
 
             var userInfo = new UserInfo
             {
@@ -68,12 +70,13 @@
         public ActionResult Index(ContactUsParam param)
         {
             var result = new ResultInfo { IsOk = false };
+            var clientIP = Request.GetClientIP();
 
-            if (SessionService != null && SessionService.IsInternal)
+            if (SessionService.IsInternal)
             {
                 result.Message = Lang.ErrAuthorized;
             }
-            else if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.GetClientIP()))
+            else if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, clientIP))
             {
                 result.Message = Lang.ValidationCode;
             }
@@ -85,7 +88,7 @@
                 param.Subject = Server.HtmlEncode(param.Subject);
                 param.Content = Server.HtmlEncode(param.Content);
                 param.Creator = SessionService.UserSession == null ? -1 : SessionService.UserSession.AffId;
-                param.Ip = Request.GetClientIP();
+                param.Ip = clientIP;
                 param.SessionId = Session.SessionID;
                 param.Browser = Request.Browser.Browser;
 

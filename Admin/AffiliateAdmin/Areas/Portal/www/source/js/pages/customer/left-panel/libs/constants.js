@@ -1,6 +1,15 @@
-import { status } from '../../common/libs/constants';
+const approved = 'approved';
 
-export { status };
+export const status = {
+    Approved: approved,
+    Disapproved: 'disapproved',
+    Pending: 'pending'
+}
+
+export const statusForSuspend = {
+    Approved: approved,
+    Suspended: 'suspended'
+}
 
 export const resource = {
     Affiliate: 'Affiliate',
@@ -8,20 +17,18 @@ export const resource = {
     LastName: 'Last Name',
     Gender: 'Gender',
     ContactNumber: 'Contact Number',
-    TargetCountry: 'Target Country',
     Language: 'Language',
     WebsiteUrl: 'Website URL',
     LastLogin: 'Last Login',
     LastLoginIp: 'Last Login IP',
     Password: 'Password',
-    MemberList: 'Member List',
-    Commission: 'Commission',
-    CommGroup: 'Comm Group',
+    MemberList: 'Player List',
+    Commission: 'Revenue Share',
+    CommGroup: 'Revenue Group',
     BalanceForward: 'Balance Brought Forward',
     Setting: 'Setting',
     AffiliateType: 'Affiliate Type',
     Status: 'Status',
-    Closed: 'Closed',
     CurrentOnlineList: 'Current Online List',
     Index: '#',
     Ip: 'IP',
@@ -30,13 +37,14 @@ export const resource = {
     Male: 'Male',
     Female: 'Female',
     Yes: 'Yes',
-    No: 'No'
-}
-
-export const affType = {
-    2: 'Asian',
-    3: 'Media',
-    4: 'European'
+    No: 'No',
+    ParentAffiliate: 'Parent Affiliate',
+    SubAffiliateList: 'Sub-Affiliate List',
+    ApprovedBy: 'Approved By',
+    AffiliateCode: 'Affiliate Code',
+    Disabled: 'Disabled',
+    Unlimited: 'Unlimited',
+    TransferBalanceForPlayer: 'Transfer Balance For Player',
 }
 
 export const messages = {
@@ -44,7 +52,7 @@ export const messages = {
     statusUpdatedSuccess: 'The status has been updated successfully!',
     areYouChangeLanguage: 'Are you sure you want to change language for this affiliate?',
     languageUpdatedSuccess: 'The Language has been updated successfully!',
+    affTypeUpdatedFail: 'Occur an error when updating affiliate type!',
+    transferSettingUpdatedSuccess: 'The change has been successfully saved.',
     userNotOnline: 'This user is not online',
-    contactNumberUpdatedSuccess: 'Contact number update successfully!',
-    closedAffOnSpecialDate: '<p class="text-danger">Closing an affiliate from 1st to 5th of each month will prevent the affiliate from being commissioned for the previous month.</p>',
 }

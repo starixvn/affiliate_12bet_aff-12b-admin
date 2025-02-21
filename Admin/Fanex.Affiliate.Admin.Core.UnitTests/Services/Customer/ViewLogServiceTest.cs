@@ -1,11 +1,12 @@
-﻿using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+﻿using Fanex.Affiliate.Admin.Core.Criterias;
+using Fanex.Affiliate.Admin.Core.Criterias.UserPanel;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
-using Fanex.Data;
+using Fanex.Data.Repository;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Xunit;
 
@@ -14,59 +15,39 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
     public class ViewLogServiceTest
     {
         [Fact]
-        public void GetViewLogList_WhenCall_ReturnCorrectData()
+        public void GetLogTypeList_WhenCall_CallCorrectMethodOfdynamicRepository()
         {
             // Arrange
-            var service = new Mock<ViewLogService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetViewLogList());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
-            service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateLog_Sel", 120)).Returns(objectDb.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(r => r.Fetch<LogType>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<LogType>());
 
             // Action
-            var result = service.Object.GetViewLogList(new ViewLogParam());
-            var item = result.MainData.FirstOrDefault();
+            var service = new ViewLogService(dynamicRepository.Object);
+            var result = service.GetLogTypeList();
 
             // Assert
-            Assert.Single(result.MainData);
-            Assert.Equal("12/27/2019 12:00:00 AM", item.DateText);
+            dynamicRepository.Verify(d => d.Fetch<LogType>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
         }
 
         [Fact]
-        public void GetViewLogList_WhenCall_ReturnNull()
+        public void GetViewLogList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var service = new Mock<ViewLogService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(false);
-
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
-            service.Setup(r => r.GetObjectDb("Aff_Admin_AffiliateLog_Sel", 120)).Returns(objectDb.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(r => r.Fetch<ViewLog>(It.IsAny<ViewLogCriteria>(), It.IsAny<string>())).Returns(new List<ViewLog>
+            {
+                new ViewLog { Date = new DateTime(2019, 12, 27) }
+            });
 
             // Action
-            var result = service.Object.GetViewLogList(new ViewLogParam());
+            var service = new ViewLogService(dynamicRepository.Object);
+            var result = service.GetViewLogList(new ViewLogParam());
+            var item = result.MainData.FirstOrDefault();
 
             // Assert
-            Assert.Equal(0, result.TotalItem);
-        }
-
-        private IDictionary<string, object> GetViewLogList()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["LogId"] = 123,
-                ["UpdatedName"] = "sa",
-                ["Date"] = new DateTime(2019, 12, 27),
-                ["Action"] = "Action",
-                ["Description"] = "Description",
-                ["IP"] = "::1"
-            };
+            dynamicRepository.Verify(d => d.Fetch<ViewLog>(It.Is<ViewLogCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
+            Assert.Single(result.MainData);
+            Assert.Equal("12/27/2019 00:00:00", item.DateText);
         }
     }
 }

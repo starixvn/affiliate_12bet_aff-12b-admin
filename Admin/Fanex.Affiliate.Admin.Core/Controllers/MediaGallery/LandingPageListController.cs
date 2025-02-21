@@ -1,141 +1,96 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Utilities;
-using System.Linq;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
-    [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
+    [FunctionAuthorize(FunctionName = Function.Media)]
     public class LandingPageListController : ReadOnlySessionBaseController
     {
         private readonly ILandingPageService _landingPageService;
-        private readonly ISystemService _systemService;
 
-        public LandingPageListController(
-            ISessionService sessionService,
-            ILandingPageService landingPageService,
-            ISystemService systemService) : base(sessionService)
+        public LandingPageListController(ISessionService sessionService, ILandingPageService landingPageService) : base(sessionService)
         {
             _landingPageService = landingPageService;
-            _systemService = systemService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml");
+            var subMenu = new List<SubMenu>
+            {
+                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery") },
+                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList"), IsActive = true }
+            };
+
+            return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml", subMenu);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetLandingPageList()
         {
-            return new JsonNetResult
-            {
-                Data = _landingPageService.GetLandingPageList(SessionService.UserId)
-            };
+            return GenerateJsonNetResult(_landingPageService.GetLandingPageList());
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetLandingPageItem(int pageId)
         {
-            return new JsonNetResult
-            {
-                Data = _landingPageService.GetLandingPageById(SessionService.UserId, pageId)
-            };
+            return GenerateJsonNetResult(_landingPageService.GetLandingPageById(pageId));
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetTargetCountryListByUser()
-        {
-            return new JsonNetResult
-            {
-                Data = _systemService.GetTargetCountryListByUser()
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetTargetCountryListByLandingPage(ExcludedTargetCountryParam param)
-        {
-            param.UserId = SessionService.UserId;
-
-            return new JsonNetResult
-            {
-                Data = _landingPageService.GetExcludedTargetCountryList(param)
-            };
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult InsertLandingPage(InsertUpdateLandingPageParam param)
         {
-            return HandleSaveLandingPage(param, true);
+            if (ModelState.IsValid)
+            {
+                var encodeParam = EncodeParam(param);
+                AssignUserInfoParam(encodeParam);
+
+                return GenerateJsonNetResult(_landingPageService.InsertLandingPage(encodeParam));
+            }
+
+            return GenerateModelStateErrResult();
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult UpdateLandingPage(InsertUpdateLandingPageParam param)
         {
-            return HandleSaveLandingPage(param);
+            if (ModelState.IsValid)
+            {
+                var encodeParam = EncodeParam(param);
+                AssignUserInfoParam(encodeParam);
+
+                return GenerateJsonNetResult(_landingPageService.UpdateLandingPage(encodeParam));
+            }
+
+            return GenerateModelStateErrResult();
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult DeleteLandingPage(DeleteLandingPageParam param)
         {
             if (ModelState.IsValid)
             {
                 AssignUserInfoParam(param);
 
-                return new JsonNetResult
-                {
-                    Data = _landingPageService.DeleteLandingPage(param)
-                };
+                return GenerateJsonNetResult(_landingPageService.DeleteLandingPage(param));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
-            };
-        }
-
-        private JsonNetResult HandleSaveLandingPage(InsertUpdateLandingPageParam param, bool isInsert = false)
-        {
-            if (!SystemHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, _systemService.GetTargetCountryListByUser()))
-            {
-                return new JsonNetResult
-                {
-                    Data = ResultInfo.GenerateErr("The target country's info is invalid!")
-                };
-            }
-
-            if (ModelState.IsValid)
-            {
-                var encodeParam = EncodeParam(param);
-                AssignUserInfoParam(encodeParam);
-
-                return new JsonNetResult
-                {
-                    Data = _landingPageService.HandleSaveLandingPage(encodeParam, isInsert)
-                };
-            }
-
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
-            };
+            return GenerateModelStateErrResult();
         }
 
         private InsertUpdateLandingPageParam EncodeParam(InsertUpdateLandingPageParam param)
@@ -143,7 +98,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             return new InsertUpdateLandingPageParam
             {
                 PageId = param.PageId,
-                ExcludedTargetCountries = Server.HtmlEncode(param.ExcludedTargetCountries),
                 PageName = Server.HtmlEncode(param.PageName),
                 PageCode = Server.HtmlEncode(param.PageCode)
             };

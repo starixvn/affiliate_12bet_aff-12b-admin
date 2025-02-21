@@ -10,23 +10,14 @@ import { formatDecimalWithCurrencySymbol } from '../../../../../modules/numberFo
 import { getAffiliateInfo } from '../../actions';
 import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
 import { htmlDecode } from '../../../../../modules/htmlHelper';
-import { claimResource } from '../../../../../modules/claim';
 
 export class CommissionPanel extends PureComponent {
     constructor(props) {
         super(props);
-        const { affiliateInfo } = this.props;
 
         this.state = {
-            isChangingCommissionGroup: false,
-            isPrivateGroup: affiliateInfo.AffId === affiliateInfo.GroupId
+            isChangingCommissionGroup: false
         }
-    }
-
-    componentDidUpdate() {
-        const { affiliateInfo } = this.props;
-        const isPrivateGroup = affiliateInfo.AffId === affiliateInfo.GroupId;
-        this.setState({ isPrivateGroup });
     }
 
     toggleEditingCommissionPopup = (isChanging) => {
@@ -34,39 +25,30 @@ export class CommissionPanel extends PureComponent {
     }
 
     _renderCommGroup(affiliateInfo) {
-        const { isChangingCommissionGroup, isPrivateGroup } = this.state;
-        return affiliateInfo.IsClosed ? (<span className="">{htmlDecode(affiliateInfo.CommGroupName)}</span>) :
-            (
-                <React.Fragment>
-                    <Button color="link" className="left-panel-btn-link align-baseline text-right" onClick={() => this.toggleEditingCommissionPopup(true)}>
-                        {htmlDecode(affiliateInfo.CommGroupName)}
-                    </Button>
-                    <CommissionGroupPopup
-                        showPopupCommGroup={isChangingCommissionGroup}
-                        isPrivateGroup={isPrivateGroup}
-                        isCommGroupVisible={true}
-                        affName={affiliateInfo.AffName}
-                        affId={affiliateInfo.AffId}
-                        setShowPopupCommGroup={this.toggleEditingCommissionPopup}
-                        getAffiliateInfo={this.props.getAffiliateInfo}
-                    />
-                </React.Fragment>
-            )
-    }
-
-    _renderStaticContent = (affiliateInfo) => {
-        return htmlDecode(affiliateInfo.CommGroupName)
+        return <Button color="link" className="left-panel-btn-link align-baseline text-right" onClick={() => this.toggleEditingCommissionPopup(true)}>
+                {htmlDecode(affiliateInfo.CommGroupName)}
+            </Button>
     }
 
     render() {
-        const { affiliateInfo, isStatic } = this.props;
-        const commSelection = isStatic ? this._renderStaticContent(affiliateInfo) : this._renderCommGroup(affiliateInfo);
+        const { isChangingCommissionGroup } = this.state;
+        const { affiliateInfo } = this.props;
+
         return (
             <Panel heading={resource.Commission}>
                 <Row>
                     <Col sm={7}>{resource.CommGroup}</Col>
                     <Col sm={5} className='text-right text-break pl-0'>
-                        {commSelection}
+                        {this._renderCommGroup(affiliateInfo)}
+                        <CommissionGroupPopup
+                            showPopupCommGroup={isChangingCommissionGroup}
+                            isPrivateGroup={affiliateInfo.IsUsingPrivateCommGroup}
+                            affName={affiliateInfo.AffName}
+                            affId={affiliateInfo.AffId}
+                            groupTypeId={affiliateInfo.GroupTypeId}
+                            setShowPopupCommGroup={this.toggleEditingCommissionPopup}
+                            getAffiliateInfo={this.props.getAffiliateInfo}
+                        />
                     </Col>
                 </Row>
                 <Row>
@@ -78,14 +60,10 @@ export class CommissionPanel extends PureComponent {
     }
 }
 
-function mapStateToProps({ leftPanel, claimsPrincipal }) {
+function mapStateToProps({ leftPanel }) {
     const { affiliateInfo } = leftPanel;
-    let isStatic = !claimsPrincipal.hasWriteClaim(claimResource.AssignCommGroup);
-    const isPrivateGroup = affiliateInfo.AffId === affiliateInfo.GroupId;
-    if (isPrivateGroup) {
-        isStatic = !claimsPrincipal.hasWriteClaim(claimResource.CommissionGroup);
-    }
-    return Object.assign({}, { affiliateInfo, isStatic });
+
+    return Object.assign({}, { affiliateInfo });
 };
 
 function mapDispatchToProps(dispatch) {

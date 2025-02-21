@@ -1,7 +1,6 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 
 namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics
 {
@@ -12,8 +11,6 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics
         public DateTime ToDate { get; set; }
 
         public IEnumerable<ReferrerStatistics> DataList { get; set; }
-
-        public IEnumerable<SelectListItem> CountryList { get; set; }
 
         public bool IsDetail { get; set; }
 

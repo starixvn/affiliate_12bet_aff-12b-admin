@@ -7,6 +7,14 @@ namespace Fanex.Affiliate.User.Core.DTO
     {
         public bool IsOk { get; set; }
 
+        public int Code { get; set; }
+
         public string Message { get; set; }
+    }
+
+    [Serializable]
+    public class ResultInfo<T> : ResultInfo
+    {
+        public T Data { get; set; }
     }
 }

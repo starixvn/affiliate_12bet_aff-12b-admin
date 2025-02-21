@@ -16,13 +16,7 @@ exports[`home - components - Panel render correctly 1`] = `
     }
   >
     <span
-      className="home-panel-header-left"
-    />
-    <span
-      className="icon-hello"
-    />
-    <span
-      className="home-panel-header-right"
+      className="home-panel-header-right home-title"
     >
       Affiliate Statistics
     </span>

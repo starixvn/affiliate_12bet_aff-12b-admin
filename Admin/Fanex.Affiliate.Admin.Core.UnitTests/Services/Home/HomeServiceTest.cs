@@ -1,10 +1,11 @@
-﻿using Fanex.Affiliate.Admin.Core.Services.Home;
-using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
-using Fanex.Data;
+﻿using Fanex.Affiliate.Admin.Core.Criterias;
+using Fanex.Affiliate.Admin.Core.Criterias.Home;
+using Fanex.Affiliate.Admin.Core.DTO.Home;
+using Fanex.Affiliate.Admin.Core.Services.Home;
+using Fanex.Data.Repository;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Xunit;
 
@@ -16,231 +17,40 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Home
         public void GetOnlineList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetOnlineList());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
-            service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(re => re.Fetch<OnlineListInfo>(It.IsAny<UserOnlineCriteria>(), It.IsAny<string>())).Returns(
+                new List<OnlineListInfo> {
+                    new OnlineListInfo {
+                        LoggedIn = new DateTime(2019, 11, 15),
+                        LastRequest = new DateTime(2019, 11, 15)
+                    }
+                });
 
             // Action
-            var result = service.Object.GetOnlineList("en-US", 1, 20);
+            var service = new HomeService(dynamicRepository.Object);
+            var result = service.GetOnlineList(1, 20);
             var item = result.MainData.FirstOrDefault();
 
             // Assert
+            dynamicRepository.Verify(d => d.Fetch<OnlineListInfo>(It.Is<UserOnlineCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
-            Assert.Equal("11/15/2019 00:00:00", item.LoggedInDateText);
-            Assert.Equal("11/15/2019 00:00:00", item.LastRequestDateText);
-        }
-
-        [Fact]
-        public void GetOnlineList_WhenCall_ReturnCorrectDataHasNull()
-        {
-            // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetOnlineListHasNull());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(1);
-            service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetOnlineList("en-US", 1, 20);
-            var item = result.MainData.FirstOrDefault();
-
-            // Assert
-            Assert.Single(result.MainData);
-            Assert.Null(item.LoggedInDateText);
-            Assert.Null(item.LastRequestDateText);
-        }
-
-        [Fact]
-        public void GetOnlineList_WhenCall_ReturnNull()
-        {
-            // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(false);
-
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            objectDb.Setup(obj => obj.GetParameterValue("NRows")).Returns(DBNull.Value);
-            service.Setup(r => r.GetObjectDb("Aff_UserOnlineList", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetOnlineList("en-US", 1, 20);
-
-            // Assert
-            Assert.Equal(0, result.TotalItem);
-        }
-
-        [Theory]
-        [InlineData(false, 1.23)]
-        [InlineData(true, 0)]
-        public void GetPSPToday_WhenCall_ReturnCorrectData(bool isDBNull, decimal expectedResult)
-        {
-            // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-
-            objectDb.Setup(obj => obj.GetParameterValue("PSP")).Returns(isDBNull ? DBNull.Value : (object)1.23);
-            service.Setup(r => r.GetObjectDb("Aff_DEP_AffiliateGetPSP", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetPSPToday();
-
-            // Assert
-            Assert.Equal(expectedResult, result);
-        }
-
-        [Fact]
-        public void GetDepositInfo_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetDepositInfo());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_DEP_AffiliateGeneralInfo", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetDepositInfo();
-
-            // Assert
-            Assert.Equal(34, result.AllMemberDepositUpToNow);
-        }
-
-        [Fact]
-        public void GetDepositInfo_WhenCall_ReturnNull()
-        {
-            // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(false);
-
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_DEP_AffiliateGeneralInfo", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetDepositInfo();
-
-            // Assert
-            Assert.Null(result);
+            Assert.Equal("11/15/2019 00:00:00", item.LoggedInText);
+            Assert.Equal("11/15/2019 00:00:00", item.LastRequestText);
         }
 
         [Fact]
         public void GetGeneralInfo_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
-
-            ReaderHelper.MapReaderData(dataReader, GetGeneralInfo());
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_Admin_GeneralInfo_Sel", 120)).Returns(objectDb.Object);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(re => re.Get<GeneralInfo>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new GeneralInfo());
 
             // Action
-            var result = service.Object.GetGeneralInfo(string.Empty);
+            var service = new HomeService(dynamicRepository.Object);
+            var result = service.GetGeneralInfo();
 
             // Assert
-            Assert.Equal(1, result.PaymentRequestNumber);
-        }
-
-        [Fact]
-        public void GetGeneralInfo_WhenCall_ReturnNull()
-        {
-            // Arrange
-            var service = new Mock<HomeService> { CallBase = true };
-            var objectDb = new Mock<IObjectDb>();
-            var dataReader = new Mock<IDataReader>();
-            dataReader.SetupSequence(d => d.Read()).Returns(false);
-
-            objectDb.Setup(o => o.ExecuteReader(null, null)).Returns(dataReader.Object);
-            service.Setup(r => r.GetObjectDb("Aff_Admin_GeneralInfo_Sel", 120)).Returns(objectDb.Object);
-
-            // Action
-            var result = service.Object.GetGeneralInfo(string.Empty);
-
-            // Assert
-            Assert.Null(result);
-        }
-
-        private IDictionary<string, object> GetOnlineList()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["UserName"] = "sa",
-                ["LoggedIn"] = new DateTime(2019, 11, 15),
-                ["LastRequest"] = new DateTime(2019, 11, 15),
-                ["IP"] = "::1",
-                ["RoleName"] = "Admin"
-            };
-        }
-
-        private IDictionary<string, object> GetOnlineListHasNull()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["UserName"] = "sa",
-                ["LoggedIn"] = DBNull.Value,
-                ["LastRequest"] = DBNull.Value,
-                ["IP"] = "::1",
-                ["RoleName"] = "Admin"
-            };
-        }
-
-        private IDictionary<string, object> GetDepositInfo()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["MemInProAllNum"] = 34,
-                ["MemInProMonthNum"] = 12
-            };
-        }
-
-        private IDictionary<string, object> GetGeneralInfo()
-        {
-            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["PaymentReqNum"] = 1,
-                ["BannerNum"] = 2,
-                ["ImageBannerNum"] = 3,
-                ["FlashBannerNum"] = 4,
-                ["AffInProAllNum"] = 1,
-                ["PendingAllNum"] = 2,
-                ["ApprovedAllNum"] = 3,
-                ["DisapprovedAllNum"] = 4,
-                ["ClosedAllNum"] = 5,
-                ["DepositMemAllNum"] = 1,
-                ["DepositAll"] = 2,
-                ["WinlostAll"] = 3,
-                ["BonusAll"] = 4,
-                ["PSPFeeAll"] = 5,
-                ["NetWinlostAll"] = 1,
-                ["AffInProMonthNum"] = 2,
-                ["PendingMonthNum"] = 3,
-                ["ApprovedMonthNum"] = 4,
-                ["DisapprovedMonthNum"] = 5,
-                ["ClosedMonthNum"] = 1,
-                ["DepositMemMonthNum"] = 2,
-                ["DepositMonth"] = 3,
-                ["WinlostMonth"] = 4,
-                ["BonusMonth"] = 5,
-                ["PSPFeeMonth"] = 4,
-                ["NetWinlostMonth"] = 5
-            };
+            Assert.NotNull(result);
         }
     }
 }

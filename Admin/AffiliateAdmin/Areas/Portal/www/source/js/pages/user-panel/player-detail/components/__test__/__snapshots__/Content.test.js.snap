@@ -28,9 +28,9 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="12bet$RyQ.Piong"
+            title="12BET$RyQ.Piong"
           >
-            12bet$RyQ.Piong
+            12BET$RyQ.Piong
           </t>
           <t
             asc={true}
@@ -52,6 +52,25 @@ exports[`players detail - components - Content render correctly 1`] = `
             title="01/21/2009 21:13:00"
           >
             01/21/2009 21:13:00
+          </t>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -115,9 +134,9 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="0.00"
+            title=""
           >
-            0.00
+            
           </t>
         </t>,
         <t>
@@ -138,9 +157,9 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="12Bet$all_in"
+            title="12BET$all_in"
           >
-            12Bet$all_in
+            12BET$all_in
           </t>
           <t
             asc={true}
@@ -162,6 +181,25 @@ exports[`players detail - components - Content render correctly 1`] = `
             title="03/07/2013 00:30:00"
           >
             03/07/2013 00:30:00
+          </t>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -225,9 +263,9 @@ exports[`players detail - components - Content render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="0.00"
+            title=""
           >
-            0.00
+            
           </t>
         </t>,
       ]
@@ -246,68 +284,82 @@ exports[`players detail - components - Content render correctly 1`] = `
         >
           #
         </t>
-        <Memo(SortingCell)
-          columnValue={1}
+        <UNDEFINED
+          columnName="Username"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="User Name"
         />
-        <Memo(SortingCell)
-          columnValue={9}
+        <UNDEFINED
+          columnName="IbcUsername"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="IBC User Name"
+          sortingColumn="Turnover"
+          title="System Name"
         />
-        <Memo(SortingCell)
-          columnValue={2}
+        <UNDEFINED
+          columnName="RegisteredDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="Registered Date"
+          sortingColumn="Turnover"
+          title="Registration Date"
         />
-        <Memo(SortingCell)
-          columnValue={5}
+        <UNDEFINED
+          columnName="FirstDepositDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
+          title="FDM Date"
+        />
+        <UNDEFINED
+          columnName="FirstDepositAmount"
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn="Turnover"
+          title="FDM Amt"
+        />
+        <UNDEFINED
+          columnName="Turnover"
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn="Turnover"
           title="Turnover"
         />
-        <Memo(SortingCell)
-          columnValue={6}
+        <UNDEFINED
+          columnName="Ggr"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="Winlost"
+          sortingColumn="Turnover"
+          title="GGR"
         />
-        <Memo(SortingCell)
-          columnValue={3}
+        <UNDEFINED
+          columnName="Deposit"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="Deposit"
         />
-        <Memo(SortingCell)
-          columnValue={4}
+        <UNDEFINED
+          columnName="Withdrawal"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="Withdrawal"
         />
-        <Memo(SortingCell)
-          columnValue={7}
+        <UNDEFINED
+          columnName="Bonus"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="Bonus"
         />
-        <Memo(SortingCell)
-          columnValue={8}
+        <UNDEFINED
+          columnName="Rebate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="Banking Fee"
+          sortingColumn="Turnover"
+          title="Rebate"
         />
       </t>
     }
@@ -349,7 +401,7 @@ exports[`players detail - components - Content render correctly with have data i
           <t
             asc={true}
             className="text-center"
-            colSpan="9"
+            colSpan={12}
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -374,68 +426,82 @@ exports[`players detail - components - Content render correctly with have data i
         >
           #
         </t>
-        <Memo(SortingCell)
-          columnValue={1}
+        <UNDEFINED
+          columnName="Username"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="User Name"
         />
-        <Memo(SortingCell)
-          columnValue={9}
+        <UNDEFINED
+          columnName="IbcUsername"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="IBC User Name"
+          sortingColumn="Turnover"
+          title="System Name"
         />
-        <Memo(SortingCell)
-          columnValue={2}
+        <UNDEFINED
+          columnName="RegisteredDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="Registered Date"
+          sortingColumn="Turnover"
+          title="Registration Date"
         />
-        <Memo(SortingCell)
-          columnValue={5}
+        <UNDEFINED
+          columnName="FirstDepositDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
+          title="FDM Date"
+        />
+        <UNDEFINED
+          columnName="FirstDepositAmount"
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn="Turnover"
+          title="FDM Amt"
+        />
+        <UNDEFINED
+          columnName="Turnover"
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn="Turnover"
           title="Turnover"
         />
-        <Memo(SortingCell)
-          columnValue={6}
+        <UNDEFINED
+          columnName="Ggr"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="Winlost"
+          sortingColumn="Turnover"
+          title="GGR"
         />
-        <Memo(SortingCell)
-          columnValue={3}
+        <UNDEFINED
+          columnName="Deposit"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="Deposit"
         />
-        <Memo(SortingCell)
-          columnValue={4}
+        <UNDEFINED
+          columnName="Withdrawal"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="Withdrawal"
         />
-        <Memo(SortingCell)
-          columnValue={7}
+        <UNDEFINED
+          columnName="Bonus"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="Bonus"
         />
-        <Memo(SortingCell)
-          columnValue={8}
+        <UNDEFINED
+          columnName="Rebate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="Banking Fee"
+          sortingColumn="Turnover"
+          title="Rebate"
         />
       </t>
     }
@@ -491,9 +557,9 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="12bet$RyQ.Piong"
+            title="12BET$RyQ.Piong"
           >
-            12bet$RyQ.Piong
+            12BET$RyQ.Piong
           </t>
           <t
             asc={true}
@@ -515,6 +581,25 @@ exports[`players detail - components - Content render correctly with not selecte
             title="01/21/2009 21:13:00"
           >
             01/21/2009 21:13:00
+          </t>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -578,6 +663,28 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title=""
+          >
+            
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="0.00"
+          >
+            0.00
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
             title="0.00"
           >
             0.00
@@ -601,9 +708,9 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="12Bet$all_in"
+            title="12BET$all_in"
           >
-            12Bet$all_in
+            12BET$all_in
           </t>
           <t
             asc={true}
@@ -625,6 +732,25 @@ exports[`players detail - components - Content render correctly with not selecte
             title="03/07/2013 00:30:00"
           >
             03/07/2013 00:30:00
+          </t>
+          <t
+            asc={true}
+            className="text-center"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+          />
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -688,6 +814,28 @@ exports[`players detail - components - Content render correctly with not selecte
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title=""
+          >
+            
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="0.00"
+          >
+            0.00
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
             title="0.00"
           >
             0.00
@@ -709,68 +857,96 @@ exports[`players detail - components - Content render correctly with not selecte
         >
           #
         </t>
-        <Memo(SortingCell)
-          columnValue={1}
+        <UNDEFINED
+          columnName="Username"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="User Name"
         />
-        <Memo(SortingCell)
-          columnValue={9}
+        <UNDEFINED
+          columnName="IbcUsername"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="IBC User Name"
+          sortingColumn="Turnover"
+          title="System Name"
         />
-        <Memo(SortingCell)
-          columnValue={2}
+        <UNDEFINED
+          columnName="RegisteredDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="Registered Date"
+          sortingColumn="Turnover"
+          title="Registration Date"
         />
-        <Memo(SortingCell)
-          columnValue={5}
+        <UNDEFINED
+          columnName="FirstDepositDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
+          title="FDM Date"
+        />
+        <UNDEFINED
+          columnName="FirstDepositAmount"
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn="Turnover"
+          title="FDM Amt"
+        />
+        <UNDEFINED
+          columnName="Turnover"
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn="Turnover"
           title="Turnover"
         />
-        <Memo(SortingCell)
-          columnValue={6}
+        <UNDEFINED
+          columnName="Ggr"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="Winlost"
+          sortingColumn="Turnover"
+          title="GGR"
         />
-        <Memo(SortingCell)
-          columnValue={3}
+        <UNDEFINED
+          columnName="Deposit"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="Deposit"
         />
-        <Memo(SortingCell)
-          columnValue={4}
+        <UNDEFINED
+          columnName="Withdrawal"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="Withdrawal"
         />
-        <Memo(SortingCell)
-          columnValue={7}
+        <UNDEFINED
+          columnName="Bonus"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
+          sortingColumn="Turnover"
           title="Bonus"
         />
-        <Memo(SortingCell)
-          columnValue={8}
+        <UNDEFINED
+          columnName="Rebate"
           handleClickHeader={[Function]}
           isSortAsc={false}
-          sortingColumn={5}
-          title="Banking Fee"
+          sortingColumn="Turnover"
+          title="Rebate"
+        />
+        <UNDEFINED
+          columnName="DepositFee"
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn="Turnover"
+          title="Deposit Fee"
+        />
+        <UNDEFINED
+          columnName="WithdrawalFee"
+          handleClickHeader={[Function]}
+          isSortAsc={false}
+          sortingColumn="Turnover"
+          title="Withdrawal Fee"
         />
       </t>
     }

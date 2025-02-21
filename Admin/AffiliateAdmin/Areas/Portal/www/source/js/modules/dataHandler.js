@@ -1,9 +1,3 @@
-export const removeItem = (index, dataList) => {
-    return dataList.filter((item, i) => {
-        return i !== index;
-    })
-}
-
 export const deepClone = (data) => {
     return JSON.parse(JSON.stringify(data));
 }

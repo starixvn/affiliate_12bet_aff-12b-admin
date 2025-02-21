@@ -26,92 +26,64 @@ exports[`common - components - NotificationPopup Confirm Popup - render correctl
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
-    toggle={[Function]}
-    wrapTag="div"
+  <div
+    className="notification-popup-content p-3"
+    style={
+      Object {
+        "fontSize": 14,
+      }
+    }
   >
+    <h5>
+      localhost
+       says
+    </h5>
     <div
-      className="text-truncate"
       style={
         Object {
-          "width": 450,
+          "whiteSpace": "pre-line",
         }
       }
-    >
-      <span
-        className="iconpopup"
-      />
-      Confirmation
-    </div>
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
+    />
     <div
-      className="modal-body-wrapper"
+      className="float-right mt-4"
     >
-      <div
-        className="notification-popup-container"
+      <Button
+        color="primary mr-2"
+        onClick={[Function]}
         style={
           Object {
-            "fontSize": 14,
+            "height": 35,
+            "width": 70,
           }
         }
+        tag="button"
       >
-        <h5>
-          localhost
-           says
-        </h5>
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": undefined,
-            }
+        <strong>
+          OK
+        </strong>
+      </Button>
+      <Button
+        color="light border"
+        onClick={[Function]}
+        style={
+          Object {
+            "height": 35,
+            "width": 70,
           }
-        />
-        <div
-          className="mt-5"
-        >
-          <Button
-            color="success mr-3"
-            onClick={[Function]}
-            style={
-              Object {
-                "height": 30,
-                "width": 70,
-              }
-            }
-            tag="button"
-          >
-            <strong>
-              Confirm
-            </strong>
-          </Button>
-          <Button
-            color="info"
-            onClick={[Function]}
-            style={
-              Object {
-                "height": 30,
-                "width": 70,
-              }
-            }
-            tag="button"
-          >
-            <strong>
-              Cancel
-            </strong>
-          </Button>
-        </div>
-      </div>
+        }
+        tag="button"
+      >
+        <strong>
+          Cancel
+        </strong>
+      </Button>
     </div>
-  </ModalBody>
+  </div>
 </Modal>
 `;
 
@@ -141,72 +113,44 @@ exports[`common - components - NotificationPopup Notification Popup - render cor
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
-    toggle={[Function]}
-    wrapTag="div"
+  <div
+    className="notification-popup-content p-3"
+    style={
+      Object {
+        "fontSize": 14,
+      }
+    }
   >
+    <h5>
+      localhost
+       says
+    </h5>
     <div
-      className="text-truncate"
       style={
         Object {
-          "width": 450,
+          "whiteSpace": "pre-line",
         }
       }
-    >
-      <span
-        className="iconpopup"
-      />
-      Notification
-    </div>
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <div
-      className="modal-body-wrapper"
-    >
-      <div
-        className="notification-popup-container"
-        style={
-          Object {
-            "fontSize": 14,
-          }
+    />
+    <Button
+      color="primary mt-4 float-right"
+      onClick={[Function]}
+      style={
+        Object {
+          "height": 35,
+          "width": 70,
         }
-      >
-        <h5>
-          localhost
-           says
-        </h5>
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": undefined,
-            }
-          }
-        />
-        <Button
-          color="success mt-5"
-          onClick={[Function]}
-          style={
-            Object {
-              "height": 30,
-              "width": 70,
-            }
-          }
-          tag="button"
-        >
-          <strong>
-            OK
-          </strong>
-        </Button>
-      </div>
-    </div>
-  </ModalBody>
+      }
+      tag="button"
+    >
+      <strong>
+        OK
+      </strong>
+    </Button>
+  </div>
 </Modal>
 `;

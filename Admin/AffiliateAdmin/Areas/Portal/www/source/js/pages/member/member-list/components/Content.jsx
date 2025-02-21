@@ -1,24 +1,17 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Button, Input } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { NotificationPopup } from '../../../common/components/NotificationPopup';
 
+import { formatDateTime } from '../../../../modules/utils';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { updateMemberStatus, fetchData, setShouldResetScrollPosition, setParam } from '../actions';
-import { claimResource } from '../../../../modules/claim';
+import { setSelectedMemberId, fetchData, setPagingOption, toggleLoader, setShouldResetScrollPosition, setParam } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
-
-        this.state = {
-            selectedMemberId: 0,
-            message: '',
-            isRemoved: false,
-            isConfirmPopup: true
-        }
     }
 
     componentDidUpdate(prevProps) {
@@ -35,58 +28,32 @@ export class Content extends PureComponent {
         };
         const newParam = Object.assign({}, this.props.param, newPaging);
 
+        this.props.setPagingOption(newPaging);
         this.props.setParam(newParam);
     };
 
-    _handleCloseNotificationPopup = (confirmResult) => {
-        this.setState({ message: '' });
-
-        const { selectedMemberId } = this.state;
-        if (confirmResult && selectedMemberId) {
-            this._updateMemberStatus(selectedMemberId);
-        }
-    }
-
-    _handleChangeStatus = (selectedMemberId, isRemoved) => {
-        this.props.setShouldResetScrollPosition(false);
-
-        const message = isRemoved ? 'Are you sure you want to remove the selected member from this affiliate?' : 'Do you want to reinstate the selected member for this affiliate?';
-        this.setState({ message, isConfirmPopup: true, selectedMemberId, isRemoved });
-    }
-
-    _updateMemberStatus = async (selectedMemberId) => {
-        const { isRemoved } = this.state;
-
-        const result = await this.props.updateMemberStatus(selectedMemberId, isRemoved);
-
-        if (result) {
-            if (result.IsSuccessful) {
-                const message = `The selected member has been ${isRemoved ? 'removed' : 'reinstated'} successfully!`;
-                this.setState({ message, isConfirmPopup: false });
-
-                this.props.fetchData(this.props.param);
-            }
-            else {
-                this.setState({ message: result.Message, isConfirmPopup: false });
-            }
-        }
+    _handleUpdateMember = (selectedMemberId) => {
+        this.props.setSelectedMemberId(selectedMemberId);
     }
 
     _renderHeader() {
-        const { isModifiable, isShowMemberName } = this.props;
-        return (
-            <Row key="thead">
-                <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={120} title={headerText.UserName}>{headerText.UserName}</Cell>
-                <Cell header={true} colWidth={120} title={headerText.IbcUserName}>{headerText.IbcUserName}</Cell>
-                { isShowMemberName && <Cell header={true} colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>}
-                { isShowMemberName && <Cell header={true} colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>}
-                <Cell header={true} colWidth={110} title={headerText.CurrentBalance}>{headerText.CurrentBalance}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
-                { isModifiable && <Cell header={true} colWidth={40} title={headerText.Remove}>{headerText.Remove}</Cell>}
+        return [
+            <Row key="theard">
+                <Cell header={true} rowSpan="2" colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} rowSpan="2" colWidth={120} title={headerText.UserName}>{headerText.UserName}</Cell>
+                <Cell header={true} rowSpan="2" colWidth={120} title={headerText.IbcUserName}>{headerText.IbcUserName}</Cell>
+                <Cell header={true} rowSpan="2" colWidth={100} title={headerText.FirstName}>{headerText.FirstName}</Cell>
+                <Cell header={true} rowSpan="2" colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>
+                <Cell header={true} rowSpan="2" colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} rowSpan="2" colWidth={100} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
+                <Cell header={true} colSpan="3" colWidth={200} title={headerText.Removed}>{headerText.Removed}</Cell>
+            </Row>,
+            <Row key="sub-theard">
+                <Cell header={true} colWidth={50} title={headerText.Status}>{headerText.Status}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.LastActionDate}>{headerText.LastActionDate}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.Edit}>{headerText.Edit}</Cell>
             </Row>
-        );
+        ];
     }
 
     _renderDataSection(dataList) {
@@ -103,10 +70,8 @@ export class Content extends PureComponent {
             }
         }
         else {
-            const { isShowMemberName, isModifiable } = this.props;
-
-            dataRows.push(<Row>
-                <Cell className="text-center" colSpan={isShowMemberName ? `${6 + Number(isModifiable)}` : `${4 + Number(isModifiable)}`}>{globalResource.NoInfo}</Cell>
+            dataRows.push(<Row key="no-info">
+                <Cell className="text-center" colSpan="10">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -114,36 +79,37 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index) {
-        const { isModifiable, isShowMemberName } = this.props;
-
         const userName = htmlDecode(dataItem.UserName);
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
         const firstName = htmlDecode(dataItem.FirstName);
         const lastName = htmlDecode(dataItem.LastName);
-        const isRemoved = dataItem.IsRemoved;
+        const createdDate = formatDateTime(dataItem.RegisteredDate, "MM/dd/yyyy HH:mm:ss");
+        const lastActionDate = formatDateTime(dataItem.LastAction, "MM/dd/yyyy HH:mm:ss");
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={userName}>{userName}</Cell>
                 <Cell className="text-center" title={ibcUserName}>{ibcUserName}</Cell>
-                { isShowMemberName && <Cell className="text-center" title={firstName}>{firstName}</Cell>}
-                { isShowMemberName && <Cell className="text-center" title={lastName}>{lastName}</Cell>}
-                <Cell className="text-center" title={dataItem.CurrentBalance}>{dataItem.CurrentBalance}</Cell>
-                <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
+                <Cell className="text-center" title={firstName}>{firstName}</Cell>
+                <Cell className="text-center" title={lastName}>{lastName}</Cell>
+                <Cell className="text-center" title={createdDate}>{createdDate}</Cell>
                 <Cell className="text-center" title={dataItem.AffName}>{dataItem.AffName}</Cell>
-                { isModifiable &&
-                    <Cell className="text-center" title={isRemoved ? 'Reinstate the member' : 'Remove the member'}>
-                        <input type="checkbox" checked={isRemoved} onChange={() => this._handleChangeStatus(dataItem.MemberId, !isRemoved)} />
-                    </Cell>
-                }
+                <Cell className="text-center">
+                    <input className="mt-1" type="checkbox" checked={dataItem.IsRemoved} disabled />
+                </Cell>
+                <Cell className="text-center" title={lastActionDate}>{lastActionDate}</Cell>
+                <Cell className="text-center" title={`Edit ${userName} player`}>
+                    <Button color="link p-0" onClick={() => this._handleUpdateMember(dataItem.MemberId)}>
+                        <span className="oi oi-pencil text-secondary"></span>
+                    </Button>
+                </Cell>
             </Row>
         )
     }
 
     render() {
         const { pagingOption, gridData, shouldResetScrollPosition } = this.props;
-        const { message, isConfirmPopup } = this.state;
 
         return gridData && (
             <div className="data-content">
@@ -161,26 +127,17 @@ export class Content extends PureComponent {
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
-                {
-                    !!message && <NotificationPopup
-                        message={message}
-                        isConfirmPopup={isConfirmPopup}
-                        onClose={this._handleCloseNotificationPopup}
-                    />
-                }
             </div>
         );
     }
 }
 
-function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MemberDetail);
-    const isShowMemberName = claimsPrincipal.hasClaim(claimResource.MemberName);
-    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData, isModifiable, isShowMemberName });
+function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData }) {
+    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateMemberStatus, fetchData, setShouldResetScrollPosition, setParam }, dispatch);
+    return bindActionCreators({ setSelectedMemberId, fetchData, setPagingOption, toggleLoader, setShouldResetScrollPosition, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

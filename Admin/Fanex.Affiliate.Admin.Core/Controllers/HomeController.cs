@@ -1,90 +1,39 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Home;
-using Fanex.Affiliate.Admin.Core.Utilities;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.HomeMenu)]
     public class HomeController : ReadOnlySessionBaseController
     {
         private readonly IHomeService _homeService;
-        private readonly ISystemService _systemService;
 
         public HomeController(
             ISessionService sessionService,
-            IHomeService homeService,
-            ISystemService systemService) : base(sessionService)
+            IHomeService homeService) : base(sessionService)
         {
             _homeService = homeService;
-            _systemService = systemService;
         }
 
         [HttpGet]
-        [AllowByPassFunctionAuthorize]
         public ActionResult Index()
         {
-            var userClaim = SessionService.UserClaim;
-
-            if (userClaim.HasClaim(Function.HomeMenu))
-            {
-                return View();
-            }
-
-            var activeMenus = Menu.MainMenus.Where(m => string.IsNullOrEmpty(m.Value) || userClaim.HasClaim(m.Value)).Select(m => m.Key);
-            var redirect = activeMenus.FirstOrDefault();
-
-            return Redirect($"~/Portal/{redirect}");
+            return View();
         }
 
         [HttpPost]
-        public ActionResult GetPSPToday()
-        {
-            return new JsonNetResult
-            {
-                Data = _homeService.GetPSPToday()
-            };
-        }
-
-        [HttpPost]
-        public ActionResult GetDepositInfo()
-        {
-            return new JsonNetResult
-            {
-                Data = _homeService.GetDepositInfo()
-            };
-        }
-
-        [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetGeneralInfo()
         {
-            var marketIds = GetCurrentInChargeMarkets();
-            return new JsonNetResult
-            {
-                Data = _homeService.GetGeneralInfo(marketIds)
-            };
+            return GenerateJsonNetResult(_homeService.GetGeneralInfo());
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetOnlineList(int pageIndex = 1, int pageSize = 20)
         {
-
-            var marketIds = GetCurrentInChargeMarkets();
-            return new JsonNetResult
-            {
-                Data = _homeService.GetOnlineList(marketIds, pageIndex, pageSize)
-            };
-        }
-
-        private string GetCurrentInChargeMarkets()
-        {
-            var supportLanguages = _systemService.GetAllInChangeMarkets();
-            return SystemHelper.BuildAllowQueryLanguages(string.Empty, supportLanguages);
-
+            return GenerateJsonNetResult(_homeService.GetOnlineList(pageIndex, pageSize));
         }
     }
 }

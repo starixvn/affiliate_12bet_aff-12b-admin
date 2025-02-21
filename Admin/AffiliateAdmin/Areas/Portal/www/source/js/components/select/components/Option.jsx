@@ -26,7 +26,7 @@ const Option = React.forwardRef((props, ref) => {
 
 Option.propTypes = {
     itemData: PropTypes.object.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     onChange: PropTypes.func
 }
 

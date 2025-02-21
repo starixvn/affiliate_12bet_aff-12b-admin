@@ -14,6 +14,9 @@ namespace Fanex.Affiliate.User.Core.ViewModels
         public string CustName { get; set; }
 
         [Required]
+        public int AccId { get; set; }
+
+        [Required]
         public int AccOnId { get; set; }
     }
 }

@@ -4,13 +4,15 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { resource, maxWidth } from '../libs/constants';
+import { resource, maxWidth } from '../modules/constants';
 import { toggleLoaderUserPanel, setPagingOption, fetchData } from '../actions';
-import { claimResource } from '../../../../modules/claim';
+import ClaimPrincipal, { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        this.canViewMemberEmail = claimsPrincipal.hasReadClaim(claimResource.MemberEmail);
 
         this.state = {
             data: null
@@ -44,13 +46,13 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
-        const { isDisplayFullName } = this.props;
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
                 <Cell header={true} colWidth={100} title={resource.UserName}>{resource.UserName}</Cell>
-                { isDisplayFullName && <Cell header={true} colWidth={100} title={resource.FirstName}>{resource.FirstName}</Cell>}
-                { isDisplayFullName && <Cell header={true} colWidth={100} title={resource.LastName}>{resource.LastName}</Cell>}
+                <Cell header={true} colWidth={100} title={resource.FirstName}>{resource.FirstName}</Cell>
+                <Cell header={true} colWidth={100} title={resource.LastName}>{resource.LastName}</Cell>
+                {this.canViewMemberEmail && (<Cell header={true} colWidth={100} title={resource.EmailAddress}>{resource.EmailAddress}</Cell>)}
                 <Cell header={true} colWidth={50} title={resource.Currency}>{resource.Currency}</Cell>
                 <Cell header={true} colWidth={100} title={resource.RegisterDate}>{resource.RegisterDate}</Cell>
             </Row>
@@ -71,7 +73,7 @@ export class Content extends PureComponent {
             }
         }
         else {
-            dataRows.push(<Row>
+            dataRows.push(<Row key="no-info">
                 <Cell className="text-center" colSpan="6">{resource.NoInfo}</Cell>
             </Row>);
         }
@@ -80,18 +82,17 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, rowNumber) {
-        const { isDisplayFullName } = this.props;
-
         const userName = htmlDecode(dataItem.UserName);
         const firstName = htmlDecode(dataItem.FirstName);
         const lastName = htmlDecode(dataItem.LastName);
-
+        const email = htmlDecode(dataItem.Email);
         return (
-            <Row>
+            <Row key={`raw-data-${rowNumber}`}>
                 <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>
                 <Cell title={userName}>{userName}</Cell>
-                { isDisplayFullName && <Cell title={firstName}>{firstName}</Cell>}
-                { isDisplayFullName && <Cell title={lastName}>{lastName}</Cell>}
+                <Cell title={firstName}>{firstName}</Cell>
+                <Cell title={lastName}>{lastName}</Cell>
+                {this.canViewMemberEmail && (<Cell title={email}>{email}</Cell>)}
                 <Cell className="text-center" title={dataItem.CurrencyName}>{dataItem.CurrencyName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateString}>{dataItem.RegisteredDateString}</Cell>
             </Row>
@@ -119,12 +120,11 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ affCommonInfo, member, claimsPrincipal }) {
+function mapStateToProps({ affCommonInfo, member }) {
     const { param, pagingOption } = member;
     const { affId } = affCommonInfo;
-    const isDisplayFullName = claimsPrincipal.hasReadClaim(claimResource.MemberName);
 
-    return Object.assign({}, { affId, param, pagingOption, isDisplayFullName });
+    return Object.assign({}, { affId, param, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {

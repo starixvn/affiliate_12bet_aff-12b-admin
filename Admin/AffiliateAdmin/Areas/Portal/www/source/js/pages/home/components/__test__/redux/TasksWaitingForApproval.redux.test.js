@@ -19,14 +19,11 @@ describe('home - TasksWaitingForApproval - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            generalInfo: { PaymentRequestNumber: 1 },
-            isShowPaymentLink: true,
-            isShowAffLink: true
+            generalInfo: { PaymentReqNum: 1 }
         };
 
         const state = {
-            generalInfo: { PaymentRequestNumber: 1 },
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
+            generalInfo: { PaymentReqNum: 1 },
             anotherProp: "Not included"
         };
 

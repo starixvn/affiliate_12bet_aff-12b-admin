@@ -7,7 +7,5 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         Task<string> GetCurrentContent();
 
         Task<string> GetContentById(int id);
-
-        bool HasNewCurrentTime();
     }
 }

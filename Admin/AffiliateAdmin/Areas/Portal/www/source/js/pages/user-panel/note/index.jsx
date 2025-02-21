@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+﻿import React, { Suspense, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -7,20 +7,20 @@ import UserPanelSubMenu from '../../common/components/UserPanelSubMenu';
 
 import { setSelectedSubNote, resetSubNote } from './actions';
 
-import { menus } from './libs/menus';
+import { menuList } from './libs/menu';
 
 export const App = (props) => {
     const { selectedSubNote, claimsPrincipal, setSelectedSubNote, resetSubNote } = props;
 
     useEffect(() => {
         if (!selectedSubNote) {
-            const firstMenu = menus.find(m => m.renderClaim == undefined || claimsPrincipal.hasClaim(m.renderClaim));
+            const firstMenu = menuList.find(m => m.renderClaim == undefined || claimsPrincipal.hasClaim(m.renderClaim));
 
             firstMenu && setSelectedSubNote(firstMenu.key);
         }
     });
 
-    const filterByClaimMenuList = menus.filter(m => m.renderClaim == undefined || claimsPrincipal.hasClaim(m.renderClaim));
+    const filterByClaimMenuList = menuList.filter(m => m.renderClaim == undefined || claimsPrincipal.hasClaim(m.renderClaim));
     const selectedSubMenu = filterByClaimMenuList.find(p => p.key === selectedSubNote);
     const SubNoteComponent = !selectedSubMenu ? null : selectedSubMenu.component;
 

@@ -34,11 +34,11 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             FormsAuthentication.SignOut();
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 filterContext.HttpContext.Response.ContentType = "application/json";
                 filterContext.Result = new JsonResult
                 {
-                    Data = new { ErrCode = Code.ErrCodeSessionExpired, ErrMsg = "Your session was expired! Please login again." },
+                    Data = new { ErrCode = ErrCode.ErrCodeSessionExpired, ErrMsg = "Your session was expired! Please login again." },
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }

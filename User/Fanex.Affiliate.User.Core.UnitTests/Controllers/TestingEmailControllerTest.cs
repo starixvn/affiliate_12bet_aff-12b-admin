@@ -20,10 +20,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
         public TestingEmailControllerTest()
         {
-            SessionService = NSubtituteMockingHelper.FakeSessionService();
+            SessionService = NSubstituteMockingHelper.FakeSessionService();
             AppSetting = Substitute.For<IAppSetting>();
             MailProcessor = Substitute.For<IMailProcessor>();
-            LanguageService = NSubtituteMockingHelper.FakeLanguageService();
+            LanguageService = NSubstituteMockingHelper.FakeLanguageService();
         }
 
         [Fact]
@@ -83,7 +83,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             SessionService.IsInternal.Returns(true);
             MockingHelper.SetUpEnviroment();
             var controller = CreateTestingEmailController();
-            controller = NSubtituteMockingHelper.FakeController(controller) as TestController;
+            controller = NSubstituteMockingHelper.FakeController(controller) as TestController;
             controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
 
             //Action
@@ -100,7 +100,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             SessionService.IsInternal.Returns(true);
             MockingHelper.SetUpEnviroment();
             var controller = CreateTestingEmailController();
-            controller = NSubtituteMockingHelper.FakeController(controller) as TestController;
+            controller = NSubstituteMockingHelper.FakeController(controller) as TestController;
             controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
 
             //Action
@@ -154,7 +154,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             SessionService.IsInternal.Returns(true);
             MockingHelper.SetUpEnviroment();
             var controller = CreateTestingEmailController();
-            controller = NSubtituteMockingHelper.FakeController(controller) as TestController;
+            controller = NSubstituteMockingHelper.FakeController(controller) as TestController;
             controller.HttpContext.Server.MapPath(Arg.Compat.Any<string>()).Returns(String.Empty);
 
             //Action

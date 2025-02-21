@@ -1,40 +1,51 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Commands.UserPanel.UserAccount;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.UserAccount;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
-using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
-    public class UserAccountService : ProtectingPropertiesService, IUserAccountService
+    public class UserAccountService : BaseDynamicService, IUserAccountService
     {
-        private readonly IUserAccountRepository _userAccountRepository;
+        private readonly ILicenseeService _licenseeService;
+        private readonly IAppSetting _appSetting;
 
-        public UserAccountService(IUserAccountRepository userAccountRepository,
-            IAuthService authService,
-            ISessionService sessionService,
-            IAffiliateService affiliateService)
-            : base(authService, sessionService, affiliateService)
+        private const int TEST_CURRENCY_ID = 20;
+
+        public UserAccountService(IDynamicRepository dynamicRepository,
+            ILicenseeService licenseeService,
+            IAppSetting appSetting) : base(dynamicRepository)
         {
-            _userAccountRepository = userAccountRepository;
+            _licenseeService = licenseeService;
+            _appSetting = appSetting;
         }
 
         public UserAccount GetUserAccountInfo(int affId)
         {
-            return HasReadMultiPermissions(affId, Function.EditAffiliate)
-                ? _userAccountRepository.GetUserAccountInfo(affId)
-                : null;
+            var criteria = new UserAccountCriteria { AffId = affId };
+
+            return GetTData<UserAccount>(criteria);
         }
 
-        public ResultInfo UpdateUserAccount(UserAccountParam param)
+        public (IEnumerable<PaymentMethodInfo> paymentMethods, decimal minAmount) GetPaymentMethod()
         {
-            if (!HasHostMultiPermissions(param.AffId, Function.EditAffiliate))
-            {
-                return NotHavePermissionOnAffResult;
-            }
+            var criteria = new PaymentMethodCriteria();
 
+            var paymentMethods = FetchTData<PaymentMethodInfo>(criteria);
+
+            return (paymentMethods, criteria.MinAmount);
+        }
+
+        public async Task<ResultInfo> UpdateUserAccountAsync(UserAccountParam param)
+        {
             var validateWebSite = ValidateWebSite(param);
             if (!validateWebSite.IsSuccessful)
             {
@@ -42,51 +53,112 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             }
 
             var isValidPaymentMethod = ValidatePaymentMethod(param);
+
+            var curUserAccInfo = GetUserAccountInfo(param.AffId);
+
             if (isValidPaymentMethod)
             {
-                SetNullForPropertiesNotHavePermission(param);
-                return _userAccountRepository.UpdateUserAccount(param);
+                if (PaymentMethod.PlayerAccount.Equals(param.PreferredPayment) && curUserAccInfo.PlayerUsername != param.PlayerUsername)
+                {
+                    var memberSiteId = _appSetting.MemberSiteId;
+                    var memberSiteCust = await _licenseeService
+                        .GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
+
+                    var result = _licenseeService.CheckCustomerIsValid(memberSiteCust);
+
+                    if (!result.IsSuccessful)
+                    {
+                        return result;
+                    }
+                    param.Player_CustId = memberSiteCust.CustId;
+                    param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault() ? TEST_CURRENCY_ID : memberSiteCust.CurrencyId.GetValueOrDefault();
+                }
+
+                return UpdateUserAccount(param, curUserAccInfo);
             }
 
-            return ResultInfo.GenerateErr("The payment method is invalid!");
+            return new ResultInfo
+            {
+                Code = ErrCode.GeneralErrorCode,
+                Message = Lang.UpdateIsFailed
+            };
         }
 
-        public IEnumerable<SecurityQuestion> GetSecurityQuestions(string language, bool isIncludeOldData = false)
-            => _userAccountRepository.GetSecurityQuestions(language, isIncludeOldData);
+        private ResultInfo UpdateUserAccount(UserAccountParam param, UserAccount curUserAccInfo)
+        {
+            var command = new UpdateUserAccountCommand
+            {
+                AffId = param.AffId,
+                UserId = param.UserId,
+                Ip = param.Ip,
+                FirstName = param.FirstName,
+                LastName = param.LastName,
+                Gender = param.Gender,
+                Email = param.Email,
+                Phone = param.Phone,
+                ContactApps = param.ContactApps,
+                Address = param.Address,
+                City = param.City,
+                State = param.State,
+                Postcode = param.Postcode,
+                Country = param.Country,
+                MailOption = param.MailOption,
+                SiteUrl = param.SiteUrl,
+                MoreSiteUrls = param.MoreSiteUrls,
+                NoSiteDescription = param.NoSiteDescription,
+                PreferredPayment = param.PreferredPayment,
+                PlayerUsername = param.PlayerUsername,
+                NetellerAccountId = param.NetellerAccountId,
+                MoneybookersEmail = param.MoneybookersEmail,
+                BankName = param.BankName,
+                BankAddress = param.BankAddress,
+                BankCode = param.BankCode,
+                BankAccountName = param.BankAccountName,
+                BankAccountNumber = param.BankAccountNumber,
+                Player_CustId = param.Player_CustId,
+                Player_Currency = param.Player_Currency,
+            };
+
+            if (!param.HasHostAffPersonalInfoPermission)
+            {
+                command.Email = curUserAccInfo.Email;
+                command.Phone = curUserAccInfo.Phone;
+            }    
+
+            return ExecuteReturnResultInfo(command);
+        }
 
         private ResultInfo ValidateWebSite(UserAccountParam param)
         {
-            if (!HasHostFunctionPermission(Function.AffWebUrl))
-            {
-                return new ResultInfo();
-            }
-
             if (param.HasWebSite && string.IsNullOrEmpty(param.SiteUrl))
             {
-                return ResultInfo.GenerateErr("Website URL is required");
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = "Website URL is required"
+                };
             }
 
             if (!param.HasWebSite && string.IsNullOrEmpty(param.NoSiteDescription))
             {
-                return ResultInfo.GenerateErr($"Please describe how you would like to promote 12Bet if you don't have the URL is required");
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = $"Please describe how you would like to promote {_appSetting.SiteFriendlyName} if you don't have the URL is required"
+                };
             }
 
             return new ResultInfo();
         }
 
-        private bool ValidatePaymentMethod(UserAccountParam param)
+        private static bool ValidatePaymentMethod(UserAccountParam param)
         {
-            if (!HasHostFunctionPermission(Function.AffPaymentInfo))
-            {
-                return true;
-            }
-
-            var isPlayerUsername = PaymentMethod.Player.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.PlayerUsername);
-            var isNetellerAccountId = PaymentMethod.Neteller.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.NetellerAccountId);
+            var isPlayerUsername = (PaymentMethod.PlayerAccount.Equals(param.PreferredPayment))
+                                        && !string.IsNullOrEmpty(param.PlayerUsername);
             var isMoneybookersEmail = PaymentMethod.Moneybookers.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.MoneybookersEmail);
             var isBankTranfer = PaymentMethod.Wire.Equals(param.PreferredPayment) && IsValidWirePaymentMethod(param);
 
-            return isPlayerUsername || isNetellerAccountId || isMoneybookersEmail || isBankTranfer;
+            return isPlayerUsername || isMoneybookersEmail || isBankTranfer;
         }
 
         private static bool IsValidWirePaymentMethod(UserAccountParam param)
@@ -94,6 +166,5 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             return !(string.IsNullOrEmpty(param.BankName) || string.IsNullOrEmpty(param.BankAddress) ||
                 string.IsNullOrEmpty(param.BankAccountName) || string.IsNullOrEmpty(param.BankAccountNumber));
         }
-
     }
 }

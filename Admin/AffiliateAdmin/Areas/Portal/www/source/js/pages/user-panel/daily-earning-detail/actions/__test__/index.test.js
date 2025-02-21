@@ -14,20 +14,14 @@ const actionList = [
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
 ]
 
-describe('customer member actions', () => {
+describe('daily earning detail actions', () => {
     actionList.forEach(item => {
         runTestAction(item);
     });
 
-    it('getProductList - should return correct data', async () => {
-        const getProductList = actions['getProductList']();
-
-        expect(getProductList).toEqual(expect.any(Function));
-    })
-
     it('should create action to fetchData with correct parameter', async () => {
         const expectedResponse = {
-            data: { 
+            data: {
                 MainData: [
                     {
                         BankingFee: 0,
@@ -35,8 +29,8 @@ describe('customer member actions', () => {
                         CustId: 31951570,
                         Deposit: 0,
                         IbcUserName: "12BETEURO02237",
-                        UserName: "12bet$cicutadino",
-                        WinLost: 4.1405,
+                        UserName: "12BET$cicutadino",
+                        Ggr: 4.1405,
                         Withdrawal: 0
                     },
                     {
@@ -45,8 +39,8 @@ describe('customer member actions', () => {
                         CustId: 33221781,
                         Deposit: 0,
                         IbcUserName: "12BETGBP02004",
-                        UserName: "12bet$Munir12",
-                        WinLost: -540.2242,
+                        UserName: "12BET$Munir12",
+                        Ggr: -540.2242,
                         Withdrawal: 0
                     }
                 ],
@@ -57,7 +51,7 @@ describe('customer member actions', () => {
                     Deposit: 0,
                     IbcUserName: "Total",
                     UserName: null,
-                    WinLost: -536.0837,
+                    Ggr: -536.0837,
                     Withdrawal: 0
                 }
             },
@@ -71,7 +65,7 @@ describe('customer member actions', () => {
             monthDate: "06 January 2019",
             productId: 0
         }
-        
+
         const result = await actions['fetchData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/StatementHistory/GetDailyEarningDetail', param);

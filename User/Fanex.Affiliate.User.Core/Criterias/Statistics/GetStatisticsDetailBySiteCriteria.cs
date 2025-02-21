@@ -1,0 +1,23 @@
+﻿namespace Fanex.Affiliate.User.Core.Criterias
+{
+    using Utilities;
+
+    public class GetStatisticsDetailBySiteCriteria : AffPagingByDateCriteria
+    {
+        private const string SpKey = "Aff_ClickStatisticsDetailBySite";
+
+        public byte DeviceType { get; set; }
+
+        public string Domain { get; set; }
+
+        public string SportCode { get; set; }
+
+        public string LanguageCode { get; set; }
+
+        public int TotalPages { get; set; }
+
+        public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
+
+        public override bool IsValid() => AffId > 0;
+    }
+}

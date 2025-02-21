@@ -4,22 +4,21 @@ import { shallow, mount } from 'enzyme';
 
 describe('landing page list - components - Content ', () => {
     const gridData = [
-                {
-                    PageCode: "sportsbooks",
-                    PageId: 1,
-                    PageName: "Sportsbooks"
-                },
-                {
-                    PageCode: "numbergame",
-                    PageId: 22,
-                    PageName: "Number Game"
-                }
+        {
+            PageCode: "sportsbooks",
+            PageId: 1,
+            PageName: "Sportsbooks"
+        },
+        {
+            PageCode: "numbergame",
+            PageId: 22,
+            PageName: "Number Game"
+        }
     ];
 
     const defaultProps = {
         checkedLandingPages: { 1: false, 22: false },
         shouldResetScrollPosition: true,
-        isModifiable: true,
         gridData
     };
 

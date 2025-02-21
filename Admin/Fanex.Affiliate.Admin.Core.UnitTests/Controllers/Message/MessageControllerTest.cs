@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void InsertMessage_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageContentEn = "abc" };
+            var param = new InsertUpdateMessageParam { Message_en = "abc" };
             InsertUpdateMessageParam passedParam = null;
             var messageSevice = new Mock<IMessageService>();
             messageSevice.Setup(s => s.InsertMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
@@ -146,26 +146,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void UpdateMessage_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageId = 1, MessageContentVi = "abc" };
-            InsertUpdateMessageParam passedParam = null;
-            var messageSevice = new Mock<IMessageService>();
-            messageSevice.Setup(s => s.UpdateMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
-            var controller = CreateMessageController(messageSevice: messageSevice.Object);
-
-            // Action
-            var result = controller.UpdateMessage(param) as JsonNetResult;
-            var resultInfo = result.Data as ResultInfo;
-
-            // Assert
-            Assert.True(resultInfo.IsSuccessful);
-            Assert.Equal(param.MessageId, passedParam.MessageId);
-        }
-
-        [Fact]
-        public void UpdateMessage_WhenCallWithValidParamBn_InsertSuccessful()
-        {
-            // Arrange
-            var param = new InsertUpdateMessageParam { MessageId = 1, MessageContentBn = "xyz" };
+            var param = new InsertUpdateMessageParam { MessageId = 1, Message_vn = "abc" };
             InsertUpdateMessageParam passedParam = null;
             var messageSevice = new Mock<IMessageService>();
             messageSevice.Setup(s => s.UpdateMessage(It.IsAny<InsertUpdateMessageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateMessageParam>(p => passedParam = p);
@@ -200,7 +181,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
         public void UpdateMessage_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
-            var param = new InsertUpdateMessageParam { MessageContentEn = "abc" };
+            var param = new InsertUpdateMessageParam { Message_en = "abc" };
             var controller = CreateMessageController();
 
             // Action
@@ -249,13 +230,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Message
 
         private MessageController CreateMessageController(
             ISessionService sessionService = null,
-            IMessageService messageSevice = null
+            IMessageService messageSevice = null,
+            ISystemService languageService = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeMessageSevice = messageSevice ?? Mock.Of<IMessageService>();
+            var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
 
-            var controller = new MessageController(fakeSessionService, fakeMessageSevice);
+            var controller = new MessageController(fakeSessionService, fakeMessageSevice, fakeLanguageService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

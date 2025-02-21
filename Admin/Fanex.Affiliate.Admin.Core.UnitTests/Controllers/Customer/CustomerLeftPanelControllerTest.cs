@@ -12,6 +12,7 @@ using Fanex.Affiliate.Admin.Core.Services.Customer;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -20,14 +21,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 {
     public class CustomerLeftPanelControllerTest
     {
-        private ILifetimeScopeProvider _scopeProvider;
+        private ILifetimeScopeProvider scopeProvider;
 
         [Fact]
         public void GetAffiliateInfo_WhenCallWithValidParam_ExcuteWithCorrectData()
         {
             // Arrange
             var customerLeftPanelService = new Mock<ICustomerLeftPanelService>();
-            customerLeftPanelService.Setup(s => s.GetAffiliateInfoOnLeftPanel(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226" });
+            customerLeftPanelService.Setup(s => s.GetAffiliateInfoOnLeftPanel(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226" });
             var controller = CreateCustomerLeftPanelController(customerLeftPanelService: customerLeftPanelService.Object);
 
             // Action
@@ -36,37 +37,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             // Assert
             Assert.Equal("12BETAFF226", item.AffName);
-            Assert.Null(item.ContactAppList);
-        }
-
-        [Fact]
-        public void GetAffiliateInfo_WhenCallWithValidParam_ExcuteWithCorrectDataHasContactApps()
-        {
-            // Arrange
-            var customerLeftPanelService = new Mock<ICustomerLeftPanelService>();
-            customerLeftPanelService.Setup(s => s.GetAffiliateInfoOnLeftPanel(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new AffiliateInfoOnLeftPanel { AffName = "12BETAFF226", ContactApps = "[{\"Name\":\"MSN/YM/QQ\",\"Value\":\"@123 Lê Văn\",\"Order\":0}]" });
-            var controller = CreateCustomerLeftPanelController(customerLeftPanelService: customerLeftPanelService.Object);
-
-            // Action
-            var result = controller.GetAffiliateInfo("12BETAFF226") as JsonNetResult;
-            var item = result.Data as AffiliateInfoOnLeftPanel;
-
-            // Assert
-            Assert.Equal("12BETAFF226", item.AffName);
-            Assert.Single(item.ContactAppList);
-        }
-
-        [Fact]
-        public void GetAffiliateInfo_WhenCallWithValidParam_ReturnNull()
-        {
-            // Arrange
-            var controller = CreateCustomerLeftPanelController();
-
-            // Action
-            var result = controller.GetAffiliateInfo("12BETAFF226") as JsonNetResult;
-
-            // Assert
-            Assert.Null(result.Data);
         }
 
         [Fact]
@@ -76,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var controller = CreateCustomerLeftPanelController();
 
             // Action
-            var result = controller.GetAffiliateInfo(string.Empty) as JsonResult;
+            var result = controller.GetAffiliateInfo(string.Empty) as JsonNetResult;
 
             // Assert
             Assert.Null(result.Data);
@@ -108,10 +78,77 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var controller = CreateCustomerLeftPanelController();
 
             // Action
-            var result = controller.GetOnlineList(string.Empty) as JsonResult;
+            var result = controller.GetOnlineList(string.Empty) as JsonNetResult;
 
             // Assert
             Assert.Null(result.Data);
+        }
+
+        [Fact]
+        public void GetTransferLimitSetting_WhenCallWithValidParam_ExcuteWithCorrectData()
+        {
+            // Arrange
+            var param = "123";
+            var passedParam = 0;
+            var customerLeftPanelService = new Mock<ICustomerLeftPanelService>();
+            customerLeftPanelService.Setup(s => s.GetTransferLimitSetting(It.IsAny<int>())).Returns(new TransferLimitSettingInfo()).Callback<int>(p => passedParam = p);
+            var controller = CreateCustomerLeftPanelController(customerLeftPanelService: customerLeftPanelService.Object);
+
+            // Action
+            var result = controller.GetTransferLimitSetting(param) as JsonNetResult;
+            var data = result.Data as TransferLimitSettingInfo;
+
+            // Assert
+            Assert.NotNull(data);
+            Assert.Equal(123, passedParam);
+        }
+
+        [Fact]
+        public void GetTransferLimitSetting_WhenCallWithInvalidParam_ReturnNull()
+        {
+            // Arrange
+            var controller = CreateCustomerLeftPanelController();
+
+            // Action
+            var result = controller.GetTransferLimitSetting(string.Empty) as JsonNetResult;
+
+            // Assert
+            Assert.Null(result.Data);
+        }
+
+        [Fact]
+        public void UpdateTransferLimitSetting_WhenCallWithValidParam_ExcuteSuccessfully()
+        {
+            // Arrange
+            var param = new TransferLimitSettingParam { AffId = 1271808 };
+            TransferLimitSettingParam passedParam = null;
+            var customerLeftPanelService = new Mock<ICustomerLeftPanelService>();
+            customerLeftPanelService.Setup(s => s.UpdateTransferLimitSetting(It.IsAny<TransferLimitSettingParam>())).Returns(new ResultInfo()).Callback<TransferLimitSettingParam>(p => passedParam = p);
+            var controller = CreateCustomerLeftPanelController(customerLeftPanelService: customerLeftPanelService.Object);
+
+            // Action
+            var result = controller.UpdateTransferLimitSetting(param) as JsonNetResult;
+            var data = result.Data as ResultInfo;
+
+            // Assert
+            Assert.True(data.IsSuccessful);
+            Assert.Equal(param.AffId, passedParam.AffId);
+        }
+
+        [Fact]
+        public void UpdateTransferLimitSetting_WhenCallWithInvalidParam_ReturnError()
+        {
+            // Arrange
+            var controller = CreateCustomerLeftPanelController();
+            controller.ModelState.AddModelError("Error01", "Amount is invalid!");
+
+            // Action
+            var result = controller.UpdateTransferLimitSetting(new TransferLimitSettingParam()) as JsonNetResult;
+            var data = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(data.IsSuccessful);
+            Assert.Equal("Amount is invalid!", data.Message);
         }
 
         [Fact]
@@ -141,7 +178,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.UpdateLanguage(new UpdateLanguageParam()) as JsonResult;
+            var result = controller.UpdateLanguage(new UpdateLanguageParam()) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert
@@ -176,7 +213,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.UpdateAffType(new UpdateAffTypeParam()) as JsonResult;
+            var result = controller.UpdateAffType(new UpdateAffTypeParam()) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert
@@ -185,7 +222,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void UpdateStatus_WhenCallWithValidParam_ExcuteSuccessfully()
+        public async Task UpdateStatus_WhenCallWithValidParam_ExcuteSuccessfully()
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
@@ -196,13 +233,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            _scopeProvider = new SimpleLifetimeScopeProvider(container);
-            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
             DependencyResolver.SetResolver(resolver);
 
             var param = new UpdateStatusParam { AffId = 1271808, Status = "Approved" };
             var customerLeftPanelService = new Mock<ICustomerLeftPanelService>();
-            customerLeftPanelService.Setup(s => s.UpdateStatus(It.IsAny<UpdateStatusParam>(), It.IsAny<AffInformationEmail>())).Returns(new ResultInfo());
+            customerLeftPanelService.Setup(s => s.UpdateStatus(It.IsAny<UpdateStatusParam>(), It.IsAny<AffInformationEmail>())).Returns(Task.FromResult(new ResultInfo()));
             var controller = CreateCustomerLeftPanelController(customerLeftPanelService: customerLeftPanelService.Object);
 
             var expectedPath = "~/";
@@ -214,7 +251,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 
             controller.Url = urlHelperMock.Object;
             // Action
-            var result = controller.UpdateStatus(param) as JsonNetResult;
+            var result = await controller.UpdateStatus(param) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert
@@ -222,54 +259,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void UpdateStatus_WhenCallWithInvalidParam_ReturnError()
+        public async Task UpdateStatus_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
+            var errorMsg = "Update Status is failed!";
             var controller = CreateCustomerLeftPanelController();
-            controller.ModelState.AddModelError("Error01", string.Empty);
+            controller.ModelState.AddModelError("Error01", errorMsg);
 
             // Action
-            var result = controller.UpdateStatus(new UpdateStatusParam()) as JsonResult;
+            var result = await controller.UpdateStatus(new UpdateStatusParam()) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert
             Assert.False(data.IsSuccessful);
-            Assert.Equal("Update Status is failed!", data.Message);
-        }
-
-        [Fact]
-        public void UpdateClosedStatus_WhenCallWithValidParam_ExcuteSuccessfully()
-        {
-            // Arrange
-            var param = new UpdateClosedStatusParam { AffId = 1271808, IsClosed = true };
-            UpdateClosedStatusParam passedParam = null;
-            var customerLeftPanelService = new Mock<ICustomerLeftPanelService>();
-            customerLeftPanelService.Setup(s => s.UpdateClosedStatus(param)).Returns(new ResultInfo()).Callback<UpdateClosedStatusParam>(p => passedParam = p);
-            var controller = CreateCustomerLeftPanelController(customerLeftPanelService: customerLeftPanelService.Object);
-
-            // Action
-            var result = controller.UpdateClosedStatus(param) as JsonNetResult;
-            var data = result.Data as ResultInfo;
-
-            // Assert
-            Assert.True(data.IsSuccessful);
-            Assert.Equal(param.AffId, passedParam.AffId);
-        }
-
-        [Fact]
-        public void UpdateClosedStatus_WhenCallWithInvalidParam_ReturnError()
-        {
-            // Arrange
-            var controller = CreateCustomerLeftPanelController();
-            controller.ModelState.AddModelError("Error01", string.Empty);
-
-            // Action
-            var result = controller.UpdateClosedStatus(new UpdateClosedStatusParam()) as JsonResult;
-            var data = result.Data as ResultInfo;
-
-            // Assert
-            Assert.False(data.IsSuccessful);
-            Assert.Equal("Update Closed Status is failed!", data.Message);
+            Assert.Equal(errorMsg, data.Message);
         }
 
         private CustomerLeftPanelController CreateCustomerLeftPanelController(

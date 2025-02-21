@@ -21,7 +21,6 @@ describe('customer member - Content - connect', () => {
         const expectedResult = {
             affId: 1271808,
             param: { abc: 123 },
-            isDisplayFullName: true,
             pagingOption: { PageSize: 10 }
         };
         const state = {
@@ -30,7 +29,6 @@ describe('customer member - Content - connect', () => {
                 param: { abc: 123 },
                 pagingOption: { PageSize: 10 }
             },
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

@@ -8,8 +8,6 @@
 
         public string Ip { get; set; }
 
-        public int ErrCode { get; set; }
-
         public string Language { get; set; }
     }
 }

@@ -1,49 +1,25 @@
-export const claimResource = {
+﻿export const claimResource = {
     WritePermission: 'Write',
 
-    //Main menu permission
-    MediaGalleryMenu: '[Media]',
-    MessageMenu: '[HotNews]',
-    ExchangeRateMenu: '[AffEx.Rate]',
-    AdminRoleMenu: '[UserControl]',
-    DomainMenu: '[Domain]',
-
-    AffiliateInfo: '[Affiliate]',
-    PaymentRequest: '[Payment]',
-    EmailHistory: '[EmailHistory]',
-    FeedbackReport: '[Feedback]',
-    ViewLog: '[ViewLog]',
-    CommissionGroup: '[CommissionGroup]',
-    AssignCommGroup: '[AssignCommGroup]',
-    MemberDetail: '[AffMemberDetail]',
-    ActiveMembers: '[ActiveMembers]',
-    RegisteredMembers: '[RegisteredMembers]',
-    MemberName: '[AffMemberName]',
-    TurnOver: '[AffTurnover]',
-    Note: '[Note]',
-    MarketingTeamNote: '[MarketingTeamNote]',
-    EditAffiliate: '[AffCustomerEdit]',
-    SecurityQA: '[SecurityQA]',
-    AffEmail: '[AffEmail]',
-    AffPhone: '[AffPhone]',
-    AffPaymentInfo: '[AffPaymentInfo]',
-    AffWebUrl: '[AffWebURL]',
-    AffAdjustment: '[AffAdjustment]',
-    AffAccountStatus: '[AffAccountStatus]',
-    AffPlayerDetail: '[AffPlayerDetail]',
-    AffPassword: '[AffPassword]',
-    AffTargetCountry: '[TargetCountry]',
-    LanguageAmendment: '[AffMarket]',
+    UserControl: "[UserControl]",
+    Affiliate: "[Affiliate]",
+    Payment: "[Payment]",
+    EmailHistory: "[EmailHistory]",
+    Media: "[Media]",
+    AffExRate: "[AffEx.Rate]",
+    HotNews: "[HotNews]",
+    RevenueGroup: "[RevenueGroup]",
+    AffReport: "[AffReport]",
+    Domain: "[Domain]",
+    MemberEmail: "[MemberEmail]",
     AffPersonalInfo: "[AffPersonalInfo]",
-    ManagePendingAff: "[ManagePendingAffiliate]",
-    ProcRequest: "[ProcessingRequest]",
-    ProcRequestMarketingRole: '[ProcessingRequestMarketingRole]',
-    ProcRequestManagementRole: "[ProcessingRequestManagementRole]",
-
-    //Export Excel
-    ExportAffInfoExcel: '[ExportAffInfoExcel]',
-    ExportPlayerDetailExcel: '[ExportPlayerDetailExcel]',
-    ExportReportExcel: '[ExportReportExcel]',
+    Note: "[Note]",
+    MarketingTeamNote: "[MarketingTeamNote]",
+    SecurityQA: "[SecurityQA]",
+    EditAffStatus: "[EditAffiliateStatus]",
+    EditAffDetails: "[EditAffiliateDetails]",
+    TransferPlayerSetting: "[HideTransferPlayerSetting]", //Hide Transfer Player
+    TransferPlayerReport: "[HideTransferPlayerReport]" //Hide Transfer Player
 }
 
 export const claimTypes = {

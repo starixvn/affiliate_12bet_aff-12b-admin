@@ -49,39 +49,19 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             try
             {
                 var extension = GetExtension(filePath);
-                if (string.Compare(extension, ".gif", StringComparison.CurrentCultureIgnoreCase) == 0)
+                if (string.Equals(extension, ".gif", StringComparison.CurrentCultureIgnoreCase))
                 {
                     bitmap.Save(filePath, ImageFormat.Gif);
                 }
                 else
                 {
-                    var isPng = string.Compare(extension, ".png", StringComparison.CurrentCultureIgnoreCase) == 0;
+                    var isPng = string.Equals(extension, ".png", StringComparison.CurrentCultureIgnoreCase);
                     bitmap.Save(filePath, isPng ? ImageFormat.Png : ImageFormat.Jpeg);
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
-            }
-        }
-
-        public ResultInfo UploadFile(Stream file, string filePath)
-        {
-            try
-            {
-                file.Seek(0, SeekOrigin.Begin);
-                using (var writer = File.Create(filePath))
-                {
-                    var buffer = new byte[file.Length];
-                    var totalByte = file.Read(buffer, 0, buffer.Length);
-                    writer.Write(buffer, 0, totalByte);
-                }
-                return ResultInfo.Success;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteError(ex);
-                return ResultInfo.GenerateErr(ex.Message);
             }
         }
 
@@ -98,7 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                     LogHelper.WriteError(ex);
                     return new ResultInfo
                     {
-                        Code = Code.ErrCanNotAccessFolder,
+                        Code = ErrCode.ErrCanNotAccessFolder,
                         Message = "Can not access folder."
                     };
                 }
@@ -114,8 +94,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             {
                 return new ResultInfo
                 {
-                    Code = Code.ErrTheFileNameAlreadyExists,
-                    Message = "This file name is existing. Please change the file name."
+                    Code = ErrCode.ErrTheFileNameAlreadyExists,
+                    Message = "This file name belong to an existing banner. Please change the file name."
                 };
             }
 

@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Extensions
                 clientValidIP = requestBase.UserHostAddress;
             }
 
-            return clientValidIP.Equals("::1") ? "127.0.0.1" : clientValidIP;
+            return clientValidIP.MatchWith("::1") ? "127.0.0.1" : clientValidIP;
         }
 
         private static string GetValidIPAddress(string ips)

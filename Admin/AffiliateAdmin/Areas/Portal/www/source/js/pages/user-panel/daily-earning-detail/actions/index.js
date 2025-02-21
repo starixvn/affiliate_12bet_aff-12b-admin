@@ -1,9 +1,8 @@
 import { post } from '../../../../modules/ajaxRequest';
-import { getProductList } from '../../../customer/user-panel/libs/service';
-import { setSelectedUserPanel, redirectToDailyEarning, toggleLoaderUserPanel, redirectToStatementHistory } from '../../../customer/user-panel/actions';
+import { setSelectedUserPanel, redirectToDailyEarning, redirectToStatementHistory, toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import { SET_PARAM } from './types';
 
-export { toggleLoaderUserPanel, setSelectedUserPanel, redirectToDailyEarning, getProductList, redirectToStatementHistory };
+export { toggleLoaderUserPanel, setSelectedUserPanel, redirectToDailyEarning, redirectToStatementHistory };
 
 export const setParam = (data) => {
     return {
@@ -12,7 +11,7 @@ export const setParam = (data) => {
     }
 }
 
-export const fetchData = (param) => async() => {
+export const fetchData = (param) => async () => {
     const url = 'Portal/UserPanel/StatementHistory/GetDailyEarningDetail';
     const response = await post(url, param);
 

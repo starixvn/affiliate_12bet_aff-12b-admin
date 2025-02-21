@@ -1,20 +1,23 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Controllers.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
+using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 using Moq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -23,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {
     public class CommGroupAssignmentControllerTest
     {
-        private ILifetimeScopeProvider _scopeProvider;
+        private ILifetimeScopeProvider scopeProvider;
 
         [Fact]
         public void AssignGroup_WhenCallWithInvalidAffId_ReturnViewWithEmptyModel()
@@ -32,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var controller = CreateCommGroupAssignmentController();
 
             // Action
-            var viewResult = controller.AssignGroup(0) as ViewResult;
+            var viewResult = controller.AssignGroup(0, 0) as ViewResult;
             var model = viewResult.Model as AssignNormalGroupViewModel;
 
             // Assert
@@ -40,21 +43,23 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             Assert.Equal(0, model.SelectedGroup);
         }
 
-        [Fact]
-        public void AssignGroup_WhenCall_ReturnView()
+        [Theory]
+        [InlineData(1271808, 0)]
+        [InlineData(1271808, 1)]
+        public void AssignGroup_WhenCall_ReturnView(int affId, int groupTypeId)
         {
             // Arrange
-            int affId = 1271808;
             GetGroupListParam passedParam = null;
-            var commGroupList = new List<SelectItem> { new SelectItem { Id = "133", Name = "Test" } };
-            var commGroupAssignmentService = new Mock<ICommGroupAssignmentService>();
-            commGroupAssignmentService.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(commGroupList).Callback<GetGroupListParam>(p => passedParam = p);
-            commGroupAssignmentService.Setup(a => a.GetAffiliateBasicInfo(affId)).Returns(new AffiliateBasicInfo { AffId = affId });
+            var commGroupList = new List<NormalCommGroup> { new NormalCommGroup { GroupId = 123, GroupName = "Test", GroupTypeId = groupTypeId } };
+            var commGroupCommonService = new Mock<ICommGroupCommonService>();
+            commGroupCommonService.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(commGroupList).Callback<GetGroupListParam>(p => passedParam = p);
+            var affiliateService = new Mock<IAffiliateService>();
+            affiliateService.Setup(a => a.GetAffiliateBasicInfo(affId, null)).Returns(new AffiliateBasicInfo { AffId = affId });
 
-            var controller = CreateCommGroupAssignmentController(commGroupAssignmentService: commGroupAssignmentService.Object);
+            var controller = CreateCommGroupAssignmentController(affiliateService: affiliateService.Object, commGroupCommonService: commGroupCommonService.Object);
 
             // Action
-            var viewResult = controller.AssignGroup(affId) as ViewResult;
+            var viewResult = controller.AssignGroup(affId, groupTypeId) as ViewResult;
             var model = viewResult.Model as AssignNormalGroupViewModel;
 
             // Assert
@@ -64,17 +69,22 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         }
 
         [Fact]
-        public void AssignGroup_WhenCallPostWithInvalidParam_ReturnError()
+        public async Task AssignGroup_WhenCallPostWithInvalidPermission_ReturnError()
         {
             // Arrange
             var assignParam = new AssignGroupParam { AffId = 1271808, GroupId = 133 };
-            var affInfo = new AffiliateBasicInfo();
-            const string ErrorMessage1 = "ErrorMessage1";
-            var controller = CreateCommGroupAssignmentController();
-            controller.ModelState.AddModelError("Error01", ErrorMessage1);
-            var expectResult = ResultInfo.GenerateErr(ErrorMessage1);
+            var affInfo = new AffInfoParam();
+
+            var commGroupValidation = new Mock<ICommGroupValidation>();
+            commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(false);
+            var controller = CreateCommGroupAssignmentController(commGroupValidation: commGroupValidation.Object);
+            var expectResult = new ResultInfo
+            {
+                Code = ErrCode.ErrCodeAccessDenied,
+                Message = "You are not authorized to approve affiliate."
+            };
             // Action
-            var jsonNetResult = controller.AssignGroup(assignParam, affInfo) as JsonNetResult;
+            var jsonNetResult = await controller.AssignGroup(assignParam, affInfo) as JsonNetResult;
             var resultInfo = jsonNetResult.Data as ResultInfo;
 
             // Assert
@@ -84,15 +94,47 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         }
 
         [Fact]
-        public void AssignGroup_WhenCallPostWithInvalidGroupId_ReturnError()
+        public async Task AssignGroup_WhenCallPostWithInvalidParam_ReturnError()
+        {
+            // Arrange
+            var assignParam = new AssignGroupParam { AffId = 1271808, GroupId = 133 };
+            var affInfo = new AffInfoParam();
+            const string ErrorMessage1 = "ErrorMessage1";
+
+            var commGroupValidation = new Mock<ICommGroupValidation>();
+            commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var controller = CreateCommGroupAssignmentController(commGroupValidation: commGroupValidation.Object);
+            controller.ModelState.AddModelError("Error01", ErrorMessage1);
+            var expectResult = new ResultInfo
+            {
+                Code = ErrCode.GeneralErrorCode,
+                Message = ErrorMessage1
+            };
+            // Action
+            var jsonNetResult = await controller.AssignGroup(assignParam, affInfo) as JsonNetResult;
+            var resultInfo = jsonNetResult.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal(expectResult.Code, resultInfo.Code);
+            Assert.Equal(expectResult.Message, resultInfo.Message);
+        }
+
+        [Fact]
+        public async Task AssignGroup_WhenCallPostWithInvalidGroupId_ReturnError()
         {
             // Arrange
             var assignParam = new AssignGroupParam { AffId = 1271808 };
-            var affInfo = new AffiliateBasicInfo();
-            var controller = CreateCommGroupAssignmentController();
-            var expectResult = ResultInfo.GenerateErr();
+            var affInfo = new AffInfoParam();
+            var commGroupValidation = new Mock<ICommGroupValidation>();
+            commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var controller = CreateCommGroupAssignmentController(commGroupValidation: commGroupValidation.Object);
+            var expectResult = new ResultInfo
+            {
+                Code = ErrCode.GeneralErrorCode
+            };
             // Action
-            var jsonNetResult = controller.AssignGroup(assignParam, affInfo) as JsonNetResult;
+            var jsonNetResult = await controller.AssignGroup(assignParam, affInfo) as JsonNetResult;
             var resultInfo = jsonNetResult.Data as ResultInfo;
 
             // Assert
@@ -101,7 +143,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         }
 
         [Fact]
-        public void AssignGroup_WhenCallPost_ExcuteCorrectly()
+        public async Task AssignGroup_WhenCallPost_ExcuteCorrectly()
         {
             // Arrange
             var appSetting = new Mock<IAppSetting>();
@@ -112,19 +154,184 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
             var container = builder.Build();
 
-            _scopeProvider = new SimpleLifetimeScopeProvider(container);
-            var resolver = new AutofacDependencyResolver(container, _scopeProvider);
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
             DependencyResolver.SetResolver(resolver);
 
             var assignParam = new AssignGroupParam { AffId = 1271808, GroupId = 133 };
-            var affInfo = new AffiliateBasicInfo();
+            var affInfo = new AffInfoParam();
             var commGroupAssignmentService = new Mock<ICommGroupAssignmentService>();
-            commGroupAssignmentService.Setup(c => c.AssignGroup(It.IsAny<AssignGroupParam>(), affInfo, It.IsAny<AffInformationEmail>())).Returns(new ResultInfo());
-            var controller = CreateCommGroupAssignmentController(commGroupAssignmentService: commGroupAssignmentService.Object);
+            commGroupAssignmentService.Setup(c => c.AssignGroup(It.IsAny<AssignGroupParam>(), affInfo, It.IsAny<AffInformationEmail>())).Returns(Task.FromResult(new ResultInfo()));
+            var commGroupValidation = new Mock<ICommGroupValidation>();
+            commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var controller = CreateCommGroupAssignmentController(commGroupAssignmentService: commGroupAssignmentService.Object, commGroupValidation: commGroupValidation.Object);
 
             // Action
-            var jsonNetResult = controller.AssignGroup(assignParam, affInfo) as JsonNetResult;
+            var jsonNetResult = await controller.AssignGroup(assignParam, affInfo) as JsonNetResult;
             var resultInfo = jsonNetResult.Data as ResultInfo;
+
+            // Assert
+            Assert.True(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
+        public void AssignPrivateGroup_WhenCallWithInvalidAffId_ReturnViewWithEmptyModel()
+        {
+            // Arrange
+            var controller = CreateCommGroupAssignmentController();
+
+            // Action
+            var viewResult = controller.AssignPrivateGroup(0, 0) as ViewResult;
+
+            // Assert
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewResult.ViewName);
+        }
+
+        [Fact]
+        public void AssignPrivateGroup_WhenCall_ReturnView()
+        {
+            // Arrange
+            const int affId = 1271808, groupTypeId = 1;
+            var productList = new List<Product> { new Product { ProductId = 123, ProductName = "Casino", IsP2P = true } };
+            var deductionList = new List<DeductionItem> { new DeductionItem { DeductionId = 13, DeductionName = "ExchangeGgrShare", DeductedPercentage = 0.05m, IsDeductedPercent = true, DeductedAmount = "" } };
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(p => p.GetProductList()).Returns(productList);
+            var commGroupCommonService = new Mock<ICommGroupCommonService>();
+            commGroupCommonService.Setup(c => c.GetDeductionList()).Returns(deductionList);
+
+            var controller = CreateCommGroupAssignmentController(systemService: systemService.Object, commGroupCommonService: commGroupCommonService.Object);
+            var expectModel = new AssignPrivateGroupViewModel
+            {
+                ProductList = productList,
+                DeductionList = deductionList
+            };
+            // Action
+            var viewResult = controller.AssignPrivateGroup(affId, groupTypeId) as ViewResult;
+            var model = viewResult.Model as AssignPrivateGroupViewModel;
+
+            // Assert
+            Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewResult.ViewName);
+            Assert.Equal(expectModel.ProductList, model.ProductList);
+            Assert.Equal(expectModel.DeductionList, model.DeductionList);
+        }
+
+        [Fact]
+        public async Task AssignPrivateGroup_WhenCallPostWithInvalidPermission_ReturnError()
+        {
+            // Arrange
+            var commGroup = new CommGroupSettingParam();
+            var affInfo = new AffInfoParam();
+
+            var commGroupValidation = new Mock<ICommGroupValidation>();
+            commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(false);
+            var controller = CreateCommGroupAssignmentController(commGroupValidation: commGroupValidation.Object);
+            var expectResult = new ResultInfo
+            {
+                Code = ErrCode.ErrCodeAccessDenied,
+                Message = "You are not authorized to approve affiliate."
+            };
+            // Action
+            var jsonNetResult = await controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
+            var resultInfo = jsonNetResult.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal(expectResult.Code, resultInfo.Code);
+            Assert.Equal(expectResult.Message, resultInfo.Message);
+        }
+
+        [Fact]
+        public async Task AssignPrivateGroup_WhenCallPostWithInvalidParam_ReturnError()
+        {
+            // Arrange
+            var commGroup = new CommGroupSettingParam();
+            var affInfo = new AffInfoParam();
+            const string ErrorMessage1 = "ErrorMessage1";
+
+            var commGroupValidation = new Mock<ICommGroupValidation>();
+            commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            var controller = CreateCommGroupAssignmentController(commGroupValidation: commGroupValidation.Object);
+            controller.ModelState.AddModelError("Error01", ErrorMessage1);
+            var expectResult = new ResultInfo
+            {
+                Code = ErrCode.GeneralErrorCode,
+                Message = ErrorMessage1
+            };
+            // Action
+            var jsonNetResult = await controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
+            var resultInfo = jsonNetResult.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal(expectResult.Code, resultInfo.Code);
+            Assert.Equal(expectResult.Message, resultInfo.Message);
+        }
+
+        [Fact]
+        public async Task AssignPrivateGroup_WhenCallWithInvalidPlatformFee_ExcuteIncorrect()
+        {
+            // Arrange
+            var commGroup = CreateCommGroupSettingParam();
+            var affInfo = new AffInfoParam { AffId = 1271808 };
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 2 },
+                new Product { ProductId = 3 }
+            });
+
+            var commGroupValidation = new Mock<ICommGroupValidation>();
+            commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            commGroupValidation.Setup(e => e.ValidateCommGroup(It.IsAny<CommGroupSettingParam>())).Returns(new ResultInfo { Code = ErrCode.GeneralErrorCode });
+
+            var controller = CreateCommGroupAssignmentController(systemService: systemService.Object, commGroupValidation: commGroupValidation.Object);
+
+            // Action
+            var result = await controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
+        public async Task AssignPrivateGroup_WhenCall_ExcuteCorrectly()
+        {
+            // Arrange
+            var appSetting = new Mock<IAppSetting>();
+            appSetting.Setup(a => a.Environment).Returns("LOCAL");
+            appSetting.Setup(a => a.IsProduction).Returns(false);
+
+            var builder = new ContainerBuilder();
+            builder.RegisterInstance(appSetting.Object).As<IAppSetting>();
+            var container = builder.Build();
+
+            this.scopeProvider = new SimpleLifetimeScopeProvider(container);
+            var resolver = new AutofacDependencyResolver(container, scopeProvider);
+            DependencyResolver.SetResolver(resolver);
+
+            var commGroup = CreateCommGroupSettingParam();
+            var affInfo = new AffInfoParam { AffId = 1271808 };
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            {
+                new Product { ProductId = 1 },
+                new Product { ProductId = 3 },
+                new Product { ProductId = 4 }
+            });
+            var commGroupAssignmentService = new Mock<ICommGroupAssignmentService>();
+            commGroupAssignmentService.Setup(c => c.AssignPrivateGroup(It.IsAny<CreateUpdateCommissionGroupParam>(), affInfo, It.IsAny<AffInformationEmail>())).Returns(Task.FromResult(new ResultInfo()));
+
+            var commGroupValidation = new Mock<ICommGroupValidation>();
+            commGroupValidation.Setup(e => e.HasPermissionAssignOnAff(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            commGroupValidation.Setup(e => e.ValidateCommGroup(It.IsAny<CommGroupSettingParam>())).Returns(new ResultInfo());
+
+            var controller = CreateCommGroupAssignmentController(systemService: systemService.Object, commGroupAssignmentService: commGroupAssignmentService.Object, commGroupValidation: commGroupValidation.Object);
+
+            // Action
+            var result = await controller.AssignPrivateGroup(commGroup, affInfo) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
 
             // Assert
             Assert.True(resultInfo.IsSuccessful);
@@ -132,11 +339,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
         private static CommGroupAssignmentController CreateCommGroupAssignmentController(
             ISessionService sessionService = null,
-            ICommGroupAssignmentService commGroupAssignmentService = null)
+            ISystemService systemService = null,
+            IAffiliateService affiliateService = null,
+            ICommGroupAssignmentService commGroupAssignmentService = null,
+            ICommGroupCommonService commGroupCommonService = null,
+            ICommGroupValidation commGroupValidation = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakesystemService = systemService ?? Mock.Of<ISystemService>();
+            var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
             var fakeCommGroupAssignmentService = commGroupAssignmentService ?? Mock.Of<ICommGroupAssignmentService>();
-            var controller = new CommGroupAssignmentController(fakeSessionService, fakeCommGroupAssignmentService);
+            var fakeCommGroupCommonService = commGroupCommonService ?? Mock.Of<ICommGroupCommonService>();
+            var fakeCommGroupValidation = commGroupValidation ?? Mock.Of<ICommGroupValidation>();
+
+            var controller = new CommGroupAssignmentController(fakeSessionService, fakesystemService, fakeAffiliateService, fakeCommGroupAssignmentService, fakeCommGroupCommonService, fakeCommGroupValidation);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();
@@ -160,25 +376,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             return controller;
         }
 
-        private static CommissionGroupSetting CreateCommissionGroupSetting()
+        private static CommGroupSettingParam CreateCommGroupSettingParam()
         {
-            return new CommissionGroupSetting
+            return new CommGroupSettingParam
             {
-                BankingFee = new DeductionSetting { DeductionId = 12, ProductIds = "0", DeductedPercentage = 0.02m },
                 Description = "Test",
                 GroupId = 0,
-                GroupName = "Test",
-                OperationalFee = new DeductionSetting { DeductionId = 11, ProductIds = "0", DeductedPercentage = 0.07m },
-                PlatformFeeList = new List<DeductionSetting>
-                {
-                    new DeductionSetting { DeductionId = 10, ProductIds = "1,3,4", DeductedPercentage = 0.17m }
-                },
-                QmTurnover = 100,
-                TierSettingList = new List<TierSetting>
-                {
-                    new TierSetting { Commission = 0.05m, MaxAmount = 100, MaxQm = 100, MinAmount = 0, MinQm = 0, TierId = 1 },
-                    new TierSetting { Commission = 0.15m, MaxAmount = 100000000000000, MaxQm = 1000000000, MinAmount = 101, MinQm = 101, TierId = 2 }
-                }
+                GroupName = "Test"
             };
         }
     }

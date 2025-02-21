@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data;
-using Fanex.Data.SqlServer;
 using System;
 using System.Configuration;
 using System.Reflection;
@@ -18,14 +17,16 @@ namespace AffiliateAdmin
             MvcHandler.DisableMvcResponseHeader = true;
 
             IoCConfig.Register();
-            SslConfig.RegisterHttpSecurityProtocol();
             LoggingConfig.RegisterSentry();
+
+            SslConfig.RegisterHttpSecurityProtocol();
+
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
             DbSettingProviderManager
-              .StartNewSession()
-              .WithSqlServer("~/App_Data/SpConfig/SpName.xml")
-              .Run();
+                    .StartNewSession()
+                    .Register(false)
+                    .Run();
 
 
             AreaRegistration.RegisterAllAreas();
@@ -73,6 +74,7 @@ namespace AffiliateAdmin
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "<Pending>")]
         private static void HanldeSessionState(IHttpModule module, string appName)
         {
             if (module is SessionStateModule ssm)

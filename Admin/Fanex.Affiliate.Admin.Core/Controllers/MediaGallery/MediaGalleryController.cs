@@ -2,54 +2,75 @@
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery;
-using Microsoft.Practices.ObjectBuilder2;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
-    [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu)]
+    [FunctionAuthorize(FunctionName = Function.Media)]
     public class MediaGalleryController : ReadOnlySessionBaseController
     {
-        private readonly ISystemService _systemService;
-        private readonly IBannerService _bannerService;
+        private const int BannerListCategory = 1;
+        private const string CasinoCategory = "Casino";
+        private const string SportsbookCategory = "Sportsbook";
+        private readonly ISystemService _languageService;
+        private readonly ICommonMediaGalleryService _commonMediaGalleryService;
+        private readonly IBannerListService _bannerListService;
+        private readonly IAffTypeService _affTypeService;
         private readonly IAppSetting _appSetting;
 
         public MediaGalleryController(
             ISessionService sessionService,
-            ISystemService systemService,
-            IBannerService bannerService,
+            ISystemService languageService,
+            ICommonMediaGalleryService commonMediaGalleryService,
+            IBannerListService bannerListService,
+            IAffTypeService affTypeService,
             IAppSetting appSetting) : base(sessionService)
         {
-            _systemService = systemService;
-            _bannerService = bannerService;
+            _languageService = languageService;
+            _commonMediaGalleryService = commonMediaGalleryService;
+            _bannerListService = bannerListService;
+            _affTypeService = affTypeService;
             _appSetting = appSetting;
         }
 
-        [AllowByPassFunctionAuthorize]
         public ActionResult Index(BannerParamFromHome param)
         {
+            var subMenu = new List<SubMenu>
+            {
+                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery"), IsActive = true },
+                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList") }
+            };
+
             var sizeParam = new SizeParam
             {
-                Languages = BuildQueryLanguages()
+                UserType = param.UserType
             };
+            var bannerListCategory = _commonMediaGalleryService.GetCategoryList(BannerListCategory, param.UserType);
 
             var model = new BannerListViewModel
             {
-                TargetProductList = _bannerService.GetTargetProductList(),
+                CategoryList = bannerListCategory.Where(c => string.IsNullOrEmpty(c.SubCategoryName)),
+                SubCategoryList = bannerListCategory.Where(c => !string.IsNullOrEmpty(c.SubCategoryName)),
+                SubCategoryCasinoList = bannerListCategory.Where(c => string.Equals(c.CategoryName, CasinoCategory, StringComparison.CurrentCultureIgnoreCase)
+                                        && !string.IsNullOrEmpty(c.SubCategoryName)),
+                SubCategorySportsbookList = bannerListCategory.Where(c => string.Equals(c.CategoryName, SportsbookCategory, StringComparison.CurrentCultureIgnoreCase)
+                                        && !string.IsNullOrEmpty(c.SubCategoryName)),
+                LanguageList = _languageService.GetLanguageList(),
+                CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
+                SizeList = _bannerListService.GetSizeList(sizeParam),
+                AffTypeList = _affTypeService.GetAffTypeList(),
                 BannerRootUrl = _appSetting.BannerRootUrl,
-                LanguageList = _systemService.GetAllTargetLanguageListByUser(),
-                SizeList = _bannerService.GetSizeList(sizeParam),
-                AffTypeList = _systemService.GetAffTypeList(),
+                SubMenuList = subMenu,
                 Param = param
             };
 
@@ -58,56 +79,42 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetSizeList(ImageSizeViewModel model)
+        public ActionResult GetCategoryList(byte userType)
         {
-            var param = new SizeParam
-            {
-                AffType = model.AffType,
-                TargetProductId = model.TargetProductId,
-                Languages = BuildQueryLanguages(model.Language)
-            };
-
-            return new JsonNetResult
-            {
-                Data = _bannerService.GetSizeList(param)
-            };
+            return GenerateJsonNetResult(_commonMediaGalleryService.GetCategoryList(BannerListCategory, userType).Where(c => string.IsNullOrEmpty(c.SubCategoryName)));
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetBannerList(GetBannerViewModel model)
+        public ActionResult GetBannerRootUrl()
         {
-            var param = new BannerParam
-            {
-                AffType = model.AffType,
-                TargetProductId = model.TargetProductId,
-                Languages = BuildQueryLanguages(model.Language),
-                PageIndex = model.PageIndex,
-                PageSize = model.PageSize,
-                Size = model.Size,
-                FromDate = model.FromDate,
-                ToDate = model.ToDate
-            };
-
-            return new JsonNetResult
-            {
-                Data = _bannerService.GetBannerList(param)
-            };
+            return GenerateJsonNetResult(_appSetting.BannerRootUrl);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetBannerDetail(int selectedBannerId)
+        public ActionResult GetSizeList(SizeParam param)
         {
-            return new JsonNetResult
-            {
-                Data = _bannerService.GetBannerDetail(selectedBannerId)
-            };
+            return GenerateJsonNetResult(_bannerListService.GetSizeList(param));
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
+        public ActionResult GetBannerList(BannerParam param)
+        {
+            return GenerateJsonNetResult(_bannerListService.GetBannerList(param));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetBannerDetail(int selectedBannerId, byte userType)
+        {
+            return GenerateJsonNetResult(_bannerListService.GetBannerDetail(selectedBannerId, userType));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult InsertBanner(HttpPostedFileBase[] files, InsertUpdateMultipleBannersParam param)
         {
             if (ModelState.IsValid && files != null)
@@ -115,21 +122,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 var encodeParam = EncodeParam(param);
                 AssignUserInfoParam(encodeParam);
 
-                return new JsonNetResult
-                {
-                    Data = _bannerService.InsertBanner(files, encodeParam)
-                };
+                return GenerateJsonNetResult(_bannerListService.InsertBanner(files, encodeParam));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(Lang.InvalidBannerBrowser)
-            };
+            return GenerateErrResult(Lang.InvalidBannerBrowser);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult UpdateBanner(HttpPostedFileBase files, InsertUpdateMultipleBannersParam param)
         {
             var isValidBannerId = param.BannerId >= Validation.MinId;
@@ -138,48 +139,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 var encodeParam = EncodeParam(param);
                 AssignUserInfoParam(encodeParam);
 
-                return new JsonNetResult
-                {
-                    Data = _bannerService.UpdateBanner(files, encodeParam)
-                };
+                return GenerateJsonNetResult(_bannerListService.UpdateBanner(files, encodeParam));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr(!isValidBannerId ? "Banner Id is invalid." : Lang.PleaseEnterFileName)
-            };
+            return GenerateErrResult(isValidBannerId ? Lang.PleaseEnterFileName : "Banner Id is invalid.");
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.MediaGalleryMenu, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult DeleteBanners(DeleteBannerParam param)
         {
             if (ModelState.IsValid)
             {
                 AssignUserInfoParam(param);
 
-                return new JsonNetResult
-                {
-                    Data = _bannerService.DeleteBanners(param)
-                };
+                return GenerateJsonNetResult(_bannerListService.DeleteBanners(param));
             }
 
-            return new JsonNetResult
-            {
-                Data = ResultInfo.GenerateErr("Please select Banner(s) to delete.")
-            };
-        }
-
-        private string BuildQueryLanguages(string lang = null)
-        {
-            var langs = _systemService.GetAllTargetLanguageListByUser();
-            if (!string.IsNullOrWhiteSpace(lang))
-            {
-                langs = langs.Where(l => l.LanguageName.Equals(lang, StringComparison.OrdinalIgnoreCase));
-            }
-
-            return langs.JoinStrings(",", l => l.LanguageName);
+            return GenerateErrResult("Please select Banner(s) to delete.");
         }
 
         private InsertUpdateMultipleBannersParam EncodeParam(InsertUpdateMultipleBannersParam param)
@@ -188,9 +166,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             {
                 BannerId = param.BannerId,
                 InputFileNames = param.InputFileNames,
-                TargetProductIds = Server.HtmlEncode(param.TargetProductIds),
+                Categories = Server.HtmlEncode(param.Categories),
+                SubCategories = Server.HtmlEncode(param.SubCategories),
                 Language = Server.HtmlEncode(param.Language),
-                AffTypes = param.AffTypes
+                Currencies = Server.HtmlEncode(param.Currencies),
+                AffTypes = param.AffTypes,
+                DeviceTypes = param.DeviceTypes,
+                UserType = param.UserType
             };
         }
     }

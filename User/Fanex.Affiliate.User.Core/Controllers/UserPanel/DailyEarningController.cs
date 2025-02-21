@@ -1,28 +1,25 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System.Web.Mvc;
     using Constants;
-    using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
-    using System;
-    using System.Web.Mvc;
+    using Utilities;
     using ViewModels.UserPanel;
 
     [CustomAuthorize]
     public class DailyEarningController : BaseController
     {
-        private readonly IStatementHistoryRepository _statementHistoryRepository;
+        private readonly IStatementHistoryService _statementHistoryService;
 
-        public DailyEarningController(ISessionService sessionService,
-            ISystemService languageService,
-            IStatementHistoryRepository statementHistoryRepository
-
-            ) : base(sessionService, languageService)
+        public DailyEarningController(
+            ISessionService sessionService,
+            ISystemService systemsService,
+            IStatementHistoryService statementHistoryService) : base(sessionService, systemsService)
         {
-            _statementHistoryRepository = statementHistoryRepository;
+            _statementHistoryService = statementHistoryService;
         }
 
         [AjaxOnly]
@@ -31,25 +28,25 @@
             param.AffId = SessionService.UserSession.AffId;
             param.IsInternal = SessionService.IsInternal;
             param.ProductId = param.ProductId ?? Product.Sportsbook;
-            param.MonthDate = param.MonthDate ?? DateTime.Now.AddDays(-1);
-
-            var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
+            param.MonthDate = param.MonthDate ?? DateTimeHelper.Now.AddDays(-1);
 
             var viewModel = new DailyEarningViewModel
             {
-                ProductList = param.IsOnlyContent ? null : _statementHistoryRepository.GetProductList(param.IsInternal),
-                Data = _statementHistoryRepository.GetDailyEarning(param),
-                SelectedProduct = param.ProductId.Value,
-                IsKoreanAgentCommGroup = !string.IsNullOrEmpty(extraUserInfo.GroupName) && extraUserInfo.GroupName.MatchWith(CommGroupName.KoreanAgentComm),
-                HasDailyDetail = extraUserInfo.HasDailyDetail
+                ProductList = param.IsOnlyContent ? null : _statementHistoryService.GetProductList(param.IsInternal),
+                Data = _statementHistoryService.GetDailyEarning(param),
+                SelectedProduct = param.ProductId.Value
             };
+
             ViewBag.MonthDate = param.MonthDate;
-            var viewPath = param.IsOnlyContent ? "~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningContent.cshtml" :
-                "~/Views/UserPanel/StatementHistory/DailyEarning.cshtml";
+            ViewBag.BaseCurrencies = SystemService.GetBaseCurrencyList();
+            ViewBag.SelectedBaseCurrency = param.BaseCurrency;
+
+            var viewPath = param.IsOnlyContent 
+                ? "~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningContent.cshtml" 
+                : "~/Views/UserPanel/StatementHistory/DailyEarning.cshtml";
 
             return View(viewPath, viewModel);
 
         }
-
     }
 }

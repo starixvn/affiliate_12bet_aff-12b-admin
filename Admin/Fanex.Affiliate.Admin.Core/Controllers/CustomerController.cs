@@ -1,21 +1,25 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CustomerController : ReadOnlySessionBaseController
     {
         private readonly ISystemService _systemService;
+        private readonly IAffTypeService _affTypeService;
 
         public CustomerController(
             ISessionService sessionService,
-            ISystemService systemService) : base(sessionService)
+            ISystemService systemService,
+            IAffTypeService affTypeService) : base(sessionService)
         {
             _systemService = systemService;
+            _affTypeService = affTypeService;
         }
 
         public ActionResult Index(string user)
@@ -23,7 +27,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var viewModel = new CustomerViewModel
             {
                 AffName = user,
-                LanguageList = _systemService.GetTargetLanguageListByUser()
+                LanguageList = _systemService.GetLanguageList(),
+                AffTypeList = _affTypeService.GetAffTypeList(),
+                ProductList = _systemService.GetProductList(),
+                CurrencyList = _systemService.GetCurrencies(),
+                BaseCurrencyList = _systemService.GetBaseCurrencies()
             };
 
             if (string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(SessionService.AffName))

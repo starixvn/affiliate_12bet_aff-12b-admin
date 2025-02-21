@@ -3,17 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { capitalizeFirstChar } from '../../libs/service';
+import { capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
-import { playerMethod, netellerMethod, moneybookersMethod, wireMethod, minimumPayment, nondeposited } from '../../libs/constants';
-import { claimResource } from '../../../../../modules/claim';
-
-const paymentMethodList = [
-    { key: playerMethod, value: '12BET player account' },
-    { key: netellerMethod, value: 'Neteller' },
-    { key: moneybookersMethod, value: 'Moneybookers' },
-    { key: wireMethod, value: 'Bank Transfer' }
-]
+import { playerMethod, moneybookersMethod, wireMethod, minimumPaymentText } from '../../modules/constants';
+import { formatDecimal } from '../../../../../modules/numberFormat';
 
 export class Payment extends PureComponent {
     constructor(props) {
@@ -35,21 +28,18 @@ export class Payment extends PureComponent {
 
     _renderFormByMethod(userAccountInfo) {
         return {
-            [playerMethod]: this._renderPaymentForm('playerUsername', '12BET User Name', userAccountInfo.PlayerUsername, true, this.handleChange),
-            [netellerMethod]: this._renderPaymentForm('netellerAccountId', 'Neteller Account ID', userAccountInfo.NetellerAccountId, true, this.handleChange),
+            [playerMethod]: this._renderPaymentForm('playerUsername', `${this.props.licenseeName} User Name`, userAccountInfo.PlayerUsername, true, this.handleChange),
             [moneybookersMethod]: this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, true, this.handleChange),
             [wireMethod]: this._renderWireForm(userAccountInfo)
         }
     }
 
     _renderPaymentForm(name, label, inputValue, isRequired, changeHandler) {
-        const { hasWriteClaim } = this.props;
-
         return (
             <FormGroup row>
                 <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>
                 <Col sm={5} xl={6}>
-                    <Input type="text" id={name} name={name} value={inputValue} disabled={!hasWriteClaim} onChange={changeHandler} />
+                    <Input type="text" id={name} name={name} value={inputValue} onChange={changeHandler} />
                 </Col>
             </FormGroup>
         )
@@ -58,58 +48,42 @@ export class Payment extends PureComponent {
     _renderWireForm(userAccountInfo) {
         return (
             <React.Fragment>
-                {this._renderPaymentForm('bankName', 'Bank Name', userAccountInfo.BankName, true, this.handleChange)}
-                {this._renderPaymentForm('bankAddress', 'Bank Address', userAccountInfo.BankAddress, true, this.handleChange)}
-                {this._renderPaymentForm('bankCode', 'Bank ABA/Swift/Sort Code', userAccountInfo.BankCode, false, this.handleChange)}
-                {this._renderPaymentForm('bankAccountName', 'Bank Account Name', userAccountInfo.BankAccountName, true, this.handleChange)}
-                {this._renderPaymentForm('bankAccountNumber', 'Bank Account Number', userAccountInfo.BankAccountNumber, true, this.handleChange)}
+                {this._renderPaymentForm('bankName', 'Wire Name', userAccountInfo.BankName, true, this.handleChange)}
+                {this._renderPaymentForm('bankAddress', 'Wire Address', userAccountInfo.BankAddress, true, this.handleChange)}
+                {this._renderPaymentForm('bankCode', 'Wire ABA/Swift/Sort Code', userAccountInfo.BankCode, false, this.handleChange)}
+                {this._renderPaymentForm('bankAccountName', 'Wire Account Name', userAccountInfo.BankAccountName, true, this.handleChange)}
+                {this._renderPaymentForm('bankAccountNumber', 'Wire Account Number', userAccountInfo.BankAccountNumber, true, this.handleChange)}
             </React.Fragment>
         )
     }
 
-    _renderPreferedPayment() {
-        const { userAccountInfo, hasWriteClaim } = this.props;
-
-        return (
-            <FormGroup row>
-                <Label for="preferredPayment" sm={3} xl={2}>Preferred Payment Method</Label>
-                <Col sm={5} xl={6}>
-                    <Input disabled={!hasWriteClaim} type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
-                        {paymentMethodList.map(item => {
-                            return (<option key={item.key} value={item.key}>{item.value}</option>)
-                        })}
-                    </Input>
-                </Col>
-                <p>{minimumPayment}</p>
-            </FormGroup>
-        )
-    }
-
     render() {
-        const { userAccountInfo, hasReadClaim } = this.props;
-        const renderFormByMethod = this._renderFormByMethod(userAccountInfo);
+        const { userAccountInfo, paymentMethodList, minimumPayment, licenseeName } = this.props;
+        const renderFormByMethod = userAccountInfo && this._renderFormByMethod(userAccountInfo);
 
-        return hasReadClaim && (
+        return userAccountInfo && (
             <Form tag="div">
-                {this._renderPreferedPayment()}
+                <FormGroup row>
+                    <Label htmlFor="preferredPayment" sm={3} xl={2}>Preferred Payment Method</Label>
+                    <Col sm={5} xl={6}>
+                        <Input type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
+                            {paymentMethodList && paymentMethodList.map(item => {
+                                return (<option key={item.Key} value={item.Key}>{item.Value}</option>)
+                            })}
+                        </Input>
+                    </Col>
+                    <p>{minimumPaymentText + " " + formatDecimal(minimumPayment)}</p>
+                </FormGroup>
                 {renderFormByMethod[userAccountInfo.PreferredPayment]}
-                {
-                    userAccountInfo.PreferredPayment === playerMethod && <p className="text-danger offset-sm-3 offset-xl-2 pl-1">{nondeposited}</p>
-                }
+                {/* <p className="text-danger offset-sm-3 offset-xl-2 pl-1">{`You can request for a withdrawal through Moneybookers, Wire Transfer or directly into your ${licenseeName}.com player account.`}</p> */}
             </Form>
         )
-
-        return null;
     }
 }
 
-function mapStateToProps({ affCommonInfo, edit, claimsPrincipal }) {
-    const { userAccountInfo, hasWriteEditAffClaim, hasWriteManagePendingAffClaim } = edit;
-    const hasReadClaim = claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo)
-        || (affCommonInfo.isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff));
-    const hasWriteClaim = (claimsPrincipal.hasWriteClaim(claimResource.AffPaymentInfo) && hasWriteEditAffClaim) || hasWriteManagePendingAffClaim;
-
-    return Object.assign({}, { userAccountInfo, hasReadClaim, hasWriteClaim });
+function mapStateToProps({ edit, licenseeName }) {
+    const { userAccountInfo } = edit;
+    return Object.assign({}, { userAccountInfo, licenseeName });
 }
 
 function mapDispatchToProps(dispatch) {

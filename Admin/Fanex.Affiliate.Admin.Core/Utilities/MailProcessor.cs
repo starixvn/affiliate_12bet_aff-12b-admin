@@ -3,7 +3,7 @@
     using Fanex.Affiliate.Admin.Core.Configurations;
     using Fanex.MailDeliver.MailClient;
     using Fanex.MailDeliver.MailClient.API;
-    using MailDeliver.Model;
+    using Fanex.MailDeliver.MailClient.Model;
     using RazorEngine;
     using RazorEngine.Templating;
     using System.IO;

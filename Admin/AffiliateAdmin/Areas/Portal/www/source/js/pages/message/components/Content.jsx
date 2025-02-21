@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../modules/htmlHelper';
 import { headerText, resource } from '../libs/constants';
-import { setSelectedMessageId, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam } from '../actions';
+import { setSelectedMessageId, setPagingOption, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam } from '../actions';
 
 export const Content = (props) => {
 
@@ -23,8 +23,13 @@ export const Content = (props) => {
     }
 
     const _handlePaging = (pageIndex, pageSize) => {
-        const newParam = Object.assign({}, props.param, { PageIndex: pageIndex, PageSize: pageSize });
+        const newPaging = {
+            PageIndex: pageIndex,
+            PageSize: pageSize
+        };
+        const newParam = Object.assign({}, props.param, newPaging);
 
+        props.setPagingOption(newPaging);
         props.setParam(newParam);
     };
 
@@ -56,7 +61,7 @@ export const Content = (props) => {
             }
         }
         else {
-            dataRows.push(<Row>
+            dataRows.push(<Row key="no-info">
                 <Cell className="text-center" colSpan="8">{resource.NoInfo}</Cell>
             </Row>);
         }
@@ -111,12 +116,13 @@ export const Content = (props) => {
     );
 }
 
+
 function mapStateToProps({ pagingOption, param, checkedMessages, shouldResetScrollPosition, gridData }) {
     return Object.assign({}, { pagingOption, param, checkedMessages, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMessageId, fetchData, setCheckedMessages, setShouldResetScrollPosition, setParam }, dispatch);
+    return bindActionCreators({ setSelectedMessageId, fetchData, setPagingOption, setCheckedMessages, setShouldResetScrollPosition, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

@@ -17,6 +17,4 @@ devConfig.entry = {
     [`${styleDist}/pages/customer`]: clientRoot + "/style/pages/customer/main.scss",
 }
 
-console.log(devConfig.entry);
-
 module.exports = devConfig;

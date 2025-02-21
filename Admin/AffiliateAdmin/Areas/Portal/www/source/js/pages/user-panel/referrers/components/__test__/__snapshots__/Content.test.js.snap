@@ -32,14 +32,6 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
           </t>
           <t
             asc={true}
-            className="text-center"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-          />
-          <t
-            asc={true}
             className="text-right"
             header={false}
             onClick={[Function]}
@@ -96,14 +88,6 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
           </t>
           <t
             asc={true}
-            className="text-center"
-            header={false}
-            onClick={[Function]}
-            sortable={false}
-            sorting={false}
-          />
-          <t
-            asc={true}
             className="text-right"
             header={false}
             onClick={[Function]}
@@ -147,7 +131,62 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
             0
           </t>
         </t>,
-        null,
+        <t>
+          <t
+            asc={true}
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Old URL"
+          >
+            Old URL
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title={0}
+          >
+            0
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title={0}
+          >
+            0
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title={0}
+          >
+            0
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title={0}
+          >
+            0
+          </t>
+        </t>,
       ]
     }
     bodyHeight={300}
@@ -156,7 +195,7 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
       <t>
         <t
           asc={true}
-          colWidth={370}
+          colWidth={580}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -164,17 +203,6 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
           title="Site URLs"
         >
           Site URLs
-        </t>
-        <t
-          asc={true}
-          colWidth={210}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="Country"
-        >
-          Country
         </t>
         <t
           asc={true}
@@ -244,7 +272,7 @@ exports[`referrers - components - Content render correctly with have data is emp
           <t
             asc={true}
             className="text-center"
-            colSpan="6"
+            colSpan="5"
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -261,7 +289,7 @@ exports[`referrers - components - Content render correctly with have data is emp
       <t>
         <t
           asc={true}
-          colWidth={370}
+          colWidth={580}
           header={true}
           onClick={[Function]}
           sortable={false}
@@ -269,17 +297,6 @@ exports[`referrers - components - Content render correctly with have data is emp
           title="Site URLs"
         >
           Site URLs
-        </t>
-        <t
-          asc={true}
-          colWidth={210}
-          header={true}
-          onClick={[Function]}
-          sortable={false}
-          sorting={false}
-          title="Country"
-        >
-          Country
         </t>
         <t
           asc={true}

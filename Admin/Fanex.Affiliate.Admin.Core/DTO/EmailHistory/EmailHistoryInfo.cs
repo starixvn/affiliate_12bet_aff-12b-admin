@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Newtonsoft.Json;
 using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.EmailHistory
@@ -17,9 +16,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.EmailHistory
 
         public string Subject { get; set; }
 
+        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Email { get; set; }
 
-        [JsonIgnore]
         public DateTime SentDate { get; set; }
 
         public string SentDateText => SentDate.ToString("MM/dd/yyyy HH:mm:ss");

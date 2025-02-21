@@ -19,21 +19,41 @@ describe('banner list - EditBannerForm - connect', () => {
     });
 
     it('props should be mapped correctly', () => {
+        const deviceTypeList = [
+            {
+                key: 0, name: "PC / Laptop", checked: false
+            },
+            {
+                key: 1, name: "Mobile", checked: false
+            }
+        ];
         const expectedResult = {
-            categoryList: [{ 123: 'Bonus' }],
+            playerCategoryList: [{ Id: 123, Name: 'Slot' }],
+            subAffiliateCategoryList: [{ Id: 123, Name: 'SP Bonus' }],
+            subCategoryCasinoList: [{ Id: 123, Name: 'Slot' }],
+            subCategorySportsbookList: [{ Id: 123, Name: 'SP Bonus' }],
             languageList: [{ LanguageCode: 'en-US', LanguageName: 'English' }],
+            currencyList: [{ 234: 'EURO' }],
+            subCategoryList: [{ Id: 123, Name: 'Casino' }],
             sizeList: [{ Id: 123, Name: '300x250' }],
             affTypeList: [{ AffTypeId: 2, AfTypeName: 'Asia' }],
             param: { AffType: 2 },
+            deviceTypeList,
             selectedBannerId: 2448
         };
         const state = {
-            categoryList: [{ 123: 'Bonus' }],
+            playerCategoryList: [{ Id: 123, Name: 'Slot' }],
+            subAffiliateCategoryList: [{ Id: 123, Name: 'SP Bonus' }],
+            subCategoryCasinoList: [{ Id: 123, Name: 'Slot' }],
+            subCategorySportsbookList: [{ Id: 123, Name: 'SP Bonus' }],
             languageList: [{ LanguageCode: 'en-US', LanguageName: 'English' }],
+            currencyList: [{ 234: 'EURO' }],
+            subCategoryList: [{ Id: 123, Name: 'Casino' }],
             sizeList: [{ Id: 123, Name: '300x250' }],
             affTypeList: [{ AffTypeId: 2, AfTypeName: 'Asia' }],
             param: { AffType: 2 },
             selectedBannerId: 2448,
+            deviceTypeList,
             anotherProp: "Not included"
         };
 
@@ -48,8 +68,9 @@ describe('banner list - EditBannerForm - connect', () => {
         const expectedActionCreator = {
             setSelectedBannerId: actions['setSelectedBannerId'],
             fetchData: actions['fetchData'],
+            getCategoryList: actions['getCategoryList'],
             getBannerDetail: actions['getBannerDetail'],
-            getSizeList:  actions['getSizeList'],
+            getSizeList: actions['getSizeList'],
             insertBanner: actions['insertBanner'],
             updateBanner: actions['updateBanner'],
             toggleLoader: actions['toggleLoader']

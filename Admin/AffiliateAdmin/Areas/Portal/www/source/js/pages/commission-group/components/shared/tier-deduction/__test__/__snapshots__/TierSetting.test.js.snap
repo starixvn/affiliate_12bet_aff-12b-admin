@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`commission group - TierSetting Should render correctly 1`] = `
+<div
+  className="my-2"
+>
+  <FormGroup
+    row={true}
+    tag="div"
+  >
+    <Col
+      className="pl-0"
+      sm={9}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <table
+        className="table table-bordered tier-setting-table"
+        style={
+          Object {
+            "marginLeft": 42,
+            "width": "495px",
+          }
+        }
+      >
+        <thead>
+          <tr>
+            <th
+              style={
+                Object {
+                  "width": 40,
+                }
+              }
+            >
+              Tier
+            </th>
+            <th>
+              Min Net Win
+            </th>
+            <th>
+              Min Qualified Player
+            </th>
+            <th
+              style={
+                Object {
+                  "width": 85,
+                }
+              }
+            >
+              Rev. Share%
+            </th>
+            <th
+              style={
+                Object {
+                  "width": 50,
+                }
+              }
+            >
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <TierSettingItem
+            btnText="+"
+            data={
+              Object {
+                "Commission": 0,
+                "GroupProductId": 123,
+                "MinAmount": 0,
+                "MinQm": 5,
+                "TierId": 1,
+              }
+            }
+            handleClick={[Function]}
+            key="tier-0"
+            onChange={[Function]}
+          />
+          <TierSettingItem
+            btnText="-"
+            data={
+              Object {
+                "Commission": 0.1,
+                "GroupProductId": 123,
+                "MinAmount": 1,
+                "MinQm": 5,
+                "TierId": 2,
+              }
+            }
+            handleClick={[Function]}
+            key="tier-1"
+            onChange={[Function]}
+          />
+        </tbody>
+      </table>
+    </Col>
+    <Col
+      className="pl-0"
+      sm={3}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <button
+        className="btn btn-action"
+        style={
+          Object {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "margin": 0,
+            "width": "100%",
+          }
+        }
+        type="button"
+      />
+    </Col>
+  </FormGroup>
+</div>
+`;
+
+exports[`commission group - TierSetting Should render correctly with TierSettingList is null 1`] = `
+<div
+  className="my-2"
+>
+  <FormGroup
+    row={true}
+    tag="div"
+  >
+    <Col
+      className="pl-0"
+      sm={9}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <table
+        className="table table-bordered tier-setting-table"
+        style={
+          Object {
+            "marginLeft": 42,
+            "width": "495px",
+          }
+        }
+      >
+        <thead>
+          <tr>
+            <th
+              style={
+                Object {
+                  "width": 40,
+                }
+              }
+            >
+              Tier
+            </th>
+            <th>
+              Min Net Win
+            </th>
+            <th>
+              Min Qualified Player
+            </th>
+            <th
+              style={
+                Object {
+                  "width": 85,
+                }
+              }
+            >
+              Rev. Share%
+            </th>
+            <th
+              style={
+                Object {
+                  "width": 50,
+                }
+              }
+            >
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+      </table>
+    </Col>
+    <Col
+      className="pl-0"
+      sm={3}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <button
+        className="btn btn-action"
+        style={
+          Object {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "margin": 0,
+            "width": "100%",
+          }
+        }
+        type="button"
+      />
+    </Col>
+  </FormGroup>
+</div>
+`;

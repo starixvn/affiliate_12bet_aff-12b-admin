@@ -1,76 +1,75 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 {
     public class AffiliateInfoOnLeftPanel
     {
+        public int? ParentAffId { get; set; }
+
+        public string ParentAffName { get; set; }
+
         public int AffId { get; set; }
+
+        public string AffCode { get; set; }
 
         public int GroupId { get; set; }
 
+        public int GroupTypeId { get; set; }
+
         public string AffName { get; set; }
 
-        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string FirstName { get; set; }
 
-        [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string LastName { get; set; }
 
         public bool Gender { get; set; }
 
-        [JsonIgnore]
         public string ContactApps { get; set; }
 
-        [ManagePermissionCheck(Function.AffWebUrl)]
         public string SiteUrl { get; set; }
 
-        [ManagePermissionCheck(Function.AffWebUrl)]
-        public string MoreSiteUrl { get; set; }
+        public string MoreSiteUrls { get; set; }
 
-        [ManagePermissionCheck(Function.AffWebUrl)]
         public string NoSiteDescription { get; set; }
 
-        [JsonIgnore]
         public DateTime? LastLoginDate { get; set; }
 
-        public string LastLoginDateText => LastLoginDate.HasValue ? LastLoginDate.Value.ToString("MM/dd/yyyy HH:mm:ss") : string.Empty;
+        public string LastLoginDateText => LastLoginDate?.ToString("MM/dd/yyyy HH:mm:ss");
 
         public string LastLoginIp { get; set; }
 
-        [ManagePermissionCheck(Function.AssignCommGroup)]
         public string CommGroupName { get; set; }
 
         public decimal BalanceBf { get; set; }
 
         public string Status { get; set; }
 
-        public bool IsPendingAff => AffStatus.IsPendingAff(Status);
-
-        [ManagePermissionCheck(Function.AffAccountStatus)]
-        public bool IsClosed { get; set; }
-
         public int AffType { get; set; }
 
-        [ManagePermissionCheck(Function.AffTargetCountry)]
-        public string TargetCountryName { get; set; }
-
-        [ManagePermissionCheck(Function.LanguageAmendment)]
         public string PreferredLanguage { get; set; }
 
-        [ManagePermissionCheck(Function.LanguageAmendment)]
-        public string PreferredLanguageName { get; set; }
-
-        [ManagePermissionCheck(Function.AffPhone)]
         [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Phone { get; set; }
 
         public string AffLink { get; set; }
 
-        public IEnumerable<CensoredContactApp> ContactAppList { get; set; }
+        public bool IsUsingPrivateCommGroup { get; set; }
+
+        public string ApprovedBy { get; set; }
+
+        public bool IsDepositFeePercent { get; set; }
+
+        public bool IsWithdrawalFeePercent { get; set; }
+
+        [PermissionCheck(Function.TransferPlayerSetting)]
+        public bool IsDisabledTransfer { get; set; }
+
+        [PermissionCheck(Function.TransferPlayerSetting)]
+        public decimal TransferLimit { get; set; }
+
+        [PermissionCheck(Function.TransferPlayerSetting)]
+        public string PlayerCurrency { get; set; }
     }
 }

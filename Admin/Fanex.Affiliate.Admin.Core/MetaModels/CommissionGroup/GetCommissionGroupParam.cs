@@ -5,6 +5,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
     {
         public int GroupId { get; set; }
 
+        public int? GroupTypeId { get; set; }
+
         public string GroupName { get; set; }
 
         public int PageIndex { get; set; }

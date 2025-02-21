@@ -8,8 +8,8 @@
     public class FaqController : BaseController
     {
 
-        public FaqController(ISessionService sessionService, ISystemService languageService)
-            : base(sessionService, languageService)
+        public FaqController(ISessionService sessionService, ISystemService systemsService)
+            : base(sessionService, systemsService)
         {
         }
 

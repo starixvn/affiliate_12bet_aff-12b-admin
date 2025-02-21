@@ -4,17 +4,48 @@ import { shallow } from 'enzyme';
 import UserPanelBreadcrumb from '../../../../common/components/UserPanelBreadcrumb';
 
 describe('daily earning - components - AppContainer', () => {
-    const param = {
-        affId: 1271808,
-        monthDate: "Jan-2019",
-        productId: 0,
-        statementHistory: {}
-    };
+    const productList = [
+        {
+            ProductId: 1,
+            ProductName: 'Sportsbook'
+        },
+        {
+            ProductId: 3,
+            ProductName: 'Playtech Casino'
+        },
+        {
+            ProductId: 4,
+            ProductName: 'Number Game'
+        }
+    ]
+
+    const baseCurrencyList = [
+        {
+            ExchangeId: 20,
+            Code: 'UUS'
+        }
+    ]
+
+    const currencyList = [
+        {
+            key: 20,
+            name: 'UUS',
+            checked: true
+        }
+    ]
 
     const defaultProps = {
-        param
+        param: {
+            affId: 1271808,
+            monthDate: "Jan-2019",
+            productId: 0,
+            statementHistory: {}
+        },
+        redirectToStatementHistory: jest.fn(),
+        productList,
+        currencyList,
+        baseCurrencyList
     }
-
     it('render correctly', () => {
         const result = shallow(<AppContainer {...defaultProps} />);
 
@@ -29,11 +60,11 @@ describe('daily earning - components - AppContainer', () => {
     });
 
     it('setSelectedUserPanel - should be called', () => {
-        const props = Object.assign({}, defaultProps, { redirectToStatementHistory: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setSelectedUserPanel: jest.fn() });
         const wrapper = shallow(<AppContainer {...props} />);
 
         wrapper.find(UserPanelBreadcrumb).props().breadcrumbList[0].handleClick();
 
-        expect(props.redirectToStatementHistory).toHaveBeenCalledWith(param.statementHistory);
+        expect(props.redirectToStatementHistory).toHaveBeenCalledWith(defaultProps.param.statementHistory);
     });
 });

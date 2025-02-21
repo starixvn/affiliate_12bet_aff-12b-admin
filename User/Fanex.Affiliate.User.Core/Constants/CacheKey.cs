@@ -2,30 +2,20 @@
 {
     public static class CacheKey
     {
-        public const string TargetCountryList = "Affiliate.12Bet.TargetCountryList";
+        public const string LanguageList = "Affiliate.12B.LanguageList";
 
-        public const string InternalTargetCountryList = "Affiliate.12Bet.InternalTargetCountryList";
+        public const string DomainList = "Affiliate.12B.DomainList";
 
-        public const string TargetProductList = "Affiliate.12Bet.TargetProductList";
+        public const string LatestHotNews = "Affiliate.12B.LatestHotNews";
 
-        public const string InternalTargetProductList = "Affiliate.12Bet.InternalTargetProductList";
+        public const string TextCategoryList = "Affiliate.12B.TextCategoryList";
 
-        public const string TargetLanguageList = "Affiliate.12Bet.TargetLanguageList";
+        public const string BannerCategoryList = "Affiliate.12B.BannerCategoryList";
 
-        public const string InternalTargetLanguageList = "Affiliate.12Bet.InternalTargetLanguageList";
+        public const string CurrencyList = "Affiliate.12B.CurrencyList";
 
-        public const string AllTargetLanguageList = "Affiliate.12Bet.AllTargetLanguageList";
+        public const string SubDomainList = "Affiliate.12B.SubDomainList";
 
-        public const string InternalAllTargetLanguageList = "Affiliate.12Bet.InternalAllTargetLanguageList";
-
-        public const string LanguageList = "Affiliate.12Bet.LanguageList";
-
-        public const string InternalLanguageList = "Affiliate.12Bet.InternalLanguageList";
-
-        public const string DomainList = "Affiliate.12Bet.DomainList";
-
-        public const string LandingPageList = "Affiliate.12Bet.LandingPageList";
-
-        public const string LatestHotNews = "Affiliate.12Bet.LatestHotNews";
+        public const string TokenMemoryCache = "Affiliate.12B.TokenMemoryCache";
     }
 }

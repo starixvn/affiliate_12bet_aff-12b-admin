@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Extensions
         [Fact]
         public void FormatNumber_WhenCall_ReturnCorrect()
         {
-            var formattedNumber = 10.FormatNumber(2);
+            var formattedNumber = 10.FormatNumber();
 
             Assert.Equal("10", formattedNumber);
         }
@@ -19,19 +19,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Extensions
         [InlineData(-0.04, "-$0.04")]
         public void ToStringMoneyWithSymbol_WhenCall_ReturnCorrect(decimal number, string result)
         {
-            var formattedNumber = number.ToStringMoneyWithSymbol(2, "$");
+            var formattedNumber = number.ToStringMoneyWithSymbol( "$");
 
             Assert.Equal(result, formattedNumber);
-        }
-
-        [Theory]
-        [InlineData(true, 1)]
-        [InlineData(false, 0)]
-        public void ToInt_WhenCall_ReturnCorrect(bool value, int expected)
-        {
-            var convertedNumber = value.ToInt();
-
-            Assert.Equal(expected, convertedNumber);
         }
 
         [Fact]

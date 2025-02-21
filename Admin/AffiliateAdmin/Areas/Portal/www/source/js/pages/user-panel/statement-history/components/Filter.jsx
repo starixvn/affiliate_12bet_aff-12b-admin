@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { globalResource, minDate } from '../libs/constants';
+import { globalResource, minDate } from '../modules/constants';
 import { getDateRange } from '../../../../modules/utils';
 import { setParam } from '../actions';
 
@@ -22,7 +22,7 @@ export class Filter extends PureComponent {
 
         this.state = param || {
             isGetAll: false,
-            fromDate: `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
+            fromDate: sixMonthAgo < minDate ? '01/01/2020' : `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
         }
     }
@@ -32,7 +32,7 @@ export class Filter extends PureComponent {
         this.search(isBack, scrollTop);
     }
 
-    handleSearch = () => {
+    handleSearch = (e) => {
         this.search(false, 0);
     }
 
@@ -40,8 +40,8 @@ export class Filter extends PureComponent {
         const { isGetAll, fromDate, toDate } = this.state;
         const newParam = Object.assign({}, {
             isGetAll,
-            fromDate: isGetAll ? `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}` : fromDate,
-            toDate: isGetAll ? this.nowString : toDate,
+            fromDate,
+            toDate,
             isBack,
             scrollTop
         });
@@ -53,7 +53,7 @@ export class Filter extends PureComponent {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(prevState => getDateRange(momentDate, prevState.toDate));
+        this.setState(getDateRange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {

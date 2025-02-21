@@ -1,13 +1,13 @@
 ﻿import React, { Fragment } from 'react';
 
-import MarketingNoteContent from './MarketingNoteContent';
-import ModifyMarketingNote from './ModifyMarketingNote';
+import Content from './Content';
+import ModificationForm from './ModificationForm';
 
 export const AppContainer = () => {
     return (
         <Fragment>
-            <MarketingNoteContent />
-            <ModifyMarketingNote />
+            <Content />
+            <ModificationForm />
         </Fragment>
     );
 }

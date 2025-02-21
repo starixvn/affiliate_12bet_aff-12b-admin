@@ -1,60 +1,119 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.Filters;
-using Fanex.Affiliate.User.Core.Utilities;
-using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-
-namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    [CustomAuthorize(PermissionName = ClaimConstant.MediaGallery)]
+    using System.Collections.Generic;
+    using System.Linq;
+    using BusinessService;
+    using CoreService;
+    using Enum;
+    using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+    using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+    using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
+    using Filters;
+    using Resources;
+    using Utilities;
+
+    [CustomAuthorize]
     public class BaseMarketingController : BaseController
     {
         protected readonly IMarketingService MarketingService;
+        protected readonly IAppSetting AppSetting;
 
         public BaseMarketingController(
             ISessionService sessionService,
-            ISystemService systemService,
-            IMarketingService marketingService
-            ) : base(sessionService, systemService)
+            IAppSetting appSetting,
+            ISystemService systemsService,
+            IMarketingService marketingService)
+            : base(sessionService, systemsService)
         {
             MarketingService = marketingService;
+            AppSetting = appSetting;
         }
 
-        protected LinkFormViewModel GetLinkFormViewModel()
+        protected IDictionary<string, LanguageLinkViewModel> GetLinkForMemberList(QrCodeParam param)
         {
-            var targetCountryList = SystemService.GetSystemTargetCountries();
+            var selectedDomain = GetDomain(param.SelectedDomainId, param.SelectedLinkType);
+
+            if (selectedDomain == null)
+            {
+                return new Dictionary<string, LanguageLinkViewModel>();
+            }
 
             var userSession = SessionService.UserSession;
-            var isInternal = SessionService.IsInternal;
-            var targetCountryCode = MarketingService.GetTargetCountryCodeByAff(userSession.AffId);
-            var targetLanguageListByCountry = SystemService.GetSystemTargetLanguagesByCountry(targetCountryCode);
-            var targetLanguageCode = targetLanguageListByCountry.FirstOrDefault()?.LanguageCode ?? SystemLanguage.DefaultLanguageCode;
-            var domainList = GetDomainListByTargetCountry(targetCountryCode, isInternal);
 
-            var viewModel = new LinkFormViewModel
+            var linkGenerationParam = new LinkGeneratingParam
             {
-                SelectedTargetCountry = targetCountryCode,
-                SelectedLanguage = targetLanguageCode,
-                SelectedDomain = domainList.FirstOrDefault(),
-                TargetCountryList = SystemHelper.GetTargetCountryList(targetCountryList, targetCountryCode),
-                LanguageList = SystemHelper.GetTargetLanguageList(targetLanguageListByCountry, targetLanguageCode),
-                DomainList = domainList.Select(i => new SelectListItem { Value = i.DomainId.ToString(), Text = i.DomainName }),
-                MemberSitePageList = MarketingService.GetLandingPageList(targetCountryCode, userSession.GroupName, isInternal)
-                .Select(i => new SelectListItem { Value = i.PageCode, Text = i.PageName })
+                AffId = userSession.AffId,
+                AffCode = userSession.AffCode,
+                TextLinkTemplate = AppSetting.TextLinkTemplate,
+                PreferredLanguage = userSession.PreferredLanguage,
+                SelectedLanguage = param.SelectedLanguage,
+                SelectedDomain = selectedDomain,
+                SelectedPage = param.SelectedPage,
+                SelectedChannel = param.SelectedChannel,
             };
 
-            return viewModel;
+            return MarketingService.GenerateLinkList(linkGenerationParam);
         }
 
-        protected IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountryCode, bool isInternal)
+        protected IDictionary<string, LanguageLinkViewModel> GetLinkForSubAffList(QrCodeParam param)
         {
+            var selectedDomain = GetDomain(param.SelectedDomainId, param.SelectedLinkType);
+
+            if (selectedDomain == null)
+            {
+                return new Dictionary<string, LanguageLinkViewModel>();
+            }
+
             var userSession = SessionService.UserSession;
-            return MarketingService.GetDomainListByTargetCountry(targetCountryCode, userSession.AffId, isInternal);
+
+            var linkGenerationParam = new LinkGeneratingParam
+            {
+                AffId = userSession.AffId,
+                AffCode = userSession.AffCode,
+                TextLinkTemplate = AppSetting.SubAffTextLinkTemplate,
+                PreferredLanguage = userSession.PreferredLanguage,
+                SelectedLanguage = param.SelectedLanguage,
+                SelectedDomain = selectedDomain,
+                SelectedPage = param.SelectedPage,
+                SelectedChannel = param.SelectedChannel
+            };
+
+            return MarketingService.GenerateLinkList(linkGenerationParam);
         }
+
+        protected RefLinkViewModel GetAffLinkTypeViewModel()
+        {
+            var affId = SessionService.UserSession.AffId;
+            var domains = MarketingService.GetAvailableDomainList(affId, AffiliateLinkType.AffiliateLink, SessionService.IsInternal);
+            var pages = MarketingService.GetLandingPageList(SessionService.UserSession.GroupName, SessionService.IsInternal);
+
+            return new RefLinkViewModel
+            {
+                AffLinkType = AffiliateLinkType.AffiliateLink,
+                AffTypeDisplayName = Lang.AffiliateLink,
+                Domains = domains,
+                SitePages = pages
+            };
+        }
+
+        protected RefLinkViewModel GetSubAffLinkTypeViewModel()
+        {
+            var affId = SessionService.UserSession.AffId;
+            var domains = MarketingService.GetAvailableDomainList(affId, AffiliateLinkType.SubAffiliateLink, SessionService.IsInternal);
+            var pages = MarketingService.GetLandingPageList(SessionService.UserSession.GroupName, SessionService.IsInternal, AffiliateLinkType.SubAffiliateLink);
+
+            return new RefLinkViewModel
+            {
+                AffLinkType = AffiliateLinkType.SubAffiliateLink,
+                AffTypeDisplayName = Lang.SubAffiliateLink,
+                Domains = domains,
+                SitePages = pages
+            };
+        }
+
+        private Domain GetDomain(int? domainId, AffiliateLinkType linkType)
+            => MarketingService
+            .GetAvailableDomainList(SessionService.UserSession.AffId, linkType, SessionService.IsInternal)
+            .FirstOrDefault(d => d.DomainId == domainId);
     }
 }

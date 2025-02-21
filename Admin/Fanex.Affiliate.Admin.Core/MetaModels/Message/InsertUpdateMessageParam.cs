@@ -9,61 +9,45 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Message
         public bool Important { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentEn { get; set; }
+        public string Message_en { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentCn { get; set; }
+        public string Message_cs { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentTw { get; set; }
+        public string Message_th { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentEs { get; set; }
+        public string Message_vn { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentTh { get; set; }
+        public string Message_id { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentVi { get; set; }
+        public string Message_hi { get; set; } = string.Empty;
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentId { get; set; }
+        public string Message_ms { get; set; } = string.Empty;
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentKr { get; set; }
+        public string Message_bn { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentJp { get; set; }
-
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentKh { get; set; }
-
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string MessageContentBn { get; set; }
+        public string Message_kh { get; set; }
 
         public bool IsValid()
         {
-            if (!(string.IsNullOrEmpty(MessageContentJp) && string.IsNullOrEmpty(MessageContentKh) && string.IsNullOrEmpty(MessageContentBn)))
+            if (!(string.IsNullOrEmpty(Message_en) && string.IsNullOrEmpty(Message_cs) && string.IsNullOrEmpty(Message_bn)))
             {
                 return true;
             }
 
-            return ValidateSomeLanguage();
-        }
-
-        private bool ValidateSomeLanguage()
-        {
-            if (!(string.IsNullOrEmpty(MessageContentEn) && string.IsNullOrEmpty(MessageContentCn) && string.IsNullOrEmpty(MessageContentTw) && string.IsNullOrEmpty(MessageContentEs)))
+            if (!(string.IsNullOrEmpty(Message_th) && string.IsNullOrEmpty(Message_vn) && string.IsNullOrEmpty(Message_id)))
             {
                 return true;
             }
 
-            if (!(string.IsNullOrEmpty(MessageContentTh) && string.IsNullOrEmpty(MessageContentVi) && string.IsNullOrEmpty(MessageContentId) && string.IsNullOrEmpty(MessageContentKr)))
-            {
-                return true;
-            }
-
-            return false;
+            return !(string.IsNullOrEmpty(Message_hi) && string.IsNullOrEmpty(Message_ms) && string.IsNullOrEmpty(Message_kh));
         }
     }
 }

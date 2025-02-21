@@ -2,7 +2,7 @@
 {
     public static class PaymentStatus
     {
-        public const string Pending = "pending";
+        public const string Processing = "processing";
 
         public const string Completed = "completed";
 

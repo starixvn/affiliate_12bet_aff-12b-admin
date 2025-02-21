@@ -1,131 +1,215 @@
 ﻿var MarketingBase = (function ($) {
-    const NO_INFO_OPTION = "<option value=''>" + langResource.noInfo + "</option>";
+    isCancelConfirm = false;
+
+    function getDownloadParam(trigger) {
+        return {
+            selectedLanguage: $(trigger).data("selected-language"),
+            selectedDomainId: $(trigger).data("selected-domain-id"),
+            selectedPage: $(trigger).data("selected-page"),
+            selectedChannel: $(trigger).data("selected-channel"),
+            selectedLinkType: $(trigger).data("selected-link-type")
+        };
+    }
+
+    function getToggleBtnStatus(cheked) {
+        return cheked ? "on" : "off";
+    }
+
+    function handleFalseResponse(response) {
+        let data;
+        switch (response.status) {
+            case 403:
+                data = response.json();
+                alert(data.ErrMsg);
+                location.reload();
+                break;
+            default:
+                alert("Internal Error");
+                break;
+        }
+    }
 
     var _me = {
-        initialize: function () {
-            _me.initEvent();
-        },
-
-        initEvent: function () {
-            $("#TargetCountry").on("change", function () {
-                $("#btnMarketingSubmit").prop("disabled", false);
-                _me.handleChangeTargetCountry();
-            });
-        },
-
-        handleChangeTargetCountry: function () {
-            let shouldGetSize = !!$("#Size").length;
-
-            let param = {
-                targetProduct: $("#TargetProduct").val(),
-                targetCountry: $("#TargetCountry").val(),
-                shouldGetSize
-            };
-
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                cache: false,
-                data: param,
-                url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetFiltersByCountry"),
-                success: function (response) {
-                    if (response && response.length == 0) {
-                        $("#btnMarketingSubmit").prop("disabled", true);
-                        $("#Domain").html(NO_INFO_OPTION);
-                        $("#MemberSitePage").html(NO_INFO_OPTION);
-                        $("#Language").html(NO_INFO_OPTION);
-                        shouldGetSize && $("#Size").html(NO_INFO_OPTION);
-                    } else {
-                        var { domainList, languageList, pageList, sizeList } = response;
-
-                        _me.updateLanguageDropdown(languageList);
-                        _me.updateAvailableDomainDropdown(domainList);
-                        _me.updateLinkToDropdown(pageList);
-                        shouldGetSize && _me.updateSizeDropdown(sizeList);
-                    }
-                },
-                beforeSend: function () {
-                    Site.showLoader();
-                },
-                complete: function () {
-                    Site.hideLoader();
+        resiterQrcodeEvent: function () {
+            new ClipboardJS('.btn-copy-link', {
+                text: function (trigger) {
+                    let parent = $(trigger).parents(".qr-item").first();
+                    return parent.data("link");
                 }
             });
+
+            new ClipboardJS('.btn-copy-qr', {
+                text: function (trigger) {
+                    let imgTag = $(trigger).parents(".qr-action").prev().children("img.qrcode")[0];
+                    return imgTag.outerHTML;
+                }
+            });
+
+            $('.btn-save-img').click(function () {
+                let downloadTag = document.createElement("a");
+                let param = getDownloadParam($(this).parents(".qr-item")[0]);
+                var query = $.param(param);
+                let url = `${Site.resolveRelativeLangUrl("UserPanel/Marketing/DownloadQrCode")}?${query}`;
+                downloadTag.href = url;
+                downloadTag.click();
+            });
         },
 
-        updateAvailableDomainDropdown: function (availableDomainList) {
-            if (availableDomainList && !availableDomainList.length) {
-                $("#btnMarketingSubmit").prop("disabled", true);
-                $("#Domain").html(NO_INFO_OPTION);
-
-                return;
+        initChannelSelectEvent: function () {
+            if ($("#Channel").children().length > 1) {
+                document.getElementById("Channel").selectedIndex = 1;
             }
 
-            var html = Site.buildOptionList(availableDomainList, "DomainId", "DomainName", false);
+            $("#Channel").focusin(function () {
+                window.previousChannelIndex = this.selectedIndex;
+                this.selectedIndex = -1;
+            })
 
-            var previousSelectedDomain = $("#Domain").val();
+            $("#Channel").focusout(function () {
+                if (this.selectedIndex <= 0) {
+                    this.selectedIndex = window.previousChannelIndex === 0 ? 1 : window.previousChannelIndex;
+                }
+            })
 
-            $("#Domain").html(html);
-
-            var hasPreviousSelectedDomain = availableDomainList.some(i => i.DomainId == previousSelectedDomain);
-
-            if (hasPreviousSelectedDomain) {
-                $("#Domain").val(previousSelectedDomain);
-            }
+            $("#Channel").change(function () {
+                if ($(this).val() === 'add-new') {
+                    let text = prompt(window.dic.enterChannel);
+                    if (text) {
+                        let addPromise = MarketingBase.addChannel(text);
+                        addPromise.then(result => {
+                            if (result) {
+                                if (result.IsOk) {
+                                    alert(window.dic.addChannelSuccess)
+                                    $(this).append(new Option(result.Data.ChannelName, result.Data.ChannelCode, false, true));
+                                    $("button.btn-gen").removeAttr("disabled");
+                                }
+                                else {
+                                    alert(result.Message);
+                                }
+                            }
+                        })
+                    }
+                }
+                $(this).blur();
+            })
         },
 
-        updateLinkToDropdown: function (pageList) {
-            if (pageList && !pageList.length) {
-                $("#btnMarketingSubmit").prop("disabled", true);
-                $("#MemberSitePage").html(NO_INFO_OPTION);
-
-                return;
-            }
-
-            var html = Site.buildOptionList(pageList, "PageCode", "PageName", false);
-
-            var previousSelectedPage = $("#MemberSitePage").val();
-
-            $("#MemberSitePage").html(html);
-
-            var hasPreviousSelectedPage = pageList.some(i => i.PageCode == previousSelectedPage);
-
-            if (hasPreviousSelectedPage) {
-                $("#MemberSitePage").val(previousSelectedPage);
-            }
+        addChannel: function (text) {
+            Site.showLoader();
+            let url = Site.resolveRelativeLangUrl("UserPanel/Marketing/AddChannel");
+            let param = { channelName: text };
+            let fetchData = fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                credentials: 'same-origin',
+                body: new URLSearchParams(param)
+            })
+                .then((response => {
+                    Site.hideLoader();
+                    data = response.json();
+                    if (response.ok) {
+                        return data;
+                    }
+                    else {
+                        handleFalseResponse(response);
+                    }
+                }))
+            return Promise.resolve(fetchData);
         },
 
-        updateLanguageDropdown: function (languageList) {
-            if (languageList && !languageList.length) {
-                $("#btnMarketingSubmit").prop("disabled", true);
-                $("#Language").html(NO_INFO_OPTION);
-
-                return;
-            }
-
-            var html = Site.buildOptionList(languageList, "Value", "Text", languageList.length > 1);
-
-            $("#Language").html(html);
-            $("#Language").val(languageList[0].Value);
+        renderLinkChannelStatisticPage: function () {
+            let url = Site.resolveRelativeLangUrl("UserPanel/Marketing/RenderUsingMarketLinkPage");
+            return fetch(url, {
+                method: 'GET',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+            })
         },
 
-        updateSizeDropdown: function (sizeList) {
-            var html = Site.buildOptionList(sizeList, "Size", "Size", true);
-            var previousSelectedSize = $("#Size").val();
+        renderQrCodePage: function (param) {
+            let url = new URL(Site.resolveRelativeLangUrl("UserPanel/Marketing/RenderQrCodePage"), window.location.origin);
+            let query = new URLSearchParams(param);
+            url.search = query.toString();
+            return fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                credentials: 'same-origin',
+            })
+        },
 
-            $("#Size").html(html);
+        toggleMarketingLink: function (param) {
+            let url = Site.resolveRelativeLangUrl("UserPanel/Marketing/ToggleMarketingLink");
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                credentials: 'same-origin',
+                body: new URLSearchParams(param)
+            })
+        },
 
-            var hasPreviousSelectedSize = sizeList.some(i => i.Size == previousSelectedSize);
+        registerToggleLinkEvent: function (callback) {
+            $checkBox = $(".toggle-link");
+            $checkBox.off("change");
 
-            if (hasPreviousSelectedSize) {
-                $("#Size").val(previousSelectedSize);
-            }
-        }
+            $checkBox.on("change", function () {
+                if (isCancelConfirm) {
+                    isCancelConfirm = false;
+                    return;
+                }
+                let checked = $(this).prop('checked');
+                let confirmText = checked
+                    ? window.dic.confirmActiveLink
+                    : window.dic.confirmDeactiveLink
+
+                if (confirm(confirmText)) {
+                    let parent = $(this).parents(".qr-item").first();
+                    let param = {
+                        ChannelCode: parent.data("selected-channel"),
+                        LanguageCode: parent.data("selected-language"),
+                        AffRefLink: parent.data("link"),
+                        IsOn: checked
+                    }
+
+                    _me.toggleMarketingLink(param)
+                        .then(response => {
+                            if (response.ok) {
+                                $(parent).find("button").prop('disabled', !checked);
+                                $(parent).find(".qr-img").toggleClass("disabled");
+                                callback && callback();
+                            }
+                            else {
+                                handleFalseResponse(response);
+                                isCancelConfirm = true;
+                                $(this).bootstrapToggle(getToggleBtnStatus(!checked));
+                            }
+                        })
+
+
+                }
+                else {
+                    isCancelConfirm = true;
+                    $(this).bootstrapToggle(getToggleBtnStatus(!checked));
+                }
+
+            })
+        },
+
+        initialize: function () {
+            this.resiterQrcodeEvent();
+        },
     };
 
     return _me;
 })(jQuery);
-
-$(document).ready(function () {
-    MarketingBase.initialize();
-})

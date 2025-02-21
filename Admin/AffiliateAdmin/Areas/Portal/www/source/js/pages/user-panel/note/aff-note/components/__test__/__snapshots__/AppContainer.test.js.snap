@@ -2,7 +2,7 @@
 
 exports[`aff-note - components - AppContainer render correctly 1`] = `
 <Fragment>
-  <Connect(Content) />
-  <Connect(InsertUpdateForm) />
+  <Connect(NoteContent) />
+  <Connect(NoteModificationForm) />
 </Fragment>
 `;

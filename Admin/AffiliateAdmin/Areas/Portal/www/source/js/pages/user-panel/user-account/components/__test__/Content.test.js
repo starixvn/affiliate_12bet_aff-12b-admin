@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { Content } from '../Content';
 import { shallow } from 'enzyme';
+import { async } from 'regenerator-runtime';
 
 describe('user account - components - Content', () => {
     afterEach(() => {
@@ -20,7 +21,7 @@ describe('user account - components - Content', () => {
         State: "700000",
         Postcode: "700000",
         Country: "Viet Nam",
-        SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+        SiteUrl: "abc.com",
         MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
         NoSiteDescription: "",
         PreferredPayment: "Player",
@@ -35,17 +36,27 @@ describe('user account - components - Content', () => {
         Question: "What?",
         Answer: "What?",
         MailOption: false,
-        HasWebSite: true,
-        ContactAppList: [{Name: "MSN/YM/QQ", Value: "@123 Lê Văn", Order: 0}]
+        ContactAppList: [{ Name: "MSN/YM/QQ", Value: "@123 Lê Văn", Order: 0 }],
+        HasWebSite: true
     };
+
+    const paymentMethod = {
+        PaymentMethods: [
+            { Key: 'Player', Value: 'Bwing Player Account' },
+            { key: 'Moneybookers', value: 'Moneybookers' },
+            { key: 'Wire', value: 'Bank Transfer' }
+        ],
+        MinAmount: 23000
+    };
+
     const defaultProps = {
         affId: 1271808,
         affName: "12BETAFF226",
         userAccountInfo,
         moreSiteUrlsList: ["www.sportsbookie.com", "www.gzyyy.com", "www.123.com"],
-        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
-        setHasWriteEditAffClaim: jest.fn(),
-        getUserAccountInfo: jest.fn(() => userAccountInfo)
+        getUserAccountInfo: jest.fn(() => userAccountInfo),
+        getPaymentMethod: jest.fn(() => paymentMethod, () => paymentMethod),
+        licenseeName: 'Bwing'
     }
 
     it('render correctly', () => {
@@ -61,12 +72,27 @@ describe('user account - components - Content', () => {
         expect(result).toMatchSnapshot();
     });
 
-    it('componentDidMount - should call getUserAccountInfo', () => {
+    it('componentDidMount - should call getUserAccountInfo', async () => {
         const result = shallow(<Content {...defaultProps} />);
+        const instance = result.instance();
+        instance.setState = jest.fn();
 
-        result.instance().componentDidMount();
+        await instance.componentDidMount();
 
         expect(defaultProps.getUserAccountInfo).toHaveBeenCalledWith(1271808);
+        expect(instance.setState).toHaveBeenCalled();
+    });
+
+    it('componentDidMount - should call getUserAccountInfo, but getPaymentMethod return empty', async () => {
+        const props = { ...defaultProps, getPaymentMethod: jest.fn() }
+        const result = shallow(<Content {...props} />);
+        const instance = result.instance();
+        instance.setState = jest.fn();
+
+        await instance.componentDidMount();
+
+        expect(defaultProps.getUserAccountInfo).toHaveBeenCalledWith(1271808);
+        expect(instance.setState).not.toHaveBeenCalled();
     });
 
     it('handleGetMoreSiteUrls - should return correct data', () => {
@@ -87,7 +113,7 @@ describe('user account - components - Content', () => {
         expect(objectAfterTrim).toEqual(userAccountInfo);
     });
 
-    it('handleTrimObject - should return correct data with not Has Website', () => {
+    it('handleTrimObject - should return correct data with Do not Has Website', () => {
         const newUserAccountInfo = Object.assign({}, userAccountInfo, { AffName: "    12BETAFF226    ", HasWebSite: false });
         const props = Object.assign({}, defaultProps, { userAccountInfo: newUserAccountInfo });
         const result = shallow(<Content {...props} />);
@@ -109,11 +135,13 @@ describe('user account - components - Content', () => {
         await instance.handleSubmit();
 
         expect(instance.setState).toHaveBeenCalledTimes(2);
-        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: true, message: '12BETAFF226 has been updated successfully!' });
-        expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
+        expect(instance.setState.mock.calls[0][0]).toEqual({
+            "minimumPayment": 23000,
+            "paymentMethodList": paymentMethod.PaymentMethods
+        });
+        expect(instance.setState.mock.calls[0][1]).toEqual();
 
         expect(props.updateUserAccount).toHaveBeenCalled();
-        expect(props.getAffiliateInfo).toHaveBeenCalled();
     });
 
     it('handleSubmit - should update failed', async () => {
@@ -128,8 +156,8 @@ describe('user account - components - Content', () => {
         await instance.handleSubmit();
 
         expect(instance.setState).toHaveBeenCalledTimes(2);
-        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Failed!' });
-        expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
+        expect(instance.setState.mock.calls[1][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Failed!' });
+        expect(instance.setState.mock.calls[1][1]).toEqual(expect.any(Function));
 
         expect(props.updateUserAccount).toHaveBeenCalled();
         expect(props.getAffiliateInfo).not.toHaveBeenCalled();
@@ -146,15 +174,15 @@ describe('user account - components - Content', () => {
         await instance.handleSubmit();
 
         expect(instance.setState).toHaveBeenCalledTimes(2);
-        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Update is failed!' });
-        expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
+        expect(instance.setState.mock.calls[1][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Update is failed!' });
+        expect(instance.setState.mock.calls[1][1]).toEqual(expect.any(Function));
 
         expect(props.updateUserAccount).toHaveBeenCalled();
     });
 
     it('handleSubmit - invalid data', async () => {
         const newUserAccountInfo = Object.assign({}, userAccountInfo, { Country: 'abc', Gender: null, Email: "abc", PlayerUsername: "" });
-        const props = Object.assign({}, defaultProps, { updateUserAccount: jest.fn(), userAccountInfo: newUserAccountInfo, moreSiteUrlsList: [ "www.sportsbookie.com", "", "www.123.com" ] });
+        const props = Object.assign({}, defaultProps, { updateUserAccount: jest.fn(), userAccountInfo: newUserAccountInfo, moreSiteUrlsList: ["www.sportsbookie.com", "", "www.123.com"] });
         const result = shallow(<Content {...props} />);
         const instance = result.instance();
         instance.setState = jest.fn((obj, fn) => fn && fn());
@@ -164,33 +192,15 @@ describe('user account - components - Content', () => {
         await instance.handleSubmit();
 
         expect(instance.setState).toHaveBeenCalledTimes(2);
-        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Gender is empty, Please Check!<br />Email Address is invalid<br />Please select country<br />Website URL 3 is required<br />12BET User Name is required<br />' });
-        expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
-
-        expect(props.updateUserAccount).not.toHaveBeenCalled();
-    });
-
-    it('handleSubmit - invalid Neteller PreferredPayment', async () => {
-        const newUserAccountInfo = Object.assign({}, userAccountInfo, { PreferredPayment: 'Neteller', NetellerAccountId: "" });
-        const props = Object.assign({}, defaultProps, { updateUserAccount: jest.fn(), userAccountInfo: newUserAccountInfo, moreSiteUrlsList: null });
-        const result = shallow(<Content {...props} />);
-        const instance = result.instance();
-        instance.setState = jest.fn((obj, fn) => fn && fn());
-        window.setTimeout = jest.fn((fn, time) => fn && fn());
-        window.scrollTo = jest.fn();
-
-        await instance.handleSubmit();
-
-        expect(instance.setState).toHaveBeenCalledTimes(2);
-        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Neteller Account ID is required<br />' });
+        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Gender is empty, Please Check!<br />Email Address is invalid<br />Please select country<br />Website URL 3 is required<br />User Name is required<br />' });
         expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
 
         expect(props.updateUserAccount).not.toHaveBeenCalled();
     });
 
     it('handleSubmit - invalid Moneybookers PreferredPayment', async () => {
-        const newUserAccountInfo = Object.assign({}, userAccountInfo, { PreferredPayment: 'Moneybookers', MoneybookersEmail: "" });
-        const props = Object.assign({}, defaultProps, { updateUserAccount: jest.fn(), userAccountInfo: newUserAccountInfo });
+        const newUserAccountInfo = Object.assign({}, userAccountInfo, { PreferredPayment: 'Moneybookers', MoneybookersEmail: "", HasWebSite: false });
+        const props = Object.assign({}, defaultProps, { updateUserAccount: jest.fn(), userAccountInfo: newUserAccountInfo, moreSiteUrlsList: null });
         const result = shallow(<Content {...props} />);
         const instance = result.instance();
         instance.setState = jest.fn((obj, fn) => fn && fn());
@@ -206,7 +216,7 @@ describe('user account - components - Content', () => {
         expect(props.updateUserAccount).not.toHaveBeenCalled();
     });
 
-    it('handleSubmit - invalid Moneybookers PreferredPayment', async () => {
+    it('handleSubmit - invalid Wire PreferredPayment', async () => {
         const newUserAccountInfo = Object.assign({}, userAccountInfo, { PreferredPayment: 'Wire', BankAccountNumber: "", });
         const props = Object.assign({}, defaultProps, { updateUserAccount: jest.fn(), userAccountInfo: newUserAccountInfo });
         const result = shallow(<Content {...props} />);

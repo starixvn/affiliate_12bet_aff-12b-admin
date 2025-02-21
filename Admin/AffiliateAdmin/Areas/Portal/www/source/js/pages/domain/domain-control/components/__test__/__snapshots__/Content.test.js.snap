@@ -48,7 +48,10 @@ exports[`domain control - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-            />
+              title="Chinese Simplified"
+            >
+              Chinese Simplified
+            </t>
             <t
               asc={true}
               className="text-center"
@@ -56,9 +59,9 @@ exports[`domain control - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="10.18.200.209:7613/12BetGo"
+              title="10.18.200.209:7613/Go"
             >
-              10.18.200.209:7613/12BetGo
+              10.18.200.209:7613/Go
             </t>
             <t
               asc={true}
@@ -102,41 +105,49 @@ exports[`domain control - components - Content  render correctly 1`] = `
               sorting={false}
             >
               <input
+                checked={true}
                 disabled={true}
                 type="checkbox"
               />
             </t>
-            <React.Fragment>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Edit Domain"
+            >
+              <Button
+                color="link p-0"
                 onClick={[Function]}
-                sortable={false}
-                sorting={false}
+                tag="button"
               >
-                <Button
-                  color="link py-0"
-                  onClick={[Function]}
-                  tag="button"
-                  title="Edit Domain"
-                >
-                  <span
-                    className="oi oi-pencil text-secondary"
-                  />
-                </Button>
-                <Button
-                  color="link py-0"
-                  onClick={[Function]}
-                  tag="button"
-                  title="Delete Domain"
-                >
-                  <span
-                    className="oi oi-trash text-danger"
-                  />
-                </Button>
-              </t>
-            </React.Fragment>
+                <span
+                  className="oi oi-pencil text-secondary"
+                />
+              </Button>
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Delete Domain"
+            >
+              <Button
+                color="link p-0"
+                onClick={[Function]}
+                tag="button"
+              >
+                <span
+                  className="oi oi-x text-danger"
+                />
+              </Button>
+            </t>
           </t>,
           <t>
             <t
@@ -157,7 +168,10 @@ exports[`domain control - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-            />
+              title="Chinese Simplified"
+            >
+              Chinese Simplified
+            </t>
             <t
               asc={true}
               className="text-center"
@@ -211,41 +225,49 @@ exports[`domain control - components - Content  render correctly 1`] = `
               sorting={false}
             >
               <input
+                checked={true}
                 disabled={true}
                 type="checkbox"
               />
             </t>
-            <React.Fragment>
-              <t
-                asc={true}
-                className="text-center"
-                header={false}
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Edit Domain"
+            >
+              <Button
+                color="link p-0"
                 onClick={[Function]}
-                sortable={false}
-                sorting={false}
+                tag="button"
               >
-                <Button
-                  color="link py-0"
-                  onClick={[Function]}
-                  tag="button"
-                  title="Edit Domain"
-                >
-                  <span
-                    className="oi oi-pencil text-secondary"
-                  />
-                </Button>
-                <Button
-                  color="link py-0"
-                  onClick={[Function]}
-                  tag="button"
-                  title="Delete Domain"
-                >
-                  <span
-                    className="oi oi-trash text-danger"
-                  />
-                </Button>
-              </t>
-            </React.Fragment>
+                <span
+                  className="oi oi-pencil text-secondary"
+                />
+              </Button>
+            </t>
+            <t
+              asc={true}
+              className="text-center"
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="Delete Domain"
+            >
+              <Button
+                color="link p-0"
+                onClick={[Function]}
+                tag="button"
+              >
+                <span
+                  className="oi oi-x text-danger"
+                />
+              </Button>
+            </t>
           </t>,
         ]
       }
@@ -255,7 +277,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
         <t>
           <t
             asc={true}
-            colWidth={22}
+            colWidth={20}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -266,14 +288,14 @@ exports[`domain control - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={86}
+            colWidth={100}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Target Country"
+            title="Market"
           >
-            Target Country
+            Market
           </t>
           <t
             asc={true}
@@ -282,9 +304,9 @@ exports[`domain control - components - Content  render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Aff Domain"
+            title="AffDomain"
           >
-            Aff Domain
+            AffDomain
           </t>
           <t
             asc={true}
@@ -321,7 +343,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={22}
+            colWidth={20}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -332,13 +354,25 @@ exports[`domain control - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={35}
+            colWidth={20}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="Edit"
           >
-            Action
+            Edit
+          </t>
+          <t
+            asc={true}
+            colWidth={20}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Delete"
+          >
+            Delete
           </t>
         </t>
       }
@@ -349,7 +383,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
       width={0}
     />
   </div>
-  <NotificationPopup
+  <Memo(NotificationPopup)
     isConfirmPopup={true}
     message="has NotificationPopup"
     onClose={[Function]}
@@ -407,7 +441,7 @@ exports[`domain control - components - Content  render correctly with gridData i
         <t>
           <t
             asc={true}
-            colWidth={22}
+            colWidth={20}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -418,14 +452,14 @@ exports[`domain control - components - Content  render correctly with gridData i
           </t>
           <t
             asc={true}
-            colWidth={86}
+            colWidth={100}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Target Country"
+            title="Market"
           >
-            Target Country
+            Market
           </t>
           <t
             asc={true}
@@ -434,9 +468,9 @@ exports[`domain control - components - Content  render correctly with gridData i
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Aff Domain"
+            title="AffDomain"
           >
-            Aff Domain
+            AffDomain
           </t>
           <t
             asc={true}
@@ -473,7 +507,7 @@ exports[`domain control - components - Content  render correctly with gridData i
           </t>
           <t
             asc={true}
-            colWidth={22}
+            colWidth={20}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -484,13 +518,25 @@ exports[`domain control - components - Content  render correctly with gridData i
           </t>
           <t
             asc={true}
-            colWidth={35}
+            colWidth={20}
             header={true}
             onClick={[Function]}
             sortable={false}
             sorting={false}
+            title="Edit"
           >
-            Action
+            Edit
+          </t>
+          <t
+            asc={true}
+            colWidth={20}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Delete"
+          >
+            Delete
           </t>
         </t>
       }

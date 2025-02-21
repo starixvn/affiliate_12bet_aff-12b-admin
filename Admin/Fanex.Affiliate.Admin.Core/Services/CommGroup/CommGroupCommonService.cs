@@ -1,65 +1,143 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Commands.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
-using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 {
-    public class CommGroupCommonService : ICommGroupCommonService
+    public class CommGroupCommonService : BaseDynamicService, ICommGroupCommonService
     {
-        private readonly ICommissionGroupRepository _commGroupRepository;
-
-        public CommGroupCommonService(ICommissionGroupRepository commGroupRepository)
-        {
-            _commGroupRepository = commGroupRepository;
-        }
+        public CommGroupCommonService(
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
         public ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            var result = CommGroupValidationHelper.ValidateMultiSettingsList(param.TierSettingList, param.FdmSettingList);
-
-            if (result.IsSuccessful)
+            var commandInsert = new InsertCommGroupCommand
             {
-                var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
-                param.TierList = BuildTierSettingXml(param.TierSettingList);
-                param.FdmList = BuildFdmSettingXml(param.FdmSettingList);
-                param.DeductionList = BuildDeductionSettingXml(deductionSettingList, true);
+                GroupTypeId = param.GroupTypeId,
+                IsPrivate = param.IsPrivate
+            };
 
-                return _commGroupRepository.CreateCommissionGroup(param);
-            }
+            AssignBaseCommissionGroupCommand(commandInsert, param);
+
+            var result = ExecuteReturnResultInfo(commandInsert);
+
+            param.GroupId = commandInsert.GroupId;
 
             return result;
         }
 
         public ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
-            var result = CommGroupValidationHelper.ValidateMultiSettingsList(param.TierSettingList, param.FdmSettingList);
-
-            if (result.IsSuccessful)
+            var commandUpdate = new UpdateCommGroupCommand
             {
-                var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
-                param.TierList = BuildTierSettingXml(param.TierSettingList);
-                param.FdmList = BuildFdmSettingXml(param.FdmSettingList);
-                param.DeductionList = BuildDeductionSettingXml(deductionSettingList, false);
+                GroupId = param.GroupId
+            };
 
-                return _commGroupRepository.UpdateCommissionGroup(param);
-            }
+            AssignBaseCommissionGroupCommand(commandUpdate, param);
 
-            return result;
+            return ExecuteReturnResultInfo(commandUpdate);
         }
 
-        private static string BuildTierSettingXml(IEnumerable<TierSetting> tierSettingList)
+        public IEnumerable<DeductionItem> GetDeductionList()
+        {
+            const string SpKey = "Aff_Admin_CommGroup_Deductions_Sel";
+
+            return FetchTData<DeductionItem>(SpKey).Where(d => d.DeductionId != Deduction.OperationalFeeId);
+        }
+
+        public IEnumerable<CommGroupType> GetCommGroupTypes()
+        {
+            const string SpKey = "Aff_Admin_CommGroup_GroupTypeSel";
+
+            return FetchTData<CommGroupType>(SpKey);
+        }
+
+        public IEnumerable<NormalCommGroup> GetNormalCommGroupList(GetGroupListParam param)
+        {
+            var criteria = new GetNormalCommGroupCriteria
+            {
+                AffId = param.AffId,
+                GroupTypeId = param.GroupTypeId,
+            };
+
+            var normalCommGroups = FetchTData<NormalCommGroup>(criteria);
+            param.GroupId = criteria.GroupId;
+
+            return normalCommGroups;
+        }
+
+        private static void AssignBaseCommissionGroupCommand(BaseCommGroupCommand command, CreateUpdateCommissionGroupParam param)
+        {
+            var (tierSettingXml, tierDeductionsXml, p2pDeductionsXml) = GetSettingXmls(param);
+
+            command.UserId = param.UserId;
+            command.GroupName = param.GroupName;
+            command.Description = param.Description;
+            command.SubAffCommRate = param.SubAffCommRate;
+            command.QmTurnover = param.QmTurnover;
+            command.IsActivePlayerSum = param.IsActivePlayerSum;
+            command.Ip = param.Ip;
+            command.TierSettingXml = tierSettingXml;
+            command.TierDeductionsXml = tierDeductionsXml;
+            command.P2pDeductionsXml = p2pDeductionsXml;
+        }
+
+        private static (string tierSettingXml, string tierDeductionsXml, string p2pDeductionsXml) GetSettingXmls(CreateUpdateCommissionGroupParam param)
+        {
+            var tierSettingXml = BuildTierSettingXml(param.TierSettingList, param.PlatformFeeList);
+
+            var tierDeductionSettingList = param.PlatformFeeList.Concat(new[] { param.DepositFee, param.WithdrawalFee });
+            if (param.KillRateFeeList != null && param.KillRateFeeList.Any())
+            {
+                tierDeductionSettingList = tierDeductionSettingList.Concat(param.KillRateFeeList);
+            }
+
+            var tierDeductionsXml = BuildTierDeductionSettingXml(tierDeductionSettingList);
+            var p2pDeductionsXml = BuildP2pDeductionSettingXml(param.P2pDeductionList);
+
+            return (tierSettingXml, tierDeductionsXml, p2pDeductionsXml);
+        }
+
+        private static string BuildTierSettingXml(IEnumerable<TierSettingParam> tierSettingParamList, IEnumerable<TierDeductionSettingParam> platformFeeList)
         {
             var result = new StringBuilder();
             result.Append("<root>");
 
-            foreach (var item in tierSettingList)
+            foreach (var platformFee in platformFeeList)
             {
-                var row = $"<row id=\"{item.TierId}\" minamount=\"{item.MinAmount}\" maxamount=\"{item.MaxAmount}\" minqm=\"{item.MinQm}\" maxqm=\"{item.MaxQm}\" commission=\"{item.Commission}\" />";
+                var tierSettings = tierSettingParamList.Where(t => t.GroupProductId == platformFee.GroupProductId);
+
+                foreach (var item in tierSettings)
+                {
+                    var productIds = platformFeeList.FirstOrDefault(p => p.GroupProductId == item.GroupProductId)?.ProductIds;
+
+                    var row = $"<row id=\"{item.TierId}\" minamount=\"{item.MinAmount}\"" +
+                        $" minqm=\"{item.MinQm}\" commission=\"{item.Commission}\" productids=\"{productIds}\" />";
+                    result.Append(row);
+                }
+            }
+
+            result.Append("</root>");
+
+            return result.ToString();
+        }
+
+        private static string BuildTierDeductionSettingXml(IEnumerable<TierDeductionSettingParam> feeDeductionSettingList)
+        {
+            var result = new StringBuilder();
+            result.Append("<root>");
+
+            foreach (var item in feeDeductionSettingList)
+            {
+                var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{item.DeductedPercentage}\"" +
+                    $" amount=\"{item.DeductedAmount}\" isdeductedpercent=\"{item.IsDeductedPercent}\" />";
                 result.Append(row);
             }
 
@@ -68,38 +146,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             return result.ToString();
         }
 
-        private static string BuildFdmSettingXml(IEnumerable<FdmSetting> fdmSettingList)
-        {
-            if (fdmSettingList == null || !fdmSettingList.Any())
-            {
-                return null;
-            }
-
-            var result = new StringBuilder();
-            result.Append("<root>");
-
-            foreach (var item in fdmSettingList)
-            {
-                var row = $"<row id=\"{item.FdmId}\" minfdm=\"{item.MinNewFdm}\" maxfdm=\"{item.MaxNewFdm}\"" +
-                            $" minamount=\"{item.MinFdmDeposit}\" maxamount=\"{item.MaxFdmDeposit}\"" +
-                            $" limitamount=\"{item.MaxExtraComm}\" commission=\"{item.Commission}\" />";
-                result.Append(row);
-            }
-
-            result.Append("</root>");
-
-            return result.ToString();
-        }
-
-        private static string BuildDeductionSettingXml(IEnumerable<DeductionSetting> deductionSettingList, bool isInsert)
+        private static string BuildP2pDeductionSettingXml(IEnumerable<P2PDeductionSettingParam> p2pDeductionSettingList)
         {
             var result = new StringBuilder();
             result.Append("<root>");
 
-            foreach (var item in deductionSettingList)
+            foreach (var item in p2pDeductionSettingList)
             {
-                var percent = isInsert ? item.DeductedPercentage : item.NextDeductedPercentage;
-                var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{percent}\" />";
+                var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{item.DeductedPercentage}\"" +
+                    $" commission=\"{item.Commission}\" />";
                 result.Append(row);
             }
 

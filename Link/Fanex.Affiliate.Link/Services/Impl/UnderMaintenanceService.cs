@@ -1,9 +1,9 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Impl
 {
+    using Fanex.Affiliate.Link.Services.Interface;
     using ONEbook.UM;
     using ONEbook.UM.Models;
     using ONEbook.UM.Services;
-    using Fanex.Affiliate.Link.Services.Interface;
 
     public class UnderMaintenanceService : IUnderMaintenanceService
     {

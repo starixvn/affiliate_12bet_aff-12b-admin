@@ -2,22 +2,21 @@
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    [FunctionAuthorize(FunctionName = Function.CustomerMenu)]
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class ReferrersController : ReadOnlySessionBaseController
     {
-        private readonly IReferrersRepository _referrersRepository;
-
+        private readonly IReferrersStatisticsService _referrersStatisticsService;
         public ReferrersController(
             ISessionService sessionService,
-            IReferrersRepository referrersRepository) : base(sessionService)
+            IReferrersStatisticsService referrersStatisticsService) : base(sessionService)
         {
-            _referrersRepository = referrersRepository;
+            _referrersStatisticsService = referrersStatisticsService;
         }
 
         [HttpPost]
@@ -26,10 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (ModelState.IsValid)
             {
-                return new JsonNetResult
-                {
-                    Data = _referrersRepository.GetReferrersList(param)
-                };
+                return GenerateJsonNetResult(_referrersStatisticsService.GetReferrersList(param));
             }
 
             return new JsonNetResult();
@@ -41,10 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (ModelState.IsValid)
             {
-                return new JsonNetResult
-                {
-                    Data = _referrersRepository.GetReferrersDetailList(param)
-                };
+                return GenerateJsonNetResult(_referrersStatisticsService.GetReferrersDetailList(param));
             }
 
             return new JsonNetResult();

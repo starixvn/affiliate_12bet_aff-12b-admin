@@ -18,9 +18,15 @@
 
         public const int Twenty = 20;
 
+        public const int Thirty = 30;
+
         public const int Fifty = 50;
 
         public const int OneHundred = 100;
+        
+        public const int ThreeHundred = 100;
+
+        public const int OneThousand = 1000;
 
         public const int OneFiveZero = 150;
 

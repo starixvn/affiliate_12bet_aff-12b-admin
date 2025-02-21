@@ -6,33 +6,32 @@
 @{
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var permissions = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
+    var claims = sessionService.ClaimIdentities.SelectMany(i => i.Claims);
     var menus = new Dictionary<string, string>
-    {
-        {"Home", Function.HomeMenu },
-        {"Customer", Function.CustomerMenu },
-        {"Affiliate", Function.AffiliateMenu },
-        {"Member",Function.MemberMenu },
-        {"Report",Function.ReportMenu },
-        {"MediaGallery", Function.MediaGalleryMenu },
-        {"Message",Function.MessageMenu },
-        {"ExchangeRate",Function.ExchangeRateMenu },
-        {"AdminRole",Function.AdminRoleMenu },
-        {"Domain",Function.DomainMenu }
+{
+        {"Customer",Function.Affiliate },
+        {"Affiliate",Function.Affiliate },
+        {"Player",Function.Affiliate },
+        {"Report",Function.AffReport },
+        {"MediaGallery",Function.Media },
+        {"Message",Function.HotNews },
+        {"Administrator",Function.UserControl },
+        {"Domain",Function.Domain }
     };
-    var displayMenus = menus.Where(m => {
-        if (string.Equals("Affiliate", m.Key, StringComparison.OrdinalIgnoreCase))
+
+    var displayMenus = menus.Where(m =>
+    {
+        if (string.Equals("Report", m.Key, StringComparison.OrdinalIgnoreCase))
         {
-            return permissions.Any(p => p.Type == m.Value || p.Type == Function.AffAdjustment || p.Type == Function.ViewLog);
+            return claims.Any(p => p.Type == m.Value || p.Type == Function.TransferPlayerReport);
         }
 
-        if (string.IsNullOrEmpty(m.Value) || permissions.Any(p => p.Type == m.Value))
+        if (claims.Any(p => p.Type == m.Value))
         {
             return true;
         }
 
         return false;
-
     }).Select(m => m.Key);
 }
 
@@ -43,21 +42,20 @@
         {
             return "Media Gallery";
         }
-
-        if (menuKey == "ExchangeRate")
+        else if (menuKey == "ExchangeRate")
         {
-            return "Exchange Rate";
+            return "Ex.Rate";
         }
-
-        if (menuKey == "AdminRole")
+        else
         {
-            return "Admin Role";
+            return menuKey;
         }
-
-        return menuKey;
     }
 }
 <ul class="nav menu-list">
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Portal/Home")">Home</a>
+    </li>
 
     @foreach (var item in displayMenus)
     {
@@ -69,41 +67,30 @@
         </li>
     }
 </ul>
-
 <script type="text/javascript">
     window.globalVariables = {
-        claims: @Html.Raw(permissions.ToJson()),
-    };
-    window.virtualUrl = '@Url.Content("~")';
-
-    const mappingControllers = {
-        PaymentRequest: 'Affiliate',
-        CommissionGroup: 'Affiliate',
-        EmailHistory: 'Affiliate',
-        FeedbackReport: 'Affiliate',
-        Adjustment: 'Affiliate',
-        ViewLog: 'Affiliate',
-        ProcessingRequest: 'Affiliate',
-
-        ActiveMember: 'Member',
-        Registered: 'Member',
-
-        LandingPageList: 'MediaGallery',
-        NewsLetter: 'MediaGallery',
-        OfferPage: 'MediaGallery',
-        OfferAff: 'MediaGallery',
-
-        Department: 'Administrator',
-
-        Domain: 'Domain',
-        DomainControl: 'Domain',
-
-        AdminRole: 'AdminRole',
-        RolePermission: 'AdminRole',
+        claims: @Html.Raw(claims.ToJson()),
     }
+    var controllerName = '@controllerName';
+    let element;
 
-    const mappingName = mappingControllers['@controllerName'];
-    const element = document.getElementById(mappingName);
+    switch(controllerName) {
+        case 'PaymentRequest': case 'RevenueGroup':
+            element = document.getElementById('Affiliate');
+            break;
+        case 'Report': case 'PlayerGgrReport': case 'TransferReport':
+            element = document.getElementById('Report');
+            break;
+        case 'LandingPageList':
+            element = document.getElementById('MediaGallery');
+            break;
+        case 'Department':
+            element = document.getElementById('Administrator');
+            break;
+        case 'Domain': case 'DomainControl': case 'SubAffDomain':
+            element = document.getElementById('Domain');
+            break;
+    }
 
     element && element.classList.add("active");
 </script>

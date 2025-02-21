@@ -1,6 +1,5 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
@@ -23,16 +22,13 @@ describe('customer statistics - Content - connect', () => {
         const expectedResult = {
             monthDate: '09/24/2019',
             today: '09/24/2019',
-            isDisplayTurnOver: true,
-            isDisplayActivePlayer: true,
             affId: 123
         };
 
         const state = {
-            customerStatistics : { monthDate: '09/24/2019' },
+            customerStatistics: { monthDate: '09/24/2019' },
             affCommonInfo: { affId: 123 },
             today: '09/24/2019',
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

@@ -1,23 +1,22 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
+﻿using System.Linq;
+using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    [CustomAuthorize(PermissionName = ClaimConstant.HotNewsType)]
+    [CustomAuthorize]
     public class NewsController : BaseController
     {
         private readonly INewsService _newsService;
 
         public NewsController(
             ISessionService sessionService,
-            ISystemService languageService,
-            INewsService newsService) : base(sessionService, languageService)
+            ISystemService systemsService,
+            INewsService newsService) : base(sessionService, systemsService)
         {
             _newsService = newsService;
         }
@@ -36,7 +35,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var viewModel = new MessageHistoryViewModel
             {
                 MessageList = messageList,
-                TotalItems = param.Nrows
+                TotalItems = param.NRows
             };
 
             ViewBag.StartRowNumber = 1;
@@ -45,7 +44,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
-        [AjaxOnly(PermissionName = ClaimConstant.HotNewsType)]
+        [AjaxOnly]
         public ActionResult GetMessageHistory(MessageHistoryParam param)
         {
             param.IsInternal = SessionService.IsInternal;
@@ -55,7 +54,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var viewModel = new MessageHistoryViewModel
             {
                 MessageList = messageList,
-                TotalItems = param.Nrows
+                TotalItems = param.NRows
             };
 
             ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
@@ -72,7 +71,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var isInternal = (userSession != null) && SessionService.IsInternal;
 
             var hotNews = _newsService.GetLatestHotNews(isInternal);
-            var preferredLanguage = userSession?.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode;
+            var preferredLanguage = SessionService.CurrentLanguage;
             var hotNewsList = hotNews.HotNewsList;
 
             var viewModel = new LatestHotNewViewModel
@@ -81,10 +80,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 IsAuthenticated = HttpContext.User.Identity.IsAuthenticated && SessionService.UserSession != null
             };
 
-            if (hotNewsList.Any())
+            if (hotNewsList != null && hotNewsList.Any())
             {
-                viewModel.SelectedHotNews = hotNewsList.ContainsKey(preferredLanguage) ?
-                                    hotNewsList[preferredLanguage] :
+                viewModel.SelectedHotNews = hotNewsList.TryGetValue(preferredLanguage, out var value) ?
+                                    value :
                                     hotNewsList.First().Value;
             }
 

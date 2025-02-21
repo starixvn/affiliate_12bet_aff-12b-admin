@@ -1,54 +1,67 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
+﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
+using Fanex.Affiliate.Admin.Core.Criterias.Domain;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
-using Fanex.Affiliate.Admin.Core.Enum;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Repository.Domain;
+using Fanex.Data.Repository;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
-    public class DomainControlService : IDomainControlService
+    public class DomainControlService : BaseDynamicService, IDomainControlService
     {
-        private readonly IDomainControlRepository _domainControlRepository;
-        private readonly IDomainService _domainService;
         public DomainControlService(
-            IDomainControlRepository domainControlRepository,
-            IDomainService domainService)
+            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
+
+        public IEnumerable<DomainControlInfo> GetDomainControlList(string market)
         {
-            _domainService = domainService;
-            _domainControlRepository = domainControlRepository;
+            var criteria = new DomainControlCriteria
+            {
+                MarketId = market,
+            };
+
+            return FetchTData<DomainControlInfo>(criteria);
         }
 
-        public IEnumerable<TargetCountry> GetVisibleTargetCountryListNotBlocked(TargetCountryParam param)
+        public ResultInfo InsertDomainControl(InsertUpdateDomainControlParam param)
         {
-            return _domainService.GetTargetCountryList(param)?.Where(m => m.Status != (byte)TargetCountryStatus.Blocked);
+            var command = new InsertDomainControlCommand();
+            AssignBaseDomainControlCommand(command, param);
+
+            return ExecuteReturnResultInfo(command);
         }
 
-        public IEnumerable<DomainControlInfo> GetDomainControlList(string targetCountryCodes)
+        public ResultInfo UpdateDomainControl(InsertUpdateDomainControlParam param)
         {
-            return _domainControlRepository.GetDomainControlList(targetCountryCodes);
-        }
+            var command = new UpdateDomainControlCommand
+            {
+                DomainControlId = param.DomainId,
+            };
+            AssignBaseDomainControlCommand(command, param);
 
-        public DomainControlInfo GetDomainControlById(int domainControlId)
-        {
-            return _domainControlRepository.GetDomainControlById(domainControlId);
-        }
-
-        public ResultInfo InsertDomainControl(InsertDomainControlParam param)
-        {
-            return _domainControlRepository.InsertDomainControl(param);
-        }
-
-        public ResultInfo UpdateDomainControl(UpdateDomainControlParam param)
-        {
-            return _domainControlRepository.UpdateDomainControl(param);
+            return ExecuteReturnResultInfo(command);
         }
 
         public ResultInfo DeleteDomainControl(DeleteDomainControlParam param)
         {
-            return _domainControlRepository.DeleteDomainControl(param);
+            var command = new DeleteDomainControlCommand
+            {
+                DomainControlId = param.DomainId,
+                UserId = param.UserId,
+                Ip = param.Ip,
+            };
+
+            return ExecuteReturnResultInfo(command);
+        }
+
+        private static void AssignBaseDomainControlCommand(BaseDomainControlCommand command, InsertUpdateDomainControlParam param)
+        {
+            command.AffDomainID = param.AffDomainId;
+            command.LicenseeDomainId = param.RedirectDomainId;
+            command.MarketId = param.MarketId;
+            command.Status = param.IsUsed;
+            command.UserId = param.UserId;
+            command.Ip = param.Ip;
         }
     }
 }

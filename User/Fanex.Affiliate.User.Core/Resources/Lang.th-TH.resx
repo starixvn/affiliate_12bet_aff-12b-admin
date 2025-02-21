@@ -304,7 +304,7 @@
     <value>การขอยกเลิก</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>พันธมิตร 12bet - จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
+    <value>12B พันธมิตร - ได้รับคําขอชําระเงินแล้ว</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>เคพ เวิร์ด</value>
@@ -1026,7 +1026,7 @@
     <value>แบบฟอร์มการสมัคร</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>พันธมิตร 12bet - การสมัครของคุณ</value>
+    <value>12B พันธมิตร - ได้รับใบสมัคร</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>ขอบคุณที่ส่งใบสมัครของคุณมายัง พันธมิตร 12BET &lt;br/&gt;
@@ -1046,7 +1046,7 @@
     <value>จำนวนเงินที่ร้องขอ</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>กรอกจำนวนเงินที่ต้องการร้องขอ ( ดอลล่าสหรัฐ )</value>
+    <value>กรอกจำนวนเงินที่ต้องการร้องขอ</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>การขอจ่ายเงิน</value>
@@ -1175,13 +1175,13 @@
     <value>เรื่อง</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>พันธมิตร 12bet - รายละเอียดการล๊อคอินของคุณ</value>
+    <value>12B พันธมิตร - ข้อมูลล็อคอินของคุณ</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>เรื่องไม่ถูกต้อง</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>พันธมิตร 12bet - รหัสผ่านตัวใหม่ของคุณ</value>
+    <value>12B พันธมิตร - รหัสผ่านใหม่ของคุณ</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>สมัคร</value>
@@ -1364,16 +1364,16 @@
     <value>ยูสเซอร์ที่จะใช้ถอนค่าคอมมิชชั่น</value>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
-    <value>รหัสผ่านตัวใหม่ของคุณ</value>
+    <value>รหัสผ่านใหม่ของคุณ</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>บัญชีพันธมิตร 12bet รายละเอียดการล๊อคอินของคุณ</value>
+    <value>ข้อมูลล็อคอินของคุณ</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
+    <value>ได้รับคําขอชําระเงินแล้ว</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>เรื่อง   สถานะการสมัครของท่าน</value>
+    <value>ได้รับใบสมัคร</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>คาสิโนคลับต่างๆใน12BET</value>
@@ -1532,7 +1532,7 @@
     <value>ค่าธรรมเนียมธนาคาร</value>
   </data>
   <data name="CommRate" xml:space="preserve">
-    <value>เรทคอมมิชชั่น</value>
+    <value>เรทค่าคอมมิชชั่นพันธมิตรย่อย</value>
   </data>
   <data name="CommShorted" xml:space="preserve">
     <value>ค่าคอมมิชชั่น</value>
@@ -1869,7 +1869,7 @@
     <value>ทีมงานภาษากัมพูชา</value>
   </data>
   <data name="NewSignUp" xml:space="preserve">
-    <value>สมาชิกใหม่</value>
+    <value>สมัครสมาชิกใหม่</value>
   </data>
   <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
     <value>กรุณากรอกรหัสยืนยัน</value>
@@ -1899,13 +1899,13 @@
     <value>ยอดเล่นทั้งหมด</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>ยืนยันรายละเอียดบัญชีของคุณ</value>
+    <value>รหัสยืนยัน</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>ผู้เล่น</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>พันธมิตร 12Bet - ยืนยันรายละเอียดบัญชีของคุณ</value>
+    <value>12B พันธมิตร - รหัสยืนยัน</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>การสมัครใหม่ / ฝาก</value>
@@ -1944,10 +1944,10 @@
     <value>คัดลอกลิงค์</value>
   </data>
   <data name="CopyQR" xml:space="preserve">
-    <value>คัดลอกคิวอาร์โค้ด</value>
+    <value>คัดลอกรหัส QR</value>
   </data>
   <data name="SaveQR" xml:space="preserve">
-    <value>บันทึกคิวอาร์โค้ด</value>
+    <value>บันทึกรหัส QR</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>คัดลอก</value>
@@ -2122,9 +2122,6 @@
   </data>
   <data name="FdmExtraComm" xml:space="preserve">
     <value>ค่าคอมมิชชั่น FDM พิเศษ</value>
-  </data>
-  <data name="TotalCommission" xml:space="preserve">
-    <value>ค่าคอมมิชชั่นทั้งหมด</value>
   </data>
   <data name="Hindi" xml:space="preserve">
     <value>ฮินดี</value>
@@ -2369,5 +2366,194 @@
 โปรแกรมพันธมิตรนั้นสมัครง่าย​&lt;br/&gt;
 จ่ายค่าคอมมิชั่นสม่ำเสมอ​&lt;br/&gt;
 ซึ่งถือเป็นการเข้าร่วมที่มั่นคง"​</value>
+  </data>
+  <data name="GGR" xml:space="preserve">
+    <value>รายได้</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>วันที่ฝากเงินแรก</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>รายได้รวม</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>ส่วนแบ่งรายได้</value>
+  </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>เรทค่าคอมมิชชั่นพันธมิตรย่อย</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>% ส่วนแบ่งสูงสุดของหลายกลุ่ม</value>
+  </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>ตรวจสอบไม่พบบัญชีการชําระเงิน โปรดตรวจสอบอีกครั้ง</value>
+  </data>
+  <data name="CurrencyLabel" xml:space="preserve">
+    <value>USD</value>
+  </data>
+  <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
+    <value>ยืนยันที่อยู่อีเมล</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>ประเภท </value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>ประเภทย่อย</value>
+  </data>
+  <data name="ActivePlayers" xml:space="preserve">
+    <value>จำนวนผู้เล่นที่ใช้งานอยู่</value>
+  </data>
+  <data name="SubAffDownline" xml:space="preserve">
+    <value>ดาวน์ไลน์พันธมิตรย่อย</value>
+  </data>
+  <data name="SubAffEarning" xml:space="preserve">
+    <value>รายได้พันธมิตรย่อย</value>
+  </data>
+  <data name="SubAffiliate" xml:space="preserve">
+    <value>พันธมิตรย่อย</value>
+  </data>
+  <data name="MinRequired" xml:space="preserve">
+    <value>จำนวนขั้นต่ำ</value>
+  </data>
+  <data name="Rebate" xml:space="preserve">
+    <value>เงินคืน</value>
+  </data>
+  <data name="DepositFee" xml:space="preserve">
+    <value>ค่าธรรมเนียมการฝากเงิน</value>
+  </data>
+  <data name="WithdrawalFee" xml:space="preserve">
+    <value>ค่าธรรมเนียมการถอนเงิน</value>
+  </data>
+  <data name="ApprovalDate" xml:space="preserve">
+    <value>วันที่อนุมัติ</value>
+  </data>
+  <data name="NumberOfActivePlayers" xml:space="preserve">
+    <value>จำนวนผู้เล่นที่ใช้งานอยู่</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>ลบ</value>
+  </data>
+  <data name="SuspensionDate" xml:space="preserve">
+    <value>วันที่ระงับ</value>
+  </data>
+  <data name="SuspensionSatus" xml:space="preserve">
+    <value>สถานะการระงับ</value>
+  </data>
+  <data name="SubAffDetail" xml:space="preserve">
+    <value>รายละเอียดพันธมิตรย่อย</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>รายรับทั้งหมด</value>
+  </data>
+  <data name="BaseCurrency" xml:space="preserve">
+    <value>สกุลเงินเริ่มต้น</value>
+  </data>
+  <data name="RevenueShareByTurnover" xml:space="preserve">
+    <value>คำนวณส่วนแบ่งรายได้ตามยอดเทิร์นโอเวอร์</value>
+  </data>
+  <data name="RevenueShareByWinloss" xml:space="preserve">
+    <value>คำนวณส่วนแบ่งรายได้ตามอัตราแพ้/ชนะ</value>
+  </data>
+  <data name="UncalculatedCommission" xml:space="preserve">
+    <value>ส่วนแบ่งรายได้ที่ไม่ได้คํานวณ</value>
+  </data>
+  <data name="CurrentCommission" xml:space="preserve">
+    <value>ส่วนแบ่งรายได้ปัจจุบัน</value>
+  </data>
+  <data name="AffiliateCurrency" xml:space="preserve">
+    <value>สกุลเงินพันธมิตร</value>
+  </data>
+  <data name="DefaultBaseCurrency" xml:space="preserve">
+    <value>สกุลเงินหลักเริ่มต้น</value>
+  </data>
+  <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
+    <value>หน่วยสกุลเงินที่แสดงในรายงานทั้งหมด</value>
+  </data>
+  <data name="EarningBy" xml:space="preserve">
+    <value>รายได้โดย</value>
+  </data>
+  <data name="P2pRevenueShare" xml:space="preserve">
+    <value>ส่วนแบ่งรายได้จาก P2P</value>
+  </data>
+  <data name="RoyaltyFee" xml:space="preserve">
+    <value>ค่าธรรมเนียมส่วนแบ่ง</value>
+  </data>
+  <data name="Winloss" xml:space="preserve">
+    <value>อัตราการแพ้/ชนะ</value>
+  </data>
+  <data name="UserNameSuspended" xml:space="preserve">
+    <value>บัญชีการชําระเงินที่คุณป้อนถูกระงับ โปรดตรวจสอบอีกครั้ง</value>
+  </data>
+  <data name="UserNameClosed" xml:space="preserve">
+    <value>บัญชีการชําระเงินที่คุณป้อนนั้นถูกปิดแล้ว โปรดตรวจสอบอีกครั้ง</value>
+  </data>
+  <data name="MarketLinkStatistics" xml:space="preserve">
+    <value>สถิติหน้าการตลาด</value>
+  </data>
+  <data name="PageName" xml:space="preserve">
+    <value>ชื่อหน้า</value>
+  </data>
+  <data name="IncludeInActiveLink" xml:space="preserve">
+    <value>รวมลิงก์การติดตามที่ไม่ได้ใช้งาน</value>
+  </data>
+  <data name="SubAffiliateLink" xml:space="preserve">
+    <value>ลิงค์พันธมิตรย่อย</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>เพิ่ม....</value>
+  </data>
+  <data name="AffiliateLinkType" xml:space="preserve">
+    <value>ประเภทลิงค์</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>ช่อง</value>
+  </data>
+  <data name="TrackingAndQrCode" xml:space="preserve">
+    <value>ลิงค์ติดตามและรหัส QR</value>
+  </data>
+  <data name="MarketingPage" xml:space="preserve">
+    <value>หน้าการตลาด</value>
+  </data>
+  <data name="EnterChannel" xml:space="preserve">
+    <value>โปรดระบุชื่อช่อง:</value>
+  </data>
+  <data name="AddChannelSuccess" xml:space="preserve">
+    <value>การเพิ่มช่องสําเร็จ</value>
+  </data>
+  <data name="ConfirmActiveLink" xml:space="preserve">
+    <value>คุณแน่ใจเกี่ยวกับการกระทํานี้หรือไม่? เมื่อยืนยันการดําเนินการนี้ คุณจะเปิดใช้งานลิงก์ติดตามทันที</value>
+  </data>
+  <data name="ConfirmDeactiveLink" xml:space="preserve">
+    <value>คุณแน่ใจเกี่ยวกับการกระทํานี้หรือไม่? เมื่อยืนยันการดําเนินการนี้ คุณจะปิดใช้งานลิงก์ติดตามนี้</value>
+  </data>
+  <data name="NumberOfLink" xml:space="preserve">
+    <value>จํานวนลิงค์</value>
+  </data>
+  <data name="CopyQRCode" xml:space="preserve">
+    <value>คัดลอกรหัส QR</value>
+  </data>
+  <data name="SaveQRCode" xml:space="preserve">
+    <value>บันทึกรหัส QR</value>
+  </data>
+  <data name="SearchAndGenQR" xml:space="preserve">
+    <value>ค้นหาและสร้าง</value>
+  </data>
+  <data name="MediaGallery" xml:space="preserve">
+    <value>แกลเลอรี่สื่อ</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>ผิดพลาด</value>
+  </data>
+  <data name="InvalidLink" xml:space="preserve">
+    <value>ลิงค์ที่คุณป้อนไม่ถูกต้อง&lt;br /&gt;กรุณาติดต่อฝ่ายบริการลูกค้าหรือ</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>คลิกที่นี่</value>
+  </data>
+  <data name="RedirectOldLink" xml:space="preserve">
+    <value>คลิก&lt;a href="{0}"&gt;ที่นี่&lt;/a&gt;เเพื่อเข้าสู่เว็บไซต์พันธมิตรเวอร์ชันเดิม</value>
+  </data>
+  <data name="PreviousSystemBalanceDescription" xml:space="preserve">
+    <value>ยอดคงเหลือในบัญชีที่ยกยอดจากระบบเดิม</value>
   </data>
 </root>

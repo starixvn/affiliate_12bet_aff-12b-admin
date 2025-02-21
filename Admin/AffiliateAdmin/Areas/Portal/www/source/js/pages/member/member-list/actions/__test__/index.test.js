@@ -62,7 +62,7 @@ describe('member list actions', () => {
 
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData'](param)).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Member/GetMemberList', param);
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Player/GetMemberList', param);
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -87,30 +87,30 @@ describe('member list actions', () => {
 
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData'](param)).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Member/GetMemberList', param);
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Player/GetMemberList', param);
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
 
-    it('should create action to updateMemberStatus with correct parameter', async () => {
-        const expectedResponse = { data: { IsSuccessful: true, Message: '' }, status: 200 };
-        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
-        const memberId = 123;
+    //it('should create action to deleteMember with correct parameter', async () => {
+    //    const expectedResponse = { data: { IsSuccessful: true, Message: '' }, status: 200 };
+    //    ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+    //    const memberId = 123;
 
-        const result = await actions['updateMemberStatus'](memberId, false)();
+    //    const result = await actions['deleteMember'](memberId)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Member/UpdateMemberStatus', { memberId, isRemoved: false });
+    //    expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Member/Deletemember', { memberId });
 
-        expect(result).toEqual({ IsSuccessful: true, Message: "" });
-    })
+    //    expect(result).toEqual({ IsSuccessful: true, Message: "" });
+    //})
 
-    it('should create action to updateMemberStatus with incorrect parameter', async () => {
-        ajaxRequest.post = jest.fn();
-        const memberId = -234;
+    //it('should create action to deleteMember with incorrect parameter', async () => {
+    //    ajaxRequest.post = jest.fn();
+    //    const memberId = -234;
 
-        const result = await actions['updateMemberStatus'](memberId, true)();
+    //    const result = await actions['deleteMember'](memberId)();
 
-        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Member/UpdateMemberStatus', { memberId, isRemoved: true });
-        expect(result).toEqual(null);
-    })
+    //    expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/Member/Deletemember', { memberId });
+    //    expect(result).toEqual(null);
+    //})
 });

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions SiteId="2000003" SiteName="12B">
+  <Function Name="Aff-Link">
+    <Setting Key="Aff_Get_GeneralAffInfo" SpName="Aff_Get_GeneralAffInfo" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_AffiliateInsClickStatistics" SpName="Aff_ClickStatistics_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" Plain="0" />
+    <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" Plain="0" />
+  </Function>
+</Functions>

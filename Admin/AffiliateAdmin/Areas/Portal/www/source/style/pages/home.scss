@@ -3,6 +3,15 @@
         line-height: 1.5rem;
     }
 
+    .home-title {
+      display: block;
+      width: 100%;
+      margin-bottom: 8px;
+      color: #0058AA;
+      border-bottom: 1px solid #0058AA;
+      font-weight: bold;
+    }
+
     &-right {
         margin-left: 10px;
     }
@@ -33,16 +42,7 @@
                 margin-right: 3px;
                 padding-left: 3px;
                 text-decoration: none;
-            }
-
-            &-right {
-                font-weight: bold;
-                width: 240px;
-                line-height: 1.3rem!important;
-                background: url(../assets/home/htab.jpg) no-repeat right top;
-                padding-left: 15px;
-                margin-left: -15px;
-            }
+            }            
         }
 
         &-body {
@@ -54,7 +54,7 @@
                     background: #e4ebf5;
 
                     &-total {
-                        background: #d5d8dd url(../assets/home/tbl_m.jpg) repeat-x;
+                        background: #d5d8dd;
                     }
                 }
 
@@ -64,7 +64,7 @@
 
                     &-total {
                         text-align: right;
-                        background: #d5d8dd url(../assets/home/tbl_m.jpg) repeat-x;
+                        background: #d5d8dd;
                     }
                 }
             }
@@ -80,7 +80,7 @@
 
     .background-gray {
         height: 50px;
-        background: url(../assets/home/bg_home_top.jpg) repeat-x #e8effa;
+        background: #e8effa;
         display: flex;
         align-items: center;
         padding: 0px !important;

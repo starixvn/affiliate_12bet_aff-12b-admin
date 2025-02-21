@@ -1,9 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.Filters;
-using Fanex.Affiliate.User.Core.Utilities;
-using Fanex.Affiliate.User.Site.App_Start;
-using Fanex.Data;
-using Fanex.Data.SqlServer;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Reflection;
 using System.Web;
@@ -11,6 +6,9 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
+using Fanex.Affiliate.User.Core.Utilities;
+using Fanex.Affiliate.User.Site.App_Start;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -19,17 +17,12 @@ namespace Fanex.Affiliate.User.Site
 
         protected void Application_Start()
         {
-            var env = ConfigurationManager.AppSettings["Environment"];
             IoCConfig.Register();
             LoggingConfig.RegisterSentry();
             AreaRegistration.RegisterAllAreas();
 
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            if (env != "LOCAL")
-            {
-                FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            }
-            GlobalFilters.Filters.Add(new AddOnClaimAuthFilter());
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MvcHandler.DisableMvcResponseHeader = true;
@@ -37,15 +30,14 @@ namespace Fanex.Affiliate.User.Site
             AntiForgeryConfig.CookieName = "__CSRFAFFSYS";
 
             DbSettingProviderManager
-              .StartNewSession()
-              .WithSqlServer("~/App_Data/SpConfig/SpName.xml")
-              .Run();
+                .StartNewSession()
+                .Register(true)
+                .Run();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            var application = sender as HttpApplication;
-            if (application != null && application.Context != null)
+            if (sender is HttpApplication application && application.Context != null)
             {
                 application.Context.Response.Headers.Remove("Server");
             }

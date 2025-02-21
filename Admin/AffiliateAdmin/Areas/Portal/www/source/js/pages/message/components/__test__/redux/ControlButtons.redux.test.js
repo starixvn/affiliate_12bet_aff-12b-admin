@@ -22,14 +22,12 @@ describe('message - ControlButtons - connect', () => {
         const expectedResult = {
             checkedMessages: { 123: true },
             param: { isGetAll: true },
-            isModifiable: true,
             gridData: []
         };
         const state = {
             checkedMessages: { 123: true },
             param: { isGetAll: true },
             gridData: [],
-            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

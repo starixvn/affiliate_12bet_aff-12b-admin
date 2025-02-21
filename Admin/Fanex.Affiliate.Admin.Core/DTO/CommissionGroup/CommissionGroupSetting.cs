@@ -5,18 +5,20 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
     public class CommissionGroupSetting : CommGroup
     {
-        [Required(ErrorMessage = "Tier Setting must have at least 1 tier!")]
+        [Required]
         public IEnumerable<TierSetting> TierSettingList { get; set; }
 
-        public IEnumerable<FdmSetting> FdmSettingList { get; set; }
+        public IEnumerable<DeductionSetting> P2pDeductionList { get; set; }
 
         [Required]
         public IEnumerable<DeductionSetting> PlatformFeeList { get; set; }
 
-        [Required]
-        public DeductionSetting OperationalFee { get; set; }
+        public IEnumerable<DeductionSetting> KillRateFeeList { get; set; }
 
         [Required]
-        public DeductionSetting BankingFee { get; set; }
+        public DeductionSetting DepositFee { get; set; }
+
+        [Required]
+        public DeductionSetting WithdrawalFee { get; set; }
     }
 }

@@ -4,10 +4,6 @@ import { shallow } from 'enzyme';
 import UserPanelSubMenu from '../../../../common/components/UserPanelSubMenu';
 
 describe('landing page statistics - components - AppContainer', () => {
-    afterAll(() => {
-        jest.resetAllMocks();
-    });
-
     it('render correctly', () => {
         const result = shallow(<AppContainer />);
 

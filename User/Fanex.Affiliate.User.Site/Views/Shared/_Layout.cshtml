@@ -5,13 +5,10 @@
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var settingService = DependencyResolver.Current.GetService<IAppSetting>();
-    var systemService = DependencyResolver.Current.GetService<ISystemService>();
-    var userSession = sessionService.UserSession;
-    var languageList = systemService.GetSystemTargetLanguages()
-                                        .Where(l => !l.LanguageCode.Equals("en-GB") && !l.LanguageCode.Equals("te-IN"));
+    var systemsService = DependencyResolver.Current.GetService<ISystemService>();
+    var languageList = systemsService.GetSupportedLanguages().Where(l => !l.Code.Equals("en-GB") && !l.Code.Equals("km-KH"));
     var currentLanguage = sessionService.CurrentLanguage;
-    var languageNativeName = languageList.FirstOrDefault(l => l.LanguageCode.Equals(currentLanguage))?.NativeLanguage;
-    var path = HttpContext.Current.Request.Path;
+    var languageNativeName = languageList.FirstOrDefault(l => l.Code.Equals(currentLanguage))?.NativeName;
     var isLoggedIn = HttpContext.Current.User.Identity.IsAuthenticated && sessionService.UserSession != null;
 
     var isProduction = settingService.IsProduction;
@@ -118,7 +115,7 @@
                     </div>
                     <div class="login">
                         <div class="user-signup">
-                            @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTime.UtcNow.Ticks });}
+                            @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTimeHelper.UtcNow.Ticks });}
                             <div class="language-container">
                                 <div class="language-selection">
                                     <button class="select-language" id="selectedLanguage">
@@ -129,9 +126,9 @@
                                         <ul class="list-unstyled language-list">
                                             @foreach (var language in languageList)
                                             {
-                                                var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.LanguageCode) ? SystemLanguage.SupportedLanguage[language.LanguageCode] : language.ShortedCode;
+                                                var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.Code) ? SystemLanguage.SupportedLanguage[language.Code] : language.ShortedCode;
                                                 <li>
-                                                    <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.LanguageCode"></i>@language.NativeLanguage</a>
+                                                    <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
                                                 </li>
                                             }
                                         </ul>
@@ -199,7 +196,7 @@
                         @if (isLoggedIn)
                         {
                             <div class="logout-btn">
-                                <a href="#" id="btnLogoutMobile">logout</a>
+                                <a href="@Url.RenderLanguageContent("~/Auth/SignOut/")" id="btnLogoutMobile">logout</a>
                             </div>
                         }
                     </div>
@@ -243,7 +240,7 @@
                 </div>
             </div>
             <div class="footer-text">
-                @Lang.Copyright.Replace("{0}", DateTime.Now.Year.ToString())
+                @Lang.Copyright.Replace("{0}", DateTimeHelper.CurrentYear.ToString())
             </div>
         </div>
     </div>
@@ -280,11 +277,6 @@
     @Html.InlineScripts("~/www/build/js/jquery.extension.js")
     <script src="@Url.RenderLink("~/www/build/js/site.js")"></script>
     <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
-
-    @if (isLoggedIn)
-    {
-        <script src="@Url.RenderLink("~/www/build/js/pages/logout.js")"></script>
-    }
 
     @if (!settingService.IsLocal && isLoggedIn)
     {

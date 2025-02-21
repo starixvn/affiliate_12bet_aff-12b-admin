@@ -1,17 +1,20 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
     using BusinessService;
     using CoreService;
     using DTO;
-    using Fanex.Affiliate.User.Core.Extensions;
-    using Fanex.Affiliate.User.Core.Filters;
+    using Extensions;
+    using Filters;
     using MetalModels;
     using MetalModels.Email;
     using Newtonsoft.Json;
     using Resources;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Utilities;
 
     public class SignupController : BaseController
@@ -21,13 +24,16 @@
         private readonly ICaptchaService _captchaService;
         private readonly ISecurityQuestionService _securityQuestionService;
 
+        private const string ParentCodeCookieName = "Fanex.UserSite.RefCode";
+        private const int CookieTimeOut = 6;
+
         public SignupController(
             ISessionService sessionService,
             IAppSetting appSetting,
             IAccountService accountService,
-            ISystemService languageService,
+            ISystemService systemsService,
             ICaptchaService captchaService,
-            ISecurityQuestionService securityQuestionService) : base(sessionService, languageService)
+            ISecurityQuestionService securityQuestionService) : base(sessionService, systemsService)
         {
             _accountService = accountService;
             _captchaService = captchaService;
@@ -37,23 +43,44 @@
 
         [HttpGet]
         [LanguageRouteChecking]
-        public ActionResult Index()
+        public ActionResult Index(string refId = null, string affCode = null, string affId = null)
         {
-            return View(new UserSignUpParam());
-        }
+            if (string.IsNullOrEmpty(affCode) && !string.IsNullOrEmpty(affId))
+            {
+                affCode = affId;
+            }
 
-        [HttpGet]
-        [ChildActionOnly]
-        public ActionResult SecurityQuestion()
-        {
-            var model = _securityQuestionService.GetSecurityQuestions(SessionService.CurrentLanguage);
+            const string viewPath = "~/Views/Signup/Index.cshtml";
+            if ((string.IsNullOrEmpty(refId) || string.Equals(refId, "index", StringComparison.CurrentCultureIgnoreCase)) && string.IsNullOrEmpty(affCode))
+            {
+                return View(viewPath, new UserSignUpParam());
+            }
 
-            return PartialView("~/Views/Signup/_SecurityQuestion.cshtml", model);
+            var affInfo = new GeneralAffInfo();
+
+            if (int.TryParse(refId, out var parentAffId))
+            {
+                affInfo = _accountService.GetGeneralAffInfo(affId: parentAffId);
+            }
+
+            if (int.TryParse(affCode, out _))
+            {
+                affInfo = _accountService.GetGeneralAffInfo(affCode: affCode);
+            }
+
+            if (!affInfo.IsValidAff)
+            {
+                SetCookie(affInfo.AffCode);
+
+                return View(viewPath, new UserSignUpParam());
+            }
+
+            return View(viewPath, new UserSignUpParam { IsValidParentCode = false });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(UserSignUpParam param)
+        public async Task<ActionResult> Index(UserSignUpParam param)
         {
             var result = new ResultInfo { IsOk = false };
             if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.GetClientIP()))
@@ -79,7 +106,6 @@
                     SiteUrl = Server.HtmlEncode(param.SiteUrl),
                     MoreSiteUrls = Server.HtmlEncode(param.MoreSiteUrls),
                     NoSiteDesc = Server.HtmlEncode(param.NoSiteDesc),
-                    TargetCountryCode = Server.HtmlEncode(param.TargetCountryCode),
                     PreferredLanguage = Server.HtmlEncode(param.PreferredLanguage),
                     QuestionId = param.QuestionId,
                     Answer = Server.HtmlEncode(param.Answer),
@@ -95,7 +121,7 @@
                     Language = SessionService.CurrentLanguage,
                     AffType = _appSetting.AllowedAffiliateTypes.FirstOrDefault(),
                     Ip = Request.GetClientIP(),
-                    IsLocal = _appSetting.IsLocal
+                    IsLocal = _appSetting.IsLocal,
                 };
 
                 var contactApp = EmailHelper.GetContactAppInfo(param.ContactAppList);
@@ -110,7 +136,7 @@
                     CurrentLanguage = SessionService.CurrentLanguage
                 };
 
-                result = _accountService.CreateAffiliate(signUpParam, emailParam);
+                result = await _accountService.CreateAffiliateAsync(signUpParam, emailParam);
             }
             else
             {
@@ -121,9 +147,30 @@
             return Json(result);
         }
 
+        [HttpGet]
+        [ChildActionOnly]
+        public ActionResult SecurityQuestion()
+        {
+            var model = _securityQuestionService.GetSecurityQuestions(SessionService.CurrentLanguage);
+
+            return PartialView("~/Views/Signup/_SecurityQuestion.cshtml", model);
+        }
+
         private static bool IsValidAppContactList(IEnumerable<ContactApp> contactAppList)
         {
             return contactAppList != null && !contactAppList.All(c => string.IsNullOrEmpty(c.Value));
+        }
+
+        private void SetCookie(string parentAffCode)
+        {
+            var cookie = new HttpCookie(ParentCodeCookieName)
+            {
+                HttpOnly = true,
+                Expires = DateTimeHelper.Now.AddHours(CookieTimeOut),
+                Value = parentAffCode
+            };
+
+            HttpContext.Response.Cookies.Add(cookie);
         }
     }
 }

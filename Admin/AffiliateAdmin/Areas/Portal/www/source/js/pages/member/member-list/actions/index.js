@@ -12,6 +12,13 @@ export const setParam = (data) => {
     }
 }
 
+export const setSelectedMemberId = (data) => {
+    return {
+        type: types.SET_SELECTED_MEMBER_ID,
+        data
+    }
+}
+
 export const setIsFromOtherPages = (data) => {
     return {
         type: types.SET_IS_FROM_OTHER_PAGES,
@@ -36,7 +43,7 @@ export const setGridData = (data) => {
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = 'Portal/Member/GetMemberList';
+    const url = 'Portal/Player/GetMemberList';
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : null;
@@ -47,9 +54,23 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const updateMemberStatus = (memberId, isRemoved) => async () => {
-    const url = 'Portal/Member/UpdateMemberStatus';
-    const response = await post(url, { memberId, isRemoved });
+export const getMemberDetail = (memberId) => async () => {
+    const url = 'Portal/Player/GetMemberDetail';
+    const response = await post(url, { memberId });
+
+    return response && response.status === 200 ? response.data : null;
+}
+
+export const updateMember = (param) => async () => {
+    const url = 'Portal/Player/UpdateMember';
+    const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
+}
+
+export const deleteMember = (memberId) => async () => {
+    const url = 'Portal/Player/DeleteMember';
+    const response = await post(url, { memberId });
 
     return response && response.status === 200 ? response.data : null;
 }

@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName = Function.AdminRoleMenu)]
+    [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class EmailTestingController : ReadOnlySessionBaseController
     {
         private const int _transId = 123;
@@ -22,18 +22,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         private readonly IAppSetting _appSetting;
 
-        private readonly ISystemService _systemService;
+        private readonly ISystemService _languageService;
 
         public EmailTestingController(
             ISessionService sessionService,
             IMailProcessor mailProcessor,
             IAppSetting appSetting,
-            ISystemService systemService
+            ISystemService languageService
             ) : base(sessionService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;
-            _systemService = systemService;
+            _languageService = languageService;
         }
 
         [HttpGet]
@@ -48,12 +48,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             string result;
             try
             {
-                _systemService.SetCulture(language);
+                _languageService.SetCulture(language);
 
                 (var _, var title) = GetSubjectAndTitle(function);
                 result = GetEmailContent(language, function, format, title);
 
-                _systemService.SetCulture(LanguageSystem.DefaultLanguageCode);
+                _languageService.SetCulture(_appSetting.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -71,12 +71,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             try
             {
-                _systemService.SetCulture(language);
+                _languageService.SetCulture(language);
                 (var subject, var title) = GetSubjectAndTitle(function);
                 var content = GetEmailContent(language, function, format, title);
 
                 _mailProcessor.Send(content, emailAddress, subject);
-                _systemService.SetCulture(LanguageSystem.DefaultLanguageCode);
+                _languageService.SetCulture(_appSetting.DefaultLanguageCode);
             }
             catch (Exception ex)
             {
@@ -108,7 +108,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         private string GetEmailTextContent(string function, string language, object model)
         {
             var viewPath = string.Format(TemplateString.EmailTemplatePath, function, language);
-            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, function, LanguageSystem.DefaultLanguageCode);
+            var viewPathBackup = string.Format(TemplateString.EmailTemplatePath, function, _appSetting.DefaultLanguageCode);
             var physicalPath = Server.MapPath(viewPath);
             var physicalPathBackup = Server.MapPath(viewPathBackup);
 
@@ -166,8 +166,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             switch (functionName)
             {
                 case TemplateString.AffiliateApproved:
-                    return new EmailBase
+                    return new AffApprovedEmail
                     {
+                        FirstName = _firstName,
                         RootUrl = rootUrl,
                         Language = language,
                         IsHtml = isHtml,
@@ -213,7 +214,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                         MailContact = _appSetting.MailContact,
                         FirstName = _firstName,
                         TransId = _transId,
-                        TransDate = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"),
+                        TransDate = DateTimeHelper.NowDateTimeOffset.ToString("MM/dd/yyyy hh:mm:ss"),
                         Amount = _amount
                     };
                 case TemplateString.PaymentRequestRejected:
@@ -225,7 +226,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                         MailContact = _appSetting.MailContact,
                         FirstName = _firstName,
                         TransId = _transId,
-                        TransDate = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"),
+                        TransDate = DateTimeHelper.NowDateTimeOffset.ToString("MM/dd/yyyy hh:mm:ss"),
                         Amount = _amount
                     };
                 default:

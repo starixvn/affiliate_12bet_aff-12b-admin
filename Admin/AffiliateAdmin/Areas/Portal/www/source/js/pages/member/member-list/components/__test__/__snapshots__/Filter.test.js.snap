@@ -79,7 +79,7 @@ exports[`member list - components - Filter  render correctly 1`] = `
           ]
         }
       >
-        IBC User Name
+        System Name
       </Label>
       <Input
         name="ibcUserName"

@@ -3,10 +3,12 @@
 import createReducer from '../../../modules/createReducer';
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
-import { claimsPrincipal } from '../../../reducers/claimReducer';
-import { SET_PARAM, SET_CHECKED_MESSAGES, SET_SELECTED_MESSAGE_ID, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from '../actions/types';
+import { SET_PARAM, SET_CHECKED_MESSAGES, SET_SELECTED_Message_id, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA } from '../actions/types';
 
 export const today = createReducer(null, {});
+
+export const defaultMessageContentList = createReducer({}, {});
+export const languages = createReducer({}, {});
 
 export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
@@ -15,7 +17,7 @@ export const param = createReducer(null, {
 })
 
 export const selectedMessageId = createReducer(null, {
-    [SET_SELECTED_MESSAGE_ID](prevState, action) {
+    [SET_SELECTED_Message_id](prevState, action) {
         return action.data;
     }
 })
@@ -47,5 +49,6 @@ export default combineReducers({
     checkedMessages,
     selectedMessageId,
     shouldResetScrollPosition,
-    claimsPrincipal
+    languages,
+    defaultMessageContentList
 });

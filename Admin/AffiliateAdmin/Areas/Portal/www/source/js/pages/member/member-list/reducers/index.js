@@ -3,14 +3,20 @@
 import createReducer from '../../../../modules/createReducer';
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
-import { claimsPrincipal} from '../../../../reducers/claimReducer';
 import * as types from '../actions/types';
 
+const today = createReducer(null, {})
 const affName = createReducer(null, {})
 
 export const param = createReducer(null, {
     [types.SET_PARAM](prevState, action) {
         return Object.assign({}, prevState, action.data);
+    }
+})
+
+export const selectedMemberId = createReducer(null, {
+    [types.SET_SELECTED_MEMBER_ID](prevState, action) {
+        return action.data;
     }
 })
 
@@ -33,12 +39,13 @@ export const gridData = createReducer(null, {
 })
 
 export default combineReducers({
+    today,
     param,
     affName,
+    selectedMemberId,
     gridData,
     pagingOption,
     isShowLoader,
     isFromOtherPages,
-    shouldResetScrollPosition,
-    claimsPrincipal
+    shouldResetScrollPosition
 });

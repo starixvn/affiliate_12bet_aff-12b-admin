@@ -1,6 +1,5 @@
 ﻿jest.mock('redux');
 jest.mock('react-redux');
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../actions/index';
@@ -20,20 +19,18 @@ describe('domain control- Content - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            selectedTargetCountryCode: 'en-GB',
+            selectedMarket: 'en-GB',
             shouldResetScrollPosition: true,
             gridData: [],
             affDomainList: [],
-            isModifiable: true,
             redirectDomainList: []
         };
         const state = {
-            selectedTargetCountryCode: 'en-GB',
+            selectedMarket: 'en-GB',
             shouldResetScrollPosition: true,
             gridData: [],
             affDomainList: [],
             redirectDomainList: [],
-            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 
@@ -50,7 +47,7 @@ describe('domain control- Content - connect', () => {
             fetchData: actions['fetchData'],
             fetchDomain: actions['fetchDomain'],
             toggleLoader: actions['toggleLoader'],
-            setSelectedDomainId: actions['setSelectedDomainId'],
+            setSelectedDomain: actions['setSelectedDomain'],
             setShouldResetScrollPosition: actions['setShouldResetScrollPosition']
         }
 

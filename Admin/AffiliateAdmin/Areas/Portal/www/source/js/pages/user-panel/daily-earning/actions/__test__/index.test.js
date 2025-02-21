@@ -14,27 +14,21 @@ const actionList = [
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
 ]
 
-describe('customer member actions', () => {
+describe('daily earning actions', () => {
     actionList.forEach(item => {
         runTestAction(item);
     });
 
-    it('getProductList - should return correct data', async () => {
-        const getProductList = actions['getProductList']();
-
-        expect(getProductList).toEqual(expect.any(Function));
-    })
-
     it('should create action to fetchData with correct parameter', async () => {
         const expectedResponse = {
-            data: { 
+            data: {
                 MainData: [
                     {
                         BankingFee: 0,
                         Bonus: 0,
                         Date: "06 January 2019",
                         Deposit: 0,
-                        MemberWinLost: -536.0837,
+                        Ggr: -536.0837,
                         WinlostDate: "2019-01-06T00:00:00",
                         Withdrawal: 0
                     },
@@ -43,7 +37,7 @@ describe('customer member actions', () => {
                         Bonus: 0,
                         Date: "07 January 2019",
                         Deposit: 0,
-                        MemberWinLost: -1495.1505,
+                        Ggr: -1495.1505,
                         WinlostDate: "2019-01-07T00:00:00",
                         Withdrawal: 0
                     }
@@ -53,7 +47,7 @@ describe('customer member actions', () => {
                     Bonus: 0,
                     Date: "Total",
                     Deposit: 0,
-                    MemberWinLost: -4619.4527,
+                    Ggr: -4619.4527,
                     WinlostDate: null,
                     Withdrawal: 0
                 }
@@ -68,7 +62,7 @@ describe('customer member actions', () => {
             monthDate: "Jan-2019",
             productId: 0
         }
-        
+
         const result = await actions['fetchData'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/StatementHistory/GetDailyEarning', param);

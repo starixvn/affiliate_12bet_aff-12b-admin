@@ -4,10 +4,30 @@ export const resolveClientUrl = (relativeUrl) => {
     return _rootUrl + relativeUrl;
 }
 
-export const getVirtualUrl = () => {
-    if (!window.virtualUrl)
-        return '/';
-    return window.virtualUrl;
+export const getCookie = (cookieName) => {
+    const name = cookieName + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookies = decodedCookie.split(';');
+    for (const cookie of cookies) {
+        const cookieAfterTrim = cookie.trim();
+
+        if (cookieAfterTrim.indexOf(name) == 0) {
+            return cookieAfterTrim.substring(name.length, cookieAfterTrim.length);
+        }
+    }
+    return "";
+}
+
+export const getUserPanelMenuCookie = () => {
+    return getCookie("selectedUserPanelMenu");
+}
+
+export const clearUserPanelMenuCookie = () => {
+    setUserPanelMenuCookie("");
+}
+
+export const setUserPanelMenuCookie = (selectedUserPanel) => {
+    document.cookie = `selectedUserPanelMenu=${selectedUserPanel}; path=${resolveClientUrl(`Portal/Customer`)}`;
 }
 
 export const formatUnit = (value) => {
@@ -33,7 +53,6 @@ export const formatDateTime = (dateTimeValue, format) => {
     var hours = dateTime.getHours();
     var minutes = dateTime.getMinutes();
     var seconds = dateTime.getSeconds();
-    var miliseconds = dateTime.getMilliseconds();
     var ampm = hours >= 12 ? 'PM' : 'AM';
 
     var shortedHours = hours % 12;
@@ -50,8 +69,8 @@ export const formatDateTime = (dateTimeValue, format) => {
         .replace("mm", formatUnit(minutes))
         .replace("ss", formatUnit(seconds))
         .replace("tt", ampm)
-        .replace("HH", formatUnit(dateTime.getHours()))
-        .replace("SSS", formatMilisecond(miliseconds));
+        .replace("HH", formatUnit(hours))
+        .replace("SSS", formatMilisecond(dateTime.getMilliseconds()));
 }
 
 export const parseDateTime = (value) => {
@@ -72,15 +91,6 @@ export const parseDateTime = (value) => {
     return value;
 }
 
-export const convertToTimeOffset = (date, offset) => {
-    let localDate = new Date(date);
-    let localTime = localDate.getTime();
-    let localOffset = localDate.getTimezoneOffset() * 60000;
-    let utcTime = localTime + localOffset;
-    let convertTime = utcTime + (3600000 * offset);
-    return new Date(convertTime);
-}
-
 export function getDateRange(selectedFromDate, toDateString) {
     const selectedFromDateString = selectedFromDate.format("MM/DD/YYYY");
     const fromDate = new Date(selectedFromDateString);
@@ -93,6 +103,36 @@ export function getDateRange(selectedFromDate, toDateString) {
         fromDate: selectedFromDateString,
         toDate: newToDate
     };
+}
+
+export const isValidNumber = (inputValue) => {
+    const regex = /^\d*$/;
+    return regex.test(inputValue);
+}
+
+export const convertListToMutilpleSelected = (initialList, key, name, checked = true) => {
+    return initialList ? initialList.map(item => {
+        return {
+            key: item[key],
+            name: item[name],
+            checked
+        };
+    }) : [];
+}
+
+export const handleChangeMultipleSelected = (initialList, selectedKey) => {
+    const selectedList = typeof (selectedKey) === "string" ? selectedKey.split(',').filter(p => !!p) : selectedKey;
+
+    return initialList && initialList.map(item => {
+        const { key, name } = item;
+        const checked = selectedList.indexOf(key.toString()) !== -1;
+
+        return {
+            key,
+            name,
+            checked
+        };
+    });
 }
 
 export function handleAfterChangeFromDate(selectedFromDate, toDateString, maxRangeDate) {
@@ -143,87 +183,4 @@ function getFromDate(fromDate, selectedToDateString, fromDateString, maxRangeDat
     sixMonthAgo.setMonth(sixMonthAgo.getMonth() - maxRangeDate);
 
     return sixMonthAgo < fromDate ? fromDateString : `${formatUnit(sixMonthAgo.getMonth() + 1)}/${formatUnit(sixMonthAgo.getDate())}/${sixMonthAgo.getFullYear()}`;
-}
-
-export const isValidNumber = (inputValue) => {
-    const regex = /^\d*$/;
-    return regex.test(inputValue);
-}
-
-export const validateUserName = (userName) => {
-    if (!userName) {
-        return {
-            IsValid: false,
-            Message: 'User Name is required!'
-        };
-    }
-
-    const regexCheckSpecialChar = new RegExp("^[a-zA-Z0-9]{1,20}$");
-    if (!regexCheckSpecialChar.test(userName)) {
-        return {
-            IsValid: false,
-            Message: 'User Name can not be contained the special characters. Please try again!'
-        };
-    }
-
-    return {
-        IsValid: true,
-        Message: ''
-    }
-}
-
-const regExp = {
-    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
-}
-
-export const validateNewPassword = (newPassword) => {
-    const result = {
-        IsValid: false,
-        Message: "New Password is required!"
-    }
-
-    if (newPassword) {
-        const regexCheckPassword = new RegExp(regExp.CheckPassword);
-        const isValid = regexCheckPassword.test(newPassword);
-
-        result.IsValid = isValid;
-        result.Message = isValid ? "" : 'Password must have at least 6 characters, including at least 2 letters and at least 2 digits.';
-    }
-
-    return result;
-}
-
-export const convertArrayToObjectProps = (array, key, value) => {
-    if(!Array.isArray(array))
-        return {};
-    let result = {};
-    array.forEach((item) =>{
-        let keyValue = item[key];
-        result[keyValue] = item[value];
-    })
-    return result;
-}
-
-export const removeUndifineItem = (obj) => {
-    return JSON.parse(JSON.stringify(obj));
-}
-
-export const validateFileExtension = (fileName, fileExtensions, message) => {
-    const result = {
-        isOK: false,
-        message: message || `Sorry! We just support these file types : ${fileExtensions.map(item => "'." + item + "'").join(', ')}`,
-    }
-
-    if (!!fileName) {
-        const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length).toLowerCase();
-
-        const isOK = fileExtensions.includes(fileExtension);
-
-        if (isOK) {
-            result.isOK = true;
-            result.message = '';
-        }
-    }
-
-    return result;
 }

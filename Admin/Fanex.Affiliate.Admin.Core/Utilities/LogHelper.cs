@@ -1,12 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Data;
 using Fanex.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
@@ -14,10 +11,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
     public static class LogHelper
     {
         private const int LimitedLevelOfInnerException = 3;
-
         public static void WriteError(Exception exception, string additionalMessage = null)
         {
-            var content = BuildMessage(exception);
+            var content = BuildMessage(exception.Message);
             if (!string.IsNullOrWhiteSpace(additionalMessage))
             {
                 content.AppendLine(additionalMessage);
@@ -25,16 +21,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
             AddDatabaseInfo(content, exception);
             AddExceptionInfo(content, exception, LimitedLevelOfInnerException);
-            LogService.Error(content.ToString(), exception);
-        }
-        public static void WriteError(string msg)
-        {
-            LogService.Error(msg);
-        }
 
-        public static async Task WriteErrorAsync(string msg)
-        {
-            await LogService.ErrorAsync(msg);
+            LogService.Error(content.ToString(), exception);
         }
 
         public static void WriteInfo(string msg)
@@ -42,10 +30,10 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             LogService.Info(msg);
         }
 
-        private static StringBuilder BuildMessage(Exception exception)
+        private static StringBuilder BuildMessage(string message)
         {
             var request = HttpContext.Current.Request;
-            var builder = new StringBuilder().AppendLine($"Error Message: {exception.Message}").AppendLine();
+            var builder = new StringBuilder().AppendLine($"Error Message: {message}").AppendLine();
             builder.AppendLine("REQUEST INFO")
                    .AppendLine("Domain: " + request.Headers["Host"])
                    .AppendLine("Form: " + string.Join("~", request.Form))
@@ -56,9 +44,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                    .AppendLine("BrowserVer: " + request.Browser.Version)
                    .AppendLine("Agent: " + request.UserAgent)
                    .AppendLine("IP Address: " + request.UserHostAddress)
-                   .AppendLine("Actual IP Address: " + request.GetClientIP())
-                   .AppendLine($"Source:{exception.Source}")
-                   .AppendLine($"TargetSite:{exception.TargetSite}");
+                   .AppendLine("Actual IP Address: " + request.GetClientIP());
 
             builder.AppendLine("UserName: " + HttpContext.Current.Session["UserName"]);
 
@@ -82,25 +68,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             var dbInfo = new Dictionary<string, object>();
             BindSqlExceptionInfo(exception, dbInfo);
-            BindFanexDataExceptionInfo(exception, dbInfo);
+
             return dbInfo;
-        }
-
-        private static void BindFanexDataExceptionInfo(Exception exception, IDictionary<string, object> dbInfo)
-        {
-            if (exception is ObjectDbException fanexDataException)
-            {
-                BindSqlExceptionInfo(exception.InnerException, dbInfo);
-
-                var connString = new SqlConnectionStringBuilder(fanexDataException.ConnectionString);
-
-                dbInfo["Server"] = connString.DataSource;
-                dbInfo["DbName"] = fanexDataException.DbName;
-                dbInfo["SpName"] = fanexDataException.SpName;
-                dbInfo["UserId"] = connString.UserID;
-                dbInfo["Parameters"] = GetParameters(fanexDataException.Parameters);
-                dbInfo["CommandTimeout"] = fanexDataException.CommandTimeout;
-            }
         }
 
         private static void BindSqlExceptionInfo(Exception exception, IDictionary<string, object> dbInfo)
@@ -113,12 +82,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             }
         }
 
-        private static string GetParameters(IDictionary<string, object> parameters)
-            => parameters?.Count > 0
-               ? parameters.Select(parameter => $"{parameter.Key}={parameter.Value}")
-                        .Aggregate((firstPair, secondPair) => $"{firstPair};{secondPair}")
-               : string.Empty;
-
         private static void AddExceptionInfo(StringBuilder builder, Exception exception, int limitedInnerException)
         {
             builder.AppendLine();
@@ -130,7 +93,8 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
             if (exception.InnerException != null && limitedInnerException > 0)
             {
-                AddExceptionInfo(builder, exception.InnerException, --limitedInnerException);
+                var exceptionLevel = limitedInnerException - 1;
+                AddExceptionInfo(builder, exception.InnerException, exceptionLevel);
             }
         }
     }

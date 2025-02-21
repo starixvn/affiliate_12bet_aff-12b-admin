@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
     {
         public static string GetErrorMessage(string functionName, int errorCode)
         {
-            var resourceKey = functionName + errorCode.ToString();
+            var resourceKey = functionName + errorCode;
 
             return Error.ResourceManager.GetString(resourceKey);
         }

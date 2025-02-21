@@ -5,8 +5,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 {
     public class ContactUsParam
     {
-        public int Mid { get; set; }
-
         public int Creator { get; set; }
 
         [Required]
@@ -28,10 +26,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string Browser { get; set; }
 
         public string SessionId { get; set; }
-
-        public int ErrCode { get; set; }
-
-        public string ErrMsg { get; set; }
 
         [Required]
         [SpParam(Ignored = true)]

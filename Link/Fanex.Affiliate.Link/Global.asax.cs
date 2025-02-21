@@ -2,7 +2,6 @@
 {
     using Fanex.Affiliate.Link.Helpers;
     using Fanex.Data;
-    using Fanex.Data.SqlServer;
     using System;
     using System.Web;
     using System.Web.Mvc;
@@ -16,15 +15,16 @@
         protected void Application_Start()
         {
             LoggingConfig.RegisterSentry();
+
             UMConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             DbSettingProviderManager
-                .StartNewSession()
-                .WithSqlServer("~/App_Data/SpName.xml")
-                .Run();
+                    .StartNewSession()
+                    .Register(false)
+                    .Run();
+
         }
 
         /// <summary>

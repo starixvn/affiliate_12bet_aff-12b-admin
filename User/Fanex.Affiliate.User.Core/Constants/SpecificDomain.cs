@@ -4,8 +4,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 {
     public static class SpecificDomain
     {
-        private const string DOMAIN_GO_LOCAL = "aff-12bet.nexdev.net/12BetGo";
-        private const string DOMAIN_GOV2_LOCAL = "aff-12b.nexdev.net/Go";
+        private const string DOMAIN_GO_LOCAL = "aff-12b.nexdev.net/Go";
+        private const string DOMAIN_GOV2_LOCAL = "aff-12b.nexdev.net/Go1";
         private const string DOMAIN_GO_12REAL_PRO = "go.12real.com";
         private const string DOMAIN_GO_JOIN_BEST5689_PRO = "join.best5689.com";
         private const string DOMAIN_GO_5689FUN_PRO = "go.5689fun.com";

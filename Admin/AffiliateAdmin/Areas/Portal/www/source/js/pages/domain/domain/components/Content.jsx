@@ -3,23 +3,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
-import { NotificationPopup } from '../../../common/components/NotificationPopup';
+import NotificationPopup from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
-import { claimResource } from '../../../../modules/claim';
-import { formatDateTime } from '../../../../modules/utils';
+import { deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
         super(props);
-
         this.state = {
             selectedDomainId: 0,
             message: '',
             isConfirmPopup: true
-        }
+        };
     }
 
     componentDidMount() {
@@ -37,23 +34,23 @@ export class Content extends PureComponent {
 
     _handleDeleteDomain = (selectedDomainId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ message: `Are you sure you want to delete this ${this.props.isAffDomain ? 'affiliate' : '12bet'} domain?`, isConfirmPopup: true, selectedDomainId });
+        this.setState({ message: `Are you sure you want to delete this ${this.props.isAffDomain ? 'affiliate' : this.props.licenseeName} domain?`, isConfirmPopup: true, selectedDomainId });
     }
 
-    _handleEditDomain = (domainId) => {
+    _handleEditDomain = (domainId, domainName, isSSL) => {
         this.props.setShouldResetScrollPosition(false);
-        this.props.setSelectedDomainId(domainId);
+        this.props.setSelectedDomain({ domainId, domainName, isSSL });
     }
 
     _deleteDomain = async (selectedDomainId) => {
         this.props.toggleLoader(true);
 
-        const { isAffDomain } = this.props;
+        const { isAffDomain, licenseeName } = this.props;
         const result = await this.props.deleteDomain({ DomainId: selectedDomainId, IsAffDomain: isAffDomain });
 
         if (result) {
             if (result.IsSuccessful) {
-                this.setState({ message: `${isAffDomain ? 'Affiliate' : '12Bet'} domain has been removed successfully!`, isConfirmPopup: false });
+                this.setState({ message: `${isAffDomain ? 'Affiliate' : licenseeName} domain has been removed successfully!`, isConfirmPopup: false });
 
                 this.props.fetchData(isAffDomain);
             }
@@ -66,16 +63,15 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
-        const { isModifiable } = this.props;
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={175} title={headerText.Domain}>{headerText.Domain}</Cell>
-                <Cell header={true} colWidth={35} title={headerText.SSL}>{headerText.SSL}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.Creator}>{headerText.Creator}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={320} title={headerText.ExcludedTargetCountry}>{headerText.ExcludedTargetCountry}</Cell>
-                { isModifiable && <Cell header={true} colWidth={50} title={headerText.Edit}>{headerText.Action}</Cell>}
+                <Cell header={true} colWidth={60} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={500} title={headerText.Domain}>{headerText.Domain}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.SSL}>{headerText.SSL}</Cell>
+                <Cell header={true} colWidth={160} title={headerText.Creator}>{headerText.Creator}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Edit}>{headerText.Edit}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Delete}>{headerText.Delete}</Cell>
             </Row>
         );
     }
@@ -90,7 +86,7 @@ export class Content extends PureComponent {
             }
         }
         else {
-            dataRows.push(<Row>
+            dataRows.push(<Row key="no-info">
                 <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
             </Row>);
         }
@@ -101,9 +97,7 @@ export class Content extends PureComponent {
     _buildDataRow(dataItem, index) {
         const domainName = htmlDecode(dataItem.DomainName);
         const creator = htmlDecode(dataItem.Creator);
-        const createDate = formatDateTime(dataItem.CreateDate, "MM/dd/yyyy");
-        const excludedTargetCountries = htmlDecode(dataItem.ExcludedTargetCountries).split(',').join(', ');
-        const { isModifiable } = this.props;
+
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
@@ -112,35 +106,32 @@ export class Content extends PureComponent {
                     <input type="checkbox" disabled checked={dataItem.IsSSL} />
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
-                <Cell className="text-center" title={createDate}>{createDate}</Cell>
-                <Cell title={excludedTargetCountries}>{excludedTargetCountries}</Cell>
-                { isModifiable &&
-                    <React.Fragment>
-                        <Cell className="text-center">
-                            <Button color="link py-0" title="Edit Domain" onClick={() => this._handleEditDomain(dataItem.DomainId)}>
-                                <span className="oi oi-pencil text-secondary"></span>
-                            </Button>
-                        <Button color="link py-0" title="Delete Domain" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
-                                <span className="oi oi-trash text-danger"></span>
-                            </Button>
-                        </Cell>
-                    </React.Fragment>
-                }
+                <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
+                <Cell className="text-center" title="Edit Domain">
+                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, domainName, dataItem.IsSSL)}>
+                        <span className="oi oi-pencil text-secondary"></span>
+                    </Button>
+                </Cell>
+                <Cell className="text-center" title="Delete Domain">
+                    <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
+                        <span className="oi oi-x text-danger"></span>
+                    </Button>
+                </Cell>
             </Row>
         )
     }
 
     render() {
-        const { gridData, shouldResetScrollPosition, isAffDomain, isModifiable } = this.props;
+        const { gridData, shouldResetScrollPosition, isAffDomain, licenseeName } = this.props;
         const { message, isConfirmPopup } = this.state;
 
         return gridData && (
             <div className="data-content">
-                { isModifiable &&
-                    <div className="my-2">
-                        <Button outline type="button" onClick={() => this._handleEditDomain(0)}>{isAffDomain ? 'Add AffDomain' : 'Add 12Bet Domain'}<span className="oi oi-plus ml-2"></span></Button>
-                    </div>
-                }
+                <div className="my-2">
+                    <Button outline type="button" onClick={() => this._handleEditDomain(0, '', false)}>
+                        {isAffDomain ? 'Add AffDomain' : ('Add ' + licenseeName + ' Domain')}<span className="oi oi-plus ml-2"></span>
+                    </Button>
+                </div>
                 <div className="domain-list-content table-responsive table-striped my-2">
                     <Table
                         minWidth={1000}
@@ -164,13 +155,12 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, isAffDomain, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.DomainMenu)
-    return Object.assign({}, { shouldResetScrollPosition, gridData, isAffDomain, isModifiable });
+function mapStateToProps({ shouldResetScrollPosition, gridData, isAffDomain, licenseeName }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, isAffDomain, licenseeName });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Button, Row, Col, Alert } from 'reactstrap';
 
-import { getUserAccountInfo, updateUserAccount, getAffiliateInfo, setHasWriteEditAffClaim, setHasReadManagePendingAffClaim, setHasWriteManagePendingAffClaim } from '../actions';
-import { validateUserAccount } from '../libs/validation';
-import { userPanelMenuKey } from '../libs/constants';
+import { getUserAccountInfo, updateUserAccount, getAffiliateInfo, getPaymentMethod } from '../actions';
+import { validateUserAccount } from '../modules/validation';
+import { userPanelMenuKey } from '../modules/constants';
 
 import Section from './Section';
 import Personal from './sections/Personal';
@@ -13,7 +13,6 @@ import Additional from './sections/Additional';
 import EmailFormat from './sections/EmailFormat';
 import WebSite from './sections/WebSite';
 import Payment from './sections/Payment';
-import { claimResource } from '../../../../modules/claim';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -22,21 +21,16 @@ export class Content extends PureComponent {
         this.state = {
             isSuccess: true,
             isShowMessage: false,
-            message: ''
+            message: '',
+            paymentMethodList: [],
+            minimumPayment: 0
         }
     }
 
     componentDidMount() {
-        const { affId, isPendingAff, claimsPrincipal } = this.props;
-        const hasReadManagePendingAffClaim = isPendingAff && claimsPrincipal.hasReadClaim(claimResource.ManagePendingAff);
-        const hasWriteManagePendingAffClaim = isPendingAff && claimsPrincipal.hasWriteClaim(claimResource.ManagePendingAff);
-        const hasWriteEditAffClaim = claimsPrincipal.hasWriteClaim(claimResource.EditAffiliate) || hasWriteManagePendingAffClaim;
-
+        const { affId } = this.props;
         affId && this.props.getUserAccountInfo(affId);
-
-        hasWriteEditAffClaim && this.props.setHasWriteEditAffClaim(hasWriteEditAffClaim);
-        hasReadManagePendingAffClaim && this.props.setHasReadManagePendingAffClaim(hasReadManagePendingAffClaim);
-        hasWriteManagePendingAffClaim && this.props.setHasWriteManagePendingAffClaim(hasWriteManagePendingAffClaim);
+        this._fetchPaymentMethodInfo();
     }
 
     handleGetMoreSiteUrls = (moreSiteUrlsList) => {
@@ -64,16 +58,15 @@ export class Content extends PureComponent {
     }
 
     handleSubmit = async () => {
-        const { affId, affName, userAccountInfo, moreSiteUrlsList } = this.props;
+        const { affId, affName, userAccountInfo, moreSiteUrlsList, licenseeName } = this.props;
         const userAccountInfoAfterTrim = this.handleTrimObject(userAccountInfo);
-        const resultValidateUserAccount = validateUserAccount(userAccountInfoAfterTrim, moreSiteUrlsList);
+        const resultValidateUserAccount = validateUserAccount(userAccountInfoAfterTrim, moreSiteUrlsList, licenseeName);
 
         window.scrollTo({ top: 0, behavior: "smooth" });
 
         if (resultValidateUserAccount.isValid) {
             const moreSiteUrls = userAccountInfo.HasWebSite ? this.handleGetMoreSiteUrls(moreSiteUrlsList) : '';
             const newUserAccountInfo = Object.assign({}, userAccountInfoAfterTrim, { MoreSiteUrls: moreSiteUrls });
-
             const result = await this.props.updateUserAccount(newUserAccountInfo);
 
             if (result) {
@@ -111,13 +104,20 @@ export class Content extends PureComponent {
         });
     }
 
+    _fetchPaymentMethodInfo = async () => {
+        const response = await this.props.getPaymentMethod();
+
+        if (response) {
+            const paymentMethodList = response.PaymentMethods;
+            const minimumPayment = response.MinAmount;
+            this.setState({ paymentMethodList, minimumPayment });
+        }
+    }
+
     render() {
-        const { isSuccess, isShowMessage, message } = this.state;
-        const { userAccountInfo, claimsPrincipal, hasWriteEditAffClaim, hasReadManagePendingAffClaim } = this.props;
+        const { isSuccess, isShowMessage, message, paymentMethodList, minimumPayment } = this.state;
 
-        const hasReadEditAffClaim = userAccountInfo && (claimsPrincipal.hasReadClaim(claimResource.EditAffiliate) || hasReadManagePendingAffClaim);
-
-        return hasReadEditAffClaim && (
+        return this.props.userAccountInfo && (
             <Container fluid={true} className="user-account-container">
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
@@ -143,52 +143,41 @@ export class Content extends PureComponent {
                     </Col>
                 </Row>
 
-                {
-                    (claimsPrincipal.hasReadClaim(claimResource.AffWebUrl) || hasReadManagePendingAffClaim) && (
-                    <Row>
-                        <Col xs="12" className="px-0">
-                            <Section title="Website Information">
-                                {
-                                    this.props.moreSiteUrlsList && <WebSite />
-                                }
-                            </Section>
-                        </Col>
-                    </Row>
-                )}
-
-                {
-                    (claimsPrincipal.hasReadClaim(claimResource.AffPaymentInfo) || hasReadManagePendingAffClaim) && (
-                    <Row>
-                        <Col xs="12" className="px-0">
-                            <Section title="Payment Information">
-                                <Payment />
-                            </Section>
-                        </Col>
-                    </Row>
-                )}
                 <Row>
-                    <Button className="mb-3" color="success"
-                        onClick={this.handleSubmit}
-                        disabled={!hasWriteEditAffClaim}
-                    >Submit</Button>
+                    <Col xs="12" className="px-0">
+                        <Section title="Website Information">
+                            {
+                                this.props.moreSiteUrlsList && <WebSite />
+                            }
+                        </Section>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col xs="12" className="px-0">
+                        <Section title="Payment Information">
+                            <Payment paymentMethodList={paymentMethodList} minimumPayment={minimumPayment} />
+                        </Section>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Button className="mb-3" color="success" onClick={this.handleSubmit}>Submit</Button>
                 </Row>
             </Container>
         );
     }
 }
 
-function mapStateToProps({ affCommonInfo, edit, claimsPrincipal }) {
-    const { affId, affName, isPendingAff } = affCommonInfo;
-    const { userAccountInfo, moreSiteUrlsList, hasWriteEditAffClaim, hasReadManagePendingAffClaim } = edit;
+function mapStateToProps({ affCommonInfo, edit, licenseeName }) {
+    const { affId, affName } = affCommonInfo;
+    const { userAccountInfo, moreSiteUrlsList } = edit;
 
-    return Object.assign({}, {
-        affId, affName, isPendingAff, hasReadManagePendingAffClaim,
-        userAccountInfo, moreSiteUrlsList, claimsPrincipal, hasWriteEditAffClaim
-    });
+    return Object.assign({}, { affId, affName, userAccountInfo, moreSiteUrlsList, licenseeName });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getUserAccountInfo, updateUserAccount, getAffiliateInfo, setHasWriteEditAffClaim, setHasReadManagePendingAffClaim, setHasWriteManagePendingAffClaim }, dispatch);
+    return bindActionCreators({ getUserAccountInfo, updateUserAccount, getAffiliateInfo, getPaymentMethod }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

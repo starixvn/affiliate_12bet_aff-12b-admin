@@ -1,16 +1,17 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Apis;
+using Fanex.Affiliate.Admin.Core.Handlers;
 using Fanex.Caching;
+using Fanex.Data.Repository;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.NETFramework;
+using ONEbook.UM.Services;
 using ONEbook.UM.Transport;
 using Refit;
 using System;
-using System.Configuration;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Web.Compilation;
@@ -30,9 +31,11 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
             builder.RegisterDependencies();
             builder.RegisterMemberSiteApi();
+
             // Register your MVC controllers. (MvcApplication is the name of
             // the class in Global.asax.)
             builder.RegisterControllers(asselmblyList);
+
 
             // OPTIONAL: Register web abstractions like HttpContextBase.
             builder.RegisterModule<AutofacWebTypesModule>();
@@ -43,6 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             // Set the dependency resolver to be Autofac.
 
             var container = builder.Build();
+
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
@@ -61,6 +65,19 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             return assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate", StringComparison.InvariantCulture)).ToArray();
         }
 
+        private static void RegisterMemberSiteApi(this ContainerBuilder builder)
+        {
+            var appSetting = AppSetting.Instance;
+            var cacheService = new CacheService();
+            var handler = new AuthenticatedHttpClientHandler(appSetting, cacheService);
+
+            builder.RegisterInstance(RestService.For<ILicenseeApi>(
+                new HttpClient(handler)
+                {
+                    BaseAddress = new Uri(appSetting.MemberSiteApiUrl)
+                }));
+        }
+
         private static void RegisterDependencies(this ContainerBuilder builder)
         {
             builder.RegisterInstance(new UMClientConfiguration().Initialize());
@@ -70,29 +87,9 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<IPHelperImpl>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<UMRestClient>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<HttpContextHelper>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<MaintenanceService>().AsImplementedInterfaces().SingleInstance();
 
-        }
-
-
-        private static void RegisterMemberSiteApi(this ContainerBuilder builder)
-        {
-            var licenseeCustDbApiUrl = ConfigurationManager.AppSettings["LicenseeCustDbApiUrl"];
-            var licenseeCustDbApiProxyUrl = ConfigurationManager.AppSettings["LicenseeCustDbApiProxyUrl"];
-            var isUseProxyToGetLicenseeCustDbApi = ConfigurationManager.AppSettings["IsUseProxyToGetLicenseeCustDbApi"];
-
-            HttpClientHandler defaultFuncHttpHandler() => new HttpClientHandler
-            {
-                Proxy = Convert.ToBoolean(isUseProxyToGetLicenseeCustDbApi)
-                  ? new WebProxy(new Uri(licenseeCustDbApiProxyUrl))
-                  : null,
-                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-            };
-
-            builder.RegisterInstance(RestService.For<ILicenseeCustDbApi>(
-                new HttpClient(defaultFuncHttpHandler())
-                {
-                    BaseAddress = new Uri(licenseeCustDbApiUrl)
-                }));
+            builder.RegisterType<DynamicRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

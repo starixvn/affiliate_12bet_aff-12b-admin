@@ -5,7 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { headerText, globalResource, maxWidth } from '../libs/constants';
+import { headerText, globalResource, maxWidth } from '../modules/constants';
 import { setPagingOption, toggleLoaderUserPanel, setShowIdList, fetchData } from '../actions';
 
 export class Content extends PureComponent {
@@ -21,7 +21,7 @@ export class Content extends PureComponent {
     componentDidUpdate(prevProps) {
         const { pagingOption, param } = this.props;
 
-        if (param && param !== prevProps.param) {
+        if (param !== prevProps.param) {
             const newParam = Object.assign({}, param, { pageIndex: 1, pageSize: pagingOption.PageSize });
             this.fetchData(newParam);
         }
@@ -76,9 +76,9 @@ export class Content extends PureComponent {
                 const dataPreviousItem = i == 0 ? {} : dataList[i - 1];
                 const dataNextItem = i == dataList.length - 1 ? {} : dataList[i + 1];
 
-                if (dataItem.Id == dataPreviousItem.Id) {
+                if (dataItem.LogId == dataPreviousItem.LogId) {
                     isHide = true;
-                } else if (dataItem.Id == dataNextItem.Id) {
+                } else if (dataItem.LogId == dataNextItem.LogId) {
                     isLink = true;
                 }
 
@@ -86,7 +86,7 @@ export class Content extends PureComponent {
             }
         }
         else {
-            dataRows.push(<Row>
+            dataRows.push(<Row key="no-info">
                 <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
             </Row>);
         }
@@ -95,7 +95,7 @@ export class Content extends PureComponent {
     }
 
     _buildDataRow(dataItem, index, isLink, isHide) {
-        const id = dataItem.Id;
+        const id = dataItem.LogId;
         const ipAddress = dataItem.Ip;
         const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
 
@@ -103,7 +103,7 @@ export class Content extends PureComponent {
             return null;
         }
 
-        const updatedBy = htmlDecode(dataItem.UpdatedBy);
+        const updatedBy = htmlDecode(dataItem.UpdatedName);
         const action = htmlDecode(dataItem.Action);
         const description = htmlDecode(dataItem.Description);
 

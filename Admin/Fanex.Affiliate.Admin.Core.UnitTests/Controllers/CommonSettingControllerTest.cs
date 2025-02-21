@@ -1,7 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -11,44 +12,49 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
     public class CommonSettingControllerTest
     {
         [Fact]
-        public void GetProductList_WhenCall_ReturnCorrectData()
+        public void GetPageList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var systemServive = new Mock<ISystemService>();
-            systemServive.Setup(s => s.GetProductList()).Returns(new List<Product> { new Product() });
-            var controller = CreateCommonSettingController(systemServive: systemServive.Object);
+            var landingPageService = new Mock<ILandingPageService>();
+            landingPageService.Setup(s => s.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
+            var controller = CreateCommonSettingController(landingPageService: landingPageService.Object);
 
             // Action
-            var result = controller.GetProductList() as JsonNetResult;
-            var data = result.Data as List<Product>;
+            var result = controller.GetPageList() as JsonNetResult;
+            var data = result.Data as List<LandingPage>;
 
             // Assert
             Assert.Single(data);
         }
 
         [Fact]
-        public void GetCountryList_WhenCall_ReturnCorrectData()
+        public void GetTrackingCodeList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var systemServive = new Mock<ISystemService>();
-            systemServive.Setup(s => s.GetCountryList()).Returns(new List<Country> { new Country { CountryCode = "EN", CountryName = "England" } });
-            var controller = CreateCommonSettingController(systemServive.Object);
+            var param = 1271808;
+            var passedParam = 0;
+            var trackingStatisticsService = new Mock<ITrackingStatisticsService>();
+            trackingStatisticsService.Setup(s => s.GetTrackingCodeList(param)).Returns(new List<string> { "Sportbook" }).Callback<int>(p => passedParam = p);
+            var controller = CreateCommonSettingController(trackingStatisticsService: trackingStatisticsService.Object);
 
             // Action
-            var result = controller.GetCountryList() as JsonNetResult;
-            var data = result.Data as List<Country>;
+            var result = controller.GetTrackingCodeList(param) as JsonNetResult;
+            var data = result.Data as List<string>;
 
             // Assert
             Assert.Single(data);
+            Assert.Equal(param, passedParam);
         }
 
         private CommonSettingController CreateCommonSettingController(
-            ISystemService systemServive = null
+            ILandingPageService landingPageService = null,
+            ITrackingStatisticsService trackingStatisticsService = null
             )
         {
-            var fakeCommonService = systemServive ?? Mock.Of<ISystemService>();
+            var fakelandingPageService = landingPageService ?? Mock.Of<ILandingPageService>();
+            var faketrackingStatisticsService = trackingStatisticsService ?? Mock.Of<ITrackingStatisticsService>();
 
-            return new CommonSettingController(fakeCommonService);
+            return new CommonSettingController(fakelandingPageService, faketrackingStatisticsService);
         }
     }
 }

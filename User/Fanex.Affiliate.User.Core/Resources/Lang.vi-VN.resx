@@ -304,7 +304,7 @@
     <value>Yêu cầu hủy</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>Đại lý 12Bet - [{transid}] - Thông báo yêu cầu thanh toán</value>
+    <value>Đại Lý 12B - [{transid}] - Đã nhận được yêu cầu thanh toán</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>Cape Verde </value>
@@ -1026,7 +1026,7 @@ Nhóm hỗ trợ hội viên 12BET</value>
     <value>Mẫu đơn</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>Đại lý 12Bet - Đơn của bạn</value>
+    <value>Đại Lý 12B - Đã nhận được đơn đăng ký</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>Cảm ơn bạn đã gửi đơn.&lt;br/&gt;
@@ -1046,7 +1046,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Số tiền yêu cầu</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>Nhập số tiền yêu cầu (bằng USD)</value>
+    <value>Nhập số tiền yêu cầu</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>Yêu cầu thanh toán</value>
@@ -1175,13 +1175,13 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Chủ Đề</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>Đại lý 12Bet - Chi tiết đăng nhập của bạn</value>
+    <value>Đại Lý 12B - Chi tiết tài khoản đăng nhập của bạn</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>Chủ thể không hợp lệ</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>Đại lý 12Bet - Mật khẩu mới của bạn</value>
+    <value>Đại Lý 12B - Mật khẩu mới của bạn</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Gửi</value>
@@ -1367,13 +1367,13 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Mật khẩu mới của bạn</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>Chi tiết đăng nhập của bạn</value>
+    <value>Chi tiết tài khoản đăng nhập của bạn</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>Yêu cầu thanh toán của bạn đã bị hủy bỏ</value>
+    <value>Đã nhận được yêu cầu thanh toán</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>Xác nhận đơn đăng ký chương trình kết nối 12BET</value>
+    <value>Đã nhận được đơn đăng ký</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET CASINO CLUBS</value>
@@ -1517,7 +1517,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>LIÊN HỆ</value>
   </data>
   <data name="CommissionReport" xml:space="preserve">
-    <value>Báo Cáo Hoa Hồng Đại Lý</value>
+    <value>Báo Cáo Hoa Hồng</value>
   </data>
   <data name="GrossWinLoss" xml:space="preserve">
     <value>Tổng Thắng Thua</value>
@@ -1532,7 +1532,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Phí Ngân Hàng</value>
   </data>
   <data name="CommRate" xml:space="preserve">
-    <value>% Hoa Hồng</value>
+    <value>Tỷ lệ hoa hồng đại lý cấp dưới</value>
   </data>
   <data name="CommShorted" xml:space="preserve">
     <value>Hoa Hồng Đại Lý</value>
@@ -1842,7 +1842,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>$1 &amp; hơn</value>
   </data>
   <data name="RevenueShare" xml:space="preserve">
-    <value>Chia Sẻ Doanh Thu</value>
+    <value>Hoa hồng</value>
   </data>
   <data name="ChineseTraditional" xml:space="preserve">
     <value>Tiếng Trung (Phồn Thể)</value>
@@ -1872,7 +1872,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Tóm tắt</value>
   </data>
   <data name="AffiliateLink" xml:space="preserve">
-    <value>Liên kết dành cho đại lý</value>
+    <value>Đường dẫn liên kết</value>
   </data>
   <data name="LastLogin" xml:space="preserve">
     <value>Đăng nhập cuối</value>
@@ -1890,13 +1890,13 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Tổng doanh thu cược</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>Xác minh chi tiết tài khoản của bạn</value>
+    <value>Mã xác minh</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>Người chơi</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>Đại lý 12Bet - Xác minh chi tiết tài khoản của bạn</value>
+    <value>Đại Lý 12B - Mã xác minh</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>Đăng ký mới / Đã nạp tiền</value>
@@ -1938,7 +1938,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Sao chép mã QR</value>
   </data>
   <data name="SaveQR" xml:space="preserve">
-    <value>Lưu mã QR</value>
+    <value>Lưu Mã QR</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Sao chép</value>
@@ -2341,5 +2341,197 @@ THANH TOÁN ỔN ĐỊNH</value>
   </data>
   <data name="Aff286TestimonialContent" xml:space="preserve">
     <value>Tham gia 12BET là một quyết định tuyệt vời đối với tôi. Chương trình đại lý dễ tham gia, và các khoản thanh toán hoa hồng luôn ổn định. Đây là một đối tác vững chắc.</value>
+  </data>
+  <data name="ActivePlayers" xml:space="preserve">
+    <value>Số lượng người chơi hoạt động</value>
+  </data>
+  <data name="SubAffiliate" xml:space="preserve">
+    <value>Đại Lý Cấp Dưới</value>
+  </data>
+  <data name="SubAffDownline" xml:space="preserve">
+    <value>Đại Lý Cấp Dưới</value>
+  </data>
+  <data name="SubAffEarning" xml:space="preserve">
+    <value>Thu Nhập của Đại Lý Cấp Dưới</value>
+  </data>
+  <data name="GGR" xml:space="preserve">
+    <value>Doanh Thu</value>
+  </data>
+  <data name="MinRequired" xml:space="preserve">
+    <value>Yêu cầu tối thiểu</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>Ngày FDM</value>
+  </data>
+  <data name="Rebate" xml:space="preserve">
+    <value>Khuyến Mãi Hoàn Trả</value>
+  </data>
+  <data name="DepositFee" xml:space="preserve">
+    <value>Phí Nạp Tiền</value>
+  </data>
+  <data name="WithdrawalFee" xml:space="preserve">
+    <value>Phí Rút Tiền</value>
+  </data>
+  <data name="ApprovalDate" xml:space="preserve">
+    <value>Ngày chấp thuận</value>
+  </data>
+  <data name="SuspensionDate" xml:space="preserve">
+    <value>Ngày bị khóa</value>
+  </data>
+  <data name="SuspensionSatus" xml:space="preserve">
+    <value>Tình trạng bị khóa</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>Tổng Doanh Thu</value>
+  </data>
+  <data name="NumberOfActivePlayers" xml:space="preserve">
+    <value>Số người chơi hoạt động</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Bỏ</value>
+  </data>
+  <data name="SubAffDetail" xml:space="preserve">
+    <value>Chi Tiết Đại Lý Cấp Dưới</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>Lấy tất cả</value>
+  </data>
+  <data name="BaseCurrency" xml:space="preserve">
+    <value>Tiền cơ sở</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>Hoa hồng</value>
+  </data>
+  <data name="UncalculatedCommission" xml:space="preserve">
+    <value>Hoa hồng chưa tính</value>
+  </data>
+  <data name="CurrentCommission" xml:space="preserve">
+    <value>Hoa hồng hiện tại</value>
+  </data>
+  <data name="AffiliateCurrency" xml:space="preserve">
+    <value>Tiền tệ đại lý</value>
+  </data>
+  <data name="DefaultBaseCurrency" xml:space="preserve">
+    <value>Tiền cơ sở mặc định</value>
+  </data>
+  <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
+    <value>Đơn vị tiền tệ hiển thị trên tất cả báo cáo</value>
+  </data>
+  <data name="P2pRevenueShare" xml:space="preserve">
+    <value>Hoa Hồng P2P</value>
+  </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>Tỷ lệ hoa hồng đại lý cấp dưới</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>Tỷ lệ hoa hồng cao nhất của nhiều nhóm sản phẩm</value>
+  </data>
+  <data name="RoyaltyFee" xml:space="preserve">
+    <value>Phí Bản Quyền</value>
+  </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>Tài khoản thanh toán này không tồn tại. Vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="UserNameSuspended" xml:space="preserve">
+    <value>Tài khoản thanh toán này đang tạm khóa. Vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="UserNameClosed" xml:space="preserve">
+    <value>Tài khoản thanh toán này đã bị đóng. Vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="MarketLinkStatistics" xml:space="preserve">
+    <value>Thống Kê Marketing</value>
+  </data>
+  <data name="PageName" xml:space="preserve">
+    <value>Tên trang</value>
+  </data>
+  <data name="IncludeInActiveLink" xml:space="preserve">
+    <value>Đường dẫn không giám sát</value>
+  </data>
+  <data name="CurrencyLabel" xml:space="preserve">
+    <value>USD</value>
+  </data>
+  <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
+    <value>Nhập lại địa chỉ email là bắt buộc</value>
+  </data>
+  <data name="AffilateLink" xml:space="preserve">
+    <value>Đường dẫn liên kết</value>
+  </data>
+  <data name="SubAffiliateLink" xml:space="preserve">
+    <value>Đường Dẫn Đại Lý Cấp Dưới</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Thêm mới...</value>
+  </data>
+  <data name="AffiliateLinkType" xml:space="preserve">
+    <value>Loại liên kết</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>Kênh</value>
+  </data>
+  <data name="TrackingAndQrCode" xml:space="preserve">
+    <value>Theo dõi đường dẫn &amp; mã QR</value>
+  </data>
+  <data name="MarketingPage" xml:space="preserve">
+    <value>Trang tiếp thị</value>
+  </data>
+  <data name="EnterChannel" xml:space="preserve">
+    <value>Vui lòng điền tên kênh:</value>
+  </data>
+  <data name="AddChannelSuccess" xml:space="preserve">
+    <value>Thêm kênh thành công</value>
+  </data>
+  <data name="ConfirmActiveLink" xml:space="preserve">
+    <value>Bạn có chắc chắn về hành động này? Nếu xác nhận hành động này, bạn sẽ kích hoạt việc theo dõi đường dẫn này.</value>
+  </data>
+  <data name="ConfirmDeactiveLink" xml:space="preserve">
+    <value>Bạn có chắc chắn về hành động này? Nếu xác nhận hành động này, bạn sẽ hủy kích hoạt việc theo dõi đường dẫn này.</value>
+  </data>
+  <data name="NumberOfLink" xml:space="preserve">
+    <value>Số liên kết</value>
+  </data>
+  <data name="CopyQRCode" xml:space="preserve">
+    <value>Sao chép mã QR</value>
+  </data>
+  <data name="SaveQRCode" xml:space="preserve">
+    <value>Lưu Mã QR</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>Danh mục phụ</value>
+  </data>
+  <data name="SearchAndGenQR" xml:space="preserve">
+    <value>Tìm và tạo</value>
+  </data>
+  <data name="MediaGallery" xml:space="preserve">
+    <value>Thư viện hình ảnh</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="InvalidLink" xml:space="preserve">
+    <value>Liên kết bạn đã nhập không hợp lệ.&lt;br /&gt;Vui lòng liên hệ với bộ phận chăm sóc khách hàng hoặc</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>nhấn vào đây.</value>
+  </data>
+  <data name="RevenueShareByTurnover" xml:space="preserve">
+    <value>Lợi nhuận tính theo tổng cược</value>
+  </data>
+  <data name="RevenueShareByWinloss" xml:space="preserve">
+    <value>Lợi nhuận tính theo thắng/thua</value>
+  </data>
+  <data name="EarningBy" xml:space="preserve">
+    <value>Thu nhập từ</value>
+  </data>
+  <data name="Winloss" xml:space="preserve">
+    <value>Thắng/ Thua</value>
+  </data>
+  <data name="RedirectOldLink" xml:space="preserve">
+    <value>Nhấp &lt;a href="{0}"&gt;vào đây&lt;/a&gt; để truy cập trang web đại lý cũ.</value>
+  </data>
+  <data name="PreviousSystemBalanceDescription" xml:space="preserve">
+    <value>Số dư trước đó sẽ được chuyển sang trang mới.</value>
   </data>
 </root>

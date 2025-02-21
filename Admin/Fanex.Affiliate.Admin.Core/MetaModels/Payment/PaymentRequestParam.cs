@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
 {
     public class PaymentRequestParam
     {
-        [Range(Validation.MinSearchBy, Validation.MaxSearchBy)]
+        [Range(Validation.Zero, Validation.MaxSearchBy)]
         public int SearchBy { get; set; }
 
         public string Username { get; set; }

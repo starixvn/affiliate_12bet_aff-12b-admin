@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var newsService = new Mock<INewsService>();
             newsService.Setup(ns => ns.GetMessageList(It.IsAny<MessageHistoryParam>()))
                         .Returns(messageList)
-                        .Callback<MessageHistoryParam>(p => p.Nrows = TotalItem);
+                        .Callback<MessageHistoryParam>(p => p.NRows = TotalItem);
 
             var controller = CreateController(newsService.Object);
 
@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var newsService = new Mock<INewsService>();
             newsService.Setup(ns => ns.GetMessageList(It.IsAny<MessageHistoryParam>()))
                         .Returns(messageList)
-                        .Callback<MessageHistoryParam>(p => p.Nrows = TotalItem);
+                        .Callback<MessageHistoryParam>(p => p.NRows = TotalItem);
 
             var controller = CreateController(newsService.Object);
 

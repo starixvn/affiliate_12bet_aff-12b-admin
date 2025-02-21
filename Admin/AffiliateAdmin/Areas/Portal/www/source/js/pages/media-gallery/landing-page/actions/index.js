@@ -50,7 +50,8 @@ export const fetchData = () => async (dispatch) => {
 function _convertCheckedLandingPages(dataList) {
     const checkedLandingPages = {};
     for (let item of dataList) {
-        checkedLandingPages[item.PageId] = false;
+        const itemId = item.PageId;
+        checkedLandingPages[itemId] = false;
     }
 
     return checkedLandingPages;
@@ -59,20 +60,6 @@ function _convertCheckedLandingPages(dataList) {
 export const getLandingPageDetail = (selectedLandingPageId) => async () => {
     const url = 'Portal/LandingPageList/GetLandingPageItem';
     const response = await post(url, { pageId: selectedLandingPageId });
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const getTargetCountryListByUser = () => async () => {
-    const url = 'Portal/LandingPageList/GetTargetCountryListByUser';
-    const response = await post(url);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const getTargetCountryListByLandingPage = (param) => async () => {
-    const url = 'Portal/LandingPageList/GetTargetCountryListByLandingPage';
-    const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }

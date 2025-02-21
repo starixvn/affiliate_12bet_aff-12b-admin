@@ -1,151 +1,99 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.Constants;
-    using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.DTO;
-    using Fanex.Affiliate.User.Core.DTO.Auth;
-    using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-    using Fanex.Affiliate.User.Core.Resources;
-    using Fanex.Affiliate.User.Core.Utilities;
-    using Filters;
-    using MetalModels.UserPanel;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Web.Mvc;
+    using System.Web.Mvc.Html;
+    using BusinessService;
+    using CoreService;
+    using Enum;
+    using Filters;
+    using MetalModels.UserPanel;
+    using Resources;
+    using Utilities;
     using ViewModels.UserPanel.Marketing;
 
-    public sealed class MediaGalleryController : BaseMarketingController
+    public class MediaGalleryController : BaseMarketingController
     {
-        private readonly IAppSetting _appSetting;
+        private IAccountService AccountService { get; }
 
         public MediaGalleryController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ISystemService systemService,
-            IMarketingService marketingService
-            ) : base(sessionService, systemService, marketingService)
+            ISystemService systemsService,
+            IMarketingService marketingService,
+            IAccountService accountService) :
+            base(sessionService, appSetting, systemsService, marketingService)
         {
-            _appSetting = appSetting;
+            AccountService = accountService;
         }
 
         [HttpGet]
-        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
+        [AjaxOnly]
         public ActionResult Index()
         {
+            var searchFormVM = GetSearchFormViewModel();
+            ViewBag.SelectedLang = SessionService.UserSession.PreferredLanguage;
+
+            return View("~/Views/UserPanel/AccountOverview/MediaGallery/Index.cshtml", searchFormVM);
+        }
+
+        private MediaGallerySearchFormViewModel GetSearchFormViewModel()
+        {
+            var isInternal = SessionService.IsInternal;
             var userSession = SessionService.UserSession;
-            var searchForm = GetSearchFormViewModel(userSession);
 
-            var selectedDomain = searchForm.SelectedDomain;
-            var selectedPage = searchForm.MemberSitePageList.FirstOrDefault()?.Value ?? string.Empty;
-            var selectedTargetProduct = searchForm.TargetProductList.FirstOrDefault()?.Value ?? string.Empty;
+            var channels = MarketingService.GetChannels(userSession.AffId);
+            var categoryList = Enum.GetValues(typeof(AffiliateLinkType)).Cast<int>()
+                .ToDictionary(t => t.ToString(), t => GetMediaMainCategory((AffiliateLinkType)t));
+            var languageList = SystemService.GetLanguageList(isInternal);
+            var currencyList = MarketingService.GetCurrencyList(isInternal)
+                .Select(i => new SelectListItem
+                {
+                    Value = i.Currency,
+                    Text = Lang.ResourceManager.GetString(i.Currency.Trim()) ?? i.Currency
+                });
 
-            var bannerParam = new MarketingBannerParam
+            var sizeParam = new SizeParam
             {
-                AffId = userSession.AffId,
-                TargetProduct = selectedTargetProduct,
-                SelectedTargetCountry = searchForm.SelectedTargetCountry,
-                Language = searchForm.SelectedLanguage,
                 AffType = userSession.AffType,
-                SelectedDomain = selectedDomain,
-                SelectedPage = selectedPage,
-                TextLinkTemplate = _appSetting.TextLinkTemplate,
-                BannerDomain = GetBannerDomain()
+                Language = userSession.PreferredLanguage
+            };
+            var sizeList = MarketingService.GetSizeList(sizeParam, isInternal)
+                .Select(i => new SelectListItem { Value = i.Size, Text = i.Size });
+
+            var refs = new List<RefLinkViewModel>
+            {
+                GetAffLinkTypeViewModel()
             };
 
-            var viewModel = new MediaGalleryViewModel
+            var affId = SessionService.UserSession.AffId;
+            if (!AccountService.GetGeneralAffInfo(affId).IsMaxSubLevel)
             {
-                SearchForm = searchForm,
-                MarketingDataList = GetBannerList(bannerParam)
-            };
-
-            ViewBag.TotalItem = bannerParam.Nrows;
-
-            return View("~/Views/UserPanel/AccountOverview/MediaGallery/Index.cshtml", viewModel);
-        }
-
-        [HttpGet]
-        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
-        public ActionResult GetBanner(MarketingBannerParam bannerParam)
-        {
-            var userSession = SessionService.UserSession;
-            var selectedDomain = GetDomainListByTargetCountry(bannerParam.SelectedTargetCountry, SessionService.IsInternal)
-                .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
-
-            bannerParam.AffId = userSession.AffId;
-            bannerParam.AffType = userSession.AffType;
-            bannerParam.SelectedDomain = selectedDomain;
-            bannerParam.TextLinkTemplate = _appSetting.TextLinkTemplate;
-            bannerParam.BannerDomain = GetBannerDomain();
-
-            var bannerList = GetBannerList(bannerParam);
-            ViewBag.TotalItem = bannerParam.Nrows;
-
-            return View("~/Views/UserPanel/AccountOverview/Partial/_BannerList.cshtml", bannerList);
-        }
-
-        [HttpGet]
-        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
-        public ActionResult GetSize(SizeParam param)
-        {
-            param.AffType = SessionService.UserSession.AffType;
-
-            var sizeList = MarketingService.GetSizeList(param, SessionService.IsInternal);
-
-            return Json(sizeList, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        [AjaxOnly(PermissionName = ClaimConstant.MediaGallery)]
-        public ActionResult CountNumberOfCopies(CopiedBannerCounterParam param)
-        {
-            if (SessionService.IsInternal)
-            {
-                return Json(new ResultInfo { Message = Lang.ErrAuthorized });
+                refs.Add(GetSubAffLinkTypeViewModel());
             }
 
-            param.AffId = SessionService.UserSession.AffId;
-            var result = MarketingService.CountNumberOfCopies(param);
-
-            return Json(result);
-        }
-
-        private IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam)
-        {
-            if (bannerParam.SelectedDomain == null || string.IsNullOrEmpty(bannerParam.SelectedPage))
+            return new MediaGallerySearchFormViewModel
             {
-                return new List<Banner>();
-            }
-
-            return MarketingService.GetBannerList(bannerParam);
-        }
-
-        private SearchFormViewModel GetSearchFormViewModel(UserSession userSession)
-        {
-            var linkModel = GetLinkFormViewModel();
-            var targetProductList = MarketingService.GetTargetProductList(SessionService.IsInternal);
-            var sizeList = MarketingService.GetSizeList(new SizeParam { AffType = userSession.AffType, Language = linkModel.SelectedLanguage }, SessionService.IsInternal);
-
-            return new SearchFormViewModel
-            {
-                SelectedTargetCountry = linkModel.SelectedTargetCountry,
-                SelectedLanguage = linkModel.SelectedLanguage,
-                SelectedDomain = linkModel.SelectedDomain,
-                TargetCountryList = linkModel.TargetCountryList,
-                LanguageList = linkModel.LanguageList,
-                DomainList = linkModel.DomainList,
-                MemberSitePageList = linkModel.MemberSitePageList,
-                TargetProductList = targetProductList.Select(i =>
-                    new SelectListItem { Value = i.TargetProductId.ToString(), Text = SystemHelper.GetProductText(i.TargetProductName) }),
-                SizeList = sizeList.Select(i => new SelectListItem { Value = i.Size, Text = i.Size })
+                CategoryList = categoryList,
+                Channels = channels,
+                CurrencyList = currencyList,
+                DeviceList = EnumHelper.GetSelectList(typeof(DeviceType)),
+                Languages = languageList,
+                RefLinks = refs,
+                SizeList = sizeList
             };
         }
 
-        private string GetBannerDomain()
-        {
-            var bannerSettingKey = SessionService.UserSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
-
-            return _appSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? _appSetting.BannerDomain;
-        }
+        private IEnumerable<SelectListItem> GetMediaMainCategory(AffiliateLinkType type)
+            => MarketingService.GetCategoryList(true, type, SessionService.IsInternal)
+            .Where(c => string.IsNullOrEmpty(c.SubCategory))
+            .Select(c => new SelectListItem
+            {
+                Value = c.Category,
+                Text = Lang.ResourceManager.GetString(Regex.Replace(c.Category, @"\s+", "")) ?? c.Category
+            });
     }
 }

@@ -11,20 +11,16 @@ describe('home - components - OnlineList', () => {
         onlineList: [
             {
                 Ip: "10.19.10.55",
-                LastRequestDate: "2019-11-15T04:03:00",
-                LastRequestDateText: "11/15/2019 04:03:00",
-                LoggedInDate: "2019-11-14T22:32:00",
-                LoggedInDateText: "11/14/2019 22:32:00",
+                LastRequestText: "11/15/2019 04:03:00",
+                LoggedInText: "11/14/2019 22:32:00",
                 Role: "Admin",
                 UserName: "AAHubert"
             },
             {
                 Ip: "::1",
-                LastRequestDate: "2019-11-15T04:04:00",
-                LastRequestDateText: "11/15/2019 04:04:00",
-                LoggedInDate: "2019-11-14T23:36:00",
-                LoggedInDateText: "11/14/2019 23:36:00",
-                Role: "Affiliate",
+                LastRequestText: "11/15/2019 04:04:00",
+                LoggedInText: "11/14/2019 23:36:00",
+                Role: "Aff",
                 UserName: "12BETAFF226"
             }
         ],

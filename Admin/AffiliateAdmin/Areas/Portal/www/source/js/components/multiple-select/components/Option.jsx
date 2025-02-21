@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Option = (props) => {
-    const { itemData, onChange, id, isDisableOption } = props;
+    const { itemData, onChange, id, isDisable } = props;
 
     const handleChange = (event) => {
         event.stopPropagation();
@@ -12,7 +12,6 @@ const Option = (props) => {
             value: itemData.value,
             checked: !itemData.checked
         }
-
         onChange && onChange(newItemData);
     }
 
@@ -24,7 +23,7 @@ const Option = (props) => {
                 className="option-checkbox"
                 checked={itemData.checked}
                 onChange={handleChange}
-                disabled={isDisableOption}
+                disabled={isDisable}
             />
             <label className="option-label" htmlFor={id}>
                 {itemData.value}
@@ -37,7 +36,7 @@ Option.propTypes = {
     itemData: PropTypes.object.isRequired,
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     onChange: PropTypes.func,
-    isDisableOption: PropTypes.bool
+    isDisable: PropTypes.bool
 }
 
 export default Option;

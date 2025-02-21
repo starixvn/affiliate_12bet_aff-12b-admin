@@ -91,7 +91,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
                     IsValid = false,
                     IsExpired = true
                 });
-            NSubtituteMockingHelper.FakeAjaxRequest(HttpRequest);
+            NSubstituteMockingHelper.FakeAjaxRequest(HttpRequest);
             RequestContext.RouteData = new RouteData();
             SetUpControllerBuilder();
 
@@ -132,7 +132,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
         private void SetUpRequestContext()
         {
             var context = Substitute.For<HttpContextBase>();
-            var request = NSubtituteMockingHelper.GetHttpRequest();
+            var request = NSubstituteMockingHelper.GetHttpRequest();
             var response = Substitute.For<HttpResponseBase>();
             request.QueryString.Returns(new System.Collections.Specialized.NameValueCollection());
             context.Request.Returns(request);
@@ -142,7 +142,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
 
         private EncryptedHandler CreateHandler()
         {
-            HttpRequest = NSubtituteMockingHelper.GetHttpRequest();
+            HttpRequest = NSubstituteMockingHelper.GetHttpRequest();
             return new EncryptedHandlerFake(RequestContext, HttpRequestParserHandler)
             {
                 HttpRequest = HttpRequest
@@ -159,7 +159,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
 
     internal class EncryptedHandlerFake : EncryptedHandler
     {
-        public HttpRequestBase HttpRequest { get; set; } = NSubtituteMockingHelper.GetHttpRequest();
+        public HttpRequestBase HttpRequest { get; set; } = NSubstituteMockingHelper.GetHttpRequest();
 
         public EncryptedHandlerFake(RequestContext requestContext, IHttpRequestParserHandler parserHanlder)
             : base(requestContext, parserHanlder) { }

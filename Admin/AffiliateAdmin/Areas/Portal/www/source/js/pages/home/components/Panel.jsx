@@ -7,9 +7,9 @@ export const Panel = (props) => {
     return (
         <div>
             <Row className="home-panel-header">
-                <span className="home-panel-header-left"></span>
-                <span className={className}></span>
-                <span className="home-panel-header-right">{heading}</span>
+                {/* <span className="home-panel-header-left"></span>
+                <span className={className}></span> */}
+                <span className="home-panel-header-right home-title">{heading}</span>
             </Row>
             <Row className="home-panel-body">
                 {children}

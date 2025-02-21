@@ -19,16 +19,12 @@ describe('user account - Payment - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            userAccountInfo: { affId: 1271808 },
-            hasReadClaim: true,
-            hasWriteClaim: true,
+            userAccountInfo: { affId: 1271808 }
         };
         const state = {
             edit: {
-                userAccountInfo: { affId: 1271808 },
-                hasWriteEditAffClaim: true
+                userAccountInfo: { affId: 1271808 }
             },
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
             anotherProp: "Not included"
         };
 

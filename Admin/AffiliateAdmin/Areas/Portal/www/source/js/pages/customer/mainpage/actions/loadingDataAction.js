@@ -1,13 +1,10 @@
 import { LEFTPANEL_RECEIVE_AFFINFO, SET_AFF_COMMON_INFO } from './types';
 import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoaderLeftPanel } from '../../left-panel/actions';
 
 import { setSelectedUserPanel } from '../../user-panel/actions';
-import { userPanelMenuKey } from '../../common/libs/constants';
-import { setIsValidUserName } from '../../left-panel/actions';
-import { toggleLoader } from '../../../../actions/loaderAction';
-
-export { toggleLoader };
+import { userPanelMenuKey } from '../../common/modules/constants';
+import { setIsValidUserName, toggleLoaderLeftPanel } from '../../left-panel/actions';
+import { getUserPanelMenuCookie } from '../../../../modules/utils';
 
 export const receiveLeftMenuInfo = (data) => {
     return {
@@ -23,18 +20,19 @@ export const setAffCommonInfo = (data) => {
     }
 }
 
-export const getAffiliateInfo = (affName, selectedUserPanel = userPanelMenuKey.statementHistory) => async (dispatch) => {
+export const getAffiliateInfo = (affName, selectedUserPanel) => async (dispatch) => {
     dispatch(toggleLoaderLeftPanel(true));
+    var userPanelMenu = selectedUserPanel || getUserPanelMenuCookie() || userPanelMenuKey.statementHistory
 
     const url = 'Portal/CustomerLeftPanel/GetAffiliateInfo';
     const param = { affUsername: affName };
     const response = await post(url, param);
     const data = response && response.status === 200 && response.data ? response.data : null;
 
-    const affCommonInfo = data && { affId: data.AffId, affName, status: data.Status, isPendingAff: data.IsPendingAff };
+    const affCommonInfo = data && { affId: data.AffId, affName, status: data.Status, isDepositFeePercent: data.IsDepositFeePercent, isWithdrawalFeePercent: data.IsWithdrawalFeePercent };
     dispatch(setAffCommonInfo(affCommonInfo));
     dispatch(receiveLeftMenuInfo(data));
-    data && dispatch(setSelectedUserPanel(selectedUserPanel));
+    data && dispatch(setSelectedUserPanel(userPanelMenu));
     dispatch(setIsValidUserName(!!data));
 
     dispatch(toggleLoaderLeftPanel(false));

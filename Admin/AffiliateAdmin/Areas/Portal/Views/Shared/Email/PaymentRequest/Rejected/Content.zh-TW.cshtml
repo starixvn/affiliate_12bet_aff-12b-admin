@@ -4,16 +4,15 @@
     <tr>
         <td>
             <p style="color: #313131; margin: 0; line-height: 1.5">
-                尊敬的 @Model.FirstName,  <br /><br />
+                尊敬的@(Model.FirstName)：<br /><br />
 
-                提款單號@(Model.TransId), 日期@(Model.TransDate)。<br /><br />
+                申请单号：@(Model.TransId)<br />
+                申请日期：@(Model.TransDate)<br /><br />
 
-                很高興的通知您，您金額為$@(Model.Amount)的提款申請未獲核准。 <br /><br />
+                很遗憾通知您，您的$@(Model.Amount)提款申请未获核准。<br /><br />
 
-                請發送諮詢郵件至<a href="mailto:@Model.MailContact">@Model.MailContact</a>獲知詳情.<br />
-                這是一封系統郵件，請不要在此郵件基礎上直接回复.<br /><br />
-
-                誠摯的,<br /><br />
+                此邮件为系统邮件，请不要直接回复。<br />
+                如有任何疑问，请随时通过 <a href="mailto:@Model.MailContact">@Model.MailContact</a> 与我们联系。<br /><br />
             </p>
         </td>
     </tr>

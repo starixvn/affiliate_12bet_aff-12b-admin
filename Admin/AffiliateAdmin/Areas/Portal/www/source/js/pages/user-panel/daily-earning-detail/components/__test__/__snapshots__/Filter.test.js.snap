@@ -25,27 +25,122 @@ exports[`daily earning detail - components - Filter render correctly 1`] = `
           ]
         }
       >
-        Search By
+        Product
+      </Label>
+      <Select
+        dataSource={
+          Array [
+            Object {
+              "ProductId": 0,
+              "ProductName": "All",
+            },
+            Object {
+              "ProductId": 1,
+              "ProductName": "Sportsbook",
+            },
+            Object {
+              "ProductId": 3,
+              "ProductName": "Playtech Casino",
+            },
+            Object {
+              "ProductId": 4,
+              "ProductName": "Number Game",
+            },
+          ]
+        }
+        hasInputOption={true}
+        isDisable={false}
+        keyField="ProductId"
+        onChange={[Function]}
+        selectedKey={0}
+        valueField="ProductName"
+      />
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Base Currency
       </Label>
       <Input
-        id="Product"
-        name="Product"
+        id="BaseCurrency"
+        name="BaseCurrency"
         onChange={[Function]}
         type="select"
-        value={0}
+        value={20}
       >
         <option
-          value="0"
+          key="20"
+          value={20}
         >
-          All
+          UUS
+        </option>
+        <option
+          value="20"
+        >
+          UUS
         </option>
       </Input>
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-2"
+        htmlFor="Currency"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Currency
+      </Label>
+      <MultipleSelect
+        dataSource={
+          Array [
+            Object {
+              "checked": true,
+              "key": 20,
+              "name": "UUS",
+            },
+          ]
+        }
+        hasAllOption={true}
+        hasInputOption={false}
+        isDisable={false}
+        keyField="key"
+        maxDisplayItemCount={1}
+        noneSelectedLabel="None Select"
+        onChange={[Function]}
+        statusField="checked"
+        valueField="name"
+      />
     </FormGroup>
   </Form>
 </div>
 `;
 
-exports[`daily earning detail - components - Filter render correctly with has productList 1`] = `
+exports[`daily earning detail - components - Filter render correctly with empty 1`] = `
 <div
   className="filter-container"
 >
@@ -70,39 +165,25 @@ exports[`daily earning detail - components - Filter render correctly with has pr
           ]
         }
       >
-        Search By
+        Product
       </Label>
-      <Input
-        id="Product"
-        name="Product"
+      <Select
+        dataSource={
+          Array [
+            Object {
+              "ProductId": 0,
+              "ProductName": "All",
+            },
+            null,
+          ]
+        }
+        hasInputOption={true}
+        isDisable={false}
+        keyField="ProductId"
         onChange={[Function]}
-        type="select"
-        value={0}
-      >
-        <option
-          value="0"
-        >
-          All
-        </option>
-        <option
-          key="product-1"
-          value={1}
-        >
-          Sportsbook
-        </option>
-        <option
-          key="product-3"
-          value={3}
-        >
-          Playtech Casino
-        </option>
-        <option
-          key="product-4"
-          value={4}
-        >
-          Number Game
-        </option>
-      </Input>
+        selectedKey={0}
+        valueField="ProductName"
+      />
     </FormGroup>
   </Form>
 </div>

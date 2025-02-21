@@ -1,161 +1,145 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.System;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Affiliate.User.Core.Utilities;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class MarketingService : IMarketingService
-    {
-        private readonly IMarketingRepository _marketingRepository;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using Commands.Marketing;
+    using Constants;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using DTO.UserPanel;
+    using DTO.UserPanel.MediaGallery;
+    using Enum;
+    using Extensions;
+    using MetalModels;
+    using MetalModels.UserPanel;
+    using Resources;
+    using Utilities;
+    using ViewModels.UserPanel.Marketing;
 
+    public class MarketingService : BaseDynamicService, IMarketingService
+    {
         private readonly IMemoryCacheService _cacheService;
-        private readonly ISystemService _systemService;
         private readonly IAppSetting _appSetting;
-        private readonly IAccountRepository _accountRepository;
+        private readonly ISystemService _systemsService;
+
+        private const int AffiliateLink = 1;
+        private const int MediaGallery = 2;
 
         public MarketingService(
-            IMarketingRepository marketingRepository,
+            IDynamicRepository dynamicRepository,
             IMemoryCacheService cacheService,
-            ISystemService systemService,
             IAppSetting appSetting,
-            IAccountRepository accountRepository)
+            ISystemService systemsService) : base(dynamicRepository)
         {
-            _marketingRepository = marketingRepository;
             _cacheService = cacheService;
-            _systemService = systemService;
             _appSetting = appSetting;
-            _accountRepository = accountRepository;
+            _systemsService = systemsService;
         }
 
-        public string GetTargetCountryCodeByAff(int affId)
+        public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, AffiliateLinkType linkType, bool isInternal = false)
         {
-            var affInfo = _accountRepository.GetAccountInfo(affId);
+            var cacheKey = isMediaPage ? CacheKey.BannerCategoryList : CacheKey.TextCategoryList;
+            cacheKey = $"{cacheKey}-{linkType}";
 
-            return affInfo?.TargetCountryCode;
-        }
-
-        public IEnumerable<TargetProduct> GetTargetProductList(bool isInternal)
-        {
-            var targetProductList = _cacheService.Get<IEnumerable<TargetProduct>>(CacheKey.TargetProductList);
-            if (targetProductList == null)
+            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(cacheKey);
+            if (categoryList == null)
             {
-                targetProductList = _marketingRepository.GetTargetProductList(isInternal);
+                var mediaType = isMediaPage ? AffiliateLink : MediaGallery;
+                var param = new MediaCategoryParam
+                {
+                    TargetId = (int)linkType,
+                    TypeId = mediaType
+                };
+                categoryList = FetchTData<CategoryType>(new GetCategoryListCriteria(param.TypeId, param.TargetId, isInternal));
 
-                _cacheService.Set(CacheKey.TargetProductList, targetProductList);
+                _cacheService.Set(cacheKey, categoryList);
             }
 
-            return targetProductList ?? new List<TargetProduct>();
+            return categoryList ?? new List<CategoryType>();
         }
 
-        public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal)
+        public IEnumerable<CurrencyType> GetCurrencyList(bool isInternal)
         {
-            var languageList = _systemService.GetSystemTargetLanguagesByCountry(param.TargetCountry);
-            param.Languages = GetTargetLanguageName(languageList, param.Language);
+            var currencyList = _cacheService.Get<IEnumerable<CurrencyType>>(CacheKey.CurrencyList);
 
-            return _marketingRepository.GetSizeList(param, isInternal);
-        }
-
-        public IEnumerable<Domain> GetDomainListByTargetCountry(string targetCountry, int affId, bool isInternal)
-        {
-            var domainList = _marketingRepository.GetDomainListByTargetCountry(targetCountry, isInternal);
-            var specificDomains = (_appSetting.IsDev || _appSetting.IsLocal) ?
-                                    SpecificDomain.SpecificDomainByAffOnLocal : SpecificDomain.SpecificDomainByAffOnPro;
-
-            if (specificDomains.TryGetValue(affId.ToString(), out string domainNames))
+            if (currencyList == null)
             {
-                var names = domainNames.Split(',');
-                var specificDomainList = new List<Domain>();
-
-                foreach(var name in names)
-                {
-                    specificDomainList.Add(new Domain { DomainId = affId + specificDomainList.Count, DomainName = name, IsSsl = false });
-                }    
-
-                specificDomainList.AddRange(domainList.Where(d => !Array.Exists(names, n => n.MatchWith(d.DomainName))));
-
-                return specificDomainList;
+                currencyList = FetchTData<CurrencyType>(new GetCurrencyListCriteria(isInternal));
+                _cacheService.Set(CacheKey.CurrencyList, currencyList);
             }
-            return domainList;
+
+            return currencyList ?? new List<CurrencyType>();
         }
 
-        public IEnumerable<AffiliateLink> GenerateLinkList(LinkGenerationParam linkGenerationParam)
+        public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal = false)
         {
-            var linkList = new List<AffiliateLink>();
-            var selectedLanguage = linkGenerationParam.SelectedLanguage;
-            var languageListFromParam = linkGenerationParam.LanguageList;
-            var languageList = _systemService.GetSystemTargetLanguagesByCountry(linkGenerationParam.SelectedTargetCountry);
+            var criteria = param.MapTo<SizeParam, GetSizeListCriteria>(isInternal);
 
-            if (IsSelectedAllLanguages(selectedLanguage) && languageListFromParam != null && languageListFromParam.Any())
+            return FetchTData<SizeType>(criteria);
+        }
+
+        public IEnumerable<Domain> GetAvailableDomainList(int affId, AffiliateLinkType linkType, bool isInternal = false)
+        {
+            var isMember = linkType == AffiliateLinkType.AffiliateLink;
+            var cacheKey = isMember ? CacheKey.DomainList : CacheKey.SubDomainList;
+
+            var domainList = _cacheService.Get<IEnumerable<Domain>>(cacheKey);
+
+            if (domainList == null)
             {
-                foreach (var item in languageListFromParam)
+                var domains = isMember
+                    ? FetchTData<Domain>(new GetAffDomainListCriteria(affId, isInternal))
+                    : FetchTData<Domain>(new GetSubAffDomainListCriteria(isInternal));
+
+                domainList = GetAvailableDomainsFromDate(domains, isMember);
+
+                var specificDomains = _appSetting.IsDev || _appSetting.IsLocal
+                    ? SpecificDomain.SpecificDomainByAffOnLocal
+                    : SpecificDomain.SpecificDomainByAffOnPro;
+
+                if (isMember && specificDomains.TryGetValue(affId.ToString(), out var domainNames))
                 {
-                    AddGenerateLanguageLinkToList(languageList, linkList, linkGenerationParam, item.Value);
+                    var names = domainNames.Split(',');
+                    var specificDomainList = new List<Domain>();
+
+                    foreach (var name in names)
+                    {
+                        specificDomainList.Add(new Domain
+                        {
+                            DomainId = affId + specificDomainList.Count,
+                            DomainName = name,
+                            IsSsl = false
+                        });
+                    }
+
+                    specificDomainList.AddRange(domainList.Where(d => !Array.Exists(names, n => n.MatchWith(d.DomainName))));
+                    _cacheService.Set(cacheKey, specificDomainList, Number.Ten);
+
+                    return specificDomainList;
                 }
 
-                AddGenerateDefaultLinkToList(languageList, linkList, linkGenerationParam);
-            }
-            else
-            {
-                var isValidLanguage = AddGenerateLanguageLinkToList(languageList, linkList, linkGenerationParam, selectedLanguage);
-
-                if (!isValidLanguage)
-                {
-                    AddGenerateDefaultLinkToList(languageList, linkList, linkGenerationParam);
-                }
+                _cacheService.Set(cacheKey, domainList, Number.Ten);
             }
 
-            return linkList;
+            return domainList ?? new List<Domain>();
         }
 
-        private void AddGenerateDefaultLinkToList(IEnumerable<TargetLanguage> languageList, List<AffiliateLink> linkList, LinkGenerationParam linkGenerationParam)
+        public IDictionary<string, LanguageLinkViewModel> GenerateLinkList(LinkGeneratingParam linkGeneratedParam)
         {
-            linkList.Add(new AffiliateLink
-            {
-                Language = Lang.Default,
-                Link = GenerateDefaultLinkByTargetCountry(languageList, linkGenerationParam),
-                LanguageCode = SystemLanguage.DefaultLanguageCode
-            });
+            var languages = GetLanguageUsedForGeneration(linkGeneratedParam);
+            return GenerateLink(languages, linkGeneratedParam);
+
         }
 
-        private static bool AddGenerateLanguageLinkToList(IEnumerable<TargetLanguage> languageList, List<AffiliateLink> linkList, LinkGenerationParam linkGenerationParam, string languageCode)
-        {
-            var language = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(languageCode));
-            var isValidLanguage = language != null;
-
-            if (isValidLanguage)
-            {
-                linkList.Add(new AffiliateLink
-                {
-                    Language = language.LanguageName,
-                    Link = GenerateLink(linkGenerationParam, language.ShortedCode),
-                    LanguageCode = language.LanguageCode
-                });
-            }
-
-            return isValidLanguage;
-        }
-
-        public IEnumerable<Banner> GetBannerList(MarketingBannerParam bannerParam)
+        public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
             const int LengthOfSplittingSize = 2;
 
-            var languageList = _systemService.GetSystemTargetLanguagesByCountry(bannerParam.SelectedTargetCountry);
-            bannerParam.Languages = GetTargetLanguageName(languageList, bannerParam.Language);
-
-            var bannerList = _marketingRepository.GetBannerList(bannerParam);
-
+            var bannerList = FetchTDataWithPaging<MarketingItem>(bannerParam.MapTo<MarketingBannerParam, GetBannerListCriteria>(), bannerParam);
             foreach (var banner in bannerList)
             {
                 banner.FileName = bannerParam.BannerDomain + banner.FileName;
@@ -168,24 +152,113 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     banner.Height = Convert.ToInt32(sizes[1]);
                 }
 
-                var language = languageList.FirstOrDefault(l => l.LanguageName.MatchWith(banner.Language));
+                var language = _systemsService.GetLanguageList().FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
 
-                banner.RedirectLink = GenerateLink(bannerParam, language?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
+                if (language != null)
+                {
+                    banner.RedirectLink = GenerateLink(bannerParam, language.ShortedCode);
+                }
             }
 
             return bannerList;
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList(string targetCountry, string commGroupName, bool isInternal)
+        public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink)
         {
-            var landingPages = _marketingRepository.GetLandingPageListByTargetCountry(targetCountry ?? string.Empty, isInternal);
+            var isTargetToMember = linkType == AffiliateLinkType.AffiliateLink;
+            var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(isInternal));
 
-            return StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName);
+            return isTargetToMember
+                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName)
+                : GetSubAffLandingPages();
         }
 
-        public ResultInfo CountNumberOfCopies(CopiedBannerCounterParam param)
+        public string GetTextLinkTemplate(AffiliateLinkType linkType)
         {
-            return _marketingRepository.CountNumberOfCopies(param);
+            switch (linkType)
+            {
+                case AffiliateLinkType.AffiliateLink:
+                    return _appSetting.TextLinkTemplate;
+                case AffiliateLinkType.SubAffiliateLink:
+                    return _appSetting.SubAffTextLinkTemplate;
+                default:
+                    return _appSetting.TextLinkTemplate;
+            }
+        }
+
+        public ResultInfo<MarketingChannel> AddMarketingChannel(int userId, string channelName)
+        {
+            var channelCode = NormalizeName(channelName);
+            var result = ExecuteReturnResultInfo(new AddMarketingChannelCommand(userId, channelCode, channelName));
+            var message = GenAddChannelErrMsg(result.Code);
+
+            return new ResultInfo<MarketingChannel>
+            {
+                IsOk = result.IsOk,
+                Message = string.IsNullOrWhiteSpace(message) ? result.Message : message,
+                Data = new MarketingChannel { ChannelCode = channelCode, ChannelName = channelName }
+            };
+        }
+
+        public IDictionary<string, string> GetChannels(int userId)
+            => FetchTData<MarketingChannel>(new GetMarketingChannelsCriteria(userId))
+                .ToDictionary(c => c.ChannelCode, c => c.ChannelName);
+
+        public ResultInfo ToggleMarketingLink(MarketingLinkParam param)
+        {
+            var result = ExecuteReturnResultInfo(param.MapTo<MarketingLinkParam, ToggleMarketingLinkCommand>());
+            var message = GenToggleErrMsg(result.Code);
+
+            return new ResultInfo
+            {
+                IsOk = result.IsOk,
+                Message = string.IsNullOrWhiteSpace(message) ? result.Message : message
+            };
+        }
+
+        public IEnumerable<IGrouping<string, MarketingChannelLink>> GetUsingMarketingLinks(int userId)
+            => FetchTData<MarketingChannelLink>(new GetUsingMarketingLinkCriteria(userId)).GroupBy(c => c.ChannelCode);
+
+        private Dictionary<string, Language> GetLanguageUsedForGeneration(LinkGeneratingParam linkGeneratedParam)
+        {
+            var result = new Dictionary<string, Language>();
+            var languageList = _systemsService.GetLanguageList();
+
+            if (string.IsNullOrEmpty(linkGeneratedParam.SelectedLanguage))
+            {
+                foreach (var language in languageList)
+                {
+                    result.Add(language.Code, language);
+                }
+            }
+            else
+            {
+                var language = languageList.FirstOrDefault(l => l.Code.MatchWith(linkGeneratedParam.SelectedLanguage));
+                if (language != null)
+                {
+                    result.Add(language.Code, language);
+                }
+            }
+
+            return result;
+        }
+
+        private static IDictionary<string, LanguageLinkViewModel> GenerateLink(Dictionary<string, Language> languages, LinkGeneratingParam param)
+        {
+            var linkDics = new Dictionary<string, LanguageLinkViewModel>();
+
+            foreach (var lang in languages.Values)
+            {
+                var linkViewModel = new LanguageLinkViewModel
+                {
+                    Language = lang,
+                    Link = GenerateLink(param, lang.ShortedCode)
+                };
+
+                linkDics.Add(lang.NativeName, linkViewModel);
+            }
+
+            return linkDics;
         }
 
         private static string GenerateLink(LinkBaseParam linkParam, string shortedLanguageCode)
@@ -195,39 +268,59 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var scheme = selectedDomain.IsSsl ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
 
             var result = template.Replace("{scheme}", scheme)
-                                .Replace("{domain}", selectedDomain.DomainName)
-                                .Replace("{custid}", linkParam.AffId.ToString())
-                                .Replace("{target}", HttpUtility.UrlPathEncode(linkParam.SelectedPage))
-                                .Replace("{lang}", shortedLanguageCode)
-                                .Replace("{country}", linkParam.SelectedTargetCountry.ToLowerInvariant());
+                .Replace("{domain}", selectedDomain.DomainName)
+                .Replace("{affCode}", linkParam.AffCode.ToString())
+                .Replace("{target}", HttpUtility.UrlPathEncode(linkParam.SelectedPage))
+                .Replace("{lang}", shortedLanguageCode)
+                .Replace("{channel}", linkParam.SelectedChannel);
 
             return result;
         }
 
-        private static bool IsSelectedAllLanguages(string selectedLang)
-            => string.IsNullOrWhiteSpace(selectedLang);
-
-        private static string GetTargetLanguageName(IEnumerable<TargetLanguage> languageList, string languageCode)
+        private static IEnumerable<LandingPage> GetSubAffLandingPages()
         {
-            var languageName = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(languageCode))?.LanguageName;
-
-            if (string.IsNullOrEmpty(languageName))
+            return new List<LandingPage>
             {
-                var allLanguageName = languageList.Select(l => l.LanguageName).ToList();
-
-                return string.Join(",", allLanguageName);
-            }
-
-            return languageName;
+                new LandingPage{PageCode = "Signup", PageName="SignUp"}
+            };
         }
 
-        private string GenerateDefaultLinkByTargetCountry(IEnumerable<TargetLanguage> languageList, LinkGenerationParam linkGenerationParam)
+        private static string GenAddChannelErrMsg(int code)
         {
-            var targetCountryList = _systemService.GetSystemTargetCountries();
-            var selectedTargetCountry = targetCountryList.FirstOrDefault(t => t.TargetCountryCode.MatchWith(linkGenerationParam.SelectedTargetCountry));
-            var defaultLanguage = languageList.FirstOrDefault(l => l.LanguageCode.MatchWith(selectedTargetCountry.DefaultLanguageCode));
+            switch (code)
+            {
+                case ErrCodes.OneHundredOne:
+                    return Error.ErrInValidAff;
+                case ErrCodes.OneHundredTwo:
+                    return Error.ErrChannelExisted;
+                case ErrCodes.OneHundredThree:
+                    return Error.ErrInternalError;
+                default:
+                    return string.Empty;
+            }
+        }
 
-            return GenerateLink(linkGenerationParam, defaultLanguage?.ShortedCode ?? SystemLanguage.ShortedDefaultCode);
+        private static string GenToggleErrMsg(int code)
+        {
+            switch (code)
+            {
+                case ErrCodes.OneHundredOne:
+                    return Error.ErrInValidAff;
+                case ErrCodes.OneHundredTwo:
+                    return Error.ErrInternalError;
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private static string NormalizeName(string channelName)
+        {
+            return channelName.Replace(" ", string.Empty).ToLowerInvariant();
+        }
+
+        private IEnumerable<Domain> GetAvailableDomainsFromDate(IEnumerable<Domain> domains, bool isMember = false)
+        {
+            return isMember ? domains.Where(_ => DateTime.Compare(_.CreateDate, _appSetting.DomainAvailableFromDate) >= 0) : domains;
         }
     }
 }

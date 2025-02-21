@@ -1,4 +1,4 @@
-import * as types from './types';
+﻿import * as types from './types';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 export { toggleLoaderUserPanel };
 

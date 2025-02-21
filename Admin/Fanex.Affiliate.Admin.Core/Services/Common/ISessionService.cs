@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Common;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
@@ -9,14 +10,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         int OnUserId { get; set; }
 
-        int AffId { get; set; }
-
         string AffName { get; set; }
+
+        IList<UserPermission> UserPermissionList { get; set; }
+
+        bool HasHostPermission(string functionName);
 
         IEnumerable<ClaimsIdentity> ClaimIdentities { get; set; }
 
         ClaimsPrincipal UserClaim { get; }
-
-        string RequestIp { get; }
     }
 }

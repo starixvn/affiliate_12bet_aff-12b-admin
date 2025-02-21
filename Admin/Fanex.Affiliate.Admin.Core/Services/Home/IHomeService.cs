@@ -5,12 +5,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Home
 {
     public interface IHomeService
     {
-        EntityResult<OnlineListInfo> GetOnlineList(string languageCodes, int pageIndex, int pageSize);
+        EntityResult<OnlineListInfo> GetOnlineList(int pageIndex, int pageSize);
 
-        decimal GetPSPToday();
-
-        DepositInfo GetDepositInfo();
-
-        GeneralInfo GetGeneralInfo(string marketIds);
+        GeneralInfo GetGeneralInfo();
     }
 }

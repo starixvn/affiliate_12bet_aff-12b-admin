@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Alert, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { toggleLoaderUserPanel, getBalanceBroughtForward, handleSubmit, getAffiliateInfo } from '../actions';
-import { message, resource, regExp, userPanelMenuKey, money } from '../libs/constants';
+import { message, resource, regExp, userPanelMenuKey, money } from '../modules/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
 const regexCheckAmount = new RegExp(regExp.checkAmount);
@@ -19,7 +19,6 @@ export class Content extends PureComponent {
             balanceBf: 0,
             amount: '',
             description: '',
-            affDescription: '',
             isShowMessage: false,
             isSuccess: true,
             message: ''
@@ -44,14 +43,14 @@ export class Content extends PureComponent {
     }
 
     handleChangeAmount = (event) => {
-        const value = event.target.value;
+        const { name, value } = event.target;
         const amount = value.replace(/,/g, '');
 
         if (regexCheckAmount.test(amount)) {
-            if (regexShouldFormatAmount.test(amount) && Number(amount) !== 0 && Number(amount) > money.MinValue && Number(amount) < money.MaxValue) {
-                this.setState({ [event.target.name]: format(Number(amount)) })
+            if (regexShouldFormatAmount.test(amount) && Number(amount) !== 0 && Number(amount) >= money.AllowedMinValue && Number(amount) <= money.AllowedMaxValue) {
+                this.setState({ [name]: format(Number(amount)) })
             } else {
-                this.setState({ [event.target.name]: value });
+                this.setState({ [name]: value });
             }
         }
     }
@@ -59,7 +58,7 @@ export class Content extends PureComponent {
     _isValidAmount = (amount) => {
         const absBalanceBf = Math.abs(this.state.balanceBf);
 
-        return regexValidAmount.test(amount) && Number(amount) - absBalanceBf > money.MinValue && Number(amount) + absBalanceBf < money.MaxValue;
+        return regexValidAmount.test(amount) && Number(amount) - absBalanceBf >= money.AllowedMinValue && Number(amount) + absBalanceBf <= money.AllowedMaxValue;
     }
 
     _validateAmount = () => {
@@ -83,33 +82,17 @@ export class Content extends PureComponent {
 
         if (amountValidation.isValid) {
             const { affInfo } = this.props;
-            const { amount, description, affDescription } = this.state;
+            const { amount, description } = this.state;
             const amountNumber = Number(amount.replace(/,/g, ''));
-            const adjustmentInfo = Object.assign({}, { AffId: affInfo.AffId, Amount: amountNumber, description, affDescription });
+            const adjustmentInfo = Object.assign({}, { AffId: affInfo.AffId, Amount: amountNumber, Description: description });
             const result = await this.props.handleSubmit(adjustmentInfo);
 
-            this.setState(prev => {
-                const newState = {
-                    isShowMessage: true,
-                    isSuccess: result.IsSuccessful
-                };
-                if (result.IsSuccessful) {
-                    return {
-                        ...newState,
-                        message: message.Success,
-                        amount: '',
-                        description: '',
-                        affDescription: ''
-                    }
-                }
-
-                return {
-                    ...newState,
-                    message: result.Message,
-                    amount: prev.amount,
-                    description: prev.description,
-                    affDescription: prev.affDescription
-                }
+            this.setState({
+                isShowMessage: true,
+                isSuccess: result.IsSuccessful,
+                message: result.IsSuccessful ? message.Success : result.Message,
+                amount: result.IsSuccessful ? '' : amount,
+                description: result.IsSuccessful ? '' : description
             }, () => window.setTimeout(this.hideMessage, 3000));
 
             if (result.IsSuccessful) {
@@ -142,7 +125,7 @@ export class Content extends PureComponent {
 
     render() {
         const { affInfo } = this.props;
-        const { balanceBf, amount, description, affDescription, isShowMessage, isSuccess, message } = this.state;
+        const { balanceBf, amount, description, isShowMessage, isSuccess, message } = this.state;
         const isValidAmount = this._isValidAmount(amount.replace(/,/g, '')) || amount === '';
 
         return (
@@ -155,38 +138,26 @@ export class Content extends PureComponent {
                         <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     </Alert>
                     <FormGroup row className="mb-2">
-                        <Label sm={3}>{resource.BalanceBf}</Label>
-                        <Label sm={6}>{formatDecimalWithCurrencySymbol(balanceBf)}</Label>
+                        <Label sm={4}>{resource.BalanceBf}</Label>
+                        <Label sm={8}>{formatDecimalWithCurrencySymbol(balanceBf)}</Label>
                     </FormGroup>
-                    <FormGroup row className={isValidAmount ? "" : "has-error"}>
-                        <Label for="amount" sm={3} className="required">{resource.Amount}</Label>
-                        <Col sm={4}>
+                    <FormGroup row className={isValidAmount ? "mb-2" : "mb-2 has-error"}>
+                        <Label htmlFor="amount" sm={4} className="required">{resource.Amount}</Label>
+                        <Col sm={8}>
                             <Input type="text" name="amount" id="amount" className="text-right h-75"
                                 value={amount} onChange={this.handleChangeAmount} onKeyPress={this.handlePressEnter} />
                         </Col>
                     </FormGroup>
-                    <FormGroup row className="mb-2">
-                        <Label for="description" sm={3} className="align-self-center">{resource.Description}</Label>
-                        <Col sm={9}>
-                            <FormGroup row>
-                                <Label for="description" sm={6} className="align-self-center pb-0">{resource.VisibleAdmin}</Label>
-                                <Label for="affDescription" sm={6} className="align-self-center pb-0 pl-1">{resource.VisibleAffiliate}</Label>
-                            </FormGroup>
-                            <FormGroup row className="mb-3">
-                                <Col sm={6} className="pr-1">
-                                    <Input type="textarea" name="description" id="description" rows="6"
-                                        value={description} onChange={this.handleChange} />
-                                </Col>
-                                <Col sm={6} className="pl-1">
-                                    <Input type="textarea" name="affDescription" id="affDescription" rows="6"
-                                        value={affDescription} onChange={this.handleChange} />
-                                </Col>
-                            </FormGroup>
+                    <FormGroup row className="mb-3">
+                        <Label htmlFor="description" sm={4} className="align-self-center">{resource.Description}</Label>
+                        <Col sm={8}>
+                            <Input type="textarea" name="description" id="description" rows="6"
+                                value={description} onChange={this.handleChange} />
                         </Col>
                     </FormGroup>
                     <FormGroup row className="mb-2">
-                        <Label sm={3}></Label>
-                        <Col sm={9}>
+                        <Label sm={4}></Label>
+                        <Col sm={8}>
                             <Button type="button" color="success" disabled={!isValidAmount} onClick={this.handleSubmit}>{resource.Submit}</Button>
                         </Col>
                     </FormGroup>

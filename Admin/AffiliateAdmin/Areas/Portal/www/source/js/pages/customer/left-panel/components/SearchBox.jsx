@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 import { setAffName } from '../actions';
 import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
 import { globalResource } from '../../../../modules/globalResource';
+import { clearUserPanelMenuCookie } from '../../../../modules/utils';
 
-import { Col, Button, Form, Input, FormGroup } from 'reactstrap';
+import { Button, Form, Input, FormGroup } from 'reactstrap';
 
 export class SearchBox extends PureComponent {
     constructor(props) {
@@ -21,12 +22,21 @@ export class SearchBox extends PureComponent {
         affName && this.props.getAffiliateInfo(affName);
     }
 
+    componentDidUpdate(prevProps) {
+        const { affName } = this.props;
+
+        if (affName !== prevProps.affName) {
+            this.setState({ affName });
+        }
+    }
+
     handleChange = (event) => {
         const { name, value } = event.target;
         this.setState({ [name]: value.trim() });
     }
 
     handleClick = (event) => {
+        clearUserPanelMenuCookie();
         event.preventDefault();
         const { affName } = this.state;
 
@@ -36,6 +46,8 @@ export class SearchBox extends PureComponent {
 
     handlePressEnter = (event) => {
         if (event.charCode === 13) {
+            event.preventDefault();
+
             this.handleClick(event);
         }
     }
@@ -45,10 +57,10 @@ export class SearchBox extends PureComponent {
 
         return (
             <Form tag="div">
-                <FormGroup row>
-                    <Col sm={9}>
+                <FormGroup row style={{ justifyContent: "space-evenly" }}>
+                    <div>
                         <Input type="text" name="affName" onChange={this.handleChange} onKeyPress={this.handlePressEnter} value={affName} />
-                    </Col>
+                    </div>
                     <Button id="search-affName" onClick={this.handleClick}>{globalResource.Search}</Button>
                 </FormGroup>
                 {

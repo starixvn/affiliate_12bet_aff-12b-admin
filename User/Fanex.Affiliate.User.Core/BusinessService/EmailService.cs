@@ -1,11 +1,11 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
+﻿using System.Web;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using System.Web;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -13,16 +13,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private readonly IAppSetting _appSetting;
         private readonly IMailProcessor _mailProcessor;
-        private readonly ISystemService _languageService;
+        private readonly ISystemService _systemsService;
 
         public EmailService(
             IAppSetting appSetting,
             IMailProcessor mailProcessor,
-            ISystemService languageService)
+            ISystemService systemsService)
         {
             _appSetting = appSetting;
             _mailProcessor = mailProcessor;
-            _languageService = languageService;
+            _systemsService = systemsService;
         }
         public void SendRecoverPasswordEmail(RecoverPasswordEmailParam emailParam)
         {
@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
 
             _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectForgetPass);
-            _languageService.SetCulture(emailParam.CurrentLanguage);
+            _systemsService.SetCulture(emailParam.CurrentLanguage);
         }
 
         public void SendNewPasswordEmail(NewPasswordEmailParam emailParam)
@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
 
             _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectNewPass);
-            _languageService.SetCulture(emailParam.CurrentLanguage);
+            _systemsService.SetCulture(emailParam.CurrentLanguage);
         }
 
         public void SendPaymentEmail(PaymentEmailParam emailParam)
@@ -71,7 +71,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             var subject = Lang.PaymentSubject.Replace("{transid}", emailParam.TransId.ToString());
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject);
-            _languageService.SetCulture(emailParam.CurrentLanguage);
+            _systemsService.SetCulture(emailParam.CurrentLanguage);
         }
 
         public void SendSignUpEmail(EmailSignUpParam emailParam)
@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
 
             _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.RegisSubject);
-            _languageService.SetCulture(emailParam.CurrentLanguage);
+            _systemsService.SetCulture(emailParam.CurrentLanguage);
         }
 
         public void SendNoticeEmailToCsd(NoticeEmailParam emailParam)
@@ -119,7 +119,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
 
             _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectVerificationAccount);
-            _languageService.SetCulture(emailParam.CurrentLanguage);
+            _systemsService.SetCulture(emailParam.CurrentLanguage);
         }
 
         private string GetEmailTextContent(string templateName, string preferredLanguage, object model)
@@ -150,8 +150,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private void HandleSetCulture(string preferredLanguage)
         {
-            var userLang = _languageService.IsValid(preferredLanguage) ? preferredLanguage : SystemLanguage.DefaultLanguageCode;
-            _languageService.SetCulture(userLang);
+            var userLang = _systemsService.IsValid(preferredLanguage) ? preferredLanguage : SystemLanguage.DefaultLanguageCode;
+            _systemsService.SetCulture(userLang);
         }
 
         public string GetContactInfoContent(EmailBaseParam param)

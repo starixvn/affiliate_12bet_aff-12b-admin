@@ -14,12 +14,11 @@
       display: inline-block; }
     .custom-panel .form-inline .btn {
       margin-right: 0; }
+    @media (max-width: 576px) {
+      .custom-panel .form-inline label {
+        width: 110px; } }
 
-.form-filter .form-group label {
-  display: inline;
-  margin-right: 2px; }
-
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1048px) {
   .commission-report {
     width: 100%;
     margin-bottom: 15px;
@@ -62,8 +61,7 @@
       cursor: pointer; }
 
 .table tbody tr > td {
-  background: #fff;
-  color: #000; }
+  background: #fff; }
   .table tbody tr > td .row-wrapper {
     position: relative; }
     .table tbody tr > td .row-wrapper .chevron {

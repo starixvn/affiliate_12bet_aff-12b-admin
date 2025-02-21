@@ -1,9 +1,10 @@
-﻿using System;
-
-namespace Fanex.Affiliate.User.Core.Infrastructure
+﻿namespace Fanex.Affiliate.User.Core.Infrastructure
 {
+    using System;
+    using Utilities;
+
     public class DateTimeProvider : IDateTimeProvider
     {
-        public DateTime Now => DateTime.Now;
+        public DateTime Now => DateTimeHelper.Now;
     }
 }

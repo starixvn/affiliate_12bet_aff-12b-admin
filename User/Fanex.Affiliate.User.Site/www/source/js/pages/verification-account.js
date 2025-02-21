@@ -139,7 +139,7 @@
             var isValidForm = validator.form();
 
             if (isValidForm) {
-                var csrfToken = $('input[name="__RequestVerificationToken"]', $("#loginDialog")).val();
+                var csrfToken = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
                 var publicKey = AuthHelper.base64DecodeUnicode($("#PublicKey").val());
                 var timeStamp = AuthHelper.getUtcUnixTimeStamp();
 

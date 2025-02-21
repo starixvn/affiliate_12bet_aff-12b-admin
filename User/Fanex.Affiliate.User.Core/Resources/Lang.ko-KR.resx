@@ -313,7 +313,7 @@
     <value>취소요청</value>
   </data>
   <data name="PaymentSubject" xml:space="preserve">
-    <value>12Bet 제휴 - 결제요청 알림</value>
+    <value>12B 제휴사 - 지불 요청 접수</value>
   </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>카보베르데</value>
@@ -447,9 +447,6 @@
   </data>
   <data name="Denmark" xml:space="preserve">
     <value>덴마크</value>
-  </data>
-  <data name="Deposit" xml:space="preserve">
-    <value>입금</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>설명</value>
@@ -1043,7 +1040,7 @@
     <value>신청서</value>
   </data>
   <data name="RegisSubject" xml:space="preserve">
-    <value>12Bet 제휴 - 귀하의 신청</value>
+    <value>12B 제휴사 - 신청 접수</value>
   </data>
   <data name="RegisSuccess" xml:space="preserve">
     <value>신청를 잘 접수되었습니다.  &lt;br/&gt;
@@ -1063,7 +1060,7 @@
     <value>요청금액</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>요청금액을 입력하세요(USD)</value>
+    <value>요청금액을 입력하세요</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
     <value>출금요청</value>
@@ -1192,13 +1189,13 @@
     <value>제목</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
-    <value>12Bet 제휴 - 귀하의 로그인 디테일</value>
+    <value>12B 제휴사 - 로그인 세부 정보</value>
   </data>
   <data name="SubjectIsInvalid" xml:space="preserve">
     <value>제목이 잘못되었습니다.</value>
   </data>
   <data name="SubjectNewPass" xml:space="preserve">
-    <value>12Bet 제휴 - 귀하의 새로운 비밀번호</value>
+    <value>12B 제휴사 - 새 비밀번호</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>제출</value>
@@ -1390,16 +1387,16 @@
     <value>12BET 플레이어 계정</value>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
-    <value>고객님의 새 비밀번호입니다</value>
+    <value>새 비밀번호</value>
   </data>
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
-    <value>고객의 로그인 정보</value>
+    <value>로그인 세부 정보</value>
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
-    <value>지불요청 알림</value>
+    <value>지불 요청 접수</value>
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
-    <value>회원등록 신청서</value>
+    <value>신청 접수</value>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET 카지노 클럽</value>
@@ -1556,9 +1553,6 @@
   </data>
   <data name="BankingFee" xml:space="preserve">
     <value>은행 사용료</value>
-  </data>
-  <data name="CommRate" xml:space="preserve">
-    <value>커미션(%)</value>
   </data>
   <data name="CommShorted" xml:space="preserve">
     <value>커미션</value>
@@ -1895,13 +1889,13 @@
     <value>총 매출액</value>
   </data>
   <data name="EmailTittleVerificationAccount" xml:space="preserve">
-    <value>계정 세부 정보 확인</value>
+    <value>확인 코드</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>플레이어</value>
   </data>
   <data name="SubjectVerificationAccount" xml:space="preserve">
-    <value>12Bet 제휴 - 계정 세부 정보 확인</value>
+    <value>12B 제휴사 - 확인 코드</value>
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>신규 가입 / 입금</value>
@@ -2115,9 +2109,6 @@
   </data>
   <data name="FdmExtraComm" xml:space="preserve">
     <value>FDM 추가 커미션</value>
-  </data>
-  <data name="TotalCommission" xml:space="preserve">
-    <value>총 커미션</value>
   </data>
   <data name="Hindi" xml:space="preserve">
     <value>흰디어</value>
@@ -2337,5 +2328,194 @@
   </data>
   <data name="Aff286TestimonialContent" xml:space="preserve">
     <value>"12BET에 가입한 것은 제게 훌륭한 결정이었습니다. 제휴 프로그램은 가입이 쉬우며, 커미션 지급이 항상 일관됩니다. 아주 견고한 파트너십입니다."</value>
+  </data>
+  <data name="CurrencyLabel" xml:space="preserve">
+    <value>USD</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>입금</value>
+  </data>
+  <data name="ActivePlayers" xml:space="preserve">
+    <value>활성 플레이어 수</value>
+  </data>
+  <data name="SubAffDownline" xml:space="preserve">
+    <value>하위 제휴사 다운라인</value>
+  </data>
+  <data name="SubAffEarning" xml:space="preserve">
+    <value>하위 제휴사 수익</value>
+  </data>
+  <data name="SubAffiliate" xml:space="preserve">
+    <value>하위 제휴사</value>
+  </data>
+  <data name="GGR" xml:space="preserve">
+    <value>GGR</value>
+  </data>
+  <data name="MinRequired" xml:space="preserve">
+    <value>최소 필요 금액</value>
+  </data>
+  <data name="FdmDate" xml:space="preserve">
+    <value>FDM 날짜</value>
+  </data>
+  <data name="Rebate" xml:space="preserve">
+    <value>리베이트</value>
+  </data>
+  <data name="DepositFee" xml:space="preserve">
+    <value>입금 수수료</value>
+  </data>
+  <data name="WithdrawalFee" xml:space="preserve">
+    <value>출금 수수료</value>
+  </data>
+  <data name="ApprovalDate" xml:space="preserve">
+    <value>승인 날짜</value>
+  </data>
+  <data name="NumberOfActivePlayers" xml:space="preserve">
+    <value>활성 플레이어 수</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>제거</value>
+  </data>
+  <data name="SuspensionDate" xml:space="preserve">
+    <value>정지 날짜</value>
+  </data>
+  <data name="SuspensionSatus" xml:space="preserve">
+    <value>정지 상태</value>
+  </data>
+  <data name="TotalGGR" xml:space="preserve">
+    <value>총 GGR</value>
+  </data>
+  <data name="SubAffDetail" xml:space="preserve">
+    <value>하위 제휴사 세부 정보</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>모두 가져오기</value>
+  </data>
+  <data name="BaseCurrency" xml:space="preserve">
+    <value>기본 통화</value>
+  </data>
+  <data name="RevenueShareByTurnover" xml:space="preserve">
+    <value>매출에 따른 수익 공유 계산</value>
+  </data>
+  <data name="RevenueShareByWinloss" xml:space="preserve">
+    <value>손익에 따른 수익 공유 계산</value>
+  </data>
+  <data name="UncalculatedCommission" xml:space="preserve">
+    <value>계산되지 않은 수익 공유</value>
+  </data>
+  <data name="CurrentCommission" xml:space="preserve">
+    <value>현재 수익 공유</value>
+  </data>
+  <data name="AffiliateCurrency" xml:space="preserve">
+    <value>제휴 통화</value>
+  </data>
+  <data name="DefaultBaseCurrency" xml:space="preserve">
+    <value>기본 기준 통화</value>
+  </data>
+  <data name="DefaultBaseCurrencyDetail" xml:space="preserve">
+    <value>모든 보고서에 표시된 통화 단위</value>
+  </data>
+  <data name="EarningBy" xml:space="preserve">
+    <value>수입</value>
+  </data>
+  <data name="P2pRevenueShare" xml:space="preserve">
+    <value>P2P 수익 공유</value>
+  </data>
+  <data name="SubAffCommRate" xml:space="preserve">
+    <value>하위 제휴사 커미션 비율</value>
+  </data>
+  <data name="RoyaltyFee" xml:space="preserve">
+    <value>로열티 수수료</value>
+  </data>
+  <data name="TheHighestShare" xml:space="preserve">
+    <value>여러 그룹의 가장 높은 공유 %</value>
+  </data>
+  <data name="Winloss" xml:space="preserve">
+    <value>손익</value>
+  </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>입력한 결제 계좌가 존재하지 않습니다. 다시 확인해 주세요.</value>
+  </data>
+  <data name="UserNameSuspended" xml:space="preserve">
+    <value>입력한 결제 계좌가 일시 중지 상태입니다. 다시 확인해 주세요.</value>
+  </data>
+  <data name="UserNameClosed" xml:space="preserve">
+    <value>입력한 결제 계좌가 폐쇄 상태입니다. 다시 확인해 주세요.</value>
+  </data>
+  <data name="MarketLinkStatistics" xml:space="preserve">
+    <value>마케팅 페이지 통계</value>
+  </data>
+  <data name="PageName" xml:space="preserve">
+    <value>페이지 이름</value>
+  </data>
+  <data name="IncludeInActiveLink" xml:space="preserve">
+    <value>비활성 추적 링크 포함</value>
+  </data>
+  <data name="VerifyEmailAddressIsRequired" xml:space="preserve">
+    <value>이메일 주소 확인이 필요합니다</value>
+  </data>
+  <data name="SubAffiliateLink" xml:space="preserve">
+    <value>하위 제휴사 링크</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>새로 추가...</value>
+  </data>
+  <data name="AffiliateLinkType" xml:space="preserve">
+    <value>링크 유형</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>채널</value>
+  </data>
+  <data name="TrackingAndQrCode" xml:space="preserve">
+    <value>트래킹 링크 및 QR 코드</value>
+  </data>
+  <data name="MarketingPage" xml:space="preserve">
+    <value>마케팅 페이지</value>
+  </data>
+  <data name="EnterChannel" xml:space="preserve">
+    <value>채널 이름을 입력하세요:</value>
+  </data>
+  <data name="AddChannelSuccess" xml:space="preserve">
+    <value>채널 추가 성공</value>
+  </data>
+  <data name="ConfirmActiveLink" xml:space="preserve">
+    <value>이 작업에 대해 확신하십니까? 이 작업을 확인하면 이 트래킹 링크가 활성화됩니다.</value>
+  </data>
+  <data name="ConfirmDeactiveLink" xml:space="preserve">
+    <value>이 작업에 대해 확신하십니까? 이 작업을 확인하면 이 트래킹 링크가 비활성화됩니다.</value>
+  </data>
+  <data name="NumberOfLink" xml:space="preserve">
+    <value>링크 수</value>
+  </data>
+  <data name="CopyQRCode" xml:space="preserve">
+    <value>QR 코드 복사</value>
+  </data>
+  <data name="SaveQRCode" xml:space="preserve">
+    <value>QR 코드 저장</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>카테고리</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>하위 카테고리</value>
+  </data>
+  <data name="SearchAndGenQR" xml:space="preserve">
+    <value>검색 및 생성</value>
+  </data>
+  <data name="MediaGallery" xml:space="preserve">
+    <value>미디어 갤러리</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>오류</value>
+  </data>
+  <data name="InvalidLink" xml:space="preserve">
+    <value>입력하신 링크가 유효하지 않습니다.&lt;br /&gt;고객 센터 또는</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>여기를 클릭하십시오.</value>
+  </data>
+  <data name="RedirectOldLink" xml:space="preserve">
+    <value>&lt;a href="{0}"&gt;여기&lt;/a&gt;를 클릭하여 이전 제휴 사이트에 접속하세요.</value>
+  </data>
+  <data name="PreviousSystemBalanceDescription" xml:space="preserve">
+    <value>이전 시스템에서 이월된 계정 잔액.</value>
   </data>
 </root>

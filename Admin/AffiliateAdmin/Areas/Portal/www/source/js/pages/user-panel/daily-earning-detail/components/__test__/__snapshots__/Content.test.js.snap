@@ -14,7 +14,7 @@ exports[`daily earning detail - components - Content render correctly 1`] = `
           <t
             asc={true}
             className="text-center"
-            colSpan="NaN"
+            colSpan="8"
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -47,9 +47,9 @@ exports[`daily earning detail - components - Content render correctly 1`] = `
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="12BET User Name"
+          title="User Name"
         >
-          12BET User Name
+          User Name
         </t>
         <t
           asc={true}
@@ -58,9 +58,9 @@ exports[`daily earning detail - components - Content render correctly 1`] = `
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="IBC User Name"
+          title="System Name"
         >
-          IBC User Name
+          System Name
         </t>
         <t
           asc={true}
@@ -69,9 +69,20 @@ exports[`daily earning detail - components - Content render correctly 1`] = `
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="Winlost"
+          title="Turnover"
         >
-          Winlost
+          Turnover
+        </t>
+        <t
+          asc={true}
+          colWidth={100}
+          header={true}
+          onClick={[Function]}
+          sortable={false}
+          sorting={false}
+          title="GGR"
+        >
+          GGR
         </t>
         <t
           asc={true}
@@ -113,9 +124,9 @@ exports[`daily earning detail - components - Content render correctly 1`] = `
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="Banking Fee"
+          title="Rebate"
         >
-          Banking Fee
+          Rebate
         </t>
       </t>
     }
@@ -156,14 +167,14 @@ exports[`daily earning detail - components - Content render correctly with have 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="12bet$cicutadino"
+            title="12BET$cicutadino"
           >
-            12bet$cicutadino
+            12BET$cicutadino
           </t>
           <t
             asc={true}
             className="text-center"
-            colSpan={false}
+            colSpan={1}
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -171,6 +182,17 @@ exports[`daily earning detail - components - Content render correctly with have 
             title="12BETEURO02237"
           >
             12BETEURO02237
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -223,9 +245,9 @@ exports[`daily earning detail - components - Content render correctly with have 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="0.00"
+            title=""
           >
-            0.00
+            
           </t>
         </t>,
         <t>
@@ -247,14 +269,14 @@ exports[`daily earning detail - components - Content render correctly with have 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="12bet$Munir12"
+            title="12BET$Munir12"
           >
-            12bet$Munir12
+            12BET$Munir12
           </t>
           <t
             asc={true}
             className="text-center"
-            colSpan={false}
+            colSpan={1}
             header={false}
             onClick={[Function]}
             sortable={false}
@@ -262,6 +284,17 @@ exports[`daily earning detail - components - Content render correctly with have 
             title="12BETGBP02004"
           >
             12BETGBP02004
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -314,9 +347,9 @@ exports[`daily earning detail - components - Content render correctly with have 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="0.00"
+            title=""
           >
-            0.00
+            
           </t>
         </t>,
       ]
@@ -337,6 +370,17 @@ exports[`daily earning detail - components - Content render correctly with have 
             title="Total"
           >
             Total
+          </t>
+          <t
+            asc={true}
+            className="text-right"
+            header={false}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title=""
+          >
+            
           </t>
           <t
             asc={true}
@@ -389,9 +433,9 @@ exports[`daily earning detail - components - Content render correctly with have 
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="0.00"
+            title=""
           >
-            0.00
+            
           </t>
         </t>,
       ]
@@ -415,9 +459,9 @@ exports[`daily earning detail - components - Content render correctly with have 
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="12BET User Name"
+          title="User Name"
         >
-          12BET User Name
+          User Name
         </t>
         <t
           asc={true}
@@ -426,9 +470,9 @@ exports[`daily earning detail - components - Content render correctly with have 
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="IBC User Name"
+          title="System Name"
         >
-          IBC User Name
+          System Name
         </t>
         <t
           asc={true}
@@ -437,9 +481,20 @@ exports[`daily earning detail - components - Content render correctly with have 
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="Winlost"
+          title="Turnover"
         >
-          Winlost
+          Turnover
+        </t>
+        <t
+          asc={true}
+          colWidth={100}
+          header={true}
+          onClick={[Function]}
+          sortable={false}
+          sorting={false}
+          title="GGR"
+        >
+          GGR
         </t>
         <t
           asc={true}
@@ -481,9 +536,9 @@ exports[`daily earning detail - components - Content render correctly with have 
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="Banking Fee"
+          title="Rebate"
         >
-          Banking Fee
+          Rebate
         </t>
       </t>
     }

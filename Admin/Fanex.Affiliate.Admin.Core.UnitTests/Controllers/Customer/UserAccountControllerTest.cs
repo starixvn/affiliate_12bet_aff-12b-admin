@@ -1,16 +1,16 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
+﻿using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
+using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
 using Moq;
 using System.Collections.Generic;
-using System.Security.Claims;
-using System.Security.Principal;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -37,7 +37,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             // Assert
             Assert.Equal(affId, item.AffId);
             Assert.Equal(affId, passedParam);
-            Assert.True(item.HasWebSite);
         }
 
         [Fact]
@@ -49,21 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var passedParam = 0;
             var userAccountService = new Mock<IUserAccountService>();
             userAccountService.Setup(s => s.GetUserAccountInfo(affId)).Returns(userAccount).Callback<int>(p => passedParam = p);
-
-            var request = MockingHelper.GetHttpRequest();
-            var server = new Mock<HttpServerUtilityBase>();
-            server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => s);
-            server.Setup(s => s.HtmlDecode(It.IsAny<string>())).Returns<string>(s => s);
-            var mockUser = new Mock<IPrincipal>();
-            mockUser.Setup(m => m.Identity.IsAuthenticated).Returns(true);
-
             var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
-            controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
-                ctx.HttpContext.Request == request &&
-                ctx.HttpContext.Server == server.Object &&
-                ctx.HttpContext.Session.SessionID == "SessionId" &&
-                ctx.HttpContext.User == new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity(new List<Claim> { new Claim(Function.SecurityQA, "Write") }) })
-            );
 
             // Action
             var result = controller.GetUserAccountInfo(affId) as JsonNetResult;
@@ -101,17 +86,19 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void UpdateUserAccount_WhenCallWithValidParam_ExcuteSuccessfully()
+        public async Task UpdateUserAccount_WhenCallWithValidParam_ExcuteSuccessfully()
         {
             // Arrange
             var param = GetUserAccountParam();
             UserAccountParam passedParam = null;
             var userAccountService = new Mock<IUserAccountService>();
-            userAccountService.Setup(s => s.UpdateUserAccount(It.IsAny<UserAccountParam>())).Returns(new ResultInfo()).Callback<UserAccountParam>(p => passedParam = p);
+            userAccountService.Setup(s => s.UpdateUserAccountAsync(It.IsAny<UserAccountParam>()))
+                .Returns(Task.FromResult(new ResultInfo()))
+                .Callback<UserAccountParam>(p => passedParam = p);
             var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
 
             // Action
-            var result = controller.UpdateUserAccount(param) as JsonNetResult;
+            var result = await controller.UpdateUserAccount(param) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert
@@ -120,36 +107,75 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public void UpdateUserAccount_WhenCallWithValidParam_ReturnErrorWhenContactAppListIsNull()
+        public async Task UpdateUserAccount_WhenCallWithValidParam_ExcuteSuccessfullyWithContactAppListIsNull()
         {
             // Arrange
             var param = GetUserAccountParam();
             param.ContactAppList = null;
-            var controller = CreateUserAccountController();
+            UserAccountParam passedParam = null;
+            var userAccountService = new Mock<IUserAccountService>();
+            userAccountService.Setup(s => s.UpdateUserAccountAsync(It.IsAny<UserAccountParam>()))
+                .Returns(Task.FromResult(new ResultInfo()))
+                .Callback<UserAccountParam>(p => passedParam = p);
+            var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
 
             // Action
-            var result = controller.UpdateUserAccount(param) as JsonNetResult;
+            var result = await controller.UpdateUserAccount(param) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert
-            Assert.False(data.IsSuccessful);
-            Assert.Equal("At least one IM account is required!", data.Message);
+            Assert.True(data.IsSuccessful);
+            Assert.Equal(param.AffId, passedParam.AffId);
         }
 
         [Fact]
-        public void UpdateUserAccount_WhenCallWithInvalidParam_ReturnError()
+        public async Task UpdateUserAccount_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
             var controller = CreateUserAccountController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.UpdateUserAccount(new UserAccountParam()) as JsonNetResult;
+            var result = await controller.UpdateUserAccount(new UserAccountParam()) as JsonNetResult;
             var data = result.Data as ResultInfo;
 
             // Assert
             Assert.False(data.IsSuccessful);
             Assert.Equal("", data.Message);
+        }
+
+        [Fact]
+        public void GetPaymentMethod_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var userAccountService = new Mock<IUserAccountService>();
+            userAccountService.Setup(t => t.GetPaymentMethod()).Returns((new List<PaymentMethodInfo> { new PaymentMethodInfo { PaymentId = "123", PaymentName = "abc" } }, 100m));
+            var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
+
+            // Action
+            var result = controller.GetPaymentMethod() as JsonNetResult;
+            var entityResult = result.Data as PaymentMethodViewModel;
+
+            // Assert
+            Assert.Single(entityResult.PaymentMethods);
+            Assert.Equal(100m, entityResult.MinAmount);
+        }
+
+        [Fact]
+        public void GetPaymentMethod_WhenCall_ReturnEmptyData()
+        {
+            // Arrange
+            var userAccountService = new Mock<IUserAccountService>();
+            userAccountService.Setup(t => t.GetPaymentMethod()).Returns((new List<PaymentMethodInfo>(), 0m));
+            var controller = CreateUserAccountController(userAccountService: userAccountService.Object);
+
+            // Action
+            var result = controller.GetPaymentMethod() as JsonNetResult;
+            var entityResult = result.Data as PaymentMethodViewModel;
+
+            // Assert
+            Assert.Empty(entityResult.PaymentMethods);
+            Assert.Equal(0m, entityResult.MinAmount);
         }
 
         private UserAccountController CreateUserAccountController(
@@ -170,8 +196,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
                 ctx.HttpContext.Request == request &&
                 ctx.HttpContext.Server == server.Object &&
-                ctx.HttpContext.Session.SessionID == "SessionId" &&
-                ctx.HttpContext.User == new ClaimsPrincipal(new List<ClaimsIdentity> { new ClaimsIdentity() })
+                ctx.HttpContext.Session.SessionID == "SessionId"
             );
 
             return controller;
@@ -195,7 +220,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
                 Postcode = "700000",
                 Country = "Viet Nam",
                 MoreSiteUrls = "www.sportsbookie.com",
-                SiteUrl = "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+                SiteUrl = "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
                 PreferredPayment = "Player",
                 PlayerUsername = "bettingexp",
                 NoSiteDescription = "test",
@@ -229,7 +254,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
                 Postcode = "700000",
                 Country = "Viet Nam",
                 MoreSiteUrls = "www.sportsbookie.com",
-                SiteUrl = "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+                SiteUrl = "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
                 PreferredPayment = "Player",
                 PlayerUsername = "bettingexp",
                 NoSiteDescription = "test",

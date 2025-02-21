@@ -1,33 +1,63 @@
-﻿import React from 'react';
-import Content from '../../Content';
-import { shallow } from 'enzyme';
-import configureMockStore from 'redux-mock-store';
-import { SET_PARAM } from '../../../actions/types';
-
-const mockStore = configureMockStore();
+﻿jest.mock('redux');
+jest.mock('react-redux');
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../../actions/index';
 
 describe('member list - Content - connect', () => {
-    let wrapper;
-    let store;
+    let mapStateToProps, mapDispatchToProps;
+    const connectMock = jest.fn();
 
-    beforeEach(() => {
-        const initialState = {
-            claimsPrincipal: { hasWriteClaim: jest.fn(() => false), hasClaim: jest.fn(() => false) },
-            param: {}
+    beforeAll(() => {
+        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
+            mapStateToProps = mapStateToPropsFunc;
+            mapDispatchToProps = mapDispatchToPropsFunc;
+            return connectMock;
+        });
+        require('../../Content').default;
+    });
+
+    it('props should be mapped correctly', () => {
+        const expectedResult = {
+            param: { AffName: '12BETAFF226' },
+            shouldResetScrollPosition: true,
+            pagingOption: { PageSize: 1, PageIndex: 20 },
+            gridData: []
         };
-        store = mockStore(initialState);
-        wrapper = shallow(<Content store={store} />).dive();
-    });
+        const state = {
+            param: { AffName: '12BETAFF226' },
+            shouldResetScrollPosition: true,
+            pagingOption: { PageSize: 1, PageIndex: 20 },
+            gridData: [],
+            anotherProp: "Not included"
+        };
 
-    it('should show correct value', () => {
-        expect(wrapper.props().isModifiable).toBeFalsy();
-        expect(wrapper.props().isModifiable).toBeFalsy();
-    });
+        const result = mapStateToProps(state);
 
-    it('should call correct action', () => {
-        wrapper.props().setParam({});
+        expect(result).toEqual(expectedResult);
+    })
 
-        const actions = store.getActions();
-        expect(actions).toEqual([{ type: SET_PARAM, data: {} }]);
-    });
+    it('bindActionCreators should be called with correct parameter', () => {
+        const mockBindAction = jest.fn();
+        bindActionCreators.mockImplementationOnce(mockBindAction);
+        const expectedActionCreator = {
+            fetchData: actions['fetchData'],
+            setPagingOption: actions['setPagingOption'],
+            toggleLoader: actions['toggleLoader'],
+            setSelectedMemberId: actions['setSelectedMemberId'],
+            setShouldResetScrollPosition: actions['setShouldResetScrollPosition'],
+            setParam: actions['setParam']
+        }
+
+        const dispatch = {};
+        mapDispatchToProps(dispatch);
+
+        expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
+    })
+
+    it('returned function of connect should be called with correct parameter', () => {
+        const Content = require('../../Content').Content;
+
+        expect(connectMock).toHaveBeenCalledWith(Content);
+    })
 })

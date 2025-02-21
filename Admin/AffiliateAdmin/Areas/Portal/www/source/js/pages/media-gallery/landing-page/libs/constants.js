@@ -3,17 +3,14 @@
 export { globalResource };
 
 export const headerText = {
-    Index: globalResource.Index,
-    ExcludedTargetCountry: 'Excluded Target Country',
+    Index: '#',
     LandingPageName: 'Landing Page Name (Shown in dropdown)',
     LandingPageCode: 'Landing Page Code (Contained in links)'
 }
 
 export const defaultState = {
-    usingTargetCountries: [],
-    isExcludedAllTargetCountries: false,
-    selectedLandingPage: { pageName: '', pageCode: '', excludedTargetCountries: '' },
-    targetCountryList: null,
+    pageName: '',
+    pageCode: '',
     isClickedSubmit: false,
     isInsert: true,
     isShowMessage: false,
@@ -21,7 +18,7 @@ export const defaultState = {
     message: ''
 }
 
-export const restrictedCharactersPattern = /[;\?:@=&"<>#%{}\|\\^~\[\]`\s+]/;
+export const restrictedCharactersPattern = /[;\/\?:@=&"<>#%{}\|\\^~\[\]`\s+]/;
 export const maxLength = 50;
 
 export const messages = {

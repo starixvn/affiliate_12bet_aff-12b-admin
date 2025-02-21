@@ -1,23 +1,22 @@
-﻿import React from 'react';
-import AppContainer from '../../AppContainer';
-import { shallow } from 'enzyme';
-import configureMockStore from 'redux-mock-store';
+﻿import React from 'react'
+import AppContainer from '../../AppContainer'
+import { shallow } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
 
-const mockStore = configureMockStore();
+const mockStore = configureMockStore()
 
-describe('member list - components - AppContainer - connect', () => {
-    let wrapper;
-    let store;
+describe('member list - AppContainer - connect', () => {
+    let wrapper, store
 
     beforeEach(() => {
         const initialState = {
             isShowLoader: true
-        };
-        store = mockStore(initialState);
-        wrapper = shallow(<AppContainer store={store} />).dive();
-    });
+        }
+        store = mockStore(initialState)
+        wrapper = shallow(<AppContainer store={store} />).dive()
+    })
 
     it('should show correct value', () => {
-        expect(wrapper.props().isShowLoader).toBeTruthy();
-    });
+        expect(wrapper.props().isShowLoader).toBeTruthy()
+    })
 })

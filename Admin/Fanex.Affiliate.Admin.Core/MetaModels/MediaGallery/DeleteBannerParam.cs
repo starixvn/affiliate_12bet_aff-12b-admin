@@ -6,5 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
     {
         [Required(ErrorMessage = "Please select banners to delete")]
         public string BannerIdList { get; set; }
+
+        public byte UserType { get; set; }
     }
 }

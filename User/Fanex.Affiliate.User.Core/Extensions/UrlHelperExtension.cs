@@ -18,11 +18,6 @@ namespace Fanex.Affiliate.User.Core.Extensions
             return link + "?v=" + appSetting.JsVersion;
         }
 
-        public static string RenderLinkByJsVersion(this UrlHelper urlHelper, string bundleVirtualPath)
-        {
-            return urlHelper.Content(bundleVirtualPath) + "?v=" + appSetting.JsVersion;
-        }
-
         public static string RenderLanguageContent(this UrlHelper urlHelper, string bundleVirtualPath)
         {
             var favoriteShortedLanguage = systemService.GetFavoriteShortedLanguage();

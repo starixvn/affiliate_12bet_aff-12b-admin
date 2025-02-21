@@ -1,4 +1,4 @@
-﻿import React, { PureComponent } from 'react';
+﻿import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,56 +10,34 @@ import InsertUpdateForm from './InsertUpdateForm';
 
 import { messages } from '../libs/constants';
 import { fetchData, toggleLoader, setSelectedLandingPageId, setCheckedLandingPages, deleteLandingPages, setShouldResetScrollPosition } from '../actions';
-import { claimResource } from '../../../../modules/claim';
 
-export class AppContainer extends PureComponent {
-    constructor(props) {
-        super(props)
-    }
-
-    componentDidMount() {
-        const { gridData } = this.props;
-
-        !gridData && this.handleFetchData();
-    }
-
-    handleFetchData = async () => {
-        await this.props.fetchData();
-    }
-
-    render() {
-        const { isShowLoader, isModifiable, gridData, checkedLandingPages } = this.props;
-
-        return (
-            <AppLayout>
-                <Loader show={isShowLoader} />
-                { isModifiable &&
-                    <ControlButtons
-                        messages={messages}
-                        gridData={gridData}
-                        fetchData={this.props.fetchData}
-                        checkedItems={checkedLandingPages}
-                        setCheckedItems={this.props.setCheckedLandingPages}
-                        toggleLoader={this.props.toggleLoader}
-                        setShouldResetScrollPosition={this.props.setShouldResetScrollPosition}
-                        setSelectedItemId={this.props.setSelectedLandingPageId}
-                        deleteItems={this.props.deleteLandingPages}
-                    />
-                }
-                <Content />
-                <InsertUpdateForm />
-            </AppLayout>
-        );
-    }
+export const AppContainer = (props) => {
+    return (
+        <AppLayout>
+            <Loader show={props.isShowLoader} />
+            <ControlButtons
+                messages={messages}
+                gridData={props.gridData}
+                fetchData={props.fetchData}
+                checkedItems={props.checkedLandingPages}
+                setCheckedItems={props.setCheckedLandingPages}
+                toggleLoader={props.toggleLoader}
+                setShouldResetScrollPosition={props.setShouldResetScrollPosition}
+                setSelectedItemId={props.setSelectedLandingPageId}
+                deleteItems={props.deleteLandingPages}
+            />
+            <Content />
+            <InsertUpdateForm />
+        </AppLayout>
+    );
 }
 
-function mapStateToProps({ isShowLoader, gridData, checkedLandingPages, claimsPrincipal }) {
-    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.MediaGalleryMenu);
-    return Object.assign({}, { isShowLoader, gridData, checkedLandingPages, isModifiable });
+function mapStateToProps({ isShowLoader, gridData, checkedLandingPages }) {
+    return Object.assign({}, { isShowLoader, gridData, checkedLandingPages });
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ fetchData, toggleLoader, setSelectedLandingPageId, setCheckedLandingPages, deleteLandingPages, setShouldResetScrollPosition }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

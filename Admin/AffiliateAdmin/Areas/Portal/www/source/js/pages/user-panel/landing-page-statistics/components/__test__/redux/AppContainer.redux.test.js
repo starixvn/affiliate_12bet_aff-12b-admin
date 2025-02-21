@@ -19,6 +19,6 @@ describe('landing page statistics - AppContainer - connect', () => {
         wrapper.props().setSelectedUserPanel('abc')
 
         const actions = store.getActions();
-        expect(actions).toEqual([{ type: SET_SELECTED_USERPANEL, data: 'abc' }])
+        expect(actions).toEqual([{ type: SET_SELECTED_USERPANEL, data: 'abc'}])
     })
 })

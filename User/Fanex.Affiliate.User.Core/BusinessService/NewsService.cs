@@ -1,21 +1,25 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.UserPanel;
-using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using System.Collections.Generic;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class NewsService : INewsService
+    using System;
+    using System.Collections.Generic;
+    using Constants;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using DTO.UserPanel;
+    using MetalModels.UserPanel;
+    using Utilities;
+
+    public class NewsService : BaseDynamicService, INewsService
     {
-        private readonly INewsRepository _hotNewsRepository;
         private readonly IMemoryCacheService _cacheService;
 
-        public NewsService(INewsRepository hotNewsRepository, IMemoryCacheService cacheService)
+        private const string MessagePrefix = "message_";
+        private const string ImportantPropName = "important";
+
+        public NewsService(IDynamicRepository dynamicRepository, IMemoryCacheService cacheService) : base(dynamicRepository)
         {
-            _hotNewsRepository = hotNewsRepository;
             _cacheService = cacheService;
         }
 
@@ -25,8 +29,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             if (hotNews == null)
             {
-                hotNews = _hotNewsRepository.GetLastestHotNews(isInternal);
-                _cacheService.Set(CacheKey.LatestHotNews, hotNews);
+                var result = GetTData<dynamic>(new GetLastestHotNewsCriteria(isInternal));
+
+                hotNews = GetMessageData(result);
+
+                if (hotNews != null)
+                {
+                    _cacheService.Set(CacheKey.LatestHotNews, hotNews);
+                }
             }
 
             return hotNews ?? new LatestHotNews { HotNewsList = new Dictionary<string, string>() };
@@ -34,7 +44,35 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<MessageHistory> GetMessageList(MessageHistoryParam param)
         {
-            return _hotNewsRepository.GetMessageList(param);
+            return FetchTDataWithPaging<MessageHistory>(param.MapTo<MessageHistoryParam, GetMessageListCriteria>(), param);
         }
+
+        private static LatestHotNews GetMessageData(dynamic obj)
+        {
+            if (obj is null)
+            {
+                return null;
+            }
+
+            var result = new LatestHotNews();
+
+            var languagePropertyMapping = new Dictionary<string, string>
+            {
+                ["en-US"] = Convert.ToString(obj[$"{MessagePrefix}en"]),
+                ["bn-BD"] = Convert.ToString(obj["Message_Bn"]),
+                ["th-TH"] = Convert.ToString(obj[$"{MessagePrefix}th"]),
+                ["vi-VN"] = Convert.ToString(obj[$"{MessagePrefix}vi"]),
+                ["id-ID"] = Convert.ToString(obj[$"{MessagePrefix}id"]),
+                ["km-KH"] = Convert.ToString(obj["Message_Kh"]),
+                ["zh-CN"] = Convert.ToString(obj[$"{MessagePrefix}cn"]),
+                ["hi-IN"] = Convert.ToString(obj[$"{MessagePrefix}hi"])
+            };
+
+            result.HotNewsList = languagePropertyMapping;
+            result.IsImportant = Convert.ToBoolean(obj[ImportantPropName]);
+
+            return result;
+        }
+
     }
 }

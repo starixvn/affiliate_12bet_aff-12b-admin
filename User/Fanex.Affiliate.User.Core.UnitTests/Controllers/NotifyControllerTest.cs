@@ -15,8 +15,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
         public NotifyControllerTest()
         {
-            SessionService = NSubtituteMockingHelper.FakeSessionService();
-            LanguageService = NSubtituteMockingHelper.FakeLanguageService();
+            SessionService = NSubstituteMockingHelper.FakeSessionService();
+            LanguageService = NSubstituteMockingHelper.FakeLanguageService();
         }
 
         [Fact]

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerTitle, maxWidth, globalResource } from '../libs/constants';
+import { headerTitle, maxWidth, globalResource } from '../modules/constants';
 import { toggleLoaderUserPanel, setPagingOption, fetchDetailData } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
@@ -17,10 +17,10 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { pagingOption, selectedPageDetailFilter } = this.props;
+        const { pagingOption, selectedPage } = this.props;
 
-        if (selectedPageDetailFilter && selectedPageDetailFilter !== prevProps.selectedPageDetailFilter) {
-            const param = Object.assign({}, this.props.param, { pageIndex: 1, pageSize: pagingOption.PageSize, ...selectedPageDetailFilter });
+        if (selectedPage !== prevProps.selectedPage) {
+            const param = Object.assign({}, this.props.param, { pageIndex: 1, pageSize: pagingOption.PageSize, ...selectedPage });
 
             this.fetchData(param);
         }
@@ -60,7 +60,7 @@ export class Detail extends Component {
         }
         else {
             dataRows.push(
-                <Row>
+                <Row key="no-info">
                     <Cell className="text-center" colSpan="5">{globalResource.NoInfo}</Cell>
                 </Row>
             );
@@ -82,14 +82,14 @@ export class Detail extends Component {
     }
 
     handlePaging = (pageIndex, pageSize) => {
-        const newParam = Object.assign({}, this.props.param, { ...this.props.selectedPageDetailFilter, pageIndex, pageSize });
+        const newParam = Object.assign({}, this.props.param, { ...this.props.selectedPage, pageIndex, pageSize });
         this.fetchData(newParam);
     }
 
     render() {
         const { gridData } = this.state;
 
-        return this.props.selectedPageDetailFilter && gridData && (
+        return this.props.selectedPage && gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     maxWidth={maxWidth}
@@ -109,8 +109,8 @@ export class Detail extends Component {
 
 
 function mapStateToProps({ landingPageStatistics }) {
-    const { pagingOption, param, selectedPageDetailFilter } = landingPageStatistics;
-    return Object.assign({}, { pagingOption, param, selectedPageDetailFilter });
+    const { pagingOption, param, selectedPage } = landingPageStatistics;
+    return Object.assign({}, { pagingOption, param, selectedPage });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -16,36 +16,37 @@ export const countDownList = {
     3600: '60 mins'
 }
 
+export const roleList = {
+    Admin: 'Administrator',
+    Aff: 'Affiliate'
+}
+
 export const SixtySeconds = 60;
 export const TenSeconds = 10;
 
 export const defaultGeneralInfo = {
-        AllAffiliateMonthNumber: 0,
-        AllAffiliateNumber: 0,
-        AllBonusMonthNumber: 0,
-        AllBonusNumber: 0,
-        AllDepositMonthNumber: 0,
-        AllDepositNumber: 0,
-        AllMemberDepositMonthNumber: 0,
-        AllMemberDepositNumber: 0,
-        AllNetWinlostMonthNumber: 0,
-        AllNetWinlostNumber: 0,
-        AllPSPFeeMonthNumber: 0,
-        AllPSPFeeNumber: 0,
-        AllWinlostMonthNumber: 0,
-        AllWinlostNumber: 0,
-        ApprovedAffiliateMonthNumber: 0,
-        ApprovedAffiliateNumber: 0,
-        BannerNumber: 0,
-        ClosedAffiliateMonthNumber: 0,
-        ClosedAffiliateNumber: 0,
-        DisapprovedAffiliateMonthNumber: 0,
-        DisapprovedAffiliateNumber: 0,
-        PaymentRequestNumber: 0,
-        PendingAffiliateMonthNumber: 0,
-        PendingAffiliateNumber: 0
+    AffInProMonthNum: 0,
+    AffInProAllNum: 0,
+    BonusMonth: 0,
+    BonusAll: 0,
+    DepositMonth: 0,
+    DepositAll: 0,
+    DepositMemMonthNum: 0,
+    DepositMemAllNum: 0,
+    NetWinlostMonth: 0,
+    NetWinlostAll: 0,
+    PSPFeeMonth: 0,
+    PSPFeeAll: 0,
+    GgrMonth: 0,
+    GgrAll: 0,
+    ApprovedMonthNum: 0,
+    ApprovedAllNum: 0,
+    BannerNum: 0,
+    DisapprovedMonthNum: 0,
+    DisapprovedAllNum: 0,
+    PlayerBannerNum: 0,
+    AffiliateBannerNum: 0,
+    PaymentReqNum: 0,
+    PendingMonthNum: 0,
+    PendingAllNum: 0
 }
-export const defaultDepositInfo = {
-    AllMemberDepositThisMonth: 0,
-    AllMemberDepositUpToNow: 0
-};

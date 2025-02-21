@@ -1,19 +1,17 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
     using DTO;
     using Enum;
-    using Fanex.Affiliate.User.Core.Extensions;
-    using Fanex.Affiliate.User.Core.MetalModels;
-    using Fanex.Affiliate.User.Core.Resources;
     using Filters;
     using MetalModels.Email;
     using ONEbook.UM.AspNetMVC.Filters;
-    using System;
-    using System.Collections.Generic;
-    using System.Web.Mvc;
+    using Resources;
     using Utilities;
     using ViewModels;
 
@@ -169,17 +167,10 @@
             var rootUrl = SiteDomainHelper.GetRootUrl(this, _appSetting);
             var content = string.Empty;
 
-            if (criteria.Function.MatchWith(TemplateString.ContactUs))
-            {
-                content = GetEmailTextContent(criteria.Function, criteria.Language, GetContactUsModel(rootUrl));
-            }
-            else
-            {
-                var model = GetModelByFunction(criteria.Function, rootUrl, criteria.Language, isText) as EmailBaseParam;
-                model.ContactInfo = EmailHelper.GetContactInfoContent(model, GetEmailTextContent, _appSetting.EmailBackgroundUrl);
+            var model = GetModelByFunction(criteria.Function, rootUrl, criteria.Language, isText) as EmailBaseParam;
+            model.ContactInfo = EmailHelper.GetContactInfoContent(model, GetEmailTextContent, _appSetting.EmailBackgroundUrl);
 
-                content = GetEmailTextContent(criteria.Function, criteria.Language, model);
-            }
+            content = GetEmailTextContent(criteria.Function, criteria.Language, model);
 
             return isText ? content : GetEmailHtmlContent(content, criteria.Language, criteria.Title, rootUrl);
         }
@@ -240,17 +231,6 @@
             }
         }
 
-        private object GetContactUsModel(string rootUrl)
-        {
-            return new ContactUsParam
-            {
-                Sender = "Sender",
-                Affiliate = _userName,
-                Email = "abc@12b.com",
-                Content = rootUrl,
-            };
-        }
-
         private object GetCSDModel(string rootUrl)
         {
             return new NoticeEmailParam
@@ -287,7 +267,7 @@
                 User = GetUserInfo(language, isText),
                 MailContact = _mailContact,
                 TransId = TranId,
-                RequestDate = DateTime.Now.Date,
+                RequestDate = DateTimeHelper.Today,
                 Amount = Amount,
                 RootDomain = rootUrl,
                 MailTo = _mailContact,

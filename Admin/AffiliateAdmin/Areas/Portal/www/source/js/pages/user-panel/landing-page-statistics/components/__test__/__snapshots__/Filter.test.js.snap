@@ -9,95 +9,12 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
     tag="div"
   >
     <FormGroup
-      className="mr-sm-3 my-2"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        Report By
-      </Label>
-      <Input
-        name="groupBy"
-        onChange={[Function]}
-        type="select"
-        value="Country"
-      >
-        <option
-          key="groupBy-Country"
-          value="Country"
-        >
-          Country
-        </option>
-        <option
-          key="groupBy-Language"
-          value="Language"
-        >
-          Language
-        </option>
-      </Input>
-    </FormGroup>
-    <FormGroup
-      className="my-2 mr-sm-2"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        Country
-      </Label>
-      <div
-        className="multiple-select-wrapper is-invalid"
-      >
-        <MultipleSelect
-          dataSource={
-            Array [
-              Object {
-                "Checked": true,
-                "CountryCode": "en",
-                "CountryName": "England",
-              },
-            ]
-          }
-          hasAllOption={true}
-          isDisableOption={false}
-          itemDefaultOption={null}
-          keyField="CountryCode"
-          maxDisplayItemCount={1}
-          noneSelectedLabel="Please Select"
-          onChange={[Function]}
-          statusField="Checked"
-          valueField="CountryName"
-        />
-      </div>
-    </FormGroup>
-    <FormGroup
       className="mr-sm-2 my-2"
       tag="div"
     >
       <Label
         className="mr-sm-2"
-        for="selectedPage"
+        htmlFor="selectedPage"
         tag="label"
         widths={
           Array [
@@ -149,6 +66,106 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
     >
       <Label
         className="mr-sm-2"
+        htmlFor="languageCode"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Language
+      </Label>
+      <Input
+        id="languageCode"
+        name="languageCode"
+        onChange={[Function]}
+        type="select"
+        value=""
+      >
+        <option
+          value=""
+        >
+          All
+        </option>
+        <option
+          key="language-ch"
+          value="ch"
+        >
+          Chinese Traditional
+        </option>
+        <option
+          key="language-cs"
+          value="cs"
+        >
+          Chinese Simplified
+        </option>
+        <option
+          key="language-en"
+          value="en"
+        >
+          English
+        </option>
+        <option
+          key="language-eneuro"
+          value="eneuro"
+        >
+          English (Europe)
+        </option>
+        <option
+          key="language-es"
+          value="es"
+        >
+          Spanish
+        </option>
+        <option
+          key="language-hien"
+          value="hien"
+        >
+          English (India)
+        </option>
+        <option
+          key="language-id"
+          value="id"
+        >
+          Indonesian
+        </option>
+        <option
+          key="language-jp"
+          value="jp"
+        >
+          Japanese
+        </option>
+        <option
+          key="language-ko"
+          value="ko"
+        >
+          Korean
+        </option>
+        <option
+          key="language-th"
+          value="th"
+        >
+          Thai
+        </option>
+        <option
+          key="language-vn"
+          value="vn"
+        >
+          Vietnamese
+        </option>
+      </Input>
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-2 my-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
         tag="label"
         widths={
           Array [
@@ -172,7 +189,7 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
         }
         isEnable={true}
         maxDate="7/12/2019"
-        minDate={2014-12-31T17:00:00.000Z}
+        minDate={2020-01-30T17:00:00.000Z}
         onChange={[Function]}
       />
     </FormGroup>
@@ -215,7 +232,7 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
     >
       <Label
         className="mr-sm-2"
-        for="deviceType"
+        htmlFor="deviceType"
         tag="label"
         widths={
           Array [

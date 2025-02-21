@@ -1,6 +1,5 @@
 ﻿import * as actions from '../index';
 import * as types from '../types';
-import { defaultPagingOption } from '../../../../../modules/constants';
 import * as ajaxRequest from '../../../../../modules/ajaxRequest';
 
 import configureMockStore from 'redux-mock-store';
@@ -19,7 +18,7 @@ const runTestAction = ({ name, type, data }) => {
 
 const actionList = [
     { name: 'setSelectedLandingPageId', type: types.SET_SELECTED_LANDING_PAGE_ID, data: 123456 },
-    { name: 'setCheckedLandingPages', type: types.SET_CHECKED_LANDING_PAGES, data: { 123456: false }},
+    { name: 'setCheckedLandingPages', type: types.SET_CHECKED_LANDING_PAGES, data: { 123456: false } },
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
     { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' }
 ];
@@ -48,13 +47,13 @@ describe('landing page list actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER' , data: true },
-            { type: types.SET_GRID_DATA , data: expectedResponse.data },
-            { type: types.SHOULD_RESET_SCROLL_POSITION , data: true },
-            { type: types.SET_CHECKED_LANDING_PAGES , data: { 1: false, 22: false } },
+            { type: 'TOGGLE_LOADER', data: true },
+            { type: types.SET_GRID_DATA, data: expectedResponse.data },
+            { type: types.SHOULD_RESET_SCROLL_POSITION, data: true },
+            { type: types.SET_CHECKED_LANDING_PAGES, data: { 1: false, 22: false } },
             { type: 'TOGGLE_LOADER', data: false },
         ];
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData']()).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/LandingPageList/GetLandingPageList');
@@ -66,13 +65,13 @@ describe('landing page list actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER' , data: true },
-            { type: types.SET_GRID_DATA , data: [] },
-            { type: types.SHOULD_RESET_SCROLL_POSITION , data: true },
-            { type: types.SET_CHECKED_LANDING_PAGES , data: {} },
+            { type: 'TOGGLE_LOADER', data: true },
+            { type: types.SET_GRID_DATA, data: [] },
+            { type: types.SHOULD_RESET_SCROLL_POSITION, data: true },
+            { type: types.SET_CHECKED_LANDING_PAGES, data: {} },
             { type: 'TOGGLE_LOADER', data: false },
         ];
-        
+
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData']()).then(() => {
             expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/LandingPageList/GetLandingPageList');
@@ -81,11 +80,13 @@ describe('landing page list actions', () => {
     })
 
     it('should create action to getLandingPageDetail with correct parameter', async () => {
-        const expectedResponse = { data: {
-            PageCode: "numbergame",
-            PageId: 22,
-            PageName: "Number Game"
-        }, status: 200 };
+        const expectedResponse = {
+            data: {
+                PageCode: "numbergame",
+                PageId: 22,
+                PageName: "Number Game"
+            }, status: 200
+        };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const selectedLandingPageId = 22;
 
@@ -99,7 +100,7 @@ describe('landing page list actions', () => {
     it('should create action to getLandingPageDetail with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const selectedLandingPageId = 123456;
-        
+
         const result = await actions['getLandingPageDetail'](selectedLandingPageId)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/LandingPageList/GetLandingPageItem', { pageId: 123456 });
@@ -129,7 +130,7 @@ describe('landing page list actions', () => {
             PageName: "Football",
             PageCode: ""
         };
-        
+
         const result = await actions['insertLandingPage'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/LandingPageList/InsertLandingPage', param);
@@ -159,7 +160,7 @@ describe('landing page list actions', () => {
             PageName: "",
             PageCode: "Football"
         };
-        
+
         const result = await actions['updateLandingPage'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/LandingPageList/UpdateLandingPage', param);
@@ -181,7 +182,7 @@ describe('landing page list actions', () => {
     it('should create action to deleteLandingPages with incorrect parameter', async () => {
         ajaxRequest.post = jest.fn();
         const landingPageIdList = '123456';
-        
+
         const result = await actions['deleteLandingPages'](landingPageIdList)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/LandingPageList/DeleteLandingPage', { pageIds: landingPageIdList });

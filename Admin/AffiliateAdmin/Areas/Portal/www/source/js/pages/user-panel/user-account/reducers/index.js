@@ -1,41 +1,20 @@
 import { combineReducers } from 'redux';
-import * as types from '../actions/types';
+import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_LIST } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 export const userAccountInfo = createReducer(null, {
-    [types.SET_USER_ACCOUNT_INFO](prevState, action) {
+    [SET_USER_ACCOUNT_INFO](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }
 });
 
 export const moreSiteUrlsList = createReducer(null, {
-    [types.SET_MORE_SITE_URLS_LIST](prevState, action) {
+    [SET_MORE_SITE_URLS_LIST](prevState, action) {
         return [...action.data];
-    }
-});
-
-export const hasWriteEditAffClaim = createReducer(false, {
-    [types.SET_HAS_WRITE_EDIT_AFF_CLAIM](prevState, action) {
-        return action.data;
-    }
-});
-
-export const hasReadManagePendingAffClaim = createReducer(false, {
-    [types.SET_HAS_READ_MANAGE_PENDING_AFF_CLAIM](prevState, action) {
-        return action.data;
-    }
-});
-
-export const hasWriteManagePendingAffClaim = createReducer(false, {
-    [types.SET_HAS_WRITE_MANAGE_PENDING_AFF_CLAIM](prevState, action) {
-        return action.data;
     }
 });
 
 export default combineReducers({
     userAccountInfo,
-    moreSiteUrlsList,
-    hasWriteEditAffClaim,
-    hasReadManagePendingAffClaim,
-    hasWriteManagePendingAffClaim
+    moreSiteUrlsList
 });

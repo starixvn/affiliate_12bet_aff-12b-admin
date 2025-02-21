@@ -12,7 +12,7 @@ function handleSetTop() {
 
     if (isOverviewTable) {
         let headerHeight = $('#overview-table-header').height();
-        $('#overview-table-total > th').css({ top: `${SUB_MENU_HEIGHT + headerHeight}px` });
+        $('#overview-table-total > th').css({ top: `${SUB_MENU_HEIGHT + Math.ceil(headerHeight)}px` });
     }
 }
 
@@ -43,8 +43,8 @@ function handleResize() {
 var UserPanel = (function ($) {
     var DEFAULT_ACTION = 'AccountOverview';
     var allowedActionList = ["AccountOverview", "StatementHistory", "MyAccount", "PaymentRequest",
-        "ReferrersStatistics", "LandingPageStatistics",
-        "DailyEarning", "CommissionReport", "NewsLetter", "OffersForMe"];
+        "ReferrersStatistics", "LandingPageStatistics", "MarketingLinkStatistics",
+        "DailyEarning", "SubAffEarning", "RevenueReport"];
 
     var _ajaxRequest = null;
 

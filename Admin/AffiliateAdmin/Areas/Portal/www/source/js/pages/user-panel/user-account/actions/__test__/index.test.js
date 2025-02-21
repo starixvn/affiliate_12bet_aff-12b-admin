@@ -2,8 +2,8 @@
 import * as types from '../types';
 import * as ajaxRequest from '../../../../../modules/ajaxRequest';
 
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
@@ -17,8 +17,7 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setUserAccountInfo', type: types.SET_USER_ACCOUNT_INFO, data: { Id: 123 }},
-    { name: 'setHasWriteEditAffClaim', type: types.SET_HAS_WRITE_EDIT_AFF_CLAIM, data: false},
+    { name: 'setUserAccountInfo', type: types.SET_USER_ACCOUNT_INFO, data: { Id: 123 } },
     { name: 'setMoreSiteUrlsList', type: types.SET_MORE_SITE_URLS_LIST, data: 'setMoreSiteUrlsList' }
 ];
 
@@ -56,7 +55,7 @@ describe('user account actions', () => {
                 Postcode: "X",
                 PreferredPayment: "Player",
                 Question: "What?",
-                SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+                SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
                 State: "A"
             },
             status: 200
@@ -64,9 +63,9 @@ describe('user account actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER_USER_PANEL' , data: true },
-            { type: types.SET_MORE_SITE_URLS_LIST , data: [ "www.sportsbookie.com", "www.gzyyy.com", "www.123.com" ] },
-            { type: types.SET_USER_ACCOUNT_INFO , data: expectedResponse.data },
+            { type: 'TOGGLE_LOADER_USER_PANEL', data: true },
+            { type: types.SET_MORE_SITE_URLS_LIST, data: ["www.sportsbookie.com", "www.gzyyy.com", "www.123.com"] },
+            { type: types.SET_USER_ACCOUNT_INFO, data: expectedResponse.data },
             { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
         ];
 
@@ -81,9 +80,9 @@ describe('user account actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER_USER_PANEL' , data: true },
-            { type: types.SET_MORE_SITE_URLS_LIST , data: [] },
-            { type: types.SET_USER_ACCOUNT_INFO , data: null },
+            { type: 'TOGGLE_LOADER_USER_PANEL', data: true },
+            { type: types.SET_MORE_SITE_URLS_LIST, data: [] },
+            { type: types.SET_USER_ACCOUNT_INFO, data: null },
             { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
         ];
 
@@ -124,11 +123,11 @@ describe('user account actions', () => {
             Postcode: "X",
             PreferredPayment: "Player",
             Question: "What?",
-            SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+            SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
             State: "A"
         }
 
-        const result = await actions['updateUserAccount'](param)(jest.fn());
+        const result = await actions['updateUserAccount'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/UserAccount/updateUserAccount', param);
 
@@ -164,13 +163,41 @@ describe('user account actions', () => {
             Postcode: "X",
             PreferredPayment: "Player",
             Question: "What?",
-            SiteUrl: "https://aff-12bet.nexdev.net/12BetUserAsianNew/UserPanel/Main/#MyAccount",
+            SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
             State: "A"
         }
 
-        const result = await actions['updateUserAccount'](param)(jest.fn());
+        const result = await actions['updateUserAccount'](param)();
 
         expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/UserAccount/updateUserAccount', param);
+        expect(result).toEqual(null);
+    })
+
+    it('should create action to getPaymentMethod', async () => {
+        const paymentMethod = {
+            PaymentMethods: [
+                { Key: 'Player', Value: 'Bwing Player Account' },
+                { key: 'Moneybookers', value: 'Moneybookers' },
+                { key: 'Wire', value: 'Bank Transfer' }
+            ],
+            MinAmount: 23000
+        };
+        const expectedResponse = { data: paymentMethod, status: 200 };
+        ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
+
+        const result = await actions['getPaymentMethod']()();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/UserAccount/GetPaymentMethod');
+
+        expect(result).toEqual(paymentMethod);
+    })
+
+    it('should create action to getPaymentMethod with incorrect response', async () => {
+        ajaxRequest.post = jest.fn();
+
+        const result = await actions['getPaymentMethod']()();
+
+        expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/UserPanel/UserAccount/GetPaymentMethod');
         expect(result).toEqual(null);
     })
 });

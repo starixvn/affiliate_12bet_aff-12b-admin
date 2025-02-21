@@ -1,61 +1,28 @@
-﻿jest.mock('redux');
-jest.mock('react-redux');
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../../../actions/index';
+﻿import React from 'react';
+import { shallow } from 'enzyme';
+import SettingPanel from '../../SettingPanel';
+import configureMockStore from 'redux-mock-store';
+
+const mockStore = configureMockStore();
 
 describe('left panel - SettingPanel - connect', () => {
-    let mapStateToProps, mapDispatchToProps;
-    const connectMock = jest.fn();
+    let wrapper, store;
+    const leftPanel = { affiliateInfo: { AffId: 1271808 }, affName: '12BETAFF226', affTypeList: [{ Asian: 1 }] }
 
     beforeAll(() => {
-        connect.mockImplementationOnce((mapStateToPropsFunc, mapDispatchToPropsFunc) => {
-            mapStateToProps = mapStateToPropsFunc;
-            mapDispatchToProps = mapDispatchToPropsFunc;
-            return connectMock;
-        });
-        require('../../SettingPanel').default;
-    });
-
-    it('props should be mapped correctly', () => {
-        const expectedResult = {
-            affiliateInfo: { AffId: 1271808 },
-            isStatusModifiable: true,
-            isStatusShowable: true,
-            affName: '12BETAFF226'
-        };
-
-        const state = {
-            leftPanel: { affiliateInfo: { AffId: 1271808 }, affName: '12BETAFF226' },
-            claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true) },
-            anotherProp: "Not included"
-        };
-
-        const result = mapStateToProps(state);
-
-        expect(result).toEqual(expectedResult);
-    })
-
-    it('bindActionCreators should be called with correct parameter', () => {
-        const mockBindAction = jest.fn();
-        bindActionCreators.mockImplementationOnce(mockBindAction);
-        const expectedActionCreator = {
-            getAffiliateInfo: actions['getAffiliateInfo'],
-            updateAffType: actions['updateAffType'],
-            updateClosedStatus: actions['updateClosedStatus'],
-            updateStatus: actions['updateStatus']
+        const initialState = {
+            leftPanel
         }
 
-        const dispatch = {};
-        mapDispatchToProps(dispatch);
+        store = mockStore(initialState);
+        wrapper = shallow(<SettingPanel store={store} />).dive()
+    });
 
-        expect(mockBindAction).toHaveBeenCalledWith(expectedActionCreator, dispatch);
-    })
+    it('should map correct state', () => {
+        const { affiliateInfo, affName, affTypeList } = wrapper.props();
 
-    it('returned function of connect should be called with correct parameter', () => {
-        const SettingPanel = require('../../SettingPanel').SettingPanel;
-
-        expect(connectMock).toHaveBeenCalledWith(SettingPanel);
+        expect(affiliateInfo).toEqual(leftPanel.affiliateInfo);
+        expect(affName).toEqual(leftPanel.affName);
+        expect(affTypeList).toEqual(leftPanel.affTypeList);
     })
 })

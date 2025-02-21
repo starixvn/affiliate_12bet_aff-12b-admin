@@ -120,43 +120,43 @@
   <data name="Affiliate" xml:space="preserve">
     <value>제휴</value>
   </data>
-  <data name="EmailAutoNotification" xml:space="preserve">
-    <value>이 시스템은 이메일을 자동적으로 생성하며, 본 이메일에 즉시 회신하지 마십시오.</value>
-  </data>
   <data name="EmailSubjectAffApproved" xml:space="preserve">
-    <value>12Bet 제휴 - 제휴 알림</value>
-  </data>
-  <data name="EmailSubjectAffInfor" xml:space="preserve">
-    <value>12Bet 제휴 - 고객님의 업무제휴에 대한 안내입니다.</value>
-  </data>
-  <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
-    <value>12Bet 제휴 - 제휴사 출금 가이드</value>
+    <value>12B 제휴사 - 제휴 알림</value>
   </data>
   <data name="EmailTitleAffApproved" xml:space="preserve">
     <value>제휴 알림</value>
   </data>
-  <data name="EmailTitleAffInfor" xml:space="preserve">
-    <value>고객님의 업무제휴에 대한 안내입니다</value>
-  </data>
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
-    <value>제휴사 출금 가이드</value>
-  </data>
-  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
-    <value>12Bet 제휴 - [{0}] – 고객님의 지불 요청이 승인되어 처리가 완료되었습니다.</value>
-  </data>
-  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
-    <value>고객님의 지불 요청이 승인되어 처리가 완료되었습니다.</value>
-  </data>
-  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
-    <value>12Bet 제휴 - [{0}] – 고객님의 지불요청이 거부되었습니다</value>
-  </data>
-  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
-    <value>고객님의 지불요청이 거부되었습니다</value>
+    <value>출금 안내</value>
   </data>
   <data name="EmailTitleAffDisapproved" xml:space="preserve">
-    <value>제휴 신청</value>
+    <value>신청 거부</value>
   </data>
   <data name="EmailSubjectAffDisapproved" xml:space="preserve">
-    <value>12Bet 제휴 - 제휴 신청</value>
+    <value>12B 제휴사 - 신청 거부</value>
+  </data>
+  <data name="EmailAutoNotification" xml:space="preserve">
+    <value>이 시스템은 이메일을 자동적으로 생성하며, 본 이메일에 즉시 회신하지 마십시오.</value>
+  </data>
+  <data name="EmailSubjectAffInfor" xml:space="preserve">
+    <value>12B 제휴사 - 신청 승인</value>
+  </data>
+  <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
+    <value>12B 제휴사 출금 안내</value>
+  </data>
+  <data name="EmailTitleAffInfor" xml:space="preserve">
+    <value>신청 승인</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
+    <value>12B 제휴사 - [{0}] - 지불 요청 접수</value>
+  </data>
+  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
+    <value>지불 요청 접수</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
+    <value>12Bet 제휴사 - [{0}] - 지불 요청 거부</value>
+  </data>
+  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
+    <value>지불 요청 거부</value>
   </data>
 </root>

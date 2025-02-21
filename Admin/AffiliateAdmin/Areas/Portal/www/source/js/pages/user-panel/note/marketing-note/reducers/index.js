@@ -3,7 +3,7 @@ import * as types from '../actions/types';
 import createReducer from '../../../../../modules/createReducer';
 import { pagingOption } from '../../../../../reducers/pagingReducer';
 
-import { defaultNote } from '../../common/libs/constants';
+import { defaultNote } from '../../libs/constants';
 
 export const marketingNoteList = createReducer(null, {
     [types.SET_MARKETING_NOTE_LIST](prevState, action) {

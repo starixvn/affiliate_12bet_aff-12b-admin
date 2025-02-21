@@ -1,5 +1,5 @@
-﻿import { SET_PAGING_OPTION } from '../../actions/actionTypes'
-import { pagingOption } from '../pagingReducer'
+﻿import { SET_PAGING_OPTION } from '../../actions/actionTypes';
+import { pagingOption } from '../pagingReducer';
 
 const defaultPagingOption = {
     PageIndex: 1,
@@ -8,7 +8,7 @@ const defaultPagingOption = {
     PageList: [10]
 };
 
-const expectPagingOption =  {
+const expectPagingOption = {
     PageIndex: 1,
     PageSize: 20,
     TotalItem: 100,

@@ -1,41 +1,20 @@
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
 import { getAffiliateInfo } from '../../../customer/mainpage/actions/loadingDataAction';
-import * as types from './types';
+import { SET_USER_ACCOUNT_INFO, SET_MORE_SITE_URLS_LIST } from './types';
 
 export { getAffiliateInfo }
 
 export const setUserAccountInfo = (data) => {
     return {
-        type: types.SET_USER_ACCOUNT_INFO,
+        type: SET_USER_ACCOUNT_INFO,
         data
     }
 }
 
 export const setMoreSiteUrlsList = (data) => {
     return {
-        type: types.SET_MORE_SITE_URLS_LIST,
-        data
-    }
-}
-
-export const setHasWriteEditAffClaim = (data) => {
-    return {
-        type: types.SET_HAS_WRITE_EDIT_AFF_CLAIM,
-        data
-    }
-}
-
-export const setHasWriteManagePendingAffClaim = (data) => {
-    return {
-        type: types.SET_HAS_WRITE_MANAGE_PENDING_AFF_CLAIM,
-        data
-    }
-}
-
-export const setHasReadManagePendingAffClaim = (data) => {
-    return {
-        type: types.SET_HAS_READ_MANAGE_PENDING_AFF_CLAIM,
+        type: SET_MORE_SITE_URLS_LIST,
         data
     }
 }
@@ -49,22 +28,22 @@ export const getUserAccountInfo = (affId) => async (dispatch) => {
     const data = response && response.status === 200 ? response.data : null;
 
     const moreSiteUrls = data && data.MoreSiteUrls;
-    const moreSiteUrlsList = moreSiteUrls && moreSiteUrls != ''
-        ? moreSiteUrls.split(';')
-        : [];
-
+    const moreSiteUrlsList = !moreSiteUrls ? [] : moreSiteUrls.split(';');
     dispatch(setMoreSiteUrlsList(moreSiteUrlsList));
     dispatch(setUserAccountInfo(data));
     dispatch(toggleLoaderUserPanel(false));
 }
 
-export const updateUserAccount = (param) => async (dispatch) => {
-    dispatch(toggleLoaderUserPanel(true));
-
+export const updateUserAccount = (param) => async () => {
     const url = 'Portal/UserPanel/UserAccount/updateUserAccount';
     const response = await post(url, param);
 
-    dispatch(toggleLoaderUserPanel(false));
+    return response && response.status === 200 ? response.data : null;
+}
+
+export const getPaymentMethod = () => async () => {
+    const url = 'Portal/UserPanel/UserAccount/GetPaymentMethod';
+    const response = await post(url);
 
     return response && response.status === 200 ? response.data : null;
 }

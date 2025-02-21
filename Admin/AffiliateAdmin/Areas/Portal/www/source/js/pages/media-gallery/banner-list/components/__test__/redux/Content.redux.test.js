@@ -25,7 +25,6 @@ describe('banner list - Content - connect', () => {
             bannerRootUrl: "abc/test",
             shouldResetScrollPosition: true,
             pagingOption: { PageSize: 1, PageIndex: 20 },
-            isModifiable: true,
             gridData: []
         };
         const state = {
@@ -33,7 +32,6 @@ describe('banner list - Content - connect', () => {
             checkedBanners: { 123: false },
             bannerRootUrl: "abc/test",
             shouldResetScrollPosition: true,
-            claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
             pagingOption: { PageSize: 1, PageIndex: 20 },
             gridData: [],
             anotherProp: "Not included"

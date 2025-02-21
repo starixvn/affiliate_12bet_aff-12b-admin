@@ -5,7 +5,7 @@ import GeneralInfo from './GeneralInfo';
 import PanelList from './PanelList';
 
 export const MainInfo = (props) => {
-    return (
+    return props.affiliateInfo && (
         <div>
             <GeneralInfo />
             <PanelList />
