@@ -11,7 +11,8 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
-            marketList: @Html.Raw(Json.Encode(Model.MarketList))
+            affSubDomainList: @Html.Raw(Json.Encode(Model.AffSubDomainList)),
+            marketList: @Html.Raw(Json.Encode(Model.MarketList)),
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/domain/domain-control.js")"></script>

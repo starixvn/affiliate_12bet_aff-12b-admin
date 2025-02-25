@@ -2,42 +2,48 @@
 
 import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
-import { SET_SELECTED_MARKET, SET_SELECTED_DOMAIN, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_AFF_DOMAIN_LIST, SET_REDIRECT_DOMAIN } from '../actions/types';
+import * as types from '../actions/types';
 
 const marketList = createReducer(null, {})
 
 export const shouldResetScrollPosition = createReducer(true, {
-    [SHOULD_RESET_SCROLL_POSITION](prevState, action) {
+    [types.SHOULD_RESET_SCROLL_POSITION](prevState, action) {
         return action.data;
     }
 })
 
 export const gridData = createReducer(null, {
-    [SET_GRID_DATA](prevState, action) {
+    [types.SET_GRID_DATA](prevState, action) {
         return action.data;
     }
 })
 
 export const selectedMarket = createReducer('', {
-    [SET_SELECTED_MARKET](prevState, action) {
+    [types.SET_SELECTED_MARKET](prevState, action) {
         return action.data;
     }
 })
 
 export const selectedDomain = createReducer(null, {
-    [SET_SELECTED_DOMAIN](prevState, action) {
+    [types.SET_SELECTED_DOMAIN](prevState, action) {
         return action.data;
     }
 })
 
 export const affDomainList = createReducer(null, {
-    [SET_AFF_DOMAIN_LIST](prevState, action) {
+    [types.SET_AFF_DOMAIN_LIST](prevState, action) {
         return action.data;
     }
 })
 
 export const redirectDomainList = createReducer(null, {
-    [SET_REDIRECT_DOMAIN](prevState, action) {
+    [types.SET_REDIRECT_DOMAIN](prevState, action) {
+        return action.data;
+    }
+})
+
+export const affSubDomainList = createReducer(null, {
+    [types.SET_AFF_SUB_DOMAIN_LIST](prevState, action) {
         return action.data;
     }
 })
@@ -49,6 +55,7 @@ export default combineReducers({
     selectedMarket,
     selectedDomain,
     affDomainList,
+    affSubDomainList,
     redirectDomainList,
     shouldResetScrollPosition
 });

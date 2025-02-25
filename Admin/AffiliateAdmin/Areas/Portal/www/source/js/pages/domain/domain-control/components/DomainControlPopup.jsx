@@ -66,7 +66,7 @@ export class DomainControlPopup extends PureComponent {
         });
 
         if (isSuccess) {
-            this.props.fetchData(this.props.selectedMarket);
+            this.props.fetchData(this.props.selectedMarket, this.props.affSubDomainList, true);
             this.props.setSelectedDomain(null);
         }
     }
@@ -146,8 +146,8 @@ export class DomainControlPopup extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedDomain, selectedMarket, marketList, affDomainList, redirectDomainList }) {
-    return Object.assign({}, { selectedDomain, selectedMarket, marketList, affDomainList, redirectDomainList });
+function mapStateToProps({ selectedDomain, selectedMarket, marketList, affDomainList, redirectDomainList, affSubDomainList }) {
+    return Object.assign({}, { selectedDomain, selectedMarket, marketList, affDomainList, redirectDomainList, affSubDomainList });
 }
 
 function mapDispatchToProps(dispatch) {

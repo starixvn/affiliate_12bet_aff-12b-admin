@@ -54,7 +54,7 @@ export class Content extends PureComponent {
             if (result.IsSuccessful) {
                 this.setState({ message: `The domain control has been removed successfully!`, isConfirmPopup: false });
 
-                this.props.fetchData(this.props.selectedMarket);
+                this.props.fetchData(this.props.selectedMarket, this.props.affSubDomainList);
             }
             else {
                 this.setState({ message: result.Message, isConfirmPopup: false });
@@ -161,8 +161,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, marketList }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, marketList });
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, marketList, affSubDomainList }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, marketList, affSubDomainList });
 }
 
 function mapDispatchToProps(dispatch) {

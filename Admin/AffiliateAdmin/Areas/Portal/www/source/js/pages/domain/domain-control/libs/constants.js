@@ -5,7 +5,8 @@ export { globalResource };
 export const headerText = {
     Index: '#',
     Market: 'Market',
-    AffDomain: 'AffDomain',
+    AffDomain: 'Aff Domain',
+    AffSubDomain: 'Aff Sub-domain',
     RedirectDomain: 'Redirect Domain',
     Creator: 'Creator',
     CreatedDate: 'Created Date',

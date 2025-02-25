@@ -439,6 +439,7 @@
     <Compile Include="DTO\CommissionGroup\P2pDeductionSetting.cs" />
     <Compile Include="DTO\Currency.cs" />
     <Compile Include="DTO\Customer\TransferLimitSettingInfo.cs" />
+    <Compile Include="DTO\Domain\AffSubDomainInfo.cs" />
     <Compile Include="DTO\Domain\DomainControlInfo.cs" />
     <Compile Include="DTO\Domain\DomainInfo.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryDetailInfo.cs" />

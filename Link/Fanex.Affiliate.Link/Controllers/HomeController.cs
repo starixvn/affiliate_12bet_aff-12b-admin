@@ -139,6 +139,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 }
 
                 var pageCodeOnV2 = GetSupportedPageCodeOnV2(pageCode);
+                var affMediaLink = GetOriginalUrl();
                 var command = new TrackingSystemCommand
                 {
                     AffDomain = affDomain,
@@ -174,6 +175,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     {
                         var result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, affCode);
 
+                        Response.Headers["Referer"] = affMediaLink;
                         return Redirect(result);
                     }
                 }
