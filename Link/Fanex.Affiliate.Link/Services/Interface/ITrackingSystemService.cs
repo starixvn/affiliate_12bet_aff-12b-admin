@@ -13,5 +13,9 @@
         /// <param name="command">Input command.</param>
         /// <returns>Success or fail.</returns>
         string InsertStatistic(TrackingSystemCommand command);
+
+        bool ToggleMarketingLink(ToggleMarketingLinkCommand command);
+
+        bool IsTrackingMarketingLink(CheckMarketingLinkCommand command);
     }
 }

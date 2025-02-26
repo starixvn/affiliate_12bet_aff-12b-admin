@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Link.DTOs;
-using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Link.Services.Interface
 {
@@ -13,7 +12,5 @@ namespace Fanex.Affiliate.Link.Services.Interface
         AffiliateInfo GetGeneralAffiliateInfo(int? affId = null, string affCode = null);
 
         CommGroup GetCommGroupByAffCode(string affCode);
-
-        IEnumerable<MarketingChannel> GetChannels(int userId);
     }
 }

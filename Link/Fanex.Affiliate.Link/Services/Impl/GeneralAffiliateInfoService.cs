@@ -9,7 +9,7 @@
 
     public class GeneralAffiliateInfoService : IGeneralAffiliateInfoService
     {
-        private const string CHANNEL_LIST_CACHE_KEY = "Affiliate.12B.Go.ChannelList";
+        private const string COMM_GROUP_CACHE_KEY = "Affiliate.12B.Go.CommGroup";
 
         private readonly IDynamicRepository _dynamicRepository;
         private readonly IMemoryCacheService _memoryCacheService;
@@ -33,30 +33,26 @@
                 AffCode = affCode,
             };
 
-            return _dynamicRepository.Get<AffiliateInfo>(criteria);
+            return _dynamicRepository.Get<AffiliateInfo>(criteria) ?? new AffiliateInfo();
         }
 
         public CommGroup GetCommGroupByAffCode(string affCode)
         {
-            var criteria = new CommGroupByAffCodeCriteria
+            var cacheKey = $"{COMM_GROUP_CACHE_KEY}_{affCode}";
+            var commGroup = _memoryCacheService.Get<CommGroup>(cacheKey);
+            if (commGroup == null)
             {
-                AffCode = affCode,
-            };
+                var criteria = new CommGroupByAffCodeCriteria
+                {
+                    AffCode = affCode,
+                };
 
-            return _dynamicRepository.Get<CommGroup>(criteria);
-        }
+                commGroup = _dynamicRepository.Get<CommGroup>(criteria);
 
-        public IEnumerable<MarketingChannel> GetChannels(int userId)
-        {
-            var cacheKey = $"{CHANNEL_LIST_CACHE_KEY}_{userId}";
-            var channels = _memoryCacheService.Get<IEnumerable<MarketingChannel>>(cacheKey);
-            if (channels == null)
-            {
-                channels = _dynamicRepository.Fetch<MarketingChannel>(new MarketingChannelCriteria(userId));
-                _memoryCacheService.Set(cacheKey, channels);
+                _memoryCacheService.Set(cacheKey, commGroup);
             }
 
-            return channels ?? new List<MarketingChannel>();
+            return commGroup ?? new CommGroup();
         }
     }
 }

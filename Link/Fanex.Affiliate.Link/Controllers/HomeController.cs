@@ -10,7 +10,6 @@ namespace Fanex.Affiliate.Link.Controllers
     using Services.Impl;
     using Services.Interface;
     using System;
-    using System.Linq;
     using System.Web.Mvc;
 
     /// <summary>
@@ -69,12 +68,14 @@ namespace Fanex.Affiliate.Link.Controllers
                 var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
                 var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affId: affId);
 
-                if (affInfo is null || string.IsNullOrEmpty(affInfo.AffCode))
+                if (string.IsNullOrEmpty(affInfo.AffCode) || string.IsNullOrEmpty(lang))
                 {
                     ViewBag.Result = LinkIsInvalidMessage;
 
                     return View("Link");
                 }
+
+                HandleAddTrackingV1MediaLink(affId, lang);
 
                 return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affId);
             }
@@ -91,7 +92,7 @@ namespace Fanex.Affiliate.Link.Controllers
             return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
-        public ActionResult Link(string pageCode, string affCode, string lang = null, string channel = null)
+        public ActionResult Link(string pageCode, string affCode, string lang = null)
         {
             try
             {
@@ -99,19 +100,14 @@ namespace Fanex.Affiliate.Link.Controllers
 
                 var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affCode: affCode);
 
-                if (!string.IsNullOrEmpty(channel) && affInfo != null && affInfo.AffId != 0)
+                if (affInfo.AffId == 0 || string.IsNullOrEmpty(lang))
                 {
-                    var channelToLower = channel.ToLowerInvariant();
-                    var channels = _generalAffiliateInfoDataAccess.GetChannels(affInfo.AffId);
+                    ViewBag.Result = LinkIsInvalidMessage;
 
-                    if (channels.Any(c => IsMatching(c.ChannelCode, channelToLower)))
-                    {
-                        return InsertAffiliate(affCode, pageCode, lang, affDomain, affInfo.AffId, channelToLower);
-                    }
+                    return View("Link");
                 }
 
-                ViewBag.Result = LinkIsInvalidMessage;
-                return View("Link");
+                return InsertAffiliate(affCode, pageCode, lang, affDomain, affInfo.AffId);
             }
             catch (Exception ex)
             {
@@ -121,12 +117,12 @@ namespace Fanex.Affiliate.Link.Controllers
             }
         }
 
-        public ActionResult SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
+        public ActionResult SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null)
         {
-            return Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang, channel);
+            return Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang);
         }
 
-        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain, int affId = 0, string channel = "")
+        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain, int affId = 0)
         {
             if (Request.Url != null)
             {
@@ -140,14 +136,12 @@ namespace Fanex.Affiliate.Link.Controllers
                 }
 
                 var pageCodeOnV2 = GetSupportedPageCodeOnV2(pageCode);
-                var affMediaLink = GetOriginalUrl();
                 var command = new TrackingSystemCommand
                 {
                     AffDomain = affDomain,
                     AffCode = affCode,
                     PageCode = pageCodeOnV2,
                     LanguageCode = lang,
-                    ChannelCode = channel,
                     DeviceType = GetDeviceType(),
                     IP = Request.GetClientIP(),
                     Browser = Request.Browser.Browser,
@@ -175,9 +169,8 @@ namespace Fanex.Affiliate.Link.Controllers
 
                     if ((isMarketingLandingPage && IsValidAffMarketing(affCode)) || !isMarketingLandingPage)
                     {
-                        var result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, affCode, channel);
+                        var result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode);
 
-                        Response.Headers["Referer"] = affMediaLink;
                         return Redirect(result);
                     }
                 }
@@ -186,6 +179,32 @@ namespace Fanex.Affiliate.Link.Controllers
             }
 
             return View("Link");
+        }
+
+        private void HandleAddTrackingV1MediaLink(int affId, string language)
+        {
+            var affMediaLink = GetOriginalUrl();
+
+            var checkingCommand = new CheckMarketingLinkCommand
+            {
+                AffId = affId,
+                LanguageCode = language,
+                AffMediaLink = affMediaLink
+            };
+
+            var isExistedTracking = _trackingSystemService.IsTrackingMarketingLink(checkingCommand);
+
+            if(!isExistedTracking)
+            {
+                var insertCommand = new ToggleMarketingLinkCommand
+                {
+                    AffId = affId,
+                    LanguageCode = language,
+                    AffMediaLink = affMediaLink
+                };
+
+                _trackingSystemService.ToggleMarketingLink(insertCommand);
+            }    
         }
 
         private static void HandleFakeSpecificDomainOnLocal(int affId, TrackingSystemCommand param)
@@ -258,7 +277,7 @@ namespace Fanex.Affiliate.Link.Controllers
             return languageCode;
         }
 
-        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode, string affCode, string channel)
+        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode)
         {
             var customLanguageCode = GetSupportedLanguageCodeOnMemberSiteV2(languageCode);
             var redirectPattern = ConfigurationManager.AppSettings[$"Redirect_{pageCode.ToLowerInvariant()}_pattern"];
@@ -266,7 +285,7 @@ namespace Fanex.Affiliate.Link.Controllers
             if (!string.IsNullOrEmpty(redirectPattern))
             {
                 var redirectUri = new Uri(redirectUrl);
-                var pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode).Replace("#affCode#", affCode).Replace("#channel#", channel);
+                var pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode).Replace("#queryString#", redirectUri.Query);
                 return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}";
             }
 

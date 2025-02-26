@@ -1,11 +1,6 @@
 ﻿namespace Fanex.Affiliate.Link.Commands
 {
-    using Data.Repository;
-
-    /// <summary>
-    /// Tracking System Command.
-    /// </summary>
-    public class TrackingSystemCommand : NonQueryCommand
+    public class TrackingSystemCommand : BaseNonQueryCommand
     {
         public string AffCode { get; set; }
 
@@ -44,10 +39,6 @@
         public string RedirectPage { get; set; }
 
         public long ClickID { get; set; }
-
-        public int ErrCode { get; set; }
-
-        public string ErrMsg { get; set; }
 
         public string AffMediaLink { get; set; }
 

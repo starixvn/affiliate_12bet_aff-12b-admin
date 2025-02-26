@@ -216,6 +216,10 @@
     <Compile Include="App_Start\LoggingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UMConfig.cs" />
+    <Compile Include="Commands\BaseMarketingLinkCommand.cs" />
+    <Compile Include="Commands\BaseNonQueryCommand.cs" />
+    <Compile Include="Commands\CheckMarketingLinkCommand.cs" />
+    <Compile Include="Commands\ToggleMarketingLinkCommand.cs" />
     <Compile Include="Constants\LandingPage.cs" />
     <Compile Include="Constants\Language.cs" />
     <Compile Include="Criterias\CommGroupByAffCodeCriteria.cs" />
@@ -225,10 +229,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Commands\TrackingSystemCommand.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
-    <Compile Include="Criterias\MarketingChannelCriteria.cs" />
     <Compile Include="DTOs\CommGroup.cs" />
     <Compile Include="DTOs\AffiliateInfo.cs" />
-    <Compile Include="DTOs\MarketingChannel.cs" />
     <Compile Include="Services\Impl\GeneralAffiliateInfoService.cs" />
     <Compile Include="Extensions\HttpRequestExtensions.cs" />
     <Compile Include="Global.asax.cs">
