@@ -144,7 +144,7 @@
                 MinAmount = paymentParam.MinAmount,
                 PreferredPayment = paymentParam.PreferredPayment,
                 PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Processing)),
-                IsValidDate = true
+                IsValidDate = _paymentService.IsInDateRange()
             };
 
             return viewModel;

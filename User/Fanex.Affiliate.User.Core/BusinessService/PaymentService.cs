@@ -9,6 +9,7 @@
     using Data.Repository;
     using DTO;
     using Enum;
+    using Fanex.Affiliate.User.Core.Infrastructure;
     using MetalModels.Email;
     using MetalModels.UserPanel;
     using Resources;
@@ -16,16 +17,22 @@
 
     public class PaymentService : BaseDynamicService, IPaymentService
     {
+        private const int BeginDay = 8;
+        private const int EndDay = 15;
+
         private readonly IAccountService _accountService;
         private readonly IEmailService _emailService;
+        private readonly IDateTimeProvider _dateTimeProvider;
 
         public PaymentService(
             IDynamicRepository dynamicRepository,
             IAccountService accountService,
-            IEmailService emailService) : base(dynamicRepository)
+            IEmailService emailService,
+            IDateTimeProvider dateTimeProvider) : base(dynamicRepository)
         {
             _accountService = accountService;
             _emailService = emailService;
+            _dateTimeProvider = dateTimeProvider;
         }
 
         public IEnumerable<Payment> GetPaymentList(PaymentParam paymentParam)
@@ -91,10 +98,22 @@
 
             return resultInfo;
         }
+        public bool IsInDateRange()
+        {
+            var currentDay = _dateTimeProvider.Now.Day;
+            return (currentDay >= BeginDay && currentDay <= EndDay);
+        }
 
         private async Task<ResultInfo> ValidatePaymentRequest(PaymentCreationParam paymentCreationParam)
         {
             var resultInfo = new ResultInfo { IsOk = false };
+            if (!IsInDateRange())
+            {
+                resultInfo.Message = Error.PaymentPayoutTimeInvalid;
+
+                return resultInfo;
+            }
+            
             if (!IsValidAmount(paymentCreationParam))
             {
                 resultInfo.Message = Error.PaymentAmountInvalid;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.DTO;
@@ -58,6 +59,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.MetaModels.Attributes
         }
     }
 
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class RequiredByCheckedFakeAttribute : RequiredByCheckedAttribute
     {
         public RequiredByCheckedFakeAttribute() { }
