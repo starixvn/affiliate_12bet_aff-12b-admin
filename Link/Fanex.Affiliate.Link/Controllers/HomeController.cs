@@ -65,19 +65,22 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             try
             {
-                var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
                 var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affId: affId);
 
-                if (string.IsNullOrEmpty(affInfo.AffCode) || string.IsNullOrEmpty(lang))
+                if (!string.IsNullOrEmpty(affInfo.AffCode) && !string.IsNullOrEmpty(lang))
                 {
-                    ViewBag.Result = LinkIsInvalidMessage;
+                    var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
+                    var isValidDomain = ValidateTrackingV1MediaLink(affId, affDomain, affInfo.PreferredLanguage);
 
-                    return View("Link");
+                    if (isValidDomain)
+                    {
+                        return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affId);
+                    }
                 }
 
-                HandleAddTrackingV1MediaLink(affId, lang);
+                ViewBag.Result = LinkIsInvalidMessage;
 
-                return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affId);
+                return View("Link");
             }
             catch (Exception ex)
             {
@@ -96,8 +99,6 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             try
             {
-                var affDomain = GetFullAffDomain(GetOriginalUrl(), pageCode);
-
                 var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affCode: affCode);
 
                 if (affInfo.AffId == 0 || string.IsNullOrEmpty(lang))
@@ -106,6 +107,8 @@ namespace Fanex.Affiliate.Link.Controllers
 
                     return View("Link");
                 }
+
+                var affDomain = GetFullAffDomain(GetOriginalUrl(), pageCode);
 
                 return InsertAffiliate(affCode, pageCode, lang, affDomain, affInfo.AffId);
             }
@@ -181,30 +184,33 @@ namespace Fanex.Affiliate.Link.Controllers
             return View("Link");
         }
 
-        private void HandleAddTrackingV1MediaLink(int affId, string language)
+        private bool ValidateTrackingV1MediaLink(int affId, string affDomain, string affLanguage)
         {
             var affMediaLink = GetOriginalUrl();
 
             var checkingCommand = new CheckMarketingLinkCommand
             {
                 AffId = affId,
-                LanguageCode = language,
+                AffDomain = affDomain,
+                LanguageCode = affLanguage,
                 AffMediaLink = affMediaLink
             };
 
-            var isExistedTracking = _trackingSystemService.IsTrackingMarketingLink(checkingCommand);
+            var checkMarketingLinkResult = _trackingSystemService.GetTrackingMarketingLinkInfo(checkingCommand);
 
-            if(!isExistedTracking)
+            if(checkMarketingLinkResult.IsValidDomain && !checkMarketingLinkResult.IsExistedTracking)
             {
                 var insertCommand = new ToggleMarketingLinkCommand
                 {
                     AffId = affId,
-                    LanguageCode = language,
+                    LanguageCode = affLanguage,
                     AffMediaLink = affMediaLink
                 };
 
                 _trackingSystemService.ToggleMarketingLink(insertCommand);
-            }    
+            }
+
+            return checkMarketingLinkResult.IsValidDomain;
         }
 
         private static void HandleFakeSpecificDomainOnLocal(int affId, TrackingSystemCommand param)

@@ -229,6 +229,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Commands\TrackingSystemCommand.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
+    <Compile Include="DTOs\CheckMarketingLinkResult.cs" />
     <Compile Include="DTOs\CommGroup.cs" />
     <Compile Include="DTOs\AffiliateInfo.cs" />
     <Compile Include="Services\Impl\GeneralAffiliateInfoService.cs" />

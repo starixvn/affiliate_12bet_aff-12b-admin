@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Interface
 {
     using Fanex.Affiliate.Link.Commands;
+    using Fanex.Affiliate.Link.DTOs;
 
     /// <summary>
     /// Tracking system statistics.
@@ -16,6 +17,6 @@
 
         bool ToggleMarketingLink(ToggleMarketingLinkCommand command);
 
-        bool IsTrackingMarketingLink(CheckMarketingLinkCommand command);
+        CheckMarketingLinkResult GetTrackingMarketingLinkInfo(CheckMarketingLinkCommand command);
     }
 }

@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Link.Criterias
 
         public override string GetSettingKey()
         {
-            return "Aff_Get_GeneralAffInfo";
+            return "Aff_User_GeneralInfo_Sel";
         }
 
         public override bool IsValid()

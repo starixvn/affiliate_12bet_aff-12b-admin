@@ -34,19 +34,23 @@
             return command.RedirectPage;
         }
 
-        public bool IsTrackingMarketingLink(CheckMarketingLinkCommand command)
+        public CheckMarketingLinkResult GetTrackingMarketingLinkInfo(CheckMarketingLinkCommand command)
         {
             var cacheKey = $"{MEDIA_LINK_CACHE_KEY}_{command.AffMediaLink}";
-            var isExistedTracking = _memoryCacheService.Get<bool>(cacheKey);
-            if (!isExistedTracking)
+            var checkMarketingLinkInfo = _memoryCacheService.Get<CheckMarketingLinkResult>(cacheKey);
+            if (checkMarketingLinkInfo is null)
             {
                 _dynamicRepository.Execute(command);
-                _memoryCacheService.Set(cacheKey, command.IsExistedTracking);
+                checkMarketingLinkInfo = new CheckMarketingLinkResult
+                {
+                    IsValidDomain = command.IsValidDomain,
+                    IsExistedTracking = command.IsExistedTracking,
+                };
 
-                return command.IsExistedTracking;
+                _memoryCacheService.Set(cacheKey, checkMarketingLinkInfo);
             }
 
-            return isExistedTracking;
+            return checkMarketingLinkInfo;
         }
 
         public bool ToggleMarketingLink(ToggleMarketingLinkCommand command)
