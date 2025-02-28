@@ -11,7 +11,6 @@ import DeductionSetting from '../shared/tier-deduction';
 import Loader from '../../../../components/Loader';
 import { post } from '../../../../modules/ajaxRequest';
 import { popupEventNames } from '../../../common/modules/constants/commissionGroup';
-import P2pProductSetting from '../shared/p2p-deduction';
 import SubAffCommRateSetting from '../shared/sub-aff-comm-rate';
 import QmTurnoverSetting from '../shared/QmTurnoverSetting';
 
@@ -134,7 +133,6 @@ export class AssignPrivateGroup extends React.Component {
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
                 <SubAffCommRateSetting />
-                <P2pProductSetting />
                 <QmTurnoverSetting />
                 <DeductionSetting />
                 <p className="text-danger">{messages.note}</p>

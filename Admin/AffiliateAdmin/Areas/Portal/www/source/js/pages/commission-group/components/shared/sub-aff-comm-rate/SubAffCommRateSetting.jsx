@@ -11,7 +11,7 @@ export class SubAffCommRateSetting extends PureComponent {
         super(props);
 
         this.defaultItem = {
-            subAffCommRate: 0.1
+            subAffCommRate: 0.0
         }
     }
 

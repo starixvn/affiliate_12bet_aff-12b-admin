@@ -10,7 +10,6 @@ import DeductionSetting from '../shared/tier-deduction';
 import CommGroupInfo from '../shared/CommGroupInfo';
 import { groupTypeList, messages } from '../../modules/constant';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import P2pProductSetting from '../shared/p2p-deduction';
 import SubAffCommRateSetting from '../shared/sub-aff-comm-rate';
 import QmTurnoverSetting from '../shared/QmTurnoverSetting';
 
@@ -92,7 +91,6 @@ export class AddGroup extends React.Component {
                 </Alert>
                 <CommGroupInfo />
                 <SubAffCommRateSetting />
-                <P2pProductSetting />
                 <QmTurnoverSetting />
                 <DeductionSetting />
                 <p className="text-danger">{messages.note}</p>
