@@ -107,7 +107,7 @@
         private async Task<ResultInfo> ValidatePaymentRequest(PaymentCreationParam paymentCreationParam)
         {
             var resultInfo = new ResultInfo { IsOk = false };
-            if (!IsInDateRange())
+            if (!IsInDateRange() && !paymentCreationParam.IsLocalTest)
             {
                 resultInfo.Message = Error.PaymentPayoutTimeInvalid;
 
