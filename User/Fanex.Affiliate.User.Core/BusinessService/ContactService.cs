@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly IEmailService _emailService;
 
         public ContactService(IEmailService emailService,
-            IDynamicRepository dynamicRepository) : base (dynamicRepository)
+            IDynamicRepository dynamicRepository) : base(dynamicRepository)
         {
             _emailService = emailService;
         }

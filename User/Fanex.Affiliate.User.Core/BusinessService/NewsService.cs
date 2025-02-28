@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System;
-    using System.Collections.Generic;
     using Constants;
     using CoreService;
     using Criterias;
@@ -9,6 +7,8 @@
     using DTO;
     using DTO.UserPanel;
     using MetalModels.UserPanel;
+    using System;
+    using System.Collections.Generic;
     using Utilities;
 
     public class NewsService : BaseDynamicService, INewsService

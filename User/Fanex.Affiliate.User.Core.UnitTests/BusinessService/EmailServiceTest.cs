@@ -1,5 +1,4 @@
-﻿using System;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Resources;
@@ -8,6 +7,7 @@ using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using Newtonsoft.Json;
 using NSubstitute;
+using System;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService

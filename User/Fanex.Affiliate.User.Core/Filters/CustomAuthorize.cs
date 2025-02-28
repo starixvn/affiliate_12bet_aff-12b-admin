@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.CoreService;
+using System;
 using System.Net;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Fanex.Affiliate.User.Core.CoreService;
 
 namespace Fanex.Affiliate.User.Core.Filters
 {
@@ -19,8 +19,8 @@ namespace Fanex.Affiliate.User.Core.Filters
 
             if (!skipAuthorization)
             {
-                var authorized = sessionService.UserSession != null 
-                                 && context.Request.IsAuthenticated 
+                var authorized = sessionService.UserSession != null
+                                 && context.Request.IsAuthenticated
                                  && context.User.Identity.IsAuthenticated;
 
                 if (!authorized)

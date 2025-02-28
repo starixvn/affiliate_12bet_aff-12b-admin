@@ -1,9 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Collections.Generic;
     using DTO.UserPanel;
     using DTO.UserPanel.Statistics;
     using MetalModels.UserPanel;
+    using System.Collections.Generic;
 
     public interface IStatisticsService
     {

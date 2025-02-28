@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Criterias;
     using Data.Repository;
     using DTO.UserPanel;
@@ -9,6 +7,8 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Utilities;
     using Moq;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using TestHelper;
     using Xunit;
 

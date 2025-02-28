@@ -1,17 +1,17 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Html;
     using BusinessService;
     using CoreService;
     using Enum;
     using Filters;
     using MetalModels.UserPanel;
     using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Web.Mvc;
+    using System.Web.Mvc.Html;
     using Utilities;
     using ViewModels.UserPanel.Marketing;
 

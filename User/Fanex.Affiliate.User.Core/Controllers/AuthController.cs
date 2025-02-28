@@ -1,7 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Web.UI;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
@@ -11,6 +8,9 @@ using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
+using System;
+using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             ISystemService systemsService,
             IAuthService authService,
             ICaptchaService captchaService,
-            IAccountService accountService) 
+            IAccountService accountService)
             : base(sessionService, systemsService, appSetting, captchaService, authService, accountService)
         {
         }

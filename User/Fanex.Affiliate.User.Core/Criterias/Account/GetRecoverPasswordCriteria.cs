@@ -18,9 +18,9 @@
 
         public override string GetSettingKey() => "Aff_User_RecoverPassWord";
 
-        public override bool IsValid() 
-            => AffId > 0 
-               && !string.IsNullOrEmpty(ValidCode) 
+        public override bool IsValid()
+            => AffId > 0
+               && !string.IsNullOrEmpty(ValidCode)
                && !string.IsNullOrEmpty(NewPassword);
     }
 }

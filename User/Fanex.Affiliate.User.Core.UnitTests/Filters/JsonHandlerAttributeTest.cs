@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.Controllers;
+﻿using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.Infrastructure;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Filters

@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Commands.Payment;
     using Core.Utilities;
     using Criterias;
@@ -16,6 +14,8 @@
     using Moq;
     using Newtonsoft.Json;
     using Resources;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using TestHelper;
     using Xunit;
 

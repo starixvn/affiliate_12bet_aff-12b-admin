@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.Extensions;
+using Fanex.Logging;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Logging;
-using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {

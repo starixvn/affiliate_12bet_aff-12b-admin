@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {

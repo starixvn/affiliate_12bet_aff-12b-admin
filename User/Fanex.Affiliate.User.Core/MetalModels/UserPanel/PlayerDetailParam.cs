@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
-    using System;
     using Constants;
+    using System;
     using Utilities;
 
     public class PlayerDetailParam

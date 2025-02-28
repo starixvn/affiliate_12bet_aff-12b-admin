@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Threading.Tasks;
     using Apis;
     using Commands;
     using Commands.Account;
@@ -14,6 +13,7 @@
     using MetalModels;
     using MetalModels.Email;
     using Resources;
+    using System.Threading.Tasks;
     using Utilities;
 
     public class AccountService : BaseDynamicService, IAccountService

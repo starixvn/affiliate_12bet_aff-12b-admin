@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
@@ -12,6 +9,9 @@
     using MetalModels.Email;
     using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
     using Utilities;
     using ViewModels;
 

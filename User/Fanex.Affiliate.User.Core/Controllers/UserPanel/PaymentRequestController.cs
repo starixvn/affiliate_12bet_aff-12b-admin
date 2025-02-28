@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
@@ -13,6 +9,10 @@
     using MetalModels.Email;
     using MetalModels.UserPanel;
     using Resources;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel;
 

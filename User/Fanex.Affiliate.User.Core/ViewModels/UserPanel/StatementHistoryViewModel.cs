@@ -68,14 +68,14 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
                     case Constants.TransType.SubAffBonus:
                         return Resources.Lang.SubAffiliate;
                     case Constants.TransType.MonthlyTotal:
-                    {
-                        if (CalculatedType == Constants.CalculatedType.CalculatedMonth || CalculatedType == Constants.CalculatedType.UnCalculatedMonth)
                         {
-                            return Resources.Lang.MonthlyTotal;
-                        }
+                            if (CalculatedType == Constants.CalculatedType.CalculatedMonth || CalculatedType == Constants.CalculatedType.UnCalculatedMonth)
+                            {
+                                return Resources.Lang.MonthlyTotal;
+                            }
 
-                        return Resources.Lang.Transaction;
-                    }
+                            return Resources.Lang.Transaction;
+                        }
                     default:
                         return Resources.Lang.Transaction;
                 }
@@ -158,8 +158,8 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
         {
             const string desc = "Account balance carried forward from the previous system.";
 
-            return description.Trim().Equals(desc, StringComparison.InvariantCultureIgnoreCase) 
-                ? Resources.Lang.PreviousSystemBalanceDescription 
+            return description.Trim().Equals(desc, StringComparison.InvariantCultureIgnoreCase)
+                ? Resources.Lang.PreviousSystemBalanceDescription
                 : string.Empty;
         }
     }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
+using System;
 using System.Collections.Generic;
-using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
 
 namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics
 {

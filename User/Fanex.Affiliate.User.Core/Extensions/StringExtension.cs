@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.Constants;
+using System;
 using System.Linq;
-using Fanex.Affiliate.User.Core.Constants;
 
 namespace Fanex.Affiliate.User.Core.Extensions
 {

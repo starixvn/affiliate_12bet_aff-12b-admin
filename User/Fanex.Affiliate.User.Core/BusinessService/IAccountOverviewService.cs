@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System;
-    using System.Collections.Generic;
     using DTO.UserPanel;
     using DTO.UserPanel.AccountOverview;
     using MetalModels.UserPanel;
+    using System;
+    using System.Collections.Generic;
 
     public interface IAccountOverviewService
     {

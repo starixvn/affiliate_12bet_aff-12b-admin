@@ -57,7 +57,14 @@ describe('domain control - components - DomainControlPopup ', () => {
         affDomainList,
         redirectDomainList,
         marketList,
-        selectedDomain
+        selectedDomain,
+        affSubDomainList: [
+            {
+                columnKey: "test",
+                columnName: "test",
+                checked: true
+            }
+        ]
     };
 
     it('render correctly with insert', () => {

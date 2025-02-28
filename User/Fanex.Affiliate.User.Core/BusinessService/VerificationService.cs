@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Security.Cryptography;
     using Commands;
     using Constants;
     using CoreService;
@@ -11,6 +10,7 @@
     using MetalModels;
     using MetalModels.Email;
     using OtpNet;
+    using System.Security.Cryptography;
     using Utilities;
 
     public class VerificationService : BaseDynamicService, IVerificationService

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.Utilities;
+using Fanex.Affiliate.User.Site.App_Start;
+using Fanex.Data;
+using System;
 using System.Configuration;
 using System.Reflection;
 using System.Web;
@@ -6,9 +9,6 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
-using Fanex.Affiliate.User.Core.Utilities;
-using Fanex.Affiliate.User.Site.App_Start;
-using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Site
 {

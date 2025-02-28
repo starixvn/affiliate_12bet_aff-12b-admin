@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System;
-    using System.Collections.Generic;
     using Commands.Marketing;
     using Criterias;
     using Data.Repository;
@@ -17,6 +15,8 @@
     using MetalModels.UserPanel;
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
+    using System;
+    using System.Collections.Generic;
     using TestHelper;
     using Xunit;
 

@@ -1,10 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Web;
     using Criterias;
     using Data.Repository;
     using DTO;
@@ -14,6 +9,11 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
     using TestHelper;
     using Xunit;
 

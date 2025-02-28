@@ -27,8 +27,8 @@ namespace Fanex.Affiliate.User.Core.Extensions
                 clientValidIP = requestBase.UserHostAddress;
             }
 
-            return !string.IsNullOrWhiteSpace(clientValidIP) && clientValidIP.Equals("::1") 
-                ? "127.0.0.1" 
+            return !string.IsNullOrWhiteSpace(clientValidIP) && clientValidIP.Equals("::1")
+                ? "127.0.0.1"
                 : clientValidIP;
         }
 

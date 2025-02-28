@@ -76,10 +76,10 @@ namespace Fanex.Affiliate.User.Core.Constants
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnPro = new Dictionary<string, string>
         {
             [AFF16105_ID] = $"{DOMAIN_GO_12REAL_PRO},{DOMAIN_GO_12FIFA18_PRO}",
-            
+
             [AFF16204_ID] = DOMAIN_GO_12REAL_PRO,
             [AFF16205_ID] = DOMAIN_GO_12REAL_PRO,
-            
+
             [AFF16000_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
             [AFF16186_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
             [AFF16096_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
@@ -122,10 +122,10 @@ namespace Fanex.Affiliate.User.Core.Constants
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnLocal = new Dictionary<string, string>
         {
             [AFF16105_ID] = $"{DOMAIN_GO_LOCAL},{DOMAIN_GOV2_LOCAL}",
-            
+
             [AFF16204_ID] = DOMAIN_GO_LOCAL,
             [AFF16205_ID] = DOMAIN_GO_LOCAL,
-            
+
             [AFF16000_ID] = DOMAIN_GO_LOCAL,
             [AFF16186_ID] = DOMAIN_GO_LOCAL,
             [AFF16096_ID] = DOMAIN_GO_LOCAL,

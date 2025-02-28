@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Logging;
+using Moq;
+using NSubstitute;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
@@ -6,11 +11,6 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO.Auth;
-using Fanex.Logging;
-using Moq;
-using NSubstitute;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 {

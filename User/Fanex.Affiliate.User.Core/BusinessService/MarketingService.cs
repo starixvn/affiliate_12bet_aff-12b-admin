@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using Commands.Marketing;
     using Constants;
     using CoreService;
@@ -17,6 +13,10 @@
     using MetalModels;
     using MetalModels.UserPanel;
     using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
     using Utilities;
     using ViewModels.UserPanel.Marketing;
 

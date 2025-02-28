@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Commands.Payment;
     using CoreService;
     using Criterias;
@@ -13,6 +10,9 @@
     using MetalModels.Email;
     using MetalModels.UserPanel;
     using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Utilities;
 
     public class PaymentService : BaseDynamicService, IPaymentService
@@ -51,7 +51,7 @@
         {
             cancelParam.Status = "Cancelled";
 
-            var resultInfo = ExecuteReturnResultInfo(cancelParam.MapTo<PaymentCancelParam,CancelPaymentRequestCommand>());
+            var resultInfo = ExecuteReturnResultInfo(cancelParam.MapTo<PaymentCancelParam, CancelPaymentRequestCommand>());
 
             if (resultInfo.IsOk)
             {
@@ -113,7 +113,7 @@
 
                 return resultInfo;
             }
-            
+
             if (!IsValidAmount(paymentCreationParam))
             {
                 resultInfo.Message = Error.PaymentAmountInvalid;

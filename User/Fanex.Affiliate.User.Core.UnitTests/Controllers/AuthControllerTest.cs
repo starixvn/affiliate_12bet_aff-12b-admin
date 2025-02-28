@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
-    using System.Collections.Generic;
-    using System.Security.Principal;
-    using System.Web.Mvc;
     using Core.BusinessService;
     using Core.Controllers;
     using Core.CoreService;
@@ -15,6 +12,9 @@
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
     using Resources;
+    using System.Collections.Generic;
+    using System.Security.Principal;
+    using System.Web.Mvc;
     using TestHelper;
     using ViewModels;
     using Xunit;

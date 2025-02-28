@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Collections.Generic;
     using CoreService;
     using Criterias;
     using Data.Repository;
     using DTO.UserPanel;
     using DTO.UserPanel.Statistics;
     using MetalModels.UserPanel;
+    using System.Collections.Generic;
     using Utilities;
 
     public class StatisticsService : BaseDynamicService, IStatisticsService
@@ -39,7 +39,7 @@
         public IEnumerable<MarketingPageStatistics> GetMarketingPageStatistics(MarketingPageStatisticsParam param)
         {
             var criteria = param.MapTo<MarketingPageStatisticsParam, GetMarketingPageStatisticsCriteria>();
-           
+
             return FetchTData<MarketingPageStatistics>(criteria);
         }
     }

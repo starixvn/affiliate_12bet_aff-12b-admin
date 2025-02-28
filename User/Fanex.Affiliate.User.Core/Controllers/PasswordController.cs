@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
@@ -11,6 +9,8 @@
     using MetalModels;
     using MetalModels.Email;
     using Resources;
+    using System.Linq;
+    using System.Web.Mvc;
     using Utilities;
 
     public class PasswordController : BaseController

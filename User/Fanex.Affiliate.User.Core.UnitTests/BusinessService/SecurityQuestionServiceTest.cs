@@ -1,11 +1,11 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Collections.Generic;
     using Criterias;
     using Data.Repository;
     using DTO;
     using Fanex.Affiliate.User.Core.BusinessService;
     using NSubstitute;
+    using System.Collections.Generic;
     using Xunit;
 
     public class SecurityQuestionServiceTest

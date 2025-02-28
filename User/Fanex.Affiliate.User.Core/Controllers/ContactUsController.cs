@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
     using BusinessService;
     using CoreService;
     using Fanex.Affiliate.User.Core.DTO;
@@ -11,6 +9,8 @@
     using Fanex.Affiliate.User.Core.Resources;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
+    using System.Linq;
+    using System.Web.Mvc;
 
     public class ContactUsController : BaseController
     {

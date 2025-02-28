@@ -1,9 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.Infrastructure
 {
-    using System;
-    using System.Web.Mvc;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using System;
+    using System.Web.Mvc;
 
     public class JsonNetResult : JsonResult
     {

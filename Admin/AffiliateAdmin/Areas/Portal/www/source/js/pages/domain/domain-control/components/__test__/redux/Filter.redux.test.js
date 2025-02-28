@@ -37,6 +37,8 @@ describe('domain control - Filter - connect', () => {
         bindActionCreators.mockImplementationOnce(mockBindAction);
         const expectedActionCreator = {
             setSelectedMarket: actions['setSelectedMarket'],
+            setAffSubDomainList: actions['setAffSubDomainList'],
+            setShouldResetScrollPosition: actions['setShouldResetScrollPosition'],
             fetchData: actions['fetchData']
         }
 

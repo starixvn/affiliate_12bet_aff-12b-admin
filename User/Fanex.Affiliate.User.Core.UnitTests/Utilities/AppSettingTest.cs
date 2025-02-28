@@ -1,9 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.Utilities
 {
+    using Fanex.Affiliate.User.Core.Utilities;
     using System;
     using System.Collections.Generic;
     using System.Configuration;
-    using Fanex.Affiliate.User.Core.Utilities;
     using Xunit;
 
     public class AppSettingTests

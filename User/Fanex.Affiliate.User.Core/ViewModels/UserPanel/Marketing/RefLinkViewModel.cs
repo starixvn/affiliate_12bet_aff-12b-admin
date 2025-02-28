@@ -1,8 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing
 {
-    using System.Collections.Generic;
-    using Enum;
     using DTO.UserPanel.MediaGallery;
+    using Enum;
+    using System.Collections.Generic;
 
     public class RefLinkViewModel
     {

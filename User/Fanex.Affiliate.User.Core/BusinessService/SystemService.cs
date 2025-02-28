@@ -1,10 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Threading;
-    using System.Web;
     using Constants;
     using CoreService;
     using Criterias;
@@ -13,6 +8,11 @@
     using DTO.UserPanel;
     using DTO.UserPanel.MediaGallery;
     using Extensions;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
+    using System.Web;
 
     public class SystemService : BaseDynamicService, ISystemService
     {

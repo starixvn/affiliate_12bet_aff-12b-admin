@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public IEnumerable<string> GetSubAffDomainControlList()
         {
-            var subDomainInfos = FetchTData<AffSubDomainInfo>(new DomainControlCriteria ());
+            var subDomainInfos = FetchTData<AffSubDomainInfo>(new DomainControlCriteria());
 
             return subDomainInfos.Select(s => s.AffSubDomain)
                 .Where(s => !string.IsNullOrEmpty(s)).Distinct();

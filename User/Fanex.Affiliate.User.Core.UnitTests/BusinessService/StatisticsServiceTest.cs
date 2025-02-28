@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Collections.Generic;
     using Criterias;
     using Data.Repository;
     using DTO.UserPanel;
@@ -9,6 +8,7 @@
     using MetalModels.UserPanel;
     using Newtonsoft.Json;
     using NSubstitute;
+    using System.Collections.Generic;
     using Xunit;
 
     public class StatisticsServiceTest

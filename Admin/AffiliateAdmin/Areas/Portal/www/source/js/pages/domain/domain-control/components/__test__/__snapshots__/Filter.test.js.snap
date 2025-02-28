@@ -9,12 +9,11 @@ exports[`domain control - components - Filter  render correctly 1`] = `
     tag="div"
   >
     <FormGroup
-      className="mr-sm-3"
+      className="mr-sm-2"
       tag="div"
     >
       <Label
         className="mr-sm-2"
-        htmlFor="market"
         tag="label"
         widths={
           Array [
@@ -49,6 +48,47 @@ exports[`domain control - components - Filter  render correctly 1`] = `
           value="vi-VN"
         />
       </Input>
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-3"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Aff Sub-domain
+      </Label>
+      <MultipleSelect
+        dataSource={
+          Array [
+            Object {
+              "checked": true,
+              "columnKey": "test",
+              "columnName": "test",
+            },
+          ]
+        }
+        hasAllOption={true}
+        hasInputOption={false}
+        isDisable={false}
+        keyField="columnKey"
+        maxDisplayItemCount={1}
+        noneSelectedLabel="Please Select"
+        onChange={[Function]}
+        selectedAllLabel="All"
+        statusField="checked"
+        valueField="columnName"
+      />
     </FormGroup>
     <Button
       color="primary"

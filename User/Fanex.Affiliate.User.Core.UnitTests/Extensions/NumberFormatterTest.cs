@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Extensions
         [InlineData(-0.04, "-$0.04")]
         public void ToStringMoneyWithSymbol_WhenCall_ReturnCorrect(decimal number, string result)
         {
-            var formattedNumber = number.ToStringMoneyWithSymbol( "$");
+            var formattedNumber = number.ToStringMoneyWithSymbol("$");
 
             Assert.Equal(result, formattedNumber);
         }

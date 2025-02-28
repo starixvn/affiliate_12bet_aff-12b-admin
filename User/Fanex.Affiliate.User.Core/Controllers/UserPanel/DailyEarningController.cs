@@ -1,11 +1,11 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Web.Mvc;
     using Constants;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Filters;
     using MetalModels.UserPanel;
+    using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel;
 
@@ -41,8 +41,8 @@
             ViewBag.BaseCurrencies = SystemService.GetBaseCurrencyList();
             ViewBag.SelectedBaseCurrency = param.BaseCurrency;
 
-            var viewPath = param.IsOnlyContent 
-                ? "~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningContent.cshtml" 
+            var viewPath = param.IsOnlyContent
+                ? "~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningContent.cshtml"
                 : "~/Views/UserPanel/StatementHistory/DailyEarning.cshtml";
 
             return View(viewPath, viewModel);

@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Core.BusinessService;
     using Criterias;
     using Data.Repository;
@@ -10,6 +8,8 @@
     using MetalModels.UserPanel;
     using Newtonsoft.Json;
     using NSubstitute;
+    using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     public class StatementHistoryServiceTest

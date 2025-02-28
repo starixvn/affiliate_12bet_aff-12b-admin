@@ -1,19 +1,19 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System;
-    using System.Collections.Generic;
     using CoreService;
     using Criterias;
     using Data.Repository;
     using DTO.UserPanel;
     using DTO.UserPanel.AccountOverview;
     using MetalModels.UserPanel;
+    using System;
+    using System.Collections.Generic;
     using Utilities;
 
     public class AccountOverviewService : BaseDynamicService, IAccountOverviewService
     {
-        public AccountOverviewService(IDynamicRepository dynamicRepository):base(dynamicRepository)
-        {}
+        public AccountOverviewService(IDynamicRepository dynamicRepository) : base(dynamicRepository)
+        { }
 
         public LastLoginInfo GetLastLoginInfo(int affId)
         {
