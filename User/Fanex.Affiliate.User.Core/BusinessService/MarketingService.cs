@@ -315,7 +315,7 @@
 
         private static string NormalizeName(string channelName)
         {
-            return channelName.Replace(" ", string.Empty).ToLowerInvariant();
+            return channelName.ToLowerInvariant();
         }
 
         private IEnumerable<Domain> GetAvailableDomainsFromDate(IEnumerable<Domain> domains, bool isMember = false)

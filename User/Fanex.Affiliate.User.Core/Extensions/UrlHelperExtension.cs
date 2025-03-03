@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Utilities;
-using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Extensions
@@ -13,7 +12,7 @@ namespace Fanex.Affiliate.User.Core.Extensions
         public static string RenderLink(this UrlHelper urlHelper, string bundleVirtualPath)
         {
             var link = appSetting.IsLocal ? urlHelper.Content(bundleVirtualPath) :
-                                            urlHelper.Content(Regex.Replace(bundleVirtualPath, @"\.(js|css)$", ".min.$1"));
+                                            urlHelper.Content(RegexHelper.Replace(bundleVirtualPath, @"\.(js|css)$", ".min.$1"));
 
             return link + "?v=" + appSetting.JsVersion;
         }
@@ -22,7 +21,7 @@ namespace Fanex.Affiliate.User.Core.Extensions
         {
             var favoriteShortedLanguage = systemService.GetFavoriteShortedLanguage();
 
-            return urlHelper.Content(Regex.Replace(bundleVirtualPath, @"^\~/", $"~/{favoriteShortedLanguage}/"));
+            return urlHelper.Content(RegexHelper.Replace(bundleVirtualPath, @"^\~/", $"~/{favoriteShortedLanguage}/"));
         }
     }
 }

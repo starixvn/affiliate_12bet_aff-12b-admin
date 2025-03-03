@@ -9,7 +9,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using Utilities;
@@ -93,7 +92,7 @@
             .Select(c => new SelectListItem
             {
                 Value = c.Category,
-                Text = Lang.ResourceManager.GetString(Regex.Replace(c.Category, @"\s+", "")) ?? c.Category
+                Text = Lang.ResourceManager.GetString(RegexHelper.Replace(c.Category, @"\s+", "")) ?? c.Category
             });
     }
 }
