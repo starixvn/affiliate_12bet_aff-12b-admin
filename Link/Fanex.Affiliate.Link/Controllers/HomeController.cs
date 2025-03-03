@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.Link.Controllers
             return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
-        public ActionResult Link(string pageCode, string affCode, string lang = null)
+        public ActionResult Link(string pageCode, string affCode, string lang = null, string channel = null)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
                 var affDomain = GetFullAffDomain(GetOriginalUrl(), pageCode);
 
-                return InsertAffiliate(affCode, pageCode, lang, affDomain, affInfo.AffId);
+                return InsertAffiliate(affCode, pageCode, lang, affDomain, affInfo.AffId, channel);
             }
             catch (Exception ex)
             {
@@ -120,12 +120,12 @@ namespace Fanex.Affiliate.Link.Controllers
             }
         }
 
-        public ActionResult SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null)
+        public ActionResult SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
         {
-            return Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang);
+            return Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang, channel);
         }
 
-        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain, int affId = 0)
+        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain, int affId = 0, string channel = null)
         {
             if (Request.Url != null)
             {
@@ -144,6 +144,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     AffDomain = affDomain,
                     AffCode = affCode,
                     PageCode = pageCodeOnV2,
+                    ChannelCode = channel,
                     LanguageCode = lang,
                     DeviceType = GetDeviceType(),
                     IP = Request.GetClientIP(),

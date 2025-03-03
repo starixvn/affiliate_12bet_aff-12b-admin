@@ -36,8 +36,8 @@
 {
     <tr data-parent="@link.ChannelName" class="display-none">
         <td></td>
-        <td>@link.AffMediaLink</td>
-        <td class="text-center">@link.MarketName</td>
+        <td>@(string.IsNullOrEmpty(link.AffMediaLink) ? "N/A" : link.AffMediaLink)</td>
+        <td class="text-center">@(string.IsNullOrEmpty(link.MarketName) ? "N/A" : link.MarketName)</td>
         <td class="text-right">@link.TotalClick</td>
         <td class="text-right">@link.UniqueClick</td>
         <td class="text-right">@link.SignUps</td>
