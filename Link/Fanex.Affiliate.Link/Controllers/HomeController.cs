@@ -225,6 +225,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 {
                     var realDomain = infos[1];
                     param.AffDomain = param.AffDomain.Replace(fakeDomain, realDomain);
+                    param.AffMediaLink = param.AffMediaLink.Replace(fakeDomain, realDomain);
                 }
             }
         }
