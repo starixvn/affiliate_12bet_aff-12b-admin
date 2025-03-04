@@ -228,4 +228,7 @@
   <data name="NameToLong20" xml:space="preserve">
     <value>渠道名称不能超过20个字符，请检查后再试一次。</value>
   </data>
+  <data name="InvalidChannelName" xml:space="preserve">
+    <value>渠道名称只能使用英文字母和数字，请勿使用空格或特殊字符。</value>
+  </data>
 </root>

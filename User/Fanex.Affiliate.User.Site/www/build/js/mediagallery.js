@@ -1289,37 +1289,34 @@ var MarketingBase = (function ($) {
                 if ($(this).val() === 'add-new') {
                     let text = prompt(window.dic.enterChannel);
                     if (text) {
-                        MarketingBase.handleAddChannel(text.trim());
+                        let textTrim = text.trim();
+                        if (textTrim.length > 20) {
+                            alert(window.dic.nameToLong20);
+                            return;
+                        }
+
+                        if (regexChannelName.test(textTrim)) {
+                            let addPromise = MarketingBase.addChannel(textTrim);
+                            addPromise.then(result => {
+                                if (result) {
+                                    if (result.IsOk) {
+                                        alert(window.dic.addChannelSuccess)
+                                        $(this).append(new Option(result.Data.ChannelName, result.Data.ChannelCode, false, true));
+                                        $("button.btn-gen").removeAttr("disabled");
+                                    }
+                                    else {
+                                        alert(result.Message);
+                                    }
+                                }
+                            })
+                        } else {
+                            alert(window.dic.invalidChannelName);
+                        }
                     }
                 }
                 $(this).blur();
             })
         },
-        handleAddChannel: function (textTrim) {
-            if (textTrim.length > 20) {
-                alert(window.dic.nameToLong20);
-                return;
-            }
-
-            if (regexChannelName.test(textTrim)) {
-                let addPromise = MarketingBase.addChannel(textTrim);
-                addPromise.then(result => {
-                    if (result) {
-                        if (result.IsOk) {
-                            alert(window.dic.addChannelSuccess)
-                            $(this).append(new Option(result.Data.ChannelName, result.Data.ChannelCode, false, true));
-                            $("button.btn-gen").removeAttr("disabled");
-                        }
-                        else {
-                            alert(result.Message);
-                        }
-                    }
-                })
-            } else {
-                alert(window.dic.invalidChannelName);
-            }
-        },
-
         addChannel: function (text) {
             Site.showLoader();
             let url = Site.resolveRelativeLangUrl("UserPanel/Marketing/AddChannel");

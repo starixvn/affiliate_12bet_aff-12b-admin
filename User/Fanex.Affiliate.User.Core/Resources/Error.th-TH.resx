@@ -228,4 +228,7 @@
   <data name="NameToLong20" xml:space="preserve">
     <value>ชื่อช่องต้องมีความยาวไม่เกิน 20 ตัวอักษร กรุณาตรวจสอบอีกครั้ง</value>
   </data>
+  <data name="InvalidChannelName" xml:space="preserve">
+    <value>ชื่อช่องสามารถมีตัวอักษรและตัวเลขได้เท่านั้น ไม่อนุญาตให้เว้นวรรคหรือมีอักขระพิเศษ</value>
+  </data>
 </root>

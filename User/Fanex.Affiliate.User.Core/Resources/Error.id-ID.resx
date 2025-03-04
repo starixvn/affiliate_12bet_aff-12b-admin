@@ -228,4 +228,7 @@
   <data name="NameToLong20" xml:space="preserve">
     <value>Nama Saluran tidak boleh melebihi 20 karakter. Harap periksa kembali.</value>
   </data>
+  <data name="InvalidChannelName" xml:space="preserve">
+    <value>Nama saluran hanya boleh berisi huruf dan angka. Tidak diperbolehkan menggunakan spasi atau karakter khusus.</value>
+  </data>
 </root>
