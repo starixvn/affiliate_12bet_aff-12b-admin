@@ -138,15 +138,6 @@
         [AjaxOnly]
         public ActionResult AddChannel(string channelName)
         {
-            if (SessionService.IsInternal)
-            {
-                return Json(new ResultInfo
-                {
-                    IsOk = false,
-                    Message = Lang.ErrAuthorized
-                });
-            }
-
             if (!string.IsNullOrEmpty(channelName))
             {
                 var channelTrim = channelName.Trim();
