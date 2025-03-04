@@ -112,7 +112,7 @@
                         {
                             DomainId = affId + specificDomainList.Count,
                             DomainName = name,
-                            IsSsl = false
+                            IsSsl = !(Array.Exists(SpecificDomain.NotSSLDomains, d => d.MatchWith(name)))
                         });
                     }
 
